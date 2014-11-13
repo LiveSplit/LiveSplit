@@ -1,0 +1,4 @@
+Source code samples in this folder (except expression samples) are taken from the following web site:
+http://99-bottles-of-beer.net/
+
+

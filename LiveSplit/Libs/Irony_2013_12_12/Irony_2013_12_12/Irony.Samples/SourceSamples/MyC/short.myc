@@ -1,0 +1,14 @@
+
+
+
+int foo(int i, int j)
+{
+    int k;
+    k = i + j + 23; 
+    bar(a,b);
+    return k;
+}
+
+
+
+

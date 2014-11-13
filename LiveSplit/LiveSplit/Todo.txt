@@ -1,0 +1,136 @@
+﻿1.5:
+X add splits changed event
+- possibly investigate 1 pixel off invalidations more
+- option to edit individual per-splits settings for each component in the Splits Editor
+- Console Autosplitting
+- Revamp Layout Editor http://i.imgur.com/GWjZpTV.png
+- Multiple Window support
+X Show zeroes on Timer
+- Separate size setting for decimals on Timer
+X Better way to handle Close Splits
+- Automatic sharing
+X Move splits up and down
+X Timing Method override for Splits and Detailed Timer
+
+1.4.5:
+- Comparisons for Racing sometimes don't work?
+- Release Sum of Best Component this time
+- Timer Override
+- Fix SRL Killswitch
+- Fix SRL Authentication Form being resizable? O.o
+- ASL scripts never worked, because we forgot to release Irony.dll
+
+1.4.4:
+- one component can't update = rip
+
+1.5:
+- Autosplitters that are also in the layout
+- comparisons generated in separate thread
+- Add gold colors to graph
+- Allow components to save stuff into the run
+- digit options to the left (e.g. 1 hour digit instead of 2)
+- Fix message boxes popping up behind the window
+- Horizontal title width
+- Individual Anti-Aliasing options
+- Twitch Auto Share
+- Replace Image.FromFile with own method that closes the file
+- Timer freezing after the split (customizable time)
+- Split Reordering
+- Open from URL for all images
+- basic Background Images
+- Congratsio 2.0
+- Fix Double Click Prevention preventing code from pressing keys twice
+- Timer only for OBS plugin and normal livesplit
+- Deactivate individual timing methods (Windows Time / QPC) or sync with time server
+- Checkbox for deactivating Components without removing them
+- Fix getting disconnected mid-race and then finishing.
+- Fix CPU usage + memory leak issues
+- Fix OBS Plugin
+- Copy pasting times in run editor
+- Show a better message when components are missing (instead of saying the layout is broken)
+- Dispose for Splits and Layouts
+- Race Component
+- Colored Segments on Graph based on Delta Color
+- Ask on .undone in SRL races
+- Fix Japanese Characters in IRC
+- Racing Split Names: Remove Spaces, convert to lower case, synchronize local "alternative names database" to get a race alternative names database at the race start
+- Hotkeys and Hotkey delay per layout / run or something (so that you don't need to change them all the time)
+- Fix Tab Hotkey
+- Alternate 2 Row Mode: http://i.imgur.com/hzDJth8.png
+- Run History Rewind for idiots
+- Split Time Colors match delta colors option
+- Fix Hotkey Modifiers so that non-modifier-hotkeys always work
+- Deactivate eating hotkeys on Toggling off with the Toggle Global Hotkeys Hotkey
+- Fix Set Size Dialog popping up behind
+- Fix OBS hook, where 2 LiveSplits don't get captured properly
+- Sort SRL game categories by popularity.
+- HypeCon @Naegleria
+- Game Time override for Timer
+- make Game Time only be enabled if Auto Splitter
+- Redownload auto splitters that won't activate
+
+Later:
+
+- Lock size while editing layout
+- Remove separators if splits are empty (maybe?)
+- Timing issues
+- Add eating inputs back in and let users activate it by editing the settings file
+- Resize images
+- Save runs "mid-run" and continue later
+- Segmented runs
+- Improve performance by implementing an AbstractWPFComponent
+- ZeldaSpeedRuns Auto Submit
+- Windows Appear Behind
+- Screenshot mode with all the splits
+- Goals?
+- Popoutable components
+- Export to TXT component
+- Show additional llanfair crap component
+- Support for OBS test build
+- Don't show separator if last split is last split anyway
+- Spectator mode (web version by @dested)
+- Linking splits together for triathlon runs.
+- Define Auto Shares (If this than share that to that sharing platform)
+- Twitch Viewer Count component
+- Live Time same color as delta time (@MMPallidus)
+- Improve OBS plugin (also make it independent of WM_PAINT)
+- Don't count attempts that are an instant reset. (Maybe configurable timespan)
+- Fix printscreen key
+- Windows XP support (?)
+- File format "LiveSplit Splits" is gone for some reason
+
+1.4.2.0
+- fix dumb SRL issues
+- Tell auto splitters that they are auto splitters?
+- If you add the auto splitter to the layout, reuse the same instance and just use it to show additional stuff
+- Non-live-graph is weirdly broken for TheWindMask https://www.youtube.com/watch?v=nAGDYNzsyUE&feature=youtu.be&a
+- Zfg's Video Component dies everytime he changes settings.
+
+What we fixed:
+- MRLs
+- Hotkeys
+- Multiple File Support for Auto Splitters
+- Unsplit / Skip Split Bug
+
+1.4:
+- fix teh auto splitterz
+===================
+- Game Time is now being tracked as well as Real Time all the time. Components can provide the Game Time. You can switch between Game Time and Real Time in Compare Against.
+- Auto Splitters are automatically being suggested in the Run Editor if they are available for a specific game. If activated, they automatically get downloaded and don't need to be part of the layout.
+- The Video Component allows you to show a PB or WR video that is synced up to the current run time.
+- The Delta Component displays the current delta to a comparison, which is useful for races and comparisons like "World Record" where it shows how far you're ahead or behind without having to use a splits component.
+- The Manual Game Time Component allows inserting the Game Time manually as segment times or split times for console games like Sonic where Game Time is used instead of Real Time.
+- The Sound Effects Component allows customizable sound effects to be played in certain situations.
+- Some of the optional components on the website are now part of the standard LiveSplit (Hotkey Indicator and Current Comparison).
+- Components are now categorized to allow for more components without them being a mess.
+- Information Components now show shorter information names instead of cutting them off which allows for thinner layouts.
+- A new Hotkey API is being used, which should remove some bugs that removed the Hotkeys in LiveSplit 1.3.
+- A "Simple Sum of Best Mode" is now available which improves the performance for the Sum of Best calculation, but also might make it less accurate. This is useful for slow PCs or splits with a large segment history.
+- The default layout was updated to include all of the new features that have been added since LiveSplit 1.0.
+- Information Components now use shorter names if there's not enough space instead of cutting their names off.
+- SpeedRunsLive Racing is working again and a lot of issues have been fixed.
+- Layouts automatically get placed on the screen if a layout that's outside of the screen gets opened.
+- The overall performance in LiveSplit has been improved.
+
+- The Splits Component now features a new coloring option: Alternating colors.
+

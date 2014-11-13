@@ -1,0 +1,31 @@
+
+* Adds two binary numbers
+* Written by Y [14-06-03]
+
+$ENTRY Go { = 
+  <Prout "0 + 0 =" <AddB ('0') ('0')>>
+  <Prout "0 + 1 =" <AddB ('0') ('1')>>
+  <Prout "1 + 0 =" <AddB ('1') ('0')>>
+  <Prout "1 + 1 =" <AddB ('1') ('1')>>
+  <Prout "10 + 01 =" <AddB ('10') ('01')>>
+
+* 11 + 6 = 17
+  <Prout "1011 + 0110 =" <AddB ('1011') ('0110')>> 
+
+* 353 + 181 = 534
+  <Prout "101100001 + 10110101 =" <AddB ('101100001') ('10110101')>>
+
+* error
+  <Prout "asdbn + ddd =" <AddB ('asdbn') ('ddd')>>
+}
+
+AddB {
+  () (e.1) = e.1;
+  (e.1) () = e.1;
+  (e.1 '0') (e.2 s.3) = <AddB (e.1) (e.2)> s.3;
+  (e.1 s.3) (e.2 '0') = <AddB (e.1) (e.2)> s.3;
+  (e.1 '1') (e.2 '1') = <AddB ('1') (<AddB (e.1) (e.2)>)> '0';
+
+* handle bad input
+  e.1 = '** error! **';
+}

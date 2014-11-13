@@ -1,0 +1,46 @@
+
+1. We had to join all modifiers (for class, field, method, etc) into single "modifier", to avoid inevitable conflicts
+     modifier.Rule = Symbol("new") | "public" | "protected" | "internal" | "private" | "static" | "virtual" | "sealed" |
+        "override" | "abstract" | "extern" | "readonly" | "volatile";
+   Specific modifiers:
+      class-modifiers:
+        new public protected internal private abstract sealed static     
+      field_modifier.Rule = Symbol("new") | "public" | "protected" | "internal" | "private" | "static" | "readonly" | "volatile";
+      method_modifier.Rule = Symbol("new") | "public" | "protected" | "internal" | "private" | "static" | "virtual" | "sealed" |
+        "override" | "abstract" | "extern";
+      property modifiers:
+        new public protected internal private static virtual sealed override abstract extern
+     indexer-modifiers:
+        new public protected internal private virtual sealed override abstract extern
+     constructor-modifiers:
+        public protected internal private extern
+     destructor-modifiers:
+        extern
+     interface, constant, enum, delegate, struct-modifiers:
+        new public protected internal private
+
+   TODO: implement after-parse check of each modifier subtype
+
+
+2. Member headers. We merge all header types in one member_header. 
+   TODO: after-parse validation: "partial" specifier and (return_type == void) are allowed only for methods
+         for static constructor calls to parent constructor are not allowed (like ":base(...)")
+
+4. Member-name. In spec:
+    member-name:
+      identifier
+      interface-type   .   identifier
+   The interface-type element is then defined as general type reference, which can end with plain identifier => we have conflict.
+   What spec says is that member-name should always end with identifier (not type arg). 
+   We  replace member-name with general "qual_name_with_targs" to resolve the conflict, and leave it to after-parse check 
+   to verify the last segment of the name. 
+   TODO: Add after parse check that property's name ends with pure identifier. 
+
+5. Unary/binary operators definitions joined, to avoid conflict (because some symbols like + are both types)
+     unary-operators: +   -   !   ~   ++   --   true   false
+     binary-operators: + - * / % & | ^ << right-shift == != > < >= <=  
+   TODO: After parse check of number of arguments
+     
+6. try statement
+   TODO: add after-parse validation of order of catch/finally clauses   
+   

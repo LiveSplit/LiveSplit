@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
+<!--****************************************************}
+{                                                       }
+{       colorer take5 highlighting scheme               }
+{       Written by Y [17-05-04] <yallie@yandex.ru>      }
+{                                                       }
+{       Refal-5                                         }
+{                                                       }
+{       Copyright (c) 2004 YALLIE, Inc.                 }
+{       All Rights Reserved.                            }
+{                                                       }
+{*****************************************************-->
+
+<!-- $Id: refal.hrc,v 0.0 2004/06/15 11:15:00 Y Exp $ -->
+
+<!DOCTYPE hrc PUBLIC "-//Cail Lomecb//DTD Colorer HRC take5//EN" "../hrc.dtd">
+<hrc version="take5" xmlns="http://colorer.sf.net/2003/hrc">
+ <type name="refal">
+
+  <import type="def"/>
+  
+  <region name="keyword" parent="def:Keyword"/>
+  <region name="symbol" parent="def:Symbol"/>
+  <region name="text" parent="def:Text"/>
+  <region name="atomic_string" parent="def:String"/>
+  <region name="char_string" parent="def:Character"/>
+  <region name="comment" parent="def:Comment"/>
+  <region name="type" parent="def:TypeKeyword"/>
+  <region name="function" parent="def:Parameter"/><!-- bad definition :( -->
+  <region name="error" parent="def:Error"/>
+
+  <region name="open" parent="def:PairStart"/>
+  <region name="close" parent="def:PairEnd"/>
+
+  <scheme name="numbers">
+   <inherit scheme="def:CHexNumber"/>
+   <inherit scheme="def:DecNumber"/>
+   <inherit scheme="def:FloatNumber"/>
+  </scheme>
+
+  <scheme name="comment">
+   <inherit scheme="def:Comment"/>
+  </scheme>
+
+  <scheme name="comments">
+   <block start="/\/\*/" end="/\*\//" scheme="comment"
+    region="comment" region00="open" region10="close"/>
+   <block start="/^\*/" end="/$/" scheme="comment" region="comment"/>
+  </scheme>
+
+  <scheme name="atomic_string">
+   <regexp match='/\\(x|X)[\dA-Za-z]{2}/' region="char_string"/>
+   <regexp match='/\\./' region="char_string"/>
+   <regexp match='/\"\"/' region="char_string"/>
+   <regexp match='/[^\"]$/' region="error"/>
+  </scheme>
+
+  <scheme name="char_string">
+   <regexp match="/\\(x|X)[\dA-Za-z]{2}/" region="atomic_string"/>
+   <regexp match="/\\./" region="atomic_string"/>
+   <regexp match="/\'\'/" region="atomic_string"/>
+   <regexp match="/[^\']$/" region="error"/>
+  </scheme>
+
+  <scheme name="strings">
+   <block start='/(\")/' end='/(\")|$/' scheme="atomic_string" 
+    region="atomic_string" region00="open" region10="close"/>
+   <block start="/\'/" end="/\'|$/" scheme="char_string" 
+    region="char_string" region00="open" region10="close"/>
+  </scheme>
+
+  <scheme name="expr">
+   <block start="/(&lt;)([^&gt;\s]+)/" end="/(&gt;)/" scheme="expr"
+    region00="open" region10="close" region02="function"
+    region01="symbol" region11="symbol"/>
+   <block start="/(\()/" end="/(\))/" scheme="expr"
+    region00="open" region10="close" region01="symbol" region11="symbol"/>
+   <regexp match="/(s|t|e)(\.)((\d+)|([A-Za-z][A-Za-z_\d\-]*))/"
+    region1="type" region2="symbol" region3="text"/>
+   <inherit scheme="numbers"/>
+   <inherit scheme="strings"/>
+   <inherit scheme="comments"/>
+   <keywords region="keyword">
+    <word name="False"/>
+    <word name="True"/>
+   </keywords>
+   <keywords region="symbol">
+    <symb name="&lt;"/>
+    <symb name="&gt;"/>
+    <symb name=":"/>
+    <symb name=";"/>
+    <symb name="="/>
+    <symb name=","/>
+   </keywords>
+  </scheme>
+
+  <scheme name="block">
+   <block start="/(\{)/" end="/(\})/" scheme="block"
+    region00="open" region10="close" region01="symbol" region11="symbol"/>
+   <inherit scheme="comments"/>
+   <inherit scheme="expr"/>
+  </scheme>
+
+  <scheme name="refal">
+   <block start="/(\{)/" end="/(\})/" scheme="block"
+    region00="open" region10="close" region01="symbol" region11="symbol"/>
+   <keywords region="keyword">
+    <word name="$ENTRY"/>
+    <word name="$EXTERN"/>
+    <word name="$EXTERNAL"/>
+    <word name="$EXTRN"/>
+   </keywords>
+   <keywords region="symbol">
+    <symb name=";"/>
+   </keywords>
+   <inherit scheme="comments"/>
+   <regexp match="/[A-Za-z][A-Za-z_\d\-]*/" region="function"/>
+  </scheme>
+
+ </type>
+</hrc>

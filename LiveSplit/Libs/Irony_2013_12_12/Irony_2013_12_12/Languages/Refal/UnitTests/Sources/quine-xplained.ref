@@ -1,0 +1,28 @@
+* Quine explained
+* Written by Alexey Yakovlev <yallie@yandex.ru>
+
+* InsideOut expands (e.1)(e.2) into e.1(e.1)(e.2)e.2
+* Quote adds quotes and braces around an expression
+* NewLine converts percents into new lines char by char
+
+$ENTRY Go { =
+ <Prout
+  <InsideOut
+   ('* Quine explained%* Written by Alexey Yakovlev <yallie@yandex.ru>%%* InsideOut expands (e.1)(e.2) into e.1(e.1)(e.2)e.2%* Quote adds quotes and braces around an expression%* NewLine converts percents into new lines char by char%%$ENTRY Go { =% <Prout%  <InsideOut%   ')('%  >% >%}%%InsideOut {%  (e.1)(e.2) = <NewLine e.1><Quote e.1><Quote e.2><NewLine e.2>;%}%%Quote {%  e.1 = (<Chr 39>e.1<Chr 39>)%}%%NewLine {%  s.1 e.2, <Chr 37>: s.1 = <Chr NewLine><NewLine e.2>;%  s.1 e.2 = s.1 <NewLine e.2>;%  =;%}')
+  >
+ >
+}
+
+InsideOut {
+  (e.1)(e.2) = <NewLine e.1><Quote e.1><Quote e.2><NewLine e.2>;
+}
+
+Quote {
+  e.1 = (<Chr 39>e.1<Chr 39>)
+}
+
+NewLine {
+  s.1 e.2, <Chr 37>: s.1 = <Chr NewLine><NewLine e.2>;
+  s.1 e.2 = s.1 <NewLine e.2>;
+  =;
+}

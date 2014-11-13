@@ -1,0 +1,29 @@
+* Pretty-printer for Refal expressions
+* Example program from Refal book, chapter 3.7 (slightly modified)
+* http://refal.net/chap3_r5.html
+
+$ENTRY Go { =
+  <Pprout 'if a<>b'('print a')'do'('if a>0'('a:=a-b')'else break')'while true'>
+}
+
+* Pretty print-out of expressions
+Pprout {
+  e.X = <Pprt () e.X>;
+}
+
+* <Pprt (e.Blanks-offset) e.Expression>
+Pprt {
+  (e.B) e.1(e.2)e.3 =
+     <Pr-ne (e.B) e.1>
+     <Prout e.B '('>
+     <Pprt (e.B '   ') e.2>
+     <Prout e.B')'>
+     <Pprt (e.B) e.3>;
+  (e.B) e.1 = <Pr-ne (e.B) e.1>;
+}
+
+* Print if non-empty
+Pr-ne {
+  (e.B) = ;
+  (e.B) e.1 = <Prout e.B e.1>;
+}

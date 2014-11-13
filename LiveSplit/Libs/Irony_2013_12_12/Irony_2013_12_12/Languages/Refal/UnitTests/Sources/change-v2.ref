@@ -1,0 +1,11 @@
+
+/* Change plus to minus, take2 */
+
+$ENTRY Go {
+	= <Prout <Chpm '++312a=-3+=-'>>;
+}
+
+Chpm {
+	e.1 '+' e.2 = e.1 '-' <Chpm e.2>;
+	e.1 = e.1;
+}

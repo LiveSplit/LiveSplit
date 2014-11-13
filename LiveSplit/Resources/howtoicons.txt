@@ -1,0 +1,6 @@
+saturation = 0
+brightness = 30
+invert colors
+brightness = 120
+contrast = 60
+180 degree transform

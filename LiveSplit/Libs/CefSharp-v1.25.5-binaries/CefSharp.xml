@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "CefSharp"
+    </assembly>
+    <members>
+        <member name="M:CefSharp.Internals.JavascriptBinding.BindingHandler.GetChangeTypeCost(System.Object,System.Type)">
+            <summary>Gets the cost of changing the type an object to another type.</summary>
+            <param name="conversionType">The target type.</param>
+            <return>The conversion cost, or -1 if no conversion available. Lower cost is better.</return>
+        </member>
+        <member name="M:CefSharp.Internals.JavascriptBinding.UnmanagedWrapper.Get">
+            <summary>
+Gets a reference to the wrapped object.
+</summary>
+            <returns>The wrapped object.</returns>
+        </member>
+        <member name="T:CefSharp.Internals.JavascriptBinding.UnmanagedWrapper">
+            <summary>
+Acts as an unmanaged wrapper for a managed .NET object.
+</summary>
+        </member>
+        <member name="M:CefSharp.convertFromCef(CefRefPtr&lt;CefV8Value&gt;)">
+            <summary>
+Converts a Chromium V8 value to a (managed) .NET object.
+</summary>
+            <param name="obj">The V8 value that should be converted.</param>
+            <returns>A corresponding .NET object.</returns>
+        </member>
+        <member name="M:CefSharp.convertToCef(System.Object,System.Type)">
+            <summary>
+Converts a .NET object to an (unmanaged) Chromium V8 object.
+</summary>
+            <param name="obj">The .NET object that should be converted.</param>
+            <param name="type">The type of the source object. If this parameter is a null reference, the type will be determined
+automatically.</param>
+            <returns>A corresponding V8 value.</returns>
+        </member>
+        <member name="M:CefSharp.toNative(System.String)">
+            <summary>
+Converts a .NET string to native (unamanged) format. Note that this method does not allocate a new copy of the string, but
+rather returns a pointer to the memory in the existing managed String object.
+</summary>
+            <param name="str">The string that should be converted.</param>
+            <returns>An unmanaged representation of the provided string.</returns>
+        </member>
+        <member name="M:CefSharp.toClr(CefStringBase&lt;CefStringTraitsUTF16&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Converts an unmanaged string to a (managed) .NET string.
+</summary>
+            <param name="cefStr">The string that should be converted.</param>
+            <returns>A .NET string.</returns>
+        </member>
+        <member name="M:CefSharp.toClr(_cef_string_utf16_t!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Converts an unmanaged string to a (managed) .NET string.
+</summary>
+            <param name="cefStr">The string that should be converted.</param>
+            <returns>A .NET string.</returns>
+        </member>
+        <member name="M:CefSharp.IRequestResponse.RespondWith(System.IO.Stream,System.String)">
+respond with data from Stream
+</member>
+        <member name="M:CefSharp.IRequestResponse.Redirect(System.String)">
+respond with redirection to the provided URL
+</member>
+        <member name="P:CefSharp.IRequestResponse.Request">
+the current request
+</member>
+        <member name="M:CefSharp.IRequestResponse.Cancel">
+cancel the request, return nothing
+</member>
+        <member name="P:CefSharp.SchemeHandlerResponse.ResponseStream">
+            <summary>
+A Stream with the response data. If the request didn't return any response, leave this property as null.
+</summary>
+        </member>
+        <member name="M:CefSharp.ISchemeHandler.ProcessRequestAsync(CefSharp.IRequest,CefSharp.SchemeHandlerResponse,CefSharp.OnRequestCompletedHandler)">
+            <summary>
+Processes a custom scheme-based request asynchronously. The implementing method should call the callback whenever the
+request is completed.
+</summary>
+            <param name="request">The request object.</param>
+            <param name="response">The SchemeHandlerResponse object in which the handler is supposed to place the response
+information.</param>
+            <param name="requestCompletedCallback">A callback which the handler is supposed to call once the processing is
+complete. The callback may be called on any thread.</param>
+            <returns>true if the request is handled, false otherwise.</returns>
+        </member>
+        <member name="T:CefSharp.RtzCountdownEvent">
+            <summary>Return-To-Zero latch, signals whenever count is zero</summary>
+        </member>
+    </members>
+</doc>

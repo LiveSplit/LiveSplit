@@ -1,0 +1,15 @@
+
+* Palyndrome *
+
+$ENTRY Go { =
+  <Prout <Pal 'sator arepo tenet opera rotas'>>
+  <Prout <Pal 'quick brown fox'>>
+  <Prout <Pal 1 2 3 2 1>>;
+}
+
+Pal {
+  = True;
+  s.1 = True;
+  s.1 e.1 s.1 = <Pal e.1>;
+  e.1 = False;
+}

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        "CefSharp.Wpf"
+    </assembly>
+    <members>
+        <member name="M:CefSharp.convertFromCef(CefRefPtr&lt;CefV8Value&gt;)">
+            <summary>
+Converts a Chromium V8 value to a (managed) .NET object.
+</summary>
+            <param name="obj">The V8 value that should be converted.</param>
+            <returns>A corresponding .NET object.</returns>
+        </member>
+        <member name="M:CefSharp.convertToCef(System.Object,System.Type)">
+            <summary>
+Converts a .NET object to an (unmanaged) Chromium V8 object.
+</summary>
+            <param name="obj">The .NET object that should be converted.</param>
+            <param name="type">The type of the source object. If this parameter is a null reference, the type will be determined
+automatically.</param>
+            <returns>A corresponding V8 value.</returns>
+        </member>
+        <member name="M:CefSharp.toNative(System.String)">
+            <summary>
+Converts a .NET string to native (unamanged) format. Note that this method does not allocate a new copy of the string, but
+rather returns a pointer to the memory in the existing managed String object.
+</summary>
+            <param name="str">The string that should be converted.</param>
+            <returns>An unmanaged representation of the provided string.</returns>
+        </member>
+        <member name="M:CefSharp.toClr(CefStringBase&lt;CefStringTraitsUTF16&gt;!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Converts an unmanaged string to a (managed) .NET string.
+</summary>
+            <param name="cefStr">The string that should be converted.</param>
+            <returns>A .NET string.</returns>
+        </member>
+        <member name="M:CefSharp.toClr(_cef_string_utf16_t!System.Runtime.CompilerServices.IsConst*!System.Runtime.CompilerServices.IsImplicitlyDereferenced)">
+            <summary>
+Converts an unmanaged string to a (managed) .NET string.
+</summary>
+            <param name="cefStr">The string that should be converted.</param>
+            <returns>A .NET string.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,84 @@
+﻿Variables/values storage - some traditonal approaches
+
+1. In scripting languages, the data elements (fields, properties, local variables) are created on the fly, on the first write. There's no pre-allocation at compile time. The set of variables is unknown in advance. Traditional, straightforward solution is to use a dictionary (string=>object) to store local variables of a function, or module-level variables. 
+2. In free-threaded environment the variables may be accessed from different threads. This means that the access to containing dictionaries should be performed using thread-locking mechanism, guaanteeing that only a single thread is accessing a dictionary.
+So the script statement like:
+  
+  x = 5                        (1)
+
+is translated into something like this:
+
+  lock(scope) {                         (2)
+    scope.Values["x"] = 5;                     
+  }
+
+Two important and unfortunate observations. 
+1. Dictionary  access is slow. At least if we mean .NET Dictionary<TKey, TValue> generic class. Simple tests coupled with source code inspection show that the cost is in the range of hundreds of processor instructions. 
+2. Thread locking is slow.  The cost is also in the range of hundreds of instructions. 
+
+The result is that implementation (2) is quite slow. Really slow, especially considering the fact that actual thread collisions on the same dictionary objects are quite rare, while we have to incur the extra cost of lock every time we read or write a value. 
+
+What can be done better? 
+Our interpreter stores data in linear arrays, and does NOT use thread locking when reading/writing the data. There is an explicit locking when we "create" a variable for the first time - we lock meta-data dictionary containing "descriptions" of data slots; but then all subsequent accesses to the value are done performed using the variable index. 
+But before we explain how it works, we need to state one explicit assumption we rely on:
+
+    Assumption: 
+    Assignment of an object reference to a variable (ex: x = someObj) is an atomic operation and is "thread-safe".
+
+So the assignment can be safely done without thread locking. if one thread makes an assignment, and the other thread reads the reference, this other thread would see either old or new value, but never any "corrupted middle". This assumption mostly concerns safety of Reading from another thread. A special case is writing or replacing the value (when we resize the Values array, we replace it with new resized copy) - see more on this below. 
+
+Back to Irony's data storage implementation: arrays with no-lock read/write access. The data is stored in linear array of objects: Values[] field (see ScopeBase class). The field is marked with "volatile" keyword. All access is done by index. 
+
+Let's look at an example and explain what happens. Suppose we have an AST node that represents a variable "x" with READ access. When interpreter evaluates this node for the first time, it looks up a variable metadata (SlotInfo) in current scope metadata (ScopeInfo). The result is linear index of the data value in Values array. It then reads the value using the index: 
+
+   vx = scope.Values[xSlotIndex];
+
+All later evaluations will do the same - lookup by index but without looking up the SlotInfo: the xSlotIndex is cached in the node (more accurately, in SlotBinding object). Writing the value works the same way - the array element is assigned by index. 
+The problems comes when we need to resize the Values array because we are adding some local variable - for example, our script runs into new assignment statement in the local scope:
+
+  y = 5
+
+We need to add "y" to the list of slots (metadata), but then we also need to "extend" the Values[] array and add an extra element for "y". The question now is: how to resize Values array in such a way that if some other thread(s) is reading or writing other values in the same scope, it does it correctly even if it happens exactly at the moment when we resize the array?
+Here's how we do it. First let's look at the ScopeBase.Resize method:
+
+    #pragma warning disable 0420
+    protected void Resize(int newSize) {
+      lock (this) {
+        if (Values.Length >= newSize) return; 
+        object[] tmp = Interlocked.Exchange(ref Values, null);
+        Array.Resize(ref tmp, newSize);
+        Interlocked.Exchange(ref Values, tmp);
+      }
+    }
+
+We use Interlocked.Exchange to replace Values field with null as an atomic operation. We do it to force any concurrent reads/writes to fail, if they happen at exactly this time. Note that we disable a compiler warning stating that volatile field Values will not be treated as volatile in a call to Interlocked.Exchange. According to MSDN, this is usually the case with "by-ref" arguments, but Interlocked API is an exception, so we're OK here. 
+Now, in GetValue and SetValue methods, we expect this failure, and have a try/catch block to handle the null reference exception and retry the operation. Here's SetValues method:
+
+    public void SetValue(int index, object value) {
+      try {
+        var tmp = Values;
+        tmp[index] = value; 
+        //Now check that tmp is the same as Values - if not, then resizing happened in the middle, 
+        // so repeat assignment to make sure the value is in resized array.
+        if (tmp != Values)
+          SetValue(index, value); // do it again
+      } catch (NullReferenceException) {
+        Thread.Sleep(0); 
+        SetValue(index, value); //repeat it again
+      }  ..... 
+    }//method
+
+ The "catch" block for NullReferenceException is for handling the situation when Values was null while other thread was resizing it. Remember that try/catch block is free, it does not add any executable commands if we run without exception. 
+There is additional twist when writing a value. It might happen that after we copied the Values reference into tmp variable, some other thread resized the Values array - replacing it with a new extended array. As a result, we will be writing the value into a "dead" old array. To check against this, after we do the value change we check that "tmp" and "Values" reference the same object. If not, we got concurrent resize, so we repeat SetValue to make sure we set it in the new Values instance. 
+
+To sum it up: all variables are stored in object arrays, values are accessed by index, and accessed without explicit thread locks. The net result of this technique (and some other improvements) is approximate 5-fold performance gain - compared to old interpreter. 
+
+NOW 5 TIMES FASTER!
+
+References:
+Very illuminating article about low-lock memory access:
+http://msdn.microsoft.com/en-us/magazine/cc163715.aspx
+
+Another article about spin locks and interlocked operations:
+http://msdn.microsoft.com/en-us/magazine/cc163715.aspx
+

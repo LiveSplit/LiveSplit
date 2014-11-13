@@ -1,0 +1,11 @@
+* Factorial using BigInteger arithmetics
+* Written by Y [07-02-10]
+
+$ENTRY Go { =
+  <Prout <Fact 500>>;
+}
+
+Fact {
+  0 = 1;
+  s.N = <* s.N <Fact <- s.N 1>>>;
+}

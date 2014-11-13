@@ -1,0 +1,154 @@
+
+* This is a test of the Refal-5 system.
+* The program asks for an arithmetic expression
+* and translates in into a code for a one-address computer.
+
+* Example taken from http://botik.ru/pub/local/scp/refal5/refal5.html
+* Removed keyboard input to make it run from Irony Grammar Explorer
+
+$ENTRY Go { = <Introduction > <Loop >; };
+
+Expression { = 'Joe^2 * 5 / Markus^(Carol + 318)'; }
+
+Introduction { =
+     <Prout 'This is a program to translate an arithmetic expression'>
+     <Prout 'into a code for a one-address computer. Primary operands'>
+     <Prout 'are identifiers and whole numbers. Operations are:'>
+     <Prout '+, -, *, /, ^ with usual priorities. Parentheses as usual.'>
+     <Prout>
+     <Prout 'Source expression: ' <Expression>>;
+    	     };
+
+* Loop: in and out
+Loop { = <Nil <Dgall>> <Inout <Expression>>; };
+
+* anNIhiLate
+Nil {e.X = ;};
+
+Inout { 
+  0   = <Prout 'End of session'>; 
+  e.X = <Out <Translate <Lex ('$') e.X >>>;
+      };      
+
+Out { 
+    = /*<Loop >*/;
+e.1 = <Prout 'The translation is:'> <Prout>
+	   <Write e.1> /*<Loop >*/; };
+
+* Lexical analysis of input string. Nested multibracket format.
+Lex {
+  (e.1) '('e.2 = <Lex ((e.1)) e.2>;
+  ((e.1)e.2) ')'e.3 = <Lex (e.1(e.2)) e.3>;
+  ('$'e.1) ')'e.3 = <Prout 'ERROR: Unpaired right parenthsis:'>
+                    <Prout e.1')'>;
+  (e.1) ' '  e.2 = <Lex (e.1) e.2>;
+  (e.1) '\t' e.2 = <Lex (e.1) e.2>;
+  (e.1) '\'' e.2, <Quotes '\'' () e.2>: 
+        { () e.3 = <Prout 'ERROR: Unpaired quote \'' e.2>;
+          (e.0) e.3 = <Lex (e.1 e.0) e.2>;
+        };
+
+  (e.1) s.A e.2, <Type s.A>:
+	{'L' e.A1, <Id-tail (s.A)e.2>: (e.Id) e.3 = 
+			<Lex (e.1 <Implode e.Id>) e.3>; 
+	 'D' e.A1, <D-string (s.A)e.2>: (e.D-Str) e.3 = 
+			<Lex (e.1 <Numb e.D-Str>) e.3>;
+	 s.T e.A1 = <Lex (e.1 s.A) e.2>;
+	};
+
+  ('$'e.1) = e.1;
+  (e.M) = <Prout 'ERROR: Unpaired left parentheses'>
+          <Pr-lmb e.M>;
+     };
+
+* Inside quotes
+Quotes {
+  s.Q (e.1) e.0 '\\' '\\' e.2 = <Quotes s.Q(e.1 e.0 '\\' '\\')e.2>;
+  s.Q (e.1) e.0 '\\' s.Q  e.2 = <Quotes s.Q(e.1 e.0 '\\' s.Q )e.2>;
+  s.Q (e.1) e.0 s.Q e.2 = (e.1 e.0) e.2;
+  s.Q (e.1) e.2 = () e.1 e.2;
+      };
+
+* chop off IDentifier TAIL
+Id-tail {
+  (e.1) s.A e.2, <Type s.A>:
+	     {'L' e.3 = <Id-tail (e.1 s.A) e.2>;
+	      'D' e.3 = <Id-tail (e.1 s.A) e.2>;
+	      s.T e.3 = (e.1) s.A e.2;
+	     };	    
+  (e.1) = (e.1);
+	};
+
+* chop off Digit-STRING
+D-string {
+  (e.1) s.A e.2, <Type s.A>: 'D' e.A1 = <D-string (e.1 s.A) e.2>;
+  (e.1) e.2 = (e.1) e.2;
+	 };
+
+* PRint Left MultiBracket (nested format)
+Pr-lmb {
+  (e.1) e.2 = <Pr-lmb e.1> <Prout '('e.2>;
+  '$'e.1 = ;
+       };
+
+
+Translate
+  {   = ;
+  e.1 = <Code-gen  (1) <Parse e.1> <Dg 'compl'>>; };
+
+Last1 {
+  (e.A s.X e.B) e.1 s.X(e.2) = e.1 s.X(e.2);
+  (e.A) e.1 t.X(e.2) = <Last1 (e.A) e.1(t.X e.2)>;
+  (e.A) (e.2) = (e.2);
+     };
+
+Parse {
+  e.Exp, <Last1 ('+-') e.Exp()>: e.1 s.Op(e.2) = 
+			s.Op(<Parse e.1>) <Parse e.2>;
+  e.Exp, <Last1 ('*/') e.Exp()>: e.1 s.Op(e.2) =
+			s.Op(<Parse e.1>) <Parse e.2>;
+  e.1 '^' e.2 =   '^'(<Parse e.1>) <Parse e.2>;
+  s.Symb, <Type s.Symb>: 'Wi' e.S = s.Symb;
+  s.Symb, <Type s.Symb>: 'N'  e.S = s.Symb;
+  (e.Exp) = <Parse e.Exp>;
+   = ;
+  e.Exp = <Prout 'Syntax error. Cannot parse ' e.Exp>
+	  <Br 'compl=fail'>;
+      };
+
+Code-gen {
+  e.1 'fail'  = ;
+  (s.N) '-'()e.2     = 	<Code-gen (s.N) e.2>
+			'Minus ;' ; 
+  (s.N) s.Op(e.1)s.2  = <Code-gen (s.N) e.1>
+			<Code-op s.Op> <Outform s.2>';' ;
+  (s.N) '+'(s.1)e.2   =	<Code-gen (s.N) e.2>
+			<Code-op '+'> <Outform s.1>';' ;
+  (s.N) '*'(s.1)e.2   =	<Code-gen (s.N) e.2>
+			<Code-op '*'> <Outform s.1>';' ;
+  (s.N) s.Op(e.1)e.2  =	<Code-gen (s.N) e.2>
+			'STORE\tR+'<Symb s.N>';'
+			<Code-gen (<Add(s.N)1>) e.1>
+			<Code-op s.Op> 'R+'<Symb s.N>';' ;
+  (s.N) s.Symb      =	'LOAD\t'<Outform s.Symb> ';' ;
+  (s.N) e.X	   =    ('Syntax error')';' ;
+	};
+
+Outform { s.S, <Type s.S>:
+		{'Wi' e.S1 = <Explode s.S>;
+		 'N'  e.S1 = <Symb s.S>; };
+	};
+
+Code-op {
+  '+' = 'ADD\t';
+  '-' = 'SUB\t';
+  '*' = 'MUL\t';
+  '/' = 'DIV\t';
+  '^' = 'POW\t';
+	};
+	
+Write {
+  (e.1)';' e.2 = <Prout e.1>; /* Syntax error */
+   e.1';'  e.2 = <Prout '\t' e.1> <Write e.2>;
+               = ;
+      };

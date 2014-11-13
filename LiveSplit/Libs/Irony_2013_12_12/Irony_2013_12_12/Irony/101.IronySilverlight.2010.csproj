@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1CBAD18E-5805-428C-9E76-EFEDBFC7C8A9}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Irony</RootNamespace>
+    <AssemblyName>IronySilverlight</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.Numerics, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Ast\AstBuilder.cs" />
+    <Compile Include="Ast\AstContext.cs" />
+    <Compile Include="Ast\AstExtensions.cs" />
+    <Compile Include="Ast\AstInterfaces.cs" />
+    <Compile Include="Ast\AstNodeConfig.cs" />
+    <Compile Include="Parsing\Data\Construction\GrammarDataBuilder.cs" />
+    <Compile Include="Parsing\Data\Construction\LanguageDataBuilder.cs" />
+    <Compile Include="Parsing\Data\Construction\ParserDataBuilder.cs" />
+    <Compile Include="Parsing\Data\Construction\ParserDataBuilder_HelperClasses.cs" />
+    <Compile Include="Parsing\Data\Construction\ScannerDataBuilder.cs" />
+    <Compile Include="Parsing\Data\GrammarData.cs" />
+    <Compile Include="Parsing\Data\LanguageData.cs" />
+    <Compile Include="Parsing\Data\ParserData.cs" />
+    <Compile Include="Parsing\Data\ScannerData.cs" />
+    <Compile Include="Parsing\Grammar\BnfExpression.cs" />
+    <Compile Include="Parsing\Grammar\BnfTerm.cs" />
+    <Compile Include="Parsing\Grammar\Grammar.cs" />
+    <Compile Include="Parsing\Grammar\GrammarEnums.cs" />
+    <Compile Include="Parsing\Grammar\GrammarError.cs" />
+    <Compile Include="Parsing\Grammar\GrammarHint.cs" />
+    <Compile Include="Parsing\Grammar\ICanRunSample.cs" />
+    <Compile Include="Parsing\Grammar\LanguageAttribute.cs" />
+    <Compile Include="Parsing\Grammar\NonTerminal.cs" />
+    <Compile Include="Parsing\Grammar\TermReportGroups.cs" />
+    <Compile Include="Parsing\Parser\Parser.cs" />
+    <Compile Include="Parsing\Parser\ParserActions\AcceptParserAction.cs" />
+    <Compile Include="Parsing\Parser\ParserActions\ErrorRecoveryParserAction.cs" />
+    <Compile Include="Parsing\Parser\ParserActions\ReduceParserActions.cs" />
+    <Compile Include="Parsing\Parser\ParserActions\ShiftParserAction.cs" />
+    <Compile Include="Parsing\Parser\ParserActions\_ParserAction.cs" />
+    <Compile Include="Parsing\Parser\ParserDataPrinter.cs" />
+    <Compile Include="Parsing\Parser\ParserStack.cs" />
+    <Compile Include="Parsing\Parser\ParserTrace.cs" />
+    <Compile Include="Parsing\Parser\ParseTree.cs" />
+    <Compile Include="Parsing\Parser\ParseTreeExtensions.cs" />
+    <Compile Include="Parsing\Parser\ParsingContext.cs" />
+    <Compile Include="Parsing\Parser\ParsingEventArgs.cs" />
+    <Compile Include="Parsing\Parser\SpecialActionsHints\ConditionalParserAction.cs" />
+    <Compile Include="Parsing\Parser\SpecialActionsHints\CustomActionHintAction.cs" />
+    <Compile Include="Parsing\Parser\SpecialActionsHints\ImpliedPrecedenceHint.cs" />
+    <Compile Include="Parsing\Parser\SpecialActionsHints\PrecedenceBasedParserAction.cs" />
+    <Compile Include="Parsing\Parser\SpecialActionsHints\PrecedenceHint.cs" />
+    <Compile Include="Parsing\Parser\SpecialActionsHints\PreferredActionHint.cs" />
+    <Compile Include="Parsing\Parser\SpecialActionsHints\TokenPreviewHint.cs" />
+    <Compile Include="Parsing\Parser\SyntaxError.cs" />
+    <Compile Include="Parsing\Scanner\Scanner.cs" />
+    <Compile Include="Parsing\Scanner\SourceLocation.cs" />
+    <Compile Include="Parsing\Scanner\SourceStream.cs" />
+    <Compile Include="Parsing\Scanner\Token.cs" />
+    <Compile Include="Parsing\Scanner\TokenEditorInfo.cs" />
+    <Compile Include="Parsing\Scanner\_ISourceStream.cs" />
+    <Compile Include="Parsing\Terminals\CommentTerminal.cs" />
+    <Compile Include="Parsing\Terminals\CompoundTerminalBase.cs" />
+    <Compile Include="Parsing\Terminals\ConstantTerminal.cs" />
+    <Compile Include="Parsing\Terminals\CustomTerminal.cs" />
+    <Compile Include="Parsing\Terminals\DataLiteralBase.cs" />
+    <Compile Include="Parsing\Terminals\DsvLiteral.cs" />
+    <Compile Include="Parsing\Terminals\FixedLengthLiteral.cs" />
+    <Compile Include="Parsing\Terminals\FreeTextLiteral.cs" />
+    <Compile Include="Parsing\Terminals\IdentifierTerminal.cs" />
+    <Compile Include="Parsing\Terminals\ImpliedSymbolTerminal.cs" />
+    <Compile Include="Parsing\Terminals\KeyTerm.cs" />
+    <Compile Include="Parsing\Terminals\LineContinuationTerminal.cs" />
+    <Compile Include="Parsing\Terminals\NewLineTerminal.cs" />
+    <Compile Include="Parsing\Terminals\NumberLiteral.cs" />
+    <Compile Include="Parsing\Terminals\QuotedValueLiteral.cs" />
+    <Compile Include="Parsing\Terminals\RegExBasedTerminal.cs" />
+    <Compile Include="Parsing\Terminals\RegExLiteral.cs" />
+    <Compile Include="Parsing\Terminals\StringLiteral.cs" />
+    <Compile Include="Parsing\Terminals\TerminalFactory.cs" />
+    <Compile Include="Parsing\Terminals\WikiTerminals\WikiBlockTerminal.cs" />
+    <Compile Include="Parsing\Terminals\WikiTerminals\WikiTagTerminal.cs" />
+    <Compile Include="Parsing\Terminals\WikiTerminals\WikiTextTerminal.cs" />
+    <Compile Include="Parsing\Terminals\WikiTerminals\_WikiTerminalBase.cs" />
+    <Compile Include="Parsing\Terminals\_Terminal.cs" />
+    <Compile Include="Parsing\TokenFilters\CodeOutlineFilter.cs" />
+    <Compile Include="Parsing\TokenFilters\TokenFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources.Designer.cs" />
+    <Compile Include="SilverlightOnly\Stopwatch.cs" />
+    <Compile Include="Utilities\Extensions.cs" />
+    <Compile Include="Utilities\LogMessage.cs" />
+    <Compile Include="Utilities\StringUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Parsing\Data\Construction\_about_parser_construction.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="irony.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

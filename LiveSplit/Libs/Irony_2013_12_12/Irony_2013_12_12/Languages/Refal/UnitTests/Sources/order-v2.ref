@@ -1,0 +1,24 @@
+
+* Arranges symbol pairs in alphabetic order
+* With- and where-clauses usage example
+
+$ENTRY Go { =
+   <Prout <Order 'x' 'r'>>
+   <Prout <Order 'a' 'z'>>
+   <Prout <Order 'l' 'k'>>;
+}
+
+Order {
+   s.1 s.2, <PreAlph s.1 s.2>: {
+      True = s.1 s.2;
+      False = s.2 s.1;
+   };
+}
+   
+PreAlph {
+   s.1 s.1 = True;
+   s.1 s.2, <Alphabet>: e.A s.1 e.B s.2 e.C = True;
+   e.Z = False;
+}
+ 
+Alphabet { = 'abcdefghijklmnopqrstuvwxyz'; }

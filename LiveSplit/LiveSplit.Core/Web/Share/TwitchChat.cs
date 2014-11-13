@@ -1,0 +1,241 @@
+﻿using IrcDotNet;
+using LiveSplit.Model.Input;
+using LiveSplit.Options;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+
+namespace LiveSplit.Web.Share
+{
+
+    public class TwitchChat
+    {
+        private IrcClient Client { get; set; }
+
+        public EventHandlerT<Message> OnMessage;
+        public EventHandlerT<User> OnNewSubscriber;
+
+        public IEnumerable<User> Users 
+        { 
+            get 
+            {
+                return Client.Channels.FirstOrDefault().Users.Select(x => new User(x.User, GetFlags(x.User.NickName), GetColor(x.User.NickName))); 
+            }
+        }
+
+        protected Dictionary<String, ChatBadges> UserFlags { get; set; }
+        protected Dictionary<String, Color> UserColors { get; set; }
+
+        public TwitchChat(String accessToken)
+        {
+            Client = new IrcClient();
+            UserFlags = new Dictionary<string, ChatBadges>();
+            UserColors = new Dictionary<string, Color>();
+            var twitch = Twitch.Instance;
+            Client.Connected += Client_Connected;
+            Client.Registered += Client_Registered;
+            
+            Client.Connect("irc.twitch.tv", 6667,
+                new IrcUserRegistrationInfo()
+                {
+                    NickName = twitch.ChannelName,
+                    Password = String.Format("oauth:{0}", accessToken)
+                });
+        }
+
+        protected ChatBadges GetFlags(String username)
+        {
+            return UserFlags.ContainsKey(username)
+                ? UserFlags[username]
+                : ChatBadges.None;
+        }
+
+        protected Color GetColor(String username)
+        {
+            return UserColors.ContainsKey(username)
+                ? UserColors[username]
+                : Color.White;
+        }
+
+        protected void AddFlag(String username, ChatBadges flag)
+        {
+            if (UserFlags.ContainsKey(username))
+                UserFlags[username] |= flag;
+            else
+                UserFlags.Add(username, flag);
+        }
+
+        protected void AddColor(String username, Color color)
+        {
+            if (UserColors.ContainsKey(username))
+                UserColors[username] = color;
+            else
+                UserColors.Add(username, color);
+        }
+
+        void WaitForChannelJoin(object sender, IrcRawMessageEventArgs e)
+        {
+            if (e.Message.Command == "353")
+            {
+                Client.Channels.FirstOrDefault().MessageReceived += Channel_MessageReceived;
+                Client.RawMessageReceived -= WaitForChannelJoin;
+                AddFlag(Client.Channels.FirstOrDefault().Name.Substring(1), ChatBadges.Moderator | ChatBadges.Broadcaster);
+                SendMessage("/mods");
+            }
+        }
+
+        void Client_Registered(object sender, EventArgs e)
+        {
+            
+        }
+
+        void Client_Connected(object sender, EventArgs e)
+        {
+            Client.RawMessageReceived += WaitForChannelJoin;
+            Client.LocalUser.MessageReceived += LocalUser_MessageReceived;
+            Client.SendRawMessage("TWITCHCLIENT 1");
+            Client.Channels.Join("#" + Twitch.Instance.ChannelName.ToLower());
+        }
+
+        void LocalUser_MessageReceived(object sender, IrcMessageEventArgs e)
+        {
+            try
+            {
+                if (e.Source.Name == "jtv")
+                {
+                    if (e.Text.StartsWith("The moderators of this room are:"))
+                    {
+                        var modsText = e.Text.Substring("The moderators of this room are: ".Length);
+                        var mods = modsText.Replace(", ", ",").Split(',');
+                        foreach (var mod in mods)
+                        {
+                            AddFlag(mod, ChatBadges.Moderator);
+                        }
+                        return;
+                    }
+
+                    var splits = e.Text.Split(' ');
+                    var command = splits[0];
+
+                    if (splits.Length < 2)
+                        return;
+
+                    var user = splits[1];
+
+                    if (splits.Length < 3)
+                        return;
+
+                    var argument = splits[2];
+
+                    if (command == "USERCOLOR")
+                    {
+                        var color = Color.FromArgb((int)(0xFF << 24) + Int32.Parse(argument.Substring(1), NumberStyles.HexNumber));
+                        AddColor(user, color);
+                    }
+                    else if (command == "SPECIALUSER")
+                    {
+                        dynamic chatFlags = Enum.Parse(typeof(ChatBadges), argument, true);
+                        AddFlag(user, chatFlags);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+        }
+
+        public void Close()
+        {
+            Client.Disconnect();
+        }
+
+        void Channel_MessageReceived(object sender, IrcMessageEventArgs e)
+        {
+            if (e.Source.Name == "twitchnotify" && e.Text.Contains("subscribed"))
+            {
+                var subs = Twitch.Instance.Subscribers;
+                var username = e.Text.Substring(0, e.Text.IndexOf(' '));
+                Twitch.Instance._Subscribers.Add(username);
+                
+                if (OnNewSubscriber != null)
+                {
+                    OnNewSubscriber(this, new User(Client, username));
+                }
+            }
+
+            if (OnMessage != null)
+            {
+                OnMessage(this, new Message(new User(e.Source as IrcUser, GetFlags(e.Source.Name), GetColor(e.Source.Name)), e.Text));
+            }
+        }
+
+        public void SendMessage(String message)
+        {
+            var channel = Client.Channels.FirstOrDefault();
+            if (channel == null)
+                return;
+
+            Client.LocalUser.SendMessage(channel, message);
+        }
+
+        #region Inner classes
+
+        [Flags]
+        public enum ChatBadges
+        {
+            None = 0,
+            Broadcaster = 1,
+            Staff = 2, 
+            Admin = 4,
+            Moderator = 8,
+            Turbo = 16,
+            Subscriber = 32
+        }
+
+        public class User
+        {
+            public Color Color { get; protected set; }
+            public ChatBadges Flags { get; protected set; }
+
+            public String Name { get; protected set; }
+
+            public User(IrcUser user, ChatBadges flags, Color color)
+            {
+                Name = user.NickName;
+                Flags = flags;
+                Color = color;
+            }
+
+            public User(IrcClient client, String name)
+            {
+                Name = name;
+                try
+                {
+                    client.Channels.FirstOrDefault().Users.Where(x => x.User.NickName == name).FirstOrDefault();
+                } 
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+            }
+        }
+
+        public class Message
+        {
+            public User User { get; protected set; }
+            public String Text { get; protected set; }
+
+            public Message(User user, String text)
+            {
+                User = user;
+                Text = text;
+            }
+        }
+
+        #endregion
+    }
+}

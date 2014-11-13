@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>IrcDotNet.Common</name>
+    </assembly>
+    <members>
+        <member name="T:IrcDotNet.Common.Collections.CollectionsUtilities">
+            <summary>
+            Contains common utilities for functionality relating to collections.
+            </summary>
+        </member>
+        <member name="M:IrcDotNet.Common.Collections.CollectionsUtilities.Set``2(System.Collections.Generic.IDictionary{``0,``1},``0,``1)">
+            <summary>
+            Sets the value for the specified key in a dictionary.
+            If the given key already exists, overwrite its value; otherwise, add a new key/value pair.
+            </summary>
+            <typeparam name="TKey">The type of keys in the dictionary.</typeparam>
+            <typeparam name="TValue">The type of values in the dictionary..</typeparam>
+            <param name="dictionary">The dictionary in which to set the value.</param>
+            <param name="key">The object to use as the key of the element to add/update.</param>
+            <param name="value">The object to use as the value of the element to add/update.</param>
+        </member>
+        <member name="M:IrcDotNet.Common.Collections.CollectionsUtilities.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the specified items to the collection.
+            </summary>
+            <typeparam name="T">The type of the items in the collection.</typeparam>
+            <param name="collection">The collection to which to add the items.</param>
+            <param name="range">A collection of items to add to <paramref name="collection"/>.</param>
+        </member>
+        <member name="M:IrcDotNet.Common.Collections.CollectionsUtilities.RemoveRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Removes the specified items from the collection.
+            </summary>
+            <typeparam name="T">The type of the items in the collection.</typeparam>
+            <param name="collection">The collection fom which to remove the items.</param>
+            <param name="range">A collection of items to remove from <paramref name="collection"/>.</param>
+        </member>
+        <member name="M:IrcDotNet.Common.Collections.CollectionsUtilities.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            Performs the specified action on each item in the collection.
+            </summary>
+            <typeparam name="T">The type of the items in the collection.</typeparam>
+            <param name="source">The collection on whose items to perform the action.</param>
+            <param name="action">The action to perform on each item of the collection.</param>
+        </member>
+        <member name="T:IrcDotNet.Common.Collections.ReadOnlyDictionary`2">
+            <summary>
+            Represents a read-only collection of keys and values.
+            </summary>
+            <typeparam name="TKey">The type of the keys in the dictionary.</typeparam>
+            <typeparam name="TValue">The type of the values in the dictionary.</typeparam>
+        </member>
+        <member name="M:IrcDotNet.Common.Collections.ReadOnlyDictionary`2.#ctor(System.Collections.Generic.IDictionary{`0,`1})">
+            <summary>
+            Initializes a new instance of the <see cref="T:IrcDotNet.Common.Collections.ReadOnlyDictionary`2"/> class.
+            </summary>
+            <param name="dictionary">The dictionary to wrap.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="dictionary"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="T:IrcDotNet.Common.Collections.ReadOnlySet`1">
+            <summary>
+            Represents a read-only set of values.
+            </summary>
+            <typeparam name="T">The type of elements in the set.</typeparam>
+        </member>
+        <member name="M:IrcDotNet.Common.Collections.ReadOnlySet`1.#ctor(System.Collections.Generic.ISet{`0})">
+            <summary>
+            Initializes a new instance of the <see cref="T:IrcDotNet.Common.Collections.ReadOnlySet`1"/> class.
+            </summary>
+            <param name="set">The set to wrap.</param>
+            <exception cref="T:System.ArgumentNullException"><paramref name="set"/> is <see langword="null"/>.</exception>
+        </member>
+    </members>
+</doc>

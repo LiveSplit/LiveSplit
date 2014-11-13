@@ -1,0 +1,4 @@
+# For more samples of expression evaluator use, including use with custom objects, 
+#  arrays, dictionaries, data rows ...
+
+   " See EvaluatorTests.cs in unit tests project. "

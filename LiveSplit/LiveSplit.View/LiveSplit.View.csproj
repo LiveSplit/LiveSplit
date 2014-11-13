@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F8CF1482-0687-44F3-ABA1-967E10C3BB96}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LiveSplit</RootNamespace>
+    <AssemblyName>LiveSplit.View</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>Svn</SccProjectName>
+    <SccLocalPath>Svn</SccLocalPath>
+    <SccAuxPath>Svn</SccAuxPath>
+    <SccProvider>SubversionScc</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Candidate|AnyCPU'">
+    <OutputPath>..\bin\Release Candidate\</OutputPath>
+    <DefineConstants>TRACE;RELEASE_CANDIDATE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>LiveSplit.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.WindowsAPICodePack">
+      <HintPath>..\Libs\Windows API Code Pack\Microsoft.WindowsAPICodePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.WindowsAPICodePack.Shell">
+      <HintPath>..\Libs\Windows API Code Pack\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WinFormsColor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\WinForms Color Picker\WinFormsColor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\RunFactories\StandardRunFactory.cs" />
+    <Compile Include="Model\Win32.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <DependentUpon>Resources.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Streaming\BroadcasterPlugin.cs" />
+    <Compile Include="Streaming\TimedBroadcasterPlugin.cs" />
+    <Compile Include="UI\ListBoxItemDragger.cs" />
+    <Compile Include="UI\LayoutFactories\StandardLayoutFactory.cs" />
+    <Compile Include="UI\LayoutFactories\TimerOnlyLayoutFactory.cs" />
+    <Compile Include="UI\NewRaceInputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\RemoveEventArgs.cs" />
+    <Compile Include="UI\RenameEventArgs.cs" />
+    <Compile Include="UI\StandardLayoutSettingsFactory.cs" />
+    <Compile Include="Updates\LiveSplitUpdateable.cs" />
+    <Compile Include="View\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LayoutEditorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LayoutEditorDialog.Designer.cs">
+      <DependentUpon>LayoutEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LayoutSettingsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\LayoutSettingsControl.Designer.cs">
+      <DependentUpon>LayoutSettingsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ComponentSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ComponentSettingsDialog.Designer.cs">
+      <DependentUpon>ComponentSettingsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\LayoutSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\LayoutSettingsDialog.Designer.cs">
+      <DependentUpon>LayoutSettingsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\RunEditorDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\RunEditorDialog.Designer.cs">
+      <DependentUpon>RunEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SetSizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SetSizeForm.Designer.cs">
+      <DependentUpon>SetSizeForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SettingsDialog.Designer.cs">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ShareRunDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ShareRunDialog.Designer.cs">
+      <DependentUpon>ShareRunDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\SpeedRunsLiveForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SpeedRunsLiveForm.Designer.cs">
+      <DependentUpon>SpeedRunsLiveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\AuthenticationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\AuthenticationDialog.Designer.cs">
+      <DependentUpon>AuthenticationDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\TimerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\TimerForm.Designer.cs">
+      <DependentUpon>TimerForm.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LiveSplit.pfx" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Configure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon.ico" />
+    <Content Include="Resources\DefaultGameIcon.png" />
+    <Content Include="Resources\DefaultSplitIcon.png" />
+    <Content Include="Resources\Icon.ico" />
+    <Content Include="Resources\DownArrow.png" />
+    <Content Include="Resources\UpArrow.png" />
+    <None Include="Resources\DefaultLayout.lsl">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Resources\Unsplit.ico" />
+    <None Include="Resources\Stop.ico" />
+    <None Include="Resources\Split.ico" />
+    <None Include="Resources\SkipSplit.ico" />
+    <None Include="Resources\Remove.png" />
+    <None Include="Resources\Pause.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\NewRaceInputBox.resx">
+      <DependentUpon>NewRaceInputBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LayoutEditorDialog.resx">
+      <DependentUpon>LayoutEditorDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LayoutSettingsControl.resx">
+      <DependentUpon>LayoutSettingsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ComponentSettingsDialog.resx">
+      <DependentUpon>ComponentSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LayoutSettingsDialog.resx">
+      <DependentUpon>LayoutSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RunEditorDialog.resx">
+      <DependentUpon>RunEditorDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SetSizeForm.resx">
+      <DependentUpon>SetSizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SettingsDialog.resx">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ShareRunDialog.resx">
+      <DependentUpon>ShareRunDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SpeedRunsLiveForm.resx">
+      <DependentUpon>SpeedRunsLiveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\AuthenticationDialog.resx">
+      <DependentUpon>AuthenticationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TimerForm.resx">
+      <DependentUpon>TimerForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj">
+      <Project>{6de847db-20a3-4848-aeee-1b4364aecdfb}</Project>
+      <Name>LiveSplit.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UpdateManager\UpdateManager.csproj">
+      <Project>{56dea3a0-2eb7-493b-b50f-a5e3aa8ae52a}</Project>
+      <Name>UpdateManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VHMediaCOMLib">
+      <Guid>{7F9079F6-DCBA-40C4-AD11-47D6CB553F5F}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

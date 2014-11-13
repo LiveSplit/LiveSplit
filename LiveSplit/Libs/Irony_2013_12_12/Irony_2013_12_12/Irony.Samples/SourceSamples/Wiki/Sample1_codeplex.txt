@@ -1,0 +1,70 @@
+*bold text*
+_italicized text_ 
++underlined text+ 
+~~strikethrough text~~
+NORMAL^^superscript text^^ 
+NORMAL,,subscript text,,
+*bold _bold-italic* italic_ normal
+
+! Heading 1
+!! Heading 2
+!!! Heading 3
+
+//horizontal line
+----
+
+//Bulletted lists
+* bullet 1
+** bullet 1.1
+** bullet 1.2
+*** bullet 1.2.1
+*** bullet 1.2.2
+** bullet 1.3
+* bullet 2
+* bullet 3
+
+//Numbered lists
+# item 1
+## item 1.1
+### item 1.1.1
+### item 1.1.2
+# item 2
+# item 3
+
+{"   not *formatted* _text_ "}
+
+<{this is left aligned content}< 
+>{this is right aligned content}> 
+: this is indented 
+:: this is double-indented 
+
+//create an anchor
+{anchor:anchorName}
+
+// link to an anchor 
+[#anchorName]
+
+//Link
+[url:Link to Google|http://www.google.com]
+[url:http://www.google.com]
+[url:Email Someone|mailto:someone@someurl.com]
+
+//Link to file
+[file:http://wikiplex.codeplex.com/SourceControl/ListDownloadableCommits.aspx#DownloadLatest]
+[file:Download Latest Source|http://wikiplex.codeplex.com/SourceControl/ListDownloadableCommits.aspx#DownloadLatest]
+
+//Image
+[image:Google Logo|http://www.google.com/intl/en_ALL/images/logo.gif]
+
+//Image with link:
+[image:Google Logo|http://www.google.com/intl/en_ALL/images/logo.gif|http://www.google.com]
+
+|| Table Heading 1 || Table Heading 2 || Table Heading 3 ||
+| Row 1 - Cell 1 | Row 1 - Cell 2 | Row 1 - Cell 3 |
+| Row 2 - Cell 1 | Row 2 - Cell 2 | Row 2 - Cell 3 |
+
+//code sample (no coloring)
+{{ 
+  public void function() {
+  }
+}}
