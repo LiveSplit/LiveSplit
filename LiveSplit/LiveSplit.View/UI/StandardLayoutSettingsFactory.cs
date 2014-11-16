@@ -29,7 +29,6 @@ namespace LiveSplit.UI
                 PausedColor = Color.FromArgb(122,122,122),
                 ShadowsColor = Color.FromArgb(128, 0, 0, 0),
                 TimerFont = new Font("Century Gothic", 43.75f, FontStyle.Bold, GraphicsUnit.Pixel),
-                TimerDecimalPlacesFont = new Font("Century Gothic", 30.625f, FontStyle.Bold, GraphicsUnit.Pixel),
                 TimesFont = new Font("Segoe UI", 13, FontStyle.Bold, GraphicsUnit.Pixel),
                 TextFont = new Font("Segoe UI", 13, FontStyle.Regular, GraphicsUnit.Pixel),
                 ShowBestSegments = true,

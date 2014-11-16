@@ -106,7 +106,6 @@ namespace LiveSplit.UI.LayoutFactories
             }
             settings.TimerFont = GetFontFromElement(element["TimerFont"]);
             var timerFont = new Font(settings.TimerFont.FontFamily.Name, (settings.TimerFont.Size / 50f) * 18f, settings.TimerFont.Style, GraphicsUnit.Point);
-            settings.TimerDecimalPlacesFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * (35f), timerFont.Style, GraphicsUnit.Pixel);
             settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
             
             settings.ShowBestSegments = Boolean.Parse(element["ShowBestSegments"].InnerText);
