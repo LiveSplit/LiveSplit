@@ -262,6 +262,7 @@ namespace LiveSplit.View
 
         void runGrid_SelectionChanged(object sender, EventArgs e)
         {
+            UpdateButtonsStatus();
         }
 
         void SegmentList_ListChanged(object sender, ListChangedEventArgs e)
@@ -272,6 +273,22 @@ namespace LiveSplit.View
         void runGrid_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             UpdateSegmentList();
+        }
+
+        private void UpdateButtonsStatus()
+        {
+            btnRemove.Enabled = SegmentList.Count > 1;
+            var selectedCell = runGrid.SelectedCells.Cast<DataGridViewCell>().ToList().FirstOrDefault();
+            if (selectedCell != null)
+            {
+                btnMoveUp.Enabled = selectedCell.RowIndex > 0;
+                btnMoveDown.Enabled = selectedCell.RowIndex < SegmentList.Count - 1;
+            }
+            else
+            {
+                btnMoveUp.Enabled = false;
+                btnMoveDown.Enabled = false;
+            }
         }
 
         void runGrid_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
@@ -822,6 +839,8 @@ namespace LiveSplit.View
 
             SegmentList.Remove(secondSegment);
             SegmentList.Insert(segIndex, secondSegment);
+
+            UpdateButtonsStatus();
         }
 
         private void FixAfterDeletion(int index)
