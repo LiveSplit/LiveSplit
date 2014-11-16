@@ -1,6 +1,5 @@
 ﻿1.5:
 X add splits changed event
-- possibly investigate 1 pixel off invalidations more
 - option to edit individual per-splits settings for each component in the Splits Editor
 - Console Autosplitting
 - Revamp Layout Editor http://i.imgur.com/GWjZpTV.png
@@ -9,7 +8,7 @@ X Show zeroes on Timer
 - Separate size setting for decimals on Timer
 - Finished Runs Count on Title
 - Settings Profiles?
-- Gray out buttons in the Splits Editor if they're irrelevant
+X Gray out buttons in the Splits Editor if they're irrelevant
 X Better way to handle Close Splits
 - Automatic sharing
 X Move splits up and down
