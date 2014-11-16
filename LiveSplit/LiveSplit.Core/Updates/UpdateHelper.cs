@@ -18,7 +18,7 @@ namespace LiveSplit.Updates
 
         public static void Update(Form form, Action closeAction, params IUpdateable[] updateables)
         {
-            new Thread(() =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -50,7 +50,7 @@ namespace LiveSplit.Updates
                 {
                     Log.Error(e);
                 }
-            }).Start();
+            });
         }
     }
 }

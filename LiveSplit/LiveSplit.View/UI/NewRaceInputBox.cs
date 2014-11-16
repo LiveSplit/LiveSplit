@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.UI
@@ -34,7 +35,7 @@ namespace LiveSplit.UI
             buttonOk = new Button();
             buttonCancel = new Button();
 
-            new Thread(() =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -59,7 +60,7 @@ namespace LiveSplit.UI
                 {
                     Log.Error(ex);
                 }
-            }).Start();
+            });
 
             cbxGameName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbxGameName.TextChanged += cbxGameName_TextChanged;
@@ -135,7 +136,7 @@ namespace LiveSplit.UI
 
         void RefreshCategoryAutoCompleteList(String gameName)
         {
-            new Thread(() =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -171,7 +172,7 @@ namespace LiveSplit.UI
                 {
                     Log.Error(ex);
                 }
-            }).Start();
+            });
         }
 
         public DialogResult Show(ref string game, ref string category)

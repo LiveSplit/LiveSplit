@@ -157,8 +157,8 @@ namespace LiveSplit.View
             picGameIcon.DataBindings.Add("Image", this, "GameIcon");
 
             cbxGameName.AutoCompleteSource = AutoCompleteSource.ListItems;
-                                
-            new Thread(() =>
+
+            Task.Factory.StartNew(() =>
                 {
                     try
                     {
@@ -183,7 +183,7 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                }).Start();
+                });
 
             cbxGameName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             cbxGameName.TextChanged += cbxGameName_TextChanged;
@@ -221,7 +221,7 @@ namespace LiveSplit.View
 
         void RefreshCategoryAutoCompleteList()
         {
-            new Thread(() =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -257,7 +257,7 @@ namespace LiveSplit.View
                 {
                     Log.Error(ex);
                 }
-            }).Start();
+            });
         }
 
         void runGrid_SelectionChanged(object sender, EventArgs e)
