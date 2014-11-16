@@ -7,6 +7,9 @@ X add splits changed event
 - Multiple Window support
 X Show zeroes on Timer
 - Separate size setting for decimals on Timer
+- Finished Runs Count on Title
+- Settings Profiles?
+- Gray out buttons in the Splits Editor if they're irrelevant
 X Better way to handle Close Splits
 - Automatic sharing
 X Move splits up and down
