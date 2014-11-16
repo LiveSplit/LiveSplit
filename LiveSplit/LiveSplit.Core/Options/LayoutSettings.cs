@@ -29,7 +29,6 @@ namespace LiveSplit.Options
         public GradientType BackgroundGradient { get; set; }
 
         public Font TimerFont { get; set; }
-        public Font TimerDecimalPlacesFont { get; set; }
         public Font TimesFont { get; set; }
         public Font TextFont { get; set; }
 
@@ -64,7 +63,6 @@ namespace LiveSplit.Options
             PausedColor = settings.PausedColor;
             ShadowsColor = settings.ShadowsColor;
             TimerFont = settings.TimerFont.Clone() as Font;
-            TimerDecimalPlacesFont = settings.TimerDecimalPlacesFont.Clone() as Font;
             TimesFont = settings.TimesFont.Clone() as Font;
             TextFont = settings.TextFont.Clone() as Font;
             ShowBestSegments = settings.ShowBestSegments;

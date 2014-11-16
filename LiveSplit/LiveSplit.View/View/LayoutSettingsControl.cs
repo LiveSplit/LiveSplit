@@ -133,7 +133,6 @@ namespace LiveSplit.View
         {
             var timerFont = new Font(Settings.TimerFont.FontFamily.Name, (Settings.TimerFont.Size / 50f) * 18f, Settings.TimerFont.Style, GraphicsUnit.Point);
             timerFont = ChooseFont(timerFont, 7, 20);
-            Settings.TimerDecimalPlacesFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * (35f), timerFont.Style, GraphicsUnit.Pixel);
             Settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
             lblTimer.Text = TimerFont;
         }
