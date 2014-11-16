@@ -242,7 +242,7 @@ namespace LiveSplit.View
             {
                 BackBuffer = new Bitmap(this.Width, this.Height);
 
-                try
+                /*try
                 {
                     // Outputs a CosmoWright image every 50ms (20 FPS)
                     XSplit = TimedBroadcasterPlugin.CreateInstance(
@@ -255,7 +255,7 @@ namespace LiveSplit.View
                     }
                 }
                 catch
-                { }
+                { }*/
             }
 
             this.TopMost = Layout.Settings.AlwaysOnTop;
