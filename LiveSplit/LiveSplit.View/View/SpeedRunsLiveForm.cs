@@ -154,7 +154,7 @@ namespace LiveSplit.View
 
         protected void DownloadAllEmotes()
         {
-            new Thread(() =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -172,7 +172,7 @@ namespace LiveSplit.View
                 {
                     Log.Error(ex);
                 }
-            }).Start();
+            });
         }
 
         void SRLClient_GoalChanged(object sender, EventArgs e)

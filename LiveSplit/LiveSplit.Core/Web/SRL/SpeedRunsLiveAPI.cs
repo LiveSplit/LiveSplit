@@ -137,7 +137,7 @@ namespace LiveSplit.Web.SRL
 
         public void RefreshRacesListAsync()
         {
-            new Thread(() => RefreshRacesList()).Start();
+            Task.Factory.StartNew(() => RefreshRacesList());
         }
 
         public void RefreshRacesList()

@@ -43,7 +43,7 @@ namespace LiveSplit.View
 
         void RefreshCategoryList(String gameName)
         {
-            new Thread(() =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -80,12 +80,12 @@ namespace LiveSplit.View
                 {
                     Log.Error(ex);
                 }
-            }).Start();
+            });
         }
 
         void RefreshGameList()
         {
-            new Thread(() =>
+            Task.Factory.StartNew(() =>
             {
                 try
                 {
@@ -124,7 +124,7 @@ namespace LiveSplit.View
                 {
                     Log.Error(ex);
                 }
-            }).Start();
+            });
         }
 
         private void SubmitDialog_Load(object sender, EventArgs e)

@@ -238,11 +238,11 @@ namespace LiveSplit.Web.SRL
             {
                 if (e.Message.Parameters[1] == "Password accepted - you are now recognized.")
                 {
-                    new Thread(() =>
+                    Task.Factory.StartNew(() =>
                     {
                         foreach (var channel in ChannelsToJoin)
                             Client.Channels.Join(channel);
-                    }).Start();
+                    });
                 }
                 else if (e.Message.Parameters[1] == "Password incorrect.")
                 {

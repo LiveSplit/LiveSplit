@@ -345,7 +345,7 @@ namespace LiveSplit.View
                 item.Click += Race_Click;
                 addItem(item);
 
-                new Thread(() =>
+                Task.Factory.StartNew(() =>
                 {
                     try
                     {
@@ -353,7 +353,7 @@ namespace LiveSplit.View
                         Action setImage = () =>
                             {
                                 try
-                                { 
+                                {
                                     item.Image = image;
                                 }
                                 catch (Exception ex)
@@ -370,7 +370,7 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                }).Start();
+                });
             }
 
             if (racingMenuItem.DropDownItems.Count > 0)
@@ -436,7 +436,7 @@ namespace LiveSplit.View
                         }
                     };
 
-                new Thread(() =>
+                Task.Factory.StartNew(() =>
                     {
                         try
                         {
@@ -461,7 +461,7 @@ namespace LiveSplit.View
                         {
                             Log.Error(ex);
                         }
-                    }).Start();
+                    });
 
                 updateTitleAction();
 
