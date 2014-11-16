@@ -277,17 +277,28 @@ namespace LiveSplit.View
 
         private void UpdateButtonsStatus()
         {
-            btnRemove.Enabled = SegmentList.Count > 1;
-            var selectedCell = runGrid.SelectedCells.Cast<DataGridViewCell>().ToList().FirstOrDefault();
-            if (selectedCell != null)
+            if (!AllowChangingSegments)
             {
-                btnMoveUp.Enabled = selectedCell.RowIndex > 0;
-                btnMoveDown.Enabled = selectedCell.RowIndex < SegmentList.Count - 1;
+                btnAdd.Enabled = false;
+                btnRemove.Enabled = false;
+                btnInsert.Enabled = false;
+                btnMoveDown.Enabled = false;
+                btnMoveUp.Enabled = false;
             }
             else
             {
-                btnMoveUp.Enabled = false;
-                btnMoveDown.Enabled = false;
+                btnRemove.Enabled = SegmentList.Count > 1;
+                var selectedCell = runGrid.SelectedCells.Cast<DataGridViewCell>().ToList().FirstOrDefault();
+                if (selectedCell != null)
+                {
+                    btnMoveUp.Enabled = selectedCell.RowIndex > 0;
+                    btnMoveDown.Enabled = selectedCell.RowIndex < SegmentList.Count - 1;
+                }
+                else
+                {
+                    btnMoveUp.Enabled = false;
+                    btnMoveDown.Enabled = false;
+                }
             }
         }
 
@@ -935,12 +946,7 @@ namespace LiveSplit.View
         {
             RebuildComparisonColumns();
             IsInitialized = true;
-            if (!AllowChangingSegments)
-            {
-                btnAdd.Enabled = false;
-                btnRemove.Enabled = false;
-                btnInsert.Enabled = false;
-            }
+            UpdateButtonsStatus();
         }
 
         private void picGameIcon_MouseUp(object sender, MouseEventArgs e)
