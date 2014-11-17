@@ -1745,7 +1745,6 @@ namespace LiveSplit.View
             var editor = new RunEditorDialog(CurrentState);
             editor.RunEdited += editor_RunEdited;
             editor.ComparisonRenamed += editor_ComparisonRenamed;
-            editor.ComparisonRemoved += editor_ComparisonRemoved;
             editor.SegmentRemovedOrAdded += editor_SegmentRemovedOrAdded;
             try
             {
@@ -1778,18 +1777,9 @@ namespace LiveSplit.View
             RefreshesRemaining = 10;
         }
 
-        void editor_ComparisonRemoved(object sender, EventArgs e)
-        {
-            var args = (RemoveEventArgs)e;
-            foreach (var component in Layout.Components)
-                component.RenameComparison(args.ComparisonName, "Current Comparison");
-        }
-
         void editor_ComparisonRenamed(object sender, EventArgs e)
         {
-            var args = (RenameEventArgs)e;
-            foreach (var component in Layout.Components)
-                component.RenameComparison(args.OldName, args.NewName);
+            CurrentState.CallComparisonRenamed(e);
         }
 
         void editor_RunEdited(object sender, EventArgs e)
