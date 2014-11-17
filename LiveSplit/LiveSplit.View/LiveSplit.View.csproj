@@ -98,8 +98,6 @@
     <Compile Include="UI\NewRaceInputBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\RemoveEventArgs.cs" />
-    <Compile Include="UI\RenameEventArgs.cs" />
     <Compile Include="UI\StandardLayoutSettingsFactory.cs" />
     <Compile Include="Updates\LiveSplitUpdateable.cs" />
     <Compile Include="View\AboutBox.cs">

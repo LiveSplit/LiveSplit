@@ -72,8 +72,6 @@ namespace LiveSplit.UI.Components
 
         public abstract void SetSettings(System.Xml.XmlNode settings);
 
-        public abstract void RenameComparison(string oldName, string newName);
-
         public abstract void Update(IInvalidator invalidator, Model.LiveSplitState state, float width, float height, LayoutMode mode);
 
         public abstract void Dispose();

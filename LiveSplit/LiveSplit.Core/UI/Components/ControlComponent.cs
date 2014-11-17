@@ -110,10 +110,6 @@ namespace LiveSplit.UI.Components
 
         public abstract void SetSettings(System.Xml.XmlNode settings);
 
-        public virtual void RenameComparison(string oldName, string newName)
-        {
-        }
-
         public virtual void Update(IInvalidator invalidator, Model.LiveSplitState state, float width, float height, LayoutMode mode)
         {
             if (!HasInvalidated && invalidator != null)

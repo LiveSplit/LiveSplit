@@ -141,6 +141,7 @@
     <Compile Include="UI\IInvalidator.cs" />
     <Compile Include="UI\InputBox.cs" />
     <Compile Include="UI\Invalidator.cs" />
+    <Compile Include="UI\RenameEventArgs.cs" />
     <Compile Include="Updates\ScrollableMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -55,12 +55,6 @@ namespace LiveSplit.UI.Components
             get { return base.VisibleComponents.Select(x => x.ContextMenuControls).Where(x => x != null).SelectMany(x => x).ToDictionary(x => x.Key, x => x.Value); }
         }
 
-        public void RenameComparison(string oldName, string newName)
-        {
-            foreach (var component in VisibleComponents)
-                RenameComparison(oldName, newName);
-        }
-
         public void Dispose()
         {
             foreach (var component in VisibleComponents)

@@ -93,12 +93,6 @@ namespace LiveSplit.UI.Components
             g.FillRectangle(new SolidBrush(LineColor), 0.0f, 0.0f, HorizontalWidth, height);
         }
 
-
-        public void RenameComparison(string oldName, string newName)
-        {
-        }
-
-
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
             invalidator.Invalidate(0, 0, width, height);
