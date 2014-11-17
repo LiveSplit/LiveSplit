@@ -59,6 +59,7 @@ namespace LiveSplit.Model
         public event EventHandler OnSwitchComparisonNext;
 
         public event EventHandler RunManuallyModified;
+        public event EventHandler ComparisonRenamed;
 
         public Time CurrentTime
         { 
@@ -198,6 +199,12 @@ namespace LiveSplit.Model
         {
             if (RunManuallyModified != null)
                 RunManuallyModified(this, null);
+        }
+
+        public void CallComparisonRenamed(EventArgs e)
+        {
+            if (ComparisonRenamed != null)
+                ComparisonRenamed(this, e);
         }
     }
 }

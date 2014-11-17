@@ -47,7 +47,6 @@ namespace LiveSplit.View
 
         public event EventHandler RunEdited;
         public event EventHandler ComparisonRenamed;
-        public event EventHandler ComparisonRemoved;
         public event EventHandler SegmentRemovedOrAdded;
         public IList<ISegment> ChangedSegments { get; set; }
 
@@ -1124,9 +1123,10 @@ namespace LiveSplit.View
             if (CurrentState.CurrentComparison == name)
                 CurrentState.CurrentComparison = LiveSplit.Model.Run.PersonalBestComparisonName;
 
-            var args = new RemoveEventArgs();
-            args.ComparisonName = name;
-            ComparisonRemoved(this, args);
+            var args = new RenameEventArgs();
+            args.OldName = name;
+            args.NewName = "Current Comparison";
+            ComparisonRenamed(this, args);
 
             foreach (var segment in Run)
                 segment.Comparisons.Remove(name);
