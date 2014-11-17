@@ -89,13 +89,6 @@ namespace LiveSplit.UI.Components
         void SetSettings(XmlNode settings);
 
         /// <summary>
-        /// Renames the comparison that may be stored in the settings from an old name to a new name.
-        /// </summary>
-        /// <param name="oldName">The name of the old comparison.</param>
-        /// <param name="newName">The name of the new comparison.</param>
-        void RenameComparison(String oldName, String newName);
-
-        /// <summary>
         /// Updates the component, checks if it has changed, and invalidates the necessary region if it needs to be redrawn.
         /// </summary>
         /// <param name="invalidator">An invalidator object. Used to invalidate a specific region on the form.</param>
