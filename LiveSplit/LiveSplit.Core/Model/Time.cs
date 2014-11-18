@@ -103,9 +103,9 @@ namespace LiveSplit.Model
             return newTime;
         }
 
-        public String ToString()
+        public override String ToString()
         {
-            return RealTime.ToString() + " | " + GameTime.ToString();
+            return RealTime + " | " + GameTime;
         }
 
         public static Time operator + (Time a, Time b)
