@@ -215,7 +215,7 @@ namespace LiveSplit.Web.Share
                 Name = name;
                 try
                 {
-                    client.Channels.FirstOrDefault().Users.Where(x => x.User.NickName == name).FirstOrDefault();
+                    client.Channels.FirstOrDefault().Users.FirstOrDefault(x => x.User.NickName == name);
                 } 
                 catch (Exception ex)
                 {

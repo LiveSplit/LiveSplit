@@ -256,7 +256,7 @@ namespace LiveSplit.Model
             {
                 for (var index = 0; index < Count; index++)
                 {
-                    var segmentHistoryElement = this[index].SegmentHistory.Where(x => x.Index == runIndex).FirstOrDefault();
+                    var segmentHistoryElement = this[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                     if (segmentHistoryElement == null)
                     {
                         RemoveItemsFromCache(index, cache);

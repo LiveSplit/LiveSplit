@@ -171,8 +171,8 @@ namespace LiveSplit.Web.Share
                     {
                         auth = DoSingleUserAuth(accessToken, oauthToken, out screenName);
                         var context = new TwitterContext(auth);
-                        context.Trends.Where(x => x.Type == TrendType.Place &&
-                        x.WoeID == 2486982).FirstOrDefault();
+                        context.Trends.FirstOrDefault(x => x.Type == TrendType.Place &&
+                                                           x.WoeID == 2486982);
                     }
                     catch (Exception e)
                     {

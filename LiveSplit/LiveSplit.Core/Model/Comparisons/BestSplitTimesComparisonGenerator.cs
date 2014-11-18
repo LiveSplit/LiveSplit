@@ -25,7 +25,7 @@ namespace LiveSplit.Model.Comparisons
 
                 foreach (var segment in Run)
                 {
-                    var segmentHistoryElement = segment.SegmentHistory.Where(x => x.Index == y).FirstOrDefault();
+                    var segmentHistoryElement = segment.SegmentHistory.FirstOrDefault(x => x.Index == y);
                     if (segmentHistoryElement != null)
                     {
                         var segmentTime = segmentHistoryElement.Time[method];
