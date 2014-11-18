@@ -61,7 +61,7 @@ namespace LiveSplit.Model.Input
 
         public Joystick GetMouse()
         {
-            return Joysticks.Where(x => x.Information.Type == DeviceType.Mouse).FirstOrDefault();
+            return Joysticks.FirstOrDefault(x => x.Information.Type == DeviceType.Mouse);
         }
 
         protected bool IsPressed(Joystick joystick, JoystickOffset button, int value)

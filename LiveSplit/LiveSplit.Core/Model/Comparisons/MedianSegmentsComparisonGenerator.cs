@@ -50,7 +50,7 @@ namespace LiveSplit.Model.Comparisons
                 foreach (var segment in Run)
                 {
                     IIndexedTime history;
-                    history = segment.SegmentHistory.Where(x => x.Index == ind).FirstOrDefault();
+                    history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
                     if (history != null)
                     {
                         if (history.Time[method] == null)

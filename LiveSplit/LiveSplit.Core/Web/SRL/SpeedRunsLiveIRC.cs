@@ -55,9 +55,9 @@ namespace LiveSplit.Web.SRL
         public String GameName { get; set; }
         public String ChannelTopic { get; set; }
 
-        protected IrcChannel MainChannel { get { return Client.Channels.Where(x => x.Name.Equals("#speedrunslive")).FirstOrDefault(); } }
-        protected IrcChannel LiveSplitChannel { get { return Client.Channels.Where(x => x.Name.EndsWith("-livesplit")).FirstOrDefault(); } }
-        protected IrcChannel RaceChannel { get { return Client.Channels.Where(x => x.Name.StartsWith("#srl") && !x.Name.EndsWith("-livesplit")).FirstOrDefault(); } }
+        protected IrcChannel MainChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.Equals("#speedrunslive")); } }
+        protected IrcChannel LiveSplitChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.EndsWith("-livesplit")); } }
+        protected IrcChannel RaceChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.StartsWith("#srl") && !x.Name.EndsWith("-livesplit")); } }
 
         public String LiveSplitChannelName { get { return LiveSplitChannel.Name; } }
         public String RaceChannelName { get { return RaceChannel == null ? null : RaceChannel.Name; } }
@@ -340,7 +340,7 @@ namespace LiveSplit.Web.SRL
         {
             var run = Model.CurrentState.Run;
             var comparisonName = "[Race] " + userName;
-            if (!run.ComparisonGenerators.Any(x => x.Name == comparisonName))
+            if (run.ComparisonGenerators.All(x => x.Name != comparisonName))
             {
                 CompositeComparisons.AddShortComparisonName(comparisonName, userName);
                 run.ComparisonGenerators.Add(new SRLComparisonGenerator(comparisonName));
@@ -425,7 +425,7 @@ namespace LiveSplit.Web.SRL
         {
             if (e.Targets.Count > 0 && e.Targets[0] == RaceChannel)
             {
-                var realName = RaceChannel.Users.Where(x => x.User.NickName == e.Source.Name).FirstOrDefault().User.RealName;
+                var realName = RaceChannel.Users.FirstOrDefault(x => x.User.NickName == e.Source.Name).User.RealName;
                 ProcessRaceChannelMessage(e.Source.Name, e.Text);
             }
             else if (e.Targets.Count > 0 && e.Targets[0] == LiveSplitChannel)
@@ -579,7 +579,7 @@ namespace LiveSplit.Web.SRL
 
         public SRLIRCUser GetUser()
         {
-            return GetRaceChannelUsers().Where(x => x.Name == Client.LocalUser.NickName).FirstOrDefault();
+            return GetRaceChannelUsers().FirstOrDefault(x => x.Name == Client.LocalUser.NickName);
         }
 
         public void SendRaceChannelMessage(string message)

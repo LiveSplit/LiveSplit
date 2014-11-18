@@ -63,7 +63,7 @@ namespace LiveSplit.Web.Share
         public String GetGameIdByName(String gameName)
         {
             var lowerCaseGameName = gameName.ToLowerInvariant();
-            return GetGameList().Where(a => a.Value.ToLowerInvariant() == lowerCaseGameName).First().Id;
+            return GetGameList().First(a => a.Value.ToLowerInvariant() == lowerCaseGameName).Id;
         }
 
         public IEnumerable<ASUP.IdPair> GetGameCategories(String gameId)
@@ -74,7 +74,7 @@ namespace LiveSplit.Web.Share
         public String GetCategoryIdByName(String gameId, String categoryName)
         {
             var lowerCaseCategoryName = categoryName.ToLowerInvariant();
-            return GetGameCategories(gameId).Where(a => a.Value.ToLowerInvariant() == lowerCaseCategoryName).First().Id;
+            return GetGameCategories(gameId).First(a => a.Value.ToLowerInvariant() == lowerCaseCategoryName).Id;
         }
 
         public bool VerifyLogin(String username, String password)
