@@ -118,15 +118,15 @@ namespace LiveSplit.Model
                 if (timeDifference < TimeSpan.Zero)
                 {
                     splitColor = state.LayoutSettings.AheadGainingTimeColor;
-                    if (segmentType <= 0 && splitNumber > 0 && GetLastDelta(state, splitNumber - 1, comparison, method) != null 
-                        && timeDifference > GetLastDelta(state, splitNumber - 1, comparison, method))
+                    var lastDelta = GetLastDelta(state, splitNumber - 1, comparison, method);
+                    if (segmentType <= 0 && splitNumber > 0 && lastDelta != null && timeDifference > lastDelta)
                         splitColor = state.LayoutSettings.AheadLosingTimeColor;
                 }
                 else
                 {
                     splitColor = state.LayoutSettings.BehindLosingTimeColor;
-                    if (segmentType <= 0 && splitNumber > 0 && GetLastDelta(state, splitNumber - 1, comparison, method) != null 
-                        && timeDifference < GetLastDelta(state, splitNumber - 1, comparison, method))
+                    var lastDelta = GetLastDelta(state, splitNumber - 1, comparison, method);
+                    if (segmentType <= 0 && splitNumber > 0 && lastDelta != null && timeDifference < lastDelta)
                         splitColor = state.LayoutSettings.BehindGainingTimeColor;
                 }
             }
