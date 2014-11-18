@@ -443,13 +443,13 @@ namespace LiveSplit.Web.SRL
                 if (e.Targets[0] is IrcChannel)
                 {
                     var target = e.Targets[0] as IrcChannel;
-                    var source = target.Users.Where(x => x.User.NickName == e.Source.Name).FirstOrDefault();
+                    var source = target.Users.FirstOrDefault(x => x.User.NickName == e.Source.Name);
                     if (source != null)
                     {
                         rights = SRLIRCRightsHelper.FromIrcChannelUser(source);
                     }
                 }
-                MessageReceived(this, new Tuple<string, SRLIRCUser, string>(e.Targets[0].Name, new SRLIRCUser(e.Source.Name), e.Text));
+                MessageReceived(this, new Tuple<string, SRLIRCUser, string>(e.Targets[0].Name, new SRLIRCUser(e.Source.Name, rights), e.Text));
             }
         }
 
