@@ -63,7 +63,7 @@ namespace LiveSplit.UI.Components
             {
                 if (errorCallback != null)
                     errorCallback(ex);
-                throw ex;
+                throw;
             }
         }
 

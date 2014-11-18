@@ -511,7 +511,7 @@ namespace XGamePad
                 }
                 else
                 {
-                    throw e; // Unknown error, rethrow
+                    throw; // Unknown error, rethrow
                 }
             }
         }
