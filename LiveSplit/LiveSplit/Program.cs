@@ -2,10 +2,7 @@
 using LiveSplit.View;
 using LiveSplit.Web.Share;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit
@@ -24,8 +21,7 @@ namespace LiveSplit
                 Application.SetCompatibleTextRenderingDefault(false);
                 Environment.CurrentDirectory = Path.GetDirectoryName(Application.ExecutablePath);
 
-#if DEBUG
-#else
+#if !DEBUG
                 FiletypeRegistryHelper.RegisterFileFormatsIfNotAlreadyRegistered();
 #endif
 
@@ -43,8 +39,7 @@ namespace LiveSplit
                 if (Twitch.Instance != null && Twitch.Instance.Chat != null)
                     Twitch.Instance.Chat.Close();
             }
-#if DEBUG
-#else
+#if !DEBUG
             catch (Exception e)
             {
                 Log.Error(e);
