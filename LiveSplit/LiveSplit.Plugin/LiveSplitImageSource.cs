@@ -44,17 +44,20 @@ namespace LiveSplit.Plugin
 
         public override void BeginScene()
         {
-            new Thread(() =>
+            var formThread = new Thread(() =>
             {
                 Application.EnableVisualStyles();
 
                 form = new TimerForm(
-                    splitsPath: splitsPath, 
+                    splitsPath: splitsPath,
                     layoutPath: layoutPath,
-                    drawToBackBuffer: true, 
+                    drawToBackBuffer: true,
                     basePath: File.ReadAllText(@"plugins\CLRHostPlugin\livesplit.cfg"));
                 Application.Run(form);
-            }) { Name = "LiveSplit Form Thread", ApartmentState = ApartmentState.STA }.Start();
+            }) { Name = "LiveSplit Form Thread" };
+
+            formThread.SetApartmentState(ApartmentState.STA);
+            formThread.Start();
         }
 
         public override void EndScene()
