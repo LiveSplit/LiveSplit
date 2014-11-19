@@ -4,15 +4,11 @@ using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
-using LiveSplit.Updates;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
+using LiveSplit.Updates;
 
 namespace LiveSplit.Web.SRL
 {

@@ -1,17 +1,8 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Model.Input;
-using LiveSplit.UI;
 using LiveSplit.Web.SRL;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Text;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace LiveSplit.Options

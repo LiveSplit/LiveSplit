@@ -2,14 +2,9 @@
 using LiveSplit.Options;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LiveSplit.Model.RunFactories
 {
@@ -21,10 +16,13 @@ namespace LiveSplit.Model.RunFactories
         {
             Path = path;
         }
-        private void Empty(System.IO.DirectoryInfo directory)
+        private void Empty(DirectoryInfo directory)
         {
-            foreach (System.IO.FileInfo file in directory.GetFiles()) file.Delete();
-            foreach (System.IO.DirectoryInfo subDirectory in directory.GetDirectories()) subDirectory.Delete(true);
+            foreach (FileInfo file in directory.GetFiles())
+                file.Delete();
+
+            foreach (DirectoryInfo subDirectory in directory.GetDirectories())
+                subDirectory.Delete(true);
         }
 
         protected String Unescape(String text)
@@ -61,7 +59,7 @@ namespace LiveSplit.Model.RunFactories
             using (jre)
             {
                 string currentVersion = jre.GetValue("CurrentVersion").ToString();
-                using (Microsoft.Win32.RegistryKey key = jre.OpenSubKey(currentVersion))
+                using (RegistryKey key = jre.OpenSubKey(currentVersion))
                 {
                     return key.GetValue("JavaHome").ToString();
                 }
@@ -153,7 +151,7 @@ namespace LiveSplit.Model.RunFactories
 
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
-            using (var stream = System.IO.File.OpenRead(Path))
+            using (var stream = File.OpenRead(Path))
             {
                 var data = new byte[4];
                 stream.Read(data, 0, 4);
@@ -183,10 +181,10 @@ namespace LiveSplit.Model.RunFactories
 
             if (!File.Exists(loaderPath))
             {
-                System.IO.File.Create(loaderPath).Close();
+                File.Create(loaderPath).Close();
                 using (var memoryStream = new MemoryStream(Resources.LlanfairLoader))
                 {
-                    using (var stream = System.IO.File.Open(loaderPath, System.IO.FileMode.OpenOrCreate | System.IO.FileMode.Truncate, System.IO.FileAccess.Write))
+                    using (var stream = File.Open(loaderPath, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
                     {
                         memoryStream.CopyTo(stream);
                     }
@@ -199,7 +197,7 @@ namespace LiveSplit.Model.RunFactories
             process.WaitForExit();
             process.Close();
 
-            using (var stream = System.IO.File.OpenRead(splitsFilePath))
+            using (var stream = File.OpenRead(splitsFilePath))
             {
                 return ReadFromLlanfairTextFile(stream, factory);
             }

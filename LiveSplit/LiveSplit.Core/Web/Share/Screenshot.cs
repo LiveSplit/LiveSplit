@@ -2,10 +2,6 @@
 using LiveSplit.Options;
 using System;
 using System.Collections.Generic;
-using System.Drawing.Imaging;
-using System.Linq;
-using System.Text;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share

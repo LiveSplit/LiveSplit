@@ -1,9 +1,5 @@
 ﻿using LiveSplit.Web;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace LiveSplit.Model
