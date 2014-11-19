@@ -102,7 +102,6 @@
             this.openSplitsMenuItem.Name = "openSplitsMenuItem";
             this.openSplitsMenuItem.Size = new System.Drawing.Size(166, 22);
             this.openSplitsMenuItem.Text = "Open Splits";
-            this.openSplitsMenuItem.Click += new System.EventHandler(this.openSplitsMenuItem_Click);
             // 
             // saveSplitsMenuItem
             // 
@@ -180,7 +179,6 @@
             this.openLayoutMenuItem.Name = "openLayoutMenuItem";
             this.openLayoutMenuItem.Size = new System.Drawing.Size(166, 22);
             this.openLayoutMenuItem.Text = "Open Layout";
-            this.openLayoutMenuItem.Click += new System.EventHandler(this.openLayoutMenuItem_Click);
             // 
             // saveLayoutMenuItem
             // 
