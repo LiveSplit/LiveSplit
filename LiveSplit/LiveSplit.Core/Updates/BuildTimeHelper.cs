@@ -2,7 +2,7 @@
 
 namespace LiveSplit.Updates
 {
-    public class BuildTimeHelper
+    public static class BuildTimeHelper
     {
         public static DateTime GetBuildTime()
         {
