@@ -298,31 +298,6 @@ namespace LiveSplit.View
 
             if (result == System.Windows.Forms.DialogResult.Cancel)
                 CurrentState.Form.Size = oldSize;
-
-            /*
-            string width = Layout.Mode == LayoutMode.Vertical ? Layout.VerticalWidth.ToString() : Layout.HorizontalWidth.ToString();
-            string height = Layout.Mode == LayoutMode.Vertical ? Layout.VerticalHeight.ToString() : Layout.HorizontalHeight.ToString();
-            if (DialogResult.OK == InputBox.Show(this, "Set Layout Size", "Width:","Height:", ref width, ref height))
-            {
-                try
-                {
-                    if (Layout.Mode == LayoutMode.Vertical)
-                    {
-                        Layout.VerticalWidth = Int32.Parse(width);
-                        Layout.VerticalHeight = Int32.Parse(height);
-                    }
-                    else
-                    {
-                        Layout.HorizontalWidth = Int32.Parse(width);
-                        Layout.HorizontalHeight = Int32.Parse(height);
-                    }
-                    LayoutSizeChanged(null, null);
-                }
-                catch
-                {
-                    MessageBox.Show(this, "The Layout Size could not be set.", "Invalid Size", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }*/
         }
 
         private void lbxComponents_DoubleClick(object sender, EventArgs e)

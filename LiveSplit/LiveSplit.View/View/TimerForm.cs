@@ -384,7 +384,6 @@ namespace LiveSplit.View
                 var game = race.game.name;
                 var goal = race.goal;
                 var entrants = race.numentrants;
-                //var plural = entrants == 1 ? "" : "s";
                 var startTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 startTime = startTime.AddSeconds(race.time);
 
@@ -1021,7 +1020,6 @@ namespace LiveSplit.View
                 }
             };
 
-            //if (this.InvokeRequired)
             new Task(() =>
             {
                 try
@@ -1033,9 +1031,6 @@ namespace LiveSplit.View
                     Log.Error(ex);
                 }
             }).Start();
-                
-            //else
-                //action();
         }
 
         void pauseTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -1213,13 +1208,8 @@ namespace LiveSplit.View
             if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
                 UpdateRegion.Union(clip);
 
-            /*if (!CurrentState.DrawLock.TryEnterReadLock(500))
-                return;*/
-
             ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
                 
-            //CurrentState.DrawLock.ExitReadLock();
-
             var currentSize = Layout.Mode == LayoutMode.Vertical ? ComponentRenderer.OverallHeight : ComponentRenderer.OverallWidth;
 
             if (OldSize >= 0)
@@ -1813,7 +1803,6 @@ namespace LiveSplit.View
             var editor = new LayoutEditorDialog(Layout, CurrentState, this);
             editor.OrientationSwitched += editor_OrientationSwitched;
             editor.LayoutResized += editor_LayoutResized;
-            //editor.LayoutSizeChanged += editor_LayoutSizeChanged;
             editor.LayoutSettingsAssigned += editor_LayoutSettingsAssigned;
             Layout.X = this.Location.X;
             Layout.Y = this.Location.Y;
@@ -1871,20 +1860,6 @@ namespace LiveSplit.View
         {
             RefreshesRemaining = 10;
         }
-
-        /*void editor_LayoutSizeChanged(object sender, EventArgs e)
-        {
-            OldSize = -4;
-            this.MinimumSize = new Size(0, 0);
-            if (Layout.Mode == LayoutMode.Vertical)
-            {
-                this.Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
-            }
-            else
-            {
-                this.Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
-            }
-        }*/
 
         void editor_LayoutResized(object sender, EventArgs e)
         {
@@ -2106,19 +2081,6 @@ namespace LiveSplit.View
         private void openLayoutFromFileMenuItem_Click(object sender, EventArgs e)
         {
             OpenLayout();
-        }
-
-
-        //These are arrows so should they be clickable? who knows..
-        private void openSplitsMenuItem_Click(object sender, EventArgs e)
-        {
-            /*RightClickMenu.Close();
-            OpenSplits();*/
-        }
-        private void openLayoutMenuItem_Click(object sender, EventArgs e)
-        {
-            /*RightClickMenu.Close();
-            OpenLayout();*/
         }
 
         private void resetLayoutMenuItem_Click(object sender, EventArgs e)

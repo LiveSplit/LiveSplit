@@ -11,8 +11,8 @@ namespace LiveSplit.UI.Components
     {
         public IEnumerable<IComponent> VisibleComponents { get; set; }
 
-        public float OverallHeight = 10f;//{ get { return VisibleComponents.Aggregate(0.0f, (x, y) => x + y.VerticalHeight); } }
-        public float OverallWidth = 10f;//{ get { return VisibleComponents.Aggregate(0.0f, (x, y) => x + y.HorizontalWidth); } }
+        public float OverallHeight = 10f;
+        public float OverallWidth = 10f;
 
         public float MinimumWidth
         {
@@ -132,9 +132,9 @@ namespace LiveSplit.UI.Components
                         {
                             g.Clip = clip;
                             if (mode == LayoutMode.Vertical)
-                                /*totalSize += */DrawVerticalComponent(index, g, state, width, height, clipRegion);
+                                DrawVerticalComponent(index, g, state, width, height, clipRegion);
                             else
-                                /*totalSize += */DrawHorizontalComponent(index, g, state, width, height, clipRegion);
+                                DrawHorizontalComponent(index, g, state, width, height, clipRegion);
                         }
                         catch (Exception e)
                         {
@@ -144,17 +144,6 @@ namespace LiveSplit.UI.Components
                         }
                         index++;
                     }
-
-                    /*if (mode == LayoutMode.Vertical)
-                    {
-                        OverallHeight = totalSize;
-                        OverallWidth = VisibleComponents.Aggregate(0.0f, (x, y) => x + y.HorizontalWidth);
-                    }
-                    else
-                    {
-                        OverallWidth = totalSize;
-                        OverallHeight = VisibleComponents.Aggregate(0.0f, (x, y) => x + y.VerticalHeight);     
-                    }*/
 
                     if (crashedComponents.Count > 0)
                     {

@@ -618,14 +618,6 @@ namespace LiveSplit.View
 
         private void chkReady_CheckedChanged(object sender, EventArgs e)
         {
-            /*if (chkReady.Checked)
-            {
-                SRLClient.Ready();
-            }
-            else
-            {
-                SRLClient.Unready();
-            }*/
         }
 
         private void chatBox_LinkClicked(object sender, LinkClickedEventArgs e)

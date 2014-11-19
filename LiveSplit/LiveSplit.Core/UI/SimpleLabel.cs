@@ -107,10 +107,8 @@ namespace LiveSplit.UI
             else
             {
                 var charIndex = 0;
-                //var oldClip = g.Clip;
-                //g.IntersectClip(new RectangleF(X, Y, Width, Height));
-                var monoFormat = new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = VerticalAlignment/*, FormatFlags = StringFormatFlags.NoWrap*/ };
-                var measurement = TextRenderer.MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;//g.MeasureCharacterRanges("0", Font, new RectangleF(X, Y, Width, Height), monoFormat).First().GetBounds(g).Width;//g.MeasureString("0", Font, 9999, monoFormat).Width;
+                var monoFormat = new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = VerticalAlignment };
+                var measurement = TextRenderer.MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
                 var offset = Width;
                 charIndex = 0;
                 SetActualWidth(g);
@@ -129,7 +127,7 @@ namespace LiveSplit.UI
                         || curChar.Equals('6') || curChar.Equals('7') || curChar.Equals('8') || curChar.Equals('9'))
                         curOffset = measurement;
                     else
-                        curOffset = TextRenderer.MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;//g.MeasureCharacterRanges(curChar.ToString(), Font, new RectangleF(X, Y, Width, Height), monoFormat).First().GetBounds(g).Width;
+                        curOffset = TextRenderer.MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
                     if (HasShadow)
                     {
                         var shadowBrush = new SolidBrush(ShadowColor);
@@ -140,7 +138,6 @@ namespace LiveSplit.UI
                     charIndex++;
                     offset += curOffset;
                 }
-                //g.Clip = oldClip;
             }
             
             /*if (HasGlassEffects)
@@ -175,8 +172,8 @@ namespace LiveSplit.UI
         private float MeasureActualWidth(String text, Graphics g)
         {
             var charIndex = 0;
-            var monoFormat = new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = VerticalAlignment/*, FormatFlags = StringFormatFlags.NoWrap*/ };
-            var measurement = TextRenderer.MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;//g.MeasureCharacterRanges("0", Font, new RectangleF(X, Y, Width, Height), monoFormat).First().GetBounds(g).Width;//g.MeasureString("0", Font, 9999, monoFormat).Width;
+            var monoFormat = new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = VerticalAlignment };
+            var measurement = TextRenderer.MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
             var offset = 0;
             while (charIndex < text.Length)
             {
@@ -186,7 +183,7 @@ namespace LiveSplit.UI
                     || curChar.Equals('6') || curChar.Equals('7') || curChar.Equals('8') || curChar.Equals('9'))
                     offset += measurement;
                 else
-                    offset += TextRenderer.MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;//g.MeasureCharacterRanges(curChar.ToString(), Font, new RectangleF(X, Y, Width, Height), monoFormat).First().GetBounds(g).Width;
+                    offset += TextRenderer.MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
                 charIndex++;
             }
             return offset;

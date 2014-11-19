@@ -381,19 +381,6 @@ namespace LiveSplit.Web.SRL
 
         protected void ProcessLiveSplitChannelMessage(String user, String message)
         {
-            /*if (State == RaceState.RaceStarted || State == RaceState.EnteredRaceAndReady)
-            {
-                if (message == ".enter")
-                {
-                    var run = Model.CurrentState.Run;
-                    var comparisonName = "[Race] " + user;
-                    if (!run.ComparisonGenerators.Any(x => x.Name == comparisonName))
-                    {
-                        CompositeComparisons.AddShortComparisonName(comparisonName, user);
-                        run.ComparisonGenerators.Add(new SRLComparisonGenerator(comparisonName));
-                    }
-                }
-            }*/
             if (RaceState == RaceState.RaceStarted || RaceState == RaceState.RaceEnded)
             {
                 if (message.StartsWith(".time ") || message.StartsWith(".timeGT "))

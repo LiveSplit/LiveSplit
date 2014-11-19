@@ -78,15 +78,6 @@ namespace LiveSplit.Model.RunFactories
                         var comparisonName = comparisonElement.Attributes["name"].InnerText;
                         if (comparisonElement.InnerText.Length > 0)
                         {
-                            /*if (comparisonName == "Game Time")
-                            {
-                                var time = new Time(split.Comparisons[Run.PersonalBestComparisonName]);
-                                TimeSpan x;
-                                TimeSpan.TryParse(comparisonElement.InnerText, out x);
-                                time.GameTime = x;
-                                split.Comparisons[Run.PersonalBestComparisonName] = time;
-                            }
-                            else*/
                             split.Comparisons[comparisonName] = version >= new Version(1, 4, 1) ? Time.FromXml(comparisonElement) : Time.ParseText(comparisonElement.InnerText);
                         }
                         if (!run.CustomComparisons.Contains(comparisonName))

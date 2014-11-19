@@ -163,47 +163,6 @@ namespace LiveSplit.UI.LayoutSavers
 
             document.AppendChild(GetLayoutNode(document, layout));
 
-            /*var parent = document.CreateElement("Layout");
-            var version = document.CreateAttribute("version");
-            version.Value = "1.3";
-            parent.Attributes.Append(version);
-            document.AppendChild(parent);
-
-            var mode = document.CreateElement("Mode");
-            mode.InnerText = layout.Mode == LayoutMode.Horizontal ? "Horizontal" : "Vertical";
-            parent.AppendChild(mode);
-
-            parent.AppendChild(ToElement(document, "X", layout.X));
-            parent.AppendChild(ToElement(document, "Y", layout.Y));
-            parent.AppendChild(ToElement(document, "VerticalWidth", layout.VerticalWidth));
-            parent.AppendChild(ToElement(document, "VerticalHeight", layout.VerticalHeight));
-            parent.AppendChild(ToElement(document, "HorizontalWidth", layout.HorizontalWidth));
-            parent.AppendChild(ToElement(document, "HorizontalHeight", layout.HorizontalHeight));
-            
-            parent.AppendChild(ToElement(document, layout.Settings));
-
-            var components = document.CreateElement("Components");
-            parent.AppendChild(components);
-
-            foreach (var component in layout.LayoutComponents)
-            {
-                var componentElement = document.CreateElement("Component");
-                components.AppendChild(componentElement);
-                var path = document.CreateElement("Path");
-                path.InnerText = component.Path;
-                componentElement.AppendChild(path);
-                var settings = document.CreateElement("Settings");
-                try
-                {
-                    settings.InnerXml = component.Component.GetSettings(document).InnerXml;
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
-                }
-                componentElement.AppendChild(settings);
-            }*/
-
             document.Save(stream);
         }
     }

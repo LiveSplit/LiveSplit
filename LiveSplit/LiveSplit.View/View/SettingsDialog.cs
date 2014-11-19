@@ -34,7 +34,6 @@ namespace LiveSplit.View
         public float HotkeyDelay { get { return Settings.HotkeyDelay; } set { Settings.HotkeyDelay = Math.Max(value, 0); } }
         public bool WarnOnReset { get { return Settings.WarnOnReset; } set { Settings.WarnOnReset = value; } }
         public bool DoubleTapPrevention { get { return Settings.DoubleTapPrevention; } set { Settings.DoubleTapPrevention = value; } }
-        //public bool SimpleSumOfBest { get { return Settings.SimpleSumOfBest; } set { Settings.SimpleSumOfBest = value; } }
         //public float RefreshRate { get { return 60f-Settings.RefreshRate; } set { Settings.RefreshRate = 60f-value; } }
 
         public event EventHandler SumOfBestModeChanged;
@@ -61,7 +60,6 @@ namespace LiveSplit.View
             chkDoubleTap.DataBindings.Add("Checked", this, "DoubleTapPrevention");
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
-            //chkSimpleSOB.DataBindings.Add("Checked", this, "SimpleSumOfBest", false, DataSourceUpdateMode.OnPropertyChanged);
             chkSimpleSOB.CheckedChanged += chkSimpleSOB_CheckedChanged;
             /*trkRefreshRate.DataBindings.Add("Value", this, "RefreshRate", false, DataSourceUpdateMode.OnPropertyChanged);
             trkRefreshRate.ValueChanged += trkRefreshRate_ValueChanged;
@@ -165,8 +163,6 @@ namespace LiveSplit.View
                 Action action = () =>
                 {
                     txtBox.Select(0, 0);
-                    /*txtBox.Enabled = false;
-                    txtBox.Enabled = true;*/
                     chkGlobalHotkeys.Select();
                     txtBox.Text = FormatKey(key);
                 };

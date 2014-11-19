@@ -36,17 +36,9 @@ namespace LiveSplit.Model.Input
                     KeyPressed(this, e);
 
                 HookState++;
-                //Debug.WriteLine(HookState);
 
                 if (HookState == 1 || HookState < 0)
                     UnstableStateTime = TripleDateTime.Now;
-
-
-                /*if (HookState >= 2)
-                {
-                    Input.RegisterHook();
-                    HookState = 0;
-                }*/
             }
         }
 
@@ -60,14 +52,9 @@ namespace LiveSplit.Model.Input
                         KeyPressed(this, e);
 
                     HookState--;
-                    //Debug.WriteLine(HookState);
 
                     if (HookState == -1 || HookState > 0)
-                        UnstableStateTime = TripleDateTime.Now;
-
-                    /*if (HookState < -1)
-                        HookState = -1;*/
-                    
+                        UnstableStateTime = TripleDateTime.Now;                   
                 }
             }
         }
@@ -165,7 +152,6 @@ namespace LiveSplit.Model.Input
 
         public void RegisterHook()
         {
-            //Debug.WriteLine("Registering");
             using (Process process = Process.GetCurrentProcess())
             using (ProcessModule module = process.MainModule)
             {
@@ -187,8 +173,6 @@ namespace LiveSplit.Model.Input
         private IntPtr KeyboardHookDelegate(
             Int32 Code, IntPtr wParam, IntPtr lParam)
         {
-            //TickCount = Environment.TickCount;
-            //Thread.Sleep(1000);
             if (Code < 0)
             {
                 return WindowsHookHelper.CallNextHookEx(
@@ -226,7 +210,6 @@ namespace LiveSplit.Model.Input
                 if (KeyBoardKeyPressed != null)
                 {
                     KeyBoardKeyPressed(this, new KeyEventArgs(key | modifiers));
-                    //System.Diagnostics.Debug.WriteLine((key | modifiers).ToString());
                 }
 
                 if (key == Keys.ControlKey)
@@ -299,20 +282,5 @@ namespace LiveSplit.Model.Input
         public static extern IntPtr SetWindowsHookEx(
             Int32 idHook, HookDelegate lpfn, IntPtr hmod,
             Int32 dwThreadId);
-
-        [DllImport("user32.dll")]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
-
-        [StructLayout(LayoutKind.Sequential)]
-        public struct LASTINPUTINFO
-        {
-            public static readonly int SizeOf = Marshal.SizeOf(typeof(LASTINPUTINFO));
-
-            [MarshalAs(UnmanagedType.U4)]
-            public UInt32 cbSize;
-            [MarshalAs(UnmanagedType.U4)]
-            public UInt32 dwTime;
-        }
     }
 }

@@ -76,8 +76,6 @@ namespace LiveSplit.Model
                 if (segmentTime != null)
                 {
                     var curTime = segmentTime.Time[method];
-                    /*if (run[segmentIndex].BestSegmentTime != null && curTime < run[segmentIndex].BestSegmentTime)
-                        curTime = run[segmentIndex].BestSegmentTime;*/
                     if (curTime.HasValue)
                     {
                         return new IndexedTime(new Time(curTime + currentTime), segmentIndex + 1);

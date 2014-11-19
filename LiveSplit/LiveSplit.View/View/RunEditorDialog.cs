@@ -450,28 +450,6 @@ namespace LiveSplit.View
 
         void runGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            /*if (e.ColumnIndex == SPLITTIMEINDEX || e.ColumnIndex == BESTSEGMENTINDEX)
-            {
-                try
-                {
-                    var displayedTime = ((Time)e.Value)[SelectedMethod];
-                    if (displayedTime != null)
-                    {
-                        e.Value = TimeFormatter.Format(displayedTime);
-                        e.FormattingApplied = true;
-                    }
-                    else
-                    {
-                        e.Value = "";
-                        e.FormattingApplied = true;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                    e.FormattingApplied = false;
-                }
-            }*/
             if (e.ColumnIndex == SPLITTIMEINDEX)
             {
                 if (e.RowIndex < Run.Count)
@@ -818,10 +796,6 @@ namespace LiveSplit.View
         {
             var firstSegment = SegmentList.ElementAt(segIndex);
             var secondSegment = SegmentList.ElementAt(segIndex+1);
-
-            /*var firstBestSegmentTime = new Time(firstSegment.BestSegmentTime);
-            firstSegment.BestSegmentTime = new Time(secondSegment.BestSegmentTime);
-            secondSegment.BestSegmentTime = new Time(firstBestSegmentTime);*/
 
             firstSegment.SegmentHistory.Clear();
             secondSegment.SegmentHistory.Clear();
