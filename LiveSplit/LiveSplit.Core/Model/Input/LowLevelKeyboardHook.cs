@@ -301,6 +301,7 @@ namespace LiveSplit.Model.Input
             Int32 dwThreadId);
 
         [DllImport("user32.dll")]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetLastInputInfo(ref LASTINPUTINFO plii);
 
         [StructLayout(LayoutKind.Sequential)]
