@@ -34,6 +34,11 @@ namespace LiveSplit.Model.Input
 
             return base.Equals(obj);
         }
+
+        public override int GetHashCode()
+        {
+            return GamepadName.GetHashCode() ^ Button.GetHashCode();
+        }
     }
 
     public class GamepadHook
