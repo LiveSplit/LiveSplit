@@ -1,13 +1,8 @@
 ﻿using LiveSplit.Model.Input;
-using LiveSplit.Model.RunFactories;
 using LiveSplit.Options;
 using LiveSplit.UI;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Forms = System.Windows.Forms;
 
 namespace LiveSplit.Model

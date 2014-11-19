@@ -2,14 +2,10 @@
 using LiveSplit.Options;
 using LiveSplit.UI.Components;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace LiveSplit.UI.LayoutFactories
