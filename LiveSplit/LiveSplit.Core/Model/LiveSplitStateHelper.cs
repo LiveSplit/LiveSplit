@@ -70,7 +70,7 @@ namespace LiveSplit.Model
             var useBestSegment = state.LayoutSettings.ShowBestSegments;
             if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
             {
-                TimeSpan? curSeg = GetPreviousSegment(state,state.CurrentSplitIndex, true, true, comparison, method);
+                TimeSpan? curSeg = state.CurrentTime[method] - (state.CurrentSplitIndex > 0 ? state.Run[state.CurrentSplitIndex - 1].SplitTime[method] : TimeSpan.Zero);
                 var bestSegmentDifference = (-state.Run[state.CurrentSplitIndex].Comparisons[comparison][method]
                     + ((state.CurrentSplitIndex - 1 >= 0) ? state.Run[state.CurrentSplitIndex - 1].Comparisons[comparison][method] : TimeSpan.Zero))
                     + state.Run[state.CurrentSplitIndex].BestSegmentTime[method];
