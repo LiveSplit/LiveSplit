@@ -8,7 +8,8 @@ namespace LiveSplit.Model.Comparisons
     public class MedianSegmentsComparisonGenerator : IComparisonGenerator
     {
         public IRun Run { get; set; }
-        public const String ComparisonName = "Average Segments";
+        public const String ComparisonName = "Median Segments"; //you win glacials
+        public const String ShortComparisonName = "Median";
         public String Name { get { return ComparisonName; } }
 
         public MedianSegmentsComparisonGenerator(IRun run)

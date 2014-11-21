@@ -6,15 +6,15 @@ namespace LiveSplit.Model.Comparisons
     {
         static StandardComparisonGeneratorsFactory()
         {
-            CompositeComparisons.AddShortComparisonName(BestSegmentsComparisonGenerator.ComparisonName, "Best");
+            CompositeComparisons.AddShortComparisonName(BestSegmentsComparisonGenerator.ComparisonName, BestSegmentsComparisonGenerator.ShortComparisonName);
             CompositeComparisons.AddShortComparisonName(Run.PersonalBestComparisonName, "PB");
-            CompositeComparisons.AddShortComparisonName(MedianSegmentsComparisonGenerator.ComparisonName, "Average");
+            CompositeComparisons.AddShortComparisonName(AverageSegmentsComparisonGenerator.ComparisonName, AverageSegmentsComparisonGenerator.ShortComparisonName);
         }
         public IEnumerable<IComparisonGenerator> Create(IRun run)
         {
             yield return new BestSegmentsComparisonGenerator(run);
             yield return new BestSplitTimesComparisonGenerator(run);
-            yield return new MedianSegmentsComparisonGenerator(run);
+            yield return new AverageSegmentsComparisonGenerator(run);
             yield return new NoneComparisonGenerator(run);
         }
     }
