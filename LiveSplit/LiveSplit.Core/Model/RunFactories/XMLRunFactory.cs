@@ -18,7 +18,7 @@ namespace LiveSplit.Model.RunFactories
             FilePath = filePath;
         }
 
-        private Image GetImageFromElement(XmlElement element)
+        private static Image GetImageFromElement(XmlElement element)
         {
             if (!element.IsEmpty)
             {
