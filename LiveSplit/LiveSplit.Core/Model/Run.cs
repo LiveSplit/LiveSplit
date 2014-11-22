@@ -299,9 +299,9 @@ namespace LiveSplit.Model
             var prevTimeGameTime = TimeSpan.Zero;
             var index = GetMinSegmentHistoryIndex();
             var nullValue = false;
-            for (var x = 0; x < InternalList.Count; x++)
+
+            foreach (var segment in InternalList)
             {
-                var segment = InternalList[x];
                 var newTime = new Time();
                 if (segment.PersonalBestSplitTime[TimingMethod.RealTime] == null || segment.PersonalBestSplitTime[TimingMethod.GameTime] == null || nullValue)
                 {
@@ -310,10 +310,12 @@ namespace LiveSplit.Model
                     segment.SegmentHistory.Add(new IndexedTime(newTime, index));
                     nullValue = false;
                 }
+
                 if (segment.PersonalBestSplitTime[TimingMethod.RealTime] != null)
                     prevTimeRTA = segment.PersonalBestSplitTime[TimingMethod.RealTime].Value;
                 else
                     nullValue = true;
+
                 if (segment.PersonalBestSplitTime[TimingMethod.GameTime] != null)
                     prevTimeGameTime = segment.PersonalBestSplitTime[TimingMethod.GameTime].Value;
                 else

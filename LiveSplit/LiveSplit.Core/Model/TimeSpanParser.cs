@@ -21,19 +21,18 @@ namespace LiveSplit.Model
                 timeString = timeString.Substring(1);
             }
 
-            string[] array = timeString.Split(new char[]
-	                                    {
-		                                    ':'
-	                                    });
-            for (int i = 0; i < array.Length; i++)
+            string[] array = timeString.Split(':');
+            foreach (string s in array)
             {
-                string s = array[i];
                 double num2;
                 if (double.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out num2))
                 {
                     num = num * 60.0 + num2;
                 }
-                else throw new Exception();
+                else
+                {
+                    throw new Exception();
+                }
             }
 
             if (factor * num > 864000)
