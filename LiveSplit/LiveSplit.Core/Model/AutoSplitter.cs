@@ -56,30 +56,27 @@ namespace LiveSplit.Model
 
         private void DownloadFiles()
         {
-            foreach (var file in URLs)
+            var client = new WebClient();
+
+            foreach (var url in URLs)
             {
-                DownloadFile(file);
+                var fileName = url.Substring(url.LastIndexOf('/') + 1);
+                var localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
+
+                try
+                {
+                    client.DownloadFile(new Uri(url), localPath);
+                }
+                catch (WebException)
+                {
+                    Log.Error("Error downloading file from " + url);
+                }
             }
 
             if (Type == AutoSplitterType.Component)
             {
                 var factory = ComponentManager.LoadFactory(LocalPath);
                 ComponentManager.ComponentFactories.Add(Path.GetFileName(LocalPath), factory);
-            }
-        }
-
-        private void DownloadFile(String file)
-        {
-            var fileName = file.Substring(file.LastIndexOf('/') + 1);
-            var localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
-
-            WebRequest request = HttpWebRequest.Create(file);
-            using (Stream webStream = request.GetResponse().GetResponseStream())
-            {
-                using (Stream fileStream = File.Open(localPath, FileMode.Create, FileAccess.Write))
-                {
-                    webStream.CopyTo(fileStream);
-                }
             }
         }
 
