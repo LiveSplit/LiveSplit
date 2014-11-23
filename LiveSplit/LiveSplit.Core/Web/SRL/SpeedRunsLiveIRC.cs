@@ -581,6 +581,8 @@ namespace LiveSplit.Web.SRL
         public void Dispose()
         {
             Client.Dispose();
+
+            GC.SuppressFinalize(this);
         }
     }
 }

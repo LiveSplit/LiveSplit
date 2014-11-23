@@ -121,6 +121,8 @@ namespace LiveSplit.UI.Components
         {
             Form.Controls.Remove(Control);
             Control.Dispose();
+
+            GC.SuppressFinalize(this);
         }
     }
 }
