@@ -14,47 +14,31 @@ namespace LiveSplit.Options
             }
             catch { }
 
-            try
-            {
-                Trace.Listeners.Add(new EventLogTraceListener("LiveSplit"));
-            }
-            catch { }
+
+            Trace.Listeners.Add(new EventLogTraceListener("LiveSplit"));
         }
 
         public static void Error(Exception ex)
         {
-            try
-            {
-                Trace.TraceError("{0}\n\n{1}", ex.Message, ex.StackTrace);
-            }
-            catch { }
+            if (ex == null)
+                return;
+
+            Trace.TraceError("{0}\n\n{1}", ex.Message, ex.StackTrace);
         }
 
         public static void Error(String message)
         {
-            try
-            {
-                Trace.TraceError(message);
-            }
-            catch { }
+            Trace.TraceError(message);
         }
 
         public static void Info(String message)
         {
-            try
-            {
-                Trace.TraceInformation(message);
-            }
-            catch { }
+            Trace.TraceInformation(message);
         }
 
         public static void Warning(String message)
         {
-            try
-            {
-                Trace.TraceWarning(message);
-            }
-            catch { }
+            Trace.TraceWarning(message);
         }
     }
 }
