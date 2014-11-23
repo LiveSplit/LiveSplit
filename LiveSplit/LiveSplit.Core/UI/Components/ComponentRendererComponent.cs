@@ -57,6 +57,8 @@ namespace LiveSplit.UI.Components
         {
             foreach (var component in VisibleComponents)
                 component.Dispose();
+
+            GC.SuppressFinalize(this);
         }
     }
 }

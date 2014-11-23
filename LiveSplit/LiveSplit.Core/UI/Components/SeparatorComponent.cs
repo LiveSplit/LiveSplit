@@ -163,6 +163,7 @@ namespace LiveSplit.UI.Components
 
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
         }
     }
 }
