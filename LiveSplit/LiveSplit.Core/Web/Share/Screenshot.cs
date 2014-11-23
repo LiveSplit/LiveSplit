@@ -63,13 +63,16 @@ namespace LiveSplit.Web.Share
             try
             {
                 var image = screenShotFunction();
-                var dialog = new SaveFileDialog();
-                dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpeg)|*.jpeg|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|TIFF (*.tiff)|*.tiff|WMF (*.wmf)|*.wmf";
-                var result = dialog.ShowDialog();
-                if (result == DialogResult.OK)
+
+                using (var dialog = new SaveFileDialog())
                 {
-                    image.Save(dialog.FileName);
-                    return true;
+                    dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpeg)|*.jpeg|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|TIFF (*.tiff)|*.tiff|WMF (*.wmf)|*.wmf";
+                    var result = dialog.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        image.Save(dialog.FileName);
+                        return true;
+                    }
                 }
             }
             catch (Exception ex)

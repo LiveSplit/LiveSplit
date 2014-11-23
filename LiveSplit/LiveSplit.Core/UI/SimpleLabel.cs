@@ -108,9 +108,11 @@ namespace LiveSplit.UI
 
                 if (HasShadow)
                 {
-                    var shadowBrush = new SolidBrush(ShadowColor);
-                    g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 1, Y + 1, Width, Height), format);
-                    g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 2, Y + 2, Width, Height), format);
+                    using (var shadowBrush = new SolidBrush(ShadowColor))
+                    {
+                        g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 1, Y + 1, Width, Height), format);
+                        g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 2, Y + 2, Width, Height), format);
+                    }
                 }
                 g.DrawString(actualText, Font, Brush, new RectangleF(X, Y, Width, Height), format);
             }
@@ -144,9 +146,11 @@ namespace LiveSplit.UI
 
                     if (HasShadow)
                     {
-                        var shadowBrush = new SolidBrush(ShadowColor);
-                        g.DrawString(curChar.ToString(), Font, shadowBrush, new RectangleF(X + 1 + offset - curOffset * 2f, Y + 1, curOffset * 5f, Height), monoFormat);
-                        g.DrawString(curChar.ToString(), Font, shadowBrush, new RectangleF(X + 2 + offset - curOffset * 2f, Y + 2, curOffset * 5f, Height), monoFormat);
+                        using (var shadowBrush = new SolidBrush(ShadowColor))
+                        {
+                            g.DrawString(curChar.ToString(), Font, shadowBrush, new RectangleF(X + 1 + offset - curOffset * 2f, Y + 1, curOffset * 5f, Height), monoFormat);
+                            g.DrawString(curChar.ToString(), Font, shadowBrush, new RectangleF(X + 2 + offset - curOffset * 2f, Y + 2, curOffset * 5f, Height), monoFormat);
+                        }
                     }
 
                     g.DrawString(cutOffText[charIndex].ToString(), Font, Brush, new RectangleF(X + offset - curOffset / 2f, Y, curOffset * 2f, Height), monoFormat);

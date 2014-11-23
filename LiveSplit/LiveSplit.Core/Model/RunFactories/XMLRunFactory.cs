@@ -26,8 +26,11 @@ namespace LiveSplit.Model.RunFactories
 
                 var base64String = element.InnerText;
                 var data = Convert.FromBase64String(base64String);
-                var ms = new MemoryStream(data);
-                return (Image)bf.Deserialize(ms);
+
+                using (var ms = new MemoryStream(data))
+                {
+                    return (Image)bf.Deserialize(ms);
+                }
             }
             return null;
         }
