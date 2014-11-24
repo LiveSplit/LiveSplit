@@ -2546,7 +2546,7 @@ namespace LiveSplit.View
 
         private void SwitchComparison(String name)
         {
-            var generator = CurrentState.Run.ComparisonGenerators.Where(x => x.Name == name).FirstOrDefault();
+            var generator = CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == name);
             if (generator == null && (String.IsNullOrEmpty(name) || !CurrentState.Run.CustomComparisons.Contains(name)))
                 name = Run.PersonalBestComparisonName;
             CurrentState.CurrentComparison = name;
