@@ -44,11 +44,6 @@ namespace XSplit.Wpf
         /// </summary>
         private TaskScheduler taskScheduler;
 
-        /// <summary>
-        ///   Attached object to be rendered.
-        /// </summary>
-        private Bitmap image;
-
         #endregion
 
         #region Constructors and Destructors
@@ -113,10 +108,7 @@ namespace XSplit.Wpf
         /// </summary>
         public Bitmap Image
         {
-            get
-            {
-                return this.image;
-            }
+            get; private set;
         }
 
         #endregion
@@ -129,14 +121,8 @@ namespace XSplit.Wpf
         /// <param name="connectionUID">
         /// A unique ID for this application, to be matched in the accompanying .xbs file. 
         /// </param>
-        /// <param name="visual">
+        /// <param name="image">
         /// The visual to be rendered. 
-        /// </param>
-        /// <param name="width">
-        /// Desired output render width, in pixels. 
-        /// </param>
-        /// <param name="height">
-        /// Desired output render height, in pixels. 
         /// </param>
         /// <param name="timeInterval">
         /// The time interval between updates, in milliseconds. 
@@ -154,7 +140,7 @@ namespace XSplit.Wpf
                 var extsrc = new VHCOMRenderEngineExtSrc2 { ConnectionUID = connectionUID };
                 plugin = new TimedBroadcasterPlugin(extsrc, timeInterval)
                     {
-                        image = image, 
+                        Image = image, 
                         taskScheduler = TaskScheduler.FromCurrentSynchronizationContext()
                     };
             }
@@ -228,7 +214,7 @@ namespace XSplit.Wpf
         private void RenderTimerElapsed(object sender, ElapsedEventArgs e)
         {
             Task.Factory.StartNew(
-                () => this.RenderVisual(this.image), 
+                () => this.RenderVisual(this.Image), 
                 CancellationToken.None, 
                 TaskCreationOptions.None, 
                 this.taskScheduler);
