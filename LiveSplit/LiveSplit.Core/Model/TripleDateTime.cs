@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Net.Sockets;
 
 namespace LiveSplit.Model
 {
@@ -100,9 +101,11 @@ namespace LiveSplit.Model
                 try
                 {
                     // Open a StreamReader to a random time server
-                    StreamReader reader = new StreamReader(new System.Net.Sockets.TcpClient(servers[ran.Next(0, servers.Length)], 13).GetStream());
-                    serverResponse = reader.ReadToEnd();
-                    reader.Close();
+                    using (var tcpClient = new TcpClient(servers[ran.Next(0, servers.Length)], 13))
+                    using (var reader = new StreamReader(tcpClient.GetStream()))
+                    {
+                        serverResponse = reader.ReadToEnd();
+                    }
 
                     // Check to see that the signature is there
                     if (serverResponse.Length > 47 && serverResponse.Substring(38, 9).Equals("UTC(NIST)"))

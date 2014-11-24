@@ -27,7 +27,10 @@ namespace LiveSplit.UI.Components
 
         public void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
         {
-            g.FillRectangle(new SolidBrush(LineColor), 0.0f, 0.0f, width, VerticalHeight);
+            using (var solidBrush = new SolidBrush(LineColor))
+            {
+                g.FillRectangle(solidBrush, 0.0f, 0.0f, width, VerticalHeight);
+            }
         }
 
         public string ComponentName
@@ -87,7 +90,10 @@ namespace LiveSplit.UI.Components
 
         public void DrawHorizontal(Graphics g, LiveSplitState state, float height, Region clipRegion)
         {
-            g.FillRectangle(new SolidBrush(LineColor), 0.0f, 0.0f, HorizontalWidth, height);
+            using (var solidBrush = new SolidBrush(LineColor))
+            {
+                g.FillRectangle(solidBrush, 0.0f, 0.0f, HorizontalWidth, height);
+            }
         }
 
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)

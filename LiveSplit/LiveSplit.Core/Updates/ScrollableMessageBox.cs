@@ -92,9 +92,11 @@ namespace LiveSplit.Updates
         public DialogResult ShowFromFile(string filename, string caption, MessageBoxButtons buttonType)
         {
             // read the file into the message box
-            StreamReader sr = new StreamReader(filename);
-            txtMessage.Text = sr.ReadToEnd();
-            sr.Close();
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                txtMessage.Text = sr.ReadToEnd();
+            }
+
             this.Text = caption;
             ChooseButtons(buttonType);
             this.ActiveControl = this.Controls[this.Controls.Count - 1];

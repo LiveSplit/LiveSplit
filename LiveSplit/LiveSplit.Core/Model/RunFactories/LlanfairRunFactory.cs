@@ -39,14 +39,19 @@ namespace LiveSplit.Model.RunFactories
             }
             try
             {
-                var baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64);
-                return FindJavaInRegistry(baseKey);
+                using (var baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64))
+                {
+                    return FindJavaInRegistry(baseKey);
+                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                var baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32);
-                return FindJavaInRegistry(baseKey);
+
+                using (var baseKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32))
+                {
+                    return FindJavaInRegistry(baseKey);
+                }
             }
         }
 

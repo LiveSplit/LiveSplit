@@ -27,8 +27,11 @@ namespace LiveSplit.UI.LayoutFactories
 
                 var base64String = element.InnerText;
                 var data = Convert.FromBase64String(base64String);
-                var ms = new MemoryStream(data);
-                return (Image)bf.Deserialize(ms);
+
+                using (var ms = new MemoryStream(data))
+                {
+                    return (Image)bf.Deserialize(ms);
+                }
             }
             return null;
         }
@@ -41,8 +44,11 @@ namespace LiveSplit.UI.LayoutFactories
 
                 var base64String = element.InnerText;
                 var data = Convert.FromBase64String(base64String);
-                var ms = new MemoryStream(data);
-                return (Font)bf.Deserialize(ms);
+
+                using (var ms = new MemoryStream(data))
+                {
+                    return (Font)bf.Deserialize(ms);
+                }
             }
             return null;
         }
@@ -100,10 +106,13 @@ namespace LiveSplit.UI.LayoutFactories
                 settings.TimesFont = GetFontFromElement(element["MainFont"]);
                 settings.TextFont = GetFontFromElement(element["SplitNamesFont"]);
             }
+
             settings.TimerFont = GetFontFromElement(element["TimerFont"]);
-            var timerFont = new Font(settings.TimerFont.FontFamily.Name, (settings.TimerFont.Size / 50f) * 18f, settings.TimerFont.Style, GraphicsUnit.Point);
-            settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
-            
+            using (var timerFont = new Font(settings.TimerFont.FontFamily.Name, (settings.TimerFont.Size / 50f) * 18f, settings.TimerFont.Style, GraphicsUnit.Point))
+            {
+                settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
+            }
+
             settings.ShowBestSegments = Boolean.Parse(element["ShowBestSegments"].InnerText);
             settings.AlwaysOnTop = Boolean.Parse(element["AlwaysOnTop"].InnerText);
             return settings;
