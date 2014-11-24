@@ -802,8 +802,8 @@ namespace LiveSplit.View
 
             for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= Run.RunHistory.Count; runIndex++)
             {
-                var firstHistory = firstSegment.SegmentHistory.Where(x => x.Index == runIndex).FirstOrDefault();
-                var secondHistory = secondSegment.SegmentHistory.Where(x => x.Index == runIndex).FirstOrDefault();
+                var firstHistory = firstSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
+                var secondHistory = secondSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                 if ((firstHistory != null && firstHistory.Time.RealTime == null) || (secondHistory != null && secondHistory.Time.RealTime == null))
                 {
                     firstSegment.SegmentHistory.Remove(firstHistory);
@@ -842,10 +842,10 @@ namespace LiveSplit.View
                 for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= Run.RunHistory.Count; runIndex++)
                 {
                     curIndex = index + 1;
-                    var segmentHistoryElement = Run[index].SegmentHistory.Where(x => x.Index == runIndex).FirstOrDefault();
+                    var segmentHistoryElement = Run[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                     if (segmentHistoryElement == null)
                     {
-                        var nextSegment = Run[curIndex].SegmentHistory.Where(x => x.Index == runIndex).FirstOrDefault();
+                        var nextSegment = Run[curIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                         if (nextSegment != null)
                             Run[curIndex].SegmentHistory.Remove(nextSegment);
                         continue;
@@ -854,7 +854,7 @@ namespace LiveSplit.View
                     var curSegment = segmentHistoryElement.Time[method];
                     while (curSegment != null && curIndex < Run.Count)
                     {
-                        var segment = Run[curIndex].SegmentHistory.Where(x => x.Index == runIndex).FirstOrDefault();
+                        var segment = Run[curIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                         if (segment != null && segment.Time[method] != null)
                         {
                             var time = segment.Time;
