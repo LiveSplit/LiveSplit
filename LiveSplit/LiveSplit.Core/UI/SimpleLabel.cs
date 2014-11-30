@@ -120,7 +120,7 @@ namespace LiveSplit.UI
             {
                 var monoFormat = new StringFormat
                 {
-                    Alignment     = StringAlignment.Center,
+                    Alignment = StringAlignment.Center,
                     LineAlignment = VerticalAlignment
                 };
 
@@ -128,11 +128,12 @@ namespace LiveSplit.UI
                 var offset = Width;
                 var charIndex = 0;
                 SetActualWidth(g);
-                offset = Width - ActualWidth;
+                var cutOffText = CutOff(g);
+
+                offset = Width - MeasureActualWidth(cutOffText, g);
                 if (HorizontalAlignment != StringAlignment.Far)
                     offset = 0f;
 
-                var cutOffText = CutOff(g);
 
                 while (charIndex < cutOffText.Length)
                 {
