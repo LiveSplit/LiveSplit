@@ -3,6 +3,19 @@ LiveSplit
 
 A sleek, highly-customizable timer for speedrunners.
 
+### Contributing
+
+We need your help! 
+
+You can browse the [Issues](https://github.com/LiveSplit/LiveSplit/issues) to find good issues to get started with.
+
+ 1. [Fork](https://github.com/LiveSplit/LiveSplit/fork) the project
+ 2. Clone your forked repo: `git clone https://github.com/YourUsername/LiveSplit.git`
+ 3. Create your feature/bugfix branch: `git checkout -b new-feature`
+ 4. Commit your changes to your new branch: `git commit -am 'Add a new feature'`
+ 5. Push to the branch: `git push origin new-feature`
+ 6. Create a new Pull Request!
+ 
 ## License
 
 The MIT License (MIT)
