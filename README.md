@@ -26,7 +26,7 @@ LiveSplit is written in C# 5 with Visual Studio and uses .NET Framework 4.0. To 
  - Visual Studio 2013
  - Visual Studio 2015 Preview
 
-Preferrably you should either get a full version of Visual Studio 2013 or the Community Edition if you don't want to pay for Visual Studio.
+Preferably you should either get a full version of Visual Studio 2013 or the Community Edition if you don't want to pay for Visual Studio.
 
 Simply open the project with Visual Studio and it should be able to compile and run it without any further configuration.
 
