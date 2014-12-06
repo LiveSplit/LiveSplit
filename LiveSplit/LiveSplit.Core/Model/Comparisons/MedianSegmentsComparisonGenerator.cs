@@ -10,6 +10,8 @@ namespace LiveSplit.Model.Comparisons
         public IRun Run { get; set; }
         public const String ComparisonName = "Median Segments"; //you win glacials
         public const String ShortComparisonName = "Median";
+        public const double Weight = 0.75;
+
         public String Name { get { return ComparisonName; } }
 
         public MedianSegmentsComparisonGenerator(IRun run)
@@ -36,7 +38,7 @@ namespace LiveSplit.Model.Comparisons
 
         protected double GetWeight(int index, int count)
         {
-            return Math.Pow(0.9, count - index - 1);
+            return Math.Pow(Weight, count - index - 1);
         }
 
         public void Generate(TimingMethod method)

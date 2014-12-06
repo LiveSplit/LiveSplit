@@ -11,6 +11,7 @@ namespace LiveSplit.Model.Comparisons
         public const String ComparisonName = "Average Segments";
         public const String ShortComparisonName = "Average";
         public String Name { get { return ComparisonName; } }
+        public const double Weight = 0.75;
 
         public AverageSegmentsComparisonGenerator(IRun run)
         {
@@ -29,7 +30,7 @@ namespace LiveSplit.Model.Comparisons
 
         protected double GetWeight(int index, int count)
         {
-            return Math.Pow(0.9, count - index - 1);
+            return Math.Pow(Weight, count - index - 1);
         }
 
         public void Generate(TimingMethod method)
