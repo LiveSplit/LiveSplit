@@ -3,7 +3,7 @@ LiveSplit
 
 A sleek, highly-customizable timer for speedrunners.
 
-### Contributing
+## Contributing
 
 We need your help! 
 
@@ -15,7 +15,21 @@ You can browse the [Issues](https://github.com/LiveSplit/LiveSplit/issues) to fi
  4. Commit your changes to your new branch: `git commit -am 'Add a new feature'`
  5. Push to the branch: `git push origin new-feature`
  6. Create a new Pull Request!
- 
+
+## Compiling
+
+LiveSplit is written in C# 5 with Visual Studio and uses .NET Framework 4.0. To compile LiveSplit you can get any version of Visual Studio that supports .NET Framework 4.0, these include:
+ - Visual C# 2010 Express
+ - Visual Studio 2010
+ - Visual Studio 2013 for Windows Desktop
+ - Visual Studio 2013 Community Edition
+ - Visual Studio 2013
+ - Visual Studio 2015 Preview
+
+Preferrably you should either get a full version of Visual Studio 2013 or the Community Edition if you don't want to pay for Visual Studio.
+
+Simply open the project with Visual Studio and it should be able to compile and run it without any further configuration.
+
 ## License
 
 The MIT License (MIT)
