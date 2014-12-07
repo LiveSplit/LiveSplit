@@ -88,20 +88,6 @@ namespace LiveSplit.Web.Share
                 image_url = (String)result.data.link;
             }
 
-            var firstRequest = (HttpWebRequest)HttpWebRequest.Create("http://splits.io/upload");
-            String token;
-            String cookie;
-            var firstResponse = firstRequest.GetResponse();
-            using (var stream = firstResponse.GetResponseStream())
-            {
-                var reader = new StreamReader(stream);
-                var html = reader.ReadToEnd();
-                var remaining = html.Substring(0, html.IndexOf(" name=\"csrf-token\" />") - 1);
-                token = remaining.Substring(remaining.LastIndexOf("<meta content=\"") + "<meta content=\"".Length);
-                var setcookie = firstResponse.Headers.Get("Set-Cookie");
-                cookie = setcookie.Substring(0, setcookie.IndexOf(';') + 1);
-            }
-
             var request = (HttpWebRequest)HttpWebRequest.Create("http://splits.io/upload.json");
             request.Method = "POST";
             request.Host = "splits.io";
@@ -109,15 +95,10 @@ namespace LiveSplit.Web.Share
             using (var stream = request.GetRequestStream())
             {
                 request.ContentType = "multipart/form-data; boundary=AaB03x";
-                request.Headers.Add("Cookie", cookie);
                 request.Referer = "http://splits.io/upload/fallback";
                 request.Headers.Add("Origin", "http://splits.io");
 
                 var writer = new StreamWriter(stream);
-                writer.WriteLine("--AaB03x");
-                writer.WriteLine("Content-Disposition: form-data; name=\"authenticity_token\"");
-                writer.WriteLine();
-                writer.WriteLine(token);
 
                 if (image_url != null)
                 {
