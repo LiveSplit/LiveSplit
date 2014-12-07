@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=ready&title=Ready)](https://waffle.io/LiveSplit/LiveSplit)
 LiveSplit
 =========
 
