@@ -239,3 +239,4 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *.dropbox
+.dropbox.attr
