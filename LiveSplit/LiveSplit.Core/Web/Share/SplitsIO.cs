@@ -22,7 +22,8 @@ namespace LiveSplit.Web.Share
 
         public static SplitsIO Instance { get { return _Instance; } }
 
-        public static readonly Uri BaseUri = new Uri("https://splits.io/api/v2/");
+        public static readonly Uri BaseUri = new Uri("http://splits.io/");
+        public static readonly Uri APIUri = new Uri(BaseUri, "api/v2/");
 
         protected SplitsIO() { }
 
@@ -46,9 +47,14 @@ namespace LiveSplit.Web.Share
 
         public ISettings Settings { get; set; }
 
-        protected Uri GetUri(String subUri)
+        public Uri GetSiteUri(String subUri)
         {
             return new Uri(BaseUri, subUri);
+        }
+
+        public Uri GetAPIUri(String subUri)
+        {
+            return new Uri(APIUri, subUri);
         }
 
         #region Not supported
@@ -88,30 +94,43 @@ namespace LiveSplit.Web.Share
         public IEnumerable<dynamic> SearchGame(String name)
         {
             var escapedName = HttpUtility.UrlPathEncode(name);
-            var uri = GetUri(String.Format("games?fuzzyname={0}", escapedName));
+            var uri = GetAPIUri(String.Format("games?fuzzyname={0}", escapedName));
             var response = JSON.FromUri(uri);
             return (IEnumerable<dynamic>)(response.games);
         }
 
         public dynamic GetGameById(int gameId)
         {
-            var uri = GetUri(String.Format("games/{0}", gameId));
+            var uri = GetAPIUri(String.Format("games/{0}", gameId));
             var response = JSON.FromUri(uri);
             return response.game;
         }
 
+        public IEnumerable<dynamic> GetRunsForCategory(int categoryId)
+        {
+            var uri = GetAPIUri(String.Format("runs?category_id={0}", categoryId));
+            var response = JSON.FromUri(uri);
+            return (IEnumerable<dynamic>)response.runs;
+        }
+
         public dynamic GetRunById(int runId)
         {
-            var uri = GetUri(String.Format("runs/{0}", runId));
+            var uri = GetAPIUri(String.Format("runs/{0}", runId));
             var response = JSON.FromUri(uri);
             return response.run;
         }
 
+        public IRun DownloadRunByPath(String path)
+        {
+            var uri = GetSiteUri(path);
+            return DownloadRunByUri(uri);
+        }
+
         public IRun DownloadRunByUri(Uri uri)
         {
-            uri = new Uri(uri, "/download/livesplit");
+            var downloadUri = GetSiteUri(String.Format("{0}/download/livesplit", uri.LocalPath));
 
-            var request = HttpWebRequest.Create(uri);
+            var request = HttpWebRequest.Create(downloadUri);
             using (var stream = request.GetResponse().GetResponseStream())
             {
                 using (var memoryStream = new MemoryStream())
@@ -132,13 +151,12 @@ namespace LiveSplit.Web.Share
         public IRun DownloadRunById(int runId)
         {
             var run = GetRunById(runId);
-            var uri = new Uri(String.Format("https://splits.io{0}", run.path));
+            var uri = GetSiteUri(run.path);
             return DownloadRunByUri(uri);
         }
 
         public String Share(IRun run, Func<Image> screenShotFunction = null)
         {
-
             String image_url = null;
 
             if (screenShotFunction != null)
