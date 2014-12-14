@@ -53,42 +53,42 @@ namespace LiveSplit.Web.Share
 
         #region Not supported
 
-        public IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameList()
+        IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameList()
         {
             yield break;
         }
 
-        public IEnumerable<string> IRunUploadPlatform.GetGameNames()
+        IEnumerable<string> IRunUploadPlatform.GetGameNames()
         {
             yield break;
         }
 
-        public string IRunUploadPlatform.GetGameIdByName(string gameName)
+        string IRunUploadPlatform.GetGameIdByName(string gameName)
         {
             return String.Empty;
         }
 
-        public IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameCategories(string gameId)
+        IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameCategories(string gameId)
         {
             yield break;
         }
 
-        public string IRunUploadPlatform.GetCategoryIdByName(string gameId, string categoryName)
+        string IRunUploadPlatform.GetCategoryIdByName(string gameId, string categoryName)
         {
             return String.Empty;
         }
 
-        public bool IRunUploadPlatform.VerifyLogin(string username, string password)
+        bool IRunUploadPlatform.VerifyLogin(string username, string password)
         {
             return true;
         }
 
         #endregion
 
-        public IEnumerable<dynamic> FindGame(String name)
+        public IEnumerable<dynamic> SearchGame(String name)
         {
             var escapedName = HttpUtility.UrlPathEncode(name);
-            var uri = GetUri(String.Format("games?name={0}", escapedName));
+            var uri = GetUri(String.Format("games?fuzzyname={0}", escapedName));
             var response = JSON.FromUri(uri);
             return (IEnumerable<dynamic>)(response.games);
         }
@@ -138,6 +138,7 @@ namespace LiveSplit.Web.Share
 
         public String Share(IRun run, Func<Image> screenShotFunction = null)
         {
+
             String image_url = null;
 
             if (screenShotFunction != null)
