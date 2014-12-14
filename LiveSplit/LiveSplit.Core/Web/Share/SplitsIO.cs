@@ -6,9 +6,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.IO;
 using System.Net;
+using System.Web;
 using System.Windows.Forms;
+using LiveSplit.Model.RunFactories;
+using LiveSplit.Model.Comparisons;
 
 namespace LiveSplit.Web.Share
 {
@@ -17,6 +21,8 @@ namespace LiveSplit.Web.Share
         protected static SplitsIO _Instance = new SplitsIO();
 
         public static SplitsIO Instance { get { return _Instance; } }
+
+        public static readonly Uri BaseUri = new Uri("https://splits.io/api/v2/");
 
         protected SplitsIO() { }
 
@@ -40,34 +46,94 @@ namespace LiveSplit.Web.Share
 
         public ISettings Settings { get; set; }
 
-        public IEnumerable<ASUP.IdPair> GetGameList()
+        protected Uri GetUri(String subUri)
+        {
+            return new Uri(BaseUri, subUri);
+        }
+
+        #region Not supported
+
+        public IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameList()
         {
             yield break;
         }
 
-        public IEnumerable<string> GetGameNames()
+        public IEnumerable<string> IRunUploadPlatform.GetGameNames()
         {
             yield break;
         }
 
-        public string GetGameIdByName(string gameName)
+        public string IRunUploadPlatform.GetGameIdByName(string gameName)
         {
             return String.Empty;
         }
 
-        public IEnumerable<ASUP.IdPair> GetGameCategories(string gameId)
+        public IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameCategories(string gameId)
         {
             yield break;
         }
 
-        public string GetCategoryIdByName(string gameId, string categoryName)
+        public string IRunUploadPlatform.GetCategoryIdByName(string gameId, string categoryName)
         {
             return String.Empty;
         }
 
-        public bool VerifyLogin(string username, string password)
+        public bool IRunUploadPlatform.VerifyLogin(string username, string password)
         {
             return true;
+        }
+
+        #endregion
+
+        public IEnumerable<dynamic> FindGame(String name)
+        {
+            var escapedName = HttpUtility.UrlPathEncode(name);
+            var uri = GetUri(String.Format("games?name={0}", escapedName));
+            var response = JSON.FromUri(uri);
+            return (IEnumerable<dynamic>)(response.games);
+        }
+
+        public dynamic GetGameById(int gameId)
+        {
+            var uri = GetUri(String.Format("games/{0}", gameId));
+            var response = JSON.FromUri(uri);
+            return response.game;
+        }
+
+        public dynamic GetRunById(int runId)
+        {
+            var uri = GetUri(String.Format("runs/{0}", runId));
+            var response = JSON.FromUri(uri);
+            return response.run;
+        }
+
+        public IRun DownloadRunByUri(Uri uri)
+        {
+            uri = new Uri(uri, "/download/livesplit");
+
+            var request = HttpWebRequest.Create(uri);
+            using (var stream = request.GetResponse().GetResponseStream())
+            {
+                using (var memoryStream = new MemoryStream())
+                {
+                    stream.CopyTo(memoryStream);
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+
+                    var runFactory = new XMLRunFactory();
+
+                    runFactory.Stream = memoryStream;
+                    runFactory.FilePath = null;
+
+                    return runFactory.Create(new StandardComparisonGeneratorsFactory());
+                }
+            }
+        }
+
+        public IRun DownloadRunById(int runId)
+        {
+            var run = GetRunById(runId);
+            var uri = new Uri(String.Format("https://splits.io{0}", run.path));
+            return DownloadRunByUri(uri);
         }
 
         public String Share(IRun run, Func<Image> screenShotFunction = null)
