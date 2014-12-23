@@ -16,7 +16,7 @@ namespace LiveSplit.View
         public AboutBox()
         {
             InitializeComponent();
-            var version = new LiveSplitUpdateable().Version;
+            var updateable = new LiveSplitUpdateable();
             this.labelProductName.Text +=
 #if RELEASE_CANDIDATE
  String.Format(" {0} Beta {1}", version.ToString(2), version.Build + 1);
