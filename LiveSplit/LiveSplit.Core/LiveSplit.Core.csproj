@@ -272,7 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\loader.jar" />
-    <None Include="Updates\GitInfo\hash.txt" />
+    <None Include="Updates\GitInfo\version.txt" />
     <None Include="Updates\GitInfo\branch.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -315,7 +315,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>git describe --abbrev=4 --dirty --always --tags &gt; ..\..\LiveSplit.Core\Updates\GitInfo\hash.txt
+    <PreBuildEvent>git describe --abbrev=4 --dirty --always --tags &gt; ..\..\LiveSplit.Core\Updates\GitInfo\version.txt
 git rev-parse --abbrev-ref HEAD &gt; ..\..\LiveSplit.Core\Updates\GitInfo\branch.txt</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

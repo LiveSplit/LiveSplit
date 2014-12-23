@@ -240,3 +240,5 @@ $RECYCLE.BIN/
 *.msp
 *.dropbox
 .dropbox.attr
+LiveSplit/LiveSplit.Core/Updates/GitInfo/branch.txt
+LiveSplit/LiveSplit.Core/Updates/GitInfo/version.txt

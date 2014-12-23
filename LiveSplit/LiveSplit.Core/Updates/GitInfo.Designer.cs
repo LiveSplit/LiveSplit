@@ -74,9 +74,9 @@ namespace LiveSplit.Updates {
         ///   Sucht eine lokalisierte Zeichenfolge, die f290-dirty
         /// ähnelt.
         /// </summary>
-        public static string hash {
+        public static string version {
             get {
-                return ResourceManager.GetString("hash", resourceCulture);
+                return ResourceManager.GetString("version", resourceCulture);
             }
         }
     }
