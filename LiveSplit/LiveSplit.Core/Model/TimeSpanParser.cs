@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Globalization;
 
 namespace LiveSplit.Model
@@ -13,7 +14,6 @@ namespace LiveSplit.Model
         }
         public static TimeSpan Parse(String timeString)
         {
-            double num = 0.0;
             var factor = 1;
             if (timeString.StartsWith("-"))
             {
@@ -21,24 +21,12 @@ namespace LiveSplit.Model
                 timeString = timeString.Substring(1);
             }
 
-            string[] array = timeString.Split(':');
-            foreach (string s in array)
-            {
-                double num2;
-                if (double.TryParse(s, NumberStyles.Float, CultureInfo.InvariantCulture, out num2))
-                {
-                    num = num * 60.0 + num2;
-                }
-                else
-                {
-                    throw new Exception();
-                }
-            }
+            var seconds = timeString
+                .Split(':')
+                .Select(x => Double.Parse(x, NumberStyles.Float, CultureInfo.InvariantCulture))
+                .Aggregate(0.0, (a, b) => 60 * a + b);
 
-            if (factor * num > 864000)
-                throw new Exception();
-
-            return new TimeSpan((long)(factor * num * 10000000));
+            return TimeSpan.FromSeconds(factor * seconds);
         }
     }
 }
