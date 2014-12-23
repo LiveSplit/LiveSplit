@@ -24,7 +24,7 @@ namespace LiveSplit.Model
             var seconds = timeString
                 .Split(':')
                 .Select(x => Double.Parse(x, NumberStyles.Float, CultureInfo.InvariantCulture))
-                .Aggregate(0.0, (a, b) => 60 * a + b);
+                .Aggregate((a, b) => 60 * a + b);
 
             return TimeSpan.FromSeconds(factor * seconds);
         }
