@@ -1,1 +1,1 @@
-compile-git-info
+no-git
