@@ -315,8 +315,10 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>git describe --abbrev=4 --dirty --always --tags &gt; ..\..\LiveSplit.Core\Updates\GitInfo\version.txt
-git rev-parse --abbrev-ref HEAD &gt; ..\..\LiveSplit.Core\Updates\GitInfo\branch.txt</PreBuildEvent>
+    <PreBuildEvent>if exist git (
+git describe --abbrev=4 --dirty --always --tags &gt; ..\..\LiveSplit.Core\Updates\GitInfo\version.txt
+git rev-parse --abbrev-ref HEAD &gt; ..\..\LiveSplit.Core\Updates\GitInfo\branch.txt
+)</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
