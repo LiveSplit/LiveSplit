@@ -15,7 +15,7 @@ namespace LiveSplit.Updates
         public static readonly Version Version = 
             Version.Parse(
                 GitVersion.Contains('-')
-                ? GitVersion.Substring(0, GitVersion.IndexOf('-'))
+                ? GitVersion.Split('-').Take(2).Aggregate((a,b) => a + "." + b)
                 : GitVersion);
 
         public static List<Type> AlreadyChecked = new List<Type>();
