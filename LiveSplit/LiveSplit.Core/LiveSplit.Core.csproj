@@ -319,6 +319,9 @@
 if %25ERRORLEVEL%25 == 0 (
 git describe --abbrev=4 --dirty --always --tags &gt; ..\..\LiveSplit.Core\Updates\GitInfo\version.txt
 git rev-parse --abbrev-ref HEAD &gt; ..\..\LiveSplit.Core\Updates\GitInfo\branch.txt
+) else (
+echo 13.3.7&gt;  ..\..\LiveSplit.Core\Updates\GitInfo\version.txt
+echo no-git&gt; ..\..\LiveSplit.Core\Updates\GitInfo\branch.txt
 )
 EXIT 0</PreBuildEvent>
   </PropertyGroup>
