@@ -16,13 +16,9 @@ namespace LiveSplit.View
         public AboutBox()
         {
             InitializeComponent();
-            var version = new LiveSplitUpdateable().Version;
-            this.labelProductName.Text +=
-#if RELEASE_CANDIDATE
- String.Format(" {0} Beta {1}", version.ToString(2), version.Build + 1);
-#else
- String.Format(" {0}", version.ToString(2));
-#endif
+            this.lblVersion.Text = UpdateHelper.GitVersion;
+            if (UpdateHelper.GitBranch != "master")
+                this.labelProductName.Text += String.Format(" ({0})", UpdateHelper.GitBranch);
         }
 
         #region Assembly Attribute Accessors

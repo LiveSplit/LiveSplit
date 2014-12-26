@@ -143,6 +143,11 @@
     <Compile Include="UI\InputBox.cs" />
     <Compile Include="UI\Invalidator.cs" />
     <Compile Include="UI\RenameEventArgs.cs" />
+    <Compile Include="Updates\GitInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GitInfo.resx</DependentUpon>
+    </Compile>
     <Compile Include="Updates\ScrollableMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,12 +272,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\loader.jar" />
+    <None Include="Updates\GitInfo\version.txt" />
+    <None Include="Updates\GitInfo\branch.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>LiveSplit</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Updates\GitInfo.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GitInfo.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Updates\ScrollableMessageBox.resx">
       <DependentUpon>ScrollableMessageBox.cs</DependentUpon>
@@ -303,6 +314,17 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>where git
+if %25ERRORLEVEL%25 == 0 (
+git describe --abbrev=4 --dirty --always --tags &gt; ..\..\LiveSplit.Core\Updates\GitInfo\version.txt
+git rev-parse --abbrev-ref HEAD &gt; ..\..\LiveSplit.Core\Updates\GitInfo\branch.txt
+) else (
+echo 13.3.7&gt;  ..\..\LiveSplit.Core\Updates\GitInfo\version.txt
+echo no-git&gt; ..\..\LiveSplit.Core\Updates\GitInfo\branch.txt
+)
+EXIT 0</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

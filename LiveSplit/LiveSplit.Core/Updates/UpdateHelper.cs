@@ -10,7 +10,13 @@ namespace LiveSplit.Updates
 {
     public static class UpdateHelper
     {
-        public static readonly Version Version = Version.Parse("1.4.5");
+        public static readonly String GitVersion = GitInfo.version.Replace("\r", "").Replace("\n", "");
+        public static readonly String GitBranch = GitInfo.branch.Replace("\r", "").Replace("\n", "");
+        public static readonly Version Version = 
+            Version.Parse(
+                GitVersion.Contains('-')
+                ? GitVersion.Split('-').Take(2).Aggregate((a,b) => a + "." + b)
+                : GitVersion);
 
         public static List<Type> AlreadyChecked = new List<Type>();
 
