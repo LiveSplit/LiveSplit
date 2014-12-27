@@ -739,10 +739,21 @@ namespace LiveSplit.View
             var openFromURLMenuItem = new ToolStripMenuItem("From URL...");
             openFromURLMenuItem.Click += openSplitsFromURLMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromURLMenuItem);
+            var openFromSplitsIOMenuItem = new ToolStripMenuItem("From Splits.io...");
+            openFromSplitsIOMenuItem.Click += openFromSplitsIOMenuItem_Click;
+            openSplitsMenuItem.DropDownItems.Add(openFromSplitsIOMenuItem);
             openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
             var clearSplitHistoryMenuItem = new ToolStripMenuItem("Clear History");
             clearSplitHistoryMenuItem.Click += clearSplitHistoryMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(clearSplitHistoryMenuItem);
+        }
+
+        void openFromSplitsIOMenuItem_Click(object sender, EventArgs e)
+        {
+            var name = "";
+            var run = GetRunFromSplitsIO(false, ref name);
+            if (run != null)
+                SetRun(run);
         }
 
         void clearSplitHistoryMenuItem_Click(object sender, EventArgs e)
@@ -895,6 +906,32 @@ namespace LiveSplit.View
                 DontRedraw = false;
             }
             return null;
+        }
+
+        protected IRun GetRunFromSplitsIO(bool import, ref String name)
+        {
+            try
+            {
+                IsInDialogMode = true;
+                this.TopMost = false;
+
+                var dialog = new BrowseSplitsIODialog();
+                var result = dialog.ShowDialog();
+                if (import && result == System.Windows.Forms.DialogResult.OK)
+                {
+                    result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
+                }
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    return dialog.Run;
+
+                return null;
+            }
+            finally
+            {
+                IsInDialogMode = false;
+                this.TopMost = Layout.Settings.AlwaysOnTop;
+            }
         }
 
         protected IRun GetRunFromURL(bool import, ref String name)
@@ -2473,10 +2510,21 @@ namespace LiveSplit.View
             var importFromURLMenuItem = new ToolStripMenuItem("From URL...");
             importFromURLMenuItem.Click += importFromURLMenuItem_Click;
             importMenuItem.DropDownItems.Add(importFromURLMenuItem);
+            var importFromSplitsIOMenuItem = new ToolStripMenuItem("From Splits.io...");
+            importFromSplitsIOMenuItem.Click += importFromSplitsIOMenuItem_Click;
+            importMenuItem.DropDownItems.Add(importFromSplitsIOMenuItem);
 
             comparisonMenuItem.DropDownItems.Add(importMenuItem);
 
             RefreshComparisonItems();
+        }
+
+        void importFromSplitsIOMenuItem_Click(object sender, EventArgs e)
+        {
+            var name = "";
+            var run = GetRunFromSplitsIO(true, ref name);
+            if (run != null)
+                AddComparisonFromRun(name, run);
         }
 
         void gameTimeMenuItem_Click(object sender, EventArgs e)

@@ -96,7 +96,7 @@ namespace LiveSplit.Web.Share
             var escapedName = HttpUtility.UrlPathEncode(name);
             var uri = GetAPIUri(String.Format("games?fuzzyname={0}", escapedName));
             var response = JSON.FromUri(uri);
-            return (IEnumerable<dynamic>)(response.games);
+            return (response.games as IEnumerable<dynamic>) ?? new dynamic[0];
         }
 
         public dynamic GetGameById(int gameId)
@@ -110,7 +110,7 @@ namespace LiveSplit.Web.Share
         {
             var uri = GetAPIUri(String.Format("runs?category_id={0}", categoryId));
             var response = JSON.FromUri(uri);
-            return (IEnumerable<dynamic>)response.runs;
+            return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
         }
 
         public dynamic GetRunById(int runId)

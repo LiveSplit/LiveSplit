@@ -74,6 +74,7 @@
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnDownload
             // 
@@ -84,6 +85,7 @@
             this.btnDownload.TabIndex = 2;
             this.btnDownload.Text = "Download";
             this.btnDownload.UseVisualStyleBackColor = true;
+            this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // splitsTreeView
             // 
@@ -93,16 +95,18 @@
             this.splitsTreeView.Name = "splitsTreeView";
             this.splitsTreeView.Size = new System.Drawing.Size(550, 328);
             this.splitsTreeView.TabIndex = 3;
+            this.splitsTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.splitsTreeView_BeforeExpand);
             // 
             // BrowseSplitsIODialog
             // 
+            this.AcceptButton = this.btnSearch;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(570, 405);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BrowseSplitsIODialog";
-            this.Text = "Browse splits.io";
+            this.Text = "Browse Splits.io";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
