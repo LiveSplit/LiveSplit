@@ -143,6 +143,7 @@
     <Compile Include="UI\InputBox.cs" />
     <Compile Include="UI\Invalidator.cs" />
     <Compile Include="UI\RenameEventArgs.cs" />
+    <Compile Include="Updates\Git.cs" />
     <Compile Include="Updates\GitInfo.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -322,7 +323,7 @@ git describe --dirty --always --long --tags &gt; "$(ProjectDir)Updates\GitInfo\v
 git rev-parse --abbrev-ref HEAD &gt; "$(ProjectDir)Updates\GitInfo\branch.txt"
 git rev-parse HEAD &gt; "$(ProjectDir)Updates\GitInfo\revision.txt"
 ) else (
-echo 13.3.7&gt;  "$(ProjectDir)Updates\GitInfo\version.txt"
+echo 13.3.7-0&gt;  "$(ProjectDir)Updates\GitInfo\version.txt"
 echo no-git&gt; "$(ProjectDir)Updates\GitInfo\branch.txt"
 echo deadbeef&gt; "$(ProjectDir)Updates\GitInfo\revision.txt"
 )

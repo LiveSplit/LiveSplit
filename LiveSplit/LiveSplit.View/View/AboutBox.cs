@@ -1,12 +1,7 @@
 ﻿using LiveSplit.Updates;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.View
@@ -16,12 +11,16 @@ namespace LiveSplit.View
         public AboutBox()
         {
             InitializeComponent();
-            this.lblVersion.Text = UpdateHelper.GitVersion;
-            if (UpdateHelper.GitBranch != "master")
-                this.labelProductName.Text += String.Format(" ({0})", UpdateHelper.GitBranch);
+#if DEBUG
+            lblVersion.Text = Git.Version + "-debug";
+#else
+            lblVersion.Text = Git.Version;
+#endif
+            if (Git.Branch != "master")
+                labelProductName.Text += string.Format(" ({0})", Git.Branch);
         }
 
-        #region Assembly Attribute Accessors
+#region Assembly Attribute Accessors
 
         public string AssemblyTitle
         {
@@ -99,7 +98,7 @@ namespace LiveSplit.View
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }
         }
-        #endregion
+#endregion
 
         private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
