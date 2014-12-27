@@ -25,6 +25,8 @@ namespace LiveSplit.Web.Share
         public static readonly Uri BaseUri = new Uri("http://splits.io/");
         public static readonly Uri APIUri = new Uri(BaseUri, "api/v2/");
 
+        public const String NoTime = "0.0";
+
         protected SplitsIO() { }
 
         public string PlatformName

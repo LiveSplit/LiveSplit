@@ -107,7 +107,8 @@
             // chkDownloadEmpty
             // 
             this.chkDownloadEmpty.AutoSize = true;
-            this.chkDownloadEmpty.Location = new System.Drawing.Point(10, 373);
+            this.chkDownloadEmpty.Location = new System.Drawing.Point(14, 373);
+            this.chkDownloadEmpty.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDownloadEmpty.Name = "chkDownloadEmpty";
             this.chkDownloadEmpty.Size = new System.Drawing.Size(106, 17);
             this.chkDownloadEmpty.TabIndex = 4;
@@ -119,7 +120,8 @@
             // 
             this.chkIncludeTimes.AutoSize = true;
             this.chkIncludeTimes.Enabled = false;
-            this.chkIncludeTimes.Location = new System.Drawing.Point(122, 373);
+            this.chkIncludeTimes.Location = new System.Drawing.Point(130, 373);
+            this.chkIncludeTimes.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkIncludeTimes.Name = "chkIncludeTimes";
             this.chkIncludeTimes.Size = new System.Drawing.Size(164, 17);
             this.chkIncludeTimes.TabIndex = 5;

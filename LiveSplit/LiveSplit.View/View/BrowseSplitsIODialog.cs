@@ -45,10 +45,11 @@ namespace LiveSplit.View
                             categoryNode.Tag = new CategoryNodeAction(() =>
                             {
                                 categoryNode.Nodes.Clear();
-                                var runs = SplitsIO.Instance.GetRunsForCategory(category.id);
+                                IEnumerable<dynamic> runs = SplitsIO.Instance.GetRunsForCategory(category.id);
+                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? Double.Parse(x.time) : Double.MaxValue);
                                 foreach (var run in runs)
                                 {
-                                    var runText = (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(Double.Parse(run.time ?? "0.0")));
+                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(Double.Parse(run.time))) : "No Final Time";
                                     if (run.user != null)
                                         runText += " by " + run.user.name;
                                     var runNode = new TreeNode(runText);
