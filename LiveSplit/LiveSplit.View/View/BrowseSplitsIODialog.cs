@@ -6,12 +6,9 @@ using LiveSplit.Web;
 using LiveSplit.Web.Share;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LiveSplit.View
@@ -34,13 +31,15 @@ namespace LiveSplit.View
             try
             {
                 var searchText = txtSearch.Text;
-                if (!String.IsNullOrEmpty(searchText))
+                if (!string.IsNullOrEmpty(searchText))
                 {
                     var games = SplitsIO.Instance.SearchGame(searchText);
+                    games = games.OrderBy(game => game.name);
                     foreach (var game in games)
                     {
                         var gameNode = new TreeNode(game.name);
-                        var categories = game.categories;
+                        IEnumerable<dynamic> categories = game.categories;
+                        categories = categories.OrderBy(category => category.name);
                         foreach (var category in categories)
                         {
                             var categoryNode = new TreeNode(category.name);
@@ -49,11 +48,11 @@ namespace LiveSplit.View
                             {
                                 categoryNode.Nodes.Clear();
                                 IEnumerable<dynamic> runs = SplitsIO.Instance.GetRunsForCategory(category.id);
-                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? Double.Parse(x.time, CultureInfo.InvariantCulture) : Double.MaxValue);
+                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? double.Parse(x.time, CultureInfo.InvariantCulture) : double.MaxValue);
                                 foreach (var run in runs)
                                 {
-                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(Double.Parse(run.time, CultureInfo.InvariantCulture))) : "No Final Time";
-                                    if (run.user != null && !String.IsNullOrEmpty(run.user.name))
+                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(double.Parse(run.time, CultureInfo.InvariantCulture))) : "No Final Time";
+                                    if (run.user != null && !string.IsNullOrEmpty(run.user.name))
                                         runText += " by " + run.user.name;
                                     var runNode = new TreeNode(runText);
                                     runNode.Tag = run;
@@ -63,6 +62,25 @@ namespace LiveSplit.View
                             gameNode.Nodes.Add(categoryNode);
                         }
                         splitsTreeView.Nodes.Add(gameNode);
+                    }
+
+                    var users = SplitsIO.Instance.SearchUser(searchText);
+                    users = users.OrderBy(user => user.name);
+                    foreach (var user in users)
+                    {
+                        var userNode = new TreeNode("@" + user.name);
+                        var runs = SplitsIO.Instance.GetRunsForUser((int)user.id);
+                        runs = runs.OrderBy(run => run.name).ThenBy(run => double.Parse(run.time, CultureInfo.InvariantCulture));
+                        foreach (var run in runs)
+                        {
+                            var runText = run.name;
+                            if (run.time != SplitsIO.NoTime)
+                                runText += " in " + (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(double.Parse(run.time, CultureInfo.InvariantCulture)));
+                            var runNode = new TreeNode(runText);
+                            runNode.Tag = run;
+                            userNode.Nodes.Add(runNode);
+                        }
+                        splitsTreeView.Nodes.Add(userNode);
                     }
                 }
             }
@@ -80,10 +98,10 @@ namespace LiveSplit.View
                 if (splitsTreeView.SelectedNode != null && splitsTreeView.SelectedNode.Tag != null && splitsTreeView.SelectedNode.Tag is DynamicJsonObject)
                 {
                     dynamic run = splitsTreeView.SelectedNode.Tag;
-                    Run = SplitsIO.Instance.DownloadRunByPath((String)run.path);
+                    Run = SplitsIO.Instance.DownloadRunByPath((string)run.path);
                     RunName = splitsTreeView.SelectedNode.Text;
                     var result = PostProcessRun(RunName);
-                    if (result == System.Windows.Forms.DialogResult.OK)
+                    if (result == DialogResult.OK)
                     {
                         DialogResult = result;
                         Close();
@@ -97,7 +115,7 @@ namespace LiveSplit.View
             }
         }
 
-        private DialogResult PostProcessRun(String nodeText)
+        private DialogResult PostProcessRun(string nodeText)
         {
             if (chkDownloadEmpty.Checked)
             {
@@ -108,19 +126,19 @@ namespace LiveSplit.View
                     do
                     {
                         var result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
-                        if (result == System.Windows.Forms.DialogResult.Cancel)
+                        if (result == DialogResult.Cancel)
                             return result;
 
                         if (name.StartsWith("[Race]"))
                         {
                             result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                            if (result == System.Windows.Forms.DialogResult.Cancel)
+                            if (result == DialogResult.Cancel)
                                 return result;
                         }
                         else if (name == LiveSplit.Model.Run.PersonalBestComparisonName)
                         {
                             result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                            if (result == System.Windows.Forms.DialogResult.Cancel)
+                            if (result == DialogResult.Cancel)
                                 return result;
                         }
                         else
@@ -131,7 +149,7 @@ namespace LiveSplit.View
                 Run.RunHistory.Clear();
                 Run.AttemptCount = 0;
                 Run.CustomComparisons.Clear();
-                Run.CustomComparisons.Add(LiveSplit.Model.Run.PersonalBestComparisonName);
+                Run.CustomComparisons.Add(Model.Run.PersonalBestComparisonName);
                 foreach (var segment in Run)
                 {
                     segment.SegmentHistory.Clear();

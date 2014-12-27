@@ -100,6 +100,14 @@ namespace LiveSplit.Web.Share
             return (response.games as IEnumerable<dynamic>) ?? new dynamic[0];
         }
 
+        public IEnumerable<dynamic> SearchUser(string name)
+        {
+            var escapedName = HttpUtility.UrlPathEncode(name);
+            var uri = GetAPIUri(string.Format("users?name={0}", escapedName));
+            var response = JSON.FromUri(uri);
+            return (response.users as IEnumerable<dynamic>) ?? new dynamic[0];
+        }
+
         public dynamic GetGameById(int gameId)
         {
             var uri = GetAPIUri(string.Format("games/{0}", gameId));
@@ -110,6 +118,13 @@ namespace LiveSplit.Web.Share
         public IEnumerable<dynamic> GetRunsForCategory(int categoryId)
         {
             var uri = GetAPIUri(string.Format("runs?category_id={0}", categoryId));
+            var response = JSON.FromUri(uri);
+            return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
+        }
+
+        public IEnumerable<dynamic> GetRunsForUser(int userId)
+        {
+            var uri = GetAPIUri(string.Format("runs?user_id={0}", userId));
             var response = JSON.FromUri(uri);
             return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
         }
