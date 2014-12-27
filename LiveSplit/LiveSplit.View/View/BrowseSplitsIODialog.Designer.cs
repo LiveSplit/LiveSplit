@@ -34,18 +34,24 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnDownload = new System.Windows.Forms.Button();
             this.splitsTreeView = new System.Windows.Forms.TreeView();
+            this.chkDownloadEmpty = new System.Windows.Forms.CheckBox();
+            this.chkIncludeTimes = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.txtSearch, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnSearch, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnDownload, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnSearch, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnDownload, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.splitsTreeView, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.chkDownloadEmpty, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.chkIncludeTimes, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -60,6 +66,7 @@
             // txtSearch
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.txtSearch, 3);
             this.txtSearch.Location = new System.Drawing.Point(10, 11);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(463, 20);
@@ -89,13 +96,35 @@
             // 
             // splitsTreeView
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.splitsTreeView, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.splitsTreeView, 4);
             this.splitsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitsTreeView.Location = new System.Drawing.Point(10, 39);
             this.splitsTreeView.Name = "splitsTreeView";
             this.splitsTreeView.Size = new System.Drawing.Size(550, 328);
             this.splitsTreeView.TabIndex = 3;
             this.splitsTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.splitsTreeView_BeforeExpand);
+            // 
+            // chkDownloadEmpty
+            // 
+            this.chkDownloadEmpty.AutoSize = true;
+            this.chkDownloadEmpty.Location = new System.Drawing.Point(10, 373);
+            this.chkDownloadEmpty.Name = "chkDownloadEmpty";
+            this.chkDownloadEmpty.Size = new System.Drawing.Size(106, 17);
+            this.chkDownloadEmpty.TabIndex = 4;
+            this.chkDownloadEmpty.Text = "Download Empty";
+            this.chkDownloadEmpty.UseVisualStyleBackColor = true;
+            this.chkDownloadEmpty.CheckedChanged += new System.EventHandler(this.chkDownloadEmpty_CheckedChanged);
+            // 
+            // chkIncludeTimes
+            // 
+            this.chkIncludeTimes.AutoSize = true;
+            this.chkIncludeTimes.Enabled = false;
+            this.chkIncludeTimes.Location = new System.Drawing.Point(122, 373);
+            this.chkIncludeTimes.Name = "chkIncludeTimes";
+            this.chkIncludeTimes.Size = new System.Drawing.Size(164, 17);
+            this.chkIncludeTimes.TabIndex = 5;
+            this.chkIncludeTimes.Text = "Include Times as Comparison";
+            this.chkIncludeTimes.UseVisualStyleBackColor = true;
             // 
             // BrowseSplitsIODialog
             // 
@@ -105,6 +134,7 @@
             this.ClientSize = new System.Drawing.Size(570, 405);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(400, 200);
             this.Name = "BrowseSplitsIODialog";
             this.Text = "Browse Splits.io";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -120,5 +150,7 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnDownload;
         private System.Windows.Forms.TreeView splitsTreeView;
+        private System.Windows.Forms.CheckBox chkDownloadEmpty;
+        private System.Windows.Forms.CheckBox chkIncludeTimes;
     }
 }

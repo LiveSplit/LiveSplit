@@ -915,7 +915,7 @@ namespace LiveSplit.View
                 IsInDialogMode = true;
                 this.TopMost = false;
 
-                var dialog = new BrowseSplitsIODialog();
+                var dialog = new BrowseSplitsIODialog(import);
                 var result = dialog.ShowDialog();
                 if (import && result == System.Windows.Forms.DialogResult.OK)
                 {
@@ -2524,7 +2524,7 @@ namespace LiveSplit.View
             var name = "";
             var run = GetRunFromSplitsIO(true, ref name);
             if (run != null)
-                AddComparisonFromRun(name, run);
+                while (!AddComparisonFromRun(name, run));
         }
 
         void gameTimeMenuItem_Click(object sender, EventArgs e)
@@ -2544,7 +2544,7 @@ namespace LiveSplit.View
             var name = "";
             var run = GetRunFromURL(true, ref name);
             if (run != null)
-                AddComparisonFromRun(name ,run);
+                while (!AddComparisonFromRun(name, run));
         }
 
         void importFromFileMenuItem_Click(object sender, EventArgs e)
@@ -2560,7 +2560,7 @@ namespace LiveSplit.View
                 {
                     var run = LoadRunFromFile(splitDialog.FileName, false);
                     var comparisonName = Path.GetFileNameWithoutExtension(splitDialog.FileName);
-                    AddComparisonFromRun(comparisonName, run);
+                    while (!AddComparisonFromRun(comparisonName, run));
                 }
             }
             finally
@@ -2569,18 +2569,37 @@ namespace LiveSplit.View
             }
         }
 
-        protected void AddComparisonFromRun(String name, IRun run)
+        protected bool AddComparisonFromRun(String name, IRun run)
         {
-            CurrentState.Run.CustomComparisons.Add(name);
-            foreach (var segment in run)
+            if (!CurrentState.Run.Comparisons.Contains(name))
             {
-                var runSegment = CurrentState.Run.FirstOrDefault(x => x.Name == segment.Name);
-                if (runSegment != null)
-                    runSegment.Comparisons[name] = segment.PersonalBestSplitTime;
+                if (!name.StartsWith("[Race]"))
+                {
+                    CurrentState.Run.CustomComparisons.Add(name);
+                    foreach (var segment in run)
+                    {
+                        var runSegment = CurrentState.Run.FirstOrDefault(x => x.Name == segment.Name);
+                        if (runSegment != null)
+                            runSegment.Comparisons[name] = segment.PersonalBestSplitTime;
+                    }
+                    CurrentState.Run.HasChanged = true;
+                    CurrentState.Run.FixSplits();
+                    SwitchComparison(name);
+                }
+                else
+                {
+                    var result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    if (result == System.Windows.Forms.DialogResult.Retry)
+                        return false;
+                }
             }
-            CurrentState.Run.HasChanged = true;
-            CurrentState.Run.FixSplits();
-            SwitchComparison(name);
+            else
+            {
+                var result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                if (result == System.Windows.Forms.DialogResult.Retry)
+                    return false;
+            }
+            return true;
         }
 
         private void RegenerateComparisons()

@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
+using LiveSplit.UI;
 using LiveSplit.Web;
 using LiveSplit.Web.Share;
 using System;
@@ -18,9 +19,10 @@ namespace LiveSplit.View
     {
         delegate void CategoryNodeAction();
         public IRun Run { get; set; }
-        public BrowseSplitsIODialog()
+        public BrowseSplitsIODialog(bool isImporting = false)
         {
             InitializeComponent();
+            chkIncludeTimes.Visible = chkDownloadEmpty.Visible = !isImporting;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -75,8 +77,12 @@ namespace LiveSplit.View
                 {
                     dynamic run = splitsTreeView.SelectedNode.Tag;
                     Run = SplitsIO.Instance.DownloadRunByPath((String)run.path);
-                    DialogResult = System.Windows.Forms.DialogResult.OK;
-                    Close();
+                    var result = PostProcessRun();
+                    if (result == System.Windows.Forms.DialogResult.OK)
+                    {
+                        DialogResult = result;
+                        Close();
+                    }
                 }
             }
             catch (Exception ex)
@@ -86,14 +92,80 @@ namespace LiveSplit.View
             }
         }
 
+        private DialogResult PostProcessRun()
+        {
+            if (chkDownloadEmpty.Checked)
+            {
+                var name = "";
+                if (chkIncludeTimes.Checked)
+                {
+                    var succeededName = false;
+                    do
+                    {
+                        var result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
+                        if (result == System.Windows.Forms.DialogResult.Cancel)
+                            return result;
+
+                        if (name.StartsWith("[Race]"))
+                        {
+                            result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                            if (result == System.Windows.Forms.DialogResult.Cancel)
+                                return result;
+                        }
+                        else if (name == LiveSplit.Model.Run.PersonalBestComparisonName)
+                        {
+                            result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                            if (result == System.Windows.Forms.DialogResult.Cancel)
+                                return result;
+                        }
+                        else
+                            succeededName = true;
+                    }
+                    while (!succeededName);
+                }
+                Run.RunHistory.Clear();
+                Run.AttemptCount = 0;
+                Run.CustomComparisons.Clear();
+                Run.CustomComparisons.Add(LiveSplit.Model.Run.PersonalBestComparisonName);
+                foreach (var segment in Run)
+                {
+                    segment.SegmentHistory.Clear();
+                    var time = segment.PersonalBestSplitTime;
+                    segment.Comparisons.Clear();
+                    if (chkIncludeTimes.Checked)
+                        segment.Comparisons[name] = time;
+                    segment.PersonalBestSplitTime = default(Time);
+                }
+                if (chkIncludeTimes.Checked)
+                {
+                    Run.CustomComparisons.Add(name);
+                    Run.FixSplits();
+                }
+            }
+            return DialogResult.OK;
+        }
+
         private void splitsTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
-            var node = e.Node;
-            if (node.Tag is CategoryNodeAction)
+            try
             {
-                ((CategoryNodeAction)node.Tag)();
-                node.Tag = null;
+                var node = e.Node;
+                if (node.Tag is CategoryNodeAction)
+                {
+                    ((CategoryNodeAction)node.Tag)();
+                    node.Tag = null;
+                }
             }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                e.Cancel = true;
+            }
+        }
+
+        private void chkDownloadEmpty_CheckedChanged(object sender, EventArgs e)
+        {
+            chkIncludeTimes.Enabled = chkDownloadEmpty.Checked;
         }
     }
 }
