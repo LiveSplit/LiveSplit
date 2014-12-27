@@ -4,10 +4,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 using System.IO;
 
@@ -56,7 +53,7 @@ namespace LiveSplit.Updates
             set
             {
                 txtMessage.BackColor = value;
-                this.BackColor = value;
+                BackColor = value;
             }
         }
 
@@ -71,22 +68,22 @@ namespace LiveSplit.Updates
             // populate the text box with the message
             txtMessage.Text = text;
             // populate the caption with the passed in caption
-            this.Text = caption;
+            Text = caption;
             //Assume OK Button, by default
             ChooseButtons(MessageBoxButtons.OK);
             // the active control should be the OK button
-            this.ActiveControl = this.Controls[this.Controls.Count - 1];
-            return this.ShowDialog();
+            ActiveControl = Controls[Controls.Count - 1];
+            return ShowDialog();
         }
 
         public DialogResult Show(string text, string caption, MessageBoxButtons buttonType)
         {
             txtMessage.Text = text;
-            this.Text = caption;
+            Text = caption;
             //Assume OK Button
             ChooseButtons(buttonType);
-            this.ActiveControl = this.Controls[this.Controls.Count - 1];
-            return this.ShowDialog();
+            ActiveControl = Controls[Controls.Count - 1];
+            return ShowDialog();
         }
 
         public DialogResult ShowFromFile(string filename, string caption, MessageBoxButtons buttonType)
@@ -97,16 +94,16 @@ namespace LiveSplit.Updates
                 txtMessage.Text = sr.ReadToEnd();
             }
 
-            this.Text = caption;
+            Text = caption;
             ChooseButtons(buttonType);
-            this.ActiveControl = this.Controls[this.Controls.Count - 1];
-            return this.ShowDialog();
+            ActiveControl = Controls[Controls.Count - 1];
+            return ShowDialog();
         }
 
         void RemoveButtons()
         {
             List<Button> buttons = new List<Button>();
-            foreach (Control c in this.Controls)
+            foreach (Control c in Controls)
             {
                 if (c is Button)
                 {
@@ -116,9 +113,8 @@ namespace LiveSplit.Updates
 
             foreach (Button b in buttons)
             {
-                this.Controls.Remove(b);
+                Controls.Remove(b);
             }
-
         }
 
         void ChooseButtons(MessageBoxButtons buttonType)
@@ -148,61 +144,59 @@ namespace LiveSplit.Updates
         {
             Button btnOK = new Button();
             btnOK.Text = "OK";
-            this.Controls.Add(btnOK);
-            btnOK.Location = new Point(this.Width / 2 - 35, this.txtMessage.Bottom + 5);
+            Controls.Add(btnOK);
+            btnOK.Location = new Point(Width / 2 - 35, txtMessage.Bottom + 5);
             btnOK.Size = new Size(70, 20);
             btnOK.DialogResult = DialogResult.OK;
-            this.AcceptButton = btnOK;
+            AcceptButton = btnOK;
         }
 
         private void AddYesNoButtons()
         {
             Button btnYes = new Button();
             btnYes.Text = "Yes";
-            this.Controls.Add(btnYes);
+            Controls.Add(btnYes);
 
             // calculate the location of the buttons so that they are centered
             // at the bottom
-            btnYes.Location = new Point(this.Width / 2 - 80, this.txtMessage.Bottom + 5);
+            btnYes.Location = new Point(Width / 2 - 80, txtMessage.Bottom + 5);
             btnYes.Size = new Size(75, 23);
             btnYes.DialogResult = DialogResult.Yes;
-            this.AcceptButton = btnYes;
+            AcceptButton = btnYes;
 
             Button btnNo = new Button();
             btnNo.Text = "No";
-            this.Controls.Add(btnNo);
-            btnNo.Location = new Point(this.Width / 2 + 5, this.txtMessage.Bottom + 5);
+            Controls.Add(btnNo);
+            btnNo.Location = new Point(Width / 2 + 5, txtMessage.Bottom + 5);
             btnNo.Size = new Size(75, 23);
             btnNo.DialogResult = DialogResult.No;
-            this.CancelButton = btnNo;
+            CancelButton = btnNo;
         }
 
         private void AddOkCancelButtons()
         {
             Button btnOK = new Button();
             btnOK.Text = "OK";
-            this.Controls.Add(btnOK);
-            btnOK.Location = new Point(this.Width / 2 - 75, this.txtMessage.Bottom + 5);
+            Controls.Add(btnOK);
+            btnOK.Location = new Point(Width / 2 - 75, txtMessage.Bottom + 5);
             btnOK.Size = new Size(70, 20);
             btnOK.DialogResult = DialogResult.OK;
-            this.AcceptButton = btnOK;
+            AcceptButton = btnOK;
 
             Button btnCancel = new Button();
             btnCancel.Text = "Cancel";
-            this.Controls.Add(btnCancel);
-            btnCancel.Location = new Point(this.Width / 2 + 5, this.txtMessage.Bottom + 5);
+            Controls.Add(btnCancel);
+            btnCancel.Location = new Point(Width / 2 + 5, txtMessage.Bottom + 5);
             btnCancel.Size = new Size(70, 20);
             btnCancel.DialogResult = DialogResult.Cancel;
-            this.CancelButton = btnCancel;
-
+            CancelButton = btnCancel;
         }
-
 
         public void Show(string text)
         {
             txtMessage.Text = text;
             ChooseButtons(MessageBoxButtons.OK);
-            this.ShowDialog();
+            ShowDialog();
         }
 
         private void ScrollableMessageBox_Resize(object sender, EventArgs e)

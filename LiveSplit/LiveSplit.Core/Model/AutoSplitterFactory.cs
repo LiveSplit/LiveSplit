@@ -46,16 +46,16 @@ namespace LiveSplit.Model
                         Type = (AutoSplitterType)Enum.Parse(typeof(AutoSplitterType), element["Type"].InnerText),
                         Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => x.InnerText).ToList(),
                         ShowInLayoutEditor = element["ShowInLayoutEditor"] != null
-                    }).SelectMany(x => x.Games.Select(y => new KeyValuePair<String, AutoSplitter>(y, x))).ToDictionary(x => x.Key, x => x.Value);
+                    }).SelectMany(x => x.Games.Select(y => new KeyValuePair<string, AutoSplitter>(y, x))).ToDictionary(x => x.Key, x => x.Value);
             }
         }
 
-        public AutoSplitter Create(String game)
+        public AutoSplitter Create(string game)
         {
             if (AutoSplitters == null)
                 Init();
 
-            if (AutoSplitters != null && !String.IsNullOrEmpty(game) && AutoSplitters.ContainsKey(game))
+            if (AutoSplitters != null && !string.IsNullOrEmpty(game) && AutoSplitters.ContainsKey(game))
                 return AutoSplitters[game];
 
             return null;

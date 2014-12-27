@@ -104,7 +104,6 @@ namespace LiveSplit.UI.Components
             get { return "----------------------------------------------------------------------------"; }
         }
 
-
         public Control GetSettingsControl(LayoutMode mode)
         {
             return null;

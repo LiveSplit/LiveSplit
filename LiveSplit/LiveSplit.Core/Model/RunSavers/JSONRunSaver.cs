@@ -9,7 +9,7 @@ namespace LiveSplit.Model.RunSavers
 {
     public class JSONRunSaver : IRunSaver
     {
-        private String CreateImageElement(Image image)
+        private string CreateImageElement(Image image)
         {
             if (image != null)
             {

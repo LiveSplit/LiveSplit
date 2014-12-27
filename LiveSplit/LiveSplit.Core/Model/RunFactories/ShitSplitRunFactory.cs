@@ -23,7 +23,7 @@ namespace LiveSplit.Model.RunFactories
             var line = reader.ReadLine();
             var titleInfo = line.Split('|');
             run.CategoryName = titleInfo[0].Substring(1);
-            run.AttemptCount = Int32.Parse(titleInfo[1]);
+            run.AttemptCount = int.Parse(titleInfo[1]);
             TimeSpan totalTime = TimeSpan.Zero;
             while ((line = reader.ReadLine()) != null)
             {
@@ -31,7 +31,7 @@ namespace LiveSplit.Model.RunFactories
                 {
                     var majorSplitInfo = line.Split('|');
                     totalTime += TimeSpanParser.Parse(majorSplitInfo[1]);
-                    while (!reader.EndOfStream && reader.Read() == (int)('*'))
+                    while (!reader.EndOfStream && reader.Read() == '*')
                     {
                         line = reader.ReadLine();
                         run.AddSegment(line);

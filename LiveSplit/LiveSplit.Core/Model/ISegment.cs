@@ -8,7 +8,7 @@ namespace LiveSplit.Model
     public interface ISegment : ICloneable
     {
         Image Icon { get; set; }
-        String Name { get; set; }
+        string Name { get; set; }
         Time PersonalBestSplitTime { get; set; }
         IComparisons Comparisons { get; set; }
         Time BestSegmentTime { get; set; }

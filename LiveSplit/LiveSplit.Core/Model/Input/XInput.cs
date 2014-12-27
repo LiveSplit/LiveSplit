@@ -132,7 +132,7 @@ namespace Microsoft.DirectX.XInput
         public override bool Equals(object obj)
         {
             if (obj is XInputGamepad)
-                return this.Equals((XInputGamepad)obj);
+                return Equals((XInputGamepad)obj);
             return false;
         }
 
@@ -174,7 +174,7 @@ namespace Microsoft.DirectX.XInput
         public override bool Equals(object obj)
         {
             if (obj is XInputState)
-                return this.Equals((XInputState)obj);
+                return Equals((XInputState)obj);
             return false;
         }
 
@@ -197,8 +197,8 @@ namespace Microsoft.DirectX.XInput
 
         public XInputVibration(ushort left, ushort right)
         {
-            this.LeftMotorSpeed = left;
-            this.RightMotorSpeed = right;
+            LeftMotorSpeed = left;
+            RightMotorSpeed = right;
         }
     }
 
@@ -208,16 +208,16 @@ namespace Microsoft.DirectX.XInput
         // Get the capabilities of controller 0, 1, 2, or 3
         public static void GetCapabilities(int controllerNumber, out XInputCapabilities caps)
         {
-            XInputMethods.ProcessResult(
-                XInputMethods.XInputGetCapabilities(controllerNumber, 0, out caps)
+            ProcessResult(
+                XInputGetCapabilities(controllerNumber, 0, out caps)
                 );
         }
 
         // Poll the state of the controller's buttons, thumbsticks, and triggers
         public static void GetState(int controllerNumber, out XInputState state)
         {
-            XInputMethods.ProcessResult(
-                XInputMethods.XInputGetState(controllerNumber, out state)
+            ProcessResult(
+                XInputGetState(controllerNumber, out state)
                 );
         }
 
@@ -225,15 +225,15 @@ namespace Microsoft.DirectX.XInput
         public static void SetVibration(int controllerNumber, ushort leftSpeed, ushort rightSpeed)
         {
             XInputVibration vibe = new XInputVibration(leftSpeed, rightSpeed);
-            XInputMethods.ProcessResult(
-                XInputMethods.XInputSetState(controllerNumber, ref vibe)
+            ProcessResult(
+                XInputSetState(controllerNumber, ref vibe)
                 );
         }
 
         // Get the DirectSound guids for sending/receiving audio to the controller's headset
         public static void GetAudioGuids(int controllerNumber, out Guid renderGuid, out Guid captureGuid)
         {
-            XInputMethods.ProcessResult(XInputMethods.XInputGetDSoundAudioDeviceGuids(controllerNumber, out renderGuid, out captureGuid));
+            ProcessResult(XInputGetDSoundAudioDeviceGuids(controllerNumber, out renderGuid, out captureGuid));
         }
 
 

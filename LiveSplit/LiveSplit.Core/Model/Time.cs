@@ -54,7 +54,7 @@ namespace LiveSplit.Model
             return newTime;
         }
 
-        public XmlElement ToXml(XmlDocument document, String name = "Time")
+        public XmlElement ToXml(XmlDocument document, string name = "Time")
         {
             var parent = document.CreateElement(name);
             if (RealTime != null)
@@ -74,13 +74,13 @@ namespace LiveSplit.Model
 
         public DynamicJsonObject ToJson()
         {
-            dynamic jason = new DynamicJsonObject();
-            jason.realTime = RealTime.ToString();
-            jason.gameTime = GameTime.ToString();
-            return jason;
+            dynamic json = new DynamicJsonObject();
+            json.realTime = RealTime.ToString();
+            json.gameTime = GameTime.ToString();
+            return json;
         }
 
-        public static Time ParseText(String text)
+        public static Time ParseText(string text)
         {
             var splits = text.Split('|');
             var newTime = new Time();
@@ -99,7 +99,7 @@ namespace LiveSplit.Model
             return newTime;
         }
 
-        public override String ToString()
+        public override string ToString()
         {
             return RealTime + " | " + GameTime;
         }

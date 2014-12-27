@@ -7,8 +7,8 @@ namespace LiveSplit.Model.Comparisons
     public class BestSplitTimesComparisonGenerator : IComparisonGenerator
     {
         public IRun Run { get; set; }
-        public const String ComparisonName = "Best Split Times";
-        public String Name { get { return ComparisonName; } }
+        public const string ComparisonName = "Best Split Times";
+        public string Name { get { return ComparisonName; } }
 
         public BestSplitTimesComparisonGenerator(IRun run)
         {
@@ -49,7 +49,7 @@ namespace LiveSplit.Model.Comparisons
             foreach (var segment in Run)
             {
                 if (Run.IndexOf(segment) > 0)
-                    segment.Comparisons[Name] = segment.Comparisons[LiveSplit.Model.Run.PersonalBestComparisonName];
+                    segment.Comparisons[Name] = segment.Comparisons[Model.Run.PersonalBestComparisonName];
                 else
                     segment.Comparisons[Name] = segment.BestSegmentTime;
             }

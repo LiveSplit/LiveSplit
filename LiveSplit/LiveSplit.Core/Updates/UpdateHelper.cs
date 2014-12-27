@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UpdateManager;
@@ -11,8 +10,8 @@ namespace LiveSplit.Updates
 {
     public static class UpdateHelper
     {
-        public static readonly String GitVersion = GitInfo.version.Replace("\r", "").Replace("\n", "").Split('-').Where((x,i) => i != 2).Aggregate((a,b) => a + "-" + b);
-        public static readonly String GitBranch = GitInfo.branch.Replace("\r", "").Replace("\n", "");
+        public static readonly string GitVersion = GitInfo.version.Replace("\r", "").Replace("\n", "").Split('-').Where((x,i) => i != 2).Aggregate((a,b) => a + "-" + b);
+        public static readonly string GitBranch = GitInfo.branch.Replace("\r", "").Replace("\n", "");
         public static readonly Version Version = 
             Version.Parse(
                 GitVersion.Contains('-')
@@ -30,13 +29,13 @@ namespace LiveSplit.Updates
                     var actualUpdateables = updateables.Where(x => !AlreadyChecked.Contains(x.GetType()));
                     if (Updater.CheckForAnyUpdate(actualUpdateables))
                     {
-                        String dialogText = actualUpdateables.Where(x => x.CheckForUpdate()).Select(x =>
+                        string dialogText = actualUpdateables.Where(x => x.CheckForUpdate()).Select(x =>
                                 x.UpdateName + " (" + x.GetNewVersion() + ")\r\n" +
                                 x.GetChangeLog().Select(y => " - " + y + "\r\n")
                                         .Aggregate("", (y, z) => y + z) + "\r\n")
                                         .Aggregate((x, y) => x + y) + "Do you want to update?";
                         DialogResult result = (new ScrollableMessageBox()).Show(dialogText, "New updates are available", MessageBoxButtons.YesNo);
-                        if (result == System.Windows.Forms.DialogResult.Yes)
+                        if (result == DialogResult.Yes)
                         {
                             try
                             {

@@ -25,10 +25,10 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        protected Dictionary<String, ChatBadges> UserFlags { get; set; }
-        protected Dictionary<String, Color> UserColors { get; set; }
+        protected Dictionary<string, ChatBadges> UserFlags { get; set; }
+        protected Dictionary<string, Color> UserColors { get; set; }
 
-        public TwitchChat(String accessToken)
+        public TwitchChat(string accessToken)
         {
             Client = new IrcClient();
             UserFlags = new Dictionary<string, ChatBadges>();
@@ -41,25 +41,25 @@ namespace LiveSplit.Web.Share
                 new IrcUserRegistrationInfo()
                 {
                     NickName = twitch.ChannelName,
-                    Password = String.Format("oauth:{0}", accessToken)
+                    Password = string.Format("oauth:{0}", accessToken)
                 });
         }
 
-        protected ChatBadges GetFlags(String username)
+        protected ChatBadges GetFlags(string username)
         {
             return UserFlags.ContainsKey(username)
                 ? UserFlags[username]
                 : ChatBadges.None;
         }
 
-        protected Color GetColor(String username)
+        protected Color GetColor(string username)
         {
             return UserColors.ContainsKey(username)
                 ? UserColors[username]
                 : Color.White;
         }
 
-        protected void AddFlag(String username, ChatBadges flag)
+        protected void AddFlag(string username, ChatBadges flag)
         {
             if (UserFlags.ContainsKey(username))
                 UserFlags[username] |= flag;
@@ -67,7 +67,7 @@ namespace LiveSplit.Web.Share
                 UserFlags.Add(username, flag);
         }
 
-        protected void AddColor(String username, Color color)
+        protected void AddColor(string username, Color color)
         {
             if (UserColors.ContainsKey(username))
                 UserColors[username] = color;
@@ -131,7 +131,7 @@ namespace LiveSplit.Web.Share
 
                     if (command == "USERCOLOR")
                     {
-                        var color = Color.FromArgb((int)(0xFF << 24) + Int32.Parse(argument.Substring(1), NumberStyles.HexNumber));
+                        var color = Color.FromArgb((0xFF << 24) + int.Parse(argument.Substring(1), NumberStyles.HexNumber));
                         AddColor(user, color);
                     }
                     else if (command == "SPECIALUSER")
@@ -172,7 +172,7 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        public void SendMessage(String message)
+        public void SendMessage(string message)
         {
             var channel = Client.Channels.FirstOrDefault();
             if (channel == null)
@@ -200,7 +200,7 @@ namespace LiveSplit.Web.Share
             public Color Color { get; protected set; }
             public ChatBadges Flags { get; protected set; }
 
-            public String Name { get; protected set; }
+            public string Name { get; protected set; }
 
             public User(IrcUser user, ChatBadges flags, Color color)
             {
@@ -209,7 +209,7 @@ namespace LiveSplit.Web.Share
                 Color = color;
             }
 
-            public User(IrcClient client, String name)
+            public User(IrcClient client, string name)
             {
                 Name = name;
                 try
@@ -226,9 +226,9 @@ namespace LiveSplit.Web.Share
         public class Message
         {
             public User User { get; protected set; }
-            public String Text { get; protected set; }
+            public string Text { get; protected set; }
 
-            public Message(User user, String text)
+            public Message(User user, string text)
             {
                 User = user;
                 Text = text;

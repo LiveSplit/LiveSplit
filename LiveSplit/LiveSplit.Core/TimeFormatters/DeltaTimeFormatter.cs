@@ -24,7 +24,7 @@ namespace LiveSplit.TimeFormatters
 
             if (time.HasValue)
             {
-                String minusString = "+";
+                string minusString = "+";
                 var totalString = "";
                 if (time.Value < TimeSpan.Zero)
                 {

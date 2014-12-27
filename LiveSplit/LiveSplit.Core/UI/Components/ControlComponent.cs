@@ -86,29 +86,29 @@ namespace LiveSplit.UI.Components
             {
                 lock (Control)
                 {
-                    Control.Location = new System.Drawing.Point((int)(points[0].X + 0.5f) + 1, (int)(points[0].Y + 0.5f) + 1);
-                    Control.Size = new System.Drawing.Size((int)(points[1].X - points[0].X + 0.5f) - 2, (int)(points[1].Y - points[0].Y + 0.5f) - 2);
+                    Control.Location = new Point((int)(points[0].X + 0.5f) + 1, (int)(points[0].Y + 0.5f) + 1);
+                    Control.Size = new Size((int)(points[1].X - points[0].X + 0.5f) - 2, (int)(points[1].Y - points[0].Y + 0.5f) - 2);
                 }
             });
         }
 
-        public virtual void DrawHorizontal(System.Drawing.Graphics g, Model.LiveSplitState state, float height, System.Drawing.Region clipRegion)
+        public virtual void DrawHorizontal(Graphics g, LiveSplitState state, float height, Region clipRegion)
         {
             Reposition(HorizontalWidth, height, g);
         }
 
-        public virtual void DrawVertical(System.Drawing.Graphics g, Model.LiveSplitState state, float width, System.Drawing.Region clipRegion)
+        public virtual void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
         {
             Reposition(width, VerticalHeight, g);
         }
 
-        public abstract System.Windows.Forms.Control GetSettingsControl(LayoutMode mode);
+        public abstract Control GetSettingsControl(LayoutMode mode);
 
         public abstract System.Xml.XmlNode GetSettings(System.Xml.XmlDocument document);
 
         public abstract void SetSettings(System.Xml.XmlNode settings);
 
-        public virtual void Update(IInvalidator invalidator, Model.LiveSplitState state, float width, float height, LayoutMode mode)
+        public virtual void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
             if (!HasInvalidated && invalidator != null)
             {

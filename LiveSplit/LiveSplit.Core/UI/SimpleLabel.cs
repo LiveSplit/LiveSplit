@@ -9,8 +9,8 @@ namespace LiveSplit.UI
 {
     public class SimpleLabel
     {
-        public String Text { get; set; }
-        public ICollection<String> AlternateText { get; set; }
+        public string Text { get; set; }
+        public ICollection<string> AlternateText { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
         public float Width { get; set; }
@@ -54,13 +54,13 @@ namespace LiveSplit.UI
         }
 
         public SimpleLabel(
-            String text = "",
+            string text = "",
             float x = 0.0f, float y = 0.0f,
             Font font = null, Brush brush = null,
             float width = float.MaxValue, float height = float.MaxValue,
             StringAlignment horizontalAlignment = StringAlignment.Near,
             StringAlignment verticalAlignment = StringAlignment.Near,
-            IEnumerable<String> alternateText = null
+            IEnumerable<string> alternateText = null
             )
         {
             Text = text;
@@ -74,7 +74,7 @@ namespace LiveSplit.UI
             IsMonospaced = false;
             HasShadow = true;
             ShadowColor = Color.FromArgb(128, 0, 0, 0);
-            ((List<String>)(AlternateText = new List<String>())).AddRange(alternateText ?? new String[0]);
+            ((List<string>)(AlternateText = new List<string>())).AddRange(alternateText ?? new string[0]);
             //HasGlassEffects = false;
         }
 
@@ -195,7 +195,7 @@ namespace LiveSplit.UI
                 ActualWidth = MeasureActualWidth(Text, g);
         }
 
-        private float MeasureActualWidth(String text, Graphics g)
+        private float MeasureActualWidth(string text, Graphics g)
         {
             var charIndex = 0;
             var measurement = TextRenderer.MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
@@ -216,12 +216,12 @@ namespace LiveSplit.UI
             return offset;
         }
 
-        private String CutOff(Graphics g)
+        private string CutOff(Graphics g)
         {
             if (ActualWidth < Width)
                 return Text;
             var cutOffText = Text;
-            while (ActualWidth >= Width && !String.IsNullOrEmpty(cutOffText))
+            while (ActualWidth >= Width && !string.IsNullOrEmpty(cutOffText))
             {
                 cutOffText = cutOffText.Remove(cutOffText.Length - 1, 1);
                 ActualWidth = MeasureActualWidth(cutOffText + "...", g);

@@ -41,7 +41,7 @@ namespace LiveSplit.Options
             return settings;
         }
 
-        public void Assign (LayoutSettings settings)
+        public void Assign(LayoutSettings settings)
         {
             TextColor = settings.TextColor;
             BackgroundColor = settings.BackgroundColor;

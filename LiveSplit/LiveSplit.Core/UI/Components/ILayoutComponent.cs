@@ -4,7 +4,7 @@ namespace LiveSplit.UI.Components
 {
     public interface ILayoutComponent
     {
-        String Path { get; set; }
+        string Path { get; set; }
         IComponent Component { get; set; }
     }
 }

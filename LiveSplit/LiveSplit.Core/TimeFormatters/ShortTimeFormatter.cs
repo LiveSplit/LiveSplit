@@ -15,7 +15,7 @@ namespace LiveSplit.TimeFormatters
 
             if (time.HasValue)
             {
-                String minusString = "";
+                string minusString = "";
                 if (time.Value < TimeSpan.Zero)
                 {
                     minusString = "-";
@@ -42,7 +42,7 @@ namespace LiveSplit.TimeFormatters
 
             if (time.HasValue)
             {
-                String minusString = "";
+                string minusString = "";
                 if (time.Value < TimeSpan.Zero)
                 {
                     minusString = "-";

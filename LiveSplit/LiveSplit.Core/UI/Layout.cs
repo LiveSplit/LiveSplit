@@ -38,17 +38,17 @@ namespace LiveSplit.UI
         {
             return new Layout()
             {
-                LayoutComponents = new List<ILayoutComponent>(this.LayoutComponents),
-                VerticalWidth = this.VerticalWidth,
-                VerticalHeight = this.VerticalHeight,
-                HorizontalWidth = this.HorizontalWidth,
-                HorizontalHeight = this.HorizontalHeight,
-                FilePath = this.FilePath,
-                X = this.X,
-                Y = this.Y,
-                HasChanged = this.HasChanged,
-                Settings = (LayoutSettings)this.Settings.Clone(),
-                Mode = this.Mode
+                LayoutComponents = new List<ILayoutComponent>(LayoutComponents),
+                VerticalWidth = VerticalWidth,
+                VerticalHeight = VerticalHeight,
+                HorizontalWidth = HorizontalWidth,
+                HorizontalHeight = HorizontalHeight,
+                FilePath = FilePath,
+                X = X,
+                Y = Y,
+                HasChanged = HasChanged,
+                Settings = (LayoutSettings)Settings.Clone(),
+                Mode = Mode
             };
         }
     }

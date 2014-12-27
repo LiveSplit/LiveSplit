@@ -8,9 +8,9 @@ namespace LiveSplit.Model.Comparisons
     public class AverageSegmentsComparisonGenerator : IComparisonGenerator
     {
         public IRun Run { get; set; }
-        public const String ComparisonName = "Average Segments";
-        public const String ShortComparisonName = "Average";
-        public String Name { get { return ComparisonName; } }
+        public const string ComparisonName = "Average Segments";
+        public const string ShortComparisonName = "Average";
+        public string Name { get { return ComparisonName; } }
         public const double Weight = 0.75;
 
         public AverageSegmentsComparisonGenerator(IRun run)

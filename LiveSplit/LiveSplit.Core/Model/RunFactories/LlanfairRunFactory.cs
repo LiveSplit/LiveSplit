@@ -10,9 +10,9 @@ namespace LiveSplit.Model.RunFactories
 {
     public class LlanfairRunFactory : IRunFactory
     {
-        public String Path { get; set; }
+        public string Path { get; set; }
 
-        public LlanfairRunFactory(String path = null)
+        public LlanfairRunFactory(string path = null)
         {
             Path = path;
         }
@@ -25,7 +25,7 @@ namespace LiveSplit.Model.RunFactories
                 subDirectory.Delete(true);
         }
 
-        protected String Unescape(String text)
+        protected string Unescape(string text)
         {
             return text.Replace(@"\.", @",").Replace(@"\\", @"\");
         }
@@ -55,7 +55,7 @@ namespace LiveSplit.Model.RunFactories
             }
         }
 
-        protected String FindJavaInRegistry(RegistryKey baseKey)
+        protected string FindJavaInRegistry(RegistryKey baseKey)
         {
             var software = baseKey.OpenSubKey("SOFTWARE");
             var javasoft = software.OpenSubKey("JavaSoft");
@@ -81,7 +81,7 @@ namespace LiveSplit.Model.RunFactories
                 var titleInfo = line.Split(',');
                 run.GameName = Unescape(titleInfo[0]);
                 run.CategoryName = Unescape(titleInfo[1]);
-                run.AttemptCount = Int32.Parse(Unescape(titleInfo[2]));
+                run.AttemptCount = int.Parse(Unescape(titleInfo[2]));
                 while ((line = reader.ReadLine()) != null)
                 {
                     if (line.Length > 0)
@@ -198,7 +198,7 @@ namespace LiveSplit.Model.RunFactories
 
             Empty(new DirectoryInfo(splitsBasePath));
 
-            var process = Process.Start(System.IO.Path.Combine(javaPath, "bin\\javaw.exe"), String.Format("-jar \"{0}\" \"{1}\" \"{2}\"", loaderPath, Path, splitsFilePath));
+            var process = Process.Start(System.IO.Path.Combine(javaPath, "bin\\javaw.exe"), string.Format("-jar \"{0}\" \"{1}\" \"{2}\"", loaderPath, Path, splitsFilePath));
             process.WaitForExit();
             process.Close();
 

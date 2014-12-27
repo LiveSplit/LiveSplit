@@ -20,7 +20,7 @@ namespace LiveSplit.Web.Share
 
         protected Congratsio() { }
 
-        protected Uri GetUri(String subUri)
+        protected Uri GetUri(string subUri)
         {
             return new Uri(BaseUri, subUri);
         }
@@ -30,7 +30,7 @@ namespace LiveSplit.Web.Share
             get { return "Congratsio"; }
         }
 
-        public String Description
+        public string Description
         {
             get 
             {
@@ -51,14 +51,14 @@ namespace LiveSplit.Web.Share
         {
             var json = (IEnumerable<dynamic>)JSON.FromUri(GetUri("ajax/gameajax.php"));
 
-            Func<dynamic, String> selector = x => x.value;
+            Func<dynamic, string> selector = x => x.value;
 
             return json.Select(selector);
         }
 
         public string GetGameIdByName(string gameName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         public IEnumerable<ASUP.IdPair> GetGameCategories(string gameId)
@@ -68,7 +68,7 @@ namespace LiveSplit.Web.Share
 
         public string GetCategoryIdByName(string gameId, string categoryName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         public bool VerifyLogin(string username, string password)
@@ -83,7 +83,7 @@ namespace LiveSplit.Web.Share
             if (attachSplits)
                 comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
 
-            var postRequest = (HttpWebRequest)HttpWebRequest.Create(GetUri("submit"));
+            var postRequest = (HttpWebRequest)WebRequest.Create(GetUri("submit"));
             postRequest.Method = "POST";
             postRequest.ContentType = "application/x-www-form-urlencoded";
 

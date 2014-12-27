@@ -18,18 +18,18 @@ namespace LiveSplit.Web.SRL
 
         protected IEnumerable<dynamic> racesList;
         protected IEnumerable<dynamic> gameList;
-        protected IList<String> gameNames;
-        protected IDictionary<String, Image> imageList;
+        protected IList<string> gameNames;
+        protected IDictionary<string, Image> imageList;
 
         public event EventHandler RacesRefreshed;
 
         protected SpeedRunsLiveAPI()
         {
-            imageList = new Dictionary<String, Image>();
+            imageList = new Dictionary<string, Image>();
             //new System.Timers.Timer(20 * 1000) { Enabled = true }.Elapsed += SpeedRunsLiveAPI_Elapsed;
         }
 
-        protected Uri GetUri(String subUri)
+        protected Uri GetUri(string subUri)
         {
             return new Uri(BaseUri, subUri);
         }
@@ -44,7 +44,7 @@ namespace LiveSplit.Web.SRL
             return gameList;
         }
 
-        public IEnumerable<String> GetGameNames()
+        public IEnumerable<string> GetGameNames()
         {
             if (gameNames == null)
             {
@@ -54,15 +54,15 @@ namespace LiveSplit.Web.SRL
             return gameNames;
         }
 
-        public IEnumerable<String> GetCategories(String gameID)
+        public IEnumerable<string> GetCategories(string gameID)
         {
-            if (String.IsNullOrEmpty(gameID))
-                return new String[0];
+            if (string.IsNullOrEmpty(gameID))
+                return new string[0];
 
-            return ((IEnumerable<dynamic>)JSON.FromUri(GetUri("goals/" + gameID + "?season=0")).goals).Select(x => (String)x.name);
+            return ((IEnumerable<dynamic>)JSON.FromUri(GetUri("goals/" + gameID + "?season=0")).goals).Select(x => (string)x.name);
         }
 
-        public String GetGameIDFromName (String name)
+        public string GetGameIDFromName (string name)
         {
             Func<dynamic, bool> map = x => x.name == name;
             var gameID = GetGameList().Where(map).FirstOrDefault();
@@ -71,13 +71,13 @@ namespace LiveSplit.Web.SRL
             return null;
         }
 
-        public IEnumerable<dynamic> GetEntrants(String raceID)
+        public IEnumerable<dynamic> GetEntrants(string raceID)
         {
             var race = GetRace(raceID);
             return race.entrants;
         }
 
-        public dynamic GetRace(String raceID)
+        public dynamic GetRace(string raceID)
         {
             var races = GetRaces();
             return races.First(x => x.id == raceID);
@@ -91,13 +91,13 @@ namespace LiveSplit.Web.SRL
             return racesList;
         }
 
-        public Image GetGameImage(String gameId)
+        public Image GetGameImage(string gameId)
         {
             if (!imageList.ContainsKey(gameId))
             {
                 try
                 {
-                    var request = HttpWebRequest.Create(String.Format("http://c15111072.r72.cf2.rackcdn.com/{0}.jpg", gameId));
+                    var request = WebRequest.Create(string.Format("http://c15111072.r72.cf2.rackcdn.com/{0}.jpg", gameId));
 
                     using (var stream = request.GetResponse().GetResponseStream())
                     {

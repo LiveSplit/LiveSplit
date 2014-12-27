@@ -18,10 +18,10 @@ namespace LiveSplit.Web.Share
 
         public class IdPair
         {
-            public String Id { get; set; }
-            public String Value { get; set; }
+            public string Id { get; set; }
+            public string Value { get; set; }
 
-            public IdPair(String id, String value)
+            public IdPair(string id, string value)
             {
                 Id = id;
                 Value = value;
@@ -30,11 +30,11 @@ namespace LiveSplit.Web.Share
 
         public class WorldRecord
         {
-            public String NickName { get; protected set; }
+            public string NickName { get; protected set; }
             public TimeSpan Time { get; protected set; }
             public bool IsAccurate { get; protected set; }
 
-            public WorldRecord(String nickName, TimeSpan time, bool isAccurate = true)
+            public WorldRecord(string nickName, TimeSpan time, bool isAccurate = true)
             {
                 NickName = nickName;
                 Time = time;
@@ -47,21 +47,21 @@ namespace LiveSplit.Web.Share
             var json = JSON.FromUriPost(ServerUri, 
                 "type", "gamelist");
 
-            Func<KeyValuePair<String, dynamic>, IdPair> selector = a => new IdPair(a.Key, a.Value.ToString());
-            return ((IDictionary<String, dynamic>)(json.data.Properties)).Select(selector).ToList();
+            Func<KeyValuePair<string, dynamic>, IdPair> selector = a => new IdPair(a.Key, a.Value.ToString());
+            return ((IDictionary<string, dynamic>)(json.data.Properties)).Select(selector).ToList();
         }
 
-        public IEnumerable<IdPair> GetGameCategories(String gameId)
+        public IEnumerable<IdPair> GetGameCategories(string gameId)
         {
             var json = JSON.FromUriPost(ServerUri, 
                 "type", "gamecategories", 
                 "game", gameId);
 
-            Func<KeyValuePair<String, dynamic>, IdPair> selector = a => new IdPair(a.Key, a.Value.ToString());
-            return ((IDictionary<String, dynamic>)(json.data.Properties)).Select(selector).ToList();
+            Func<KeyValuePair<string, dynamic>, IdPair> selector = a => new IdPair(a.Key, a.Value.ToString());
+            return ((IDictionary<string, dynamic>)(json.data.Properties)).Select(selector).ToList();
         }
 
-        public WorldRecord GetWorldRecord(String gameId, String categoryId)
+        public WorldRecord GetWorldRecord(string gameId, string categoryId)
         {
             try
             {
@@ -79,7 +79,7 @@ namespace LiveSplit.Web.Share
             return null;
         }
 
-        public bool VerifyLogin(String username, String password)
+        public bool VerifyLogin(string username, string password)
         {
             try
             {
@@ -98,12 +98,12 @@ namespace LiveSplit.Web.Share
         }
 
         public dynamic SubmitRun(
-            IRun run, 
-            String username, String password, 
-            String gameId, String categoryId, 
-            String version, String comment,
-            String video,
-            params String[] additionalParams)
+            IRun run,
+            string username, string password,
+            string gameId, string categoryId,
+            string version, string comment,
+            string video,
+            params string[] additionalParams)
         {
             var timeFormatter = new ASUPTimeFormatter();
 
@@ -120,7 +120,7 @@ namespace LiveSplit.Web.Share
             splitsBuilder.Length -= 2;
             splitsBuilder.Append("]");
 
-            var elements = new String[]
+            var elements = new string[]
             {
                 "type", "submitrun", 
                 "username", username,

@@ -13,7 +13,7 @@ namespace LiveSplit.Model
         /// <param name="comparison">The comparison that you are comparing with.</param>
         /// <param name="method">The timing method that you are comparing with.</param>
         /// <returns>Returns the last non-live delta or null if there have been no deltas yet.</returns>
-        public static TimeSpan? GetLastDelta(LiveSplitState state, int splitNumber, String comparison, TimingMethod method)
+        public static TimeSpan? GetLastDelta(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
         {
             for (int x = splitNumber; x >= 0; x--)
             {
@@ -33,7 +33,7 @@ namespace LiveSplit.Model
         /// <param name="comparison">The comparison that you are comparing with.</param>
         /// <param name="method">The timing method that you are comparing with.</param>
         /// <returns>Returns the current segment or delta time.</returns>
-        public static TimeSpan? GetPreviousSegment(LiveSplitState state, int splitNumber, bool liveSegment, bool currentSegment, String comparison, TimingMethod method)
+        public static TimeSpan? GetPreviousSegment(LiveSplitState state, int splitNumber, bool liveSegment, bool currentSegment, string comparison, TimingMethod method)
         {
             if (!liveSegment && (state.Run[splitNumber].SplitTime[method] == null)) return null;
             TimeSpan? currentTime;
@@ -65,7 +65,7 @@ namespace LiveSplit.Model
         /// <param name="comparison">The comparison that you are comparing with.</param>
         /// <param name="method">The timing method that you are comparing with.</param>
         /// <returns>Returns the current live delta.</returns>
-        public static TimeSpan? CheckLiveDelta(LiveSplitState state, bool showWhenBehind, String comparison, TimingMethod method)
+        public static TimeSpan? CheckLiveDelta(LiveSplitState state, bool showWhenBehind, string comparison, TimingMethod method)
         {
             var useBestSegment = state.LayoutSettings.ShowBestSegments;
             if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
@@ -104,7 +104,7 @@ namespace LiveSplit.Model
         /// <param name="comparison">The comparison that you are comparing this delta to.</param>
         /// <param name="method">The timing method that you are comparing this delta to.</param>
         /// <returns>Returns the chosen split color.</returns>
-        public static Color? GetSplitColor(LiveSplitState state, TimeSpan? timeDifference, int segmentType, int splitNumber, String comparison, TimingMethod method)
+        public static Color? GetSplitColor(LiveSplitState state, TimeSpan? timeDifference, int segmentType, int splitNumber, string comparison, TimingMethod method)
         {
             Color? splitColor = null;
             if (splitNumber < 0)

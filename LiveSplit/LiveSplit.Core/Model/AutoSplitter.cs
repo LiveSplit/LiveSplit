@@ -15,12 +15,12 @@ namespace LiveSplit.Model
     }
     public class AutoSplitter
     {
-        public String Description { get; set; }
-        public IEnumerable<String> Games { get; set; }
+        public string Description { get; set; }
+        public IEnumerable<string> Games { get; set; }
         public bool IsActivated { get { return Component != null; } }
-        public List<String> URLs { get; set; }
-        public String LocalPath { get { return Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, FileName)); } }
-        public String FileName { get { return URLs.First().Substring(URLs.First().LastIndexOf('/') + 1); } }
+        public List<string> URLs { get; set; }
+        public string LocalPath { get { return Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, FileName)); } }
+        public string FileName { get { return URLs.First().Substring(URLs.First().LastIndexOf('/') + 1); } }
         public AutoSplitterType Type { get; set; }
         public bool ShowInLayoutEditor { get; set; }
         public IComponent Component { get; set; }

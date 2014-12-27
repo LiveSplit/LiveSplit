@@ -9,11 +9,11 @@ namespace LiveSplit.UI.Components
         /// <summary>
         /// Returns the name of the component.
         /// </summary>
-        String ComponentName { get; }
+        string ComponentName { get; }
         /// <summary>
         /// Returns a description of the component.
         /// </summary>
-        String Description { get; }
+        string Description { get; }
         /// <summary>
         /// Returns the category of the component.
         /// </summary>

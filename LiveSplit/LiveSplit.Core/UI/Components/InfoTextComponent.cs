@@ -8,16 +8,16 @@ namespace LiveSplit.UI.Components
 {
     public class InfoTextComponent : IComponent
     {
-        public String InformationName { get { return NameLabel.Text; } set { NameLabel.Text = value; } }
-        public String InformationValue { get { return ValueLabel.Text; } set { ValueLabel.Text = value; } }
+        public string InformationName { get { return NameLabel.Text; } set { NameLabel.Text = value; } }
+        public string InformationValue { get { return ValueLabel.Text; } set { ValueLabel.Text = value; } }
 
-        public ICollection<String> AlternateNameText { get { return NameLabel.AlternateText; } set { NameLabel.AlternateText = value; } }
+        public ICollection<string> AlternateNameText { get { return NameLabel.AlternateText; } set { NameLabel.AlternateText = value; } }
         //public ICollection<String> AlternateValueText { get { return ValueLabel.AlternateText; } set { ValueLabel.AlternateText = value; } }
 
         public SimpleLabel NameLabel { get; protected set; }
         public SimpleLabel ValueLabel { get; protected set; }
 
-        public String LongestString { get; set; }
+        public string LongestString { get; set; }
         protected SimpleLabel NameMeasureLabel { get; set; }
 
         public float PaddingTop { get; set; }
@@ -41,7 +41,7 @@ namespace LiveSplit.UI.Components
 
         public float MinimumHeight { get; set; }
 
-        public InfoTextComponent(String informationName, String informationValue)
+        public InfoTextComponent(string informationName, string informationValue)
         {
             NameLabel = new SimpleLabel()
             {
@@ -154,7 +154,6 @@ namespace LiveSplit.UI.Components
         {
             get { throw new NotSupportedException(); }
         }
-
 
         public Control GetSettingsControl(LayoutMode mode)
         {

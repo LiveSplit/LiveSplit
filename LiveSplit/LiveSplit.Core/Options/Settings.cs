@@ -19,9 +19,9 @@ namespace LiveSplit.Options
         public KeyOrButton ScrollDown { get; set; }
         public KeyOrButton SwitchComparisonPrevious { get; set; }
         public KeyOrButton SwitchComparisonNext { get; set; }
-        public IList<String> RecentSplits { get; set; }
-        public IList<String> RecentLayouts { get; set; }
-        public String LastComparison { get; set; }
+        public IList<string> RecentSplits { get; set; }
+        public IList<string> RecentLayouts { get; set; }
+        public string LastComparison { get; set; }
         public TimingMethod LastTimingMethod { get; set; }
         public float HotkeyDelay { get; set; }
         public bool GlobalHotkeysEnabled { get; set; }
@@ -31,42 +31,42 @@ namespace LiveSplit.Options
         public bool AgreedToSRLRules { get; set; }
         public bool SimpleSumOfBest { get; set; }
         public IRaceViewer RaceViewer { get; set; }
-        public IList<String> ActiveAutoSplitters { get; set; }
+        public IList<string> ActiveAutoSplitters { get; set; }
 
         public Settings()
         {
             RecentSplits = new List<string>();
             RecentLayouts = new List<string>();
-            ActiveAutoSplitters = new List<String>();
+            ActiveAutoSplitters = new List<string>();
         }
 
         public object Clone()
         {
             return new Settings()
             {
-                SplitKey = this.SplitKey,
-                ResetKey = this.ResetKey,
-                SkipKey = this.SkipKey,
-                UndoKey = this.UndoKey,
-                PauseKey = this.PauseKey,
-                ScrollUp = this.ScrollUp,
-                ScrollDown = this.ScrollDown,
-                SwitchComparisonPrevious = this.SwitchComparisonPrevious,
-                SwitchComparisonNext = this.SwitchComparisonNext,
-                ToggleGlobalHotkeys = this.ToggleGlobalHotkeys,
-                GlobalHotkeysEnabled = this.GlobalHotkeysEnabled,
-                DeactivateHotkeysForOtherPrograms = this.DeactivateHotkeysForOtherPrograms,
-                WarnOnReset = this.WarnOnReset,
-                DoubleTapPrevention = this.DoubleTapPrevention,
-                RecentSplits = new List<String>(this.RecentSplits),
-                RecentLayouts = new List<String>(this.RecentLayouts),
-                LastComparison = this.LastComparison,
-                LastTimingMethod = this.LastTimingMethod,
-                HotkeyDelay = this.HotkeyDelay,
-                RaceViewer = this.RaceViewer,
-                AgreedToSRLRules = this.AgreedToSRLRules,
-                SimpleSumOfBest = this.SimpleSumOfBest,
-                ActiveAutoSplitters = new List<String>(this.ActiveAutoSplitters)
+                SplitKey = SplitKey,
+                ResetKey = ResetKey,
+                SkipKey = SkipKey,
+                UndoKey = UndoKey,
+                PauseKey = PauseKey,
+                ScrollUp = ScrollUp,
+                ScrollDown = ScrollDown,
+                SwitchComparisonPrevious = SwitchComparisonPrevious,
+                SwitchComparisonNext = SwitchComparisonNext,
+                ToggleGlobalHotkeys = ToggleGlobalHotkeys,
+                GlobalHotkeysEnabled = GlobalHotkeysEnabled,
+                DeactivateHotkeysForOtherPrograms = DeactivateHotkeysForOtherPrograms,
+                WarnOnReset = WarnOnReset,
+                DoubleTapPrevention = DoubleTapPrevention,
+                RecentSplits = new List<string>(RecentSplits),
+                RecentLayouts = new List<string>(RecentLayouts),
+                LastComparison = LastComparison,
+                LastTimingMethod = LastTimingMethod,
+                HotkeyDelay = HotkeyDelay,
+                RaceViewer = RaceViewer,
+                AgreedToSRLRules = AgreedToSRLRules,
+                SimpleSumOfBest = SimpleSumOfBest,
+                ActiveAutoSplitters = new List<string>(ActiveAutoSplitters)
             };
         }
 

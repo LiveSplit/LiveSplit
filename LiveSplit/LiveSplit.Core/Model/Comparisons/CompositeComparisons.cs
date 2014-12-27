@@ -5,7 +5,7 @@ namespace LiveSplit.Model.Comparisons
 {
     public class CompositeComparisons : IComparisons
     {
-        protected IDictionary<String, Time> Comparisons { get; set; }
+        protected IDictionary<string, Time> Comparisons { get; set; }
 
         public CompositeComparisons()
         {
@@ -105,13 +105,13 @@ namespace LiveSplit.Model.Comparisons
         public object Clone()
         {
             var clone = new CompositeComparisons();
-            clone.Comparisons = new Dictionary<String, Time>(Comparisons);
+            clone.Comparisons = new Dictionary<string, Time>(Comparisons);
             return clone;
         }
 
-        private static Func<String, String> GetShortComparisonNameFunc { get; set; }
+        private static Func<string, string> GetShortComparisonNameFunc { get; set; }
 
-        public static void AddShortComparisonName(String longName, String shortName)
+        public static void AddShortComparisonName(string longName, string shortName)
         {
             if (GetShortComparisonNameFunc == null)
             {
@@ -134,7 +134,7 @@ namespace LiveSplit.Model.Comparisons
             }
         }
 
-        public static String GetShortComparisonName(String longName)
+        public static string GetShortComparisonName(string longName)
         {
             if (GetShortComparisonNameFunc == null)
                 return longName;

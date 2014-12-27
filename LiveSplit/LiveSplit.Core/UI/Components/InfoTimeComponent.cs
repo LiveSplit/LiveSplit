@@ -39,7 +39,7 @@ namespace LiveSplit.UI.Components
             }
         }
 
-        public InfoTimeComponent(String informationName, TimeSpan? timeValue, ITimeFormatter formatter)
+        public InfoTimeComponent(string informationName, TimeSpan? timeValue, ITimeFormatter formatter)
             : base(informationName, "")
         {
             Formatter = formatter;

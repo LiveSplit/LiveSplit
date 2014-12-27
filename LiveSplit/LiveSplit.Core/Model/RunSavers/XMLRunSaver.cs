@@ -8,7 +8,7 @@ namespace LiveSplit.Model.RunSavers
 {
     public class XMLRunSaver : IRunSaver
     {
-        private XmlElement CreateImageElement(XmlDocument document, String elementName, Image image)
+        private XmlElement CreateImageElement(XmlDocument document, string elementName, Image image)
         {
             var element = document.CreateElement(elementName);
 

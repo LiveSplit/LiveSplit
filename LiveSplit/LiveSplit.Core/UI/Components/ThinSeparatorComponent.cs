@@ -100,7 +100,6 @@ namespace LiveSplit.UI.Components
             throw new NotImplementedException();
         }
 
-
         public System.Xml.XmlNode GetSettings(System.Xml.XmlDocument document)
         {
             throw new NotImplementedException();

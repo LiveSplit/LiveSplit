@@ -8,11 +8,11 @@ namespace LiveSplit.Model.Comparisons
     public class MedianSegmentsComparisonGenerator : IComparisonGenerator
     {
         public IRun Run { get; set; }
-        public const String ComparisonName = "Median Segments"; //you win glacials
-        public const String ShortComparisonName = "Median";
+        public const string ComparisonName = "Median Segments"; //you win glacials
+        public const string ShortComparisonName = "Median";
         public const double Weight = 0.75;
 
-        public String Name { get { return ComparisonName; } }
+        public string Name { get { return ComparisonName; } }
 
         public MedianSegmentsComparisonGenerator(IRun run)
         {

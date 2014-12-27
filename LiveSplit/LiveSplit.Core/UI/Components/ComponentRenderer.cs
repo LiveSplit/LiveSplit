@@ -191,8 +191,8 @@ namespace LiveSplit.UI.Components
         {
             var oldTransform = invalidator.Transform.Clone();
             var scaleFactor = mode == LayoutMode.Vertical
-                    ? (float)height / OverallHeight
-                    : (float)width / OverallWidth;
+                    ? height / OverallHeight
+                    : width / OverallWidth;
 
             for (var ind = 0; ind < VisibleComponents.Count(); ind++)
             {

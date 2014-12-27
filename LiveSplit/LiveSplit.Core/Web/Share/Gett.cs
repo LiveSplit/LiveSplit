@@ -24,7 +24,7 @@ namespace LiveSplit.Web.Share
 
         protected Gett() { }
 
-        protected Uri GetUri(String subUri)
+        protected Uri GetUri(string subUri)
         {
             return new Uri(BaseUri, subUri);
         }
@@ -34,7 +34,7 @@ namespace LiveSplit.Web.Share
             get { return "Ge.tt"; }
         }
 
-        public String Description
+        public string Description
         {
             get
             {
@@ -77,9 +77,9 @@ namespace LiveSplit.Web.Share
             return true;
         }
 
-        public String LoginAnonymous()
+        public string LoginAnonymous()
         {
-            var request = (HttpWebRequest)HttpWebRequest.Create("http://ge.tt/");
+            var request = (HttpWebRequest)WebRequest.Create("http://ge.tt/");
             var response = request.GetResponse();
             var cookies = response.Headers.GetValues("set-cookie")[0];
             var remaining = cookies.Substring(cookies.IndexOf("accesstoken%22%3A%22") + "accesstoken%22%3A%22".Length);
@@ -88,21 +88,21 @@ namespace LiveSplit.Web.Share
             return accesstoken;
         }
 
-        public dynamic CreateShare(String accessToken, String title = null)
+        public dynamic CreateShare(string accessToken, string title = null)
         {
-            var uri = GetUri(String.Format("/1/shares/create?accesstoken={0}", accessToken));
-            return JSON.FromUriPost(uri, title != null ? new String[] { "title", title } : new String[0]);
+            var uri = GetUri(string.Format("/1/shares/create?accesstoken={0}", accessToken));
+            return JSON.FromUriPost(uri, title != null ? new string[] { "title", title } : new string[0]);
         }
 
-        public dynamic CreateFile(String accessToken, String shareName, String fileName)
+        public dynamic CreateFile(string accessToken, string shareName, string fileName)
         {
-            var uri = GetUri(String.Format("/1/files/{0}/create?accesstoken={1}", shareName, accessToken));
+            var uri = GetUri(string.Format("/1/files/{0}/create?accesstoken={1}", shareName, accessToken));
             return JSON.FromUriPost(uri, "filename", fileName);
         }
 
-        public void UploadFile(String postUrl, Stream dataStream)
+        public void UploadFile(string postUrl, Stream dataStream)
         {
-            var request = (HttpWebRequest)HttpWebRequest.Create(postUrl);
+            var request = (HttpWebRequest)WebRequest.Create(postUrl);
             request.Method = "POST";
 
             using (var stream = request.GetRequestStream())
@@ -125,7 +125,7 @@ namespace LiveSplit.Web.Share
             var response = request.GetResponse();
         }
 
-        public void UploadRun(IRun run, String postUrl)
+        public void UploadRun(IRun run, string postUrl)
         {
             using (var memoryStream = new MemoryStream())
             {
@@ -136,7 +136,7 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        public void UploadImage(Image image, String postUrl)
+        public void UploadImage(Image image, string postUrl)
         {
             using (var memoryStream = new MemoryStream())
             {
@@ -154,8 +154,8 @@ namespace LiveSplit.Web.Share
             var titleBuilder = new StringBuilder();
             titleBuilder.Append("Splits");
 
-            var gameNameEmpty = String.IsNullOrEmpty(run.GameName);
-            var categoryEmpty = String.IsNullOrEmpty(run.CategoryName);
+            var gameNameEmpty = string.IsNullOrEmpty(run.GameName);
+            var categoryEmpty = string.IsNullOrEmpty(run.CategoryName);
 
             if (!gameNameEmpty || !categoryEmpty)
             {
@@ -171,23 +171,23 @@ namespace LiveSplit.Web.Share
             }
 
             var shareData = CreateShare(accessToken, titleBuilder.ToString());
-            var shareName = (String)shareData.sharename;
+            var shareName = (string)shareData.sharename;
 
             var fileData = CreateFile(accessToken, shareName, titleBuilder + ".lss");
-            var postUrl = (String)fileData.upload.posturl;
+            var postUrl = (string)fileData.upload.posturl;
 
             UploadRun(run, postUrl);
 
             if (screenShotFunction != null)
             {
                 fileData = CreateFile(accessToken, shareName, "Screenshot.png");
-                postUrl = (String)fileData.upload.posturl;
+                postUrl = (string)fileData.upload.posturl;
 
                 var image = screenShotFunction();
                 UploadImage(image, postUrl);
             }
 
-            var url = (String)shareData.getturl;
+            var url = (string)shareData.getturl;
             Process.Start(url);
             Clipboard.SetText(url);
 

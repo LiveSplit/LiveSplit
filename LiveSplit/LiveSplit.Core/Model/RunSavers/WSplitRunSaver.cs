@@ -6,7 +6,7 @@ namespace LiveSplit.Model.RunSavers
 {
     public class WSplitRunSaver : IRunSaver
     {
-        protected String Escape(String text)
+        protected string Escape(string text)
         {
             return text.Replace(@",", @"‡");
         }
@@ -17,11 +17,11 @@ namespace LiveSplit.Model.RunSavers
 
             writer.Write("Title=");
 
-            if (!String.IsNullOrEmpty(run.GameName))
+            if (!string.IsNullOrEmpty(run.GameName))
             {
                 writer.Write(Escape(run.GameName));
 
-                if (!String.IsNullOrEmpty(run.CategoryName))
+                if (!string.IsNullOrEmpty(run.CategoryName))
                     writer.Write(" - ");
             }
 

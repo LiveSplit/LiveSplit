@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
-using System.Linq;
 using System.IO;
 using System.Net;
 using System.Web;
@@ -25,7 +24,7 @@ namespace LiveSplit.Web.Share
         public static readonly Uri BaseUri = new Uri("http://splits.io/");
         public static readonly Uri APIUri = new Uri(BaseUri, "api/v2/");
 
-        public const String NoTime = "0.0";
+        public const string NoTime = "0.0";
 
         protected SplitsIO() { }
 
@@ -34,7 +33,7 @@ namespace LiveSplit.Web.Share
             get { return "Splits.io"; }
         }
 
-        public String Description
+        public string Description
         {
             get 
             {
@@ -49,12 +48,12 @@ namespace LiveSplit.Web.Share
 
         public ISettings Settings { get; set; }
 
-        public Uri GetSiteUri(String subUri)
+        public Uri GetSiteUri(string subUri)
         {
             return new Uri(BaseUri, subUri);
         }
 
-        public Uri GetAPIUri(String subUri)
+        public Uri GetAPIUri(string subUri)
         {
             return new Uri(APIUri, subUri);
         }
@@ -73,7 +72,7 @@ namespace LiveSplit.Web.Share
 
         string IRunUploadPlatform.GetGameIdByName(string gameName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameCategories(string gameId)
@@ -83,7 +82,7 @@ namespace LiveSplit.Web.Share
 
         string IRunUploadPlatform.GetCategoryIdByName(string gameId, string categoryName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         bool IRunUploadPlatform.VerifyLogin(string username, string password)
@@ -93,36 +92,36 @@ namespace LiveSplit.Web.Share
 
         #endregion
 
-        public IEnumerable<dynamic> SearchGame(String name)
+        public IEnumerable<dynamic> SearchGame(string name)
         {
             var escapedName = HttpUtility.UrlPathEncode(name);
-            var uri = GetAPIUri(String.Format("games?fuzzyname={0}", escapedName));
+            var uri = GetAPIUri(string.Format("games?fuzzyname={0}", escapedName));
             var response = JSON.FromUri(uri);
             return (response.games as IEnumerable<dynamic>) ?? new dynamic[0];
         }
 
         public dynamic GetGameById(int gameId)
         {
-            var uri = GetAPIUri(String.Format("games/{0}", gameId));
+            var uri = GetAPIUri(string.Format("games/{0}", gameId));
             var response = JSON.FromUri(uri);
             return response.game;
         }
 
         public IEnumerable<dynamic> GetRunsForCategory(int categoryId)
         {
-            var uri = GetAPIUri(String.Format("runs?category_id={0}", categoryId));
+            var uri = GetAPIUri(string.Format("runs?category_id={0}", categoryId));
             var response = JSON.FromUri(uri);
             return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
         }
 
         public dynamic GetRunById(int runId)
         {
-            var uri = GetAPIUri(String.Format("runs/{0}", runId));
+            var uri = GetAPIUri(string.Format("runs/{0}", runId));
             var response = JSON.FromUri(uri);
             return response.run;
         }
 
-        public IRun DownloadRunByPath(String path)
+        public IRun DownloadRunByPath(string path)
         {
             var uri = GetSiteUri(path);
             return DownloadRunByUri(uri);
@@ -130,9 +129,9 @@ namespace LiveSplit.Web.Share
 
         public IRun DownloadRunByUri(Uri uri)
         {
-            var downloadUri = GetSiteUri(String.Format("{0}/download/livesplit", uri.LocalPath));
+            var downloadUri = GetSiteUri(string.Format("{0}/download/livesplit", uri.LocalPath));
 
-            var request = HttpWebRequest.Create(downloadUri);
+            var request = WebRequest.Create(downloadUri);
             using (var stream = request.GetResponse().GetResponseStream())
             {
                 using (var memoryStream = new MemoryStream())
@@ -157,9 +156,9 @@ namespace LiveSplit.Web.Share
             return DownloadRunByUri(uri);
         }
 
-        public String Share(IRun run, Func<Image> screenShotFunction = null)
+        public string Share(IRun run, Func<Image> screenShotFunction = null)
         {
-            String image_url = null;
+            string image_url = null;
 
             if (screenShotFunction != null)
             {
@@ -172,10 +171,10 @@ namespace LiveSplit.Web.Share
                     image = new Bitmap(image, (int)(factor * image.Width + 0.5), (int)(factor * image.Height + 0.5));
                 }
                 var result = Imgur.Instance.UploadImage(image);
-                image_url = (String)result.data.link;
+                image_url = (string)result.data.link;
             }
 
-            var request = (HttpWebRequest)HttpWebRequest.Create("http://splits.io/api/v2/runs");
+            var request = (HttpWebRequest)WebRequest.Create("http://splits.io/api/v2/runs");
             request.Method = "POST";
             request.Host = "splits.io";
             request.UserAgent = "LiveSplit/" + UpdateHelper.Version.ToString();

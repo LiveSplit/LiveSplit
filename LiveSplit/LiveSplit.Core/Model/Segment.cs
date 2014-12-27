@@ -9,7 +9,7 @@ namespace LiveSplit.Model
     public class Segment : ISegment
     {
         public Image Icon { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
         public Time PersonalBestSplitTime
         {
             get { return Comparisons[Run.PersonalBestComparisonName]; }
@@ -21,7 +21,7 @@ namespace LiveSplit.Model
         public IList<IIndexedTime> SegmentHistory { get; set;}
         
         public Segment(
-            String name, Time pbSplitTime = default(Time), 
+            string name, Time pbSplitTime = default(Time), 
             Time bestSegmentTime = default(Time), Image icon = null,
             Time splitTime = default(Time))
         {
@@ -37,16 +37,16 @@ namespace LiveSplit.Model
         public object Clone()
         {
             var newSegmentHistory = new List<IIndexedTime>();
-            foreach (var element in this.SegmentHistory)
+            foreach (var element in SegmentHistory)
                 newSegmentHistory.Add(new IndexedTime(element.Time, element.Index));
 
             return new Segment(Name)
             {
-                BestSegmentTime = this.BestSegmentTime,
-                SplitTime = this.SplitTime,
-                Icon = this.Icon, //TODO: Should be a clone //(this.Icon != null) ? this.Icon.Clone() as Image : null,
+                BestSegmentTime = BestSegmentTime,
+                SplitTime = SplitTime,
+                Icon = Icon, //TODO: Should be a clone //(this.Icon != null) ? this.Icon.Clone() as Image : null,
                 SegmentHistory = newSegmentHistory,
-                Comparisons = (IComparisons)this.Comparisons.Clone()
+                Comparisons = (IComparisons)Comparisons.Clone()
             };
         }
     }

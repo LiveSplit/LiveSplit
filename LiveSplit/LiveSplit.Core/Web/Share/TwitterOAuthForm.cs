@@ -1,13 +1,6 @@
 ﻿using LinqToTwitter;
 using LiveSplit.Options;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share
@@ -81,8 +74,8 @@ namespace LiveSplit.Web.Share
 
                     Action closeAction = () => Close();
 
-                    if (this.InvokeRequired)
-                        this.Invoke(closeAction);
+                    if (InvokeRequired)
+                        Invoke(closeAction);
                     else
                         closeAction();
                 }

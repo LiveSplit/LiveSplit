@@ -15,18 +15,18 @@ namespace LiveSplit.Web.Share
 {
     public class Twitch : IRunUploadPlatform
     {
-        internal const String ClientId = "lkz3x9qaxaeujde1tvq21r8d7cdr40x";
+        internal const string ClientId = "lkz3x9qaxaeujde1tvq21r8d7cdr40x";
 
         public static readonly Uri BaseUri = new Uri("https://api.twitch.tv/kraken/");
 
         protected static Twitch _Instance = new Twitch();
         public static Twitch Instance { get { return _Instance; } }
 
-        protected String AccessToken { get; set; }
-        public String ChannelName { get; protected set; }
+        protected string AccessToken { get; set; }
+        public string ChannelName { get; protected set; }
 
-        internal List<String> _Subscribers;
-        public IEnumerable<String> Subscribers
+        internal List<string> _Subscribers;
+        public IEnumerable<string> Subscribers
         {
             get
             {
@@ -39,9 +39,9 @@ namespace LiveSplit.Web.Share
                         dynamic result = null;
                         do
                         {
-                            result = curl(String.Format("channels/{0}/subscriptions?limit=100&offset={1}", HttpUtility.UrlEncode(ChannelName), offset));
+                            result = curl(string.Format("channels/{0}/subscriptions?limit=100&offset={1}", HttpUtility.UrlEncode(ChannelName), offset));
                             var subscribers = (IEnumerable<dynamic>)result.subscriptions;
-                            var subscriberNames = subscribers.Select(new Func<dynamic, String>(x => x.user.display_name));
+                            var subscriberNames = subscribers.Select(new Func<dynamic, string>(x => x.user.display_name));
                             _Subscribers.AddRange(subscriberNames);
                         } while ((offset += 100) < result._total);
                     }
@@ -88,7 +88,7 @@ namespace LiveSplit.Web.Share
                             var run = state.Run;
 
                             var deltaFormatter = new DeltaTimeFormatter();
-                            var title = String.Format("{0} - {1} Speedrun", run.GameName, run.CategoryName);
+                            var title = string.Format("{0} - {1} Speedrun", run.GameName, run.CategoryName);
 
                             if (phase == TimerPhase.Running)
                             {
@@ -97,7 +97,7 @@ namespace LiveSplit.Web.Share
                                     var lastSplit = run[state.CurrentSplitIndex - 1];
                                     var delta = deltaFormatter.Format(lastSplit.SplitTime[state.CurrentTimingMethod] - lastSplit.PersonalBestSplitTime[state.CurrentTimingMethod]);
                                     var splitname = lastSplit.Name;
-                                    title = String.Format("{0} ({1} on {2})", title, delta, splitname);
+                                    title = string.Format("{0} ({1} on {2})", title, delta, splitname);
                                 }
                             }
 
@@ -117,7 +117,7 @@ namespace LiveSplit.Web.Share
         {
             get
             {
-                return !String.IsNullOrEmpty(ChannelName);
+                return !string.IsNullOrEmpty(ChannelName);
             }
         }
 
@@ -125,7 +125,7 @@ namespace LiveSplit.Web.Share
         { 
         }
 
-        protected Uri GetUri(String subUri)
+        protected Uri GetUri(string subUri)
         {
             return new Uri(BaseUri, subUri);
         }
@@ -157,7 +157,7 @@ namespace LiveSplit.Web.Share
 
         public string GetGameIdByName(string gameName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         public IEnumerable<ASUP.IdPair> GetGameCategories(string gameId)
@@ -167,7 +167,7 @@ namespace LiveSplit.Web.Share
 
         public string GetCategoryIdByName(string gameId, string categoryName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         public bool VerifyLogin(string username, string password)
@@ -199,15 +199,15 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        protected dynamic curl(String subUri, String method = "GET", String data = "")
+        protected dynamic curl(string subUri, string method = "GET", string data = "")
         {
             var uri = GetUri(subUri);
-            var request = (HttpWebRequest)HttpWebRequest.Create(uri);
+            var request = (HttpWebRequest)WebRequest.Create(uri);
             request.Method = method;
             request.Accept = "application/vnd.twitchtv.v3+json";
-            if (!String.IsNullOrEmpty(AccessToken))
-                request.Headers.Add(String.Format("Authorization: OAuth {0}", AccessToken));
-            if (!String.IsNullOrEmpty(data))
+            if (!string.IsNullOrEmpty(AccessToken))
+                request.Headers.Add(string.Format("Authorization: OAuth {0}", AccessToken));
+            if (!string.IsNullOrEmpty(data))
             {
                 request.ContentType = "application/json; charset=utf-8";
                 using (var writer = new StreamWriter(request.GetRequestStream()))
@@ -225,12 +225,12 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        public bool SetStreamTitleAndGame(String title, String game = null)
+        public bool SetStreamTitleAndGame(string title, string game = null)
         {
             dynamic result = curl(
-                String.Format("channels/{0}", ChannelName),
+                string.Format("channels/{0}", ChannelName),
                 "PUT",
-                String.Format("{{" +
+                string.Format("{{" +
                     "\"channel\":{{" +
                     "\"status\":\"{0}\"" +
                     (game == null ? "" : ",\"game\":\"{1}\"") +
@@ -256,17 +256,17 @@ namespace LiveSplit.Web.Share
             return false;
         }
 
-        public dynamic SearchGame(String name)
+        public dynamic SearchGame(string name)
         {
-            return curl(String.Format("search/games?q={0}&type=suggest", HttpUtility.UrlEncode(name)));
+            return curl(string.Format("search/games?q={0}&type=suggest", HttpUtility.UrlEncode(name)));
         }
 
-        public IEnumerable<String> FindGame(String name)
+        public IEnumerable<string> FindGame(string name)
         {
             var result = SearchGame(name);
             var games = (IEnumerable<dynamic>)result.games;
 
-            Func<dynamic, String> func = x => x.name;
+            Func<dynamic, string> func = x => x.name;
             return games.Select(func);
         }
 
@@ -275,7 +275,7 @@ namespace LiveSplit.Web.Share
             return curl("");
         }
 
-        public Image GetGameBoxArt(String gameName)
+        public Image GetGameBoxArt(string gameName)
         {
             var url = ((IEnumerable<dynamic>)(SearchGame(gameName).games)).First().box.large;
             var request = WebRequest.Create(url);
@@ -299,8 +299,8 @@ namespace LiveSplit.Web.Share
                 if (!VerifyLogin(username, password))
                     return false;
             }
-            
-            String game = "";
+
+            string game = "";
 
             try
             {

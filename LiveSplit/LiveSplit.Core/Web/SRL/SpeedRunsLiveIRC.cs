@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LiveSplit.Updates;
 
 namespace LiveSplit.Web.SRL
 {
@@ -32,9 +31,9 @@ namespace LiveSplit.Web.SRL
 
         public bool IsConnected { get { return Client.IsConnected; } }
 
-        public event EventHandlerT<String> ChannelJoined;
-        public event EventHandlerT<String> RawMessageReceived;
-        public event EventHandlerT<Tuple<String, SRLIRCUser, String>> MessageReceived;
+        public event EventHandlerT<string> ChannelJoined;
+        public event EventHandlerT<string> RawMessageReceived;
+        public event EventHandlerT<Tuple<string, SRLIRCUser, string>> MessageReceived;
         public event EventHandlerT<RaceState> StateChanged;
         public event EventHandler UserListRefreshed;
         public event EventHandler GoalChanged;
@@ -45,20 +44,20 @@ namespace LiveSplit.Web.SRL
 
         public System.Timers.Timer RaceBotResponseTimer { get; set; }
 
-        public String Username { get; protected set; }
-        protected String Password { get; set; }
-        protected IList<String> ChannelsToJoin { get; set; }
-        public String GameName { get; set; }
-        public String ChannelTopic { get; set; }
+        public string Username { get; protected set; }
+        protected string Password { get; set; }
+        protected IList<string> ChannelsToJoin { get; set; }
+        public string GameName { get; set; }
+        public string ChannelTopic { get; set; }
 
         protected IrcChannel MainChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.Equals("#speedrunslive")); } }
         protected IrcChannel LiveSplitChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.EndsWith("-livesplit")); } }
         protected IrcChannel RaceChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.StartsWith("#srl") && !x.Name.EndsWith("-livesplit")); } }
 
-        public String LiveSplitChannelName { get { return LiveSplitChannel.Name; } }
-        public String RaceChannelName { get { return RaceChannel == null ? null : RaceChannel.Name; } }
+        public string LiveSplitChannelName { get { return LiveSplitChannel.Name; } }
+        public string RaceChannelName { get { return RaceChannel == null ? null : RaceChannel.Name; } }
 
-        public SpeedRunsLiveIRC(LiveSplitState state, ITimerModel model, IEnumerable<String> channels)
+        public SpeedRunsLiveIRC(LiveSplitState state, ITimerModel model, IEnumerable<string> channels)
         {
             ChannelsToJoin = channels.ToList();
             Client = new IrcClient();
@@ -151,14 +150,14 @@ namespace LiveSplit.Web.SRL
                 GoalChanged(null, null);
         }
 
-        private String Escape(String value)
+        private string Escape(string value)
         {
             // \ -> \\
             // " -> \.
             return value.Replace("\\", "\\\\").Replace("\"", "\\.");
         }
 
-        private String Unescape(String value)
+        private string Unescape(string value)
         {
             // \. -> "
             // \\ -> \
@@ -180,8 +179,8 @@ namespace LiveSplit.Web.SRL
                             timeRTA = timeFormatter.Format(split.SplitTime.RealTime);
                         if (split.SplitTime.GameTime != null)
                             timeIGT = timeFormatter.Format(split.SplitTime.GameTime);
-                        Client.LocalUser.SendMessage(LiveSplitChannel, String.Format(".time \"{0}\" {1}", Escape(split.Name), timeRTA));
-                        Client.LocalUser.SendMessage(LiveSplitChannel, String.Format(".timeGT \"{0}\" {1}", Escape(split.Name), timeIGT));
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".time \"{0}\" {1}", Escape(split.Name), timeRTA));
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".timeGT \"{0}\" {1}", Escape(split.Name), timeIGT));
                 }
             }
 
@@ -202,14 +201,14 @@ namespace LiveSplit.Web.SRL
             {
                 var split = Model.CurrentState.CurrentSplit;
                 var time = "-";
-                Client.LocalUser.SendMessage(LiveSplitChannel, String.Format(".time \"{0}\" {1}", Escape(split.Name), time));
-                Client.LocalUser.SendMessage(LiveSplitChannel, String.Format(".timeGT \"{0}\" {1}", Escape(split.Name), time));
+                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".time \"{0}\" {1}", Escape(split.Name), time));
+                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".timeGT \"{0}\" {1}", Escape(split.Name), time));
             }
         }
 
         void Client_Registered(object sender, EventArgs e)
         {
-            Client.LocalUser.SendMessage("NickServ", String.Format("IDENTIFY {0}", Password));
+            Client.LocalUser.SendMessage("NickServ", string.Format("IDENTIFY {0}", Password));
             Client.LocalUser.JoinedChannel += LocalUser_JoinedChannel;
         }
 
@@ -249,10 +248,10 @@ namespace LiveSplit.Web.SRL
             
 
             if (RawMessageReceived != null)
-                RawMessageReceived(this, String.Format("{0} - {1}", e.Message.Command, e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)));
+                RawMessageReceived(this, string.Format("{0} - {1}", e.Message.Command, e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)));
         }
 
-        protected void ProcessSplit(String user, String segmentName, TimeSpan? time, TimingMethod method)
+        protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)
         {
             var run = Model.CurrentState.Run;
             var comparisonName = "[Race] " + user;
@@ -266,7 +265,7 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-        protected void ProcessRaceChannelMessage(String user, String message)
+        protected void ProcessRaceChannelMessage(string user, string message)
         {
             if (user == "RaceBot")
             {
@@ -332,7 +331,7 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-        protected void AddComparison(String userName)
+        protected void AddComparison(string userName)
         {
             var run = Model.CurrentState.Run;
             var comparisonName = "[Race] " + userName;
@@ -366,7 +365,7 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-        protected void ProcessMainChannelMessage(String user, String message)
+        protected void ProcessMainChannelMessage(string user, string message)
         {
             if ((user == "RaceBot") && RaceChannel == null && message.StartsWith("Race initiated for " + GameName))
             {
@@ -378,8 +377,7 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-
-        protected void ProcessLiveSplitChannelMessage(String user, String message)
+        protected void ProcessLiveSplitChannelMessage(string user, string message)
         {
             if (RaceState == RaceState.RaceStarted || RaceState == RaceState.RaceEnded)
             {
@@ -397,7 +395,7 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-        protected TimeSpan? ParseTime(String timeString)
+        protected TimeSpan? ParseTime(string timeString)
         {
             if (timeString == "-")
                 return null;
@@ -436,7 +434,7 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-        private void Connect(String server, String username, String password)
+        private void Connect(string server, string username, string password)
         {
             Username = username;
             Password = password;
@@ -452,14 +450,13 @@ namespace LiveSplit.Web.SRL
             });
         }
 
-        public void Connect(String username, String password)
+        public void Connect(string username, string password)
         {
             Connect("irc2.speedrunslive.com", username, password);
         }
 
         void Client_Connected(object sender, EventArgs e)
-        {
-            
+        {   
         }
 
         void Client_ConnectFailed(object sender, IrcErrorEventArgs e)

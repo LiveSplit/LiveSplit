@@ -16,11 +16,11 @@ namespace LiveSplit.Model.Input
 
         private HotkeyHook() 
         {
-            this._window.KeyPressed += delegate(object sender, KeyPressedEventArgs args)
+            _window.KeyPressed += delegate(object sender, KeyPressedEventArgs args)
             {
-                if (this.KeyPressed != null)
+                if (KeyPressed != null)
                 {
-                    this.KeyPressed(this, args);
+                    KeyPressed(this, args);
                 }
             };
         }
@@ -32,8 +32,8 @@ namespace LiveSplit.Model.Input
 
             internal KeyPressedEventArgs(ModifierKeys modifier, Keys key)
             {
-                this.Modifier = modifier;
-                this.Key = key;
+                Modifier = modifier;
+                Key = key;
             }
         }
 
@@ -43,27 +43,27 @@ namespace LiveSplit.Model.Input
             public event EventHandler<KeyPressedEventArgs> KeyPressed;
             public Window()
             {
-                this.CreateHandle(new CreateParams());
+                CreateHandle(new CreateParams());
             }
             protected override void WndProc(ref Message m)
             {
                 base.WndProc(ref m);
-                if (m.Msg == HotkeyHook.Window.WM_HOTKEY)
+                if (m.Msg == WM_HOTKEY)
                 {
                     Keys key = (Keys)((int)m.LParam >> 16 & 65535);
                     ModifierKeys modifier = (ModifierKeys)((int)m.LParam & 65535);
-                    if (this.KeyPressed != null)
+                    if (KeyPressed != null)
                     {
-                        this.KeyPressed(this, new KeyPressedEventArgs(modifier, key));
+                        KeyPressed(this, new KeyPressedEventArgs(modifier, key));
                     }
                 }
             }
             public void Dispose()
             {
-                this.DestroyHandle();
+                DestroyHandle();
             }
         }
-        private HotkeyHook.Window _window = new HotkeyHook.Window();
+        private Window _window = new Window();
         private int _currentId;
         public event EventHandler<KeyPressedEventArgs> KeyPressed;
         [DllImport("user32.dll", SetLastError = true)]
@@ -74,8 +74,8 @@ namespace LiveSplit.Model.Input
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
         public void RegisterHotKey(ModifierKeys modifier, Keys key)
         {
-            this._currentId++;
-            if (!HotkeyHook.RegisterHotKey(this._window.Handle, this._currentId, (uint)modifier, (uint)key))
+            _currentId++;
+            if (!RegisterHotKey(_window.Handle, _currentId, (uint)modifier, (uint)key))
             {
                 throw new InvalidOperationException("Couldn’t register the hot key.");
             }
@@ -83,17 +83,17 @@ namespace LiveSplit.Model.Input
 
         public void UnregisterAllHotkeys()
         {
-            for (int i = this._currentId; i > 0; i--)
+            for (int i = _currentId; i > 0; i--)
             {
-                HotkeyHook.UnregisterHotKey(this._window.Handle, i);
+                UnregisterHotKey(_window.Handle, i);
             }
-            this._currentId = 0;
+            _currentId = 0;
         }
 
         public void Dispose()
         {
-            this.UnregisterAllHotkeys();
-            this._window.Dispose();
+            UnregisterAllHotkeys();
+            _window.Dispose();
         }
     }
 }

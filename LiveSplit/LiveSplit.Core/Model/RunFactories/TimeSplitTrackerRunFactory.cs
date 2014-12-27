@@ -9,16 +9,16 @@ namespace LiveSplit.Model.RunFactories
 {
     public class TimeSplitTrackerRunFactory : IRunFactory
     {
-        public String Path { get; set; }
+        public string Path { get; set; }
         public Stream Stream { get; set; }
 
-        public TimeSplitTrackerRunFactory(Stream stream = null, String path = null)
+        public TimeSplitTrackerRunFactory(Stream stream = null, string path = null)
         {
             Stream = stream;
             Path = path;
         }
 
-        TimeSpan? parseTimeNullable(String timeString)
+        TimeSpan? parseTimeNullable(string timeString)
         {
             var time = TimeSpanParser.Parse(timeString);
             return (time == TimeSpan.Zero) ? (TimeSpan?)null : time;
@@ -26,8 +26,8 @@ namespace LiveSplit.Model.RunFactories
 
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
-            String path = "";
-            if (!String.IsNullOrEmpty(Path))
+            string path = "";
+            if (!string.IsNullOrEmpty(Path))
                 path = System.IO.Path.GetDirectoryName(Path);
 
             var run = new Run(factory);
@@ -36,9 +36,9 @@ namespace LiveSplit.Model.RunFactories
 
             var line = reader.ReadLine();
             var titleInfo = line.Split('\t');
-            run.AttemptCount = Int32.Parse(titleInfo[0]);
+            run.AttemptCount = int.Parse(titleInfo[0]);
             run.Offset = TimeSpanParser.Parse(titleInfo[1]);
-            if (!String.IsNullOrEmpty(path))
+            if (!string.IsNullOrEmpty(path))
             {
                 try
                 {
@@ -57,7 +57,7 @@ namespace LiveSplit.Model.RunFactories
 
             while ((line = reader.ReadLine()) != null)
             {
-                if (line.Length <= 0 || String.IsNullOrWhiteSpace(line))
+                if (line.Length <= 0 || string.IsNullOrWhiteSpace(line))
                     continue;
 
                 var segment = new Segment("");
@@ -79,7 +79,7 @@ namespace LiveSplit.Model.RunFactories
 
                 line = reader.ReadLine();
 
-                if (line.Length > 0 && !String.IsNullOrWhiteSpace(line) && !String.IsNullOrEmpty(path))
+                if (line.Length > 0 && !string.IsNullOrWhiteSpace(line) && !string.IsNullOrEmpty(path))
                 {
                     try
                     {

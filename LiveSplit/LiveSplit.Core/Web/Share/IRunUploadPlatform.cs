@@ -8,25 +8,25 @@ namespace LiveSplit.Web.Share
 {
     public interface IRunUploadPlatform
     {
-        String PlatformName { get; }
-        String Description { get; }
+        string PlatformName { get; }
+        string Description { get; }
         ISettings Settings { get; set; }
 
         IEnumerable<ASUP.IdPair> GetGameList();
-        IEnumerable<String> GetGameNames();
-        String GetGameIdByName(String gameName);
-        IEnumerable<ASUP.IdPair> GetGameCategories(String gameId);
-        String GetCategoryIdByName(String gameId, String categoryName);
-        bool VerifyLogin(String username, String password);
+        IEnumerable<string> GetGameNames();
+        string GetGameIdByName(string gameName);
+        IEnumerable<ASUP.IdPair> GetGameCategories(string gameId);
+        string GetCategoryIdByName(string gameId, string categoryName);
+        bool VerifyLogin(string username, string password);
         bool SubmitRun(
             IRun run,
-            String username, String password,
+            string username, string password,
             Func<Image> screenShotFunction = null,
             bool attachSplits = false,
             TimingMethod method = TimingMethod.RealTime,
-            String gameId = "", String categoryId = "",
-            String version = "", String comment = "",
-            String video = "",
-            params String[] additionalParams);
+            string gameId = "", string categoryId = "",
+            string version = "", string comment = "",
+            string video = "",
+            params string[] additionalParams);
     }
 }

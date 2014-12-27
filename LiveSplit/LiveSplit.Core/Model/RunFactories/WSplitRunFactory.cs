@@ -39,11 +39,11 @@ namespace LiveSplit.Model.RunFactories
                     }
                     else if (line.StartsWith("Attempts="))
                     {
-                        run.AttemptCount = Int32.Parse(line.Substring("Attempts=".Length));
+                        run.AttemptCount = int.Parse(line.Substring("Attempts=".Length));
                     }
                     else if (line.StartsWith("Offset="))
                     {
-                        run.Offset = new TimeSpan(0, 0, 0, 0, -Int32.Parse(line.Substring("Offset=".Length)));
+                        run.Offset = new TimeSpan(0, 0, 0, 0, -int.Parse(line.Substring("Offset=".Length)));
                     }
                     else if (line.StartsWith("Size="))
                     {

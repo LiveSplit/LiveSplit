@@ -15,7 +15,8 @@ namespace LiveSplit.Model
             set
             {
                 _CurrentState = value;
-                value.RegisterTimerModel(this);
+                if (value != null)
+                    value.RegisterTimerModel(this);
             }
         }
 
@@ -98,8 +99,6 @@ namespace LiveSplit.Model
             }
         }
 
-        
-
         public void Reset()
         {
             if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
@@ -165,8 +164,7 @@ namespace LiveSplit.Model
                     OnResume(this, null);
             }
             else if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
-                 Start(); //fuck abahbob
-                
+                 Start(); //fuck abahbob                
         }
 
         public void SwitchComparisonNext()
@@ -260,7 +258,7 @@ namespace LiveSplit.Model
         public void SetRunAsPB()
         {
             CurrentState.Run.ImportSegmentHistory();
-            foreach (var current in this.CurrentState.Run)
+            foreach (var current in CurrentState.Run)
                 current.PersonalBestSplitTime = current.SplitTime;
         }
     }

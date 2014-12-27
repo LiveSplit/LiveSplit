@@ -72,7 +72,7 @@ namespace LiveSplit.Web.Share
 
         public static void DownloadFrankerFaceZGlobalEmotesList()
         {
-            String cssStr;
+            string cssStr;
             using (var wc = new WebClient())
             {
                 cssStr = wc.DownloadString("http://frankerfacez.storage.googleapis.com/global.css");
@@ -147,7 +147,7 @@ namespace LiveSplit.Web.Share
                 _TwitchEmotes = TwitchEmoteDownload.Result;
         }
 
-        private static Image DownloadImage(String url)
+        private static Image DownloadImage(string url)
         {
             using (var stream = WebRequest.Create(url).GetResponse().GetResponseStream())
             {
@@ -156,7 +156,7 @@ namespace LiveSplit.Web.Share
         }
 
         public static bool IsEmote(
-            String text,
+            string text,
             bool useTwitchEmotes = true,
             bool useFrankerFaceZGlobalEmotes = true,
             bool useFrankerFaceZChannelEmotes = true)
@@ -196,7 +196,7 @@ namespace LiveSplit.Web.Share
         }
 
         public static Image Resolve(
-            String emote, 
+            string emote, 
             bool useTwitchEmotes = true, 
             bool useFrankerFaceZGlobalEmotes = true, 
             bool useFrankerFaceZChannelEmotes = false)

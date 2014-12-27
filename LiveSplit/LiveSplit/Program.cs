@@ -1,5 +1,4 @@
-﻿using LiveSplit.Options;
-using LiveSplit.View;
+﻿using LiveSplit.View;
 using LiveSplit.Web.Share;
 using System;
 using System.IO;
@@ -13,7 +12,7 @@ namespace LiveSplit
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
-        static void Main(String[] args)
+        static void Main(string[] args)
         {
             try
             {
@@ -25,8 +24,8 @@ namespace LiveSplit
                 FiletypeRegistryHelper.RegisterFileFormatsIfNotAlreadyRegistered();
 #endif
 
-                String splitsPath = null;
-                String layoutPath = null;
+                string splitsPath = null;
+                string layoutPath = null;
 
                 for (var i = 0; i < args.Length; ++i)
                 {

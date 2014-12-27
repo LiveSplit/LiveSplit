@@ -13,16 +13,16 @@ namespace LiveSplit.Web
 
         public static CompositeGameList Instance { get { return _Instance; } }
 
-        protected IList<String> gameNames;
+        protected IList<string> gameNames;
 
         protected CompositeGameList()
         { }
 
-        public IEnumerable<String> GetGameNames()
+        public IEnumerable<string> GetGameNames()
         {
             if (gameNames == null)
             {
-                var pbTrackerTask = new Task<IEnumerable<String>>(
+                var pbTrackerTask = new Task<IEnumerable<string>>(
                     () =>
                     {
                         try
@@ -31,11 +31,11 @@ namespace LiveSplit.Web
                         }
                         catch
                         {
-                            return new String[0];
+                            return new string[0];
                         }
                     });
 
-                var srlTask = new Task<IEnumerable<String>>(
+                var srlTask = new Task<IEnumerable<string>>(
                     () =>
                     { 
                         try
@@ -44,11 +44,11 @@ namespace LiveSplit.Web
                         }
                         catch
                         {
-                            return new String[0];
+                            return new string[0];
                         }
                     });
 
-                var congratsioTask = new Task<IEnumerable<String>>(
+                var congratsioTask = new Task<IEnumerable<string>>(
                     () =>
                     {
                         try
@@ -57,7 +57,7 @@ namespace LiveSplit.Web
                         }
                         catch
                         {
-                            return new String[0];
+                            return new string[0];
                         }
                     });
 
@@ -71,7 +71,7 @@ namespace LiveSplit.Web
                     .Concat(srlTask.Result)
                     .Concat(congratsioTask.Result)
                     .Distinct().OrderBy(x => x)
-                    .Where(x => !String.IsNullOrEmpty(x))
+                    .Where(x => !string.IsNullOrEmpty(x))
                     .ToList();
             }
 

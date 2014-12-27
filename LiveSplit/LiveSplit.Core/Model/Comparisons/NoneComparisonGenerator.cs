@@ -7,7 +7,7 @@ namespace LiveSplit.Model.Comparisons
     {
         public IRun Run { get; set; }
 
-        public const String ComparisonName = "None";
+        public const string ComparisonName = "None";
         public string Name
         {
             get { return ComparisonName; }

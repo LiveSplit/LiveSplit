@@ -70,8 +70,8 @@ namespace LiveSplit.UI.LayoutFactories
             if (version > new Version(1, 0, 0, 0))
             {
                 settings.PausedColor = ParseColor(element["PausedColor"]);
-                settings.AntiAliasing = Boolean.Parse(element["AntiAliasing"].InnerText);
-                settings.DropShadows = Boolean.Parse(element["DropShadows"].InnerText);
+                settings.AntiAliasing = bool.Parse(element["AntiAliasing"].InnerText);
+                settings.DropShadows = bool.Parse(element["DropShadows"].InnerText);
             }
             else
             {
@@ -81,7 +81,7 @@ namespace LiveSplit.UI.LayoutFactories
             }
             if (version >= new Version(1, 2))
             {
-                settings.Opacity = Single.Parse(element["Opacity"].InnerText.Replace(',', '.'), CultureInfo.InvariantCulture);
+                settings.Opacity = float.Parse(element["Opacity"].InnerText.Replace(',', '.'), CultureInfo.InvariantCulture);
             }
             else
             {
@@ -113,14 +113,14 @@ namespace LiveSplit.UI.LayoutFactories
                 settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
             }
 
-            settings.ShowBestSegments = Boolean.Parse(element["ShowBestSegments"].InnerText);
-            settings.AlwaysOnTop = Boolean.Parse(element["AlwaysOnTop"].InnerText);
+            settings.ShowBestSegments = bool.Parse(element["ShowBestSegments"].InnerText);
+            settings.AlwaysOnTop = bool.Parse(element["AlwaysOnTop"].InnerText);
             return settings;
         }
 
         private Color ParseColor(XmlElement colorElement)
         {
-            return Color.FromArgb(Int32.Parse(colorElement.InnerText, NumberStyles.HexNumber));
+            return Color.FromArgb(int.Parse(colorElement.InnerText, NumberStyles.HexNumber));
         }
 
         private T ParseEnum<T>(XmlElement element)
@@ -138,17 +138,17 @@ namespace LiveSplit.UI.LayoutFactories
                 ? Version.Parse(parent.Attributes["version"].Value)
                 : new Version(1, 0, 0, 0);
             var xCord = parent["X"];
-            layout.X = Int32.Parse(xCord.InnerText);
+            layout.X = int.Parse(xCord.InnerText);
             var yCord = parent["Y"];
-            layout.Y = Int32.Parse(yCord.InnerText);
+            layout.Y = int.Parse(yCord.InnerText);
             var verticalWidth = parent["VerticalWidth"];
-            layout.VerticalWidth = Int32.Parse(verticalWidth.InnerText);
+            layout.VerticalWidth = int.Parse(verticalWidth.InnerText);
             var verticalHeight = parent["VerticalHeight"];
-            layout.VerticalHeight = Int32.Parse(verticalHeight.InnerText);
+            layout.VerticalHeight = int.Parse(verticalHeight.InnerText);
             var horizontalWidth = parent["HorizontalWidth"];
-            layout.HorizontalWidth = Int32.Parse(horizontalWidth.InnerText);
+            layout.HorizontalWidth = int.Parse(horizontalWidth.InnerText);
             var horizontalHeight = parent["HorizontalHeight"];
-            layout.HorizontalHeight = Int32.Parse(horizontalHeight.InnerText);
+            layout.HorizontalHeight = int.Parse(horizontalHeight.InnerText);
             var mode = parent["Mode"];
             layout.Mode = (mode.InnerText == "Horizontal") ? LayoutMode.Horizontal : LayoutMode.Vertical;
             var layoutSettings = parent["Settings"];

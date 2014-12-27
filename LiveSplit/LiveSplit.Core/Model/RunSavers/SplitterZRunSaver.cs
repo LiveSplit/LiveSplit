@@ -6,7 +6,7 @@ namespace LiveSplit.Model.RunSavers
 {
     public class SplitterZRunSaver : IRunSaver
     {
-        protected String Escape(String text)
+        protected string Escape(string text)
         {
             return text.Replace(@",", @"‡");
         }
@@ -18,11 +18,11 @@ namespace LiveSplit.Model.RunSavers
 
             var writer = new StreamWriter(stream);
 
-            if (!String.IsNullOrEmpty(run.GameName))
+            if (!string.IsNullOrEmpty(run.GameName))
             {
                 writer.Write(Escape(run.GameName));
 
-                if (!String.IsNullOrEmpty(run.CategoryName))
+                if (!string.IsNullOrEmpty(run.CategoryName))
                     writer.Write(" - ");
             }
 

@@ -28,7 +28,7 @@ namespace LiveSplit.Web
         public static dynamic FromStream(Stream stream)
         {
             var reader = new StreamReader(stream);
-            String json = "";
+            var json = "";
             try
             {
                 json = reader.ReadToEnd();
@@ -40,15 +40,15 @@ namespace LiveSplit.Web
             return FromString(json);
         }
 
-        public static dynamic FromString(String value)
+        public static dynamic FromString(string value)
         {
             var serializer = new JavaScriptSerializer()
             {
-                MaxJsonLength = Int32.MaxValue
+                MaxJsonLength = int.MaxValue
             };
             serializer.RegisterConverters(new[] { new DynamicJsonConverter() });
 
-            return serializer.Deserialize<Object>(value);
+            return serializer.Deserialize<object>(value);
         }
 
         public static dynamic FromUri(Uri uri)
@@ -58,14 +58,14 @@ namespace LiveSplit.Web
             return FromResponse(response);
         }
 
-        public static String Escape(String value)
+        public static string Escape(string value)
         {
             return HttpUtility.JavaScriptStringEncode(value);
         }
 
-        public static dynamic FromUriPost(Uri uri, params String[] postValues)
+        public static dynamic FromUriPost(Uri uri, params string[] postValues)
         {
-            var request = (HttpWebRequest)HttpWebRequest.Create(uri);
+            var request = (HttpWebRequest)WebRequest.Create(uri);
             request.Method = "POST";
             request.ContentType = "application/json";
 
@@ -153,7 +153,7 @@ namespace LiveSplit.Web
                 var name = pair.Key;
                 if (value is string)
                 {
-                    sb.AppendFormat("\"{0}\": \"{1}\"", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode((String)value));
+                    sb.AppendFormat("\"{0}\": \"{1}\"", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode((string)value));
                 }
                 else if (value is DynamicJsonObject)
                 {
@@ -182,7 +182,7 @@ namespace LiveSplit.Web
                             ((DynamicJsonObject)arrayValue).ToString(sb, depth + 2);
                         }
                         else if (arrayValue is string)
-                            sb.AppendFormat("\"{0}\"", HttpUtility.JavaScriptStringEncode((String)arrayValue));
+                            sb.AppendFormat("\"{0}\"", HttpUtility.JavaScriptStringEncode((string)arrayValue));
                         else if (arrayValue is decimal)
                             sb.AppendFormat("{0}", HttpUtility.JavaScriptStringEncode(((decimal)arrayValue).ToString(CultureInfo.InvariantCulture)));
                         else
@@ -226,7 +226,7 @@ namespace LiveSplit.Web
             if (binder.Name == "Properties")
             {
                 result = _dictionary
-                    .Select(x => new KeyValuePair<String, dynamic>(x.Key, WrapResultObject(x.Value)))
+                    .Select(x => new KeyValuePair<string, dynamic>(x.Key, WrapResultObject(x.Value)))
                     .ToDictionary(x => x.Key, x => x.Value);
                 return true;
             }
@@ -240,8 +240,8 @@ namespace LiveSplit.Web
 
             result = WrapResultObject(result);
 
-            if (result is String)
-                result = JavaScriptStringDecode(result as String);
+            if (result is string)
+                result = JavaScriptStringDecode(result as string);
 
             return true;
         }
@@ -258,7 +258,7 @@ namespace LiveSplit.Web
             // Replace unicode escaped text.
             var rx = new Regex(@"\\[uU]([0-9A-F]{4})");
 
-            decoded = rx.Replace(decoded, match => ((char)Int32.Parse(match.Value.Substring(2), NumberStyles.HexNumber))
+            decoded = rx.Replace(decoded, match => ((char)int.Parse(match.Value.Substring(2), NumberStyles.HexNumber))
                                                     .ToString(CultureInfo.InvariantCulture));
 
             return decoded;

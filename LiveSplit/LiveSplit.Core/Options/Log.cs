@@ -14,7 +14,6 @@ namespace LiveSplit.Options
             }
             catch { }
 
-
             Trace.Listeners.Add(new EventLogTraceListener("LiveSplit"));
         }
 
@@ -26,17 +25,17 @@ namespace LiveSplit.Options
             Trace.TraceError("{0}\n\n{1}", ex.Message, ex.StackTrace);
         }
 
-        public static void Error(String message)
+        public static void Error(string message)
         {
             Trace.TraceError(message);
         }
 
-        public static void Info(String message)
+        public static void Info(string message)
         {
             Trace.TraceInformation(message);
         }
 
-        public static void Warning(String message)
+        public static void Warning(string message)
         {
             Trace.TraceWarning(message);
         }
