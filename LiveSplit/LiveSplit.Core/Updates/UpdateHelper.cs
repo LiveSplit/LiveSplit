@@ -10,11 +10,7 @@ namespace LiveSplit.Updates
 {
     public static class UpdateHelper
     {
-        public static readonly Version Version = 
-            Version.Parse(
-                Git.Version.Contains('-')
-                ? Git.Version.Split('-').Where(x => x != "dirty").Aggregate((a,b) => a + "." + b)
-                : Git.Version);
+        public static readonly Version Version = Version.Parse(Git.LastTag + "." + Git.CommitsSinceLastTag);
 
         public static List<Type> AlreadyChecked = new List<Type>();
 

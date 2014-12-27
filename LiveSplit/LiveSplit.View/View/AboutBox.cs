@@ -11,11 +11,7 @@ namespace LiveSplit.View
         public AboutBox()
         {
             InitializeComponent();
-#if DEBUG
-            lblVersion.Text = Git.Version + "-debug";
-#else
             lblVersion.Text = Git.Version;
-#endif
             if (Git.Branch != "master")
                 labelProductName.Text += string.Format(" ({0})", Git.Branch);
         }
@@ -123,6 +119,11 @@ namespace LiveSplit.View
         private void donateButton_Click(object sender, EventArgs e)
         {
             Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R3Z2LGPKRNBNJ");
+        }
+
+        private void lblVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(Git.RevisionUri.AbsoluteUri);
         }
     }
 }

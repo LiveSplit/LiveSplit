@@ -37,8 +37,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.donateButton = new System.Windows.Forms.PictureBox();
             this.okButton = new System.Windows.Forms.Button();
+            this.lblVersion = new System.Windows.Forms.LinkLabel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
-            this.lblVersion = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.donateButton)).BeginInit();
@@ -185,6 +185,21 @@
             this.okButton.TabIndex = 24;
             this.okButton.Text = "&OK";
             // 
+            // lblVersion
+            // 
+            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblVersion.AutoSize = true;
+            this.lblVersion.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
+            this.lblVersion.LinkColor = System.Drawing.Color.Black;
+            this.lblVersion.Location = new System.Drawing.Point(6, 23);
+            this.lblVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
+            this.lblVersion.Name = "lblVersion";
+            this.lblVersion.Size = new System.Drawing.Size(140, 13);
+            this.lblVersion.TabIndex = 30;
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblVersion.VisitedLinkColor = System.Drawing.Color.Black;
+            this.lblVersion.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblVersion_LinkClicked);
+            // 
             // logoPictureBox
             // 
             this.logoPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -197,17 +212,6 @@
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
-            // 
-            // lblVersion
-            // 
-            this.lblVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblVersion.AutoSize = true;
-            this.lblVersion.Location = new System.Drawing.Point(6, 23);
-            this.lblVersion.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
-            this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(140, 13);
-            this.lblVersion.TabIndex = 30;
-            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // AboutBox
             // 
@@ -246,6 +250,6 @@
         private System.Windows.Forms.LinkLabel linkLabel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox donateButton;
-        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.LinkLabel lblVersion;
     }
 }
