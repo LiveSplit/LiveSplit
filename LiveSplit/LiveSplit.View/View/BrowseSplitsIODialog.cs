@@ -77,7 +77,7 @@ namespace LiveSplit.View
                 {
                     dynamic run = splitsTreeView.SelectedNode.Tag;
                     Run = SplitsIO.Instance.DownloadRunByPath((String)run.path);
-                    var result = PostProcessRun();
+                    var result = PostProcessRun(splitsTreeView.SelectedNode.Text);
                     if (result == System.Windows.Forms.DialogResult.OK)
                     {
                         DialogResult = result;
@@ -92,11 +92,11 @@ namespace LiveSplit.View
             }
         }
 
-        private DialogResult PostProcessRun()
+        private DialogResult PostProcessRun(String nodeText)
         {
             if (chkDownloadEmpty.Checked)
             {
-                var name = "";
+                var name = nodeText;
                 if (chkIncludeTimes.Checked)
                 {
                     var succeededName = false;

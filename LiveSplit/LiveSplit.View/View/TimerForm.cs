@@ -2524,7 +2524,7 @@ namespace LiveSplit.View
             var name = "";
             var run = GetRunFromSplitsIO(true, ref name);
             if (run != null)
-                while (!AddComparisonFromRun(name, run));
+                AddComparisonWithNameInput(name, run);
         }
 
         void gameTimeMenuItem_Click(object sender, EventArgs e)
@@ -2544,7 +2544,7 @@ namespace LiveSplit.View
             var name = "";
             var run = GetRunFromURL(true, ref name);
             if (run != null)
-                while (!AddComparisonFromRun(name, run));
+                AddComparisonWithNameInput(name, run);
         }
 
         void importFromFileMenuItem_Click(object sender, EventArgs e)
@@ -2560,13 +2560,24 @@ namespace LiveSplit.View
                 {
                     var run = LoadRunFromFile(splitDialog.FileName, false);
                     var comparisonName = Path.GetFileNameWithoutExtension(splitDialog.FileName);
-                    while (!AddComparisonFromRun(comparisonName, run));
+                    AddComparisonWithNameInput(comparisonName, run);
                 }
             }
             finally
             {
                 IsInDialogMode = false;
             }
+        }
+
+        protected void AddComparisonWithNameInput(String name, IRun run)
+        {
+            do
+            {
+                var result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
+                if (result == System.Windows.Forms.DialogResult.Cancel)
+                    return;
+            }
+            while (!AddComparisonFromRun(name, run));
         }
 
         protected bool AddComparisonFromRun(String name, IRun run)
