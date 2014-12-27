@@ -272,6 +272,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\loader.jar" />
+    <None Include="Updates\GitInfo\revision.txt" />
     <None Include="Updates\GitInfo\version.txt" />
     <None Include="Updates\GitInfo\branch.txt" />
   </ItemGroup>
@@ -317,11 +318,13 @@
   <PropertyGroup>
     <PreBuildEvent>where git
 if %25ERRORLEVEL%25 == 0 (
-git describe --abbrev=4 --dirty --always --tags &gt; ..\..\LiveSplit.Core\Updates\GitInfo\version.txt
-git rev-parse --abbrev-ref HEAD &gt; ..\..\LiveSplit.Core\Updates\GitInfo\branch.txt
+git describe --dirty --always --long --tags &gt; "$(ProjectDir)Updates\GitInfo\version.txt"
+git rev-parse --abbrev-ref HEAD &gt; "$(ProjectDir)Updates\GitInfo\branch.txt"
+git rev-parse HEAD &gt; "$(ProjectDir)Updates\GitInfo\revision.txt"
 ) else (
-echo 13.3.7&gt;  ..\..\LiveSplit.Core\Updates\GitInfo\version.txt
-echo no-git&gt; ..\..\LiveSplit.Core\Updates\GitInfo\branch.txt
+echo 13.3.7&gt;  "$(ProjectDir)Updates\GitInfo\version.txt"
+echo no-git&gt; "$(ProjectDir)Updates\GitInfo\branch.txt"
+echo deadbeef&gt; "$(ProjectDir)Updates\GitInfo\revision.txt"
 )
 EXIT 0</PreBuildEvent>
   </PropertyGroup>

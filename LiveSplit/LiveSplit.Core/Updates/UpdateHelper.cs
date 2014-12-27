@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UpdateManager;
@@ -10,7 +11,7 @@ namespace LiveSplit.Updates
 {
     public static class UpdateHelper
     {
-        public static readonly String GitVersion = GitInfo.version.Replace("\r", "").Replace("\n", "");
+        public static readonly String GitVersion = GitInfo.version.Replace("\r", "").Replace("\n", "").Split('-').Where((x,i) => i != 2).Aggregate((a,b) => a + "-" + b);
         public static readonly String GitBranch = GitInfo.branch.Replace("\r", "").Replace("\n", "");
         public static readonly Version Version = 
             Version.Parse(

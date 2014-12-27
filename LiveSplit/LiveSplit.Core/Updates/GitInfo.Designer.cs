@@ -71,7 +71,17 @@ namespace LiveSplit.Updates {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die f290-dirty
+        ///   Sucht eine lokalisierte Zeichenfolge, die ea5d3c27e2d6efec85fb8a5a02b1a7bf3b462235
+        /// ähnelt.
+        /// </summary>
+        public static string revision {
+            get {
+                return ResourceManager.GetString("revision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die 1.4.5-126-gea5d3c2-dirty
         /// ähnelt.
         /// </summary>
         public static string version {
