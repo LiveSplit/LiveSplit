@@ -19,7 +19,9 @@ namespace LiveSplit.View
     public partial class BrowseSplitsIODialog : Form
     {
         delegate void CategoryNodeAction();
-        public IRun Run { get; set; }
+        public IRun Run { get; protected set; }
+        public String RunName { get; protected set; }
+
         public BrowseSplitsIODialog(bool isImporting = false)
         {
             InitializeComponent();
@@ -51,7 +53,7 @@ namespace LiveSplit.View
                                 foreach (var run in runs)
                                 {
                                     var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(Double.Parse(run.time, CultureInfo.InvariantCulture))) : "No Final Time";
-                                    if (run.user != null)
+                                    if (run.user != null && !String.IsNullOrEmpty(run.user.name))
                                         runText += " by " + run.user.name;
                                     var runNode = new TreeNode(runText);
                                     runNode.Tag = run;
@@ -79,7 +81,8 @@ namespace LiveSplit.View
                 {
                     dynamic run = splitsTreeView.SelectedNode.Tag;
                     Run = SplitsIO.Instance.DownloadRunByPath((String)run.path);
-                    var result = PostProcessRun(splitsTreeView.SelectedNode.Text);
+                    RunName = splitsTreeView.SelectedNode.Text;
+                    var result = PostProcessRun(RunName);
                     if (result == System.Windows.Forms.DialogResult.OK)
                     {
                         DialogResult = result;

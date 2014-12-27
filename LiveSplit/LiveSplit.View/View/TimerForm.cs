@@ -916,9 +916,11 @@ namespace LiveSplit.View
                 this.TopMost = false;
 
                 var dialog = new BrowseSplitsIODialog(import);
+                
                 var result = dialog.ShowDialog();
                 if (import && result == System.Windows.Forms.DialogResult.OK)
                 {
+                    name = dialog.RunName;
                     result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
                 }
 
@@ -2560,7 +2562,9 @@ namespace LiveSplit.View
                 {
                     var run = LoadRunFromFile(splitDialog.FileName, false);
                     var comparisonName = Path.GetFileNameWithoutExtension(splitDialog.FileName);
-                    AddComparisonWithNameInput(comparisonName, run);
+                    result = InputBox.Show("Enter Comparison Name", "Name:", ref comparisonName);
+                    if (result != System.Windows.Forms.DialogResult.Cancel)
+                        AddComparisonWithNameInput(comparisonName, run);
                 }
             }
             finally
@@ -2571,13 +2575,12 @@ namespace LiveSplit.View
 
         protected void AddComparisonWithNameInput(String name, IRun run)
         {
-            do
+            while (!AddComparisonFromRun(name, run))
             {
                 var result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
                 if (result == System.Windows.Forms.DialogResult.Cancel)
                     return;
             }
-            while (!AddComparisonFromRun(name, run));
         }
 
         protected bool AddComparisonFromRun(String name, IRun run)
