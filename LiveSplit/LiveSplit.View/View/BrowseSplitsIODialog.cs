@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -46,10 +47,10 @@ namespace LiveSplit.View
                             {
                                 categoryNode.Nodes.Clear();
                                 IEnumerable<dynamic> runs = SplitsIO.Instance.GetRunsForCategory(category.id);
-                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? Double.Parse(x.time) : Double.MaxValue);
+                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? Double.Parse(x.time, CultureInfo.InvariantCulture) : Double.MaxValue);
                                 foreach (var run in runs)
                                 {
-                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(Double.Parse(run.time))) : "No Final Time";
+                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(Double.Parse(run.time, CultureInfo.InvariantCulture))) : "No Final Time";
                                     if (run.user != null)
                                         runText += " by " + run.user.name;
                                     var runNode = new TreeNode(runText);
