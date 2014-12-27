@@ -106,6 +106,12 @@
     <Compile Include="View\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\BrowseSplitsIODialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\BrowseSplitsIODialog.Designer.cs">
+      <DependentUpon>BrowseSplitsIODialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LayoutEditorDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +218,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\BrowseSplitsIODialog.resx">
+      <DependentUpon>BrowseSplitsIODialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LayoutEditorDialog.resx">
       <DependentUpon>LayoutEditorDialog.cs</DependentUpon>

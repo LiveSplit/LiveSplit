@@ -739,10 +739,21 @@ namespace LiveSplit.View
             var openFromURLMenuItem = new ToolStripMenuItem("From URL...");
             openFromURLMenuItem.Click += openSplitsFromURLMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromURLMenuItem);
+            var openFromSplitsIOMenuItem = new ToolStripMenuItem("From Splits.io...");
+            openFromSplitsIOMenuItem.Click += openFromSplitsIOMenuItem_Click;
+            openSplitsMenuItem.DropDownItems.Add(openFromSplitsIOMenuItem);
             openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
             var clearSplitHistoryMenuItem = new ToolStripMenuItem("Clear History");
             clearSplitHistoryMenuItem.Click += clearSplitHistoryMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(clearSplitHistoryMenuItem);
+        }
+
+        void openFromSplitsIOMenuItem_Click(object sender, EventArgs e)
+        {
+            var name = "";
+            var run = GetRunFromSplitsIO(false, ref name);
+            if (run != null)
+                SetRun(run);
         }
 
         void clearSplitHistoryMenuItem_Click(object sender, EventArgs e)
@@ -895,6 +906,32 @@ namespace LiveSplit.View
                 DontRedraw = false;
             }
             return null;
+        }
+
+        protected IRun GetRunFromSplitsIO(bool import, ref String name)
+        {
+            try
+            {
+                IsInDialogMode = true;
+                this.TopMost = false;
+
+                var dialog = new BrowseSplitsIODialog(import);
+                var result = dialog.ShowDialog();
+                if (import && result == System.Windows.Forms.DialogResult.OK)
+                {
+                    result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
+                }
+
+                if (result == System.Windows.Forms.DialogResult.OK)
+                    return dialog.Run;
+
+                return null;
+            }
+            finally
+            {
+                IsInDialogMode = false;
+                this.TopMost = Layout.Settings.AlwaysOnTop;
+            }
         }
 
         protected IRun GetRunFromURL(bool import, ref String name)
@@ -2473,10 +2510,21 @@ namespace LiveSplit.View
             var importFromURLMenuItem = new ToolStripMenuItem("From URL...");
             importFromURLMenuItem.Click += importFromURLMenuItem_Click;
             importMenuItem.DropDownItems.Add(importFromURLMenuItem);
+            var importFromSplitsIOMenuItem = new ToolStripMenuItem("From Splits.io...");
+            importFromSplitsIOMenuItem.Click += importFromSplitsIOMenuItem_Click;
+            importMenuItem.DropDownItems.Add(importFromSplitsIOMenuItem);
 
             comparisonMenuItem.DropDownItems.Add(importMenuItem);
 
             RefreshComparisonItems();
+        }
+
+        void importFromSplitsIOMenuItem_Click(object sender, EventArgs e)
+        {
+            var name = "";
+            var run = GetRunFromSplitsIO(true, ref name);
+            if (run != null)
+                AddComparisonWithNameInput(name, run);
         }
 
         void gameTimeMenuItem_Click(object sender, EventArgs e)
@@ -2496,7 +2544,7 @@ namespace LiveSplit.View
             var name = "";
             var run = GetRunFromURL(true, ref name);
             if (run != null)
-                AddComparisonFromRun(name ,run);
+                AddComparisonWithNameInput(name, run);
         }
 
         void importFromFileMenuItem_Click(object sender, EventArgs e)
@@ -2512,7 +2560,7 @@ namespace LiveSplit.View
                 {
                     var run = LoadRunFromFile(splitDialog.FileName, false);
                     var comparisonName = Path.GetFileNameWithoutExtension(splitDialog.FileName);
-                    AddComparisonFromRun(comparisonName, run);
+                    AddComparisonWithNameInput(comparisonName, run);
                 }
             }
             finally
@@ -2521,18 +2569,48 @@ namespace LiveSplit.View
             }
         }
 
-        protected void AddComparisonFromRun(String name, IRun run)
+        protected void AddComparisonWithNameInput(String name, IRun run)
         {
-            CurrentState.Run.CustomComparisons.Add(name);
-            foreach (var segment in run)
+            do
             {
-                var runSegment = CurrentState.Run.FirstOrDefault(x => x.Name == segment.Name);
-                if (runSegment != null)
-                    runSegment.Comparisons[name] = segment.PersonalBestSplitTime;
+                var result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
+                if (result == System.Windows.Forms.DialogResult.Cancel)
+                    return;
             }
-            CurrentState.Run.HasChanged = true;
-            CurrentState.Run.FixSplits();
-            SwitchComparison(name);
+            while (!AddComparisonFromRun(name, run));
+        }
+
+        protected bool AddComparisonFromRun(String name, IRun run)
+        {
+            if (!CurrentState.Run.Comparisons.Contains(name))
+            {
+                if (!name.StartsWith("[Race]"))
+                {
+                    CurrentState.Run.CustomComparisons.Add(name);
+                    foreach (var segment in run)
+                    {
+                        var runSegment = CurrentState.Run.FirstOrDefault(x => x.Name == segment.Name);
+                        if (runSegment != null)
+                            runSegment.Comparisons[name] = segment.PersonalBestSplitTime;
+                    }
+                    CurrentState.Run.HasChanged = true;
+                    CurrentState.Run.FixSplits();
+                    SwitchComparison(name);
+                }
+                else
+                {
+                    var result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    if (result == System.Windows.Forms.DialogResult.Retry)
+                        return false;
+                }
+            }
+            else
+            {
+                var result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                if (result == System.Windows.Forms.DialogResult.Retry)
+                    return false;
+            }
+            return true;
         }
 
         private void RegenerateComparisons()
