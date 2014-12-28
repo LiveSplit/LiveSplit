@@ -752,6 +752,10 @@ namespace LiveSplit.View
         {
             var name = "";
             var run = GetRunFromSplitsIO(false, ref name);
+
+            if (!WarnUserAboutSplitsSave())
+                return;
+
             if (run != null)
                 SetRun(run);
         }
@@ -967,6 +971,10 @@ namespace LiveSplit.View
         {
             var name = "";
             var run = GetRunFromURL(false, ref name);
+
+            if (!WarnUserAboutSplitsSave())
+                return;
+
             if (run != null)
                 SetRun(run);
         }
