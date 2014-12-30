@@ -17,7 +17,7 @@ namespace LiveSplit.View
     {
         delegate void CategoryNodeAction();
         public IRun Run { get; protected set; }
-        public String RunName { get; protected set; }
+        public string RunName { get; protected set; }
 
         public BrowseSplitsIODialog(bool isImporting = false)
         {
@@ -135,7 +135,7 @@ namespace LiveSplit.View
                             if (result == DialogResult.Cancel)
                                 return result;
                         }
-                        else if (name == LiveSplit.Model.Run.PersonalBestComparisonName)
+                        else if (name == Model.Run.PersonalBestComparisonName)
                         {
                             result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                             if (result == DialogResult.Cancel)

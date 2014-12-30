@@ -8,15 +8,10 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -53,9 +48,9 @@ namespace LiveSplit.View
         private Control eCtl;
 
         public Image GameIcon { get { return Run.GameIcon ?? Properties.Resources.DefaultGameIcon; } set { Run.GameIcon = value; } }
-        public String GameName { get { return Run.GameName; } set { Run.GameName = value; RefreshCategoryAutoCompleteList(); } }
-        public String CategoryName { get { return Run.CategoryName; } set { Run.CategoryName = value; } }
-        public String Offset
+        public string GameName { get { return Run.GameName; } set { Run.GameName = value; RefreshCategoryAutoCompleteList(); } }
+        public string CategoryName { get { return Run.CategoryName; } set { Run.CategoryName = value; } }
+        public string Offset
         {
             get
             {
@@ -173,8 +168,8 @@ namespace LiveSplit.View
                                 Log.Error(ex);
                             }
                         };
-                        if (this.InvokeRequired)
-                            this.Invoke(invokation);
+                        if (InvokeRequired)
+                            Invoke(invokation);
                         else
                             invokation();
                     }
@@ -188,7 +183,7 @@ namespace LiveSplit.View
             cbxGameName.TextChanged += cbxGameName_TextChanged;
 
             cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
-            cbxRunCategory.Items.AddRange(new String[] { "Any%", "Low%", "100%" });
+            cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
             cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
             RefreshCategoryAutoCompleteList();
@@ -224,7 +219,7 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    String[] categoryNames;
+                    string[] categoryNames;
                     try
                     {
                         categoryNames = PBTracker.Instance.GetGameCategories(PBTracker.Instance.GetGameIdByName(Run.GameName)).Select(x => x.Value).ToArray();
@@ -233,7 +228,7 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
 
-                        categoryNames = new String[] { "Any%", "Low%", "100%" };
+                        categoryNames = new[] { "Any%", "Low%", "100%" };
                     }
                     Action invokation = () =>
                     {
@@ -247,8 +242,8 @@ namespace LiveSplit.View
                             Log.Error(ex);
                         }
                     };
-                    if (this.InvokeRequired)
-                        this.Invoke(invokation);
+                    if (InvokeRequired)
+                        Invoke(invokation);
                     else
                         invokation();
                 }
@@ -323,20 +318,20 @@ namespace LiveSplit.View
 
         void runGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            this.eCtl = e.Control;
-            this.eCtl.TextChanged -= new EventHandler(this.eCtl_TextChanged);
-            this.eCtl.KeyPress -= new KeyPressEventHandler(this.eCtl_KeyPress);
-            this.eCtl.TextChanged += new EventHandler(this.eCtl_TextChanged);
-            this.eCtl.KeyPress += new KeyPressEventHandler(this.eCtl_KeyPress);
+            eCtl = e.Control;
+            eCtl.TextChanged -= new EventHandler(eCtl_TextChanged);
+            eCtl.KeyPress -= new KeyPressEventHandler(eCtl_KeyPress);
+            eCtl.TextChanged += new EventHandler(eCtl_TextChanged);
+            eCtl.KeyPress += new KeyPressEventHandler(eCtl_KeyPress);
         }
 
         private void eCtl_TextChanged(object sender, EventArgs e)
         {
             if (runGrid.CurrentCell.ColumnIndex == SPLITTIMEINDEX || runGrid.CurrentCell.ColumnIndex == BESTSEGMENTINDEX || runGrid.CurrentCell.ColumnIndex == SEGMENTTIMEINDEX || runGrid.CurrentCell.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
             {
-                if (Regex.IsMatch(this.eCtl.Text, "[^0-9:.,]"))
+                if (Regex.IsMatch(eCtl.Text, "[^0-9:.,]"))
                 {
-                    this.eCtl.Text = Regex.Replace(this.eCtl.Text, "[^0-9:.,]", "");
+                    eCtl.Text = Regex.Replace(eCtl.Text, "[^0-9:.,]", "");
                 }
             }
         }
@@ -361,7 +356,7 @@ namespace LiveSplit.View
         {
             if (e.ColumnIndex == SPLITTIMEINDEX || e.ColumnIndex == BESTSEGMENTINDEX || e.ColumnIndex == SEGMENTTIMEINDEX || e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
             {
-                if (String.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+                if (string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
                     return;
 
                 try
@@ -382,7 +377,7 @@ namespace LiveSplit.View
         {
             if (e.ColumnIndex == SPLITTIMEINDEX || e.ColumnIndex == BESTSEGMENTINDEX || e.ColumnIndex == SEGMENTTIMEINDEX || e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
             {
-                if (String.IsNullOrWhiteSpace(e.Value.ToString()))
+                if (string.IsNullOrWhiteSpace(e.Value.ToString()))
                 {
                     e.Value = null;
                     if (e.ColumnIndex == SPLITTIMEINDEX)
@@ -533,7 +528,7 @@ namespace LiveSplit.View
             {
                 var dialog = new OpenFileDialog();
                 dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
-                if (!String.IsNullOrEmpty(Run[e.RowIndex].Name))
+                if (!string.IsNullOrEmpty(Run[e.RowIndex].Name))
                 {
                     dialog.Title = "Set Icon for " + Run[e.RowIndex].Name + "...";
                 }
@@ -542,7 +537,7 @@ namespace LiveSplit.View
                     dialog.Title = "Set Icon...";
                 }
                 var result = dialog.ShowDialog();
-                if (result == System.Windows.Forms.DialogResult.OK)
+                if (result == DialogResult.OK)
                 {
                     try
                     {
@@ -552,7 +547,6 @@ namespace LiveSplit.View
                     catch (Exception ex)
                     {
                         Log.Error(ex);
-
                         MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
@@ -589,7 +583,7 @@ namespace LiveSplit.View
         private void picGameIcon_DoubleClick(object sender, EventArgs e)
         {
             var dialog = new OpenFileDialog();
-            if (!String.IsNullOrEmpty(GameName))
+            if (!string.IsNullOrEmpty(GameName))
             {
                 dialog.Title = "Set Icon for " + GameName + "...";
             }
@@ -599,7 +593,7 @@ namespace LiveSplit.View
             }
             dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
             var result = dialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 try
                 {
@@ -610,7 +604,6 @@ namespace LiveSplit.View
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                
                     MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -618,13 +611,12 @@ namespace LiveSplit.View
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
         }
 
         private void UpdateSegmentList()
@@ -725,7 +717,7 @@ namespace LiveSplit.View
             {
                 foreach (var selectedObject in runGrid.SelectedCells.OfType<DataGridViewCell>().Reverse())
                 {
-                    var selectedCell = (DataGridViewCell)selectedObject;
+                    var selectedCell = selectedObject;
 
                     if (Run.Count <= 1 || selectedCell.RowIndex >= Run.Count || selectedCell.RowIndex < 0)
                         continue;
@@ -811,7 +803,7 @@ namespace LiveSplit.View
                 }
             }
 
-            var comparisonKeys = new List<String>(firstSegment.Comparisons.Keys);
+            var comparisonKeys = new List<string>(firstSegment.Comparisons.Keys);
             foreach (var comparison in comparisonKeys)
             {
                 var previousTime = segIndex > 0 ? SegmentList.ElementAt(segIndex - 1).Comparisons[comparison] : new Time(TimeSpan.Zero, TimeSpan.Zero);
@@ -924,7 +916,7 @@ namespace LiveSplit.View
 
         private void picGameIcon_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
             {
                 RemoveIconMenu.Show(this, e.Location);
             }
@@ -970,7 +962,6 @@ namespace LiveSplit.View
                 catch (Exception exc)
                 {
                     Log.Error(exc);
-
                     MessageBox.Show("Could not download the box art of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -986,7 +977,7 @@ namespace LiveSplit.View
                 {
                     var uri = new Uri(url);
 
-                    var request = (HttpWebRequest)HttpWebRequest.Create(uri);
+                    var request = (HttpWebRequest)WebRequest.Create(uri);
                     using (var stream = request.GetResponse().GetResponseStream())
                     {
                         try
@@ -1014,12 +1005,12 @@ namespace LiveSplit.View
         {
             foreach (var comparison in Run.CustomComparisons)
             {
-                if (comparison != LiveSplit.Model.Run.PersonalBestComparisonName)
+                if (comparison != Model.Run.PersonalBestComparisonName)
                     AddComparisonColumn(comparison);
             }
         }
 
-        private void AddComparisonColumn(String name)
+        private void AddComparisonColumn(string name)
         {
             var column = new DataGridViewTextBoxColumn();
             column.Name = name;
@@ -1050,7 +1041,7 @@ namespace LiveSplit.View
             var name = column.Name;
             var newName = name;
             var dialogResult = InputBox.Show("Rename Comparison", "Comparison Name:", ref newName);
-            if (dialogResult == System.Windows.Forms.DialogResult.OK)
+            if (dialogResult == DialogResult.OK)
             {
                 if (!Run.Comparisons.Contains(newName))
                 {
@@ -1074,14 +1065,14 @@ namespace LiveSplit.View
                     else
                     {
                         var result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                        if (result == System.Windows.Forms.DialogResult.Retry)
+                        if (result == DialogResult.Retry)
                             RenameComparison(column);
                     }
                 }
                 else if (newName != name)
                 {
                     var result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                    if (result == System.Windows.Forms.DialogResult.Retry)
+                    if (result == DialogResult.Retry)
                         RenameComparison(column);
                 }
             }
@@ -1095,7 +1086,7 @@ namespace LiveSplit.View
             Run.CustomComparisons.Remove(name);
 
             if (CurrentState.CurrentComparison == name)
-                CurrentState.CurrentComparison = LiveSplit.Model.Run.PersonalBestComparisonName;
+                CurrentState.CurrentComparison = Model.Run.PersonalBestComparisonName;
 
             var args = new RenameEventArgs();
             args.OldName = name;
@@ -1109,9 +1100,9 @@ namespace LiveSplit.View
 
         private void btnAddComparison_Click(object sender, EventArgs e)
         {
-            String name = "";
+            var name = "";
             var result = InputBox.Show("New Comparison", "Comparison Name:", ref name);
-            if (result == System.Windows.Forms.DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 if (!Run.Comparisons.Contains(name))
                 {
@@ -1123,14 +1114,14 @@ namespace LiveSplit.View
                     else
                     {
                         result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                        if (result == System.Windows.Forms.DialogResult.Retry)
+                        if (result == DialogResult.Retry)
                             btnAddComparison_Click(sender, e);
                     }
                 }
                 else
                 {
                     result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                    if (result == System.Windows.Forms.DialogResult.Retry)
+                    if (result == DialogResult.Retry)
                         btnAddComparison_Click(sender, e);
                 }
             }
@@ -1173,7 +1164,7 @@ namespace LiveSplit.View
         {
             var dialog = new ComponentSettingsDialog(CurrentState.Run.AutoSplitter.Component);
             var result = dialog.ShowDialog();
-            if (result == System.Windows.Forms.DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 var document = new XmlDocument();
                 var autoSplitterSettings = document.CreateElement("AutoSplitterSettings");

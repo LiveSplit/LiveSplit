@@ -1,17 +1,7 @@
-﻿using Fetze.WinFormsColor;
-using LiveSplit.Model.Input;
+﻿using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.View
@@ -166,8 +156,8 @@ namespace LiveSplit.View
                     chkGlobalHotkeys.Select();
                     txtBox.Text = FormatKey(key);
                 };
-                if (this.InvokeRequired)
-                    this.Invoke(action);
+                if (InvokeRequired)
+                    Invoke(action);
                 else
                     action();
             };
@@ -231,25 +221,25 @@ namespace LiveSplit.View
             label11.Click += ClickControl;
             /*lblDisplayInterval.Click += ClickControl;
             lblRefreshRate.Click += ClickControl;*/
-            this.Click += ClickControl;
+            Click += ClickControl;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void btnOBSInstall_Click(object sender, EventArgs e)
         {
             var result = MessageBox.Show("The OBS Plugin is still in Beta. It might reduce the framerate of your stream. Also, your splits will close if you lose internet connection. These issues will be fixed in the future. The plugin will also not automatically update in this version, so you will need to reinstall the plugin when there is a new update.\n\nAre you sure you would like to install the OBS Plugin?", "OBS Plugin Installation Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            if (result == DialogResult.Yes)
             {
                 var psi = new ProcessStartInfo();
                 psi.Arguments = "obsplugin";

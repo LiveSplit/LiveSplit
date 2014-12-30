@@ -8,12 +8,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Xml;
 
 namespace LiveSplit.View
 {
@@ -28,7 +24,7 @@ namespace LiveSplit.View
 
         public LiveSplitState CurrentState { get; set; }
 
-        public List<LiveSplit.UI.Components.IComponent> ComponentsToDispose { get; set; }
+        public List<UI.Components.IComponent> ComponentsToDispose { get; set; }
 
         protected ILayout Layout { get; set; }
         protected BindingList<ILayoutComponent> BindingList { get; set; }
@@ -51,7 +47,7 @@ namespace LiveSplit.View
             Form = form;
             Layout = layout;
             BindingList = new BindingList<ILayoutComponent>(Layout.LayoutComponents);
-            ComponentsToDispose = new List<LiveSplit.UI.Components.IComponent>();
+            ComponentsToDispose = new List<UI.Components.IComponent>();
             lbxComponents.DataSource = BindingList;
             lbxComponents.DisplayMember = "Component.ComponentName";
             LoadAllComponentsAvailable();
@@ -110,7 +106,6 @@ namespace LiveSplit.View
                 catch (Exception e)
                 {
                     Log.Error(e);
-
                     MessageBox.Show(this, "The Component could not be loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -150,7 +145,7 @@ namespace LiveSplit.View
                 var category = group.Key;
                 var componentFactories = (IEnumerable<IComponentFactory>)group;
                 if (category == ComponentCategory.Other)
-                    componentFactories = new IComponentFactory[]{new SeparatorFactory()}.Concat(componentFactories).OrderBy(x => x.ComponentName);
+                    componentFactories = new[] { new SeparatorFactory() }.Concat(componentFactories).OrderBy(x => x.ComponentName);
                 AddGroup(category, componentFactories);
             }
 
@@ -166,8 +161,8 @@ namespace LiveSplit.View
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -270,14 +265,14 @@ namespace LiveSplit.View
 
         private void ShowLayoutSettings(LiveSplit.UI.Components.IComponent tabControl = null)
         {
-            var oldSettings = (LiveSplit.Options.LayoutSettings)Layout.Settings.Clone();
+            var oldSettings = (Options.LayoutSettings)Layout.Settings.Clone();
             var settingsDialog = new LayoutSettingsDialog(Layout.Settings, Layout, tabControl);
             var result = settingsDialog.ShowDialog(this);
-            if (result == System.Windows.Forms.DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 Layout.HasChanged = true;
             }
-            else if (result == System.Windows.Forms.DialogResult.Cancel)
+            else if (result == DialogResult.Cancel)
             {
                 Layout.Settings.Assign(oldSettings);
                 LayoutSettingsAssigned(null, null);
@@ -296,7 +291,7 @@ namespace LiveSplit.View
             var oldSize = CurrentState.Form.Size;
             var result = setSizeDialog.ShowDialog();
 
-            if (result == System.Windows.Forms.DialogResult.Cancel)
+            if (result == DialogResult.Cancel)
                 CurrentState.Form.Size = oldSize;
         }
 
@@ -306,8 +301,8 @@ namespace LiveSplit.View
 
         private void lbxComponents_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            int index = this.lbxComponents.IndexFromPoint(e.Location);
-            if (index != System.Windows.Forms.ListBox.NoMatches)
+            int index = lbxComponents.IndexFromPoint(e.Location);
+            if (index != ListBox.NoMatches)
             {
                 var selectedItem = lbxComponents.Items[index];
                 try

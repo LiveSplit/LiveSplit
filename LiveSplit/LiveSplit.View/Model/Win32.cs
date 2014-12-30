@@ -1,37 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
 
 namespace LiveSplit.Model
 {
     class Win32
     {
-        public const Int32 WS_EX_LAYERED = 0x80000;
-        public const Int32 HTCAPTION = 0x02;
-        public const Int32 WM_NCHITTEST = 0x84;
-        public const Int32 ULW_ALPHA = 0x02;
+        public const int WS_EX_LAYERED = 0x80000;
+        public const int HTCAPTION = 0x02;
+        public const int WM_NCHITTEST = 0x84;
+        public const int ULW_ALPHA = 0x02;
         public const byte AC_SRC_OVER = 0x00;
         public const byte AC_SRC_ALPHA = 0x01;
 
         [StructLayout(LayoutKind.Sequential)]
         public struct Point
         {
-            public Int32 x;
-            public Int32 y;
+            public int x;
+            public int y;
 
-            public Point(Int32 x, Int32 y)
+            public Point(int x, int y)
             { this.x = x; this.y = y; }
         }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct Size
         {
-            public Int32 cx;
-            public Int32 cy;
+            public int cx;
+            public int cy;
 
-            public Size(Int32 cx, Int32 cy)
+            public Size(int cx, int cy)
             { this.cx = cx; this.cy = cy; }
         }
 
@@ -57,7 +54,7 @@ namespace LiveSplit.Model
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool UpdateLayeredWindow(IntPtr hwnd, IntPtr hdcDst,
             ref Point pptDst, ref Size psize, IntPtr hdcSrc, ref Point pprSrc,
-            Int32 crKey, ref BLENDFUNCTION pblend, Int32 dwFlags);
+            int crKey, ref BLENDFUNCTION pblend, int dwFlags);
 
         [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         public static extern IntPtr CreateCompatibleDC(IntPtr hDC);

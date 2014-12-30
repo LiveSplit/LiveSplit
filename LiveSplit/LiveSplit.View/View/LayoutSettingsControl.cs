@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Fetze.WinFormsColor;
 using LiveSplit.Options;
@@ -20,8 +14,8 @@ namespace LiveSplit.View
             InitializeComponent();
         }
 
-        public LiveSplit.Options.LayoutSettings Settings { get; set; }
-        public LiveSplit.UI.ILayout Layout { get; set; }
+        public Options.LayoutSettings Settings { get; set; }
+        public ILayout Layout { get; set; }
 
         public Color TextColor { get { return Settings.TextColor; } set { Settings.TextColor = value; } }
         public Color BackgroundColor { get { return Settings.BackgroundColor; } set { Settings.BackgroundColor = value; } }
@@ -37,12 +31,12 @@ namespace LiveSplit.View
         public Color NotRunningColor { get { return Settings.NotRunningColor; } set { Settings.NotRunningColor = value; } }
         public Color PausedColor { get { return Settings.PausedColor; } set { Settings.PausedColor = value; } }
         public Color ShadowsColor { get { return Settings.ShadowsColor; } set { Settings.ShadowsColor = value; } }
-        public string TimerFont { get { return String.Format("{0} {1}", Settings.TimerFont.FontFamily.Name, Settings.TimerFont.Style); }}
-        public string MainFont { get { return String.Format("{0} {1}", Settings.TimesFont.FontFamily.Name, Settings.TimesFont.Style); ; } }
-        public string SplitNamesFont { get { return String.Format("{0} {1}", Settings.TextFont.FontFamily.Name, Settings.TextFont.Style); ; } }
+        public string TimerFont { get { return string.Format("{0} {1}", Settings.TimerFont.FontFamily.Name, Settings.TimerFont.Style); }}
+        public string MainFont { get { return string.Format("{0} {1}", Settings.TimesFont.FontFamily.Name, Settings.TimesFont.Style); ; } }
+        public string SplitNamesFont { get { return string.Format("{0} {1}", Settings.TextFont.FontFamily.Name, Settings.TextFont.Style); ; } }
 
         public GradientType BackgroundGradient { get { return Settings.BackgroundGradient; } set { Settings.BackgroundGradient = value; } }
-        public String GradientString
+        public string GradientString
         {
             get { return BackgroundGradient.ToString(); }
             set { BackgroundGradient = (GradientType)Enum.Parse(typeof(GradientType), value); }
@@ -55,7 +49,7 @@ namespace LiveSplit.View
 
         public float Opacity { get { return Settings.Opacity*100f; } set { Settings.Opacity = value/100f; } }
 
-        public LayoutSettingsControl(LiveSplit.Options.LayoutSettings settings, LiveSplit.UI.ILayout layout)
+        public LayoutSettingsControl(Options.LayoutSettings settings, ILayout layout)
         {
             InitializeComponent();
             Settings = settings;
@@ -113,7 +107,7 @@ namespace LiveSplit.View
             try
             {
                 var result = dialog.ShowDialog(this);
-                if (result == System.Windows.Forms.DialogResult.OK)
+                if (result == DialogResult.OK)
                 {
                     return dialog.Font;
                 }
@@ -121,7 +115,6 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-
                 MessageBox.Show("This font is not supported.", "Font Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             return previousFont;

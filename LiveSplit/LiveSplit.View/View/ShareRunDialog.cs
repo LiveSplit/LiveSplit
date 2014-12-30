@@ -3,13 +3,10 @@ using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using LiveSplit.Web.Share;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -41,13 +38,13 @@ namespace LiveSplit.View
             InitializeComponent();
         }
 
-        void RefreshCategoryList(String gameName)
+        void RefreshCategoryList(string gameName)
         {
             Task.Factory.StartNew(() =>
             {
                 try
                 {
-                    String[] categoryNames;
+                    string[] categoryNames;
                     try
                     {
                         categoryNames = CurrentPlatform.GetGameCategories(CurrentPlatform.GetGameIdByName(gameName)).Select(x => x.Value).ToArray();
@@ -56,7 +53,7 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
 
-                        categoryNames = new String[0];
+                        categoryNames = new string[0];
                     }
                     Action invokation = () =>
                     {
@@ -71,8 +68,8 @@ namespace LiveSplit.View
                             Log.Error(ex);
                         }
                     };
-                    if (this.InvokeRequired)
-                        this.Invoke(invokation);
+                    if (InvokeRequired)
+                        Invoke(invokation);
                     else
                         invokation();
                 }
@@ -89,7 +86,7 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    String[] gameNames;
+                    string[] gameNames;
                     try
                     {
                         gameNames = CurrentPlatform.GetGameNames().ToArray();
@@ -98,7 +95,7 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
 
-                        gameNames = new String[0];
+                        gameNames = new string[0];
                     }
                     Action invokation = () =>
                     {
@@ -115,8 +112,8 @@ namespace LiveSplit.View
                             Log.Error(ex);
                         }
                     };
-                    if (this.InvokeRequired)
-                        this.Invoke(invokation);
+                    if (InvokeRequired)
+                        Invoke(invokation);
                     else
                         invokation();
                 }
@@ -208,11 +205,11 @@ namespace LiveSplit.View
 
             if (State.Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod] == null)
                 btnInsertPB.Enabled = false;
-            if (String.IsNullOrEmpty(State.Run.GameName))
+            if (string.IsNullOrEmpty(State.Run.GameName))
                 btnInsertGame.Enabled = false;
-            if (String.IsNullOrEmpty(State.Run.CategoryName))
+            if (string.IsNullOrEmpty(State.Run.CategoryName))
                 btnInsertCategory.Enabled = false;
-            if (String.IsNullOrEmpty(State.Run.GameName) && String.IsNullOrEmpty(State.Run.CategoryName))
+            if (string.IsNullOrEmpty(State.Run.GameName) && string.IsNullOrEmpty(State.Run.CategoryName))
                 btnInsertTitle.Enabled = false;
             txtVideoURL.Enabled = 
                 CurrentPlatform == PBTracker.Instance 
@@ -224,7 +221,7 @@ namespace LiveSplit.View
             RefreshNotes();
         }
 
-        private String FormatNotes(String notePlaceholder)
+        private string FormatNotes(string notePlaceholder)
         {
             var timeFormatter = new RegularTimeFormatter(TimeAccuracy.Seconds);
             var deltaTimeFormatter = new DeltaTimeFormatter();
@@ -234,8 +231,8 @@ namespace LiveSplit.View
             var pb = timeFormatter.Format(Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod]) ?? "";
 
             var titleBuilder = new StringBuilder();
-            var gameNameEmpty = String.IsNullOrEmpty(Run.GameName);
-            var categoryEmpty = String.IsNullOrEmpty(Run.CategoryName);
+            var gameNameEmpty = string.IsNullOrEmpty(Run.GameName);
+            var categoryEmpty = string.IsNullOrEmpty(Run.CategoryName);
 
             if (!gameNameEmpty || !categoryEmpty)
             {
@@ -275,7 +272,7 @@ namespace LiveSplit.View
                     if (Twitch.Instance.IsLoggedIn || Twitch.Instance.VerifyLogin("", ""))
                     {
                         var userName = Twitch.Instance.ChannelName;
-                        streamLink = String.Format("http://twitch.tv/{0}", userName);
+                        streamLink = string.Format("http://twitch.tv/{0}", userName);
                     }
                 }
                 catch { }
@@ -300,7 +297,7 @@ namespace LiveSplit.View
                 if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
                 {
                     txtNotes.Text = ShareSettings.Default.TwitterFormat;
-                    if (String.IsNullOrEmpty(txtNotes.Text))
+                    if (string.IsNullOrEmpty(txtNotes.Text))
                     {
                         txtNotes.Text = "I got a $pb in $title.";
                     }
@@ -308,7 +305,7 @@ namespace LiveSplit.View
                 else
                 {
                     txtNotes.Text = ShareSettings.Default.TwitterFormatRunning;
-                    if (String.IsNullOrEmpty(txtNotes.Text))
+                    if (string.IsNullOrEmpty(txtNotes.Text))
                     {
                         txtNotes.Text = "I'm $delta in $title.";
                     }
@@ -318,7 +315,7 @@ namespace LiveSplit.View
             {
                 ShareSettings.Default.Reload();
                 txtNotes.Text = ShareSettings.Default.TwitchFormat;
-                if (String.IsNullOrEmpty(txtNotes.Text))
+                if (string.IsNullOrEmpty(txtNotes.Text))
                 {
                     txtNotes.Text = "$title Speedrun";
                 }
@@ -381,7 +378,7 @@ namespace LiveSplit.View
 
                 if (runSubmitted)
                 {
-                    MessageBox.Show(String.Format("Your run was successfully shared to {0}.", CurrentPlatform.PlatformName), "Run Shared", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(string.Format("Your run was successfully shared to {0}.", CurrentPlatform.PlatformName), "Run Shared", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
@@ -399,8 +396,8 @@ namespace LiveSplit.View
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         private void btnPreview_Click(object sender, EventArgs e)
@@ -408,7 +405,7 @@ namespace LiveSplit.View
             MessageBox.Show(FormatNotes(txtNotes.Text), "Preview", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void Insert(String insertText)
+        private void Insert(string insertText)
         {
             var selectionIndex = txtNotes.SelectionStart;
             txtNotes.Text = txtNotes.Text.Insert(selectionIndex, insertText);
