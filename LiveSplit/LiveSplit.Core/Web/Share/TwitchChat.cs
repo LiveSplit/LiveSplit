@@ -10,7 +10,7 @@ using System.Linq;
 namespace LiveSplit.Web.Share
 {
 
-    public class TwitchChat
+    public class TwitchChat : IDisposable
     {
         private IrcClient Client { get; set; }
 
@@ -28,7 +28,9 @@ namespace LiveSplit.Web.Share
         protected Dictionary<string, ChatBadges> UserFlags { get; set; }
         protected Dictionary<string, Color> UserColors { get; set; }
 
-        public TwitchChat(string accessToken)
+        public string Channel { get; protected set; }
+
+        public TwitchChat(string accessToken, string channel)
         {
             Client = new IrcClient();
             UserFlags = new Dictionary<string, ChatBadges>();
@@ -36,7 +38,8 @@ namespace LiveSplit.Web.Share
             var twitch = Twitch.Instance;
             Client.Connected += Client_Connected;
             Client.Registered += Client_Registered;
-            
+            Channel = channel;
+
             Client.Connect("irc.twitch.tv", 6667,
                 new IrcUserRegistrationInfo()
                 {
@@ -96,7 +99,7 @@ namespace LiveSplit.Web.Share
             Client.RawMessageReceived += WaitForChannelJoin;
             Client.LocalUser.MessageReceived += LocalUser_MessageReceived;
             Client.SendRawMessage("TWITCHCLIENT 1");
-            Client.Channels.Join("#" + Twitch.Instance.ChannelName.ToLower());
+            Client.Channels.Join("#" + Channel);
         }
 
         void LocalUser_MessageReceived(object sender, IrcMessageEventArgs e)
@@ -181,6 +184,11 @@ namespace LiveSplit.Web.Share
             Client.LocalUser.SendMessage(channel, message);
         }
 
+        public void Dispose()
+        {
+            ((IDisposable)Client).Dispose();
+        }
+
         #region Inner classes
 
         [Flags]
@@ -198,14 +206,14 @@ namespace LiveSplit.Web.Share
         public class User
         {
             public Color Color { get; protected set; }
-            public ChatBadges Flags { get; protected set; }
+            public ChatBadges Badges { get; protected set; }
 
             public string Name { get; protected set; }
 
-            public User(IrcUser user, ChatBadges flags, Color color)
+            public User(IrcUser user, ChatBadges badges, Color color)
             {
                 Name = user.NickName;
-                Flags = flags;
+                Badges = badges;
                 Color = color;
             }
 

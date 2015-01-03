@@ -269,7 +269,7 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    if (Twitch.Instance.IsLoggedIn || Twitch.Instance.VerifyLogin("", ""))
+                    if (Twitch.Instance.IsLoggedIn || Twitch.Instance.VerifyLogin())
                     {
                         var userName = Twitch.Instance.ChannelName;
                         streamLink = string.Format("http://twitch.tv/{0}", userName);

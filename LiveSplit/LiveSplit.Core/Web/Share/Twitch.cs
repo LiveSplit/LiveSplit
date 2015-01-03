@@ -55,7 +55,8 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        public TwitchChat Chat { get; protected set; }
+        public TwitchChat Chat { get { return ConnectedChats.Values.First(); } }
+        public IDictionary<string, TwitchChat> ConnectedChats { get; protected set; }
 
         public ITimerModel _AutoUpdateModel;
         public ITimerModel AutoUpdateModel
@@ -68,7 +69,7 @@ namespace LiveSplit.Web.Share
             {
                 _AutoUpdateModel = value;
                 value.OnSplit += UpdateTwitch;
-                value.OnReset += (s,e) => UpdateTwitch(s, null);
+                value.OnReset += (s, e) => UpdateTwitch(s, null);
                 value.OnStart += UpdateTwitch;
                 value.OnSkipSplit += UpdateTwitch;
                 value.OnUndoSplit += UpdateTwitch;
@@ -121,8 +122,9 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        protected Twitch() 
-        { 
+        protected Twitch()
+        {
+            ConnectedChats = new Dictionary<string, TwitchChat>();
         }
 
         protected Uri GetUri(string subUri)
@@ -137,10 +139,13 @@ namespace LiveSplit.Web.Share
 
         public string Description
         {
-            get { return "Sharing to Twitch will automatically update your "
-                       + "stream title and game playing based on the information "
-                       + "in your splits. Twitch must authenticate with LiveSplit "
-                       + "the first time that sharing to Twitch is used."; }
+            get
+            {
+                return "Sharing to Twitch will automatically update your "
+                     + "stream title and game playing based on the information "
+                     + "in your splits. Twitch must authenticate with LiveSplit "
+                     + "the first time that sharing to Twitch is used.";
+            }
         }
 
         public ISettings Settings { get; set; }
@@ -170,15 +175,36 @@ namespace LiveSplit.Web.Share
             return string.Empty;
         }
 
-        public bool VerifyLogin(string username, string password)
+        public TwitchChat ConnectToChat(string channel = null)
+        {
+            channel = (channel ?? ChannelName).ToLower();
+            if (ConnectedChats.ContainsKey(channel))
+                throw new ArgumentException("Already connected to channel");
+            var chat = new TwitchChat(AccessToken, channel);
+            ConnectedChats.Add(channel, chat);
+            return chat;
+        }
+
+        public void CloseAllChatConnections()
+        {
+            foreach (var chat in ConnectedChats.Values)
+                chat.Dispose();
+
+            ConnectedChats.Clear();
+        }
+
+        bool IRunUploadPlatform.VerifyLogin(string username, string password)
+        {
+            return VerifyLogin();
+        }
+
+        public bool VerifyLogin()
         {
             ShareSettings.Default.Reload();
             AccessToken = ShareSettings.Default.TwitchAccessToken;
 
             if (VerifyAccessToken())
             {
-                Chat = new TwitchChat(AccessToken);
-
                 return true;
             }
             else
@@ -189,11 +215,6 @@ namespace LiveSplit.Web.Share
                 AccessToken = form.AccessToken;
 
                 var verified = VerifyAccessToken();
-
-                if (verified)
-                {
-                    Chat = new TwitchChat(AccessToken);
-                }
 
                 return verified;
             }
@@ -236,7 +257,7 @@ namespace LiveSplit.Web.Share
                     (game == null ? "" : ",\"game\":\"{1}\"") +
                     "}}" +
                 "}}", title, game));
-            
+
             return false;
         }
 
@@ -248,7 +269,7 @@ namespace LiveSplit.Web.Share
                 ChannelName = verificationInfo.token.user_name;
                 return verificationInfo.token.valid;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 Log.Error(ex);
             }
@@ -285,18 +306,18 @@ namespace LiveSplit.Web.Share
         }
 
         public bool SubmitRun(
-            IRun run, 
-            string username, string password, 
-            Func<Image> screenShotFunction = null, 
+            IRun run,
+            string username, string password,
+            Func<Image> screenShotFunction = null,
             bool attachSplits = false,
             TimingMethod method = TimingMethod.RealTime,
-            string gameId = "", string categoryId = "", 
-            string version = "", string comment = "", 
+            string gameId = "", string categoryId = "",
+            string version = "", string comment = "",
             string video = "", params string[] additionalParams)
         {
             if (!IsLoggedIn)
             {
-                if (!VerifyLogin(username, password))
+                if (!VerifyLogin())
                     return false;
             }
 
