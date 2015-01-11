@@ -73,3 +73,6 @@
 [submodule "LiveSplit/Components/LiveSplit.Subsplits"]
 	path = LiveSplit/Components/LiveSplit.Subsplits
 	url = https://github.com/LiveSplit/LiveSplit.Subsplits
+[submodule "LiveSplit/Libs/xlio"]
+	path = LiveSplit/Libs/xlio
+	url = https://github.com/codaxy/xlio.git

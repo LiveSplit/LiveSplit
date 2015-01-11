@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.22310.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit", "LiveSplit\LiveSplit.csproj", "{E8047F95-BA79-4E2E-A9BB-5C48D5FA2467}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -97,6 +97,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.DebugLog", "Components\LiveSplit.DebugLog\LiveSplit.DebugLog.csproj", "{CD1AF2FD-70E6-4BE9-A4F0-38AF3EF02812}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Subsplits", "Components\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj", "{5E696803-9EEE-4C9E-8FC1-04693B0E171E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{FAF78A7D-B7F6-4302-88E9-4B1E7AAC3552}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codaxy.Xlio", "Libs\xlio\Source\Codaxy.Xlio\Codaxy.Xlio.csproj", "{11F82973-690A-48A9-8CB8-BD97E0024E2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -273,6 +277,12 @@ Global
 		{5E696803-9EEE-4C9E-8FC1-04693B0E171E}.Release Candidate|Any CPU.Build.0 = Release Candidate|Any CPU
 		{5E696803-9EEE-4C9E-8FC1-04693B0E171E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E696803-9EEE-4C9E-8FC1-04693B0E171E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F82973-690A-48A9-8CB8-BD97E0024E2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F82973-690A-48A9-8CB8-BD97E0024E2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F82973-690A-48A9-8CB8-BD97E0024E2C}.Release Candidate|Any CPU.ActiveCfg = Release|Any CPU
+		{11F82973-690A-48A9-8CB8-BD97E0024E2C}.Release Candidate|Any CPU.Build.0 = Release|Any CPU
+		{11F82973-690A-48A9-8CB8-BD97E0024E2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F82973-690A-48A9-8CB8-BD97E0024E2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -305,6 +315,7 @@ Global
 		{56E9D96B-5944-4C2E-876B-CBA44B1465AC} = {18031338-5A00-4AFC-9476-6C491B31B66C}
 		{CD1AF2FD-70E6-4BE9-A4F0-38AF3EF02812} = {91298215-12A5-4194-B848-1D6ABBFC586E}
 		{5E696803-9EEE-4C9E-8FC1-04693B0E171E} = {EC7DFF61-A735-4942-8125-F9C9A8EA9EFA}
+		{11F82973-690A-48A9-8CB8-BD97E0024E2C} = {FAF78A7D-B7F6-4302-88E9-4B1E7AAC3552}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

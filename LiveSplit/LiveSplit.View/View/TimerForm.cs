@@ -141,7 +141,7 @@ namespace LiveSplit.View
             //LiveSplit.Web.Share.Twitch.Instance.AutoUpdateModel = Model;
 
             RunFactory = new StandardFormatsRunFactory();
-            RunSaver = new XMLRunSaver();
+            RunSaver = new ExcelRunSaver();
             LayoutSaver = new XMLLayoutSaver();
             SettingsSaver = new XMLSettingsSaver();
             LoadSettings();
