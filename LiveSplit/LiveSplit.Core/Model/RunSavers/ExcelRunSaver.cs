@@ -16,15 +16,79 @@ namespace LiveSplit.Model.RunSavers
         {
             var workbook = new Workbook();
             var splitTimesSheet = workbook.Sheets.AddSheet("Splits");
-            var historySheet = workbook.Sheets.AddSheet("History");
+            var runHistorySheet = workbook.Sheets.AddSheet("Run History");
+            var segmentHistorySheet = workbook.Sheets.AddSheet("Segment History");
 
             FillSplitTimesSheet(splitTimesSheet, run);
-            FillHistorySheet(historySheet, run);
+            FillRunHistorySheet(runHistorySheet, run);
+            FillSegmentHistorySheet(segmentHistorySheet, run);
 
             workbook.SaveToStream(stream, Codaxy.Xlio.IO.XlsxFileWriterOptions.AutoFit);
         }
 
-        private void FillHistorySheet(Sheet sheet, IRun run)
+        private void FillRunHistorySheet(Sheet sheet, IRun run)
+        {
+            var header = sheet.Data.Rows[0];
+
+            header[0].Value = "Run ID";
+            header[0].Style.Font.Bold = true;
+            header[0].Style.Font.Color = Color.White;
+            header[0].Style.Alignment.Horizontal = HorizontalAlignment.Center;
+            header[0].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
+            header[0].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
+
+            header[1].Value = "Time";
+
+            header[1].Style.Font.Bold = true;
+            header[1].Style.Font.Color = Color.White;
+            header[1].Style.Alignment.Horizontal = HorizontalAlignment.Center;
+            header[1].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
+            header[1].Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
+            header[1].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
+
+            var rowIndex = 1;
+            var bestTime = TimeSpan.MaxValue;
+            foreach (var runHistoryElement in run.RunHistory)
+            {
+                var row = sheet.Data.Rows[rowIndex];
+
+                row[0].Value = runHistoryElement.Index;
+                row[0].Style.Fill = CellFill.Solid(
+                    ((rowIndex & 1) == 1)
+                    ? new Color(221, 221, 221)
+                    : new Color(238, 238, 238));
+
+                var cell = row[1];
+
+                cell.Style.Fill = CellFill.Solid(
+                    ((rowIndex & 1) == 1)
+                    ? new Color(221, 221, 221)
+                    : new Color(238, 238, 238));
+
+                var time = runHistoryElement.Time.RealTime;
+                if (time.HasValue)
+                {
+                    cell.Value = time.Value.TotalDays;
+                    if (time.Value < bestTime)
+                    {
+                        bestTime = time.Value;
+                        cell.Style.Fill = CellFill.Solid(
+                            ((rowIndex & 1) == 1)
+                            ? new Color(201, 231, 201)
+                            : new Color(218, 248, 218));
+                    }
+                }
+
+                cell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
+                cell.Style.Format = "[HH]:MM:SS.00";
+                cell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
+
+
+                ++rowIndex;
+            }
+        }
+
+        private void FillSegmentHistorySheet(Sheet sheet, IRun run)
         {
             var header = sheet.Data.Rows[0];
 
