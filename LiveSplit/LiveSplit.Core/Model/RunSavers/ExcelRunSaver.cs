@@ -14,11 +14,6 @@ namespace LiveSplit.Model.RunSavers
     {
         public void Save(IRun run, Stream stream)
         {
-            var ok = Workbook.Load(@"D:\Desktop\LiveSplit\Splits\Wind Waker 2.xlsx");
-            var cell1 = ok.Sheets[0]["B1"];
-            var cell2 = ok.Sheets[0]["B2"];
-            var cell3 = ok.Sheets[0]["B3"];
-
             var workbook = new Workbook();
             var splitTimesSheet = workbook.Sheets.AddSheet("Splits");
             var historySheet = workbook.Sheets.AddSheet("History");
