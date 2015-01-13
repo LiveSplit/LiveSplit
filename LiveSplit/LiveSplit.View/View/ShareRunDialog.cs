@@ -147,6 +147,8 @@ namespace LiveSplit.View
 
             cbxPlatform.Items.Add("Screenshot");
             cbxPlatform.Items.Add("Imgur");
+            cbxPlatform.Items.Add("Excel");
+
             cbxPlatform.SelectedIndex = 0;
             cbxPlatform_SelectionChangeCommitted(null, null);
         }
@@ -179,6 +181,7 @@ namespace LiveSplit.View
                 case "Congratsio": CurrentPlatform = Congratsio.Instance; break;
                 case "Screenshot": CurrentPlatform = Screenshot.Instance; break;
                 case "Imgur": CurrentPlatform = Imgur.Instance; break;
+                case "Excel": CurrentPlatform = Excel.Instance; break;
             }
 
             CurrentPlatform.Settings = Settings;
@@ -193,7 +196,7 @@ namespace LiveSplit.View
 
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
                 chkAttachSplits.Enabled = !(CurrentPlatform == Screenshot.Instance || CurrentPlatform == SplitsIO.Instance
-                    || CurrentPlatform == Twitch.Instance);
+                    || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance);
             else
                 chkAttachSplits.Enabled = false;
 
