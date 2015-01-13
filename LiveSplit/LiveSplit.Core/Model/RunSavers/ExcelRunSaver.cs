@@ -181,6 +181,8 @@ namespace LiveSplit.Model.RunSavers
                 columnIndex++;
             }
 
+            var lastTime = TimeSpan.Zero;
+
             var rowIndex = 1;
             foreach (var segment in run)
             {
@@ -192,6 +194,7 @@ namespace LiveSplit.Model.RunSavers
                     ? new Color(221, 221, 221)
                     : new Color(238, 238, 238));
                 columnIndex = 1;
+
                 foreach (var comparisonName in run.Comparisons.Where(x => x != NoneComparisonGenerator.ComparisonName))
                 {
                     var cell = row[columnIndex];
@@ -202,10 +205,23 @@ namespace LiveSplit.Model.RunSavers
                     cell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
                     cell.Style.Format = "[HH]:MM:SS.00";
                     cell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
-                    cell.Style.Fill = CellFill.Solid(
-                        ((rowIndex & 1) == 1)
-                        ? new Color(221, 221, 221)
-                        : new Color(238, 238, 238));
+                    if (comparisonName == Run.PersonalBestComparisonName && time.HasValue && segment.BestSegmentTime.RealTime == (time.Value - lastTime))
+                    {
+                        cell.Style.Fill = CellFill.Solid(
+                            ((rowIndex & 1) == 1)
+                            ? new Color(241, 231, 181)
+                            : new Color(255, 245, 198));
+                    }
+                    else
+                    {
+                        cell.Style.Fill = CellFill.Solid(
+                            ((rowIndex & 1) == 1)
+                            ? new Color(221, 221, 221)
+                            : new Color(238, 238, 238));
+                    }
+
+                    if (comparisonName == Run.PersonalBestComparisonName && time.HasValue)
+                        lastTime = time.Value;
 
                     columnIndex++;
                 }
