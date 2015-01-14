@@ -95,7 +95,7 @@ namespace LiveSplit.View
         {
             try
             {
-                if (splitsTreeView.SelectedNode != null && splitsTreeView.SelectedNode.Tag != null && splitsTreeView.SelectedNode.Tag is DynamicJsonObject)
+                if (splitsTreeView.SelectedNode != null && splitsTreeView.SelectedNode.Tag is DynamicJsonObject)
                 {
                     dynamic run = splitsTreeView.SelectedNode.Tag;
                     Run = SplitsIO.Instance.DownloadRunByPath((string)run.path);
