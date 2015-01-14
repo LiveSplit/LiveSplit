@@ -31,7 +31,8 @@ namespace LiveSplit.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ListBoxItemDragger"> class.
         /// </see></summary>
-        /// <param name="listBox">The list box.
+        /// <param name="listBox">The list box</param>
+        /// <param name="form">The form</param>
         public ListBoxItemDragger(ListBox listBox, Form form)
         {
             Attach(listBox);
@@ -69,7 +70,7 @@ namespace LiveSplit.UI
         /// <summary>
         /// Raises the <see cref="E:ItemMoved"> event.
         /// </see></summary>
-        /// <param name="e">The <see cref="T:System.EventArgs"> instance containing the event data.
+        /// <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
         protected void OnItemMoved(EventArgs e)
         {
             if (ItemMoved != null) ItemMoved(this, e);
