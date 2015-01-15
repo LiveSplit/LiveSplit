@@ -31,6 +31,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit", "LiveSplit\Live
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Core", "LiveSplit.Core\LiveSplit.Core.csproj", "{6DE847DB-20A3-4848-AEEE-1B4364AECDFB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{11F82973-690A-48A9-8CB8-BD97E0024E2C} = {11F82973-690A-48A9-8CB8-BD97E0024E2C}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", "{BBF8A7B6-7027-4200-ACD5-04ED1A8584F7}"
 EndProject
