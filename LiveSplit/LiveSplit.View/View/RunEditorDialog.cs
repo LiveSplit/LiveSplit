@@ -1217,19 +1217,26 @@ namespace LiveSplit.View
         private void fromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var runImporter = new FileRunImporter();
-            runImporter.ImportAsComparison(CurrentState.Run, this);
+            ImportClick(runImporter);
         }
 
         private void fromURLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var runImporter = new URLRunImporter();
-            runImporter.ImportAsComparison(CurrentState.Run, this);
+            ImportClick(runImporter);
         }
 
         private void fromSplitsioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var runImporter = new SplitsIORunImporter();
-            runImporter.ImportAsComparison(CurrentState.Run, this);
+            ImportClick(runImporter);
+        }
+
+        private void ImportClick(IRunImporter importer)
+        {
+            var name = importer.ImportAsComparison(CurrentState.Run, this);
+            if (name != null)
+                AddComparisonColumn(name);
         }
     }
 }

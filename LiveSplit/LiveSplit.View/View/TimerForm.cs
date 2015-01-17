@@ -2399,29 +2399,7 @@ namespace LiveSplit.View
             gameTimeMenuItem.Name = "GameTime";
             comparisonMenuItem.DropDownItems.Add(gameTimeMenuItem);
 
-            comparisonMenuItem.DropDownItems.Add(new ToolStripSeparator());
-
-            var importMenuItem = new ToolStripMenuItem("Import From Splits");
-
-            var importFromFileMenuItem = new ToolStripMenuItem("From File...");
-            importFromFileMenuItem.Click += importFromFileMenuItem_Click;
-            importMenuItem.DropDownItems.Add(importFromFileMenuItem);
-            var importFromURLMenuItem = new ToolStripMenuItem("From URL...");
-            importFromURLMenuItem.Click += importFromURLMenuItem_Click;
-            importMenuItem.DropDownItems.Add(importFromURLMenuItem);
-            var importFromSplitsIOMenuItem = new ToolStripMenuItem("From Splits.io...");
-            importFromSplitsIOMenuItem.Click += importFromSplitsIOMenuItem_Click;
-            importMenuItem.DropDownItems.Add(importFromSplitsIOMenuItem);
-
-            comparisonMenuItem.DropDownItems.Add(importMenuItem);
-
             RefreshComparisonItems();
-        }
-
-        void importFromSplitsIOMenuItem_Click(object sender, EventArgs e)
-        {
-            var runImporter = new SplitsIORunImporter();
-            runImporter.ImportAsComparison(CurrentState.Run, this);
         }
 
         void gameTimeMenuItem_Click(object sender, EventArgs e)
@@ -2434,61 +2412,6 @@ namespace LiveSplit.View
         {
             CurrentState.CurrentTimingMethod = TimingMethod.RealTime;
             RefreshComparisonItems();
-        }
-
-        void importFromURLMenuItem_Click(object sender, EventArgs e)
-        {
-            var runImporter = new URLRunImporter();
-            runImporter.ImportAsComparison(CurrentState.Run, this);
-        }
-
-        void importFromFileMenuItem_Click(object sender, EventArgs e)
-        {
-            var runImporter = new FileRunImporter();
-            runImporter.ImportAsComparison(CurrentState.Run, this);
-        }
-
-        protected void AddComparisonWithNameInput(string name, IRun run)
-        {
-            while (!AddComparisonFromRun(name, run))
-            {
-                var result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
-                if (result == DialogResult.Cancel)
-                    return;
-            }
-        }
-
-        protected bool AddComparisonFromRun(string name, IRun run)
-        {
-            if (!CurrentState.Run.Comparisons.Contains(name))
-            {
-                if (!name.StartsWith("[Race]"))
-                {
-                    CurrentState.Run.CustomComparisons.Add(name);
-                    foreach (var segment in run)
-                    {
-                        var runSegment = CurrentState.Run.FirstOrDefault(x => x.Name == segment.Name);
-                        if (runSegment != null)
-                            runSegment.Comparisons[name] = segment.PersonalBestSplitTime;
-                    }
-                    CurrentState.Run.HasChanged = true;
-                    CurrentState.Run.FixSplits();
-                    SwitchComparison(name);
-                }
-                else
-                {
-                    var result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                    if (result == DialogResult.Retry)
-                        return false;
-                }
-            }
-            else
-            {
-                var result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
-                if (result == DialogResult.Retry)
-                    return false;
-            }
-            return true;
         }
 
         private void RegenerateComparisons()

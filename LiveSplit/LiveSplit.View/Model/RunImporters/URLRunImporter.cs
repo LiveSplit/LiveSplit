@@ -77,15 +77,16 @@ namespace LiveSplit.Model.RunImporters
             return null;
         }
 
-        public void ImportAsComparison(IRun run, Form form = null)
+        public string ImportAsComparison(IRun run, Form form = null)
         {
             string url = null;
             string name = null;
             if (DialogResult.OK == InputBox.Show(form, "Import Comparison from URL", "Name:", "URL:", ref name, ref url))
             {
                 var imported = LoadRunFromURL(url, form);
-                run.AddComparisonWithNameInput(imported, name, form);
+                return run.AddComparisonWithNameInput(imported, name, form);
             }
+            return null;
         }
     }
 }

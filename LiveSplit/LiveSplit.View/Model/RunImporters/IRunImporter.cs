@@ -10,7 +10,7 @@ namespace LiveSplit.Model.RunImporters
     public interface IRunImporter
     {
         IRun Import(Form form = null);
-        void ImportAsComparison(IRun run, Form form = null);
+        string ImportAsComparison(IRun run, Form form = null);
     }
 
     public static class IRunImportRunExtensions
@@ -48,16 +48,16 @@ namespace LiveSplit.Model.RunImporters
             return true;
         }
 
-        public static bool AddComparisonWithNameInput(this IRun target, 
+        public static string AddComparisonWithNameInput(this IRun target, 
             IRun comparisonRun, string name, Form form = null)
         {
             while (!AddComparisonFromRun(target, comparisonRun, name, form))
             {
                 var result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref name);
                 if (result == DialogResult.Cancel)
-                    return false;
+                    return null;
             }
-            return true;
+            return name;
         }
     }
 }

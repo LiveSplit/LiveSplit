@@ -19,7 +19,7 @@ namespace LiveSplit.Model.RunImporters
             return null;
         }
 
-        public void ImportAsComparison(IRun run, Form form = null)
+        public string ImportAsComparison(IRun run, Form form = null)
         {
             var dialog = new BrowseSplitsIODialog(true);
             var result = dialog.ShowDialog(form);
@@ -30,8 +30,9 @@ namespace LiveSplit.Model.RunImporters
             }
             if (result == DialogResult.OK)
             {
-                run.AddComparisonWithNameInput(dialog.Run, name, form);
+                return run.AddComparisonWithNameInput(dialog.Run, name, form);
             }
+            return null;
         }
     }
 }

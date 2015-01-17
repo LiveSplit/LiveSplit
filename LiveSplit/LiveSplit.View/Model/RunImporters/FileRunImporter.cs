@@ -17,7 +17,7 @@ namespace LiveSplit.Model.RunImporters
             throw new NotSupportedException();
         }
 
-        public void ImportAsComparison(IRun run, Form form = null)
+        public string ImportAsComparison(IRun run, Form form = null)
         {
             var splitDialog = new OpenFileDialog();
 
@@ -39,9 +39,10 @@ namespace LiveSplit.Model.RunImporters
                     var comparisonName = Path.GetFileNameWithoutExtension(splitDialog.FileName);
                     result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref comparisonName);
                     if (result != DialogResult.Cancel)
-                        run.AddComparisonWithNameInput(imported, comparisonName, form);
+                        return run.AddComparisonWithNameInput(imported, comparisonName, form);
                 }
             }
+            return null;
         }
     }
 }

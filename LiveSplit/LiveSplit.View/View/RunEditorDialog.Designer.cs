@@ -56,12 +56,12 @@
             this.btnMoveUp = new System.Windows.Forms.Button();
             this.btnMoveDown = new System.Windows.Forms.Button();
             this.btnAddComparison = new System.Windows.Forms.Button();
+            this.btnImportComparison = new System.Windows.Forms.Button();
             this.RemoveIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadBoxartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFromURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnImportComparison = new System.Windows.Forms.Button();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ImportComparisonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -450,6 +450,19 @@
             this.btnAddComparison.UseVisualStyleBackColor = true;
             this.btnAddComparison.Click += new System.EventHandler(this.btnAddComparison_Click);
             // 
+            // btnImportComparison
+            // 
+            this.btnImportComparison.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImportComparison.Location = new System.Drawing.Point(10, 347);
+            this.btnImportComparison.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnImportComparison.Name = "btnImportComparison";
+            this.btnImportComparison.Size = new System.Drawing.Size(102, 23);
+            this.btnImportComparison.TabIndex = 18;
+            this.btnImportComparison.Text = "Import Comparison";
+            this.btnImportComparison.UseVisualStyleBackColor = true;
+            this.btnImportComparison.Click += new System.EventHandler(this.btnImportComparison_Click);
+            // 
             // RemoveIconMenu
             // 
             this.RemoveIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -488,19 +501,6 @@
             this.removeIconToolStripMenuItem.Text = "Remove Icon";
             this.removeIconToolStripMenuItem.Click += new System.EventHandler(this.removeIconToolStripMenuItem_Click);
             // 
-            // btnImportComparison
-            // 
-            this.btnImportComparison.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnImportComparison.Location = new System.Drawing.Point(10, 347);
-            this.btnImportComparison.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.btnImportComparison.Name = "btnImportComparison";
-            this.btnImportComparison.Size = new System.Drawing.Size(102, 23);
-            this.btnImportComparison.TabIndex = 18;
-            this.btnImportComparison.Text = "Import Comparison";
-            this.btnImportComparison.UseVisualStyleBackColor = true;
-            this.btnImportComparison.Click += new System.EventHandler(this.btnImportComparison_Click);
-            // 
             // iRunBindingSource
             // 
             this.iRunBindingSource.DataSource = typeof(LiveSplit.Model.IRun);
@@ -516,7 +516,7 @@
             this.fromURLToolStripMenuItem,
             this.fromSplitsioToolStripMenuItem});
             this.ImportComparisonMenu.Name = "ImportComparisonMenu";
-            this.ImportComparisonMenu.Size = new System.Drawing.Size(156, 92);
+            this.ImportComparisonMenu.Size = new System.Drawing.Size(156, 70);
             // 
             // fromFileToolStripMenuItem
             // 
@@ -548,7 +548,7 @@
             this.ClientSize = new System.Drawing.Size(684, 517);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(700, 420);
+            this.MinimumSize = new System.Drawing.Size(700, 450);
             this.Name = "RunEditorDialog";
             this.Text = "Splits Editor";
             this.Load += new System.EventHandler(this.RunEditorDialog_Load);
