@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Model;
+using LiveSplit.Model.RunImporters;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using LiveSplit.UI;
@@ -1210,7 +1211,25 @@ namespace LiveSplit.View
 
         private void btnImportComparison_Click(object sender, EventArgs e)
         {
+            ImportComparisonMenu.Show(MousePosition);
+        }
 
+        private void fromFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var runImporter = new FileRunImporter();
+            runImporter.ImportAsComparison(CurrentState.Run, this);
+        }
+
+        private void fromURLToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var runImporter = new URLRunImporter();
+            runImporter.ImportAsComparison(CurrentState.Run, this);
+        }
+
+        private void fromSplitsioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var runImporter = new SplitsIORunImporter();
+            runImporter.ImportAsComparison(CurrentState.Run, this);
         }
     }
 }
