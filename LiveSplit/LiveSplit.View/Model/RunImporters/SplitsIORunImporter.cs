@@ -23,7 +23,7 @@ namespace LiveSplit.Model.RunImporters
         {
             var dialog = new BrowseSplitsIODialog(true);
             var result = dialog.ShowDialog(form);
-            var name = string.Empty;
+            var name = dialog.RunName;
             if (result == DialogResult.OK)
             {
                 result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref name);
