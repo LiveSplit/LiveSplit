@@ -1618,15 +1618,23 @@ namespace LiveSplit.View
             else
                 modelCopy.Reset();
 
-            if (!File.Exists(savePath))
-                File.Create(savePath).Close();
-            using (var stream = File.Open(savePath, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+            try
             {
-                RunSaver.Save(stateCopy.Run, stream);
-                CurrentState.Run.HasChanged = false;
+                if (!File.Exists(savePath))
+                    File.Create(savePath).Close();
+                using (var stream = File.Open(savePath, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+                {
+                    RunSaver.Save(stateCopy.Run, stream);
+                    CurrentState.Run.HasChanged = false;
+                }
+                Settings.AddToRecentSplits(savePath);
+                UpdateRecentSplits();
             }
-            Settings.AddToRecentSplits(savePath);
-            UpdateRecentSplits();
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Save Failed", "Could Not Save File!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error(ex);
+            }
         }
 
         private void SaveLayout()
@@ -1651,15 +1659,23 @@ namespace LiveSplit.View
                 return;
             }
 
-            if (!File.Exists(savePath))
-                File.Create(savePath).Close();
-            using (var stream = File.Open(savePath, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+            try
             {
-                LayoutSaver.Save(Layout, stream);
-                Layout.HasChanged = false;
+                if (!File.Exists(savePath))
+                    File.Create(savePath).Close();
+                using (var stream = File.Open(savePath, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+                {
+                    LayoutSaver.Save(Layout, stream);
+                    Layout.HasChanged = false;
+                }
+                Settings.AddToRecentLayouts(savePath);
+                UpdateRecentLayouts();
             }
-            Settings.AddToRecentLayouts(savePath);
-            UpdateRecentLayouts();
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Save Failed", "Could Not Save File!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error(ex);
+            }
         }
 
         private void EditSplits()
