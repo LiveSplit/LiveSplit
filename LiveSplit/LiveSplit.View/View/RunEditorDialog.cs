@@ -1207,5 +1207,10 @@ namespace LiveSplit.View
                 }
             }
         }
+
+        private void btnImportComparison_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

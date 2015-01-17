@@ -32,8 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RunEditorDialog));
             this.runGrid = new System.Windows.Forms.DataGridView();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnMoveDown = new System.Windows.Forms.Button();
-            this.btnMoveUp = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -41,13 +39,9 @@
             this.cbxRunCategory = new System.Windows.Forms.ComboBox();
             this.tbxTimeOffset = new System.Windows.Forms.TextBox();
             this.picGameIcon = new System.Windows.Forms.PictureBox();
-            this.btnInsert = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnAddComparison = new System.Windows.Forms.Button();
             this.tbxAttempts = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -56,6 +50,12 @@
             this.lblDescription = new System.Windows.Forms.Label();
             this.btnActivate = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
+            this.btnInsert = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.btnMoveUp = new System.Windows.Forms.Button();
+            this.btnMoveDown = new System.Windows.Forms.Button();
+            this.btnAddComparison = new System.Windows.Forms.Button();
             this.RemoveIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadBoxartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +63,7 @@
             this.removeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnImportComparison = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
@@ -131,6 +132,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnMoveUp, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.btnMoveDown, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.btnAddComparison, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.btnImportComparison, 0, 12);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -151,30 +153,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 517);
             this.tableLayoutPanel1.TabIndex = 1;
-            // 
-            // btnMoveDown
-            // 
-            this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveDown.Location = new System.Drawing.Point(10, 289);
-            this.btnMoveDown.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.btnMoveDown.Name = "btnMoveDown";
-            this.btnMoveDown.Size = new System.Drawing.Size(102, 23);
-            this.btnMoveDown.TabIndex = 17;
-            this.btnMoveDown.Text = "Move Down";
-            this.btnMoveDown.UseVisualStyleBackColor = true;
-            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
-            // 
-            // btnMoveUp
-            // 
-            this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMoveUp.Location = new System.Drawing.Point(10, 260);
-            this.btnMoveUp.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.btnMoveUp.Name = "btnMoveUp";
-            this.btnMoveUp.Size = new System.Drawing.Size(102, 23);
-            this.btnMoveUp.TabIndex = 16;
-            this.btnMoveUp.Text = "Move Up";
-            this.btnMoveUp.UseVisualStyleBackColor = true;
-            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
             // 
             // label2
             // 
@@ -263,30 +241,6 @@
             this.picGameIcon.DoubleClick += new System.EventHandler(this.picGameIcon_DoubleClick);
             this.picGameIcon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picGameIcon_MouseUp);
             // 
-            // btnInsert
-            // 
-            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInsert.Location = new System.Drawing.Point(10, 173);
-            this.btnInsert.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(102, 23);
-            this.btnInsert.TabIndex = 1;
-            this.btnInsert.Text = "Insert Above";
-            this.btnInsert.UseVisualStyleBackColor = true;
-            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemove.Location = new System.Drawing.Point(10, 231);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(102, 23);
-            this.btnRemove.TabIndex = 3;
-            this.btnRemove.Text = "Remove Segment";
-            this.btnRemove.UseVisualStyleBackColor = true;
-            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
-            // 
             // tabControl1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.tabControl1, 10);
@@ -320,30 +274,6 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Game Time";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAdd.Location = new System.Drawing.Point(10, 202);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(102, 23);
-            this.btnAdd.TabIndex = 2;
-            this.btnAdd.Text = "Insert Below";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnAddComparison
-            // 
-            this.btnAddComparison.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddComparison.Location = new System.Drawing.Point(10, 318);
-            this.btnAddComparison.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
-            this.btnAddComparison.Name = "btnAddComparison";
-            this.btnAddComparison.Size = new System.Drawing.Size(102, 23);
-            this.btnAddComparison.TabIndex = 4;
-            this.btnAddComparison.Text = "Add Comparison";
-            this.btnAddComparison.UseVisualStyleBackColor = true;
-            this.btnAddComparison.Click += new System.EventHandler(this.btnAddComparison_Click);
             // 
             // tbxAttempts
             // 
@@ -443,6 +373,78 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
+            // btnInsert
+            // 
+            this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnInsert.Location = new System.Drawing.Point(10, 173);
+            this.btnInsert.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnInsert.Name = "btnInsert";
+            this.btnInsert.Size = new System.Drawing.Size(102, 23);
+            this.btnInsert.TabIndex = 1;
+            this.btnInsert.Text = "Insert Above";
+            this.btnInsert.UseVisualStyleBackColor = true;
+            this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.Location = new System.Drawing.Point(10, 202);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(102, 23);
+            this.btnAdd.TabIndex = 2;
+            this.btnAdd.Text = "Insert Below";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemove.Location = new System.Drawing.Point(10, 231);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(102, 23);
+            this.btnRemove.TabIndex = 3;
+            this.btnRemove.Text = "Remove Segment";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // btnMoveUp
+            // 
+            this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveUp.Location = new System.Drawing.Point(10, 260);
+            this.btnMoveUp.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnMoveUp.Name = "btnMoveUp";
+            this.btnMoveUp.Size = new System.Drawing.Size(102, 23);
+            this.btnMoveUp.TabIndex = 16;
+            this.btnMoveUp.Text = "Move Up";
+            this.btnMoveUp.UseVisualStyleBackColor = true;
+            this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
+            // 
+            // btnMoveDown
+            // 
+            this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMoveDown.Location = new System.Drawing.Point(10, 289);
+            this.btnMoveDown.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnMoveDown.Name = "btnMoveDown";
+            this.btnMoveDown.Size = new System.Drawing.Size(102, 23);
+            this.btnMoveDown.TabIndex = 17;
+            this.btnMoveDown.Text = "Move Down";
+            this.btnMoveDown.UseVisualStyleBackColor = true;
+            this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
+            // 
+            // btnAddComparison
+            // 
+            this.btnAddComparison.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddComparison.Location = new System.Drawing.Point(10, 318);
+            this.btnAddComparison.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnAddComparison.Name = "btnAddComparison";
+            this.btnAddComparison.Size = new System.Drawing.Size(102, 23);
+            this.btnAddComparison.TabIndex = 4;
+            this.btnAddComparison.Text = "Add Comparison";
+            this.btnAddComparison.UseVisualStyleBackColor = true;
+            this.btnAddComparison.Click += new System.EventHandler(this.btnAddComparison_Click);
+            // 
             // RemoveIconMenu
             // 
             this.RemoveIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -488,6 +490,19 @@
             // iSegmentBindingSource
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
+            // 
+            // btnImportComparison
+            // 
+            this.btnImportComparison.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnImportComparison.Location = new System.Drawing.Point(10, 347);
+            this.btnImportComparison.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnImportComparison.Name = "btnImportComparison";
+            this.btnImportComparison.Size = new System.Drawing.Size(102, 23);
+            this.btnImportComparison.TabIndex = 18;
+            this.btnImportComparison.Text = "Import Comparison";
+            this.btnImportComparison.UseVisualStyleBackColor = true;
+            this.btnImportComparison.Click += new System.EventHandler(this.btnImportComparison_Click);
             // 
             // RunEditorDialog
             // 
@@ -550,5 +565,6 @@
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnMoveDown;
         private System.Windows.Forms.Button btnMoveUp;
+        private System.Windows.Forms.Button btnImportComparison;
     }
 }

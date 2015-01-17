@@ -78,6 +78,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\RunFactories\StandardRunFactory.cs" />
+    <Compile Include="Model\RunImporters\FileRunImporter.cs" />
+    <Compile Include="Model\RunImporters\IRunImporter.cs" />
+    <Compile Include="Model\RunImporters\SplitsIORunImporter.cs" />
+    <Compile Include="Model\RunImporters\URLRunImporter.cs" />
     <Compile Include="Model\Win32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">

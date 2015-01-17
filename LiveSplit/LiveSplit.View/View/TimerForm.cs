@@ -2,6 +2,7 @@
 using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.Model.RunFactories;
+using LiveSplit.Model.RunImporters;
 using LiveSplit.Model.RunSavers;
 using LiveSplit.Options;
 using LiveSplit.Options.SettingsFactories;
@@ -747,8 +748,8 @@ namespace LiveSplit.View
 
         void openFromSplitsIOMenuItem_Click(object sender, EventArgs e)
         {
-            var name = "";
-            var run = GetRunFromSplitsIO(false, ref name);
+            var runImporter = new SplitsIORunImporter();
+            var run = runImporter.Import(this);
 
             if (!WarnUserAboutSplitsSave())
                 return;
@@ -855,119 +856,10 @@ namespace LiveSplit.View
             }
         }
 
-        protected IRun LoadRunFromURL(string url)
-        {
-            try
-            {
-                var uri = new Uri(url);
-                if (uri.Host.ToLowerInvariant() == "splits.io"
-                    && uri.LocalPath.Length > 0
-                    && !uri.LocalPath.Substring(1).Contains('/'))
-                {
-                    uri = new Uri(string.Format("{0}/download/livesplit", url));
-                }
-                if (uri.Host.ToLowerInvariant() == "ge.tt"
-                    && uri.LocalPath.Length > 0
-                    && !uri.LocalPath.Substring(1).Contains('/'))
-                {
-                    uri = new Uri(string.Format("http://ge.tt/api/1/files{0}/0/blob?download", uri.LocalPath));
-                }
-
-                var request = WebRequest.Create(uri);
-                using (var stream = request.GetResponse().GetResponseStream())
-                {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        stream.CopyTo(memoryStream);
-                        memoryStream.Seek(0, SeekOrigin.Begin);
-
-                        RunFactory.Stream = memoryStream;
-                        RunFactory.FilePath = null;
-
-                        try
-                        {
-                            return RunFactory.Create(ComparisonGeneratorsFactory);
-
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
-                            DontRedraw = true;
-                            MessageBox.Show(this, "The selected file was not recognized as a splits file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            DontRedraw = false;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                DontRedraw = true;
-                MessageBox.Show(this, "The splits file couldn't be downloaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DontRedraw = false;
-            }
-            return null;
-        }
-
-        protected IRun GetRunFromSplitsIO(bool import, ref string name)
-        {
-            try
-            {
-                IsInDialogMode = true;
-                this.TopMost = false;
-
-                var dialog = new BrowseSplitsIODialog(import);
-                
-                var result = dialog.ShowDialog();
-                if (import && result == DialogResult.OK)
-                {
-                    name = dialog.RunName;
-                    result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
-                }
-
-                if (result == DialogResult.OK)
-                    return dialog.Run;
-
-                return null;
-            }
-            finally
-            {
-                IsInDialogMode = false;
-                TopMost = Layout.Settings.AlwaysOnTop;
-            }
-        }
-
-        protected IRun GetRunFromURL(bool import, ref string name)
-        {
-            try
-            {
-                IsInDialogMode = true;
-                TopMost = false;
-                string url = null;
-
-                if (import)
-                {
-                    var result = InputBox.Show("Import Comparison from URL", "Name:", "URL:", ref name, ref url);
-                    if (result == DialogResult.OK)
-                        return LoadRunFromURL(url);
-                }
-                else if (DialogResult.OK == InputBox.Show("Open Splits from URL", "URL:", ref url))
-                {
-                    return LoadRunFromURL(url);
-                }
-                return null;
-            }
-            finally
-            {
-                IsInDialogMode = false;
-                TopMost = Layout.Settings.AlwaysOnTop;
-            }
-        }
-
         void openSplitsFromURLMenuItem_Click(object sender, EventArgs e)
         {
-            var name = "";
-            var run = GetRunFromURL(false, ref name);
+            var runImporter = new URLRunImporter();
+            var run = runImporter.Import(this);
 
             if (!WarnUserAboutSplitsSave())
                 return;
@@ -2528,10 +2420,8 @@ namespace LiveSplit.View
 
         void importFromSplitsIOMenuItem_Click(object sender, EventArgs e)
         {
-            var name = "";
-            var run = GetRunFromSplitsIO(true, ref name);
-            if (run != null)
-                AddComparisonWithNameInput(name, run);
+            var runImporter = new SplitsIORunImporter();
+            runImporter.ImportAsComparison(CurrentState.Run, this);
         }
 
         void gameTimeMenuItem_Click(object sender, EventArgs e)
@@ -2548,34 +2438,14 @@ namespace LiveSplit.View
 
         void importFromURLMenuItem_Click(object sender, EventArgs e)
         {
-            var name = "";
-            var run = GetRunFromURL(true, ref name);
-            if (run != null)
-                AddComparisonWithNameInput(name, run);
+            var runImporter = new URLRunImporter();
+            runImporter.ImportAsComparison(CurrentState.Run, this);
         }
 
         void importFromFileMenuItem_Click(object sender, EventArgs e)
         {
-            var splitDialog = new OpenFileDialog();
-            IsInDialogMode = true;
-            try
-            {
-                if (Settings.RecentSplits.Any())
-                    splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last());
-                var result = splitDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
-                {
-                    var run = LoadRunFromFile(splitDialog.FileName, false);
-                    var comparisonName = Path.GetFileNameWithoutExtension(splitDialog.FileName);
-                    result = InputBox.Show("Enter Comparison Name", "Name:", ref comparisonName);
-                    if (result != DialogResult.Cancel)
-                        AddComparisonWithNameInput(comparisonName, run);
-                }
-            }
-            finally
-            {
-                IsInDialogMode = false;
-            }
+            var runImporter = new FileRunImporter();
+            runImporter.ImportAsComparison(CurrentState.Run, this);
         }
 
         protected void AddComparisonWithNameInput(string name, IRun run)

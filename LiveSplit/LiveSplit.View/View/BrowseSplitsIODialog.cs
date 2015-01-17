@@ -87,7 +87,7 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show("Search Failed!", "Search Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Search Failed!", "Search Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -111,7 +111,7 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show("Download Failed!", "Download Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Download Failed!", "Download Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -125,7 +125,7 @@ namespace LiveSplit.View
                     var succeededName = false;
                     do
                     {
-                        var result = InputBox.Show("Enter Comparison Name", "Name:", ref name);
+                        var result = InputBox.Show(this, "Enter Comparison Name", "Name:", ref name);
                         if (result == DialogResult.Cancel)
                             return result;
 
