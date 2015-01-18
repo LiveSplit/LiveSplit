@@ -459,7 +459,7 @@ namespace LiveSplit.View
                 SRLClient.Dispose();
         }
 
-        private string GetColorCodeFromRights(SRLIRCRights rights)
+        private static string GetColorCodeFromRights(SRLIRCRights rights)
         {
             string colorCode = "12";
             if (rights == SRLIRCRights.Operator)
@@ -469,12 +469,12 @@ namespace LiveSplit.View
             return colorCode;
         }
 
-        private Color GetColorFromRights(SRLIRCRights rights)
+        private static Color GetColorFromRights(SRLIRCRights rights)
         {
             return GetColorByCode(int.Parse(GetColorCodeFromRights(rights)));
         }
 
-        private Color GetColorByCode(int colorCode)
+        private static Color GetColorByCode(int colorCode)
         {
             switch (colorCode)
             {
