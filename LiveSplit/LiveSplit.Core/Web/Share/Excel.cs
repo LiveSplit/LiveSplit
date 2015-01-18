@@ -84,7 +84,7 @@ namespace LiveSplit.Web.Share
 
                     if (!File.Exists(path))
                         File.Create(path).Close();
-                    using (var stream = File.Open(path, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+                    using (var stream = File.Open(path, FileMode.Create, FileAccess.Write))
                     {
                         var runSaver = new ExcelRunSaver();
                         runSaver.Save(run, stream);

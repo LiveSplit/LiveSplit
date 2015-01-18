@@ -189,7 +189,7 @@ namespace LiveSplit.Model.RunFactories
                 File.Create(loaderPath).Close();
                 using (var memoryStream = new MemoryStream(Resources.LlanfairLoader))
                 {
-                    using (var stream = File.Open(loaderPath, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+                    using (var stream = File.Open(loaderPath, FileMode.Create, FileAccess.Write))
                     {
                         memoryStream.CopyTo(stream);
                     }
