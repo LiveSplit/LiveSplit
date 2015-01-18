@@ -1622,7 +1622,7 @@ namespace LiveSplit.View
             {
                 if (!File.Exists(savePath))
                     File.Create(savePath).Close();
-                using (var stream = File.Open(savePath, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+                using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
                 {
                     RunSaver.Save(stateCopy.Run, stream);
                     CurrentState.Run.HasChanged = false;
@@ -1663,7 +1663,7 @@ namespace LiveSplit.View
             {
                 if (!File.Exists(savePath))
                     File.Create(savePath).Close();
-                using (var stream = File.Open(savePath, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+                using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
                 {
                     LayoutSaver.Save(Layout, stream);
                     Layout.HasChanged = false;
@@ -2125,7 +2125,7 @@ namespace LiveSplit.View
             var settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
             if (!File.Exists(settingsPath))
                 File.Create(settingsPath).Close();
-            using (var stream = File.Open(settingsPath, FileMode.OpenOrCreate | FileMode.Truncate, FileAccess.Write))
+            using (var stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write))
             {
                 SettingsSaver.Save(Settings, stream);
             }
