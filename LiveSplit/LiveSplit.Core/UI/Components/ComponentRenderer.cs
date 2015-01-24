@@ -42,7 +42,7 @@ namespace LiveSplit.UI.Components
             g.IntersectClip(new RectangleF(0, topPadding, width, component.VerticalHeight - topPadding - bottomPadding));
 
             var scale = g.Transform.Elements.First();
-            var separatorOffset = component.VerticalHeight * scale < 5 ? 1 : 0;
+            var separatorOffset = component.VerticalHeight * scale < 3 ? 1 : 0;
 
             if (clipRegion.IsVisible(new RectangleF(
                 g.Transform.OffsetX,
@@ -63,7 +63,7 @@ namespace LiveSplit.UI.Components
             g.IntersectClip(new RectangleF(leftPadding, 0, component.HorizontalWidth - leftPadding - rightPadding, height));
 
             var scale = g.Transform.Elements.First();
-            var separatorOffset = component.VerticalHeight * scale < 5 ? 1 : 0;
+            var separatorOffset = component.VerticalHeight * scale < 3 ? 1 : 0;
 
             if (clipRegion.IsVisible(new RectangleF(
                 -separatorOffset + g.Transform.OffsetX - leftPadding * scale,
