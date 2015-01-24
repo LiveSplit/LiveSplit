@@ -274,7 +274,7 @@ namespace LiveSplit.View
                 if (item is ToolStripMenuItem)
                 {
                     var toolItem = (ToolStripMenuItem)item;
-                    if (numSeparators < 2)
+                    if (numSeparators == 0)
                         toolItem.Checked = toolItem.Name == CurrentState.CurrentTimingMethod.ToString();
                     else
                         toolItem.Checked = toolItem.Text == CurrentState.CurrentComparison;
