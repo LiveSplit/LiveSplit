@@ -42,12 +42,13 @@ namespace LiveSplit.UI.Components
             g.IntersectClip(new RectangleF(0, topPadding, width, component.VerticalHeight - topPadding - bottomPadding));
 
             var scale = g.Transform.Elements.First();
+            var separatorOffset = component.VerticalHeight * scale < 5 ? 1 : 0;
 
             if (clipRegion.IsVisible(new RectangleF(
                 g.Transform.OffsetX,
-                g.Transform.OffsetY - topPadding * scale,
+                -separatorOffset + g.Transform.OffsetY - topPadding * scale,
                 width,
-                scale * (component.VerticalHeight + bottomPadding))))
+                separatorOffset * 2f + scale * (component.VerticalHeight + bottomPadding))))
                 component.DrawVertical(g, state, width, clipRegion);
             g.TranslateTransform(0.0f, component.VerticalHeight - bottomPadding * 2f);
         }
@@ -62,11 +63,12 @@ namespace LiveSplit.UI.Components
             g.IntersectClip(new RectangleF(leftPadding, 0, component.HorizontalWidth - leftPadding - rightPadding, height));
 
             var scale = g.Transform.Elements.First();
+            var separatorOffset = component.VerticalHeight * scale < 5 ? 1 : 0;
 
             if (clipRegion.IsVisible(new RectangleF(
-                g.Transform.OffsetX - leftPadding * scale,
+                -separatorOffset + g.Transform.OffsetX - leftPadding * scale,
                 g.Transform.OffsetY,
-                scale * (component.HorizontalWidth + rightPadding),
+                separatorOffset * 2f + scale * (component.HorizontalWidth + rightPadding),
                 height)))
                 component.DrawHorizontal(g, state, height, clipRegion);
             g.TranslateTransform(component.HorizontalWidth - rightPadding * 2f, 0.0f);
