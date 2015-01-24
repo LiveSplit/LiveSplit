@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
@@ -35,13 +36,13 @@ namespace LiveSplit.UI
                 new PointF(x+width, y+height)
                 };
             Transform.TransformPoints(points);
-            var roundedX = (int)(points[0].X + 0.5f);
-            var roundedY = (int)(points[0].Y + 0.5f);
+            var roundedX = (int)Math.Ceiling(points[0].X);
+            var roundedY = (int)Math.Ceiling(points[0].Y);
             var rect = new Rectangle(
                 roundedX,
                 roundedY,
-                (int)(points[1].X - roundedX + 1.5f),
-                (int)(points[1].Y - roundedY + 1.5f));
+                (int)Math.Ceiling(points[1].X - roundedX),
+                (int)Math.Ceiling(points[1].Y - roundedY));
             Form.Invalidate(rect);
         }
     }
