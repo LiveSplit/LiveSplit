@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AutoSplitters>
+  <!--<AutoSplitter>
+    <Games>
+      <Game>The Legend of Zelda: Ocarina of Time</Game>
+    </Games>
+    <URL>http://livesplit.org/update/Components/LiveSplit.OcarinaOfTime.dll</URL>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Game Time for NTSC 1.0 and 1.2 on Emulator are available. (By CryZe)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Night Sky</Game>
+    </Games>
+    <URL>http://livesplit.org/update/Components/LiveSplit.NightSky.dll</URL>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Game Time are available. (By CryZe)</Description>
+  </AutoSplitter>-->
+  <AutoSplitter>
+    <Games>
+      <Game>Aperture Tag</Game>
+      <Game>Aperture Tag: The Paint Gun Testing Initiative</Game>
+      <Game>Dark Messiah of Might and Magic</Game>
+      <Game>Dear Esther</Game>
+      <Game>E.Y.E: Divine Cybermancy</Game>
+      <Game>Half-Life 2</Game>
+      <Game>Half-Life 2: Episode One</Game>
+      <Game>Half-Life 2: Episode Two</Game>
+      <Game>Half-Life 2: Lost Coast</Game>
+      <Game>Portal</Game>
+      <Game>Portal 2</Game>
+    </Games>
+    <URLs>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.SourceSplit.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time and Auto Splitting are available. (By Fatalis)</Description>
+	<ShowInLayoutEditor />
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dishonored</Game>
+      <Game>Dishonored (PC)</Game>
+    </Games>
+    <URLs>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.Dishonored.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal and Auto Splitting are available. (By Fatalis)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Lara Croft and the Guardian of Light</Game>
+      <Game>Lara Croft: GoL</Game>
+      <Game>LCatGoL</Game>
+      <Game>LCGoL</Game>
+    </Games>
+    <URLs>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.GoLSplit.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time and Auto Splitting are available. (By Fatalis)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Halo: Combat Evolved</Game>
+      <Game>Halo</Game>
+      <Game>Halo: CE</Game>
+      <Game>Halo CE</Game>
+      <Game>Halo PC</Game>
+    </Games>
+    <URLs>
+		<URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.dll</URL>
+		<URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.UI.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting is available. (By Fatalis)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Mirror's Edge</Game>
+      <Game>Mirrors Edge</Game>
+    </Games>
+    <URLs>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.MirrorsEdgeNoLoads.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By Fatalis)</Description>
+  </AutoSplitter>
+  <!--<AutoSplitter>
+    <Games>
+      <Game>Super Mario 64</Game>
+    </Games>
+    <URL>http://livesplit.org/update/ASL/LiveSplit.SuperMario64.asl</URL>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available for Emulator. (By CryZe)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Super Mario World 2: Yoshi's Island</Game>
+      <Game>Yoshi's Island</Game>
+    </Games>
+    <URL>http://livesplit.org/update/ASL/LiveSplit.YoshisIsland.asl</URL>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available for Emulator. (By CryZe)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Octodad</Game>
+	  <Game>Octodad: DC</Game>
+	  <Game>Octodad: Deadliest Catch</Game>
+    </Games>
+    <URL>http://livesplit.org/update/ASL/LiveSplit.Octodad.asl</URL>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By CryZe)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Crypt of the Necrodancer</Game>
+	  <Game>Necrodancer</Game>
+    </Games>
+    <URL>http://livesplit.org/update/ASL/LiveSplit.Necrodancer.asl</URL>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By CryZe)</Description>
+  </AutoSplitter>-->
+  <AutoSplitter>
+    <Games>
+      <Game>Darksiders</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Incalex/LiveSplit.AutoSplitters/master/LiveSplit.Darksiders.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic Timer Start and Game Time is available. (By Incalex)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Love</Game>
+	  <Game>Love+</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/madzinah/LiveSplits_Scripts/master/Love.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Madzinah)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Borderlands 2</Game>
+    </Games>
+    <URLs>
+      <URL>http://abahbob.com/livesplit/LiveSplit.BL2IGT.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By Abahbob)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Super Meat Boy</Game>
+    </Games>
+    <URLs>
+      <URL>http://livesplit.org/update/Components/LiveSplit.SuperMeatBoy.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting is available. (By CryZe)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Legend of Zelda: The Minish Cap</Game>
+      <Game>Legend of Zelda: The Minish Cap</Game>
+      <Game>Legend of Zelda: Minish Cap</Game>
+      <Game>The Legend of Zelda: Minish Cap</Game>
+      <Game>The Legend of Zelda: TMC</Game>
+      <Game>TMC</Game>
+      <Game>The Minish Cap</Game>
+      <Game>Minish Cap</Game>
+    </Games>
+    <URLs>
+      <URL>http://livesplit.org/update/Components/LiveSplit.TheMinishCap.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Game Time are available for VBA 1.8.0 Beta 3 on NTSC-J. (Beta Build By CryZe and wooferzfg1)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Wheel of Time</Game>
+	  <Game>Wheel of Time</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Dalet/LiveSplit.WheelOfTime/raw/master/Components/LiveSplit.WheelOfTime.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available. (By Dalet)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Elder Scrolls V: Skyrim</Game>
+      <Game>Skyrim</Game>
+      <Game>TESV</Game>
+      <Game>The Elder Scrolls 5: Skyrim</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/drtchops/LiveSplit.Skyrim/raw/master/Components/LiveSplit.Skyrim.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Fallout 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/drtchops/LiveSplit.Fallout3/raw/master/Components/LiveSplit.Fallout3.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Deus Ex: Human Revolution</Game>
+      <Game>Deus Ex Human Revolution</Game>
+      <Game>Deus Ex HR</Game>
+	  <Game>Deus Ex: HR</Game>
+      <Game>DXHR</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/drtchops/LiveSplit.DXHR/raw/master/Components/LiveSplit.DXHR.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Amnesia: The Dark Descent</Game>
+      <Game>Amnesia: Justine</Game>
+      <Game>Amnesia: TDD</Game>
+      <Game>Amnesia</Game>
+    </Games>
+    <URLs>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.Amnesia.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By Fatalis)</Description>
+  </AutoSplitter>
+</AutoSplitters>
