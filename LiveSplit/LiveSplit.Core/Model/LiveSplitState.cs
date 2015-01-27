@@ -83,7 +83,7 @@ namespace LiveSplit.Model
         }
 
         public int CurrentSplitIndex { get; set; }
-        public ISegment CurrentSplit { get { return (CurrentSplitIndex < 0 && CurrentSplitIndex < Run.Count) ? null : Run[CurrentSplitIndex]; } }
+        public ISegment CurrentSplit { get { return (CurrentSplitIndex >= 0 && CurrentSplitIndex < Run.Count) ? Run[CurrentSplitIndex] : null; } }
 
         private LiveSplitState() { }
 
