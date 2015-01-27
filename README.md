@@ -31,6 +31,10 @@ Preferably you should either get a full version of Visual Studio 2013 or the Com
 
 Simply open the project with Visual Studio and it should be able to compile and run it without any further configuration.
 
+## Adding an Auto Splitter
+
+If you implemented an Auto Splitter and want to add it to the Auto Splitters that are automatically being downloaded by LiveSplit, feel free to add it to the [Auto Splitters XML](https://github.com/LiveSplit/LiveSplit/blob/master/LiveSplit.AutoSplitters.xml). Just click the link, click the icon for modifying the file and Github will automatically create a fork, branch and pull request for you, which we can review and then merge in.
+
 ## License
 
 The MIT License (MIT)
