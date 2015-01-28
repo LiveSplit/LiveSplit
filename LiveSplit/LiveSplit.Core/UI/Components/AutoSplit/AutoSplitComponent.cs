@@ -33,9 +33,7 @@ namespace LiveSplit.UI.Components.AutoSplit
                     Model.Split();
                 }
 
-                var isLoading = AutoSplitter.IsGameTimePaused(state);
-                if (isLoading != null)
-                    state.IsGameTimePaused = isLoading;
+                state.IsGameTimePaused = AutoSplitter.IsGameTimePaused(state);
 
                 var gameTime = AutoSplitter.GetGameTime(state);
                 if (gameTime != null)
