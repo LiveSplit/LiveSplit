@@ -87,6 +87,19 @@
     <Type>Component</Type>
     <Description>Load Removal is available. (By Fatalis)</Description>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Resident Evil HD Remaster</Game>
+      <Game>Resident Evil / biohazard HD REMASTER</Game>
+      <Game>REmaster</Game>
+      <Game>REHD</Game>
+    </Games>
+    <URLs>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.REmaster.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic Timer Start and Game Time is available. (By Fatalis)</Description>
+  </AutoSplitter>
   <!--<AutoSplitter>
     <Games>
       <Game>Super Mario 64</Game>
