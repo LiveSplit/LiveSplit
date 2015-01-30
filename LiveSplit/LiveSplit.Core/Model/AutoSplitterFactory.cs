@@ -66,11 +66,8 @@ namespace LiveSplit.Model
             var autoSplitters = new XmlDocument();
             try
             {
-#if DEBUG
-                autoSplitters.Load("http://livesplit.org/debugautosplitters.xml");
-#else
-                autoSplitters.Load("http://livesplit.org/LiveSplit.AutoSplitters.xml");
-#endif
+                //autoSplitters.Load("https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit.AutoSplitters.DevBuild.xml");
+                autoSplitters.Load("https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit.AutoSplitters.xml");
                 autoSplitters.Save("LiveSplit.AutoSplitters.xml");
                 return autoSplitters;
             }
