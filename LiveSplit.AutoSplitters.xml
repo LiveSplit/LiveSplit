@@ -265,4 +265,14 @@
     <Type>Component</Type>
     <Description>Load Removal is available. (By Fatalis)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Psychonauts</Game>
+    </Games>
+    <URLs>
+      <URL>http://abahbob.com/livesplit/LiveSplit.Psychonauts.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Abahbob)</Description>
+  </AutoSplitter>
 </AutoSplitters>
