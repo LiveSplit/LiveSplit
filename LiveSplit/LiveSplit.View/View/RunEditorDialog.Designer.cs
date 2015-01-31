@@ -110,9 +110,9 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 138F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 61F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 104F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
@@ -224,7 +224,7 @@
             this.tbxTimeOffset.Location = new System.Drawing.Point(246, 82);
             this.tbxTimeOffset.Margin = new System.Windows.Forms.Padding(5, 0, 3, 0);
             this.tbxTimeOffset.Name = "tbxTimeOffset";
-            this.tbxTimeOffset.Size = new System.Drawing.Size(179, 20);
+            this.tbxTimeOffset.Size = new System.Drawing.Size(177, 20);
             this.tbxTimeOffset.TabIndex = 9;
             this.tbxTimeOffset.TextChanged += new System.EventHandler(this.tbxTimeOffset_TextChanged);
             // 
@@ -284,19 +284,18 @@
             // 
             this.tbxAttempts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.tbxAttempts, 2);
-            this.tbxAttempts.Location = new System.Drawing.Point(494, 82);
+            this.tbxAttempts.Location = new System.Drawing.Point(496, 82);
             this.tbxAttempts.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.tbxAttempts.Name = "tbxAttempts";
-            this.tbxAttempts.Size = new System.Drawing.Size(179, 20);
+            this.tbxAttempts.Size = new System.Drawing.Size(177, 20);
             this.tbxAttempts.TabIndex = 10;
             this.tbxAttempts.TextChanged += new System.EventHandler(this.tbxAttempts_TextChanged);
             // 
             // label4
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(433, 86);
-            this.label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label4.Location = new System.Drawing.Point(429, 86);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 13);
             this.label4.TabIndex = 10;
@@ -307,24 +306,23 @@
             this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 4);
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 105F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnOK, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(489, 481);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(491, 481);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(195, 36);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(193, 36);
             this.tableLayoutPanel2.TabIndex = 12;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(110, 3);
+            this.btnCancel.Location = new System.Drawing.Point(108, 3);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
@@ -336,7 +334,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(27, 3);
+            this.btnOK.Location = new System.Drawing.Point(25, 3);
             this.btnOK.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
@@ -350,9 +348,10 @@
             this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescription.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.lblDescription, 5);
-            this.lblDescription.Location = new System.Drawing.Point(143, 121);
+            this.lblDescription.Location = new System.Drawing.Point(140, 121);
+            this.lblDescription.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(343, 13);
+            this.lblDescription.Size = new System.Drawing.Size(346, 13);
             this.lblDescription.TabIndex = 13;
             this.lblDescription.Text = "Description";
             // 
