@@ -169,6 +169,10 @@ namespace LiveSplit.View
                 }
             }
 
+            run.FixSplits();
+            CurrentState.Run = run;
+            CurrentState.Settings = Settings;
+
             if (!string.IsNullOrEmpty(layoutPath))
             {
                 Layout = LoadLayoutFromFile(layoutPath);
@@ -193,10 +197,7 @@ namespace LiveSplit.View
                 }
             }
 
-            run.FixSplits();
-            CurrentState.Run = run;
             CurrentState.LayoutSettings = Layout.Settings;
-            CurrentState.Settings = Settings;
             CreateAutoSplitter();
 
             CurrentState.CurrentTimingMethod = Settings.LastTimingMethod;
