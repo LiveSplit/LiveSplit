@@ -4,6 +4,7 @@ using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
+using LiveSplit.Updates;
 using System;
 using System.Collections.Generic;
 using System.Linq;

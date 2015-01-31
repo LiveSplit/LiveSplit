@@ -1,4 +1,5 @@
-﻿using LiveSplit.View;
+﻿using LiveSplit.Options;
+using LiveSplit.View;
 using LiveSplit.Web.Share;
 using System;
 using System.IO;
