@@ -162,10 +162,10 @@
       <Game>Borderlands 2</Game>
     </Games>
     <URLs>
-      <URL>http://abahbob.com/livesplit/LiveSplit.BL2IGT.dll</URL>
+      <URL>http://abahbob.com/livesplit/LiveSplit.BL2IGT.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Load Removal is available. (By Abahbob)</Description>
+    <Type>Script</Type>
+    <Description>Load Removal is available for 1.1 and 1.8.3. (By Abahbob)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
