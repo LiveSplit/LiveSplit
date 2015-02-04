@@ -76,9 +76,7 @@ namespace LiveSplit.Model
                 Log.Error(ex);
                 if (File.Exists("LiveSplit.AutoSplitters.xml"))
                     autoSplitters.Load("LiveSplit.AutoSplitters.xml");
-                else
-                    return null;
-                return autoSplitters;
+                return null;
             }
         }
     }

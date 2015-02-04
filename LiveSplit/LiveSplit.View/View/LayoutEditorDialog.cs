@@ -138,7 +138,9 @@ namespace LiveSplit.View
 
         private void LoadAllComponentsAvailable()
         {
-            var autosplitters = AutoSplitterFactory.Instance.AutoSplitters.Where(x => !x.Value.ShowInLayoutEditor).Select(x => x.Value.FileName);
+            var autosplitters = AutoSplitterFactory.Instance.AutoSplitters != null
+                ? AutoSplitterFactory.Instance.AutoSplitters.Where(x => !x.Value.ShowInLayoutEditor).Select(x => x.Value.FileName)
+                : new List<string>();
             var groups = ComponentManager.ComponentFactories.Where(x => !autosplitters.Contains(x.Key)).Select(x => x.Value).GroupBy(x => x.Category, x => x).OrderBy(x => x.Key);
             foreach (var group in groups)
             {
