@@ -151,50 +151,50 @@ namespace LiveSplit.View
             UpdateRecentLayouts();
 
             IRun run = null;
-            if (!string.IsNullOrEmpty(splitsPath))
+            try
             {
-                run = LoadRunFromFile(splitsPath, true);
-            }
-            else
-            {
-                try
+                if (!string.IsNullOrEmpty(splitsPath))
+                {
+                    run = LoadRunFromFile(splitsPath, true);
+                }
+                else
                 {
                     run = LoadRunFromFile(Settings.RecentSplits.Last(), true);
                 }
-                catch (Exception e)
-                {
-                    Log.Error(e);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
 
-                    run = TimerOnlyRun;
-                }
+                run = TimerOnlyRun;
             }
 
             run.FixSplits();
             CurrentState.Run = run;
             CurrentState.Settings = Settings;
 
-            if (!string.IsNullOrEmpty(layoutPath))
+            try
             {
-                Layout = LoadLayoutFromFile(layoutPath);
-            }
-            else
-            {
-                try
+                if (!string.IsNullOrEmpty(layoutPath))
+                {
+                    Layout = LoadLayoutFromFile(layoutPath);
+                }
+                else
                 {
                     Layout = LoadLayoutFromFile(Settings.RecentLayouts.Last());
                 }
-                catch (Exception e)
-                {
-                    Log.Error(e);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
 
-                    if (run == TimerOnlyRun)
-                    {
-                        Layout = TimerOnlyLayout;
-                        InTimerOnlyMode = true;
-                    }
-                    else
-                        Layout = new StandardLayoutFactory().Create(CurrentState);
+                if (run == TimerOnlyRun)
+                {
+                    Layout = TimerOnlyLayout;
+                    InTimerOnlyMode = true;
                 }
+                else
+                    Layout = new StandardLayoutFactory().Create(CurrentState);
             }
 
             CurrentState.LayoutSettings = Layout.Settings;
