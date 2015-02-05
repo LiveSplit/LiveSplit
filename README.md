@@ -34,7 +34,9 @@ Simply open the project with Visual Studio and it should be able to compile and 
 ## Common Compiling Issues
 1. LiveSplit has a dependency on XSplit in order to work. If you are getting errors that say it can't find "VHMediaCOM", this is an XSplit thing. I suggest installing the free version of XSplit so the dependencies are registered on your computer.
 2. Could not build Codaxy.Xlio due to sgen.exe not being found. Open LiveSplit\Libs\xlio\Source\Codaxy.Xlio\Codaxy.Xlio.csproj in order to edit where it looks for this path. Look for &lt;SGen...&gt; where it defines the attribute "ToolPath". Look on your computer to find the proper path. It is typically down some path such as "C:\Program Files (x86)\Microsoft SDKs\Windows\x.xA...". Find the version you want to use and bin folder with sgen.exe in it and replace the path in the .csproj file.
-
+3. No submodules pulled in when you fork/clone the repo which causes the project not to build. There are two ways to remedy this:
+ - Cloning for the first time: `git clone --recursive git://repo/repo.git`
+ - If already cloned, execute this in the root directory: `git submodule update --init --recursive`
 
 ## Adding an Auto Splitter
 
