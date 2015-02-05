@@ -1542,7 +1542,7 @@ namespace LiveSplit.View
             IsInDialogMode = true;
             try
             {
-                if (Settings.RecentSplits.Any())
+                if (Settings.RecentSplits.Any() && !string.IsNullOrEmpty(Settings.RecentSplits.Last()))
                     splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last());
                 var result = splitDialog.ShowDialog(this);
                 if (result == DialogResult.OK)
