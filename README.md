@@ -6,7 +6,7 @@ A sleek, highly-customizable timer for speedrunners.
 
 ## Contributing
 
-We need your help! 
+We need your help!
 
 You can browse the [Issues](https://waffle.io/LiveSplit/LiveSplit) to find good issues to get started with. Select one that is not already done or in progress, assign yourself and drag it over to "In Progress".
 
@@ -30,6 +30,13 @@ LiveSplit is written in C# 5 with Visual Studio and uses .NET Framework 4.0. To 
 Preferably you should either get a full version of Visual Studio 2013 or the Community Edition if you don't want to pay for Visual Studio.
 
 Simply open the project with Visual Studio and it should be able to compile and run it without any further configuration.
+
+## Common Compiling Issues
+1. LiveSplit has a dependency on XSplit in order to work. If you are getting errors that say it can't find "VHMediaCOM", this is an XSplit thing. I suggest installing the free version of XSplit so the dependencies are registered on your computer.
+2. Could not build Codaxy.Xlio due to sgen.exe not being found. Open LiveSplit\Libs\xlio\Source\Codaxy.Xlio\Codaxy.Xlio.csproj in order to edit where it looks for this path. Look for &lt;SGen...&gt; where it defines the attribute "ToolPath". Look on your computer to find the proper path. It is typically down some path such as "C:\Program Files (x86)\Microsoft SDKs\Windows\x.xA...". Find the version you want to use and bin folder with sgen.exe in it and replace the path in the .csproj file.
+3. No submodules pulled in when you fork/clone the repo which causes the project not to build. There are two ways to remedy this:
+ - Cloning for the first time: `git clone --recursive git://repo/repo.git`
+ - If already cloned, execute this in the root directory: `git submodule update --init --recursive`
 
 ## Adding an Auto Splitter
 
