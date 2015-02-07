@@ -1615,7 +1615,7 @@ namespace LiveSplit.View
             }
 
             if (result == DialogResult.Yes)
-                modelCopy.ResetWithoutUpdating();
+                modelCopy.Reset(false);
             else
                 modelCopy.Reset();
 
@@ -2318,7 +2318,7 @@ namespace LiveSplit.View
                 if (result == DialogResult.Yes)
                     Model.Reset();
                 else if (result == DialogResult.No)
-                    Model.ResetWithoutUpdating();
+                    Model.Reset(false);
                 ResetMessageShown = false;
             }
         }

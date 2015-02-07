@@ -99,7 +99,7 @@ namespace LiveSplit.Model
             }
         }
 
-        public void Reset()
+        public void Reset(bool updateSplits = true)
         {
             if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
             {
@@ -107,27 +107,17 @@ namespace LiveSplit.Model
                 CurrentState.StartTime = TripleDateTime.Now;
                 CurrentState.LoadingTimes = TimeSpan.Zero;
 
-                //Update Splits
-                UpdateRunHistory();
-                UpdateBestSegments();
-                UpdatePBSplits();
-                UpdateSegmentHistory();
+                if (updateSplits)
+                {
+                    UpdateRunHistory();
+                    UpdateBestSegments();
+                    UpdatePBSplits();
+                    UpdateSegmentHistory();
+                }
 
                 ResetSplits();
 
                 CurrentState.Run.FixSplits();
-            }
-        }
-
-        public void ResetWithoutUpdating()
-        {
-            if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
-            {
-                CurrentState.IsGameTimePaused = false;
-                CurrentState.StartTime = TripleDateTime.Now;
-                CurrentState.LoadingTimes = TimeSpan.Zero;
-
-                ResetSplits();
             }
         }
 
