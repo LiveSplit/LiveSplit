@@ -5,6 +5,7 @@ using LiveSplit.TimeFormatters;
 using LiveSplit.UI;
 using LiveSplit.Web;
 using LiveSplit.Web.Share;
+using LiveSplit.Web.SRL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -223,7 +224,7 @@ namespace LiveSplit.View
                     string[] categoryNames;
                     try
                     {
-                        categoryNames = PBTracker.Instance.GetGameCategories(PBTracker.Instance.GetGameIdByName(Run.GameName)).Select(x => x.Value).ToArray();
+                        categoryNames = SpeedRunsLiveAPI.Instance.GetCategories(SpeedRunsLiveAPI.Instance.GetGameIDFromName(Run.GameName)).ToArray();
                     }
                     catch (Exception ex)
                     {
