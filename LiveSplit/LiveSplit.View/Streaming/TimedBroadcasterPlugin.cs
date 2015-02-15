@@ -9,6 +9,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+#if WITH_XSPLIT
+
 namespace XSplit.Wpf
 {
     using System;
@@ -222,3 +224,5 @@ namespace XSplit.Wpf
         #endregion
     }
 }
+
+#endif

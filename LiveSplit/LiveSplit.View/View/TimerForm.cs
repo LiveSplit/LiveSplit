@@ -34,7 +34,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using UpdateManager;
+#if WITH_XSPLIT
 using XSplit.Wpf;
+#endif
 
 namespace LiveSplit.View
 {
@@ -89,7 +91,9 @@ namespace LiveSplit.View
         public object BackBufferLock = new object();
         public bool DrawToBackBuffer { get; set; }
 
+#if WITH_XSPLIT
         public TimedBroadcasterPlugin XSplit { get; set; }
+#endif
 
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, IntPtr wParam, IntPtr lParam);
@@ -237,6 +241,7 @@ namespace LiveSplit.View
 
             SizeChanged += TimerForm_SizeChanged;
 
+#if WITH_XSPLIT
             lock (BackBufferLock)
             {
                 BackBuffer = new Bitmap(Width, Height);
@@ -256,6 +261,7 @@ namespace LiveSplit.View
                 catch
                 { }*/
             }
+#endif
 
             TopMost = Layout.Settings.AlwaysOnTop;
         }
