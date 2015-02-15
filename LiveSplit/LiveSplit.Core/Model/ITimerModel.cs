@@ -23,6 +23,7 @@ namespace LiveSplit.Model
         void Split();
         void SkipSplit();
         void UndoSplit();
+        void Reset();
         void Reset(bool updateSplits = true);
         void Pause();
         void ScrollUp();

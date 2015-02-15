@@ -100,6 +100,11 @@ namespace LiveSplit.Model
                 InternalModel.UndoSplit();
         }
 
+        public void Reset()
+        {
+            Reset(true);
+        }
+
         public void Reset(bool updateSplits = true)
         {
             if (CheckDoubleTap())
