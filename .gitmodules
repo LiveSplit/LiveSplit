@@ -76,3 +76,6 @@
 [submodule "LiveSplit/Libs/xlio"]
 	path = LiveSplit/Libs/xlio
 	url = https://github.com/LiveSplit/xlio.git
+[submodule "LiveSplit/Components/LiveSplit.WorldRecord"]
+	path = LiveSplit/Components/LiveSplit.WorldRecord
+	url = https://github.com/LiveSplit/LiveSplit.WorldRecord.git
