@@ -224,7 +224,7 @@ namespace LiveSplit.View
                     string[] categoryNames;
                     try
                     {
-                        categoryNames = SpeedRunsLiveAPI.Instance.GetCategories(SpeedRunsLiveAPI.Instance.GetGameIDFromName(Run.GameName)).ToArray();
+                        categoryNames = SpeedrunCom.Instance.GetCategories(Run.GameName).ToArray();
                     }
                     catch (Exception ex)
                     {

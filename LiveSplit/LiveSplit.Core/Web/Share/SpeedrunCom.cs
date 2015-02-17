@@ -93,5 +93,23 @@ namespace LiveSplit.Web.Share
 
             return new WorldRecord();
         }
+
+        public IEnumerable<string> GetCategories(string game)
+        {
+            IDictionary<string, dynamic> worldRecordList = null;
+            try
+            {
+                worldRecordList = getWorldRecordList(game);
+            }
+            catch { }
+
+            if (worldRecordList != null)
+            {
+                foreach (var entry in worldRecordList)
+                {
+                    yield return entry.Key;
+                }
+            }
+        }
     }
 }
