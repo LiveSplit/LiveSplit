@@ -241,11 +241,10 @@ namespace LiveSplit.View
 
             SizeChanged += TimerForm_SizeChanged;
 
-#if WITH_XSPLIT
             lock (BackBufferLock)
             {
                 BackBuffer = new Bitmap(Width, Height);
-
+#if WITH_XSPLIT
                 /*try
                 {
                     // Outputs a CosmoWright image every 50ms (20 FPS)
@@ -260,8 +259,8 @@ namespace LiveSplit.View
                 }
                 catch
                 { }*/
-            }
 #endif
+            }
 
             TopMost = Layout.Settings.AlwaysOnTop;
         }
