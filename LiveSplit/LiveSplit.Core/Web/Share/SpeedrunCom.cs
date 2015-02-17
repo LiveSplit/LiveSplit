@@ -21,7 +21,7 @@ namespace LiveSplit.Web.Share
 
         public static SpeedrunCom Instance { get { return _Instance; } }
 
-        public static readonly Uri BaseUri = new Uri("http://speedrun.com/");
+        public static readonly Uri BaseUri = new Uri("http://www.speedrun.com/");
         public static readonly Uri APIUri = new Uri(BaseUri, "");
 
         protected SpeedrunCom() { }
@@ -38,7 +38,7 @@ namespace LiveSplit.Web.Share
 
         private IDictionary<String, dynamic> getWorldRecordList(string game)
         {
-            var uri = GetAPIUri(string.Format("api_records.php?game={0}", HttpUtility.UrlEncode(game)));
+            var uri = GetAPIUri(string.Format("api_records.php?game={0}", HttpUtility.UrlPathEncode(game)));
             var response = JSON.FromUri(uri);
             response = (response.Properties.Values as IEnumerable<dynamic>).First();
             return response.Properties as IDictionary<string, dynamic>;
