@@ -9,6 +9,7 @@ namespace LiveSplit.UI
     {
         public Form Form { get; protected set; }
         public Matrix Transform { get; set; }
+        protected const double Offset = 0.035;
 
         public Invalidator(Form form)
         {
@@ -36,13 +37,13 @@ namespace LiveSplit.UI
                 new PointF(x+width, y+height)
                 };
             Transform.TransformPoints(points);
-            var roundedX = (int)Math.Ceiling(points[0].X);
-            var roundedY = (int)Math.Ceiling(points[0].Y);
+            var roundedX = (int)Math.Ceiling(points[0].X - Offset);
+            var roundedY = (int)Math.Ceiling(points[0].Y - Offset);
             var rect = new Rectangle(
                 roundedX,
                 roundedY,
-                (int)Math.Ceiling(points[1].X - roundedX),
-                (int)Math.Ceiling(points[1].Y - roundedY));
+                (int)Math.Ceiling(points[1].X - roundedX - Offset),
+                (int)Math.Ceiling(points[1].Y - roundedY - Offset));
             Form.Invalidate(rect);
         }
     }
