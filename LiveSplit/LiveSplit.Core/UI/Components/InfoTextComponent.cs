@@ -11,8 +11,9 @@ namespace LiveSplit.UI.Components
         public string InformationName { get { return NameLabel.Text; } set { NameLabel.Text = value; } }
         public string InformationValue { get { return ValueLabel.Text; } set { ValueLabel.Text = value; } }
 
+        public GraphicsCache Cache { get; set; }
+
         public ICollection<string> AlternateNameText { get { return NameLabel.AlternateText; } set { NameLabel.AlternateText = value; } }
-        //public ICollection<String> AlternateValueText { get { return ValueLabel.AlternateText; } set { ValueLabel.AlternateText = value; } }
 
         public SimpleLabel NameLabel { get; protected set; }
         public SimpleLabel ValueLabel { get; protected set; }
@@ -43,6 +44,7 @@ namespace LiveSplit.UI.Components
 
         public InfoTextComponent(string informationName, string informationValue)
         {
+            Cache = new GraphicsCache();
             NameLabel = new SimpleLabel()
             {
                 HorizontalAlignment = StringAlignment.Near,
@@ -197,6 +199,16 @@ namespace LiveSplit.UI.Components
 
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
+            Cache.Restart();
+            Cache["NameText"] = InformationName;
+            Cache["ValueText"] = InformationValue;
+            Cache["NameColor"] = NameLabel.ForeColor.ToArgb();
+            Cache["ValueColor"] = ValueLabel.ForeColor.ToArgb();
+
+            if (invalidator != null && Cache.HasChanged)
+            {
+                invalidator.Invalidate(0, 0, width, height);
+            }
         }
 
         public void Dispose()

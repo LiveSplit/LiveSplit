@@ -169,6 +169,7 @@
     <Compile Include="Web\Share\Imgur.cs" />
     <Compile Include="Web\Share\IRunUploadPlatform.cs" />
     <Compile Include="Web\Share\Screenshot.cs" />
+    <Compile Include="Web\Share\SpeedrunCom.cs" />
     <Compile Include="Web\Share\Twitch.cs" />
     <Compile Include="Web\Share\TwitchEmoteResolver.cs" />
     <Compile Include="Web\Share\TwitchGameResolveDialog.cs">
