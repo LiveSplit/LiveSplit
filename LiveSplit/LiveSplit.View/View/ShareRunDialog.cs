@@ -133,7 +133,7 @@ namespace LiveSplit.View
                 && State.Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod] != null))
             {
                 //cbxPlatform.Items.Add("PBTracker");
-                cbxPlatform.Items.Add("AllSpeedRuns");
+                //cbxPlatform.Items.Add("AllSpeedRuns");
             }
             if (State.CurrentPhase == TimerPhase.Ended)
             {
