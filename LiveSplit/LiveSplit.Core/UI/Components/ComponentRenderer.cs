@@ -35,10 +35,8 @@ namespace LiveSplit.UI.Components
         private void DrawVerticalComponent(int index, Graphics g, LiveSplitState state, float width, float height, Region clipRegion)
         {
             var component = VisibleComponents.ElementAt(index);
-            var paddingAbove = index > 0 ? VisibleComponents.ElementAt(index - 1).PaddingBottom : 0f;
-            var paddingBeneath = index < VisibleComponents.Count() - 1 ? VisibleComponents.ElementAt(index + 1).PaddingTop : 0f;
-            var topPadding = Math.Min(paddingAbove, component.PaddingTop) / 2f;
-            var bottomPadding = Math.Min(paddingBeneath, component.PaddingBottom) / 2f;
+            var topPadding = Math.Min(GetPaddingAbove(index), component.PaddingTop) / 2f;
+            var bottomPadding = Math.Min(GetPaddingBelow(index), component.PaddingBottom) / 2f;
             g.IntersectClip(new RectangleF(0, topPadding, width, component.VerticalHeight - topPadding - bottomPadding));
 
             var scale = g.Transform.Elements.First();
@@ -56,10 +54,8 @@ namespace LiveSplit.UI.Components
         private void DrawHorizontalComponent(int index, Graphics g, LiveSplitState state, float width, float height, Region clipRegion)
         {
             var component = VisibleComponents.ElementAt(index);
-            var paddingToLeft = index > 0 ? VisibleComponents.ElementAt(index - 1).PaddingRight : 0f;
-            var paddingToRight = index < VisibleComponents.Count() - 1 ? VisibleComponents.ElementAt(index + 1).PaddingLeft : 0f;
-            var leftPadding = Math.Min(paddingToLeft, component.PaddingLeft) / 2f;
-            var rightPadding = Math.Min(paddingToRight, component.PaddingRight) / 2f;
+            var leftPadding = Math.Min(GetPaddingToLeft(index), component.PaddingLeft) / 2f;
+            var rightPadding = Math.Min(GetPaddingToRight(index), component.PaddingRight) / 2f;
             g.IntersectClip(new RectangleF(leftPadding, 0, component.HorizontalWidth - leftPadding - rightPadding, height));
 
             var scale = g.Transform.Elements.First();
@@ -74,19 +70,65 @@ namespace LiveSplit.UI.Components
             g.TranslateTransform(component.HorizontalWidth - rightPadding * 2f, 0.0f);
         }
 
+        private float GetPaddingAbove(int index)
+        {
+            while (index > 0)
+            {
+                index--;
+                var component = VisibleComponents.ElementAt(index);
+                if (component.VerticalHeight != 0)
+                    return component.PaddingBottom;
+            }
+            return 0f;
+        }
+
+        private float GetPaddingBelow(int index)
+        {
+            while (index < VisibleComponents.Count() - 1)
+            {
+                index++;
+                var component = VisibleComponents.ElementAt(index);
+                if (component.VerticalHeight != 0)
+                    return component.PaddingTop;
+            }
+            return 0f;
+        }
+
+        private float GetPaddingToLeft(int index)
+        {
+            while (index > 0)
+            {
+                index--;
+                var component = VisibleComponents.ElementAt(index);
+                if (component.HorizontalWidth != 0)
+                    return component.PaddingLeft;
+            }
+            return 0f;
+        }
+
+        private float GetPaddingToRight(int index)
+        {
+            while (index < VisibleComponents.Count() - 1)
+            {
+                index++;
+                var component = VisibleComponents.ElementAt(index);
+                if (component.HorizontalWidth != 0)
+                    return component.PaddingRight;
+            }
+            return 0f;
+        }
+
         protected float GetHeightVertical(int index)
         {
             var component = VisibleComponents.ElementAt(index);
-            var paddingBeneath = index < VisibleComponents.Count() - 1 ? VisibleComponents.ElementAt(index + 1).PaddingTop : 0f;
-            var bottomPadding = Math.Min(paddingBeneath, component.PaddingBottom) / 2f;
+            var bottomPadding = Math.Min(GetPaddingBelow(index), component.PaddingBottom) / 2f;
             return component.VerticalHeight - bottomPadding * 2f;
         }
 
         protected float GetWidthHorizontal(int index)
         {
             var component = VisibleComponents.ElementAt(index);
-            var paddingToRight = index < VisibleComponents.Count() - 1 ? VisibleComponents.ElementAt(index + 1).PaddingLeft : 0f;
-            var rightPadding = Math.Min(paddingToRight, component.PaddingRight) / 2f;
+            var rightPadding = Math.Min(GetPaddingToRight(index), component.PaddingRight) / 2f;
             return component.HorizontalWidth - rightPadding * 2f;
         }
 
@@ -166,10 +208,8 @@ namespace LiveSplit.UI.Components
         protected void InvalidateVerticalComponent(int index, LiveSplitState state, IInvalidator invalidator, float width, float height, float scaleFactor)
         {
             var component = VisibleComponents.ElementAt(index);
-            var paddingAbove = index > 0 ? VisibleComponents.ElementAt(index - 1).PaddingBottom : 0f;
-            var paddingBeneath = index < VisibleComponents.Count() - 1 ? VisibleComponents.ElementAt(index + 1).PaddingTop : 0f;
-            var topPadding = Math.Min(paddingAbove, component.PaddingTop) / 2f;
-            var bottomPadding = Math.Min(paddingBeneath, component.PaddingBottom) / 2f;
+            var topPadding = Math.Min(GetPaddingAbove(index), component.PaddingTop) / 2f;
+            var bottomPadding = Math.Min(GetPaddingBelow(index), component.PaddingBottom) / 2f;
             var totalHeight = scaleFactor * (component.VerticalHeight - topPadding - bottomPadding);
             component.Update(invalidator, state, width, totalHeight, LayoutMode.Vertical);
             invalidator.Transform.Translate(0.0f, totalHeight);
@@ -178,10 +218,8 @@ namespace LiveSplit.UI.Components
         protected void InvalidateHorizontalComponent(int index, LiveSplitState state, IInvalidator invalidator, float width, float height, float scaleFactor)
         {
             var component = VisibleComponents.ElementAt(index);
-            var paddingToLeft = index > 0 ? VisibleComponents.ElementAt(index - 1).PaddingRight : 0f;
-            var paddingToRight = index < VisibleComponents.Count() - 1 ? VisibleComponents.ElementAt(index + 1).PaddingLeft : 0f;
-            var leftPadding = Math.Min(paddingToLeft, component.PaddingLeft) / 2f;
-            var rightPadding = Math.Min(paddingToRight, component.PaddingRight) / 2f;
+            var leftPadding = Math.Min(GetPaddingToLeft(index), component.PaddingLeft) / 2f;
+            var rightPadding = Math.Min(GetPaddingToRight(index), component.PaddingRight) / 2f;
             var totalWidth = scaleFactor * (component.HorizontalWidth - leftPadding - rightPadding);
             component.Update(invalidator, state, totalWidth, height, LayoutMode.Horizontal);
             invalidator.Transform.Translate(totalWidth, 0.0f);
