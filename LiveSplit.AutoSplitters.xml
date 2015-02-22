@@ -285,4 +285,15 @@
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available (By 0Seren)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Hitman: Absolution</Game>
+      <Game>Hitman Absolution</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.HitmanAbsolution/raw/Master/Components/LiveSplit.HMA.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
