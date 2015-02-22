@@ -48,10 +48,10 @@ namespace LiveSplit.View
                             {
                                 categoryNode.Nodes.Clear();
                                 IEnumerable<dynamic> runs = SplitsIO.Instance.GetRunsForCategory(category.id);
-                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? double.Parse(x.time, CultureInfo.InvariantCulture) : double.MaxValue);
+                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? Convert.ToDouble(x.time, CultureInfo.InvariantCulture) : double.MaxValue);
                                 foreach (var run in runs)
                                 {
-                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(double.Parse(run.time, CultureInfo.InvariantCulture))) : "No Final Time";
+                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(Convert.ToDouble(run.time, CultureInfo.InvariantCulture))) : "No Final Time";
                                     if (run.user != null && !string.IsNullOrEmpty(run.user.name))
                                         runText += " by " + run.user.name;
                                     var runNode = new TreeNode(runText);
@@ -70,12 +70,12 @@ namespace LiveSplit.View
                     {
                         var userNode = new TreeNode("@" + user.name);
                         var runs = SplitsIO.Instance.GetRunsForUser((int)user.id);
-                        runs = runs.OrderBy(run => run.name).ThenBy(run => double.Parse(run.time, CultureInfo.InvariantCulture));
+                        runs = runs.OrderBy(run => run.name).ThenBy(run => Convert.ToDouble(run.time, CultureInfo.InvariantCulture));
                         foreach (var run in runs)
                         {
                             var runText = run.name;
                             if (run.time != SplitsIO.NoTime)
-                                runText += " in " + (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(double.Parse(run.time, CultureInfo.InvariantCulture)));
+                                runText += " in " + (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(Convert.ToDouble(run.time, CultureInfo.InvariantCulture)));
                             var runNode = new TreeNode(runText);
                             runNode.Tag = run;
                             userNode.Nodes.Add(runNode);
