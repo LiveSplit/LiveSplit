@@ -257,7 +257,7 @@
       <Game>Mass Effect</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/drtchops/LiveSplit.MassEffect/raw/master/Components/LiveSplit.DXHR.dll</URL>
+      <URL>https://github.com/drtchops/LiveSplit.MassEffect/raw/master/Components/LiveSplit.MassEffect.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal is available. (By DrTChops)</Description>
