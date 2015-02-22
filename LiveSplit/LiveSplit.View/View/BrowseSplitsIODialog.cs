@@ -190,5 +190,10 @@ namespace LiveSplit.View
         {
             chkIncludeTimes.Enabled = chkDownloadEmpty.Checked;
         }
+
+        private void splitsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            btnDownload.Enabled = e.Node.Tag is DynamicJsonObject;
+        }
     }
 }

@@ -86,6 +86,7 @@
             // btnDownload
             // 
             this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDownload.Enabled = false;
             this.btnDownload.Location = new System.Drawing.Point(479, 373);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(81, 22);
@@ -103,6 +104,7 @@
             this.splitsTreeView.Size = new System.Drawing.Size(550, 328);
             this.splitsTreeView.TabIndex = 3;
             this.splitsTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.splitsTreeView_BeforeExpand);
+            this.splitsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.splitsTreeView_AfterSelect);
             // 
             // chkDownloadEmpty
             // 
