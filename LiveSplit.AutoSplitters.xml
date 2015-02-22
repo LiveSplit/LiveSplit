@@ -254,6 +254,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mass Effect</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/drtchops/LiveSplit.MassEffect/raw/master/Components/LiveSplit.DXHR.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By DrTChops)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Amnesia: The Dark Descent</Game>
       <Game>Amnesia: Justine</Game>
       <Game>Amnesia: TDD</Game>
