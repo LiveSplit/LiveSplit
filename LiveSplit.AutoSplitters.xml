@@ -217,6 +217,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Two Worlds</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/Dalet/1cf593288ae4318986e1/raw/LiveSplit.TwoWorlds_v1.1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dalet)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Two Worlds: Epic Edition</Game>
     </Games>
     <URLs>
