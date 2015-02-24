@@ -336,4 +336,28 @@
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>knights of the old republic</Game>
+      <Game>kotor</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/glasnonck/LiveSplit.Kotor/raw/master/Components/LiveSplit.Kotor.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By glasnonck)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>knights of the old republic ii</Game>
+      <Game>knights of the old republic 2</Game>
+      <Game>kotor ii</Game>
+      <Game>kotor 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/glasnonck/LiveSplit.Kotor2/raw/master/Components/LiveSplit.Kotor2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By glasnonck)</Description>
+  </AutoSplitter>
 </AutoSplitters>
