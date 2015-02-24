@@ -237,6 +237,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Yume Penguin Monogatari</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Dalet/LiveSplit.YumePenguinMonogatari/raw/master/Components/LiveSplit.YumePenguinMonogatari.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting is available for Emulator. (By Dalet)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>The Elder Scrolls V: Skyrim</Game>
       <Game>Skyrim</Game>
       <Game>TESV</Game>
