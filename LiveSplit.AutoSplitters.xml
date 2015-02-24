@@ -338,8 +338,8 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>knights of the old republic</Game>
-      <Game>kotor</Game>
+      <Game>Knights of the Old Republic</Game>
+      <Game>KotOR</Game>
     </Games>
     <URLs>
       <URL>https://github.com/glasnonck/LiveSplit.Kotor/raw/master/Components/LiveSplit.Kotor.dll</URL>
@@ -349,10 +349,10 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>knights of the old republic ii</Game>
-      <Game>knights of the old republic 2</Game>
-      <Game>kotor ii</Game>
-      <Game>kotor 2</Game>
+      <Game>Knights of the Old Republic II</Game>
+      <Game>Knights of the Old Republic 2</Game>
+      <Game>KotOR II</Game>
+      <Game>KotOR 2</Game>
     </Games>
     <URLs>
       <URL>https://github.com/glasnonck/LiveSplit.Kotor2/raw/master/Components/LiveSplit.Kotor2.dll</URL>
