@@ -65,6 +65,7 @@ namespace LiveSplit.UI
         {
             Text = text;
             X = x;
+            Y = y;
             Font = font ?? new Font("Arial", 1.0f);
             Brush = brush ?? new SolidBrush(Color.Black);
             Width = width;
