@@ -360,4 +360,18 @@
     <Type>Component</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Wind and Water: Puzzle Battles</Game>
+      <Game>Wind&amp;Water: Puzzle Battles</Game>
+      <Game>Wind and Water</Game>
+      <Game>Wind&amp;Water</Game>
+      <Game>W&amp;W</Game>
+    </Games>
+    <URLs>
+      <URL>http://vergeofapathy.com/LiveSplit/ASL/WindAndWater.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic Timer Start, Game Time and Auto Splitting is available. (By vergeofapathy)</Description>
+  </AutoSplitter>
 </AutoSplitters>
