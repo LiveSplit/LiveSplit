@@ -1511,7 +1511,7 @@ namespace LiveSplit.View
         {
             using (var stream = File.OpenRead(filePath))
             {
-                var layout = new XMLLayoutFactory(File.OpenRead(filePath)).Create(CurrentState);
+                var layout = new XMLLayoutFactory(stream).Create(CurrentState);
                 layout.FilePath = filePath;
                 Settings.AddToRecentLayouts(filePath);
                 UpdateRecentLayouts();
