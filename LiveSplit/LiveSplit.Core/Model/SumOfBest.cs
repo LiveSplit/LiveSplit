@@ -18,18 +18,18 @@ namespace LiveSplit.Model
         {
             if (currentTime != null)
             {
-                PopulatePrediction(predictions, currentTime + run[segmentIndex].BestSegmentTime[method], segmentIndex + 1);
+                PopulatePrediction(predictions, currentTime + run[segmentIndex].BestSegmentTime[method], segmentIndex + 1, method);
                 if (!simpleCalculation)
                 {
                     foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Time[method].HasValue))
                     {
-                        var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index);
+                        var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
                         PopulatePrediction(predictions, prediction.Time[method], prediction.Index, method);
                     }
                 }
-                var currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex);
+                var currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index, method);
-                var personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex);
+                var personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index, method);
             }
         }
