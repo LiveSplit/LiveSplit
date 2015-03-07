@@ -39,6 +39,21 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>A Hat in Time</Game>
+      <Game>A Hat in Time: Beta</Game>
+      <Game>A Hat in Time Beta</Game>
+      <Game>A Hat in Time: Beta Build</Game>
+      <Game>A Hat in Time Beta Build</Game>
+      <Game>AHiT</Game>
+    </Games>
+    <URLs>
+      <URL>http://livesplit.org/update/Components/LiveSplit.AHatInTime.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal and Auto Splitting are available. (By CryZe)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Dishonored</Game>
       <Game>Dishonored (PC)</Game>
     </Games>
