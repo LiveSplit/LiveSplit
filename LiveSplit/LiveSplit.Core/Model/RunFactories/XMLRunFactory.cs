@@ -113,8 +113,10 @@ namespace LiveSplit.Model.RunFactories
 
             if (version >= new Version(1, 4, 2))
             {
-                run.AutoSplitterSettings = parent["AutoSplitterSettings"];
-                var gameName = document.CreateAttribute("gameName");
+                var newXmlDoc = new XmlDocument();
+                newXmlDoc.InnerXml = parent["AutoSplitterSettings"].OuterXml;
+                run.AutoSplitterSettings = newXmlDoc.FirstChild as XmlElement;
+                var gameName = newXmlDoc.CreateAttribute("gameName");
                 gameName.Value = run.GameName;
                 run.AutoSplitterSettings.Attributes.Append(gameName);
             }
