@@ -389,4 +389,17 @@
     <Type>Script</Type>
     <Description>Automatic Timer Start, Game Time and Auto Splitting is available. (By vergeofapathy)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Aliens vs. Predator (2010)</Game>
+      <Game>Aliens versus Predator (2010)</Game>
+      <Game>AVP(2010)</Game>
+      <Game>AVP2010</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.AVP2010/raw/master/Components/LiveSplit.AVP2010.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+    </AutoSplitter>
 </AutoSplitters>
