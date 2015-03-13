@@ -402,4 +402,15 @@
     <Type>Component</Type>
     <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
     </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Max Payne 2</Game>
+      <Game>Max Payne 2: The Fall of Max Payne</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.MaxPayne2/raw/master/Components/LiveSplit.MaxPayne2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+    </AutoSplitter>
 </AutoSplitters>
