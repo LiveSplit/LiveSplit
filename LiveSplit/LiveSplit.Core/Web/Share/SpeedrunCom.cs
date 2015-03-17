@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace LiveSplit.Web.Share
         public struct WorldRecord
         {
             public string Runner;
-            public TimeSpan Time;
+            public Time Time;
             public DateTime? Date;
             public Uri Video;
         }
@@ -47,7 +48,16 @@ namespace LiveSplit.Web.Share
         private WorldRecord getWorldRecordEntry(dynamic entry)
         {
             var runner = entry.player;
-            var time = TimeSpan.FromSeconds(double.Parse(entry.time, CultureInfo.InvariantCulture));
+            Time time = new Time();
+            if ((entry.Properties as IDictionary<string, dynamic>).ContainsKey("timewithloads"))
+            {
+                time.RealTime = TimeSpan.FromSeconds(double.Parse(entry.timewithloads, CultureInfo.InvariantCulture));
+                time.GameTime = TimeSpan.FromSeconds(double.Parse(entry.time, CultureInfo.InvariantCulture));
+            }
+            else
+            {
+                time.RealTime = time.GameTime = TimeSpan.FromSeconds(double.Parse(entry.time, CultureInfo.InvariantCulture));
+            }
 
             DateTime? date = null;
             Uri video = null;
