@@ -169,6 +169,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Borderlands: The Pre-Sequel!</Game>
+    </Games>
+    <URLs>
+      <URL>http://abahbob.com/livesplit/LiveSplit.BLTPS.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-reset, Start, and Load Removal. (By drMalcom)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Super Meat Boy</Game>
     </Games>
     <URLs>
