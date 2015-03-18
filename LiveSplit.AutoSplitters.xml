@@ -262,6 +262,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Archangel</Game>
+      <Game>Archangel (2002)</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/Dalet/8742f00ac9bd587f3054/raw/LiveSplit.Archangel.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dalet)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>The Elder Scrolls V: Skyrim</Game>
       <Game>Skyrim</Game>
       <Game>TESV</Game>
