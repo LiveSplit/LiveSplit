@@ -50,21 +50,21 @@ namespace LiveSplit.Web.Share
             var runner = entry.player;
             Time time = new Time();
 
-	    if (entry.time != null)
+            if (entry.time != null)
             {
                 time.RealTime = TimeSpan.FromSeconds(double.Parse(entry.time, CultureInfo.InvariantCulture));
             }
 
             if ((entry.Properties as IDictionary<string, dynamic>).ContainsKey("timewithloads"))
             {
-		//If the game supports Real Time, "time" actually returns Game Time
-		time.GameTime = time.RealTime;
+                //If the game supports Real Time, "time" actually returns Game Time
+                time.GameTime = time.RealTime;
 
-		//Real Time might not always exist for a Game Time based game
-		if (entry.timewithloads != null)
-		    time.RealTime = TimeSpan.FromSeconds(double.Parse(entry.timewithloads, CultureInfo.InvariantCulture));
-		else
-		    time.RealTime = null;
+                //Real Time might not always exist for a Game Time based game
+                if (entry.timewithloads != null)
+                    time.RealTime = TimeSpan.FromSeconds(double.Parse(entry.timewithloads, CultureInfo.InvariantCulture));
+                else
+                    time.RealTime = null;
             }
 
             DateTime? date = null;
