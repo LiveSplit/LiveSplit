@@ -434,4 +434,25 @@
     <Type>Component</Type>
     <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
     </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Silent Hill 2</Game>
+      <Game>Silent Hill 2 - Directors Cut</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.ASLScripts/raw/59915155d041c10eded2d76f0dc7d9c005a94d1b/Silent%20Hill%202/LiveSplit.SH2_Classic.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time display (By SuicideMachine, based on idea by Shunpuk)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Silent Hill 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.ASLScripts/blob/59915155d041c10eded2d76f0dc7d9c005a94d1b/Silent%20Hill%203/LiveSplit.SH3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time display* (By SuicideMachine, based on idea by Shunpuk)</Description>
+  </AutoSplitter>
 </AutoSplitters>
