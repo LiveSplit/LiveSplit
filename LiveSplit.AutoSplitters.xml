@@ -450,9 +450,9 @@
       <Game>Silent Hill 3</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Silent%20Hill%203/LiveSplit.SH3.asl</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Silent%20Hill%203/LiveSplit.SH3_Classic.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Game Time display* (By SuicideMachine, based on idea by Shunpuk)</Description>
+    <Description>Game Time display (By SuicideMachine, based on idea by Shunpuk)</Description>
   </AutoSplitter>
 </AutoSplitters>
