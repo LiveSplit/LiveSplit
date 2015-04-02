@@ -2349,6 +2349,7 @@ namespace LiveSplit.View
                 hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled = false;
             else
                 hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled = true;
+            SetProgressBar();
         }
 
         private void splitMenuItem_Click(object sender, EventArgs e)
