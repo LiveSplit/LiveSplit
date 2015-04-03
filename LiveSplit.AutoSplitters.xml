@@ -455,4 +455,15 @@
     <Type>Script</Type>
     <Description>Game Time display (By SuicideMachine, based on idea by Shunpuk)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Deus Ex: The Fall</Game>
+      <Game>Deus Ex The Fall</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.DXTF/blob/master/Components/LiveSplit.DXTF.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+    </AutoSplitter>
 </AutoSplitters>
