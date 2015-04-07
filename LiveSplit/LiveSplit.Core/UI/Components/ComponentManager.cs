@@ -54,10 +54,10 @@ namespace LiveSplit.UI.Components
 
                 if (attr != null)
                 {
-                    factory = (IComponentFactory)attr.
+                    factory = (IComponentFactory)(attr.
                         ComponentFactoryClassType.
                         GetConstructor(new Type[0]).
-                        Invoke(null);
+                        Invoke(null));
                 }
             }
             catch (Exception e)
