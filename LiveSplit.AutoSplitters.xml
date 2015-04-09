@@ -466,4 +466,15 @@
     <Type>Component</Type>
     <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
     </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Deus Ex: Invisible War</Game>
+      <Game>Deus Ex Invisible War</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.DXIW/raw/master/Components/LiveSplit.DXIW.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
