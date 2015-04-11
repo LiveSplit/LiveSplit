@@ -1983,26 +1983,26 @@ namespace LiveSplit.View
 
         private void CloseSplits()
         {
-            var shouldContinue = WarnUserAboutSplitsSave();
-            if (shouldContinue)
+            if (!WarnUserAboutSplitsSave())
+                return;
+            if (!WarnUserAboutLayoutSave())
+                return;
+            TimerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
+            var run = TimerOnlyRun;
+            Model.Reset();
+            SetRun(run);
+            Settings.AddToRecentSplits("");
+            InTimerOnlyMode = true;
+            if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
             {
-                TimerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
-                var run = TimerOnlyRun;
-                Model.Reset();
-                SetRun(run);
-                Settings.AddToRecentSplits("");
-                InTimerOnlyMode = true;
-                if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
-                {
-                    TimerOnlyLayout = new TimerOnlyLayoutFactory().Create(CurrentState);
-                    var layout = TimerOnlyLayout;
-                    layout.Settings = Layout.Settings;
-                    layout.X = Location.X;
-                    layout.Y = Location.Y;
-                    layout.Mode = Layout.Mode;
-                    SetLayout(layout);
-                    Settings.AddToRecentLayouts("");
-                }
+                TimerOnlyLayout = new TimerOnlyLayoutFactory().Create(CurrentState);
+                var layout = TimerOnlyLayout;
+                layout.Settings = Layout.Settings;
+                layout.X = Location.X;
+                layout.Y = Location.Y;
+                layout.Mode = Layout.Mode;
+                SetLayout(layout);
+                Settings.AddToRecentLayouts("");
             }
         }
 
