@@ -1166,9 +1166,9 @@ namespace LiveSplit.View
                 }
                 FixSize();
                 if (Layout.Mode == LayoutMode.Vertical)
-                    MinimumSize = new Size(100, (int)((ComponentRenderer.OverallHeight / 2) * (100 / Math.Max(100, ComponentRenderer.MinimumWidth)) + 0.5f));
+                    MinimumSize = new Size(100, (int)((ComponentRenderer.OverallHeight / 3) + 0.5f));
                 else
-                    MinimumSize = new Size((int)((ComponentRenderer.OverallWidth / 2) * (25 / Math.Max(25, ComponentRenderer.MinimumHeight)) + 0.5f), 25);
+                    MinimumSize = new Size((int)((ComponentRenderer.OverallWidth / 3) + 0.5f), 25);
             }
             else
             {
