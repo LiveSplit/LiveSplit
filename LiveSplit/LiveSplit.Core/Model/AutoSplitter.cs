@@ -49,7 +49,7 @@ namespace LiveSplit.Model
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                    MessageBox.Show(state.Form, "The Auto Splitter could not be activated.", "Activation Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(state.Form, "The Auto Splitter could not be activated. (" + ex.Message + ")", "Activation Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
