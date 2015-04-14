@@ -57,14 +57,24 @@ namespace LiveSplit.Web.Share
 
             if ((entry.Properties as IDictionary<string, dynamic>).ContainsKey("timewithloads"))
             {
-                //If the game supports Real Time, "time" actually returns Game Time
+                //If the game supports Time without Loads, "time" actually returns Time without Loads
                 time.GameTime = time.RealTime;
 
-                //Real Time might not always exist for a Game Time based game
+                //Real Time is then stored in timewithloads
                 if (entry.timewithloads != null)
                     time.RealTime = TimeSpan.FromSeconds(double.Parse(entry.timewithloads, CultureInfo.InvariantCulture));
                 else
                     time.RealTime = null;
+            }
+            
+            if ((entry.Properties as IDictionary<string, dynamic>).ContainsKey("timeigt"))
+            {
+                //If there's timeigt, use that as the Game Time instead of Time without Loads
+                //since that is more representative of Game Time.
+                if (entry.timeigt != null)
+                    time.GameTime = TimeSpan.FromSeconds(double.Parse(entry.timeigt, CultureInfo.InvariantCulture));
+                else
+                    time.GameTime = null;
             }
 
             DateTime? date = null;
