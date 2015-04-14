@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Web;
+using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share
 {
@@ -17,12 +21,20 @@ namespace LiveSplit.Web.Share
             public Uri Video;
         }
 
+        private struct GamePair
+        {
+            public string Name;
+            public string Id;
+        }
+
         protected static SpeedrunCom _Instance = new SpeedrunCom();
 
         public static SpeedrunCom Instance { get { return _Instance; } }
 
         public static readonly Uri BaseUri = new Uri("http://www.speedrun.com/");
         public static readonly Uri APIUri = new Uri(BaseUri, "");
+
+        private IEnumerable<GamePair> gameList;
 
         protected SpeedrunCom() { }
 
@@ -34,6 +46,65 @@ namespace LiveSplit.Web.Share
         public Uri GetAPIUri(string subUri)
         {
             return new Uri(APIUri, subUri);
+        }
+
+        private IEnumerable<HtmlElement> FindChildren(HtmlElement parent, String tagName, String id = null, String className = null)
+        {
+            return parent.Children
+                .OfType<HtmlElement>()
+                .Where(x => x.TagName == tagName 
+                    && ((id == null) ? true : x.Id == id)
+                    && ((className == null) ? true : x.GetAttribute("class") == className));
+        }
+
+        private IEnumerable<GamePair> getGameList()
+        {
+            if (gameList == null)
+            {
+                var request = WebRequest.Create(GetSiteUri("games"));
+                var stream = request.GetResponse().GetResponseStream();
+                using (var reader = new StreamReader(stream))
+                {
+                    var html = reader.ReadToEnd();
+
+                    var thread = new Thread(() =>
+                    {
+                        try
+                        {
+                            var wbc = new WebBrowser();
+                            wbc.DocumentText = "";
+                            var doc = new HtmlDocument();
+                            doc.Write((string)html);
+
+                            var element = FindChildren(doc.Body, "div", id: "foregrounddiv").First();
+                            element = FindChildren(element, "div", className: "clearfix").First();
+                            element = FindChildren(element, "table").First();
+                            element = FindChildren(element, "tbody").First();
+                            element = FindChildren(element, "tr").First();
+                            element = FindChildren(element, "td").First();
+                            element = FindChildren(element, "div", className: "box padding lists").First();
+                            element = FindChildren(element, "div", id: "alphabeticlist").First();
+                            var allgames = FindChildren(element, "a");
+                            gameList = allgames.Select(x =>
+                                new GamePair
+                                {
+                                    Id = x.GetAttribute("href").Substring(1),
+                                    Name = HttpUtility.HtmlDecode(x.InnerHtml)
+                                }).ToList();
+                        }
+                        catch (Exception ex) { }
+                    }) { ApartmentState = ApartmentState.STA, IsBackground = true };
+                    thread.Start();
+                    thread.Join();
+                }
+            }
+
+            return gameList;
+        }
+
+        public IEnumerable<string> GetGameNames()
+        {
+            return getGameList().Select(x => x.Name);
         }
 
         private IDictionary<String, dynamic> getWorldRecordList(string game)
