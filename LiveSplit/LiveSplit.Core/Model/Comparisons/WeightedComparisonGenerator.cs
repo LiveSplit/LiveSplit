@@ -8,8 +8,8 @@ namespace LiveSplit.Model.Comparisons
     public class WeightedComparisonGenerator : IComparisonGenerator
     {
         public IRun Run { get; set; }
-        public const string ComparisonName = "Weighted PB";
-        public const string ShortComparisonName = "Weighted";
+        public const string ComparisonName = "Balanced PB";
+        public const string ShortComparisonName = "Balanced";
         public string Name { get { return ComparisonName; } }
 
         public WeightedComparisonGenerator(IRun run)
@@ -60,7 +60,9 @@ namespace LiveSplit.Model.Comparisons
                 SplitArrayList.Add(TempArray2);
             }
 
-            int Goaltime = Convert.ToInt32(Run[RunCount].PersonalBestSplitTime[method].Value.TotalMilliseconds);
+            int Goaltime = 0;
+            if (Run[RunCount].PersonalBestSplitTime[method] != null)
+            Goaltime = Convert.ToInt32(Run[RunCount].PersonalBestSplitTime[method].Value.TotalMilliseconds);
             int RunSum, PercPosiUp, PercPosiDn;
             double Percentile, PercPosi, PercMin, PercMax;
             List<int> OutputSplits = new List<int>();
