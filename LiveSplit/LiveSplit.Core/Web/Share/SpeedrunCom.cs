@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace LiveSplit.Web.Share
         public struct WorldRecord
         {
             public string Runner;
-            public TimeSpan Time;
+            public Time Time;
             public DateTime? Date;
             public Uri Video;
         }
@@ -47,7 +48,34 @@ namespace LiveSplit.Web.Share
         private WorldRecord getWorldRecordEntry(dynamic entry)
         {
             var runner = entry.player;
-            var time = TimeSpan.FromSeconds(double.Parse(entry.time, CultureInfo.InvariantCulture));
+            Time time = new Time();
+
+            if (entry.time != null)
+            {
+                time.RealTime = TimeSpan.FromSeconds(double.Parse(entry.time, CultureInfo.InvariantCulture));
+            }
+
+            if ((entry.Properties as IDictionary<string, dynamic>).ContainsKey("timewithloads"))
+            {
+                //If the game supports Time without Loads, "time" actually returns Time without Loads
+                time.GameTime = time.RealTime;
+
+                //Real Time is then stored in timewithloads
+                if (entry.timewithloads != null)
+                    time.RealTime = TimeSpan.FromSeconds(double.Parse(entry.timewithloads, CultureInfo.InvariantCulture));
+                else
+                    time.RealTime = null;
+            }
+            
+            if ((entry.Properties as IDictionary<string, dynamic>).ContainsKey("timeigt"))
+            {
+                //If there's timeigt, use that as the Game Time instead of Time without Loads
+                //since that is more representative of Game Time.
+                if (entry.timeigt != null)
+                    time.GameTime = TimeSpan.FromSeconds(double.Parse(entry.timeigt, CultureInfo.InvariantCulture));
+                else
+                    time.GameTime = null;
+            }
 
             DateTime? date = null;
             Uri video = null;
