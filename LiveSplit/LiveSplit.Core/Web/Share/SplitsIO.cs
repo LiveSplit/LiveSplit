@@ -197,7 +197,7 @@ namespace LiveSplit.Web.Share
                 image_url = (string)result.data.link;
             }
 
-            var request = (HttpWebRequest)WebRequest.Create("http://splits.io/api/v2/runs");
+            var request = (HttpWebRequest)WebRequest.Create(GetAPIUri("runs").AbsoluteUri);
             request.Method = "POST";
             request.Host = "splits.io";
             request.UserAgent = "LiveSplit/" + UpdateHelper.Version.ToString();
@@ -231,9 +231,9 @@ namespace LiveSplit.Web.Share
             }
 
             var response = request.GetResponse();
-            var json = JSON.FromUri(new Uri(response.Headers["Location"]));
+            var json = JSON.FromResponse(response);
 
-            var url = "http://splits.io" + json.run.path;
+            var url = json.uris.claim_uri;
             return url;
         }
 
