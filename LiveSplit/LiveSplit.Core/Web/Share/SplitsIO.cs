@@ -12,6 +12,8 @@ using System.Web;
 using System.Windows.Forms;
 using LiveSplit.Model.RunFactories;
 using LiveSplit.Model.Comparisons;
+using System.Globalization;
+using System.Linq;
 
 namespace LiveSplit.Web.Share
 {
@@ -22,9 +24,9 @@ namespace LiveSplit.Web.Share
         public static SplitsIO Instance { get { return _Instance; } }
 
         public static readonly Uri BaseUri = new Uri("http://splits.io/");
-        public static readonly Uri APIUri = new Uri(BaseUri, "api/v2/");
+        public static readonly Uri APIUri = new Uri("https://splits.io/api/v3/");
 
-        public const string NoTime = "0.0";
+        public const decimal NoTime = 0.0m;
 
         protected SplitsIO() { }
 
@@ -92,20 +94,48 @@ namespace LiveSplit.Web.Share
 
         #endregion
 
+        private IEnumerable<dynamic> DoPaginatedRequest(Uri uri)
+        {
+            var page = 1;
+            var totalItems = 1;
+            var perPage = 1;
+            var lastPage = 1;
+
+            do
+            {
+                var request = WebRequest.Create(string.Format("{0}?page={1}", uri.AbsoluteUri, page));
+                var response = request.GetResponse();
+                Int32.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
+                Int32.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
+                lastPage = (int)Math.Ceiling(totalItems / (double)perPage);
+                
+                yield return JSON.FromResponse(response);
+
+            } while (page++ < lastPage);
+        }
+
         public IEnumerable<dynamic> SearchGame(string name)
         {
             var escapedName = HttpUtility.UrlPathEncode(name);
-            var uri = GetAPIUri(string.Format("games?fuzzyname={0}", escapedName));
+            var uri = GetAPIUri(string.Format("games?search={0}", escapedName));
             var response = JSON.FromUri(uri);
             return (response.games as IEnumerable<dynamic>) ?? new dynamic[0];
         }
 
-        public IEnumerable<dynamic> SearchUser(string name)
+        public dynamic SearchUser(string name)
         {
-            var escapedName = HttpUtility.UrlPathEncode(name);
-            var uri = GetAPIUri(string.Format("users?name={0}", escapedName));
-            var response = JSON.FromUri(uri);
-            return (response.users as IEnumerable<dynamic>) ?? new dynamic[0];
+            try
+            {
+                var escapedName = HttpUtility.UrlPathEncode(name.ToLowerInvariant());
+                var uri = GetAPIUri(string.Format("users/{0}", escapedName));
+                var response = JSON.FromUri(uri);
+                return response.user;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                return null;
+            }
         }
 
         public dynamic GetGameById(int gameId)
@@ -115,18 +145,18 @@ namespace LiveSplit.Web.Share
             return response.game;
         }
 
-        public IEnumerable<dynamic> GetRunsForCategory(int categoryId)
+        public IEnumerable<dynamic> GetRunsForCategory(int gameId, int categoryId)
         {
-            var uri = GetAPIUri(string.Format("runs?category_id={0}", categoryId));
-            var response = JSON.FromUri(uri);
-            return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
+            var uri = GetAPIUri(string.Format("games/{0}/categories/{1}/runs", gameId, categoryId));
+            var pages = DoPaginatedRequest(uri);
+            return pages.SelectMany(page => (page.runs as IEnumerable<dynamic>) ?? new dynamic[0]);
         }
 
-        public IEnumerable<dynamic> GetRunsForUser(int userId)
+        public IEnumerable<dynamic> GetRunsForUser(string userId)
         {
-            var uri = GetAPIUri(string.Format("runs?user_id={0}", userId));
-            var response = JSON.FromUri(uri);
-            return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
+            var uri = GetAPIUri(string.Format("users/{0}/runs", userId));
+            var pages = DoPaginatedRequest(uri);
+            return pages.SelectMany(page => (page.runs as IEnumerable<dynamic>) ?? new dynamic[0]);
         }
 
         public dynamic GetRunById(int runId)
@@ -189,7 +219,7 @@ namespace LiveSplit.Web.Share
                 image_url = (string)result.data.link;
             }
 
-            var request = (HttpWebRequest)WebRequest.Create("http://splits.io/api/v2/runs");
+            var request = (HttpWebRequest)WebRequest.Create(GetAPIUri("runs").AbsoluteUri);
             request.Method = "POST";
             request.Host = "splits.io";
             request.UserAgent = "LiveSplit/" + UpdateHelper.Version.ToString();
@@ -223,9 +253,9 @@ namespace LiveSplit.Web.Share
             }
 
             var response = request.GetResponse();
-            var json = JSON.FromUri(new Uri(response.Headers["Location"]));
+            var json = JSON.FromResponse(response);
 
-            var url = "http://splits.io" + json.run.path;
+            var url = json.uris.claim_uri;
             return url;
         }
 
