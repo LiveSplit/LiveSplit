@@ -104,7 +104,7 @@ namespace LiveSplit.Web.Share
         {
             try
             {
-                var escapedName = HttpUtility.UrlPathEncode(name);
+                var escapedName = HttpUtility.UrlPathEncode(name.ToLowerInvariant());
                 var uri = GetAPIUri(string.Format("users/{0}", escapedName));
                 var response = JSON.FromUri(uri);
                 return response.user;
