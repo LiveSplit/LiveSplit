@@ -22,9 +22,9 @@ namespace LiveSplit.Web.Share
         public static SplitsIO Instance { get { return _Instance; } }
 
         public static readonly Uri BaseUri = new Uri("http://splits.io/");
-        public static readonly Uri APIUri = new Uri(BaseUri, "api/v2/");
+        public static readonly Uri APIUri = new Uri("https://splits.io/api/v3/");
 
-        public const string NoTime = "0.0";
+        public const decimal NoTime = 0.0m;
 
         protected SplitsIO() { }
 
@@ -95,17 +95,25 @@ namespace LiveSplit.Web.Share
         public IEnumerable<dynamic> SearchGame(string name)
         {
             var escapedName = HttpUtility.UrlPathEncode(name);
-            var uri = GetAPIUri(string.Format("games?fuzzyname={0}", escapedName));
+            var uri = GetAPIUri(string.Format("games?search={0}", escapedName));
             var response = JSON.FromUri(uri);
             return (response.games as IEnumerable<dynamic>) ?? new dynamic[0];
         }
 
-        public IEnumerable<dynamic> SearchUser(string name)
+        public dynamic SearchUser(string name)
         {
-            var escapedName = HttpUtility.UrlPathEncode(name);
-            var uri = GetAPIUri(string.Format("users?name={0}", escapedName));
-            var response = JSON.FromUri(uri);
-            return (response.users as IEnumerable<dynamic>) ?? new dynamic[0];
+            try
+            {
+                var escapedName = HttpUtility.UrlPathEncode(name);
+                var uri = GetAPIUri(string.Format("users/{0}", escapedName));
+                var response = JSON.FromUri(uri);
+                return response.user;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                return null;
+            }
         }
 
         public dynamic GetGameById(int gameId)
@@ -115,16 +123,16 @@ namespace LiveSplit.Web.Share
             return response.game;
         }
 
-        public IEnumerable<dynamic> GetRunsForCategory(int categoryId)
+        public IEnumerable<dynamic> GetRunsForCategory(int gameId, int categoryId)
         {
-            var uri = GetAPIUri(string.Format("runs?category_id={0}", categoryId));
+            var uri = GetAPIUri(string.Format("games/{0}/categories/{1}/runs", gameId, categoryId));
             var response = JSON.FromUri(uri);
             return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
         }
 
-        public IEnumerable<dynamic> GetRunsForUser(int userId)
+        public IEnumerable<dynamic> GetRunsForUser(string userId)
         {
-            var uri = GetAPIUri(string.Format("runs?user_id={0}", userId));
+            var uri = GetAPIUri(string.Format("users/{0}/runs", userId));
             var response = JSON.FromUri(uri);
             return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
         }

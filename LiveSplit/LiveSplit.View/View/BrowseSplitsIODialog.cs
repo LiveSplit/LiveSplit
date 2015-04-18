@@ -47,11 +47,11 @@ namespace LiveSplit.View
                             categoryNode.Tag = new CategoryNodeAction(() =>
                             {
                                 categoryNode.Nodes.Clear();
-                                IEnumerable<dynamic> runs = SplitsIO.Instance.GetRunsForCategory(category.id);
-                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? double.Parse(x.time, CultureInfo.InvariantCulture) : double.MaxValue);
+                                IEnumerable<dynamic> runs = SplitsIO.Instance.GetRunsForCategory(game.id, category.id);
+                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? (double)x.time : double.MaxValue);
                                 foreach (var run in runs)
                                 {
-                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(double.Parse(run.time, CultureInfo.InvariantCulture))) : "No Final Time";
+                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds((double)run.time)) : "No Final Time";
                                     if (run.user != null && !string.IsNullOrEmpty(run.user.name))
                                         runText += " by " + run.user.name;
                                     var runNode = new TreeNode(runText);
@@ -64,18 +64,17 @@ namespace LiveSplit.View
                         splitsTreeView.Nodes.Add(gameNode);
                     }
 
-                    var users = SplitsIO.Instance.SearchUser(searchText);
-                    users = users.OrderBy(user => user.name);
-                    foreach (var user in users)
+                    var user = SplitsIO.Instance.SearchUser(searchText);
+                    if (user != null)
                     {
                         var userNode = new TreeNode("@" + user.name);
-                        var runs = SplitsIO.Instance.GetRunsForUser((int)user.id);
-                        runs = runs.OrderBy(run => run.name).ThenBy(run => double.Parse(run.time, CultureInfo.InvariantCulture));
+                        var runs = SplitsIO.Instance.GetRunsForUser((string)user.name);
+                        runs = runs.OrderBy(run => (string)run.name).ThenBy(run => (double)run.time);
                         foreach (var run in runs)
                         {
                             var runText = run.name;
                             if (run.time != SplitsIO.NoTime)
-                                runText += " in " + (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds(double.Parse(run.time, CultureInfo.InvariantCulture)));
+                                runText += " in " + (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds((double)run.time));
                             var runNode = new TreeNode(runText);
                             runNode.Tag = run;
                             userNode.Nodes.Add(runNode);
