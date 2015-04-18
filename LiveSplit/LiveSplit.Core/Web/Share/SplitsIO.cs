@@ -12,6 +12,8 @@ using System.Web;
 using System.Windows.Forms;
 using LiveSplit.Model.RunFactories;
 using LiveSplit.Model.Comparisons;
+using System.Globalization;
+using System.Linq;
 
 namespace LiveSplit.Web.Share
 {
@@ -92,6 +94,26 @@ namespace LiveSplit.Web.Share
 
         #endregion
 
+        private IEnumerable<dynamic> DoPaginatedRequest(Uri uri)
+        {
+            var page = 1;
+            var totalItems = 1;
+            var perPage = 1;
+            var lastPage = 1;
+
+            do
+            {
+                var request = WebRequest.Create(string.Format("{0}?page={1}", uri.AbsoluteUri, page));
+                var response = request.GetResponse();
+                Int32.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
+                Int32.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
+                lastPage = (int)Math.Ceiling(totalItems / (double)perPage);
+                
+                yield return JSON.FromResponse(response);
+
+            } while (page++ < lastPage);
+        }
+
         public IEnumerable<dynamic> SearchGame(string name)
         {
             var escapedName = HttpUtility.UrlPathEncode(name);
@@ -126,15 +148,15 @@ namespace LiveSplit.Web.Share
         public IEnumerable<dynamic> GetRunsForCategory(int gameId, int categoryId)
         {
             var uri = GetAPIUri(string.Format("games/{0}/categories/{1}/runs", gameId, categoryId));
-            var response = JSON.FromUri(uri);
-            return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
+            var pages = DoPaginatedRequest(uri);
+            return pages.SelectMany(page => (page.runs as IEnumerable<dynamic>) ?? new dynamic[0]);
         }
 
         public IEnumerable<dynamic> GetRunsForUser(string userId)
         {
             var uri = GetAPIUri(string.Format("users/{0}/runs", userId));
-            var response = JSON.FromUri(uri);
-            return (response.runs as IEnumerable<dynamic>) ?? new dynamic[0];
+            var pages = DoPaginatedRequest(uri);
+            return pages.SelectMany(page => (page.runs as IEnumerable<dynamic>) ?? new dynamic[0]);
         }
 
         public dynamic GetRunById(int runId)
