@@ -477,4 +477,14 @@
     <Type>Component</Type>
     <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Toy Story 2: Buzz Lightyear to the Rescue!</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/cheeseandcereal/977df7da61bc0d822e2c/raw/7a5c43384dafa1b402bbdf8a2afb007e46ca9756/LiveSplit.ToyStory2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Reset/Splitting is available for emulator (By cheeseandcereal)</Description>
+  </AutoSplitter>
 </AutoSplitters>
