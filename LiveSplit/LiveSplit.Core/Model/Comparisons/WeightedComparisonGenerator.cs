@@ -8,8 +8,8 @@ namespace LiveSplit.Model.Comparisons
     public class WeightedComparisonGenerator : IComparisonGenerator
     {
         public IRun Run { get; set; }
-        public const string ComparisonName = "Weighted PB";
-        public const string ShortComparisonName = "Weighted";
+        public const string ComparisonName = "Balanced PB";
+        public const string ShortComparisonName = "Balanced";
         public string Name { get { return ComparisonName; } }
 
         public WeightedComparisonGenerator(IRun run)
