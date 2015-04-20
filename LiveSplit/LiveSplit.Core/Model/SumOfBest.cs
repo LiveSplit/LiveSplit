@@ -6,7 +6,7 @@ namespace LiveSplit.Model
 {
     public static class SumOfBest
     {
-        private static void PopulatePrediction(IList<TimeSpan?> predictions, TimeSpan? predictedTime, int segmentIndex, TimingMethod method = TimingMethod.RealTime)
+        private static void PopulatePrediction(IList<TimeSpan?> predictions, TimeSpan? predictedTime, int segmentIndex)
         {
             if (predictedTime.HasValue && (!predictions[segmentIndex].HasValue || predictedTime < predictions[segmentIndex].Value))
             {
@@ -18,19 +18,19 @@ namespace LiveSplit.Model
         {
             if (currentTime != null)
             {
-                PopulatePrediction(predictions, currentTime + run[segmentIndex].BestSegmentTime[method], segmentIndex + 1, method);
+                PopulatePrediction(predictions, currentTime + run[segmentIndex].BestSegmentTime[method], segmentIndex + 1);
                 if (!simpleCalculation)
                 {
                     foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Time[method].HasValue))
                     {
                         var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
-                        PopulatePrediction(predictions, prediction.Time[method], prediction.Index, method);
+                        PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                     }
                 }
                 var currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex, method);
-                PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index, method);
+                PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
                 var personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex, method);
-                PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index, method);
+                PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index);
             }
         }
 
@@ -72,7 +72,7 @@ namespace LiveSplit.Model
         {
             while (segmentIndex < run.Count)
             {
-                var segmentTime = run[segmentIndex].SegmentHistory.Where(x => x.Index == runIndex).FirstOrDefault();
+                var segmentTime = run[segmentIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                 if (segmentTime != null)
                 {
                     var curTime = segmentTime.Time[method];
@@ -121,5 +121,58 @@ namespace LiveSplit.Model
         {
             return CalculateSumOfBest(run, run.Count() - 1, simpleCalculation, method);
         }
+
+        public static void Clean(IRun run, TimingMethod method, CleanUpCallback callback = null)
+        {
+            var predictions = new TimeSpan?[run.Count + 1];
+            CalculateSumOfBest(run, 0, run.Count() - 1, predictions, true, method);
+            int segmentIndex = 0;
+            TimeSpan? currentTime = TimeSpan.Zero;
+            foreach (var segment in run)
+            {
+                currentTime = predictions[segmentIndex];
+                foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Time[method].HasValue))
+                {
+                    var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
+                    CheckPrediction(run, predictions, prediction.Time[method], segmentIndex - 1, prediction.Index - 1, nullSegment.Index, method, callback);
+                } 
+                segmentIndex++;
+            }
+        }
+
+        private static void CheckPrediction(IRun run, TimeSpan?[] predictions, TimeSpan? predictedTime, int startingIndex, int endingIndex, int runIndex, TimingMethod method = TimingMethod.RealTime, CleanUpCallback callback = null)
+        {
+            if (predictedTime.HasValue && (!predictions[endingIndex + 1].HasValue || predictedTime < predictions[endingIndex + 1].Value))
+            {
+                var segmentHistoryElement = run[endingIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
+                var parameters = new CleanUpCallbackParameters 
+                {
+                    startingSegment = run[startingIndex],
+                    endingSegment = run[endingIndex],
+                    timeBetween = segmentHistoryElement.Time[method].Value,
+                    runElement = run.RunHistory.FirstOrDefault(x => x.Index == runIndex)
+                };
+                if (callback == null || callback(parameters))
+                {
+                    run[endingIndex].SegmentHistory.Remove(segmentHistoryElement);
+                }
+            }
+        }
+
+        public static void Clean(IRun run, CleanUpCallback callback = null)
+        {
+            Clean(run, TimingMethod.RealTime, callback);
+            Clean(run, TimingMethod.GameTime, callback);
+        }
+
+        public class CleanUpCallbackParameters
+        {
+            public ISegment startingSegment;
+            public ISegment endingSegment;
+            public TimeSpan timeBetween;
+            public IIndexedTime runElement;
+        }
+
+        public delegate bool CleanUpCallback(CleanUpCallbackParameters parameters);
     }
 }
