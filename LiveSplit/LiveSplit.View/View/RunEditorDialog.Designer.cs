@@ -57,26 +57,32 @@
             this.btnMoveDown = new System.Windows.Forms.Button();
             this.btnAddComparison = new System.Windows.Forms.Button();
             this.btnImportComparison = new System.Windows.Forms.Button();
+            this.btnOther = new System.Windows.Forms.Button();
             this.RemoveIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadBoxartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFromURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ImportComparisonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromSplitsioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OtherMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.clearHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clearTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.RemoveIconMenu.SuspendLayout();
+            this.ImportComparisonMenu.SuspendLayout();
+            this.OtherMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iRunBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iSegmentBindingSource)).BeginInit();
-            this.ImportComparisonMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // runGrid
@@ -96,7 +102,7 @@
             this.runGrid.Name = "runGrid";
             this.runGrid.RowHeadersVisible = false;
             this.runGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.tableLayoutPanel1.SetRowSpan(this.runGrid, 7);
+            this.tableLayoutPanel1.SetRowSpan(this.runGrid, 8);
             this.runGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.runGrid.Size = new System.Drawing.Size(549, 296);
             this.runGrid.TabIndex = 0;
@@ -127,7 +133,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tabControl1, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.tbxAttempts, 7, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 6, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 7, 13);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 7, 14);
             this.tableLayoutPanel1.Controls.Add(this.lblDescription, 2, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnActivate, 7, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnSettings, 8, 4);
@@ -138,16 +144,18 @@
             this.tableLayoutPanel1.Controls.Add(this.btnMoveDown, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.btnAddComparison, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.btnImportComparison, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.btnOther, 0, 13);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 14;
+            this.tableLayoutPanel1.RowCount = 15;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
@@ -462,6 +470,19 @@
             this.btnImportComparison.UseVisualStyleBackColor = true;
             this.btnImportComparison.Click += new System.EventHandler(this.btnImportComparison_Click);
             // 
+            // btnOther
+            // 
+            this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOther.Location = new System.Drawing.Point(10, 376);
+            this.btnOther.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnOther.Name = "btnOther";
+            this.btnOther.Size = new System.Drawing.Size(102, 23);
+            this.btnOther.TabIndex = 19;
+            this.btnOther.Text = "Other...";
+            this.btnOther.UseVisualStyleBackColor = true;
+            this.btnOther.Click += new System.EventHandler(this.btnOther_Click);
+            // 
             // RemoveIconMenu
             // 
             this.RemoveIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -500,14 +521,6 @@
             this.removeIconToolStripMenuItem.Text = "Remove Icon";
             this.removeIconToolStripMenuItem.Click += new System.EventHandler(this.removeIconToolStripMenuItem_Click);
             // 
-            // iRunBindingSource
-            // 
-            this.iRunBindingSource.DataSource = typeof(LiveSplit.Model.IRun);
-            // 
-            // iSegmentBindingSource
-            // 
-            this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
-            // 
             // ImportComparisonMenu
             // 
             this.ImportComparisonMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -538,6 +551,44 @@
             this.fromSplitsioToolStripMenuItem.Text = "From Splits.io...";
             this.fromSplitsioToolStripMenuItem.Click += new System.EventHandler(this.fromSplitsioToolStripMenuItem_Click);
             // 
+            // OtherMenu
+            // 
+            this.OtherMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.clearHistoryToolStripMenuItem,
+            this.clearTimesToolStripMenuItem,
+            this.cleanSumOfBestToolStripMenuItem});
+            this.OtherMenu.Name = "OtherMenu";
+            this.OtherMenu.Size = new System.Drawing.Size(171, 92);
+            // 
+            // clearHistoryToolStripMenuItem
+            // 
+            this.clearHistoryToolStripMenuItem.Name = "clearHistoryToolStripMenuItem";
+            this.clearHistoryToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.clearHistoryToolStripMenuItem.Text = "Clear History";
+            this.clearHistoryToolStripMenuItem.Click += new System.EventHandler(this.clearHistoryToolStripMenuItem_Click);
+            // 
+            // clearTimesToolStripMenuItem
+            // 
+            this.clearTimesToolStripMenuItem.Name = "clearTimesToolStripMenuItem";
+            this.clearTimesToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.clearTimesToolStripMenuItem.Text = "Clear Times";
+            this.clearTimesToolStripMenuItem.Click += new System.EventHandler(this.clearTimesToolStripMenuItem_Click);
+            // 
+            // cleanSumOfBestToolStripMenuItem
+            // 
+            this.cleanSumOfBestToolStripMenuItem.Name = "cleanSumOfBestToolStripMenuItem";
+            this.cleanSumOfBestToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.cleanSumOfBestToolStripMenuItem.Text = "Clean Sum of Best";
+            this.cleanSumOfBestToolStripMenuItem.Click += new System.EventHandler(this.cleanSumOfBestToolStripMenuItem_Click);
+            // 
+            // iRunBindingSource
+            // 
+            this.iRunBindingSource.DataSource = typeof(LiveSplit.Model.IRun);
+            // 
+            // iSegmentBindingSource
+            // 
+            this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
+            // 
             // RunEditorDialog
             // 
             this.AcceptButton = this.btnOK;
@@ -558,9 +609,10 @@
             this.tabControl1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.RemoveIconMenu.ResumeLayout(false);
+            this.ImportComparisonMenu.ResumeLayout(false);
+            this.OtherMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iRunBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iSegmentBindingSource)).EndInit();
-            this.ImportComparisonMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -605,5 +657,10 @@
         private System.Windows.Forms.ToolStripMenuItem fromFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromURLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromSplitsioToolStripMenuItem;
+        private System.Windows.Forms.Button btnOther;
+        private System.Windows.Forms.ContextMenuStrip OtherMenu;
+        private System.Windows.Forms.ToolStripMenuItem clearHistoryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem clearTimesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
     }
 }

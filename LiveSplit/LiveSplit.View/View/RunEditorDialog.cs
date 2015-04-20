@@ -201,9 +201,9 @@ namespace LiveSplit.View
             if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
             {
                 splitter.Activate(CurrentState);
-                    if (CurrentState.Run.AutoSplitterSettings != null
-                    && splitter.IsActivated
-                    && CurrentState.Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
+                if (CurrentState.Run.AutoSplitterSettings != null
+                && splitter.IsActivated
+                && CurrentState.Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
                     CurrentState.Run.AutoSplitter.Component.SetSettings(CurrentState.Run.AutoSplitterSettings);
             }
             RefreshAutoSplittingUI();
@@ -308,7 +308,7 @@ namespace LiveSplit.View
                 var newBestSegment = new Time(Run[curIndex + 1].BestSegmentTime);
                 if (curSegment.RealTime != null && nextSegment.GameTime != null)
                 {
-                    newBestSegment.RealTime = curSegment.RealTime+nextSegment.RealTime;
+                    newBestSegment.RealTime = curSegment.RealTime + nextSegment.RealTime;
                 }
                 if (curSegment.GameTime != null && nextSegment.GameTime != null)
                 {
@@ -368,7 +368,7 @@ namespace LiveSplit.View
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                
+
                     e.Cancel = true;
                     runGrid.Rows[e.RowIndex].ErrorText = "Invalid Time";
                 }
@@ -439,7 +439,7 @@ namespace LiveSplit.View
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                
+
                     e.ParsingApplied = false;
                 }
             }
@@ -684,7 +684,7 @@ namespace LiveSplit.View
             Run.ImportBestSegment(runGrid.CurrentRow.Index);
             for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= Run.RunHistory.Count; x++)
                 newSegment.SegmentHistory.Add(new IndexedTime(default(Time), x));
-            SegmentList.Insert(runGrid.CurrentRow.Index, newSegment);  
+            SegmentList.Insert(runGrid.CurrentRow.Index, newSegment);
             //TODO: Auto Delete?
             //SegmentList[runGrid.CurrentRow.Index].BestSegmentTime = null;
             runGrid.ClearSelection();
@@ -752,7 +752,7 @@ namespace LiveSplit.View
                     else if (selectedCell.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
                     {
                         var time = new Time(Run[selectedCell.RowIndex].Comparisons[selectedCell.OwningColumn.Name]);
-                        time [SelectedMethod] = null;
+                        time[SelectedMethod] = null;
                         Run[selectedCell.RowIndex].Comparisons[selectedCell.OwningColumn.Name] = time;
                     }
                     Fix();
@@ -789,7 +789,7 @@ namespace LiveSplit.View
         private void SwitchSegments(int segIndex)
         {
             var firstSegment = SegmentList.ElementAt(segIndex);
-            var secondSegment = SegmentList.ElementAt(segIndex+1);
+            var secondSegment = SegmentList.ElementAt(segIndex + 1);
 
             firstSegment.SegmentHistory.Clear();
             secondSegment.SegmentHistory.Clear();
@@ -811,8 +811,8 @@ namespace LiveSplit.View
                 var previousTime = segIndex > 0 ? SegmentList.ElementAt(segIndex - 1).Comparisons[comparison] : new Time(TimeSpan.Zero, TimeSpan.Zero);
                 var firstSegmentTime = firstSegment.Comparisons[comparison] - previousTime;
                 var secondSegmentTime = secondSegment.Comparisons[comparison] - firstSegment.Comparisons[comparison];
-                secondSegment.Comparisons[comparison] = new Time(previousTime+secondSegmentTime);
-                firstSegment.Comparisons[comparison] = new Time(secondSegment.Comparisons[comparison]+firstSegmentTime);
+                secondSegment.Comparisons[comparison] = new Time(previousTime + secondSegmentTime);
+                firstSegment.Comparisons[comparison] = new Time(secondSegment.Comparisons[comparison] + firstSegmentTime);
             }
 
             SegmentList.Remove(secondSegment);
@@ -920,7 +920,7 @@ namespace LiveSplit.View
         {
             if (e.Button == MouseButtons.Right)
             {
-                RemoveIconMenu.Show(this, e.Location);
+                RemoveIconMenu.Show(MousePosition);
             }
         }
 
@@ -933,7 +933,7 @@ namespace LiveSplit.View
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            picGameIcon_DoubleClick(null,null);
+            picGameIcon_DoubleClick(null, null);
         }
 
         private void btnRemove_Click(object sender, EventArgs e)
@@ -1137,7 +1137,7 @@ namespace LiveSplit.View
 
         protected void RefreshAutoSplittingUI()
         {
-            lblDescription.Text = CurrentState.Run.AutoSplitter == null 
+            lblDescription.Text = CurrentState.Run.AutoSplitter == null
                 ? "There is no Auto Splitter available for this game."
                 : CurrentState.Run.AutoSplitter.Description;
             btnActivate.Text = CurrentState.Run.IsAutoSplitterActive()
@@ -1238,6 +1238,59 @@ namespace LiveSplit.View
             var name = importer.ImportAsComparison(CurrentState.Run, this);
             if (name != null)
                 AddComparisonColumn(name);
+        }
+
+        private void btnOther_Click(object sender, EventArgs e)
+        {
+            OtherMenu.Show(MousePosition);
+        }
+
+        private void ClearHistory(bool clearTimes)
+        {
+            Run.RunHistory.Clear();
+            foreach (var segment in Run)
+            {
+                segment.SegmentHistory.Clear();
+                if (clearTimes)
+                {
+                    foreach (var comparison in Run.CustomComparisons)
+                        segment.Comparisons[comparison] = default(Time);
+                    segment.BestSegmentTime = default(Time);
+                }
+            }
+            Fix();
+            RaiseRunEdited();
+        }
+
+        private void clearHistoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearHistory(false);
+        }
+
+        private void clearTimesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ClearHistory(true);
+        }
+
+        private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var alwaysCancel = false;
+            SumOfBest.CleanUpCallback callback = parameters =>
+                {
+                    if (!alwaysCancel)
+                    {
+                        var formatter = new ShortTimeFormatter();
+                        var result = MessageBox.Show(this, "You had a segment time of " + formatter.Format(parameters.timeBetween) + " between " + parameters.startingSegment.Name + " and " + parameters.endingSegment.Name + ". Do you think that this segment time is innacurate and should be removed?", "Remove Segment Time From History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                        if (result == System.Windows.Forms.DialogResult.Yes)
+                            return true;
+                        else if (result == System.Windows.Forms.DialogResult.No)
+                            return false;
+                        alwaysCancel = true;
+                    }
+                    return false;
+                };
+            SumOfBest.Clean(Run, callback);
+            RaiseRunEdited();
         }
     }
 }
