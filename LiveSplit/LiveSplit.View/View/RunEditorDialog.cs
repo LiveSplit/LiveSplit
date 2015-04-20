@@ -1275,17 +1275,30 @@ namespace LiveSplit.View
         private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var alwaysCancel = false;
+            var pastResponses = new Dictionary<string, bool>();
             SumOfBest.CleanUpCallback callback = parameters =>
                 {
                     if (!alwaysCancel)
                     {
                         var formatter = new ShortTimeFormatter();
-                        var result = MessageBox.Show(this, "You had a segment time of " + formatter.Format(parameters.timeBetween) + " between " + parameters.startingSegment.Name + " and " + parameters.endingSegment.Name + ". Do you think that this segment time is innacurate and should be removed?", "Remove Segment Time From History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                        if (result == System.Windows.Forms.DialogResult.Yes)
-                            return true;
-                        else if (result == System.Windows.Forms.DialogResult.No)
-                            return false;
-                        alwaysCancel = true;
+                        var messageText = "You had a segment time of " + formatter.Format(parameters.timeBetween) + " between " + parameters.startingSegment.Name + " and " + parameters.endingSegment.Name + ". Do you think that this segment time is innacurate and should be removed?";
+                        if (!pastResponses.ContainsKey(messageText))
+                        {
+                            var result = MessageBox.Show(this, messageText, "Remove Segment Time From History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                            if (result == System.Windows.Forms.DialogResult.Yes)
+                            {
+                                pastResponses.Add(messageText, true);
+                                return true;
+                            }
+                            else if (result == System.Windows.Forms.DialogResult.No)
+                            {
+                                pastResponses.Add(messageText, false);
+                                return false;
+                            }
+                            alwaysCancel = true;
+                        }
+                        else
+                            return pastResponses[messageText];
                     }
                     return false;
                 };
