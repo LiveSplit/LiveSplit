@@ -991,7 +991,7 @@ namespace LiveSplit.View
                         catch (Exception ex)
                         {
                             Log.Error(ex);
-                            MessageBox.Show("The url was not recognized as an image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("The URL was not recognized as an image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
