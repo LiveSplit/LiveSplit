@@ -18,6 +18,12 @@ namespace LiveSplit.Model
             GameTime = gameTime;
         }
 
+        public Time(TimingMethod method, TimeSpan? time)
+            : this()
+        {
+            this[method] = time;
+        }
+
         public Time(Time time)
             : this()
         {

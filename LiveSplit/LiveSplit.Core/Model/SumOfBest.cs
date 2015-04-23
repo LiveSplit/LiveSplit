@@ -44,7 +44,7 @@ namespace LiveSplit.Model
                 var secondSplitTime = run[segmentIndex].SplitTime[method];
                 if (secondSplitTime.HasValue)
                 {
-                    return new IndexedTime(new Time(secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
+                    return new IndexedTime(new Time(method, secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
                 }
                 segmentIndex++;
             }
@@ -61,7 +61,7 @@ namespace LiveSplit.Model
                 var secondSplitTime = run[segmentIndex].PersonalBestSplitTime[method];
                 if (secondSplitTime.HasValue)
                 {
-                    return new IndexedTime(new Time(secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
+                    return new IndexedTime(new Time(method, secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
                 }
                 segmentIndex++;
             }
@@ -78,7 +78,7 @@ namespace LiveSplit.Model
                     var curTime = segmentTime.Time[method];
                     if (curTime.HasValue)
                     {
-                        return new IndexedTime(new Time(curTime + currentTime), segmentIndex + 1);
+                        return new IndexedTime(new Time(method, curTime + currentTime), segmentIndex + 1);
                     }
                 }
                 else break;
