@@ -19,7 +19,7 @@ namespace LiveSplit.Web.Share
 
         public static readonly Uri BaseUri = new Uri("https://api.twitch.tv/kraken/");
 
-        protected static Twitch _Instance = new Twitch();
+        protected static readonly Twitch _Instance = new Twitch();
         public static Twitch Instance { get { return _Instance; } }
 
         protected string AccessToken { get; set; }

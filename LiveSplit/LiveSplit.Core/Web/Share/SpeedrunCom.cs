@@ -18,7 +18,7 @@ namespace LiveSplit.Web.Share
             public Uri Video;
         }
 
-        protected static SpeedrunCom _Instance = new SpeedrunCom();
+        protected static readonly SpeedrunCom _Instance = new SpeedrunCom();
 
         public static SpeedrunCom Instance { get { return _Instance; } }
 

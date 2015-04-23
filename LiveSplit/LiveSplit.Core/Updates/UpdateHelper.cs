@@ -12,7 +12,7 @@ namespace LiveSplit.Updates
     {
         public static readonly Version Version = Version.Parse(Git.LastTag + "." + Git.CommitsSinceLastTag);
 
-        public static List<Type> AlreadyChecked = new List<Type>();
+        public static readonly List<Type> AlreadyChecked = new List<Type>();
 
         public static void Update(Form form, Action closeAction, params IUpdateable[] updateables)
         {
