@@ -280,6 +280,7 @@ namespace LiveSplit.View
                 btnInsert.Enabled = false;
                 btnMoveDown.Enabled = false;
                 btnMoveUp.Enabled = false;
+                btnOther.Enabled = false;
             }
             else
             {
