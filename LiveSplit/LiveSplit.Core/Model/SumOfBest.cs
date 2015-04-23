@@ -145,12 +145,14 @@ namespace LiveSplit.Model
             if (predictedTime.HasValue && (!predictions[endingIndex + 1].HasValue || predictedTime < predictions[endingIndex + 1].Value))
             {
                 var segmentHistoryElement = run[endingIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                var parameters = new CleanUpCallbackParameters 
+                var parameters = new CleanUpCallbackParameters
                 {
                     startingSegment = run[startingIndex],
                     endingSegment = run[endingIndex],
                     timeBetween = segmentHistoryElement.Time[method].Value,
-                    runElement = run.RunHistory.FirstOrDefault(x => x.Index == runIndex)
+                    combinedSumOfBest = predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value,
+                    runElement = run.RunHistory.FirstOrDefault(x => x.Index == runIndex),
+                    method = method
                 };
                 if (callback == null || callback(parameters))
                 {
@@ -170,7 +172,9 @@ namespace LiveSplit.Model
             public ISegment startingSegment;
             public ISegment endingSegment;
             public TimeSpan timeBetween;
+            public TimeSpan combinedSumOfBest;
             public IIndexedTime runElement;
+            public TimingMethod method;
         }
 
         public delegate bool CleanUpCallback(CleanUpCallbackParameters parameters);
