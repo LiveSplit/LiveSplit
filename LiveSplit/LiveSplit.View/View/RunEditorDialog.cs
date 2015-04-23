@@ -1281,10 +1281,10 @@ namespace LiveSplit.View
                     if (!alwaysCancel)
                     {
                         var formatter = new ShortTimeFormatter();
-                        var messageText = "You had a segment time of " + formatter.Format(parameters.timeBetween) + " between " + parameters.startingSegment.Name + " and " + parameters.endingSegment.Name + ". Do you think that this segment time is innacurate and should be removed?";
+                        var messageText = "You had a segment time of " + formatter.Format(parameters.timeBetween) + " between " + parameters.startingSegment.Name + " and " + parameters.endingSegment.Name + ". Do you think that this segment time is inaccurate and should be removed?";
                         if (!pastResponses.ContainsKey(messageText))
                         {
-                            var result = MessageBox.Show(this, messageText, "Remove Segment Time From History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                            var result = MessageBox.Show(this, messageText, "Remove Time From Segment History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                             if (result == System.Windows.Forms.DialogResult.Yes)
                             {
                                 pastResponses.Add(messageText, true);
