@@ -19,7 +19,7 @@ namespace LiveSplit.Web.Share
 {
     public class SplitsIO : IRunUploadPlatform
     {
-        protected static SplitsIO _Instance = new SplitsIO();
+        protected static readonly SplitsIO _Instance = new SplitsIO();
 
         public static SplitsIO Instance { get { return _Instance; } }
 

@@ -9,7 +9,7 @@ namespace LiveSplit.Web.Share
     public class Screenshot : IRunUploadPlatform
     {
         public ISettings Settings { get; set; }
-        protected static Screenshot _Instance = new Screenshot();
+        protected static readonly Screenshot _Instance = new Screenshot();
 
         public static Screenshot Instance { get { return _Instance; } }
 
