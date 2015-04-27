@@ -298,20 +298,9 @@ namespace LiveSplit.View
 
         void SRL_RacesRefreshed(object sender, EventArgs e)
         {
-            Action<string> addString = null;
             Action<ToolStripItem> addItem = null;
             Action clear = null;
-            addString = x =>
-            {
-                if (InvokeRequired)
-                {
-                    Invoke(addString, x);
-                }
-                else
-                {
-                    racingMenuItem.DropDownItems.Add(x.Replace("&", "&&"));
-                }
-            };
+
             addItem = x =>
             {
                 if (InvokeRequired)
