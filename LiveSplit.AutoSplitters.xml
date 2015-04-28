@@ -494,4 +494,14 @@
     <Type>Script</Type>
     <Description>Auto Start/Reset/Splitting is available for emulator (By cheeseandcereal)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Left 4 Dead 2</Game>
+    </Games>
+    <URLs>
+      <URL>http://www.stdscatchemall.com/LiveSplit.SourceSplit.L4D2Edit.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Testing out a modified version of SourceSplits for L4D2. According to VAC standards, READING memory is safe from vac bans. (SHOULD BE SAFE)</Description>
+  </AutoSplitter>
 </AutoSplitters>
