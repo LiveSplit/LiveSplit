@@ -17,6 +17,19 @@ namespace LiveSplit.Model.RunFactories
             Stream = stream;
         }
 
+        private Time parseTime(string time)
+        {
+            var parsedTime = new Time();
+
+            parsedTime.RealTime = TimeSpanParser.ParseNullable(time);
+
+            //Null is stored as a zero time in Urn Splits
+            if (parsedTime.RealTime == TimeSpan.Zero)
+                parsedTime.RealTime = null;
+
+            return parsedTime;
+        }
+
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
             var run = new Run(factory);
@@ -38,17 +51,13 @@ namespace LiveSplit.Model.RunFactories
             foreach (var segment in segments)
             {
                 var segmentName = segment.title as string;
-                
-                var pbSplitTime = new Time();
-                pbSplitTime.RealTime = TimeSpanParser.ParseNullable(segment.time as string);
-
-                var bestSegment = new Time();
-                bestSegment.RealTime = TimeSpanParser.ParseNullable(segment.best_segment as string);
+                var pbSplitTime = parseTime(segment.time as string);
+                var bestSegment = parseTime(segment.best_segment as string);
 
                 var parsedSegment = new Segment(segmentName, pbSplitTime, bestSegment);
 
-                var bestSplitTime = TimeSpanParser.ParseNullable(segment.best_time as string);
-                if (bestSplitTime != null)
+                var bestSplitTime = parseTime(segment.best_time as string);
+                if (bestSplitTime.RealTime != null)
                 {
                     --runHistoryIndex;
                     run.RunHistory.Add(new IndexedTime(default(Time), runHistoryIndex));
@@ -59,7 +68,7 @@ namespace LiveSplit.Model.RunFactories
                         alreadyInsertedSegment.SegmentHistory.Add(new IndexedTime(default(Time), runHistoryIndex));
                     }
 
-                    parsedSegment.SegmentHistory.Add(new IndexedTime(new Time(bestSplitTime), runHistoryIndex));
+                    parsedSegment.SegmentHistory.Add(new IndexedTime(bestSplitTime, runHistoryIndex));
                 }
 
                 run.Add(parsedSegment);
