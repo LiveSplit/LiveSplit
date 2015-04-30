@@ -118,6 +118,7 @@
     <Compile Include="Model\RunFactories\ShitSplitRunFactory.cs" />
     <Compile Include="Model\RunFactories\StandardFormatsRunFactory.cs" />
     <Compile Include="Model\RunFactories\TimeSplitTrackerRunFactory.cs" />
+    <Compile Include="Model\RunFactories\UrnRunFactory.cs" />
     <Compile Include="Model\RunSavers\ExcelRunSaver.cs" />
     <Compile Include="Model\RunSavers\JSONRunSaver.cs" />
     <Compile Include="Model\RunSavers\WSplitRunSaver.cs" />

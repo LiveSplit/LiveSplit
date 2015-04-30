@@ -116,9 +116,9 @@ namespace LiveSplit.Model
             InternalList.Add(item);
         }
 
-        public void AddSegment(string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<Time> segmentHistory = null)
+        public void AddSegment(string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<IIndexedTime> segmentHistory = null)
         {
-            Add(new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime));
+            Add(new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime) { SegmentHistory = segmentHistory });
         }
 
         public void Clear()
