@@ -13,7 +13,7 @@ namespace LiveSplit.Model
         string CategoryName { get; set; }
         TimeSpan Offset { get; set; }
         int AttemptCount { get; set; }
-        IList<IIndexedTime> RunHistory { get; set; }
+        IList<Attempt> AttemptHistory { get; set; }
 
         AutoSplitter AutoSplitter { get; set; }
         XmlElement AutoSplitterSettings { get; set; }

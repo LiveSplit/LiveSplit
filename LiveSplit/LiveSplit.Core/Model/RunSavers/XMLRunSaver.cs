@@ -37,7 +37,7 @@ namespace LiveSplit.Model.RunSavers
 
             var parent = document.CreateElement("Run");
             var version = document.CreateAttribute("version");
-            version.Value = "1.4.2";
+            version.Value = "1.5.0";
             parent.Attributes.Append(version);
             document.AppendChild(parent);
 
@@ -60,10 +60,10 @@ namespace LiveSplit.Model.RunSavers
             attemptCount.InnerText = run.AttemptCount.ToString();
             parent.AppendChild(attemptCount);
 
-            var runHistory = document.CreateElement("RunHistory");
-            foreach (var historyItem in run.RunHistory)
+            var runHistory = document.CreateElement("AttemptHistory");
+            foreach (var attempt in run.AttemptHistory)
             {
-                runHistory.AppendChild(historyItem.ToXml(document));
+                runHistory.AppendChild(attempt.ToXml(document));
             }
             parent.AppendChild(runHistory);
 

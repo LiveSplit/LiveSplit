@@ -48,7 +48,7 @@ namespace LiveSplit.Model.RunSavers
 
             var rowIndex = 1;
             var bestTime = TimeSpan.MaxValue;
-            foreach (var runHistoryElement in run.RunHistory)
+            foreach (var runHistoryElement in run.AttemptHistory)
             {
                 var row = sheet.Data.Rows[rowIndex];
 
@@ -119,7 +119,7 @@ namespace LiveSplit.Model.RunSavers
             }
 
             var rowIndex = 1;
-            foreach (var runHistoryElement in run.RunHistory)
+            foreach (var runHistoryElement in run.AttemptHistory)
             {
                 var row = sheet.Data.Rows[rowIndex];
 
