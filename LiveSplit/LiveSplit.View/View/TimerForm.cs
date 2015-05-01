@@ -184,7 +184,8 @@ namespace LiveSplit.View
                 }
                 else
                 {
-                    if (Settings.RecentLayouts.Count > 0)
+                    if (Settings.RecentLayouts.Count > 0 
+                        && !string.IsNullOrEmpty(Settings.RecentLayouts.Last()))
                     {
                         Layout = LoadLayoutFromFile(Settings.RecentLayouts.Last());
                     }
