@@ -118,7 +118,7 @@ namespace LiveSplit.Model
 
                 if (updateSplits)
                 {
-                    UpdateRunHistory();
+                    UpdateAttemptHistory();
                     UpdateBestSegments();
                     UpdatePBSplits();
                     UpdateSegmentHistory();
@@ -196,7 +196,7 @@ namespace LiveSplit.Model
                 OnScrollDown(this, null);
         }
 
-        public void UpdateRunHistory()
+        public void UpdateAttemptHistory()
         {
             Time time = new Time();
             time = (CurrentState.CurrentPhase == TimerPhase.Ended) ? CurrentState.CurrentTime : default(Time);
