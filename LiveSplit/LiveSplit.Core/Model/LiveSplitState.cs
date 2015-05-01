@@ -121,6 +121,8 @@ namespace LiveSplit.Model
                 CurrentSplitIndex = CurrentSplitIndex,
                 CurrentComparison = CurrentComparison,
                 CurrentTimingMethod = CurrentTimingMethod,
+                AttemptStarted = AttemptStarted,
+                AttemptEnded = AttemptEnded
             };
         }
 
