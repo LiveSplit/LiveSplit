@@ -1270,6 +1270,8 @@ namespace LiveSplit.View
 
         private void clearTimesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            tbxAttempts.Text = "0";
+            Run.AttemptCount = 0;
             ClearHistory(true);
         }
 
