@@ -44,7 +44,7 @@ namespace LiveSplit.Model.RunFactories
             //Every single best split time should be included as its own run, 
             //since the best split times could be apart from each other less 
             //than the best segments, so we have to assume they are from different runs.
-            var runHistoryIndex = 0;
+            var attemptHistoryIndex = 1;
 
             var segments = json.splits as IEnumerable<dynamic>;
 
@@ -59,17 +59,17 @@ namespace LiveSplit.Model.RunFactories
                 var bestSplitTime = parseTime(segment.best_time as string);
                 if (bestSplitTime.RealTime != null)
                 {
-                    run.AttemptHistory.Add(new Attempt(runHistoryIndex, default(Time), null, null));
+                    run.AttemptHistory.Add(new Attempt(attemptHistoryIndex, default(Time), null, null));
 
                     //Insert a new run that skips to the current split
                     foreach (var alreadyInsertedSegment in run)
                     {
-                        alreadyInsertedSegment.SegmentHistory.Add(new IndexedTime(default(Time), runHistoryIndex));
+                        alreadyInsertedSegment.SegmentHistory.Add(new IndexedTime(default(Time), attemptHistoryIndex));
                     }
 
-                    parsedSegment.SegmentHistory.Add(new IndexedTime(bestSplitTime, runHistoryIndex));
+                    parsedSegment.SegmentHistory.Add(new IndexedTime(bestSplitTime, attemptHistoryIndex));
 
-                    runHistoryIndex++;
+                    attemptHistoryIndex++;
                 }
 
                 run.Add(parsedSegment);
