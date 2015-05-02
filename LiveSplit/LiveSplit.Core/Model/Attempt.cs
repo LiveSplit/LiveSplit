@@ -17,16 +17,19 @@ namespace LiveSplit.Model
 
         /// <summary>
         /// Returns the Real Time Duration of the attempt.
-        /// This even returns times if the attempt was resetted.
+        /// This either returns a 1.6+ Time Stamp based duration
+        /// or the duration of the run (assuming it's not resetted)
+        /// if it's from before LiveSplit 1.6. If it is from before
+        /// 1.6 and resetted then it will return null.
         /// </summary>
         public TimeSpan? Duration
         {
             get
             {
-                if (Time.RealTime.HasValue)
-                    return Time.RealTime.Value;
-                else
+                if (Ended.HasValue && Started.HasValue)
                     return Ended - Started;
+                else
+                    return Time.RealTime;   
             }
         }
 
