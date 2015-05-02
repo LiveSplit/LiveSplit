@@ -40,7 +40,7 @@ namespace LiveSplit.Model.RunFactories
             if (version >= new Version(1, 5, 0))
             {
                 var attemptHistory = parent["AttemptHistory"];
-                foreach (var attemptNode in attemptHistory.GetElementsByTagName("Time"))
+                foreach (var attemptNode in attemptHistory.GetElementsByTagName("Attempt"))
                 {
                     var attempt = Attempt.ParseXml(attemptNode as XmlElement);
                     run.AttemptHistory.Add(attempt);

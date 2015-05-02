@@ -41,27 +41,30 @@ namespace LiveSplit.Model
 
         public XmlNode ToXml(XmlDocument document)
         {
-            var element = Time.ToXml(document);
+            var attempt = document.CreateElement("Attempt");
+
+            var time = Time.ToXml(document);
+            attempt.InnerXml = time.InnerXml;
             
             var id = document.CreateAttribute("id");
             id.InnerText = Index.ToString();
-            element.Attributes.Append(id);
-
+            attempt.Attributes.Append(id);
+            
             if (Started.HasValue)
             {
                 var started = document.CreateAttribute("started");
                 started.InnerText = Started.Value.ToString(CultureInfo.InvariantCulture);
-                element.Attributes.Append(started);
+                attempt.Attributes.Append(started);
             }
 
             if (Ended.HasValue)
             {
                 var ended = document.CreateAttribute("ended");
                 ended.InnerText = Ended.Value.ToString(CultureInfo.InvariantCulture);
-                element.Attributes.Append(ended);
+                attempt.Attributes.Append(ended);
             }
 
-            return element;
+            return attempt;
         }
 
         public static Attempt ParseXml(XmlElement node)
