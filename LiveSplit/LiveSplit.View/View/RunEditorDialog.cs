@@ -1284,7 +1284,12 @@ namespace LiveSplit.View
                     if (!alwaysCancel)
                     {
                         var formatter = new ShortTimeFormatter();
-                        var messageText = formatter.Format(parameters.timeBetween) + " between " + parameters.startingSegment.Name + " and " + parameters.endingSegment.Name + ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest);
+                        var messageText = formatter.Format(parameters.timeBetween) + " between " + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name + ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest);
+                        if (parameters.attempt.Ended.HasValue)
+                        {
+                            messageText += " in a run on " + parameters.attempt.Ended.Value.ToShortDateString();
+                        }
+
                         if (!pastResponses.ContainsKey(messageText))
                         {
                             var result = MessageBox.Show(this, "You had a " + (parameters.method == TimingMethod.RealTime ? "Real Time" : "Game Time") + " segment time of " + messageText + ". Do you think that this segment time is inaccurate and should be removed?", "Remove Time From Segment History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
