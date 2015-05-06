@@ -15,6 +15,9 @@ namespace LiveSplit.Model
         public ISettings Settings { get; set; }
         public Forms.Form Form { get; set; }
 
+        public TripleDateTime AttemptStarted { get; set; }
+        public TripleDateTime AttemptEnded { get; set; }
+
         public TripleDateTime StartTime { get; set; }
         public TimeSpan PauseTime { get; set; }
         public TimeSpan GameTimePauseTime { get; set; }
@@ -118,6 +121,8 @@ namespace LiveSplit.Model
                 CurrentSplitIndex = CurrentSplitIndex,
                 CurrentComparison = CurrentComparison,
                 CurrentTimingMethod = CurrentTimingMethod,
+                AttemptStarted = AttemptStarted,
+                AttemptEnded = AttemptEnded
             };
         }
 

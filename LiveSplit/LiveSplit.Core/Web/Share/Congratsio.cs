@@ -76,6 +76,13 @@ namespace LiveSplit.Web.Share
             return true;
         }
 
+        public bool CheckIfPersonalBestIsValid(IRun run)
+        {
+            var pb = run.Last().PersonalBestSplitTime.RealTime;
+            var attempt = run.AttemptHistory.FirstOrDefault(x => x.Time.RealTime == pb);
+            return attempt.Ended.HasValue;
+        }
+
         public bool SubmitRun(IRun run, string username, string password, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)
         {
             var timeFormatter = new RegularTimeFormatter(TimeAccuracy.Seconds);
@@ -131,8 +138,8 @@ namespace LiveSplit.Web.Share
                 writer.Write(HttpUtility.UrlEncode(timeFormatter.Format(run.Last().PersonalBestSplitTime.RealTime)));
 
                 writer.Write("&date=");
-                var dateTime = TripleDateTime.Now;
-                writer.Write(HttpUtility.UrlEncode(String.Format("{0:00}/{1:00}/{2}", dateTime.UtcNow.Month, dateTime.UtcNow.Day, dateTime.UtcNow.Year)));
+                var dateTime = run.AttemptHistory.First(x => x.Time.RealTime == run.Last().PersonalBestSplitTime.RealTime).Ended.Value;
+                writer.Write(HttpUtility.UrlEncode(String.Format("{0:00}/{1:00}/{2}", dateTime.Month, dateTime.Day, dateTime.Year)));
 
                 writer.Write("&video=");
                 writer.Write(HttpUtility.UrlEncode(video));

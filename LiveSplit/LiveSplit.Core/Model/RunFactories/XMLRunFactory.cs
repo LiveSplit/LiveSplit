@@ -35,6 +35,39 @@ namespace LiveSplit.Model.RunFactories
             return null;
         }
 
+        private void ParseAttemptHistory(Version version, XmlElement parent, IRun run)
+        {
+            if (version >= new Version(1, 5, 0))
+            {
+                var attemptHistory = parent["AttemptHistory"];
+                foreach (var attemptNode in attemptHistory.GetElementsByTagName("Attempt"))
+                {
+                    var attempt = Attempt.ParseXml(attemptNode as XmlElement);
+                    run.AttemptHistory.Add(attempt);
+                }
+            }
+            else if (version >= new Version(1, 4, 1))
+            {
+                var runHistory = parent["RunHistory"];
+                foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
+                {
+                    var indexedTime = IndexedTimeHelper.ParseXml(runHistoryNode as XmlElement);
+                    var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null);
+                    run.AttemptHistory.Add(attempt);
+                }
+            }
+            else
+            {
+                var runHistory = parent["RunHistory"];
+                foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
+                {
+                    var indexedTime = IndexedTimeHelper.ParseXmlOld(runHistoryNode as XmlElement);
+                    var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null);
+                    run.AttemptHistory.Add(attempt);
+                }
+            }
+        }
+
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
             var document = new XmlDocument();
@@ -54,11 +87,7 @@ namespace LiveSplit.Model.RunFactories
             run.Offset = TimeSpan.Parse(parent["Offset"].InnerText);
             run.AttemptCount = int.Parse(parent["AttemptCount"].InnerText);
 
-            var runHistory = parent["RunHistory"];
-            foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
-            {
-                run.RunHistory.Add(version >= new Version(1, 4, 1) ? IndexedTimeHelper.ParseXml(runHistoryNode as XmlElement) : IndexedTimeHelper.ParseXmlOld(runHistoryNode as XmlElement));
-            }
+            ParseAttemptHistory(version, parent, run);
 
             var segmentsNode = parent["Segments"];
 

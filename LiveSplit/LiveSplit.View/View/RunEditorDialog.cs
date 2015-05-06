@@ -683,7 +683,7 @@ namespace LiveSplit.View
         {
             var newSegment = new Segment("");
             Run.ImportBestSegment(runGrid.CurrentRow.Index);
-            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= Run.RunHistory.Count; x++)
+            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= Run.AttemptHistory.Count; x++)
                 newSegment.SegmentHistory.Add(new IndexedTime(default(Time), x));
             SegmentList.Insert(runGrid.CurrentRow.Index, newSegment);
             //TODO: Auto Delete?
@@ -702,7 +702,7 @@ namespace LiveSplit.View
             var newSegment = new Segment("");
             if (runGrid.CurrentRow.Index + 1 < Run.Count)
                 Run.ImportBestSegment(runGrid.CurrentRow.Index + 1);
-            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= Run.RunHistory.Count; x++)
+            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= Run.AttemptHistory.Count; x++)
                 newSegment.SegmentHistory.Add(new IndexedTime(default(Time), x));
             SegmentList.Insert(runGrid.CurrentRow.Index + 1, newSegment);
             runGrid.ClearSelection();
@@ -795,7 +795,7 @@ namespace LiveSplit.View
             firstSegment.SegmentHistory.Clear();
             secondSegment.SegmentHistory.Clear();
 
-            for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= Run.RunHistory.Count; runIndex++)
+            for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= Run.AttemptHistory.Count; runIndex++)
             {
                 var firstHistory = firstSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                 var secondHistory = secondSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
@@ -834,7 +834,7 @@ namespace LiveSplit.View
 
             if (curIndex < Run.Count)
             {
-                for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= Run.RunHistory.Count; runIndex++)
+                for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= Run.AttemptHistory.Count; runIndex++)
                 {
                     curIndex = index + 1;
                     var segmentHistoryElement = Run[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
@@ -1248,7 +1248,7 @@ namespace LiveSplit.View
 
         private void ClearHistory(bool clearTimes)
         {
-            Run.RunHistory.Clear();
+            Run.AttemptHistory.Clear();
             foreach (var segment in Run)
             {
                 segment.SegmentHistory.Clear();
@@ -1284,7 +1284,12 @@ namespace LiveSplit.View
                     if (!alwaysCancel)
                     {
                         var formatter = new ShortTimeFormatter();
-                        var messageText = formatter.Format(parameters.timeBetween) + " between " + parameters.startingSegment.Name + " and " + parameters.endingSegment.Name + ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest);
+                        var messageText = formatter.Format(parameters.timeBetween) + " between " + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name + ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest);
+                        if (parameters.attempt.Ended.HasValue)
+                        {
+                            messageText += " in a run on " + parameters.attempt.Ended.Value.ToString("M/d/yyyy");
+                        }
+
                         if (!pastResponses.ContainsKey(messageText))
                         {
                             var result = MessageBox.Show(this, "You had a " + (parameters.method == TimingMethod.RealTime ? "Real Time" : "Game Time") + " segment time of " + messageText + ". Do you think that this segment time is inaccurate and should be removed?", "Remove Time From Segment History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);

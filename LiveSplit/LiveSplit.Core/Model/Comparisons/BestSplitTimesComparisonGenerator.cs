@@ -17,7 +17,7 @@ namespace LiveSplit.Model.Comparisons
 
         public void Generate(TimingMethod method)
         {
-            for (var y = Run.GetMinSegmentHistoryIndex() + 1; y <= Run.RunHistory.Count; y++)
+            for (var y = Run.GetMinSegmentHistoryIndex() + 1; y <= Run.AttemptHistory.Count; y++)
             {
                 var time = TimeSpan.Zero;
 

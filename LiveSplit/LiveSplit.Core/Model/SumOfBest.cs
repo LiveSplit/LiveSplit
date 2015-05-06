@@ -147,11 +147,11 @@ namespace LiveSplit.Model
                 var segmentHistoryElement = run[endingIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                 var parameters = new CleanUpCallbackParameters
                 {
-                    startingSegment = run[startingIndex],
-                    endingSegment = run[endingIndex],
+                    startingSegment = startingIndex >= 0 ? run[startingIndex] : null,
+                    endingSegment = endingIndex >= 0 ? run[endingIndex] : null,
                     timeBetween = segmentHistoryElement.Time[method].Value,
                     combinedSumOfBest = predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value,
-                    runElement = run.RunHistory.FirstOrDefault(x => x.Index == runIndex),
+                    attempt = run.AttemptHistory.FirstOrDefault(x => x.Index == runIndex),
                     method = method
                 };
                 if (callback == null || callback(parameters))
@@ -173,7 +173,7 @@ namespace LiveSplit.Model
             public ISegment endingSegment;
             public TimeSpan timeBetween;
             public TimeSpan combinedSumOfBest;
-            public IIndexedTime runElement;
+            public Attempt attempt;
             public TimingMethod method;
         }
 

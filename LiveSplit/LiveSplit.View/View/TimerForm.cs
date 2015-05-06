@@ -1603,7 +1603,7 @@ namespace LiveSplit.View
                 {
                     Model.Reset();
                     modelCopy.SetRunAsPB();
-                    modelCopy.UpdateRunHistory();
+                    modelCopy.UpdateAttemptHistory();
                     modelCopy.UpdateBestSegments();
                     modelCopy.UpdateSegmentHistory();
                     SetRun(stateCopy.Run);

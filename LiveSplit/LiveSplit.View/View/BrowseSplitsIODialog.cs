@@ -145,7 +145,7 @@ namespace LiveSplit.View
                     }
                     while (!succeededName);
                 }
-                Run.RunHistory.Clear();
+                Run.AttemptHistory.Clear();
                 Run.AttemptCount = 0;
                 Run.CustomComparisons.Clear();
                 Run.CustomComparisons.Add(Model.Run.PersonalBestComparisonName);

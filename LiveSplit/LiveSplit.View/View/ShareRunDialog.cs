@@ -31,6 +31,7 @@ namespace LiveSplit.View
                 var model = new TimerModel();
                 model.CurrentState = State;
                 model.SetRunAsPB();
+                model.UpdateAttemptHistory();
                 Run = State.Run;
             }
             ScreenShotFunction = screenShotFunction;
@@ -124,23 +125,27 @@ namespace LiveSplit.View
             });
         }
 
+        private bool HasPersonalBest(IRun run)
+        {
+            return run.LastOrDefault().PersonalBestSplitTime.RealTime.HasValue;
+        }
+
         private void SubmitDialog_Load(object sender, EventArgs e)
         {
             cbxPlatform.Items.Add("Twitter");
             cbxPlatform.Items.Add("Twitch");
-            if (State.CurrentPhase == TimerPhase.Ended
-                || (State.CurrentPhase == TimerPhase.NotRunning
-                && State.Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod] != null))
-            {
-                //cbxPlatform.Items.Add("PBTracker");
-                //cbxPlatform.Items.Add("AllSpeedRuns");
-            }
-            if (State.CurrentPhase == TimerPhase.Ended)
-            {
-                cbxPlatform.Items.Add("Congratsio");
-            }
+
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
             {
+                if (HasPersonalBest(Run))
+                {
+                    if (Congratsio.Instance.CheckIfPersonalBestIsValid(Run))
+                    {
+                        cbxPlatform.Items.Add("Congratsio");
+                    }
+                    //cbxPlatform.Items.Add("PBTracker");
+                    //cbxPlatform.Items.Add("AllSpeedRuns");
+                }
                 cbxPlatform.Items.Add("Splits.io");
                 //cbxPlatform.Items.Add("Ge.tt");
             }
@@ -206,13 +211,13 @@ namespace LiveSplit.View
                 btnInsertDeltaTime.Enabled = btnInsertSplitName.Enabled = btnInsertSplitTime.Enabled = false;
             }
 
-            if (State.Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod] == null)
+            if (Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod] == null)
                 btnInsertPB.Enabled = false;
-            if (string.IsNullOrEmpty(State.Run.GameName))
+            if (string.IsNullOrEmpty(Run.GameName))
                 btnInsertGame.Enabled = false;
-            if (string.IsNullOrEmpty(State.Run.CategoryName))
+            if (string.IsNullOrEmpty(Run.CategoryName))
                 btnInsertCategory.Enabled = false;
-            if (string.IsNullOrEmpty(State.Run.GameName) && string.IsNullOrEmpty(State.Run.CategoryName))
+            if (string.IsNullOrEmpty(Run.GameName) && string.IsNullOrEmpty(Run.CategoryName))
                 btnInsertTitle.Enabled = false;
             txtVideoURL.Enabled = 
                 CurrentPlatform == PBTracker.Instance 
@@ -259,7 +264,7 @@ namespace LiveSplit.View
                 || State.CurrentPhase == TimerPhase.Paused)
                 && State.CurrentSplitIndex > 0)
             {
-                var lastSplit = State.Run[State.CurrentSplitIndex - 1];
+                var lastSplit = Run[State.CurrentSplitIndex - 1];
 
                 splitName = lastSplit.Name ?? "";
                 splitTime = timeFormatter.Format(lastSplit.SplitTime[State.CurrentTimingMethod]);
