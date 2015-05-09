@@ -79,3 +79,6 @@
 [submodule "LiveSplit/Components/LiveSplit.WorldRecord"]
 	path = LiveSplit/Components/LiveSplit.WorldRecord
 	url = https://github.com/LiveSplit/LiveSplit.WorldRecord.git
+[submodule "LiveSplit/Components/LiveSplit.Remote"]
+	path = LiveSplit/Components/LiveSplit.Remote
+	url = https://github.com/LiveSplit/LiveSplit.Remote.git
