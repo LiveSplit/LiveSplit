@@ -108,6 +108,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codaxy.Xlio", "Libs\xlio\So
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.WorldRecord", "Components\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj", "{B0470637-949C-4A41-9C8C-0CE46561037F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Remote", "Components\LiveSplit.Remote\LiveSplit.Remote.csproj", "{390B5742-C948-4685-B49A-ACBD21CE10FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -295,6 +297,12 @@ Global
 		{B0470637-949C-4A41-9C8C-0CE46561037F}.Release Candidate|Any CPU.Build.0 = Release Candidate|Any CPU
 		{B0470637-949C-4A41-9C8C-0CE46561037F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0470637-949C-4A41-9C8C-0CE46561037F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{390B5742-C948-4685-B49A-ACBD21CE10FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{390B5742-C948-4685-B49A-ACBD21CE10FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{390B5742-C948-4685-B49A-ACBD21CE10FF}.Release Candidate|Any CPU.ActiveCfg = Release|Any CPU
+		{390B5742-C948-4685-B49A-ACBD21CE10FF}.Release Candidate|Any CPU.Build.0 = Release|Any CPU
+		{390B5742-C948-4685-B49A-ACBD21CE10FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{390B5742-C948-4685-B49A-ACBD21CE10FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -329,6 +337,7 @@ Global
 		{5E696803-9EEE-4C9E-8FC1-04693B0E171E} = {EC7DFF61-A735-4942-8125-F9C9A8EA9EFA}
 		{11F82973-690A-48A9-8CB8-BD97E0024E2C} = {FAF78A7D-B7F6-4302-88E9-4B1E7AAC3552}
 		{B0470637-949C-4A41-9C8C-0CE46561037F} = {F860D526-C1CE-4FDC-A871-202201859C42}
+		{390B5742-C948-4685-B49A-ACBD21CE10FF} = {18031338-5A00-4AFC-9476-6C491B31B66C}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true
