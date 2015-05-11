@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Model;
+using LiveSplit.Options;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,6 +17,7 @@ namespace LiveSplit.Web.Share
             public Time Time;
             public DateTime? Date;
             public Uri Video;
+            public Lazy<IRun> Run;
         }
 
         protected static readonly SpeedrunCom _Instance = new SpeedrunCom();
@@ -77,6 +79,27 @@ namespace LiveSplit.Web.Share
                     time.GameTime = null;
             }
 
+            Lazy<IRun> run;
+            if (!string.IsNullOrEmpty(entry.splitsio as string))
+            {
+                run = new Lazy<IRun>(() =>
+                {
+                    try
+                    {
+                        return SplitsIO.Instance.DownloadRunByPath(entry.splitsio as string);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                    }
+                    return null;
+                });
+            }
+            else
+            {
+                run = new Lazy<IRun>(() => null);
+            }
+
             DateTime? date = null;
             Uri video = null;
 
@@ -94,7 +117,8 @@ namespace LiveSplit.Web.Share
                 Time = time,
                 Date = date,
                 Video = video,
-                Runner = runner
+                Runner = runner,
+                Run = run
             };
         }
 
