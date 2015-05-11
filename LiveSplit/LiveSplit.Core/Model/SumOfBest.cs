@@ -70,19 +70,23 @@ namespace LiveSplit.Model
 
         private static IndexedTime TrackBranch(IRun run, TimeSpan? currentTime, int segmentIndex, int runIndex, TimingMethod method = TimingMethod.RealTime)
         {
-            while (segmentIndex < run.Count)
+            var segmentTime = segmentIndex > 1 ? run[segmentIndex - 2].SegmentHistory.FirstOrDefault(x => x.Index == runIndex) : null;
+            if (segmentTime == null || segmentTime.Time[method] != null)
             {
-                var segmentTime = run[segmentIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                if (segmentTime != null)
+                while (segmentIndex < run.Count)
                 {
-                    var curTime = segmentTime.Time[method];
-                    if (curTime.HasValue)
+                    segmentTime = run[segmentIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
+                    if (segmentTime != null)
                     {
-                        return new IndexedTime(new Time(method, curTime + currentTime), segmentIndex + 1);
+                        var curTime = segmentTime.Time[method];
+                        if (curTime.HasValue)
+                        {
+                            return new IndexedTime(new Time(method, curTime + currentTime), segmentIndex + 1);
+                        }
                     }
+                    else break;
+                    segmentIndex++;
                 }
-                else break;
-                segmentIndex++;
             }
             return new IndexedTime(default(Time), 0);
         }
