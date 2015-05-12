@@ -17,6 +17,7 @@ namespace LiveSplit.Web.Share
             public Time Time;
             public DateTime? Date;
             public Uri Video;
+            public bool RunAvailable { get { return Run != null; } }
             public Lazy<IRun> Run;
         }
 
@@ -79,7 +80,8 @@ namespace LiveSplit.Web.Share
                     time.GameTime = null;
             }
 
-            Lazy<IRun> run;
+            Lazy<IRun> run = null;
+
             if (!string.IsNullOrEmpty(entry.splitsio as string))
             {
                 run = new Lazy<IRun>(() =>
@@ -94,10 +96,6 @@ namespace LiveSplit.Web.Share
                     }
                     return null;
                 });
-            }
-            else
-            {
-                run = new Lazy<IRun>(() => null);
             }
 
             DateTime? date = null;
