@@ -58,6 +58,14 @@ namespace LiveSplit.Web.Share
             return response.Properties as IDictionary<string, dynamic>;
         }
 
+        private IDictionary<string, IDictionary<string, dynamic>> getPersonalBestList(string runner)
+        {
+            var uri = GetAPIUri(string.Format("api_records.php?user={0}", HttpUtility.UrlPathEncode(runner)));
+            var response = JSON.FromUri(uri);
+            var games = response.Properties as IDictionary<string, dynamic>;
+            return games.ToDictionary(x => x.Key, x => x.Value.Properties as IDictionary<string, dynamic>);
+        }
+
         private Record getWorldRecordEntry(dynamic entry)
         {
             Record record = getRecordEntry(entry);
@@ -208,6 +216,25 @@ namespace LiveSplit.Web.Share
             foreach (var entry in getPersonalBestList(runner, game))
             {
                 recordList.Add(entry.Key, getRecordEntry(entry.Value));
+            }
+
+            return recordList;
+        }
+
+        public IDictionary<string, IDictionary<string, Record>> GetPersonalBestList(string runner)
+        {
+            var recordList = new Dictionary<string, IDictionary<string, Record>>();
+
+            foreach (var game in getPersonalBestList(runner))
+            {
+                var categoryList = new Dictionary<string, Record>();
+
+                foreach (var category in game.Value)
+                {
+                    categoryList.Add(category.Key, getRecordEntry(category.Value));
+                }
+
+                recordList.Add(game.Key, categoryList);
             }
 
             return recordList;
