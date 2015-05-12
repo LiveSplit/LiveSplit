@@ -80,6 +80,7 @@
     <Compile Include="Model\RunFactories\StandardRunFactory.cs" />
     <Compile Include="Model\RunImporters\FileRunImporter.cs" />
     <Compile Include="Model\RunImporters\IRunImporter.cs" />
+    <Compile Include="Model\RunImporters\WorldRecordRunImporter.cs" />
     <Compile Include="Model\RunImporters\SplitsIORunImporter.cs" />
     <Compile Include="Model\RunImporters\URLRunImporter.cs" />
     <Compile Include="Model\Win32.cs" />

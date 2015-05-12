@@ -15,7 +15,7 @@ namespace LiveSplit.Model.RunImporters
 
     public static class IRunImportRunExtensions
     {
-        private static bool AddComparisonFromRun(this IRun target,
+        public static bool AddComparisonFromRun(this IRun target,
             IRun comparisonRun, string name, Form form = null)
         {
             if (!target.Comparisons.Contains(name))

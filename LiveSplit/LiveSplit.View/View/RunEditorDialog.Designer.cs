@@ -73,6 +73,10 @@
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.worldRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rivalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.wholeLeaderboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
@@ -526,9 +530,13 @@
             this.ImportComparisonMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fromFileToolStripMenuItem,
             this.fromURLToolStripMenuItem,
-            this.fromSplitsioToolStripMenuItem});
+            this.fromSplitsioToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.worldRecordToolStripMenuItem,
+            this.rivalToolStripMenuItem,
+            this.wholeLeaderboardToolStripMenuItem});
             this.ImportComparisonMenu.Name = "ImportComparisonMenu";
-            this.ImportComparisonMenu.Size = new System.Drawing.Size(156, 70);
+            this.ImportComparisonMenu.Size = new System.Drawing.Size(267, 164);
             // 
             // fromFileToolStripMenuItem
             // 
@@ -558,7 +566,7 @@
             this.clearTimesToolStripMenuItem,
             this.cleanSumOfBestToolStripMenuItem});
             this.OtherMenu.Name = "OtherMenu";
-            this.OtherMenu.Size = new System.Drawing.Size(171, 92);
+            this.OtherMenu.Size = new System.Drawing.Size(171, 70);
             // 
             // clearHistoryToolStripMenuItem
             // 
@@ -588,6 +596,31 @@
             // iSegmentBindingSource
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
+            // 
+            // worldRecordToolStripMenuItem
+            // 
+            this.worldRecordToolStripMenuItem.Name = "worldRecordToolStripMenuItem";
+            this.worldRecordToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.worldRecordToolStripMenuItem.Text = "Speedrun.com World Record...";
+            this.worldRecordToolStripMenuItem.Click += new System.EventHandler(this.worldRecordToolStripMenuItem_Click);
+            // 
+            // rivalToolStripMenuItem
+            // 
+            this.rivalToolStripMenuItem.Name = "rivalToolStripMenuItem";
+            this.rivalToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
+            this.rivalToolStripMenuItem.Text = "Speedrun.com Rival...";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
+            // 
+            // wholeLeaderboardToolStripMenuItem
+            // 
+            this.wholeLeaderboardToolStripMenuItem.Name = "wholeLeaderboardToolStripMenuItem";
+            this.wholeLeaderboardToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.wholeLeaderboardToolStripMenuItem.Text = "Speedrun.com Whole Leaderboard...";
+            this.wholeLeaderboardToolStripMenuItem.Click += new System.EventHandler(this.wholeLeaderboardToolStripMenuItem_Click);
             // 
             // RunEditorDialog
             // 
@@ -662,5 +695,9 @@
         private System.Windows.Forms.ToolStripMenuItem clearHistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem worldRecordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem rivalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem wholeLeaderboardToolStripMenuItem;
     }
 }
