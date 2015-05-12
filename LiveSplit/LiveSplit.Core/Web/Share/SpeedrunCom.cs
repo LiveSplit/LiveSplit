@@ -11,8 +11,9 @@ namespace LiveSplit.Web.Share
 {
     public class SpeedrunCom
     {
-        public struct WorldRecord
+        public struct Record
         {
+            public int? Place;
             public string Runner;
             public Time Time;
             public DateTime? Date;
@@ -39,7 +40,7 @@ namespace LiveSplit.Web.Share
             return new Uri(APIUri, subUri);
         }
 
-        private IDictionary<String, dynamic> getWorldRecordList(string game)
+        private IDictionary<string, dynamic> getWorldRecordList(string game)
         {
             var uri = GetAPIUri(string.Format("api_records.php?game={0}", HttpUtility.UrlPathEncode(game)));
             var response = JSON.FromUri(uri);
@@ -47,7 +48,25 @@ namespace LiveSplit.Web.Share
             return response.Properties as IDictionary<string, dynamic>;
         }
 
-        private WorldRecord getWorldRecordEntry(dynamic entry)
+        private IDictionary<string, dynamic> getPersonalBestList(string runner, string game)
+        {
+            var uri = GetAPIUri(string.Format("api_records.php?game={0}&user={1}", 
+                HttpUtility.UrlPathEncode(game), HttpUtility.UrlPathEncode(runner)));
+
+            var response = JSON.FromUri(uri);
+            response = (response.Properties.Values as IEnumerable<dynamic>).First();
+            return response.Properties as IDictionary<string, dynamic>;
+        }
+
+        private Record getWorldRecordEntry(dynamic entry)
+        {
+            Record record = getRecordEntry(entry);
+            record.Place = 1;
+
+            return record;
+        }
+
+        private Record getRecordEntry(dynamic entry)
         {
             var runner = entry.player;
             Time time = new Time();
@@ -100,6 +119,11 @@ namespace LiveSplit.Web.Share
                 run = new Lazy<IRun>(() => null);
             }
 
+            int? place = null;
+            int parsed;
+            if (int.TryParse(entry.place as string, NumberStyles.Integer, CultureInfo.InvariantCulture, out parsed))
+                place = parsed;
+
             DateTime? date = null;
             Uri video = null;
 
@@ -112,8 +136,9 @@ namespace LiveSplit.Web.Share
             if (!String.IsNullOrEmpty(entry.video))
                 video = new Uri(entry.video);
 
-            return new WorldRecord
+            return new Record
             {
+                Place = place,
                 Time = time,
                 Date = date,
                 Video = video,
@@ -122,9 +147,9 @@ namespace LiveSplit.Web.Share
             };
         }
 
-        public IDictionary<string, WorldRecord> GetWorldRecordList(string game)
+        public IDictionary<string, Record> GetWorldRecordList(string game)
         {
-            var recordList = new Dictionary<string, WorldRecord>();
+            var recordList = new Dictionary<string, Record>();
 
             foreach (var entry in getWorldRecordList(game))
             {
@@ -134,7 +159,7 @@ namespace LiveSplit.Web.Share
             return recordList;
         }
 
-        public WorldRecord GetWorldRecord(string game, string category)
+        public Record GetWorldRecord(string game, string category)
         {
             try
             {
@@ -143,7 +168,7 @@ namespace LiveSplit.Web.Share
             }
             catch { }
 
-            return new WorldRecord();
+            return new Record();
         }
 
         public IEnumerable<string> GetCategories(string game)
@@ -162,6 +187,30 @@ namespace LiveSplit.Web.Share
                     yield return entry.Key;
                 }
             }
+        }
+
+        public Record GetPersonalBest(string runner, string game, string category)
+        {
+            try
+            {
+                var personalBestList = getPersonalBestList(runner, game);
+                return getRecordEntry(personalBestList[category]);
+            }
+            catch { }
+
+            return new Record();
+        }
+
+        public IDictionary<string, Record> GetPersonalBestList(string runner, string game)
+        {
+            var recordList = new Dictionary<string, Record>();
+
+            foreach (var entry in getPersonalBestList(runner, game))
+            {
+                recordList.Add(entry.Key, getRecordEntry(entry.Value));
+            }
+
+            return recordList;
         }
     }
 }
