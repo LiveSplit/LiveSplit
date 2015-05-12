@@ -17,12 +17,12 @@ namespace LiveSplit.Model.Comparisons
             Run = run;
         }
 
-        List<List<int>> SplitArrayList = new List<List<int>>();
 
         public void Generate(TimingMethod method)
         {
             int i, n;
             int RunCount = Run.Count - 1;
+            List<List<int>> SplitArrayList = new List<List<int>>();
 
             int [,] TempArray1 = new int[RunCount + 1, Run.RunHistory.Count];
             for (i = 0; i <= RunCount; i++)
