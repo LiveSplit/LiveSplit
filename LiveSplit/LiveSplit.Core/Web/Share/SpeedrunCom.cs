@@ -67,6 +67,14 @@ namespace LiveSplit.Web.Share
             return games.ToDictionary(x => x.Key, x => x.Value.Properties as IDictionary<string, dynamic>);
         }
 
+        private IDictionary<string, dynamic> getLeaderboards(string game)
+        {
+            var uri = GetAPIUri(string.Format("api_records.php?game={0}&amount=9999", HttpUtility.UrlPathEncode(game)));
+            var response = JSON.FromUri(uri);
+            response = (response.Properties.Values as IEnumerable<dynamic>).First();
+            return response.Properties as IDictionary<string, dynamic>;
+        }
+
         private Record getWorldRecordEntry(dynamic entry)
         {
             Record record = getRecordEntry(entry);
@@ -236,6 +244,48 @@ namespace LiveSplit.Web.Share
             }
 
             return recordList;
+        }
+
+        public IEnumerable<Record> GetLeaderboard(string game, string category)
+        {
+            var leaderboards = getLeaderboards(game);
+            var leaderboard = leaderboards.FirstOrDefault(x => x.Key == category);
+
+            var records = new List<Record>();
+
+            foreach (var recordElement in (leaderboard.Value.Properties as IDictionary<string, dynamic>))
+            {
+                Record record = getRecordEntry(recordElement.Value);
+                record.Place = int.Parse(recordElement.Key, CultureInfo.InvariantCulture);
+
+                records.Add(record);
+            }
+
+            return records;
+        }
+
+        public IDictionary<string, IEnumerable<Record>> GetLeaderboards(string game)
+        {
+            var dict = new Dictionary<string, IEnumerable<Record>>();
+
+            var leaderboards = getLeaderboards(game);
+
+            foreach (var category in leaderboards)
+            {
+                var records = new List<Record>();
+
+                foreach (var recordElement in (category.Value.Properties as IDictionary<string, dynamic>))
+                {
+                    Record record = getRecordEntry(recordElement.Value);
+                    record.Place = int.Parse(recordElement.Key, CultureInfo.InvariantCulture);
+
+                    records.Add(record);
+                }
+
+                dict.Add(category.Key, records);
+            }
+
+            return dict;
         }
     }
 }
