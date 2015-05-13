@@ -12,6 +12,12 @@ namespace LiveSplit.Model.RunImporters
         public string Game { get; set; }
         public string Category { get; set; }
 
+        public WorldRecordRunImporter(string game, string category)
+        {
+            Game = game;
+            Category = category;
+        }
+
         public IRun Import(Form form = null)
         {
             var worldRecord = SpeedrunCom.Instance.GetWorldRecord(Game, Category);

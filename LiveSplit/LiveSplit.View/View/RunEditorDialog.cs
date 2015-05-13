@@ -1325,13 +1325,19 @@ namespace LiveSplit.View
 
         private void worldRecordToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var runImporter = new WorldRecordRunImporter() { Game = Run.GameName, Category = Run.CategoryName };
+            var runImporter = new WorldRecordRunImporter(Run.GameName, Run.CategoryName);
             ImportClick(runImporter);
         }
 
         private void wholeLeaderboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void rivalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var runImporter = new RivalRunImporter(Run.GameName, Run.CategoryName, Run.Last().PersonalBestSplitTime);
+            ImportClick(runImporter);
         }
     }
 }

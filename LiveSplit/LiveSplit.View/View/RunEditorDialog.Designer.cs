@@ -67,16 +67,16 @@
             this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromSplitsioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.worldRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.rivalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.wholeLeaderboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OtherMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.worldRecordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rivalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.wholeLeaderboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
@@ -536,28 +536,54 @@
             this.rivalToolStripMenuItem,
             this.wholeLeaderboardToolStripMenuItem});
             this.ImportComparisonMenu.Name = "ImportComparisonMenu";
-            this.ImportComparisonMenu.Size = new System.Drawing.Size(267, 164);
+            this.ImportComparisonMenu.Size = new System.Drawing.Size(267, 142);
             // 
             // fromFileToolStripMenuItem
             // 
             this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
-            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
             this.fromFileToolStripMenuItem.Text = "From File...";
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
             // 
             // fromURLToolStripMenuItem
             // 
             this.fromURLToolStripMenuItem.Name = "fromURLToolStripMenuItem";
-            this.fromURLToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.fromURLToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
             this.fromURLToolStripMenuItem.Text = "From URL...";
             this.fromURLToolStripMenuItem.Click += new System.EventHandler(this.fromURLToolStripMenuItem_Click);
             // 
             // fromSplitsioToolStripMenuItem
             // 
             this.fromSplitsioToolStripMenuItem.Name = "fromSplitsioToolStripMenuItem";
-            this.fromSplitsioToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.fromSplitsioToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
             this.fromSplitsioToolStripMenuItem.Text = "From Splits.io...";
             this.fromSplitsioToolStripMenuItem.Click += new System.EventHandler(this.fromSplitsioToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(263, 6);
+            // 
+            // worldRecordToolStripMenuItem
+            // 
+            this.worldRecordToolStripMenuItem.Name = "worldRecordToolStripMenuItem";
+            this.worldRecordToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.worldRecordToolStripMenuItem.Text = "Speedrun.com World Record...";
+            this.worldRecordToolStripMenuItem.Click += new System.EventHandler(this.worldRecordToolStripMenuItem_Click);
+            // 
+            // rivalToolStripMenuItem
+            // 
+            this.rivalToolStripMenuItem.Name = "rivalToolStripMenuItem";
+            this.rivalToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.rivalToolStripMenuItem.Text = "Speedrun.com Rival...";
+            this.rivalToolStripMenuItem.Click += new System.EventHandler(this.rivalToolStripMenuItem_Click);
+            // 
+            // wholeLeaderboardToolStripMenuItem
+            // 
+            this.wholeLeaderboardToolStripMenuItem.Name = "wholeLeaderboardToolStripMenuItem";
+            this.wholeLeaderboardToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
+            this.wholeLeaderboardToolStripMenuItem.Text = "Speedrun.com Whole Leaderboard...";
+            this.wholeLeaderboardToolStripMenuItem.Click += new System.EventHandler(this.wholeLeaderboardToolStripMenuItem_Click);
             // 
             // OtherMenu
             // 
@@ -596,31 +622,6 @@
             // iSegmentBindingSource
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
-            // 
-            // worldRecordToolStripMenuItem
-            // 
-            this.worldRecordToolStripMenuItem.Name = "worldRecordToolStripMenuItem";
-            this.worldRecordToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
-            this.worldRecordToolStripMenuItem.Text = "Speedrun.com World Record...";
-            this.worldRecordToolStripMenuItem.Click += new System.EventHandler(this.worldRecordToolStripMenuItem_Click);
-            // 
-            // rivalToolStripMenuItem
-            // 
-            this.rivalToolStripMenuItem.Name = "rivalToolStripMenuItem";
-            this.rivalToolStripMenuItem.Size = new System.Drawing.Size(235, 22);
-            this.rivalToolStripMenuItem.Text = "Speedrun.com Rival...";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(152, 6);
-            // 
-            // wholeLeaderboardToolStripMenuItem
-            // 
-            this.wholeLeaderboardToolStripMenuItem.Name = "wholeLeaderboardToolStripMenuItem";
-            this.wholeLeaderboardToolStripMenuItem.Size = new System.Drawing.Size(266, 22);
-            this.wholeLeaderboardToolStripMenuItem.Text = "Speedrun.com Whole Leaderboard...";
-            this.wholeLeaderboardToolStripMenuItem.Click += new System.EventHandler(this.wholeLeaderboardToolStripMenuItem_Click);
             // 
             // RunEditorDialog
             // 
