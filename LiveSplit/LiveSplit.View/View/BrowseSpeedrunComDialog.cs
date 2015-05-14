@@ -26,6 +26,14 @@ namespace LiveSplit.View
             chkIncludeTimes.Visible = chkDownloadEmpty.Visible = !isImporting;
         }
 
+        private int getDigits(int n)
+        {
+            if (n == 0)
+                return 1;
+
+            return (int)Math.Floor(Math.Log10(n) + 1);
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             splitsTreeView.Nodes.Clear();
@@ -34,47 +42,67 @@ namespace LiveSplit.View
                 var searchText = txtSearch.Text;
                 if (!string.IsNullOrEmpty(searchText))
                 {
-                    var leaderboards = SpeedrunCom.Instance.GetLeaderboards(searchText);
-                    var games = new[] { leaderboards };
-                    foreach (var game in games)
+                    try
                     {
-                        var gameNode = new TreeNode(searchText);
-                        var categories = game;
-                        foreach (var category in categories)
+                        var leaderboards = SpeedrunCom.Instance.GetLeaderboards(searchText);
+                        var games = new[] { leaderboards };
+                        foreach (var game in games)
                         {
-                            var categoryNode = new TreeNode(category.Key);
-                            var records = category.Value;
-                            foreach (var record in records)
+                            var gameNode = new TreeNode(searchText);
+                            var categories = game;
+                            foreach (var category in categories)
                             {
-                                var runText = record.Place + ". " + (record.Time.RealTime.HasValue ? new ShortTimeFormatter().Format(record.Time.RealTime) + " " : "") + "by " + record.Runner;
+                                var categoryNode = new TreeNode(category.Key);
+                                var records = category.Value;
+                                foreach (var record in records)
+                                {
+                                    var place = record.Place.HasValue
+                                        ? (record.Place.Value.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ". ")
+                                        : "";
+                                    var runText = place + (record.Time.RealTime.HasValue ? new ShortTimeFormatter().Format(record.Time.RealTime) + " " : "") + "by " + record.Runner;
+                                    var runNode = new TreeNode(runText);
+                                    runNode.Tag = record;
+                                    if (!record.RunAvailable)
+                                        runNode.ForeColor = Color.Gray;
+                                    categoryNode.Nodes.Add(runNode);
+                                }
+                                gameNode.Nodes.Add(categoryNode);
+                            }
+                            splitsTreeView.Nodes.Add(gameNode);
+                        }
+                    }
+                    catch { }
+
+                    try
+                    {
+                        var games = SpeedrunCom.Instance.GetPersonalBestList(searchText);
+                        var userNode = new TreeNode("@" + searchText);
+                        foreach (var game in games)
+                        {
+                            var gameNode = new TreeNode(game.Key);
+
+                            foreach (var category in game.Value)
+                            {
+                                var categoryName = category.Key;
+                                var record = category.Value;
+
+                                var place = record.Place.HasValue
+                                        ? (record.Place.Value.ToString(CultureInfo.InvariantCulture) + ". ")
+                                        : "";
+                                var runText = place + (record.Time.RealTime.HasValue ? new ShortTimeFormatter().Format(record.Time.RealTime) + " " : "") + "in " + categoryName;
+
                                 var runNode = new TreeNode(runText);
                                 runNode.Tag = record;
                                 if (!record.RunAvailable)
                                     runNode.ForeColor = Color.Gray;
-                                categoryNode.Nodes.Add(runNode);
+                                gameNode.Nodes.Add(runNode);
                             }
-                            gameNode.Nodes.Add(categoryNode);
-                        }
-                        splitsTreeView.Nodes.Add(gameNode);
-                    }
 
-                    /*var user = SpeedrunCom.Instance.GetPersonalBestList(searchText);
-                    if (user != null)
-                    {
-                        var userNode = new TreeNode("@" + user.name);
-                        var runs = SplitsIO.Instance.GetRunsForUser((string)user.name);
-                        runs = runs.OrderBy(run => (string)run.name).ThenBy(run => (double)run.time);
-                        foreach (var run in runs)
-                        {
-                            var runText = run.name;
-                            if (run.time != SplitsIO.NoTime)
-                                runText += " in " + (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds((double)run.time));
-                            var runNode = new TreeNode(runText);
-                            runNode.Tag = run;
-                            userNode.Nodes.Add(runNode);
+                            userNode.Nodes.Add(gameNode);
                         }
                         splitsTreeView.Nodes.Add(userNode);
-                    }*/
+                    }
+                    catch { }
                 }
             }
             catch (Exception ex)
@@ -161,24 +189,6 @@ namespace LiveSplit.View
             return DialogResult.OK;
         }
 
-        private void splitsTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
-        {
-            try
-            {
-                var node = e.Node;
-                if (node.Tag is CategoryNodeAction)
-                {
-                    ((CategoryNodeAction)node.Tag)();
-                    node.Tag = null;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                e.Cancel = true;
-            }
-        }
-
         private void chkDownloadEmpty_CheckedChanged(object sender, EventArgs e)
         {
             chkIncludeTimes.Enabled = chkDownloadEmpty.Checked;
@@ -186,7 +196,7 @@ namespace LiveSplit.View
 
         private void splitsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            btnDownload.Enabled = e.Node.Tag is DynamicJsonObject;
+            btnDownload.Enabled = e.Node.Tag is SpeedrunCom.Record && ((SpeedrunCom.Record)e.Node.Tag).RunAvailable;
         }
     }
 }

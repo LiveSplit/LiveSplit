@@ -103,7 +103,6 @@
             this.splitsTreeView.Name = "splitsTreeView";
             this.splitsTreeView.Size = new System.Drawing.Size(550, 328);
             this.splitsTreeView.TabIndex = 3;
-            this.splitsTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.splitsTreeView_BeforeExpand);
             this.splitsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.splitsTreeView_AfterSelect);
             // 
             // chkDownloadEmpty
