@@ -161,6 +161,20 @@ namespace LiveSplit.Web.Share
             };
         }
 
+        public TimingMethod GetLeaderboardTimingMethod(IEnumerable<Record> leaderboard)
+        {
+            var lastRecord = leaderboard.First();
+
+            foreach (var record in leaderboard)
+            {
+                if (lastRecord.Time.RealTime > record.Time.RealTime)
+                    return TimingMethod.GameTime;
+                lastRecord = record;
+            }
+
+            return TimingMethod.RealTime;
+        }
+
         public IDictionary<string, Record> GetWorldRecordList(string game)
         {
             var recordList = new Dictionary<string, Record>();

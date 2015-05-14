@@ -34,6 +34,38 @@ namespace LiveSplit.View
             return (int)Math.Floor(Math.Log10(n) + 1);
         }
 
+        private string formatTime(Time time)
+        {
+            var formatter = new ShortTimeFormatter();
+
+            if (time.RealTime.HasValue && !time.GameTime.HasValue)
+                return formatter.Format(time.RealTime);
+            else if (!time.RealTime.HasValue && time.GameTime.HasValue)
+                return formatter.Format(time.GameTime);
+            else
+                return formatter.Format(time.RealTime) + " / " + formatter.Format(time.GameTime);
+        }
+
+        private string formatPlace(int? place)
+        {
+            if (place.HasValue)
+            {
+                var strPlace = place.Value.ToString(CultureInfo.InvariantCulture);
+                var postfix = "";
+
+                switch (place)
+                {
+                    case 1: postfix = "st"; break;
+                    case 2: postfix = "nd"; break;
+                    case 3: postfix = "rd"; break;
+                    default: postfix = "th"; break;
+                }
+                
+                return " (" + strPlace + postfix + ")";
+            }
+            return "";
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             splitsTreeView.Nodes.Clear();
@@ -54,12 +86,14 @@ namespace LiveSplit.View
                             {
                                 var categoryNode = new TreeNode(category.Key);
                                 var records = category.Value;
+                                var timingMethod = SpeedrunCom.Instance.GetLeaderboardTimingMethod(records);
+
                                 foreach (var record in records)
                                 {
                                     var place = record.Place.HasValue
                                         ? (record.Place.Value.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ". ")
                                         : "";
-                                    var runText = place + (record.Time.RealTime.HasValue ? new ShortTimeFormatter().Format(record.Time.RealTime) + " " : "") + "by " + record.Runner;
+                                    var runText = place + (record.Time[timingMethod].HasValue ? new ShortTimeFormatter().Format(record.Time[timingMethod]) : "") + " by " + record.Runner;
                                     var runNode = new TreeNode(runText);
                                     runNode.Tag = record;
                                     if (!record.RunAvailable)
@@ -86,10 +120,8 @@ namespace LiveSplit.View
                                 var categoryName = category.Key;
                                 var record = category.Value;
 
-                                var place = record.Place.HasValue
-                                        ? (record.Place.Value.ToString(CultureInfo.InvariantCulture) + ". ")
-                                        : "";
-                                var runText = place + (record.Time.RealTime.HasValue ? new ShortTimeFormatter().Format(record.Time.RealTime) + " " : "") + "in " + categoryName;
+                                var place = formatPlace(record.Place);
+                                var runText = formatTime(record.Time) + " in " + categoryName + place;
 
                                 var runNode = new TreeNode(runText);
                                 runNode.Tag = record;
