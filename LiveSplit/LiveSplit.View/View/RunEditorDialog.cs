@@ -1331,7 +1331,16 @@ namespace LiveSplit.View
 
         private void wholeLeaderboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            var leaderboardImporter = new LeaderboardImporter(Run.GameName, Run.CategoryName);
+            var comparisons = leaderboardImporter.ImportComparisons(Run, this);
+            foreach (var name in comparisons)
+            {
+                if (!runGrid.Columns.Contains(name))
+                {
+                    AddComparisonColumn(name);
+                }
+            }
+            runGrid.Invalidate();
         }
 
         private void rivalToolStripMenuItem_Click(object sender, EventArgs e)
