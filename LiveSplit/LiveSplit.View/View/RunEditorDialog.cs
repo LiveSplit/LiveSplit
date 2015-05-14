@@ -1234,6 +1234,12 @@ namespace LiveSplit.View
             ImportClick(runImporter);
         }
 
+        private void fromSpeedruncomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var runImporter = new SpeedrunComRunImporter();
+            ImportClick(runImporter);
+        }
+
         private void ImportClick(IRunImporter importer)
         {
             var name = importer.ImportAsComparison(CurrentState.Run, this);

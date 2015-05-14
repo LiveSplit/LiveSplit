@@ -73,6 +73,7 @@
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fromSpeedruncomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
@@ -526,28 +527,29 @@
             this.ImportComparisonMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fromFileToolStripMenuItem,
             this.fromURLToolStripMenuItem,
-            this.fromSplitsioToolStripMenuItem});
+            this.fromSplitsioToolStripMenuItem,
+            this.fromSpeedruncomToolStripMenuItem});
             this.ImportComparisonMenu.Name = "ImportComparisonMenu";
-            this.ImportComparisonMenu.Size = new System.Drawing.Size(156, 70);
+            this.ImportComparisonMenu.Size = new System.Drawing.Size(192, 114);
             // 
             // fromFileToolStripMenuItem
             // 
             this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
-            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.fromFileToolStripMenuItem.Text = "From File...";
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
             // 
             // fromURLToolStripMenuItem
             // 
             this.fromURLToolStripMenuItem.Name = "fromURLToolStripMenuItem";
-            this.fromURLToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.fromURLToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.fromURLToolStripMenuItem.Text = "From URL...";
             this.fromURLToolStripMenuItem.Click += new System.EventHandler(this.fromURLToolStripMenuItem_Click);
             // 
             // fromSplitsioToolStripMenuItem
             // 
             this.fromSplitsioToolStripMenuItem.Name = "fromSplitsioToolStripMenuItem";
-            this.fromSplitsioToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.fromSplitsioToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.fromSplitsioToolStripMenuItem.Text = "From Splits.io...";
             this.fromSplitsioToolStripMenuItem.Click += new System.EventHandler(this.fromSplitsioToolStripMenuItem_Click);
             // 
@@ -558,7 +560,7 @@
             this.clearTimesToolStripMenuItem,
             this.cleanSumOfBestToolStripMenuItem});
             this.OtherMenu.Name = "OtherMenu";
-            this.OtherMenu.Size = new System.Drawing.Size(171, 92);
+            this.OtherMenu.Size = new System.Drawing.Size(171, 70);
             // 
             // clearHistoryToolStripMenuItem
             // 
@@ -588,6 +590,13 @@
             // iSegmentBindingSource
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
+            // 
+            // fromSpeedruncomToolStripMenuItem
+            // 
+            this.fromSpeedruncomToolStripMenuItem.Name = "fromSpeedruncomToolStripMenuItem";
+            this.fromSpeedruncomToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.fromSpeedruncomToolStripMenuItem.Text = "From Speedrun.com...";
+            this.fromSpeedruncomToolStripMenuItem.Click += new System.EventHandler(this.fromSpeedruncomToolStripMenuItem_Click);
             // 
             // RunEditorDialog
             // 
@@ -662,5 +671,6 @@
         private System.Windows.Forms.ToolStripMenuItem clearHistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromSpeedruncomToolStripMenuItem;
     }
 }
