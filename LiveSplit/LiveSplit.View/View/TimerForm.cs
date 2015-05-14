@@ -739,6 +739,9 @@ namespace LiveSplit.View
             var openFromSplitsIOMenuItem = new ToolStripMenuItem("From Splits.io...");
             openFromSplitsIOMenuItem.Click += openFromSplitsIOMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromSplitsIOMenuItem);
+            var openFromSpeedrunComMenuItem = new ToolStripMenuItem("From Speedrun.com...");
+            openFromSpeedrunComMenuItem.Click += openFromSpeedrunComMenuItem_Click;
+            openSplitsMenuItem.DropDownItems.Add(openFromSpeedrunComMenuItem);
             openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
             var clearSplitHistoryMenuItem = new ToolStripMenuItem("Clear History");
             clearSplitHistoryMenuItem.Click += clearSplitHistoryMenuItem_Click;
@@ -748,6 +751,18 @@ namespace LiveSplit.View
         void openFromSplitsIOMenuItem_Click(object sender, EventArgs e)
         {
             var runImporter = new SplitsIORunImporter();
+            var run = runImporter.Import(this);
+
+            if (!WarnUserAboutSplitsSave())
+                return;
+
+            if (run != null)
+                SetRun(run);
+        }
+
+        void openFromSpeedrunComMenuItem_Click(object sender, EventArgs e)
+        {
+            var runImporter = new SpeedrunComRunImporter();
             var run = runImporter.Import(this);
 
             if (!WarnUserAboutSplitsSave())
