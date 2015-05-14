@@ -51,14 +51,16 @@ namespace LiveSplit.View
             if (place.HasValue)
             {
                 var strPlace = place.Value.ToString(CultureInfo.InvariantCulture);
-                var postfix = "";
+                var postfix = "th";
 
-                switch (place)
+                if (place % 100 < 10 || place % 100 > 20)
                 {
-                    case 1: postfix = "st"; break;
-                    case 2: postfix = "nd"; break;
-                    case 3: postfix = "rd"; break;
-                    default: postfix = "th"; break;
+                    switch (place % 10)
+                    {
+                        case 1: postfix = "st"; break;
+                        case 2: postfix = "nd"; break;
+                        case 3: postfix = "rd"; break;
+                    }
                 }
                 
                 return " (" + strPlace + postfix + ")";
