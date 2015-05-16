@@ -52,6 +52,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnOK.Location = new System.Drawing.Point(331, 522);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
@@ -92,7 +93,6 @@
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(504, 562);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -101,7 +101,6 @@
             this.Name = "ComponentSettingsDialog";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Text = "Component Settings";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LayoutSettingsDialog_FormClosing);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 

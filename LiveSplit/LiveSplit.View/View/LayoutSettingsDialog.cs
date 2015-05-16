@@ -39,6 +39,8 @@ namespace LiveSplit.View
                 component.SetSettings(ComponentSettings[i]);
                 i++;
             }
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         protected void AddComponents(IComponent tabComponent = null)
@@ -67,15 +69,6 @@ namespace LiveSplit.View
             page.AutoScroll = true;
             page.Name = name;
             tabControl.TabPages.Add(page);
-        }
-
-        private void LayoutSettingsDialog_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing 
-                && DialogResult != DialogResult.OK)
-            {
-                btnCancel_Click(this, null);
-            }
         }
     }
 }

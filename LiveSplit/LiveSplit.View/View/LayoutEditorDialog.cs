@@ -321,5 +321,11 @@ namespace LiveSplit.View
                 }
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
     }
 }

@@ -27,6 +27,8 @@ namespace LiveSplit.View
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Component.SetSettings(ComponentSettings);
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         protected void AddComponent(IComponent component)
@@ -40,15 +42,6 @@ namespace LiveSplit.View
         {
             panel.Controls.Add(control);
             Name = name + " Settings";
-        }
-
-        private void LayoutSettingsDialog_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing 
-                && DialogResult != DialogResult.OK)
-            {
-                btnCancel_Click(this, null);
-            }
         }
     }
 }
