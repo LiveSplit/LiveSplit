@@ -3,9 +3,13 @@ using LiveSplit.Options;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Web;
+using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share
 {
@@ -36,12 +40,20 @@ namespace LiveSplit.Web.Share
             public Lazy<IRun> Run;
         }
 
+        private struct GamePair
+        {
+            public string Name;
+            public string ID;
+        }
+
         protected static readonly SpeedrunCom _Instance = new SpeedrunCom();
 
         public static SpeedrunCom Instance { get { return _Instance; } }
 
         public static readonly Uri BaseUri = new Uri("http://www.speedrun.com/");
         public static readonly Uri APIUri = new Uri(BaseUri, "");
+
+        private List<GamePair> gameList;
 
         protected SpeedrunCom() { }
 
@@ -55,6 +67,52 @@ namespace LiveSplit.Web.Share
             return new Uri(APIUri, subUri);
         }
 
+        private IEnumerable<HtmlElement> FindChildren(HtmlElement parent, String tagName, String id = null, String className = null)
+        {
+            return parent.Children
+                .OfType<HtmlElement>()
+                .Where(x => x.TagName == tagName
+                    && ((id == null) ? true : x.Id == id)
+                    && ((className == null) ? true : x.GetAttribute("class") == className));
+        }
+
+        private IEnumerable<GamePair> getGameList()
+        {
+            if (gameList == null)
+            {
+                gameList = new List<GamePair>();
+
+                var request = WebRequest.Create(GetSiteUri("games"));
+                var stream = request.GetResponse().GetResponseStream();
+                using (var reader = new StreamReader(stream))
+                {
+                    var html = reader.ReadToEnd();
+
+                    var indexAlphabetic = html.IndexOf("<div class='optionon' id='alphabeticlist' style='display:none;'>");
+                    var indexByPlatform = html.IndexOf("<div class='optionon' id='byplatformlist' style='display:none;'>");
+                    var alphabeticList = html.Substring(indexAlphabetic, indexByPlatform - indexAlphabetic);
+                    var gamesHtml = alphabeticList.Split(new[] { "<a href='/" }, StringSplitOptions.None);
+
+                    foreach (var gameHtml in gamesHtml.Skip(1))
+                    {
+                        var indexGameId = gameHtml.IndexOf("'");
+                        var indexBeginGameName = gameHtml.IndexOf("'>") + 2;
+                        var indexEndGameName = gameHtml.IndexOf("</a>");
+                        var gameId = HttpUtility.HtmlDecode(gameHtml.Substring(0, indexGameId));
+                        var gameName = HttpUtility.HtmlDecode(gameHtml.Substring(indexBeginGameName, indexEndGameName - indexBeginGameName));
+
+                        gameList.Add(new GamePair()
+                            {
+                                ID = gameId,
+                                Name = gameName
+                            });
+                    }
+                }
+            }
+
+            return gameList;
+        }
+
         private IDictionary<string, dynamic> getWorldRecordList(string game)
         {
             var uri = GetAPIUri(string.Format("api_records.php?game={0}", HttpUtility.UrlPathEncode(game)));
@@ -65,7 +123,7 @@ namespace LiveSplit.Web.Share
 
         private IDictionary<string, dynamic> getPersonalBestList(string runner, string game)
         {
-            var uri = GetAPIUri(string.Format("api_records.php?game={0}&user={1}", 
+            var uri = GetAPIUri(string.Format("api_records.php?game={0}&user={1}",
                 HttpUtility.UrlPathEncode(game), HttpUtility.UrlPathEncode(runner)));
 
             var response = JSON.FromUri(uri);
@@ -118,7 +176,7 @@ namespace LiveSplit.Web.Share
                 else
                     time.RealTime = null;
             }
-            
+
             if ((entry.Properties as IDictionary<string, dynamic>).ContainsKey("timeigt"))
             {
                 //If there's timeigt, use that as the Game Time instead of Time without Loads
@@ -215,6 +273,16 @@ namespace LiveSplit.Web.Share
             catch { }
 
             return new Record();
+        }
+
+        public IEnumerable<string> GetGameNames()
+        {
+            return getGameList().Select(x => x.Name);
+        }
+
+        public string GetGameID(string game)
+        {
+            return getGameList().FirstOrDefault(x => x.Name == game).ID;
         }
 
         public IEnumerable<string> GetCategories(string game)

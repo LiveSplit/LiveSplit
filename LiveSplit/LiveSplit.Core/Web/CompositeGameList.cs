@@ -61,15 +61,30 @@ namespace LiveSplit.Web
                         }
                     });
 
+                var speedrunComTask = new Task<IEnumerable<string>>(
+                    () =>
+                    {
+                        try
+                        {
+                            return SpeedrunCom.Instance.GetGameNames();
+                        }
+                        catch
+                        {
+                            return new string[0];
+                        }
+                    });
+
                 pbTrackerTask.Start();
                 srlTask.Start();
                 congratsioTask.Start();
+                speedrunComTask.Start();
 
-                Task.WaitAll(pbTrackerTask, srlTask, congratsioTask);
+                Task.WaitAll(pbTrackerTask, srlTask, congratsioTask, speedrunComTask);
 
                 gameNames = pbTrackerTask.Result
                     .Concat(srlTask.Result)
                     .Concat(congratsioTask.Result)
+                    .Concat(speedrunComTask.Result)
                     .Distinct().OrderBy(x => x)
                     .Where(x => !string.IsNullOrEmpty(x))
                     .ToList();

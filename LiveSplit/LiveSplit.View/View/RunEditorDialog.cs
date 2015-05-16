@@ -158,7 +158,7 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        var gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
+                        var gameNames = SpeedrunCom.Instance.GetGameNames().ToArray();
                         Action invokation = () =>
                         {
                             try
