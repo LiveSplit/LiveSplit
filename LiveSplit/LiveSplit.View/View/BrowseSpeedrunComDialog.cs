@@ -7,6 +7,7 @@ using LiveSplit.Web.Share;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -19,6 +20,18 @@ namespace LiveSplit.View
         delegate void CategoryNodeAction();
         public IRun Run { get; protected set; }
         public string RunName { get; protected set; }
+
+        struct TaggedRecord
+        {
+            public string GameID;
+            public SpeedrunCom.Record Record;
+
+            public TaggedRecord(string gameId, SpeedrunCom.Record record)
+            {
+                GameID = gameId;
+                Record = record;
+            }
+        }
 
         public BrowseSpeedrunComDialog(bool isImporting = false)
         {
@@ -80,14 +93,18 @@ namespace LiveSplit.View
                     {
                         string actualGameName;
                         var leaderboards = SpeedrunCom.Instance.GetLeaderboards(fuzzyGameName, out actualGameName);
+                        var gameId = SpeedrunCom.Instance.GetGameID(actualGameName);
                         var games = new[] { leaderboards };
                         foreach (var game in games)
                         {
                             var gameNode = new TreeNode(actualGameName);
+                            gameNode.Tag = SpeedrunCom.Instance.GetGameUri(gameId);
                             var categories = game;
                             foreach (var category in categories)
                             {
                                 var categoryNode = new TreeNode(category.Key);
+                                var categoryId = SpeedrunCom.Instance.GetCategoryID(category.Key);
+                                categoryNode.Tag = SpeedrunCom.Instance.GetCategoryUri(gameId, categoryId);
                                 var records = category.Value;
                                 var timingMethod = SpeedrunCom.Instance.GetLeaderboardTimingMethod(records);
 
@@ -98,7 +115,7 @@ namespace LiveSplit.View
                                         : "";
                                     var runText = place + (record.Time[timingMethod].HasValue ? new ShortTimeFormatter().Format(record.Time[timingMethod]) : "") + " by " + record.Runner;
                                     var runNode = new TreeNode(runText);
-                                    runNode.Tag = record;
+                                    runNode.Tag = new TaggedRecord(gameId, record);
                                     if (!record.RunAvailable)
                                         runNode.ForeColor = Color.Gray;
                                     categoryNode.Nodes.Add(runNode);
@@ -119,6 +136,8 @@ namespace LiveSplit.View
                         foreach (var game in games)
                         {
                             var gameNode = new TreeNode(game.Key);
+                            var gameId = SpeedrunCom.Instance.GetGameID(game.Key);
+                            gameNode.Tag = SpeedrunCom.Instance.GetGameUri(gameId);
 
                             foreach (var category in game.Value)
                             {
@@ -130,13 +149,14 @@ namespace LiveSplit.View
                                 var runText = formatTime(record.Time) + " in " + categoryName + place;
 
                                 var runNode = new TreeNode(runText);
-                                runNode.Tag = record;
+                                runNode.Tag = new TaggedRecord(gameId, record);
                                 if (!record.RunAvailable)
                                     runNode.ForeColor = Color.Gray;
                                 gameNode.Nodes.Add(runNode);
                             }
                             userNode.Nodes.Add(gameNode);
                         }
+                        userNode.Tag = SpeedrunCom.Instance.GetUserUri(userName);
                         userNode.Text = "@" + userName;
                         splitsTreeView.Nodes.Add(userNode);
                     }
@@ -154,9 +174,10 @@ namespace LiveSplit.View
         {
             try
             {
-                if (splitsTreeView.SelectedNode != null && splitsTreeView.SelectedNode.Tag is SpeedrunCom.Record)
+                if (splitsTreeView.SelectedNode != null && splitsTreeView.SelectedNode.Tag is TaggedRecord)
                 {
-                    var record = (SpeedrunCom.Record)splitsTreeView.SelectedNode.Tag;
+                    var taggedRecord = (TaggedRecord)splitsTreeView.SelectedNode.Tag;
+                    var record = taggedRecord.Record;
                     Run = record.Run.Value;
                     RunName = record.Runner;
                     var result = PostProcessRun(RunName);
@@ -234,7 +255,26 @@ namespace LiveSplit.View
 
         private void splitsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            btnDownload.Enabled = e.Node.Tag is SpeedrunCom.Record && ((SpeedrunCom.Record)e.Node.Tag).RunAvailable;
+            btnDownload.Enabled = e.Node.Tag is TaggedRecord && ((TaggedRecord)e.Node.Tag).Record.RunAvailable;
+            btnShowOnSpeedrunCom.Enabled = e.Node.Tag is Uri || e.Node.Tag is TaggedRecord;
+        }
+
+        private void btnShowOnSpeedrunCom_Click(object sender, EventArgs e)
+        {
+            if (splitsTreeView.SelectedNode != null)
+            {
+                if (splitsTreeView.SelectedNode.Tag is Uri)
+                {
+                    var uri = (Uri)splitsTreeView.SelectedNode.Tag;
+                    Process.Start(uri.AbsoluteUri);
+                }
+                else if (splitsTreeView.SelectedNode.Tag is TaggedRecord)
+                {
+                    var taggedRecord = (TaggedRecord)splitsTreeView.SelectedNode.Tag;
+                    var uri = SpeedrunCom.Instance.GetRunUri(taggedRecord.GameID, taggedRecord.Record.ID);
+                    Process.Start(uri.AbsoluteUri);
+                }
+            }
         }
     }
 }

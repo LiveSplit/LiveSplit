@@ -54,6 +54,29 @@ namespace LiveSplit.Web.Share
             return new Uri(APIUri, subUri);
         }
 
+        public Uri GetGameUri(string gameId)
+        {
+            return GetSiteUri(HttpUtility.UrlPathEncode(gameId));
+        }
+
+        public Uri GetCategoryUri(string gameId, string categoryId)
+        {
+            var uri = string.Format("{0}#{1}", HttpUtility.UrlPathEncode(gameId), HttpUtility.UrlPathEncode(categoryId));
+            return GetSiteUri(uri);
+        }
+
+        public Uri GetUserUri(string userName)
+        {
+            var uri = string.Format("user/{0}", HttpUtility.UrlPathEncode(userName));
+            return GetSiteUri(uri);
+        }
+
+        public Uri GetRunUri(string gameId, int runId)
+        {
+            var uri = string.Format("{0}/run/{1}", HttpUtility.UrlPathEncode(gameId), runId);
+            return GetSiteUri(uri);
+        }
+
         private IEnumerable<HtmlElement> FindChildren(HtmlElement parent, String tagName, String id = null, String className = null)
         {
             return parent.Children
@@ -295,6 +318,12 @@ namespace LiveSplit.Web.Share
         public string GetGameID(string gameName)
         {
             return getGameList().FirstOrDefault(x => x.Name == gameName).ID;
+        }
+
+        public string GetCategoryID(string categoryName)
+        {
+            //TODO: Figure out the full rules for this
+            return categoryName.Replace("%", "pc").Replace(" ", "_");
         }
 
         public IEnumerable<string> GetCategories(string fuzzyGameName, out string actualGameName)

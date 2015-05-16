@@ -36,6 +36,7 @@
             this.splitsTreeView = new System.Windows.Forms.TreeView();
             this.chkDownloadEmpty = new System.Windows.Forms.CheckBox();
             this.chkIncludeTimes = new System.Windows.Forms.CheckBox();
+            this.btnShowOnSpeedrunCom = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             this.tableLayoutPanel1.Controls.Add(this.splitsTreeView, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.chkDownloadEmpty, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.chkIncludeTimes, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnShowOnSpeedrunCom, 2, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -87,7 +89,7 @@
             // 
             this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDownload.Enabled = false;
-            this.btnDownload.Location = new System.Drawing.Point(479, 373);
+            this.btnDownload.Location = new System.Drawing.Point(479, 372);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(81, 22);
             this.btnDownload.TabIndex = 2;
@@ -101,7 +103,7 @@
             this.splitsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitsTreeView.Location = new System.Drawing.Point(10, 39);
             this.splitsTreeView.Name = "splitsTreeView";
-            this.splitsTreeView.Size = new System.Drawing.Size(550, 328);
+            this.splitsTreeView.Size = new System.Drawing.Size(550, 327);
             this.splitsTreeView.TabIndex = 3;
             this.splitsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.splitsTreeView_AfterSelect);
             // 
@@ -131,6 +133,18 @@
             this.chkIncludeTimes.Text = "Include Times as Comparison";
             this.chkIncludeTimes.UseVisualStyleBackColor = true;
             // 
+            // btnShowOnSpeedrunCom
+            // 
+            this.btnShowOnSpeedrunCom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShowOnSpeedrunCom.Enabled = false;
+            this.btnShowOnSpeedrunCom.Location = new System.Drawing.Point(344, 372);
+            this.btnShowOnSpeedrunCom.Name = "btnShowOnSpeedrunCom";
+            this.btnShowOnSpeedrunCom.Size = new System.Drawing.Size(129, 23);
+            this.btnShowOnSpeedrunCom.TabIndex = 6;
+            this.btnShowOnSpeedrunCom.Text = "Show on Speedrun.com";
+            this.btnShowOnSpeedrunCom.UseVisualStyleBackColor = true;
+            this.btnShowOnSpeedrunCom.Click += new System.EventHandler(this.btnShowOnSpeedrunCom_Click);
+            // 
             // BrowseSpeedrunComDialog
             // 
             this.AcceptButton = this.btnSearch;
@@ -139,7 +153,7 @@
             this.ClientSize = new System.Drawing.Size(570, 405);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(400, 200);
+            this.MinimumSize = new System.Drawing.Size(545, 200);
             this.Name = "BrowseSpeedrunComDialog";
             this.Text = "Browse Speedrun.com";
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -157,5 +171,6 @@
         private System.Windows.Forms.TreeView splitsTreeView;
         private System.Windows.Forms.CheckBox chkDownloadEmpty;
         private System.Windows.Forms.CheckBox chkIncludeTimes;
+        private System.Windows.Forms.Button btnShowOnSpeedrunCom;
     }
 }
