@@ -1286,7 +1286,9 @@ namespace LiveSplit.View
                     if (!alwaysCancel)
                     {
                         var formatter = new ShortTimeFormatter();
-                        var messageText = formatter.Format(parameters.timeBetween) + " between " + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name + ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest);
+                        var messageText = formatter.Format(parameters.timeBetween) + " between " 
+                            + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name 
+                            + (parameters.combinedSumOfBest != null ? ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest) : "");
                         if (parameters.attempt.Ended.HasValue)
                         {
                             messageText += " in a run on " + parameters.attempt.Ended.Value.ToString("M/d/yyyy");

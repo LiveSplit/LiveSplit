@@ -154,7 +154,7 @@ namespace LiveSplit.Model
                     startingSegment = startingIndex >= 0 ? run[startingIndex] : null,
                     endingSegment = endingIndex >= 0 ? run[endingIndex] : null,
                     timeBetween = segmentHistoryElement.Time[method].Value,
-                    combinedSumOfBest = predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value,
+                    combinedSumOfBest = predictions[endingIndex + 1].HasValue ? (TimeSpan?)(predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value) : null,
                     attempt = run.AttemptHistory.FirstOrDefault(x => x.Index == runIndex),
                     method = method
                 };
@@ -176,7 +176,7 @@ namespace LiveSplit.Model
             public ISegment startingSegment;
             public ISegment endingSegment;
             public TimeSpan timeBetween;
-            public TimeSpan combinedSumOfBest;
+            public TimeSpan? combinedSumOfBest;
             public Attempt attempt;
             public TimingMethod method;
         }
