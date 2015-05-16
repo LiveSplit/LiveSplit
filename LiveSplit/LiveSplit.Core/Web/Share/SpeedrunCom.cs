@@ -202,6 +202,7 @@ namespace LiveSplit.Web.Share
 
             DateTime? date = null;
             Uri video = null;
+            string videoString = entry.video;
 
             if (!String.IsNullOrEmpty(entry.date))
                 date = new DateTime(1970, 1, 1)
@@ -209,8 +210,16 @@ namespace LiveSplit.Web.Share
                         double.Parse(entry.date,
                         CultureInfo.InvariantCulture));
 
-            if (!String.IsNullOrEmpty(entry.video))
-                video = new Uri(entry.video);
+            if (!string.IsNullOrEmpty(videoString))
+            {
+                if (!videoString.StartsWith("http"))
+                    videoString = "http://" + videoString;
+                try
+                {
+                    video = new Uri(videoString);
+                }
+                catch { }
+            }
 
             var id = 0;
             int.TryParse(entry.id as string, NumberStyles.Integer, CultureInfo.InvariantCulture, out id);
