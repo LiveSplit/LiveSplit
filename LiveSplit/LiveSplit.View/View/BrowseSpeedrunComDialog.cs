@@ -103,8 +103,7 @@ namespace LiveSplit.View
                             foreach (var category in categories)
                             {
                                 var categoryNode = new TreeNode(category.Key);
-                                var categoryId = SpeedrunCom.Instance.GetCategoryID(category.Key);
-                                categoryNode.Tag = SpeedrunCom.Instance.GetCategoryUri(gameId, categoryId);
+                                categoryNode.Tag = SpeedrunCom.Instance.GetGameUri(gameId);
                                 var records = category.Value;
                                 var timingMethod = SpeedrunCom.Instance.GetLeaderboardTimingMethod(records);
 

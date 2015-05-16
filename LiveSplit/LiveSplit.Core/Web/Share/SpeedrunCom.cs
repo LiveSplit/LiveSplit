@@ -322,8 +322,8 @@ namespace LiveSplit.Web.Share
 
         public string GetCategoryID(string categoryName)
         {
-            //TODO: Figure out the full rules for this
-            return categoryName.Replace("%", "pc").Replace(" ", "_");
+            //TODO: Implement a proper way of figuring out the Category ID
+            return categoryName;
         }
 
         public IEnumerable<string> GetCategories(string fuzzyGameName, out string actualGameName)
