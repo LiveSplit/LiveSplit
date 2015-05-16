@@ -494,4 +494,17 @@
     <Type>Script</Type>
     <Description>Auto Start/Reset/Splitting is available for emulator (By cheeseandcereal)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Elder Scrolls V: Oblivion</Game>
+      <Game>Oblivion</Game>
+      <Game>TESIV</Game>
+      <Game>The Elder Scrolls 4: Oblivion</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TheFuncannon/Loadless.Oblivion/master/Oblivion.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available for patch 1.0. (By TheFuncannon)</Description>
+  </AutoSplitter>
 </AutoSplitters>
