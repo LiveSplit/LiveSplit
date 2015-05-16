@@ -505,6 +505,6 @@
       <URL>https://raw.githubusercontent.com/TheFuncannon/Loadless.Oblivion/master/Oblivion.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Load Removal are available for patch 1.0. (By TheFuncannon)</Description>
+    <Description>Load Removal is available for patch 1.0. (By TheFuncannon)</Description>
   </AutoSplitter>
 </AutoSplitters>
