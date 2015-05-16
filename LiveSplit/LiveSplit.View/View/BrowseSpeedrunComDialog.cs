@@ -73,16 +73,17 @@ namespace LiveSplit.View
             splitsTreeView.Nodes.Clear();
             try
             {
-                var searchText = txtSearch.Text;
-                if (!string.IsNullOrEmpty(searchText))
+                var fuzzyGameName = txtSearch.Text;
+                if (!string.IsNullOrEmpty(fuzzyGameName))
                 {
                     try
                     {
-                        var leaderboards = SpeedrunCom.Instance.GetLeaderboards(searchText);
+                        string actualGameName;
+                        var leaderboards = SpeedrunCom.Instance.GetLeaderboards(fuzzyGameName, out actualGameName);
                         var games = new[] { leaderboards };
                         foreach (var game in games)
                         {
-                            var gameNode = new TreeNode(searchText);
+                            var gameNode = new TreeNode(actualGameName);
                             var categories = game;
                             foreach (var category in categories)
                             {
@@ -111,8 +112,9 @@ namespace LiveSplit.View
 
                     try
                     {
-                        var games = SpeedrunCom.Instance.GetPersonalBestList(searchText);
-                        var userNode = new TreeNode("@" + searchText);
+                        var fuzzyUserName = txtSearch.Text;
+                        var games = SpeedrunCom.Instance.GetPersonalBestList(fuzzyUserName);
+                        var userNode = new TreeNode("@" + fuzzyUserName); //TODO: Shouldn't be fuzzy, could be queried from one of the PBs
                         foreach (var game in games)
                         {
                             var gameNode = new TreeNode(game.Key);
