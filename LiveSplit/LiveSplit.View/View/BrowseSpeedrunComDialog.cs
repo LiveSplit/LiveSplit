@@ -114,7 +114,8 @@ namespace LiveSplit.View
                     {
                         var fuzzyUserName = txtSearch.Text;
                         var games = SpeedrunCom.Instance.GetPersonalBestList(fuzzyUserName);
-                        var userNode = new TreeNode("@" + fuzzyUserName); //TODO: Shouldn't be fuzzy, could be queried from one of the PBs
+                        var userName = fuzzyUserName;
+                        var userNode = new TreeNode();
                         foreach (var game in games)
                         {
                             var gameNode = new TreeNode(game.Key);
@@ -123,6 +124,7 @@ namespace LiveSplit.View
                             {
                                 var categoryName = category.Key;
                                 var record = category.Value;
+                                userName = record.Runner;
 
                                 var place = formatPlace(record.Place);
                                 var runText = formatTime(record.Time) + " in " + categoryName + place;
@@ -133,9 +135,9 @@ namespace LiveSplit.View
                                     runNode.ForeColor = Color.Gray;
                                 gameNode.Nodes.Add(runNode);
                             }
-
                             userNode.Nodes.Add(gameNode);
                         }
+                        userNode.Text = "@" + userName;
                         splitsTreeView.Nodes.Add(userNode);
                     }
                     catch { }
