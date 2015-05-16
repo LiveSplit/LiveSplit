@@ -29,7 +29,7 @@ namespace LiveSplit.Web.Share
         private struct GamePair
         {
             public string Name;
-            public string Id;
+            public string ID;
         }
 
         protected static readonly SpeedrunCom _Instance = new SpeedrunCom();
@@ -39,7 +39,7 @@ namespace LiveSplit.Web.Share
         public static readonly Uri BaseUri = new Uri("http://www.speedrun.com/");
         public static readonly Uri APIUri = new Uri(BaseUri, "");
 
-        private IEnumerable<GamePair> gameList;
+        private List<GamePair> gameList;
 
         protected SpeedrunCom() { }
 
@@ -66,50 +66,37 @@ namespace LiveSplit.Web.Share
         {
             if (gameList == null)
             {
+                gameList = new List<GamePair>();
+
                 var request = WebRequest.Create(GetSiteUri("games"));
                 var stream = request.GetResponse().GetResponseStream();
                 using (var reader = new StreamReader(stream))
                 {
                     var html = reader.ReadToEnd();
 
-                    var thread = new Thread(() =>
-                    {
-                        try
-                        {
-                            var wbc = new WebBrowser();
-                            wbc.DocumentText = "";
-                            var doc = new HtmlDocument();
-                            doc.Write((string)html);
+                    var indexAlphabetic = html.IndexOf("<div class='optionon' id='alphabeticlist' style='display:none;'>");
+                    var indexByPlatform = html.IndexOf("<div class='optionon' id='byplatformlist' style='display:none;'>");
+                    var alphabeticList = html.Substring(indexAlphabetic, indexByPlatform - indexAlphabetic);
+                    var gamesHtml = alphabeticList.Split(new[] { "<a href='/" }, StringSplitOptions.None);
 
-                            var element = FindChildren(doc.Body, "div", id: "foregrounddiv").First();
-                            element = FindChildren(element, "div", className: "clearfix").First();
-                            element = FindChildren(element, "table").First();
-                            element = FindChildren(element, "tbody").First();
-                            element = FindChildren(element, "tr").First();
-                            element = FindChildren(element, "td").First();
-                            element = FindChildren(element, "div", className: "box padding lists").First();
-                            element = FindChildren(element, "div", id: "alphabeticlist").First();
-                            var allgames = FindChildren(element, "a");
-                            gameList = allgames.Select(x =>
-                                new GamePair
-                                {
-                                    Id = x.GetAttribute("href").Substring(1),
-                                    Name = HttpUtility.HtmlDecode(x.InnerHtml)
-                                }).ToList();
-                        }
-                        catch (Exception ex) { }
-                    }) { ApartmentState = ApartmentState.STA, IsBackground = true };
-                    thread.Start();
-                    thread.Join();
+                    foreach (var gameHtml in gamesHtml.Skip(1))
+                    {
+                        var indexGameId = gameHtml.IndexOf("'");
+                        var indexBeginGameName = gameHtml.IndexOf("'>") + 2;
+                        var indexEndGameName = gameHtml.IndexOf("</a>");
+                        var gameId = HttpUtility.HtmlDecode(gameHtml.Substring(0, indexGameId));
+                        var gameName = HttpUtility.HtmlDecode(gameHtml.Substring(indexBeginGameName, indexEndGameName - indexBeginGameName));
+
+                        gameList.Add(new GamePair()
+                            {
+                                ID = gameId,
+                                Name = gameName
+                            });
+                    }
                 }
             }
 
             return gameList;
-        }
-
-        public IEnumerable<string> GetGameNames()
-        {
-            return getGameList().Select(x => x.Name);
         }
 
         private IDictionary<string, dynamic> getWorldRecordList(string game)
@@ -254,6 +241,16 @@ namespace LiveSplit.Web.Share
             catch { }
 
             return new Record();
+        }
+
+        public IEnumerable<string> GetGameNames()
+        {
+            return getGameList().Select(x => x.Name);
+        }
+
+        public string GetGameID(string game)
+        {
+            return getGameList().FirstOrDefault(x => x.Name == game).ID;
         }
 
         public IEnumerable<string> GetCategories(string game)
