@@ -412,6 +412,20 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Robot Roller-Derby Disco Dodgeball</Game>
+      <Game>Disco Dodgeball</Game>
+      <Game>Robot Roller Derby Disco Dodgeball</Game>
+      <Game>Robot Rollerderby Disco Dodgeball</Game>
+      <Game>RRDDD</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MM4005/Disco-Dodgeball-Auto-Splitter-Script/master/LiveSplit.DiscoDodgeball.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic Timer Start and Auto Splitting is available. (By MM4005)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Aliens vs. Predator (2010)</Game>
       <Game>Aliens versus Predator (2010)</Game>
       <Game>AVP(2010)</Game>
@@ -419,17 +433,6 @@
     </Games>
     <URLs>
       <URL>https://github.com/SuiMachine/LiveSplit.AVP2010/raw/master/Components/LiveSplit.AVP2010.dll</URL>
-    </URLs>
-    <Type>Component</Type>
-    <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-    <Games>
-      <Game>Max Payne 2</Game>
-      <Game>Max Payne 2: The Fall of Max Payne</Game>
-    </Games>
-    <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.MaxPayne2/raw/master/Components/LiveSplit.MaxPayne2.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
@@ -476,5 +479,19 @@
     </URLs>
     <Type>Component</Type>
     <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Toy Story 2</Game>
+      <Game>Toy Story 2 Buzz Lightyear to the Rescue</Game>
+      <Game>Toy Story 2 Buzz Lightyear to the Rescue!</Game>
+      <Game>Toy Story 2: Buzz Lightyear to the Rescue</Game>
+      <Game>Toy Story 2: Buzz Lightyear to the Rescue!</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/cheeseandcereal/AutoSplitter/master/LiveSplit.ToyStory2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Reset/Splitting is available for emulator (By cheeseandcereal)</Description>
   </AutoSplitter>
 </AutoSplitters>

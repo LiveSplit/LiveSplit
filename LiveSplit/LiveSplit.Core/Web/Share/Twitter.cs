@@ -17,7 +17,7 @@ namespace LiveSplit.Web.Share
         internal const string ConsumerKey = "9oXx7khrRLpQdBjaEUUFw";
         internal const string ConsumerSecret = "KIvv2ZT89ZN1x99f7aUfFwXiwEyU9Am9Z9DYlspX0nU";
 
-        protected static Twitter _Instance = new Twitter();
+        protected static readonly Twitter _Instance = new Twitter();
 
         public static Twitter Instance { get { return _Instance; } }
 

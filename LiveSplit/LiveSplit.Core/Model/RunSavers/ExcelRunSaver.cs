@@ -16,72 +16,117 @@ namespace LiveSplit.Model.RunSavers
         {
             var workbook = new Workbook();
             var splitTimesSheet = workbook.Sheets.AddSheet("Splits");
-            var runHistorySheet = workbook.Sheets.AddSheet("Run History");
+            var attemptHistorySheet = workbook.Sheets.AddSheet("Attempt History");
             var segmentHistorySheet = workbook.Sheets.AddSheet("Segment History");
 
             FillSplitTimesSheet(splitTimesSheet, run);
-            FillRunHistorySheet(runHistorySheet, run);
+            FillAttemptHistorySheet(attemptHistorySheet, run);
             FillSegmentHistorySheet(segmentHistorySheet, run);
 
             workbook.SaveToStream(stream, Codaxy.Xlio.IO.XlsxFileWriterOptions.AutoFit);
         }
 
-        private void FillRunHistorySheet(Sheet sheet, IRun run)
+        private void FillAttemptHistorySheet(Sheet sheet, IRun run)
         {
+            var attemptIdColumn = 0;
+            var startedColumn = 1;
+            var endedColumn = 2;
+            var timeColumn = 3;
+
             var header = sheet.Data.Rows[0];
 
-            header[0].Value = "Run ID";
-            header[0].Style.Font.Bold = true;
-            header[0].Style.Font.Color = Color.White;
-            header[0].Style.Alignment.Horizontal = HorizontalAlignment.Center;
-            header[0].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
-            header[0].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
+            header[attemptIdColumn].Value = "Attempt ID";
+            header[attemptIdColumn].Style.Font.Bold = true;
+            header[attemptIdColumn].Style.Font.Color = Color.White;
+            header[attemptIdColumn].Style.Alignment.Horizontal = HorizontalAlignment.Center;
+            header[attemptIdColumn].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
+            header[attemptIdColumn].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
 
-            header[1].Value = "Time";
+            header[startedColumn].Value = "Started";
 
-            header[1].Style.Font.Bold = true;
-            header[1].Style.Font.Color = Color.White;
-            header[1].Style.Alignment.Horizontal = HorizontalAlignment.Center;
-            header[1].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
-            header[1].Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
-            header[1].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
+            header[startedColumn].Style.Font.Bold = true;
+            header[startedColumn].Style.Font.Color = Color.White;
+            header[startedColumn].Style.Alignment.Horizontal = HorizontalAlignment.Center;
+            header[startedColumn].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
+            header[startedColumn].Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
+            header[startedColumn].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
+
+            header[endedColumn].Value = "Ended";
+
+            header[endedColumn].Style.Font.Bold = true;
+            header[endedColumn].Style.Font.Color = Color.White;
+            header[endedColumn].Style.Alignment.Horizontal = HorizontalAlignment.Center;
+            header[endedColumn].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
+            header[endedColumn].Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
+            header[endedColumn].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
+
+            header[timeColumn].Value = "Time";
+
+            header[timeColumn].Style.Font.Bold = true;
+            header[timeColumn].Style.Font.Color = Color.White;
+            header[timeColumn].Style.Alignment.Horizontal = HorizontalAlignment.Center;
+            header[timeColumn].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
+            header[timeColumn].Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
+            header[timeColumn].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
 
             var rowIndex = 1;
             var bestTime = TimeSpan.MaxValue;
-            foreach (var runHistoryElement in run.RunHistory)
+            foreach (var attempt in run.AttemptHistory)
             {
                 var row = sheet.Data.Rows[rowIndex];
 
-                row[0].Value = runHistoryElement.Index;
-                row[0].Style.Fill = CellFill.Solid(
+                row[attemptIdColumn].Value = attempt.Index;
+                row[attemptIdColumn].Style.Fill = CellFill.Solid(
                     ((rowIndex & 1) == 1)
                     ? new Color(221, 221, 221)
                     : new Color(238, 238, 238));
 
-                var cell = row[1];
+                var startedCell = row[startedColumn];
+                startedCell.Style.Fill = CellFill.Solid(
+                    ((rowIndex & 1) == 1)
+                    ? new Color(221, 221, 221)
+                    : new Color(238, 238, 238));
+                startedCell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
+                startedCell.Style.Format = "dd mmm yy hh:mm:ss";
+                startedCell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
+                if (attempt.Started.HasValue)
+                    startedCell.Value = attempt.Started.Value;
 
-                cell.Style.Fill = CellFill.Solid(
+                var endedCell = row[endedColumn];
+                endedCell.Style.Fill = CellFill.Solid(
+                    ((rowIndex & 1) == 1)
+                    ? new Color(221, 221, 221)
+                    : new Color(238, 238, 238));
+                endedCell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
+                endedCell.Style.Format = "dd mmm yy hh:mm:ss";
+                endedCell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
+                if (attempt.Ended.HasValue)
+                    endedCell.Value = attempt.Ended.Value;
+
+                var timeCell = row[timeColumn];
+
+                timeCell.Style.Fill = CellFill.Solid(
                     ((rowIndex & 1) == 1)
                     ? new Color(221, 221, 221)
                     : new Color(238, 238, 238));
 
-                var time = runHistoryElement.Time.RealTime;
+                var time = attempt.Time.RealTime;
                 if (time.HasValue)
                 {
-                    cell.Value = time.Value.TotalDays;
+                    timeCell.Value = time.Value.TotalDays;
                     if (time.Value < bestTime)
                     {
                         bestTime = time.Value;
-                        cell.Style.Fill = CellFill.Solid(
+                        timeCell.Style.Fill = CellFill.Solid(
                             ((rowIndex & 1) == 1)
                             ? new Color(201, 231, 201)
                             : new Color(218, 248, 218));
                     }
                 }
 
-                cell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
-                cell.Style.Format = "[HH]:MM:SS.00";
-                cell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
+                timeCell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
+                timeCell.Style.Format = "[HH]:MM:SS.00";
+                timeCell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
 
 
                 ++rowIndex;
@@ -94,7 +139,7 @@ namespace LiveSplit.Model.RunSavers
         {
             var header = sheet.Data.Rows[0];
 
-            header[0].Value = "Run ID";
+            header[0].Value = "Attempt ID";
             header[0].Style.Font.Bold = true;
             header[0].Style.Font.Color = Color.White;
             header[0].Style.Alignment.Horizontal = HorizontalAlignment.Center;
@@ -119,11 +164,11 @@ namespace LiveSplit.Model.RunSavers
             }
 
             var rowIndex = 1;
-            foreach (var runHistoryElement in run.RunHistory)
+            foreach (var attempt in run.AttemptHistory)
             {
                 var row = sheet.Data.Rows[rowIndex];
 
-                row[0].Value = runHistoryElement.Index;
+                row[0].Value = attempt.Index;
                 row[0].Style.Fill = CellFill.Solid(
                     ((rowIndex & 1) == 1)
                     ? new Color(221, 221, 221)
@@ -132,7 +177,7 @@ namespace LiveSplit.Model.RunSavers
                 foreach (var segment in run)
                 {
                     var cell = row[columnIndex];
-                    var segmentHistoryElement = segment.SegmentHistory.FirstOrDefault(x => x.Index == runHistoryElement.Index);
+                    var segmentHistoryElement = segment.SegmentHistory.FirstOrDefault(x => x.Index == attempt.Index);
                     if (segmentHistoryElement != null)
                     {
                         var time = segmentHistoryElement.Time.RealTime;

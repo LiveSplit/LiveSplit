@@ -48,7 +48,7 @@ namespace LiveSplit.Model
         /// <summary>
         /// 
         /// </summary>
-        public IList<IIndexedTime> RunHistory { get; set; }
+        public IList<Attempt> AttemptHistory { get; set; }
 
         public AutoSplitter AutoSplitter { get; set; }
         public XmlElement AutoSplitterSettings { get; set; }
@@ -65,7 +65,7 @@ namespace LiveSplit.Model
         public Run(IComparisonGeneratorsFactory factory)
         {
             InternalList = new List<ISegment>();
-            RunHistory = new List<IIndexedTime>();
+            AttemptHistory = new List<Attempt>();
             Factory = factory;
             ComparisonGenerators = Factory.Create(this).ToList();
             CustomComparisons = new List<string>() { PersonalBestComparisonName };
@@ -78,7 +78,7 @@ namespace LiveSplit.Model
             {
                 InternalList.Add(x.Clone() as ISegment);
             }
-            RunHistory = new List<IIndexedTime>();
+            AttemptHistory = new List<Attempt>();
             Factory = factory;
             ComparisonGenerators = Factory.Create(this).ToList();
             CustomComparisons = new List<string>() { PersonalBestComparisonName };
@@ -116,9 +116,9 @@ namespace LiveSplit.Model
             InternalList.Add(item);
         }
 
-        public void AddSegment(string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<Time> segmentHistory = null)
+        public void AddSegment(string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<IIndexedTime> segmentHistory = null)
         {
-            Add(new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime));
+            Add(new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime) { SegmentHistory = segmentHistory });
         }
 
         public void Clear()
@@ -170,7 +170,7 @@ namespace LiveSplit.Model
                 CategoryName = CategoryName,
                 Offset = Offset,
                 AttemptCount = AttemptCount,
-                RunHistory = new List<IIndexedTime>(RunHistory),
+                AttemptHistory = new List<Attempt>(AttemptHistory),
                 HasChanged = HasChanged,
                 FilePath = FilePath,
                 CustomComparisons = new List<string>(CustomComparisons),
@@ -249,7 +249,7 @@ namespace LiveSplit.Model
         protected void RemoveNullValues(TimingMethod method)
         {
             var cache = new List<IIndexedTime>();
-            for (var runIndex = GetMinSegmentHistoryIndex(); runIndex <= RunHistory.Count; runIndex++)
+            for (var runIndex = GetMinSegmentHistoryIndex(); runIndex <= AttemptHistory.Count; runIndex++)
             {
                 for (var index = 0; index < Count; index++)
                 {

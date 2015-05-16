@@ -32,7 +32,7 @@ namespace LiveSplit.UI.Components
         {
             var path = Path.GetFullPath(Path.Combine(BasePath ?? "", PATH_COMPONENTS));
             ComponentFactories = Directory
-                .EnumerateFiles(path)
+                .EnumerateFiles(path, "*.dll")
                 .Select(x => 
                     {
                         var factory = LoadFactory(x);
@@ -49,13 +49,16 @@ namespace LiveSplit.UI.Components
             IComponentFactory factory = null;
             try
             {
-                factory = (IComponentFactory)(((ComponentFactoryAttribute)Attribute
-                    .GetCustomAttribute(
-                        Assembly.UnsafeLoadFrom(path),
-                        typeof(ComponentFactoryAttribute)))
-                    .ComponentFactoryClassType
-                    .GetConstructor(new Type[0])
-                    .Invoke(null));
+                var attr = (ComponentFactoryAttribute)Attribute
+                	.GetCustomAttribute(Assembly.UnsafeLoadFrom(path), typeof(ComponentFactoryAttribute));
+
+                if (attr != null)
+                {
+                    factory = (IComponentFactory)(attr.
+                        ComponentFactoryClassType.
+                        GetConstructor(new Type[0]).
+                        Invoke(null));
+                }
             }
             catch (Exception e)
             {

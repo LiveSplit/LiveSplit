@@ -9,6 +9,7 @@
             var splitterz = new SplitterZRunFactory();
             var llanfair = new LlanfairRunFactory();
             var shitsplit = new ShitSplitRunFactory();
+            var urn = new UrnRunFactory();
             var timesplittracker = new TimeSplitTrackerRunFactory();
 
             Add(xml, (s, f) => { xml.Stream = s; xml.FilePath = f; });
@@ -16,6 +17,7 @@
             Add(splitterz, (s, f) => splitterz.Stream = s);
             Add(llanfair, (s, f) => llanfair.Path = f);
             Add(shitsplit, (s, f) => shitsplit.Stream = s);
+            Add(urn, (s, f) => urn.Stream = s);
             Add(timesplittracker, (s, f) => { timesplittracker.Stream = s; timesplittracker.Path = f; });
         }
     }

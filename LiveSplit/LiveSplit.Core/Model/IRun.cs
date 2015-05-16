@@ -13,7 +13,7 @@ namespace LiveSplit.Model
         string CategoryName { get; set; }
         TimeSpan Offset { get; set; }
         int AttemptCount { get; set; }
-        IList<IIndexedTime> RunHistory { get; set; }
+        IList<Attempt> AttemptHistory { get; set; }
 
         AutoSplitter AutoSplitter { get; set; }
         XmlElement AutoSplitterSettings { get; set; }
@@ -25,7 +25,7 @@ namespace LiveSplit.Model
         bool HasChanged { get; set; }
         string FilePath { get; set; }
 
-        void AddSegment(string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<Time> segmentHistory = null);
+        void AddSegment(string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<IIndexedTime> segmentHistory = null);
         void FixSplits();
         void ImportSegmentHistory();
         void ImportBestSegment(int segmentIndex);

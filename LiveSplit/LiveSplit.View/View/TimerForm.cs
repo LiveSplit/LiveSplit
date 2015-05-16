@@ -154,7 +154,7 @@ namespace LiveSplit.View
             UpdateRecentSplits();
             UpdateRecentLayouts();
 
-            IRun run = null;
+            IRun run = TimerOnlyRun;
             try
             {
                 if (!string.IsNullOrEmpty(splitsPath))
@@ -163,14 +163,13 @@ namespace LiveSplit.View
                 }
                 else
                 {
-                    run = LoadRunFromFile(Settings.RecentSplits.Last(), true);
+                    if (Settings.RecentSplits.Count > 0)
+                        run = LoadRunFromFile(Settings.RecentSplits.Last(), true);
                 }
             }
             catch (Exception e)
             {
                 Log.Error(e);
-
-                run = TimerOnlyRun;
             }
 
             run.FixSplits();
@@ -185,20 +184,25 @@ namespace LiveSplit.View
                 }
                 else
                 {
-                    Layout = LoadLayoutFromFile(Settings.RecentLayouts.Last());
+                    if (Settings.RecentLayouts.Count > 0 
+                        && !string.IsNullOrEmpty(Settings.RecentLayouts.Last()))
+                    {
+                        Layout = LoadLayoutFromFile(Settings.RecentLayouts.Last());
+                    }
+                    else if (run == TimerOnlyRun)
+                    {
+                        Layout = TimerOnlyLayout;
+                        InTimerOnlyMode = true;
+                    }
+                    else
+                    {
+                        Layout = new StandardLayoutFactory().Create(CurrentState);
+                    }
                 }
             }
             catch (Exception e)
             {
-                Log.Error(e);
-
-                if (run == TimerOnlyRun)
-                {
-                    Layout = TimerOnlyLayout;
-                    InTimerOnlyMode = true;
-                }
-                else
-                    Layout = new StandardLayoutFactory().Create(CurrentState);
+                Log.Error(e); 
             }
 
             CurrentState.LayoutSettings = Layout.Settings;
@@ -295,20 +299,9 @@ namespace LiveSplit.View
 
         void SRL_RacesRefreshed(object sender, EventArgs e)
         {
-            Action<string> addString = null;
             Action<ToolStripItem> addItem = null;
             Action clear = null;
-            addString = x =>
-            {
-                if (InvokeRequired)
-                {
-                    Invoke(addString, x);
-                }
-                else
-                {
-                    racingMenuItem.DropDownItems.Add(x.Replace("&", "&&"));
-                }
-            };
+
             addItem = x =>
             {
                 if (InvokeRequired)
@@ -1610,7 +1603,7 @@ namespace LiveSplit.View
                 {
                     Model.Reset();
                     modelCopy.SetRunAsPB();
-                    modelCopy.UpdateRunHistory();
+                    modelCopy.UpdateAttemptHistory();
                     modelCopy.UpdateBestSegments();
                     modelCopy.UpdateSegmentHistory();
                     SetRun(stateCopy.Run);

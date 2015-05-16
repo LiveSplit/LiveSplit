@@ -39,7 +39,7 @@ namespace LiveSplit.Model.RunSavers
 
             var runHistory = new List<DynamicJsonObject>();
             document.runHistory = runHistory;
-            foreach (var historyItem in run.RunHistory)
+            foreach (var historyItem in run.AttemptHistory)
             {
                 runHistory.Add(historyItem.ToJson());
             }

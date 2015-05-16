@@ -6,7 +6,7 @@ namespace LiveSplit.Web.Share
 {
     public class PBTracker : ASUPRunUploadPlatform
     {
-        protected static PBTracker _Instance = new PBTracker();
+        protected static readonly PBTracker _Instance = new PBTracker();
 
         public static PBTracker Instance { get { return _Instance; } }
 

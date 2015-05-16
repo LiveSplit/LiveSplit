@@ -11,7 +11,7 @@ namespace LiveSplit.Web.SRL
 {
     public class SpeedRunsLiveAPI
     {
-        protected static SpeedRunsLiveAPI _Instance = new SpeedRunsLiveAPI();
+        protected static readonly SpeedRunsLiveAPI _Instance = new SpeedRunsLiveAPI();
 
         public static SpeedRunsLiveAPI Instance { get { return _Instance; } }
         public static readonly Uri BaseUri = new Uri("http://api.speedrunslive.com:81/");
