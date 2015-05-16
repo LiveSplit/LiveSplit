@@ -197,22 +197,22 @@ namespace LiveSplit.View
         {
             DeactivateAutoSplitter();
             var splitter = AutoSplitterFactory.Instance.Create(cbxGameName.Text);
-            CurrentState.Run.AutoSplitter = splitter;
+            Run.AutoSplitter = splitter;
             if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
             {
                 splitter.Activate(CurrentState);
-                if (CurrentState.Run.AutoSplitterSettings != null
+                if (Run.AutoSplitterSettings != null
                 && splitter.IsActivated
-                && CurrentState.Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
-                    CurrentState.Run.AutoSplitter.Component.SetSettings(CurrentState.Run.AutoSplitterSettings);
+                && Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
+                    Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
             }
             RefreshAutoSplittingUI();
         }
 
         private void DeactivateAutoSplitter()
         {
-            if (CurrentState.Run.AutoSplitter != null)
-                CurrentState.Run.AutoSplitter.Deactivate();
+            if (Run.AutoSplitter != null)
+                Run.AutoSplitter.Deactivate();
         }
 
         void RefreshCategoryAutoCompleteList()
@@ -1138,34 +1138,34 @@ namespace LiveSplit.View
 
         protected void RefreshAutoSplittingUI()
         {
-            lblDescription.Text = CurrentState.Run.AutoSplitter == null
+            lblDescription.Text = Run.AutoSplitter == null
                 ? "There is no Auto Splitter available for this game."
-                : CurrentState.Run.AutoSplitter.Description;
-            btnActivate.Text = CurrentState.Run.IsAutoSplitterActive()
+                : Run.AutoSplitter.Description;
+            btnActivate.Text = Run.IsAutoSplitterActive()
                 ? "Deactivate"
                 : "Activate";
-            btnActivate.Enabled = CurrentState.Run.AutoSplitter != null;
-            btnSettings.Enabled = CurrentState.Run.IsAutoSplitterActive() && CurrentState.Run.AutoSplitter.Component.GetSettingsControl(LayoutMode.Vertical) != null;
+            btnActivate.Enabled = Run.AutoSplitter != null;
+            btnSettings.Enabled = Run.IsAutoSplitterActive() && Run.AutoSplitter.Component.GetSettingsControl(LayoutMode.Vertical) != null;
         }
 
         private void btnActivate_Click(object sender, EventArgs e)
         {
-            if (CurrentState.Run.AutoSplitter.IsActivated)
+            if (Run.AutoSplitter.IsActivated)
             {
-                CurrentState.Settings.ActiveAutoSplitters.Remove(CurrentState.Run.GameName);
-                CurrentState.Run.AutoSplitter.Deactivate();
+                CurrentState.Settings.ActiveAutoSplitters.Remove(Run.GameName);
+                Run.AutoSplitter.Deactivate();
             }
             else
             {
-                CurrentState.Settings.ActiveAutoSplitters.Add(CurrentState.Run.GameName);
-                CurrentState.Run.AutoSplitter.Activate(CurrentState);
+                CurrentState.Settings.ActiveAutoSplitters.Add(Run.GameName);
+                Run.AutoSplitter.Activate(CurrentState);
             }
             RefreshAutoSplittingUI();
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
-            var dialog = new ComponentSettingsDialog(CurrentState.Run.AutoSplitter.Component);
+            var dialog = new ComponentSettingsDialog(Run.AutoSplitter.Component);
             var result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -1242,7 +1242,7 @@ namespace LiveSplit.View
 
         private void ImportClick(IRunImporter importer)
         {
-            var name = importer.ImportAsComparison(CurrentState.Run, this);
+            var name = importer.ImportAsComparison(Run, this);
             if (name != null)
                 AddComparisonColumn(name);
         }

@@ -13,6 +13,20 @@ namespace LiveSplit.Web.Share
     {
         public struct Record
         {
+            public Uri URL
+            {
+                get
+                {
+                    // TODO: There's no way to figure out the game id at the moment
+                    // so this has to be fixed once there's a way to figure it out.
+                    return new Uri(
+                        string.Format("http://www.speedrun.com/tww/run/{0}",
+                                      HttpUtility.UrlPathEncode(
+                                          ID.ToString(CultureInfo.InvariantCulture))
+                                     ));
+                }
+            }
+            public int ID;
             public int? Place;
             public string Runner;
             public Time Time;
@@ -150,8 +164,12 @@ namespace LiveSplit.Web.Share
             if (!String.IsNullOrEmpty(entry.video))
                 video = new Uri(entry.video);
 
+            var id = 0;
+            int.TryParse(entry.id as string, NumberStyles.Integer, CultureInfo.InvariantCulture, out id);
+
             return new Record
             {
+                ID = id,
                 Place = place,
                 Time = time,
                 Date = date,
