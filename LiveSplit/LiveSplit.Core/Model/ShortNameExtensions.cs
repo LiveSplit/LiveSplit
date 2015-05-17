@@ -7,46 +7,69 @@ namespace LiveSplit.Model
 {
     public static class ShortNameExtensions
     {
+        private static bool endsWithRomanNumeral(string name)
+        {
+            var romanSymbols = new[] { 'I', 'V', 'X' };
+            var charBeforeRomanNumeral = name
+                .Reverse()
+                .SkipWhile(c => romanSymbols.Contains(c))
+                .FirstOrDefault();
+
+            return charBeforeRomanNumeral == ' '
+                || charBeforeRomanNumeral == default(char);
+        }
+
+        private static bool isAllCaps(string name)
+        {
+            return !name.Where(c => !char.IsUpper(c)).Any();
+        }
+
+        private static bool tokenize(string name, string splitToken, List<string> list)
+        {
+            if (name.Contains(splitToken))
+            {
+                var splits = name.Split(new[] { splitToken }, 2, StringSplitOptions.None);
+                var firstPart = splits[0];
+                var secondPart = splits[1];
+                var firstPartShortNames = firstPart.GetShortNames();
+                var secondPartShortNames = secondPart.GetShortNames();
+                var firstPartTrimmed = firstPart.Trim();
+
+                if (!string.IsNullOrEmpty(firstPartTrimmed)
+                    && (char.IsDigit(firstPartTrimmed.Last())
+                        || endsWithRomanNumeral(firstPartTrimmed)))
+                {
+                    list.AddRange(firstPartShortNames);
+                }
+                list.AddRange(secondPartShortNames);
+
+                foreach (var secondPartShortName in secondPartShortNames)
+                {
+                    foreach (var firstPartShortName in firstPartShortNames)
+                    {
+                        list.Add(firstPartShortName + splitToken + secondPartShortName);
+                    }
+                }
+
+                return true;
+            }
+            return false;
+        }
+
         public static IEnumerable<string> GetShortNames(this string name)
         {
             name = name.Trim();
 
             var list = new List<string>() { name };
 
-            if (name.Contains(": "))
+            if (name.Contains(')'))
             {
-                var splits = name.Split(new[] { ": " }, 2, StringSplitOptions.None);
-                var firstPart = splits[0];
-                var secondPart = splits[1];
-                var firstPartShortNames = firstPart.GetShortNames();
-                var secondPartShortNames = secondPart.GetShortNames();
-                list.AddRange(secondPartShortNames);
-
-                foreach (var secondPartShortName in secondPartShortNames)
-                {
-                    foreach (var firstPartShortName in firstPartShortNames)
-                    {
-                        list.Add(firstPartShortName + ": " + secondPartShortName);
-                    }
-                }
+                var endingBracketRemoved = name.Substring(0, name.LastIndexOf(')'));
+                var startingBrackedRemoved = endingBracketRemoved.Substring(0, endingBracketRemoved.LastIndexOf('('));
+                list.AddRange(GetShortNames(startingBrackedRemoved));
             }
-            else if (name.Contains(" - "))
-            {
-                var splits = name.Split(new[] { " - " }, 2, StringSplitOptions.None);
-                var firstPart = splits[0];
-                var secondPart = splits[1];
-                var firstPartShortNames = firstPart.GetShortNames();
-                var secondPartShortNames = secondPart.GetShortNames();
-                list.AddRange(secondPartShortNames);
-
-                foreach (var secondPartShortName in secondPartShortNames)
-                {
-                    foreach (var firstPartShortName in firstPartShortNames)
-                    {
-                        list.Add(firstPartShortName + " - " + secondPartShortName);
-                    }
-                }
-            }
+            else if (tokenize(name, ": ", list)) { }
+            else if (tokenize(name, " - ", list)) { }
             else if (name.ToLower().Contains(" and "))
             {
                 var index = name.ToLower().IndexOf(" and ");
@@ -60,9 +83,15 @@ namespace LiveSplit.Model
                 var splits = name.Split(new[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
                 var abbreviation = splits
                     .Select(x =>
-                        char.IsDigit(x[0])
-                        ? x.TakeWhile(c => char.IsDigit(c)).Aggregate("", (a, b) => a + b)
-                        : x[0].ToString())
+                        {
+                            if (char.IsDigit(x[0]))
+                                return x
+                                    .TakeWhile(c => c != ' ')
+                                    .Aggregate("", (a, b) => a + b);
+                            if (x.Length <= 4 && isAllCaps(x))
+                                return " " + x;
+                            return x[0].ToString();
+                        })
                     .Aggregate("", (a, b) => a + b);
                 list.Add(abbreviation);
             }
