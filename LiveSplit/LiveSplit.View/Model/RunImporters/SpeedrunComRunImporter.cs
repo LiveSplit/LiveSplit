@@ -21,7 +21,7 @@ namespace LiveSplit.Model.RunImporters
 
         public string ImportAsComparison(IRun run, Form form = null)
         {
-            var dialog = new BrowseSpeedrunComDialog(true);
+            var dialog = new BrowseSpeedrunComDialog(true, run.GameName, run.CategoryName);
             var result = dialog.ShowDialog(form);
             var name = dialog.RunName;
             if (result == DialogResult.OK)

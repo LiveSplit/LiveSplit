@@ -33,10 +33,30 @@ namespace LiveSplit.View
             }
         }
 
-        public BrowseSpeedrunComDialog(bool isImporting = false)
+        public BrowseSpeedrunComDialog(bool isImporting = false, string gameName = null, string categoryName = null)
         {
             InitializeComponent();
             chkIncludeTimes.Visible = chkDownloadEmpty.Visible = !isImporting;
+
+            if (!string.IsNullOrEmpty(gameName))
+            {
+                txtSearch.Text = gameName;
+                btnSearch_Click(this, null);
+
+                if (!string.IsNullOrEmpty(categoryName))
+                {
+                    if (splitsTreeView.Nodes.Count > 0)
+                    {
+                        var gameNode = splitsTreeView.Nodes[0];
+                        gameNode.Expand();
+                        var categoryNode = gameNode.Nodes.Cast<TreeNode>().FirstOrDefault(x => x.Text == categoryName);
+                        if (categoryNode != null)
+                        {
+                            categoryNode.Expand();
+                        }
+                    }
+                }
+            }
         }
 
         private int getDigits(int n)
