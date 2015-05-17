@@ -2,6 +2,7 @@
 using LiveSplit.Options;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -74,6 +75,12 @@ namespace LiveSplit.Web.Share
         public Uri GetRunUri(string gameId, int runId)
         {
             var uri = string.Format("{0}/run/{1}", HttpUtility.UrlPathEncode(gameId), runId);
+            return GetSiteUri(uri);
+        }
+
+        public Uri GetGameCoverUri(string gameId)
+        {
+            var uri = string.Format("themes/{0}/cover-128.png", HttpUtility.UrlPathEncode(gameId));
             return GetSiteUri(uri);
         }
 
@@ -324,6 +331,17 @@ namespace LiveSplit.Web.Share
         {
             //TODO: Implement a proper way of figuring out the Category ID
             return categoryName;
+        }
+
+        public Image GetGameCover(string gameId)
+        {
+            var coverUri = GetGameCoverUri(gameId);
+            var request = WebRequest.Create(coverUri.AbsoluteUri);
+            var response = request.GetResponse();
+            using (var stream = response.GetResponseStream())
+            {
+                return Image.FromStream(stream);
+            }
         }
 
         public IEnumerable<string> GetCategories(string fuzzyGameName, out string actualGameName)
