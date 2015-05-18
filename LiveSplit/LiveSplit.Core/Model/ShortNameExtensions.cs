@@ -19,9 +19,9 @@ namespace LiveSplit.Model
                 || charBeforeRomanNumeral == default(char);
         }
 
-        private static bool isAllCaps(string name)
+        private static bool isAllCapsOrDigit(string name)
         {
-            return !name.Where(c => !char.IsUpper(c)).Any();
+            return !name.Where(c => !(char.IsUpper(c) || char.IsDigit(c))).Any();
         }
 
         private static bool tokenize(string name, string splitToken, List<string> list)
@@ -80,7 +80,9 @@ namespace LiveSplit.Model
             }
             else if (name.Contains(" "))
             {
-                var splits = name.Split(new[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
+                var splits = name
+                    .Replace('&', 'a')
+                    .Split(new[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
                 var abbreviation = splits
                     .Select(x =>
                         {
@@ -88,11 +90,12 @@ namespace LiveSplit.Model
                                 return x
                                     .TakeWhile(c => c != ' ')
                                     .Aggregate("", (a, b) => a + b);
-                            if (x.Length <= 4 && isAllCaps(x))
+                            if (x.Length <= 4 && isAllCapsOrDigit(x))
                                 return " " + x;
                             return x[0].ToString();
                         })
-                    .Aggregate("", (a, b) => a + b);
+                    .Aggregate("", (a, b) => a + b)
+                    .Trim();
                 list.Add(abbreviation);
             }
 
