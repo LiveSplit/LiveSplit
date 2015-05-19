@@ -290,7 +290,7 @@ namespace LiveSplit.View
                 else if (splitsTreeView.SelectedNode.Tag is TaggedRecord)
                 {
                     var taggedRecord = (TaggedRecord)splitsTreeView.SelectedNode.Tag;
-                    var uri = SpeedrunCom.Instance.GetRunUri(taggedRecord.GameID, taggedRecord.Record.ID);
+                    var uri = SpeedrunCom.Instance.GetRunUri(taggedRecord.Record.ID);
                     Process.Start(uri.AbsoluteUri);
                 }
             }

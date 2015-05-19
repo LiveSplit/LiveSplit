@@ -80,9 +80,9 @@ namespace LiveSplit.Web.Share
             return GetSiteUri(uri);
         }
 
-        public Uri GetRunUri(string gameId, int runId)
+        public Uri GetRunUri(int runId)
         {
-            var uri = string.Format("{0}/run/{1}", HttpUtility.UrlPathEncode(gameId), runId);
+            var uri = string.Format("run/{0}", runId);
             return GetSiteUri(uri);
         }
 
