@@ -130,9 +130,10 @@ namespace LiveSplit.View
                                 foreach (var record in records)
                                 {
                                     var place = record.Place.HasValue
-                                        ? (record.Place.Value.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ". ")
+                                        ? (record.Place.Value.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ".   ")
                                         : "";
-                                    var runText = place + (record.Time[timingMethod].HasValue ? new ShortTimeFormatter().Format(record.Time[timingMethod]) : "") + " by " + record.Runner;
+                                    var runners = record.Runners.Aggregate((a, b) => a + " & " + b);
+                                    var runText = place + (record.Time[timingMethod].HasValue ? new ShortTimeFormatter().Format(record.Time[timingMethod]) : "") + " by " + runners;
                                     var runNode = new TreeNode(runText);
                                     runNode.Tag = new TaggedRecord(gameId, record);
                                     if (!record.RunAvailable)
@@ -151,6 +152,7 @@ namespace LiveSplit.View
                         var fuzzyUserName = txtSearch.Text;
                         var games = SpeedrunCom.Instance.GetPersonalBestList(fuzzyUserName);
                         var userName = fuzzyUserName;
+                        IEnumerable<string> possibleUsernames = null;
                         var userNode = new TreeNode();
                         foreach (var game in games)
                         {
@@ -162,10 +164,18 @@ namespace LiveSplit.View
                             {
                                 var categoryName = category.Key;
                                 var record = category.Value;
-                                userName = record.Runner;
+                                if (possibleUsernames == null)
+                                {
+                                    possibleUsernames = record.Runners;
+                                }
+                                else
+                                {
+                                    possibleUsernames = possibleUsernames.Intersect(record.Runners);
+                                }
 
                                 var place = formatPlace(record.Place);
-                                var runText = formatTime(record.Time) + " in " + categoryName + place;
+                                var coopRunners = record.Runners.Count() > 1 ? " by " + record.Runners.Aggregate((a, b) => a + " & " + b) : "";
+                                var runText = formatTime(record.Time) + " in " + categoryName + coopRunners + place;
 
                                 var runNode = new TreeNode(runText);
                                 runNode.Tag = new TaggedRecord(gameId, record);
@@ -174,6 +184,10 @@ namespace LiveSplit.View
                                 gameNode.Nodes.Add(runNode);
                             }
                             userNode.Nodes.Add(gameNode);
+                        }
+                        if (possibleUsernames != null && possibleUsernames.Any() && !possibleUsernames.Skip(1).Any())
+                        {
+                            userName = possibleUsernames.First();
                         }
                         userNode.Tag = SpeedrunCom.Instance.GetUserUri(userName);
                         userNode.Text = "@" + userName;
@@ -198,7 +212,8 @@ namespace LiveSplit.View
                     var taggedRecord = (TaggedRecord)splitsTreeView.SelectedNode.Tag;
                     var record = taggedRecord.Record;
                     Run = record.Run.Value;
-                    RunName = record.Runner;
+                    var runners = record.Runners.Aggregate((a, b) => a + " & " + b);
+                    RunName = runners;
                     var result = PostProcessRun(RunName);
                     if (result == DialogResult.OK)
                     {

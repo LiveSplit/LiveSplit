@@ -20,7 +20,7 @@ namespace LiveSplit.Web.Share
         {
             public int ID;
             public int? Place;
-            public string Runner;
+            public IEnumerable<string> Runners;
             public Time Time;
             public DateTime? Date;
             public Uri Video;
@@ -176,7 +176,15 @@ namespace LiveSplit.Web.Share
 
         private Record getRecordEntry(dynamic entry)
         {
-            var runner = entry.player;
+            var runners = new List<string>() { entry.player };
+            var properties = entry.Properties as IDictionary<string, dynamic>;
+            string runnerKey;
+
+            for (var i = 2; properties.ContainsKey(runnerKey = string.Format("player{0}", i)); ++i)
+            {
+                runners.Add(properties[runnerKey] as string);
+            }
+
             Time time = new Time();
 
             if (entry.time != null)
@@ -260,7 +268,7 @@ namespace LiveSplit.Web.Share
                 Time = time,
                 Date = date,
                 Video = video,
-                Runner = runner,
+                Runners = runners,
                 Run = run
             };
         }
