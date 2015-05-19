@@ -2,10 +2,15 @@
 using LiveSplit.Options;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
+using System.Threading;
 using System.Web;
+using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share
 {
@@ -13,13 +18,28 @@ namespace LiveSplit.Web.Share
     {
         public struct Record
         {
+            public int ID;
             public int? Place;
-            public string Runner;
+            public IEnumerable<string> Runners;
             public Time Time;
             public DateTime? Date;
             public Uri Video;
             public bool RunAvailable { get { return Run != null; } }
             public Lazy<IRun> Run;
+        }
+
+        private struct GamePair
+        {
+            public string Name;
+            public string ID;
+        }
+
+        public enum CoverResolution : int
+        {
+            x32 = 32,
+            x64 = 64,
+            x128 = 128,
+            x256 = 256
         }
 
         protected static readonly SpeedrunCom _Instance = new SpeedrunCom();
@@ -28,6 +48,8 @@ namespace LiveSplit.Web.Share
 
         public static readonly Uri BaseUri = new Uri("http://www.speedrun.com/");
         public static readonly Uri APIUri = new Uri(BaseUri, "");
+
+        private List<GamePair> gameList;
 
         protected SpeedrunCom() { }
 
@@ -41,38 +63,107 @@ namespace LiveSplit.Web.Share
             return new Uri(APIUri, subUri);
         }
 
-        private IDictionary<string, dynamic> getWorldRecordList(string game)
+        public Uri GetGameUri(string gameId)
         {
-            var uri = GetAPIUri(string.Format("api_records.php?game={0}", HttpUtility.UrlPathEncode(game)));
-            var response = JSON.FromUri(uri);
-            response = (response.Properties.Values as IEnumerable<dynamic>).First();
-            return response.Properties as IDictionary<string, dynamic>;
+            return GetSiteUri(HttpUtility.UrlPathEncode(gameId));
         }
 
-        private IDictionary<string, dynamic> getPersonalBestList(string runner, string game)
+        public Uri GetCategoryUri(string gameId, string categoryId)
         {
-            var uri = GetAPIUri(string.Format("api_records.php?game={0}&user={1}", 
-                HttpUtility.UrlPathEncode(game), HttpUtility.UrlPathEncode(runner)));
-
-            var response = JSON.FromUri(uri);
-            response = (response.Properties.Values as IEnumerable<dynamic>).First();
-            return response.Properties as IDictionary<string, dynamic>;
+            var uri = string.Format("{0}#{1}", HttpUtility.UrlPathEncode(gameId), HttpUtility.UrlPathEncode(categoryId));
+            return GetSiteUri(uri);
         }
 
-        private IDictionary<string, IDictionary<string, dynamic>> getPersonalBestList(string runner)
+        public Uri GetUserUri(string userName)
         {
-            var uri = GetAPIUri(string.Format("api_records.php?user={0}", HttpUtility.UrlPathEncode(runner)));
+            var uri = string.Format("user/{0}", HttpUtility.UrlPathEncode(userName));
+            return GetSiteUri(uri);
+        }
+
+        public Uri GetRunUri(int runId)
+        {
+            var uri = string.Format("run/{0}", runId);
+            return GetSiteUri(uri);
+        }
+
+        public Uri GetGameCoverUri(string gameId, CoverResolution resolution = CoverResolution.x128)
+        {
+            var uri = string.Format("themes/{0}/cover-{1}.png", HttpUtility.UrlPathEncode(gameId), (int)resolution);
+            return GetSiteUri(uri);
+        }
+
+        private IEnumerable<GamePair> getGameList()
+        {
+            if (gameList == null)
+            {
+                gameList = new List<GamePair>();
+
+                var request = WebRequest.Create(GetSiteUri("games"));
+                var stream = request.GetResponse().GetResponseStream();
+                using (var reader = new StreamReader(stream))
+                {
+                    var html = reader.ReadToEnd();
+
+                    var indexAlphabetic = html.IndexOf("<div class='optionon' id='alphabeticlist' style='display:none;'>");
+                    var indexByPlatform = html.IndexOf("<div class='optionon' id='byplatformlist' style='display:none;'>");
+                    var alphabeticList = html.Substring(indexAlphabetic, indexByPlatform - indexAlphabetic);
+                    var gamesHtml = alphabeticList.Split(new[] { "<a href='/" }, StringSplitOptions.None);
+
+                    foreach (var gameHtml in gamesHtml.Skip(1))
+                    {
+                        var indexGameId = gameHtml.IndexOf("'");
+                        var indexBeginGameName = gameHtml.IndexOf("'>") + 2;
+                        var indexEndGameName = gameHtml.IndexOf("</a>");
+                        var gameId = HttpUtility.HtmlDecode(gameHtml.Substring(0, indexGameId));
+                        var gameName = HttpUtility.HtmlDecode(gameHtml.Substring(indexBeginGameName, indexEndGameName - indexBeginGameName));
+
+                        gameList.Add(new GamePair()
+                            {
+                                ID = gameId,
+                                Name = gameName
+                            });
+                    }
+                }
+            }
+
+            return gameList;
+        }
+
+        private IDictionary<string, dynamic> getWorldRecordList(string fuzzyGameName, out string actualGameName)
+        {
+            var uri = GetAPIUri(string.Format("api_records.php?game={0}", HttpUtility.UrlPathEncode(fuzzyGameName)));
+            var response = JSON.FromUri(uri);
+            var pair = (response.Properties as IDictionary<string, dynamic>).First();
+            actualGameName = pair.Key;
+            return pair.Value.Properties as IDictionary<string, dynamic>;
+        }
+
+        private IDictionary<string, dynamic> getPersonalBestList(string runnerName, string fuzzyGameName, out string actualGameName)
+        {
+            var uri = GetAPIUri(string.Format("api_records.php?game={0}&user={1}",
+                HttpUtility.UrlPathEncode(fuzzyGameName), HttpUtility.UrlPathEncode(runnerName)));
+
+            var response = JSON.FromUri(uri);
+            var pair = (response.Properties as IDictionary<string, dynamic>).First();
+            actualGameName = pair.Key;
+            return pair.Value.Properties as IDictionary<string, dynamic>;
+        }
+
+        private IDictionary<string, IDictionary<string, dynamic>> getPersonalBestList(string runnerName)
+        {
+            var uri = GetAPIUri(string.Format("api_records.php?user={0}", HttpUtility.UrlPathEncode(runnerName)));
             var response = JSON.FromUri(uri);
             var games = response.Properties as IDictionary<string, dynamic>;
             return games.ToDictionary(x => x.Key, x => x.Value.Properties as IDictionary<string, dynamic>);
         }
 
-        private IDictionary<string, dynamic> getLeaderboards(string game)
+        private IDictionary<string, dynamic> getLeaderboards(string fuzzyGameName, out string actualGameName)
         {
-            var uri = GetAPIUri(string.Format("api_records.php?game={0}&amount=9999", HttpUtility.UrlPathEncode(game)));
+            var uri = GetAPIUri(string.Format("api_records.php?game={0}&amount=9999", HttpUtility.UrlPathEncode(fuzzyGameName)));
             var response = JSON.FromUri(uri);
-            response = (response.Properties.Values as IEnumerable<dynamic>).First();
-            return response.Properties as IDictionary<string, dynamic>;
+            var pair = (response.Properties as IDictionary<string, dynamic>).First();
+            actualGameName = pair.Key;
+            return pair.Value.Properties as IDictionary<string, dynamic>;
         }
 
         private Record getWorldRecordEntry(dynamic entry)
@@ -85,7 +176,15 @@ namespace LiveSplit.Web.Share
 
         private Record getRecordEntry(dynamic entry)
         {
-            var runner = entry.player;
+            var runners = new List<string>() { entry.player };
+            var properties = entry.Properties as IDictionary<string, dynamic>;
+            string runnerKey;
+
+            for (var i = 2; properties.ContainsKey(runnerKey = string.Format("player{0}", i)); ++i)
+            {
+                runners.Add(properties[runnerKey] as string);
+            }
+
             Time time = new Time();
 
             if (entry.time != null)
@@ -104,7 +203,7 @@ namespace LiveSplit.Web.Share
                 else
                     time.RealTime = null;
             }
-            
+
             if ((entry.Properties as IDictionary<string, dynamic>).ContainsKey("timeigt"))
             {
                 //If there's timeigt, use that as the Game Time instead of Time without Loads
@@ -140,6 +239,7 @@ namespace LiveSplit.Web.Share
 
             DateTime? date = null;
             Uri video = null;
+            string videoString = entry.video;
 
             if (!String.IsNullOrEmpty(entry.date))
                 date = new DateTime(1970, 1, 1)
@@ -147,25 +247,51 @@ namespace LiveSplit.Web.Share
                         double.Parse(entry.date,
                         CultureInfo.InvariantCulture));
 
-            if (!String.IsNullOrEmpty(entry.video))
-                video = new Uri(entry.video);
+            if (!string.IsNullOrEmpty(videoString))
+            {
+                if (!videoString.StartsWith("http"))
+                    videoString = "http://" + videoString;
+                try
+                {
+                    video = new Uri(videoString);
+                }
+                catch { }
+            }
+
+            var id = 0;
+            int.TryParse(entry.id as string, NumberStyles.Integer, CultureInfo.InvariantCulture, out id);
 
             return new Record
             {
+                ID = id,
                 Place = place,
                 Time = time,
                 Date = date,
                 Video = video,
-                Runner = runner,
+                Runners = runners,
                 Run = run
             };
         }
 
-        public IDictionary<string, Record> GetWorldRecordList(string game)
+        public TimingMethod GetLeaderboardTimingMethod(IEnumerable<Record> leaderboard)
+        {
+            var lastRecord = leaderboard.First();
+
+            foreach (var record in leaderboard)
+            {
+                if (lastRecord.Time.RealTime > record.Time.RealTime)
+                    return TimingMethod.GameTime;
+                lastRecord = record;
+            }
+
+            return TimingMethod.RealTime;
+        }
+
+        public IDictionary<string, Record> GetWorldRecordList(string fuzzyGameName, out string actualGameName)
         {
             var recordList = new Dictionary<string, Record>();
 
-            foreach (var entry in getWorldRecordList(game))
+            foreach (var entry in getWorldRecordList(fuzzyGameName, out actualGameName))
             {
                 recordList.Add(entry.Key, getWorldRecordEntry(entry.Value));
             }
@@ -173,53 +299,107 @@ namespace LiveSplit.Web.Share
             return recordList;
         }
 
-        public Record GetWorldRecord(string game, string category)
+        public IDictionary<string, Record> GetWorldRecordList(string fuzzyGameName)
+        {
+            string dummy;
+            return GetWorldRecordList(fuzzyGameName, out dummy);
+        }
+
+        public Record GetWorldRecord(string fuzzyGameName, string categoryName, out string actualGameName)
         {
             try
             {
-                var worldRecordList = getWorldRecordList(game);
-                return getWorldRecordEntry(worldRecordList[category]);
+                var worldRecordList = getWorldRecordList(fuzzyGameName, out actualGameName);
+                return getWorldRecordEntry(worldRecordList[categoryName]);
             }
             catch { }
 
+            actualGameName = null;
             return new Record();
         }
 
-        public IEnumerable<string> GetCategories(string game)
+        public Record GetWorldRecord(string fuzzyGameName, string categoryName)
         {
-            IDictionary<string, dynamic> worldRecordList = null;
-            try
-            {
-                worldRecordList = getWorldRecordList(game);
-            }
-            catch { }
+            string dummy;
+            return GetWorldRecord(fuzzyGameName, categoryName, out dummy);
+        }
 
-            if (worldRecordList != null)
+        public IEnumerable<string> GetGameNames()
+        {
+            return getGameList().Select(x => x.Name);
+        }
+
+        public string GetGameID(string gameName)
+        {
+            return getGameList().FirstOrDefault(x => x.Name == gameName).ID;
+        }
+
+        public string GetCategoryID(string categoryName)
+        {
+            //TODO: Implement a proper way of figuring out the Category ID
+            return categoryName;
+        }
+
+        public Image GetGameCover(string gameId)
+        {
+            var coverUri = GetGameCoverUri(gameId);
+            var request = WebRequest.Create(coverUri.AbsoluteUri);
+            var response = request.GetResponse();
+            using (var stream = response.GetResponseStream())
             {
-                foreach (var entry in worldRecordList)
-                {
-                    yield return entry.Key;
-                }
+                return Image.FromStream(stream);
             }
         }
 
-        public Record GetPersonalBest(string runner, string game, string category)
+        public IEnumerable<string> GetCategories(string fuzzyGameName, out string actualGameName)
         {
             try
             {
-                var personalBestList = getPersonalBestList(runner, game);
-                return getRecordEntry(personalBestList[category]);
+                return getWorldRecordList(fuzzyGameName, out actualGameName).Select(x => x.Key).ToList();
             }
             catch { }
 
+            actualGameName = null;
+            return new string[0];
+        }
+
+        public string GetActualGameName(string fuzzyGameName)
+        {
+            string actualGameName;
+            getWorldRecordList(fuzzyGameName, out actualGameName);
+            return actualGameName;
+        }
+
+        public IEnumerable<string> GetCategories(string fuzzyGameName)
+        {
+            string dummy;
+            return GetCategories(fuzzyGameName, out dummy);
+        }
+
+        public Record GetPersonalBest(string runnerName, string fuzzyGameName, string categoryName, out string actualGameName)
+        {
+            try
+            {
+                var personalBestList = getPersonalBestList(runnerName, fuzzyGameName, out actualGameName);
+                return getRecordEntry(personalBestList[categoryName]);
+            }
+            catch { }
+
+            actualGameName = null;
             return new Record();
         }
 
-        public IDictionary<string, Record> GetPersonalBestList(string runner, string game)
+        public Record GetPersonalBest(string runnerName, string fuzzyGameName, string categoryName)
+        {
+            string dummy;
+            return GetPersonalBest(runnerName, fuzzyGameName, categoryName, out dummy);
+        }
+
+        public IDictionary<string, Record> GetPersonalBestList(string runnerName, string fuzzyGameName, out string actualGameName)
         {
             var recordList = new Dictionary<string, Record>();
 
-            foreach (var entry in getPersonalBestList(runner, game))
+            foreach (var entry in getPersonalBestList(runnerName, fuzzyGameName, out actualGameName))
             {
                 recordList.Add(entry.Key, getRecordEntry(entry.Value));
             }
@@ -227,11 +407,17 @@ namespace LiveSplit.Web.Share
             return recordList;
         }
 
-        public IDictionary<string, IDictionary<string, Record>> GetPersonalBestList(string runner)
+        public IDictionary<string, Record> GetPersonalBestList(string runnerName, string fuzzyGameName)
+        {
+            string dummy;
+            return GetPersonalBestList(runnerName, fuzzyGameName, out dummy);
+        }
+
+        public IDictionary<string, IDictionary<string, Record>> GetPersonalBestList(string runnerName)
         {
             var recordList = new Dictionary<string, IDictionary<string, Record>>();
 
-            foreach (var game in getPersonalBestList(runner))
+            foreach (var game in getPersonalBestList(runnerName))
             {
                 var categoryList = new Dictionary<string, Record>();
 
@@ -246,10 +432,10 @@ namespace LiveSplit.Web.Share
             return recordList;
         }
 
-        public IEnumerable<Record> GetLeaderboard(string game, string category)
+        public IEnumerable<Record> GetLeaderboard(string fuzzyGameName, string categoryName, out string actualGameName)
         {
-            var leaderboards = getLeaderboards(game);
-            var leaderboard = leaderboards.FirstOrDefault(x => x.Key == category);
+            var leaderboards = getLeaderboards(fuzzyGameName, out actualGameName);
+            var leaderboard = leaderboards.FirstOrDefault(x => x.Key == categoryName);
 
             var records = new List<Record>();
 
@@ -264,11 +450,17 @@ namespace LiveSplit.Web.Share
             return records;
         }
 
-        public IDictionary<string, IEnumerable<Record>> GetLeaderboards(string game)
+        public IEnumerable<Record> GetLeaderboard(string fuzzyGameName, string categoryName)
+        {
+            string dummy;
+            return GetLeaderboard(fuzzyGameName, categoryName, out dummy);
+        }
+
+        public IDictionary<string, IEnumerable<Record>> GetLeaderboards(string fuzzyGameName, out string actualGameName)
         {
             var dict = new Dictionary<string, IEnumerable<Record>>();
 
-            var leaderboards = getLeaderboards(game);
+            var leaderboards = getLeaderboards(fuzzyGameName, out actualGameName);
 
             foreach (var category in leaderboards)
             {
@@ -286,6 +478,12 @@ namespace LiveSplit.Web.Share
             }
 
             return dict;
+        }
+
+        public IDictionary<string, IEnumerable<Record>> GetLeaderboards(string fuzzyGameName)
+        {
+            string dummy;
+            return GetLeaderboards(fuzzyGameName, out dummy);
         }
     }
 }

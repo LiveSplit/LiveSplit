@@ -158,7 +158,7 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        var gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
+                        var gameNames = SpeedrunCom.Instance.GetGameNames().ToArray();
                         Action invokation = () =>
                         {
                             try
@@ -948,27 +948,42 @@ namespace LiveSplit.View
         {
             try
             {
+                var gameId = SpeedrunCom.Instance.GetGameID(cbxGameName.Text);
+
+                GameIcon = SpeedrunCom.Instance.GetGameCover(gameId);
+                picGameIcon.Image = GameIcon;
+                RaiseRunEdited();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            try
+            {
                 var gameId = PBTracker.Instance.GetGameIdByName(cbxGameName.Text);
 
                 GameIcon = PBTracker.Instance.GetGameBoxArt(gameId);
+                picGameIcon.Image = GameIcon;
+                RaiseRunEdited();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+
+            try
+            {
+                GameIcon = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
                 picGameIcon.Image = GameIcon;
                 RaiseRunEdited();
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-
-                try
-                {
-                    GameIcon = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
-                    picGameIcon.Image = GameIcon;
-                    RaiseRunEdited();
-                }
-                catch (Exception exc)
-                {
-                    Log.Error(exc);
-                    MessageBox.Show("Could not download the box art of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                MessageBox.Show("Could not download the box art of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1233,6 +1248,12 @@ namespace LiveSplit.View
         private void fromSplitsioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var runImporter = new SplitsIORunImporter();
+            ImportClick(runImporter);
+        }
+
+        private void fromSpeedruncomToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var runImporter = new SpeedrunComRunImporter();
             ImportClick(runImporter);
         }
 
