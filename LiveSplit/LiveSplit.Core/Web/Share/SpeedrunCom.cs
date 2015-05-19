@@ -34,6 +34,14 @@ namespace LiveSplit.Web.Share
             public string ID;
         }
 
+        public enum CoverResolution : int
+        {
+            x32 = 32,
+            x64 = 64,
+            x128 = 128,
+            x256 = 256
+        }
+
         protected static readonly SpeedrunCom _Instance = new SpeedrunCom();
 
         public static SpeedrunCom Instance { get { return _Instance; } }
@@ -78,9 +86,9 @@ namespace LiveSplit.Web.Share
             return GetSiteUri(uri);
         }
 
-        public Uri GetGameCoverUri(string gameId)
+        public Uri GetGameCoverUri(string gameId, CoverResolution resolution = CoverResolution.x128)
         {
-            var uri = string.Format("themes/{0}/cover-128.png", HttpUtility.UrlPathEncode(gameId));
+            var uri = string.Format("themes/{0}/cover-{1}.png", HttpUtility.UrlPathEncode(gameId), (int)resolution);
             return GetSiteUri(uri);
         }
 
