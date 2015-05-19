@@ -762,14 +762,25 @@ namespace LiveSplit.View
 
         void openFromSpeedrunComMenuItem_Click(object sender, EventArgs e)
         {
-            var runImporter = new SpeedrunComRunImporter();
-            var run = runImporter.Import(this);
+            try
+            {
+                TopMost = false;
+                IsInDialogMode = true;
 
-            if (!WarnUserAboutSplitsSave())
-                return;
+                var runImporter = new SpeedrunComRunImporter();
+                var run = runImporter.Import(this);
 
-            if (run != null)
-                SetRun(run);
+                if (!WarnUserAboutSplitsSave())
+                    return;
+
+                if (run != null)
+                    SetRun(run);
+            }
+            finally
+            {
+                TopMost = Layout.Settings.AlwaysOnTop;
+                IsInDialogMode = false;
+            }
         }
 
         void clearSplitHistoryMenuItem_Click(object sender, EventArgs e)
