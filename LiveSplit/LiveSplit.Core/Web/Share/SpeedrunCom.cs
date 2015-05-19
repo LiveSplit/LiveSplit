@@ -92,15 +92,6 @@ namespace LiveSplit.Web.Share
             return GetSiteUri(uri);
         }
 
-        private IEnumerable<HtmlElement> FindChildren(HtmlElement parent, String tagName, String id = null, String className = null)
-        {
-            return parent.Children
-                .OfType<HtmlElement>()
-                .Where(x => x.TagName == tagName
-                    && ((id == null) ? true : x.Id == id)
-                    && ((className == null) ? true : x.GetAttribute("class") == className));
-        }
-
         private IEnumerable<GamePair> getGameList()
         {
             if (gameList == null)
