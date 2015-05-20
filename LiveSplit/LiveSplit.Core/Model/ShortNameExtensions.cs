@@ -31,8 +31,8 @@ namespace LiveSplit.Model
                 var splits = name.Split(new[] { splitToken }, 2, StringSplitOptions.None);
                 var seriesTitle = splits[0];
                 var subTitle = splits[1];
-                var seriesTitleAbbreviations = seriesTitle.GetShortNames();
-                var subTitleAbbreviations = subTitle.GetShortNames();
+                var seriesTitleAbbreviations = seriesTitle.GetShortNames().ToList();
+                var subTitleAbbreviations = subTitle.GetShortNames().ToList();
                 var seriesTitleTrimmed = seriesTitle.Trim();
 
                 var isSeriesTitleRepresentative = !string.IsNullOrEmpty(seriesTitleTrimmed)
