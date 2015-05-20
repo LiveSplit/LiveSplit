@@ -15,7 +15,6 @@ namespace LiveSplit.View
 {
     public partial class BrowseSpeedrunComDialog : Form
     {
-        delegate void CategoryNodeAction();
         public IRun Run { get; protected set; }
         public string RunName { get; protected set; }
 
