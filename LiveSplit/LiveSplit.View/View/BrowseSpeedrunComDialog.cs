@@ -2,11 +2,9 @@
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using LiveSplit.UI;
-using LiveSplit.Web;
 using LiveSplit.Web.Share;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
