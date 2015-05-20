@@ -21,7 +21,7 @@ namespace LiveSplit.Model
 
         private static bool isAllCapsOrDigit(string name)
         {
-            return !name.Where(c => !(char.IsUpper(c) || char.IsDigit(c))).Any();
+            return name.All(c => (char.IsUpper(c) || char.IsDigit(c)));
         }
 
         private static bool tokenize(string name, string splitToken, List<string> list)
