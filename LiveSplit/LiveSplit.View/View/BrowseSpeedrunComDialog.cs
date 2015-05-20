@@ -59,7 +59,7 @@ namespace LiveSplit.View
             }
         }
 
-        private int getDigits(int n)
+        private static int getDigits(int n)
         {
             if (n == 0)
                 return 1;
@@ -67,19 +67,20 @@ namespace LiveSplit.View
             return (int)Math.Floor(Math.Log10(n) + 1);
         }
 
-        private string formatTime(Time time)
+        private static string formatTime(Time time)
         {
             var formatter = new ShortTimeFormatter();
 
             if (time.RealTime.HasValue && !time.GameTime.HasValue)
                 return formatter.Format(time.RealTime);
-            else if (!time.RealTime.HasValue && time.GameTime.HasValue)
+
+            if (!time.RealTime.HasValue && time.GameTime.HasValue)
                 return formatter.Format(time.GameTime);
-            else
-                return formatter.Format(time.RealTime) + " / " + formatter.Format(time.GameTime);
+
+            return formatter.Format(time.RealTime) + " / " + formatter.Format(time.GameTime);
         }
 
-        private string formatPlace(int? place)
+        private static string formatPlace(int? place)
         {
             if (place.HasValue)
             {
