@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LiveSplit.Web.SRL
+﻿namespace LiveSplit.Web.SRL
 {
     public class SRLIRCUser
     {

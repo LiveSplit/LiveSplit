@@ -1,6 +1,5 @@
 ﻿using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
