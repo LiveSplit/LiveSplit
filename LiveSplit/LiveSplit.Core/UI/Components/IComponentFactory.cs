@@ -1,5 +1,4 @@
 ﻿using LiveSplit.Model;
-using System;
 using UpdateManager;
 
 namespace LiveSplit.UI.Components

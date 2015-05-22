@@ -1,5 +1,4 @@
 ﻿using LiveSplit.TimeFormatters;
-using System;
 using System.IO;
 
 namespace LiveSplit.Model.RunSavers
