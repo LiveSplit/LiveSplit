@@ -106,7 +106,7 @@ namespace LiveSplit.Model
             Reset(true);
         }
 
-        public void Reset(bool updateSplits = true)
+        public void Reset(bool updateSplits)
         {
             if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
             {
