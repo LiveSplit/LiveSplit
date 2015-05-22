@@ -1,9 +1,6 @@
 ﻿using LiveSplit.Web;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace LiveSplit.Model
@@ -74,7 +71,8 @@ namespace LiveSplit.Model
         {
             var newTime = Time.FromXml(node);
             var index = int.Parse(node.Attributes["id"].InnerText, CultureInfo.InvariantCulture);
-            DateTime? started = null, ended = null;
+            DateTime? started = null;
+            DateTime? ended = null;
 
             if (node.HasAttribute("started"))
             {
@@ -83,7 +81,7 @@ namespace LiveSplit.Model
 
             if (node.HasAttribute("ended"))
             {
-                started = DateTime.Parse(node.Attributes["ended"].InnerText, CultureInfo.InvariantCulture);
+                ended = DateTime.Parse(node.Attributes["ended"].InnerText, CultureInfo.InvariantCulture);
             }
 
             return new Attempt(index, newTime, started, ended);
