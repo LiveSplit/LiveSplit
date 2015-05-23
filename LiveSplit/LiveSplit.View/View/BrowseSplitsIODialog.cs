@@ -48,10 +48,10 @@ namespace LiveSplit.View
                             {
                                 categoryNode.Nodes.Clear();
                                 IEnumerable<dynamic> runs = SplitsIO.Instance.GetRunsForCategory(game.id, category.id);
-                                runs = runs.OrderBy(x => x.time != SplitsIO.NoTime ? (double)x.time : double.MaxValue);
+                                runs = runs.OrderBy(x => x.time.table.serializable_hash != SplitsIO.NoTime ? (double)x.time.table.serializable_hash : double.MaxValue);
                                 foreach (var run in runs)
                                 {
-                                    var runText = run.time != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds((double)run.time)) : "No Final Time";
+                                    var runText = run.time.table.serializable_hash != SplitsIO.NoTime ? (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds((double)run.time.table.serializable_hash)) : "No Final Time";
                                     if (run.user != null && !string.IsNullOrEmpty(run.user.name))
                                         runText += " by " + run.user.name;
                                     var runNode = new TreeNode(runText);
@@ -69,12 +69,12 @@ namespace LiveSplit.View
                     {
                         var userNode = new TreeNode("@" + user.name);
                         var runs = SplitsIO.Instance.GetRunsForUser((string)user.name);
-                        runs = runs.OrderBy(run => (string)run.name).ThenBy(run => (double)run.time);
+                        runs = runs.OrderBy(run => (string)run.name).ThenBy(run => (double)run.time.table.serializable_hash);
                         foreach (var run in runs)
                         {
                             var runText = run.name;
-                            if (run.time != SplitsIO.NoTime)
-                                runText += " in " + (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds((double)run.time));
+                            if (run.time.table.serializable_hash != SplitsIO.NoTime)
+                                runText += " in " + (new ShortTimeFormatter()).Format(TimeSpan.FromSeconds((double)run.time.table.serializable_hash));
                             var runNode = new TreeNode(runText);
                             runNode.Tag = run;
                             userNode.Nodes.Add(runNode);
