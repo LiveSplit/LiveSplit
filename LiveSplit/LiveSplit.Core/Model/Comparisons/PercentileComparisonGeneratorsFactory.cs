@@ -73,18 +73,18 @@ namespace LiveSplit.Model.Comparisons
                 weightedLists.Add(weightedList); //Save them to the master list
             } //Now we have each segment's list weighted and sorted.
 
-            var Goaltime = 0.0; //Fetch and store the Personal Best time. If there is no PB, leave it at 0.
+            var goalTime = 0.0; //Fetch and store the Personal Best time. If there is no PB, leave it at 0.
             if (Run[Run.Count - 1].PersonalBestSplitTime[method].HasValue)
-                Goaltime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value.TotalMilliseconds;
+                goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value.TotalMilliseconds;
 
-            List<double> OutputSplits = new List<double>(); //Where the percentile function will save the generated splits.
-            var Percentile = 0.5; //Start at 0.5 as a 'binary attack' to determine the best position.
-            var PercMin = 0.0; //Lowest value the percentile can go.
-            var PercMax = 1.0; //Highest value the percentile can go.
+            List<double> outputSplits = new List<double>(); //Where the percentile function will save the generated splits.
+            var percentile = 0.5; //Start at 0.5 as a 'binary attack' to determine the best position.
+            var percMin = 0.0; //Lowest value the percentile can go.
+            var percMax = 1.0; //Highest value the percentile can go.
 
             do
             {
-                var RunSum = 0.0; //Summing the generated times to compare check with the PB.
+                var runSum = 0.0; //Summing the generated times to compare check with the PB.
                 foreach (var weightedList in weightedLists) //Going through each weighted list
                 {
                     var curValue = 0.0; //Value to be saved into the OutputSplits and to add up to RumSum.
@@ -92,17 +92,17 @@ namespace LiveSplit.Model.Comparisons
                     {
                         for (var n = 0; n < weightedList.Count; n++) //Going through the values of the list
                         {
-                            if (weightedList[n].Key == Percentile) //Very rare but here incase
+                            if (weightedList[n].Key == percentile) //Very rare but here incase
                             {
                                 curValue = weightedList[n].Value;
                                 break;
                             }
-                            if (weightedList[n].Key > Percentile) //Once the key larger than the percentile is found, use that value and the previous one to form the output split.
+                            if (weightedList[n].Key > percentile) //Once the key larger than the percentile is found, use that value and the previous one to form the output split.
                             {
-                                var Mult = 1 / (weightedList[n].Key - weightedList[n - 1].Key);
-                                var PercDn = (weightedList[n].Key - Percentile) * Mult * weightedList[n - 1].Value;
-                                var PercUp = (Percentile - weightedList[n - 1].Key) * Mult * weightedList[n].Value;
-                                curValue = PercUp + PercDn;
+                                var mult = 1 / (weightedList[n].Key - weightedList[n - 1].Key);
+                                var percDn = (weightedList[n].Key - percentile) * mult * weightedList[n - 1].Value;
+                                var percUp = (percentile - weightedList[n - 1].Key) * mult * weightedList[n].Value;
+                                curValue = percUp + percDn;
                                 break;
                             }
                         }
@@ -111,26 +111,26 @@ namespace LiveSplit.Model.Comparisons
                     {
                         curValue = weightedList[0].Value;
                     }
-                    OutputSplits.Add(curValue);
-                    RunSum += curValue;
+                    outputSplits.Add(curValue);
+                    runSum += curValue;
                 }
 
-                if (RunSum == Goaltime || Percentile < 0.0000000001 || PercMax - PercMin < 0.0000000001 || forceMedian == true)
+                if (runSum == goalTime || percentile < 0.0000000001 || percMax - percMin < 0.0000000001 || forceMedian == true)
                     break; //Upon satisfaction and to prevent looping indefinitally
-                else if (RunSum > Goaltime)
-                    PercMax = Percentile; //If the RunSum is too high, lower the ceiling
-                else PercMin = Percentile; //If the RunSum is too low, increase the floor
-                OutputSplits.Clear(); //Need to clear out the list before reusing it
-                Percentile = 0.5 * (PercMax - PercMin) + PercMin; //Recalculate the percentile
+                else if (runSum > goalTime)
+                    percMax = percentile; //If the RunSum is too high, lower the ceiling
+                else percMin = percentile; //If the RunSum is too low, increase the floor
+                outputSplits.Clear(); //Need to clear out the list before reusing it
+                percentile = 0.5 * (percMax - percMin) + percMin; //Recalculate the percentile
             } while (true);
 
             TimeSpan? totalTime = TimeSpan.Zero;
             for (var ind = 0; ind < Run.Count; ind++)
             {
-                if (ind >= OutputSplits.Count)
+                if (ind >= outputSplits.Count)
                     totalTime = null;
                 if (totalTime != null)
-                    totalTime += TimeSpan.FromMilliseconds(OutputSplits[ind]);
+                    totalTime += TimeSpan.FromMilliseconds(outputSplits[ind]);
                 var time = new Time(Run[ind].Comparisons[Name]);
                 time[method] = totalTime;
                 Run[ind].Comparisons[Name] = time;
