@@ -78,13 +78,19 @@ namespace LiveSplit.Model.Comparisons
                 goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value.TotalMilliseconds;
 
             List<double> outputSplits = new List<double>(); //Where the percentile function will save the generated splits.
-            var percentile = 0.5; //Start at 0.5 as a 'binary attack' to determine the best position.
+            var percentile = 0.0; //Starts at 0.0 so the first gothrough will change it to 0.5
             var percMin = 0.0; //Lowest value the percentile can go.
             var percMax = 1.0; //Highest value the percentile can go.
+            var runSum = 0.0; //Because it has to exist outside the loop, which is silly.
 
             do
             {
-                var runSum = 0.0; //Summing the generated times to compare check with the PB.
+                if (runSum > goalTime) //runSum starts at 0.0, so the first loop is always false
+                    percMax = percentile; //If the RunSum is too high, lower the ceiling
+                else percMin = percentile; //If the RunSum is too low, increase the floor
+                runSum = 0.0; //Summing the generated times to compare check with the PB.
+                outputSplits.Clear(); //Need to clear out the list before reusing it
+                percentile = 0.5 * (percMax - percMin) + percMin; //Recalculate the percentile
                 foreach (var weightedList in weightedLists) //Going through each weighted list
                 {
                     var curValue = 0.0; //Value to be saved into the OutputSplits and to add up to RumSum.
@@ -115,14 +121,7 @@ namespace LiveSplit.Model.Comparisons
                     runSum += curValue;
                 }
 
-                if (runSum == goalTime || percentile < 0.0000000001 || percMax - percMin < 0.0000000001 || forceMedian == true)
-                    break; //Upon satisfaction and to prevent looping indefinitally
-                else if (runSum > goalTime)
-                    percMax = percentile; //If the RunSum is too high, lower the ceiling
-                else percMin = percentile; //If the RunSum is too low, increase the floor
-                outputSplits.Clear(); //Need to clear out the list before reusing it
-                percentile = 0.5 * (percMax - percMin) + percMin; //Recalculate the percentile
-            } while (true);
+            } while (runSum != goalTime && percentile > 0.0000000001 && percMax - percMin > 0.0000000001 && forceMedian == false); //Upon satisfaction and to prevent looping indefinitally
 
             TimeSpan? totalTime = TimeSpan.Zero;
             for (var ind = 0; ind < Run.Count; ind++)
