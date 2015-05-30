@@ -82,6 +82,7 @@ namespace LiveSplit.Model.Comparisons
             var percMin = 0.0; //Lowest value the percentile can go.
             var percMax = 1.0; //Highest value the percentile can go.
             var runSum = 0.0; //Because it has to exist outside the loop, which is silly.
+            int loopProtection = 0; //Prevent the loop from taking too long.
 
             do
             {
@@ -120,8 +121,9 @@ namespace LiveSplit.Model.Comparisons
                     outputSplits.Add(curValue);
                     runSum += curValue;
                 }
+                loopProtection += 1;
 
-            } while (runSum != goalTime && percentile > 0.0000000001 && percMax - percMin > 0.0000000001 && forceMedian == false); //Upon satisfaction and to prevent looping indefinitally
+            } while (Math.Abs(runSum - goalTime) > 0.0001 && loopProtection < 64 && forceMedian == false); //Upon satisfaction and to prevent looping indefinitally
 
             TimeSpan? totalTime = TimeSpan.Zero;
             for (var ind = 0; ind < Run.Count; ind++)
@@ -129,7 +131,7 @@ namespace LiveSplit.Model.Comparisons
                 if (ind >= outputSplits.Count)
                     totalTime = null;
                 if (totalTime != null)
-                    totalTime += TimeSpan.FromMilliseconds(outputSplits[ind]);
+                    totalTime += TimeSpan.FromTicks(Convert.ToInt64(outputSplits[ind] * 10000));
                 var time = new Time(Run[ind].Comparisons[Name]);
                 time[method] = totalTime;
                 Run[ind].Comparisons[Name] = time;
