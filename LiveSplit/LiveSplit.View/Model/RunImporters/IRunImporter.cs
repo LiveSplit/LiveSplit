@@ -23,11 +23,19 @@ namespace LiveSplit.Model.RunImporters
                 if (!name.StartsWith("[Race]"))
                 {
                     target.CustomComparisons.Add(name);
-                    foreach (var segment in comparisonRun)
+                    if (comparisonRun.Count > 0 && target.Count > 0)
                     {
-                        var runSegment = target.FirstOrDefault(x => x.Name == segment.Name);
-                        if (runSegment != null)
-                            runSegment.Comparisons[name] = segment.PersonalBestSplitTime;
+                        foreach (var segment in comparisonRun)
+                        {
+                            if (segment == comparisonRun.Last())
+                                target.Last().Comparisons[name] = comparisonRun.Last().PersonalBestSplitTime;
+                            else
+                            {
+                                var runSegment = target.FirstOrDefault(x => x.Name.Trim().ToLower() == segment.Name.Trim().ToLower());
+                                if (runSegment != null)
+                                    runSegment.Comparisons[name] = segment.PersonalBestSplitTime;
+                            }
+                        }
                     }
                     target.HasChanged = true;
                     target.FixSplits();
