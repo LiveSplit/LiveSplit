@@ -123,7 +123,7 @@ namespace LiveSplit.Model.Comparisons
                 }
                 loopProtection += 1;
 
-            } while (Math.Abs(runSum - goalTime) > 0.0001 && loopProtection < 64 && forceMedian == false); //Upon satisfaction and to prevent looping indefinitally
+            } while (Math.Abs(runSum - goalTime) * 10000 > 0.5 && loopProtection < 50 && forceMedian == false); //Upon satisfaction and to prevent looping indefinitally
 
             TimeSpan? totalTime = TimeSpan.Zero;
             for (var ind = 0; ind < Run.Count; ind++)
