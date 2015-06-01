@@ -24,8 +24,6 @@ namespace LiveSplit.Web.Share
         public TwitterContext Context { get; set; }
         public ISettings Settings { get; set; }
 
-        private string screenName;
-
         protected Twitter() { }
 
         public string PlatformName
@@ -70,119 +68,62 @@ namespace LiveSplit.Web.Share
             return string.Empty;
         }
 
-        static ITwitterAuthorizer DoPinOAuth()
-        {
-            var auth = new PinAuthorizer()
-            {
-                Credentials = new InMemoryCredentials
-                {
-                    ConsumerKey = ConsumerKey,
-                    ConsumerSecret = ConsumerSecret
-                },
-                GoToTwitterAuthorization = pageLink => Process.Start(pageLink),
-                GetPin = () =>
-                {
-                    string result = null;
-                    InputBox.Show("Twitter Authentication", 
-                        "Enter the PIN number Twitter will give you here: ", ref result);
-                    return result;
-                }
-            };
-
-            return auth;
-        }
-
-        static ITwitterAuthorizer DoSingleUserAuth(string accessToken, string oauthToken, out string screenName)
-        {
-            var auth = new SingleUserAuthorizer
-            {
-                Credentials = new SingleUserInMemoryCredentials
-                {
-                    ConsumerKey = ConsumerKey,
-                    ConsumerSecret = ConsumerSecret,
-                    AccessToken = accessToken,
-                    OAuthToken = oauthToken
-                }
-            };
-
-            auth.Authorize();
-
-            screenName = auth.Credentials.ScreenName;
-
-            return auth;
-        }
-
-        static ITwitterAuthorizer DoXAuth(string username, string password)
-        {
-            var auth = new XAuthAuthorizer
-            {
-                Credentials = new XAuthCredentials
-                {
-                    ConsumerKey = ConsumerKey,
-                    ConsumerSecret = ConsumerSecret,
-                    UserName = username,
-                    Password = password
-                }
-            };
-
-            return auth;
-        }
-
-        /*static ITwitterAuthorizer DoPinFormOAuth(out String screenName)
-        {
-            var form = new OAuthForm();
-            form.ShowDialog();
-
-            screenName = form.Authorizer.Credentials.ScreenName;
-
-            return form.Authorizer;
-        }*/
-
-        static ITwitterAuthorizer DoFormOAuth(out string screenName)
-        {
-            var form = new TwitterOAuthForm();
-            form.ShowDialog();
-
-            screenName = ((WebAuthorizer)form.Authorizer).Credentials.ScreenName;
-
-            return form.Authorizer;
-        }
-
         public bool VerifyLogin(string username, string password)
         {
             try
             {
-                if (Context != null)
-                    return true;
-
-                ITwitterAuthorizer auth;
-
                 ShareSettings.Default.Reload();
-                string accessToken = ShareSettings.Default.TwitterAccessToken;
+
                 string oauthToken = ShareSettings.Default.TwitterOAuthToken;
+                string accessToken = ShareSettings.Default.TwitterAccessToken;
 
-                if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(oauthToken))
-                    auth = DoFormOAuth(out screenName);
-                else
+                PinAuthorizer authorizer = new PinAuthorizer
                 {
-                    try
+                    Credentials = new InMemoryCredentials
                     {
-                        auth = DoSingleUserAuth(accessToken, oauthToken, out screenName);
-                        var context = new TwitterContext(auth);
-                        context.Trends.FirstOrDefault(x => x.Type == TrendType.Place &&
-                                                           x.WoeID == 2486982);
-                    }
-                    catch (Exception e)
+                        ConsumerKey = Twitter.ConsumerKey,
+                        ConsumerSecret = Twitter.ConsumerSecret,
+                        OAuthToken = oauthToken,
+                        AccessToken = accessToken
+                    },
+                    GoToTwitterAuthorization = pageLink => Process.Start(pageLink),
+                    GetPin = () =>
                     {
-                        Log.Error(e);
+                        string result = null;
 
-                        auth = DoFormOAuth(out screenName);
+                        InputBox.Show("Twitter Authentication", "Enter the PIN number Twitter will give you", ref result);
+
+                        return result;
                     }
+                };
+
+                Context = new TwitterContext(authorizer);
+
+                try
+                {
+                    // Verify current credentials
+                    // If an error occurs during the credential verification (credentials expired), an exception will be triggered
+                    Account account = (from acct in Context.Account where acct.Type == AccountType.VerifyCredentials select acct).SingleOrDefault();
+
+                    return true;
                 }
+                catch
+                {
+                    // Reset expired credentials
+                    authorizer.Credentials.OAuthToken = string.Empty;
+                    authorizer.Credentials.AccessToken = string.Empty;
 
-                Context = new TwitterContext(auth);
-                
-                return true;
+                    // Begin authorization
+                    authorizer.Authorize();
+
+                    // Save new credentials
+                    ShareSettings.Default.TwitterOAuthToken = authorizer.Credentials.OAuthToken;
+                    ShareSettings.Default.TwitterAccessToken = authorizer.Credentials.AccessToken;
+
+                    ShareSettings.Default.Save();
+
+                    return true;
+                }
             }
             catch (Exception e)
             {
@@ -200,11 +141,11 @@ namespace LiveSplit.Web.Share
             if (!VerifyLogin(username, password))
                 return false;
 
+            Status status;
+
             if (screenShotFunction == null || attachSplits)
             {
-                var status = Context.UpdateStatus(comment);
-                var url = string.Format("http://twitter.com/{0}/status/{1}", status.User.Name, status.StatusID);
-                Process.Start(url);
+                status = Context.UpdateStatus(comment);
             }
             else
             {
@@ -214,16 +155,18 @@ namespace LiveSplit.Web.Share
                 using (var stream = new MemoryStream())
                 {
                     image.Save(stream, ImageFormat.Png);
+
                     media.ContentType = MediaContentType.Png;
                     media.FileName = "livesplit.png";
                     media.Data = stream.GetBuffer();
                 }
 
-                var tweet = Context.TweetWithMedia(comment, false, new List<Media>() { media });
-                var url = tweet.Text.Substring(tweet.Text.LastIndexOf("http://"));
-                //var url = String.Format("http://twitter.com/{0}/status/{1}", url, tweet.StatusID);
-                Process.Start(url);
+                status = Context.TweetWithMedia(comment, false, new List<Media>() { media });
             }
+
+            var url = String.Format("http://twitter.com/{0}/status/{1}", status.User.Identifier.ScreenName, status.StatusID);
+
+            Process.Start(url);
 
             return true;
         }

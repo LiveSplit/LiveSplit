@@ -190,12 +190,6 @@
     <Compile Include="Web\Share\TwitchOAuthForm.Designer.cs">
       <DependentUpon>TwitchOAuthForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Web\Share\TwitterOAuthForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Web\Share\TwitterOAuthForm.Designer.cs">
-      <DependentUpon>TwitterOAuthForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Web\Share\PBTracker.cs" />
     <Compile Include="Web\Share\ASUPRunUploadPlatform.cs" />
     <Compile Include="Options\FiletypeRegistryHelper.cs" />
@@ -304,9 +298,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Web\Share\TwitchOAuthForm.resx">
       <DependentUpon>TwitchOAuthForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Web\Share\TwitterOAuthForm.resx">
-      <DependentUpon>TwitterOAuthForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
