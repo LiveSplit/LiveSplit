@@ -118,6 +118,7 @@
     <Compile Include="Model\Input\XInput.cs" />
     <Compile Include="Model\RunFactories\CompositeRunFactory.cs" />
     <Compile Include="Model\RunFactories\ShitSplitRunFactory.cs" />
+    <Compile Include="Model\RunFactories\SplittyRunFactory.cs" />
     <Compile Include="Model\RunFactories\StandardFormatsRunFactory.cs" />
     <Compile Include="Model\RunFactories\TimeSplitTrackerRunFactory.cs" />
     <Compile Include="Model\RunFactories\UrnRunFactory.cs" />
