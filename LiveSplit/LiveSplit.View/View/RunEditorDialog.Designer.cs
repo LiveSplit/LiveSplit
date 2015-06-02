@@ -66,14 +66,13 @@
             this.ImportComparisonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fromSplitsioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromSpeedruncomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OtherMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.fromSpeedruncomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
@@ -527,10 +526,9 @@
             this.ImportComparisonMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fromFileToolStripMenuItem,
             this.fromURLToolStripMenuItem,
-            this.fromSplitsioToolStripMenuItem,
             this.fromSpeedruncomToolStripMenuItem});
             this.ImportComparisonMenu.Name = "ImportComparisonMenu";
-            this.ImportComparisonMenu.Size = new System.Drawing.Size(192, 114);
+            this.ImportComparisonMenu.Size = new System.Drawing.Size(192, 92);
             // 
             // fromFileToolStripMenuItem
             // 
@@ -546,12 +544,12 @@
             this.fromURLToolStripMenuItem.Text = "From URL...";
             this.fromURLToolStripMenuItem.Click += new System.EventHandler(this.fromURLToolStripMenuItem_Click);
             // 
-            // fromSplitsioToolStripMenuItem
+            // fromSpeedruncomToolStripMenuItem
             // 
-            this.fromSplitsioToolStripMenuItem.Name = "fromSplitsioToolStripMenuItem";
-            this.fromSplitsioToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.fromSplitsioToolStripMenuItem.Text = "From Splits.io...";
-            this.fromSplitsioToolStripMenuItem.Click += new System.EventHandler(this.fromSplitsioToolStripMenuItem_Click);
+            this.fromSpeedruncomToolStripMenuItem.Name = "fromSpeedruncomToolStripMenuItem";
+            this.fromSpeedruncomToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.fromSpeedruncomToolStripMenuItem.Text = "From Speedrun.com...";
+            this.fromSpeedruncomToolStripMenuItem.Click += new System.EventHandler(this.fromSpeedruncomToolStripMenuItem_Click);
             // 
             // OtherMenu
             // 
@@ -590,13 +588,6 @@
             // iSegmentBindingSource
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
-            // 
-            // fromSpeedruncomToolStripMenuItem
-            // 
-            this.fromSpeedruncomToolStripMenuItem.Name = "fromSpeedruncomToolStripMenuItem";
-            this.fromSpeedruncomToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.fromSpeedruncomToolStripMenuItem.Text = "From Speedrun.com...";
-            this.fromSpeedruncomToolStripMenuItem.Click += new System.EventHandler(this.fromSpeedruncomToolStripMenuItem_Click);
             // 
             // RunEditorDialog
             // 
@@ -664,7 +655,6 @@
         private System.Windows.Forms.ContextMenuStrip ImportComparisonMenu;
         private System.Windows.Forms.ToolStripMenuItem fromFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromURLToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fromSplitsioToolStripMenuItem;
         private System.Windows.Forms.Button btnOther;
         private System.Windows.Forms.ContextMenuStrip OtherMenu;
         private System.Windows.Forms.ToolStripMenuItem clearHistoryToolStripMenuItem;
