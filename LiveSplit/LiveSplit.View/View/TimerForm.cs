@@ -736,9 +736,6 @@ namespace LiveSplit.View
             var openFromURLMenuItem = new ToolStripMenuItem("From URL...");
             openFromURLMenuItem.Click += openSplitsFromURLMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromURLMenuItem);
-            var openFromSplitsIOMenuItem = new ToolStripMenuItem("From Splits.io...");
-            openFromSplitsIOMenuItem.Click += openFromSplitsIOMenuItem_Click;
-            openSplitsMenuItem.DropDownItems.Add(openFromSplitsIOMenuItem);
             var openFromSpeedrunComMenuItem = new ToolStripMenuItem("From Speedrun.com...");
             openFromSpeedrunComMenuItem.Click += openFromSpeedrunComMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromSpeedrunComMenuItem);
