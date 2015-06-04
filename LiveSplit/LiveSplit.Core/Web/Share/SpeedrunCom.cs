@@ -13,6 +13,126 @@ namespace LiveSplit.Web.Share
 {
     public class SpeedrunCom
     {
+        public enum CategoryType
+        {
+            PerGame, PerLevel
+        }
+
+        public class Category
+        {
+            public int ID { get; private set; }
+            public string Name { get; private set; }
+            public CategoryType Type { get; private set; }
+            public string Rules { get; private set; }
+            public int Players { get; private set; }
+            public bool IsMiscellaneous { get; private set; }
+        }
+
+        public class GameRuleset
+        {
+            public bool ShowMilliseconds { get; private set; }
+            public bool RequiresVerification { get; private set; }
+            public bool RequiresVideo { get; private set; }
+        }
+
+        public class Game
+        {
+            public int ID {get;set;}
+            public string Name;
+            public string JapaneseName;
+            public string ShortName;
+            public int YearOfRelease;
+            public IDictionary<int, Lazy<Platform>> Platforms;
+            public IDictionary<int, Lazy<Region>> Regions;
+            public DateTime Created;
+            public IEnumerable<Run> Runs;
+            public IEnumerable<Level> Levels;
+            public IEnumerable<Category> Categories;
+            public Game Parent;
+        }
+
+        public class Level
+        {
+            public int ID;
+            public string Name;
+            public Uri Uri;
+            public string Rules;
+            public Game Game;
+            public IEnumerable<Run> Runs;
+        }
+
+        public class Platform
+        {
+            public int ID;
+            public string Name;
+            public int YearOfRelease;
+        }
+
+        public class Region
+        {
+            public int ID;
+            public string Name;
+        }
+
+        public enum RunStatusType
+        {
+            New, Verified, Rejected
+        }
+
+        public class RunStatus
+        {
+            public RunStatusType Type;
+            public string Examiner;
+            public string Reason;
+        }
+
+        public class PossiblyAnonymousUser
+        {
+            public bool IsAnonymous;
+            public int UserID;
+            public string UserName;
+            public User User;
+        }
+
+        public class RunTimes
+        {
+            public TimeSpan? Primary;
+            public TimeSpan? RealTime;
+            public TimeSpan? RealTimeWithoutLoads;
+            public TimeSpan? GameTime;
+            public Time Time;
+        }
+
+        public class System
+        {
+            public int PlatformID;
+            public Platform Platform;
+            public bool IsEmulated;
+            public int? RegionID;
+            public Region Region;
+        }
+
+        public class Run
+        {
+            public int ID;
+            public Uri RunUri;
+            public int GameID;
+            public Game Game;
+            public int LevelID;
+            public Level Level;
+            public int CategoryID;
+            public Category Category;
+            public Uri Video;
+            public string Comment;
+            public RunStatus Status;
+            public IEnumerable<PossiblyAnonymousUser> Runners;
+            public DateTime? Date;
+            public DateTime? DateSubmitted;
+            public RunTimes Times;
+            public System System;
+            public IEnumerable<string> Values; //TODO: What's a "map"?
+        }
+
         public struct Record
         {
             public int ID;
