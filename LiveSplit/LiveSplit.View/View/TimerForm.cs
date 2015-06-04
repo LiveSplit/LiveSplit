@@ -407,10 +407,7 @@ namespace LiveSplit.View
                                 {
                                     Invoke(updateTitleAction);
                                 }
-                                catch (Exception ex)
-                                {
-                                    Log.Error(ex);
-                                }
+                                catch { }
                             }
                         }
                         else
@@ -425,10 +422,7 @@ namespace LiveSplit.View
                                 title = title.Replace("&", "&&");
                                 tsItem.Text = title;
                             }
-                            catch (Exception ex)
-                            {
-                                Log.Error(ex);
-                            }
+                            catch { }
                         }
                     };
 
