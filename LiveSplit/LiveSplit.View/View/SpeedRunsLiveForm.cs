@@ -156,7 +156,6 @@ namespace LiveSplit.View
                 {
                     Action invokation = () =>
                     {
-                        TwitchEmoteResolver.DownloadFrankerFaceZGlobalEmotesList();
                         TwitchEmoteResolver.DownloadTwitchEmotesList();
                     };
                     if (InvokeRequired)
