@@ -133,6 +133,13 @@ namespace LiveSplit.Web.Share
             public IEnumerable<string> Values; //TODO: What's a "map"?
         }
 
+        public class User
+        {
+            public int ID;
+            public string Name;
+            //TODO: Documentation missing
+        }
+
         public struct Record
         {
             public int ID;
