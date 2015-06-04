@@ -2,6 +2,7 @@
 using LiveSplit.Options;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -94,10 +95,72 @@ namespace LiveSplit.Model.RunFactories
                 run.Add(segment);
             }
 
+            parseHistory(run);
+
             foreach (var comparison in comparisons)
                 run.CustomComparisons.Add(comparison);
 
             return run;
+        }
+
+        private void parseHistory(IRun run)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(Path))
+                {
+                    var path = System.IO.Path.Combine(
+                                System.IO.Path.GetDirectoryName(Path), 
+                                string.Format("{0}-RunLog.txt", 
+                                    System.IO.Path.GetFileNameWithoutExtension(Path)));
+
+                    var lines = File.ReadLines(path);
+                    var attemptId = 1;
+
+                    foreach (var line in lines.Skip(1))
+                    {
+                        var segmentInfo = line.Split('\t');
+                        var timeStampString = segmentInfo[0];
+                        var completed = segmentInfo[1] == "C";
+                        var splits = segmentInfo.Skip(2).Select(x => parseTimeNullable(x)).ToList();
+
+                        var started = DateTime.Parse(timeStampString, CultureInfo.InvariantCulture);
+                        Time finalTime = default(Time);
+                        DateTime? ended = null;
+                        if (completed)
+                        {
+                            finalTime.RealTime = splits.Last().Value;
+                            ended = started + finalTime.RealTime;
+                        }
+
+                        run.AttemptHistory.Add(new Attempt(attemptId, finalTime, started, ended));
+
+                        var i = 0;
+                        TimeSpan? lastSplit = TimeSpan.Zero;
+                        foreach (var segment in run)
+                        {
+                            if (splits.Count <= i)
+                                break;
+
+                            var currentSplit = splits[i];
+                            Time segmentTime = default(Time);
+                            if (currentSplit.HasValue)
+                            {
+                                segmentTime.RealTime = currentSplit - lastSplit;
+                                lastSplit = currentSplit;
+                            }
+
+                            segment.SegmentHistory.Add(new IndexedTime(segmentTime, attemptId));
+                            if (segmentTime.RealTime < segment.BestSegmentTime.RealTime)
+                                segment.BestSegmentTime = segmentTime;
+                            i++;
+                        }
+
+                        attemptId++;
+                    }
+                }
+            }
+            catch { }
         }
     }
 }
