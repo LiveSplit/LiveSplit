@@ -42,7 +42,12 @@ namespace LiveSplit.Web.Share
             {
                 TwitchEmoteDownload = Task.Factory.StartNew(() =>
                 {
-                    var emotes = JSON.FromUri(new Uri("https://api.twitch.tv/kraken/chat/emoticons"));
+                    dynamic emotes = null;
+                    try
+                    {
+                        emotes = JSON.FromUri(new Uri("https://api.twitch.tv/kraken/chat/emoticons"));
+                    }
+                    catch { }
 
                     if (emotes == null)
                         return null;
