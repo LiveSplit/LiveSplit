@@ -124,7 +124,7 @@ namespace LiveSplit.Model.RunFactories
                         var completed = segmentInfo[1] == "C";
                         var splits = segmentInfo.Skip(2).Select(x => parseTimeNullable(x)).ToList();
 
-                        var started = DateTime.Parse(timeStampString, CultureInfo.InvariantCulture);
+                        var started = DateTime.Parse(timeStampString, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
                         Time finalTime = default(Time);
                         DateTime? ended = null;
                         if (completed)

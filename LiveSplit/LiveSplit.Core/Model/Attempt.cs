@@ -53,14 +53,14 @@ namespace LiveSplit.Model
             if (Started.HasValue)
             {
                 var started = document.CreateAttribute("started");
-                started.InnerText = Started.Value.ToString(CultureInfo.InvariantCulture);
+                started.InnerText = Started.Value.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
                 attempt.Attributes.Append(started);
             }
 
             if (Ended.HasValue)
             {
                 var ended = document.CreateAttribute("ended");
-                ended.InnerText = Ended.Value.ToString(CultureInfo.InvariantCulture);
+                ended.InnerText = Ended.Value.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
                 attempt.Attributes.Append(ended);
             }
 
@@ -76,12 +76,12 @@ namespace LiveSplit.Model
 
             if (node.HasAttribute("started"))
             {
-                started = DateTime.Parse(node.Attributes["started"].InnerText, CultureInfo.InvariantCulture);
+                started = DateTime.Parse(node.Attributes["started"].InnerText, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
             }
 
             if (node.HasAttribute("ended"))
             {
-                ended = DateTime.Parse(node.Attributes["ended"].InnerText, CultureInfo.InvariantCulture);
+                ended = DateTime.Parse(node.Attributes["ended"].InnerText, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
             }
 
             return new Attempt(index, newTime, started, ended);
