@@ -202,7 +202,8 @@ namespace LiveSplit.View
             }
             catch (Exception e)
             {
-                Log.Error(e); 
+                Log.Error(e);
+                Layout = new StandardLayoutFactory().Create(CurrentState);
             }
 
             CurrentState.LayoutSettings = Layout.Settings;
@@ -1742,7 +1743,11 @@ namespace LiveSplit.View
             ILayout layout;
             try
             {
-                layout = LoadLayoutFromFile(Settings.RecentLayouts.Last());
+                var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
+                if (lastLayoutPath != null)
+                    layout = LoadLayoutFromFile(lastLayoutPath);
+                else
+                    layout = new StandardLayoutFactory().Create(CurrentState);
             }
             catch (Exception ex)
             {
