@@ -1,6 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=ready&title=Ready)](https://waffle.io/LiveSplit/LiveSplit)
-LiveSplit
-=========
+# LiveSplit [![Build status](https://ci.appveyor.com/api/projects/status/3c7lnbacxt25093i/branch/master?svg=true)](https://ci.appveyor.com/project/CryZe/livesplit/branch/master) [![Stories in Ready](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=ready&title=Ready)](https://waffle.io/LiveSplit/LiveSplit)  
 
 A sleek, highly-customizable timer for speedrunners.
 
