@@ -66,6 +66,12 @@ namespace LiveSplit.Model
 
         public static IEnumerable<string> GetShortNames(this string name)
         {
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                name = string.Empty;
+                return new[] { name };
+            }
+
             name = name.Trim();
 
             var list = new List<string>() { name };
