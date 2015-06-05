@@ -1245,12 +1245,6 @@ namespace LiveSplit.View
             ImportClick(runImporter);
         }
 
-        private void fromSplitsioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var runImporter = new SplitsIORunImporter();
-            ImportClick(runImporter);
-        }
-
         private void fromSpeedruncomToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var runImporter = new SpeedrunComRunImporter();

@@ -234,9 +234,7 @@ namespace LiveSplit.Model
                         {
                             var newTime = new Time(curSplit.BestSegmentTime);
                             //Fix best segments
-                            if (curSplit.BestSegmentTime[method] == null)
-                                newTime[method] = currentSegment;
-                            if (curSplit.BestSegmentTime[method] > currentSegment)
+                            if (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment)
                                 newTime[method] = currentSegment;
                             curSplit.BestSegmentTime = newTime;
                         }
