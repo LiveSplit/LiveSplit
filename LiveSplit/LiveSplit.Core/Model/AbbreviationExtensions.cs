@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace LiveSplit.Model
 {
-    public static class ShortNameExtensions
+    public static class AbbreviationExtensions
     {
         private static bool endsWithRomanNumeral(string name)
         {
@@ -30,8 +30,8 @@ namespace LiveSplit.Model
                 var splits = name.Split(new[] { splitToken }, 2, StringSplitOptions.None);
                 var seriesTitle = splits[0];
                 var subTitle = splits[1];
-                var seriesTitleAbbreviations = seriesTitle.GetShortNames().ToList();
-                var subTitleAbbreviations = subTitle.GetShortNames().ToList();
+                var seriesTitleAbbreviations = seriesTitle.GetAbbreviations().ToList();
+                var subTitleAbbreviations = subTitle.GetAbbreviations().ToList();
                 var seriesTitleTrimmed = seriesTitle.Trim();
 
                 var isSeriesTitleRepresentative = !string.IsNullOrEmpty(seriesTitleTrimmed)
@@ -64,7 +64,7 @@ namespace LiveSplit.Model
             return false;
         }
 
-        public static IEnumerable<string> GetShortNames(this string name)
+        public static IEnumerable<string> GetAbbreviations(this string name)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
@@ -80,7 +80,7 @@ namespace LiveSplit.Model
             {
                 var endingBracketRemoved = name.Substring(0, name.LastIndexOf(')'));
                 var startingBrackedRemoved = endingBracketRemoved.Substring(0, endingBracketRemoved.LastIndexOf('('));
-                list.AddRange(GetShortNames(startingBrackedRemoved));
+                list.AddRange(GetAbbreviations(startingBrackedRemoved));
             }
             else if (tokenize(name, ": ", list)) { }
             else if (tokenize(name, " - ", list)) { }
@@ -90,7 +90,7 @@ namespace LiveSplit.Model
                 var firstPart = name.Substring(0, index);
                 var secondPart = name.Substring(index + " and ".Length);
                 name = firstPart + " & " + secondPart;
-                list.AddRange(name.GetShortNames());
+                list.AddRange(name.GetAbbreviations());
             }
             else
             {

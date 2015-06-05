@@ -126,7 +126,7 @@
     <Compile Include="Model\RunSavers\JSONRunSaver.cs" />
     <Compile Include="Model\RunSavers\WSplitRunSaver.cs" />
     <Compile Include="Model\RunSavers\SplitterZRunSaver.cs" />
-    <Compile Include="Model\ShortNameExtensions.cs" />
+    <Compile Include="Model\AbbreviationExtensions.cs" />
     <Compile Include="Model\StringExtensions.cs" />
     <Compile Include="Model\SumOfBest.cs" />
     <Compile Include="Model\Time.cs" />
