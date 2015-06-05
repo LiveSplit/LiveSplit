@@ -210,8 +210,8 @@ namespace LiveSplit.Web.SRL
             {
                 var split = Model.CurrentState.CurrentSplit;
                 var time = "-";
-                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".time \"{0}\" {1}", Escape(split.Name), time));
-                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".timeGT \"{0}\" {1}", Escape(split.Name), time));
+                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time RealTime \"{0}\" {1}", Escape(split.Name), time));
+                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time GameTime \"{0}\" {1}", Escape(split.Name), time));
             }
         }
 
