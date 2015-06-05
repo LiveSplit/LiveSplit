@@ -173,15 +173,23 @@ namespace LiveSplit.Web.SRL
             {
                 if (Model.CurrentState.CurrentSplitIndex > 0)
                 {
-                        var split = Model.CurrentState.Run[Model.CurrentState.CurrentSplitIndex - 1];
-                        var timeRTA = "-";
-                        var timeIGT = "-";
-                        if (split.SplitTime.RealTime != null)
-                            timeRTA = timeFormatter.Format(split.SplitTime.RealTime);
-                        if (split.SplitTime.GameTime != null)
-                            timeIGT = timeFormatter.Format(split.SplitTime.GameTime);
-                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".time \"{0}\" {1}", Escape(split.Name), timeRTA));
-                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".timeGT \"{0}\" {1}", Escape(split.Name), timeIGT));
+                    var split = Model.CurrentState.Run[Model.CurrentState.CurrentSplitIndex - 1];
+                    var timeRTA = "-";
+                    var timeIGT = "-";
+                    if (split.SplitTime.RealTime != null)
+                        timeRTA = timeFormatter.Format(split.SplitTime.RealTime);
+                    if (split.SplitTime.GameTime != null)
+                        timeIGT = timeFormatter.Format(split.SplitTime.GameTime);
+                    if (Model.CurrentState.CurrentPhase == TimerPhase.Ended)
+                    {
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done RealTime {0}", timeRTA));
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done GameTime {0}", timeIGT));
+                    }
+                    else
+                    {
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time RealTime \"{0}\" {1}", Escape(split.Name), timeRTA));
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time GameTime \"{0}\" {1}", Escape(split.Name), timeIGT));
+                    }
                 }
             }
 
@@ -202,8 +210,16 @@ namespace LiveSplit.Web.SRL
             {
                 var split = Model.CurrentState.CurrentSplit;
                 var time = "-";
-                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".time \"{0}\" {1}", Escape(split.Name), time));
-                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format(".timeGT \"{0}\" {1}", Escape(split.Name), time));
+                if (Model.CurrentState.CurrentSplitIndex == Model.CurrentState.Run.Count - 1)
+                {
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done RealTime {0}", time));
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done GameTime {0}", time));
+                }
+                else
+                {
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time RealTime \"{0}\" {1}", Escape(split.Name), time));
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time GameTime \"{0}\" {1}", Escape(split.Name), time));
+                }
             }
         }
 
@@ -255,15 +271,24 @@ namespace LiveSplit.Web.SRL
         protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)
         {
             var run = Model.CurrentState.Run;
-            var comparisonName = "[Race] " + user;
-
-            var segment = run.FirstOrDefault(x => x.Name == segmentName);
+            var segment = run.FirstOrDefault(x => x.Name.Trim().ToLower() == segmentName.Trim().ToLower());
             if (segment != null)
-            {
-                var newTime = new Time(segment.Comparisons[comparisonName]);
-                newTime[method] = time;
-                segment.Comparisons[comparisonName] = newTime;
-            }
+                AddSplit(user, segment, time, method);
+        }
+
+        protected void ProcessFinalSplit(string user, TimeSpan? time, TimingMethod method)
+        {
+            var run = Model.CurrentState.Run;
+            var segment = run.Last();
+            AddSplit(user, segment, time, method);
+        }
+
+        protected void AddSplit(string user, ISegment segment, TimeSpan? time, TimingMethod method)
+        {
+            var comparisonName = "[Race] " + user;
+            var newTime = new Time(segment.Comparisons[comparisonName]);
+            newTime[method] = time;
+            segment.Comparisons[comparisonName] = newTime;
         }
 
         protected void ProcessRaceChannelMessage(string user, string message)
@@ -382,16 +407,21 @@ namespace LiveSplit.Web.SRL
         {
             if (RaceState == RaceState.RaceStarted || RaceState == RaceState.RaceEnded)
             {
-                if (message.StartsWith(".time ") || message.StartsWith(".timeGT "))
+                if (message.StartsWith("!time ") || message.StartsWith("!done "))
                 {
-                    var method = message.StartsWith(".timeGT ") ? TimingMethod.GameTime : TimingMethod.RealTime;
-                    var cutOff = message.Substring(".time \"".Length + (method == TimingMethod.GameTime ? "GT".Length : 0));
-                    var index = cutOff.IndexOf("\"");
-                    var splitName = Unescape(cutOff.Substring(0, index));
-                    var timeString = cutOff.Substring(index + 2);
+                    var method = message.Substring("!time ".Length).StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
+                    var cutOff = message.Substring("!time RealTime ".Length);
+                    var index = cutOff.LastIndexOf("\"");
+                    var timeString = cutOff.Substring(index > -1 ? index + 2 : 0);
                     var time = ParseTime(timeString);
 
-                    ProcessSplit(user, splitName, time, method);
+                    if (index > -1)
+                    {
+                        var splitName = Unescape(cutOff.Substring(1, index - 1));
+                        ProcessSplit(user, splitName, time, method);
+                    }
+                    else
+                        ProcessFinalSplit(user, time, method);
                 }
             }
         }
