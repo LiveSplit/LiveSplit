@@ -409,7 +409,7 @@ namespace LiveSplit.Web.SRL
 
                     if (index > -1)
                     {
-                        var splitName = Unescape(cutOff.Substring(1, index));
+                        var splitName = Unescape(cutOff.Substring(1, index - 1));
                         ProcessSplit(user, splitName, time, method);
                     }
                     else
