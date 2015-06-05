@@ -210,8 +210,16 @@ namespace LiveSplit.Web.SRL
             {
                 var split = Model.CurrentState.CurrentSplit;
                 var time = "-";
-                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time RealTime \"{0}\" {1}", Escape(split.Name), time));
-                Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time GameTime \"{0}\" {1}", Escape(split.Name), time));
+                if (Model.CurrentState.CurrentSplitIndex == Model.CurrentState.Run.Count - 1)
+                {
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done RealTime {0}", time));
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done GameTime {0}", time));
+                }
+                else
+                {
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time RealTime \"{0}\" {1}", Escape(split.Name), time));
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time GameTime \"{0}\" {1}", Escape(split.Name), time));
+                }
             }
         }
 
