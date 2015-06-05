@@ -297,6 +297,17 @@
     <Description>Load Removal is available. (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
+  	<Games>
+  		<Game>Shrek 2</Game>
+  		<Game>Shrek 2 (PC)</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://github.com/Dalet/LiveSplit.Shrek2/raw/master/Components/LiveSplit.Shrek2.dll</URL>
+  	</URLs>
+  	<Type>Component</Type>
+    <Description>Auto Splitting is available. (By Dalet)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>The Elder Scrolls V: Skyrim</Game>
       <Game>Skyrim</Game>
