@@ -357,7 +357,7 @@
     <URLs>
       <URL>https://raw.githubusercontent.com/drtchops/asl/master/dredd.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
   </AutoSplitter>
   <AutoSplitter>
