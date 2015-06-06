@@ -1,21 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <AutoSplitters>
-  <!--<AutoSplitter>
-    <Games>
-      <Game>The Legend of Zelda: Ocarina of Time</Game>
-    </Games>
-    <URL>http://livesplit.org/update/Components/LiveSplit.OcarinaOfTime.dll</URL>
-    <Type>Component</Type>
-    <Description>Auto Splitting and Game Time for NTSC 1.0 and 1.2 on Emulator are available. (By CryZe)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Night Sky</Game>
-    </Games>
-    <URL>http://livesplit.org/update/Components/LiveSplit.NightSky.dll</URL>
-    <Type>Component</Type>
-    <Description>Auto Splitting and Game Time are available. (By CryZe)</Description>
-  </AutoSplitter>-->
   <AutoSplitter>
     <Games>
       <Game>Aperture Tag</Game>
@@ -115,42 +99,6 @@
     <Type>Script</Type>
     <Description>Automatic Timer Start and Game Time is available. (By Fatalis)</Description>
   </AutoSplitter>
-  <!--<AutoSplitter>
-    <Games>
-      <Game>Super Mario 64</Game>
-    </Games>
-    <URL>http://livesplit.org/update/ASL/LiveSplit.SuperMario64.asl</URL>
-    <Type>Script</Type>
-    <Description>Auto Splitting is available for Emulator. (By CryZe)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Super Mario World 2: Yoshi's Island</Game>
-      <Game>Yoshi's Island</Game>
-    </Games>
-    <URL>http://livesplit.org/update/ASL/LiveSplit.YoshisIsland.asl</URL>
-    <Type>Script</Type>
-    <Description>Auto Splitting is available for Emulator. (By CryZe)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Octodad</Game>
-	  <Game>Octodad: DC</Game>
-	  <Game>Octodad: Deadliest Catch</Game>
-    </Games>
-    <URL>http://livesplit.org/update/ASL/LiveSplit.Octodad.asl</URL>
-    <Type>Script</Type>
-    <Description>Auto Splitting is available. (By CryZe)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Crypt of the Necrodancer</Game>
-	  <Game>Necrodancer</Game>
-    </Games>
-    <URL>http://livesplit.org/update/ASL/LiveSplit.Necrodancer.asl</URL>
-    <Type>Script</Type>
-    <Description>Auto Splitting is available. (By CryZe)</Description>
-  </AutoSplitter>-->
   <AutoSplitter>
     <Games>
       <Game>Darksiders</Game>
@@ -201,23 +149,6 @@
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting is available. (By CryZe)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>The Legend of Zelda: The Minish Cap</Game>
-      <Game>Legend of Zelda: The Minish Cap</Game>
-      <Game>Legend of Zelda: Minish Cap</Game>
-      <Game>The Legend of Zelda: Minish Cap</Game>
-      <Game>The Legend of Zelda: TMC</Game>
-      <Game>TMC</Game>
-      <Game>The Minish Cap</Game>
-      <Game>Minish Cap</Game>
-    </Games>
-    <URLs>
-      <URL>http://livesplit.org/update/Components/LiveSplit.TheMinishCap.dll</URL>
-    </URLs>
-    <Type>Component</Type>
-    <Description>Auto Splitting and Game Time are available for VBA 1.8.0 Beta 3 on NTSC-J. (Beta Build By CryZe and wooferzfg1)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
