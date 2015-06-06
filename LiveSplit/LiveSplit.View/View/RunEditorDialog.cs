@@ -317,6 +317,7 @@ namespace LiveSplit.View
                 }
                 Run[curIndex + 1].BestSegmentTime = newBestSegment;
             }
+            UpdateButtonsStatus();
         }
 
         void runGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
