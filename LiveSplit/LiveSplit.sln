@@ -18,7 +18,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit", "LiveSplit\Live
 		{78F31888-C600-4D5D-9843-13D023893490} = {78F31888-C600-4D5D-9843-13D023893490}
 		{B9045699-7AC0-4B1C-B6A7-0EB4A93C48D7} = {B9045699-7AC0-4B1C-B6A7-0EB4A93C48D7}
 		{B81D159C-C2DA-4C8A-B240-067F38F6AC4A} = {B81D159C-C2DA-4C8A-B240-067F38F6AC4A}
-		{8FAB2C9C-CBA3-4C3A-8288-754002214F9A} = {8FAB2C9C-CBA3-4C3A-8288-754002214F9A}
 		{0BE25AA8-DF4D-4473-A52F-15E7C8DF180B} = {0BE25AA8-DF4D-4473-A52F-15E7C8DF180B}
 		{B2045CAE-2D97-4CB1-931C-55837CC77699} = {B2045CAE-2D97-4CB1-931C-55837CC77699}
 		{A0A5A4B1-C845-4409-A0DB-9F75A192EF9A} = {A0A5A4B1-C845-4409-A0DB-9F75A192EF9A}
@@ -61,8 +60,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Register", "LiveSplit.Register\LiveSplit.Register.csproj", "{992F67ED-99FB-4437-B470-26DE095A61E8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Video", "Components\LiveSplit.Video\LiveSplit.Video.csproj", "{35AF3E25-4130-4CEC-B962-0EAFF1F82577}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.WPF", "LiveSplit.WPF\LiveSplit.WPF.csproj", "{8FAB2C9C-CBA3-4C3A-8288-754002214F9A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Text", "Components\LiveSplit.Text\LiveSplit.Text.csproj", "{BE9D4E57-20C6-4384-A3DC-AA365E11FFD2}"
 EndProject
@@ -107,6 +104,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codaxy.Xlio", "Libs\xlio\Source\Codaxy.Xlio\Codaxy.Xlio.csproj", "{11F82973-690A-48A9-8CB8-BD97E0024E2C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.WorldRecord", "Components\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj", "{B0470637-949C-4A41-9C8C-0CE46561037F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Tests", "LiveSplit.Tests\LiveSplit.Tests.csproj", "{970684D3-6795-4696-B8C2-82E222FCEB68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -199,12 +198,6 @@ Global
 		{35AF3E25-4130-4CEC-B962-0EAFF1F82577}.Release Candidate|Any CPU.Build.0 = Release Candidate|Any CPU
 		{35AF3E25-4130-4CEC-B962-0EAFF1F82577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35AF3E25-4130-4CEC-B962-0EAFF1F82577}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FAB2C9C-CBA3-4C3A-8288-754002214F9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FAB2C9C-CBA3-4C3A-8288-754002214F9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FAB2C9C-CBA3-4C3A-8288-754002214F9A}.Release Candidate|Any CPU.ActiveCfg = Release Candidate|Any CPU
-		{8FAB2C9C-CBA3-4C3A-8288-754002214F9A}.Release Candidate|Any CPU.Build.0 = Release Candidate|Any CPU
-		{8FAB2C9C-CBA3-4C3A-8288-754002214F9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FAB2C9C-CBA3-4C3A-8288-754002214F9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BE9D4E57-20C6-4384-A3DC-AA365E11FFD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BE9D4E57-20C6-4384-A3DC-AA365E11FFD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BE9D4E57-20C6-4384-A3DC-AA365E11FFD2}.Release Candidate|Any CPU.ActiveCfg = Release Candidate|Any CPU
@@ -295,6 +288,12 @@ Global
 		{B0470637-949C-4A41-9C8C-0CE46561037F}.Release Candidate|Any CPU.Build.0 = Release Candidate|Any CPU
 		{B0470637-949C-4A41-9C8C-0CE46561037F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0470637-949C-4A41-9C8C-0CE46561037F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{970684D3-6795-4696-B8C2-82E222FCEB68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{970684D3-6795-4696-B8C2-82E222FCEB68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{970684D3-6795-4696-B8C2-82E222FCEB68}.Release Candidate|Any CPU.ActiveCfg = Release|Any CPU
+		{970684D3-6795-4696-B8C2-82E222FCEB68}.Release Candidate|Any CPU.Build.0 = Release|Any CPU
+		{970684D3-6795-4696-B8C2-82E222FCEB68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{970684D3-6795-4696-B8C2-82E222FCEB68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
