@@ -1,14 +1,6 @@
-﻿using Fetze.WinFormsColor;
-using LiveSplit.Options;
-using LiveSplit.UI;
+﻿using LiveSplit.UI;
 using LiveSplit.UI.Components;
 using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -28,13 +20,15 @@ namespace LiveSplit.View
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             Component.SetSettings(ComponentSettings);
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         protected void AddComponent(IComponent component)
@@ -44,19 +38,10 @@ namespace LiveSplit.View
             ComponentSettings = component.GetSettings(new XmlDocument());
         }
 
-        protected void AddControl(String name, Control control)
+        protected void AddControl(string name, Control control)
         {
             panel.Controls.Add(control);
-            this.Name = name + " Settings";
-        }
-
-        private void LayoutSettingsDialog_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing 
-                && DialogResult != System.Windows.Forms.DialogResult.OK)
-            {
-                btnCancel_Click(this, null);
-            }
+            Name = name + " Settings";
         }
     }
 }

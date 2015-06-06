@@ -5,6 +5,7 @@
 *.suo
 *.user
 *.sln.docstates
+*.userprefs
 
 # Build results
 [Dd]ebug/
@@ -204,7 +205,8 @@ FakesAssemblies/
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -240,3 +242,6 @@ $RECYCLE.BIN/
 *.msp
 *.dropbox
 .dropbox.attr
+LiveSplit/LiveSplit.Core/Updates/GitInfo/branch.txt
+LiveSplit/LiveSplit.Core/Updates/GitInfo/version.txt
+LiveSplit/LiveSplit.Core/Updates/GitInfo/revision.txt

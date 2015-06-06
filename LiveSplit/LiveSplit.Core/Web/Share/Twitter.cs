@@ -14,17 +14,17 @@ namespace LiveSplit.Web.Share
 {
     public class Twitter : IRunUploadPlatform
     {
-        internal const String ConsumerKey = "9oXx7khrRLpQdBjaEUUFw";
-        internal const String ConsumerSecret = "KIvv2ZT89ZN1x99f7aUfFwXiwEyU9Am9Z9DYlspX0nU";
+        internal const string ConsumerKey = "9oXx7khrRLpQdBjaEUUFw";
+        internal const string ConsumerSecret = "KIvv2ZT89ZN1x99f7aUfFwXiwEyU9Am9Z9DYlspX0nU";
 
-        protected static Twitter _Instance = new Twitter();
+        protected static readonly Twitter _Instance = new Twitter();
 
         public static Twitter Instance { get { return _Instance; } }
 
         public TwitterContext Context { get; set; }
         public ISettings Settings { get; set; }
 
-        private String screenName;
+        private string screenName;
 
         protected Twitter() { }
 
@@ -57,7 +57,7 @@ namespace LiveSplit.Web.Share
 
         public string GetGameIdByName(string gameName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         public IEnumerable<ASUP.IdPair> GetGameCategories(string gameId)
@@ -67,7 +67,7 @@ namespace LiveSplit.Web.Share
 
         public string GetCategoryIdByName(string gameId, string categoryName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         static ITwitterAuthorizer DoPinOAuth()
@@ -82,7 +82,7 @@ namespace LiveSplit.Web.Share
                 GoToTwitterAuthorization = pageLink => Process.Start(pageLink),
                 GetPin = () =>
                 {
-                    String result = null;
+                    string result = null;
                     InputBox.Show("Twitter Authentication", 
                         "Enter the PIN number Twitter will give you here: ", ref result);
                     return result;
@@ -92,7 +92,7 @@ namespace LiveSplit.Web.Share
             return auth;
         }
 
-        static ITwitterAuthorizer DoSingleUserAuth(String accessToken, String oauthToken, out String screenName)
+        static ITwitterAuthorizer DoSingleUserAuth(string accessToken, string oauthToken, out string screenName)
         {
             var auth = new SingleUserAuthorizer
             {
@@ -112,7 +112,7 @@ namespace LiveSplit.Web.Share
             return auth;
         }
 
-        static ITwitterAuthorizer DoXAuth(String username, String password)
+        static ITwitterAuthorizer DoXAuth(string username, string password)
         {
             var auth = new XAuthAuthorizer
             {
@@ -138,7 +138,7 @@ namespace LiveSplit.Web.Share
             return form.Authorizer;
         }*/
 
-        static ITwitterAuthorizer DoFormOAuth(out String screenName)
+        static ITwitterAuthorizer DoFormOAuth(out string screenName)
         {
             var form = new TwitterOAuthForm();
             form.ShowDialog();
@@ -158,10 +158,10 @@ namespace LiveSplit.Web.Share
                 ITwitterAuthorizer auth;
 
                 ShareSettings.Default.Reload();
-                String accessToken = ShareSettings.Default.TwitterAccessToken;
-                String oauthToken = ShareSettings.Default.TwitterOAuthToken;
+                string accessToken = ShareSettings.Default.TwitterAccessToken;
+                string oauthToken = ShareSettings.Default.TwitterOAuthToken;
 
-                if (String.IsNullOrEmpty(accessToken) || String.IsNullOrEmpty(oauthToken))
+                if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(oauthToken))
                     auth = DoFormOAuth(out screenName);
                 else
                 {
@@ -203,7 +203,7 @@ namespace LiveSplit.Web.Share
             if (screenShotFunction == null || attachSplits)
             {
                 var status = Context.UpdateStatus(comment);
-                var url = String.Format("http://twitter.com/{0}/status/{1}", status.User.Name, status.StatusID);
+                var url = string.Format("http://twitter.com/{0}/status/{1}", status.User.Name, status.StatusID);
                 Process.Start(url);
             }
             else

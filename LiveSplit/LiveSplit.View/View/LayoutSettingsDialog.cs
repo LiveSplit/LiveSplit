@@ -1,13 +1,7 @@
-﻿using Fetze.WinFormsColor;
-using LiveSplit.Options;
-using LiveSplit.UI.Components;
+﻿using LiveSplit.UI.Components;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -15,12 +9,12 @@ namespace LiveSplit.View
 {
     public partial class LayoutSettingsDialog : Form
     {
-        public LiveSplit.Options.LayoutSettings Settings { get; set; }
-        public LiveSplit.UI.ILayout Layout { get; set; }
+        public Options.LayoutSettings Settings { get; set; }
+        public UI.ILayout Layout { get; set; }
         public List<XmlNode> ComponentSettings { get; set; }
         public List<IComponent> Components { get; set; }
 
-        public LayoutSettingsDialog(LiveSplit.Options.LayoutSettings settings, LiveSplit.UI.ILayout layout, IComponent tabComponent = null)
+        public LayoutSettingsDialog(Options.LayoutSettings settings, UI.ILayout layout, IComponent tabComponent = null)
         {
             InitializeComponent();
             Settings = settings;
@@ -33,8 +27,8 @@ namespace LiveSplit.View
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -45,6 +39,8 @@ namespace LiveSplit.View
                 component.SetSettings(ComponentSettings[i]);
                 i++;
             }
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
 
         protected void AddComponents(IComponent tabComponent = null)
@@ -65,7 +61,7 @@ namespace LiveSplit.View
             }
         }
 
-        protected void AddNewTab(String name, Control control)
+        protected void AddNewTab(string name, Control control)
         {
             var page = new TabPage(name);
             control.Location = new Point(0, 0);
@@ -73,15 +69,6 @@ namespace LiveSplit.View
             page.AutoScroll = true;
             page.Name = name;
             tabControl.TabPages.Add(page);
-        }
-
-        private void LayoutSettingsDialog_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (e.CloseReason == CloseReason.UserClosing 
-                && DialogResult != System.Windows.Forms.DialogResult.OK)
-            {
-                btnCancel_Click(this, null);
-            }
         }
     }
 }

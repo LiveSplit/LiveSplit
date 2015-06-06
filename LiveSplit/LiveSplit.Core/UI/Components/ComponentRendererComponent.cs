@@ -32,7 +32,6 @@ namespace LiveSplit.UI.Components
             get { throw new NotSupportedException(); }
         }
 
-
         public Control GetSettingsControl(LayoutMode mode)
         {
             throw new NotSupportedException();
@@ -50,7 +49,7 @@ namespace LiveSplit.UI.Components
 
         public IDictionary<string, Action> ContextMenuControls
         {
-            get { return base.VisibleComponents.Select(x => x.ContextMenuControls).Where(x => x != null).SelectMany(x => x).ToDictionary(x => x.Key, x => x.Value); }
+            get { return VisibleComponents.Select(x => x.ContextMenuControls).Where(x => x != null).SelectMany(x => x).ToDictionary(x => x.Key, x => x.Value); }
         }
 
         public void Dispose()

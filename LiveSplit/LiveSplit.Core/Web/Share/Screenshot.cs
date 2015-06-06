@@ -9,7 +9,7 @@ namespace LiveSplit.Web.Share
     public class Screenshot : IRunUploadPlatform
     {
         public ISettings Settings { get; set; }
-        protected static Screenshot _Instance = new Screenshot();
+        protected static readonly Screenshot _Instance = new Screenshot();
 
         public static Screenshot Instance { get { return _Instance; } }
 
@@ -40,7 +40,7 @@ namespace LiveSplit.Web.Share
 
         public string GetGameIdByName(string gameName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         public IEnumerable<ASUP.IdPair> GetGameCategories(string gameId)
@@ -50,7 +50,7 @@ namespace LiveSplit.Web.Share
 
         public string GetCategoryIdByName(string gameId, string categoryName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         public bool VerifyLogin(string username, string password)

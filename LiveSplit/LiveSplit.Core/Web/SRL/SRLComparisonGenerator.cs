@@ -1,7 +1,6 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Model.Comparisons;
 using LiveSplit.Options;
-using System;
 
 namespace LiveSplit.Web.SRL
 {
@@ -10,7 +9,7 @@ namespace LiveSplit.Web.SRL
         public IRun Run { get; set; }
         public string Name { get; protected set; }
 
-        public SRLComparisonGenerator(String name)
+        public SRLComparisonGenerator(string name)
         {
             Name = name;
         }

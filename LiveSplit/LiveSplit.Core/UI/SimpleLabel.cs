@@ -9,8 +9,8 @@ namespace LiveSplit.UI
 {
     public class SimpleLabel
     {
-        public String Text { get; set; }
-        public ICollection<String> AlternateText { get; set; }
+        public string Text { get; set; }
+        public ICollection<string> AlternateText { get; set; }
         public float X { get; set; }
         public float Y { get; set; }
         public float Width { get; set; }
@@ -24,6 +24,8 @@ namespace LiveSplit.UI
         public bool HasShadow { get; set; }
         public bool IsMonospaced { get; set; }
         //public bool HasGlassEffects { get; set; }
+
+        private StringFormat Format { get; set; }
 
         public float ActualWidth { get; set; }
 
@@ -54,17 +56,18 @@ namespace LiveSplit.UI
         }
 
         public SimpleLabel(
-            String text = "",
+            string text = "",
             float x = 0.0f, float y = 0.0f,
             Font font = null, Brush brush = null,
             float width = float.MaxValue, float height = float.MaxValue,
             StringAlignment horizontalAlignment = StringAlignment.Near,
             StringAlignment verticalAlignment = StringAlignment.Near,
-            IEnumerable<String> alternateText = null
+            IEnumerable<string> alternateText = null
             )
         {
             Text = text;
             X = x;
+            Y = y;
             Font = font ?? new Font("Arial", 1.0f);
             Brush = brush ?? new SolidBrush(Color.Black);
             Width = width;
@@ -74,47 +77,35 @@ namespace LiveSplit.UI
             IsMonospaced = false;
             HasShadow = true;
             ShadowColor = Color.FromArgb(128, 0, 0, 0);
-            ((List<String>)(AlternateText = new List<String>())).AddRange(alternateText ?? new String[0]);
+            ((List<string>)(AlternateText = new List<string>())).AddRange(alternateText ?? new string[0]);
+            Format = new StringFormat
+            {
+                Alignment = HorizontalAlignment,
+                LineAlignment = VerticalAlignment,
+                FormatFlags = StringFormatFlags.NoWrap,
+                Trimming = StringTrimming.EllipsisCharacter
+            };
             //HasGlassEffects = false;
         }
 
         public void Draw(Graphics g)
         {
-            var format = new StringFormat
-            {
-                Alignment     = HorizontalAlignment,
-                LineAlignment = VerticalAlignment,
-                FormatFlags   = StringFormatFlags.NoWrap,
-                Trimming      = StringTrimming.EllipsisCharacter
-            };
+            Format.Alignment = HorizontalAlignment;
+            Format.LineAlignment = VerticalAlignment;
 
             if (!IsMonospaced)
             {
-                var actualText = Text;
-
-                ActualWidth = g.MeasureString(Text, Font, 9999, format).Width;
-                foreach (var curText in AlternateText.OrderByDescending(x => x.Length))
-                {
-                    if (Width < ActualWidth)
-                    {
-                        actualText = curText;
-                        ActualWidth = g.MeasureString(actualText, Font, 9999, format).Width;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+                var actualText = CalculateAlternateText(g, Width);
 
                 if (HasShadow)
                 {
                     using (var shadowBrush = new SolidBrush(ShadowColor))
                     {
-                        g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 1, Y + 1, Width, Height), format);
-                        g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 2, Y + 2, Width, Height), format);
+                        g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 1, Y + 1, Width, Height), Format);
+                        g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 2, Y + 2, Width, Height), Format);
                     }
                 }
-                g.DrawString(actualText, Font, Brush, new RectangleF(X, Y, Width, Height), format);
+                g.DrawString(actualText, Font, Brush, new RectangleF(X, Y, Width, Height), Format);
             }
             else
             {
@@ -181,21 +172,35 @@ namespace LiveSplit.UI
         }
         public void SetActualWidth(Graphics g)
         {
-            var format = new StringFormat
-            {
-                Alignment     = HorizontalAlignment,
-                LineAlignment = VerticalAlignment,
-                FormatFlags   = StringFormatFlags.NoWrap,
-                Trimming      = StringTrimming.EllipsisCharacter
-            };
+            Format.Alignment = HorizontalAlignment;
+            Format.LineAlignment = VerticalAlignment;
 
             if (!IsMonospaced)
-                ActualWidth = g.MeasureString(Text, Font, 9999, format).Width;
+                ActualWidth = g.MeasureString(Text, Font, 9999, Format).Width;
             else
                 ActualWidth = MeasureActualWidth(Text, g);
         }
 
-        private float MeasureActualWidth(String text, Graphics g)
+        public string CalculateAlternateText(Graphics g, float width)
+        {
+            var actualText = Text;
+            ActualWidth = g.MeasureString(Text, Font, 9999, Format).Width;
+            foreach (var curText in AlternateText.OrderByDescending(x => x.Length))
+            {
+                if (width < ActualWidth)
+                {
+                    actualText = curText;
+                    ActualWidth = g.MeasureString(actualText, Font, 9999, Format).Width;
+                }
+                else
+                {
+                    break;
+                }
+            }
+            return actualText;
+        }
+
+        private float MeasureActualWidth(string text, Graphics g)
         {
             var charIndex = 0;
             var measurement = TextRenderer.MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
@@ -212,16 +217,15 @@ namespace LiveSplit.UI
 
                 charIndex++;
             }
-
             return offset;
         }
 
-        private String CutOff(Graphics g)
+        private string CutOff(Graphics g)
         {
             if (ActualWidth < Width)
                 return Text;
             var cutOffText = Text;
-            while (ActualWidth >= Width && !String.IsNullOrEmpty(cutOffText))
+            while (ActualWidth >= Width && !string.IsNullOrEmpty(cutOffText))
             {
                 cutOffText = cutOffText.Remove(cutOffText.Length - 1, 1);
                 ActualWidth = MeasureActualWidth(cutOffText + "...", g);

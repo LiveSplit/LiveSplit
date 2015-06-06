@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
@@ -8,6 +9,7 @@ namespace LiveSplit.UI
     {
         public Form Form { get; protected set; }
         public Matrix Transform { get; set; }
+        protected const double Offset = 0.035;
 
         public Invalidator(Form form)
         {
@@ -35,13 +37,13 @@ namespace LiveSplit.UI
                 new PointF(x+width, y+height)
                 };
             Transform.TransformPoints(points);
-            var roundedX = (int)(points[0].X + 0.99f);
-            var roundedY = (int)(points[0].Y + 0.99f);
+            var roundedX = (int)Math.Ceiling(points[0].X - Offset);
+            var roundedY = (int)Math.Ceiling(points[0].Y - Offset);
             var rect = new Rectangle(
                 roundedX,
                 roundedY,
-                (int)(points[1].X - roundedX + 0.99f),
-                (int)(points[1].Y - roundedY + 0.99f));
+                (int)Math.Ceiling(points[1].X - roundedX - Offset),
+                (int)Math.Ceiling(points[1].Y - roundedY - Offset));
             Form.Invalidate(rect);
         }
     }

@@ -9,23 +9,23 @@ namespace LiveSplit.Model
     public interface IRun : IList<ISegment>, ICloneable
     {
         Image GameIcon { get; set; }
-        String GameName { get; set; }
-        String CategoryName { get; set; }
+        string GameName { get; set; }
+        string CategoryName { get; set; }
         TimeSpan Offset { get; set; }
         int AttemptCount { get; set; }
-        IList<IIndexedTime> RunHistory { get; set; }
+        IList<Attempt> AttemptHistory { get; set; }
 
         AutoSplitter AutoSplitter { get; set; }
         XmlElement AutoSplitterSettings { get; set; }
 
         IList<IComparisonGenerator> ComparisonGenerators { get; set; }
-        IList<String> CustomComparisons { get; set; }
-        IEnumerable<String> Comparisons { get; }
+        IList<string> CustomComparisons { get; set; }
+        IEnumerable<string> Comparisons { get; }
 
         bool HasChanged { get; set; }
-        String FilePath { get; set; }
+        string FilePath { get; set; }
 
-        void AddSegment(String name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<Time> segmentHistory = null);
+        void AddSegment(string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<IIndexedTime> segmentHistory = null);
         void FixSplits();
         void ImportSegmentHistory();
         void ImportBestSegment(int segmentIndex);

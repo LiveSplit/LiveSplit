@@ -15,11 +15,14 @@ namespace LiveSplit.Model
         public ISettings Settings { get; set; }
         public Forms.Form Form { get; set; }
 
+        public TripleDateTime AttemptStarted { get; set; }
+        public TripleDateTime AttemptEnded { get; set; }
+
         public TripleDateTime StartTime { get; set; }
         public TimeSpan PauseTime { get; set; }
         public TimeSpan GameTimePauseTime { get; set; }
         public TimerPhase CurrentPhase { get; set; }
-        public String CurrentComparison { get; set; }
+        public string CurrentComparison { get; set; }
         public TimingMethod CurrentTimingMethod { get; set; }
         public TimeSpan LoadingTimes { get; set; }
         private bool isGameTimePaused;
@@ -83,7 +86,7 @@ namespace LiveSplit.Model
         }
 
         public int CurrentSplitIndex { get; set; }
-        public ISegment CurrentSplit { get { return (CurrentSplitIndex < 0 && CurrentSplitIndex < Run.Count) ? null : Run[CurrentSplitIndex]; } }
+        public ISegment CurrentSplit { get { return (CurrentSplitIndex >= 0 && CurrentSplitIndex < Run.Count) ? Run[CurrentSplitIndex] : null; } }
 
         private LiveSplitState() { }
 
@@ -104,20 +107,22 @@ namespace LiveSplit.Model
         {
             return new LiveSplitState()
             {
-                Run = this.Run.Clone() as IRun,
-                Form = this.Form,
-                Layout = this.Layout.Clone() as ILayout,
-                Settings = this.Settings.Clone() as ISettings,
-                LayoutSettings = this.LayoutSettings.Clone() as LayoutSettings,
-                StartTime = this.StartTime,
-                PauseTime = this.PauseTime,
-                GameTimePauseTime = this.GameTimePauseTime,
-                isGameTimePaused = this.isGameTimePaused,
-                LoadingTimes = this.LoadingTimes,
-                CurrentPhase = this.CurrentPhase,
-                CurrentSplitIndex = this.CurrentSplitIndex,
-                CurrentComparison = this.CurrentComparison,
-                CurrentTimingMethod = this.CurrentTimingMethod,
+                Run = Run.Clone() as IRun,
+                Form = Form,
+                Layout = Layout.Clone() as ILayout,
+                Settings = Settings.Clone() as ISettings,
+                LayoutSettings = LayoutSettings.Clone() as LayoutSettings,
+                StartTime = StartTime,
+                PauseTime = PauseTime,
+                GameTimePauseTime = GameTimePauseTime,
+                isGameTimePaused = isGameTimePaused,
+                LoadingTimes = LoadingTimes,
+                CurrentPhase = CurrentPhase,
+                CurrentSplitIndex = CurrentSplitIndex,
+                CurrentComparison = CurrentComparison,
+                CurrentTimingMethod = CurrentTimingMethod,
+                AttemptStarted = AttemptStarted,
+                AttemptEnded = AttemptEnded
             };
         }
 

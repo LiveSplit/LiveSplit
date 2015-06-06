@@ -115,8 +115,8 @@ namespace LiveSplit.Model.Input
 
         private WindowsHookHelper.HookDelegate keyBoardDelegate;
         private IntPtr keyBoardHandle;
-        private const Int32 WH_KEYBOARD_LL = 13;
-        private const Int32 WH_KEYBOARD = 2;
+        private const int WH_KEYBOARD_LL = 13;
+        private const int WH_KEYBOARD = 2;
         private bool disposed;
 
         [DllImport("kernel32.dll")]
@@ -171,7 +171,7 @@ namespace LiveSplit.Model.Input
         }
 
         private IntPtr KeyboardHookDelegate(
-            Int32 Code, IntPtr wParam, IntPtr lParam)
+            int Code, IntPtr wParam, IntPtr lParam)
         {
             if (Code < 0)
             {
@@ -268,11 +268,11 @@ namespace LiveSplit.Model.Input
     public class WindowsHookHelper
     {
         public delegate IntPtr HookDelegate(
-            Int32 Code, IntPtr wParam, IntPtr lParam);
+            int Code, IntPtr wParam, IntPtr lParam);
 
         [DllImport("User32.dll")]
         public static extern IntPtr CallNextHookEx(
-            IntPtr hHook, Int32 nCode, IntPtr wParam, IntPtr lParam);
+            IntPtr hHook, int nCode, IntPtr wParam, IntPtr lParam);
 
         [DllImport("User32.dll")]
         public static extern IntPtr UnhookWindowsHookEx(IntPtr hHook);
@@ -280,7 +280,7 @@ namespace LiveSplit.Model.Input
 
         [DllImport("User32.dll")]
         public static extern IntPtr SetWindowsHookEx(
-            Int32 idHook, HookDelegate lpfn, IntPtr hmod,
-            Int32 dwThreadId);
+            int idHook, HookDelegate lpfn, IntPtr hmod,
+            int dwThreadId);
     }
 }

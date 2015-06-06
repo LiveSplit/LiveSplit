@@ -15,7 +15,7 @@ namespace LiveSplit.Model.RunFactories
             Stream = stream;
         }
 
-        protected String Unescape(String text)
+        protected string Unescape(string text)
         {
             return text.Replace(@"‡", @",");
         }
@@ -30,7 +30,7 @@ namespace LiveSplit.Model.RunFactories
             var titleInfo = line.Split(',');
             //Title Stuff here, do later
             run.CategoryName = Unescape(titleInfo[0]);
-            run.AttemptCount = Int32.Parse(titleInfo[1]);
+            run.AttemptCount = int.Parse(titleInfo[1]);
             while ((line = reader.ReadLine()) != null)
             {
                 if (line.Length > 0)

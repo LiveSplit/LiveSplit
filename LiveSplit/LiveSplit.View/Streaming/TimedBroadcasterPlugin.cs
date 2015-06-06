@@ -9,6 +9,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+#if WITH_XSPLIT
+
 namespace XSplit.Wpf
 {
     using System;
@@ -17,7 +19,6 @@ namespace XSplit.Wpf
     using System.Threading;
     using System.Threading.Tasks;
     using System.Timers;
-    using System.Windows.Forms;
     using VHMediaCOMLib;
     using Timer = System.Timers.Timer;
 
@@ -71,8 +72,8 @@ namespace XSplit.Wpf
         protected TimedBroadcasterPlugin(VHCOMRenderEngineExtSrc2 xsplit, int timeInterval)
             : this(xsplit)
         {
-            this.timer = new Timer(timeInterval);
-            this.timer.Elapsed += this.RenderTimerElapsed;
+            timer = new Timer(timeInterval);
+            timer.Elapsed += RenderTimerElapsed;
         }
 
         /// <summary>
@@ -80,7 +81,7 @@ namespace XSplit.Wpf
         /// </summary>
         ~TimedBroadcasterPlugin()
         {
-            this.Dispose(false);
+            Dispose(false);
         }
 
         #endregion
@@ -94,12 +95,12 @@ namespace XSplit.Wpf
         {
             get
             {
-                return this.timer.Interval;
+                return timer.Interval;
             }
 
             set
             {
-                this.timer.Interval = value;
+                timer.Interval = value;
             }
         }
 
@@ -157,7 +158,7 @@ namespace XSplit.Wpf
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
+            Dispose(true);
             GC.SuppressFinalize(this);
         }
 
@@ -166,7 +167,7 @@ namespace XSplit.Wpf
         /// </summary>
         public void StartTimer()
         {
-            this.timer.Start();
+            timer.Start();
         }
 
         /// <summary>
@@ -174,7 +175,7 @@ namespace XSplit.Wpf
         /// </summary>
         public void StopTimer()
         {
-            this.timer.Stop();
+            timer.Stop();
         }
 
         #endregion
@@ -189,17 +190,17 @@ namespace XSplit.Wpf
         /// </param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!this.disposed)
+            if (!disposed)
             {
-                this.timer.Stop();
+                timer.Stop();
 
                 if (disposing)
                 {
-                    this.timer.Dispose();
+                    timer.Dispose();
                 }
             }
 
-            this.disposed = true;
+            disposed = true;
         }
 
         /// <summary>
@@ -214,12 +215,14 @@ namespace XSplit.Wpf
         private void RenderTimerElapsed(object sender, ElapsedEventArgs e)
         {
             Task.Factory.StartNew(
-                () => this.RenderVisual(this.Image), 
+                () => RenderVisual(Image), 
                 CancellationToken.None, 
-                TaskCreationOptions.None, 
-                this.taskScheduler);
+                TaskCreationOptions.None,
+                taskScheduler);
         }
 
         #endregion
     }
 }
+
+#endif

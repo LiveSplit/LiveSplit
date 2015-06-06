@@ -1,12 +1,11 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Net;
 
 namespace LiveSplit.Web.Share
 {
     public class PBTracker : ASUPRunUploadPlatform
     {
-        protected static PBTracker _Instance = new PBTracker();
+        protected static readonly PBTracker _Instance = new PBTracker();
 
         public static PBTracker Instance { get { return _Instance; } }
 
@@ -17,17 +16,17 @@ namespace LiveSplit.Web.Share
           + "You can also view other runners' personal bests from any game or category.")
         { }
 
-        public Image GetGameBoxArt(String gameId)
+        public Image GetGameBoxArt(string gameId)
         {
-            var request = WebRequest.Create(GetUri(String.Format("static/boxart/{0}.jpg", gameId)));
+            var request = WebRequest.Create(GetUri(string.Format("static/boxart/{0}.jpg", gameId)));
             var response = request.GetResponse();
             var stream = response.GetResponseStream();
             return Image.FromStream(stream);
         }
 
-        public dynamic GetGame(String gameId)
+        public dynamic GetGame(string gameId)
         {
-            return JSON.FromUri(GetUri(String.Format("game/{0}.json", gameId)));
+            return JSON.FromUri(GetUri(string.Format("game/{0}.json", gameId)));
         }
     }
 }

@@ -12,7 +12,7 @@ namespace LiveSplit.UI.LayoutSavers
 {
     public class XMLLayoutSaver : ILayoutSaver
     {
-        private XmlElement CreateImageElement(XmlDocument document, String elementName, Image image)
+        private XmlElement CreateImageElement(XmlDocument document, string elementName, Image image)
         {
             var element = document.CreateElement(elementName);
 
@@ -32,7 +32,7 @@ namespace LiveSplit.UI.LayoutSavers
             return element;
         }
 
-        private XmlElement CreateFontElement(XmlDocument document, String elementName, Font font)
+        private XmlElement CreateFontElement(XmlDocument document, string elementName, Font font)
         {
             var element = document.CreateElement(elementName);
 
@@ -52,14 +52,14 @@ namespace LiveSplit.UI.LayoutSavers
             return element;
         }
 
-        private XmlElement ToElement<T>(XmlDocument document, String name, T value)
+        private XmlElement ToElement<T>(XmlDocument document, string name, T value)
         {
             var element = document.CreateElement(name);
             element.InnerText = value.ToString();
             return element;
         }
 
-        private XmlElement ToElement(XmlDocument document, String name, float value)
+        private XmlElement ToElement(XmlDocument document, string name, float value)
         {
             var element = document.CreateElement(name);
             element.InnerText = value.ToString(CultureInfo.InvariantCulture);
@@ -154,7 +154,7 @@ namespace LiveSplit.UI.LayoutSavers
             return parent;
         }
 
-        public void Save(ILayout layout, System.IO.Stream stream)
+        public void Save(ILayout layout, Stream stream)
         {
             var document = new XmlDocument();
 

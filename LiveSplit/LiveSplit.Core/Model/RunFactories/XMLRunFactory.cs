@@ -10,9 +10,9 @@ namespace LiveSplit.Model.RunFactories
     public class XMLRunFactory : IRunFactory
     {
         public Stream Stream { get; set; }
-        public String FilePath { get; set; }
+        public string FilePath { get; set; }
 
-        public XMLRunFactory(Stream stream = null, String filePath = null)
+        public XMLRunFactory(Stream stream = null, string filePath = null)
         {
             Stream = stream;
             FilePath = filePath;
@@ -35,6 +35,39 @@ namespace LiveSplit.Model.RunFactories
             return null;
         }
 
+        private void ParseAttemptHistory(Version version, XmlElement parent, IRun run)
+        {
+            if (version >= new Version(1, 5, 0))
+            {
+                var attemptHistory = parent["AttemptHistory"];
+                foreach (var attemptNode in attemptHistory.GetElementsByTagName("Attempt"))
+                {
+                    var attempt = Attempt.ParseXml(attemptNode as XmlElement);
+                    run.AttemptHistory.Add(attempt);
+                }
+            }
+            else if (version >= new Version(1, 4, 1))
+            {
+                var runHistory = parent["RunHistory"];
+                foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
+                {
+                    var indexedTime = IndexedTimeHelper.ParseXml(runHistoryNode as XmlElement);
+                    var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null);
+                    run.AttemptHistory.Add(attempt);
+                }
+            }
+            else
+            {
+                var runHistory = parent["RunHistory"];
+                foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
+                {
+                    var indexedTime = IndexedTimeHelper.ParseXmlOld(runHistoryNode as XmlElement);
+                    var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null);
+                    run.AttemptHistory.Add(attempt);
+                }
+            }
+        }
+
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
             var document = new XmlDocument();
@@ -52,13 +85,9 @@ namespace LiveSplit.Model.RunFactories
             run.GameName = parent["GameName"].InnerText;
             run.CategoryName = parent["CategoryName"].InnerText;
             run.Offset = TimeSpan.Parse(parent["Offset"].InnerText);
-            run.AttemptCount = Int32.Parse(parent["AttemptCount"].InnerText);
+            run.AttemptCount = int.Parse(parent["AttemptCount"].InnerText);
 
-            var runHistory = parent["RunHistory"];
-            foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
-            {
-                run.RunHistory.Add(version >= new Version(1, 4, 1) ? IndexedTimeHelper.ParseXml(runHistoryNode as XmlElement) : IndexedTimeHelper.ParseXmlOld(runHistoryNode as XmlElement));
-            }
+            ParseAttemptHistory(version, parent, run);
 
             var segmentsNode = parent["Segments"];
 
@@ -113,13 +142,15 @@ namespace LiveSplit.Model.RunFactories
 
             if (version >= new Version(1, 4, 2))
             {
-                run.AutoSplitterSettings = parent["AutoSplitterSettings"];
-                var gameName = document.CreateAttribute("gameName");
+                var newXmlDoc = new XmlDocument();
+                newXmlDoc.InnerXml = parent["AutoSplitterSettings"].OuterXml;
+                run.AutoSplitterSettings = newXmlDoc.FirstChild as XmlElement;
+                var gameName = newXmlDoc.CreateAttribute("gameName");
                 gameName.Value = run.GameName;
                 run.AutoSplitterSettings.Attributes.Append(gameName);
             }
 
-            if (!String.IsNullOrEmpty(FilePath))
+            if (!string.IsNullOrEmpty(FilePath))
                 run.FilePath = FilePath;
 
             return run;

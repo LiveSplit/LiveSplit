@@ -1,14 +1,9 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Options;
-using LiveSplit.Web;
-using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -51,8 +46,8 @@ namespace LiveSplit.UI
                             Log.Error(ex);
                         }
                     };
-                    if (this.InvokeRequired)
-                        this.Invoke(invokation);
+                    if (InvokeRequired)
+                        Invoke(invokation);
                     else
                         invokation();
                 }
@@ -66,7 +61,7 @@ namespace LiveSplit.UI
             cbxGameName.TextChanged += cbxGameName_TextChanged;
 
             cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
-            cbxRunCategory.Items.AddRange(new String[] { "Any%", "Low%", "100%" });
+            cbxRunCategory.Items.AddRange(new [] { "Any%", "Low%", "100%" });
             cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
             Text = "New Race";
@@ -105,12 +100,12 @@ namespace LiveSplit.UI
             AcceptButton = buttonOk;
             CancelButton = buttonCancel;
 
-            this.FormClosing += NewRaceInputBox_FormClosing;
+            FormClosing += NewRaceInputBox_FormClosing;
 
             cbxGameName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
             cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
-            cbxRunCategory.Items.AddRange(new String[] { "Any%", "Low%", "100%" });
+            cbxRunCategory.Items.AddRange(new string[] { "Any%", "Low%", "100%" });
             cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
             RefreshCategoryAutoCompleteList("");
@@ -118,13 +113,13 @@ namespace LiveSplit.UI
 
         void NewRaceInputBox_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
+            if (DialogResult == DialogResult.OK)
             {
                 var gameID = SpeedRunsLiveAPI.Instance.GetGameIDFromName(cbxGameName.Text);
-                if (String.IsNullOrEmpty(gameID))
+                if (string.IsNullOrEmpty(gameID))
                 {
                     var result = MessageBox.Show(this, "The game you entered could not be found in the SpeedRunsLive Game List. Are you sure you would like to start a race with a New Game?", "Game Not Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (result == System.Windows.Forms.DialogResult.No)
+                    if (result == DialogResult.No)
                         e.Cancel = true;
                 }
             }
@@ -134,13 +129,13 @@ namespace LiveSplit.UI
             RefreshCategoryAutoCompleteList(((ComboBox)sender).Text);
         }
 
-        void RefreshCategoryAutoCompleteList(String gameName)
+        void RefreshCategoryAutoCompleteList(string gameName)
         {
             Task.Factory.StartNew(() =>
             {
                 try
                 {
-                    String[] categoryNames;
+                    string[] categoryNames;
                     try
                     {
                         categoryNames = SpeedRunsLiveAPI.Instance.GetCategories(SpeedRunsLiveAPI.Instance.GetGameIDFromName(gameName)).ToArray();
@@ -149,7 +144,7 @@ namespace LiveSplit.UI
                     {
                         Log.Error(ex);
 
-                        categoryNames = new String[] { "Any%", "Low%", "100%" };
+                        categoryNames = new [] { "Any%", "Low%", "100%" };
                     }
                     Action invokation = () =>
                     {
@@ -163,8 +158,8 @@ namespace LiveSplit.UI
                             Log.Error(ex);
                         }
                     };
-                    if (this.InvokeRequired)
-                        this.Invoke(invokation);
+                    if (InvokeRequired)
+                        Invoke(invokation);
                     else
                         invokation();
                 }
@@ -180,7 +175,7 @@ namespace LiveSplit.UI
             var gameNames = SpeedRunsLiveAPI.Instance.GetGameNames();
             cbxGameName.Text = gameNames.FindMostSimilarValueTo(game);
             cbxRunCategory.Text = category;
-            DialogResult dialogResult = ShowDialog();
+            var dialogResult = ShowDialog();
             game = cbxGameName.Text;
             category = cbxRunCategory.Text;
             return dialogResult;
@@ -188,14 +183,13 @@ namespace LiveSplit.UI
 
         private void InitializeComponent()
         {
-            this.SuspendLayout();
+            SuspendLayout();
             // 
             // NewRaceInputBox
             // 
-            this.ClientSize = new System.Drawing.Size(284, 317);
-            this.Name = "NewRaceInputBox";
-            this.ResumeLayout(false);
-
+            ClientSize = new Size(284, 317);
+            Name = "NewRaceInputBox";
+            ResumeLayout(false);
         }
     }
 }

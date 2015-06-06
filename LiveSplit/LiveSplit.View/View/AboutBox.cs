@@ -1,12 +1,7 @@
 ﻿using LiveSplit.Updates;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.View
@@ -16,16 +11,12 @@ namespace LiveSplit.View
         public AboutBox()
         {
             InitializeComponent();
-            var version = new LiveSplitUpdateable().Version;
-            this.labelProductName.Text +=
-#if RELEASE_CANDIDATE
- String.Format(" {0} Beta {1}", version.ToString(2), version.Build + 1);
-#else
- String.Format(" {0}", version.ToString(2));
-#endif
+            lblVersion.Text = Git.Version;
+            if (Git.Branch != "master")
+                labelProductName.Text += string.Format(" ({0})", Git.Branch);
         }
 
-        #region Assembly Attribute Accessors
+#region Assembly Attribute Accessors
 
         public string AssemblyTitle
         {
@@ -103,7 +94,7 @@ namespace LiveSplit.View
                 return ((AssemblyCompanyAttribute)attributes[0]).Company;
             }
         }
-        #endregion
+#endregion
 
         private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
         {
@@ -128,6 +119,11 @@ namespace LiveSplit.View
         private void donateButton_Click(object sender, EventArgs e)
         {
             Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R3Z2LGPKRNBNJ");
+        }
+
+        private void lblVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start(Git.RevisionUri.AbsoluteUri);
         }
     }
 }

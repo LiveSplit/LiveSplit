@@ -8,16 +8,17 @@ namespace LiveSplit.UI.Components
 {
     public class InfoTextComponent : IComponent
     {
-        public String InformationName { get { return NameLabel.Text; } set { NameLabel.Text = value; } }
-        public String InformationValue { get { return ValueLabel.Text; } set { ValueLabel.Text = value; } }
+        public string InformationName { get { return NameLabel.Text; } set { NameLabel.Text = value; } }
+        public string InformationValue { get { return ValueLabel.Text; } set { ValueLabel.Text = value; } }
 
-        public ICollection<String> AlternateNameText { get { return NameLabel.AlternateText; } set { NameLabel.AlternateText = value; } }
-        //public ICollection<String> AlternateValueText { get { return ValueLabel.AlternateText; } set { ValueLabel.AlternateText = value; } }
+        public GraphicsCache Cache { get; set; }
+
+        public ICollection<string> AlternateNameText { get { return NameLabel.AlternateText; } set { NameLabel.AlternateText = value; } }
 
         public SimpleLabel NameLabel { get; protected set; }
         public SimpleLabel ValueLabel { get; protected set; }
 
-        public String LongestString { get; set; }
+        public string LongestString { get; set; }
         protected SimpleLabel NameMeasureLabel { get; set; }
 
         public float PaddingTop { get; set; }
@@ -41,8 +42,9 @@ namespace LiveSplit.UI.Components
 
         public float MinimumHeight { get; set; }
 
-        public InfoTextComponent(String informationName, String informationValue)
+        public InfoTextComponent(string informationName, string informationValue)
         {
+            Cache = new GraphicsCache();
             NameLabel = new SimpleLabel()
             {
                 HorizontalAlignment = StringAlignment.Near,
@@ -155,7 +157,6 @@ namespace LiveSplit.UI.Components
             get { throw new NotSupportedException(); }
         }
 
-
         public Control GetSettingsControl(LayoutMode mode)
         {
             throw new NotImplementedException();
@@ -198,6 +199,16 @@ namespace LiveSplit.UI.Components
 
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
+            Cache.Restart();
+            Cache["NameText"] = InformationName;
+            Cache["ValueText"] = InformationValue;
+            Cache["NameColor"] = NameLabel.ForeColor.ToArgb();
+            Cache["ValueColor"] = ValueLabel.ForeColor.ToArgb();
+
+            if (invalidator != null && Cache.HasChanged)
+            {
+                invalidator.Invalidate(0, 0, width, height);
+            }
         }
 
         public void Dispose()

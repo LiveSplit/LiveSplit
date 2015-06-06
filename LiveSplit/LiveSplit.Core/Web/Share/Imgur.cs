@@ -16,7 +16,7 @@ namespace LiveSplit.Web.Share
 {
     public class Imgur : IRunUploadPlatform
     {
-        private const String YOUR_CLIENT_ID = "63e6ae2de8601ef";
+        private const string YOUR_CLIENT_ID = "63e6ae2de8601ef";
 
         protected static Imgur _Instance = new Imgur();
 
@@ -26,7 +26,7 @@ namespace LiveSplit.Web.Share
 
         protected Imgur() { }
 
-        protected Uri GetUri(String subUri)
+        protected Uri GetUri(string subUri)
         {
             return new Uri(BaseUri, subUri);
         }
@@ -36,7 +36,7 @@ namespace LiveSplit.Web.Share
             get { return "Imgur"; }
         }
 
-        public String Description
+        public string Description
         {
             get
             {
@@ -77,14 +77,14 @@ namespace LiveSplit.Web.Share
             return true;
         }
 
-        public dynamic UploadImage(Image image, String title = "", String description = "")
+        public dynamic UploadImage(Image image, string title = "", string description = "")
         {
             using (var memoryStream = new MemoryStream())
             {
                 image.Save(memoryStream, ImageFormat.Png);
                 memoryStream.Seek(0, SeekOrigin.Begin);
 
-                var request = (HttpWebRequest)HttpWebRequest.Create(GetUri("3/image"));
+                var request = (HttpWebRequest)WebRequest.Create(GetUri("3/image"));
                 request.Method = "POST";
                 request.Headers.Add("Authorization", "Client-ID " + YOUR_CLIENT_ID);
 
@@ -131,8 +131,8 @@ namespace LiveSplit.Web.Share
             var titleBuilder = new StringBuilder();
             //var descriptionBuilder = new StringBuilder(); 
 
-            var gameNameEmpty = String.IsNullOrEmpty(run.GameName);
-            var categoryEmpty = String.IsNullOrEmpty(run.CategoryName);
+            var gameNameEmpty = string.IsNullOrEmpty(run.GameName);
+            var categoryEmpty = string.IsNullOrEmpty(run.CategoryName);
 
             titleBuilder.Append(new RegularTimeFormatter(TimeAccuracy.Seconds).Format(run.Last().PersonalBestSplitTime[method]));
             if (titleBuilder.Length > 0 && (!gameNameEmpty || !categoryEmpty))
@@ -159,7 +159,7 @@ namespace LiveSplit.Web.Share
                 var image = screenShotFunction();
                 var result = UploadImage(image, titleBuilder.ToString(), comment);
 
-                var url = "http://imgur.com/" + (String)result.data.id;
+                var url = "http://imgur.com/" + (string)result.data.id;
                 Process.Start(url);
                 Clipboard.SetText(url);
             }

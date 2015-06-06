@@ -20,7 +20,7 @@ namespace LiveSplit.Web.Share
 
         protected Congratsio() { }
 
-        protected Uri GetUri(String subUri)
+        protected Uri GetUri(string subUri)
         {
             return new Uri(BaseUri, subUri);
         }
@@ -30,7 +30,7 @@ namespace LiveSplit.Web.Share
             get { return "Congratsio"; }
         }
 
-        public String Description
+        public string Description
         {
             get 
             {
@@ -51,14 +51,14 @@ namespace LiveSplit.Web.Share
         {
             var json = (IEnumerable<dynamic>)JSON.FromUri(GetUri("ajax/gameajax.php"));
 
-            Func<dynamic, String> selector = x => x.value;
+            Func<dynamic, string> selector = x => x.value;
 
             return json.Select(selector);
         }
 
         public string GetGameIdByName(string gameName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         public IEnumerable<ASUP.IdPair> GetGameCategories(string gameId)
@@ -68,12 +68,19 @@ namespace LiveSplit.Web.Share
 
         public string GetCategoryIdByName(string gameId, string categoryName)
         {
-            return String.Empty;
+            return string.Empty;
         }
 
         public bool VerifyLogin(string username, string password)
         {
             return true;
+        }
+
+        public bool CheckIfPersonalBestIsValid(IRun run)
+        {
+            var pb = run.Last().PersonalBestSplitTime.RealTime;
+            var attempt = run.AttemptHistory.FirstOrDefault(x => x.Time.RealTime == pb);
+            return attempt.Ended.HasValue;
         }
 
         public bool SubmitRun(IRun run, string username, string password, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)
@@ -83,7 +90,7 @@ namespace LiveSplit.Web.Share
             if (attachSplits)
                 comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
 
-            var postRequest = (HttpWebRequest)HttpWebRequest.Create(GetUri("submit"));
+            var postRequest = (HttpWebRequest)WebRequest.Create(GetUri("submit"));
             postRequest.Method = "POST";
             postRequest.ContentType = "application/x-www-form-urlencoded";
 
@@ -131,8 +138,8 @@ namespace LiveSplit.Web.Share
                 writer.Write(HttpUtility.UrlEncode(timeFormatter.Format(run.Last().PersonalBestSplitTime.RealTime)));
 
                 writer.Write("&date=");
-                var dateTime = TripleDateTime.Now;
-                writer.Write(HttpUtility.UrlEncode(String.Format("{0:00}/{1:00}/{2}", dateTime.UtcNow.Month, dateTime.UtcNow.Day, dateTime.UtcNow.Year)));
+                var dateTime = run.AttemptHistory.First(x => x.Time.RealTime == run.Last().PersonalBestSplitTime.RealTime).Ended.Value;
+                writer.Write(HttpUtility.UrlEncode(String.Format("{0:00}/{1:00}/{2}", dateTime.Month, dateTime.Day, dateTime.Year)));
 
                 writer.Write("&video=");
                 writer.Write(HttpUtility.UrlEncode(video));

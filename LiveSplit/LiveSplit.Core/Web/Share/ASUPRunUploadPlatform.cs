@@ -10,20 +10,20 @@ namespace LiveSplit.Web.Share
 {
     public class ASUPRunUploadPlatform : IRunUploadPlatform
     {
-        public String PlatformName { get; protected set; }
+        public string PlatformName { get; protected set; }
         public ISettings Settings { get; set; }
 
         protected IEnumerable<ASUP.IdPair> gameList;
-        protected IList<String> gameNames;
+        protected IList<string> gameNames;
 
         public Uri BaseUri { get; protected set; }
         protected ASUP ASUP { get; set; }
 
-        public String Description { get; set; }
+        public string Description { get; set; }
 
         public ASUPRunUploadPlatform(
-            String platformName, String baseUri, 
-            String asupUri, String description)
+            string platformName, string baseUri,
+            string asupUri, string description)
         {
             PlatformName = platformName;
             BaseUri = new Uri(baseUri);
@@ -31,7 +31,7 @@ namespace LiveSplit.Web.Share
             Description = description;
         }
 
-        protected Uri GetUri(String subUri)
+        protected Uri GetUri(string subUri)
         {
             return new Uri(BaseUri, subUri);
         }
@@ -44,7 +44,7 @@ namespace LiveSplit.Web.Share
             return gameList;
         }
 
-        public IEnumerable<String> GetGameNames()
+        public IEnumerable<string> GetGameNames()
         {
             if (gameNames == null)
             {
@@ -55,46 +55,46 @@ namespace LiveSplit.Web.Share
             return gameNames;
         }
 
-        public String GetGameIdByName(String gameName)
+        public string GetGameIdByName(string gameName)
         {
             var lowerCaseGameName = gameName.ToLowerInvariant();
             return GetGameList().First(a => a.Value.ToLowerInvariant() == lowerCaseGameName).Id;
         }
 
-        public IEnumerable<ASUP.IdPair> GetGameCategories(String gameId)
+        public IEnumerable<ASUP.IdPair> GetGameCategories(string gameId)
         {
             return ASUP.GetGameCategories(gameId);
         }
 
-        public String GetCategoryIdByName(String gameId, String categoryName)
+        public string GetCategoryIdByName(string gameId, string categoryName)
         {
             var lowerCaseCategoryName = categoryName.ToLowerInvariant();
             return GetGameCategories(gameId).First(a => a.Value.ToLowerInvariant() == lowerCaseCategoryName).Id;
         }
 
-        public bool VerifyLogin(String username, String password)
+        public bool VerifyLogin(string username, string password)
         {
             return ASUP.VerifyLogin(username, password);
         }
 
         public virtual bool SubmitRun(
             IRun run,
-            String username, String password, 
+            string username, string password, 
             Func<Image> screenShotFunction = null,
             bool attachSplits = false,
             TimingMethod method = TimingMethod.RealTime,
-            String gameId = "", String categoryId = "",
-            String version = "", String comment = "",
-            String video = "",
-            params String[] additionalParams)
+            string gameId = "", string categoryId = "",
+            string version = "", string comment = "",
+            string video = "",
+            params string[] additionalParams)
         {
             try
             {
                 if (attachSplits)
                     comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
-                if (gameId == String.Empty)
+                if (gameId == string.Empty)
                     gameId = GetGameIdByName(run.GameName);
-                if (categoryId == String.Empty)
+                if (categoryId == string.Empty)
                     categoryId = GetCategoryIdByName(gameId, run.CategoryName);
                 var json = ASUP.SubmitRun(run, username, password, gameId, categoryId, version, comment, video, additionalParams);
                 return json.result == "success";

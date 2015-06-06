@@ -6,10 +6,10 @@ namespace LiveSplit.UI
 {
     public class GraphicsCache
     {
-        protected Dictionary<String, Object> FlagDirectory { get; set; }
+        protected Dictionary<string, object> FlagDirectory { get; set; }
         public bool HasChanged { get; protected set; }
 
-        public Object this[String flag]
+        public object this[string flag]
         {
             get
             {
@@ -30,7 +30,7 @@ namespace LiveSplit.UI
                         HasChanged = true;
                     }
                 }
-                else if (!object.Equals(FlagDirectory[flag],value))
+                else if (!Equals(FlagDirectory[flag],value))
                 {
                     FlagDirectory[flag] = value;
                     HasChanged = true;

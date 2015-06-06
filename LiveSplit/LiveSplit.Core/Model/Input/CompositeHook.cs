@@ -28,7 +28,7 @@ namespace LiveSplit.Model.Input
             IsButton = true;
         }
 
-        public KeyOrButton(String stringRepresentation)
+        public KeyOrButton(string stringRepresentation)
         {
             if (stringRepresentation.Contains(' ') && !stringRepresentation.Contains(", "))
             {
@@ -130,7 +130,7 @@ namespace LiveSplit.Model.Input
             KeyboardHook.RegisterHotKey(key);
         }
 
-        public void RegisterGamepadButton(String gamePadName, String button)
+        public void RegisterGamepadButton(string gamePadName, string button)
         {
             RegisterGamepadButton(new GamepadButton(gamePadName, button));
         }

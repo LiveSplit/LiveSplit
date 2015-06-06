@@ -1,13 +1,6 @@
 ﻿using LinqToTwitter;
 using LiveSplit.Options;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share
@@ -51,6 +44,10 @@ namespace LiveSplit.Web.Share
         {
             try
             {
+                if (OAuthWebBrowser.Url.Query.ToLowerInvariant().Contains("oauth_verifier"))
+                {
+                    auth.CompleteAuthorization(OAuthWebBrowser.Url);
+                }
                 if (auth.IsAuthorized)
                 {
                     Authorizer = auth;
@@ -81,14 +78,10 @@ namespace LiveSplit.Web.Share
 
                     Action closeAction = () => Close();
 
-                    if (this.InvokeRequired)
-                        this.Invoke(closeAction);
+                    if (InvokeRequired)
+                        Invoke(closeAction);
                     else
                         closeAction();
-                }
-                else if (OAuthWebBrowser.Url.Query.ToLowerInvariant().Contains("oauth_verifier"))
-                {
-                    auth.CompleteAuthorization(OAuthWebBrowser.Url);
                 }
             }
             catch (Exception ex)

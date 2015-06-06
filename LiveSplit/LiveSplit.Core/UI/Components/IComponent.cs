@@ -12,7 +12,7 @@ namespace LiveSplit.UI.Components
         /// <summary>
         /// Returns the name of the component.
         /// </summary>
-        String ComponentName { get; }
+        string ComponentName { get; }
 
         /// <summary>
         /// Returns the width of the component if it is rendered horizontally.
@@ -47,7 +47,7 @@ namespace LiveSplit.UI.Components
         /// Returns a Dictionary with all the controls available
         /// in the context menu for controlling the component.
         /// </summary>
-        IDictionary<String, Action> ContextMenuControls { get; }
+        IDictionary<string, Action> ContextMenuControls { get; }
 
         /// <summary>
         /// Draws the contents of the component horizontally onto the window.

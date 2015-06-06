@@ -102,13 +102,13 @@ namespace LiveSplit.Model
 
         public void Reset()
         {
-            if (CheckDoubleTap())
-                InternalModel.Reset();
+            Reset(true);
         }
 
-        public void ResetWithoutUpdating()
+        public void Reset(bool updateSplits = true)
         {
-            InternalModel.ResetWithoutUpdating();
+            if (CheckDoubleTap())
+                InternalModel.Reset(updateSplits);
         }
 
         public void Pause()

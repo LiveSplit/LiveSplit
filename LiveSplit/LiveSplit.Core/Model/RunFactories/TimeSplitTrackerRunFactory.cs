@@ -2,6 +2,7 @@
 using LiveSplit.Options;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 
@@ -9,16 +10,16 @@ namespace LiveSplit.Model.RunFactories
 {
     public class TimeSplitTrackerRunFactory : IRunFactory
     {
-        public String Path { get; set; }
+        public string Path { get; set; }
         public Stream Stream { get; set; }
 
-        public TimeSplitTrackerRunFactory(Stream stream = null, String path = null)
+        public TimeSplitTrackerRunFactory(Stream stream = null, string path = null)
         {
             Stream = stream;
             Path = path;
         }
 
-        TimeSpan? parseTimeNullable(String timeString)
+        TimeSpan? parseTimeNullable(string timeString)
         {
             var time = TimeSpanParser.Parse(timeString);
             return (time == TimeSpan.Zero) ? (TimeSpan?)null : time;
@@ -26,8 +27,8 @@ namespace LiveSplit.Model.RunFactories
 
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
-            String path = "";
-            if (!String.IsNullOrEmpty(Path))
+            string path = "";
+            if (!string.IsNullOrEmpty(Path))
                 path = System.IO.Path.GetDirectoryName(Path);
 
             var run = new Run(factory);
@@ -36,9 +37,9 @@ namespace LiveSplit.Model.RunFactories
 
             var line = reader.ReadLine();
             var titleInfo = line.Split('\t');
-            run.AttemptCount = Int32.Parse(titleInfo[0]);
+            run.AttemptCount = int.Parse(titleInfo[0]);
             run.Offset = TimeSpanParser.Parse(titleInfo[1]);
-            if (!String.IsNullOrEmpty(path))
+            if (!string.IsNullOrEmpty(path))
             {
                 try
                 {
@@ -57,7 +58,7 @@ namespace LiveSplit.Model.RunFactories
 
             while ((line = reader.ReadLine()) != null)
             {
-                if (line.Length <= 0 || String.IsNullOrWhiteSpace(line))
+                if (line.Length <= 0 || string.IsNullOrWhiteSpace(line))
                     continue;
 
                 var segment = new Segment("");
@@ -79,7 +80,7 @@ namespace LiveSplit.Model.RunFactories
 
                 line = reader.ReadLine();
 
-                if (line.Length > 0 && !String.IsNullOrWhiteSpace(line) && !String.IsNullOrEmpty(path))
+                if (line.Length > 0 && !string.IsNullOrWhiteSpace(line) && !string.IsNullOrEmpty(path))
                 {
                     try
                     {
@@ -94,10 +95,72 @@ namespace LiveSplit.Model.RunFactories
                 run.Add(segment);
             }
 
+            parseHistory(run);
+
             foreach (var comparison in comparisons)
                 run.CustomComparisons.Add(comparison);
 
             return run;
+        }
+
+        private void parseHistory(IRun run)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(Path))
+                {
+                    var path = System.IO.Path.Combine(
+                                System.IO.Path.GetDirectoryName(Path), 
+                                string.Format("{0}-RunLog.txt", 
+                                    System.IO.Path.GetFileNameWithoutExtension(Path)));
+
+                    var lines = File.ReadLines(path);
+                    var attemptId = 1;
+
+                    foreach (var line in lines.Skip(1))
+                    {
+                        var segmentInfo = line.Split('\t');
+                        var timeStampString = segmentInfo[0];
+                        var completed = segmentInfo[1] == "C";
+                        var splits = segmentInfo.Skip(2).Select(x => parseTimeNullable(x)).ToList();
+
+                        var started = DateTime.Parse(timeStampString, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
+                        Time finalTime = default(Time);
+                        DateTime? ended = null;
+                        if (completed)
+                        {
+                            finalTime.RealTime = splits.Last().Value;
+                            ended = started + finalTime.RealTime;
+                        }
+
+                        run.AttemptHistory.Add(new Attempt(attemptId, finalTime, started, ended));
+
+                        var i = 0;
+                        TimeSpan? lastSplit = TimeSpan.Zero;
+                        foreach (var segment in run)
+                        {
+                            if (splits.Count <= i)
+                                break;
+
+                            var currentSplit = splits[i];
+                            Time segmentTime = default(Time);
+                            if (currentSplit.HasValue)
+                            {
+                                segmentTime.RealTime = currentSplit - lastSplit;
+                                lastSplit = currentSplit;
+                            }
+
+                            segment.SegmentHistory.Add(new IndexedTime(segmentTime, attemptId));
+                            if (segmentTime.RealTime < segment.BestSegmentTime.RealTime)
+                                segment.BestSegmentTime = segmentTime;
+                            i++;
+                        }
+
+                        attemptId++;
+                    }
+                }
+            }
+            catch { }
         }
     }
 }

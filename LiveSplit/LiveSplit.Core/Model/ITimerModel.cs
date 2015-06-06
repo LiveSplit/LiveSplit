@@ -24,7 +24,7 @@ namespace LiveSplit.Model
         void SkipSplit();
         void UndoSplit();
         void Reset();
-        void ResetWithoutUpdating();
+        void Reset(bool updateSplits);
         void Pause();
         void ScrollUp();
         void ScrollDown();

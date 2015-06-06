@@ -10,9 +10,9 @@ namespace LiveSplit.Updates
 {
     public static class UpdateHelper
     {
-        public static readonly Version Version = Version.Parse("1.4.5");
+        public static readonly Version Version = Version.Parse(Git.LastTag + "." + Git.CommitsSinceLastTag);
 
-        public static List<Type> AlreadyChecked = new List<Type>();
+        public static readonly List<Type> AlreadyChecked = new List<Type>();
 
         public static void Update(Form form, Action closeAction, params IUpdateable[] updateables)
         {
@@ -23,13 +23,13 @@ namespace LiveSplit.Updates
                     var actualUpdateables = updateables.Where(x => !AlreadyChecked.Contains(x.GetType()));
                     if (Updater.CheckForAnyUpdate(actualUpdateables))
                     {
-                        String dialogText = actualUpdateables.Where(x => x.CheckForUpdate()).Select(x =>
+                        string dialogText = actualUpdateables.Where(x => x.CheckForUpdate()).Select(x =>
                                 x.UpdateName + " (" + x.GetNewVersion() + ")\r\n" +
                                 x.GetChangeLog().Select(y => " - " + y + "\r\n")
                                         .Aggregate("", (y, z) => y + z) + "\r\n")
                                         .Aggregate((x, y) => x + y) + "Do you want to update?";
                         DialogResult result = (new ScrollableMessageBox()).Show(dialogText, "New updates are available", MessageBoxButtons.YesNo);
-                        if (result == System.Windows.Forms.DialogResult.Yes)
+                        if (result == DialogResult.Yes)
                         {
                             try
                             {

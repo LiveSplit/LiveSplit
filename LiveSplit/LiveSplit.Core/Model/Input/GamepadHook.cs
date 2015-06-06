@@ -8,10 +8,10 @@ namespace LiveSplit.Model.Input
 {
     public struct GamepadButton
     {
-        public String GamepadName;
-        public String Button;
+        public string GamepadName;
+        public string Button;
 
-        public GamepadButton(String gamepadName, String button)
+        public GamepadButton(string gamepadName, string button)
         {
             GamepadName = gamepadName;
             Button = button;
@@ -105,7 +105,7 @@ namespace LiveSplit.Model.Input
             return value != 0;
         }
 
-        protected String ToString(Joystick joystick, JoystickOffset button, int value)
+        protected string ToString(Joystick joystick, JoystickOffset button, int value)
         {
             var shortMaskMax = 0xFF00;
             var shortMaskMin = 0xFF;

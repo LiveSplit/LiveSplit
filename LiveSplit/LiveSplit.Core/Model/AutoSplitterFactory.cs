@@ -44,19 +44,24 @@ namespace LiveSplit.Model
                         Description = element["Description"].InnerText,
                         URLs = element["URLs"].ChildNodes.OfType<XmlElement>().Select(x => x.InnerText).ToList(),
                         Type = (AutoSplitterType)Enum.Parse(typeof(AutoSplitterType), element["Type"].InnerText),
-                        Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => x.InnerText).ToList(),
+                        Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => (x.InnerText ?? "").ToLower()).ToList(),
                         ShowInLayoutEditor = element["ShowInLayoutEditor"] != null
-                    }).SelectMany(x => x.Games.Select(y => new KeyValuePair<String, AutoSplitter>(y, x))).ToDictionary(x => x.Key, x => x.Value);
+                    }).SelectMany(x => x.Games.Select(y => new KeyValuePair<string, AutoSplitter>(y, x))).ToDictionary(x => x.Key, x => x.Value);
             }
         }
 
-        public AutoSplitter Create(String game)
+        public AutoSplitter Create(string game)
         {
             if (AutoSplitters == null)
                 Init();
 
-            if (AutoSplitters != null && !String.IsNullOrEmpty(game) && AutoSplitters.ContainsKey(game))
-                return AutoSplitters[game];
+            if (AutoSplitters != null && !string.IsNullOrEmpty(game))
+            {
+                game = game.ToLower();
+
+                if (AutoSplitters.ContainsKey(game))
+                    return AutoSplitters[game];
+            }
 
             return null;
         }
@@ -66,11 +71,8 @@ namespace LiveSplit.Model
             var autoSplitters = new XmlDocument();
             try
             {
-#if DEBUG
-                autoSplitters.Load("http://livesplit.org/debugautosplitters.xml");
-#else
-                autoSplitters.Load("http://livesplit.org/LiveSplit.AutoSplitters.xml");
-#endif
+                //autoSplitters.Load("https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit.AutoSplitters.DevBuild.xml");
+                autoSplitters.Load("https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit.AutoSplitters.xml");
                 autoSplitters.Save("LiveSplit.AutoSplitters.xml");
                 return autoSplitters;
             }
@@ -79,9 +81,7 @@ namespace LiveSplit.Model
                 Log.Error(ex);
                 if (File.Exists("LiveSplit.AutoSplitters.xml"))
                     autoSplitters.Load("LiveSplit.AutoSplitters.xml");
-                else
-                    return null;
-                return autoSplitters;
+                return null;
             }
         }
     }

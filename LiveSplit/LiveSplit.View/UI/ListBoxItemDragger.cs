@@ -1,10 +1,5 @@
-﻿using LiveSplit.Model;
-using LiveSplit.Options;
+﻿using LiveSplit.Options;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace LiveSplit.UI
@@ -36,7 +31,8 @@ namespace LiveSplit.UI
         /// <summary>
         /// Initializes a new instance of the <see cref="T:ListBoxItemDragger"> class.
         /// </see></summary>
-        /// <param name="listBox">The list box.
+        /// <param name="listBox">The list box</param>
+        /// <param name="form">The form</param>
         public ListBoxItemDragger(ListBox listBox, Form form)
         {
             Attach(listBox);
@@ -49,9 +45,9 @@ namespace LiveSplit.UI
         public void Attach(ListBox listBox)
         {
             this.listBox = listBox;
-            this.listBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownHandler);
-            this.listBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MouseUpHandler);
-            this.listBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MouseMoveHandler);
+            this.listBox.MouseDown += new MouseEventHandler(MouseDownHandler);
+            this.listBox.MouseUp += new MouseEventHandler(MouseUpHandler);
+            this.listBox.MouseMove += new MouseEventHandler(MouseMoveHandler);
         }
 
         /// <summary>
@@ -59,9 +55,9 @@ namespace LiveSplit.UI
         /// </summary>
         public void Detach()
         {
-            this.listBox.MouseDown -= new System.Windows.Forms.MouseEventHandler(this.MouseDownHandler);
-            this.listBox.MouseUp -= new System.Windows.Forms.MouseEventHandler(this.MouseUpHandler);
-            this.listBox.MouseMove -= new System.Windows.Forms.MouseEventHandler(this.MouseMoveHandler);
+            listBox.MouseDown -= new MouseEventHandler(MouseDownHandler);
+            listBox.MouseUp -= new MouseEventHandler(MouseUpHandler);
+            listBox.MouseMove -= new MouseEventHandler(MouseMoveHandler);
         }
 
         private Cursor dragCursor = Cursors.SizeNS;
@@ -74,7 +70,7 @@ namespace LiveSplit.UI
         /// <summary>
         /// Raises the <see cref="E:ItemMoved"> event.
         /// </see></summary>
-        /// <param name="e">The <see cref="T:System.EventArgs"> instance containing the event data.
+        /// <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
         protected void OnItemMoved(EventArgs e)
         {
             if (ItemMoved != null) ItemMoved(this, e);
@@ -85,7 +81,7 @@ namespace LiveSplit.UI
         /// </summary>
         public event EventHandler ItemMoved;
 
-        private void MouseDownHandler(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void MouseDownHandler(object sender, MouseEventArgs e)
         {
             dragItemIndex = listBox.SelectedIndex;
         }
@@ -93,7 +89,7 @@ namespace LiveSplit.UI
 
         private Cursor prevCursor = Cursors.Default;
 
-        private void MouseUpHandler(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void MouseUpHandler(object sender, MouseEventArgs e)
         {
             dragItemIndex = -1;
             if (dragging)
@@ -103,7 +99,7 @@ namespace LiveSplit.UI
             }
         }
 
-        private void MouseMoveHandler(object sender, System.Windows.Forms.MouseEventArgs e)
+        private void MouseMoveHandler(object sender, MouseEventArgs e)
         {
             //if (!DrawLock.TryEnterWriteLock(500))
             //return;

@@ -100,7 +100,6 @@ namespace LiveSplit.UI.Components
             throw new NotImplementedException();
         }
 
-
         public System.Xml.XmlNode GetSettings(System.Xml.XmlDocument document)
         {
             throw new NotImplementedException();
@@ -137,12 +136,7 @@ namespace LiveSplit.UI.Components
             Cache["LockToBottom"] = LockToBottom;
 
             if (invalidator != null && Cache.HasChanged)
-            {
-                if (mode == LayoutMode.Vertical)
-                    invalidator.Invalidate(0, -1, width, height + 2);
-                else
-                    invalidator.Invalidate(-1, 0, width + 2, height);
-            }
+                invalidator.Invalidate(0, 0, width, height);
         }
 
         public void Dispose()

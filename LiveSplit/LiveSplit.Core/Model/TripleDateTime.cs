@@ -8,9 +8,7 @@ namespace LiveSplit.Model
     public class TripleDateTime
     {
         private static Stopwatch QPC;
-        private static Stopwatch NISTQPC;
 
-        private static DateTime FirstNIST;
         public static TimeSpan NISTQPCOffset { get; protected set; }
 
         private static System.Timers.Timer SynchronizationTimer;
@@ -48,22 +46,6 @@ namespace LiveSplit.Model
         {
             QPC = new Stopwatch();
             QPC.Start();
-
-            /*FirstNIST = GetNISTDate();
-            NISTQPC = new Stopwatch();
-            NISTQPC.Start();
-
-            SynchronizationTimer = new System.Timers.Timer(10 * 60 * 1000) { Enabled = false };
-            SynchronizationTimer.Elapsed += (s, e) =>
-            {
-                var nistQPC = NISTQPC.Elapsed;
-                var nist = GetNISTDate();
-
-                var nistDelta = nist - FirstNIST;
-                var nistQPCDelta = nistQPC;
-
-                NISTQPCOffset = TimeSpan.FromSeconds((int)(nistDelta.TotalSeconds - nistQPCDelta.TotalSeconds));
-            };*/
         }
 
         public static TripleDateTime Now

@@ -13,7 +13,7 @@ namespace LiveSplit.Web.Share
             get { return "ZeldaSpeedRuns"; }
         }
 
-        public String Description
+        public string Description
         {
             get { return ""; }
         }

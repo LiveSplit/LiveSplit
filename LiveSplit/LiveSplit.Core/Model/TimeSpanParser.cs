@@ -6,13 +6,13 @@ namespace LiveSplit.Model
 {
     public static class TimeSpanParser
     {
-        public static TimeSpan? ParseNullable(String timeString)
+        public static TimeSpan? ParseNullable(string timeString)
         {
-            if (String.IsNullOrEmpty(timeString))
+            if (string.IsNullOrEmpty(timeString))
                 return null;
             return Parse(timeString);
         }
-        public static TimeSpan Parse(String timeString)
+        public static TimeSpan Parse(string timeString)
         {
             var factor = 1;
             if (timeString.StartsWith("-"))
@@ -23,7 +23,7 @@ namespace LiveSplit.Model
 
             var seconds = timeString
                 .Split(':')
-                .Select(x => Double.Parse(x, NumberStyles.Float, CultureInfo.InvariantCulture))
+                .Select(x => double.Parse(x, NumberStyles.Float, CultureInfo.InvariantCulture))
                 .Aggregate((a, b) => 60 * a + b);
 
             return TimeSpan.FromSeconds(factor * seconds);

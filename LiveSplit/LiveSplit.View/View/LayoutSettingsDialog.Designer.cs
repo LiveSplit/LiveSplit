@@ -92,7 +92,6 @@
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(504, 562);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -101,7 +100,6 @@
             this.Name = "LayoutSettingsDialog";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Text = "Layout Settings";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LayoutSettingsDialog_FormClosing);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 

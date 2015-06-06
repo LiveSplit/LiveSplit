@@ -26,6 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\bin\Debug\LiveSplit.Core.XML</DocumentationFile>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -90,6 +91,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Attempt.cs" />
     <Compile Include="Model\AutoSplitter.cs" />
     <Compile Include="Model\AutoSplitterFactory.cs" />
     <Compile Include="Model\Comparisons\MedianSegmentsComparisonGenerator.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Model\Comparisons\IComparisons.cs" />
     <Compile Include="Model\Comparisons\NoneComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\StandardComparisonGeneratorsFactory.cs" />
+    <Compile Include="Model\Comparisons\PercentileComparisonGeneratorsFactory.cs" />
     <Compile Include="Model\DoubleTapPrevention.cs" />
     <Compile Include="Model\Input\CompositeHook.cs" />
     <Compile Include="Model\Input\GamepadHook.cs" />
@@ -115,11 +118,15 @@
     <Compile Include="Model\Input\XInput.cs" />
     <Compile Include="Model\RunFactories\CompositeRunFactory.cs" />
     <Compile Include="Model\RunFactories\ShitSplitRunFactory.cs" />
+    <Compile Include="Model\RunFactories\SplittyRunFactory.cs" />
     <Compile Include="Model\RunFactories\StandardFormatsRunFactory.cs" />
     <Compile Include="Model\RunFactories\TimeSplitTrackerRunFactory.cs" />
+    <Compile Include="Model\RunFactories\UrnRunFactory.cs" />
+    <Compile Include="Model\RunSavers\ExcelRunSaver.cs" />
     <Compile Include="Model\RunSavers\JSONRunSaver.cs" />
     <Compile Include="Model\RunSavers\WSplitRunSaver.cs" />
     <Compile Include="Model\RunSavers\SplitterZRunSaver.cs" />
+    <Compile Include="Model\AbbreviationExtensions.cs" />
     <Compile Include="Model\StringExtensions.cs" />
     <Compile Include="Model\SumOfBest.cs" />
     <Compile Include="Model\Time.cs" />
@@ -127,6 +134,7 @@
     <Compile Include="Model\TimingMethod.cs" />
     <Compile Include="Model\TripleDateTime.cs" />
     <Compile Include="Options\Log.cs" />
+    <Compile Include="TimeFormatters\AutomaticPrecisionTimeFormatter.cs" />
     <Compile Include="TimeFormatters\TimeFormat.cs" />
     <Compile Include="TimeFormatters\TimeAccuracy.cs" />
     <Compile Include="UI\Components\AutoSplit\AutoSplitComponent.cs" />
@@ -143,6 +151,12 @@
     <Compile Include="UI\InputBox.cs" />
     <Compile Include="UI\Invalidator.cs" />
     <Compile Include="UI\RenameEventArgs.cs" />
+    <Compile Include="Updates\Git.cs" />
+    <Compile Include="Updates\GitInfo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GitInfo.resx</DependentUpon>
+    </Compile>
     <Compile Include="Updates\ScrollableMessageBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,10 +170,12 @@
     <Compile Include="Web\JSON.cs" />
     <Compile Include="Web\Share\ASUPTimeFormatter.cs" />
     <Compile Include="Web\Share\Congratsio.cs" />
+    <Compile Include="Web\Share\Excel.cs" />
     <Compile Include="Web\Share\Gett.cs" />
     <Compile Include="Web\Share\Imgur.cs" />
     <Compile Include="Web\Share\IRunUploadPlatform.cs" />
     <Compile Include="Web\Share\Screenshot.cs" />
+    <Compile Include="Web\Share\SpeedrunCom.cs" />
     <Compile Include="Web\Share\Twitch.cs" />
     <Compile Include="Web\Share\TwitchEmoteResolver.cs" />
     <Compile Include="Web\Share\TwitchGameResolveDialog.cs">
@@ -267,12 +283,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\loader.jar" />
+    <None Include="Updates\GitInfo\revision.txt" />
+    <None Include="Updates\GitInfo\version.txt" />
+    <None Include="Updates\GitInfo\branch.txt" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>LiveSplit</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Updates\GitInfo.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>GitInfo.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Updates\ScrollableMessageBox.resx">
       <DependentUpon>ScrollableMessageBox.cs</DependentUpon>
@@ -288,6 +311,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Libs\xlio\Source\Codaxy.Xlio\Codaxy.Xlio.csproj">
+      <Project>{11f82973-690a-48a9-8cb8-bd97e0024e2c}</Project>
+      <Name>Codaxy.Xlio</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UpdateManager\UpdateManager.csproj">
       <Project>{56dea3a0-2eb7-493b-b50f-a5e3aa8ae52a}</Project>
       <Name>UpdateManager</Name>
@@ -303,6 +330,19 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>where git
+if %25ERRORLEVEL%25 == 0 (
+git describe --dirty --always --long --tags &gt; "$(ProjectDir)Updates\GitInfo\version.txt"
+git rev-parse --abbrev-ref HEAD &gt; "$(ProjectDir)Updates\GitInfo\branch.txt"
+git rev-parse HEAD &gt; "$(ProjectDir)Updates\GitInfo\revision.txt"
+) else (
+echo 13.3.7-0&gt;  "$(ProjectDir)Updates\GitInfo\version.txt"
+echo no-git&gt; "$(ProjectDir)Updates\GitInfo\branch.txt"
+echo deadbeef&gt; "$(ProjectDir)Updates\GitInfo\revision.txt"
+)
+EXIT 0</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

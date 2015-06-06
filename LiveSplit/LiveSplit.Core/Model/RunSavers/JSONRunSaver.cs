@@ -9,7 +9,7 @@ namespace LiveSplit.Model.RunSavers
 {
     public class JSONRunSaver : IRunSaver
     {
-        private String CreateImageElement(Image image)
+        private string CreateImageElement(Image image)
         {
             if (image != null)
             {
@@ -39,7 +39,7 @@ namespace LiveSplit.Model.RunSavers
 
             var runHistory = new List<DynamicJsonObject>();
             document.runHistory = runHistory;
-            foreach (var historyItem in run.RunHistory)
+            foreach (var historyItem in run.AttemptHistory)
             {
                 runHistory.Add(historyItem.ToJson());
             }

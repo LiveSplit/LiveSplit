@@ -24,7 +24,6 @@ namespace LiveSplit.UI.Components
             LineColor = lineColor;
         }
 
-
         public void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
         {
             using (var solidBrush = new SolidBrush(LineColor))
@@ -38,9 +37,7 @@ namespace LiveSplit.UI.Components
             get { throw new NotSupportedException(); }
         }
 
-
         public float MinimumWidth { get { return 0; } }
-
 
         public Control GetSettingsControl(LayoutMode mode)
         {
@@ -51,7 +48,6 @@ namespace LiveSplit.UI.Components
         {
             throw new NotImplementedException();
         }
-
 
         public System.Xml.XmlNode GetSettings(System.Xml.XmlDocument document)
         {

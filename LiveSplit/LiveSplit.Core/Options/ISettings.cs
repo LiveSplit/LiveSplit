@@ -18,9 +18,9 @@ namespace LiveSplit.Options
         KeyOrButton ScrollDown { get; set; }
         KeyOrButton SwitchComparisonPrevious { get; set; }
         KeyOrButton SwitchComparisonNext { get; set; }
-        IList<String> RecentSplits { get; set; }
-        IList<String> RecentLayouts { get; set; }
-        String LastComparison { get; set; }
+        IList<string> RecentSplits { get; set; }
+        IList<string> RecentLayouts { get; set; }
+        string LastComparison { get; set; }
         TimingMethod LastTimingMethod { get; set; }
         float HotkeyDelay { get; set; }
         bool GlobalHotkeysEnabled { get; set; }
@@ -29,7 +29,7 @@ namespace LiveSplit.Options
         bool DoubleTapPrevention { get; set; }
         bool SimpleSumOfBest { get; set; }
         IRaceViewer RaceViewer { get; set; }
-        IList<String> ActiveAutoSplitters { get; set; }
+        IList<string> ActiveAutoSplitters { get; set; }
 
         bool AgreedToSRLRules { get; set; }
 

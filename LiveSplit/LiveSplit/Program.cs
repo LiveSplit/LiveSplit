@@ -13,7 +13,7 @@ namespace LiveSplit
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
-        static void Main(String[] args)
+        static void Main(string[] args)
         {
             try
             {
@@ -25,8 +25,8 @@ namespace LiveSplit
                 FiletypeRegistryHelper.RegisterFileFormatsIfNotAlreadyRegistered();
 #endif
 
-                String splitsPath = null;
-                String layoutPath = null;
+                string splitsPath = null;
+                string layoutPath = null;
 
                 for (var i = 0; i < args.Length; ++i)
                 {
@@ -36,8 +36,8 @@ namespace LiveSplit
                         layoutPath = args[++i];
                 }
                 Application.Run(new TimerForm(splitsPath: splitsPath, layoutPath: layoutPath));
-                if (Twitch.Instance != null && Twitch.Instance.Chat != null)
-                    Twitch.Instance.Chat.Close();
+                if (Twitch.Instance != null)
+                    Twitch.Instance.CloseAllChatConnections();
             }
 #if !DEBUG
             catch (Exception e)

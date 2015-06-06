@@ -1,21 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share
 {
     public partial class TwitchGameResolveDialog : Form
     {
-        public String GameName { get; protected set; }
+        public string GameName { get; protected set; }
 
-        public TwitchGameResolveDialog(String oldGame)
+        public TwitchGameResolveDialog(string oldGame)
         {
             InitializeComponent();
             cbxGames.Text = oldGame;
@@ -38,7 +32,7 @@ namespace LiveSplit.Web.Share
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             GameName = cbxGames.Text;
         }
 
@@ -48,7 +42,7 @@ namespace LiveSplit.Web.Share
 
         private void btnNoGame_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.OK;
+            DialogResult = DialogResult.OK;
             GameName = null;
         }
 

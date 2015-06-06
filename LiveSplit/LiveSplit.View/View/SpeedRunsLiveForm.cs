@@ -4,12 +4,8 @@ using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -21,18 +17,18 @@ namespace LiveSplit.View
 
         protected bool FormIsClosing { get; set; }
 
-        protected String RaceId { get; set; }
-        protected String GameId { get; set; }
-        protected String GameCategory { get; set; }
+        protected string RaceId { get; set; }
+        protected string GameId { get; set; }
+        protected string GameCategory { get; set; }
 
-        public SpeedRunsLiveForm(LiveSplitState state, ITimerModel model, String raceId)
+        public SpeedRunsLiveForm(LiveSplitState state, ITimerModel model, string raceId)
         {
             DownloadAllEmotes();
             RaceId = raceId;
             GameCategory = null;
-            var raceChannel = String.Format("#srl-{0}", raceId);
-            var liveSplitChannel = String.Format("{0}-livesplit", raceChannel);
-            SRLClient = new SpeedRunsLiveIRC(state, model, new String[] { "#speedrunslive", raceChannel, liveSplitChannel });
+            var raceChannel = string.Format("#srl-{0}", raceId);
+            var liveSplitChannel = string.Format("{0}-livesplit", raceChannel);
+            SRLClient = new SpeedRunsLiveIRC(state, model, new[] { "#speedrunslive", raceChannel, liveSplitChannel });
             SRLClient.ChannelJoined += SRLClient_ChannelJoined;
             SRLClient.RawMessageReceived += SRLClient_RawMessageReceived;
             SRLClient.MessageReceived += SRLClient_MessageReceived;
@@ -51,7 +47,7 @@ namespace LiveSplit.View
 
         void SRLClient_Kicked(object sender, EventArgs e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             Action x = () =>
@@ -59,11 +55,11 @@ namespace LiveSplit.View
                 if (!FormIsClosing)
                 {
                     MessageBox.Show(this, "You have been kicked from the IRC Channel.", "Kicked From Channel", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
+                    Close();
                 }
             };
 
-            if (this.InvokeRequired)
+            if (InvokeRequired)
                 Invoke(x);
             else
                 x();
@@ -71,7 +67,7 @@ namespace LiveSplit.View
 
         void SRLClient_Disconnected(object sender, EventArgs e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             try
@@ -81,11 +77,11 @@ namespace LiveSplit.View
                     if (!FormIsClosing)
                     {
                         MessageBox.Show(this, "You have been disconnected from the IRC server.", "Disconnected", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        this.Close();
+                        Close();
                     }
                 };
 
-                if (this.InvokeRequired)
+                if (InvokeRequired)
                     Invoke(x);
                 else
                     x();
@@ -95,17 +91,17 @@ namespace LiveSplit.View
 
         void SRLClient_NicknameInUse(object sender, EventArgs e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             FormIsClosing = true;
             Action x = () =>
             {
                 MessageBox.Show(this, "Your nickname is already in use.", "Nickname In Use", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
+                Close();
             };
 
-            if (this.InvokeRequired)
+            if (InvokeRequired)
                 Invoke(x);
             else
                 x();
@@ -113,28 +109,28 @@ namespace LiveSplit.View
 
         void SRLClient_PasswordIncorrect(object sender, EventArgs e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             FormIsClosing = true;
             Action x = () =>
                 {
                     MessageBox.Show(this, "The password is incorrect.", "Password Incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
+                    Close();
                 };
 
-            if (this.InvokeRequired)
+            if (InvokeRequired)
                 Invoke(x);
             else
                 x();
         }
 
-        public SpeedRunsLiveForm(LiveSplitState state, ITimerModel model, String gameName, String gameID, String gameCategory)
+        public SpeedRunsLiveForm(LiveSplitState state, ITimerModel model, string gameName, string gameID, string gameCategory)
         {
             DownloadAllEmotes();
             GameId = gameID;
             GameCategory = gameCategory;
-            SRLClient = new SpeedRunsLiveIRC(state, model, new String[] { "#speedrunslive" });
+            SRLClient = new SpeedRunsLiveIRC(state, model, new[] { "#speedrunslive" });
             SRLClient.GameName = gameName;
             SRLClient.ChannelJoined += SRLClient_ChannelJoined;
             SRLClient.RawMessageReceived += SRLClient_RawMessageReceived;
@@ -160,11 +156,10 @@ namespace LiveSplit.View
                 {
                     Action invokation = () =>
                     {
-                        TwitchEmoteResolver.DownloadFrankerFaceZGlobalEmotesList();
                         TwitchEmoteResolver.DownloadTwitchEmotesList();
                     };
-                    if (this.InvokeRequired)
-                        this.Invoke(invokation);
+                    if (InvokeRequired)
+                        Invoke(invokation);
                     else
                         invokation();
                 }
@@ -177,23 +172,23 @@ namespace LiveSplit.View
 
         void SRLClient_GoalChanged(object sender, EventArgs e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             Action action = () =>
             {
-                this.Text = SRLClient.ChannelTopic;
+                Text = SRLClient.ChannelTopic;
             };
 
             if (InvokeRequired)
-                this.Invoke(action);
+                Invoke(action);
             else
                 action();
         }
 
         void SRLClient_UserListRefreshed(object sender, EventArgs e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             RebuildUserList();
@@ -201,7 +196,7 @@ namespace LiveSplit.View
 
         void SRLClient_StateChanged(object sender, RaceState state)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             Action action = () =>
@@ -244,14 +239,14 @@ namespace LiveSplit.View
                 };
 
             if (InvokeRequired)
-                this.Invoke(action);
+                Invoke(action);
             else
                 action();
         }
 
         void ExitMessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             if (e.Item1 == SRLClient.RaceChannelName
@@ -262,15 +257,15 @@ namespace LiveSplit.View
                 SRLClient.RaceState = RaceState.NotInRace;
                 SRLClient.MessageReceived -= ExitMessageReceived;
                 if (InvokeRequired)
-                    this.Invoke(new Action(this.Close));
+                    Invoke(new Action(Close));
                 else
-                    this.Close();
+                    Close();
             }
         }
 
         void UndoneMessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             if (e.Item1 == SRLClient.RaceChannelName
@@ -280,21 +275,21 @@ namespace LiveSplit.View
                 SRLClient.RaceState = RaceState.RaceStarted;
                 SRLClient.MessageReceived -= UndoneMessageReceived;
                 if (InvokeRequired)
-                    this.Invoke(new Action(this.Close));
+                    Invoke(new Action(Close));
                 else
-                    this.Close();
+                    Close();
             }
         }
 
         void SRLClient_MessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             RebuildUserList();
             if (e.Item1 == SRLClient.RaceChannelName)
             {
-                String colorCode = GetColorCodeFromRights(e.Item2.Rights);
+                var colorCode = GetColorCodeFromRights(e.Item2.Rights);
                 ChatBoxAppend((char)3 + colorCode + (char)2 + e.Item2.Name + (char)2 + (char)3 + "1: " + e.Item3, Color.Black);
             }
         }
@@ -305,7 +300,7 @@ namespace LiveSplit.View
 
         void SRLClient_ChannelJoined(object sender, string e)
         {
-            if (this.IsDisposed)
+            if (IsDisposed)
                 return;
 
             if (e == SRLClient.RaceChannelName)
@@ -334,7 +329,7 @@ namespace LiveSplit.View
             try
             {
                 var race = SpeedRunsLiveAPI.Instance.GetRace(RaceId);
-                var user = ((IDictionary<String, dynamic>)race.entrants.Properties).FirstOrDefault(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value;
+                var user = ((IDictionary<string, dynamic>)race.entrants.Properties).FirstOrDefault(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value;
                 if (user != null)
                 {
                     if (user.statetext == "Finished" || user.statetext == "Forfeit")
@@ -358,10 +353,10 @@ namespace LiveSplit.View
             Action x = () =>
             {
                 MessageBox.Show(this, "RaceBot did not respond to your message. If you created a race within the last 5 minutes, you are not allowed to create another race.", "RaceBot Did Not Respond", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
+                Close();
             };
 
-            if (this.InvokeRequired)
+            if (InvokeRequired)
                 Invoke(x);
             else
                 x();
@@ -394,7 +389,7 @@ namespace LiveSplit.View
             authDialog.Username = ShareSettings.Default.SRLIRCUsername;
             authDialog.Password = ShareSettings.Default.SRLIRCPassword;
             authDialog.RememberPassword = authDialog.Password != "";
-            if (authDialog.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            if (authDialog.ShowDialog(this) == DialogResult.OK)
             {
                 var username = authDialog.Username;
                 var password = authDialog.Password;
@@ -407,7 +402,7 @@ namespace LiveSplit.View
             }
             else
             {
-                this.Close();
+                Close();
             }
         }
 
@@ -419,15 +414,15 @@ namespace LiveSplit.View
                 {
                     SpeedRunsLiveAPI.Instance.RefreshRacesList();
                     var race = SpeedRunsLiveAPI.Instance.GetRace(RaceId);
-                    if (race.statetext == "In Progress" && ((IDictionary<String, dynamic>)race.entrants.Properties).First(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value.statetext == "Finished")
+                    if (race.statetext == "In Progress" && ((IDictionary<string, dynamic>)race.entrants.Properties).First(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value.statetext == "Finished")
                     {
                         var result = MessageBox.Show(this, "Due to SpeedRunsLive rules, you need to confirm that you have completed the race before leaving an unfinished race. Do you confirm that you legitimately finished the race?", "Confirmation Required", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                        if (result == System.Windows.Forms.DialogResult.Cancel)
+                        if (result == DialogResult.Cancel)
                         {
                             e.Cancel = true;
                             return;
                         }
-                        else if (result == System.Windows.Forms.DialogResult.No)
+                        else if (result == DialogResult.No)
                         {
                             SRLClient.Undone();
                             SRLClient.MessageReceived += UndoneMessageReceived;
@@ -463,9 +458,9 @@ namespace LiveSplit.View
                 SRLClient.Dispose();
         }
 
-        private String GetColorCodeFromRights(SRLIRCRights rights)
+        private static string GetColorCodeFromRights(SRLIRCRights rights)
         {
-            String colorCode = "12";
+            string colorCode = "12";
             if (rights == SRLIRCRights.Operator)
                 colorCode = "4";
             else if (rights == SRLIRCRights.Voice)
@@ -473,12 +468,12 @@ namespace LiveSplit.View
             return colorCode;
         }
 
-        private Color GetColorFromRights(SRLIRCRights rights)
+        private static Color GetColorFromRights(SRLIRCRights rights)
         {
-            return GetColorByCode(Int32.Parse(GetColorCodeFromRights(rights)));
+            return GetColorByCode(int.Parse(GetColorCodeFromRights(rights)));
         }
 
-        private Color GetColorByCode(int colorCode)
+        private static Color GetColorByCode(int colorCode)
         {
             switch (colorCode)
             {
@@ -503,7 +498,7 @@ namespace LiveSplit.View
             }
         }
 
-        private void ChatBoxAppend(String message, Color color)
+        private void ChatBoxAppend(string message, Color color)
         {
             Action action = () =>
                 {
@@ -514,23 +509,23 @@ namespace LiveSplit.View
 
                     bool colorSplit = message[0] == 3;
                     Color origColor = color;
-                    String colorlessMessage = "";
+                    string colorlessMessage = "";
                     int actualBegin = chatBox.Text.Length;
-                    foreach (String split in message.Split(new char[] { (char)3 }, StringSplitOptions.RemoveEmptyEntries))
+                    foreach (var split in message.Split(new[] { (char)3 }, StringSplitOptions.RemoveEmptyEntries))
                     {
                         begin = chatBox.Text.Length;
-                        String useSplit = split;
+                        string useSplit = split;
                         if (colorSplit && split.Length > 1 && split[1] >= '0' && split[1] <= '9')
                         {
                             int code = -1;
-                            bool parsed = Int32.TryParse(split.Substring(0, 2), out code);
+                            bool parsed = int.TryParse(split.Substring(0, 2), out code);
                             color = parsed ? GetColorByCode(code) : origColor;
                             useSplit = split.Substring(2);
                         }
                         else if (colorSplit)
                         {
                             int code = -1;
-                            bool parsed = Int32.TryParse(split.Substring(0, 1), out code);
+                            bool parsed = int.TryParse(split.Substring(0, 1), out code);
                             color = parsed ? GetColorByCode(code) : origColor;
                             if (parsed)
                                 useSplit = split.Substring(1);
@@ -565,7 +560,7 @@ namespace LiveSplit.View
                     }
                     bool bold = false;
                     int boldBeginPosition = actualBegin;
-                    foreach (String boldSplit in colorlessMessage.Split((char)2))
+                    foreach (string boldSplit in colorlessMessage.Split((char)2))
                     {
                         if (bold)
                         {
@@ -587,7 +582,7 @@ namespace LiveSplit.View
                 action();
         }
 
-        private void Append(RichTextBox tbx, String text, Color? color = null)
+        private void Append(RichTextBox tbx, string text, Color? color = null)
         {
             int length = tbx.TextLength;
             tbx.AppendText(text);
@@ -596,7 +591,6 @@ namespace LiveSplit.View
             tbx.SelectionColor = color ?? Color.Black;
             tbx.SelectionLength = 0;
         }
-
 
         private void btnJoinQuit_Click(object sender, EventArgs e)
         {
@@ -662,10 +656,20 @@ namespace LiveSplit.View
                     }
                 };
 
-            if (InvokeRequired)
-                Invoke(action);
-            else
-                action();
+            try
+            {
+                if (!this.Disposing && !this.IsDisposed)
+                {
+                    if (InvokeRequired)
+                        Invoke(action);
+                    else
+                        action();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
         }
 
         private void txtMessage_KeyDown(object sender, KeyEventArgs e)
@@ -675,9 +679,9 @@ namespace LiveSplit.View
 
             if (e.KeyCode == Keys.Enter && txtMessage.Text.Length != 0)
             {
-                String message = txtMessage.Text;
+                string message = txtMessage.Text;
                 SRLClient.SendRaceChannelMessage(message);
-                SRLClient_MessageReceived(this, new Tuple<String, SRLIRCUser, String>(SRLClient.RaceChannelName, SRLClient.GetUser(), message));
+                SRLClient_MessageReceived(this, new Tuple<string, SRLIRCUser, string>(SRLClient.RaceChannelName, SRLClient.GetUser(), message));
                 txtMessage.Clear();
                 e.SuppressKeyPress = true;
                 e.Handled = true;
@@ -699,11 +703,11 @@ namespace LiveSplit.View
 
     internal class UserListItem
     {
-        public String Value { get; set; }
+        public string Value { get; set; }
         public Color Color { get; set; }
         public Brush Brush { get { return new SolidBrush(Color); } }
 
-        public UserListItem(String value, Color color)
+        public UserListItem(string value, Color color)
         {
             Value = value;
             Color = color;

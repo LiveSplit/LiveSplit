@@ -6,16 +6,16 @@ using System.IO;
 
 namespace LiveSplit.Model.RunFactories
 {
-    public class CompositeRunFactory : IRunFactory, IDictionary<IRunFactory, Action<Stream, String>>
+    public class CompositeRunFactory : IRunFactory, IDictionary<IRunFactory, Action<Stream, string>>
     {
-        protected IDictionary<IRunFactory, Action<Stream, String>> RunFactories { get; set; }
+        protected IDictionary<IRunFactory, Action<Stream, string>> RunFactories { get; set; }
 
         public Stream Stream { get; set; }
-        public String FilePath { get; set; }
+        public string FilePath { get; set; }
 
         public CompositeRunFactory()
         {
-            RunFactories = new Dictionary<IRunFactory, Action<Stream, String>>();
+            RunFactories = new Dictionary<IRunFactory, Action<Stream, string>>();
         }
 
         public IRun Create(IComparisonGeneratorsFactory factory)
@@ -40,7 +40,7 @@ namespace LiveSplit.Model.RunFactories
             throw new ArgumentException();
         }
 
-        public void Add(IRunFactory key, Action<Stream, String> value)
+        public void Add(IRunFactory key, Action<Stream, string> value)
         {
             RunFactories.Add(key, value);
         }
@@ -60,17 +60,17 @@ namespace LiveSplit.Model.RunFactories
             return RunFactories.Remove(key);
         }
 
-        public bool TryGetValue(IRunFactory key, out Action<Stream, String> value)
+        public bool TryGetValue(IRunFactory key, out Action<Stream, string> value)
         {
             return RunFactories.TryGetValue(key, out value);
         }
 
-        public ICollection<Action<Stream, String>> Values
+        public ICollection<Action<Stream, string>> Values
         {
             get { return RunFactories.Values; }
         }
 
-        public Action<Stream, String> this[IRunFactory key]
+        public Action<Stream, string> this[IRunFactory key]
         {
             get
             {
@@ -82,7 +82,7 @@ namespace LiveSplit.Model.RunFactories
             }
         }
 
-        public void Add(KeyValuePair<IRunFactory, Action<Stream, String>> item)
+        public void Add(KeyValuePair<IRunFactory, Action<Stream, string>> item)
         {
             RunFactories.Add(item);
         }
@@ -92,12 +92,12 @@ namespace LiveSplit.Model.RunFactories
             RunFactories.Clear();
         }
 
-        public bool Contains(KeyValuePair<IRunFactory, Action<Stream, String>> item)
+        public bool Contains(KeyValuePair<IRunFactory, Action<Stream, string>> item)
         {
             return RunFactories.Contains(item);
         }
 
-        public void CopyTo(KeyValuePair<IRunFactory, Action<Stream, String>>[] array, int arrayIndex)
+        public void CopyTo(KeyValuePair<IRunFactory, Action<Stream, string>>[] array, int arrayIndex)
         {
             RunFactories.CopyTo(array, arrayIndex);
         }
@@ -112,12 +112,12 @@ namespace LiveSplit.Model.RunFactories
             get { return RunFactories.IsReadOnly; }
         }
 
-        public bool Remove(KeyValuePair<IRunFactory, Action<Stream, String>> item)
+        public bool Remove(KeyValuePair<IRunFactory, Action<Stream, string>> item)
         {
             return RunFactories.Remove(item);
         }
 
-        public IEnumerator<KeyValuePair<IRunFactory, Action<Stream, String>>> GetEnumerator()
+        public IEnumerator<KeyValuePair<IRunFactory, Action<Stream, string>>> GetEnumerator()
         {
             return RunFactories.GetEnumerator();
         }

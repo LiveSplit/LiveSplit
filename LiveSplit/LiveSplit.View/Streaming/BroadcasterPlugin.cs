@@ -10,6 +10,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+#if WITH_XSPLIT
+
 namespace XSplit.Wpf
 {
     using System;
@@ -18,7 +20,6 @@ namespace XSplit.Wpf
     using System.IO;
     using System.Runtime.InteropServices;
     using System.Threading.Tasks;
-    using System.Windows.Forms;
     using VHMediaCOMLib;
 
     /// <summary>
@@ -62,7 +63,7 @@ namespace XSplit.Wpf
         {
             get
             {
-                return (this.xsplit.ConnectionStatus & 3) == 3;
+                return (xsplit.ConnectionStatus & 3) == 3;
             }
         }
 
@@ -119,7 +120,7 @@ namespace XSplit.Wpf
                 return false;
             }
 
-            if (this.ConnectionIsReady)
+            if (ConnectionIsReady)
             {
                 // The remaining work (format conversion, sending to xsplit) can be done on a seperate thread)
                 Task.Factory.StartNew(
@@ -140,7 +141,7 @@ namespace XSplit.Wpf
                                 // Allocate memory for bitmap transfer to COM
                                 IntPtr dataptr = Marshal.AllocCoTaskMem(length);
                                 Marshal.Copy(bytes, bytes.Length - length, dataptr, length);
-                                this.xsplit.SendFrame((uint)img.Width, (uint)img.Height, dataptr.ToInt32());
+                                xsplit.SendFrame((uint)img.Width, (uint)img.Height, dataptr.ToInt32());
 
                                 // Send to broadcaster
                                 Marshal.FreeCoTaskMem(dataptr);
@@ -156,3 +157,5 @@ namespace XSplit.Wpf
         #endregion
     }
 }
+
+#endif

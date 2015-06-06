@@ -1,22 +1,14 @@
-﻿using LinqToTwitter;
-using LiveSplit.Options;
+﻿using LiveSplit.Options;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share
 {
     public partial class TwitchOAuthForm : Form
     {
-        internal const String RedirectUrl = "http://livesplit.org/twitch/";
+        internal const string RedirectUrl = "http://livesplit.org/twitch/";
 
-        public String AccessToken { get; protected set; }
+        public string AccessToken { get; protected set; }
 
         public TwitchOAuthForm()
         {
@@ -26,7 +18,7 @@ namespace LiveSplit.Web.Share
         void OAuthForm_Load(object sender, EventArgs e)
         {
             OAuthWebBrowser.Navigate(new Uri(
-                String.Format(
+                string.Format(
                 "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id={0}&redirect_uri={1}&scope={2}",
                 Twitch.ClientId,
                 RedirectUrl,
@@ -55,8 +47,8 @@ namespace LiveSplit.Web.Share
 
                     Action closeAction = () => Close();
 
-                    if (this.InvokeRequired)
-                        this.Invoke(closeAction);
+                    if (InvokeRequired)
+                        Invoke(closeAction);
                     else
                         closeAction();
                 }

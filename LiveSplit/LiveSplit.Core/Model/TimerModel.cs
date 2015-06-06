@@ -15,7 +15,8 @@ namespace LiveSplit.Model
             set
             {
                 _CurrentState = value;
-                value.RegisterTimerModel(this);
+                if (value != null)
+                    value.RegisterTimerModel(this);
             }
         }
 
@@ -39,6 +40,7 @@ namespace LiveSplit.Model
             {
                 CurrentState.CurrentPhase = TimerPhase.Running;
                 CurrentState.CurrentSplitIndex = 0;
+                CurrentState.AttemptStarted = TripleDateTime.Now;
                 CurrentState.StartTime = TripleDateTime.Now - CurrentState.Run.Offset;
                 CurrentState.PauseTime = CurrentState.Run.Offset;
                 CurrentState.LoadingTimes = TimeSpan.Zero;
@@ -59,6 +61,7 @@ namespace LiveSplit.Model
                 if (CurrentState.Run.Count == CurrentState.CurrentSplitIndex)
                 {
                     CurrentState.CurrentPhase = TimerPhase.Ended;
+                    CurrentState.AttemptEnded = TripleDateTime.Now;
                 }
                 CurrentState.Run.HasChanged = true;
 
@@ -98,37 +101,32 @@ namespace LiveSplit.Model
             }
         }
 
-        
-
         public void Reset()
+        {
+            Reset(true);
+        }
+
+        public void Reset(bool updateSplits)
         {
             if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
             {
+                if (CurrentState.CurrentPhase != TimerPhase.Ended)
+                    CurrentState.AttemptEnded = TripleDateTime.Now;
                 CurrentState.IsGameTimePaused = false;
                 CurrentState.StartTime = TripleDateTime.Now;
                 CurrentState.LoadingTimes = TimeSpan.Zero;
 
-                //Update Splits
-                UpdateRunHistory();
-                UpdateBestSegments();
-                UpdatePBSplits();
-                UpdateSegmentHistory();
+                if (updateSplits)
+                {
+                    UpdateAttemptHistory();
+                    UpdateBestSegments();
+                    UpdatePBSplits();
+                    UpdateSegmentHistory();
+                }
 
                 ResetSplits();
 
                 CurrentState.Run.FixSplits();
-            }
-        }
-
-        public void ResetWithoutUpdating()
-        {
-            if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
-            {
-                CurrentState.IsGameTimePaused = false;
-                CurrentState.StartTime = TripleDateTime.Now;
-                CurrentState.LoadingTimes = TimeSpan.Zero;
-
-                ResetSplits();
             }
         }
 
@@ -165,8 +163,7 @@ namespace LiveSplit.Model
                     OnResume(this, null);
             }
             else if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
-                 Start(); //fuck abahbob
-                
+                 Start(); //fuck abahbob                
         }
 
         public void SwitchComparisonNext()
@@ -199,11 +196,14 @@ namespace LiveSplit.Model
                 OnScrollDown(this, null);
         }
 
-        public void UpdateRunHistory()
+        public void UpdateAttemptHistory()
         {
             Time time = new Time();
             time = (CurrentState.CurrentPhase == TimerPhase.Ended) ? CurrentState.CurrentTime : default(Time);
-            CurrentState.Run.RunHistory.Add(new IndexedTime(time, CurrentState.Run.RunHistory.DefaultIfEmpty(new IndexedTime(default(Time), 0)).Last().Index + 1));
+            var maxIndex = CurrentState.Run.AttemptHistory.DefaultIfEmpty().Max(x => x.Index);
+            var newIndex = Math.Max(0, maxIndex + 1);
+            var newAttempt = new Attempt(newIndex, time, CurrentState.AttemptStarted.UtcNow, CurrentState.AttemptEnded.UtcNow);
+            CurrentState.Run.AttemptHistory.Add(newAttempt);
         }
 
         public void UpdateBestSegments()
@@ -249,7 +249,7 @@ namespace LiveSplit.Model
                 var newTime = new Time();
                 newTime.RealTime = split.SplitTime.RealTime - splitTimeRTA;
                 newTime.GameTime = split.SplitTime.GameTime - splitTimeGameTime;
-                split.SegmentHistory.Add(new IndexedTime(newTime, CurrentState.Run.RunHistory.Last().Index));
+                split.SegmentHistory.Add(new IndexedTime(newTime, CurrentState.Run.AttemptHistory.Last().Index));
                 if (split.SplitTime.RealTime.HasValue)
                     splitTimeRTA = split.SplitTime.RealTime;
                 if (split.SplitTime.GameTime.HasValue)
@@ -260,7 +260,7 @@ namespace LiveSplit.Model
         public void SetRunAsPB()
         {
             CurrentState.Run.ImportSegmentHistory();
-            foreach (var current in this.CurrentState.Run)
+            foreach (var current in CurrentState.Run)
                 current.PersonalBestSplitTime = current.SplitTime;
         }
     }

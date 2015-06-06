@@ -4,11 +4,11 @@ using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
+using LiveSplit.Updates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using LiveSplit.Updates;
 
 namespace LiveSplit.Web.SRL
 {
@@ -32,9 +32,9 @@ namespace LiveSplit.Web.SRL
 
         public bool IsConnected { get { return Client.IsConnected; } }
 
-        public event EventHandlerT<String> ChannelJoined;
-        public event EventHandlerT<String> RawMessageReceived;
-        public event EventHandlerT<Tuple<String, SRLIRCUser, String>> MessageReceived;
+        public event EventHandlerT<string> ChannelJoined;
+        public event EventHandlerT<string> RawMessageReceived;
+        public event EventHandlerT<Tuple<string, SRLIRCUser, string>> MessageReceived;
         public event EventHandlerT<RaceState> StateChanged;
         public event EventHandler UserListRefreshed;
         public event EventHandler GoalChanged;
@@ -45,20 +45,20 @@ namespace LiveSplit.Web.SRL
 
         public System.Timers.Timer RaceBotResponseTimer { get; set; }
 
-        public String Username { get; protected set; }
-        protected String Password { get; set; }
-        protected IList<String> ChannelsToJoin { get; set; }
-        public String GameName { get; set; }
-        public String ChannelTopic { get; set; }
+        public string Username { get; protected set; }
+        protected string Password { get; set; }
+        protected IList<string> ChannelsToJoin { get; set; }
+        public string GameName { get; set; }
+        public string ChannelTopic { get; set; }
 
         protected IrcChannel MainChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.Equals("#speedrunslive")); } }
         protected IrcChannel LiveSplitChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.EndsWith("-livesplit")); } }
         protected IrcChannel RaceChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.StartsWith("#srl") && !x.Name.EndsWith("-livesplit")); } }
 
-        public String LiveSplitChannelName { get { return LiveSplitChannel.Name; } }
-        public String RaceChannelName { get { return RaceChannel == null ? null : RaceChannel.Name; } }
+        public string LiveSplitChannelName { get { return LiveSplitChannel.Name; } }
+        public string RaceChannelName { get { return RaceChannel == null ? null : RaceChannel.Name; } }
 
-        public SpeedRunsLiveIRC(LiveSplitState state, ITimerModel model, IEnumerable<String> channels)
+        public SpeedRunsLiveIRC(LiveSplitState state, ITimerModel model, IEnumerable<string> channels)
         {
             ChannelsToJoin = channels.ToList();
             Client = new IrcClient();
@@ -151,14 +151,14 @@ namespace LiveSplit.Web.SRL
                 GoalChanged(null, null);
         }
 
-        private String Escape(String value)
+        private string Escape(string value)
         {
             // \ -> \\
             // " -> \.
             return value.Replace("\\", "\\\\").Replace("\"", "\\.");
         }
 
-        private String Unescape(String value)
+        private string Unescape(string value)
         {
             // \. -> "
             // \\ -> \
@@ -173,15 +173,23 @@ namespace LiveSplit.Web.SRL
             {
                 if (Model.CurrentState.CurrentSplitIndex > 0)
                 {
-                        var split = Model.CurrentState.Run[Model.CurrentState.CurrentSplitIndex - 1];
-                        var timeRTA = "-";
-                        var timeIGT = "-";
-                        if (split.SplitTime.RealTime != null)
-                            timeRTA = timeFormatter.Format(split.SplitTime.RealTime);
-                        if (split.SplitTime.GameTime != null)
-                            timeIGT = timeFormatter.Format(split.SplitTime.GameTime);
-                        Client.LocalUser.SendMessage(LiveSplitChannel, String.Format(".time \"{0}\" {1}", Escape(split.Name), timeRTA));
-                        Client.LocalUser.SendMessage(LiveSplitChannel, String.Format(".timeGT \"{0}\" {1}", Escape(split.Name), timeIGT));
+                    var split = Model.CurrentState.Run[Model.CurrentState.CurrentSplitIndex - 1];
+                    var timeRTA = "-";
+                    var timeIGT = "-";
+                    if (split.SplitTime.RealTime != null)
+                        timeRTA = timeFormatter.Format(split.SplitTime.RealTime);
+                    if (split.SplitTime.GameTime != null)
+                        timeIGT = timeFormatter.Format(split.SplitTime.GameTime);
+                    if (Model.CurrentState.CurrentPhase == TimerPhase.Ended)
+                    {
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done RealTime {0}", timeRTA));
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done GameTime {0}", timeIGT));
+                    }
+                    else
+                    {
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time RealTime \"{0}\" {1}", Escape(split.Name), timeRTA));
+                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time GameTime \"{0}\" {1}", Escape(split.Name), timeIGT));
+                    }
                 }
             }
 
@@ -202,14 +210,22 @@ namespace LiveSplit.Web.SRL
             {
                 var split = Model.CurrentState.CurrentSplit;
                 var time = "-";
-                Client.LocalUser.SendMessage(LiveSplitChannel, String.Format(".time \"{0}\" {1}", Escape(split.Name), time));
-                Client.LocalUser.SendMessage(LiveSplitChannel, String.Format(".timeGT \"{0}\" {1}", Escape(split.Name), time));
+                if (Model.CurrentState.CurrentSplitIndex == Model.CurrentState.Run.Count - 1)
+                {
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done RealTime {0}", time));
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done GameTime {0}", time));
+                }
+                else
+                {
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time RealTime \"{0}\" {1}", Escape(split.Name), time));
+                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time GameTime \"{0}\" {1}", Escape(split.Name), time));
+                }
             }
         }
 
         void Client_Registered(object sender, EventArgs e)
         {
-            Client.LocalUser.SendMessage("NickServ", String.Format("IDENTIFY {0}", Password));
+            Client.LocalUser.SendMessage("NickServ", string.Format("IDENTIFY {0}", Password));
             Client.LocalUser.JoinedChannel += LocalUser_JoinedChannel;
         }
 
@@ -249,24 +265,33 @@ namespace LiveSplit.Web.SRL
             
 
             if (RawMessageReceived != null)
-                RawMessageReceived(this, String.Format("{0} - {1}", e.Message.Command, e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)));
+                RawMessageReceived(this, string.Format("{0} - {1}", e.Message.Command, e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)));
         }
 
-        protected void ProcessSplit(String user, String segmentName, TimeSpan? time, TimingMethod method)
+        protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)
         {
             var run = Model.CurrentState.Run;
-            var comparisonName = "[Race] " + user;
-
-            var segment = run.FirstOrDefault(x => x.Name == segmentName);
+            var segment = run.FirstOrDefault(x => x.Name.Trim().ToLower() == segmentName.Trim().ToLower());
             if (segment != null)
-            {
-                var newTime = new Time(segment.Comparisons[comparisonName]);
-                newTime[method] = time;
-                segment.Comparisons[comparisonName] = newTime;
-            }
+                AddSplit(user, segment, time, method);
         }
 
-        protected void ProcessRaceChannelMessage(String user, String message)
+        protected void ProcessFinalSplit(string user, TimeSpan? time, TimingMethod method)
+        {
+            var run = Model.CurrentState.Run;
+            var segment = run.Last();
+            AddSplit(user, segment, time, method);
+        }
+
+        protected void AddSplit(string user, ISegment segment, TimeSpan? time, TimingMethod method)
+        {
+            var comparisonName = "[Race] " + user;
+            var newTime = new Time(segment.Comparisons[comparisonName]);
+            newTime[method] = time;
+            segment.Comparisons[comparisonName] = newTime;
+        }
+
+        protected void ProcessRaceChannelMessage(string user, string message)
         {
             if (user == "RaceBot")
             {
@@ -332,7 +357,7 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-        protected void AddComparison(String userName)
+        protected void AddComparison(string userName)
         {
             var run = Model.CurrentState.Run;
             var comparisonName = "[Race] " + userName;
@@ -366,7 +391,7 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-        protected void ProcessMainChannelMessage(String user, String message)
+        protected void ProcessMainChannelMessage(string user, string message)
         {
             if ((user == "RaceBot") && RaceChannel == null && message.StartsWith("Race initiated for " + GameName))
             {
@@ -378,26 +403,30 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-
-        protected void ProcessLiveSplitChannelMessage(String user, String message)
+        protected void ProcessLiveSplitChannelMessage(string user, string message)
         {
             if (RaceState == RaceState.RaceStarted || RaceState == RaceState.RaceEnded)
             {
-                if (message.StartsWith(".time ") || message.StartsWith(".timeGT "))
+                if (message.StartsWith("!time ") || message.StartsWith("!done "))
                 {
-                    var method = message.StartsWith(".timeGT ") ? TimingMethod.GameTime : TimingMethod.RealTime;
-                    var cutOff = message.Substring(".time \"".Length + (method == TimingMethod.GameTime ? "GT".Length : 0));
-                    var index = cutOff.IndexOf("\"");
-                    var splitName = Unescape(cutOff.Substring(0, index));
-                    var timeString = cutOff.Substring(index + 2);
+                    var method = message.Substring("!time ".Length).StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
+                    var cutOff = message.Substring("!time RealTime ".Length);
+                    var index = cutOff.LastIndexOf("\"");
+                    var timeString = cutOff.Substring(index > -1 ? index + 2 : 0);
                     var time = ParseTime(timeString);
 
-                    ProcessSplit(user, splitName, time, method);
+                    if (index > -1)
+                    {
+                        var splitName = Unescape(cutOff.Substring(1, index - 1));
+                        ProcessSplit(user, splitName, time, method);
+                    }
+                    else
+                        ProcessFinalSplit(user, time, method);
                 }
             }
         }
 
-        protected TimeSpan? ParseTime(String timeString)
+        protected TimeSpan? ParseTime(string timeString)
         {
             if (timeString == "-")
                 return null;
@@ -436,7 +465,7 @@ namespace LiveSplit.Web.SRL
             }
         }
 
-        private void Connect(String server, String username, String password)
+        private void Connect(string server, string username, string password)
         {
             Username = username;
             Password = password;
@@ -452,14 +481,13 @@ namespace LiveSplit.Web.SRL
             });
         }
 
-        public void Connect(String username, String password)
+        public void Connect(string username, string password)
         {
             Connect("irc2.speedrunslive.com", username, password);
         }
 
         void Client_Connected(object sender, EventArgs e)
-        {
-            
+        {   
         }
 
         void Client_ConnectFailed(object sender, IrcErrorEventArgs e)

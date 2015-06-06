@@ -5,13 +5,13 @@ namespace LiveSplit.Web.SRL
 {
     public interface IRaceViewer
     {
-        String Name { get; }
+        string Name { get; }
         void ShowRace(dynamic race);
     }
 
     public static class RaceViewer
     {
-        public static IRaceViewer FromName(String name)
+        public static IRaceViewer FromName(string name)
         {
             switch (name)
             {
