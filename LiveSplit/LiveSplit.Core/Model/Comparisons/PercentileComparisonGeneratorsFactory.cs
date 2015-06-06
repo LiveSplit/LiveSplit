@@ -18,98 +18,100 @@ namespace LiveSplit.Model.Comparisons
             Run = run;
         }
 
-        public void Generate(TimingMethod method) //Starting here
+        protected double GetWeight(int index, int count)
         {
-            var allHistory = new List<List<double>>(); //Begin the listception
+            return Math.Pow(Weight, count - index - 1);
+        }
+
+        public void Generate(TimingMethod method)
+        {
+            var allHistory = new List<List<TimeSpan>>();
             foreach (var segment in Run)
-                allHistory.Add(new List<double>()); //A list added for every segment
-            for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++) //For each attempt
+                allHistory.Add(new List<TimeSpan>());
+            for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++)
             {
-                var ignoreNextHistory = false; //This is set because of how LiveSplit saves segments. If a split is skipped, it's lumped into the next saved split. We need to remove those.
-                foreach (var segment in Run) //For each segment
+                var ignoreNextHistory = false;
+                foreach (var segment in Run)
                 {
-                    IIndexedTime history; //Makes a Time and Index value
-                    history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind); //If the attempt has any saved splits, returns the index and time of the current attempt's segment, otherwise null.
-                    if (history != null) //If there is at least one split saved for the attempt...
+                    IIndexedTime history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
+                    if (history != null)
                     {
-                        if (history.Time[method] == null) //If there's no recorded time for the current attempt's segment...
-                            ignoreNextHistory = true; //Forget the current and next attempt's segment.
-                        else if (!ignoreNextHistory) //If the previous attempt's segment was not empty...
+                        if (history.Time[method] == null)
+                            ignoreNextHistory = true;
+                        else if (!ignoreNextHistory)
                         {
-                            allHistory[Run.IndexOf(segment)].Add(history.Time[method].Value.TotalMilliseconds); //Add the time of the current attempt's segment to the segment's list.
+                            allHistory[Run.IndexOf(segment)].Add(history.Time[method].Value);
                         }
-                        else ignoreNextHistory = false; //Forget the current attempt's segment but allow the next one.
+                        else ignoreNextHistory = false;
                     }
-                    else break; //If no splits were saved, check next attempt.
+                    else break;
                 }
-            } //So far we've made allHistory, which contains all the usable times from each attempt for each segment, by order of attempt.
+            }
 
-            var weightedLists = new List<List<KeyValuePair<double,double>>>(); //This monster will be saved so the looping percentile function doesn't take as long.
-            var forceMedian = false; //If any of the segments are empty, we'll force the percentile to be 0.5.
+            var weightedLists = new List<List<KeyValuePair<double, TimeSpan>>>();
+            var forceMedian = false;
 
-            foreach (var curList in allHistory) //For each segment's list
+            foreach (var curList in allHistory)
             {
-                if (curList.Count == 0) //If the segment is empty, it's pointless to continue.
+                if (curList.Count == 0)
                 {
-                    forceMedian = true; //Not every segment will have a split, so the calculation will be a median instead.
+                    forceMedian = true;
                     break;
                 }
-                var tempList = curList.Select((x, i) => new KeyValuePair<double, double>(Math.Pow(Weight, curList.Count - i - 1), x)).ToList(); //Create the weighted list for the segment
-                var weightedList = new List<KeyValuePair<double, double>>(); //Ready the adjusted weighted list
-                if (tempList.Count > 1) //There has to be more than one saved time to be adjusted
+                var tempList = curList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, curList.Count), x)).ToList();
+                var weightedList = new List<KeyValuePair<double, TimeSpan>>();
+                if (tempList.Count > 1)
                 {
-                    tempList = tempList.OrderBy(x => x.Value).ToList(); //Sort it by time ascending
-                    var totalWeight = tempList.Aggregate(0.0, (s, x) => (s + x.Key)); //Get the sum of the weights
-                    var smallestWeight = tempList[0].Key; //Get the weight with the lowest value (right?)
+                    tempList = tempList.OrderBy(x => x.Value).ToList();
+                    var totalWeight = tempList.Aggregate(0.0, (s, x) => (s + x.Key));
+                    var smallestWeight = tempList[0].Key;
+                    var rangeWeight = totalWeight - smallestWeight;
                     var aggWeight = 0.0;
-                    foreach (var value in tempList) //This adjusts the list so that the smallest weight is 0.0 and the largest is 1.0.
+                    foreach (var value in tempList)
                     {
                         aggWeight += value.Key;
-                        weightedList.Add(new KeyValuePair<double, double>((aggWeight - smallestWeight) / (totalWeight - smallestWeight), value.Value));
+                        weightedList.Add(new KeyValuePair<double, TimeSpan>((aggWeight - smallestWeight) / rangeWeight, value.Value));
                     }
-                    weightedList = weightedList.OrderBy(x => x.Value).ToList(); //Sort it by time ascending
+                    weightedList = weightedList.OrderBy(x => x.Value).ToList();
                 }
-                else weightedList.Add(new KeyValuePair<double, double>(1.0, tempList[0].Value)); //If only one split saved, just use that.
-                weightedLists.Add(weightedList); //Save them to the master list
-            } //Now we have each segment's list weighted and sorted.
+                else weightedList.Add(new KeyValuePair<double, TimeSpan>(1.0, tempList[0].Value));
+                weightedLists.Add(weightedList);
+            }
 
-            var goalTime = 0.0; //Fetch and store the Personal Best time. If there is no PB, leave it at 0.
+            var goalTime = TimeSpan.Zero;
             if (Run[Run.Count - 1].PersonalBestSplitTime[method].HasValue)
-                goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value.TotalMilliseconds;
+                goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value;
 
-            List<double> outputSplits = new List<double>(); //Where the percentile function will save the generated splits.
-            var percentile = 0.0; //Starts at 0.0 so the first gothrough will change it to 0.5
-            var percMin = 0.0; //Lowest value the percentile can go.
-            var percMax = 1.0; //Highest value the percentile can go.
-            var runSum = 0.0; //Because it has to exist outside the loop, which is silly.
-            int loopProtection = 0; //Prevent the loop from taking too long.
+            var runSum = TimeSpan.Zero;
+            var outputSplits = new List<TimeSpan>();
+            var percentile = 0.5;
+            var percMax = 1.0;
+            var percMin = 0.0;
+            var loopProtection = 0;
 
             do
             {
-                if (runSum > goalTime) //runSum starts at 0.0, so the first loop is always false
-                    percMax = percentile; //If the RunSum is too high, lower the ceiling
-                else percMin = percentile; //If the RunSum is too low, increase the floor
-                runSum = 0.0; //Summing the generated times to compare check with the PB.
-                outputSplits.Clear(); //Need to clear out the list before reusing it
-                percentile = 0.5 * (percMax - percMin) + percMin; //Recalculate the percentile
-                foreach (var weightedList in weightedLists) //Going through each weighted list
+                runSum = TimeSpan.Zero;
+                outputSplits.Clear();
+                percentile = 0.5 * (percMax - percMin) + percMin;
+                foreach (var weightedList in weightedLists)
                 {
-                    var curValue = 0.0; //Value to be saved into the OutputSplits and to add up to RumSum.
-                    if (weightedList.Count > 1) //If there's only one split then just use that one.
+                    var curValue = TimeSpan.Zero;
+                    if (weightedList.Count > 1)
                     {
-                        for (var n = 0; n < weightedList.Count; n++) //Going through the values of the list
+                        for (var n = 0; n < weightedList.Count; n++)
                         {
-                            if (weightedList[n].Key == percentile) //Very rare but here incase
+                            if (weightedList[n].Key == percentile)
                             {
                                 curValue = weightedList[n].Value;
                                 break;
                             }
-                            if (weightedList[n].Key > percentile) //Once the key larger than the percentile is found, use that value and the previous one to form the output split.
+                            if (weightedList[n].Key > percentile)
                             {
                                 var mult = 1 / (weightedList[n].Key - weightedList[n - 1].Key);
-                                var percDn = (weightedList[n].Key - percentile) * mult * weightedList[n - 1].Value;
-                                var percUp = (percentile - weightedList[n - 1].Key) * mult * weightedList[n].Value;
-                                curValue = percUp + percDn;
+                                var percDn = (weightedList[n].Key - percentile) * mult * weightedList[n - 1].Value.Ticks;
+                                var percUp = (percentile - weightedList[n - 1].Key) * mult * weightedList[n].Value.Ticks;
+                                curValue = TimeSpan.FromTicks(Convert.ToInt64(percUp + percDn));
                                 break;
                             }
                         }
@@ -121,9 +123,11 @@ namespace LiveSplit.Model.Comparisons
                     outputSplits.Add(curValue);
                     runSum += curValue;
                 }
+                if (runSum > goalTime)
+                    percMax = percentile;
+                else percMin = percentile;
                 loopProtection += 1;
-
-            } while (Math.Abs(runSum - goalTime) * 10000 > 0.5 && loopProtection < 50 && forceMedian == false); //Upon satisfaction and to prevent looping indefinitally
+            } while (!(runSum - goalTime).Equals(TimeSpan.Zero) && loopProtection < 50 && !forceMedian);
 
             TimeSpan? totalTime = TimeSpan.Zero;
             for (var ind = 0; ind < Run.Count; ind++)
@@ -131,7 +135,7 @@ namespace LiveSplit.Model.Comparisons
                 if (ind >= outputSplits.Count)
                     totalTime = null;
                 if (totalTime != null)
-                    totalTime += TimeSpan.FromTicks(Convert.ToInt64(outputSplits[ind] * 10000));
+                    totalTime += outputSplits[ind];
                 var time = new Time(Run[ind].Comparisons[Name]);
                 time[method] = totalTime;
                 Run[ind].Comparisons[Name] = time;
