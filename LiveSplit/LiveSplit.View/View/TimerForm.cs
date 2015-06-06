@@ -752,7 +752,11 @@ namespace LiveSplit.View
                     return;
 
                 if (run != null)
+                {
+                    if (InTimerOnlyMode)
+                        RemoveTimerOnly();
                     SetRun(run);
+                }
             }
             finally
             {
@@ -868,7 +872,11 @@ namespace LiveSplit.View
                 return;
 
             if (run != null)
+            {
+                if (InTimerOnlyMode)
+                    RemoveTimerOnly();
                 SetRun(run);
+            }
         }
 
         private void StartOrSplit()
