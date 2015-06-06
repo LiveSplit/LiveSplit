@@ -38,6 +38,8 @@ namespace LiveSplit.Tests
                 "ASL Script is downloaded even though Type \"Component\" is specified.");
             Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".dll")) && x.Type == AutoSplitterType.Script), 
                 "Component is downloaded even though Type \"Script\" is specified.");
+            Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => !Uri.IsWellFormedUriString(y, UriKind.Absolute))),
+                "Auto Splitters need to have valid URLs");
         }
     }
 }
