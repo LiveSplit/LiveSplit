@@ -318,7 +318,7 @@
       <URL>https://github.com/drtchops/LiveSplit.Skyrim/raw/master/Components/LiveSplit.Skyrim.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
+    <Description>Auto Splitting and Load Removal are available. (By Dalet and DrTChops)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -335,11 +335,27 @@
       <Game>Deus Ex: Human Revolution</Game>
       <Game>Deus Ex Human Revolution</Game>
       <Game>Deus Ex HR</Game>
-	  <Game>Deus Ex: HR</Game>
+      <Game>Deus Ex: HR</Game>
       <Game>DXHR</Game>
     </Games>
     <URLs>
       <URL>https://github.com/drtchops/LiveSplit.DXHR/raw/master/Components/LiveSplit.DXHR.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Judge Dredd: Dredd vs. Death</Game>
+      <Game>Judge Dredd: Dredd vs Death</Game>
+      <Game>Judge Dredd Dredd vs. Death</Game>
+      <Game>Judge Dredd Dredd vs Death</Game>
+      <Game>Dredd vs. Death</Game>
+      <Game>Dredd vs Death</Game>
+      <Game>Judge Dredd</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/dredd.asl</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
