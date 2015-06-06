@@ -83,7 +83,6 @@ namespace LiveSplit.View
 
         protected Task RefreshTask { get; set; }
         protected int RefreshCounter { get; set; }
-        protected int RefreshesRemaining { get; set; }
 
         public string BasePath { get; set; }
 
@@ -236,7 +235,6 @@ namespace LiveSplit.View
             RefreshTask = Task.Factory.StartNew(RefreshTimerWorker);
 
             RefreshCounter = 0;
-            RefreshesRemaining = 0;
 
             Hook = new CompositeHook();
             Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
@@ -1016,14 +1014,11 @@ namespace LiveSplit.View
                         if (DontRedraw)
                             return;
 
-                        RefreshCounter++;
-
-                        if (OldSize <= 0 || (RefreshesRemaining > 0 && RefreshCounter >= 5))
+                        if (OldSize <= 0 || (RefreshCounter > 0 && RefreshCounter % 5 == 0))
                         {
                             InvalidateForm();
-                            RefreshCounter = 0;
-                            if (RefreshesRemaining > 0)
-                                RefreshesRemaining--;
+                            if (RefreshCounter > 0)
+                                RefreshCounter--;
                         }
                         else
                         {
@@ -1179,7 +1174,7 @@ namespace LiveSplit.View
             }
 
             if (OldSize == 0)
-                RefreshesRemaining = 10;
+                RefreshCounter = 50;
 
             if (OldSize >= 0)
                 OldSize = currentSize;
@@ -1458,7 +1453,7 @@ namespace LiveSplit.View
             if (autoSplitterChanged)
                 DeactivateAutoSplitter();
             CurrentState.Run = run;
-            RefreshesRemaining = 10;
+            RefreshCounter = 50;
             RegenerateComparisons();
             SwitchComparison(CurrentState.CurrentComparison);
             if (autoSplitterChanged)
@@ -1721,7 +1716,7 @@ namespace LiveSplit.View
 
         void editor_SegmentRemovedOrAdded(object sender, EventArgs e)
         {
-            RefreshesRemaining = 10;
+            RefreshCounter = 50;
         }
 
         void editor_ComparisonRenamed(object sender, EventArgs e)
@@ -1819,7 +1814,7 @@ namespace LiveSplit.View
 
         void editor_LayoutSettingsAssigned(object sender, EventArgs e)
         {
-            RefreshesRemaining = 10;
+            RefreshCounter = 50;
         }
 
         void editor_LayoutResized(object sender, EventArgs e)
