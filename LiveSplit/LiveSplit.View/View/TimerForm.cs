@@ -755,6 +755,7 @@ namespace LiveSplit.View
                 {
                     if (InTimerOnlyMode)
                         RemoveTimerOnly();
+                    run.HasChanged = true;
                     SetRun(run);
                 }
             }
@@ -835,6 +836,7 @@ namespace LiveSplit.View
                                 try
                                 {
                                     var layout = new XMLLayoutFactory(memoryStream).Create(CurrentState);
+                                    layout.HasChanged = true;
                                     SetLayout(layout);
                                 }
                                 catch (Exception ex)
@@ -875,6 +877,7 @@ namespace LiveSplit.View
             {
                 if (InTimerOnlyMode)
                     RemoveTimerOnly();
+                run.HasChanged = true;
                 SetRun(run);
             }
         }
