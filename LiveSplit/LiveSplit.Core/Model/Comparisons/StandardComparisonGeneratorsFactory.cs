@@ -9,6 +9,7 @@ namespace LiveSplit.Model.Comparisons
             CompositeComparisons.AddShortComparisonName(BestSegmentsComparisonGenerator.ComparisonName, BestSegmentsComparisonGenerator.ShortComparisonName);
             CompositeComparisons.AddShortComparisonName(Run.PersonalBestComparisonName, "PB");
             CompositeComparisons.AddShortComparisonName(AverageSegmentsComparisonGenerator.ComparisonName, AverageSegmentsComparisonGenerator.ShortComparisonName);
+            CompositeComparisons.AddShortComparisonName(WorstSegmentsComparisonGenerator.ComparisonName, WorstSegmentsComparisonGenerator.ShortComparisonName);
             CompositeComparisons.AddShortComparisonName(PercentileComparisonGenerator.ComparisonName, PercentileComparisonGenerator.ShortComparisonName);
         }
         public IEnumerable<IComparisonGenerator> Create(IRun run)
