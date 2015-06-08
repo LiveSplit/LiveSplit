@@ -112,6 +112,14 @@ namespace LiveSplit.Options.SettingsFactories
                 settings.AgreedToSRLRules = bool.Parse(parent["AgreedToSRLRules"].InnerText);
             }
 
+            if (version >= new Version(1, 6))
+            {
+                foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes)
+                {
+                    settings.ComparisonGeneratorStates[((XmlNode)generatorNode).Attributes["name"].Value] = Boolean.Parse(((XmlNode)generatorNode).InnerText);
+                }
+            }
+
             var hotkeysEnabled = parent["GlobalHotkeysEnabled"];
             settings.GlobalHotkeysEnabled = bool.Parse(hotkeysEnabled.InnerText);
             var recentSplits = parent["RecentSplits"];

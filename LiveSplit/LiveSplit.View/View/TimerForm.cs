@@ -210,7 +210,7 @@ namespace LiveSplit.View
 
             CurrentState.CurrentTimingMethod = Settings.LastTimingMethod;
 
-            RegenerateComparisons();
+            SwitchComparisonGenerators();
             SwitchComparison(Settings.LastComparison);
             Model.CurrentState = CurrentState;
 
@@ -2165,8 +2165,10 @@ namespace LiveSplit.View
                     var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
                     CurrentState.Settings = Settings = oldSettings;
                     if (regenerate)
-                        RegenerateComparisons();                    
+                        RegenerateComparisons();
                 }
+                else
+                    SwitchComparisonGenerators();
                 Settings.RegisterHotkeys(Hook);
             }
             finally
@@ -2406,7 +2408,8 @@ namespace LiveSplit.View
             foreach (var customComparison in CurrentState.Run.CustomComparisons)
                 AddActionToComparisonsMenu(customComparison);
             
-            comparisonMenuItem.DropDownItems.Add(new ToolStripSeparator());
+            if (CurrentState.Run.ComparisonGenerators.Count > 0)
+                comparisonMenuItem.DropDownItems.Add(new ToolStripSeparator());
 
             var raceSeparatorAdded = false;
             foreach (var generator in CurrentState.Run.ComparisonGenerators)
@@ -2453,6 +2456,19 @@ namespace LiveSplit.View
                 foreach (var generator in CurrentState.Run.ComparisonGenerators)
                     generator.Generate(CurrentState.Settings);
             }
+        }
+
+        private void SwitchComparisonGenerators()
+        {
+            var allGenerators = new StandardComparisonGeneratorsFactory().GetAllGenerators(CurrentState.Run);
+            foreach (var generator in Settings.ComparisonGeneratorStates)
+            {
+                if (CurrentState.Run.ComparisonGenerators.Any(x => x.Name == generator.Key))
+                    CurrentState.Run.ComparisonGenerators.Remove(CurrentState.Run.ComparisonGenerators.First(x => x.Name == generator.Key));
+                if (generator.Value == true)
+                    CurrentState.Run.ComparisonGenerators.Add(allGenerators.First(x => x.Name == generator.Key));
+            }
+            RegenerateComparisons();
         }
 
         private void SwitchComparison(string name)

@@ -32,6 +32,7 @@ namespace LiveSplit.Options
         public bool SimpleSumOfBest { get; set; }
         public IRaceViewer RaceViewer { get; set; }
         public IList<string> ActiveAutoSplitters { get; set; }
+        public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
 
         public Settings()
         {
@@ -66,7 +67,8 @@ namespace LiveSplit.Options
                 RaceViewer = RaceViewer,
                 AgreedToSRLRules = AgreedToSRLRules,
                 SimpleSumOfBest = SimpleSumOfBest,
-                ActiveAutoSplitters = new List<string>(ActiveAutoSplitters)
+                ActiveAutoSplitters = new List<string>(ActiveAutoSplitters),
+                ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates)
             };
         }
 

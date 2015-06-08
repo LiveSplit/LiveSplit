@@ -30,6 +30,7 @@ namespace LiveSplit.Options
         bool SimpleSumOfBest { get; set; }
         IRaceViewer RaceViewer { get; set; }
         IList<string> ActiveAutoSplitters { get; set; }
+        IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
 
         bool AgreedToSRLRules { get; set; }
 

@@ -28,7 +28,7 @@ namespace LiveSplit.Options.SettingsSavers
 
             var parent = document.CreateElement("Settings");
             var version = document.CreateAttribute("version");
-            version.Value = "1.4";
+            version.Value = "1.6";
             parent.Attributes.Append(version);
             document.AppendChild(parent);
 
@@ -99,6 +99,18 @@ namespace LiveSplit.Options.SettingsSavers
             parent.AppendChild(ToElement(document, "LastComparison", settings.LastComparison));
             parent.AppendChild(ToElement(document, "LastTimingMethod", settings.LastTimingMethod));
             parent.AppendChild(ToElement(document, "SimpleSumOfBest", settings.SimpleSumOfBest));
+
+            var generatorStates = document.CreateElement("ComparisonGeneratorStates");
+            foreach (var generator in settings.ComparisonGeneratorStates)
+            {
+                var generatorElement = document.CreateElement("Generator");
+                var name = document.CreateAttribute("name");
+                name.Value = generator.Key;
+                generatorElement.Attributes.Append(name);
+                generatorElement.InnerText = generator.Value.ToString();
+                generatorStates.AppendChild(generatorElement);
+            }
+            parent.AppendChild(generatorStates);
 
             var autoSplittersActive = document.CreateElement("ActiveAutoSplitters");
             foreach (var splitter in settings.ActiveAutoSplitters)
