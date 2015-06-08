@@ -2455,6 +2455,22 @@ namespace LiveSplit.View
             }
         }
 
+        private void SwitchComparisonGenerators()
+        {
+            var allGenerators = new StandardComparisonGeneratorsFactory().Create(CurrentState.Run);
+            foreach (var generator in Settings.ComparisonGeneratorStates)
+            {
+                var generatorExists = CurrentState.Run.ComparisonGenerators.Any(x => x.Name == generator.Key);
+                if (generator.Value != generatorExists)
+                {
+                    if (generator.Value == true)
+                        CurrentState.Run.ComparisonGenerators.Add(allGenerators.First(x => x.Name == generator.Key));
+                    else
+                        CurrentState.Run.ComparisonGenerators.Remove(CurrentState.Run.ComparisonGenerators.First(x => x.Name == generator.Key));
+                }
+            }
+        }
+
         private void SwitchComparison(string name)
         {
             var generator = CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == name);
