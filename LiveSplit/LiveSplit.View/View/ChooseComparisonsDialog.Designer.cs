@@ -80,6 +80,7 @@
             // 
             // comparisonsListBox
             // 
+            this.comparisonsListBox.CheckOnClick = true;
             this.tableLayoutPanel3.SetColumnSpan(this.comparisonsListBox, 2);
             this.comparisonsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comparisonsListBox.FormattingEnabled = true;
