@@ -45,19 +45,7 @@ namespace LiveSplit.View
             if (DialogInitialized)
             {
                 var generatorName = (string)comparisonsListBox.Items[e.Index];
-                if (ComparisonGeneratorStates.ContainsKey(generatorName))
-                    ComparisonGeneratorStates[generatorName] = e.NewValue == CheckState.Checked;
-                else
-                {
-                    ComparisonGeneratorStates.Clear();
-                    foreach (var item in comparisonsListBox.Items)
-                    {
-                        if ((string)item == generatorName)
-                            ComparisonGeneratorStates[generatorName] = e.NewValue == CheckState.Checked;
-                        else
-                            ComparisonGeneratorStates[(string)item] = comparisonsListBox.GetItemChecked(comparisonsListBox.Items.IndexOf(item));
-                    }
-                }
+                ComparisonGeneratorStates[generatorName] = e.NewValue == CheckState.Checked;
             }
         }
 
