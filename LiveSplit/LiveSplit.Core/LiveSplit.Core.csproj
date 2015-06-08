@@ -104,7 +104,7 @@
     <Compile Include="Model\Comparisons\IComparisons.cs" />
     <Compile Include="Model\Comparisons\NoneComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\StandardComparisonGeneratorsFactory.cs" />
-    <Compile Include="Model\Comparisons\PercentileComparisonGeneratorsFactory.cs" />
+    <Compile Include="Model\Comparisons\PercentileComparisonGenerator.cs" />
     <Compile Include="Model\DoubleTapPrevention.cs" />
     <Compile Include="Model\Input\CompositeHook.cs" />
     <Compile Include="Model\Input\GamepadHook.cs" />
