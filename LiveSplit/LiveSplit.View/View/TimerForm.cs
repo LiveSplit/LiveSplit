@@ -2463,14 +2463,10 @@ namespace LiveSplit.View
             var allGenerators = new StandardComparisonGeneratorsFactory().GetAllGenerators(CurrentState.Run);
             foreach (var generator in Settings.ComparisonGeneratorStates)
             {
-                var generatorExists = CurrentState.Run.ComparisonGenerators.Any(x => x.Name == generator.Key);
-                if (generator.Value != generatorExists)
-                {
-                    if (generator.Value == true)
-                        CurrentState.Run.ComparisonGenerators.Add(allGenerators.First(x => x.Name == generator.Key));
-                    else
-                        CurrentState.Run.ComparisonGenerators.Remove(CurrentState.Run.ComparisonGenerators.First(x => x.Name == generator.Key));
-                }
+                if (CurrentState.Run.ComparisonGenerators.Any(x => x.Name == generator.Key))
+                    CurrentState.Run.ComparisonGenerators.Remove(CurrentState.Run.ComparisonGenerators.First(x => x.Name == generator.Key));
+                if (generator.Value == true)
+                    CurrentState.Run.ComparisonGenerators.Add(allGenerators.First(x => x.Name == generator.Key));
             }
             RegenerateComparisons();
         }
