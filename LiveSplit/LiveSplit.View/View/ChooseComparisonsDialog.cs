@@ -42,7 +42,22 @@ namespace LiveSplit.View
         private void comparisonsListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             if (DialogInitialized)
-                ComparisonGeneratorStates[(string)comparisonsListBox.Items[e.Index]] = e.NewValue == CheckState.Checked;
+            {
+                var generatorName = (string)comparisonsListBox.Items[e.Index];
+                if (ComparisonGeneratorStates.ContainsKey(generatorName))
+                    ComparisonGeneratorStates[generatorName] = e.NewValue == CheckState.Checked;
+                else
+                {
+                    ComparisonGeneratorStates.Clear();
+                    foreach (var item in comparisonsListBox.Items)
+                    {
+                        if ((string)item == generatorName)
+                            ComparisonGeneratorStates[generatorName] = e.NewValue == CheckState.Checked;
+                        else
+                            ComparisonGeneratorStates[(string)item] = comparisonsListBox.GetItemChecked(comparisonsListBox.Items.IndexOf(item));
+                    }
+                }
+            }
         }
 
         private void ChooseComparisonsDialog_Load(object sender, EventArgs e)
