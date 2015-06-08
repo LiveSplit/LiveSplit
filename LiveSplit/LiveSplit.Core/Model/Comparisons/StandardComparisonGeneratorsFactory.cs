@@ -15,7 +15,6 @@ namespace LiveSplit.Model.Comparisons
         {
             yield return new BestSegmentsComparisonGenerator(run);
             yield return new AverageSegmentsComparisonGenerator(run);
-            yield return new NoneComparisonGenerator(run);
         }
 
         public IEnumerable<IComparisonGenerator> GetAllGenerators(IRun run)
@@ -23,6 +22,7 @@ namespace LiveSplit.Model.Comparisons
             yield return new BestSegmentsComparisonGenerator(run);
             yield return new BestSplitTimesComparisonGenerator(run);
             yield return new AverageSegmentsComparisonGenerator(run);
+            yield return new WorstSegmentsComparisonGenerator(run);
             yield return new PercentileComparisonGenerator(run);
             yield return new NoneComparisonGenerator(run);
         }

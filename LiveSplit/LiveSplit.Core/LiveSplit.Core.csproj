@@ -94,6 +94,7 @@
     <Compile Include="Model\Attempt.cs" />
     <Compile Include="Model\AutoSplitter.cs" />
     <Compile Include="Model\AutoSplitterFactory.cs" />
+    <Compile Include="Model\Comparisons\WorstSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\MedianSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\AverageSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\BestSegmentsComparisonGenerator.cs" />
@@ -128,6 +129,8 @@
     <Compile Include="Model\RunSavers\SplitterZRunSaver.cs" />
     <Compile Include="Model\AbbreviationExtensions.cs" />
     <Compile Include="Model\StringExtensions.cs" />
+    <Compile Include="Model\SumOfWorst.cs" />
+    <Compile Include="Model\SumOfSegmentsHelper.cs" />
     <Compile Include="Model\SumOfBest.cs" />
     <Compile Include="Model\Time.cs" />
     <Compile Include="Model\TimeSpanParser.cs" />
