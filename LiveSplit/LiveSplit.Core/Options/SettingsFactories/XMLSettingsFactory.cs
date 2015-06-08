@@ -115,7 +115,9 @@ namespace LiveSplit.Options.SettingsFactories
             if (version >= new Version(1, 6))
             {
                 foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes)
-                    settings.ComparisonGeneratorStates[((XmlNode)generatorNode).Name] = Boolean.Parse(((XmlNode)generatorNode).InnerText);
+                {
+                    settings.ComparisonGeneratorStates[((XmlNode)generatorNode).Attributes["name"].Value] = Boolean.Parse(((XmlNode)generatorNode).InnerText);
+                }
             }
 
             var hotkeysEnabled = parent["GlobalHotkeysEnabled"];

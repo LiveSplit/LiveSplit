@@ -103,7 +103,12 @@ namespace LiveSplit.Options.SettingsSavers
             var generatorStates = document.CreateElement("ComparisonGeneratorStates");
             foreach (var generator in settings.ComparisonGeneratorStates)
             {
-                generatorStates.AppendChild(ToElement(document, generator.Key, generator.Value));
+                var generatorElement = document.CreateElement("Generator");
+                var name = document.CreateAttribute("name");
+                name.Value = generator.Key;
+                generatorElement.Attributes.Append(name);
+                generatorElement.InnerText = generator.Value.ToString();
+                generatorStates.AppendChild(generatorElement);
             }
             parent.AppendChild(generatorStates);
 
