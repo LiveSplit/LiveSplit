@@ -102,6 +102,7 @@
             this.Name = "ChooseComparisonsDialog";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Text = "Choose Comparisons";
+            this.Load += new System.EventHandler(this.ChooseComparisonsDialog_Load);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 

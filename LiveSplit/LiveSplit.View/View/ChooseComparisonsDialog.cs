@@ -11,11 +11,12 @@ namespace LiveSplit.View
     public partial class ChooseComparisonsDialog : Form
     {
         public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
+        protected bool DialogInitialized;
 
         public ChooseComparisonsDialog()
         {
             InitializeComponent();
-
+            DialogInitialized = false;
             comparisonsListBox.Items.AddRange(new []
             {
                 BestSegmentsComparisonGenerator.ComparisonName,
@@ -40,7 +41,17 @@ namespace LiveSplit.View
 
         private void comparisonsListBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            ComparisonGeneratorStates[(string)comparisonsListBox.Items[e.Index]] = e.NewValue == CheckState.Checked;
+            if (DialogInitialized)
+                ComparisonGeneratorStates[(string)comparisonsListBox.Items[e.Index]] = e.NewValue == CheckState.Checked;
+        }
+
+        private void ChooseComparisonsDialog_Load(object sender, EventArgs e)
+        {
+            foreach (var generator in ComparisonGeneratorStates)
+            {
+                comparisonsListBox.SetItemChecked(comparisonsListBox.Items.IndexOf(generator.Key), generator.Value);
+            }
+            DialogInitialized = true;
         }
     }
 }
