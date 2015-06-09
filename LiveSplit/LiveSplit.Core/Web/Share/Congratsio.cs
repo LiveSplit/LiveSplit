@@ -53,7 +53,7 @@ namespace LiveSplit.Web.Share
 
             Func<dynamic, string> selector = x => x.value;
 
-            return json.Select(selector);
+            return json.Select(selector).Where(x => x != null);
         }
 
         public string GetGameIdByName(string gameName)
