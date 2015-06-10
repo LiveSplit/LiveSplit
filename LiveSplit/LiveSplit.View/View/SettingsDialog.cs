@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Forms;
 
@@ -258,6 +259,14 @@ namespace LiveSplit.View
                     Log.Error(ex);
                 }
             }
+        }
+
+        private void btnChooseComparisons_Click(object sender, EventArgs e)
+        {
+            var generatorStates = new Dictionary<string, bool>(Settings.ComparisonGeneratorStates);
+            var result = (new ChooseComparisonsDialog() { ComparisonGeneratorStates = generatorStates }).ShowDialog(this);
+            if (result == System.Windows.Forms.DialogResult.OK)
+                Settings.ComparisonGeneratorStates = generatorStates;
         }
 
     }

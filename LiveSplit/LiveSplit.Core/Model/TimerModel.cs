@@ -260,6 +260,7 @@ namespace LiveSplit.Model
         public void SetRunAsPB()
         {
             CurrentState.Run.ImportSegmentHistory();
+            CurrentState.Run.FixSplits();
             foreach (var current in CurrentState.Run)
                 current.PersonalBestSplitTime = current.SplitTime;
         }
