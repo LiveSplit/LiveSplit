@@ -160,10 +160,10 @@ namespace LiveSplit.View
                 {
                     run = LoadRunFromFile(splitsPath, true);
                 }
-                else
+                else if (Settings.RecentSplits.Count > 0 
+                    && !string.IsNullOrEmpty(Settings.RecentSplits.Last()))
                 {
-                    if (Settings.RecentSplits.Count > 0)
-                        run = LoadRunFromFile(Settings.RecentSplits.Last(), true);
+                    run = LoadRunFromFile(Settings.RecentSplits.Last(), true);
                 }
             }
             catch (Exception e)
