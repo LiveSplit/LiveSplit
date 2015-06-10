@@ -1075,8 +1075,11 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
-                Invalidate();
+                if (!(this.IsDisposed && ex is ObjectDisposedException))
+                {
+                    Log.Error(ex);
+                    Invalidate();
+                }
             }
         }
 
