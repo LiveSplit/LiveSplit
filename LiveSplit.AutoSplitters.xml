@@ -143,6 +143,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sonic Adventure 2 Battle</Game>
+      <Game>SA2B</Game>
+    </Games>
+    <URLs>
+      <URL>http://abahbob.com/livesplit/LiveSplit.SA2B.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By ShiningFace)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Super Meat Boy</Game>
     </Games>
     <URLs>
