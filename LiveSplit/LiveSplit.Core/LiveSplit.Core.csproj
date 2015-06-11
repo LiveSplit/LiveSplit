@@ -153,6 +153,7 @@
     <Compile Include="UI\IInvalidator.cs" />
     <Compile Include="UI\InputBox.cs" />
     <Compile Include="UI\Invalidator.cs" />
+    <Compile Include="UI\SettingsHelper.cs" />
     <Compile Include="UI\RenameEventArgs.cs" />
     <Compile Include="Updates\Git.cs" />
     <Compile Include="Updates\GitInfo.Designer.cs">

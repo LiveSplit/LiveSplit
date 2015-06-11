@@ -19,81 +19,39 @@ namespace LiveSplit.UI.LayoutFactories
             Stream = stream;
         }
 
-        private Image GetImageFromElement(XmlElement element)
-        {
-            if (!element.IsEmpty)
-            {
-                var bf = new BinaryFormatter();
-
-                var base64String = element.InnerText;
-                var data = Convert.FromBase64String(base64String);
-
-                using (var ms = new MemoryStream(data))
-                {
-                    return (Image)bf.Deserialize(ms);
-                }
-            }
-            return null;
-        }
-
-        private Font GetFontFromElement(XmlElement element)
-        {
-            if (!element.IsEmpty)
-            {
-                var bf = new BinaryFormatter();
-
-                var base64String = element.InnerText;
-                var data = Convert.FromBase64String(base64String);
-
-                using (var ms = new MemoryStream(data))
-                {
-                    return (Font)bf.Deserialize(ms);
-                }
-            }
-            return null;
-        }
-
         private LayoutSettings ParseSettings (XmlElement element, Version version)
         {
             var settings = new LayoutSettings();
-            settings.TextColor = ParseColor(element["TextColor"]);
-            settings.BackgroundColor = ParseColor(element["BackgroundColor"]);
-            settings.ThinSeparatorsColor = ParseColor(element["ThinSeparatorsColor"]);
-            settings.SeparatorsColor = ParseColor(element["SeparatorsColor"]);
-            settings.PersonalBestColor = ParseColor(element["PersonalBestColor"]);
-            settings.AheadGainingTimeColor = ParseColor(element["AheadGainingTimeColor"]);
-            settings.AheadLosingTimeColor = ParseColor(element["AheadLosingTimeColor"]);
-            settings.BehindGainingTimeColor = ParseColor(element["BehindGainingTimeColor"]);
-            settings.BehindLosingTimeColor = ParseColor(element["BehindLosingTimeColor"]);
-            settings.BestSegmentColor = ParseColor(element["BestSegmentColor"]);
-            settings.NotRunningColor = ParseColor(element["NotRunningColor"]);
-            if (version > new Version(1, 0, 0, 0))
+            settings.TextColor = SettingsHelper.ParseColor(element["TextColor"]);
+            settings.BackgroundColor = SettingsHelper.ParseColor(element["BackgroundColor"]);
+            settings.ThinSeparatorsColor = SettingsHelper.ParseColor(element["ThinSeparatorsColor"]);
+            settings.SeparatorsColor = SettingsHelper.ParseColor(element["SeparatorsColor"]);
+            settings.PersonalBestColor = SettingsHelper.ParseColor(element["PersonalBestColor"]);
+            settings.AheadGainingTimeColor = SettingsHelper.ParseColor(element["AheadGainingTimeColor"]);
+            settings.AheadLosingTimeColor = SettingsHelper.ParseColor(element["AheadLosingTimeColor"]);
+            settings.BehindGainingTimeColor = SettingsHelper.ParseColor(element["BehindGainingTimeColor"]);
+            settings.BehindLosingTimeColor = SettingsHelper.ParseColor(element["BehindLosingTimeColor"]);
+            settings.BestSegmentColor = SettingsHelper.ParseColor(element["BestSegmentColor"]);
+            settings.NotRunningColor = SettingsHelper.ParseColor(element["NotRunningColor"]);
+            settings.PausedColor = SettingsHelper.ParseColor(element["PausedColor"], Color.FromArgb(122, 122, 122));
+            settings.AntiAliasing = SettingsHelper.ParseBool(element["AntiAliasing"], true);
+            settings.DropShadows = SettingsHelper.ParseBool(element["DropShadows"], true);
+            settings.Opacity = SettingsHelper.ParseFloat(element["Opacity"], 1);
+            settings.BackgroundGradient = SettingsHelper.ParseEnum<GradientType>(element["BackgroundGradient"], GradientType.Plain);
+            settings.ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0));
+            settings.ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]);
+            settings.AlwaysOnTop = SettingsHelper.ParseBool(element["AlwaysOnTop"]);
+            settings.TimerFont = SettingsHelper.GetFontFromElement(element["TimerFont"]);
+            using (var timerFont = new Font(settings.TimerFont.FontFamily.Name, (settings.TimerFont.Size / 50f) * 18f, settings.TimerFont.Style, GraphicsUnit.Point))
             {
-                settings.PausedColor = ParseColor(element["PausedColor"]);
-                settings.AntiAliasing = bool.Parse(element["AntiAliasing"].InnerText);
-                settings.DropShadows = bool.Parse(element["DropShadows"].InnerText);
+                settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
             }
-            else
-            {
-                settings.PausedColor = Color.FromArgb(122, 122, 122);
-                settings.AntiAliasing = true;
-                settings.DropShadows = true;
-            }
-            if (version >= new Version(1, 2))
-            {
-                settings.Opacity = float.Parse(element["Opacity"].InnerText.Replace(',', '.'), CultureInfo.InvariantCulture);
-            }
-            else
-            {
-                settings.Opacity = 1;
-            }
+
             if (version >= new Version(1, 3))
             {
-                settings.BackgroundColor2 = ParseColor(element["BackgroundColor2"]);
-                settings.BackgroundGradient = ParseEnum<GradientType>(element["BackgroundGradient"]);
-                settings.ShadowsColor = ParseColor(element["ShadowsColor"]);
-                settings.TimesFont = GetFontFromElement(element["TimesFont"]);
-                settings.TextFont = GetFontFromElement(element["TextFont"]);
+                settings.BackgroundColor2 = SettingsHelper.ParseColor(element["BackgroundColor2"]);
+                settings.TimesFont = SettingsHelper.GetFontFromElement(element["TimesFont"]);
+                settings.TextFont = SettingsHelper.GetFontFromElement(element["TextFont"]);
             }
             else
             {
@@ -101,31 +59,11 @@ namespace LiveSplit.UI.LayoutFactories
                     settings.BackgroundColor = settings.BackgroundColor2 = Color.Transparent;
                 else
                     settings.BackgroundColor2 = settings.BackgroundColor;
-                settings.BackgroundGradient = GradientType.Plain;
-                settings.ShadowsColor = Color.FromArgb(128, 0, 0, 0);
-                settings.TimesFont = GetFontFromElement(element["MainFont"]);
-                settings.TextFont = GetFontFromElement(element["SplitNamesFont"]);
+                settings.TimesFont = SettingsHelper.GetFontFromElement(element["MainFont"]);
+                settings.TextFont = SettingsHelper.GetFontFromElement(element["SplitNamesFont"]);
             }
 
-            settings.TimerFont = GetFontFromElement(element["TimerFont"]);
-            using (var timerFont = new Font(settings.TimerFont.FontFamily.Name, (settings.TimerFont.Size / 50f) * 18f, settings.TimerFont.Style, GraphicsUnit.Point))
-            {
-                settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
-            }
-
-            settings.ShowBestSegments = bool.Parse(element["ShowBestSegments"].InnerText);
-            settings.AlwaysOnTop = bool.Parse(element["AlwaysOnTop"].InnerText);
             return settings;
-        }
-
-        private Color ParseColor(XmlElement colorElement)
-        {
-            return Color.FromArgb(int.Parse(colorElement.InnerText, NumberStyles.HexNumber));
-        }
-
-        private T ParseEnum<T>(XmlElement element)
-        {
-            return (T)Enum.Parse(typeof(T), element.InnerText);
         }
 
         public ILayout Create(LiveSplitState state)
@@ -137,22 +75,16 @@ namespace LiveSplit.UI.LayoutFactories
             var version = parent.HasAttribute("version")
                 ? Version.Parse(parent.Attributes["version"].Value)
                 : new Version(1, 0, 0, 0);
-            var xCord = parent["X"];
-            layout.X = int.Parse(xCord.InnerText);
-            var yCord = parent["Y"];
-            layout.Y = int.Parse(yCord.InnerText);
-            var verticalWidth = parent["VerticalWidth"];
-            layout.VerticalWidth = int.Parse(verticalWidth.InnerText);
-            var verticalHeight = parent["VerticalHeight"];
-            layout.VerticalHeight = int.Parse(verticalHeight.InnerText);
-            var horizontalWidth = parent["HorizontalWidth"];
-            layout.HorizontalWidth = int.Parse(horizontalWidth.InnerText);
-            var horizontalHeight = parent["HorizontalHeight"];
-            layout.HorizontalHeight = int.Parse(horizontalHeight.InnerText);
-            var mode = parent["Mode"];
-            layout.Mode = (mode.InnerText == "Horizontal") ? LayoutMode.Horizontal : LayoutMode.Vertical;
-            var layoutSettings = parent["Settings"];
-            layout.Settings = ParseSettings(layoutSettings, version);
+
+            layout.X = SettingsHelper.ParseInt(parent["X"]);
+            layout.Y = SettingsHelper.ParseInt(parent["Y"]);
+            layout.VerticalWidth = SettingsHelper.ParseInt(parent["VerticalWidth"]);
+            layout.VerticalHeight = SettingsHelper.ParseInt(parent["VerticalHeight"]);
+            layout.HorizontalWidth = SettingsHelper.ParseInt(parent["HorizontalWidth"]);
+            layout.HorizontalHeight = SettingsHelper.ParseInt(parent["HorizontalHeight"]);
+            layout.Mode = SettingsHelper.ParseEnum<LayoutMode>(parent["Mode"]);
+            layout.Settings = ParseSettings(parent["Settings"], version);
+
             var components = parent["Components"];
             foreach (var componentNode in components.GetElementsByTagName("Component"))
             {
