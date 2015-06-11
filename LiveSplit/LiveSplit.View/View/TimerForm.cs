@@ -1509,7 +1509,6 @@ namespace LiveSplit.View
 
             if (addToRecent)
                 AddFileToLRU(filePath);
-            RegenerateComparisons();
             if (InTimerOnlyMode)
                 RemoveTimerOnly();
             return run;
