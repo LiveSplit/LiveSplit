@@ -1,6 +1,12 @@
 # LiveSplit 
 
-[![Build status](https://ci.appveyor.com/api/projects/status/3c7lnbacxt25093i/branch/master?svg=true)](https://ci.appveyor.com/project/CryZe/livesplit/branch/master) [![Stories in Ready](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=ready&title=Ready)](https://waffle.io/LiveSplit/LiveSplit) 
+[![GitHub release](https://img.shields.io/github/release/LiveSplit/LiveSplit.svg)](https://github.com/LiveSplit/LiveSplit/releases/latest)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LICENSE)
+[![Build status](https://ci.appveyor.com/api/projects/status/3c7lnbacxt25093i/branch/master?svg=true)](https://ci.appveyor.com/project/CryZe/livesplit/branch/master) 
+
+[![GitHub issues](https://img.shields.io/github/issues/LiveSplit/LiveSplit.svg?style=plastic)](https://github.com/LiveSplit/LiveSplit/issues) 
+[![Stories in Ready](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=ready&title=Ready)](https://waffle.io/LiveSplit/LiveSplit) 
+[![Stories in Progress](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=in progress&title=In Progress)](https://waffle.io/LiveSplit/LiveSplit)
 
 A sleek, highly-customizable timer for speedrunners.
 
