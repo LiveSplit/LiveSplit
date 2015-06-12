@@ -44,9 +44,12 @@ namespace LiveSplit.Model
                         Description = element["Description"].InnerText,
                         URLs = element["URLs"].ChildNodes.OfType<XmlElement>().Select(x => x.InnerText).ToList(),
                         Type = (AutoSplitterType)Enum.Parse(typeof(AutoSplitterType), element["Type"].InnerText),
-                        Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => (x.InnerText ?? "").ToLower()).ToList(),
+                        Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => (x.InnerText ?? "").ToLower()).SelectMany(x => x.GetAbbreviations()).ToList(),
                         ShowInLayoutEditor = element["ShowInLayoutEditor"] != null
-                    }).SelectMany(x => x.Games.Select(y => new KeyValuePair<string, AutoSplitter>(y, x))).ToDictionary(x => x.Key, x => x.Value);
+                    }).SelectMany(x => x.Games.Select(y => new KeyValuePair<string, AutoSplitter>(y, x)))
+                    .GroupBy(x => x.Key, x => x.Value)
+                    .Where(x => x.Distinct().Count() == 1)
+                    .ToDictionary(x => x.Key, x => x.First());
             }
         }
 
