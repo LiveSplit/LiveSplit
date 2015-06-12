@@ -103,7 +103,14 @@ namespace LiveSplit.UI
         public static XmlElement ToElement<T>(XmlDocument document, string name, T value)
         {
             var element = document.CreateElement(name);
-            element.InnerText = value is float ? Convert.ToSingle(value).ToString(CultureInfo.InvariantCulture) : value.ToString();
+            element.InnerText = value.ToString();
+            return element;
+        }
+
+        public static XmlElement ToElement(XmlDocument document, string name, float value)
+        {
+            var element = document.CreateElement(name);
+            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
             return element;
         }
 
