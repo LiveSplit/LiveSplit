@@ -54,14 +54,28 @@ namespace LiveSplit.Options.SettingsFactories
             else
                 settings.UndoKey = null;
 
+            settings.GlobalHotkeysEnabled = SettingsHelper.ParseBool(parent["GlobalHotkeysEnabled"]);
             settings.WarnOnReset = SettingsHelper.ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
             settings.DoubleTapPrevention = SettingsHelper.ParseBool(parent["DoubleTapPrevention"], settings.DoubleTapPrevention);
-            settings.LastTimingMethod = SettingsHelper.ParseEnum<TimingMethod>(parent["LastTimingMethod"]);
+            settings.LastTimingMethod = SettingsHelper.ParseEnum<TimingMethod>(parent["LastTimingMethod"], settings.LastTimingMethod);
             settings.SimpleSumOfBest = SettingsHelper.ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
             settings.LastComparison = SettingsHelper.ParseString(parent["LastComparison"], settings.LastComparison);
             settings.DeactivateHotkeysForOtherPrograms = SettingsHelper.ParseBool(parent["DeactivateHotkeysForOtherPrograms"], settings.DeactivateHotkeysForOtherPrograms);
             settings.HotkeyDelay = SettingsHelper.ParseFloat(parent["HotkeyDelay"], settings.HotkeyDelay);
             settings.AgreedToSRLRules = SettingsHelper.ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
+            
+            var recentSplits = parent["RecentSplits"];
+            foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsPath"))
+            {
+                var splitElement = splitNode as XmlElement;
+                settings.RecentSplits.Add(splitElement.InnerText);
+            }
+            var recentLayouts = parent["RecentLayouts"];
+            foreach (var layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))
+            {
+                var layoutElement = layoutNode as XmlElement;
+                settings.RecentLayouts.Add(layoutElement.InnerText);
+            }
 
             if (version > new Version(1, 0, 0, 0))
             {
@@ -76,15 +90,6 @@ namespace LiveSplit.Options.SettingsFactories
                     settings.ToggleGlobalHotkeys = new KeyOrButton(keyToggle.InnerText);
                 else
                     settings.ToggleGlobalHotkeys = null;
-            }
-
-            if (version >= new Version(1, 4))
-            {
-                var activeAutoSplitters = parent["ActiveAutoSplitters"];
-                foreach (var splitter in activeAutoSplitters.GetElementsByTagName("AutoSplitter").OfType<XmlElement>())
-                {
-                    settings.ActiveAutoSplitters.Add(splitter.InnerText);
-                }
             }
 
             if (version >= new Version(1, 3))
@@ -103,6 +108,15 @@ namespace LiveSplit.Options.SettingsFactories
                 settings.RaceViewer = RaceViewer.FromName(parent["RaceViewer"].InnerText);
             }
 
+            if (version >= new Version(1, 4))
+            {
+                var activeAutoSplitters = parent["ActiveAutoSplitters"];
+                foreach (var splitter in activeAutoSplitters.GetElementsByTagName("AutoSplitter").OfType<XmlElement>())
+                {
+                    settings.ActiveAutoSplitters.Add(splitter.InnerText);
+                }
+            }
+
             if (version >= new Version(1, 6))
             {
                 foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes)
@@ -111,19 +125,6 @@ namespace LiveSplit.Options.SettingsFactories
                 }
             }
 
-            settings.GlobalHotkeysEnabled = SettingsHelper.ParseBool(parent["GlobalHotkeysEnabled"]);
-            var recentSplits = parent["RecentSplits"];
-            foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsPath"))
-            {
-                var splitElement = splitNode as XmlElement;
-                settings.RecentSplits.Add(splitElement.InnerText);
-            }
-            var recentLayouts = parent["RecentLayouts"];
-            foreach (var layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))
-            {
-                var layoutElement = layoutNode as XmlElement;
-                settings.RecentLayouts.Add(layoutElement.InnerText);
-            }
             return settings;
         }
     }
