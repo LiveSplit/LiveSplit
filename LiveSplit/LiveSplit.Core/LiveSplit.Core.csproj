@@ -118,6 +118,7 @@
     <Compile Include="Model\Input\XGamePad.cs" />
     <Compile Include="Model\Input\XInput.cs" />
     <Compile Include="Model\RunFactories\CompositeRunFactory.cs" />
+    <Compile Include="Model\RunFactories\Portal2LiveTimerRunFactory.cs" />
     <Compile Include="Model\RunFactories\ShitSplitRunFactory.cs" />
     <Compile Include="Model\RunFactories\SplittyRunFactory.cs" />
     <Compile Include="Model\RunFactories\StandardFormatsRunFactory.cs" />

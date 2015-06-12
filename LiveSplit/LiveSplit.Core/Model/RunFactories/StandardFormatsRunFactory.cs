@@ -12,6 +12,7 @@
             var urn = new UrnRunFactory();
             var splitty = new SplittyRunFactory();
             var timesplittracker = new TimeSplitTrackerRunFactory();
+            var portal2LiveTimer = new Portal2LiveTimerRunFactory();
 
             Add(xml, (s, f) => { xml.Stream = s; xml.FilePath = f; });
             Add(wsplit, (s, f) => wsplit.Stream = s);
@@ -20,6 +21,7 @@
             Add(urn, (s, f) => urn.Stream = s);
             Add(splitty, (s, f) => splitty.Stream = s);
             Add(timesplittracker, (s, f) => { timesplittracker.Stream = s; timesplittracker.Path = f; });
+            Add(portal2LiveTimer, (s, f) => portal2LiveTimer.Stream = s);
             Add(llanfair, (s, f) => llanfair.Path = f);
         }
     }
