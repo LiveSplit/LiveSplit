@@ -161,10 +161,12 @@ namespace LiveSplit.Model.RunFactories
             {
                 foreach (var map in chapter.Value)
                 {
-                    var mapLine = lines.First(x => x[0] == map);
-                    var mapTicks = int.Parse(mapLine[2], CultureInfo.InvariantCulture)
-                                  - int.Parse(mapLine[1], CultureInfo.InvariantCulture);
-                    aggregateTicks += mapTicks;
+                    foreach (var mapLine in lines.Where(x => x[0] == map))
+                    {
+                        var mapTicks = int.Parse(mapLine[2], CultureInfo.InvariantCulture)
+                                      - int.Parse(mapLine[1], CultureInfo.InvariantCulture);
+                        aggregateTicks += mapTicks;
+                    }
                 }
 
                 var timeSpan = TimeSpan.FromSeconds(aggregateTicks / 60.0);
