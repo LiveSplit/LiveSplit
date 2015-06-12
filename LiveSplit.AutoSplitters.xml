@@ -289,6 +289,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Dragon Age 2</Game>
+      <Game>DA2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/dragonage2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By DrTChops)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Deus Ex: Human Revolution</Game>
       <Game>Deus Ex Human Revolution</Game>
       <Game>Deus Ex HR</Game>
