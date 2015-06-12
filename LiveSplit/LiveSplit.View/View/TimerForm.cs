@@ -748,11 +748,10 @@ namespace LiveSplit.View
                 var runImporter = new SpeedrunComRunImporter();
                 var run = runImporter.Import(this);
 
-                if (!WarnUserAboutSplitsSave())
-                    return;
-
                 if (run != null)
                 {
+                    if (!WarnUserAboutSplitsSave())
+                        return;
                     if (InTimerOnlyMode)
                         RemoveTimerOnly();
                     run.HasChanged = true;
@@ -870,11 +869,10 @@ namespace LiveSplit.View
             var runImporter = new URLRunImporter();
             var run = runImporter.Import(this);
 
-            if (!WarnUserAboutSplitsSave())
-                return;
-
             if (run != null)
             {
+                if (!WarnUserAboutSplitsSave())
+                    return;
                 if (InTimerOnlyMode)
                     RemoveTimerOnly();
                 run.HasChanged = true;
