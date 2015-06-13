@@ -721,56 +721,84 @@ namespace LiveSplit.View
                 .OrderBy(x => string.IsNullOrEmpty(x.Key) ? 1 : 0)
                 .ThenBy(x => x.Key))
             {
-                string gameName;
-                if (string.IsNullOrEmpty(game.Key))
-                    gameName = "Unknown Game";
-                else
-                    gameName = game.Key;
-
-                var gameMenuItem = new ToolStripMenuItem(gameName);
+                var gameMenuItem = new ToolStripMenuItem();
 
                 foreach (var category in game
                     .GroupBy(x => x.CategoryName ?? "")
                     .OrderBy(x => string.IsNullOrEmpty(x.Key) ? 1 : 0)
                     .ThenBy(x => x.Key))
                 {
-                    var firstSplitsFile = category.First();
+                    var categoryMenuItem = new ToolStripMenuItem();
+                    categoryMenuItem.Tag = "Category";
 
-                    if (category.Skip(1).Any() || string.IsNullOrEmpty(firstSplitsFile.CategoryName))
+                    foreach (var splitsFile in category)
                     {
-                        //Conflicting Category
-                        string categoryName;
-                        if (string.IsNullOrEmpty(firstSplitsFile.CategoryName))
-                            categoryName = "Unknown Category";
-                        else
-                            categoryName = firstSplitsFile.CategoryName;
+                        string fileName = Path.GetFileName(splitsFile.Path);
 
-                        var categoryMenuItem = new ToolStripMenuItem(categoryName);
+                        var menuItem = new ToolStripMenuItem(fileName);
+                        menuItem.Tag = "FileName";
+                        menuItem.Click += (x, y) => { OpenRunFromFile(splitsFile.Path); };
+                        categoryMenuItem.DropDownItems.Add(menuItem);
+                    }
 
-                        foreach (var splitsFile in category)
+                    if (categoryMenuItem.DropDownItems.Count == 1)
+                    {
+                        categoryMenuItem = (ToolStripMenuItem)categoryMenuItem.DropDownItems[0];
+                        if (!string.IsNullOrEmpty(category.Key))
                         {
-                            string fileName = Path.GetFileName(splitsFile.Path);
-
-                            var menuItem = new ToolStripMenuItem(fileName);
-                            menuItem.Click += (x, y) => { OpenRunFromFile(splitsFile.Path); };
-                            categoryMenuItem.DropDownItems.Add(menuItem);
+                            categoryMenuItem.Text = category.Key;
+                            categoryMenuItem.Tag = "Category";
                         }
-
-                        gameMenuItem.DropDownItems.Add(categoryMenuItem);
                     }
                     else
                     {
                         string categoryName;
-                        if (string.IsNullOrEmpty(firstSplitsFile.CategoryName))
-                            categoryName = Path.GetFileName(firstSplitsFile.Path);
+                        if (string.IsNullOrEmpty(category.Key))
+                            categoryName = "Unknown Category";
                         else
-                            categoryName = firstSplitsFile.CategoryName;
+                        {
+                            categoryName = category.Key;
+                        }
 
-                        var menuItem = new ToolStripMenuItem(categoryName);
-                        menuItem.Click += (x, y) => { OpenRunFromFile(firstSplitsFile.Path); };
-                        gameMenuItem.DropDownItems.Add(menuItem);
+                        categoryMenuItem.Text = categoryName;
+                    }
+
+                    gameMenuItem.DropDownItems.Add(categoryMenuItem);
+                }
+
+                string gameName;
+                if (string.IsNullOrEmpty(game.Key))
+                {
+                    gameName = "Unknown Game";
+
+                    if (gameMenuItem.DropDownItems.Count == 1)
+                    {
+                        gameMenuItem = (ToolStripMenuItem)gameMenuItem.DropDownItems[0];
+                        gameName = gameMenuItem.Text;
+                        if (gameMenuItem.Text == "Unknown Category")
+                            gameName = "Unknown";
                     }
                 }
+                else
+                {
+                    gameName = game.Key;
+
+                    if (gameMenuItem.DropDownItems.Count == 1)
+                    {
+                        gameMenuItem = (ToolStripMenuItem)gameMenuItem.DropDownItems[0];
+                        if ((string)gameMenuItem.Tag == "Category")
+                        {
+                            if (!gameMenuItem.Text.StartsWith("Unknown Category"))
+                                gameName += " - " + gameMenuItem.Text;
+                        }
+                        else
+                        {
+                            gameName += " (" + gameMenuItem.Text + ")";
+                        }
+                    }
+                }
+
+                gameMenuItem.Text = gameName;
 
                 openSplitsMenuItem.DropDownItems.Add(gameMenuItem);
             }

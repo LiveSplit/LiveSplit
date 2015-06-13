@@ -195,7 +195,7 @@ namespace LiveSplit.Options
 
             RecentSplits.Add(recentSplitsFile);
 
-            while (RecentSplits.Count > 10)
+            while (RecentSplits.Count > 50)
                 RecentSplits.RemoveAt(0);
         }
 
