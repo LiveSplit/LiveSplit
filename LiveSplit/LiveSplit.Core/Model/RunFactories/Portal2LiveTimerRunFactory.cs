@@ -161,6 +161,9 @@ namespace LiveSplit.Model.RunFactories
             {
                 foreach (var map in chapter.Value)
                 {
+                    //Force it to break, if the splits aren't there
+                    lines.First(x => x[0] == map); 
+
                     foreach (var mapLine in lines.Where(x => x[0] == map))
                     {
                         var mapTicks = int.Parse(mapLine[2], CultureInfo.InvariantCulture)
