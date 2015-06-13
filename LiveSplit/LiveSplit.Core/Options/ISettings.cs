@@ -6,6 +6,30 @@ using System.Collections.Generic;
 
 namespace LiveSplit.Options
 {
+    public struct RecentSplitsFile
+    {
+        public string GameName;
+        public string CategoryName;
+        public string Path;
+
+        public RecentSplitsFile(string path, IRun run)
+            : this(path)
+        {
+            if (run != null)
+            {
+                GameName = run.GameName;
+                CategoryName = run.CategoryName;
+            }
+        }
+
+        public RecentSplitsFile(string path, string gameName = null, string categoryName = null)
+        {
+            GameName = gameName;
+            CategoryName = categoryName;
+            Path = path;
+        }
+    }
+
     public interface ISettings : ICloneable
     {
         KeyOrButton SplitKey { get; set; }
@@ -18,7 +42,7 @@ namespace LiveSplit.Options
         KeyOrButton ScrollDown { get; set; }
         KeyOrButton SwitchComparisonPrevious { get; set; }
         KeyOrButton SwitchComparisonNext { get; set; }
-        IList<string> RecentSplits { get; set; }
+        IList<RecentSplitsFile> RecentSplits { get; set; }
         IList<string> RecentLayouts { get; set; }
         string LastComparison { get; set; }
         TimingMethod LastTimingMethod { get; set; }
@@ -34,7 +58,7 @@ namespace LiveSplit.Options
 
         bool AgreedToSRLRules { get; set; }
 
-        void AddToRecentSplits(string path);
+        void AddToRecentSplits(string path, IRun run);
         void AddToRecentLayouts(string path);
         void RegisterHotkeys(CompositeHook hook);
         void UnregisterAllHotkeys(CompositeHook hook);

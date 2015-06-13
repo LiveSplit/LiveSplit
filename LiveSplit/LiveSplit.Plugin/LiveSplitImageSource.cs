@@ -65,7 +65,7 @@ namespace LiveSplit.Plugin
             try
             {
                 if (form.Settings.RecentSplits.Any())
-                    config.SetString("splitspath", form.Settings.RecentSplits.Last());
+                    config.SetString("splitspath", form.Settings.RecentSplits.Last().Path);
                 if (form.Settings.RecentLayouts.Any())
                     config.SetString("layoutpath", form.Settings.RecentLayouts.Last());
 

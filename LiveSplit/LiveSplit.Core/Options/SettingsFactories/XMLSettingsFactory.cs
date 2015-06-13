@@ -63,13 +63,7 @@ namespace LiveSplit.Options.SettingsFactories
             settings.DeactivateHotkeysForOtherPrograms = SettingsHelper.ParseBool(parent["DeactivateHotkeysForOtherPrograms"], settings.DeactivateHotkeysForOtherPrograms);
             settings.HotkeyDelay = SettingsHelper.ParseFloat(parent["HotkeyDelay"], settings.HotkeyDelay);
             settings.AgreedToSRLRules = SettingsHelper.ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
-            
-            var recentSplits = parent["RecentSplits"];
-            foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsPath"))
-            {
-                var splitElement = splitNode as XmlElement;
-                settings.RecentSplits.Add(splitElement.InnerText);
-            }
+
             var recentLayouts = parent["RecentLayouts"];
             foreach (var layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))
             {
@@ -117,11 +111,35 @@ namespace LiveSplit.Options.SettingsFactories
                 }
             }
 
+            var recentSplits = parent["RecentSplits"];
+
             if (version >= new Version(1, 6))
             {
                 foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes)
                 {
                     settings.ComparisonGeneratorStates[((XmlNode)generatorNode).Attributes["name"].Value] = Boolean.Parse(((XmlNode)generatorNode).InnerText);
+                }
+
+                foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsFile"))
+                {
+                    var splitElement = splitNode as XmlElement;
+                    string gameName = splitElement.GetAttribute("gameName");
+                    string categoryName = splitElement.GetAttribute("categoryName");
+                    var path = splitElement.InnerText;
+
+                    var recentSplitsFile = new RecentSplitsFile(path, gameName, categoryName);
+                    settings.RecentSplits.Add(recentSplitsFile);
+                }
+            }
+            else
+            {
+                foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsPath"))
+                {
+                    var splitElement = splitNode as XmlElement;
+                    var path = splitElement.InnerText;
+
+                    var recentSplitsFile = new RecentSplitsFile(path);
+                    settings.RecentSplits.Add(recentSplitsFile);
                 }
             }
 

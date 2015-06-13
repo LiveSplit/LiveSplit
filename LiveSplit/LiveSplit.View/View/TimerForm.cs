@@ -161,9 +161,9 @@ namespace LiveSplit.View
                     run = LoadRunFromFile(splitsPath, true);
                 }
                 else if (Settings.RecentSplits.Count > 0 
-                    && !string.IsNullOrEmpty(Settings.RecentSplits.Last()))
+                    && !string.IsNullOrEmpty(Settings.RecentSplits.Last().Path))
                 {
-                    run = LoadRunFromFile(Settings.RecentSplits.Last(), true);
+                    run = LoadRunFromFile(Settings.RecentSplits.Last().Path, true);
                 }
             }
             catch (Exception e)
@@ -699,9 +699,9 @@ namespace LiveSplit.View
             //TODO idk how to do this O.o
         }
 
-        private void AddFileToLRU(string filePath)
+        private void AddFileToLRU(string filePath, IRun run)
         {
-            Settings.AddToRecentSplits(filePath);
+            Settings.AddToRecentSplits(filePath, run);
             UpdateRecentSplits();
         }
 
@@ -715,11 +715,64 @@ namespace LiveSplit.View
         {
             openSplitsMenuItem.DropDownItems.Clear();
             
-            foreach (var item in Settings.RecentSplits.Reverse().Where(x => !string.IsNullOrEmpty(x)))
+            foreach (var game in Settings.RecentSplits
+                .Where(x => !string.IsNullOrEmpty(x.Path))
+                .GroupBy(x => x.GameName ?? "")
+                .OrderBy(x => string.IsNullOrEmpty(x.Key) ? 1 : 0)
+                .ThenBy(x => x.Key))
             {
-                var menuItem = new ToolStripMenuItem(Path.GetFileNameWithoutExtension(item));
-                menuItem.Click += (x, y) => { OpenRunFromFile(item); };
-                openSplitsMenuItem.DropDownItems.Add(menuItem);
+                string gameName;
+                if (string.IsNullOrEmpty(game.Key))
+                    gameName = "Unknown Game";
+                else
+                    gameName = game.Key;
+
+                var gameMenuItem = new ToolStripMenuItem(gameName);
+
+                foreach (var category in game
+                    .GroupBy(x => x.CategoryName ?? "")
+                    .OrderBy(x => string.IsNullOrEmpty(x.Key) ? 1 : 0)
+                    .ThenBy(x => x.Key))
+                {
+                    var firstSplitsFile = category.First();
+
+                    if (category.Skip(1).Any() || string.IsNullOrEmpty(firstSplitsFile.CategoryName))
+                    {
+                        //Conflicting Category
+                        string categoryName;
+                        if (string.IsNullOrEmpty(firstSplitsFile.CategoryName))
+                            categoryName = "Unknown Category";
+                        else
+                            categoryName = firstSplitsFile.CategoryName;
+
+                        var categoryMenuItem = new ToolStripMenuItem(categoryName);
+
+                        foreach (var splitsFile in category)
+                        {
+                            string fileName = Path.GetFileName(splitsFile.Path);
+
+                            var menuItem = new ToolStripMenuItem(fileName);
+                            menuItem.Click += (x, y) => { OpenRunFromFile(splitsFile.Path); };
+                            categoryMenuItem.DropDownItems.Add(menuItem);
+                        }
+
+                        gameMenuItem.DropDownItems.Add(categoryMenuItem);
+                    }
+                    else
+                    {
+                        string categoryName;
+                        if (string.IsNullOrEmpty(firstSplitsFile.CategoryName))
+                            categoryName = Path.GetFileName(firstSplitsFile.Path);
+                        else
+                            categoryName = firstSplitsFile.CategoryName;
+
+                        var menuItem = new ToolStripMenuItem(categoryName);
+                        menuItem.Click += (x, y) => { OpenRunFromFile(firstSplitsFile.Path); };
+                        gameMenuItem.DropDownItems.Add(menuItem);
+                    }
+                }
+
+                openSplitsMenuItem.DropDownItems.Add(gameMenuItem);
             }
             if (openSplitsMenuItem.DropDownItems.Count > 0)
                 openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
@@ -1506,7 +1559,7 @@ namespace LiveSplit.View
             }
 
             if (addToRecent)
-                AddFileToLRU(filePath);
+                AddFileToLRU(filePath, run);
             if (InTimerOnlyMode)
                 RemoveTimerOnly();
             return run;
@@ -1552,8 +1605,8 @@ namespace LiveSplit.View
             IsInDialogMode = true;
             try
             {
-                if (Settings.RecentSplits.Any() && !string.IsNullOrEmpty(Settings.RecentSplits.Last()))
-                    splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last());
+                if (Settings.RecentSplits.Any() && !string.IsNullOrEmpty(Settings.RecentSplits.Last().Path))
+                    splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last().Path);
                 var result = splitDialog.ShowDialog(this);
                 if (result == DialogResult.OK)
                 {
@@ -1638,7 +1691,7 @@ namespace LiveSplit.View
                     RunSaver.Save(stateCopy.Run, stream);
                     CurrentState.Run.HasChanged = false;
                 }
-                Settings.AddToRecentSplits(savePath);
+                Settings.AddToRecentSplits(savePath, stateCopy.Run);
                 UpdateRecentSplits();
             }
             catch (Exception ex)
@@ -2000,7 +2053,7 @@ namespace LiveSplit.View
             var run = TimerOnlyRun;
             Model.Reset();
             SetRun(run);
-            Settings.AddToRecentSplits("");
+            Settings.AddToRecentSplits("", null);
             InTimerOnlyMode = true;
             if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
             {
