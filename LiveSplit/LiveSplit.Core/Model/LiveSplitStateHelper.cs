@@ -6,12 +6,12 @@ namespace LiveSplit.Model
     public static class LiveSplitStateHelper
     {
         /// <summary>
-        /// Gets the last non-live delta in the run starting from SplitNumber.
+        /// Gets the last non-live delta in the run starting from splitNumber.
         /// </summary>
         /// <param name="state">The current state.</param>
         /// <param name="splitNumber">The split number to start checking deltas from.</param>
         /// <param name="comparison">The comparison that you are comparing with.</param>
-        /// <param name="method">The timing method that you are comparing with.</param>
+        /// <param name="method">The timing method that you are using.</param>
         /// <returns>Returns the last non-live delta or null if there have been no deltas yet.</returns>
         public static TimeSpan? GetLastDelta(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
         {
@@ -23,21 +23,11 @@ namespace LiveSplit.Model
             return null;
         }
 
-        /// <summary>
-        /// Gets the current segment or delta for a specified split.
-        /// </summary>
-        /// <param name="state">The current state.</param>
-        /// <param name="splitNumber">The split to calculate the current segment for.</param>
-        /// <param name="liveSegment">Uses the current time if true; the split time if false.</param>
-        /// <param name="currentSegment">Returns the segment time if true; the delta time if false</param>
-        /// <param name="comparison">The comparison that you are comparing with.</param>
-        /// <param name="method">The timing method that you are comparing with.</param>
-        /// <returns>Returns the current segment or delta time.</returns>
-        public static TimeSpan? GetPreviousSegment(LiveSplitState state, int splitNumber, bool liveSegment, bool currentSegment, string comparison, TimingMethod method)
+        private static TimeSpan? GetSegmentTimeOrSegmentDelta(LiveSplitState state, int splitNumber, bool useCurrentTime, bool segmentTime, string comparison, TimingMethod method)
         {
-            if (!liveSegment && (state.Run[splitNumber].SplitTime[method] == null)) return null;
+            if (!useCurrentTime && (state.Run[splitNumber].SplitTime[method] == null)) return null;
             TimeSpan? currentTime;
-            if (liveSegment == false)
+            if (useCurrentTime == false)
                 currentTime = state.Run[splitNumber].SplitTime[method];
             else
                 currentTime = state.CurrentTime[method];
@@ -45,16 +35,68 @@ namespace LiveSplit.Model
             {
                 if (state.Run[x].SplitTime[method] != null)
                 {
-                    if (currentSegment)
+                    if (segmentTime)
                         return currentTime - state.Run[x].SplitTime[method];
                     else if (state.Run[x].Comparisons[comparison][method] != null)
                         return (currentTime - state.Run[splitNumber].Comparisons[comparison][method]) - (state.Run[x].SplitTime[method] - state.Run[x].Comparisons[comparison][method]);
                 }
             }
-            if (currentSegment)
+            if (segmentTime)
                 return currentTime;
             else
                 return currentTime - state.Run[splitNumber].Comparisons[comparison][method];
+        }
+
+        /// <summary>
+        /// Gets the length of the last segment that leads up to a certain split.
+        /// </summary>
+        /// <param name="state">The current state.</param>
+        /// <param name="splitNumber">The index of the split that represents the end of the segment.</param>
+        /// <param name="comparison">The comparison that you are comparing with.</param>
+        /// <param name="method">The timing method that you are using.</param>
+        /// <returns>Returns the length of the segment leading up to splitNumber, returning null if the split is not completed yet.</returns>
+        public static TimeSpan? GetPreviousSegmentTime(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
+        {
+            return GetSegmentTimeOrSegmentDelta(state, splitNumber, false, true, comparison, method);
+        }
+
+        /// <summary>
+        /// Gets the length of the last segment that leads up to a certain split, using the live segment time if the split is not completed yet.
+        /// </summary>
+        /// <param name="state">The current state.</param>
+        /// <param name="splitNumber">The index of the split that represents the end of the segment.</param>
+        /// <param name="comparison">The comparison that you are comparing with.</param>
+        /// <param name="method">The timing method that you are using.</param>
+        /// <returns>Returns the length of the segment leading up to splitNumber, returning the live segment time if the split is not completed yet.</returns>
+        public static TimeSpan? GetCurrentSegmentTime(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
+        {
+            return GetSegmentTimeOrSegmentDelta(state, splitNumber, true, true, comparison, method);
+        }
+
+        /// <summary>
+        /// Gets the amount of time lost or gained on a certain split.
+        /// </summary>
+        /// <param name="state">The current state.</param>
+        /// <param name="splitNumber">The index of the split for which the delta is calculated.</param>
+        /// <param name="comparison">The comparison that you are comparing with.</param>
+        /// <param name="method">The timing method that you are using.</param>
+        /// <returns>Returns the segment delta for a certain split, returning null if the split is not completed yet.</returns>
+        public static TimeSpan? GetPreviousSegmentDelta(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
+        {
+            return GetSegmentTimeOrSegmentDelta(state, splitNumber, false, false, comparison, method);
+        }
+
+        /// <summary>
+        /// Gets the amount of time lost or gained on a certain split, using the live segment delta if the split is not completed yet.
+        /// </summary>
+        /// <param name="state">The current state.</param>
+        /// <param name="splitNumber">The index of the split for which the delta is calculated.</param>
+        /// <param name="comparison">The comparison that you are comparing with.</param>
+        /// <param name="method">The timing method that you are using.</param>
+        /// <returns>Returns the segment delta for a certain split, returning the live segment delta if the split is not completed yet.</returns>
+        public static TimeSpan? GetLiveSegmentDelta(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
+        {
+            return GetSegmentTimeOrSegmentDelta(state, splitNumber, true, false, comparison, method);
         }
 
         /// <summary>
@@ -63,7 +105,7 @@ namespace LiveSplit.Model
         /// <param name="state">The current state.</param>
         /// <param name="showWhenBehind">Specifies whether or not to start showing the live segment once you are behind.</param>
         /// <param name="comparison">The comparison that you are comparing with.</param>
-        /// <param name="method">The timing method that you are comparing with.</param>
+        /// <param name="method">The timing method that you are using.</param>
         /// <returns>Returns the current live delta.</returns>
         public static TimeSpan? CheckLiveDelta(LiveSplitState state, bool showWhenBehind, string comparison, TimingMethod method)
         {
@@ -95,16 +137,13 @@ namespace LiveSplit.Model
         /// </summary>
         /// <param name="state">The current state.</param>
         /// <param name="timeDifference">The delta that you want to find a color for.</param>
-        /// <param name="segmentType">The type of logic that should be applied:
-        /// -1 - Allow ahead losing and behind gaining but do not show best segments.
-        /// 0  - Allow ahead losing and behind gaining and show best segments.
-        /// 1  - Only check for best segments.
-        /// 2  - Only show ahead or behind, nothing more.</param>
         /// <param name="splitNumber">The split number that is associated with this delta.</param>
+        /// <param name="showSegmentDeltas">Can show ahead gaining and behind losing colors if true.</param>
+        /// <param name="showBestSegments">Can show the best segment color if true.</param>
         /// <param name="comparison">The comparison that you are comparing this delta to.</param>
-        /// <param name="method">The timing method that you are comparing this delta to.</param>
-        /// <returns>Returns the chosen split color.</returns>
-        public static Color? GetSplitColor(LiveSplitState state, TimeSpan? timeDifference, int segmentType, int splitNumber, string comparison, TimingMethod method)
+        /// <param name="method">The timing method of this delta.</param>
+        /// <returns>Returns the chosen color.</returns>
+        public static Color? GetSplitColor(LiveSplitState state, TimeSpan? timeDifference, int splitNumber, bool showSegmentDeltas, bool showBestSegments, string comparison, TimingMethod method)
         {
             Color? splitColor = null;
             if (splitNumber < 0)
@@ -115,22 +154,22 @@ namespace LiveSplit.Model
                 {
                     splitColor = state.LayoutSettings.AheadGainingTimeColor;
                     var lastDelta = GetLastDelta(state, splitNumber - 1, comparison, method);
-                    if (segmentType <= 0 && splitNumber > 0 && lastDelta != null && timeDifference > lastDelta)
+                    if (showSegmentDeltas && splitNumber > 0 && lastDelta != null && timeDifference > lastDelta)
                         splitColor = state.LayoutSettings.AheadLosingTimeColor;
                 }
                 else
                 {
                     splitColor = state.LayoutSettings.BehindLosingTimeColor;
                     var lastDelta = GetLastDelta(state, splitNumber - 1, comparison, method);
-                    if (segmentType <= 0 && splitNumber > 0 && lastDelta != null && timeDifference < lastDelta)
+                    if (showSegmentDeltas && splitNumber > 0 && lastDelta != null && timeDifference < lastDelta)
                         splitColor = state.LayoutSettings.BehindGainingTimeColor;
                 }
             }
 
-            if (segmentType != 2 && segmentType != -1 && state.LayoutSettings.ShowBestSegments)
+            if (showBestSegments && state.LayoutSettings.ShowBestSegments)
             {
                 TimeSpan? curSegment;
-                curSegment = GetPreviousSegment(state,splitNumber, false, true, comparison, method);
+                curSegment = GetPreviousSegmentTime(state, splitNumber, comparison, method);
                 if (curSegment != null)
                 {
                     if (state.Run[splitNumber].BestSegmentTime[method] == null || curSegment < state.Run[splitNumber].BestSegmentTime[method])
