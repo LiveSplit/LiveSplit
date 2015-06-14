@@ -517,4 +517,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available for patch 1.0. (By TheFuncannon)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Rayman Legends</Game>
+    </Games>
+    <URLs>
+      <URL>https://dl.dropboxusercontent.com/u/283391/LiveSplit.RaymanLegends.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting (Beta) is available. (By cooopercrisp)</Description>
+  </AutoSplitter>
 </AutoSplitters>
