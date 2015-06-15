@@ -68,7 +68,7 @@ namespace LiveSplit.Model
         /// <param name="comparison">The comparison that you are comparing with.</param>
         /// <param name="method">The timing method that you are using.</param>
         /// <returns>Returns the length of the segment leading up to splitNumber, returning the live segment time if the split is not completed yet.</returns>
-        public static TimeSpan? GetCurrentSegmentTime(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
+        public static TimeSpan? GetLiveSegmentTime(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
         {
             return GetSegmentTimeOrSegmentDelta(state, splitNumber, true, true, comparison, method);
         }
