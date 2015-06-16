@@ -147,9 +147,8 @@ namespace LiveSplit.View
 
                     try
                     {
-                        var fuzzyUserName = txtSearch.Text;
-                        var games = SpeedrunCom.Instance.GetPersonalBestList(fuzzyUserName);
-                        var userName = fuzzyUserName;
+                        var userName = txtSearch.Text.TrimStart('@');
+                        var games = SpeedrunCom.Instance.GetPersonalBestList(userName);
                         IEnumerable<string> possibleUsernames = null;
                         var userNode = new TreeNode();
                         foreach (var game in games)
