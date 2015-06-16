@@ -527,4 +527,19 @@
     <Type>Script</Type>
     <Description>Load Removal and Auto Splitting (Beta) is available. (By cooopercrisp)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SADX</Game>
+      <Game>Sonic Adventure DX</Game>
+      <Game>Sonic Adventure DX: Director's Cut</Game>
+      <Game>Sonic Adventure DX: Directors Cut</Game>
+      <Game>Sonic Adventure DX Director's Cut</Game>
+      <Game>Sonic Adventure DX Directors Cut</Game>
+    </Games>
+    <URLs>
+      <URL>https://dl.dropboxusercontent.com/s/phb0per4f9zyecw/sadx.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting (Beta-v1) is available. (By VeritasDL)</Description>
+  </AutoSplitter>
 </AutoSplitters>
