@@ -1,5 +1,7 @@
 ﻿using LiveSplit.Model;
+using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
+using LiveSplit.Model.RunFactories;
 using LiveSplit.UI;
 using LiveSplit.Web.SRL;
 using System;
@@ -133,13 +135,27 @@ namespace LiveSplit.Options.SettingsFactories
             }
             else
             {
+                var comparisonsFactory = new StandardComparisonGeneratorsFactory();
+                var runFactory = new StandardFormatsRunFactory();
+
                 foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsPath"))
                 {
                     var splitElement = splitNode as XmlElement;
                     var path = splitElement.InnerText;
 
-                    var recentSplitsFile = new RecentSplitsFile(path);
-                    settings.RecentSplits.Add(recentSplitsFile);
+                    try
+                    {
+                        using (var stream = File.OpenRead(path))
+                        {
+                            runFactory.FilePath = path;
+                            runFactory.Stream = stream;
+                            var run = runFactory.Create(comparisonsFactory);
+
+                            var recentSplitsFile = new RecentSplitsFile(path, run.GameName, run.CategoryName);
+                            settings.RecentSplits.Add(recentSplitsFile);
+                        }
+                    }
+                    catch { }
                 }
             }
 
