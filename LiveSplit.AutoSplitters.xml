@@ -251,6 +251,18 @@
     <Description>Auto Splitting is available. (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
+  	<Games>
+  		<Game>Bully: Scholarship Edition</Game>
+  		<Game>Bully</Game>
+  		<Game>Canis Canem Edit</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://github.com/Dalet/LiveSplit.Bully/raw/master/Components/LiveSplit.Bully.dll</URL>
+  	</URLs>
+  	<Type>Component</Type>
+    <Description>Load Removal is available. (By Dalet)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>The Elder Scrolls V: Skyrim</Game>
       <Game>Skyrim</Game>
