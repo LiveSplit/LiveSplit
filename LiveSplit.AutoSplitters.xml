@@ -561,7 +561,7 @@
     <URLs>
       <URL>https://raw.githubusercontent.com/madzinah/LiveSplits_Scripts/master/BoxOut.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Auto Splitting is available. (By Madzinah)</Description>
   </AutoSplitter>
 </AutoSplitters>
