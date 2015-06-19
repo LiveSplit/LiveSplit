@@ -34,6 +34,15 @@ namespace LiveSplit.UI
             return previousFont;
         }
 
+        public static void ColorButtonClick(Button button, Control control)
+        {
+            var picker = new ColorPickerDialog();
+            picker.SelectedColorChanged += (s, x) => button.BackColor = picker.SelectedColor;
+            picker.SelectedColor = picker.OldColor = button.BackColor;
+            picker.ShowDialog(control);
+            button.BackColor = picker.SelectedColor;
+        }
+
         public static Color ParseColor(XmlElement colorElement, Color defaultColor = default(Color))
         {
             return colorElement != null ? Color.FromArgb(Int32.Parse(colorElement.InnerText, NumberStyles.HexNumber)) : defaultColor;
