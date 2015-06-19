@@ -1695,6 +1695,7 @@ namespace LiveSplit.View
             var autoSplitterSettings = CurrentState.Run.IsAutoSplitterActive()
                 ? CurrentState.Run.AutoSplitter.Component.GetSettings(new XmlDocument()) 
                 : null;
+            var activeAutoSplitters = new List<string>(CurrentState.Settings.ActiveAutoSplitters);
             var editor = new RunEditorDialog(CurrentState);
             editor.RunEdited += editor_RunEdited;
             editor.ComparisonRenamed += editor_ComparisonRenamed;
@@ -1708,10 +1709,7 @@ namespace LiveSplit.View
                 var result = editor.ShowDialog(this);
                 if (result == DialogResult.Cancel)
                 {
-                    if (CurrentState.Run.IsAutoSplitterActive() && !CurrentState.Settings.ActiveAutoSplitters.Contains(CurrentState.Run.GameName))
-                        CurrentState.Settings.ActiveAutoSplitters.Add(CurrentState.Run.GameName);
-                    else if (!CurrentState.Run.IsAutoSplitterActive() && CurrentState.Settings.ActiveAutoSplitters.Contains(CurrentState.Run.GameName))
-                        CurrentState.Settings.ActiveAutoSplitters.Remove(CurrentState.Run.GameName);
+                    CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
                     SetRun(runCopy);
                     CurrentState.CallRunManuallyModified();
                     if (CurrentState.Run.IsAutoSplitterActive())

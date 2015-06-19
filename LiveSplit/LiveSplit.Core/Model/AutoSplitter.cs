@@ -13,7 +13,7 @@ namespace LiveSplit.Model
     {
         Component, Script
     }
-    public class AutoSplitter
+    public class AutoSplitter : ICloneable
     {
         public string Description { get; set; }
         public IEnumerable<string> Games { get; set; }
@@ -87,6 +87,20 @@ namespace LiveSplit.Model
                 Component.Dispose();
                 Component = null;
             }
+        }
+
+        public object Clone()
+        {
+            return new AutoSplitter()
+            {
+                Description = Description,
+                Games = new List<string>(Games),
+                URLs = new List<string>(URLs),
+                Type = Type,
+                ShowInLayoutEditor = ShowInLayoutEditor,
+                Component = Component,
+                Factory = Factory
+            };
         }
     }
 }
