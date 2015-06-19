@@ -554,4 +554,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting (Beta-v1) is available. (By VeritasDL)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Box Out!</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/madzinah/LiveSplits_Scripts/master/BoxOut.asl</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting is available. (By Madzinah)</Description>
+  </AutoSplitter>
 </AutoSplitters>
