@@ -2468,13 +2468,13 @@ namespace LiveSplit.View
                 if (generator.Value == true)
                     CurrentState.Run.ComparisonGenerators.Insert(0, allGenerators.First(x => x.Name == generator.Key));
             }
+            SwitchComparison(CurrentState.CurrentComparison);
             RegenerateComparisons();
         }
 
         private void SwitchComparison(string name)
         {
-            var generator = CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == name);
-            if (generator == null && (string.IsNullOrEmpty(name) || !CurrentState.Run.CustomComparisons.Contains(name)))
+            if (!CurrentState.Run.Comparisons.Contains(name))
                 name = Run.PersonalBestComparisonName;
             CurrentState.CurrentComparison = name;
         }
