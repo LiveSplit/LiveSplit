@@ -250,6 +250,7 @@
             this.chkGlobalHotkeys.TabIndex = 8;
             this.chkGlobalHotkeys.Text = "Global Hotkeys";
             this.chkGlobalHotkeys.UseVisualStyleBackColor = true;
+            this.chkGlobalHotkeys.CheckedChanged += new System.EventHandler(chkGlobalHotkeys_CheckedChanged);
             // 
             // txtStartSplit
             // 
@@ -472,6 +473,7 @@
             this.chkSimpleSOB.TabIndex = 16;
             this.chkSimpleSOB.Text = "Simple Sum of Best Calculation";
             this.chkSimpleSOB.UseVisualStyleBackColor = true;
+            this.chkSimpleSOB.CheckedChanged += new System.EventHandler(chkSimpleSOB_CheckedChanged);
             // 
             // label12
             // 
@@ -500,6 +502,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(371, 503);
+            this.Load += new System.EventHandler(SettingsDialog_Load);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
