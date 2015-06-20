@@ -61,6 +61,8 @@
             this.cbxRaceViewer = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.chkSimpleSOB = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnChooseComparisons = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -74,26 +76,29 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel1.Controls.Add(this.chkWarnOnReset, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnOBSInstall, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnOBSInstall, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.chkDoubleTap, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 6);
             this.tableLayoutPanel1.Controls.Add(this.cbxRaceViewer, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.chkSimpleSOB, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnChooseComparisons, 1, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 7;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 315F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(357, 460);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(357, 489);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // chkWarnOnReset
@@ -113,7 +118,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnOK, 2);
-            this.btnOK.Location = new System.Drawing.Point(198, 434);
+            this.btnOK.Location = new System.Drawing.Point(198, 463);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 4;
@@ -125,7 +130,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 410);
+            this.label5.Location = new System.Drawing.Point(3, 439);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(164, 13);
             this.label5.TabIndex = 10;
@@ -135,7 +140,7 @@
             // 
             this.btnOBSInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnOBSInstall, 3);
-            this.btnOBSInstall.Location = new System.Drawing.Point(173, 405);
+            this.btnOBSInstall.Location = new System.Drawing.Point(173, 434);
             this.btnOBSInstall.Name = "btnOBSInstall";
             this.btnOBSInstall.Size = new System.Drawing.Size(181, 23);
             this.btnOBSInstall.TabIndex = 3;
@@ -421,7 +426,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(279, 434);
+            this.btnCancel.Location = new System.Drawing.Point(279, 463);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -468,11 +473,33 @@
             this.chkSimpleSOB.Text = "Simple Sum of Best Calculation";
             this.chkSimpleSOB.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 410);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(164, 13);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Active Comparisons:";
+            // 
+            // btnChooseComparisons
+            // 
+            this.btnChooseComparisons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.btnChooseComparisons, 3);
+            this.btnChooseComparisons.Location = new System.Drawing.Point(173, 405);
+            this.btnChooseComparisons.Name = "btnChooseComparisons";
+            this.btnChooseComparisons.Size = new System.Drawing.Size(181, 23);
+            this.btnChooseComparisons.TabIndex = 18;
+            this.btnChooseComparisons.Text = "Choose...";
+            this.btnChooseComparisons.UseVisualStyleBackColor = true;
+            this.btnChooseComparisons.Click += new System.EventHandler(this.btnChooseComparisons_Click);
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(371, 474);
+            this.ClientSize = new System.Drawing.Size(371, 503);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -521,5 +548,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox chkDeactivateForOtherPrograms;
         private System.Windows.Forms.CheckBox chkSimpleSOB;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Button btnChooseComparisons;
     }
 }

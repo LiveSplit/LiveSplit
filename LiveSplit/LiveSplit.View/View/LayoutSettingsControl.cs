@@ -90,53 +90,26 @@ namespace LiveSplit.View
 
         private void ColorButtonClick(object sender, EventArgs e)
         {
-            var button = (Button)sender;
-            var picker = new ColorPickerDialog();
-            picker.SelectedColor = picker.OldColor = button.BackColor;
-            picker.SelectedColorChanged += (s, x) => button.BackColor = picker.SelectedColor;
-            picker.ShowDialog(this);
-            button.BackColor = picker.SelectedColor;
-        }
-
-        private Font ChooseFont (Font previousFont, int minSize, int maxSize)
-        {
-            var dialog = new FontDialog();
-            dialog.Font = previousFont;
-            dialog.MinSize = minSize;
-            dialog.MaxSize = maxSize;
-            try
-            {
-                var result = dialog.ShowDialog(this);
-                if (result == DialogResult.OK)
-                {
-                    return dialog.Font;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                MessageBox.Show("This font is not supported.", "Font Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            return previousFont;
+            SettingsHelper.ColorButtonClick((Button)sender, this);
         }
 
         private void btnTimer_Click(object sender, EventArgs e)
         {
             var timerFont = new Font(Settings.TimerFont.FontFamily.Name, (Settings.TimerFont.Size / 50f) * 18f, Settings.TimerFont.Style, GraphicsUnit.Point);
-            timerFont = ChooseFont(timerFont, 7, 20);
+            timerFont = SettingsHelper.ChooseFont(this, timerFont, 7, 20);
             Settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
             lblTimer.Text = TimerFont;
         }
 
         private void btnTimes_Click(object sender, EventArgs e)
         {
-            Settings.TimesFont = ChooseFont(Settings.TimesFont, 7, 20);
+            Settings.TimesFont = SettingsHelper.ChooseFont(this, Settings.TimesFont, 7, 20);
             lblTimes.Text = MainFont;
         }
 
         private void btnTextFont_Click(object sender, EventArgs e)
         {
-            Settings.TextFont = ChooseFont(Settings.TextFont, 7, 20);
+            Settings.TextFont = SettingsHelper.ChooseFont(this, Settings.TextFont, 7, 20);
             lblText.Text = SplitNamesFont;
         }
     }

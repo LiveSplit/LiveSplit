@@ -92,7 +92,7 @@
             this.btnDownload.Location = new System.Drawing.Point(479, 372);
             this.btnDownload.Name = "btnDownload";
             this.btnDownload.Size = new System.Drawing.Size(81, 22);
-            this.btnDownload.TabIndex = 2;
+            this.btnDownload.TabIndex = 6;
             this.btnDownload.Text = "Download";
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
@@ -104,7 +104,7 @@
             this.splitsTreeView.Location = new System.Drawing.Point(10, 39);
             this.splitsTreeView.Name = "splitsTreeView";
             this.splitsTreeView.Size = new System.Drawing.Size(550, 327);
-            this.splitsTreeView.TabIndex = 3;
+            this.splitsTreeView.TabIndex = 2;
             this.splitsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.splitsTreeView_AfterSelect);
             // 
             // chkDownloadEmpty
@@ -115,7 +115,7 @@
             this.chkDownloadEmpty.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDownloadEmpty.Name = "chkDownloadEmpty";
             this.chkDownloadEmpty.Size = new System.Drawing.Size(106, 17);
-            this.chkDownloadEmpty.TabIndex = 4;
+            this.chkDownloadEmpty.TabIndex = 3;
             this.chkDownloadEmpty.Text = "Download Empty";
             this.chkDownloadEmpty.UseVisualStyleBackColor = true;
             this.chkDownloadEmpty.CheckedChanged += new System.EventHandler(this.chkDownloadEmpty_CheckedChanged);
@@ -129,7 +129,7 @@
             this.chkIncludeTimes.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkIncludeTimes.Name = "chkIncludeTimes";
             this.chkIncludeTimes.Size = new System.Drawing.Size(164, 17);
-            this.chkIncludeTimes.TabIndex = 5;
+            this.chkIncludeTimes.TabIndex = 4;
             this.chkIncludeTimes.Text = "Include Times as Comparison";
             this.chkIncludeTimes.UseVisualStyleBackColor = true;
             // 
@@ -140,7 +140,7 @@
             this.btnShowOnSpeedrunCom.Location = new System.Drawing.Point(344, 372);
             this.btnShowOnSpeedrunCom.Name = "btnShowOnSpeedrunCom";
             this.btnShowOnSpeedrunCom.Size = new System.Drawing.Size(129, 23);
-            this.btnShowOnSpeedrunCom.TabIndex = 6;
+            this.btnShowOnSpeedrunCom.TabIndex = 5;
             this.btnShowOnSpeedrunCom.Text = "Show on Speedrun.com";
             this.btnShowOnSpeedrunCom.UseVisualStyleBackColor = true;
             this.btnShowOnSpeedrunCom.Click += new System.EventHandler(this.btnShowOnSpeedrunCom_Click);

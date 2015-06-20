@@ -317,6 +317,7 @@ namespace LiveSplit.View
                 }
                 Run[curIndex + 1].BestSegmentTime = newBestSegment;
             }
+            UpdateButtonsStatus();
         }
 
         void runGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -1242,12 +1243,6 @@ namespace LiveSplit.View
         private void fromURLToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var runImporter = new URLRunImporter();
-            ImportClick(runImporter);
-        }
-
-        private void fromSplitsioToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var runImporter = new SplitsIORunImporter();
             ImportClick(runImporter);
         }
 

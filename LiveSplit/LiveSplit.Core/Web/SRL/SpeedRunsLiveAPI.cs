@@ -111,17 +111,13 @@ namespace LiveSplit.Web.SRL
                         }
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Log.Error(ex);
                     try
                     {
                         imageList.Add(gameId, null);
                     }
-                    catch (Exception exc)
-                    {
-                        Log.Error(exc);
-                    }
+                    catch { }
                 }
             }
 
@@ -145,11 +141,8 @@ namespace LiveSplit.Web.SRL
                 racesList = (IEnumerable<dynamic>)JSON.FromUri(GetUri("races")).races;
                 if (RacesRefreshed != null)
                     RacesRefreshed(this, null);
-            } 
-            catch (Exception ex)
-            {
-                Log.Error(ex);
             }
+            catch { }
         }
     }
 }

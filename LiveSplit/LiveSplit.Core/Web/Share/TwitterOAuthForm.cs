@@ -44,6 +44,10 @@ namespace LiveSplit.Web.Share
         {
             try
             {
+                if (OAuthWebBrowser.Url.Query.ToLowerInvariant().Contains("oauth_verifier"))
+                {
+                    auth.CompleteAuthorization(OAuthWebBrowser.Url);
+                }
                 if (auth.IsAuthorized)
                 {
                     Authorizer = auth;
@@ -78,10 +82,6 @@ namespace LiveSplit.Web.Share
                         Invoke(closeAction);
                     else
                         closeAction();
-                }
-                else if (OAuthWebBrowser.Url.Query.ToLowerInvariant().Contains("oauth_verifier"))
-                {
-                    auth.CompleteAuthorization(OAuthWebBrowser.Url);
                 }
             }
             catch (Exception ex)
