@@ -5,12 +5,9 @@ using System.Text;
 
 namespace LiveSplit.Web.Share.SpeedrunCom
 {
-    public class Region
+    public class Variable
     {
-        public int ID { get; private set; }
-        public string Name { get; private set; }
-
-        public static Region Parse(SpeedrunComClient client, dynamic regionElement)
+        public static Variable Parse(SpeedrunComClient client, dynamic variableElement)
         {
             throw new NotImplementedException();
         }

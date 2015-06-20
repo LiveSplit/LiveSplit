@@ -14,5 +14,10 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         public string Rules { get; private set; }
         public int GameID { get; private set; }
         public ReadOnlyCollection<int> RunIDs { get; private set; }
+
+        public static Level Parse(SpeedrunComClient client, dynamic levelElement)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

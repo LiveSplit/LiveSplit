@@ -16,7 +16,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         public Uri Video { get; private set; }
         public string Comment { get; private set; }
         public RunStatus Status { get; private set; }
-        public ReadOnlyCollection<PossiblyAnonymousUser> Runners { get; private set; }
+        public ReadOnlyCollection<UserOrGuest> Runners { get; private set; }
         public DateTime? Date { get; private set; }
         public DateTime? DateSubmitted { get; private set; }
         public RunTimes Times { get; private set; }
@@ -32,5 +32,10 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         public Uri ExaminerUri { get; private set; }
 
         #endregion
+
+        internal static Run Parse(SpeedrunComClient client, dynamic runElement)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

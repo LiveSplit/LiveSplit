@@ -10,5 +10,10 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         public int ID { get; private set; }
         public string Name { get; private set; }
         //TODO: Documentation missing
+
+        public static User Parse(SpeedrunComClient client, dynamic userElement)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

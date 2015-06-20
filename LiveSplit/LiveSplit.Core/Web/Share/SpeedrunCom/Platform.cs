@@ -10,5 +10,10 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         public int ID { get; private set; }
         public string Name { get; private set; }
         public int YearOfRelease { get; private set; }
+
+        public static Platform Parse(SpeedrunComClient client, dynamic platformElement)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

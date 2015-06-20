@@ -26,7 +26,7 @@ namespace LiveSplit.Web
                     {
                         try
                         {
-                            return SpeedrunCom.Instance.GetGameNames();
+                            return OldSpeedrunCom.Instance.GetGameNames();
                         }
                         catch
                         {

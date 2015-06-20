@@ -158,7 +158,7 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        var gameNames = SpeedrunCom.Instance.GetGameNames().ToArray();
+                        var gameNames = OldSpeedrunCom.Instance.GetGameNames().ToArray();
                         Action invokation = () =>
                         {
                             try
@@ -224,7 +224,7 @@ namespace LiveSplit.View
                     string[] categoryNames;
                     try
                     {
-                        categoryNames = SpeedrunCom.Instance.GetCategories(Run.GameName).ToArray();
+                        categoryNames = OldSpeedrunCom.Instance.GetCategories(Run.GameName).ToArray();
                     }
                     catch (Exception ex)
                     {
@@ -949,9 +949,9 @@ namespace LiveSplit.View
         {
             try
             {
-                var gameId = SpeedrunCom.Instance.GetGameID(cbxGameName.Text);
+                var gameId = OldSpeedrunCom.Instance.GetGameID(cbxGameName.Text);
 
-                GameIcon = SpeedrunCom.Instance.GetGameCover(gameId);
+                GameIcon = OldSpeedrunCom.Instance.GetGameCover(gameId);
                 picGameIcon.Image = GameIcon;
                 RaiseRunEdited();
                 return;

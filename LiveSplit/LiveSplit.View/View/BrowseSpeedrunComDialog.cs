@@ -21,9 +21,9 @@ namespace LiveSplit.View
         struct TaggedRecord
         {
             public string GameID;
-            public SpeedrunCom.Record Record;
+            public OldSpeedrunCom.Record Record;
 
-            public TaggedRecord(string gameId, SpeedrunCom.Record record)
+            public TaggedRecord(string gameId, OldSpeedrunCom.Record record)
             {
                 GameID = gameId;
                 Record = record;
@@ -110,20 +110,20 @@ namespace LiveSplit.View
                     try
                     {
                         string actualGameName;
-                        var leaderboards = SpeedrunCom.Instance.GetLeaderboards(fuzzyGameName, out actualGameName);
-                        var gameId = SpeedrunCom.Instance.GetGameID(actualGameName);
+                        var leaderboards = OldSpeedrunCom.Instance.GetLeaderboards(fuzzyGameName, out actualGameName);
+                        var gameId = OldSpeedrunCom.Instance.GetGameID(actualGameName);
                         var games = new[] { leaderboards };
                         foreach (var game in games)
                         {
                             var gameNode = new TreeNode(actualGameName);
-                            gameNode.Tag = SpeedrunCom.Instance.GetGameUri(gameId);
+                            gameNode.Tag = OldSpeedrunCom.Instance.GetGameUri(gameId);
                             var categories = game;
                             foreach (var category in categories)
                             {
                                 var categoryNode = new TreeNode(category.Key);
-                                categoryNode.Tag = SpeedrunCom.Instance.GetGameUri(gameId);
+                                categoryNode.Tag = OldSpeedrunCom.Instance.GetGameUri(gameId);
                                 var records = category.Value;
-                                var timingMethod = SpeedrunCom.Instance.GetLeaderboardTimingMethod(records);
+                                var timingMethod = OldSpeedrunCom.Instance.GetLeaderboardTimingMethod(records);
 
                                 foreach (var record in records)
                                 {
@@ -148,14 +148,14 @@ namespace LiveSplit.View
                     try
                     {
                         var userName = txtSearch.Text.TrimStart('@');
-                        var games = SpeedrunCom.Instance.GetPersonalBestList(userName);
+                        var games = OldSpeedrunCom.Instance.GetPersonalBestList(userName);
                         IEnumerable<string> possibleUsernames = null;
                         var userNode = new TreeNode();
                         foreach (var game in games)
                         {
                             var gameNode = new TreeNode(game.Key);
-                            var gameId = SpeedrunCom.Instance.GetGameID(game.Key);
-                            gameNode.Tag = SpeedrunCom.Instance.GetGameUri(gameId);
+                            var gameId = OldSpeedrunCom.Instance.GetGameID(game.Key);
+                            gameNode.Tag = OldSpeedrunCom.Instance.GetGameUri(gameId);
 
                             foreach (var category in game.Value)
                             {
@@ -186,7 +186,7 @@ namespace LiveSplit.View
                         {
                             userName = possibleUsernames.First();
                         }
-                        userNode.Tag = SpeedrunCom.Instance.GetUserUri(userName);
+                        userNode.Tag = OldSpeedrunCom.Instance.GetUserUri(userName);
                         userNode.Text = "@" + userName;
                         splitsTreeView.Nodes.Add(userNode);
                     }
@@ -302,7 +302,7 @@ namespace LiveSplit.View
                 else if (splitsTreeView.SelectedNode.Tag is TaggedRecord)
                 {
                     var taggedRecord = (TaggedRecord)splitsTreeView.SelectedNode.Tag;
-                    var uri = SpeedrunCom.Instance.GetRunUri(taggedRecord.Record.ID);
+                    var uri = OldSpeedrunCom.Instance.GetRunUri(taggedRecord.Record.ID);
                     Process.Start(uri.AbsoluteUri);
                 }
             }

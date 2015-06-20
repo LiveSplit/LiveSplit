@@ -5,7 +5,7 @@ using System.Text;
 
 namespace LiveSplit.Web.Share.SpeedrunCom
 {
-    public class PossiblyAnonymousUser
+    public class UserOrGuest
     {
         public bool IsAnonymous { get { return UserName != null; } }
         public int UserID { get; private set; }

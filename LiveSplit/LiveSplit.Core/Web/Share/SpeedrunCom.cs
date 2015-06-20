@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Options;
+using LiveSplit.Web.Share.SpeedrunCom;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,135 +12,8 @@ using System.Web;
 
 namespace LiveSplit.Web.Share
 {
-    public class SpeedrunCom
+    public class OldSpeedrunCom
     {
-        public enum CategoryType
-        {
-            PerGame, PerLevel
-        }
-
-        public class Category
-        {
-            public int ID { get; private set; }
-            public string Name { get; private set; }
-            public CategoryType Type { get; private set; }
-            public string Rules { get; private set; }
-            public int Players { get; private set; }
-            public bool IsMiscellaneous { get; private set; }
-        }
-
-        public class GameRuleset
-        {
-            public bool ShowMilliseconds { get; private set; }
-            public bool RequiresVerification { get; private set; }
-            public bool RequiresVideo { get; private set; }
-        }
-
-        public class Game
-        {
-            public int ID {get;set;}
-            public string Name;
-            public string JapaneseName;
-            public string ShortName;
-            public int YearOfRelease;
-            public IDictionary<int, Lazy<Platform>> Platforms;
-            public IDictionary<int, Lazy<Region>> Regions;
-            public DateTime Created;
-            public IEnumerable<Run> Runs;
-            public IEnumerable<Level> Levels;
-            public IEnumerable<Category> Categories;
-            public Game Parent;
-        }
-
-        public class Level
-        {
-            public int ID;
-            public string Name;
-            public Uri Uri;
-            public string Rules;
-            public Game Game;
-            public IEnumerable<Run> Runs;
-        }
-
-        public class Platform
-        {
-            public int ID;
-            public string Name;
-            public int YearOfRelease;
-        }
-
-        public class Region
-        {
-            public int ID;
-            public string Name;
-        }
-
-        public enum RunStatusType
-        {
-            New, Verified, Rejected
-        }
-
-        public class RunStatus
-        {
-            public RunStatusType Type;
-            public string Examiner;
-            public string Reason;
-        }
-
-        public class PossiblyAnonymousUser
-        {
-            public bool IsAnonymous;
-            public int UserID;
-            public string UserName;
-            public User User;
-        }
-
-        public class RunTimes
-        {
-            public TimeSpan? Primary;
-            public TimeSpan? RealTime;
-            public TimeSpan? RealTimeWithoutLoads;
-            public TimeSpan? GameTime;
-            public Time Time;
-        }
-
-        public class System
-        {
-            public int PlatformID;
-            public Platform Platform;
-            public bool IsEmulated;
-            public int? RegionID;
-            public Region Region;
-        }
-
-        public class Run
-        {
-            public int ID;
-            public Uri RunUri;
-            public int GameID;
-            public Game Game;
-            public int LevelID;
-            public Level Level;
-            public int CategoryID;
-            public Category Category;
-            public Uri Video;
-            public string Comment;
-            public RunStatus Status;
-            public IEnumerable<PossiblyAnonymousUser> Runners;
-            public DateTime? Date;
-            public DateTime? DateSubmitted;
-            public RunTimes Times;
-            public System System;
-            public IEnumerable<string> Values; //TODO: What's a "map"?
-        }
-
-        public class User
-        {
-            public int ID;
-            public string Name;
-            //TODO: Documentation missing
-        }
-
         public struct Record
         {
             public int ID;
@@ -166,16 +40,34 @@ namespace LiveSplit.Web.Share
             x256 = 256
         }
 
-        protected static readonly SpeedrunCom _Instance = new SpeedrunCom();
+        protected static readonly OldSpeedrunCom _Instance = new OldSpeedrunCom();
 
-        public static SpeedrunCom Instance { get { return _Instance; } }
+        public static OldSpeedrunCom Instance { get { return _Instance; } }
 
         public static readonly Uri BaseUri = new Uri("http://www.speedrun.com/");
         public static readonly Uri APIUri = new Uri(BaseUri, "");
 
         private List<GamePair> gameList;
 
-        protected SpeedrunCom() { }
+        protected OldSpeedrunCom() 
+        { 
+            //TODO Remove
+            try
+            {
+
+                var speedrunCom = new SpeedrunComClient();
+                var games1992 = speedrunCom.Games.GetGames(name: "Zelda").ToList();
+                //var categories = games1992.First().Categories;
+                var games = speedrunCom.Games.GetGameHeaders().ToList();
+                var gameId = games.First(x => x.Name == "The Legend of Zelda: The Wind Waker").ID;
+                var game = speedrunCom.Games.GetGame(gameId, embedCategories: false);
+                var categories = speedrunCom.Games.GetCategories(gameId);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
 
         public Uri GetSiteUri(string subUri)
         {
