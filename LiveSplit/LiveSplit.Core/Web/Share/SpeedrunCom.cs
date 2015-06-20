@@ -216,6 +216,12 @@ namespace LiveSplit.Web.Share
             return GetSiteUri(uri);
         }
 
+        private dynamic findCategory(IDictionary<string, dynamic> categories, string categoryName)
+        {
+            var categoryNameLower = (categoryName ?? "").Trim().ToLowerInvariant();
+            return categories.Where(x => (x.Key ?? "").Trim().ToLowerInvariant() == categoryNameLower).First().Value;
+        }
+
         private IEnumerable<GamePair> getGameList()
         {
             if (gameList == null)
@@ -434,7 +440,8 @@ namespace LiveSplit.Web.Share
             try
             {
                 var worldRecordList = getWorldRecordList(fuzzyGameName, out actualGameName);
-                return getWorldRecordEntry(worldRecordList[categoryName]);
+                var category = findCategory(worldRecordList, categoryName);
+                return getWorldRecordEntry(category);
             }
             catch { }
 
@@ -505,7 +512,8 @@ namespace LiveSplit.Web.Share
             try
             {
                 var personalBestList = getPersonalBestList(runnerName, fuzzyGameName, out actualGameName);
-                return getRecordEntry(personalBestList[categoryName]);
+                var category = findCategory(personalBestList, categoryName);
+                return getRecordEntry(category);
             }
             catch { }
 
@@ -559,7 +567,7 @@ namespace LiveSplit.Web.Share
         public IEnumerable<Record> GetLeaderboard(string fuzzyGameName, string categoryName, out string actualGameName)
         {
             var leaderboards = getLeaderboards(fuzzyGameName, out actualGameName);
-            var leaderboard = leaderboards.FirstOrDefault(x => x.Key == categoryName);
+            var leaderboard = findCategory(leaderboards, categoryName);
 
             var records = new List<Record>();
 

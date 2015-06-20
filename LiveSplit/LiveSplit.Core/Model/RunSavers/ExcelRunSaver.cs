@@ -128,7 +128,7 @@ namespace LiveSplit.Model.RunSavers
                 ++rowIndex;
             }
 
-            sheet.AutoFilter = sheet[0, 0, rowIndex - 1, 1];
+            sheet.AutoFilter = sheet[0, 0, rowIndex - 1, 3];
         }
 
         private void FillSegmentHistorySheet(Sheet sheet, IRun run)

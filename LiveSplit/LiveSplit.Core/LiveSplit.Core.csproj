@@ -94,6 +94,7 @@
     <Compile Include="Model\Attempt.cs" />
     <Compile Include="Model\AutoSplitter.cs" />
     <Compile Include="Model\AutoSplitterFactory.cs" />
+    <Compile Include="Model\Comparisons\WorstSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\MedianSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\AverageSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\BestSegmentsComparisonGenerator.cs" />
@@ -104,7 +105,7 @@
     <Compile Include="Model\Comparisons\IComparisons.cs" />
     <Compile Include="Model\Comparisons\NoneComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\StandardComparisonGeneratorsFactory.cs" />
-    <Compile Include="Model\Comparisons\PercentileComparisonGeneratorsFactory.cs" />
+    <Compile Include="Model\Comparisons\PercentileComparisonGenerator.cs" />
     <Compile Include="Model\DoubleTapPrevention.cs" />
     <Compile Include="Model\Input\CompositeHook.cs" />
     <Compile Include="Model\Input\GamepadHook.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="Model\Input\XGamePad.cs" />
     <Compile Include="Model\Input\XInput.cs" />
     <Compile Include="Model\RunFactories\CompositeRunFactory.cs" />
+    <Compile Include="Model\RunFactories\Portal2LiveTimerRunFactory.cs" />
     <Compile Include="Model\RunFactories\ShitSplitRunFactory.cs" />
     <Compile Include="Model\RunFactories\SplittyRunFactory.cs" />
     <Compile Include="Model\RunFactories\StandardFormatsRunFactory.cs" />
@@ -126,8 +128,10 @@
     <Compile Include="Model\RunSavers\JSONRunSaver.cs" />
     <Compile Include="Model\RunSavers\WSplitRunSaver.cs" />
     <Compile Include="Model\RunSavers\SplitterZRunSaver.cs" />
-    <Compile Include="Model\ShortNameExtensions.cs" />
+    <Compile Include="Model\AbbreviationExtensions.cs" />
     <Compile Include="Model\StringExtensions.cs" />
+    <Compile Include="Model\SumOfWorst.cs" />
+    <Compile Include="Model\SumOfSegmentsHelper.cs" />
     <Compile Include="Model\SumOfBest.cs" />
     <Compile Include="Model\Time.cs" />
     <Compile Include="Model\TimeSpanParser.cs" />
@@ -150,6 +154,7 @@
     <Compile Include="UI\IInvalidator.cs" />
     <Compile Include="UI\InputBox.cs" />
     <Compile Include="UI\Invalidator.cs" />
+    <Compile Include="UI\SettingsHelper.cs" />
     <Compile Include="UI\RenameEventArgs.cs" />
     <Compile Include="Updates\Git.cs" />
     <Compile Include="Updates\GitInfo.Designer.cs">

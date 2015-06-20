@@ -1,6 +1,8 @@
 ﻿using LiveSplit.Model;
+using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.Web.SRL.RaceViewers;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace LiveSplit.Options.SettingsFactories
@@ -28,7 +30,16 @@ namespace LiveSplit.Options.SettingsFactories
                 HotkeyDelay = 0f,
                 RaceViewer = new SRLRaceViewer(),
                 AgreedToSRLRules = false,
-                SimpleSumOfBest = false
+                SimpleSumOfBest = false,
+                ComparisonGeneratorStates = new Dictionary<string, bool>() 
+                { 
+                    { BestSegmentsComparisonGenerator.ComparisonName, true },
+                    { BestSplitTimesComparisonGenerator.ComparisonName, false },
+                    { AverageSegmentsComparisonGenerator.ComparisonName, true },
+                    { WorstSegmentsComparisonGenerator.ComparisonName, false},
+                    { PercentileComparisonGenerator.ComparisonName, false },
+                    { NoneComparisonGenerator.ComparisonName, false }
+                }
             };
         }
     }
