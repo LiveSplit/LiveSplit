@@ -178,7 +178,8 @@ namespace LiveSplit.Model
                 FilePath = FilePath,
                 CustomComparisons = new List<string>(CustomComparisons),
                 ComparisonGenerators = new List<IComparisonGenerator>(ComparisonGenerators),
-                AutoSplitter = AutoSplitter != null ? (AutoSplitter)AutoSplitter.Clone() : null
+                AutoSplitter = AutoSplitter != null ? (AutoSplitter)AutoSplitter.Clone() : null,
+                AutoSplitterSettings = AutoSplitterSettings
             };
         }
 
