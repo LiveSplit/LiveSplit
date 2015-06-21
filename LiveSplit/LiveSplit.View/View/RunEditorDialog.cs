@@ -211,7 +211,7 @@ namespace LiveSplit.View
 
         private void DeactivateAutoSplitter()
         {
-            if (Run.AutoSplitter != null)
+            if (Run.IsAutoSplitterActive())
                 Run.AutoSplitter.Deactivate();
         }
 
