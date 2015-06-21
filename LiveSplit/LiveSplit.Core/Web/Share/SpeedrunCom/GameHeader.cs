@@ -7,7 +7,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
 {
     public class GameHeader
     {
-        public int ID { get; private set; }
+        public string ID { get; private set; }
         public string Name { get; private set; }
         public string JapaneseName { get; private set; }
         public string Abbreviation { get; private set; }
@@ -19,13 +19,18 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         {
             var gameHeader = new GameHeader();
 
-            gameHeader.ID = (int)gameHeaderElement.id;
+            gameHeader.ID = gameHeaderElement.id as string;
             gameHeader.Name = gameHeaderElement.names.international as string;
             gameHeader.JapaneseName = gameHeaderElement.names.japanese as string;
             gameHeader.WebLink = new Uri(gameHeaderElement.weblink as string);
             gameHeader.Abbreviation = gameHeaderElement.abbreviation as string;
 
             return gameHeader;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

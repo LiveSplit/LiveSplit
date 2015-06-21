@@ -23,103 +23,103 @@ namespace LiveSplit.Web.Share.SpeedrunCom
 
         public IEnumerable<Game> GetGames(
             string name = null, int? yearOfRelease = null, 
-            int? platformId = null, int? regionId = null, 
-            int? moderatorId = null, int? elementsPerPage = null)
+            string platformId = null, string regionId = null, 
+            string moderatorId = null, int? elementsPerPage = null,
+            GameEmbeds embeds = default(GameEmbeds))
         {
-            var filterList = new List<string>();
+            var parameters = new List<string>() { embeds.ToString() };
 
             if (name != null)
-                filterList.Add(string.Format("name={0}", HttpUtility.UrlPathEncode(name)));
+                parameters.Add(string.Format("name={0}", HttpUtility.UrlPathEncode(name)));
 
             if (yearOfRelease.HasValue)
-                filterList.Add(string.Format("released={0}", yearOfRelease.Value));
+                parameters.Add(string.Format("released={0}", yearOfRelease.Value));
 
-            if (platformId.HasValue)
-                filterList.Add(string.Format("platform={0}", platformId.Value));
+            if (!string.IsNullOrEmpty(platformId))
+                parameters.Add(string.Format("platform={0}", HttpUtility.UrlPathEncode(platformId)));
 
-            if (regionId.HasValue)
-                filterList.Add(string.Format("region={0}", regionId.Value));
+            if (!string.IsNullOrEmpty(regionId))
+                parameters.Add(string.Format("region={0}", HttpUtility.UrlPathEncode(regionId)));
 
-            if (moderatorId.HasValue)
-                filterList.Add(string.Format("moderator={0}", moderatorId.Value));
+            if (!string.IsNullOrEmpty(moderatorId))
+                parameters.Add(string.Format("moderator={0}", HttpUtility.UrlPathEncode(moderatorId)));
 
             if (elementsPerPage.HasValue)
-                filterList.Add(string.Format("max={0}", elementsPerPage.Value));
+                parameters.Add(string.Format("max={0}", elementsPerPage.Value));
 
-            var filters = "";
-            if (filterList.Any())
-                filters = "?" + filterList.Aggregate((a, b) => a + "&" + b);
-
-            var uri = GetGamesUri(filters);
-            var elements = SpeedrunComClient.DoPaginatedRequest(uri);
-
-            return elements.Select(x => Game.Parse(baseClient, x) as Game);
+            var uri = GetGamesUri(parameters.ToParameters());
+            return SpeedrunComClient.DoPaginatedRequest(uri, 
+                x => Game.Parse(baseClient, x) as Game);
         }
 
         public IEnumerable<GameHeader> GetGameHeaders(int elementsPerPage = 1000)
         {
             var uri = GetGamesUri(string.Format("?_bulk=yes&max={0}", elementsPerPage));
-            var elements = SpeedrunComClient.DoPaginatedRequest(uri);
-
-            return elements.Select(x => GameHeader.Parse(baseClient, x) as GameHeader);
+            return SpeedrunComClient.DoPaginatedRequest(uri,
+                x => GameHeader.Parse(baseClient, x) as GameHeader);
         }
 
-        public Game GetGame(int gameId,
-            bool embedLevels = false, bool embedCategories = false,
-            bool embedModerators = false, bool embedPlatforms = false,
-            bool embedRegions = false, bool embedVariables = false)
+        public Game GetGame(string gameId, GameEmbeds embeds = default(GameEmbeds))
         {
-            var embedList = new List<string>();
+            var parameters = new List<string>() { embeds.ToString() };
 
-            if (embedLevels)
-                embedList.Add("levels");
-            if (embedCategories)
-                embedList.Add("categories");
-            if (embedModerators)
-                embedList.Add("moderators");
-            if (embedPlatforms)
-                embedList.Add("platforms");
-            if (embedRegions)
-                embedList.Add("regions");
-            if (embedVariables)
-                embedList.Add("variables");
+            var uri = GetGamesUri(string.Format("/{0}{1}", 
+                HttpUtility.UrlPathEncode(gameId), 
+                parameters.ToParameters()));
 
-            var embeds = "";
-            if (embedList.Any())
-                embeds = "?embed=" + embedList.Aggregate((a, b) => a + "," + b);
-
-            var uri = GetGamesUri(string.Format("/{0}{1}", gameId, embeds));
             var result = JSON.FromUri(uri);
 
             return Game.Parse(baseClient, result.data);
         }
 
-        public ReadOnlyCollection<Category> GetCategories(int gameId, bool miscellaneous = true)
+        public ReadOnlyCollection<Category> GetCategories(
+            string gameId, bool miscellaneous = true,
+            CategoryEmbeds embeds = default(CategoryEmbeds))
         {
-            var uri = GetGamesUri(string.Format("/{0}/categories{1}", gameId, miscellaneous ? "" : "?miscellaneous=no"));
-            return SpeedrunComClient.DoDataCollectionRequest<Category>(uri,
-                x => Category.Parse(baseClient, x));
+            var parameters = new List<string>() { embeds.ToString() };
+
+            if (!miscellaneous)
+                parameters.Add("miscellaneous=no");
+
+            var uri = GetGamesUri(string.Format("/{0}/categories{1}", 
+                HttpUtility.UrlPathEncode(gameId), 
+                parameters.ToParameters()));
+
+            return SpeedrunComClient.DoDataCollectionRequest(uri,
+                x => Category.Parse(baseClient, x) as Category);
         }
 
-        public ReadOnlyCollection<Level> GetLevels(int gameId)
+        public ReadOnlyCollection<Level> GetLevels(string gameId,
+            LevelEmbeds embeds = default(LevelEmbeds))
         {
-            var uri = GetGamesUri(string.Format("/{0}/levels", gameId));
-            return SpeedrunComClient.DoDataCollectionRequest<Level>(uri,
-                 x => Level.Parse(baseClient, x));
+            var parameters = new List<string>() { embeds.ToString() };
+
+            var uri = GetGamesUri(string.Format("/{0}/levels{1}", 
+                HttpUtility.UrlPathEncode(gameId),
+                parameters.ToParameters()));
+
+            return SpeedrunComClient.DoDataCollectionRequest(uri,
+                 x => Level.Parse(baseClient, x) as Level);
         }
 
-        public ReadOnlyCollection<Variable> GetVariables(int gameId)
+        public ReadOnlyCollection<Variable> GetVariables(string gameId)
         {
-            var uri = GetGamesUri(string.Format("/{0}/variables", gameId));
-            return SpeedrunComClient.DoDataCollectionRequest<Variable>(uri,
-                x => Variable.Parse(baseClient, x));
+            var uri = GetGamesUri(string.Format("/{0}/variables", HttpUtility.UrlPathEncode(gameId)));
+            return SpeedrunComClient.DoDataCollectionRequest(uri,
+                x => Variable.Parse(baseClient, x) as Variable);
         }
 
-        public ReadOnlyCollection<Game> GetChildren(int gameId)
+        public ReadOnlyCollection<Game> GetChildren(string gameId,
+            GameEmbeds embeds = default(GameEmbeds))
         {
-            var uri = GetGamesUri(string.Format("/{0}/children", gameId));
-            return SpeedrunComClient.DoDataCollectionRequest<Game>(uri, 
-                x => Game.Parse(baseClient, x));
+            var parameters = new List<string>() { embeds.ToString() };
+
+            var uri = GetGamesUri(string.Format("/{0}/children{1}", 
+                HttpUtility.UrlPathEncode(gameId),
+                parameters.ToParameters()));
+
+            return SpeedrunComClient.DoDataCollectionRequest(uri, 
+                x => Game.Parse(baseClient, x) as Game);
         }
     }
 }

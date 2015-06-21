@@ -16,10 +16,15 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         {
             var players = new Players();
 
-            players.Value = playersElement.value;
+            players.Value = (int)playersElement.value;
             players.Type = playersElement.type == "exactly" ? PlayersType.Exactly : PlayersType.UpTo;
 
             return players;
+        }
+
+        public override string ToString()
+        {
+            return Type.ToString() + " " + Value;
         }
     }
 }

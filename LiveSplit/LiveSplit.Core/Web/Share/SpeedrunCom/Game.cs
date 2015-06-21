@@ -10,7 +10,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
     public class Game
     {
         public GameHeader Header { get; private set; }
-        public int ID { get { return Header.ID; } }
+        public string ID { get { return Header.ID; } }
         public string Name { get { return Header.Name; } }
         public string JapaneseName { get { return Header.JapaneseName; } }
         public string Abbreviation { get { return Header.Abbreviation; } }
@@ -28,11 +28,11 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         /// <summary>
         /// null when embedded
         /// </summary>
-        public ReadOnlyCollection<int> PlatformIDs { get; private set; }
+        public ReadOnlyCollection<string> PlatformIDs { get; private set; }
         /// <summary>
         /// null when embedded
         /// </summary>
-        public ReadOnlyCollection<int> RegionIDs { get; private set; }
+        public ReadOnlyCollection<string> RegionIDs { get; private set; }
         /// <summary>
         /// null when embedded
         /// </summary>
@@ -57,7 +57,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         public ReadOnlyCollection<Level> Levels { get { return levels.Value; } }
         public ReadOnlyCollection<Category> Categories { get { return categories.Value; } }
         public ReadOnlyCollection<Variable> Variables { get { return variables.Value; } }
-        public int? ParentGameID { get; private set; }
+        public string ParentGameID { get; private set; }
         public Game Parent { get { return parent.Value; } }
         public ReadOnlyCollection<Game> Children { get { return children.Value; } }
 
@@ -77,7 +77,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
 
             var created = gameElement.created as string;
             if (!string.IsNullOrEmpty(created))
-                game.CreationDate = DateTime.Parse(created);
+                game.CreationDate = DateTime.Parse(created, CultureInfo.InvariantCulture);
 
             //Parse Embeds
 
@@ -110,7 +110,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
             }
             else
             {
-                game.PlatformIDs = SpeedrunComClient.ParseCollection<int>(gameElement.platforms);
+                game.PlatformIDs = SpeedrunComClient.ParseCollection<string>(gameElement.platforms);
                 game.platforms = new Lazy<ReadOnlyCollection<Platform>>(
                     () => game.PlatformIDs.Select(x => client.Platforms.GetPlatform(x)).ToList().AsReadOnly());
             }
@@ -123,14 +123,14 @@ namespace LiveSplit.Web.Share.SpeedrunCom
             }
             else
             {
-                game.RegionIDs = SpeedrunComClient.ParseCollection<int>(gameElement.regions);
+                game.RegionIDs = SpeedrunComClient.ParseCollection<string>(gameElement.regions);
                 game.regions = new Lazy<ReadOnlyCollection<Region>>(
                     () => game.RegionIDs.Select(x => client.Regions.GetRegion(x)).ToList().AsReadOnly());
             }
 
             //Parse Links
 
-            game.runs = new Lazy<ReadOnlyCollection<Run>>(() => client.Runs.GetRuns(gameId: game.ID));
+            game.runs = new Lazy<ReadOnlyCollection<Run>>(() => client.Runs.GetRuns(gameId: game.ID).ToList().AsReadOnly());
 
             if (properties.ContainsKey("levels"))
             {
@@ -170,8 +170,8 @@ namespace LiveSplit.Web.Share.SpeedrunCom
             if (parentLink != null)
             {
                 var parentUri = parentLink.uri as string;
-                game.ParentGameID = Convert.ToInt32(parentUri.Substring(parentUri.LastIndexOf('/') + 1), CultureInfo.InvariantCulture);
-                game.parent = new Lazy<Game>(() => client.Games.GetGame(game.ParentGameID.Value));
+                game.ParentGameID = parentUri.Substring(parentUri.LastIndexOf('/') + 1);
+                game.parent = new Lazy<Game>(() => client.Games.GetGame(game.ParentGameID));
             }
             else
             {
@@ -181,6 +181,11 @@ namespace LiveSplit.Web.Share.SpeedrunCom
             game.children = new Lazy<ReadOnlyCollection<Game>>(() => client.Games.GetChildren(game.ID));
                  
             return game;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

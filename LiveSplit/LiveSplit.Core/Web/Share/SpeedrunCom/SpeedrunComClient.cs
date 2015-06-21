@@ -67,7 +67,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
             return elements.Select(parser).ToList().AsReadOnly();
         }
 
-        public static IEnumerable<dynamic> DoPaginatedRequest(Uri uri)
+        public static IEnumerable<T> DoPaginatedRequest<T>(Uri uri, Func<dynamic, T> parser)
         {
             do
             {
@@ -82,10 +82,16 @@ namespace LiveSplit.Web.Share.SpeedrunCom
 
                 foreach (var element in elements)
                 {
-                    yield return element;
+                    yield return parser(element);
                 }
 
-                var paginationLink = (result.pagination.links as IEnumerable<dynamic>).FirstOrDefault(x => x.rel == "next");
+                var links = result.pagination.links as IEnumerable<dynamic>;
+                if (links == null)
+                {
+                    yield break;
+                }
+
+                var paginationLink = links.FirstOrDefault(x => x.rel == "next");
                 if (paginationLink == null)
                 {
                     yield break;

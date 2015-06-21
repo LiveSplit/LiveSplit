@@ -54,14 +54,22 @@ namespace LiveSplit.Web.Share
             //TODO Remove
             try
             {
-
+                var test = default(CategoryEmbeds);
+                test.EmbedGame = true;
                 var speedrunCom = new SpeedrunComClient();
+                var tww = speedrunCom.Games.GetGames(name: "Wind Waker").First();
+                var tuner = tww.Variables.First();
+                /*var cryze = speedrunCom.Users.GetUsers(name: "CryZe").First();
+                var run = speedrunCom.Runs.GetRun("90y6pm7e", new RunEmbeds(true));
                 var games1992 = speedrunCom.Games.GetGames(name: "Zelda").ToList();
                 //var categories = games1992.First().Categories;
                 var games = speedrunCom.Games.GetGameHeaders().ToList();
                 var gameId = games.First(x => x.Name == "The Legend of Zelda: The Wind Waker").ID;
-                var game = speedrunCom.Games.GetGame(gameId, embedCategories: false);
+                var game = speedrunCom.Games.GetGame(gameId, embeds: new GameEmbeds(embedCategories: true));
                 var categories = speedrunCom.Games.GetCategories(gameId);
+                var levels = game.Levels;
+                var platforms = speedrunCom.Platforms.GetPlatforms().ToList();
+                var regions = speedrunCom.Regions.GetRegions().ToList();*/
             }
             catch (Exception ex)
             {

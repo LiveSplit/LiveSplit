@@ -13,5 +13,10 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         {
             this.baseClient = baseClient;
         }
+
+        public User GetProfile()
+        {
+            throw new NotAuthorizedException();
+        }
     }
 }

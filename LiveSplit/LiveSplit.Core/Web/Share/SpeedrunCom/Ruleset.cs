@@ -25,5 +25,20 @@ namespace LiveSplit.Web.Share.SpeedrunCom
 
             return ruleset;
         }
+
+        public override string ToString()
+        {
+            var list = new List<string>();
+            if (ShowMilliseconds)
+                list.Add("Show Milliseconds");
+            if (RequiresVerification)
+                list.Add("Requires Verification");
+            if (RequiresVideo)
+                list.Add("Requires Video");
+            if (!list.Any())
+                list.Add("No Rules");
+
+            return list.Aggregate((a, b) => a + ", " + b);
+        }
     }
 }

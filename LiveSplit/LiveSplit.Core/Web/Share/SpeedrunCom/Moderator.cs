@@ -8,7 +8,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
 {
     public class Moderator
     {
-        public int UserID { get; private set; }
+        public string UserID { get; private set; }
         public ModeratorType Type { get; private set; }
 
         private Moderator() { }
@@ -17,12 +17,17 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         {
             var moderator = new Moderator();
 
-            moderator.UserID = Convert.ToInt32(moderatorElement.Key, CultureInfo.InvariantCulture);
+            moderator.UserID = moderatorElement.Key;
             moderator.Type = moderatorElement.Value as string == "moderator" 
                 ? ModeratorType.Moderator 
                 : ModeratorType.SuperModerator;
 
             return moderator;
+        }
+
+        public override string ToString()
+        {
+            return UserID;
         }
     }
 }

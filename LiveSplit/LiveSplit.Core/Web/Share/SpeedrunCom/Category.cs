@@ -9,7 +9,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
 {
     public class Category
     {
-        public int ID { get; private set; }
+        public string ID { get; private set; }
         public string Name { get; private set; }
         public CategoryType Type { get; private set; }
         public string Rules { get; private set; }
@@ -22,7 +22,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
         private Lazy<ReadOnlyCollection<Variable>> variables;
         private Lazy<ReadOnlyCollection<Run>> runs;
 
-        public int GameID { get; private set; }
+        public string GameID { get; private set; }
         public Game Game { get { return game.Value; } }
         public ReadOnlyCollection<Variable> Variables { get { return variables.Value; } }
         public ReadOnlyCollection<Run> Runs { get { return runs.Value; } }
@@ -37,7 +37,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
 
             //Parse Attributes
 
-            category.ID = (int)categoryElement.id;
+            category.ID = categoryElement.id as string;
             category.Name = categoryElement.name as string;
             category.Type = categoryElement.type == "per-game" ? CategoryType.PerGame : CategoryType.PerLevel;
             category.Rules = categoryElement.rules as string;
@@ -50,7 +50,7 @@ namespace LiveSplit.Web.Share.SpeedrunCom
             var links = properties["links"] as IEnumerable<dynamic>;
 
             var gameUri = links.First(x => x.rel == "game").uri as string;
-            category.GameID = Convert.ToInt32(gameUri.Substring(gameUri.LastIndexOf('/') + 1), CultureInfo.InvariantCulture);
+            category.GameID = gameUri.Substring(gameUri.LastIndexOf('/') + 1);
 
             if (properties.ContainsKey("game"))
             {
@@ -74,9 +74,14 @@ namespace LiveSplit.Web.Share.SpeedrunCom
                 category.variables = new Lazy<ReadOnlyCollection<Variable>>(() => client.Categories.GetVariables(category.ID));
             }
 
-            category.runs = new Lazy<ReadOnlyCollection<Run>>(() => client.Runs.GetRuns(categoryId: category.ID));
+            category.runs = new Lazy<ReadOnlyCollection<Run>>(() => client.Runs.GetRuns(categoryId: category.ID).ToList().AsReadOnly());
 
             return category;
+        }
+
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

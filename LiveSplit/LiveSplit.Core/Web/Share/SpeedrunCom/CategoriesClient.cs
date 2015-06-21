@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Web;
 
 namespace LiveSplit.Web.Share.SpeedrunCom
 {
@@ -20,28 +21,17 @@ namespace LiveSplit.Web.Share.SpeedrunCom
             return SpeedrunComClient.GetAPIUri(string.Format("categories{0}", subUri));
         }
 
-        public Category GetCategory(int categoryId, bool embedGame = false, bool embedVariables = false)
+        public Category GetCategory(string categoryId, CategoryEmbeds embeds = default(CategoryEmbeds))
         {
-            var embedList = new List<string>();
-
-            if (embedGame)
-                embedList.Add("game");
-            if (embedVariables)
-                embedList.Add("variables");
-
-            var embeds = "";
-            if (embedList.Any())
-                embeds = "?embed=" + embedList.Aggregate((a, b) => a + "," + b);
-
-            var uri = GetCategoriesUri(string.Format("/{0}{1}", categoryId, embeds));
+            var uri = GetCategoriesUri(string.Format("/{0}{1}", HttpUtility.UrlPathEncode(categoryId), embeds.ToString().ToParameters()));
             var result = JSON.FromUri(uri);
 
             return Category.Parse(baseClient, result.data);
         }
 
-        public ReadOnlyCollection<Variable> GetVariables(int categoryId)
+        public ReadOnlyCollection<Variable> GetVariables(string categoryId)
         {
-            var uri = GetCategoriesUri(string.Format("/{0}/variables", categoryId));
+            var uri = GetCategoriesUri(string.Format("/{0}/variables", HttpUtility.UrlPathEncode(categoryId)));
             return SpeedrunComClient.DoDataCollectionRequest<Variable>(uri,
                 x => Variable.Parse(baseClient, x));
         }
