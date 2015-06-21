@@ -45,7 +45,6 @@ namespace LiveSplit.View
         public event EventHandler RunEdited;
         public event EventHandler ComparisonRenamed;
         public event EventHandler SegmentRemovedOrAdded;
-        public IList<ISegment> ChangedSegments { get; set; }
 
         private Control eCtl;
 
@@ -81,7 +80,6 @@ namespace LiveSplit.View
             AllowChangingSegments = false;
             SegmentTimeList = new List<TimeSpan?>();
             TimeFormatter = new ShortTimeFormatter();
-            ChangedSegments = new List<ISegment>();
             SegmentList = new BindingList<ISegment>(Run);
             SegmentList.AllowNew = true;
             SegmentList.AllowRemove = true;
@@ -574,9 +572,6 @@ namespace LiveSplit.View
             if (e.ColumnIndex == SEGMENTTIMEINDEX)
                 FixSplitsFromSegments();
             Fix();
-
-            if (!ChangedSegments.Contains(Run[e.RowIndex]))
-                ChangedSegments.Add(Run[e.RowIndex]);
         }
 
         void SegmentList_AddingNew(object sender, AddingNewEventArgs e)
