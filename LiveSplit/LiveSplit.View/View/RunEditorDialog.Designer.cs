@@ -212,7 +212,7 @@
             this.cbxGameName.Name = "cbxGameName";
             this.cbxGameName.Size = new System.Drawing.Size(427, 21);
             this.cbxGameName.TabIndex = 1;
-            this.cbxGameName.TextChanged += new System.EventHandler(this.tbxGameName_TextChanged);
+            this.cbxGameName.TextChanged += new System.EventHandler(this.cbxGameName_TextChanged);
             // 
             // cbxRunCategory
             // 
@@ -223,7 +223,7 @@
             this.cbxRunCategory.Name = "cbxRunCategory";
             this.cbxRunCategory.Size = new System.Drawing.Size(427, 21);
             this.cbxRunCategory.TabIndex = 2;
-            this.cbxRunCategory.TextChanged += new System.EventHandler(this.tbxRunCategory_TextChanged);
+            this.cbxRunCategory.TextChanged += new System.EventHandler(this.cbxRunCategory_TextChanged);
             // 
             // tbxTimeOffset
             // 
