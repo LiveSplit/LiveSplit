@@ -116,7 +116,6 @@ namespace LiveSplit.View
             runGrid.Columns.Add(column);
 
             column = new DataGridViewTextBoxColumn();
-            //column.DataPropertyName = "PersonalBestSplitTime";
             column.Name = "Split Time";
             column.Width = 100;
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -130,11 +129,9 @@ namespace LiveSplit.View
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            //column.ReadOnly = true;
             runGrid.Columns.Add(column);
 
             column = new DataGridViewTextBoxColumn();
-            //column.DataPropertyName = "BestSegmentTime";
             column.Name = "Best Segment";
             column.Width = 100;
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -180,7 +177,6 @@ namespace LiveSplit.View
                 });
 
             cbxGameName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cbxGameName.TextChanged += cbxGameName_TextChanged;
 
             cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
@@ -188,28 +184,32 @@ namespace LiveSplit.View
 
             RefreshCategoryAutoCompleteList();
             UpdateSegmentList();
-            cbxGameName_TextChanged(this, null);
+            RefreshAutoSplittingUI();
         }
 
         void cbxGameName_TextChanged(object sender, EventArgs e)
         {
-            DeactivateAutoSplitter();
-            var splitter = AutoSplitterFactory.Instance.Create(cbxGameName.Text);
-            Run.AutoSplitter = splitter;
-            if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
+            if (IsInitialized)
             {
-                splitter.Activate(CurrentState);
-                if (Run.AutoSplitterSettings != null
-                && splitter.IsActivated
-                && Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
-                    Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
+                DeactivateAutoSplitter();
+                var splitter = AutoSplitterFactory.Instance.Create(cbxGameName.Text);
+                Run.AutoSplitter = splitter;
+                if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
+                {
+                    splitter.Activate(CurrentState);
+                    if (Run.AutoSplitterSettings != null
+                    && splitter.IsActivated
+                    && Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
+                        Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
+                }
+                RefreshAutoSplittingUI();
             }
-            RefreshAutoSplittingUI();
+            RaiseRunEdited();
         }
 
         private void DeactivateAutoSplitter()
         {
-            if (Run.AutoSplitter != null)
+            if (Run.IsAutoSplitterActive())
                 Run.AutoSplitter.Deactivate();
         }
 
@@ -875,12 +875,7 @@ namespace LiveSplit.View
             }
         }
 
-        private void tbxGameName_TextChanged(object sender, EventArgs e)
-        {
-            RaiseRunEdited();
-        }
-
-        private void tbxRunCategory_TextChanged(object sender, EventArgs e)
+        private void cbxRunCategory_TextChanged(object sender, EventArgs e)
         {
             RaiseRunEdited();
         }
