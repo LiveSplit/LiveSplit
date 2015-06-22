@@ -49,8 +49,31 @@ namespace LiveSplit.View
         private Control eCtl;
 
         public Image GameIcon { get { return Run.GameIcon ?? Properties.Resources.DefaultGameIcon; } set { Run.GameIcon = value; } }
-        public string GameName { get { return Run.GameName; } set { Run.GameName = value; RefreshCategoryAutoCompleteList(); } }
-        public string CategoryName { get { return Run.CategoryName; } set { Run.CategoryName = value; } }
+        public string GameName
+        {
+            get { return Run.GameName; }
+            set
+            {
+                if (Run.GameName != value)
+                {
+                    Run.GameName = value;
+                    RefreshCategoryAutoCompleteList(); 
+                    RaiseRunEdited();
+                }
+            }
+        }
+        public string CategoryName
+        {
+            get { return Run.CategoryName; }
+            set
+            {
+                if (Run.CategoryName != value)
+                {
+                    Run.CategoryName = value;
+                    RaiseRunEdited();
+                }
+            }
+        }
         public string Offset
         {
             get
@@ -62,14 +85,18 @@ namespace LiveSplit.View
                 if (Regex.IsMatch(value, "[^0-9:.,-]"))
                     return;
 
-                try { Run.Offset = TimeSpanParser.Parse(value); }
+                try { Run.Offset = TimeSpanParser.Parse(value); Run.HasChanged = true; }
                 catch (Exception ex)
                 {
                     Log.Error(ex);
                 }
             }
         }
-        public int AttemptCount { get { return Run.AttemptCount; } set { Run.AttemptCount = Math.Max(0, value); } }
+        public int AttemptCount
+        {
+            get { return Run.AttemptCount; }
+            set { Run.AttemptCount = Math.Max(0, value); RaiseRunEdited(); }
+        }
 
         public RunEditorDialog(LiveSplitState state)
         {
@@ -204,7 +231,6 @@ namespace LiveSplit.View
                 }
                 RefreshAutoSplittingUI();
             }
-            RaiseRunEdited();
         }
 
         private void DeactivateAutoSplitter()
@@ -873,22 +899,6 @@ namespace LiveSplit.View
                 time2[method] = minBestSegment;
                 Run[curIndex].BestSegmentTime = time2;
             }
-        }
-
-        private void cbxRunCategory_TextChanged(object sender, EventArgs e)
-        {
-            RaiseRunEdited();
-        }
-
-        private void tbxTimeOffset_TextChanged(object sender, EventArgs e)
-        {
-            if (IsInitialized)
-                Run.HasChanged = true;
-        }
-
-        private void tbxAttempts_TextChanged(object sender, EventArgs e)
-        {
-            RaiseRunEdited();
         }
 
         private void RaiseRunEdited()

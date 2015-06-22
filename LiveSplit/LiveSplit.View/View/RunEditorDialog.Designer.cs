@@ -223,7 +223,6 @@
             this.cbxRunCategory.Name = "cbxRunCategory";
             this.cbxRunCategory.Size = new System.Drawing.Size(427, 21);
             this.cbxRunCategory.TabIndex = 2;
-            this.cbxRunCategory.TextChanged += new System.EventHandler(this.cbxRunCategory_TextChanged);
             // 
             // tbxTimeOffset
             // 
@@ -234,7 +233,6 @@
             this.tbxTimeOffset.Name = "tbxTimeOffset";
             this.tbxTimeOffset.Size = new System.Drawing.Size(177, 20);
             this.tbxTimeOffset.TabIndex = 3;
-            this.tbxTimeOffset.TextChanged += new System.EventHandler(this.tbxTimeOffset_TextChanged);
             // 
             // picGameIcon
             // 
@@ -297,7 +295,6 @@
             this.tbxAttempts.Name = "tbxAttempts";
             this.tbxAttempts.Size = new System.Drawing.Size(177, 20);
             this.tbxAttempts.TabIndex = 4;
-            this.tbxAttempts.TextChanged += new System.EventHandler(this.tbxAttempts_TextChanged);
             // 
             // label4
             // 
