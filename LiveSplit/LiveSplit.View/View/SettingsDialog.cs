@@ -45,13 +45,13 @@ namespace LiveSplit.View
             txtSwitchPrevious.DataBindings.Add("Text", this, "SwitchComparisonPrevious");
             txtSwitchNext.DataBindings.Add("Text", this, "SwitchComparisonNext");
             chkGlobalHotkeys.DataBindings.Add("Checked", this, "GlobalHotkeysEnabled");
-            chkDeactivateForOtherPrograms.DataBindings.Add("Checked", this, "DeactivateHotkeysForOtherPrograms");
             chkWarnOnReset.DataBindings.Add("Checked", this, "WarnOnReset");
             chkDoubleTap.DataBindings.Add("Checked", this, "DoubleTapPrevention");
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
 
             SetClickEvents();
+            chkGlobalHotkeys_CheckedChanged(this, null);
         }
 
         void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
@@ -69,7 +69,17 @@ namespace LiveSplit.View
 
         void chkGlobalHotkeys_CheckedChanged(object sender, EventArgs e)
         {
-            chkDeactivateForOtherPrograms.Enabled = chkGlobalHotkeys.Checked;
+            if (chkGlobalHotkeys.Checked)
+            {
+                chkDeactivateForOtherPrograms.Enabled = true;
+                chkDeactivateForOtherPrograms.DataBindings.Add("Checked", this, "DeactivateHotkeysForOtherPrograms");
+            }
+            else
+            {
+                chkDeactivateForOtherPrograms.Enabled = false;
+                chkDeactivateForOtherPrograms.DataBindings.Clear();
+                chkDeactivateForOtherPrograms.Checked = false;
+            }
         }
 
         private string FormatKey(KeyOrButton key)
