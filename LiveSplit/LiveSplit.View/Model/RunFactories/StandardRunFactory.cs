@@ -8,8 +8,10 @@ namespace LiveSplit.Model.RunFactories
         {
             var run = new Run(factory)
             {
-                new Segment("")
+                GameName = "",
+                CategoryName = ""
             };
+            run.AddSegment("");
             return run;
         }
     }

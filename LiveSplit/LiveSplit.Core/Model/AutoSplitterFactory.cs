@@ -74,15 +74,16 @@ namespace LiveSplit.Model
                 //autoSplitters.Load("https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit.AutoSplitters.DevBuild.xml");
                 autoSplitters.Load("https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit.AutoSplitters.xml");
                 autoSplitters.Save("LiveSplit.AutoSplitters.xml");
-                return autoSplitters;
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
                 if (File.Exists("LiveSplit.AutoSplitters.xml"))
                     autoSplitters.Load("LiveSplit.AutoSplitters.xml");
-                return null;
+                else
+                    return null;
             }
+            return autoSplitters;
         }
     }
 }

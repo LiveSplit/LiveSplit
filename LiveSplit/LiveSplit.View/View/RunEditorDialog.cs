@@ -45,13 +45,35 @@ namespace LiveSplit.View
         public event EventHandler RunEdited;
         public event EventHandler ComparisonRenamed;
         public event EventHandler SegmentRemovedOrAdded;
-        public IList<ISegment> ChangedSegments { get; set; }
 
         private Control eCtl;
 
         public Image GameIcon { get { return Run.GameIcon ?? Properties.Resources.DefaultGameIcon; } set { Run.GameIcon = value; } }
-        public string GameName { get { return Run.GameName; } set { Run.GameName = value; RefreshCategoryAutoCompleteList(); } }
-        public string CategoryName { get { return Run.CategoryName; } set { Run.CategoryName = value; } }
+        public string GameName
+        {
+            get { return Run.GameName; }
+            set
+            {
+                if (Run.GameName != value)
+                {
+                    Run.GameName = value;
+                    RefreshCategoryAutoCompleteList(); 
+                    RaiseRunEdited();
+                }
+            }
+        }
+        public string CategoryName
+        {
+            get { return Run.CategoryName; }
+            set
+            {
+                if (Run.CategoryName != value)
+                {
+                    Run.CategoryName = value;
+                    RaiseRunEdited();
+                }
+            }
+        }
         public string Offset
         {
             get
@@ -63,14 +85,18 @@ namespace LiveSplit.View
                 if (Regex.IsMatch(value, "[^0-9:.,-]"))
                     return;
 
-                try { Run.Offset = TimeSpanParser.Parse(value); }
+                try { Run.Offset = TimeSpanParser.Parse(value); Run.HasChanged = true; }
                 catch (Exception ex)
                 {
                     Log.Error(ex);
                 }
             }
         }
-        public int AttemptCount { get { return Run.AttemptCount; } set { Run.AttemptCount = Math.Max(0, value); } }
+        public int AttemptCount
+        {
+            get { return Run.AttemptCount; }
+            set { Run.AttemptCount = Math.Max(0, value); RaiseRunEdited(); }
+        }
 
         public RunEditorDialog(LiveSplitState state)
         {
@@ -81,7 +107,6 @@ namespace LiveSplit.View
             AllowChangingSegments = false;
             SegmentTimeList = new List<TimeSpan?>();
             TimeFormatter = new ShortTimeFormatter();
-            ChangedSegments = new List<ISegment>();
             SegmentList = new BindingList<ISegment>(Run);
             SegmentList.AllowNew = true;
             SegmentList.AllowRemove = true;
@@ -118,7 +143,6 @@ namespace LiveSplit.View
             runGrid.Columns.Add(column);
 
             column = new DataGridViewTextBoxColumn();
-            //column.DataPropertyName = "PersonalBestSplitTime";
             column.Name = "Split Time";
             column.Width = 100;
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -132,11 +156,9 @@ namespace LiveSplit.View
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             column.SortMode = DataGridViewColumnSortMode.NotSortable;
-            //column.ReadOnly = true;
             runGrid.Columns.Add(column);
 
             column = new DataGridViewTextBoxColumn();
-            //column.DataPropertyName = "BestSegmentTime";
             column.Name = "Best Segment";
             column.Width = 100;
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -182,7 +204,6 @@ namespace LiveSplit.View
                 });
 
             cbxGameName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            cbxGameName.TextChanged += cbxGameName_TextChanged;
 
             cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
@@ -190,28 +211,31 @@ namespace LiveSplit.View
 
             RefreshCategoryAutoCompleteList();
             UpdateSegmentList();
-            cbxGameName_TextChanged(this, null);
+            RefreshAutoSplittingUI();
         }
 
         void cbxGameName_TextChanged(object sender, EventArgs e)
         {
-            DeactivateAutoSplitter();
-            var splitter = AutoSplitterFactory.Instance.Create(cbxGameName.Text);
-            Run.AutoSplitter = splitter;
-            if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
+            if (IsInitialized)
             {
-                splitter.Activate(CurrentState);
-                if (Run.AutoSplitterSettings != null
-                && splitter.IsActivated
-                && Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
-                    Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
+                DeactivateAutoSplitter();
+                var splitter = AutoSplitterFactory.Instance.Create(cbxGameName.Text);
+                Run.AutoSplitter = splitter;
+                if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
+                {
+                    splitter.Activate(CurrentState);
+                    if (Run.AutoSplitterSettings != null
+                    && splitter.IsActivated
+                    && Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
+                        Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
+                }
+                RefreshAutoSplittingUI();
             }
-            RefreshAutoSplittingUI();
         }
 
         private void DeactivateAutoSplitter()
         {
-            if (Run.AutoSplitter != null)
+            if (Run.IsAutoSplitterActive())
                 Run.AutoSplitter.Deactivate();
         }
 
@@ -578,9 +602,6 @@ namespace LiveSplit.View
             if (e.ColumnIndex == SEGMENTTIMEINDEX)
                 FixSplitsFromSegments();
             Fix();
-
-            if (!ChangedSegments.Contains(Run[e.RowIndex]))
-                ChangedSegments.Add(Run[e.RowIndex]);
         }
 
         void SegmentList_AddingNew(object sender, AddingNewEventArgs e)
@@ -882,27 +903,6 @@ namespace LiveSplit.View
                 time2[method] = minBestSegment;
                 Run[curIndex].BestSegmentTime = time2;
             }
-        }
-
-        private void tbxGameName_TextChanged(object sender, EventArgs e)
-        {
-            RaiseRunEdited();
-        }
-
-        private void tbxRunCategory_TextChanged(object sender, EventArgs e)
-        {
-            RaiseRunEdited();
-        }
-
-        private void tbxTimeOffset_TextChanged(object sender, EventArgs e)
-        {
-            if (IsInitialized)
-                Run.HasChanged = true;
-        }
-
-        private void tbxAttempts_TextChanged(object sender, EventArgs e)
-        {
-            RaiseRunEdited();
         }
 
         private void RaiseRunEdited()

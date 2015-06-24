@@ -25,7 +25,6 @@ namespace LiveSplit.View
         public float HotkeyDelay { get { return Settings.HotkeyDelay; } set { Settings.HotkeyDelay = Math.Max(value, 0); } }
         public bool WarnOnReset { get { return Settings.WarnOnReset; } set { Settings.WarnOnReset = value; } }
         public bool DoubleTapPrevention { get { return Settings.DoubleTapPrevention; } set { Settings.DoubleTapPrevention = value; } }
-        //public float RefreshRate { get { return 60f-Settings.RefreshRate; } set { Settings.RefreshRate = 60f-value; } }
 
         public event EventHandler SumOfBestModeChanged;
 
@@ -46,19 +45,13 @@ namespace LiveSplit.View
             txtSwitchPrevious.DataBindings.Add("Text", this, "SwitchComparisonPrevious");
             txtSwitchNext.DataBindings.Add("Text", this, "SwitchComparisonNext");
             chkGlobalHotkeys.DataBindings.Add("Checked", this, "GlobalHotkeysEnabled");
-            chkDeactivateForOtherPrograms.DataBindings.Add("Checked", this, "DeactivateHotkeysForOtherPrograms");
             chkWarnOnReset.DataBindings.Add("Checked", this, "WarnOnReset");
             chkDoubleTap.DataBindings.Add("Checked", this, "DoubleTapPrevention");
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
-            chkSimpleSOB.CheckedChanged += chkSimpleSOB_CheckedChanged;
-            /*trkRefreshRate.DataBindings.Add("Value", this, "RefreshRate", false, DataSourceUpdateMode.OnPropertyChanged);
-            trkRefreshRate.ValueChanged += trkRefreshRate_ValueChanged;
-            lblDisplayInterval.Text = ((int)(1000f / (60f - trkRefreshRate.Value) + 0.5f)).ToString() + " ms";*/
-            SetClickEvents();
 
-            chkGlobalHotkeys.CheckedChanged += chkGlobalHotkeys_CheckedChanged;
-            this.Load += SettingsDialog_Load;
+            SetClickEvents();
+            chkGlobalHotkeys_CheckedChanged(this, null);
         }
 
         void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
@@ -76,13 +69,18 @@ namespace LiveSplit.View
 
         void chkGlobalHotkeys_CheckedChanged(object sender, EventArgs e)
         {
-            chkDeactivateForOtherPrograms.Enabled = chkGlobalHotkeys.Checked;
+            if (chkGlobalHotkeys.Checked)
+            {
+                chkDeactivateForOtherPrograms.Enabled = true;
+                chkDeactivateForOtherPrograms.DataBindings.Add("Checked", this, "DeactivateHotkeysForOtherPrograms");
+            }
+            else
+            {
+                chkDeactivateForOtherPrograms.Enabled = false;
+                chkDeactivateForOtherPrograms.DataBindings.Clear();
+                chkDeactivateForOtherPrograms.Checked = false;
+            }
         }
-
-        /*void trkRefreshRate_ValueChanged(object sender, EventArgs e)
-        {
-            lblDisplayInterval.Text = ((int)(1000f/(60f-trkRefreshRate.Value)+0.5f)).ToString() + " ms";
-        }*/
 
         private string FormatKey(KeyOrButton key)
         {
