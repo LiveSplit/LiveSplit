@@ -716,17 +716,14 @@ namespace LiveSplit.View
             openSplitsMenuItem.DropDownItems.Clear();
             
             foreach (var game in Settings.RecentSplits
+                .Reverse()
                 .Where(x => !string.IsNullOrEmpty(x.Path))
-                .GroupBy(x => x.GameName ?? "")
-                .OrderBy(x => string.IsNullOrEmpty(x.Key) ? 1 : 0)
-                .ThenBy(x => x.Key))
+                .GroupBy(x => x.GameName ?? ""))
             {
                 var gameMenuItem = new ToolStripMenuItem();
 
                 foreach (var category in game
-                    .GroupBy(x => x.CategoryName ?? "")
-                    .OrderBy(x => string.IsNullOrEmpty(x.Key) ? 1 : 0)
-                    .ThenBy(x => x.Key))
+                    .GroupBy(x => x.CategoryName ?? ""))
                 {
                     var categoryMenuItem = new ToolStripMenuItem();
                     categoryMenuItem.Tag = "Category";
