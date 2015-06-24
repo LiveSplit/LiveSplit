@@ -158,7 +158,7 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        var gameNames = OldSpeedrunCom.Instance.GetGameNames().ToArray();
+                        var gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
                         Action invokation = () =>
                         {
                             try
@@ -224,7 +224,11 @@ namespace LiveSplit.View
                     string[] categoryNames;
                     try
                     {
-                        categoryNames = OldSpeedrunCom.Instance.GetCategories(Run.GameName).ToArray();
+                        var game = SpeedrunCom.Client.Games.GetGames(name: Run.GameName).FirstOrDefault();
+                        if (game != null)
+                            categoryNames = game.FullGameCategories.Select(x => x.Name).ToArray();
+                        else
+                            categoryNames = new[] { "Any%", "Low%", "100%" };
                     }
                     catch (Exception ex)
                     {
@@ -947,7 +951,7 @@ namespace LiveSplit.View
 
         private void downloadBoxartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            /*try
             {
                 var gameId = OldSpeedrunCom.Instance.GetGameID(cbxGameName.Text);
 
@@ -959,7 +963,7 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-            }
+            }*/
 
             try
             {

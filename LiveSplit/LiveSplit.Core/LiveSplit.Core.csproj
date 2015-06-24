@@ -180,56 +180,9 @@
     <Compile Include="Web\Share\Imgur.cs" />
     <Compile Include="Web\Share\IRunUploadPlatform.cs" />
     <Compile Include="Web\Share\Screenshot.cs" />
-    <Compile Include="Web\Share\SpeedrunCom.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\CategoriesClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Category.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Country.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\CountryRegion.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Location.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\RunEmbeds.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\CategoryEmbeds.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\CategoryType.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Embeds.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Game.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\GameEmbeds.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\GameHeader.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\GamesClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Guest.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\GuestsClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Level.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\LevelEmbeds.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\LevelsClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Moderator.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\ModeratorType.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\NotAuthorizedException.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Platform.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\PlatformsClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Players.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\PlayersType.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\ParameterHelpers.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Player.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\ProfileClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\RecordsClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\RegionsClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Ruleset.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Run.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\RunsClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\RunStatus.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\RunStatusType.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Region.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\RunTimes.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\SpeedrunComClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\RunSystem.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\User.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\UserNameStyle.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\UserRole.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\UsersClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\Variable.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\VariableChoice.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\VariablesClient.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\VariableScope.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\VariableScopeType.cs" />
-    <Compile Include="Web\Share\SpeedrunCom\VariableValue.cs" />
+    <Compile Include="Web\Share\SpeedrunCom.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Web\Share\Twitch.cs" />
     <Compile Include="Web\Share\TwitchEmoteResolver.cs" />
     <Compile Include="Web\Share\TwitchGameResolveDialog.cs">
@@ -365,6 +318,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj">
+      <Project>{924aaffe-5b89-49e2-99ad-ec9373cc838d}</Project>
+      <Name>SpeedrunComSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Libs\xlio\Source\Codaxy.Xlio\Codaxy.Xlio.csproj">
       <Project>{11f82973-690a-48a9-8cb8-bd97e0024e2c}</Project>
       <Name>Codaxy.Xlio</Name>

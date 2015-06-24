@@ -273,6 +273,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj">
+      <Project>{924aaffe-5b89-49e2-99ad-ec9373cc838d}</Project>
+      <Name>SpeedrunComSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj">
       <Project>{6de847db-20a3-4848-aeee-1b4364aecdfb}</Project>
       <Name>LiveSplit.Core</Name>
