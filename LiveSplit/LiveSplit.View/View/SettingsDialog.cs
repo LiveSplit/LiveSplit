@@ -51,7 +51,6 @@ namespace LiveSplit.View
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
 
             SetClickEvents();
-            chkGlobalHotkeys_CheckedChanged(this, null);
         }
 
         void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
@@ -72,6 +71,7 @@ namespace LiveSplit.View
             if (chkGlobalHotkeys.Checked)
             {
                 chkDeactivateForOtherPrograms.Enabled = true;
+                chkDeactivateForOtherPrograms.DataBindings.Clear();
                 chkDeactivateForOtherPrograms.DataBindings.Add("Checked", this, "DeactivateHotkeysForOtherPrograms");
             }
             else
