@@ -112,8 +112,8 @@
             this.ClientSize = new System.Drawing.Size(373, 232);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(520, 10000);
-            this.MinimumSize = new System.Drawing.Size(310, 230);
+            this.MaximumSize = new System.Drawing.Size(600, 10000);
+            this.MinimumSize = new System.Drawing.Size(300, 258);
             this.Name = "EditHistoryDialog";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Text = "Edit History";
