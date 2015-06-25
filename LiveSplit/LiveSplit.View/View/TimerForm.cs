@@ -811,9 +811,9 @@ namespace LiveSplit.View
             openFromSpeedrunComMenuItem.Click += openFromSpeedrunComMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromSpeedrunComMenuItem);
             openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
-            var clearSplitHistoryMenuItem = new ToolStripMenuItem("Clear History");
-            clearSplitHistoryMenuItem.Click += clearSplitHistoryMenuItem_Click;
-            openSplitsMenuItem.DropDownItems.Add(clearSplitHistoryMenuItem);
+            var editSplitHistoryMenuItem = new ToolStripMenuItem("Edit History");
+            editSplitHistoryMenuItem.Click += editSplitHistoryMenuItem_Click;
+            openSplitsMenuItem.DropDownItems.Add(editSplitHistoryMenuItem);
         }
 
         void openFromSpeedrunComMenuItem_Click(object sender, EventArgs e)
@@ -843,9 +843,11 @@ namespace LiveSplit.View
             }
         }
 
-        void clearSplitHistoryMenuItem_Click(object sender, EventArgs e)
+        void editSplitHistoryMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.RecentSplits.Clear();
+            var editHistoryDialog = new EditHistoryDialog(Settings.RecentSplits.Select(x => x.Path));
+            if (editHistoryDialog.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
+                Settings.RecentSplits = new List<RecentSplitsFile>(Settings.RecentSplits.Where(x => editHistoryDialog.History.Contains(x.Path)));
             UpdateRecentSplits();
         }
 
@@ -871,14 +873,16 @@ namespace LiveSplit.View
             defaultLayoutMenuItem.Click += (x, y) => { LoadDefaultLayout(); };
             openLayoutMenuItem.DropDownItems.Add(defaultLayoutMenuItem);
             openLayoutMenuItem.DropDownItems.Add(new ToolStripSeparator());
-            var clearLayoutHistoryMenuItem = new ToolStripMenuItem("Clear History");
-            clearLayoutHistoryMenuItem.Click += clearLayoutHistoryMenuItem_Click;
-            openLayoutMenuItem.DropDownItems.Add(clearLayoutHistoryMenuItem);
+            var editLayoutHistoryMenuItem = new ToolStripMenuItem("Edit History");
+            editLayoutHistoryMenuItem.Click += editLayoutHistoryMenuItem_Click;
+            openLayoutMenuItem.DropDownItems.Add(editLayoutHistoryMenuItem);
         }
 
-        void clearLayoutHistoryMenuItem_Click(object sender, EventArgs e)
+        void editLayoutHistoryMenuItem_Click(object sender, EventArgs e)
         {
-            Settings.RecentLayouts.Clear();
+            var editHistoryDialog = new EditHistoryDialog(Settings.RecentLayouts);
+            if (editHistoryDialog.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
+                Settings.RecentLayouts = editHistoryDialog.History;
             UpdateRecentLayouts();
         }
 
