@@ -30,16 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.chkWarnOnReset = new System.Windows.Forms.CheckBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.btnOBSInstall = new System.Windows.Forms.Button();
-            this.chkDoubleTap = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.chkDeactivateForOtherPrograms = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chkGlobalHotkeys = new System.Windows.Forms.CheckBox();
+            this.chkDoubleTap = new System.Windows.Forms.CheckBox();
             this.txtStartSplit = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -60,9 +59,10 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbxRaceViewer = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.chkSimpleSOB = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.btnChooseComparisons = new System.Windows.Forms.Button();
+            this.chkSimpleSOB = new System.Windows.Forms.CheckBox();
+            this.chkWarnOnReset = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -99,19 +99,6 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 460);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
-            // chkWarnOnReset
-            // 
-            this.chkWarnOnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkWarnOnReset.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.chkWarnOnReset, 3);
-            this.chkWarnOnReset.Location = new System.Drawing.Point(191, 321);
-            this.chkWarnOnReset.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkWarnOnReset.Name = "chkWarnOnReset";
-            this.chkWarnOnReset.Size = new System.Drawing.Size(186, 17);
-            this.chkWarnOnReset.TabIndex = 0;
-            this.chkWarnOnReset.Text = "Update Times Warning On Reset";
-            this.chkWarnOnReset.UseVisualStyleBackColor = true;
-            // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -145,18 +132,6 @@
             this.btnOBSInstall.Text = "Install...";
             this.btnOBSInstall.UseVisualStyleBackColor = true;
             this.btnOBSInstall.Click += new System.EventHandler(this.btnOBSInstall_Click);
-            // 
-            // chkDoubleTap
-            // 
-            this.chkDoubleTap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkDoubleTap.AutoSize = true;
-            this.chkDoubleTap.Location = new System.Drawing.Point(7, 267);
-            this.chkDoubleTap.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkDoubleTap.Name = "chkDoubleTap";
-            this.chkDoubleTap.Size = new System.Drawing.Size(168, 17);
-            this.chkDoubleTap.TabIndex = 1;
-            this.chkDoubleTap.Text = "Double Tap Prevention";
-            this.chkDoubleTap.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
@@ -252,6 +227,18 @@
             this.chkGlobalHotkeys.Text = "Global Hotkeys";
             this.chkGlobalHotkeys.UseVisualStyleBackColor = true;
             this.chkGlobalHotkeys.CheckedChanged += new System.EventHandler(this.chkGlobalHotkeys_CheckedChanged);
+            // 
+            // chkDoubleTap
+            // 
+            this.chkDoubleTap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkDoubleTap.AutoSize = true;
+            this.chkDoubleTap.Location = new System.Drawing.Point(7, 267);
+            this.chkDoubleTap.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkDoubleTap.Name = "chkDoubleTap";
+            this.chkDoubleTap.Size = new System.Drawing.Size(168, 17);
+            this.chkDoubleTap.TabIndex = 1;
+            this.chkDoubleTap.Text = "Double Tap Prevention";
+            this.chkDoubleTap.UseVisualStyleBackColor = true;
             // 
             // txtStartSplit
             // 
@@ -470,19 +457,6 @@
             this.label11.TabIndex = 15;
             this.label11.Text = "Race Viewer:";
             // 
-            // chkSimpleSOB
-            // 
-            this.chkSimpleSOB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkSimpleSOB.AutoSize = true;
-            this.chkSimpleSOB.Location = new System.Drawing.Point(7, 321);
-            this.chkSimpleSOB.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkSimpleSOB.Name = "chkSimpleSOB";
-            this.chkSimpleSOB.Size = new System.Drawing.Size(174, 17);
-            this.chkSimpleSOB.TabIndex = 16;
-            this.chkSimpleSOB.Text = "Simple Sum of Best Calculation";
-            this.chkSimpleSOB.UseVisualStyleBackColor = true;
-            this.chkSimpleSOB.CheckedChanged += new System.EventHandler(this.chkSimpleSOB_CheckedChanged);
-            // 
             // label12
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -504,6 +478,32 @@
             this.btnChooseComparisons.Text = "Choose...";
             this.btnChooseComparisons.UseVisualStyleBackColor = true;
             this.btnChooseComparisons.Click += new System.EventHandler(this.btnChooseComparisons_Click);
+            // 
+            // chkSimpleSOB
+            // 
+            this.chkSimpleSOB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkSimpleSOB.AutoSize = true;
+            this.chkSimpleSOB.Location = new System.Drawing.Point(7, 321);
+            this.chkSimpleSOB.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkSimpleSOB.Name = "chkSimpleSOB";
+            this.chkSimpleSOB.Size = new System.Drawing.Size(174, 17);
+            this.chkSimpleSOB.TabIndex = 16;
+            this.chkSimpleSOB.Text = "Simple Sum of Best Calculation";
+            this.chkSimpleSOB.UseVisualStyleBackColor = true;
+            this.chkSimpleSOB.CheckedChanged += new System.EventHandler(this.chkSimpleSOB_CheckedChanged);
+            // 
+            // chkWarnOnReset
+            // 
+            this.chkWarnOnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkWarnOnReset.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.chkWarnOnReset, 3);
+            this.chkWarnOnReset.Location = new System.Drawing.Point(191, 321);
+            this.chkWarnOnReset.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkWarnOnReset.Name = "chkWarnOnReset";
+            this.chkWarnOnReset.Size = new System.Drawing.Size(186, 17);
+            this.chkWarnOnReset.TabIndex = 0;
+            this.chkWarnOnReset.Text = "Warn On Reset If Better Times";
+            this.chkWarnOnReset.UseVisualStyleBackColor = true;
             // 
             // SettingsDialog
             // 
