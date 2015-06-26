@@ -118,7 +118,10 @@ namespace LiveSplit.Model
 
         public void AddSegment(string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<IIndexedTime> segmentHistory = null)
         {
-            Add(new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime) { SegmentHistory = segmentHistory });
+            var segment = new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime);
+            if (segmentHistory != null)
+                 segment.SegmentHistory = segmentHistory;
+            Add(segment);
         }
 
         public void Clear()
@@ -175,7 +178,8 @@ namespace LiveSplit.Model
                 FilePath = FilePath,
                 CustomComparisons = new List<string>(CustomComparisons),
                 ComparisonGenerators = new List<IComparisonGenerator>(ComparisonGenerators),
-                AutoSplitter = AutoSplitter
+                AutoSplitter = AutoSplitter != null ? (AutoSplitter)AutoSplitter.Clone() : null,
+                AutoSplitterSettings = AutoSplitterSettings
             };
         }
 
@@ -189,6 +193,7 @@ namespace LiveSplit.Model
         {
             FixSegmentHistory(method);
             FixComparisonTimes(method);
+            RemoveDuplicates(method);
             RemoveNullValues(method);
         }
 
@@ -230,14 +235,10 @@ namespace LiveSplit.Model
                             curSplit.Comparisons[comparison] = newComparison;
                         }
                         var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
-                        if (comparison == PersonalBestComparisonName)
+                        if (comparison == PersonalBestComparisonName && (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment))
                         {
                             var newTime = new Time(curSplit.BestSegmentTime);
-                            //Fix best segments
-                            if (curSplit.BestSegmentTime[method] == null)
-                                newTime[method] = currentSegment;
-                            if (curSplit.BestSegmentTime[method] > currentSegment)
-                                newTime[method] = currentSegment;
+                            newTime[method] = currentSegment;
                             curSplit.BestSegmentTime = newTime;
                         }
                         previousTime = curSplit.Comparisons[comparison][method].Value;
@@ -268,6 +269,25 @@ namespace LiveSplit.Model
             }
         }
 
+        protected void RemoveDuplicates(TimingMethod method)
+        {
+            for (var index = 0; index < Count; index++)
+            {
+                var history = this[index].SegmentHistory.Select(x => x.Time[method]).Where(x => x != null);
+                for (var runIndex = GetMinSegmentHistoryIndex(); runIndex <= 0; runIndex++)
+                {
+                    var element = this[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
+                    if (element != null && history.Where(x => x.Equals(element.Time[method])).Count() > 1)
+                    {
+                        var newTime = new Time(element.Time);
+                        newTime[method] = null;
+                        element.Time = newTime;
+                    }
+                }
+            }
+
+        }
+
         protected void RemoveItemsFromCache(int index, IList<IIndexedTime> cache)
         {
             var ind = index - cache.Count;
@@ -290,7 +310,7 @@ namespace LiveSplit.Model
                         minIndex = history.Index;
                 }
             }
-            return minIndex-1;
+            return minIndex - 1;
         }
 
         public void ImportSegmentHistory()

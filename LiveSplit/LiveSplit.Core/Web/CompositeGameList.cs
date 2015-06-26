@@ -1,6 +1,5 @@
 ﻿using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -22,12 +21,12 @@ namespace LiveSplit.Web
         {
             if (gameNames == null)
             {
-                var pbTrackerTask = new Task<IEnumerable<string>>(
+                var speedrunComTask = new Task<IEnumerable<string>>(
                     () =>
                     {
                         try
                         {
-                            return PBTracker.Instance.GetGameNames();
+                            return SpeedrunCom.Instance.GetGameNames();
                         }
                         catch
                         {
@@ -35,41 +34,11 @@ namespace LiveSplit.Web
                         }
                     });
 
-                var srlTask = new Task<IEnumerable<string>>(
-                    () =>
-                    { 
-                        try
-                        {
-                            return SpeedRunsLiveAPI.Instance.GetGameNames();
-                        }
-                        catch
-                        {
-                            return new string[0];
-                        }
-                    });
+                speedrunComTask.Start();
 
-                var congratsioTask = new Task<IEnumerable<string>>(
-                    () =>
-                    {
-                        try
-                        {
-                            return Congratsio.Instance.GetGameNames();
-                        }
-                        catch
-                        {
-                            return new string[0];
-                        }
-                    });
+                Task.WaitAll(speedrunComTask);
 
-                pbTrackerTask.Start();
-                srlTask.Start();
-                congratsioTask.Start();
-
-                Task.WaitAll(pbTrackerTask, srlTask, congratsioTask);
-
-                gameNames = pbTrackerTask.Result
-                    .Concat(srlTask.Result)
-                    .Concat(congratsioTask.Result)
+                gameNames = speedrunComTask.Result
                     .Distinct().OrderBy(x => x)
                     .Where(x => !string.IsNullOrEmpty(x))
                     .ToList();

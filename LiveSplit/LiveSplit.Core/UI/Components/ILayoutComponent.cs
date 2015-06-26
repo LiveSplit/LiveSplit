@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace LiveSplit.UI.Components
+﻿namespace LiveSplit.UI.Components
 {
     public interface ILayoutComponent
     {

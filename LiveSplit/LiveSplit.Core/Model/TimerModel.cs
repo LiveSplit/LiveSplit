@@ -106,7 +106,7 @@ namespace LiveSplit.Model
             Reset(true);
         }
 
-        public void Reset(bool updateSplits = true)
+        public void Reset(bool updateSplits)
         {
             if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
             {
@@ -260,6 +260,7 @@ namespace LiveSplit.Model
         public void SetRunAsPB()
         {
             CurrentState.Run.ImportSegmentHistory();
+            CurrentState.Run.FixSplits();
             foreach (var current in CurrentState.Run)
                 current.PersonalBestSplitTime = current.SplitTime;
         }

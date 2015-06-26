@@ -156,7 +156,6 @@ namespace LiveSplit.View
                 {
                     Action invokation = () =>
                     {
-                        TwitchEmoteResolver.DownloadFrankerFaceZGlobalEmotesList();
                         TwitchEmoteResolver.DownloadTwitchEmotesList();
                     };
                     if (InvokeRequired)
@@ -657,10 +656,20 @@ namespace LiveSplit.View
                     }
                 };
 
-            if (InvokeRequired)
-                Invoke(action);
-            else
-                action();
+            try
+            {
+                if (!this.Disposing && !this.IsDisposed)
+                {
+                    if (InvokeRequired)
+                        Invoke(action);
+                    else
+                        action();
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
         }
 
         private void txtMessage_KeyDown(object sender, KeyEventArgs e)

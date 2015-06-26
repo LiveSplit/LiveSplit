@@ -66,7 +66,7 @@
             this.ImportComparisonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fromSplitsioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fromSpeedruncomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OtherMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -211,8 +211,8 @@
             this.cbxGameName.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.cbxGameName.Name = "cbxGameName";
             this.cbxGameName.Size = new System.Drawing.Size(427, 21);
-            this.cbxGameName.TabIndex = 7;
-            this.cbxGameName.TextChanged += new System.EventHandler(this.tbxGameName_TextChanged);
+            this.cbxGameName.TabIndex = 1;
+            this.cbxGameName.TextChanged += new System.EventHandler(this.cbxGameName_TextChanged);
             // 
             // cbxRunCategory
             // 
@@ -222,8 +222,7 @@
             this.cbxRunCategory.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.cbxRunCategory.Name = "cbxRunCategory";
             this.cbxRunCategory.Size = new System.Drawing.Size(427, 21);
-            this.cbxRunCategory.TabIndex = 8;
-            this.cbxRunCategory.TextChanged += new System.EventHandler(this.tbxRunCategory_TextChanged);
+            this.cbxRunCategory.TabIndex = 2;
             // 
             // tbxTimeOffset
             // 
@@ -233,8 +232,7 @@
             this.tbxTimeOffset.Margin = new System.Windows.Forms.Padding(5, 0, 3, 0);
             this.tbxTimeOffset.Name = "tbxTimeOffset";
             this.tbxTimeOffset.Size = new System.Drawing.Size(177, 20);
-            this.tbxTimeOffset.TabIndex = 9;
-            this.tbxTimeOffset.TextChanged += new System.EventHandler(this.tbxTimeOffset_TextChanged);
+            this.tbxTimeOffset.TabIndex = 3;
             // 
             // picGameIcon
             // 
@@ -265,7 +263,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(556, 22);
-            this.tabControl1.TabIndex = 11;
+            this.tabControl1.TabIndex = 7;
             this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabSelected);
             // 
             // tabPage1
@@ -296,8 +294,7 @@
             this.tbxAttempts.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.tbxAttempts.Name = "tbxAttempts";
             this.tbxAttempts.Size = new System.Drawing.Size(177, 20);
-            this.tbxAttempts.TabIndex = 10;
-            this.tbxAttempts.TextChanged += new System.EventHandler(this.tbxAttempts_TextChanged);
+            this.tbxAttempts.TabIndex = 4;
             // 
             // label4
             // 
@@ -324,7 +321,7 @@
             this.tableLayoutPanel2.RowCount = 1;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(193, 36);
-            this.tableLayoutPanel2.TabIndex = 12;
+            this.tableLayoutPanel2.TabIndex = 16;
             // 
             // btnCancel
             // 
@@ -334,7 +331,7 @@
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 3, 10, 10);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 6;
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -346,7 +343,7 @@
             this.btnOK.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 5;
+            this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -369,7 +366,7 @@
             this.btnActivate.Location = new System.Drawing.Point(517, 116);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(75, 23);
-            this.btnActivate.TabIndex = 14;
+            this.btnActivate.TabIndex = 5;
             this.btnActivate.Text = "Activate";
             this.btnActivate.UseVisualStyleBackColor = true;
             this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
@@ -380,7 +377,7 @@
             this.btnSettings.Location = new System.Drawing.Point(598, 116);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(75, 23);
-            this.btnSettings.TabIndex = 15;
+            this.btnSettings.TabIndex = 6;
             this.btnSettings.Text = "Settings";
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
@@ -392,7 +389,7 @@
             this.btnInsert.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(102, 23);
-            this.btnInsert.TabIndex = 1;
+            this.btnInsert.TabIndex = 8;
             this.btnInsert.Text = "Insert Above";
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
@@ -404,7 +401,7 @@
             this.btnAdd.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(102, 23);
-            this.btnAdd.TabIndex = 2;
+            this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Insert Below";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -416,7 +413,7 @@
             this.btnRemove.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(102, 23);
-            this.btnRemove.TabIndex = 3;
+            this.btnRemove.TabIndex = 10;
             this.btnRemove.Text = "Remove Segment";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -428,7 +425,7 @@
             this.btnMoveUp.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(102, 23);
-            this.btnMoveUp.TabIndex = 16;
+            this.btnMoveUp.TabIndex = 11;
             this.btnMoveUp.Text = "Move Up";
             this.btnMoveUp.UseVisualStyleBackColor = true;
             this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
@@ -440,7 +437,7 @@
             this.btnMoveDown.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size(102, 23);
-            this.btnMoveDown.TabIndex = 17;
+            this.btnMoveDown.TabIndex = 12;
             this.btnMoveDown.Text = "Move Down";
             this.btnMoveDown.UseVisualStyleBackColor = true;
             this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
@@ -452,7 +449,7 @@
             this.btnAddComparison.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.btnAddComparison.Name = "btnAddComparison";
             this.btnAddComparison.Size = new System.Drawing.Size(102, 23);
-            this.btnAddComparison.TabIndex = 4;
+            this.btnAddComparison.TabIndex = 13;
             this.btnAddComparison.Text = "Add Comparison";
             this.btnAddComparison.UseVisualStyleBackColor = true;
             this.btnAddComparison.Click += new System.EventHandler(this.btnAddComparison_Click);
@@ -465,7 +462,7 @@
             this.btnImportComparison.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.btnImportComparison.Name = "btnImportComparison";
             this.btnImportComparison.Size = new System.Drawing.Size(102, 23);
-            this.btnImportComparison.TabIndex = 18;
+            this.btnImportComparison.TabIndex = 14;
             this.btnImportComparison.Text = "Import Comparison";
             this.btnImportComparison.UseVisualStyleBackColor = true;
             this.btnImportComparison.Click += new System.EventHandler(this.btnImportComparison_Click);
@@ -478,7 +475,7 @@
             this.btnOther.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
             this.btnOther.Name = "btnOther";
             this.btnOther.Size = new System.Drawing.Size(102, 23);
-            this.btnOther.TabIndex = 19;
+            this.btnOther.TabIndex = 15;
             this.btnOther.Text = "Other...";
             this.btnOther.UseVisualStyleBackColor = true;
             this.btnOther.Click += new System.EventHandler(this.btnOther_Click);
@@ -526,30 +523,30 @@
             this.ImportComparisonMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fromFileToolStripMenuItem,
             this.fromURLToolStripMenuItem,
-            this.fromSplitsioToolStripMenuItem});
+            this.fromSpeedruncomToolStripMenuItem});
             this.ImportComparisonMenu.Name = "ImportComparisonMenu";
-            this.ImportComparisonMenu.Size = new System.Drawing.Size(156, 70);
+            this.ImportComparisonMenu.Size = new System.Drawing.Size(192, 70);
             // 
             // fromFileToolStripMenuItem
             // 
             this.fromFileToolStripMenuItem.Name = "fromFileToolStripMenuItem";
-            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.fromFileToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.fromFileToolStripMenuItem.Text = "From File...";
             this.fromFileToolStripMenuItem.Click += new System.EventHandler(this.fromFileToolStripMenuItem_Click);
             // 
             // fromURLToolStripMenuItem
             // 
             this.fromURLToolStripMenuItem.Name = "fromURLToolStripMenuItem";
-            this.fromURLToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.fromURLToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.fromURLToolStripMenuItem.Text = "From URL...";
             this.fromURLToolStripMenuItem.Click += new System.EventHandler(this.fromURLToolStripMenuItem_Click);
             // 
-            // fromSplitsioToolStripMenuItem
+            // fromSpeedruncomToolStripMenuItem
             // 
-            this.fromSplitsioToolStripMenuItem.Name = "fromSplitsioToolStripMenuItem";
-            this.fromSplitsioToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.fromSplitsioToolStripMenuItem.Text = "From Splits.io...";
-            this.fromSplitsioToolStripMenuItem.Click += new System.EventHandler(this.fromSplitsioToolStripMenuItem_Click);
+            this.fromSpeedruncomToolStripMenuItem.Name = "fromSpeedruncomToolStripMenuItem";
+            this.fromSpeedruncomToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.fromSpeedruncomToolStripMenuItem.Text = "From Speedrun.com...";
+            this.fromSpeedruncomToolStripMenuItem.Click += new System.EventHandler(this.fromSpeedruncomToolStripMenuItem_Click);
             // 
             // OtherMenu
             // 
@@ -558,7 +555,7 @@
             this.clearTimesToolStripMenuItem,
             this.cleanSumOfBestToolStripMenuItem});
             this.OtherMenu.Name = "OtherMenu";
-            this.OtherMenu.Size = new System.Drawing.Size(171, 92);
+            this.OtherMenu.Size = new System.Drawing.Size(171, 70);
             // 
             // clearHistoryToolStripMenuItem
             // 
@@ -594,7 +591,6 @@
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(684, 517);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -656,11 +652,11 @@
         private System.Windows.Forms.ContextMenuStrip ImportComparisonMenu;
         private System.Windows.Forms.ToolStripMenuItem fromFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromURLToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fromSplitsioToolStripMenuItem;
         private System.Windows.Forms.Button btnOther;
         private System.Windows.Forms.ContextMenuStrip OtherMenu;
         private System.Windows.Forms.ToolStripMenuItem clearHistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fromSpeedruncomToolStripMenuItem;
     }
 }

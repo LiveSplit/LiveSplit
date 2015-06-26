@@ -23,68 +23,15 @@ namespace LiveSplit.Model
                 {
                     foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Time[method].HasValue))
                     {
-                        var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
+                        var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
                         PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                     }
                 }
-                var currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex, method);
+                var currentRunPrediction = SumOfSegmentsHelper.TrackCurrentRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
-                var personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex, method);
+                var personalBestRunPrediction = SumOfSegmentsHelper.TrackPersonalBestRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index);
             }
-        }
-
-        private static IndexedTime TrackCurrentRun(IRun run, TimeSpan? currentTime, int segmentIndex, TimingMethod method = TimingMethod.RealTime)
-        {
-            if (segmentIndex > 0 && !run[segmentIndex - 1].SplitTime[method].HasValue)
-                return new IndexedTime(default(Time), 0);
-            var firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].SplitTime[method];
-            while (segmentIndex < run.Count)
-            {
-                var secondSplitTime = run[segmentIndex].SplitTime[method];
-                if (secondSplitTime.HasValue)
-                {
-                    return new IndexedTime(new Time(method, secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
-                }
-                segmentIndex++;
-            }
-            return new IndexedTime(default(Time), 0);
-        }
-
-        private static IndexedTime TrackPersonalBestRun(IRun run, TimeSpan? currentTime, int segmentIndex, TimingMethod method = TimingMethod.RealTime)
-        {
-            if (segmentIndex > 0 && !run[segmentIndex - 1].PersonalBestSplitTime[method].HasValue)
-                return new IndexedTime(default(Time), 0);
-            var firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].PersonalBestSplitTime[method];
-            while (segmentIndex < run.Count)
-            {
-                var secondSplitTime = run[segmentIndex].PersonalBestSplitTime[method];
-                if (secondSplitTime.HasValue)
-                {
-                    return new IndexedTime(new Time(method, secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
-                }
-                segmentIndex++;
-            }
-            return new IndexedTime(default(Time), 0);
-        }
-
-        private static IndexedTime TrackBranch(IRun run, TimeSpan? currentTime, int segmentIndex, int runIndex, TimingMethod method = TimingMethod.RealTime)
-        {
-            while (segmentIndex < run.Count)
-            {
-                var segmentTime = run[segmentIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                if (segmentTime != null)
-                {
-                    var curTime = segmentTime.Time[method];
-                    if (curTime.HasValue)
-                    {
-                        return new IndexedTime(new Time(method, curTime + currentTime), segmentIndex + 1);
-                    }
-                }
-                else break;
-                segmentIndex++;
-            }
-            return new IndexedTime(default(Time), 0);
         }
 
         public static TimeSpan? CalculateSumOfBest(IRun run, int startIndex, int endIndex, bool simpleCalculation, TimingMethod method = TimingMethod.RealTime)
@@ -133,7 +80,7 @@ namespace LiveSplit.Model
                 currentTime = predictions[segmentIndex];
                 foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Time[method].HasValue))
                 {
-                    var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
+                    var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
                     CheckPrediction(run, predictions, prediction.Time[method], segmentIndex - 1, prediction.Index - 1, nullSegment.Index, method, callback);
                 } 
                 segmentIndex++;
@@ -147,10 +94,10 @@ namespace LiveSplit.Model
                 var segmentHistoryElement = run[endingIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                 var parameters = new CleanUpCallbackParameters
                 {
-                    startingSegment = run[startingIndex],
-                    endingSegment = run[endingIndex],
+                    startingSegment = startingIndex >= 0 ? run[startingIndex] : null,
+                    endingSegment = endingIndex >= 0 ? run[endingIndex] : null,
                     timeBetween = segmentHistoryElement.Time[method].Value,
-                    combinedSumOfBest = predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value,
+                    combinedSumOfBest = predictions[endingIndex + 1].HasValue ? (TimeSpan?)(predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value) : null,
                     attempt = run.AttemptHistory.FirstOrDefault(x => x.Index == runIndex),
                     method = method
                 };
@@ -172,7 +119,7 @@ namespace LiveSplit.Model
             public ISegment startingSegment;
             public ISegment endingSegment;
             public TimeSpan timeBetween;
-            public TimeSpan combinedSumOfBest;
+            public TimeSpan? combinedSumOfBest;
             public Attempt attempt;
             public TimingMethod method;
         }

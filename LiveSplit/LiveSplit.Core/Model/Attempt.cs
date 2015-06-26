@@ -1,9 +1,6 @@
 ﻿using LiveSplit.Web;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace LiveSplit.Model
@@ -56,14 +53,14 @@ namespace LiveSplit.Model
             if (Started.HasValue)
             {
                 var started = document.CreateAttribute("started");
-                started.InnerText = Started.Value.ToString(CultureInfo.InvariantCulture);
+                started.InnerText = Started.Value.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
                 attempt.Attributes.Append(started);
             }
 
             if (Ended.HasValue)
             {
                 var ended = document.CreateAttribute("ended");
-                ended.InnerText = Ended.Value.ToString(CultureInfo.InvariantCulture);
+                ended.InnerText = Ended.Value.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
                 attempt.Attributes.Append(ended);
             }
 
@@ -74,16 +71,17 @@ namespace LiveSplit.Model
         {
             var newTime = Time.FromXml(node);
             var index = int.Parse(node.Attributes["id"].InnerText, CultureInfo.InvariantCulture);
-            DateTime? started = null, ended = null;
+            DateTime? started = null;
+            DateTime? ended = null;
 
             if (node.HasAttribute("started"))
             {
-                started = DateTime.Parse(node.Attributes["started"].InnerText, CultureInfo.InvariantCulture);
+                started = DateTime.Parse(node.Attributes["started"].InnerText, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
             }
 
             if (node.HasAttribute("ended"))
             {
-                started = DateTime.Parse(node.Attributes["ended"].InnerText, CultureInfo.InvariantCulture);
+                ended = DateTime.Parse(node.Attributes["ended"].InnerText, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
             }
 
             return new Attempt(index, newTime, started, ended);

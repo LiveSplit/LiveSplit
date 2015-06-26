@@ -80,7 +80,7 @@
     <Compile Include="Model\RunFactories\StandardRunFactory.cs" />
     <Compile Include="Model\RunImporters\FileRunImporter.cs" />
     <Compile Include="Model\RunImporters\IRunImporter.cs" />
-    <Compile Include="Model\RunImporters\SplitsIORunImporter.cs" />
+    <Compile Include="Model\RunImporters\SpeedrunComRunImporter.cs" />
     <Compile Include="Model\RunImporters\URLRunImporter.cs" />
     <Compile Include="Model\Win32.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,11 +110,17 @@
     <Compile Include="View\AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\BrowseSplitsIODialog.cs">
+    <Compile Include="View\BrowseSpeedrunComDialog.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\BrowseSplitsIODialog.Designer.cs">
-      <DependentUpon>BrowseSplitsIODialog.cs</DependentUpon>
+    <Compile Include="View\BrowseSpeedrunComDialog.Designer.cs">
+      <DependentUpon>BrowseSpeedrunComDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChooseComparisonsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ChooseComparisonsDialog.Designer.cs">
+      <DependentUpon>ChooseComparisonsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="View\LayoutEditorDialog.cs">
       <SubType>Form</SubType>
@@ -223,8 +229,11 @@
     <EmbeddedResource Include="View\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\BrowseSplitsIODialog.resx">
-      <DependentUpon>BrowseSplitsIODialog.cs</DependentUpon>
+    <EmbeddedResource Include="View\BrowseSpeedrunComDialog.resx">
+      <DependentUpon>BrowseSpeedrunComDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ChooseComparisonsDialog.resx">
+      <DependentUpon>ChooseComparisonsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LayoutEditorDialog.resx">
       <DependentUpon>LayoutEditorDialog.cs</DependentUpon>

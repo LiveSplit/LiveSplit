@@ -1,5 +1,4 @@
-﻿using System;
-namespace LiveSplit.Model
+﻿namespace LiveSplit.Model
 {
     public class IndexedTime : IIndexedTime
     {

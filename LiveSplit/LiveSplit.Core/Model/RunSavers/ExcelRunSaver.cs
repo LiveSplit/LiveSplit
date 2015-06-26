@@ -1,12 +1,8 @@
 ﻿using Codaxy.Xlio;
 using LiveSplit.Model.Comparisons;
-using LiveSplit.TimeFormatters;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace LiveSplit.Model.RunSavers
 {
@@ -132,7 +128,7 @@ namespace LiveSplit.Model.RunSavers
                 ++rowIndex;
             }
 
-            sheet.AutoFilter = sheet[0, 0, rowIndex - 1, 1];
+            sheet.AutoFilter = sheet[0, 0, rowIndex - 1, 3];
         }
 
         private void FillSegmentHistorySheet(Sheet sheet, IRun run)

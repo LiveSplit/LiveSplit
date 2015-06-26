@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Model.Input;
+using LiveSplit.UI;
 using LiveSplit.Web.SRL;
 using System;
 using System.Globalization;
@@ -53,6 +54,29 @@ namespace LiveSplit.Options.SettingsFactories
             else
                 settings.UndoKey = null;
 
+            settings.GlobalHotkeysEnabled = SettingsHelper.ParseBool(parent["GlobalHotkeysEnabled"]);
+            settings.WarnOnReset = SettingsHelper.ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
+            settings.DoubleTapPrevention = SettingsHelper.ParseBool(parent["DoubleTapPrevention"], settings.DoubleTapPrevention);
+            settings.LastTimingMethod = SettingsHelper.ParseEnum<TimingMethod>(parent["LastTimingMethod"], settings.LastTimingMethod);
+            settings.SimpleSumOfBest = SettingsHelper.ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
+            settings.LastComparison = SettingsHelper.ParseString(parent["LastComparison"], settings.LastComparison);
+            settings.DeactivateHotkeysForOtherPrograms = SettingsHelper.ParseBool(parent["DeactivateHotkeysForOtherPrograms"], settings.DeactivateHotkeysForOtherPrograms);
+            settings.HotkeyDelay = SettingsHelper.ParseFloat(parent["HotkeyDelay"], settings.HotkeyDelay);
+            settings.AgreedToSRLRules = SettingsHelper.ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
+            
+            var recentSplits = parent["RecentSplits"];
+            foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsPath"))
+            {
+                var splitElement = splitNode as XmlElement;
+                settings.RecentSplits.Add(splitElement.InnerText);
+            }
+            var recentLayouts = parent["RecentLayouts"];
+            foreach (var layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))
+            {
+                var layoutElement = layoutNode as XmlElement;
+                settings.RecentLayouts.Add(layoutElement.InnerText);
+            }
+
             if (version > new Version(1, 0, 0, 0))
             {
                 var keyPause = parent["PauseKey"];
@@ -66,29 +90,10 @@ namespace LiveSplit.Options.SettingsFactories
                     settings.ToggleGlobalHotkeys = new KeyOrButton(keyToggle.InnerText);
                 else
                     settings.ToggleGlobalHotkeys = null;
-
-                settings.WarnOnReset = bool.Parse(parent["WarnOnReset"].InnerText);
-            }
-
-            if (version >= new Version(1, 2))
-                settings.DoubleTapPrevention = bool.Parse(parent["DoubleTapPrevention"].InnerText);
-
-            if (version >= new Version(1, 4))
-            {
-                settings.LastTimingMethod = ParseEnum<TimingMethod>(parent["LastTimingMethod"]);
-                settings.SimpleSumOfBest = bool.Parse(parent["SimpleSumOfBest"].InnerText);
-
-                var activeAutoSplitters = parent["ActiveAutoSplitters"];
-                foreach (var splitter in activeAutoSplitters.GetElementsByTagName("AutoSplitter").OfType<XmlElement>())
-                {
-                    settings.ActiveAutoSplitters.Add(splitter.InnerText);
-                }
             }
 
             if (version >= new Version(1, 3))
             {
-                //settings.RefreshRate = Single.Parse(parent["RefreshRate"].InnerText);
-                settings.LastComparison = parent["LastComparison"].InnerText;
                 var switchComparisonPrevious = parent["SwitchComparisonPrevious"];
                 if (!string.IsNullOrEmpty(switchComparisonPrevious.InnerText))
                     settings.SwitchComparisonPrevious = new KeyOrButton(switchComparisonPrevious.InnerText);
@@ -99,39 +104,28 @@ namespace LiveSplit.Options.SettingsFactories
                     settings.SwitchComparisonNext = new KeyOrButton(switchComparisonNext.InnerText);
                 else
                     settings.SwitchComparisonNext = null;
-                settings.HotkeyDelay = float.Parse(parent["HotkeyDelay"].InnerText.Replace(',', '.'), CultureInfo.InvariantCulture);
 
                 settings.RaceViewer = RaceViewer.FromName(parent["RaceViewer"].InnerText);
-
-                var deactivateHotkeysForOtherPrograms = parent["DeactivateHotkeysForOtherPrograms"];
-                settings.DeactivateHotkeysForOtherPrograms = bool.Parse(deactivateHotkeysForOtherPrograms.InnerText);
             }
 
-            if (version >= new Version(1, 3, 1))
+            if (version >= new Version(1, 4))
             {
-                settings.AgreedToSRLRules = bool.Parse(parent["AgreedToSRLRules"].InnerText);
+                var activeAutoSplitters = parent["ActiveAutoSplitters"];
+                foreach (var splitter in activeAutoSplitters.GetElementsByTagName("AutoSplitter").OfType<XmlElement>())
+                {
+                    settings.ActiveAutoSplitters.Add(splitter.InnerText);
+                }
             }
 
-            var hotkeysEnabled = parent["GlobalHotkeysEnabled"];
-            settings.GlobalHotkeysEnabled = bool.Parse(hotkeysEnabled.InnerText);
-            var recentSplits = parent["RecentSplits"];
-            foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsPath"))
+            if (version >= new Version(1, 6))
             {
-                var splitElement = splitNode as XmlElement;
-                settings.RecentSplits.Add(splitElement.InnerText);
+                foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes)
+                {
+                    settings.ComparisonGeneratorStates[((XmlNode)generatorNode).Attributes["name"].Value] = Boolean.Parse(((XmlNode)generatorNode).InnerText);
+                }
             }
-            var recentLayouts = parent["RecentLayouts"];
-            foreach (var layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))
-            {
-                var layoutElement = layoutNode as XmlElement;
-                settings.RecentLayouts.Add(layoutElement.InnerText);
-            }
+
             return settings;
-        }
-
-        private T ParseEnum<T>(XmlElement element)
-        {
-            return (T)Enum.Parse(typeof(T), element.InnerText);
         }
     }
 }

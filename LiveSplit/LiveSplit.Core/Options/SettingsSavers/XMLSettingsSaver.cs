@@ -1,4 +1,4 @@
-﻿using System;
+﻿using LiveSplit.UI;
 using System.Globalization;
 using System.Xml;
 
@@ -6,20 +6,6 @@ namespace LiveSplit.Options.SettingsSavers
 {
     public class XMLSettingsSaver : ISettingsSaver
     {
-        private XmlElement ToElement<T>(XmlDocument document, string name, T value)
-        {
-            var element = document.CreateElement(name);
-            element.InnerText = value.ToString();
-            return element;
-        }
-
-        private XmlElement ToElement(XmlDocument document, string name, float value)
-        {
-            var element = document.CreateElement(name);
-            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
-            return element;
-        }
-
         public void Save(ISettings settings, System.IO.Stream stream)
         {
             var document = new XmlDocument();
@@ -29,7 +15,7 @@ namespace LiveSplit.Options.SettingsSavers
 
             var parent = document.CreateElement("Settings");
             var version = document.CreateAttribute("version");
-            version.Value = "1.4";
+            version.Value = "1.6";
             parent.Attributes.Append(version);
             document.AppendChild(parent);
 
@@ -73,38 +59,49 @@ namespace LiveSplit.Options.SettingsSavers
                 switchComparisonNext.InnerText = settings.SwitchComparisonNext.ToString();
             parent.AppendChild(switchComparisonNext);
 
-            parent.AppendChild(ToElement(document, "GlobalHotkeysEnabled", settings.GlobalHotkeysEnabled));
-            parent.AppendChild(ToElement(document, "DeactivateHotkeysForOtherPrograms", settings.DeactivateHotkeysForOtherPrograms));
-            parent.AppendChild(ToElement(document, "WarnOnReset", settings.WarnOnReset));
-            parent.AppendChild(ToElement(document, "DoubleTapPrevention", settings.DoubleTapPrevention));
-            //parent.AppendChild(ToElement(document, "RefreshRate", settings.RefreshRate));
-            parent.AppendChild(ToElement(document, "HotkeyDelay", settings.HotkeyDelay));
+            parent.AppendChild(SettingsHelper.ToElement(document, "GlobalHotkeysEnabled", settings.GlobalHotkeysEnabled));
+            parent.AppendChild(SettingsHelper.ToElement(document, "DeactivateHotkeysForOtherPrograms", settings.DeactivateHotkeysForOtherPrograms));
+            parent.AppendChild(SettingsHelper.ToElement(document, "WarnOnReset", settings.WarnOnReset));
+            parent.AppendChild(SettingsHelper.ToElement(document, "DoubleTapPrevention", settings.DoubleTapPrevention));
+            parent.AppendChild(SettingsHelper.ToElement(document, "HotkeyDelay", settings.HotkeyDelay));
 
-            parent.AppendChild(ToElement(document, "RaceViewer", settings.RaceViewer.Name));
+            parent.AppendChild(SettingsHelper.ToElement(document, "RaceViewer", settings.RaceViewer.Name));
 
-            parent.AppendChild(ToElement(document, "AgreedToSRLRules", settings.AgreedToSRLRules));
+            parent.AppendChild(SettingsHelper.ToElement(document, "AgreedToSRLRules", settings.AgreedToSRLRules));
 
             var recentSplits = document.CreateElement("RecentSplits");
             foreach (var splits in settings.RecentSplits)
             {
-                recentSplits.AppendChild(ToElement(document, "SplitsPath", splits));
+                recentSplits.AppendChild(SettingsHelper.ToElement(document, "SplitsPath", splits));
             }
             parent.AppendChild(recentSplits);
             var recentLayouts = document.CreateElement("RecentLayouts");
             foreach (var layout in settings.RecentLayouts)
             {
-                recentLayouts.AppendChild(ToElement(document, "LayoutPath", layout));
+                recentLayouts.AppendChild(SettingsHelper.ToElement(document, "LayoutPath", layout));
             }
             parent.AppendChild(recentLayouts);
 
-            parent.AppendChild(ToElement(document, "LastComparison", settings.LastComparison));
-            parent.AppendChild(ToElement(document, "LastTimingMethod", settings.LastTimingMethod));
-            parent.AppendChild(ToElement(document, "SimpleSumOfBest", settings.SimpleSumOfBest));
+            parent.AppendChild(SettingsHelper.ToElement(document, "LastComparison", settings.LastComparison));
+            parent.AppendChild(SettingsHelper.ToElement(document, "LastTimingMethod", settings.LastTimingMethod));
+            parent.AppendChild(SettingsHelper.ToElement(document, "SimpleSumOfBest", settings.SimpleSumOfBest));
+
+            var generatorStates = document.CreateElement("ComparisonGeneratorStates");
+            foreach (var generator in settings.ComparisonGeneratorStates)
+            {
+                var generatorElement = document.CreateElement("Generator");
+                var name = document.CreateAttribute("name");
+                name.Value = generator.Key;
+                generatorElement.Attributes.Append(name);
+                generatorElement.InnerText = generator.Value.ToString();
+                generatorStates.AppendChild(generatorElement);
+            }
+            parent.AppendChild(generatorStates);
 
             var autoSplittersActive = document.CreateElement("ActiveAutoSplitters");
             foreach (var splitter in settings.ActiveAutoSplitters)
             {
-                autoSplittersActive.AppendChild(ToElement(document, "AutoSplitter", splitter));
+                autoSplittersActive.AppendChild(SettingsHelper.ToElement(document, "AutoSplitter", splitter));
             }
             parent.AppendChild(autoSplittersActive);
 

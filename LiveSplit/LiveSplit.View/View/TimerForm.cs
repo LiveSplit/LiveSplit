@@ -83,7 +83,6 @@ namespace LiveSplit.View
 
         protected Task RefreshTask { get; set; }
         protected int RefreshCounter { get; set; }
-        protected int RefreshesRemaining { get; set; }
 
         public string BasePath { get; set; }
 
@@ -161,10 +160,10 @@ namespace LiveSplit.View
                 {
                     run = LoadRunFromFile(splitsPath, true);
                 }
-                else
+                else if (Settings.RecentSplits.Count > 0 
+                    && !string.IsNullOrEmpty(Settings.RecentSplits.Last()))
                 {
-                    if (Settings.RecentSplits.Count > 0)
-                        run = LoadRunFromFile(Settings.RecentSplits.Last(), true);
+                    run = LoadRunFromFile(Settings.RecentSplits.Last(), true);
                 }
             }
             catch (Exception e)
@@ -202,7 +201,8 @@ namespace LiveSplit.View
             }
             catch (Exception e)
             {
-                Log.Error(e); 
+                Log.Error(e);
+                Layout = new StandardLayoutFactory().Create(CurrentState);
             }
 
             CurrentState.LayoutSettings = Layout.Settings;
@@ -210,7 +210,7 @@ namespace LiveSplit.View
 
             CurrentState.CurrentTimingMethod = Settings.LastTimingMethod;
 
-            RegenerateComparisons();
+            SwitchComparisonGenerators();
             SwitchComparison(Settings.LastComparison);
             Model.CurrentState = CurrentState;
 
@@ -235,7 +235,6 @@ namespace LiveSplit.View
             RefreshTask = Task.Factory.StartNew(RefreshTimerWorker);
 
             RefreshCounter = 0;
-            RefreshesRemaining = 0;
 
             Hook = new CompositeHook();
             Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
@@ -407,10 +406,7 @@ namespace LiveSplit.View
                                 {
                                     Invoke(updateTitleAction);
                                 }
-                                catch (Exception ex)
-                                {
-                                    Log.Error(ex);
-                                }
+                                catch { }
                             }
                         }
                         else
@@ -425,10 +421,7 @@ namespace LiveSplit.View
                                 title = title.Replace("&", "&&");
                                 tsItem.Text = title;
                             }
-                            catch (Exception ex)
-                            {
-                                Log.Error(ex);
-                            }
+                            catch { }
                         }
                     };
 
@@ -736,25 +729,40 @@ namespace LiveSplit.View
             var openFromURLMenuItem = new ToolStripMenuItem("From URL...");
             openFromURLMenuItem.Click += openSplitsFromURLMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromURLMenuItem);
-            var openFromSplitsIOMenuItem = new ToolStripMenuItem("From Splits.io...");
-            openFromSplitsIOMenuItem.Click += openFromSplitsIOMenuItem_Click;
-            openSplitsMenuItem.DropDownItems.Add(openFromSplitsIOMenuItem);
+            var openFromSpeedrunComMenuItem = new ToolStripMenuItem("From Speedrun.com...");
+            openFromSpeedrunComMenuItem.Click += openFromSpeedrunComMenuItem_Click;
+            openSplitsMenuItem.DropDownItems.Add(openFromSpeedrunComMenuItem);
             openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
             var clearSplitHistoryMenuItem = new ToolStripMenuItem("Clear History");
             clearSplitHistoryMenuItem.Click += clearSplitHistoryMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(clearSplitHistoryMenuItem);
         }
 
-        void openFromSplitsIOMenuItem_Click(object sender, EventArgs e)
+        void openFromSpeedrunComMenuItem_Click(object sender, EventArgs e)
         {
-            var runImporter = new SplitsIORunImporter();
-            var run = runImporter.Import(this);
+            try
+            {
+                TopMost = false;
+                IsInDialogMode = true;
 
-            if (!WarnUserAboutSplitsSave())
-                return;
+                var runImporter = new SpeedrunComRunImporter();
+                var run = runImporter.Import(this);
 
-            if (run != null)
-                SetRun(run);
+                if (run != null)
+                {
+                    if (!WarnUserAboutSplitsSave())
+                        return;
+                    if (InTimerOnlyMode)
+                        RemoveTimerOnly();
+                    run.HasChanged = true;
+                    SetRun(run);
+                }
+            }
+            finally
+            {
+                TopMost = Layout.Settings.AlwaysOnTop;
+                IsInDialogMode = false;
+            }
         }
 
         void clearSplitHistoryMenuItem_Click(object sender, EventArgs e)
@@ -827,6 +835,7 @@ namespace LiveSplit.View
                                 try
                                 {
                                     var layout = new XMLLayoutFactory(memoryStream).Create(CurrentState);
+                                    layout.HasChanged = true;
                                     SetLayout(layout);
                                 }
                                 catch (Exception ex)
@@ -860,11 +869,15 @@ namespace LiveSplit.View
             var runImporter = new URLRunImporter();
             var run = runImporter.Import(this);
 
-            if (!WarnUserAboutSplitsSave())
-                return;
-
             if (run != null)
+            {
+                if (!WarnUserAboutSplitsSave())
+                    return;
+                if (InTimerOnlyMode)
+                    RemoveTimerOnly();
+                run.HasChanged = true;
                 SetRun(run);
+            }
         }
 
         private void StartOrSplit()
@@ -1010,14 +1023,11 @@ namespace LiveSplit.View
                         if (DontRedraw)
                             return;
 
-                        RefreshCounter++;
-
-                        if (OldSize <= 0 || (RefreshesRemaining > 0 && RefreshCounter >= 5))
+                        if (OldSize <= 0 || (RefreshCounter > 0 && RefreshCounter % 5 == 0))
                         {
                             InvalidateForm();
-                            RefreshCounter = 0;
-                            if (RefreshesRemaining > 0)
-                                RefreshesRemaining--;
+                            if (RefreshCounter > 0)
+                                RefreshCounter--;
                         }
                         else
                         {
@@ -1063,8 +1073,11 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
-                Invalidate();
+                if (!(this.IsDisposed && ex is ObjectDisposedException))
+                {
+                    Log.Error(ex);
+                    Invalidate();
+                }
             }
         }
 
@@ -1173,7 +1186,7 @@ namespace LiveSplit.View
             }
 
             if (OldSize == 0)
-                RefreshesRemaining = 10;
+                RefreshCounter = 50;
 
             if (OldSize >= 0)
                 OldSize = currentSize;
@@ -1452,7 +1465,7 @@ namespace LiveSplit.View
             if (autoSplitterChanged)
                 DeactivateAutoSplitter();
             CurrentState.Run = run;
-            RefreshesRemaining = 10;
+            RefreshCounter = 50;
             RegenerateComparisons();
             SwitchComparison(CurrentState.CurrentComparison);
             if (autoSplitterChanged)
@@ -1494,7 +1507,6 @@ namespace LiveSplit.View
 
             if (addToRecent)
                 AddFileToLRU(filePath);
-            RegenerateComparisons();
             if (InTimerOnlyMode)
                 RemoveTimerOnly();
             return run;
@@ -1680,9 +1692,7 @@ namespace LiveSplit.View
         private void EditSplits()
         {
             var runCopy = CurrentState.Run.Clone() as IRun;
-            var autoSplitterSettings = CurrentState.Run.IsAutoSplitterActive()
-                ? CurrentState.Run.AutoSplitter.Component.GetSettings(new XmlDocument()) 
-                : null;
+            var activeAutoSplitters = new List<string>(CurrentState.Settings.ActiveAutoSplitters);
             var editor = new RunEditorDialog(CurrentState);
             editor.RunEdited += editor_RunEdited;
             editor.ComparisonRenamed += editor_ComparisonRenamed;
@@ -1696,14 +1706,9 @@ namespace LiveSplit.View
                 var result = editor.ShowDialog(this);
                 if (result == DialogResult.Cancel)
                 {
-                    if (CurrentState.Run.IsAutoSplitterActive() && !CurrentState.Settings.ActiveAutoSplitters.Contains(CurrentState.Run.GameName))
-                        CurrentState.Settings.ActiveAutoSplitters.Add(CurrentState.Run.GameName);
-                    else if (!CurrentState.Run.IsAutoSplitterActive() && CurrentState.Settings.ActiveAutoSplitters.Contains(CurrentState.Run.GameName))
-                        CurrentState.Settings.ActiveAutoSplitters.Remove(CurrentState.Run.GameName);
+                    CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
                     SetRun(runCopy);
                     CurrentState.CallRunManuallyModified();
-                    if (CurrentState.Run.IsAutoSplitterActive())
-                        CurrentState.Run.AutoSplitter.Component.SetSettings(autoSplitterSettings);
                 }
             }
             finally
@@ -1715,7 +1720,7 @@ namespace LiveSplit.View
 
         void editor_SegmentRemovedOrAdded(object sender, EventArgs e)
         {
-            RefreshesRemaining = 10;
+            RefreshCounter = 50;
         }
 
         void editor_ComparisonRenamed(object sender, EventArgs e)
@@ -1737,7 +1742,11 @@ namespace LiveSplit.View
             ILayout layout;
             try
             {
-                layout = LoadLayoutFromFile(Settings.RecentLayouts.Last());
+                var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
+                if (lastLayoutPath != null)
+                    layout = LoadLayoutFromFile(lastLayoutPath);
+                else
+                    layout = new StandardLayoutFactory().Create(CurrentState);
             }
             catch (Exception ex)
             {
@@ -1809,7 +1818,7 @@ namespace LiveSplit.View
 
         void editor_LayoutSettingsAssigned(object sender, EventArgs e)
         {
-            RefreshesRemaining = 10;
+            RefreshCounter = 50;
         }
 
         void editor_LayoutResized(object sender, EventArgs e)
@@ -2149,8 +2158,10 @@ namespace LiveSplit.View
                     var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
                     CurrentState.Settings = Settings = oldSettings;
                     if (regenerate)
-                        RegenerateComparisons();                    
+                        RegenerateComparisons();
                 }
+                else
+                    SwitchComparisonGenerators();
                 Settings.RegisterHotkeys(Hook);
             }
             finally
@@ -2390,7 +2401,8 @@ namespace LiveSplit.View
             foreach (var customComparison in CurrentState.Run.CustomComparisons)
                 AddActionToComparisonsMenu(customComparison);
             
-            comparisonMenuItem.DropDownItems.Add(new ToolStripSeparator());
+            if (CurrentState.Run.ComparisonGenerators.Count > 0)
+                comparisonMenuItem.DropDownItems.Add(new ToolStripSeparator());
 
             var raceSeparatorAdded = false;
             foreach (var generator in CurrentState.Run.ComparisonGenerators)
@@ -2439,10 +2451,23 @@ namespace LiveSplit.View
             }
         }
 
+        private void SwitchComparisonGenerators()
+        {
+            var allGenerators = new StandardComparisonGeneratorsFactory().GetAllGenerators(CurrentState.Run);
+            foreach (var generator in Settings.ComparisonGeneratorStates.Reverse())
+            {
+                if (CurrentState.Run.ComparisonGenerators.Any(x => x.Name == generator.Key))
+                    CurrentState.Run.ComparisonGenerators.Remove(CurrentState.Run.ComparisonGenerators.First(x => x.Name == generator.Key));
+                if (generator.Value == true)
+                    CurrentState.Run.ComparisonGenerators.Insert(0, allGenerators.First(x => x.Name == generator.Key));
+            }
+            SwitchComparison(CurrentState.CurrentComparison);
+            RegenerateComparisons();
+        }
+
         private void SwitchComparison(string name)
         {
-            var generator = CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == name);
-            if (generator == null && (string.IsNullOrEmpty(name) || !CurrentState.Run.CustomComparisons.Contains(name)))
+            if (!CurrentState.Run.Comparisons.Contains(name))
                 name = Run.PersonalBestComparisonName;
             CurrentState.CurrentComparison = name;
         }
