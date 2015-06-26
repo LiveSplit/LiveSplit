@@ -106,12 +106,13 @@ namespace LiveSplit.View
                             var gameNode = new TreeNode(game.Name);
                             gameNode.Tag = game.WebLink;
                             var categories = game.FullGameCategories;
+                            var timingMethod = game.Ruleset.DefaultTimingMethod.ToLiveSplitTimingMethod();
+
                             foreach (var category in categories)
                             {
                                 var categoryNode = new TreeNode(category.Name);
                                 categoryNode.Tag = game.WebLink;
                                 var records = category.Leaderboard;
-                                var timingMethod = LiveSplit.Model.TimingMethod.RealTime; //TODO Fix
 
                                 foreach (var record in records)
                                 {

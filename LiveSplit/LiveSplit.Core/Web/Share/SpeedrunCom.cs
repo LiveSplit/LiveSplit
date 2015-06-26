@@ -2,7 +2,9 @@
 using SpeedrunComSharp;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace LiveSplit.Web.Share
@@ -45,6 +47,20 @@ namespace LiveSplit.Web.Share
             var apiUri = record.SplitsIOUri.AbsoluteUri;
             var path = apiUri.Substring(apiUri.LastIndexOf("/") + 1);
             return SplitsIO.Instance.DownloadRunByPath(path);
+        }
+
+        public static LiveSplit.Model.TimingMethod ToLiveSplitTimingMethod(this SpeedrunComSharp.TimingMethod timingMethod)
+        {
+            switch (timingMethod)
+            {
+                case SpeedrunComSharp.TimingMethod.RealTime:
+                    return Model.TimingMethod.RealTime;
+                case SpeedrunComSharp.TimingMethod.GameTime:
+                case SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads:
+                    return Model.TimingMethod.GameTime;
+            }
+
+            throw new ArgumentException("timingMethod");
         }
     }
 }
