@@ -951,11 +951,10 @@ namespace LiveSplit.View
 
         private void downloadBoxartToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*try
+            try
             {
-                var gameId = OldSpeedrunCom.Instance.GetGameID(cbxGameName.Text);
-
-                GameIcon = OldSpeedrunCom.Instance.GetGameCover(gameId);
+                var game = SpeedrunCom.Client.Games.GetGames(name: cbxGameName.Text, elementsPerPage: 1).First();
+                GameIcon = game.Assets.GetBoxartImage();
                 picGameIcon.Image = GameIcon;
                 RaiseRunEdited();
                 return;
@@ -963,7 +962,7 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-            }*/
+            }
 
             try
             {

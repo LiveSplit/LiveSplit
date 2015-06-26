@@ -62,5 +62,13 @@ namespace LiveSplit.Web.Share
 
             throw new ArgumentException("timingMethod");
         }
+
+        public static Image GetBoxartImage(this Assets assets)
+        {
+            using (var stream = WebRequest.Create(assets.CoverMedium).GetResponse().GetResponseStream())
+            {
+                return Image.FromStream(stream);
+            }
+        }
     }
 }
