@@ -1543,15 +1543,12 @@ namespace LiveSplit.View
             foreach (var generator in run.ComparisonGenerators)
                 generator.Run = run;
             run.FixSplits();
-            var autoSplitterChanged = run.AutoSplitter != CurrentState.Run.AutoSplitter;
-            if (autoSplitterChanged)
-                DeactivateAutoSplitter();
+            DeactivateAutoSplitter();
             CurrentState.Run = run;
             RefreshCounter = 50;
             RegenerateComparisons();
             SwitchComparison(CurrentState.CurrentComparison);
-            if (autoSplitterChanged)
-                CreateAutoSplitter();
+            CreateAutoSplitter();
         }
 
         private void CreateAutoSplitter()
@@ -1561,10 +1558,9 @@ namespace LiveSplit.View
             if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(CurrentState.Run.GameName))
             {
                 splitter.Activate(CurrentState);
-                if (splitter.Component != null
-                    && CurrentState.Run.AutoSplitterSettings != null
-                    && !CurrentState.Run.AutoSplitterSettings.IsEmpty
-                    && CurrentState.Run.AutoSplitterSettings.Attributes["gameName"].InnerText == CurrentState.Run.GameName)
+                if (splitter.IsActivated
+                && CurrentState.Run.AutoSplitterSettings != null
+                && CurrentState.Run.AutoSplitterSettings.Attributes["gameName"].InnerText == CurrentState.Run.GameName)
                     CurrentState.Run.AutoSplitter.Component.SetSettings(CurrentState.Run.AutoSplitterSettings);
             }
         }
