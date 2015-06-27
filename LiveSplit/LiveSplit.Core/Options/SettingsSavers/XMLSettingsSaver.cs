@@ -70,9 +70,12 @@ namespace LiveSplit.Options.SettingsSavers
             parent.AppendChild(SettingsHelper.ToElement(document, "AgreedToSRLRules", settings.AgreedToSRLRules));
 
             var recentSplits = document.CreateElement("RecentSplits");
-            foreach (var splits in settings.RecentSplits)
+            foreach (var splitsFile in settings.RecentSplits)
             {
-                recentSplits.AppendChild(SettingsHelper.ToElement(document, "SplitsPath", splits));
+                var splitsFileElement = SettingsHelper.ToElement(document, "SplitsFile", splitsFile.Path);
+                splitsFileElement.SetAttribute("gameName", splitsFile.GameName);
+                splitsFileElement.SetAttribute("categoryName", splitsFile.CategoryName);
+                recentSplits.AppendChild(splitsFileElement);
             }
             parent.AppendChild(recentSplits);
             var recentLayouts = document.CreateElement("RecentLayouts");
