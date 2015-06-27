@@ -16,12 +16,13 @@ namespace LiveSplit.View
         public EditHistoryDialog(IEnumerable<string> history)
         {
             InitializeComponent();
-            History = new List<string>(history);
+            History = history.Reverse().ToList();
             historyListBox.Items.AddRange(History.Where(x => !String.IsNullOrEmpty(x)).ToArray());
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            History = History.Reverse().ToList();
             DialogResult = DialogResult.OK;
             Close();
         }
