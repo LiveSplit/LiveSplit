@@ -224,8 +224,8 @@ namespace LiveSplit.View
                 if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
                 {
                     splitter.Activate(CurrentState);
-                    if (Run.AutoSplitterSettings != null
-                    && splitter.IsActivated
+                    if (splitter.IsActivated
+                    && Run.AutoSplitterSettings != null
                     && Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
                         Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
                 }

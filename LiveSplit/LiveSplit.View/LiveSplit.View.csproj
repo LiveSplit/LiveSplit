@@ -116,6 +116,12 @@
     <Compile Include="View\BrowseSpeedrunComDialog.Designer.cs">
       <DependentUpon>BrowseSpeedrunComDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\EditHistoryDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\EditHistoryDialog.Designer.cs">
+      <DependentUpon>EditHistoryDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\ChooseComparisonsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -231,6 +237,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\BrowseSpeedrunComDialog.resx">
       <DependentUpon>BrowseSpeedrunComDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditHistoryDialog.resx">
+      <DependentUpon>EditHistoryDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\ChooseComparisonsDialog.resx">
       <DependentUpon>ChooseComparisonsDialog.cs</DependentUpon>

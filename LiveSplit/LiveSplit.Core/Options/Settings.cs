@@ -2,6 +2,7 @@
 using LiveSplit.Model.Input;
 using LiveSplit.Web.SRL;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Input;
 
@@ -19,7 +20,7 @@ namespace LiveSplit.Options
         public KeyOrButton ScrollDown { get; set; }
         public KeyOrButton SwitchComparisonPrevious { get; set; }
         public KeyOrButton SwitchComparisonNext { get; set; }
-        public IList<string> RecentSplits { get; set; }
+        public IList<RecentSplitsFile> RecentSplits { get; set; }
         public IList<string> RecentLayouts { get; set; }
         public string LastComparison { get; set; }
         public TimingMethod LastTimingMethod { get; set; }
@@ -36,7 +37,7 @@ namespace LiveSplit.Options
 
         public Settings()
         {
-            RecentSplits = new List<string>();
+            RecentSplits = new List<RecentSplitsFile>();
             RecentLayouts = new List<string>();
             ActiveAutoSplitters = new List<string>();
         }
@@ -59,7 +60,7 @@ namespace LiveSplit.Options
                 DeactivateHotkeysForOtherPrograms = DeactivateHotkeysForOtherPrograms,
                 WarnOnReset = WarnOnReset,
                 DoubleTapPrevention = DoubleTapPrevention,
-                RecentSplits = new List<string>(RecentSplits),
+                RecentSplits = new List<RecentSplitsFile>(RecentSplits),
                 RecentLayouts = new List<string>(RecentLayouts),
                 LastComparison = LastComparison,
                 LastTimingMethod = LastTimingMethod,
@@ -184,12 +185,17 @@ namespace LiveSplit.Options
         }
 
 
-        public void AddToRecentSplits(string path)
+        public void AddToRecentSplits(string path, IRun run)
         {
-            if (RecentSplits.Contains(path))
-                RecentSplits.Remove(path);
-            RecentSplits.Add(path);
-            while (RecentSplits.Count > 10)
+            var foundRecentSplitsFile = RecentSplits.FirstOrDefault(x => x.Path == path);
+            if (!string.IsNullOrEmpty(foundRecentSplitsFile.Path))
+                RecentSplits.Remove(foundRecentSplitsFile);
+
+            var recentSplitsFile = new RecentSplitsFile(path, run);
+
+            RecentSplits.Add(recentSplitsFile);
+
+            while (RecentSplits.Count > 50)
                 RecentSplits.RemoveAt(0);
         }
 

@@ -82,3 +82,6 @@
 [submodule "LiveSplit/Libs/SpeedrunComSharp"]
 	path = LiveSplit/Libs/SpeedrunComSharp
 	url = https://github.com/LiveSplit/SpeedrunComSharp.git
+[submodule "LiveSplit/Components/LiveSplit.TotalPlaytime"]
+	path = LiveSplit/Components/LiveSplit.TotalPlaytime
+	url = https://github.com/LiveSplit/LiveSplit.TotalPlaytime.git
