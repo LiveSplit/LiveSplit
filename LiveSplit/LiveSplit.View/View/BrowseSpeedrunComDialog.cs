@@ -111,7 +111,7 @@ namespace LiveSplit.View
                             foreach (var category in categories)
                             {
                                 var categoryNode = new TreeNode(category.Name);
-                                categoryNode.Tag = game.WebLink;
+                                categoryNode.Tag = category.WebLink;
                                 var records = category.Leaderboard;
 
                                 foreach (var record in records)
