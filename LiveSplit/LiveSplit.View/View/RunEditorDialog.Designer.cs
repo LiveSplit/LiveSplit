@@ -39,9 +39,9 @@
             this.cbxRunCategory = new System.Windows.Forms.ComboBox();
             this.tbxTimeOffset = new System.Windows.Forms.TextBox();
             this.picGameIcon = new System.Windows.Forms.PictureBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.RealTime = new System.Windows.Forms.TabPage();
+            this.GameTime = new System.Windows.Forms.TabPage();
             this.tbxAttempts = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -76,7 +76,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
-            this.tabControl1.SuspendLayout();
+            this.tabControl.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.RemoveIconMenu.SuspendLayout();
             this.ImportComparisonMenu.SuspendLayout();
@@ -130,7 +130,7 @@
             this.tableLayoutPanel1.Controls.Add(this.tbxTimeOffset, 4, 3);
             this.tableLayoutPanel1.Controls.Add(this.picGameIcon, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.runGrid, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.tabControl1, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.tabControl, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.tbxAttempts, 7, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 6, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 7, 14);
@@ -252,39 +252,39 @@
             this.picGameIcon.DoubleClick += new System.EventHandler(this.picGameIcon_DoubleClick);
             this.picGameIcon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picGameIcon_MouseUp);
             // 
-            // tabControl1
+            // tabControl
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.tabControl1, 10);
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl1.Location = new System.Drawing.Point(125, 148);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(10, 3, 3, 0);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(556, 22);
-            this.tabControl1.TabIndex = 7;
-            this.tabControl1.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabSelected);
+            this.tableLayoutPanel1.SetColumnSpan(this.tabControl, 10);
+            this.tabControl.Controls.Add(this.RealTime);
+            this.tabControl.Controls.Add(this.GameTime);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(125, 148);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(10, 3, 3, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(556, 22);
+            this.tabControl.TabIndex = 7;
+            this.tabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabSelected);
             // 
-            // tabPage1
+            // RealTime
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(548, 0);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Real Time";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.RealTime.Location = new System.Drawing.Point(4, 22);
+            this.RealTime.Name = "RealTime";
+            this.RealTime.Padding = new System.Windows.Forms.Padding(3);
+            this.RealTime.Size = new System.Drawing.Size(548, 0);
+            this.RealTime.TabIndex = 0;
+            this.RealTime.Text = "Real Time";
+            this.RealTime.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // GameTime
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(548, 0);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Game Time";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.GameTime.Location = new System.Drawing.Point(4, 22);
+            this.GameTime.Name = "GameTime";
+            this.GameTime.Padding = new System.Windows.Forms.Padding(3);
+            this.GameTime.Size = new System.Drawing.Size(548, 0);
+            this.GameTime.TabIndex = 1;
+            this.GameTime.Text = "Game Time";
+            this.GameTime.UseVisualStyleBackColor = true;
             // 
             // tbxAttempts
             // 
@@ -602,7 +602,7 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).EndInit();
-            this.tabControl1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.RemoveIconMenu.ResumeLayout(false);
             this.ImportComparisonMenu.ResumeLayout(false);
@@ -639,9 +639,9 @@
         private System.Windows.Forms.ToolStripMenuItem downloadBoxartToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFromURLMenuItem;
         private System.Windows.Forms.Button btnAddComparison;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage RealTime;
+        private System.Windows.Forms.TabPage GameTime;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Button btnActivate;
