@@ -123,6 +123,13 @@ namespace LiveSplit.UI
             return element;
         }
 
+        public static XmlAttribute ToAttribute<T>(XmlDocument document, string name, T value)
+        {
+            var element = document.CreateAttribute(name);
+            element.Value = value.ToString();
+            return element;
+        }
+
         public static T ParseEnum<T>(XmlElement element, T defaultEnum = default(T))
         {
             return element != null ? (T)Enum.Parse(typeof(T), element.InnerText) : defaultEnum;
