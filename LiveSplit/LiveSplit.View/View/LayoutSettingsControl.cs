@@ -17,20 +17,6 @@ namespace LiveSplit.View
         public Options.LayoutSettings Settings { get; set; }
         public ILayout Layout { get; set; }
 
-        public Color TextColor { get { return Settings.TextColor; } set { Settings.TextColor = value; } }
-        public Color BackgroundColor { get { return Settings.BackgroundColor; } set { Settings.BackgroundColor = value; } }
-        public Color BackgroundColor2 { get { return Settings.BackgroundColor2; } set { Settings.BackgroundColor2 = value; } }
-        public Color ThinSeparatorsColor { get { return Settings.ThinSeparatorsColor; } set { Settings.ThinSeparatorsColor = value; } }
-        public Color SeparatorsColor { get { return Settings.SeparatorsColor; } set { Settings.SeparatorsColor = value; } }
-        public Color PersonalBestColor { get { return Settings.PersonalBestColor; } set { Settings.PersonalBestColor = value; } }
-        public Color AheadGainingTimeColor { get { return Settings.AheadGainingTimeColor; } set { Settings.AheadGainingTimeColor = value; } }
-        public Color AheadLosingTimeColor { get { return Settings.AheadLosingTimeColor; } set { Settings.AheadLosingTimeColor = value; } }
-        public Color BehindGainingTimeColor { get { return Settings.BehindGainingTimeColor; } set { Settings.BehindGainingTimeColor = value; } }
-        public Color BehindLosingTimeColor { get { return Settings.BehindLosingTimeColor; } set { Settings.BehindLosingTimeColor = value; } }
-        public Color BestSegmentColor { get { return Settings.BestSegmentColor; } set { Settings.BestSegmentColor = value; } }
-        public Color NotRunningColor { get { return Settings.NotRunningColor; } set { Settings.NotRunningColor = value; } }
-        public Color PausedColor { get { return Settings.PausedColor; } set { Settings.PausedColor = value; } }
-        public Color ShadowsColor { get { return Settings.ShadowsColor; } set { Settings.ShadowsColor = value; } }
         public string TimerFont { get { return string.Format("{0} {1}", Settings.TimerFont.FontFamily.Name, Settings.TimerFont.Style); }}
         public string MainFont { get { return string.Format("{0} {1}", Settings.TimesFont.FontFamily.Name, Settings.TimesFont.Style); ; } }
         public string SplitNamesFont { get { return string.Format("{0} {1}", Settings.TextFont.FontFamily.Name, Settings.TextFont.Style); ; } }
@@ -42,38 +28,32 @@ namespace LiveSplit.View
             set { BackgroundGradient = (GradientType)Enum.Parse(typeof(GradientType), value); }
         }
 
-        public bool ShowBestSegments { get { return Settings.ShowBestSegments; } set { Settings.ShowBestSegments = value; } }
-        public bool AlwaysOnTop { get { return Settings.AlwaysOnTop; } set { Settings.AlwaysOnTop = value; } }
-        public bool AntiAliasing { get { return Settings.AntiAliasing; } set { Settings.AntiAliasing = value; } }
-        public bool DropShadows { get { return Settings.DropShadows; } set { Settings.DropShadows = value; } }
-        public bool UseRainbowColor { get { return Settings.UseRainbowColor; } set { Settings.UseRainbowColor = value; } }
-
         public float Opacity { get { return Settings.Opacity*100f; } set { Settings.Opacity = value/100f; } }
 
-        public LayoutSettingsControl(Options.LayoutSettings settings, ILayout layout)
+        public LayoutSettingsControl(LiveSplit.UI.LayoutSettings settings, ILayout layout)
         {
             InitializeComponent();
             Settings = settings;
             Layout = layout;
-            chkBestSegments.DataBindings.Add("Checked", this, "ShowBestSegments", false, DataSourceUpdateMode.OnPropertyChanged);
-            chkAlwaysOnTop.DataBindings.Add("Checked", this, "AlwaysOnTop", false, DataSourceUpdateMode.OnPropertyChanged);
-            chkAntiAliasing.DataBindings.Add("Checked", this, "AntiAliasing", false, DataSourceUpdateMode.OnPropertyChanged);
-            chkDropShadows.DataBindings.Add("Checked", this, "DropShadows", false, DataSourceUpdateMode.OnPropertyChanged);
-            chkRainbow.DataBindings.Add("Checked", this, "UseRainbowColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnTextColor.DataBindings.Add("BackColor", this, "TextColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnBackground.DataBindings.Add("BackColor", this, "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnBackground2.DataBindings.Add("BackColor", this, "BackgroundColor2", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnThinSep.DataBindings.Add("BackColor", this, "ThinSeparatorsColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnSeparators.DataBindings.Add("BackColor", this, "SeparatorsColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnPB.DataBindings.Add("BackColor", this, "PersonalBestColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnGlod.DataBindings.Add("BackColor", this, "BestSegmentColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnAheadGaining.DataBindings.Add("BackColor", this, "AheadGainingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnAheadLosing.DataBindings.Add("BackColor", this, "AheadLosingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnBehindGaining.DataBindings.Add("BackColor", this, "BehindGainingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnBehindLosing.DataBindings.Add("BackColor", this, "BehindLosingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnNotRunning.DataBindings.Add("BackColor", this, "NotRunningColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnPausedColor.DataBindings.Add("BackColor", this, "PausedColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnShadowsColor.DataBindings.Add("BackColor", this, "ShadowsColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            chkBestSegments.DataBindings.Add("Checked", Settings, "ShowBestSegments", false, DataSourceUpdateMode.OnPropertyChanged);
+            chkAlwaysOnTop.DataBindings.Add("Checked", Settings, "AlwaysOnTop", false, DataSourceUpdateMode.OnPropertyChanged);
+            chkAntiAliasing.DataBindings.Add("Checked", Settings, "AntiAliasing", false, DataSourceUpdateMode.OnPropertyChanged);
+            chkDropShadows.DataBindings.Add("Checked", Settings, "DropShadows", false, DataSourceUpdateMode.OnPropertyChanged);
+            chkRainbow.DataBindings.Add("Checked", Settings, "UseRainbowColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnTextColor.DataBindings.Add("BackColor", Settings, "TextColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnBackground.DataBindings.Add("BackColor", Settings, "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnBackground2.DataBindings.Add("BackColor", Settings, "BackgroundColor2", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnThinSep.DataBindings.Add("BackColor", Settings, "ThinSeparatorsColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnSeparators.DataBindings.Add("BackColor", Settings, "SeparatorsColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnPB.DataBindings.Add("BackColor", Settings, "PersonalBestColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnGlod.DataBindings.Add("BackColor", Settings, "BestSegmentColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnAheadGaining.DataBindings.Add("BackColor", Settings, "AheadGainingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnAheadLosing.DataBindings.Add("BackColor", Settings, "AheadLosingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnBehindGaining.DataBindings.Add("BackColor", Settings, "BehindGainingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnBehindLosing.DataBindings.Add("BackColor", Settings, "BehindLosingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnNotRunning.DataBindings.Add("BackColor", Settings, "NotRunningColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnPausedColor.DataBindings.Add("BackColor", Settings, "PausedColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnShadowsColor.DataBindings.Add("BackColor", Settings, "ShadowsColor", false, DataSourceUpdateMode.OnPropertyChanged);
             lblTimer.DataBindings.Add("Text", this, "TimerFont", false, DataSourceUpdateMode.OnPropertyChanged);
             lblText.DataBindings.Add("Text", this, "SplitNamesFont", false, DataSourceUpdateMode.OnPropertyChanged);
             lblTimes.DataBindings.Add("Text", this, "MainFont", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -85,7 +65,7 @@ namespace LiveSplit.View
         {
             btnBackground.Visible = cmbGradientType.SelectedItem.ToString() != "Plain";
             btnBackground2.DataBindings.Clear();
-            btnBackground2.DataBindings.Add("BackColor", this, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnBackground2.DataBindings.Add("BackColor", Settings, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
             GradientString = cmbGradientType.SelectedItem.ToString();
         }
 
