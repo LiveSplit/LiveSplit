@@ -564,7 +564,7 @@
     <Type>Script</Type>
     <Description>Auto Splitting is available. (By Madzinah)</Description>
   </AutoSplitter>
-    <AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>MGR</Game>
       <Game>Metal Gear Rising</Game>
@@ -576,5 +576,25 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is avaliable. (By Dread and Chops)</Description>  
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SWJKJA</Game>
+      <Game>Jedi Knight 3</Game>
+      <Game>Jedi Academy</Game>
+      <Game>Star Wars: Jedi Knight - Jedi Academy</Game>
+      <Game>Star Wars Jedi Knight: Jedi Academy</Game>
+      <Game>Jedi Knight - Jedi Academy</Game>
+      <Game>Star Wars: Jedi Knight: Jedi Academy</Game>
+      <Game>Jedi Knight: Jedi Academy</Game>
+      <Game>JK 3: Jedi Academy</Game>
+      <Game>Jedi Knight 3: Jedi Academy</Game>
+      <Game>Jedi Knight 3 - Jedi Academy</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/JKJA.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is avaliable. (By Dread)</Description>  
   </AutoSplitter>
 </AutoSplitters>
