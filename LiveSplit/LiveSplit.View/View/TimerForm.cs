@@ -1721,7 +1721,7 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Save Failed", "Could Not Save File!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Could Not Save File!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Error(ex);
             }
         }
@@ -1762,7 +1762,7 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Save Failed", "Could Not Save File!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Could Not Save File!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Error(ex);
             }
         }
