@@ -73,6 +73,7 @@
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Metadata = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
@@ -257,6 +258,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.tabControl, 10);
             this.tabControl.Controls.Add(this.RealTime);
             this.tabControl.Controls.Add(this.GameTime);
+            this.tabControl.Controls.Add(this.Metadata);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(125, 148);
             this.tabControl.Margin = new System.Windows.Forms.Padding(10, 3, 3, 0);
@@ -586,6 +588,15 @@
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
             // 
+            // Metadata
+            // 
+            this.Metadata.Location = new System.Drawing.Point(4, 22);
+            this.Metadata.Name = "Metadata";
+            this.Metadata.Size = new System.Drawing.Size(548, 0);
+            this.Metadata.TabIndex = 2;
+            this.Metadata.Text = "Additional Info";
+            this.Metadata.UseVisualStyleBackColor = true;
+            // 
             // RunEditorDialog
             // 
             this.AcceptButton = this.btnOK;
@@ -658,5 +669,6 @@
         private System.Windows.Forms.ToolStripMenuItem clearTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromSpeedruncomToolStripMenuItem;
+        private System.Windows.Forms.TabPage Metadata;
     }
 }

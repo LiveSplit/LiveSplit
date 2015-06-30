@@ -36,6 +36,7 @@ namespace LiveSplit.View
         protected IList<TimeSpan?> SegmentTimeList { get; set; }
         protected bool IsInitialized = false;
 
+        protected bool IsGridTab { get { return tabControl.SelectedTab.Text == "Real Time" || tabControl.SelectedTab.Text == "Game Time"; } }
         protected TimingMethod SelectedMethod
         {
             get { return tabControl.SelectedTab.Text == "Real Time" ? TimingMethod.RealTime : TimingMethod.GameTime; }
@@ -1159,8 +1160,16 @@ namespace LiveSplit.View
 
         private void TabSelected(object sender, TabControlEventArgs e)
         {
-            UpdateSegmentList();
-            runGrid.Invalidate();
+            runGrid.Visible = IsGridTab;
+            if (IsGridTab)
+            {
+                UpdateSegmentList();
+                runGrid.Invalidate();
+            }
+            else
+            {
+
+            }
         }
 
         protected void RefreshAutoSplittingUI()
