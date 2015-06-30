@@ -1196,9 +1196,7 @@ namespace LiveSplit.View
                 var document = new XmlDocument();
                 var autoSplitterSettings = document.CreateElement("AutoSplitterSettings");
                 autoSplitterSettings.InnerXml = Run.AutoSplitter.Component.GetSettings(document).InnerXml;
-                var gameName = document.CreateAttribute("gameName");
-                gameName.Value = Run.GameName;
-                autoSplitterSettings.Attributes.Append(gameName);
+                autoSplitterSettings.Attributes.Append(SettingsHelper.ToAttribute(document, "gameName", Run.GameName));
                 Run.AutoSplitterSettings = autoSplitterSettings;
             }
         }

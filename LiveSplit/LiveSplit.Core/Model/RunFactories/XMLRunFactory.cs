@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Model.Comparisons;
+using LiveSplit.UI;
 using System;
 using System.Drawing;
 using System.IO;
@@ -16,23 +17,6 @@ namespace LiveSplit.Model.RunFactories
         {
             Stream = stream;
             FilePath = filePath;
-        }
-
-        private static Image GetImageFromElement(XmlElement element)
-        {
-            if (!element.IsEmpty)
-            {
-                var bf = new BinaryFormatter();
-
-                var base64String = element.InnerText;
-                var data = Convert.FromBase64String(base64String);
-
-                using (var ms = new MemoryStream(data))
-                {
-                    return (Image)bf.Deserialize(ms);
-                }
-            }
-            return null;
         }
 
         private void ParseAttemptHistory(Version version, XmlElement parent, IRun run)
@@ -74,18 +58,14 @@ namespace LiveSplit.Model.RunFactories
             document.Load(Stream);
 
             var run = new Run(factory);
-
             var parent = document["Run"];
+            var version = SettingsHelper.ParseAttributeVersion(parent);
 
-            var version = parent.HasAttribute("version")
-                ? Version.Parse(parent.Attributes["version"].Value)
-                : new Version(1, 0, 0, 0);
-
-            run.GameIcon = GetImageFromElement(parent["GameIcon"]);
-            run.GameName = parent["GameName"].InnerText;
-            run.CategoryName = parent["CategoryName"].InnerText;
-            run.Offset = TimeSpan.Parse(parent["Offset"].InnerText);
-            run.AttemptCount = int.Parse(parent["AttemptCount"].InnerText);
+            run.GameIcon = SettingsHelper.GetImageFromElement(parent["GameIcon"]);
+            run.GameName = SettingsHelper.ParseString(parent["GameName"]);
+            run.CategoryName = SettingsHelper.ParseString(parent["CategoryName"]);
+            run.Offset = SettingsHelper.ParseTimeSpan(parent["Offset"]);
+            run.AttemptCount = SettingsHelper.ParseInt(parent["AttemptCount"]);
 
             ParseAttemptHistory(version, parent, run);
 
@@ -95,11 +75,8 @@ namespace LiveSplit.Model.RunFactories
             {
                 var segmentElement = segmentNode as XmlElement;
 
-                var nameElement = segmentElement["Name"];
-                var split = new Segment(nameElement.InnerText);
-
-                var iconElement = segmentElement["Icon"];
-                split.Icon = GetImageFromElement(iconElement);
+                var split = new Segment(SettingsHelper.ParseString(segmentElement["Name"]));
+                split.Icon = SettingsHelper.GetImageFromElement(segmentElement["Icon"]);
 
                 if (version >= new Version(1, 3))
                 {
@@ -107,7 +84,7 @@ namespace LiveSplit.Model.RunFactories
                     foreach (var comparisonNode in splitTimes.GetElementsByTagName("SplitTime"))
                     {
                         var comparisonElement = comparisonNode as XmlElement;
-                        var comparisonName = comparisonElement.Attributes["name"].InnerText;
+                        var comparisonName = comparisonElement.GetAttribute("name");
                         if (comparisonElement.InnerText.Length > 0)
                         {
                             split.Comparisons[comparisonName] = version >= new Version(1, 4, 1) ? Time.FromXml(comparisonElement) : Time.ParseText(comparisonElement.InnerText);
@@ -145,9 +122,7 @@ namespace LiveSplit.Model.RunFactories
                 var newXmlDoc = new XmlDocument();
                 newXmlDoc.InnerXml = parent["AutoSplitterSettings"].OuterXml;
                 run.AutoSplitterSettings = newXmlDoc.FirstChild as XmlElement;
-                var gameName = newXmlDoc.CreateAttribute("gameName");
-                gameName.Value = run.GameName;
-                run.AutoSplitterSettings.Attributes.Append(gameName);
+                run.AutoSplitterSettings.Attributes.Append(SettingsHelper.ToAttribute(newXmlDoc, "gameName", run.GameName));
             }
 
             if (!string.IsNullOrEmpty(FilePath))

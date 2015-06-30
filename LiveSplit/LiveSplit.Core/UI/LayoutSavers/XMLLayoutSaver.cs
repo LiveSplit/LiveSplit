@@ -44,9 +44,7 @@ namespace LiveSplit.UI.LayoutSavers
         public XmlNode GetLayoutNode(XmlDocument document, ILayout layout)
         {
             var parent = document.CreateElement("Layout");
-            var version = document.CreateAttribute("version");
-            version.Value = "1.3";
-            parent.Attributes.Append(version);
+            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.3"));
 
             parent.AppendChild(SettingsHelper.ToElement(document, "Mode", layout.Mode));
             parent.AppendChild(SettingsHelper.ToElement(document, "X", layout.X));

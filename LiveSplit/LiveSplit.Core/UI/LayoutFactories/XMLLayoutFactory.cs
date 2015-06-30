@@ -72,9 +72,7 @@ namespace LiveSplit.UI.LayoutFactories
             document.Load(Stream);
             var layout = new Layout();
             var parent = document["Layout"];
-            var version = parent.HasAttribute("version")
-                ? Version.Parse(parent.Attributes["version"].Value)
-                : new Version(1, 0, 0, 0);
+            var version = SettingsHelper.ParseAttributeVersion(parent);
 
             layout.X = SettingsHelper.ParseInt(parent["X"]);
             layout.Y = SettingsHelper.ParseInt(parent["Y"]);
