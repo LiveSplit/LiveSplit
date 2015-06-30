@@ -18,12 +18,48 @@ namespace LiveSplit.Model
         private Category category;
 
         public string PlatformID { get; set; }
-        public string PlatformName { get { return Platform.Name; } }
-        public Platform Platform { get { return Game.Platforms.First(x => x.ID == PlatformID); } }
+        public string PlatformName
+        {
+            get
+            {
+                if (Platform != null)
+                    return Platform.Name;
+                return string.Empty;
+            }
+            set
+            {
+                var platform = Game.Platforms.FirstOrDefault(x => x.Name == value);
+                if (platform == null)
+                    PlatformID = string.Empty;
+                else
+                    PlatformID = platform.ID;
+            }
+        }
+        public Platform Platform { get { return Game.Platforms.FirstOrDefault(x => x.ID == PlatformID); } }
 
         public string RegionID { get; set; }
-        public string RegionName { get { return Region.Name; } }
-        public Region Region { get { return Game.Regions.First(x => x.ID == RegionID); } }
+        public string RegionName
+        {
+            get
+            {
+                if (Region != null)
+                    return Region.Name;
+                return string.Empty;
+            }
+            set
+            {
+                /*if (string.IsNullOrEmpty(value))
+                    RegionID = string.Empty;
+                else
+                    RegionID = Game.Regions.First(x => x.Name == value).ID;*/
+                var region = Game.Regions.FirstOrDefault(x => x.Name == value);
+                if (region == null)
+                    RegionID = string.Empty;
+                else
+                    RegionID = region.ID;
+            }
+        }
+        public Region Region { get { return Game.Regions.FirstOrDefault(x => x.ID == RegionID); } }
 
         public IDictionary<string, string> VariableValueIDs { get; set; }
         public IDictionary<string, string> VariableValueNames { get { return VariableValues.ToDictionary(x => x.Key.Name, x => x.Value.Value); } }

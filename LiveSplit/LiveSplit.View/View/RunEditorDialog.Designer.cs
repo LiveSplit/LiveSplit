@@ -42,6 +42,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.RealTime = new System.Windows.Forms.TabPage();
             this.GameTime = new System.Windows.Forms.TabPage();
+            this.Metadata = new System.Windows.Forms.TabPage();
             this.tbxAttempts = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -73,11 +74,12 @@
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Metadata = new System.Windows.Forms.TabPage();
+            this.metadataControl = new LiveSplit.View.MetadataControl();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
             this.tabControl.SuspendLayout();
+            this.Metadata.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.RemoveIconMenu.SuspendLayout();
             this.ImportComparisonMenu.SuspendLayout();
@@ -165,6 +167,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 517);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
@@ -261,10 +264,10 @@
             this.tabControl.Controls.Add(this.Metadata);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(125, 148);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(10, 3, 3, 0);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(10, 3, 10, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(556, 22);
+            this.tabControl.Size = new System.Drawing.Size(549, 22);
             this.tabControl.TabIndex = 7;
             this.tabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabSelected);
             // 
@@ -273,7 +276,7 @@
             this.RealTime.Location = new System.Drawing.Point(4, 22);
             this.RealTime.Name = "RealTime";
             this.RealTime.Padding = new System.Windows.Forms.Padding(3);
-            this.RealTime.Size = new System.Drawing.Size(548, 0);
+            this.RealTime.Size = new System.Drawing.Size(541, 0);
             this.RealTime.TabIndex = 0;
             this.RealTime.Text = "Real Time";
             this.RealTime.UseVisualStyleBackColor = true;
@@ -283,10 +286,20 @@
             this.GameTime.Location = new System.Drawing.Point(4, 22);
             this.GameTime.Name = "GameTime";
             this.GameTime.Padding = new System.Windows.Forms.Padding(3);
-            this.GameTime.Size = new System.Drawing.Size(548, 0);
+            this.GameTime.Size = new System.Drawing.Size(541, 0);
             this.GameTime.TabIndex = 1;
             this.GameTime.Text = "Game Time";
             this.GameTime.UseVisualStyleBackColor = true;
+            // 
+            // Metadata
+            // 
+            this.Metadata.Controls.Add(this.metadataControl);
+            this.Metadata.Location = new System.Drawing.Point(4, 22);
+            this.Metadata.Name = "Metadata";
+            this.Metadata.Size = new System.Drawing.Size(541, 0);
+            this.Metadata.TabIndex = 2;
+            this.Metadata.Text = "Additional Info";
+            this.Metadata.UseVisualStyleBackColor = true;
             // 
             // tbxAttempts
             // 
@@ -588,14 +601,15 @@
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
             // 
-            // Metadata
+            // metadataControl
             // 
-            this.Metadata.Location = new System.Drawing.Point(4, 22);
-            this.Metadata.Name = "Metadata";
-            this.Metadata.Size = new System.Drawing.Size(548, 0);
-            this.Metadata.TabIndex = 2;
-            this.Metadata.Text = "Additional Info";
-            this.Metadata.UseVisualStyleBackColor = true;
+            this.metadataControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metadataControl.Location = new System.Drawing.Point(0, 0);
+            this.metadataControl.Metadata = null;
+            this.metadataControl.Name = "metadataControl";
+            this.metadataControl.Padding = new System.Windows.Forms.Padding(7);
+            this.metadataControl.Size = new System.Drawing.Size(192, 74);
+            this.metadataControl.TabIndex = 0;
             // 
             // RunEditorDialog
             // 
@@ -614,6 +628,7 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).EndInit();
             this.tabControl.ResumeLayout(false);
+            this.Metadata.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.RemoveIconMenu.ResumeLayout(false);
             this.ImportComparisonMenu.ResumeLayout(false);
@@ -670,5 +685,6 @@
         private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromSpeedruncomToolStripMenuItem;
         private System.Windows.Forms.TabPage Metadata;
+        private MetadataControl metadataControl;
     }
 }

@@ -73,17 +73,17 @@ namespace LiveSplit.Model.RunSavers
 
             var metadata = document.CreateElement("Metadata");
             var platform = document.CreateElement("Platform");
-            platform.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.PlatformID));
+            platform.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.PlatformID ?? string.Empty));
             metadata.AppendChild(platform);
             var region = document.CreateElement("Region");
-            region.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RegionID));
+            region.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RegionID ?? string.Empty));
             metadata.AppendChild(region);
             var variables = document.CreateElement("Variables");
             foreach (var variable in run.Metadata.VariableValueIDs)
             {
                 var variableElement = document.CreateElement("Variable");
-                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", variable.Key));
-                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "valueId", variable.Value));
+                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", variable.Key ?? string.Empty));
+                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "valueId", variable.Value ?? string.Empty));
                 variables.AppendChild(variableElement);
             }
             metadata.AppendChild(variables);

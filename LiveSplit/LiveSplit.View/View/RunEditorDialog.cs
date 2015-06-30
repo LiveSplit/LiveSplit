@@ -36,7 +36,8 @@ namespace LiveSplit.View
         protected IList<TimeSpan?> SegmentTimeList { get; set; }
         protected bool IsInitialized = false;
 
-        protected bool IsGridTab { get { return tabControl.SelectedTab.Text == "Real Time" || tabControl.SelectedTab.Text == "Game Time"; } }
+        protected bool IsGridTab { get { return tabControl.SelectedTab == RealTime || tabControl.SelectedTab == GameTime; } }
+        protected bool IsMetadataTab { get { return tabControl.SelectedTab == Metadata; } }
         protected TimingMethod SelectedMethod
         {
             get { return tabControl.SelectedTab.Text == "Real Time" ? TimingMethod.RealTime : TimingMethod.GameTime; }
@@ -62,6 +63,8 @@ namespace LiveSplit.View
                 if (Run.GameName != value)
                 {
                     Run.GameName = value;
+                    if (IsMetadataTab)
+                        metadataControl.RefreshInformation();
                     RefreshCategoryAutoCompleteList(); 
                     RaiseRunEdited();
                 }
@@ -75,6 +78,8 @@ namespace LiveSplit.View
                 if (Run.CategoryName != value)
                 {
                     Run.CategoryName = value;
+                    if (IsMetadataTab)
+                        metadataControl.RefreshInformation();
                     RaiseRunEdited();
                 }
             }
@@ -108,6 +113,7 @@ namespace LiveSplit.View
             InitializeComponent();
             CurrentState = state;
             Run = state.Run;
+            metadataControl.Metadata = Run.Metadata;
             CurrentSplitIndexOffset = 0;
             AllowChangingSegments = false;
             SegmentTimeList = new List<TimeSpan?>();
@@ -1160,16 +1166,22 @@ namespace LiveSplit.View
 
         private void TabSelected(object sender, TabControlEventArgs e)
         {
-            runGrid.Visible = IsGridTab;
             if (IsGridTab)
             {
                 UpdateSegmentList();
+                this.tableLayoutPanel1.SetRowSpan(this.tabControl, 1);
+                runGrid.Visible = true;
                 runGrid.Invalidate();
             }
             else
             {
-
+                runGrid.Visible = false;
+                this.tableLayoutPanel1.SetRowSpan(this.tabControl, 9);
+                metadataControl.RefreshInformation();
             }
+            var margin = this.tabControl.Margin;
+            margin.Bottom = IsGridTab ? 0 : 10;
+            this.tabControl.Margin = margin;
         }
 
         protected void RefreshAutoSplittingUI()
