@@ -40,6 +40,7 @@ namespace LiveSplit.UI.LayoutFactories
             settings.BackgroundGradient = SettingsHelper.ParseEnum<GradientType>(element["BackgroundGradient"], GradientType.Plain);
             settings.ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0));
             settings.ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]);
+            settings.UseRainbowColor = SettingsHelper.ParseBool(element["UseRainbowColor"], false);
             settings.AlwaysOnTop = SettingsHelper.ParseBool(element["AlwaysOnTop"]);
             settings.TimerFont = SettingsHelper.GetFontFromElement(element["TimerFont"]);
             using (var timerFont = new Font(settings.TimerFont.FontFamily.Name, (settings.TimerFont.Size / 50f) * 18f, settings.TimerFont.Style, GraphicsUnit.Point))

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveSplit.UI;
+using System;
 using System.Drawing;
 
 namespace LiveSplit.Model
@@ -173,10 +174,20 @@ namespace LiveSplit.Model
                 if (curSegment != null)
                 {
                     if (state.Run[splitNumber].BestSegmentTime[method] == null || curSegment < state.Run[splitNumber].BestSegmentTime[method])
-                        splitColor = state.LayoutSettings.BestSegmentColor;
+                    {
+                        splitColor = GetBestSegmentColor(state);
+                    }
                 }
             }
             return splitColor;
+        }
+
+        private static Color GetBestSegmentColor(LiveSplitState state)
+        {
+            if (state.LayoutSettings.UseRainbowColor)
+                return ColorExtensions.FromHSV((TripleDateTime.Now.QPCValue.TotalMilliseconds / 6) % 360, 1, 1);
+
+            return state.LayoutSettings.BestSegmentColor;
         }
     }
 }

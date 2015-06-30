@@ -31,6 +31,7 @@ namespace LiveSplit.Options
         public bool AlwaysOnTop { get; set; }
         public bool AntiAliasing { get; set; }
         public bool DropShadows { get; set; }
+        public bool UseRainbowColor { get; set; }
 
         public float Opacity { get; set; }
 
@@ -66,6 +67,7 @@ namespace LiveSplit.Options
             DropShadows = settings.DropShadows;
             Opacity = settings.Opacity;
             BackgroundGradient = settings.BackgroundGradient;
+            UseRainbowColor = settings.UseRainbowColor;
         }
     }
 }

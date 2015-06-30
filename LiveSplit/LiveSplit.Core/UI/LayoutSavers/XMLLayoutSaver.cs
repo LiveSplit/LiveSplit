@@ -38,13 +38,14 @@ namespace LiveSplit.UI.LayoutSavers
             element.AppendChild(SettingsHelper.ToElement(document, "DropShadows", settings.DropShadows));
             element.AppendChild(SettingsHelper.ToElement(document, "BackgroundGradient", settings.BackgroundGradient));
             element.AppendChild(SettingsHelper.ToElement(document, "Opacity", settings.Opacity));
+            element.AppendChild(SettingsHelper.ToElement(document, "UseRainbowColor", settings.UseRainbowColor));
             return element;
         }
 
         public XmlNode GetLayoutNode(XmlDocument document, ILayout layout)
         {
             var parent = document.CreateElement("Layout");
-            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.3"));
+            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.6"));
 
             parent.AppendChild(SettingsHelper.ToElement(document, "Mode", layout.Mode));
             parent.AppendChild(SettingsHelper.ToElement(document, "X", layout.X));

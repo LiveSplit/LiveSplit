@@ -46,6 +46,7 @@ namespace LiveSplit.View
         public bool AlwaysOnTop { get { return Settings.AlwaysOnTop; } set { Settings.AlwaysOnTop = value; } }
         public bool AntiAliasing { get { return Settings.AntiAliasing; } set { Settings.AntiAliasing = value; } }
         public bool DropShadows { get { return Settings.DropShadows; } set { Settings.DropShadows = value; } }
+        public bool UseRainbowColor { get { return Settings.UseRainbowColor; } set { Settings.UseRainbowColor = value; } }
 
         public float Opacity { get { return Settings.Opacity*100f; } set { Settings.Opacity = value/100f; } }
 
@@ -58,17 +59,18 @@ namespace LiveSplit.View
             chkAlwaysOnTop.DataBindings.Add("Checked", this, "AlwaysOnTop", false, DataSourceUpdateMode.OnPropertyChanged);
             chkAntiAliasing.DataBindings.Add("Checked", this, "AntiAliasing", false, DataSourceUpdateMode.OnPropertyChanged);
             chkDropShadows.DataBindings.Add("Checked", this, "DropShadows", false, DataSourceUpdateMode.OnPropertyChanged);
+            chkRainbow.DataBindings.Add("Checked", this, "UseRainbowColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnTextColor.DataBindings.Add("BackColor", this, "TextColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnBackground.DataBindings.Add("BackColor", this, "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnBackground2.DataBindings.Add("BackColor", this, "BackgroundColor2", false, DataSourceUpdateMode.OnPropertyChanged);
             btnThinSep.DataBindings.Add("BackColor", this, "ThinSeparatorsColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnSeparators.DataBindings.Add("BackColor", this, "SeparatorsColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnPB.DataBindings.Add("BackColor", this, "PersonalBestColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnGlod.DataBindings.Add("BackColor", this, "BestSegmentColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnAheadGaining.DataBindings.Add("BackColor", this, "AheadGainingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnAheadLosing.DataBindings.Add("BackColor", this, "AheadLosingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnBehindGaining.DataBindings.Add("BackColor", this, "BehindGainingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnBehindLosing.DataBindings.Add("BackColor", this, "BehindLosingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            btnGlod.DataBindings.Add("BackColor", this, "BestSegmentColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnNotRunning.DataBindings.Add("BackColor", this, "NotRunningColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnPausedColor.DataBindings.Add("BackColor", this, "PausedColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnShadowsColor.DataBindings.Add("BackColor", this, "ShadowsColor", false, DataSourceUpdateMode.OnPropertyChanged);
@@ -77,7 +79,6 @@ namespace LiveSplit.View
             lblTimes.DataBindings.Add("Text", this, "MainFont", false, DataSourceUpdateMode.OnPropertyChanged);
             trkOpacity.DataBindings.Add("Value", this, "Opacity", false, DataSourceUpdateMode.OnPropertyChanged);
             cmbGradientType.DataBindings.Add("SelectedItem", this, "GradientString", false, DataSourceUpdateMode.OnPropertyChanged);
-            cmbGradientType.SelectedIndexChanged += cmbGradientType_SelectedIndexChanged;
         }
 
         void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,6 +112,16 @@ namespace LiveSplit.View
         {
             Settings.TextFont = SettingsHelper.ChooseFont(this, Settings.TextFont, 7, 20);
             lblText.Text = SplitNamesFont;
+        }
+
+        private void chkRainbow_CheckedChanged(object sender, EventArgs e)
+        {
+            label9.Enabled = btnGlod.Enabled = !chkRainbow.Checked;
+        }
+
+        private void LayoutSettingsControl_Load(object sender, EventArgs e)
+        {
+            chkRainbow_CheckedChanged(this, null);
         }
     }
 }
