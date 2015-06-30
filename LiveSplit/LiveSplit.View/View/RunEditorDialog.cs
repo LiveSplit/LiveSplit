@@ -36,7 +36,11 @@ namespace LiveSplit.View
         protected IList<TimeSpan?> SegmentTimeList { get; set; }
         protected bool IsInitialized = false;
 
-        protected TimingMethod SelectedMethod { get { return tabControl1.SelectedTab.Text == "Real Time" ? TimingMethod.RealTime : TimingMethod.GameTime; } }
+        protected TimingMethod SelectedMethod
+        {
+            get { return tabControl.SelectedTab.Text == "Real Time" ? TimingMethod.RealTime : TimingMethod.GameTime; }
+            set { tabControl.SelectTab(value.ToString()); }
+        }
 
         public int CurrentSplitIndexOffset { get; set; }
 
@@ -208,6 +212,8 @@ namespace LiveSplit.View
             cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
             cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
+            SelectedMethod = state.CurrentTimingMethod;
 
             RefreshCategoryAutoCompleteList();
             UpdateSegmentList();

@@ -564,4 +564,17 @@
     <Type>Script</Type>
     <Description>Auto Splitting is available. (By Madzinah)</Description>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>MGR</Game>
+      <Game>Metal Gear Rising</Game>
+      <Game>Metal Gear Rising Revengeance</Game>
+      <Game>Metal Gear Rising: Revengeance</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/MGR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is avaliable. (By Dread and Chops)</Description>  
+  </AutoSplitter>
 </AutoSplitters>
