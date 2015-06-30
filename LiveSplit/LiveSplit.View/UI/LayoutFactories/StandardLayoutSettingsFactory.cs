@@ -1,7 +1,7 @@
 ﻿using LiveSplit.Options;
 using System.Drawing;
 
-namespace LiveSplit.UI
+namespace LiveSplit.UI.LayoutFactories
 {
     public class StandardLayoutSettingsFactory : ILayoutSettingsFactory
     {

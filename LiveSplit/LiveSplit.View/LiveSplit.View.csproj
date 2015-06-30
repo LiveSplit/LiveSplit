@@ -102,7 +102,7 @@
     <Compile Include="UI\NewRaceInputBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\StandardLayoutSettingsFactory.cs" />
+    <Compile Include="UI\LayoutFactories\StandardLayoutSettingsFactory.cs" />
     <Compile Include="Updates\LiveSplitUpdateable.cs" />
     <Compile Include="View\AboutBox.cs">
       <SubType>Form</SubType>

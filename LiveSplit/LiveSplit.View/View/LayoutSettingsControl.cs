@@ -14,7 +14,7 @@ namespace LiveSplit.View
             InitializeComponent();
         }
 
-        public Options.LayoutSettings Settings { get; set; }
+        public LiveSplit.UI.LayoutSettings Settings { get; set; }
         public ILayout Layout { get; set; }
 
         public string TimerFont { get { return string.Format("{0} {1}", Settings.TimerFont.FontFamily.Name, Settings.TimerFont.Style); }}

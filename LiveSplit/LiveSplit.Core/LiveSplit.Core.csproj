@@ -206,7 +206,7 @@
     <Compile Include="Web\Share\PBTracker.cs" />
     <Compile Include="Web\Share\ASUPRunUploadPlatform.cs" />
     <Compile Include="Options\FiletypeRegistryHelper.cs" />
-    <Compile Include="Options\ILayoutSettingsFactory.cs" />
+    <Compile Include="UI\LayoutFactories\ILayoutSettingsFactory.cs" />
     <Compile Include="Options\ISettings.cs" />
     <Compile Include="Options\Settings.cs" />
     <Compile Include="Options\SettingsFactories\ISettingsFactory.cs" />
@@ -252,7 +252,7 @@
     <Compile Include="Model\TimerPhase.cs" />
     <Compile Include="UI\Layout.cs" />
     <Compile Include="UI\LayoutFactories\XMLLayoutFactory.cs" />
-    <Compile Include="Options\LayoutSettings.cs" />
+    <Compile Include="UI\LayoutSettings.cs" />
     <Compile Include="Model\LiveSplitState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Model\ISegment.cs" />
