@@ -82,6 +82,43 @@ namespace LiveSplit.UI
             return element;
         }
 
+        public static XmlElement CreateImageElement(XmlDocument document, string elementName, Image image)
+        {
+            var element = document.CreateElement(elementName);
+
+            if (image != null)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    var bf = new BinaryFormatter();
+
+                    bf.Serialize(ms, image);
+                    var data = ms.ToArray();
+                    var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+                    element.InnerXml = cdata.OuterXml;
+                }
+            }
+
+            return element;
+        }
+
+        public static Image GetImageFromElement(XmlElement element)
+        {
+            if (!element.IsEmpty)
+            {
+                var bf = new BinaryFormatter();
+
+                var base64String = element.InnerText;
+                var data = Convert.FromBase64String(base64String);
+
+                using (var ms = new MemoryStream(data))
+                {
+                    return (Image)bf.Deserialize(ms);
+                }
+            }
+            return null;
+        }
+
         public static bool ParseBool(XmlElement boolElement, bool defaultBool = false)
         {
             return boolElement != null ? Boolean.Parse(boolElement.InnerText) : defaultBool;
@@ -100,6 +137,11 @@ namespace LiveSplit.UI
         public static string ParseString(XmlElement stringElement, string defaultString = default(string))
         {
             return stringElement != null ? stringElement.InnerText : defaultString;
+        }
+
+        public static TimeSpan ParseTimeSpan(XmlElement timeSpanElement, TimeSpan defaultTimeSpan = default(TimeSpan))
+        {
+            return timeSpanElement != null ? TimeSpan.Parse(timeSpanElement.InnerText) : defaultTimeSpan;
         }
 
         public static XmlElement ToElement(XmlDocument document, Color color, string name)
@@ -138,6 +180,13 @@ namespace LiveSplit.UI
         public static Version ParseVersion(XmlElement element)
         {
             return element != null ? Version.Parse(element.InnerText) : new Version(1, 0, 0, 0);
+        }
+
+        public static Version ParseAttributeVersion(XmlElement element)
+        {
+            return element.HasAttribute("version")
+                ? Version.Parse(element.Attributes["version"].Value)
+                : new Version(1, 0, 0, 0);
         }
     }
 }
