@@ -232,7 +232,7 @@ namespace LiveSplit.View
                     splitter.Activate(CurrentState);
                     if (splitter.IsActivated
                     && Run.AutoSplitterSettings != null
-                    && Run.AutoSplitterSettings.Attributes["gameName"].InnerText == cbxGameName.Text)
+                    && Run.AutoSplitterSettings.GetAttribute("gameName") == cbxGameName.Text)
                         Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
                 }
                 RefreshAutoSplittingUI();

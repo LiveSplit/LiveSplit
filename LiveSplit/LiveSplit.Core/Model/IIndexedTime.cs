@@ -21,14 +21,14 @@ namespace LiveSplit.Model
         public static IIndexedTime ParseXml(XmlElement node)
         {
             var newTime = Time.FromXml(node);           
-            var index = int.Parse(node.Attributes["id"].InnerText);
+            var index = int.Parse(node.GetAttribute("id"));
             return new IndexedTime(newTime, index);
         }
 
         public static IIndexedTime ParseXmlOld(XmlElement node)
         {
             var newTime = node == null ? default(Time) : Time.ParseText(node.InnerText);
-            var index = int.Parse(node.Attributes["id"].InnerText);
+            var index = int.Parse(node.GetAttribute("id"));
             return new IndexedTime(newTime, index);
         }
 

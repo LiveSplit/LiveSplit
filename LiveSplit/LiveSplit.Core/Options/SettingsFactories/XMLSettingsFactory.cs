@@ -28,9 +28,7 @@ namespace LiveSplit.Options.SettingsFactories
             var settings = new StandardSettingsFactory().Create();
 
             var parent = document["Settings"];
-            var version = parent.HasAttribute("version") 
-                ? Version.Parse(parent.Attributes["version"].Value) 
-                : new Version(1,0,0,0);
+            var version = SettingsHelper.ParseAttributeVersion(parent);
 
             var keyStart = parent["SplitKey"];
             if (!string.IsNullOrEmpty(keyStart.InnerText))
@@ -117,9 +115,9 @@ namespace LiveSplit.Options.SettingsFactories
 
             if (version >= new Version(1, 6))
             {
-                foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes)
+                foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes.OfType<XmlElement>())
                 {
-                    settings.ComparisonGeneratorStates[((XmlNode)generatorNode).Attributes["name"].Value] = Boolean.Parse(((XmlNode)generatorNode).InnerText);
+                    settings.ComparisonGeneratorStates[generatorNode.GetAttribute("name")] = Boolean.Parse(generatorNode.InnerText);
                 }
 
                 foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsFile"))
