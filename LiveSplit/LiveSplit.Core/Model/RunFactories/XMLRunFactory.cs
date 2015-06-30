@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Linq;
 using System.Xml;
 
 namespace LiveSplit.Model.RunFactories
@@ -148,6 +149,17 @@ namespace LiveSplit.Model.RunFactories
                 var gameName = newXmlDoc.CreateAttribute("gameName");
                 gameName.Value = run.GameName;
                 run.AutoSplitterSettings.Attributes.Append(gameName);
+            }
+
+            if (version >= new Version(1, 6))
+            {
+                var metadata = parent["Metadata"];
+                run.Metadata.PlatformID = metadata["Platform"].GetAttribute("id");
+                run.Metadata.RegionID = metadata["Region"].GetAttribute("id");
+                foreach (var variableNode in metadata["Variables"].ChildNodes.OfType<XmlElement>())
+                {
+                    run.Metadata.VariableValueIDs.Add(variableNode.GetAttribute("id"), variableNode.GetAttribute("valueId"));
+                }
             }
 
             if (!string.IsNullOrEmpty(FilePath))

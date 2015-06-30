@@ -23,6 +23,8 @@ namespace LiveSplit.Model
         IList<string> CustomComparisons { get; set; }
         IEnumerable<string> Comparisons { get; }
 
+        RunMetadata Metadata { get; }
+
         bool HasChanged { get; set; }
         string FilePath { get; set; }
     }

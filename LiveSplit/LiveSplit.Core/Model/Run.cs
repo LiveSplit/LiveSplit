@@ -57,6 +57,8 @@ namespace LiveSplit.Model
         public IList<string> CustomComparisons { get; set; }
         public IEnumerable<string> Comparisons { get { return CustomComparisons.Concat(ComparisonGenerators.Select(x => x.Name)); } }
 
+        public RunMetadata Metadata { get; private set; }
+
         protected IComparisonGeneratorsFactory Factory { get; set; }
 
         public bool HasChanged { get; set; }
@@ -69,19 +71,16 @@ namespace LiveSplit.Model
             Factory = factory;
             ComparisonGenerators = Factory.Create(this).ToList();
             CustomComparisons = new List<string>() { PersonalBestComparisonName };
+            Metadata = new RunMetadata(this);
         }
 
         public Run(IEnumerable<ISegment> collection, IComparisonGeneratorsFactory factory)
+            : this(factory)
         {
-            InternalList = new List<ISegment>();
             foreach (var x in collection)
             {
                 InternalList.Add(x.Clone() as ISegment);
             }
-            AttemptHistory = new List<Attempt>();
-            Factory = factory;
-            ComparisonGenerators = Factory.Create(this).ToList();
-            CustomComparisons = new List<string>() { PersonalBestComparisonName };
         }
 
         public int IndexOf(ISegment item)
@@ -158,7 +157,7 @@ namespace LiveSplit.Model
 
         public object Clone()
         {
-            return new Run(this, Factory)
+            var newRun = new Run(this, Factory)
             {
                 GameIcon = GameIcon,
                 GameName = GameName,
@@ -171,8 +170,10 @@ namespace LiveSplit.Model
                 CustomComparisons = new List<string>(CustomComparisons),
                 ComparisonGenerators = new List<IComparisonGenerator>(ComparisonGenerators),
                 AutoSplitter = AutoSplitter != null ? (AutoSplitter)AutoSplitter.Clone() : null,
-                AutoSplitterSettings = AutoSplitterSettings
+                AutoSplitterSettings = AutoSplitterSettings,
             };
+            newRun.Metadata = Metadata.Clone(newRun);
+            return newRun;
         }
     }
 }

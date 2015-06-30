@@ -1,6 +1,8 @@
-﻿using System;
+﻿using LiveSplit.UI;
+using System;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 
@@ -36,9 +38,7 @@ namespace LiveSplit.Model.RunSavers
             document.AppendChild(docNode);
 
             var parent = document.CreateElement("Run");
-            var version = document.CreateAttribute("version");
-            version.Value = "1.5.0";
-            parent.Attributes.Append(version);
+            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.6.0"));
             document.AppendChild(parent);
 
             var gameIcon = CreateImageElement(document, "GameIcon", run.GameIcon);
@@ -88,9 +88,7 @@ namespace LiveSplit.Model.RunSavers
                 foreach (var comparison in run.CustomComparisons)
                 {
                     var splitTime = segment.Comparisons[comparison].ToXml(document, "SplitTime");
-                    var comparisonName = document.CreateAttribute("name");
-                    comparisonName.Value = comparison;
-                    splitTime.Attributes.Append(comparisonName);
+                    splitTime.Attributes.Append(SettingsHelper.ToAttribute(document, "name", comparison));
                     splitTimes.AppendChild(splitTime);
                 }
                 splitElement.AppendChild(splitTimes);
@@ -110,6 +108,24 @@ namespace LiveSplit.Model.RunSavers
             if (run.IsAutoSplitterActive())
                 autoSplitterSettings.InnerXml = run.AutoSplitter.Component.GetSettings(document).InnerXml;
             parent.AppendChild(autoSplitterSettings);
+
+            var metadata = document.CreateElement("Metadata");
+            var platform = document.CreateElement("Platform");
+            platform.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.PlatformID));
+            metadata.AppendChild(platform);
+            var region = document.CreateElement("Region");
+            region.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RegionID));
+            metadata.AppendChild(region);
+            var variables = document.CreateElement("Variables");
+            foreach (var variable in run.Metadata.VariableValueIDs)
+            {
+                var variableElement = document.CreateElement("Variable");
+                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", variable.Key));
+                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "valueId", variable.Value));
+                variables.AppendChild(variableElement);
+            }
+            metadata.AppendChild(variables);
+            parent.AppendChild(metadata);
 
             document.Save(stream);
         }
