@@ -29,6 +29,8 @@ namespace LiveSplit.View
             cmbPlatform.Items.Clear();
             cmbRegion.DataBindings.Clear();
             cmbPlatform.DataBindings.Clear();
+            tbxRules.Clear();
+
             if (Metadata.Game != null)
             {
                 cmbRegion.Items.Add(string.Empty);
@@ -37,7 +39,13 @@ namespace LiveSplit.View
                 cmbPlatform.Items.AddRange(Metadata.Game.Platforms.Select(x => x.Name).ToArray());
                 cmbRegion.DataBindings.Add("SelectedItem", Metadata, "RegionName", false, DataSourceUpdateMode.OnPropertyChanged);
                 cmbPlatform.DataBindings.Add("SelectedItem", Metadata, "PlatformName", false, DataSourceUpdateMode.OnPropertyChanged);
+                
+                if (Metadata.Category != null)
+                {
+                    tbxRules.Text = Metadata.Category.Rules ?? string.Empty;
+                }
             }
+
             cmbRegion.Enabled = cmbRegion.Items.Count > 1;
             cmbPlatform.Enabled = cmbPlatform.Items.Count > 1;
         }

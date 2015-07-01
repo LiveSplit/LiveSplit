@@ -96,7 +96,7 @@ namespace LiveSplit.Model
                 if (run.CategoryName != oldCategoryName)
                 {
                     category = SpeedrunCom.Client.Games.GetCategories(Game.ID, embeds: new CategoryEmbeds(embedVariables: true))
-                        .First(x => x.Type == CategoryType.PerGame && x.Name == run.CategoryName);
+                        .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == run.CategoryName);
                     oldCategoryName = run.CategoryName;
                 }
                 return category;

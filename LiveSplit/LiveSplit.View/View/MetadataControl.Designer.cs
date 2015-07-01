@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.cmbPlatform = new System.Windows.Forms.ComboBox();
             this.lblRegion = new System.Windows.Forms.Label();
             this.lblPlatform = new System.Windows.Forms.Label();
             this.cmbRegion = new System.Windows.Forms.ComboBox();
-            this.cmbPlatform = new System.Windows.Forms.ComboBox();
+            this.lblRules = new System.Windows.Forms.Label();
+            this.tbxRules = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -44,14 +46,18 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 112F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.cmbPlatform, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblRegion, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblPlatform, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.cmbRegion, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.cmbPlatform, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblRegion, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblPlatform, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cmbRegion, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblRules, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tbxRules, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowCount = 9;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -62,11 +68,21 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(529, 434);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // cmbPlatform
+            // 
+            this.cmbPlatform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbPlatform.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPlatform.FormattingEnabled = true;
+            this.cmbPlatform.Location = new System.Drawing.Point(385, 127);
+            this.cmbPlatform.Name = "cmbPlatform";
+            this.cmbPlatform.Size = new System.Drawing.Size(141, 21);
+            this.cmbPlatform.TabIndex = 3;
+            // 
             // lblRegion
             // 
             this.lblRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRegion.AutoSize = true;
-            this.lblRegion.Location = new System.Drawing.Point(3, 7);
+            this.lblRegion.Location = new System.Drawing.Point(3, 131);
             this.lblRegion.Name = "lblRegion";
             this.lblRegion.Size = new System.Drawing.Size(97, 13);
             this.lblRegion.TabIndex = 0;
@@ -76,7 +92,7 @@
             // 
             this.lblPlatform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPlatform.AutoSize = true;
-            this.lblPlatform.Location = new System.Drawing.Point(273, 7);
+            this.lblPlatform.Location = new System.Drawing.Point(273, 131);
             this.lblPlatform.Name = "lblPlatform";
             this.lblPlatform.Size = new System.Drawing.Size(106, 13);
             this.lblPlatform.TabIndex = 1;
@@ -87,20 +103,33 @@
             this.cmbRegion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cmbRegion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRegion.FormattingEnabled = true;
-            this.cmbRegion.Location = new System.Drawing.Point(106, 3);
+            this.cmbRegion.Location = new System.Drawing.Point(106, 127);
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(141, 21);
             this.cmbRegion.TabIndex = 2;
             // 
-            // cmbPlatform
+            // lblRules
             // 
-            this.cmbPlatform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbPlatform.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbPlatform.FormattingEnabled = true;
-            this.cmbPlatform.Location = new System.Drawing.Point(385, 3);
-            this.cmbPlatform.Name = "cmbPlatform";
-            this.cmbPlatform.Size = new System.Drawing.Size(141, 21);
-            this.cmbPlatform.TabIndex = 3;
+            this.lblRules.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblRules.AutoSize = true;
+            this.lblRules.Location = new System.Drawing.Point(3, 0);
+            this.lblRules.Name = "lblRules";
+            this.lblRules.Size = new System.Drawing.Size(97, 13);
+            this.lblRules.TabIndex = 4;
+            this.lblRules.Text = "Rules:";
+            // 
+            // tbxRules
+            // 
+            this.tbxRules.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.tbxRules, 5);
+            this.tbxRules.Location = new System.Drawing.Point(3, 16);
+            this.tbxRules.Margin = new System.Windows.Forms.Padding(3, 3, 3, 10);
+            this.tbxRules.Multiline = true;
+            this.tbxRules.Name = "tbxRules";
+            this.tbxRules.ReadOnly = true;
+            this.tbxRules.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxRules.Size = new System.Drawing.Size(523, 98);
+            this.tbxRules.TabIndex = 5;
             // 
             // MetadataControl
             // 
@@ -124,6 +153,8 @@
         private System.Windows.Forms.Label lblRegion;
         private System.Windows.Forms.Label lblPlatform;
         private System.Windows.Forms.ComboBox cmbRegion;
+        private System.Windows.Forms.Label lblRules;
+        private System.Windows.Forms.TextBox tbxRules;
 
 
     }
