@@ -94,25 +94,24 @@
             this.runGrid.BackgroundColor = System.Drawing.SystemColors.Control;
             this.runGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.runGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tableLayoutPanel1.SetColumnSpan(this.runGrid, 10);
+            this.tableLayoutPanel1.SetColumnSpan(this.runGrid, 9);
             this.runGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.runGrid.GridColor = System.Drawing.Color.Gainsboro;
-            this.runGrid.Location = new System.Drawing.Point(125, 175);
-            this.runGrid.Margin = new System.Windows.Forms.Padding(10, 5, 10, 10);
+            this.runGrid.Location = new System.Drawing.Point(144, 170);
+            this.runGrid.Margin = new System.Windows.Forms.Padding(4, 0, 10, 10);
             this.runGrid.Name = "runGrid";
             this.runGrid.RowHeadersVisible = false;
             this.runGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tableLayoutPanel1.SetRowSpan(this.runGrid, 8);
             this.runGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.runGrid.Size = new System.Drawing.Size(549, 296);
+            this.runGrid.Size = new System.Drawing.Size(530, 301);
             this.runGrid.TabIndex = 0;
             this.runGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.runGrid_KeyDown);
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 11;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.ColumnCount = 10;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 39F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 62F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 49F));
@@ -122,21 +121,22 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 88F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutPanel1.Controls.Add(this.label2, 2, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 2, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.cbxGameName, 4, 1);
-            this.tableLayoutPanel1.Controls.Add(this.cbxRunCategory, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.tbxTimeOffset, 4, 3);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.cbxGameName, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.cbxRunCategory, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.tbxTimeOffset, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.picGameIcon, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.runGrid, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.tabControl, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.tbxAttempts, 7, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 6, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 7, 14);
-            this.tableLayoutPanel1.Controls.Add(this.lblDescription, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnActivate, 7, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 8, 4);
+            this.tableLayoutPanel1.Controls.Add(this.tbxAttempts, 6, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 5, 3);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 6, 14);
+            this.tableLayoutPanel1.Controls.Add(this.lblDescription, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnActivate, 6, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 7, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnInsert, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnAdd, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.btnRemove, 0, 8);
@@ -238,7 +238,6 @@
             // 
             this.picGameIcon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             this.picGameIcon.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tableLayoutPanel1.SetColumnSpan(this.picGameIcon, 2);
             this.picGameIcon.Image = ((System.Drawing.Image)(resources.GetObject("picGameIcon.Image")));
             this.picGameIcon.Location = new System.Drawing.Point(10, 15);
             this.picGameIcon.Margin = new System.Windows.Forms.Padding(10);
@@ -254,15 +253,15 @@
             // 
             // tabControl
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.tabControl, 10);
+            this.tableLayoutPanel1.SetColumnSpan(this.tabControl, 9);
             this.tabControl.Controls.Add(this.RealTime);
             this.tabControl.Controls.Add(this.GameTime);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.Location = new System.Drawing.Point(125, 148);
-            this.tabControl.Margin = new System.Windows.Forms.Padding(10, 3, 3, 0);
+            this.tabControl.Location = new System.Drawing.Point(144, 148);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 3, 10, 0);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(556, 22);
+            this.tabControl.Size = new System.Drawing.Size(530, 22);
             this.tabControl.TabIndex = 7;
             this.tabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabSelected);
             // 
@@ -271,7 +270,7 @@
             this.RealTime.Location = new System.Drawing.Point(4, 22);
             this.RealTime.Name = "RealTime";
             this.RealTime.Padding = new System.Windows.Forms.Padding(3);
-            this.RealTime.Size = new System.Drawing.Size(548, 0);
+            this.RealTime.Size = new System.Drawing.Size(522, 0);
             this.RealTime.TabIndex = 0;
             this.RealTime.Text = "Real Time";
             this.RealTime.UseVisualStyleBackColor = true;
@@ -386,9 +385,9 @@
             // 
             this.btnInsert.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnInsert.Location = new System.Drawing.Point(10, 173);
-            this.btnInsert.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnInsert.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnInsert.Name = "btnInsert";
-            this.btnInsert.Size = new System.Drawing.Size(102, 23);
+            this.btnInsert.Size = new System.Drawing.Size(120, 23);
             this.btnInsert.TabIndex = 8;
             this.btnInsert.Text = "Insert Above";
             this.btnInsert.UseVisualStyleBackColor = true;
@@ -398,9 +397,9 @@
             // 
             this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdd.Location = new System.Drawing.Point(10, 202);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(102, 23);
+            this.btnAdd.Size = new System.Drawing.Size(120, 23);
             this.btnAdd.TabIndex = 9;
             this.btnAdd.Text = "Insert Below";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -410,9 +409,9 @@
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemove.Location = new System.Drawing.Point(10, 231);
-            this.btnRemove.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnRemove.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(102, 23);
+            this.btnRemove.Size = new System.Drawing.Size(120, 23);
             this.btnRemove.TabIndex = 10;
             this.btnRemove.Text = "Remove Segment";
             this.btnRemove.UseVisualStyleBackColor = true;
@@ -422,9 +421,9 @@
             // 
             this.btnMoveUp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoveUp.Location = new System.Drawing.Point(10, 260);
-            this.btnMoveUp.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnMoveUp.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnMoveUp.Name = "btnMoveUp";
-            this.btnMoveUp.Size = new System.Drawing.Size(102, 23);
+            this.btnMoveUp.Size = new System.Drawing.Size(120, 23);
             this.btnMoveUp.TabIndex = 11;
             this.btnMoveUp.Text = "Move Up";
             this.btnMoveUp.UseVisualStyleBackColor = true;
@@ -434,9 +433,9 @@
             // 
             this.btnMoveDown.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMoveDown.Location = new System.Drawing.Point(10, 289);
-            this.btnMoveDown.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnMoveDown.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnMoveDown.Name = "btnMoveDown";
-            this.btnMoveDown.Size = new System.Drawing.Size(102, 23);
+            this.btnMoveDown.Size = new System.Drawing.Size(120, 23);
             this.btnMoveDown.TabIndex = 12;
             this.btnMoveDown.Text = "Move Down";
             this.btnMoveDown.UseVisualStyleBackColor = true;
@@ -446,9 +445,9 @@
             // 
             this.btnAddComparison.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddComparison.Location = new System.Drawing.Point(10, 318);
-            this.btnAddComparison.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnAddComparison.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnAddComparison.Name = "btnAddComparison";
-            this.btnAddComparison.Size = new System.Drawing.Size(102, 23);
+            this.btnAddComparison.Size = new System.Drawing.Size(120, 23);
             this.btnAddComparison.TabIndex = 13;
             this.btnAddComparison.Text = "Add Comparison";
             this.btnAddComparison.UseVisualStyleBackColor = true;
@@ -459,11 +458,11 @@
             this.btnImportComparison.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnImportComparison.Location = new System.Drawing.Point(10, 347);
-            this.btnImportComparison.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnImportComparison.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnImportComparison.Name = "btnImportComparison";
-            this.btnImportComparison.Size = new System.Drawing.Size(102, 23);
+            this.btnImportComparison.Size = new System.Drawing.Size(120, 23);
             this.btnImportComparison.TabIndex = 14;
-            this.btnImportComparison.Text = "Import Comparison";
+            this.btnImportComparison.Text = "Import Comparison...";
             this.btnImportComparison.UseVisualStyleBackColor = true;
             this.btnImportComparison.Click += new System.EventHandler(this.btnImportComparison_Click);
             // 
@@ -472,9 +471,9 @@
             this.btnOther.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOther.Location = new System.Drawing.Point(10, 376);
-            this.btnOther.Margin = new System.Windows.Forms.Padding(10, 3, 3, 3);
+            this.btnOther.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnOther.Name = "btnOther";
-            this.btnOther.Size = new System.Drawing.Size(102, 23);
+            this.btnOther.Size = new System.Drawing.Size(120, 23);
             this.btnOther.TabIndex = 15;
             this.btnOther.Text = "Other...";
             this.btnOther.UseVisualStyleBackColor = true;
@@ -594,7 +593,7 @@
             this.ClientSize = new System.Drawing.Size(684, 517);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(700, 450);
+            this.MinimumSize = new System.Drawing.Size(700, 479);
             this.Name = "RunEditorDialog";
             this.Text = "Splits Editor";
             this.Load += new System.EventHandler(this.RunEditorDialog_Load);
