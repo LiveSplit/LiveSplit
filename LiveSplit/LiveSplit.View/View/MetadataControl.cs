@@ -25,6 +25,9 @@ namespace LiveSplit.View
 
         public void RefreshInformation()
         {
+            if (Metadata == null)
+                return;
+
             cmbRegion.Items.Clear();
             cmbPlatform.Items.Clear();
             cmbRegion.DataBindings.Clear();
