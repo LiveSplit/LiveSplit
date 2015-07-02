@@ -1166,8 +1166,11 @@ namespace LiveSplit.View
 
         private void TabSelected(object sender, TabControlEventArgs e)
         {
+            var margin = this.tabControl.Margin;
             if (IsGridTab)
             {
+                margin.Bottom = 0;
+                this.tabControl.Margin = margin;
                 UpdateSegmentList();
                 this.tableLayoutPanel1.SetRowSpan(this.tabControl, 1);
                 runGrid.Visible = true;
@@ -1178,10 +1181,9 @@ namespace LiveSplit.View
                 runGrid.Visible = false;
                 this.tableLayoutPanel1.SetRowSpan(this.tabControl, 9);
                 metadataControl.RefreshInformation();
+                margin.Bottom = 10;
+                this.tabControl.Margin = margin;
             }
-            var margin = this.tabControl.Margin;
-            margin.Bottom = IsGridTab ? 0 : 10;
-            this.tabControl.Margin = margin;
         }
 
         protected void RefreshAutoSplittingUI()
