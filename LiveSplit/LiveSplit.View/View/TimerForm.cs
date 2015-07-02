@@ -1560,7 +1560,7 @@ namespace LiveSplit.View
                 splitter.Activate(CurrentState);
                 if (splitter.IsActivated
                 && CurrentState.Run.AutoSplitterSettings != null
-                && CurrentState.Run.AutoSplitterSettings.Attributes["gameName"].InnerText == CurrentState.Run.GameName)
+                && CurrentState.Run.AutoSplitterSettings.GetAttribute("gameName") == CurrentState.Run.GameName)
                     CurrentState.Run.AutoSplitter.Component.SetSettings(CurrentState.Run.AutoSplitterSettings);
             }
         }
@@ -1721,7 +1721,7 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Save Failed", "Could Not Save File!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Could Not Save File!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Error(ex);
             }
         }
@@ -1762,7 +1762,7 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Save Failed", "Could Not Save File!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Could Not Save File!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Error(ex);
             }
         }

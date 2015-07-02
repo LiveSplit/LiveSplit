@@ -1,4 +1,4 @@
-﻿namespace LiveSplit.Options
+﻿namespace LiveSplit.UI.LayoutFactories
 {
     public interface ILayoutSettingsFactory
     {

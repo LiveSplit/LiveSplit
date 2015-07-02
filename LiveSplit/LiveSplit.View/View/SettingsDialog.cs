@@ -20,11 +20,7 @@ namespace LiveSplit.View
         public string SwitchComparisonPrevious { get { return FormatKey(Settings.SwitchComparisonPrevious); } }
         public string SwitchComparisonNext { get { return FormatKey(Settings.SwitchComparisonNext); } }
         public string ToggleGlobalHotkeys { get { return FormatKey(Settings.ToggleGlobalHotkeys); } }
-        public bool GlobalHotkeysEnabled { get { return Settings.GlobalHotkeysEnabled; } set { Settings.GlobalHotkeysEnabled = value; } }
-        public bool DeactivateHotkeysForOtherPrograms { get { return Settings.DeactivateHotkeysForOtherPrograms; } set { Settings.DeactivateHotkeysForOtherPrograms = value; } }
         public float HotkeyDelay { get { return Settings.HotkeyDelay; } set { Settings.HotkeyDelay = Math.Max(value, 0); } }
-        public bool WarnOnReset { get { return Settings.WarnOnReset; } set { Settings.WarnOnReset = value; } }
-        public bool DoubleTapPrevention { get { return Settings.DoubleTapPrevention; } set { Settings.DoubleTapPrevention = value; } }
 
         public event EventHandler SumOfBestModeChanged;
 
@@ -44,9 +40,9 @@ namespace LiveSplit.View
             txtToggle.DataBindings.Add("Text", this, "ToggleGlobalHotkeys");
             txtSwitchPrevious.DataBindings.Add("Text", this, "SwitchComparisonPrevious");
             txtSwitchNext.DataBindings.Add("Text", this, "SwitchComparisonNext");
-            chkGlobalHotkeys.DataBindings.Add("Checked", this, "GlobalHotkeysEnabled");
-            chkWarnOnReset.DataBindings.Add("Checked", this, "WarnOnReset");
-            chkDoubleTap.DataBindings.Add("Checked", this, "DoubleTapPrevention");
+            chkGlobalHotkeys.DataBindings.Add("Checked", Settings, "GlobalHotkeysEnabled");
+            chkWarnOnReset.DataBindings.Add("Checked", Settings, "WarnOnReset");
+            chkDoubleTap.DataBindings.Add("Checked", Settings, "DoubleTapPrevention");
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
 
@@ -72,7 +68,7 @@ namespace LiveSplit.View
             {
                 chkDeactivateForOtherPrograms.Enabled = true;
                 chkDeactivateForOtherPrograms.DataBindings.Clear();
-                chkDeactivateForOtherPrograms.DataBindings.Add("Checked", this, "DeactivateHotkeysForOtherPrograms");
+                chkDeactivateForOtherPrograms.DataBindings.Add("Checked", Settings, "DeactivateHotkeysForOtherPrograms");
             }
             else
             {

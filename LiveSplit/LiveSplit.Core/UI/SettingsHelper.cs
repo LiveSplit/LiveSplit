@@ -185,7 +185,7 @@ namespace LiveSplit.UI
         public static Version ParseAttributeVersion(XmlElement element)
         {
             return element.HasAttribute("version")
-                ? Version.Parse(element.Attributes["version"].Value)
+                ? Version.Parse(element.GetAttribute("version"))
                 : new Version(1, 0, 0, 0);
         }
     }
