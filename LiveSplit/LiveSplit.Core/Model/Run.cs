@@ -13,6 +13,9 @@ namespace LiveSplit.Model
     [Serializable]
     public class Run : IRun
     {
+        private string gameName;
+        private string categoryName;
+
         /// <summary>
         /// The name of the comparison used to save your Personal Best splits.
         /// </summary>
@@ -27,14 +30,17 @@ namespace LiveSplit.Model
         /// Gets or sets the icon of the game the run is for.
         /// </summary>
         public Image GameIcon { get; set; }
+
         /// <summary>
         /// Gets or sets the name of the game the run is for.
         /// </summary>
-        public string GameName { get; set; }
+        public string GameName { get { return gameName; } set { gameName = value; Metadata.Refresh(); } }
+
         /// <summary>
         /// Gets or sets the category of the run.
         /// </summary>
-        public string CategoryName { get; set; }
+        public string CategoryName { get { return categoryName; } set { categoryName = value; Metadata.Refresh(); } }
+
         /// <summary>
         /// Gets or sets the time where the timer starts at.
         /// <remarks>This can be both a negative time as well to simulate a countdown.</remarks>

@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace LiveSplit.Model
@@ -14,8 +15,8 @@ namespace LiveSplit.Model
         private IRun run;
         private string oldGameName;
         private string oldCategoryName;
-        private Game game;
-        private Category category;
+        private Lazy<Game> game;
+        private Lazy<Category> category;
         private bool usesEmulator;
 
         public string PlatformID { get; set; }
@@ -65,7 +66,7 @@ namespace LiveSplit.Model
             get
             {
                 var categoryId = Category != null ? Category.ID : null;
-                var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);
+                var variables = Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);
                 return variables.ToDictionary(x => x, x => 
                 {
                     if (!VariableValueIDs.ContainsKey(x.ID))
@@ -95,13 +96,8 @@ namespace LiveSplit.Model
         {
             get
             {
-                if (run.GameName != oldGameName)
-                {
-                    game = SpeedrunCom.Client.Games.SearchGameExact(run.GameName, new GameEmbeds(embedRegions: true, embedPlatforms: true));
-                    oldGameName = run.GameName;
-                    oldCategoryName = null;
-                }
-                return game;
+                Refresh();
+                return game.Value;
             }
         }
 
@@ -109,13 +105,8 @@ namespace LiveSplit.Model
         {
             get
             {
-                if (run.CategoryName != oldCategoryName)
-                {
-                    category = SpeedrunCom.Client.Games.GetCategories(Game.ID, embeds: new CategoryEmbeds(embedVariables: true))
-                        .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == run.CategoryName);
-                    oldCategoryName = run.CategoryName;
-                }
-                return category;
+                Refresh();
+                return category.Value;
             }
         }
 
@@ -123,6 +114,40 @@ namespace LiveSplit.Model
         {
             this.run = run;
             VariableValueIDs = new Dictionary<string, string>();
+            game = new Lazy<Game>(() => null);
+            category = new Lazy<Category>(() => null);
+        }
+
+        public void Refresh()
+        {
+            lock (this)
+            {
+                if (run.GameName != oldGameName)
+                {
+                    oldGameName = run.GameName;
+                    if (!string.IsNullOrEmpty(run.GameName))
+                    {
+                        var gameTask = Task.Factory.StartNew(() => SpeedrunCom.Client.Games.SearchGameExact(run.GameName, new GameEmbeds(embedRegions: true, embedPlatforms: true)));
+                        game = new Lazy<Game>(() => gameTask.Result);
+                    }
+                    else
+                        game = new Lazy<Game>(() => null);
+                    oldCategoryName = null;
+                }
+
+                if (run.CategoryName != oldCategoryName)
+                {
+                    oldCategoryName = run.CategoryName;
+                    if (!string.IsNullOrEmpty(run.CategoryName))
+                    {
+                        var categoryTask = Task.Factory.StartNew(() => SpeedrunCom.Client.Games.GetCategories(Game.ID, embeds: new CategoryEmbeds(embedVariables: true))
+                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == run.CategoryName));
+                        category = new Lazy<Category>(() => categoryTask.Result);
+                    }
+                    else
+                        category = new Lazy<Category>(() => null);
+                }
+            }
         }
 
         public RunMetadata Clone(IRun run)
