@@ -217,7 +217,7 @@ namespace LiveSplit.Model
             }
         }
 
-        public static string GetExtendedCategoryName(this IRun run)
+        public static string GetExtendedCategoryName(this IRun run, bool showRegion = false, bool showPlatform = false, bool showVariables = true)
         {
             var list = new List<string>();
 
@@ -232,15 +232,18 @@ namespace LiveSplit.Model
                 categoryName = categoryName.Substring(0, indexStart).Trim();
             }
 
-            var variableValues = run.Metadata.VariableValueNames.Values.Where(x => !string.IsNullOrEmpty(x));
-            list.AddRange(variableValues);
+            if (showVariables)
+            {
+                var variableValues = run.Metadata.VariableValueNames.Values.Where(x => !string.IsNullOrEmpty(x));
+                list.AddRange(variableValues);
+            }
 
-            if (run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game.Regions.Count > 1)
+            if (run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game.Regions.Count > 1 && showRegion)
             {
                 list.Add(run.Metadata.Region.Abbreviation);
             }
 
-            if (run.Metadata.Platform != null && !string.IsNullOrEmpty(run.Metadata.PlatformName) && run.Metadata.Game.Platforms.Count > 1)
+            if (run.Metadata.Platform != null && !string.IsNullOrEmpty(run.Metadata.PlatformName) && run.Metadata.Game.Platforms.Count > 1 && showPlatform)
             {
                 if (run.Metadata.UsesEmulator)
                     list.Add(run.Metadata.PlatformName + " Emulator");
