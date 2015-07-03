@@ -16,6 +16,7 @@ namespace LiveSplit.Model
         private string oldCategoryName;
         private Game game;
         private Category category;
+        private bool usesEmulator;
 
         public string PlatformID { get; set; }
         public string PlatformName
@@ -76,6 +77,20 @@ namespace LiveSplit.Model
             }
         }
 
+        public bool UsesEmulator
+        {
+            get
+            {
+                if (Game == null || !Game.Ruleset.EmulatorsAllowed)
+                    return false;
+                return usesEmulator;
+            }
+            set
+            {
+                usesEmulator = Game != null && Game.Ruleset.EmulatorsAllowed && value;
+            }
+        }
+
         public Game Game
         {
             get
@@ -120,7 +135,8 @@ namespace LiveSplit.Model
                 category = category,
                 PlatformID = PlatformID,
                 RegionID = RegionID,
-                VariableValueIDs = VariableValueIDs.ToDictionary(x => x.Key, x => x.Value)
+                VariableValueIDs = VariableValueIDs.ToDictionary(x => x.Key, x => x.Value),
+                usesEmulator = usesEmulator
             };
         }
     }

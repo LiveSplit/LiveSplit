@@ -43,21 +43,29 @@ namespace LiveSplit.View
 
         public RunMetadata Metadata { get; set; }
 
-        private List<Label> variableLabels;
-        private List<ComboBox> variableComboBoxes;
+        private List<Control> dynamicControls;
         private List<VariableBinding> variableBindings;
 
         public MetadataControl()
         {
             InitializeComponent();
-            variableLabels = new List<Label>();
-            variableComboBoxes = new List<ComboBox>();
+            dynamicControls = new List<Control>();
             variableBindings = new List<VariableBinding>();
         }
 
         private void MetadataControl_Load(object sender, EventArgs e)
         {
             RefreshInformation();
+        }
+
+        private int getDynamicControlRowIndex(int controlIndex)
+        {
+            return controlIndex / VariablesPerRow + VariablesFirstRowIndex;
+        }
+
+        private int getDynamicControlColumnIndex(int controlIndex)
+        {
+            return ColumnsPerVariable * (controlIndex % VariablesPerRow);
         }
 
         public void RefreshInformation()
@@ -71,13 +79,12 @@ namespace LiveSplit.View
             cmbPlatform.DataBindings.Clear();
             tbxRules.Clear();
 
-            foreach (var control in variableLabels.Cast<Control>().Concat(variableComboBoxes))
+            foreach (var control in dynamicControls)
             {
                 tableLayoutPanel1.Controls.Remove(control);
             }
 
-            variableLabels.Clear();
-            variableComboBoxes.Clear();
+            dynamicControls.Clear();
             variableBindings.Clear();
 
             if (Metadata.Game != null)
@@ -94,7 +101,31 @@ namespace LiveSplit.View
                     tbxRules.Text = Metadata.Category.Rules ?? string.Empty;
                 }
 
-                var variableIndex = 0;
+                var controlIndex = 0;
+
+                if (Metadata.Game != null && Metadata.Game.Ruleset.EmulatorsAllowed)
+                {
+                    var emulatedRow = getDynamicControlRowIndex(controlIndex);
+                    var emulatedColumn = getDynamicControlColumnIndex(controlIndex);
+
+                    var emulatedCheckBox = new CheckBox
+                    {
+                        Text = "Uses Emulator",
+                        Anchor = AnchorLeftRight,
+                        Margin = new Padding(7, 3, 3, 3),
+                        Height = 21
+                    };
+
+                    tableLayoutPanel1.Controls.Add(emulatedCheckBox, emulatedColumn, emulatedRow);
+                    tableLayoutPanel1.SetColumnSpan(emulatedCheckBox, 2);
+
+                    emulatedCheckBox.DataBindings.Add("Checked", Metadata, "UsesEmulator", false, DataSourceUpdateMode.OnPropertyChanged);
+
+                    dynamicControls.Add(emulatedCheckBox);
+                    
+                    controlIndex++;
+                }
+
                 foreach (var variable in Metadata.VariableValues.Keys)
                 {
                     var variableLabel = new Label()
@@ -114,8 +145,8 @@ namespace LiveSplit.View
                     variableComboBox.Items.Add(string.Empty);
                     variableComboBox.Items.AddRange(variable.Choices.Select(x => x.Value).ToArray());
 
-                    var variableRow = variableIndex / VariablesPerRow + VariablesFirstRowIndex;
-                    var variableLabelColumn = ColumnsPerVariable * (variableIndex % VariablesPerRow);
+                    var variableRow = getDynamicControlRowIndex(controlIndex);
+                    var variableLabelColumn = getDynamicControlColumnIndex(controlIndex);
                     var variableComboBoxColumn = variableLabelColumn + 1;
 
                     tableLayoutPanel1.Controls.Add(variableLabel, variableLabelColumn, variableRow);
@@ -129,11 +160,11 @@ namespace LiveSplit.View
 
                     variableComboBox.DataBindings.Add("SelectedItem", variableBinding, "Value", false, DataSourceUpdateMode.OnPropertyChanged);
 
-                    variableLabels.Add(variableLabel);
-                    variableComboBoxes.Add(variableComboBox);
+                    dynamicControls.Add(variableLabel);
+                    dynamicControls.Add(variableComboBox);
                     variableBindings.Add(variableBinding);
 
-                    variableIndex++;
+                    controlIndex++;
                 }
             }
 

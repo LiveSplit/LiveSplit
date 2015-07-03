@@ -242,7 +242,10 @@ namespace LiveSplit.Model
 
             if (run.Metadata.Platform != null && !string.IsNullOrEmpty(run.Metadata.PlatformName) && run.Metadata.Game.Platforms.Count > 1)
             {
-                list.Add(run.Metadata.PlatformName);
+                if (run.Metadata.UsesEmulator)
+                    list.Add(run.Metadata.PlatformName + " Emulator");
+                else
+                    list.Add(run.Metadata.PlatformName);
             }
 
             if (list.Any())
