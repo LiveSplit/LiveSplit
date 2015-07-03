@@ -966,7 +966,7 @@ namespace LiveSplit.View
         {
             try
             {
-                var game = SpeedrunCom.Client.Games.GetGames(name: cbxGameName.Text, elementsPerPage: 1).First();
+                var game = Run.Metadata.Game;
                 GameIcon = game.Assets.GetBoxartImage();
                 picGameIcon.Image = GameIcon;
                 RaiseRunEdited();
