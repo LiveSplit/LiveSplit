@@ -130,6 +130,7 @@ namespace LiveSplit.Model.RunFactories
             {
                 var metadata = parent["Metadata"];
                 run.Metadata.PlatformID = metadata["Platform"].GetAttribute("id");
+                run.Metadata.UsesEmulator = bool.Parse(metadata["Platform"].GetAttribute("usesEmulator"));
                 run.Metadata.RegionID = metadata["Region"].GetAttribute("id");
                 foreach (var variableNode in metadata["Variables"].ChildNodes.OfType<XmlElement>())
                 {

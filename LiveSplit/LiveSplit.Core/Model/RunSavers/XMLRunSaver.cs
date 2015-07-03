@@ -74,6 +74,7 @@ namespace LiveSplit.Model.RunSavers
             var metadata = document.CreateElement("Metadata");
             var platform = document.CreateElement("Platform");
             platform.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.PlatformID ?? string.Empty));
+            platform.Attributes.Append(SettingsHelper.ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
             metadata.AppendChild(platform);
             var region = document.CreateElement("Region");
             region.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RegionID ?? string.Empty));
