@@ -48,10 +48,6 @@ namespace LiveSplit.Model
             }
             set
             {
-                /*if (string.IsNullOrEmpty(value))
-                    RegionID = string.Empty;
-                else
-                    RegionID = Game.Regions.First(x => x.Name == value).ID;*/
                 var region = Game.Regions.FirstOrDefault(x => x.Name == value);
                 if (region == null)
                     RegionID = string.Empty;
@@ -62,15 +58,20 @@ namespace LiveSplit.Model
         public Region Region { get { return Game.Regions.FirstOrDefault(x => x.ID == RegionID); } }
 
         public IDictionary<string, string> VariableValueIDs { get; set; }
-        public IDictionary<string, string> VariableValueNames { get { return VariableValues.ToDictionary(x => x.Key.Name, x => x.Value.Value); } }
+        public IDictionary<string, string> VariableValueNames { get { return VariableValues.ToDictionary(x => x.Key.Name, x => (x.Value != null) ? x.Value.Value : string.Empty); } }
         public IDictionary<Variable, VariableChoice> VariableValues
         {
             get
             {
-                return Category.Variables.ToDictionary(x => x, x => 
-                { 
+                var categoryId = Category != null ? Category.ID : null;
+                var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);
+                return variables.ToDictionary(x => x, x => 
+                {
+                    if (!VariableValueIDs.ContainsKey(x.ID))
+                        return null;
+
                     var variableChoiceID = VariableValueIDs[x.ID];
-                    return x.Choices.First(y => y.ID == variableChoiceID); 
+                    return x.Choices.FirstOrDefault(y => y.ID == variableChoiceID); 
                 });
             }
         }
