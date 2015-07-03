@@ -216,5 +216,41 @@ namespace LiveSplit.Model
                 segment.SegmentHistory.Add(new IndexedTime(newTime, GetMinSegmentHistoryIndex(run)));
             }
         }
+
+        public static string GetExtendedCategoryName(this IRun run)
+        {
+            var list = new List<string>();
+
+            var categoryName = run.CategoryName;
+
+            while (categoryName.Contains('(') && categoryName.Contains(')'))
+            {
+                var indexStart = categoryName.IndexOf('(');
+                var indexEnd = categoryName.IndexOf(')');
+                var inside = categoryName.Substring(indexStart + 1, indexEnd - indexStart - 1);
+                list.Add(inside);
+                categoryName = categoryName.Substring(0, indexStart).Trim();
+            }
+
+            var variableValues = run.Metadata.VariableValueNames.Values.Where(x => !string.IsNullOrEmpty(x));
+            list.AddRange(variableValues);
+
+            if (run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game.Regions.Count > 1)
+            {
+                list.Add(run.Metadata.Region.Abbreviation);
+            }
+
+            if (run.Metadata.Platform != null && !string.IsNullOrEmpty(run.Metadata.PlatformName) && run.Metadata.Game.Platforms.Count > 1)
+            {
+                list.Add(run.Metadata.PlatformName);
+            }
+
+            if (list.Any())
+            {
+                categoryName += " (" + list.Aggregate((a, b) => a + ", " + b) + ")";
+            }
+
+            return categoryName;
+        }
     }
 }
