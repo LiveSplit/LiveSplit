@@ -113,7 +113,8 @@ namespace LiveSplit.View
                         Text = "Uses Emulator",
                         Anchor = AnchorLeftRight,
                         Margin = new Padding(7, 3, 3, 3),
-                        Height = 21
+                        Height = 21,
+                        Visible = false
                     };
 
                     tableLayoutPanel1.Controls.Add(emulatedCheckBox, emulatedColumn, emulatedRow);
@@ -132,14 +133,16 @@ namespace LiveSplit.View
                     {
                         Text = variable.Name + ":",
                         AutoSize = true,
-                        Anchor = AnchorLeftRight
+                        Anchor = AnchorLeftRight,
+                        Visible = false
                     };
 
                     var variableComboBox = new ComboBox()
                     {
                         DropDownStyle = ComboBoxStyle.DropDownList,
                         FormattingEnabled = true,
-                        Anchor = AnchorLeftRight
+                        Anchor = AnchorLeftRight,
+                        Visible = false
                     };
 
                     variableComboBox.Items.Add(string.Empty);
@@ -166,6 +169,11 @@ namespace LiveSplit.View
 
                     controlIndex++;
                 }
+            }
+
+            foreach (var control in dynamicControls)
+            {
+                control.Visible = true;
             }
 
             cmbRegion.Enabled = cmbRegion.Items.Count > 1;
