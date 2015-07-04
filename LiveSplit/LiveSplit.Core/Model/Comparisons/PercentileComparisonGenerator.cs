@@ -68,14 +68,16 @@ namespace LiveSplit.Model.Comparisons
             {
                 if (curList.Count == 0)
                 {
-                    if (Run[allHistory.IndexOf(curList)].PersonalBestSplitTime[method].HasValue)
+                    var index = allHistory.IndexOf(curList);
+                    var PBindex = Run[index].PersonalBestSplitTime[method];
+                    if (PBindex.HasValue)
                     {
                         if (allHistory.IndexOf(curList) == 0)
-                            curList.Add(Run[allHistory.IndexOf(curList)].PersonalBestSplitTime[method].Value.Ticks);
+                            curList.Add(PBindex.Value.Ticks);
                         else
                         {
                             if (Run[allHistory.IndexOf(curList) - 1].PersonalBestSplitTime[method].HasValue)
-                                curList.Add(Run[allHistory.IndexOf(curList)].PersonalBestSplitTime[method].Value.Ticks - Run[allHistory.IndexOf(curList) - 1].PersonalBestSplitTime[method].Value.Ticks);
+                                curList.Add(PBindex.Value.Ticks - Run[index - 1].PersonalBestSplitTime[method].Value.Ticks);
                             else
                             {
                                 forceMedian = true;
