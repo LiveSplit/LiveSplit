@@ -57,7 +57,7 @@ namespace LiveSplit.Model.Comparisons
                         }
                         else ignoreNextHistory = false;
                     }
-                    else break;
+                    else ignoreNextHistory = false;
                 }
             }
 
