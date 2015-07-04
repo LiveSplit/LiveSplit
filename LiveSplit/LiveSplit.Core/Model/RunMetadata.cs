@@ -140,8 +140,14 @@ namespace LiveSplit.Model
                     oldCategoryName = run.CategoryName;
                     if (!string.IsNullOrEmpty(run.CategoryName))
                     {
-                        var categoryTask = Task.Factory.StartNew(() => SpeedrunCom.Client.Games.GetCategories(Game.ID, embeds: new CategoryEmbeds(embedVariables: true))
-                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == run.CategoryName));
+                        var categoryTask = Task.Factory.StartNew(() => 
+                        {
+                            if (Game == null)
+                                return null;
+
+                            return SpeedrunCom.Client.Games.GetCategories(Game.ID, embeds: new CategoryEmbeds(embedVariables: true))
+                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == run.CategoryName);
+                        });
                         category = new Lazy<Category>(() => categoryTask.Result);
                     }
                     else
