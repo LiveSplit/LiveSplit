@@ -68,8 +68,27 @@ namespace LiveSplit.Model.Comparisons
             {
                 if (curList.Count == 0)
                 {
-                    forceMedian = true;
-                    break;
+                    if (Run[allHistory.IndexOf(curList)].PersonalBestSplitTime[method].HasValue)
+                    {
+                        if (allHistory.IndexOf(curList) == 0)
+                            curList.Add(Run[allHistory.IndexOf(curList)].PersonalBestSplitTime[method].Value.Ticks);
+                        else
+                        {
+                            if (Run[allHistory.IndexOf(curList) - 1].PersonalBestSplitTime[method].HasValue)
+                                curList.Add(Run[allHistory.IndexOf(curList)].PersonalBestSplitTime[method].Value.Ticks - Run[allHistory.IndexOf(curList) - 1].PersonalBestSplitTime[method].Value.Ticks);
+                            else
+                            {
+                                forceMedian = true;
+                                break;
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        forceMedian = true;
+                        break;
+                    }
                 }
                 var tempList = curList.Select((x, i) => new KeyValuePair<double, double>(GetWeight(i, curList.Count), x)).ToList();
                 var weightedList = new List<KeyValuePair<double, double>>();
