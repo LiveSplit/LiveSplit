@@ -35,6 +35,7 @@
             this.cmbRegion = new System.Windows.Forms.ComboBox();
             this.lblRules = new System.Windows.Forms.Label();
             this.tbxRules = new System.Windows.Forms.TextBox();
+            this.btnAssociate = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,6 +53,7 @@
             this.tableLayoutPanel1.Controls.Add(this.cmbRegion, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblRules, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tbxRules, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnAssociate, 3, 8);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -63,9 +65,10 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(529, 434);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(529, 399);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // cmbPlatform
@@ -131,6 +134,18 @@
             this.tbxRules.Size = new System.Drawing.Size(523, 98);
             this.tbxRules.TabIndex = 5;
             // 
+            // btnAssociate
+            // 
+            this.btnAssociate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.tableLayoutPanel1.SetColumnSpan(this.btnAssociate, 2);
+            this.btnAssociate.Location = new System.Drawing.Point(356, 373);
+            this.btnAssociate.Name = "btnAssociate";
+            this.btnAssociate.Size = new System.Drawing.Size(170, 23);
+            this.btnAssociate.TabIndex = 6;
+            this.btnAssociate.Text = "Associate with Speedrun.com...";
+            this.btnAssociate.UseVisualStyleBackColor = true;
+            this.btnAssociate.Click += new System.EventHandler(this.btnAssociate_Click);
+            // 
             // MetadataControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -138,7 +153,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MetadataControl";
             this.Padding = new System.Windows.Forms.Padding(7);
-            this.Size = new System.Drawing.Size(543, 448);
+            this.Size = new System.Drawing.Size(543, 413);
             this.Load += new System.EventHandler(this.MetadataControl_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
@@ -155,6 +170,7 @@
         private System.Windows.Forms.ComboBox cmbRegion;
         private System.Windows.Forms.Label lblRules;
         private System.Windows.Forms.TextBox tbxRules;
+        private System.Windows.Forms.Button btnAssociate;
 
 
     }

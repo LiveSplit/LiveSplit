@@ -70,5 +70,16 @@ namespace LiveSplit.Web.Share
                 return Image.FromStream(stream);
             }
         }
+
+        public static void PatchRun(this IRun run, SpeedrunComSharp.Run srdcRun)
+        {
+            run.GameName = srdcRun.Game.Name;
+            run.CategoryName = srdcRun.Category.Name;
+            run.Metadata.PlatformID = srdcRun.System.PlatformID;
+            run.Metadata.RegionID = srdcRun.System.RegionID;
+            run.Metadata.UsesEmulator = srdcRun.System.IsEmulated;
+            run.Metadata.VariableValueIDs = srdcRun.VariableValues.ToDictionary(x => x.VariableID, x => x.VariableChoiceID);
+            run.Metadata.RunID = srdcRun.ID;
+        }
     }
 }

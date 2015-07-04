@@ -8,6 +8,7 @@ using LiveSplit.UI;
 using LiveSplit.Model;
 using System.Collections.Generic;
 using SpeedrunComSharp;
+using LiveSplit.Web.Share;
 
 namespace LiveSplit.View
 {
@@ -178,6 +179,20 @@ namespace LiveSplit.View
 
             cmbRegion.Enabled = cmbRegion.Items.Count > 1;
             cmbPlatform.Enabled = cmbPlatform.Items.Count > 1;
+            btnAssociate.Enabled = string.IsNullOrEmpty(Metadata.RunID);
+        }
+
+        private void btnAssociate_Click(object sender, EventArgs e)
+        {
+            var url = "";
+            var result = InputBox.Show("Input Speedrun.com URL", "Insert the Speedrun.com Run URL", ref url);
+        
+            if (result == DialogResult.OK)
+            {
+                var run = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
+                Metadata.LiveSplitRun.PatchRun(run);
+                RefreshInformation();
+            }
         }
     }
 }

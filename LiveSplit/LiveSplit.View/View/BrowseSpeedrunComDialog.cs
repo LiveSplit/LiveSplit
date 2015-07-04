@@ -18,10 +18,12 @@ namespace LiveSplit.View
     {
         public IRun Run { get; protected set; }
         public string RunName { get; protected set; }
+        private bool isImporting;
 
         public BrowseSpeedrunComDialog(bool isImporting = false, string gameName = null, string categoryName = null)
         {
             InitializeComponent();
+            this.isImporting = isImporting;
             chkIncludeTimes.Visible = chkDownloadEmpty.Visible = !isImporting;
 
             if (!string.IsNullOrEmpty(gameName))
@@ -189,6 +191,10 @@ namespace LiveSplit.View
                 {
                     var record = (Record)splitsTreeView.SelectedNode.Tag;
                     Run = record.GetRun();
+                    
+                    if (!isImporting)
+                        Run.PatchRun(record.Run);
+                    
                     var runners = record.PlayerNames.Aggregate((a, b) => a + " & " + b);
                     RunName = runners;
                     var result = PostProcessRun(RunName);

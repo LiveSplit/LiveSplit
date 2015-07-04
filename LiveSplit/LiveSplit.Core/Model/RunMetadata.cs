@@ -12,12 +12,38 @@ namespace LiveSplit.Model
 {
     public class RunMetadata
     {
-        private IRun run;
+        public IRun LiveSplitRun { get; private set; }
         private string oldGameName;
         private string oldCategoryName;
         private Lazy<Game> game;
         private Lazy<Category> category;
+        private Lazy<SpeedrunComSharp.Run> run;
         private bool usesEmulator;
+        private string runId;
+
+        public string RunID
+        {
+            get
+            {
+                return runId;
+            }
+            set
+            {
+                runId = value;
+                run = new Lazy<SpeedrunComSharp.Run>(() => SpeedrunCom.Client.Runs.GetRun(runId));
+            }
+        }
+        public SpeedrunComSharp.Run Run
+        {
+            get
+            {
+                return run.Value;
+            }
+            set
+            {
+                RunID = value.ID;
+            }
+        }
 
         public string PlatformID { get; set; }
         public string PlatformName
@@ -30,6 +56,9 @@ namespace LiveSplit.Model
             }
             set
             {
+                if (Game == null)
+                    return;
+
                 var platform = Game.Platforms.FirstOrDefault(x => x.Name == value);
                 if (platform == null)
                     PlatformID = string.Empty;
@@ -37,7 +66,16 @@ namespace LiveSplit.Model
                     PlatformID = platform.ID;
             }
         }
-        public Platform Platform { get { return Game.Platforms.FirstOrDefault(x => x.ID == PlatformID); } }
+        public Platform Platform
+        {
+            get
+            {
+                if (Game == null)
+                    return null;
+
+                return Game.Platforms.FirstOrDefault(x => x.ID == PlatformID);
+            }
+        }
 
         public string RegionID { get; set; }
         public string RegionName
@@ -50,6 +88,9 @@ namespace LiveSplit.Model
             }
             set
             {
+                if (Game == null)
+                    return;
+
                 var region = Game.Regions.FirstOrDefault(x => x.Name == value);
                 if (region == null)
                     RegionID = string.Empty;
@@ -57,7 +98,16 @@ namespace LiveSplit.Model
                     RegionID = region.ID;
             }
         }
-        public Region Region { get { return Game.Regions.FirstOrDefault(x => x.ID == RegionID); } }
+        public Region Region
+        {
+            get
+            {
+                if (Game == null)
+                    return null;
+
+                return Game.Regions.FirstOrDefault(x => x.ID == RegionID);
+            }
+        }
 
         public IDictionary<string, string> VariableValueIDs { get; set; }
         public IDictionary<string, string> VariableValueNames { get { return VariableValues.ToDictionary(x => x.Key.Name, x => (x.Value != null) ? x.Value.Value : string.Empty); } }
@@ -65,6 +115,9 @@ namespace LiveSplit.Model
         {
             get
             {
+                if (Game == null)
+                    return new Dictionary<Variable, VariableChoice>();
+
                 var categoryId = Category != null ? Category.ID : null;
                 var variables = Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);
                 return variables.ToDictionary(x => x, x => 
@@ -112,7 +165,7 @@ namespace LiveSplit.Model
 
         public RunMetadata(IRun run)
         {
-            this.run = run;
+            this.LiveSplitRun = run;
             VariableValueIDs = new Dictionary<string, string>();
             game = new Lazy<Game>(() => null);
             category = new Lazy<Category>(() => null);
@@ -122,12 +175,12 @@ namespace LiveSplit.Model
         {
             lock (this)
             {
-                if (run.GameName != oldGameName)
+                if (LiveSplitRun.GameName != oldGameName)
                 {
-                    oldGameName = run.GameName;
-                    if (!string.IsNullOrEmpty(run.GameName))
+                    oldGameName = LiveSplitRun.GameName;
+                    if (!string.IsNullOrEmpty(LiveSplitRun.GameName))
                     {
-                        var gameTask = Task.Factory.StartNew(() => SpeedrunCom.Client.Games.SearchGameExact(run.GameName, new GameEmbeds(embedRegions: true, embedPlatforms: true)));
+                        var gameTask = Task.Factory.StartNew(() => SpeedrunCom.Client.Games.SearchGameExact(LiveSplitRun.GameName, new GameEmbeds(embedRegions: true, embedPlatforms: true)));
                         game = new Lazy<Game>(() => gameTask.Result);
                     }
                     else
@@ -135,10 +188,10 @@ namespace LiveSplit.Model
                     oldCategoryName = null;
                 }
 
-                if (run.CategoryName != oldCategoryName)
+                if (LiveSplitRun.CategoryName != oldCategoryName)
                 {
-                    oldCategoryName = run.CategoryName;
-                    if (!string.IsNullOrEmpty(run.CategoryName))
+                    oldCategoryName = LiveSplitRun.CategoryName;
+                    if (!string.IsNullOrEmpty(LiveSplitRun.CategoryName))
                     {
                         var categoryTask = Task.Factory.StartNew(() => 
                         {
@@ -146,7 +199,7 @@ namespace LiveSplit.Model
                                 return null;
 
                             return SpeedrunCom.Client.Games.GetCategories(Game.ID, embeds: new CategoryEmbeds(embedVariables: true))
-                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == run.CategoryName);
+                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == LiveSplitRun.CategoryName);
                         });
                         category = new Lazy<Category>(() => categoryTask.Result);
                     }
@@ -164,6 +217,8 @@ namespace LiveSplit.Model
                 oldCategoryName = oldCategoryName,
                 game = game,
                 category = category,
+                run = this.run,
+                runId = runId,
                 PlatformID = PlatformID,
                 RegionID = RegionID,
                 VariableValueIDs = VariableValueIDs.ToDictionary(x => x.Key, x => x.Value),
