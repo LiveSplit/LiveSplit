@@ -76,7 +76,7 @@ namespace LiveSplit.Model.Comparisons
                             curList.Add(PBindex.Value.Ticks);
                         else
                         {
-                            if (Run[allHistory.IndexOf(curList) - 1].PersonalBestSplitTime[method].HasValue)
+                            if (Run[index - 1].PersonalBestSplitTime[method].HasValue)
                                 curList.Add(PBindex.Value.Ticks - Run[index - 1].PersonalBestSplitTime[method].Value.Ticks);
                             else
                             {
