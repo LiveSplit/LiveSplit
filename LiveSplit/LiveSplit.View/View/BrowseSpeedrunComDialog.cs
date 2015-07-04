@@ -243,6 +243,7 @@ namespace LiveSplit.View
                     }
                     while (!succeededName);
                 }
+                Run.Metadata.RunID = null;
                 Run.AttemptHistory.Clear();
                 Run.AttemptCount = 0;
                 Run.CustomComparisons.Clear();

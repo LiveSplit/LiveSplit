@@ -137,10 +137,12 @@
             // btnAssociate
             // 
             this.btnAssociate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAssociate.AutoSize = true;
+            this.btnAssociate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.SetColumnSpan(this.btnAssociate, 2);
-            this.btnAssociate.Location = new System.Drawing.Point(356, 373);
+            this.btnAssociate.Location = new System.Drawing.Point(360, 373);
             this.btnAssociate.Name = "btnAssociate";
-            this.btnAssociate.Size = new System.Drawing.Size(170, 23);
+            this.btnAssociate.Size = new System.Drawing.Size(166, 23);
             this.btnAssociate.TabIndex = 6;
             this.btnAssociate.Text = "Associate with Speedrun.com...";
             this.btnAssociate.UseVisualStyleBackColor = true;

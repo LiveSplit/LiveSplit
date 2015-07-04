@@ -9,6 +9,7 @@ using LiveSplit.Model;
 using System.Collections.Generic;
 using SpeedrunComSharp;
 using LiveSplit.Web.Share;
+using System.Diagnostics;
 
 namespace LiveSplit.View
 {
@@ -179,19 +180,48 @@ namespace LiveSplit.View
 
             cmbRegion.Enabled = cmbRegion.Items.Count > 1;
             cmbPlatform.Enabled = cmbPlatform.Items.Count > 1;
-            btnAssociate.Enabled = string.IsNullOrEmpty(Metadata.RunID);
+
+            if (string.IsNullOrEmpty(Metadata.RunID))
+            {
+                btnAssociate.Text = "Associate Speedrun.com...";
+            }
+            else
+            {
+                btnAssociate.Text = "Show on Speedrun.com...";
+            }
         }
 
-        private void btnAssociate_Click(object sender, EventArgs e)
+        private void associateRun()
         {
             var url = "";
-            var result = InputBox.Show("Input Speedrun.com URL", "Insert the Speedrun.com Run URL", ref url);
-        
+            var result = InputBox.Show("Input Speedrun.com URL", "Insert the Speedrun.com Run URL:", ref url);
+
             if (result == DialogResult.OK)
             {
                 var run = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
                 Metadata.LiveSplitRun.PatchRun(run);
                 RefreshInformation();
+            }
+        }
+
+        private void showRunOnSpeedrunCom()
+        {
+            try
+            {
+                Process.Start(Metadata.Run.WebLink.AbsoluteUri);
+            }
+            catch { }
+        }
+
+        private void btnAssociate_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Metadata.RunID))
+            {
+                associateRun();
+            }
+            else
+            {
+                showRunOnSpeedrunCom();
             }
         }
     }
