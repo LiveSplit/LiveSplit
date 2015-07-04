@@ -988,6 +988,20 @@ namespace LiveSplit.View
             {
                 if ((ActiveForm == this || Settings.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
                 {
+                    if (Settings.ResetAndStartKey == e)
+                    {
+                        if (Settings.HotkeyDelay > 0)
+                        {
+                            var splitTimer = new System.Timers.Timer(Settings.HotkeyDelay * 1000f);
+                            splitTimer.Enabled = true;
+                            splitTimer.Elapsed += splitTimer_Elapsed;
+                        }
+                        else
+                        {
+                            ResetAndStart();
+                        }
+                    }
+
                     if (Settings.SplitKey == e)
                     {
                         if (Settings.HotkeyDelay > 0)
@@ -2408,6 +2422,17 @@ namespace LiveSplit.View
                     Model.Reset(false);
                 ResetMessageShown = false;
             }
+        }
+
+        private void ResetAndStart()
+        {
+            if (InvokeRequired)
+            {
+                Invoke(new Action(ResetAndStart));
+                return;
+            }
+
+            Model.ResetAndStart();
         }
 
         private void racingMenuItem_MouseHover(object sender, EventArgs e)

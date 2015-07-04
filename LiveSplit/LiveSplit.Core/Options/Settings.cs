@@ -11,6 +11,7 @@ namespace LiveSplit.Options
     public class Settings : ISettings
     {
         public KeyOrButton SplitKey { get; set; }
+        public KeyOrButton ResetAndStartKey { get; set; }
         public KeyOrButton ResetKey { get; set; }
         public KeyOrButton SkipKey { get; set; }
         public KeyOrButton UndoKey { get; set; }
@@ -47,6 +48,7 @@ namespace LiveSplit.Options
             return new Settings()
             {
                 SplitKey = SplitKey,
+                ResetAndStartKey = ResetAndStartKey,
                 ResetKey = ResetKey,
                 SkipKey = SkipKey,
                 UndoKey = UndoKey,
@@ -99,6 +101,17 @@ namespace LiveSplit.Options
                 try
                 {
                     RegisterHotkey(hook, SplitKey);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                }
+            }
+            if (ResetAndStartKey != null)
+            {
+                try
+                {
+                    RegisterHotkey(hook, ResetAndStartKey);
                 }
                 catch (Exception e)
                 {

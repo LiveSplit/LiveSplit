@@ -13,6 +13,7 @@ namespace LiveSplit.View
         public CompositeHook Hook { get; set; }
 
         public string SplitKey { get { return FormatKey(Settings.SplitKey); } }
+        public string ResetAndStartKey { get { return FormatKey(Settings.ResetAndStartKey); } }
         public string ResetKey { get { return FormatKey(Settings.ResetKey); } }
         public string SkipKey { get { return FormatKey(Settings.SkipKey); } }
         public string UndoKey { get { return FormatKey(Settings.UndoKey); } }
@@ -37,6 +38,7 @@ namespace LiveSplit.View
             Hook = hook;
 
             txtStartSplit.DataBindings.Add("Text", this, "SplitKey");
+            txtResetAndStart.DataBindings.Add("Text", this, "ResetAndStartKey");
             txtReset.DataBindings.Add("Text", this, "ResetKey");
             txtSkip.DataBindings.Add("Text", this, "SkipKey");
             txtUndo.DataBindings.Add("Text", this, "UndoKey");
@@ -169,6 +171,10 @@ namespace LiveSplit.View
         {
             SetHotkeyHandlers((TextBox)sender, x => { Settings.SplitKey = x; });
         }
+        private void ResetAndStart_Set_Enter(object sender, EventArgs e)
+        {
+            SetHotkeyHandlers((TextBox)sender, x => { Settings.ResetAndStartKey = x; });
+        }
         private void Reset_Set_Enter(object sender, EventArgs e)
         {
             SetHotkeyHandlers((TextBox)sender, x => { Settings.ResetKey = x; });
@@ -218,6 +224,7 @@ namespace LiveSplit.View
             label9.Click += ClickControl;
             label10.Click += ClickControl;
             label11.Click += ClickControl;
+            label13.Click += ClickControl;
             /*lblDisplayInterval.Click += ClickControl;
             lblRefreshRate.Click += ClickControl;*/
             Click += ClickControl;

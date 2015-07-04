@@ -105,6 +105,15 @@ namespace LiveSplit.Model
             Reset(true);
         }
 
+        public void ResetAndStart()
+        {
+            if (CheckDoubleTap())
+            {
+                InternalModel.Reset(true);
+                InternalModel.Start();
+            }
+        }
+
         public void Reset(bool updateSplits = true)
         {
             if (CheckDoubleTap())

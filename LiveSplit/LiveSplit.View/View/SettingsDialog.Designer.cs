@@ -40,6 +40,7 @@
             this.chkGlobalHotkeys = new System.Windows.Forms.CheckBox();
             this.chkDoubleTap = new System.Windows.Forms.CheckBox();
             this.txtStartSplit = new System.Windows.Forms.TextBox();
+            this.txtResetAndStart = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtReset = new System.Windows.Forms.TextBox();
@@ -60,6 +61,7 @@
             this.cbxRaceViewer = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.btnChooseComparisons = new System.Windows.Forms.Button();
             this.chkSimpleSOB = new System.Windows.Forms.CheckBox();
             this.chkWarnOnReset = new System.Windows.Forms.CheckBox();
@@ -90,20 +92,20 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 315F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 344F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 460);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 489);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnOK, 2);
-            this.btnOK.Location = new System.Drawing.Point(221, 434);
+            this.btnOK.Location = new System.Drawing.Point(221, 463);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 4;
@@ -151,31 +153,34 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 178F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.tableLayoutPanel2.Controls.Add(this.chkDeactivateForOtherPrograms, 1, 8);
+            this.tableLayoutPanel2.Controls.Add(this.chkDeactivateForOtherPrograms, 1, 9);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.chkGlobalHotkeys, 0, 8);
-            this.tableLayoutPanel2.Controls.Add(this.chkDoubleTap, 0, 9);
+            this.tableLayoutPanel2.Controls.Add(this.label13, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.txtResetAndStart, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.chkGlobalHotkeys, 0, 9);
+            this.tableLayoutPanel2.Controls.Add(this.chkDoubleTap, 0, 10);
             this.tableLayoutPanel2.Controls.Add(this.txtStartSplit, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 4);
-            this.tableLayoutPanel2.Controls.Add(this.txtReset, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.txtPause, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 3);
-            this.tableLayoutPanel2.Controls.Add(this.label4, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.txtSkip, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.txtUndo, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label7, 0, 7);
-            this.tableLayoutPanel2.Controls.Add(this.txtToggle, 1, 7);
-            this.tableLayoutPanel2.Controls.Add(this.label8, 0, 5);
-            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.txtSwitchPrevious, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.txtSwitchNext, 1, 6);
-            this.tableLayoutPanel2.Controls.Add(this.label10, 1, 9);
-            this.tableLayoutPanel2.Controls.Add(this.txtDelay, 2, 9);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 5);
+            this.tableLayoutPanel2.Controls.Add(this.txtReset, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.txtPause, 1, 5);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 4);
+            this.tableLayoutPanel2.Controls.Add(this.label4, 0, 3);
+            this.tableLayoutPanel2.Controls.Add(this.txtSkip, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.txtUndo, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label7, 0, 8);
+            this.tableLayoutPanel2.Controls.Add(this.txtToggle, 1, 8);
+            this.tableLayoutPanel2.Controls.Add(this.label8, 0, 6);
+            this.tableLayoutPanel2.Controls.Add(this.label9, 0, 7);
+            this.tableLayoutPanel2.Controls.Add(this.txtSwitchPrevious, 1, 6);
+            this.tableLayoutPanel2.Controls.Add(this.txtSwitchNext, 1, 7);
+            this.tableLayoutPanel2.Controls.Add(this.label10, 1, 10);
+            this.tableLayoutPanel2.Controls.Add(this.txtDelay, 2, 10);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 10;
+            this.tableLayoutPanel2.RowCount = 11;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
@@ -187,7 +192,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(368, 290);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(368, 319);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // chkDeactivateForOtherPrograms
@@ -213,6 +218,16 @@
             this.label1.Size = new System.Drawing.Size(172, 13);
             this.label1.TabIndex = 4;
             this.label1.Text = "Start / Split:";
+            // 
+            // label13
+            // 
+            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 8);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(172, 13);
+            this.label13.TabIndex = 4;
+            this.label13.Text = "Reset && Start:";
             // 
             // chkGlobalHotkeys
             // 
@@ -250,6 +265,17 @@
             this.txtStartSplit.Size = new System.Drawing.Size(184, 20);
             this.txtStartSplit.TabIndex = 0;
             this.txtStartSplit.Enter += new System.EventHandler(this.Split_Set_Enter);
+            // 
+            // txtResetAndStart
+            // 
+            this.txtResetAndStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.SetColumnSpan(this.txtResetAndStart, 2);
+            this.txtResetAndStart.Location = new System.Drawing.Point(181, 4);
+            this.txtResetAndStart.Name = "txtResetAndStart";
+            this.txtResetAndStart.ReadOnly = true;
+            this.txtResetAndStart.Size = new System.Drawing.Size(184, 20);
+            this.txtResetAndStart.TabIndex = 0;
+            this.txtResetAndStart.Enter += new System.EventHandler(this.ResetAndStart_Set_Enter);
             // 
             // label2
             // 
@@ -423,7 +449,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(302, 434);
+            this.btnCancel.Location = new System.Drawing.Point(302, 463);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 5;
@@ -442,7 +468,7 @@
             "MultiTwitch",
             "Kadgar",
             "Speedrun.tv"});
-            this.cbxRaceViewer.Location = new System.Drawing.Point(187, 348);
+            this.cbxRaceViewer.Location = new System.Drawing.Point(187, 377);
             this.cbxRaceViewer.Name = "cbxRaceViewer";
             this.cbxRaceViewer.Size = new System.Drawing.Size(190, 21);
             this.cbxRaceViewer.TabIndex = 2;
@@ -451,7 +477,7 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 352);
+            this.label11.Location = new System.Drawing.Point(3, 381);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(178, 13);
             this.label11.TabIndex = 15;
@@ -461,7 +487,7 @@
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 381);
+            this.label12.Location = new System.Drawing.Point(3, 410);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(178, 13);
             this.label12.TabIndex = 17;
@@ -471,7 +497,7 @@
             // 
             this.btnChooseComparisons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnChooseComparisons, 3);
-            this.btnChooseComparisons.Location = new System.Drawing.Point(187, 376);
+            this.btnChooseComparisons.Location = new System.Drawing.Point(187, 405);
             this.btnChooseComparisons.Name = "btnChooseComparisons";
             this.btnChooseComparisons.Size = new System.Drawing.Size(190, 23);
             this.btnChooseComparisons.TabIndex = 18;
@@ -483,7 +509,7 @@
             // 
             this.chkSimpleSOB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkSimpleSOB.AutoSize = true;
-            this.chkSimpleSOB.Location = new System.Drawing.Point(7, 321);
+            this.chkSimpleSOB.Location = new System.Drawing.Point(7, 350);
             this.chkSimpleSOB.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkSimpleSOB.Name = "chkSimpleSOB";
             this.chkSimpleSOB.Size = new System.Drawing.Size(174, 17);
@@ -497,7 +523,7 @@
             this.chkWarnOnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkWarnOnReset.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.chkWarnOnReset, 3);
-            this.chkWarnOnReset.Location = new System.Drawing.Point(191, 321);
+            this.chkWarnOnReset.Location = new System.Drawing.Point(191, 350);
             this.chkWarnOnReset.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkWarnOnReset.Name = "chkWarnOnReset";
             this.chkWarnOnReset.Size = new System.Drawing.Size(186, 17);
@@ -509,7 +535,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 474);
+            this.ClientSize = new System.Drawing.Size(394, 503);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -529,6 +555,7 @@
         #endregion
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox txtStartSplit;
+        private System.Windows.Forms.TextBox txtResetAndStart;
         private System.Windows.Forms.TextBox txtReset;
         private System.Windows.Forms.TextBox txtSkip;
         private System.Windows.Forms.TextBox txtUndo;
@@ -560,6 +587,7 @@
         private System.Windows.Forms.CheckBox chkDeactivateForOtherPrograms;
         private System.Windows.Forms.CheckBox chkSimpleSOB;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnChooseComparisons;
     }
 }

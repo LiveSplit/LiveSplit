@@ -14,6 +14,7 @@ namespace LiveSplit.Options.SettingsFactories
             return new Settings()
             {
                 SplitKey = new KeyOrButton(Keys.NumPad1),
+                ResetAndStartKey = null,
                 ResetKey = new KeyOrButton(Keys.NumPad3),
                 UndoKey = new KeyOrButton(Keys.NumPad8),
                 SkipKey = new KeyOrButton(Keys.NumPad2),

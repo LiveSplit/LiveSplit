@@ -24,6 +24,11 @@ namespace LiveSplit.Options.SettingsSavers
                 splitKey.InnerText = settings.SplitKey.ToString();
             parent.AppendChild(splitKey);
 
+            var resetAndStartKey = document.CreateElement("ResetAndStartKey");
+            if (settings.ResetAndStartKey != null)
+                resetAndStartKey.InnerText = settings.ResetAndStartKey.ToString();
+            parent.AppendChild(resetAndStartKey);
+
             var resetKey = document.CreateElement("ResetKey");
             if (settings.ResetKey != null)
                 resetKey.InnerText = settings.ResetKey.ToString();

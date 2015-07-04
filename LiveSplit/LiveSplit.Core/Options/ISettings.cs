@@ -33,6 +33,7 @@ namespace LiveSplit.Options
     public interface ISettings : ICloneable
     {
         KeyOrButton SplitKey { get; set; }
+        KeyOrButton ResetAndStartKey { get; set; }
         KeyOrButton ResetKey { get; set; }
         KeyOrButton SkipKey { get; set; }
         KeyOrButton UndoKey { get; set; }

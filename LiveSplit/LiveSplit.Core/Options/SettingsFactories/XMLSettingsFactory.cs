@@ -36,6 +36,12 @@ namespace LiveSplit.Options.SettingsFactories
             else
                 settings.SplitKey = null;
 
+            var keyResetAndStart = parent["ResetAndStartKey"];
+            if (!string.IsNullOrEmpty(keyResetAndStart.InnerText))
+                settings.ResetAndStartKey = new KeyOrButton(keyResetAndStart.InnerText);
+            else
+                settings.ResetAndStartKey = null;
+
             var keyReset = parent["ResetKey"];
             if (!string.IsNullOrEmpty(keyReset.InnerText))
                 settings.ResetKey = new KeyOrButton(keyReset.InnerText);
