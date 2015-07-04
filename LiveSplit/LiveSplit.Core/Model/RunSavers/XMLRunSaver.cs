@@ -73,7 +73,7 @@ namespace LiveSplit.Model.RunSavers
 
             var metadata = document.CreateElement("Metadata");
             var runElement = document.CreateElement("Run");
-            runElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RunID));
+            runElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RunID ?? string.Empty));
             metadata.AppendChild(runElement);
             var platform = document.CreateElement("Platform");
             platform.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.PlatformID ?? string.Empty));
