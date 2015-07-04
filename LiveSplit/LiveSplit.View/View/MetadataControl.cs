@@ -183,7 +183,7 @@ namespace LiveSplit.View
 
             if (string.IsNullOrEmpty(Metadata.RunID))
             {
-                btnAssociate.Text = "Associate Speedrun.com...";
+                btnAssociate.Text = "Associate with Speedrun.com...";
             }
             else
             {
@@ -194,7 +194,7 @@ namespace LiveSplit.View
         private void associateRun()
         {
             var url = "";
-            var result = InputBox.Show("Input Speedrun.com URL", "Insert the Speedrun.com Run URL:", ref url);
+            var result = InputBox.Show("Enter Speedrun.com URL", "Speedrun.com Run URL:", ref url);
 
             if (result == DialogResult.OK)
             {
