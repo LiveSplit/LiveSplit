@@ -72,6 +72,9 @@ namespace LiveSplit.Model.RunSavers
             parent.AppendChild(autoSplitterSettings);
 
             var metadata = document.CreateElement("Metadata");
+            var runElement = document.CreateElement("Run");
+            runElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RunID));
+            metadata.AppendChild(runElement);
             var platform = document.CreateElement("Platform");
             platform.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.PlatformID ?? string.Empty));
             platform.Attributes.Append(SettingsHelper.ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));

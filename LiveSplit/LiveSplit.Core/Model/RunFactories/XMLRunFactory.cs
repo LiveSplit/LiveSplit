@@ -129,6 +129,7 @@ namespace LiveSplit.Model.RunFactories
             if (version >= new Version(1, 6))
             {
                 var metadata = parent["Metadata"];
+                run.Metadata.RunID = metadata["Run"].GetAttribute("id");
                 run.Metadata.PlatformID = metadata["Platform"].GetAttribute("id");
                 run.Metadata.UsesEmulator = bool.Parse(metadata["Platform"].GetAttribute("usesEmulator"));
                 run.Metadata.RegionID = metadata["Region"].GetAttribute("id");
