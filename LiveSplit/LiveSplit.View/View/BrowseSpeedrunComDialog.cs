@@ -243,22 +243,14 @@ namespace LiveSplit.View
                     }
                     while (!succeededName);
                 }
-                Run.Metadata.RunID = null;
-                Run.AttemptHistory.Clear();
-                Run.AttemptCount = 0;
-                Run.CustomComparisons.Clear();
-                Run.CustomComparisons.Add(Model.Run.PersonalBestComparisonName);
-                foreach (var segment in Run)
-                {
-                    segment.SegmentHistory.Clear();
-                    var time = segment.PersonalBestSplitTime;
-                    segment.Comparisons.Clear();
-                    if (chkIncludeTimes.Checked)
-                        segment.Comparisons[name] = time;
-                    segment.PersonalBestSplitTime = default(Time);
-                }
+                var pbTimes = Run.Select(x => x.PersonalBestSplitTime).ToArray();
+                Run.ClearTimes();
                 if (chkIncludeTimes.Checked)
                 {
+                    for (var index = 0; index < Run.Count; index++)
+                    {
+                        Run[index].Comparisons[name] = pbTimes[index];
+                    }
                     Run.CustomComparisons.Add(name);
                     Run.FixSplits();
                 }

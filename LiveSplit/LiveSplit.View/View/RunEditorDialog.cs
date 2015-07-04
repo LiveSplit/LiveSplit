@@ -1040,6 +1040,10 @@ namespace LiveSplit.View
 
         private void RebuildComparisonColumns()
         {
+            while (runGrid.Columns.Count > CUSTOMCOMPARISONSINDEX)
+            {
+                runGrid.Columns.RemoveAt(CUSTOMCOMPARISONSINDEX);
+            }
             foreach (var comparison in Run.CustomComparisons)
             {
                 if (comparison != Model.Run.PersonalBestComparisonName)
@@ -1294,33 +1298,20 @@ namespace LiveSplit.View
             OtherMenu.Show(MousePosition);
         }
 
-        private void ClearHistory(bool clearTimes)
-        {
-            Run.AttemptHistory.Clear();
-            foreach (var segment in Run)
-            {
-                segment.SegmentHistory.Clear();
-                if (clearTimes)
-                {
-                    foreach (var comparison in Run.CustomComparisons)
-                        segment.Comparisons[comparison] = default(Time);
-                    segment.BestSegmentTime = default(Time);
-                }
-            }
-            Fix();
-            RaiseRunEdited();
-        }
-
         private void clearHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ClearHistory(false);
+            Run.ClearHistory();
+            Fix();
+            RaiseRunEdited();
         }
 
         private void clearTimesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tbxAttempts.Text = "0";
-            Run.AttemptCount = 0;
-            ClearHistory(true);
+            Run.ClearTimes();
+            RebuildComparisonColumns();
+            Fix();
+            RaiseRunEdited();
         }
 
         private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)

@@ -44,6 +44,29 @@ namespace LiveSplit.Model
             run.Add(segment);
         }
 
+        public static void ClearHistory(this IRun run)
+        {
+            run.AttemptHistory.Clear();
+            foreach (var segment in run)
+            {
+                segment.SegmentHistory.Clear();
+            }
+        }
+
+        public static void ClearTimes(this IRun run)
+        {
+            run.ClearHistory();
+            run.CustomComparisons.Clear();
+            run.CustomComparisons.Add(Model.Run.PersonalBestComparisonName);
+            foreach (var segment in run)
+            {
+                segment.Comparisons.Clear();
+                segment.BestSegmentTime = default(Time);
+            }
+            run.AttemptCount = 0;
+            run.Metadata.RunID = null;
+        }
+
         public static void FixSplits(this IRun run)
         {
             FixWithMethod(run, TimingMethod.RealTime);
