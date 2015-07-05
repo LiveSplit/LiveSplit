@@ -1,0 +1,70 @@
+version: 1.5.5-{build}-{branch}
+
+configuration: Release
+
+environment:
+  BUILD_PASSWORD:
+    secure: imgAD76elcfLPYX6Wf4y5g==
+
+before_build:
+- git config user.email "you@example.com"
+- git config user.name "user"
+- git submodule update --init --recursive
+- mkdir LiveSplit\LiveSplit.Core\Updates\GitInfo
+- git describe --dirty --always --long --tags > LiveSplit\LiveSplit.Core\Updates\GitInfo\version.txt
+- git rev-parse --abbrev-ref HEAD > LiveSplit\LiveSplit.Core\Updates\GitInfo\branch.txt
+- git rev-parse HEAD > LiveSplit\LiveSplit.Core\Updates\GitInfo\revision.txt
+
+build:
+  project: LiveSplit\LiveSplit.sln
+  verbosity: minimal
+
+notifications:
+- provider: Email
+  to:
+  - spapushin@gmail.com
+  on_build_success: false
+  on_build_failure: true
+  on_build_status_changed: false
+
+test:
+  assemblies: LiveSplit\LiveSplit.Tests\bin\Release\LiveSplit.Tests.dll
+
+after_build:
+- ps: >-
+    if (!"$env:APPVEYOR_PULL_REQUEST_TITLE" -and ("$env:APPVEYOR_REPO_BRANCH" -eq "master"))
+    {
+        $BUILD_NAME = "LiveSplitDevBuild.zip"
+
+        mkdir .\LiveSplit\bin\Release\Resources
+
+        cp .\LiveSplit\Resources\SplitsFile.ico .\LiveSplit\bin\Release\Resources\
+
+        cp .\LiveSplit\Resources\LayoutFile.ico .\LiveSplit\bin\Release\Resources\
+
+        cd LiveSplit\bin\Release
+
+        Get-ChildItem * -Include *.xml -Recurse | Remove-Item
+
+        Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
+
+        cd ..\..\..\
+
+        7z a $BUILD_NAME .\LiveSplit\bin\Release\*
+
+
+        # Download winscp
+
+        Invoke-WebRequest "http://iweb.dl.sourceforge.net/project/winscp/WinSCP/5.7.3/winscp573.zip" -OutFile "winscp573.zip"
+
+        7z e -y winscp573.zip
+
+        # Upload to server
+
+        .\WinSCP.com /command `
+            "option batch abort" `
+            "option confirm off" `
+            "open ftp://livesplit:${env:BUILD_PASSWORD}@livesplit.org -hostkey=*" `
+            "put $BUILD_NAME /" `
+            "exit"
+    }
