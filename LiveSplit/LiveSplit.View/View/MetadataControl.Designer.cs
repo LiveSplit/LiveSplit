@@ -140,7 +140,8 @@
             this.btnAssociate.AutoSize = true;
             this.btnAssociate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.SetColumnSpan(this.btnAssociate, 2);
-            this.btnAssociate.Location = new System.Drawing.Point(360, 373);
+            this.btnAssociate.Location = new System.Drawing.Point(361, 215);
+            this.btnAssociate.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
             this.btnAssociate.Name = "btnAssociate";
             this.btnAssociate.Size = new System.Drawing.Size(166, 23);
             this.btnAssociate.TabIndex = 6;

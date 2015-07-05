@@ -107,7 +107,7 @@
             this.runGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tableLayoutPanel1.SetRowSpan(this.runGrid, 8);
             this.runGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.runGrid.Size = new System.Drawing.Size(530, 301);
+            this.runGrid.Size = new System.Drawing.Size(530, 295);
             this.runGrid.TabIndex = 0;
             this.runGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.runGrid_KeyDown);
             // 
@@ -168,7 +168,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 517);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 511);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label2
@@ -329,7 +329,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnOK, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(491, 481);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(491, 475);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -607,7 +607,7 @@
             this.metadataControl.Metadata = null;
             this.metadataControl.Name = "metadataControl";
             this.metadataControl.Padding = new System.Windows.Forms.Padding(7);
-            this.metadataControl.Size = new System.Drawing.Size(192, 74);
+            this.metadataControl.Size = new System.Drawing.Size(522, 0);
             this.metadataControl.TabIndex = 0;
             // 
             // RunEditorDialog
@@ -615,10 +615,10 @@
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 517);
+            this.ClientSize = new System.Drawing.Size(684, 511);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(692, 479);
+            this.MinimumSize = new System.Drawing.Size(700, 510);
             this.Name = "RunEditorDialog";
             this.Text = "Splits Editor";
             this.Load += new System.EventHandler(this.RunEditorDialog_Load);
