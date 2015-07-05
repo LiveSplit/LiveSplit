@@ -75,8 +75,8 @@
             this.tableLayoutPanel3.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(359, 218);
             this.tableLayoutPanel3.TabIndex = 41;
@@ -89,14 +89,14 @@
             this.historyListBox.Location = new System.Drawing.Point(3, 3);
             this.historyListBox.Name = "historyListBox";
             this.historyListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.historyListBox.Size = new System.Drawing.Size(353, 142);
+            this.historyListBox.Size = new System.Drawing.Size(353, 150);
             this.historyListBox.TabIndex = 18;
             // 
             // btnRemove
             // 
             this.btnRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel3.SetColumnSpan(this.btnRemove, 2);
-            this.btnRemove.Location = new System.Drawing.Point(236, 151);
+            this.btnRemove.Location = new System.Drawing.Point(236, 159);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(120, 23);
             this.btnRemove.TabIndex = 19;

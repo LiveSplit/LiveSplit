@@ -280,7 +280,7 @@
             this.GameTime.Location = new System.Drawing.Point(4, 22);
             this.GameTime.Name = "GameTime";
             this.GameTime.Padding = new System.Windows.Forms.Padding(3);
-            this.GameTime.Size = new System.Drawing.Size(548, 0);
+            this.GameTime.Size = new System.Drawing.Size(522, 0);
             this.GameTime.TabIndex = 1;
             this.GameTime.Text = "Game Time";
             this.GameTime.UseVisualStyleBackColor = true;
@@ -593,7 +593,7 @@
             this.ClientSize = new System.Drawing.Size(684, 517);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(700, 479);
+            this.MinimumSize = new System.Drawing.Size(692, 479);
             this.Name = "RunEditorDialog";
             this.Text = "Splits Editor";
             this.Load += new System.EventHandler(this.RunEditorDialog_Load);
