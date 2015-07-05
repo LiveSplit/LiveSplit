@@ -57,7 +57,7 @@ namespace LiveSplit.Model.Comparisons
                         }
                         else ignoreNextHistory = false;
                     }
-                    else break;
+                    else ignoreNextHistory = false;
                 }
             }
 
@@ -68,8 +68,29 @@ namespace LiveSplit.Model.Comparisons
             {
                 if (curList.Count == 0)
                 {
-                    forceMedian = true;
-                    break;
+                    var index = allHistory.IndexOf(curList);
+                    var PBindex = Run[index].PersonalBestSplitTime[method];
+                    if (PBindex.HasValue)
+                    {
+                        if (allHistory.IndexOf(curList) == 0)
+                            curList.Add(PBindex.Value.Ticks);
+                        else
+                        {
+                            if (Run[index - 1].PersonalBestSplitTime[method].HasValue)
+                                curList.Add(PBindex.Value.Ticks - Run[index - 1].PersonalBestSplitTime[method].Value.Ticks);
+                            else
+                            {
+                                forceMedian = true;
+                                break;
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        forceMedian = true;
+                        break;
+                    }
                 }
                 var tempList = curList.Select((x, i) => new KeyValuePair<double, double>(GetWeight(i, curList.Count), x)).ToList();
                 var weightedList = new List<KeyValuePair<double, double>>();
