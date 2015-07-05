@@ -100,7 +100,6 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        string actualGameName;
                         var games = SpeedrunCom.Client.Games.GetGames(name: fuzzyGameName, embeds: new GameEmbeds(embedCategories: true));
 
                         foreach (var game in games)
@@ -109,6 +108,7 @@ namespace LiveSplit.View
                             gameNode.Tag = game.WebLink;
                             var categories = game.FullGameCategories;
                             var timingMethod = game.Ruleset.DefaultTimingMethod.ToLiveSplitTimingMethod();
+                            var timeFormatter = new RegularTimeFormatter(game.Ruleset.ShowMilliseconds ? TimeAccuracy.Hundredths : TimeAccuracy.Seconds);
 
                             foreach (var category in categories)
                             {
@@ -123,7 +123,7 @@ namespace LiveSplit.View
                                         : "";
                                     var runners = record.PlayerNames.Aggregate((a, b) => a + " & " + b);
                                     var time = record.GetTime();
-                                    var runText = place + (time[timingMethod].HasValue ? new ShortTimeFormatter().Format(time[timingMethod]) : "") + " by " + runners;
+                                    var runText = place + (time[timingMethod].HasValue ? timeFormatter.Format(time[timingMethod]) : "") + " by " + runners;
                                     var runNode = new TreeNode(runText);
                                     runNode.Tag = record;
                                     if (!record.SplitsAvailable)
