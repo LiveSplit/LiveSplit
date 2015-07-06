@@ -11,7 +11,7 @@ namespace LiveSplit.Model.Comparisons
         public const string ComparisonName = "Balanced PB";
         public const string ShortComparisonName = "Balanced";
         public string Name { get { return ComparisonName; } }
-        public const double Weight = 0.95;
+        public const double Weight = 0.93333;
 
         public PercentileComparisonGenerator(IRun run)
         {
@@ -28,96 +28,95 @@ namespace LiveSplit.Model.Comparisons
             return (a - b) / c;
         }
 
-        protected double Calculate(double perc, double Value1, double Key1, double Value2, double Key2)
+        protected TimeSpan Calculate(double perc, TimeSpan Value1, double Key1, TimeSpan Value2, double Key2)
         {
-            var mult = 1 / (Key1 - Key2);
-            var percDn = (Key1 - perc) * mult * Value2;
-            var percUp = (perc - Key2) * mult * Value1;
-            return percUp + percDn;
+            var percDn = (Key1 - perc) * Value2.Ticks / (Key1 - Key2);
+            var percUp = (perc - Key2) * Value1.Ticks / (Key1 - Key2);
+            return TimeSpan.FromTicks(Convert.ToInt64(percUp + percDn));
         }
 
         public void Generate(TimingMethod method)
         {
-            var allHistory = new List<List<double>>();
+            var allHistory = new List<List<IndexedTimeSpan>>();
             foreach (var segment in Run)
-                allHistory.Add(new List<double>());
+                allHistory.Add(new List<IndexedTimeSpan>());
             for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++)
             {
-                var ignoreNextHistory = false;
+                var historyStartingIndex = -1;
                 foreach (var segment in Run)
                 {
+                    var currentIndex = Run.IndexOf(segment);
                     IIndexedTime history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
                     if (history != null)
                     {
-                        if (history.Time[method] == null)
-                            ignoreNextHistory = true;
-                        else if (!ignoreNextHistory)
+                        if (history.Time[method] != null)
                         {
-                            allHistory[Run.IndexOf(segment)].Add(history.Time[method].Value.Ticks);
+                            allHistory[Run.IndexOf(segment)].Add(new IndexedTimeSpan(history.Time[method].Value, historyStartingIndex));
+                            historyStartingIndex = currentIndex;
                         }
-                        else ignoreNextHistory = false;
                     }
-                    else ignoreNextHistory = false;
+                    else historyStartingIndex = currentIndex;
                 }
             }
 
-            var weightedLists = new List<List<KeyValuePair<double, double>>>();
-            var forceMedian = false;
+            var weightedLists = new List<List<KeyValuePair<double, TimeSpan>>>();
+            var overallStartingIndex = -1;
 
-            foreach (var curList in allHistory)
+            foreach (var currentList in allHistory)
             {
-                if (curList.Count == 0)
-                {
-                    var index = allHistory.IndexOf(curList);
-                    var PBindex = Run[index].PersonalBestSplitTime[method];
-                    if (PBindex.HasValue)
-                    {
-                        if (allHistory.IndexOf(curList) == 0)
-                            curList.Add(PBindex.Value.Ticks);
-                        else
-                        {
-                            if (Run[index - 1].PersonalBestSplitTime[method].HasValue)
-                                curList.Add(PBindex.Value.Ticks - Run[index - 1].PersonalBestSplitTime[method].Value.Ticks);
-                            else
-                            {
-                                forceMedian = true;
-                                break;
-                            }
+                var nullSegment = false;
+                var curIndex = allHistory.IndexOf(currentList);
+                var curPBTime = Run[curIndex].PersonalBestSplitTime[method];
+                var previousPBTime = overallStartingIndex >= 0 ? Run[overallStartingIndex].PersonalBestSplitTime[method] : null;
+                var finalList = new List<TimeSpan>();
 
-                        }
-                    }
-                    else
-                    {
-                        forceMedian = true;
-                        break;
-                    }
-                }
-                var tempList = curList.Select((x, i) => new KeyValuePair<double, double>(GetWeight(i, curList.Count), x)).ToList();
-                var weightedList = new List<KeyValuePair<double, double>>();
-                if (tempList.Count > 1)
+                var matchingSegmentHistory = currentList.Where(x => x.Index == overallStartingIndex);
+                if (matchingSegmentHistory.Count() > 0)
                 {
-                    tempList = tempList.OrderBy(x => x.Value).ToList();
-                    var totalWeight = tempList.Aggregate(0.0, (s, x) => (s + x.Key));
-                    var smallestWeight = tempList[0].Key;
-                    var rangeWeight = totalWeight - smallestWeight;
-                    var aggWeight = 0.0;
-                    foreach (var value in tempList)
-                    {
-                        aggWeight += value.Key;
-                        weightedList.Add(new KeyValuePair<double, double>(ReWeight(aggWeight, smallestWeight, rangeWeight), value.Value));
-                    }
-                    weightedList = weightedList.OrderBy(x => x.Value).ToList();
+                    finalList = matchingSegmentHistory.Select(x => x.Time).ToList();
+                    overallStartingIndex = curIndex;
                 }
-                else weightedList.Add(new KeyValuePair<double, double>(1.0, tempList[0].Value));
-                weightedLists.Add(weightedList);
+                else if (curPBTime != null && previousPBTime != null)
+                {
+                    finalList.Add(curPBTime.Value - previousPBTime.Value);
+                    overallStartingIndex = curIndex;
+                }
+                else
+                {
+                    nullSegment = true;
+                }
+
+                if (!nullSegment)
+                {
+                    var tempList = finalList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, finalList.Count), x)).ToList();
+                    var weightedList = new List<KeyValuePair<double, TimeSpan>>();
+                    if (tempList.Count > 1)
+                    {
+                        tempList = tempList.OrderBy(x => x.Value).ToList();
+                        var totalWeight = tempList.Aggregate(0.0, (s, x) => (s + x.Key));
+                        var smallestWeight = tempList[0].Key;
+                        var rangeWeight = totalWeight - smallestWeight;
+                        var aggWeight = 0.0;
+                        foreach (var value in tempList)
+                        {
+                            aggWeight += value.Key;
+                            weightedList.Add(new KeyValuePair<double, TimeSpan>(ReWeight(aggWeight, smallestWeight, rangeWeight), value.Value));
+                        }
+                        weightedList = weightedList.OrderBy(x => x.Value).ToList();
+                    }
+                    else weightedList.Add(new KeyValuePair<double, TimeSpan>(1.0, tempList[0].Value));
+                    weightedLists.Add(weightedList);
+                }
+                else
+                    weightedLists.Add(null);
             }
 
-            var goalTime = TimeSpan.Zero;
+            TimeSpan? goalTime = null;
             if (Run[Run.Count - 1].PersonalBestSplitTime[method].HasValue)
                 goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value;
 
             var runSum = TimeSpan.Zero;
-            var outputSplits = new List<double>();
+            var outputSplits = new List<TimeSpan>();
             var percentile = 0.5;
             var percMax = 1.0;
             var percMin = 0.0;
@@ -130,45 +129,52 @@ namespace LiveSplit.Model.Comparisons
                 percentile = 0.5 * (percMax - percMin) + percMin;
                 foreach (var weightedList in weightedLists)
                 {
-                    var curValue = 0.0;
-                    if (weightedList.Count > 1)
+                    if (weightedList != null)
                     {
-                        for (var n = 0; n < weightedList.Count; n++)
+                        var curValue = TimeSpan.Zero;
+                        if (weightedList.Count > 1)
                         {
-                            if (weightedList[n].Key > percentile)
+                            for (var n = 0; n < weightedList.Count; n++)
                             {
-                                curValue = Calculate(percentile, weightedList[n].Value, weightedList[n].Key, weightedList[n - 1].Value, weightedList[n - 1].Key);
-                                break;
-                            }
-                            if (weightedList[n].Key == percentile)
-                            {
-                                curValue = weightedList[n].Value;
-                                break;
+                                if (weightedList[n].Key > percentile)
+                                {
+                                    curValue = Calculate(percentile, weightedList[n].Value, weightedList[n].Key, weightedList[n - 1].Value, weightedList[n - 1].Key);
+                                    break;
+                                }
+                                if (weightedList[n].Key == percentile)
+                                {
+                                    curValue = weightedList[n].Value;
+                                    break;
+                                }
                             }
                         }
+                        else
+                        {
+                            curValue = weightedList[0].Value;
+                        }
+                        outputSplits.Add(curValue);
+                        runSum += curValue;
                     }
                     else
-                    {
-                        curValue = weightedList[0].Value;
-                    }
-                    outputSplits.Add(curValue);
-                    runSum += TimeSpan.FromTicks(Convert.ToInt64(curValue));
+                        outputSplits.Add(TimeSpan.Zero);
                 }
                 if (runSum > goalTime)
                     percMax = percentile;
                 else percMin = percentile;
                 loopProtection += 1;
-            } while (!(runSum - goalTime).Equals(TimeSpan.Zero) && loopProtection < 50 && !forceMedian);
+            } while (!(runSum - goalTime).Equals(TimeSpan.Zero) && loopProtection < 50 && goalTime != null);
 
-            TimeSpan? totalTime = TimeSpan.Zero;
+            TimeSpan totalTime = TimeSpan.Zero;
+            TimeSpan? useTime = TimeSpan.Zero;
             for (var ind = 0; ind < Run.Count; ind++)
             {
-                if (ind >= outputSplits.Count)
-                    totalTime = null;
-                if (totalTime != null)
-                    totalTime += TimeSpan.FromTicks(Convert.ToInt64(outputSplits[ind]));
+                totalTime += outputSplits[ind];
+                if (outputSplits[ind] == TimeSpan.Zero)
+                    useTime = null;
+                else
+                    useTime = totalTime;
                 var time = new Time(Run[ind].Comparisons[Name]);
-                time[method] = totalTime;
+                time[method] = useTime;
                 Run[ind].Comparisons[Name] = time;
             }
         }
@@ -179,5 +185,16 @@ namespace LiveSplit.Model.Comparisons
             Generate(TimingMethod.GameTime);
         }
 
+        class IndexedTimeSpan
+        {
+            public TimeSpan Time { get; set; }
+            public int Index { get; set; }
+
+            public IndexedTimeSpan(TimeSpan time, int index)
+            {
+                Time = time;
+                Index = index;
+            }
+        }
     }
 }

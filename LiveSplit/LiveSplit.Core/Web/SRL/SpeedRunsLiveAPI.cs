@@ -93,35 +93,31 @@ namespace LiveSplit.Web.SRL
 
         public Image GetGameImage(string gameId)
         {
-            if (!imageList.ContainsKey(gameId))
+            lock (imageList)
             {
-                try
+                if (!imageList.ContainsKey(gameId))
                 {
-                    var request = WebRequest.Create(string.Format("http://c15111072.r72.cf2.rackcdn.com/{0}.jpg", gameId));
+                    Image image = null;
 
-                    using (var stream = request.GetResponse().GetResponseStream())
-                    {
-                        var image = Image.FromStream(stream);
-                        lock (imageList)
-                        {
-                            if (!imageList.ContainsKey(gameId))
-                            {
-                                imageList.Add(gameId, image);
-                            }
-                        }
-                    }
-                }
-                catch
-                {
                     try
                     {
-                        imageList.Add(gameId, null);
-                    }
-                    catch { }
-                }
-            }
+                        var request = WebRequest.Create(string.Format("http://c15111072.r72.cf2.rackcdn.com/{0}.jpg", gameId));
 
-            return imageList[gameId];
+                        using (var response = request.GetResponse())
+                        using (var stream = response.GetResponseStream())
+                        {
+                            image = Image.FromStream(stream);
+                        }
+                    }
+                    finally
+                    {
+                        if (!imageList.ContainsKey(gameId))
+                            imageList.Add(gameId, image);
+                    }
+                }
+
+                return imageList[gameId];
+            }
         }
 
         void SpeedRunsLiveAPI_Elapsed(object sender, ElapsedEventArgs e)
