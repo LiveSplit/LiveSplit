@@ -101,10 +101,10 @@ namespace LiveSplit.Model.Comparisons
                             else
                             {
                                 nullSegment = true;
-                                var check = false;
+                                var check = 0;
                                 for (var i = curIndex; i < segCounts.Count; i++)
-                                    if (segCounts[i]) check = true;
-                                if (check)
+                                    check += Convert.ToInt32(segCounts[i]);
+                                if (check == 0)
                                     forceMedian = true;
                             }
 
@@ -113,10 +113,10 @@ namespace LiveSplit.Model.Comparisons
                     else
                     {
                         nullSegment = true;
-                        var check = false;
+                        var check = 0;
                         for (var i = curIndex; i < segCounts.Count; i++)
-                            if (segCounts[i]) check = true;
-                        if (check)
+                            check += Convert.ToInt32(segCounts[i]);
+                        if (check == 0)
                             forceMedian = true;
                     }
                 }
