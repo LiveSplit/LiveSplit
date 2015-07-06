@@ -37,92 +37,58 @@ namespace LiveSplit.Model.Comparisons
 
         public void Generate(TimingMethod method)
         {
-            var segCounts = new List<bool>();
+            var allHistory = new List<List<IndexedTimeSpan>>();
             foreach (var segment in Run)
-                segCounts.Add(false);
-            foreach (var segment in Run)
-            {
-                for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++)
-                {
-                    IIndexedTime history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
-                    if (history != null)
-                        if (history.Time[method] != null)
-                        {
-                            segCounts[Run.IndexOf(segment)] = true;
-                            break;
-                        }
-                }
-            }
-
-            var allHistory = new List<List<TimeSpan>>();
-            foreach (var segment in Run)
-                allHistory.Add(new List<TimeSpan>());
+                allHistory.Add(new List<IndexedTimeSpan>());
             for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++)
             {
-                var ignoreNextHistory = false;
+                var historyStartingIndex = -1;
                 foreach (var segment in Run)
                 {
-                    if (segCounts[Run.IndexOf(segment)])
+                    var currentIndex = Run.IndexOf(segment);
+                    IIndexedTime history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
+                    if (history != null)
                     {
-                        IIndexedTime history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
-                        if (history != null)
+                        if (history.Time[method] != null)
                         {
-                            if (history.Time[method] == null)
-                                ignoreNextHistory = true;
-                            else if (!ignoreNextHistory)
-                            {
-                                allHistory[Run.IndexOf(segment)].Add(history.Time[method].Value);
-                            }
-                            else ignoreNextHistory = false;
+                            allHistory[Run.IndexOf(segment)].Add(new IndexedTimeSpan(history.Time[method].Value, historyStartingIndex));
+                            historyStartingIndex = currentIndex;
                         }
-                        else ignoreNextHistory = false;
                     }
+                    else historyStartingIndex = currentIndex;
                 }
             }
 
             var weightedLists = new List<List<KeyValuePair<double, TimeSpan>>>();
-            var forceMedian = false;
+            var overallStartingIndex = -1;
 
-            foreach (var curList in allHistory)
+            foreach (var currentList in allHistory)
             {
                 var nullSegment = false;
-                if (curList.Count == 0)
-                {
-                    var curIndex = allHistory.IndexOf(curList);
-                    var curPBIndex = Run[curIndex].PersonalBestSplitTime[method];
-                    if (curPBIndex.HasValue)
-                    {
-                        if (curIndex == 0)
-                            curList.Add(curPBIndex.Value);
-                        else
-                        {
-                            if (Run[curIndex - 1].PersonalBestSplitTime[method].HasValue)
-                                curList.Add(curPBIndex.Value - Run[curIndex - 1].PersonalBestSplitTime[method].Value);
-                            else
-                            {
-                                nullSegment = true;
-                                var check = false;
-                                for (var i = curIndex; i < segCounts.Count; i++)
-                                    if (segCounts[i]) check = true;
-                                if (!check)
-                                    forceMedian = true;
-                            }
+                var curIndex = allHistory.IndexOf(currentList);
+                var curPBTime = Run[curIndex].PersonalBestSplitTime[method];
+                var previousPBTime = overallStartingIndex >= 0 ? Run[overallStartingIndex].PersonalBestSplitTime[method] : null;
+                var finalList = new List<TimeSpan>();
 
-                        }
-                    }
-                    else
-                    {
-                        nullSegment = true;
-                        var check = false;
-                        for (var i = curIndex; i < segCounts.Count; i++)
-                            if (segCounts[i]) check = true;
-                        if (!check)
-                            forceMedian = true;
-                    }
+                var matchingSegmentHistory = currentList.Where(x => x.Index == overallStartingIndex);
+                if (matchingSegmentHistory.Count() > 0)
+                {
+                    finalList = matchingSegmentHistory.Select(x => x.Time).ToList();
+                    overallStartingIndex = curIndex;
                 }
+                else if (curPBTime != null && previousPBTime != null)
+                {
+                    finalList.Add(curPBTime.Value - previousPBTime.Value);
+                    overallStartingIndex = curIndex;
+                }
+                else
+                {
+                    nullSegment = true;
+                }
+
                 if (!nullSegment)
                 {
-                    var tempList = curList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, curList.Count), x)).ToList();
+                    var tempList = finalList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, finalList.Count), x)).ToList();
                     var weightedList = new List<KeyValuePair<double, TimeSpan>>();
                     if (tempList.Count > 1)
                     {
@@ -145,7 +111,7 @@ namespace LiveSplit.Model.Comparisons
                     weightedLists.Add(null);
             }
 
-            var goalTime = TimeSpan.Zero;
+            TimeSpan? goalTime = null;
             if (Run[Run.Count - 1].PersonalBestSplitTime[method].HasValue)
                 goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value;
 
@@ -196,7 +162,7 @@ namespace LiveSplit.Model.Comparisons
                     percMax = percentile;
                 else percMin = percentile;
                 loopProtection += 1;
-            } while (!(runSum - goalTime).Equals(TimeSpan.Zero) && loopProtection < 50 && !forceMedian);
+            } while (!(runSum - goalTime).Equals(TimeSpan.Zero) && loopProtection < 50 && goalTime != null);
 
             TimeSpan totalTime = TimeSpan.Zero;
             TimeSpan? useTime = TimeSpan.Zero;
@@ -219,5 +185,16 @@ namespace LiveSplit.Model.Comparisons
             Generate(TimingMethod.GameTime);
         }
 
+        class IndexedTimeSpan
+        {
+            public TimeSpan Time { get; set; }
+            public int Index { get; set; }
+
+            public IndexedTimeSpan(TimeSpan time, int index)
+            {
+                Time = time;
+                Index = index;
+            }
+        }
     }
 }
