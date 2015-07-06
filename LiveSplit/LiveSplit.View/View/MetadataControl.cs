@@ -224,5 +224,14 @@ namespace LiveSplit.View
                 showRunOnSpeedrunCom();
             }
         }
+
+        private void tbxRules_LinkClicked(object sender, LinkClickedEventArgs e)
+        {
+            try
+            {
+                Process.Start(e.LinkText);
+            }
+            catch { }
+        }
     }
 }
