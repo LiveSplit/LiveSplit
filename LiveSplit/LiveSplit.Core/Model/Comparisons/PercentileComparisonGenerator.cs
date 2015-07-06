@@ -11,7 +11,7 @@ namespace LiveSplit.Model.Comparisons
         public const string ComparisonName = "Balanced PB";
         public const string ShortComparisonName = "Balanced";
         public string Name { get { return ComparisonName; } }
-        public const double Weight = 0.933333333333333;
+        public const double Weight = 0.93333;
 
         public PercentileComparisonGenerator(IRun run)
         {
@@ -37,17 +37,20 @@ namespace LiveSplit.Model.Comparisons
 
         public void Generate(TimingMethod method)
         {
-            var segCounts = new List<int>();
+            var segCounts = new List<bool>();
             foreach (var segment in Run)
-                segCounts.Add(0);
-            for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++)
+                segCounts.Add(false);
+            foreach (var segment in Run)
             {
-                foreach (var segment in Run)
+                for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++)
                 {
                     IIndexedTime history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
                     if (history != null)
                         if (history.Time[method] != null)
-                            segCounts[Run.IndexOf(segment)] += 1;
+                        {
+                            segCounts[Run.IndexOf(segment)] = true;
+                            break;
+                        }
                 }
             }
 
@@ -59,7 +62,7 @@ namespace LiveSplit.Model.Comparisons
                 var ignoreNextHistory = false;
                 foreach (var segment in Run)
                 {
-                    if (segCounts[Run.IndexOf(segment)] > 0)
+                    if (segCounts[Run.IndexOf(segment)])
                     {
                         IIndexedTime history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
                         if (history != null)
@@ -98,10 +101,10 @@ namespace LiveSplit.Model.Comparisons
                             else
                             {
                                 nullSegment = true;
-                                var check = 0;
+                                var check = false;
                                 for (var i = curIndex; i < segCounts.Count; i++)
-                                    check += segCounts[i];
-                                if (check == 0)
+                                    if (segCounts[i]) check = true;
+                                if (check)
                                     forceMedian = true;
                             }
 
@@ -110,10 +113,10 @@ namespace LiveSplit.Model.Comparisons
                     else
                     {
                         nullSegment = true;
-                        var check = 0;
+                        var check = false;
                         for (var i = curIndex; i < segCounts.Count; i++)
-                            check += segCounts[i];
-                        if (check == 0)
+                            if (segCounts[i]) check = true;
+                        if (check)
                             forceMedian = true;
                     }
                 }
