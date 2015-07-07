@@ -69,14 +69,19 @@ namespace LiveSplit.View
 
         void Metadata_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
-            if (MetadataChanged != null)
-                MetadataChanged(this, null);
+            TriggerMetadataChanged();
         }
 
         void variableBinding_VariableChanged(object sender, EventArgs e)
         {
-            if (MetadataChanged != null)
-                MetadataChanged(this, null);
+            TriggerMetadataChanged();
+        }
+
+        private void TriggerMetadataChanged()
+        {
+            var metadataChanged = MetadataChanged;
+            if (metadataChanged != null)
+                metadataChanged(this, null);
         }
 
         private int getDynamicControlRowIndex(int controlIndex)

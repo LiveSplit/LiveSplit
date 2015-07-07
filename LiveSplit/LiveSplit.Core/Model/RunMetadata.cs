@@ -35,8 +35,8 @@ namespace LiveSplit.Model
                 runId = value;
                 run = new Lazy<SpeedrunComSharp.Run>(() => SpeedrunCom.Client.Runs.GetRun(runId));
 
-                if (PropertyChanged != null && value != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("RunID"));
+                if (value != null)
+                    TriggerPropertyChanged("RunID");
             }
         }
         public SpeedrunComSharp.Run Run
@@ -71,8 +71,7 @@ namespace LiveSplit.Model
                 else
                     PlatformID = platform.ID;
 
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("PlatformName"));
+                TriggerPropertyChanged("PlatformName");
             }
         }
         public Platform Platform
@@ -106,8 +105,7 @@ namespace LiveSplit.Model
                 else
                     RegionID = region.ID;
 
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("RegionName"));
+                TriggerPropertyChanged("RegionName");
             }
         }
         public Region Region
@@ -236,6 +234,13 @@ namespace LiveSplit.Model
                 VariableValueIDs = VariableValueIDs.ToDictionary(x => x.Key, x => x.Value),
                 usesEmulator = usesEmulator
             };
+        }
+
+        private void TriggerPropertyChanged(string propertyName)
+        {
+            var propertyChanged = PropertyChanged;
+            if (propertyChanged != null)
+                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

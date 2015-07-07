@@ -41,9 +41,8 @@ namespace LiveSplit.Model
             set
             {
                 gameName = value; 
-                Metadata.Refresh(); 
-                if (PropertyChanged != null) 
-                    PropertyChanged(this, new PropertyChangedEventArgs("GameName"));
+                Metadata.Refresh();
+                TriggerPropertyChanged("GameName");
             }
         }
 
@@ -57,8 +56,7 @@ namespace LiveSplit.Model
             {
                 categoryName = value;
                 Metadata.Refresh();
-                if (PropertyChanged != null)
-                    PropertyChanged(this, new PropertyChangedEventArgs("CategoryName"));
+                TriggerPropertyChanged("CategoryName");
             }
         }
 
@@ -87,6 +85,13 @@ namespace LiveSplit.Model
         public RunMetadata Metadata { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        private void TriggerPropertyChanged(string propertyName)
+        {
+            var propertyChanged = PropertyChanged;
+            if (propertyChanged != null)
+                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         protected IComparisonGeneratorsFactory Factory { get; set; }
 
