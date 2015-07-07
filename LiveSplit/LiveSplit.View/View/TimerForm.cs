@@ -1708,11 +1708,20 @@ namespace LiveSplit.View
             {
                 if (!File.Exists(savePath))
                     File.Create(savePath).Close();
-                using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
+
+                using (var memoryStream = new MemoryStream())
                 {
-                    RunSaver.Save(stateCopy.Run, stream);
+                    RunSaver.Save(stateCopy.Run, memoryStream);
+                    
+                    using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
+                    {
+                        var buffer = memoryStream.GetBuffer();
+                        stream.Write(buffer, 0, buffer.Length);
+                    }
+
                     CurrentState.Run.HasChanged = false;
                 }
+
                 Settings.AddToRecentSplits(savePath, stateCopy.Run);
                 UpdateRecentSplits();
             }
@@ -2208,9 +2217,16 @@ namespace LiveSplit.View
             var settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
             if (!File.Exists(settingsPath))
                 File.Create(settingsPath).Close();
-            using (var stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write))
+
+            using (var memoryStream = new MemoryStream())
             {
-                SettingsSaver.Save(Settings, stream);
+                SettingsSaver.Save(Settings, memoryStream);
+
+                using (var stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write))
+                {
+                    var buffer = memoryStream.GetBuffer();
+                    stream.Write(buffer, 0, buffer.Length);
+                }
             }
 
             foreach (var component in Layout.Components)
