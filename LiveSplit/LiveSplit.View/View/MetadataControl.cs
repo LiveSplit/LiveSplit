@@ -19,6 +19,7 @@ namespace LiveSplit.View
         {
             public RunMetadata Metadata { get; set; }
             public Variable Variable { get; set; }
+            public event EventHandler VariableChanged;
 
             public string Value
             {
@@ -34,6 +35,9 @@ namespace LiveSplit.View
                         Metadata.VariableValueIDs[Variable.ID] = choiceId;
                     else
                         Metadata.VariableValueIDs.Add(Variable.ID, choiceId);
+
+                    if (VariableChanged != null)
+                        VariableChanged(this, null);
                 }
             }
         }
@@ -44,6 +48,7 @@ namespace LiveSplit.View
         public const AnchorStyles AnchorLeftRight = AnchorStyles.Left | AnchorStyles.Right;
 
         public RunMetadata Metadata { get; set; }
+        public event EventHandler MetadataChanged;
 
         private List<Control> dynamicControls;
         private List<VariableBinding> variableBindings;
@@ -58,6 +63,20 @@ namespace LiveSplit.View
         private void MetadataControl_Load(object sender, EventArgs e)
         {
             RefreshInformation();
+            if (Metadata != null)
+                Metadata.PropertyChanged += Metadata_PropertyChanged;
+        }
+
+        void Metadata_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (MetadataChanged != null)
+                MetadataChanged(this, null);
+        }
+
+        void variableBinding_VariableChanged(object sender, EventArgs e)
+        {
+            if (MetadataChanged != null)
+                MetadataChanged(this, null);
         }
 
         private int getDynamicControlRowIndex(int controlIndex)
@@ -162,6 +181,7 @@ namespace LiveSplit.View
                         Metadata = Metadata,
                         Variable = variable
                     };
+                    variableBinding.VariableChanged += variableBinding_VariableChanged;
 
                     variableComboBox.DataBindings.Add("SelectedItem", variableBinding, "Value", false, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -190,6 +210,8 @@ namespace LiveSplit.View
                 btnAssociate.Text = "Show on Speedrun.com...";
             }
         }
+
+
 
         private void associateRun()
         {

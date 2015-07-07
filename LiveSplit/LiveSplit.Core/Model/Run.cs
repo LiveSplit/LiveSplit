@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model.Comparisons;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
@@ -11,7 +12,7 @@ namespace LiveSplit.Model
     /// Describes a run for a game with all the splits and times.
     /// </summary>
     [Serializable]
-    public class Run : IRun
+    public class Run : IRun, INotifyPropertyChanged
     {
         private string gameName;
         private string categoryName;
@@ -34,12 +35,32 @@ namespace LiveSplit.Model
         /// <summary>
         /// Gets or sets the name of the game the run is for.
         /// </summary>
-        public string GameName { get { return gameName; } set { gameName = value; Metadata.Refresh(); } }
+        public string GameName
+        {
+            get { return gameName; }
+            set
+            {
+                gameName = value; 
+                Metadata.Refresh(); 
+                if (PropertyChanged != null) 
+                    PropertyChanged(this, new PropertyChangedEventArgs("GameName"));
+            }
+        }
 
         /// <summary>
         /// Gets or sets the category of the run.
         /// </summary>
-        public string CategoryName { get { return categoryName; } set { categoryName = value; Metadata.Refresh(); } }
+        public string CategoryName
+        {
+            get { return categoryName; }
+            set
+            {
+                categoryName = value;
+                Metadata.Refresh();
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("CategoryName"));
+            }
+        }
 
         /// <summary>
         /// Gets or sets the time where the timer starts at.
@@ -64,6 +85,8 @@ namespace LiveSplit.Model
         public IEnumerable<string> Comparisons { get { return CustomComparisons.Concat(ComparisonGenerators.Select(x => x.Name)); } }
 
         public RunMetadata Metadata { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected IComparisonGeneratorsFactory Factory { get; set; }
 

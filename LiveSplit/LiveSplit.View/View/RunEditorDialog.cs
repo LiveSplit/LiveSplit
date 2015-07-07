@@ -113,7 +113,9 @@ namespace LiveSplit.View
             InitializeComponent();
             CurrentState = state;
             Run = state.Run;
+            Run.PropertyChanged += Run_PropertyChanged;
             metadataControl.Metadata = Run.Metadata;
+            metadataControl.MetadataChanged += metadataControl_MetadataChanged;
             CurrentSplitIndexOffset = 0;
             AllowChangingSegments = false;
             SegmentTimeList = new List<TimeSpan?>();
@@ -225,6 +227,20 @@ namespace LiveSplit.View
             RefreshCategoryAutoCompleteList();
             UpdateSegmentList();
             RefreshAutoSplittingUI();
+        }
+
+        void Run_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "GameName")
+                cbxGameName.Text = Run.GameName;
+            else if (e.PropertyName == "CategoryName")
+                cbxRunCategory.Text = Run.CategoryName;
+        }
+
+        void metadataControl_MetadataChanged(object sender, EventArgs e)
+        {
+            Run.Metadata.RunID = null;
+            RaiseRunEdited();
         }
 
         void cbxGameName_TextChanged(object sender, EventArgs e)

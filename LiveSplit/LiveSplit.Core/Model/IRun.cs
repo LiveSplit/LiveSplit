@@ -1,13 +1,14 @@
 ﻿using LiveSplit.Model.Comparisons;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
 
 namespace LiveSplit.Model
 {
-    public interface IRun : IList<ISegment>, ICloneable
+    public interface IRun : IList<ISegment>, ICloneable, INotifyPropertyChanged
     {
         Image GameIcon { get; set; }
         string GameName { get; set; }

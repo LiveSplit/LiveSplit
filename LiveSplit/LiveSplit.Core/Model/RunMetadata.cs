@@ -4,13 +4,14 @@ using SpeedrunComSharp;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 
 namespace LiveSplit.Model
 {
-    public class RunMetadata
+    public class RunMetadata : INotifyPropertyChanged
     {
         public IRun LiveSplitRun { get; private set; }
         private string oldGameName;
@@ -20,6 +21,8 @@ namespace LiveSplit.Model
         private Lazy<SpeedrunComSharp.Run> run;
         private bool usesEmulator;
         private string runId;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public string RunID
         {
@@ -31,6 +34,9 @@ namespace LiveSplit.Model
             {
                 runId = value;
                 run = new Lazy<SpeedrunComSharp.Run>(() => SpeedrunCom.Client.Runs.GetRun(runId));
+
+                if (PropertyChanged != null && value != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("RunID"));
             }
         }
         public SpeedrunComSharp.Run Run
@@ -64,6 +70,9 @@ namespace LiveSplit.Model
                     PlatformID = string.Empty;
                 else
                     PlatformID = platform.ID;
+
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("PlatformName"));
             }
         }
         public Platform Platform
@@ -96,6 +105,9 @@ namespace LiveSplit.Model
                     RegionID = string.Empty;
                 else
                     RegionID = region.ID;
+
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("RegionName"));
             }
         }
         public Region Region
