@@ -12,7 +12,7 @@ namespace LiveSplit.View
         {
             InitializeComponent();
             lblVersion.Text = Git.Version;
-            if (Git.Branch != "master")
+            if (Git.Branch != "master" && Git.Branch != "HEAD")
                 labelProductName.Text += string.Format(" ({0})", Git.Branch);
         }
 
