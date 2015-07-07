@@ -263,6 +263,7 @@ namespace LiveSplit.Model
             CurrentState.Run.FixSplits();
             foreach (var current in CurrentState.Run)
                 current.PersonalBestSplitTime = current.SplitTime;
+            CurrentState.Run.Metadata.RunID = null;
         }
     }
 }

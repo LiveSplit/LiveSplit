@@ -35,6 +35,7 @@ namespace LiveSplit.View
         protected ITimeFormatter TimeFormatter { get; set; }
         protected IList<TimeSpan?> SegmentTimeList { get; set; }
         protected bool IsInitialized = false;
+        protected Time PreviousPersonalBestTime;
 
         protected bool IsGridTab { get { return tabControl.SelectedTab == RealTime || tabControl.SelectedTab == GameTime; } }
         protected bool IsMetadataTab { get { return tabControl.SelectedTab == Metadata; } }
@@ -67,6 +68,7 @@ namespace LiveSplit.View
                         metadataControl.RefreshInformation();
                     RefreshCategoryAutoCompleteList(); 
                     RaiseRunEdited();
+                    Run.Metadata.RunID = null;
                 }
             }
         }
@@ -81,6 +83,7 @@ namespace LiveSplit.View
                     if (IsMetadataTab)
                         metadataControl.RefreshInformation();
                     RaiseRunEdited();
+                    Run.Metadata.RunID = null;
                 }
             }
         }
@@ -114,6 +117,7 @@ namespace LiveSplit.View
             CurrentState = state;
             Run = state.Run;
             Run.PropertyChanged += Run_PropertyChanged;
+            PreviousPersonalBestTime = Run.Last().PersonalBestSplitTime;
             metadataControl.Metadata = Run.Metadata;
             metadataControl.MetadataChanged += metadataControl_MetadataChanged;
             CurrentSplitIndexOffset = 0;
@@ -320,7 +324,7 @@ namespace LiveSplit.View
 
         void SegmentList_ListChanged(object sender, ListChangedEventArgs e)
         {
-            RaiseRunEdited();
+            TimesModified();
         }
 
         void runGrid_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
@@ -627,10 +631,10 @@ namespace LiveSplit.View
 
         void runGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            RaiseRunEdited();
             if (e.ColumnIndex == SEGMENTTIMEINDEX)
                 FixSplitsFromSegments();
             Fix();
+            TimesModified();
         }
 
         void SegmentList_AddingNew(object sender, AddingNewEventArgs e)
@@ -816,7 +820,7 @@ namespace LiveSplit.View
                     Fix();
                 }
                 runGrid.Invalidate();
-                RaiseRunEdited();
+                TimesModified();
             }
         }
 
@@ -932,6 +936,17 @@ namespace LiveSplit.View
                 time2[method] = minBestSegment;
                 Run[curIndex].BestSegmentTime = time2;
             }
+        }
+
+        private void TimesModified()
+        {
+            if (Run.Last().PersonalBestSplitTime.RealTime != PreviousPersonalBestTime.RealTime 
+                || Run.Last().PersonalBestSplitTime.GameTime != PreviousPersonalBestTime.GameTime)
+            {
+                Run.Metadata.RunID = null;
+                PreviousPersonalBestTime = Run.Last().PersonalBestSplitTime;
+            }
+            RaiseRunEdited();
         }
 
         private void RaiseRunEdited()
@@ -1327,7 +1342,7 @@ namespace LiveSplit.View
             Run.ClearTimes();
             RebuildComparisonColumns();
             Fix();
-            RaiseRunEdited();
+            TimesModified();
         }
 
         private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)
