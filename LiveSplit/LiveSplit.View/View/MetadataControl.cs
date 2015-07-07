@@ -64,20 +64,10 @@ namespace LiveSplit.View
         {
             RefreshInformation();
             if (Metadata != null)
-                Metadata.PropertyChanged += Metadata_PropertyChanged;
+                Metadata.PropertyChanged += Metadata_Changed;
         }
 
-        void Metadata_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
-        {
-            TriggerMetadataChanged();
-        }
-
-        void variableBinding_VariableChanged(object sender, EventArgs e)
-        {
-            TriggerMetadataChanged();
-        }
-
-        private void TriggerMetadataChanged()
+        void Metadata_Changed(object sender, EventArgs e)
         {
             var metadataChanged = MetadataChanged;
             if (metadataChanged != null)
@@ -186,7 +176,7 @@ namespace LiveSplit.View
                         Metadata = Metadata,
                         Variable = variable
                     };
-                    variableBinding.VariableChanged += variableBinding_VariableChanged;
+                    variableBinding.VariableChanged += Metadata_Changed;
 
                     variableComboBox.DataBindings.Add("SelectedItem", variableBinding, "Value", false, DataSourceUpdateMode.OnPropertyChanged);
 
