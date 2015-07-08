@@ -258,8 +258,27 @@ namespace LiveSplit.Model
 
             if (showVariables)
             {
-                var variableValues = run.Metadata.VariableValueNames.Values.Where(x => !string.IsNullOrEmpty(x));
-                list.AddRange(variableValues);
+                var variables = run.Metadata.VariableValueNames.Where(x => !string.IsNullOrEmpty(x.Value));
+
+                foreach (var variable in variables)
+                {
+                    var name = variable.Key.TrimEnd('?');
+                    var value = variable.Value;
+                    var valueLower = value.ToLowerInvariant();
+
+                    if (valueLower == "yes")
+                    {
+                        list.Add(name);
+                    }
+                    else if (valueLower == "no")
+                    {
+                        list.Add("No " + name);
+                    }
+                    else
+                    {
+                        list.Add(value);
+                    }
+                }
             }
 
             if (run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game.Regions.Count > 1 && showRegion)
