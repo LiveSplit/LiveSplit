@@ -597,4 +597,27 @@
     <Type>Script</Type>
     <Description>Load Removal is avaliable. (By Dread)</Description>  
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>RE5</Game>
+      <Game>Resident Evil 5</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/RE5.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Load Removal are avaliable. (By Dread)</Description>  
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Styx</Game>
+      <Game>Styx: MoS</Game>
+      <Game>Styx: Master of Shadows</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/Styx.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is avaliable. (By Zefie)</Description>  
+  </AutoSplitter>
 </AutoSplitters>
