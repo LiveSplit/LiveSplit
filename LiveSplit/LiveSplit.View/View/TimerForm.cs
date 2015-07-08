@@ -1758,11 +1758,20 @@ namespace LiveSplit.View
             {
                 if (!File.Exists(savePath))
                     File.Create(savePath).Close();
-                using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
+
+                using (var memoryStream = new MemoryStream())
                 {
-                    LayoutSaver.Save(Layout, stream);
+                    LayoutSaver.Save(Layout, memoryStream);
+
+                    using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
+                    {
+                        var buffer = memoryStream.GetBuffer();
+                        stream.Write(buffer, 0, buffer.Length);
+                    }
+
                     Layout.HasChanged = false;
                 }
+
                 Settings.AddToRecentLayouts(savePath);
                 UpdateRecentLayouts();
             }
