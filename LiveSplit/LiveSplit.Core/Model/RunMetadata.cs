@@ -36,7 +36,7 @@ namespace LiveSplit.Model
                 run = new Lazy<SpeedrunComSharp.Run>(() => SpeedrunCom.Client.Runs.GetRun(runId));
 
                 if (value != null)
-                    TriggerPropertyChanged();
+                    TriggerPropertyChanged(false);
             }
         }
         public SpeedrunComSharp.Run Run
@@ -71,7 +71,7 @@ namespace LiveSplit.Model
                 else
                     PlatformID = platform.ID;
 
-                TriggerPropertyChanged();
+                TriggerPropertyChanged(true);
             }
         }
         public Platform Platform
@@ -105,7 +105,7 @@ namespace LiveSplit.Model
                 else
                     RegionID = region.ID;
 
-                TriggerPropertyChanged();
+                TriggerPropertyChanged(true);
             }
         }
         public Region Region
@@ -152,6 +152,8 @@ namespace LiveSplit.Model
             set
             {
                 usesEmulator = Game != null && Game.Ruleset.EmulatorsAllowed && value;
+
+                TriggerPropertyChanged(true);
             }
         }
 
@@ -236,11 +238,11 @@ namespace LiveSplit.Model
             };
         }
 
-        private void TriggerPropertyChanged()
+        private void TriggerPropertyChanged(bool clearRunID)
         {
             var propertyChanged = PropertyChanged;
             if (propertyChanged != null)
-                propertyChanged(this, null);
+                propertyChanged(this, new MetadataChangedEventArgs(clearRunID));
         }
     }
 }

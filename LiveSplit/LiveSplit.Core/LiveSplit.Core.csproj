@@ -117,6 +117,7 @@
     <Compile Include="Model\Input\KeyboardHook.cs" />
     <Compile Include="Model\Input\XGamePad.cs" />
     <Compile Include="Model\Input\XInput.cs" />
+    <Compile Include="Model\MetadataChangedEventArgs.cs" />
     <Compile Include="Model\RunMetadata.cs" />
     <Compile Include="Model\RunFactories\CompositeRunFactory.cs" />
     <Compile Include="Model\RunFactories\Portal2LiveTimerRunFactory.cs" />

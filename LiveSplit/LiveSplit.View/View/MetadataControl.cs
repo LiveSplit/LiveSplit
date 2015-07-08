@@ -37,7 +37,7 @@ namespace LiveSplit.View
                         Metadata.VariableValueIDs.Add(Variable.ID, choiceId);
 
                     if (VariableChanged != null)
-                        VariableChanged(this, null);
+                        VariableChanged(this, new MetadataChangedEventArgs(true));
                 }
             }
         }
@@ -71,7 +71,7 @@ namespace LiveSplit.View
         {
             var metadataChanged = MetadataChanged;
             if (metadataChanged != null)
-                metadataChanged(this, null);
+                metadataChanged(this, e);
         }
 
         private int getDynamicControlRowIndex(int controlIndex)
@@ -196,6 +196,11 @@ namespace LiveSplit.View
             cmbRegion.Enabled = cmbRegion.Items.Count > 1;
             cmbPlatform.Enabled = cmbPlatform.Items.Count > 1;
 
+            RefreshAssociateButton();
+        }
+
+        public void RefreshAssociateButton()
+        {
             if (string.IsNullOrEmpty(Metadata.RunID))
             {
                 btnAssociate.Text = "Associate with Speedrun.com...";
@@ -205,8 +210,6 @@ namespace LiveSplit.View
                 btnAssociate.Text = "Show on Speedrun.com...";
             }
         }
-
-
 
         private void associateRun()
         {

@@ -243,7 +243,12 @@ namespace LiveSplit.View
 
         void metadataControl_MetadataChanged(object sender, EventArgs e)
         {
-            Run.Metadata.RunID = null;
+            var args = (MetadataChangedEventArgs)e;
+            if (args.ClearRunID)
+            {
+                Run.Metadata.RunID = null;
+                metadataControl.RefreshAssociateButton();
+            }
             RaiseRunEdited();
         }
 
