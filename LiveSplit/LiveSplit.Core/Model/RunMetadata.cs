@@ -181,6 +181,7 @@ namespace LiveSplit.Model
             VariableValueIDs = new Dictionary<string, string>();
             game = new Lazy<Game>(() => null);
             category = new Lazy<Category>(() => null);
+            this.run = new Lazy<SpeedrunComSharp.Run>(() => null);
         }
 
         public void Refresh()
