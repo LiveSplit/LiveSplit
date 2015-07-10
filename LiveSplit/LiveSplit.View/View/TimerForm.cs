@@ -1096,6 +1096,11 @@ namespace LiveSplit.View
                         if (Hook != null)
                             Hook.Poll();
 
+                        this.Text = string.Format("LiveSplit - {0} - {1} - {2}", 
+                            CurrentState.Run.GameName, 
+                            CurrentState.Run.CategoryName, 
+                            Path.GetFileNameWithoutExtension(Layout.FilePath ?? string.Empty));
+
                         if (CurrentState.Run.IsAutoSplitterActive())
                             CurrentState.Run.AutoSplitter.Component.Update(null, CurrentState, 0, 0, Layout.Mode);
 
