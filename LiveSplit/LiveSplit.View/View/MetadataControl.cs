@@ -201,6 +201,12 @@ namespace LiveSplit.View
 
         public void RefreshAssociateButton()
         {
+            if (this.InvokeRequired)
+            {
+                this.Invoke(new Action(RefreshAssociateButton));
+                return;
+            }
+            
             if (string.IsNullOrEmpty(Metadata.RunID))
             {
                 btnAssociate.Text = "Associate with Speedrun.com...";
