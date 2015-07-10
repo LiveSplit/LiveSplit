@@ -21,6 +21,8 @@ namespace LiveSplit.Model
         private Lazy<SpeedrunComSharp.Run> run;
         private bool usesEmulator;
         private string runId;
+        private string platformName;
+        private string regionName;
 
         public event EventHandler PropertyChanged;
 
@@ -56,20 +58,20 @@ namespace LiveSplit.Model
         {
             get
             {
-                if (Platform != null)
-                    return Platform.Name;
-                return string.Empty;
+                return platformName;
             }
             set
             {
-                if (Game == null)
-                    return;
+                platformName = value;
 
-                var platform = Game.Platforms.FirstOrDefault(x => x.Name == value);
-                if (platform == null)
-                    PlatformID = string.Empty;
-                else
-                    PlatformID = platform.ID;
+                if (Game != null)
+                {
+                    var platform = Game.Platforms.FirstOrDefault(x => x.Name == value);
+                    if (platform == null)
+                        PlatformID = string.Empty;
+                    else
+                        PlatformID = platform.ID;
+                }
 
                 TriggerPropertyChanged(true);
             }
@@ -90,20 +92,20 @@ namespace LiveSplit.Model
         {
             get
             {
-                if (Region != null)
-                    return Region.Name;
-                return string.Empty;
+                return regionName;
             }
             set
             {
-                if (Game == null)
-                    return;
+                regionName = value;
 
-                var region = Game.Regions.FirstOrDefault(x => x.Name == value);
-                if (region == null)
-                    RegionID = string.Empty;
-                else
-                    RegionID = region.ID;
+                if (Game != null)
+                {
+                    var region = Game.Regions.FirstOrDefault(x => x.Name == value);
+                    if (region == null)
+                        RegionID = string.Empty;
+                    else
+                        RegionID = region.ID;
+                }
 
                 TriggerPropertyChanged(true);
             }
@@ -195,6 +197,16 @@ namespace LiveSplit.Model
                     {
                         var gameTask = Task.Factory.StartNew(() => SpeedrunCom.Client.Games.SearchGameExact(LiveSplitRun.GameName, new GameEmbeds(embedRegions: true, embedPlatforms: true)));
                         game = new Lazy<Game>(() => gameTask.Result);
+
+                        var platformTask = Task.Factory.StartNew(() =>
+                            {
+                                PlatformName = Platform != null ? Platform.Name : string.Empty;
+                            });
+
+                        var regionTask = Task.Factory.StartNew(() =>
+                            {
+                                RegionName = Region != null ? Region.Name : string.Empty;
+                            });
                     }
                     else
                         game = new Lazy<Game>(() => null);
@@ -235,7 +247,9 @@ namespace LiveSplit.Model
                 PlatformID = PlatformID,
                 RegionID = RegionID,
                 VariableValueIDs = VariableValueIDs.ToDictionary(x => x.Key, x => x.Value),
-                usesEmulator = usesEmulator
+                usesEmulator = usesEmulator,
+                platformName = platformName,
+                regionName = regionName
             };
         }
 
