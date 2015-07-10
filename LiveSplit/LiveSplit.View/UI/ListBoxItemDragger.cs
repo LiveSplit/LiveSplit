@@ -13,8 +13,6 @@ namespace LiveSplit.UI
         private ListBox listBox;
         public Form Form { get; set; }
 
-        //public ReaderWriterLockSlim DrawLock { get; set; }
-
         private int dragItemIndex = -1;
 
         /// <summary>
@@ -101,8 +99,6 @@ namespace LiveSplit.UI
 
         private void MouseMoveHandler(object sender, MouseEventArgs e)
         {
-            //if (!DrawLock.TryEnterWriteLock(500))
-            //return;
             Action x = () =>
             {
                 try
@@ -155,8 +151,6 @@ namespace LiveSplit.UI
                 Form.Invoke(x);
             else
                 x();
-            //DrawLock.ExitWriteLock();
         }
-
     }
 }
