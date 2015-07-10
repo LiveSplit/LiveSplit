@@ -620,4 +620,16 @@
     <Type>Script</Type>
     <Description>Load Removal is avaliable. (By Zefie)</Description>  
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Bio Inf</Game>
+      <Game>Bioshock Infinite</Game>
+      <Game>Bioshock Infinite (PC)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/BioInf.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is avaliable. (By Dread)</Description>  
+  </AutoSplitter>
 </AutoSplitters>
