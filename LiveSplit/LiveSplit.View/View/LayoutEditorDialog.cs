@@ -5,7 +5,6 @@ using LiveSplit.UI.Components;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
@@ -17,7 +16,6 @@ namespace LiveSplit.View
     {
         public event EventHandler OrientationSwitched;
         public event EventHandler LayoutResized;
-        //public event EventHandler LayoutSizeChanged;
         public event EventHandler LayoutSettingsAssigned;
 
         public Form Form { get; set; }
@@ -72,46 +70,36 @@ namespace LiveSplit.View
 
         private void AddComponent(IComponentFactory factory)
         {
-            //if (!CurrentState.DrawLock.TryEnterWriteLock(500))
-                //return;
             try
             {
-                float previousHeight = OverallHeight;
-                try
+                var componentFactory = ComponentManager.ComponentFactories.FirstOrDefault(x => x.Value.ComponentName == factory.ComponentName);
+                var component = componentFactory.Value == null
+                    ? new LayoutComponent("", new SeparatorComponent())
+                    : new LayoutComponent(componentFactory.Key, componentFactory.Value.Create(CurrentState));
+                Action y = () =>
                 {
-                    var componentFactory = ComponentManager.ComponentFactories.FirstOrDefault(x => x.Value.ComponentName == factory.ComponentName);
-                    var component = componentFactory.Value == null
-                        ? new LayoutComponent("", new SeparatorComponent())
-                        : new LayoutComponent(componentFactory.Key, componentFactory.Value.Create(CurrentState));
-                    Action y = () =>
+                    try
                     {
-                        try
-                        {
-                            BindingList.Add(component);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
-                        }
-                    };
+                        BindingList.Add(component);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                    }
+                };
 
-                    if (Form.InvokeRequired)
-                        Form.Invoke(y);
-                    else
-                        y();
-                    Layout.HasChanged = true;
-                    if (LayoutResized != null)
-                        LayoutResized(this, null);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
-                    MessageBox.Show(this, "The Component could not be loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                if (Form.InvokeRequired)
+                    Form.Invoke(y);
+                else
+                    y();
+                Layout.HasChanged = true;
+                if (LayoutResized != null)
+                    LayoutResized(this, null);
             }
-            finally
+            catch (Exception e)
             {
-                //CurrentState.DrawLock.ExitWriteLock();
+                Log.Error(e);
+                MessageBox.Show(this, "The Component could not be loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -174,11 +162,8 @@ namespace LiveSplit.View
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            //if (!CurrentState.DrawLock.TryEnterWriteLock(500))
-            //return;
             if (BindingList.Count > 1)
             {
-                float previousHeight = OverallHeight;
                 Action x = () =>
                 {
                     try
@@ -203,13 +188,10 @@ namespace LiveSplit.View
                 if (LayoutResized != null)
                     LayoutResized(this, null);
             }
-            //CurrentState.DrawLock.ExitWriteLock();
         }
 
         private void btnMoveUp_Click(object sender, EventArgs e)
         {
-            //if (!CurrentState.DrawLock.TryEnterWriteLock(500))
-            //return;
             if (lbxComponents.SelectedIndex > 0)
             {
                 Action x = () =>
@@ -233,13 +215,10 @@ namespace LiveSplit.View
 
                 Layout.HasChanged = true;
             }
-            //CurrentState.DrawLock.ExitWriteLock();
         }
 
         private void btnMoveDown_Click(object sender, EventArgs e)
         {
-            //if (!CurrentState.DrawLock.TryEnterWriteLock(500))
-            //return;
             if (lbxComponents.SelectedIndex < BindingList.Count - 1)
             {
                 Action x = () =>
@@ -262,7 +241,6 @@ namespace LiveSplit.View
                 lbxComponents.SelectedIndex += 1;
                 Layout.HasChanged = true;
             }
-            //CurrentState.DrawLock.ExitWriteLock();
         }
 
         private void ShowLayoutSettings(LiveSplit.UI.Components.IComponent tabControl = null)
