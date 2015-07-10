@@ -121,6 +121,18 @@ namespace LiveSplit.View
 
         private void Init(string splitsPath = null, string layoutPath = null)
         {
+            var lowestAvailableNumber = 0;
+            var currentName = "LiveSplit";
+            foreach (var process in Process.GetProcesses().Where(x => x.ProcessName == "LiveSplit").OrderBy(x => x.MainWindowTitle))
+            {
+                if (process.MainWindowTitle == currentName)
+                {
+                    lowestAvailableNumber++;
+                    currentName = String.Format("LiveSplit ({0})", lowestAvailableNumber);
+                }
+            }
+            this.Text = currentName;
+
             GlobalCache = new GraphicsCache();
             Invalidator = new Invalidator(this);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -1095,11 +1107,6 @@ namespace LiveSplit.View
                     {
                         if (Hook != null)
                             Hook.Poll();
-
-                        this.Text = string.Format("LiveSplit - {0} - {1} - {2}", 
-                            CurrentState.Run.GameName, 
-                            CurrentState.Run.CategoryName, 
-                            Path.GetFileNameWithoutExtension(Layout.FilePath ?? string.Empty));
 
                         if (CurrentState.Run.IsAutoSplitterActive())
                             CurrentState.Run.AutoSplitter.Component.Update(null, CurrentState, 0, 0, Layout.Mode);
