@@ -14,7 +14,7 @@ namespace LiveSplit.Model.RunImporters
 {
     public class URLRunImporter : IRunImporter
     {
-        private IRun LoadRunFromURL(string url, Form form = null)
+        private static IRun LoadRunFromURL(string url, Form form = null)
         {
             try
             {
