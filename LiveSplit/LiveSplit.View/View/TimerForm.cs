@@ -121,17 +121,7 @@ namespace LiveSplit.View
 
         private void Init(string splitsPath = null, string layoutPath = null)
         {
-            var lowestAvailableNumber = 0;
-            var currentName = "LiveSplit";
-            foreach (var process in Process.GetProcesses().Where(x => x.ProcessName == "LiveSplit").OrderBy(x => x.MainWindowTitle))
-            {
-                if (process.MainWindowTitle == currentName)
-                {
-                    lowestAvailableNumber++;
-                    currentName = String.Format("LiveSplit ({0})", lowestAvailableNumber);
-                }
-            }
-            this.Text = currentName;
+            SetWindowTitle();
 
             GlobalCache = new GraphicsCache();
             Invalidator = new Invalidator(this);
@@ -275,6 +265,21 @@ namespace LiveSplit.View
             }
 
             TopMost = Layout.Settings.AlwaysOnTop;
+        }
+
+        void SetWindowTitle()
+        {
+            var lowestAvailableNumber = 0;
+            var currentName = "LiveSplit";
+            foreach (var process in Process.GetProcesses().Where(x => x.ProcessName == "LiveSplit").OrderBy(x => x.MainWindowTitle))
+            {
+                if (process.MainWindowTitle == currentName)
+                {
+                    lowestAvailableNumber++;
+                    currentName = String.Format("LiveSplit ({0})", lowestAvailableNumber);
+                }
+            }
+            this.Text = currentName;
         }
 
         void CurrentState_OnSwitchComparisonNext(object sender, EventArgs e)
