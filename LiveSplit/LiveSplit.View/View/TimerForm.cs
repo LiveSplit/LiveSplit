@@ -237,8 +237,6 @@ namespace LiveSplit.View
             Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
             Settings.RegisterHotkeys(Hook);
 
-            RegisterTaskbarButtons();
-
             SizeChanged += TimerForm_SizeChanged;
 
             lock (BackBufferLock)
@@ -338,32 +336,7 @@ namespace LiveSplit.View
                 item.Click += Race_Click;
                 addItem(item);
 
-                Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        var image = SpeedRunsLiveAPI.Instance.GetGameImage(race.game.abbrev);
-                        Action setImage = () =>
-                            {
-                                try
-                                {
-                                    item.Image = image;
-                                }
-                                catch (Exception ex)
-                                {
-                                    Log.Error(ex);
-                                }
-                            };
-                        if (InvokeRequired)
-                            Invoke(setImage);
-                        else
-                            setImage();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-                    }
-                });
+                SetGameImage(item, race);
             }
 
             if (racingMenuItem.DropDownItems.Count > 0)
@@ -422,32 +395,7 @@ namespace LiveSplit.View
                         }
                     };
 
-                Task.Factory.StartNew(() =>
-                    {
-                        try
-                        {
-                            var image = SpeedRunsLiveAPI.Instance.GetGameImage(race.game.abbrev);
-                            Action setImage = () =>
-                            {
-                                try
-                                {
-                                    tsItem.Image = image;
-                                }
-                                catch (Exception ex)
-                                {
-                                    Log.Error(ex);
-                                }
-                            };
-                            if (InvokeRequired)
-                                Invoke(setImage);
-                            else
-                                setImage();
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
-                        }
-                    });
+                SetGameImage(tsItem, race);
 
                 updateTitleAction();
 
@@ -478,6 +426,33 @@ namespace LiveSplit.View
             newRaceItem.Text = "New Race...";
             newRaceItem.Click += NewRace_Click;
             addItem(newRaceItem);
+        }
+
+        void SetGameImage(ToolStripMenuItem item, dynamic race)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    var image = SpeedRunsLiveAPI.Instance.GetGameImage(race.game.abbrev);
+                    Action setImage = () =>
+                    {
+                        try
+                        {
+                            item.Image = image;
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex);
+                        }
+                    };
+                    if (InvokeRequired)
+                        Invoke(setImage);
+                    else
+                        setImage();
+                }
+                catch { }
+            });
         }
 
         void Race_Click(object sender, EventArgs e)
@@ -674,32 +649,16 @@ namespace LiveSplit.View
                 x();
         }
 
-        private void RegisterTaskbarButtons()
-        {
-            return; //TODO Crashes with plugin when using OBS twice.
-            /*if (TaskbarManager.IsPlatformSupported)
-            {
-                var taskbarSplitButton = new ThumbnailToolBarButton(Properties.Resources.Split, "Split");
-                taskbarSplitButton.Click += (s, e) => { StartOrSplit(); };
-                var taskbarSkipSplitButton = new ThumbnailToolBarButton(Properties.Resources.SkipSplit, "Skip Split");
-                taskbarSkipSplitButton.Click += (s, e) => { Model.SkipSplit(); };
-                var taskbarUnsplitButton = new ThumbnailToolBarButton(Properties.Resources.Unsplit, "Undo Split");
-                taskbarUnsplitButton.Click += (s, e) => { Model.UndoSplit(); };
-                var taskbarStopButton = new ThumbnailToolBarButton(Properties.Resources.Stop, "Reset Run");
-                taskbarStopButton.Click += (s, e) => { Model.Reset(); };
-                TaskbarManager.Instance.ThumbnailToolBars.AddButtons(this.Handle, taskbarSplitButton, taskbarSkipSplitButton, taskbarUnsplitButton, taskbarStopButton);
-            }*/
-        }
-
-        private void UnregisterTaskbarButtons()
-        {
-            //TODO idk how to do this O.o
-        }
-
-        private void AddFileToLRU(string filePath, IRun run)
+        private void AddSplitsFileToLRU(string filePath, IRun run)
         {
             Settings.AddToRecentSplits(filePath, run);
             UpdateRecentSplits();
+        }
+
+        private void AddLayoutFileToLRU(string filePath)
+        {
+            Settings.AddToRecentLayouts(filePath);
+            UpdateRecentLayouts();
         }
 
         protected void SetInTimerOnlyMode()
@@ -1286,11 +1245,9 @@ namespace LiveSplit.View
                         var graphics = Graphics.FromImage(BackBuffer);
 
                         graphics.CompositingMode = CompositingMode.SourceCopy;
-                        //graphics.Clip = e.Graphics.Clip;
                         graphics.FillRectangle(Brushes.Transparent, 0, 0, BackBuffer.Width, BackBuffer.Height);
                         graphics.CompositingMode = CompositingMode.SourceOver;
 
-                        //var clip = e.Graphics.Clip;
                         graphics.Clip = new Region();
                         PaintForm(graphics, graphics.Clip);
 
@@ -1298,7 +1255,6 @@ namespace LiveSplit.View
                         graphicsForm.CompositingQuality = CompositingQuality.GammaCorrected;
 
                         graphicsForm.DrawImage(BackBuffer, 0, 0);
-                        //SelectBitmap(BackBuffer);
                     }
                 }
                 else
@@ -1312,87 +1268,6 @@ namespace LiveSplit.View
             {
                 Log.Error(ex);
                 Invalidate();
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="bitmap"></param>
-        public void SelectBitmap(Bitmap bitmap)
-        {
-            SelectBitmap(bitmap, 255);
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="bitmap">
-        /// 
-        /// </param>
-        /// <param name="opacity">
-        /// Specifies an alpha transparency value to be used on the entire source 
-        /// bitmap. The SourceConstantAlpha value is combined with any per-pixel 
-        /// alpha values in the source bitmap. The value ranges from 0 to 255. If 
-        /// you set SourceConstantAlpha to 0, it is assumed that your image is 
-        /// transparent. When you only want to use per-pixel alpha values, set 
-        /// the SourceConstantAlpha value to 255 (opaque).
-        /// </param>
-        public void SelectBitmap(Bitmap bitmap, int opacity)
-        {
-            // Does this bitmap contain an alpha channel?
-            if (bitmap.PixelFormat != PixelFormat.Format32bppArgb)
-            {
-                throw new ApplicationException("The bitmap must be 32bpp with alpha-channel.");
-            }
-
-            // Get device contexts
-            IntPtr screenDc = Win32.GetDC(IntPtr.Zero);
-            IntPtr memDc = Win32.CreateCompatibleDC(screenDc);
-            IntPtr hBitmap = IntPtr.Zero;
-            IntPtr hOldBitmap = IntPtr.Zero;
-
-            try
-            {
-                // Get handle to the new bitmap and select it into the current 
-                // device context.
-                hBitmap = bitmap.GetHbitmap(Color.FromArgb(0));
-                hOldBitmap = Win32.SelectObject(memDc, hBitmap);
-
-                // Set parameters for layered window update.
-                Win32.Size newSize = new Win32.Size(bitmap.Width, bitmap.Height);
-                Win32.Point sourceLocation = new Win32.Point(0, 0);
-                Win32.Point newLocation = new Win32.Point(Left, Top);
-                Win32.BLENDFUNCTION blend = new Win32.BLENDFUNCTION();
-                blend.BlendOp = Win32.AC_SRC_OVER;
-                blend.BlendFlags = 0;
-                blend.SourceConstantAlpha = (byte)opacity;
-                blend.AlphaFormat = Win32.AC_SRC_ALPHA;
-
-                // Update the window.
-                Win32.UpdateLayeredWindow(
-                    Handle,     // Handle to the layered window
-                    screenDc,        // Handle to the screen DC
-                    ref newLocation, // New screen position of the layered window
-                    ref newSize,     // New size of the layered window
-                    memDc,           // Handle to the layered window surface DC
-                    ref sourceLocation, // Location of the layer in the DC
-                    0,               // Color key of the layered window
-                    ref blend,       // Transparency of the layered window
-                    Win32.ULW_ALPHA        // Use blend as the blend function
-                    );
-            }
-            finally
-            {
-                // Release device context.
-                Win32.ReleaseDC(IntPtr.Zero, screenDc);
-                if (hBitmap != IntPtr.Zero)
-                {
-                    Win32.SelectObject(memDc, hOldBitmap);
-                    Win32.DeleteObject(hBitmap);
-                }
-                Win32.DeleteDC(memDc);
             }
         }
 
@@ -1581,7 +1456,7 @@ namespace LiveSplit.View
             }
 
             if (addToRecent)
-                AddFileToLRU(filePath, run);
+                AddSplitsFileToLRU(filePath, run);
             if (InTimerOnlyMode)
                 RemoveTimerOnly();
             return run;
@@ -1593,8 +1468,7 @@ namespace LiveSplit.View
             {
                 var layout = new XMLLayoutFactory(stream).Create(CurrentState);
                 layout.FilePath = filePath;
-                Settings.AddToRecentLayouts(filePath);
-                UpdateRecentLayouts();
+                AddLayoutFileToLRU(filePath);
                 return layout;
             }
         }
@@ -1722,8 +1596,7 @@ namespace LiveSplit.View
                     CurrentState.Run.HasChanged = false;
                 }
 
-                Settings.AddToRecentSplits(savePath, stateCopy.Run);
-                UpdateRecentSplits();
+                AddSplitsFileToLRU(savePath, stateCopy.Run);
             }
             catch (Exception ex)
             {
@@ -1772,8 +1645,7 @@ namespace LiveSplit.View
                     Layout.HasChanged = false;
                 }
 
-                Settings.AddToRecentLayouts(savePath);
-                UpdateRecentLayouts();
+                AddLayoutFileToLRU(savePath);
             }
             catch (Exception ex)
             {
