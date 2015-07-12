@@ -121,6 +121,8 @@ namespace LiveSplit.View
 
         private void Init(string splitsPath = null, string layoutPath = null)
         {
+            SetWindowTitle();
+
             GlobalCache = new GraphicsCache();
             Invalidator = new Invalidator(this);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -261,6 +263,20 @@ namespace LiveSplit.View
             }
 
             TopMost = Layout.Settings.AlwaysOnTop;
+        }
+
+        void SetWindowTitle()
+        {
+            var lowestAvailableNumber = 0;
+            var currentName = "LiveSplit";
+            var processNames = Process.GetProcessesByName("LiveSplit").Select(x => x.MainWindowTitle);
+
+            while (processNames.Contains(currentName))
+            {
+                currentName = String.Format("LiveSplit ({0})", ++lowestAvailableNumber);
+            }
+
+            this.Text = currentName;
         }
 
         void CurrentState_OnSwitchComparisonNext(object sender, EventArgs e)
