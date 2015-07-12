@@ -271,14 +271,13 @@ namespace LiveSplit.View
         {
             var lowestAvailableNumber = 0;
             var currentName = "LiveSplit";
-            foreach (var process in Process.GetProcesses().Where(x => x.ProcessName == "LiveSplit").OrderBy(x => x.MainWindowTitle))
+            var processNames = Process.GetProcessesByName("LiveSplit").Select(x => x.MainWindowTitle);
+
+            while (processNames.Contains(currentName))
             {
-                if (process.MainWindowTitle == currentName)
-                {
-                    lowestAvailableNumber++;
-                    currentName = String.Format("LiveSplit ({0})", lowestAvailableNumber);
-                }
+                currentName = String.Format("LiveSplit ({0})", ++lowestAvailableNumber);
             }
+
             this.Text = currentName;
         }
 
