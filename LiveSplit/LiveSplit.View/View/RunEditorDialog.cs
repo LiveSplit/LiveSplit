@@ -1005,7 +1005,9 @@ namespace LiveSplit.View
                     var uri = new Uri(url);
 
                     var request = (HttpWebRequest)WebRequest.Create(uri);
-                    using (var stream = request.GetResponse().GetResponseStream())
+
+                    using (var response = request.GetResponse())
+                    using (var stream = response.GetResponseStream())
                     {
                         try
                         {

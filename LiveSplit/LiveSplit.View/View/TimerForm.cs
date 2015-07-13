@@ -879,26 +879,26 @@ namespace LiveSplit.View
                         }
 
                         var request = WebRequest.Create(uri);
-                        using (var stream = request.GetResponse().GetResponseStream())
-                        {
-                            using (var memoryStream = new MemoryStream())
-                            {
-                                stream.CopyTo(memoryStream);
-                                memoryStream.Seek(0, SeekOrigin.Begin);
 
-                                try
-                                {
-                                    var layout = new XMLLayoutFactory(memoryStream).Create(CurrentState);
-                                    layout.HasChanged = true;
-                                    SetLayout(layout);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Log.Error(ex);
-                                    DontRedraw = true;
-                                    MessageBox.Show(this, "The selected file was not recognized as a layout file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    DontRedraw = false;
-                                }
+                        using (var response = request.GetResponse())
+                        using (var stream = response.GetResponseStream())
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            stream.CopyTo(memoryStream);
+                            memoryStream.Seek(0, SeekOrigin.Begin);
+
+                            try
+                            {
+                                var layout = new XMLLayoutFactory(memoryStream).Create(CurrentState);
+                                layout.HasChanged = true;
+                                SetLayout(layout);
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error(ex);
+                                DontRedraw = true;
+                                MessageBox.Show(this, "The selected file was not recognized as a layout file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                DontRedraw = false;
                             }
                         }
                     }

@@ -19,9 +19,12 @@ namespace LiveSplit.Web.Share
         public Image GetGameBoxArt(string gameId)
         {
             var request = WebRequest.Create(GetUri(string.Format("static/boxart/{0}.jpg", gameId)));
-            var response = request.GetResponse();
-            var stream = response.GetResponseStream();
-            return Image.FromStream(stream);
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            {
+                return Image.FromStream(stream);
+            }
         }
 
         public dynamic GetGame(string gameId)

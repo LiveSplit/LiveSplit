@@ -236,8 +236,9 @@ namespace LiveSplit.Web.Share
                     writer.Write(data);
                 }
             }
-            var response = request.GetResponse();
-            var stream = response.GetResponseStream();
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
             using (var reader = new StreamReader(stream))
             {
                 var json = reader.ReadToEnd();
@@ -300,9 +301,12 @@ namespace LiveSplit.Web.Share
         {
             var url = ((IEnumerable<dynamic>)(SearchGame(gameName).games)).First().box.large;
             var request = WebRequest.Create(url);
-            var response = request.GetResponse();
-            var stream = response.GetResponseStream();
-            return Image.FromStream(stream);
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            {
+                return Image.FromStream(stream);
+            }
         }
 
         public bool SubmitRun(

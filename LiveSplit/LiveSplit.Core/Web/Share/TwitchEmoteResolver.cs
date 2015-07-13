@@ -71,7 +71,10 @@ namespace LiveSplit.Web.Share
 
         private static Image DownloadImage(string url)
         {
-            using (var stream = WebRequest.Create(url).GetResponse().GetResponseStream())
+            var request = WebRequest.Create(url);
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
             {
                 return Image.FromStream(stream);
             }
