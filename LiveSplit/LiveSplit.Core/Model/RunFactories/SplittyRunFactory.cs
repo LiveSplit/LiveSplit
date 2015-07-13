@@ -3,8 +3,6 @@ using LiveSplit.Web;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace LiveSplit.Model.RunFactories
 {
@@ -17,7 +15,7 @@ namespace LiveSplit.Model.RunFactories
             Stream = stream;
         }
 
-        private Time parseTime(int? time, TimingMethod timingMethod)
+        private static Time parseTime(int? time, TimingMethod timingMethod)
         {
             var parsedTime = new Time();
 

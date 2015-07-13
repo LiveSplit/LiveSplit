@@ -89,7 +89,7 @@ namespace LiveSplit.Web.Share
             return GetSiteUri(uri);
         }
 
-        private dynamic findCategory(IDictionary<string, dynamic> categories, string categoryName)
+        private static dynamic findCategory(IDictionary<string, dynamic> categories, string categoryName)
         {
             var categoryNameLower = (categoryName ?? "").Trim().ToLowerInvariant();
             return categories.Where(x => (x.Key ?? "").Trim().ToLowerInvariant() == categoryNameLower).First().Value;
@@ -179,7 +179,7 @@ namespace LiveSplit.Web.Share
             return record;
         }
 
-        private Record getRecordEntry(dynamic entry)
+        private static Record getRecordEntry(dynamic entry)
         {
             var runners = new List<string>() { entry.player };
             var properties = entry.Properties as IDictionary<string, dynamic>;

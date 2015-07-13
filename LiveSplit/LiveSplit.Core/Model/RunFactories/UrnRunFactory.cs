@@ -15,7 +15,7 @@ namespace LiveSplit.Model.RunFactories
             Stream = stream;
         }
 
-        private Time parseTime(string time)
+        private static Time parseTime(string time)
         {
             var parsedTime = new Time();
 

@@ -1,9 +1,7 @@
 ﻿using LiveSplit.Model.Comparisons;
 using LiveSplit.UI;
 using System;
-using System.Drawing;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 
 namespace LiveSplit.Model.RunFactories
@@ -19,7 +17,7 @@ namespace LiveSplit.Model.RunFactories
             FilePath = filePath;
         }
 
-        private void ParseAttemptHistory(Version version, XmlElement parent, IRun run)
+        private static void ParseAttemptHistory(Version version, XmlElement parent, IRun run)
         {
             if (version >= new Version(1, 5, 0))
             {
