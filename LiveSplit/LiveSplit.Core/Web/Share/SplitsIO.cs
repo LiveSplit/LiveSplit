@@ -104,12 +104,15 @@ namespace LiveSplit.Web.Share
             do
             {
                 var request = WebRequest.Create(string.Format("{0}?page={1}", uri.AbsoluteUri, page));
-                var response = request.GetResponse();
-                Int32.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
-                Int32.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
-                lastPage = (int)Math.Ceiling(totalItems / (double)perPage);
-                
-                yield return JSON.FromResponse(response);
+
+                using (var response = request.GetResponse())
+                {
+                    Int32.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
+                    Int32.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
+                    lastPage = (int) Math.Ceiling(totalItems/(double) perPage);
+
+                    yield return JSON.FromResponse(response);
+                }
 
             } while (page++ < lastPage);
         }
@@ -177,7 +180,9 @@ namespace LiveSplit.Web.Share
             var downloadUri = GetSiteUri(string.Format("{0}/download/livesplit", uri.LocalPath));
 
             var request = WebRequest.Create(downloadUri);
-            using (var stream = request.GetResponse().GetResponseStream())
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
             {
                 using (var memoryStream = new MemoryStream())
                 {
@@ -252,8 +257,11 @@ namespace LiveSplit.Web.Share
                 writer.Flush();
             }
 
-            var response = request.GetResponse();
-            var json = JSON.FromResponse(response);
+            dynamic json;
+            using (var response = request.GetResponse())
+            {
+                json = JSON.FromResponse(response);
+            }
 
             var url = json.uris.claim_uri;
             return url;

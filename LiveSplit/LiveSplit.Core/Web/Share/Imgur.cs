@@ -113,8 +113,7 @@ namespace LiveSplit.Web.Share
                     writer.Flush();
                 }
 
-                var response = request.GetResponse();
-
+                using (var response = request.GetResponse())
                 using (var stream = response.GetResponseStream())
                 {
                     var reader = new StreamReader(stream);

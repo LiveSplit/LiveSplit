@@ -150,7 +150,8 @@ namespace LiveSplit.Web.Share
                 writer.Flush();
             }
 
-            using (var resultStream = postRequest.GetResponse().GetResponseStream())
+            using (var response = postRequest.GetResponse())
+            using (var resultStream = response.GetResponseStream())
             {
                 var reader = new StreamReader(resultStream);
 

@@ -102,7 +102,9 @@ namespace LiveSplit.Web.Share
                 gameList = new List<GamePair>();
 
                 var request = WebRequest.Create(GetSiteUri("games"));
-                var stream = request.GetResponse().GetResponseStream();
+
+                using (var response = request.GetResponse())
+                using (var stream = response.GetResponseStream())
                 using (var reader = new StreamReader(stream))
                 {
                     var html = reader.ReadToEnd();
@@ -348,7 +350,8 @@ namespace LiveSplit.Web.Share
         {
             var coverUri = GetGameCoverUri(gameId);
             var request = WebRequest.Create(coverUri.AbsoluteUri);
-            var response = request.GetResponse();
+
+            using (var response = request.GetResponse())
             using (var stream = response.GetResponseStream())
             {
                 return Image.FromStream(stream);
