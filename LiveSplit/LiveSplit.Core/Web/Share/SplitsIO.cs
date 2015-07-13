@@ -94,7 +94,7 @@ namespace LiveSplit.Web.Share
 
         #endregion
 
-        private IEnumerable<dynamic> DoPaginatedRequest(Uri uri)
+        private static IEnumerable<dynamic> DoPaginatedRequest(Uri uri)
         {
             var page = 1;
             var totalItems = 1;

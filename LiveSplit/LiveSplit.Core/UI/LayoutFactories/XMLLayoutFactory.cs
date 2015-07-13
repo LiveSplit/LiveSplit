@@ -3,9 +3,7 @@ using LiveSplit.Options;
 using LiveSplit.UI.Components;
 using System;
 using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 
 namespace LiveSplit.UI.LayoutFactories
@@ -19,7 +17,7 @@ namespace LiveSplit.UI.LayoutFactories
             Stream = stream;
         }
 
-        private LayoutSettings ParseSettings (XmlElement element, Version version)
+        private static LayoutSettings ParseSettings(XmlElement element, Version version)
         {
             var settings = new LayoutSettings();
             settings.TextColor = SettingsHelper.ParseColor(element["TextColor"]);

@@ -16,7 +16,7 @@ namespace LiveSplit.Model.RunFactories
         {
             Path = path;
         }
-        private void Empty(DirectoryInfo directory)
+        private static void Empty(DirectoryInfo directory)
         {
             foreach (FileInfo file in directory.GetFiles())
                 file.Delete();
