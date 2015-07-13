@@ -575,7 +575,7 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/MGR.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is avaliable. (By Dread and Chops)</Description>  
+    <Description>Load Removal is available. (By Dread and Chops)</Description>  
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -595,7 +595,7 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/JKJA.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitting and Load Removal are avaliable. (By Dread & Zefie)</Description>  
+    <Description>Autosplitting and Load Removal are available. (By Dread & Zefie)</Description>  
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -606,7 +606,7 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/RE5.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitting and Load Removal are avaliable. (By Dread)</Description>  
+    <Description>Autosplitting and Load Removal are available. (By Dread)</Description>  
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -618,7 +618,7 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/Styx.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is avaliable. (By Zefie)</Description>  
+    <Description>Load Removal is available. (By Zefie)</Description>  
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -630,6 +630,6 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/BioInf.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is avaliable. (By Dread)</Description>  
+    <Description>Load Removal is available. (By Dread)</Description>  
   </AutoSplitter>
 </AutoSplitters>
