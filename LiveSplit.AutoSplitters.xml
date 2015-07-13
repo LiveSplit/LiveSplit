@@ -19,7 +19,7 @@
     </URLs>
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting are available. (By Fatalis)</Description>
-	<ShowInLayoutEditor />
+    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -69,8 +69,8 @@
       <Game>Halo PC</Game>
     </Games>
     <URLs>
-		<URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.dll</URL>
-		<URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.UI.dll</URL>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.dll</URL>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.UI.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting is available. (By Fatalis)</Description>
@@ -112,7 +112,7 @@
   <AutoSplitter>
     <Games>
       <Game>Love</Game>
-	  <Game>Love+</Game>
+      <Game>Love+</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/madzinah/LiveSplits_Scripts/master/Love.asl</URL>
@@ -165,7 +165,7 @@
   <AutoSplitter>
     <Games>
       <Game>The Wheel of Time</Game>
-	  <Game>Wheel of Time</Game>
+      <Game>Wheel of Time</Game>
     </Games>
     <URLs>
       <URL>https://github.com/Dalet/LiveSplit.WheelOfTime/raw/master/Components/LiveSplit.WheelOfTime.dll</URL>
@@ -240,26 +240,26 @@
     <Description>Load Removal is available. (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
-  	<Games>
-  		<Game>Shrek 2</Game>
-  		<Game>Shrek 2 (PC)</Game>
-  	</Games>
-  	<URLs>
-  		<URL>https://github.com/Dalet/LiveSplit.Shrek2/raw/master/Components/LiveSplit.Shrek2.dll</URL>
-  	</URLs>
-  	<Type>Component</Type>
+    <Games>
+      <Game>Shrek 2</Game>
+      <Game>Shrek 2 (PC)</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Dalet/LiveSplit.Shrek2/raw/master/Components/LiveSplit.Shrek2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
     <Description>Auto Splitting is available. (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
-  	<Games>
-  		<Game>Bully: Scholarship Edition</Game>
-  		<Game>Bully</Game>
-  		<Game>Canis Canem Edit</Game>
-  	</Games>
-  	<URLs>
-  		<URL>https://github.com/Dalet/LiveSplit.Bully/raw/master/Components/LiveSplit.Bully.dll</URL>
-  	</URLs>
-  	<Type>Component</Type>
+    <Games>
+      <Game>Bully: Scholarship Edition</Game>
+      <Game>Bully</Game>
+      <Game>Canis Canem Edit</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Dalet/LiveSplit.Bully/raw/master/Components/LiveSplit.Bully.dll</URL>
+    </URLs>
+    <Type>Component</Type>
     <Description>Load Removal is available. (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
@@ -575,7 +575,7 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/MGR.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Dread and Chops)</Description>  
+    <Description>Load Removal is available. (By Dread and Chops)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -595,7 +595,7 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/JKJA.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitting and Load Removal are available. (By Dread and Zefie)</Description>  
+    <Description>Autosplitting and Load Removal are available. (By Dread and Zefie)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -606,7 +606,7 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/RE5.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitting and Load Removal are available. (By Dread)</Description>  
+    <Description>Autosplitting and Load Removal are available. (By Dread)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -618,7 +618,7 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/Styx.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Zefie)</Description>  
+    <Description>Load Removal is available. (By Zefie)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -630,6 +630,6 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/BioInf.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Dread)</Description>  
+    <Description>Load Removal is available. (By Dread)</Description>
   </AutoSplitter>
 </AutoSplitters>
