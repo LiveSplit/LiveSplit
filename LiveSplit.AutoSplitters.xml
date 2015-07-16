@@ -632,4 +632,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dread)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>BioShock</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/MrWalrus3451/413423315910e1103149/raw/052ebaffde0d06cfd5f2599523ed1b812706e590/LiveSplit.Bioshock.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By MrWalrus)</Description>
+  </AutoSplitter>
 </AutoSplitters>
