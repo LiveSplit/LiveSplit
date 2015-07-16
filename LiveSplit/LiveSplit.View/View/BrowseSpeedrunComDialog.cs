@@ -114,15 +114,14 @@ namespace LiveSplit.View
                             {
                                 var categoryNode = new TreeNode(category.Name);
                                 categoryNode.Tag = category.WebLink;
-                                var records = category.Leaderboard;
+                                var leaderboard = category.Leaderboard;
+                                var records = leaderboard.Records;
 
                                 foreach (var record in records)
                                 {
-                                    var place = record.Place.HasValue
-                                        ? (record.Place.Value.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ".   ")
-                                        : "";
-                                    var runners = record.PlayerNames.Aggregate((a, b) => a + " & " + b);
-                                    var time = record.GetTime();
+                                    var place = record.Rank.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ".   ";
+                                    var runners = string.Join(" & ", record.Players.Select(x => x.Name));
+                                    var time = record.Times.ToTime();
                                     var runText = place + (time[timingMethod].HasValue ? timeFormatter.Format(time[timingMethod]) : "") + " by " + runners;
                                     var runNode = new TreeNode(runText);
                                     runNode.Tag = record;
@@ -137,7 +136,7 @@ namespace LiveSplit.View
                     }
                     catch { }
 
-                    try
+                    /*try
                     {
                         var fuzzyUserName = txtSearch.Text.TrimStart('@');
                         var users = SpeedrunCom.Client.Users.GetUsers(name: fuzzyUserName);
@@ -173,7 +172,7 @@ namespace LiveSplit.View
                             splitsTreeView.Nodes.Add(userNode);
                         }
                     }
-                    catch { }
+                    catch { }*/
                 }
             }
             catch (Exception ex)
@@ -193,9 +192,9 @@ namespace LiveSplit.View
                     Run = record.GetRun();
                     
                     if (!isImporting)
-                        Run.PatchRun(record.Run);
+                        Run.PatchRun(record);
                     
-                    var runners = record.PlayerNames.Aggregate((a, b) => a + " & " + b);
+                    var runners = string.Join(" & ", record.Players.Select(x => x.Name));
                     RunName = runners;
                     var result = PostProcessRun(RunName);
                     if (result == DialogResult.OK)

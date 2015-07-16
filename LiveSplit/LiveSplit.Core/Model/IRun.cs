@@ -286,12 +286,19 @@ namespace LiveSplit.Model
                 list.Add(run.Metadata.Region.Abbreviation);
             }
 
-            if (run.Metadata.Platform != null && !string.IsNullOrEmpty(run.Metadata.PlatformName) && run.Metadata.Game.Platforms.Count > 1 && showPlatform)
+            if (showPlatform)
             {
-                if (run.Metadata.UsesEmulator)
-                    list.Add(run.Metadata.PlatformName + " Emulator");
-                else
-                    list.Add(run.Metadata.PlatformName);
+                if (run.Metadata.Platform != null && !string.IsNullOrEmpty(run.Metadata.PlatformName) && run.Metadata.Game.Platforms.Count > 1)
+                {
+                    if (run.Metadata.UsesEmulator)
+                        list.Add(run.Metadata.PlatformName + " Emulator");
+                    else
+                        list.Add(run.Metadata.PlatformName);
+                }
+                else if (run.Metadata.UsesEmulator)
+                {
+                    list.Add("Emulator");
+                }
             }
 
             if (list.Any())

@@ -29,22 +29,9 @@ namespace LiveSplit.Web.Share
 
             return time;
         }
-
-        public static Time GetTime(this Record record)
-        {
-            var time = new Time(realTime: record.RealTime);
-
-            if (record.GameTime.HasValue)
-                time.GameTime = record.GameTime.Value;
-            else if (record.RealTimeWithoutLoads.HasValue)
-                time.GameTime = record.RealTimeWithoutLoads.Value;
-
-            return time;
-        }
-
         public static LiveSplit.Model.IRun GetRun(this Record record)
         {
-            var apiUri = record.SplitsIOUri.AbsoluteUri;
+            var apiUri = record.SplitsUri.AbsoluteUri;
             var path = apiUri.Substring(apiUri.LastIndexOf("/") + 1);
             return SplitsIO.Instance.DownloadRunByPath(path);
         }
