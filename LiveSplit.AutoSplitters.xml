@@ -280,10 +280,10 @@
       <Game>Fallout 3</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/drtchops/LiveSplit.Fallout3/raw/master/Components/LiveSplit.Fallout3.dll</URL>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/fallout3.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By DrTChops)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -345,9 +345,9 @@
       <Game>Mass Effect</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/drtchops/LiveSplit.MassEffect/raw/master/Components/LiveSplit.MassEffect.dll</URL>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/masseffect.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Load Removal is available. (By DrTChops)</Description>
   </AutoSplitter>
   <AutoSplitter>
