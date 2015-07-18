@@ -642,4 +642,25 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By MrWalrus)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SWJKJO</Game>
+      <Game>Jedi Knight 2</Game>
+      <Game>Jedi Outcast</Game>
+      <Game>Star Wars: Jedi Knight - Jedi Outcast</Game>
+      <Game>Star Wars Jedi Knight: Jedi Outcast</Game>
+      <Game>Star Wars - Jedi Knight II: Jedi Outcast</Game>
+      <Game>Jedi Knight - Jedi Outcast</Game>
+      <Game>Star Wars: Jedi Knight: Jedi Outcast</Game>
+      <Game>Jedi Knight: Jedi Outcast</Game>
+      <Game>JK 2: Jedi Outcast</Game>
+      <Game>Jedi Knight 2: Jedi Outcast</Game>
+      <Game>Jedi Knight 2 - Jedi Outcast</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/JKJO.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dread)</Description>
+  </AutoSplitter>
 </AutoSplitters>
