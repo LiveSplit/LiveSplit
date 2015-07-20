@@ -13,6 +13,12 @@
 	- [State Descriptors](#state-descriptors)
 	- [State objects](#state-objects)
 	- [Actions](#actions)
+		- [Automatic Timer Start](#automatic-timer-start)
+		- [Automatic Splits](#automatic-splits)
+		- [Automatic Resets](#automatic-resets)
+		- [Load Time Removal](#load-time-removal)
+		- [Game Time](#game-time)
+
 <!-- /TOC -->
 
 LiveSplit has integrated support for Auto Splitters. An Auto Splitter can be one of the following:
@@ -114,4 +120,36 @@ current.myCustomValue = 5;
 
 Make sure not to access values that haven't been created at that point in time though, as that might cause your script to crash.
 
+LiveSplit's internal state is also available through the object `timer`. This is an object of the type `LiveSplitState` and can be used to interact with LiveSplit in any way, that's not directly available through ASL.
+
 ### Actions
+
+After writing a State Descriptor, you can implement multiple Actions, like splitting and starting the timer. These actions define the logic of the Auto Splitter based on the information described by the State Descriptor. An action looks like this:
+```
+ACTION_NAME
+{
+	CODE
+}
+```
+
+All of the actions are optional and are declared by their name `ACTION_NAME` followed by a code block `CODE`. Their implementation is written in C#. For any questions regarding the syntax of C#, make sure to look that up in C#'s documentation. You trigger the action by returning a value. Returning a value is optional though. If no value is returned, the action is not triggered. Actions are only executed when LiveSplit is connected to the process.
+
+#### Automatic Timer Start
+
+The name of this action is `start`. Return `true` whenever you want the timer to start.
+
+#### Automatic Splits
+
+The name of this action is `split`. Return `true` whenever you want to trigger a split.
+
+#### Automatic Resets
+
+The name of this action is `reset`. Return `true` whenever you want to reset the run.
+
+#### Load Time Removal
+
+The name of this action is `isLoading`. Return `true` whenever the game is loading. This will stop LiveSplit's Game Time Timer as long as you return `true`.
+
+#### Game Time
+
+The name of this action is `gameTime`. Return a [`TimeSpan`](https://msdn.microsoft.com/en-us/library/system.timespan(v=vs.110).aspx) object that contains the current time of the game. You can also combine this with `isLoading`. If `isLoading` returns false, nothing, or isn't implemented, LiveSplit's Game Time Timer is always running and syncs with the game's Game Time in a constant interval. Everything in between is therefore a Real Time approximation of the Game Time. If you only want the Game Time to not run inbetween the synchronization interval and therefore only ever return the actual Game Time of the game, make sure to implement `isLoading` with a constant return value of `true`.
