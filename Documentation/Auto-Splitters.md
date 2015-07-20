@@ -13,11 +13,11 @@
 	- [State Descriptors](#state-descriptors)
 	- [State objects](#state-objects)
 	- [Actions](#actions)
-		- [Automatic Timer Start](#automatic-timer-start)
-		- [Automatic Splits](#automatic-splits)
-		- [Automatic Resets](#automatic-resets)
+		- [Automatic Timer Start](#automatic-timer-start-1)
+		- [Automatic Splits](#automatic-splits-1)
+		- [Automatic Resets](#automatic-resets-1)
 		- [Load Time Removal](#load-time-removal)
-		- [Game Time](#game-time)
+		- [Game Time](#game-time-1)
 
 <!-- /TOC -->
 
