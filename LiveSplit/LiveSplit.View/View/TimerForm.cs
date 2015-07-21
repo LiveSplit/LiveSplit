@@ -2001,7 +2001,7 @@ namespace LiveSplit.View
 
         private void editSplitsMenuItem_Click(object sender, EventArgs e)
         {
-            EditSplits();
+          EditSplits();
         }
 
         private void editLayoutMenuItem_Click(object sender, EventArgs e)
@@ -2513,6 +2513,16 @@ namespace LiveSplit.View
         {
             RebuildControlMenu();
             RebuildComparisonsMenu();
+        }
+
+        private void controlMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comparisonMenuItem_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

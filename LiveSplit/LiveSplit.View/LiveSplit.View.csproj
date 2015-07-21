@@ -267,6 +267,9 @@
     <EmbeddedResource Include="View\SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\ShareRunDialog.ja-JP.resx">
+      <DependentUpon>ShareRunDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\ShareRunDialog.resx">
       <DependentUpon>ShareRunDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\AuthenticationDialog.resx">
       <DependentUpon>AuthenticationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\TimerForm.ja-JP.resx">
+      <DependentUpon>TimerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\TimerForm.resx">
       <DependentUpon>TimerForm.cs</DependentUpon>
