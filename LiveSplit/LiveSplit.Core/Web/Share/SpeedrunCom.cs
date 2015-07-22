@@ -65,7 +65,7 @@ namespace LiveSplit.Web.Share
             run.Metadata.PlatformID = srdcRun.System.PlatformID;
             run.Metadata.RegionID = srdcRun.System.RegionID;
             run.Metadata.UsesEmulator = srdcRun.System.IsEmulated;
-            run.Metadata.VariableValueIDs = srdcRun.VariableValues.ToDictionary(x => x.VariableID, x => x.VariableChoiceID);
+            run.Metadata.VariableValueIDs = srdcRun.VariableValues.ToDictionary(x => x.VariableID, x => x.ID);
             run.Metadata.RunID = srdcRun.ID;
         }
     }

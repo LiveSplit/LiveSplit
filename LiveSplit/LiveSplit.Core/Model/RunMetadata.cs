@@ -121,12 +121,12 @@ namespace LiveSplit.Model
 
         public IDictionary<string, string> VariableValueIDs { get; set; }
         public IDictionary<string, string> VariableValueNames { get { return VariableValues.ToDictionary(x => x.Key.Name, x => (x.Value != null) ? x.Value.Value : string.Empty); } }
-        public IDictionary<Variable, VariableChoice> VariableValues
+        public IDictionary<Variable, VariableValue> VariableValues
         {
             get
             {
                 if (Game == null)
-                    return new Dictionary<Variable, VariableChoice>();
+                    return new Dictionary<Variable, VariableValue>();
 
                 var categoryId = Category != null ? Category.ID : null;
                 var variables = Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);

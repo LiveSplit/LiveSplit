@@ -107,7 +107,6 @@ namespace LiveSplit.View
                             var gameNode = new TreeNode(game.Name);
                             gameNode.Tag = game.WebLink;
                             var categories = game.FullGameCategories;
-                            var timingMethod = game.Ruleset.DefaultTimingMethod.ToLiveSplitTimingMethod();
                             var timeFormatter = new RegularTimeFormatter(game.Ruleset.ShowMilliseconds ? TimeAccuracy.Hundredths : TimeAccuracy.Seconds);
 
                             foreach (var category in categories)
@@ -121,8 +120,8 @@ namespace LiveSplit.View
                                 {
                                     var place = record.Rank.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ".   ";
                                     var runners = string.Join(" & ", record.Players.Select(x => x.Name));
-                                    var time = record.Times.ToTime();
-                                    var runText = place + (time[timingMethod].HasValue ? timeFormatter.Format(time[timingMethod]) : "") + " by " + runners;
+                                    var time = record.Times.Primary;
+                                    var runText = place + (time.HasValue ? timeFormatter.Format(time) : "") + " by " + runners;
                                     var runNode = new TreeNode(runText);
                                     runNode.Tag = record;
                                     if (!record.SplitsAvailable)
@@ -136,30 +135,33 @@ namespace LiveSplit.View
                     }
                     catch { }
 
-                    /*try
+                    try
                     {
                         var fuzzyUserName = txtSearch.Text.TrimStart('@');
-                        var users = SpeedrunCom.Client.Users.GetUsers(name: fuzzyUserName);
+                        var users = SpeedrunCom.Client.Users.GetUsersFuzzy(fuzzyName: fuzzyUserName);
 
                         foreach (var user in users)
                         {
                             var userNode = new TreeNode("@" + user.Name);
                             userNode.Tag = user.WebLink;
-                            var recordsGroupedByGames = user.Records.GroupBy(x => x.GameName);
+                            var recordsGroupedByGames = SpeedrunCom.Client.Users.GetPersonalBests(user.ID, embeds: new RunEmbeds(embedGame: true, embedCategory: true))
+                                .GroupBy(x => x.Game.Name);
 
                             foreach (var recordsForGame in recordsGroupedByGames)
                             {
                                 var gameName = recordsForGame.Key;
                                 var gameNode = new TreeNode(gameName);
-                                gameNode.Tag = recordsForGame.First().Game.WebLink;
+                                var game = recordsForGame.First().Game;
+                                var timeFormatter = new RegularTimeFormatter(game.Ruleset.ShowMilliseconds ? TimeAccuracy.Hundredths : TimeAccuracy.Seconds);
+                                gameNode.Tag = game.WebLink;
 
                                 foreach (var record in recordsForGame)
                                 {
-                                    var categoryName = record.CategoryName;
+                                    var categoryName = record.Category.Name;
 
-                                    var place = formatPlace(record.Place);
-                                    var coopRunners = record.PlayerNames.Count() > 1 ? " by " + record.PlayerNames.Aggregate((a, b) => a + " & " + b) : "";
-                                    var recordText = formatTime(record.GetTime()) + " in " + categoryName + coopRunners + place;
+                                    var place = formatPlace(record.Rank);
+                                    var coopRunners = record.Players.Count() > 1 ? " by " + string.Join(" & ", record.Players.Select(x => x.Name)) : "";
+                                    var recordText = timeFormatter.Format(record.Times.Primary) + " in " + categoryName + coopRunners + place;
 
                                     var recordNode = new TreeNode(recordText);
                                     recordNode.Tag = record;
@@ -172,7 +174,7 @@ namespace LiveSplit.View
                             splitsTreeView.Nodes.Add(userNode);
                         }
                     }
-                    catch { }*/
+                    catch { }
                 }
             }
             catch (Exception ex)
