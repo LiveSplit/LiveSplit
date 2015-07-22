@@ -18,7 +18,7 @@ namespace LiveSplit.Model.Comparisons
         public void Generate(TimingMethod method)
         {
             var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-            for (var y = Run.GetMinSegmentHistoryIndex() + 1; y <= maxIndex; y++)
+            for (var y = Run.GetMinSegmentHistoryIndex(); y <= maxIndex; y++)
             {
                 var time = TimeSpan.Zero;
 

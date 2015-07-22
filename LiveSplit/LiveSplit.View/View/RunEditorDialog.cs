@@ -715,7 +715,7 @@ namespace LiveSplit.View
             Run.ImportBestSegment(runGrid.CurrentRow.Index);
 
             var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= maxIndex; x++)
+            for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
                 newSegment.SegmentHistory.Add(new IndexedTime(default(Time), x));
             SegmentList.Insert(runGrid.CurrentRow.Index, newSegment);
             //TODO: Auto Delete?
@@ -735,7 +735,7 @@ namespace LiveSplit.View
             if (runGrid.CurrentRow.Index + 1 < Run.Count)
                 Run.ImportBestSegment(runGrid.CurrentRow.Index + 1);
             var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= maxIndex; x++)
+            for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
                 newSegment.SegmentHistory.Add(new IndexedTime(default(Time), x));
             SegmentList.Insert(runGrid.CurrentRow.Index + 1, newSegment);
             runGrid.ClearSelection();
@@ -829,7 +829,7 @@ namespace LiveSplit.View
             secondSegment.SegmentHistory.Clear();
 
             var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-            for (var runIndex = Run.GetMinSegmentHistoryIndex() + 1; runIndex <= maxIndex; runIndex++)
+            for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
             {
                 var firstHistory = firstSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                 var secondHistory = secondSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
@@ -869,7 +869,7 @@ namespace LiveSplit.View
             if (curIndex < Run.Count)
             {
                 var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-                for (var runIndex = Run.GetMinSegmentHistoryIndex() + 1; runIndex <= maxIndex; runIndex++)
+                for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
                 {
                     curIndex = index + 1;
                     var segmentHistoryElement = Run[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);

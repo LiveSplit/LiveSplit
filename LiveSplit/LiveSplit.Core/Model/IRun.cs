@@ -110,7 +110,7 @@ namespace LiveSplit.Model
         {
             var cache = new List<IIndexedTime>();
             var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-            for (var runIndex = run.GetMinSegmentHistoryIndex() + 1; runIndex <= maxIndex; runIndex++)
+            for (var runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
             {
                 for (var index = 0; index < run.Count; index++)
                 {
@@ -170,14 +170,14 @@ namespace LiveSplit.Model
                         minIndex = history.Index;
                 }
             }
-            return minIndex - 1;
+            return minIndex;
         }
 
         public static void ImportSegmentHistory(this IRun run)
         {
             var prevTimeRTA = TimeSpan.Zero;
             var prevTimeGameTime = TimeSpan.Zero;
-            var index = GetMinSegmentHistoryIndex(run);
+            var index = GetMinSegmentHistoryIndex(run) - 1;
             var nullValue = false;
 
             foreach (var segment in run)
@@ -212,7 +212,7 @@ namespace LiveSplit.Model
             {
                 newTime[TimingMethod.RealTime] = segment.BestSegmentTime[TimingMethod.RealTime];
                 newTime[TimingMethod.GameTime] = segment.BestSegmentTime[TimingMethod.GameTime];
-                segment.SegmentHistory.Add(new IndexedTime(newTime, GetMinSegmentHistoryIndex(run)));
+                segment.SegmentHistory.Add(new IndexedTime(newTime, GetMinSegmentHistoryIndex(run) - 1));
             }
         }
     }
