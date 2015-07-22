@@ -206,7 +206,7 @@ namespace LiveSplit.Web.Share
             return DownloadRunByUri(uri);
         }
 
-        public string Share(IRun run, Func<Image> screenShotFunction = null)
+        public string Share(IRun run, Func<Image> screenShotFunction = null, bool claimTokenUri = false)
         {
             string image_url = null;
 
@@ -263,13 +263,22 @@ namespace LiveSplit.Web.Share
                 json = JSON.FromResponse(response);
             }
 
-            var url = json.uris.claim_uri;
+            string url;
+            if (claimTokenUri)
+            {
+                url = json.uris.claim_uri;
+            }
+            else
+            {
+                url = json.uris.public_uri;
+            }
+
             return url;
         }
 
         public bool SubmitRun(IRun run, string username, string password, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)
         {
-            var url = Share(run, screenShotFunction);
+            var url = Share(run, screenShotFunction, claimTokenUri: true);
             Process.Start(url);
             Clipboard.SetText(url);
 
