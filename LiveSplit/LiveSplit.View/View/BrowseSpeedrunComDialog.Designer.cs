@@ -42,11 +42,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.txtSearch, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSearch, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnDownload, 3, 2);
@@ -54,108 +50,62 @@
             this.tableLayoutPanel1.Controls.Add(this.chkDownloadEmpty, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.chkIncludeTimes, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.btnShowOnSpeedrunCom, 2, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(7);
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(570, 405);
-            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // txtSearch
             // 
-            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            resources.ApplyResources(this.txtSearch, "txtSearch");
             this.tableLayoutPanel1.SetColumnSpan(this.txtSearch, 3);
-            this.txtSearch.Location = new System.Drawing.Point(10, 11);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(463, 20);
-            this.txtSearch.TabIndex = 0;
             // 
             // btnSearch
             // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(479, 10);
+            resources.ApplyResources(this.btnSearch, "btnSearch");
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(81, 23);
-            this.btnSearch.TabIndex = 1;
-            this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // btnDownload
             // 
-            this.btnDownload.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDownload.Enabled = false;
-            this.btnDownload.Location = new System.Drawing.Point(479, 372);
+            resources.ApplyResources(this.btnDownload, "btnDownload");
             this.btnDownload.Name = "btnDownload";
-            this.btnDownload.Size = new System.Drawing.Size(81, 22);
-            this.btnDownload.TabIndex = 6;
-            this.btnDownload.Text = "Download";
             this.btnDownload.UseVisualStyleBackColor = true;
             this.btnDownload.Click += new System.EventHandler(this.btnDownload_Click);
             // 
             // splitsTreeView
             // 
+            resources.ApplyResources(this.splitsTreeView, "splitsTreeView");
             this.tableLayoutPanel1.SetColumnSpan(this.splitsTreeView, 4);
-            this.splitsTreeView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitsTreeView.Location = new System.Drawing.Point(10, 39);
             this.splitsTreeView.Name = "splitsTreeView";
-            this.splitsTreeView.Size = new System.Drawing.Size(550, 327);
-            this.splitsTreeView.TabIndex = 2;
             this.splitsTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.splitsTreeView_AfterSelect);
             // 
             // chkDownloadEmpty
             // 
-            this.chkDownloadEmpty.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkDownloadEmpty.AutoSize = true;
-            this.chkDownloadEmpty.Location = new System.Drawing.Point(14, 375);
-            this.chkDownloadEmpty.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            resources.ApplyResources(this.chkDownloadEmpty, "chkDownloadEmpty");
             this.chkDownloadEmpty.Name = "chkDownloadEmpty";
-            this.chkDownloadEmpty.Size = new System.Drawing.Size(106, 17);
-            this.chkDownloadEmpty.TabIndex = 3;
-            this.chkDownloadEmpty.Text = "Download Empty";
             this.chkDownloadEmpty.UseVisualStyleBackColor = true;
             this.chkDownloadEmpty.CheckedChanged += new System.EventHandler(this.chkDownloadEmpty_CheckedChanged);
             // 
             // chkIncludeTimes
             // 
-            this.chkIncludeTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkIncludeTimes.AutoSize = true;
-            this.chkIncludeTimes.Enabled = false;
-            this.chkIncludeTimes.Location = new System.Drawing.Point(130, 375);
-            this.chkIncludeTimes.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            resources.ApplyResources(this.chkIncludeTimes, "chkIncludeTimes");
             this.chkIncludeTimes.Name = "chkIncludeTimes";
-            this.chkIncludeTimes.Size = new System.Drawing.Size(164, 17);
-            this.chkIncludeTimes.TabIndex = 4;
-            this.chkIncludeTimes.Text = "Include Times as Comparison";
             this.chkIncludeTimes.UseVisualStyleBackColor = true;
             // 
             // btnShowOnSpeedrunCom
             // 
-            this.btnShowOnSpeedrunCom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShowOnSpeedrunCom.Enabled = false;
-            this.btnShowOnSpeedrunCom.Location = new System.Drawing.Point(344, 372);
+            resources.ApplyResources(this.btnShowOnSpeedrunCom, "btnShowOnSpeedrunCom");
             this.btnShowOnSpeedrunCom.Name = "btnShowOnSpeedrunCom";
-            this.btnShowOnSpeedrunCom.Size = new System.Drawing.Size(129, 23);
-            this.btnShowOnSpeedrunCom.TabIndex = 5;
-            this.btnShowOnSpeedrunCom.Text = "Show on Speedrun.com";
             this.btnShowOnSpeedrunCom.UseVisualStyleBackColor = true;
             this.btnShowOnSpeedrunCom.Click += new System.EventHandler(this.btnShowOnSpeedrunCom_Click);
             // 
             // BrowseSpeedrunComDialog
             // 
             this.AcceptButton = this.btnSearch;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(570, 405);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(545, 200);
             this.Name = "BrowseSpeedrunComDialog";
-            this.Text = "Browse Speedrun.com";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);

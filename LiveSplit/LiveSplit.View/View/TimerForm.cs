@@ -2508,21 +2508,5 @@ namespace LiveSplit.View
                 }
             }
         }
-
-        private void RightClickMenu_Opening(object sender, CancelEventArgs e)
-        {
-            RebuildControlMenu();
-            RebuildComparisonsMenu();
-        }
-
-        private void controlMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comparisonMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

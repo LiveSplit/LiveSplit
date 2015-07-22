@@ -235,8 +235,20 @@
     <EmbeddedResource Include="View\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\BrowseSpeedrunComDialog.ja-JP.resx">
+      <DependentUpon>BrowseSpeedrunComDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\BrowseSpeedrunComDialog.resx">
       <DependentUpon>BrowseSpeedrunComDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ChooseComparisonsDialog.ja-JP.resx">
+      <DependentUpon>ChooseComparisonsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ComponentSettingsDialog.ja-JP.resx">
+      <DependentUpon>ComponentSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\EditHistoryDialog.ja-JP.resx">
+      <DependentUpon>EditHistoryDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\EditHistoryDialog.resx">
       <DependentUpon>EditHistoryDialog.cs</DependentUpon>
@@ -244,9 +256,15 @@
     <EmbeddedResource Include="View\ChooseComparisonsDialog.resx">
       <DependentUpon>ChooseComparisonsDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\LayoutEditorDialog.ja-JP.resx">
+      <DependentUpon>LayoutEditorDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\LayoutEditorDialog.resx">
       <DependentUpon>LayoutEditorDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\LayoutSettingsControl.ja-JP.resx">
+      <DependentUpon>LayoutSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LayoutSettingsControl.resx">
       <DependentUpon>LayoutSettingsControl.cs</DependentUpon>
@@ -254,15 +272,27 @@
     <EmbeddedResource Include="View\ComponentSettingsDialog.resx">
       <DependentUpon>ComponentSettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\LayoutSettingsDialog.ja-JP.resx">
+      <DependentUpon>LayoutSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\LayoutSettingsDialog.resx">
       <DependentUpon>LayoutSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\RunEditorDialog.ja-JP.resx">
+      <DependentUpon>RunEditorDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\RunEditorDialog.resx">
       <DependentUpon>RunEditorDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\SetSizeForm.ja-JP.resx">
+      <DependentUpon>SetSizeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\SetSizeForm.resx">
       <DependentUpon>SetSizeForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SettingsDialog.ja-JP.resx">
+      <DependentUpon>SettingsDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SettingsDialog.resx">
       <DependentUpon>SettingsDialog.cs</DependentUpon>
@@ -272,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\ShareRunDialog.resx">
       <DependentUpon>ShareRunDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\SpeedRunsLiveForm.ja-JP.resx">
+      <DependentUpon>SpeedRunsLiveForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SpeedRunsLiveForm.resx">
       <DependentUpon>SpeedRunsLiveForm.cs</DependentUpon>

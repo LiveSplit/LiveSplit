@@ -88,7 +88,6 @@
             this.aboutMenuItem,
             this.exitMenuItem});
             this.RightClickMenu.Name = "RightClickMenu";
-            this.RightClickMenu.Opening += new System.ComponentModel.CancelEventHandler(this.RightClickMenu_Opening);
             // 
             // editSplitsMenuItem
             // 
@@ -128,13 +127,11 @@
             // 
             resources.ApplyResources(this.controlMenuItem, "controlMenuItem");
             this.controlMenuItem.Name = "controlMenuItem";
-            this.controlMenuItem.Click += new System.EventHandler(this.controlMenuItem_Click);
             // 
             // comparisonMenuItem
             // 
             resources.ApplyResources(this.comparisonMenuItem, "comparisonMenuItem");
             this.comparisonMenuItem.Name = "comparisonMenuItem";
-            this.comparisonMenuItem.Click += new System.EventHandler(this.comparisonMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
