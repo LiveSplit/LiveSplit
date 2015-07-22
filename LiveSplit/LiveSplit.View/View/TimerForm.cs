@@ -1606,7 +1606,7 @@ namespace LiveSplit.View
                     using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
                     {
                         var buffer = memoryStream.GetBuffer();
-                        stream.Write(buffer, 0, buffer.Length);
+                        stream.Write(buffer, 0, (int)memoryStream.Length);
                     }
 
                     CurrentState.Run.HasChanged = false;
@@ -1655,7 +1655,7 @@ namespace LiveSplit.View
                     using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
                     {
                         var buffer = memoryStream.GetBuffer();
-                        stream.Write(buffer, 0, buffer.Length);
+                        stream.Write(buffer, 0, (int)memoryStream.Length);
                     }
 
                     Layout.HasChanged = false;
@@ -2122,7 +2122,7 @@ namespace LiveSplit.View
                 using (var stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write))
                 {
                     var buffer = memoryStream.GetBuffer();
-                    stream.Write(buffer, 0, buffer.Length);
+                    stream.Write(buffer, 0, (int)memoryStream.Length);
                 }
             }
 
