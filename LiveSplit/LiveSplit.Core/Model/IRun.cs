@@ -109,7 +109,8 @@ namespace LiveSplit.Model
         private static void RemoveNullValues(IRun run, TimingMethod method)
         {
             var cache = new List<IIndexedTime>();
-            for (var runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= run.AttemptHistory.Count; runIndex++)
+            var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+            for (var runIndex = run.GetMinSegmentHistoryIndex() + 1; runIndex <= maxIndex; runIndex++)
             {
                 for (var index = 0; index < run.Count; index++)
                 {

@@ -713,7 +713,9 @@ namespace LiveSplit.View
         {
             var newSegment = new Segment("");
             Run.ImportBestSegment(runGrid.CurrentRow.Index);
-            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= Run.AttemptHistory.Count; x++)
+
+            var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= maxIndex; x++)
                 newSegment.SegmentHistory.Add(new IndexedTime(default(Time), x));
             SegmentList.Insert(runGrid.CurrentRow.Index, newSegment);
             //TODO: Auto Delete?
@@ -732,7 +734,8 @@ namespace LiveSplit.View
             var newSegment = new Segment("");
             if (runGrid.CurrentRow.Index + 1 < Run.Count)
                 Run.ImportBestSegment(runGrid.CurrentRow.Index + 1);
-            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= Run.AttemptHistory.Count; x++)
+            var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+            for (var x = Run.GetMinSegmentHistoryIndex() + 1; x <= maxIndex; x++)
                 newSegment.SegmentHistory.Add(new IndexedTime(default(Time), x));
             SegmentList.Insert(runGrid.CurrentRow.Index + 1, newSegment);
             runGrid.ClearSelection();
@@ -825,7 +828,8 @@ namespace LiveSplit.View
             firstSegment.SegmentHistory.Clear();
             secondSegment.SegmentHistory.Clear();
 
-            for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= Run.AttemptHistory.Count; runIndex++)
+            var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+            for (var runIndex = Run.GetMinSegmentHistoryIndex() + 1; runIndex <= maxIndex; runIndex++)
             {
                 var firstHistory = firstSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
                 var secondHistory = secondSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
@@ -864,7 +868,8 @@ namespace LiveSplit.View
 
             if (curIndex < Run.Count)
             {
-                for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= Run.AttemptHistory.Count; runIndex++)
+                var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+                for (var runIndex = Run.GetMinSegmentHistoryIndex() + 1; runIndex <= maxIndex; runIndex++)
                 {
                     curIndex = index + 1;
                     var segmentHistoryElement = Run[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);

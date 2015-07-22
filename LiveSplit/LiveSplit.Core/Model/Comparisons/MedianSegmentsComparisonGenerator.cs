@@ -46,8 +46,9 @@ namespace LiveSplit.Model.Comparisons
             var allHistory = new List<List<TimeSpan>>();
             foreach (var segment in Run)
                 allHistory.Add(new List<TimeSpan>());
-            for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++)
+            foreach (var attempt in Run.AttemptHistory)
             {
+                var ind = attempt.Index;
                 var ignoreNextHistory = false;
                 foreach (var segment in Run)
                 {
