@@ -62,10 +62,10 @@ namespace LiveSplit.Web.Share
         {
             run.GameName = srdcRun.Game.Name;
             run.CategoryName = srdcRun.Category.Name;
-            run.Metadata.PlatformID = srdcRun.System.PlatformID;
-            run.Metadata.RegionID = srdcRun.System.RegionID;
+            run.Metadata.PlatformName = srdcRun.System.Platform.Name;
+            run.Metadata.RegionName = srdcRun.System.Region.Name;
             run.Metadata.UsesEmulator = srdcRun.System.IsEmulated;
-            run.Metadata.VariableValueIDs = srdcRun.VariableValues.ToDictionary(x => x.VariableID, x => x.ID);
+            run.Metadata.VariableValueNames = srdcRun.VariableValues.ToDictionary(x => x.Name, x => x.Value);
             run.Metadata.RunID = srdcRun.ID;
         }
     }

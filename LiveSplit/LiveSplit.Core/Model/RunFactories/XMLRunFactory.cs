@@ -66,12 +66,12 @@ namespace LiveSplit.Model.RunFactories
             {
                 var metadata = parent["Metadata"];
                 run.Metadata.RunID = metadata["Run"].GetAttribute("id");
-                run.Metadata.PlatformID = metadata["Platform"].GetAttribute("id");
+                run.Metadata.PlatformName = metadata["Platform"].InnerText;
                 run.Metadata.UsesEmulator = bool.Parse(metadata["Platform"].GetAttribute("usesEmulator"));
-                run.Metadata.RegionID = metadata["Region"].GetAttribute("id");
+                run.Metadata.RegionName = metadata["Region"].InnerText;
                 foreach (var variableNode in metadata["Variables"].ChildNodes.OfType<XmlElement>())
                 {
-                    run.Metadata.VariableValueIDs.Add(variableNode.GetAttribute("id"), variableNode.GetAttribute("valueId"));
+                    run.Metadata.VariableValueNames.Add(variableNode.GetAttribute("name"), variableNode.InnerText);
                 }
             }
 
