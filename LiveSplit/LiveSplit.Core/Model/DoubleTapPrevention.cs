@@ -54,9 +54,9 @@ namespace LiveSplit.Model
                 var index = CurrentState.CurrentSplitIndex - 1;
                 while (index >= 0)
                 {
-                    if (CurrentState.Run[index].SplitTime[TimingMethod.RealTime] != null)
+                    if (CurrentState.Run[index].SplitTime.RealTime != null)
                     {
-                        lastSplit = CurrentState.Run[index].SplitTime[TimingMethod.RealTime].Value;
+                        lastSplit = CurrentState.Run[index].SplitTime.RealTime.Value;
                         break;
                     }
                     index--;
@@ -65,11 +65,11 @@ namespace LiveSplit.Model
             if (!CurrentState.Settings.DoubleTapPrevention
                 || (CurrentState.CurrentPhase == TimerPhase.Running
                 && (lastSplit == null || TripleDateTime.Now - CurrentState.StartTime > lastSplit + new TimeSpan(0, 0, 0, 0, 300))
-                && CurrentState.CurrentTime[TimingMethod.RealTime] > CurrentState.PauseTime + new TimeSpan(0, 0, 0, 0, 300))
+                && CurrentState.CurrentTime.RealTime > CurrentState.PauseTime + new TimeSpan(0, 0, 0, 0, 300))
                 || (CurrentState.CurrentPhase == TimerPhase.Paused
                 && TripleDateTime.Now - CurrentState.StartTime > CurrentState.PauseTime + new TimeSpan(0, 0, 0, 0, 300))
                 || (CurrentState.CurrentPhase == TimerPhase.Ended
-                && TripleDateTime.Now - CurrentState.StartTime > CurrentState.CurrentTime[TimingMethod.RealTime] + new TimeSpan(0, 0, 0, 0, 300))
+                && TripleDateTime.Now - CurrentState.StartTime > CurrentState.CurrentTime.RealTime + new TimeSpan(0, 0, 0, 0, 300))
                 || (CurrentState.CurrentPhase == TimerPhase.NotRunning
                 && TripleDateTime.Now - CurrentState.StartTime > new TimeSpan(0, 0, 0, 0, 300)))
                 return true;

@@ -182,22 +182,22 @@ namespace LiveSplit.Model
 
             foreach (var segment in run)
             {
-                var newTime = new Time();
-                if (segment.PersonalBestSplitTime[TimingMethod.RealTime] == null || segment.PersonalBestSplitTime[TimingMethod.GameTime] == null || nullValue)
+                if (segment.PersonalBestSplitTime.RealTime == null || segment.PersonalBestSplitTime.GameTime == null || nullValue)
                 {
-                    newTime[TimingMethod.RealTime] = segment.PersonalBestSplitTime[TimingMethod.RealTime] - prevTimeRTA;
-                    newTime[TimingMethod.GameTime] = segment.PersonalBestSplitTime[TimingMethod.GameTime] - prevTimeGameTime;
-                    segment.SegmentHistory.Add(new IndexedTime(newTime, index));
+                    segment.SegmentHistory.Add(new IndexedTime(
+                        new Time(segment.PersonalBestSplitTime.RealTime - prevTimeRTA,
+                        segment.PersonalBestSplitTime.GameTime - prevTimeGameTime)
+                        , index));
                     nullValue = false;
                 }
 
-                if (segment.PersonalBestSplitTime[TimingMethod.RealTime] != null)
-                    prevTimeRTA = segment.PersonalBestSplitTime[TimingMethod.RealTime].Value;
+                if (segment.PersonalBestSplitTime.RealTime != null)
+                    prevTimeRTA = segment.PersonalBestSplitTime.RealTime.Value;
                 else
                     nullValue = true;
 
-                if (segment.PersonalBestSplitTime[TimingMethod.GameTime] != null)
-                    prevTimeGameTime = segment.PersonalBestSplitTime[TimingMethod.GameTime].Value;
+                if (segment.PersonalBestSplitTime.GameTime!= null)
+                    prevTimeGameTime = segment.PersonalBestSplitTime.GameTime.Value;
                 else
                     nullValue = true;
             }
@@ -207,12 +207,9 @@ namespace LiveSplit.Model
         public static void ImportBestSegment(this IRun run, int segmentIndex)
         {
             var segment = run[segmentIndex];
-            var newTime = new Time();
-            if (segment.BestSegmentTime[TimingMethod.RealTime] != null || segment.BestSegmentTime[TimingMethod.GameTime] != null)
+            if (segment.BestSegmentTime.RealTime != null || segment.BestSegmentTime.GameTime != null)
             {
-                newTime[TimingMethod.RealTime] = segment.BestSegmentTime[TimingMethod.RealTime];
-                newTime[TimingMethod.GameTime] = segment.BestSegmentTime[TimingMethod.GameTime];
-                segment.SegmentHistory.Add(new IndexedTime(newTime, GetMinSegmentHistoryIndex(run) - 1));
+                segment.SegmentHistory.Add(new IndexedTime(segment.BestSegmentTime, GetMinSegmentHistoryIndex(run) - 1));
             }
         }
     }
