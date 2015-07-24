@@ -703,4 +703,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting is available on Snes9x v1.53 (x86). (By calmdowntime)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Advent Rising</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/glasnonck/LiveSplit.AdventRising/raw/master/Components/LiveSplit.AdventRising.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By glasnonck)</Description>
+  </AutoSplitter>
 </AutoSplitters>
