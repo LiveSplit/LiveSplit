@@ -3,11 +3,9 @@ using LiveSplit.Model.RunFactories;
 using LiveSplit.Options;
 using LiveSplit.UI;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LiveSplit.Model.RunImporters

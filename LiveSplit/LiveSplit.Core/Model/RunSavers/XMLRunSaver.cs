@@ -1,6 +1,4 @@
 ﻿using LiveSplit.UI;
-using System;
-using System.Drawing;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;

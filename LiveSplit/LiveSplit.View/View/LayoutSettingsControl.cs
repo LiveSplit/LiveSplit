@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using Fetze.WinFormsColor;
-using LiveSplit.Options;
 using LiveSplit.UI;
 
 namespace LiveSplit.View
