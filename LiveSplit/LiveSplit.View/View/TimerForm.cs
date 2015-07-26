@@ -1613,7 +1613,7 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Could Not Save File!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Splits could not be saved!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Error(ex);
             }
         }
@@ -1662,7 +1662,7 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Could Not Save File!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "Layout could not be saved!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Error(ex);
             }
         }
@@ -2108,19 +2108,27 @@ namespace LiveSplit.View
                 return;
             }
 
-            var settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
-            if (!File.Exists(settingsPath))
-                File.Create(settingsPath).Close();
-
-            using (var memoryStream = new MemoryStream())
+            try
             {
-                SettingsSaver.Save(Settings, memoryStream);
+                var settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
+                if (!File.Exists(settingsPath))
+                    File.Create(settingsPath).Close();
 
-                using (var stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write))
+                using (var memoryStream = new MemoryStream())
                 {
-                    var buffer = memoryStream.GetBuffer();
-                    stream.Write(buffer, 0, (int)memoryStream.Length);
+                    SettingsSaver.Save(Settings, memoryStream);
+
+                    using (var stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write))
+                    {
+                        var buffer = memoryStream.GetBuffer();
+                        stream.Write(buffer, 0, (int)memoryStream.Length);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, "Settings could not be saved!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error(ex);
             }
 
             foreach (var component in Layout.Components)
