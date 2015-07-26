@@ -14,7 +14,7 @@ namespace LiveSplit.UI
     {
         public static Font ChooseFont(Control control, Font previousFont, int minSize, int maxSize)
         {
-            var dialog = new FontDialog();
+            var dialog = new CustomFontDialog.FontDialog();
             dialog.Font = previousFont;
             dialog.MinSize = minSize;
             dialog.MaxSize = maxSize;
@@ -29,7 +29,6 @@ namespace LiveSplit.UI
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show("This font is not supported. If this font is freshly installed, a restart of LiveSplit is required.", "Font Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             return previousFont;
         }
