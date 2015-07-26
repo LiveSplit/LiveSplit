@@ -94,12 +94,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Changelog.txt" />
     <Content Include="Icon.ico" />
     <Content Include="Licenses.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Todo.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
