@@ -457,10 +457,7 @@ namespace LiveSplit.View
                         {
                             item.Image = image;
                         }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
-                        }
+                        catch { }
                     };
                     if (InvokeRequired)
                         Invoke(setImage);
