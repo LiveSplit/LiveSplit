@@ -61,6 +61,7 @@
       <DependentUpon>FontList.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FontChangedEventArgs.cs" />
     <EmbeddedResource Include="FontDialog.resx">
       <DependentUpon>FontDialog.cs</DependentUpon>
     </EmbeddedResource>

@@ -77,20 +77,30 @@ namespace LiveSplit.View
         private void btnTimer_Click(object sender, EventArgs e)
         {
             var timerFont = new Font(Settings.TimerFont.FontFamily.Name, (Settings.TimerFont.Size / 50f) * 18f, Settings.TimerFont.Style, GraphicsUnit.Point);
-            timerFont = SettingsHelper.ChooseFont(this, timerFont, 7, 20);
-            Settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
+            var dialog = SettingsHelper.GetFontDialog(timerFont, 7, 20);
+            dialog.FontChanged += (s, ev) => updateTimerFont(((CustomFontDialog.FontChangedEventArgs)ev).NewFont);
+            dialog.ShowDialog(this);
             lblTimer.Text = TimerFont;
+        }
+
+        private void updateTimerFont(Font timerFont)
+        {
+            Settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
         }
 
         private void btnTimes_Click(object sender, EventArgs e)
         {
-            Settings.TimesFont = SettingsHelper.ChooseFont(this, Settings.TimesFont, 7, 20);
+            var dialog = SettingsHelper.GetFontDialog(Settings.TimesFont, 7, 20);
+            dialog.FontChanged += (s, ev) => Settings.TimesFont = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
+            dialog.ShowDialog(this);
             lblTimes.Text = MainFont;
         }
 
         private void btnTextFont_Click(object sender, EventArgs e)
         {
-            Settings.TextFont = SettingsHelper.ChooseFont(this, Settings.TextFont, 7, 20);
+            var dialog = SettingsHelper.GetFontDialog(Settings.TextFont, 7, 20);
+            dialog.FontChanged += (s, ev) => Settings.TextFont = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
+            dialog.ShowDialog(this);
             lblText.Text = SplitNamesFont;
         }
 

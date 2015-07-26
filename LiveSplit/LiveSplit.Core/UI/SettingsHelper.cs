@@ -12,25 +12,13 @@ namespace LiveSplit.UI
 {
     public class SettingsHelper
     {
-        public static Font ChooseFont(Control control, Font previousFont, int minSize, int maxSize)
+        public static CustomFontDialog.FontDialog GetFontDialog(Font previousFont, int minSize, int maxSize)
         {
             var dialog = new CustomFontDialog.FontDialog();
-            dialog.Font = previousFont;
+            dialog.OriginalFont = previousFont;
             dialog.MinSize = minSize;
             dialog.MaxSize = maxSize;
-            try
-            {
-                var result = dialog.ShowDialog(control);
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    return dialog.Font;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-            return previousFont;
+            return dialog;
         }
 
         public static void ColorButtonClick(Button button, Control control)

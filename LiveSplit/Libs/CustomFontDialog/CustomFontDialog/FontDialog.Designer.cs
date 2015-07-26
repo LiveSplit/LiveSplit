@@ -197,6 +197,7 @@
             this.Name = "FontDialog";
             this.ShowIcon = false;
             this.Text = "Font";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FontDialog_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

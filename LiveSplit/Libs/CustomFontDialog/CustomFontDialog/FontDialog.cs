@@ -25,6 +25,9 @@ namespace CustomFontDialog
         public int MinSize { get { return minSize; } set { minSize = value; UpdateSizeOptions(); } }
         public int MaxSize { get { return maxSize; } set { maxSize = value; UpdateSizeOptions(); } }
 
+        private Font originalFont { get; set; }
+        public Font OriginalFont { get { return originalFont; } set { originalFont = Font = value; } }
+
         public Font Font
         {
             get
@@ -39,6 +42,8 @@ namespace CustomFontDialog
                 chbItalic.Checked = value.Italic;
             }
         }
+
+        public event EventHandler FontChanged;
 
         private void lstFont_SelectedFontFamilyChanged(object sender, EventArgs e)
         {
@@ -159,6 +164,8 @@ namespace CustomFontDialog
 
             if (style.HasValue)
                 lblSampleText.Font = new Font(family, size, style.Value);
+
+            TriggerFontChanged();
         }
 
         /// <summary>
@@ -198,6 +205,20 @@ namespace CustomFontDialog
                 if (sizeNum >= MinSize && sizeNum <= MaxSize)
                     this.lstSize.Items.Add(size);
             }
+        }
+
+        private void FontDialog_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                Font = OriginalFont;
+            }
+        }
+
+        private void TriggerFontChanged()
+        {
+            if (FontChanged != null)
+                FontChanged(this, new FontChangedEventArgs() { NewFont = Font });
         }
     }
 }
