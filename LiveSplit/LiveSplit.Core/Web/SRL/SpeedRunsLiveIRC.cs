@@ -151,14 +151,14 @@ namespace LiveSplit.Web.SRL
                 GoalChanged(null, null);
         }
 
-        private string Escape(string value)
+        private static string Escape(string value)
         {
             // \ -> \\
             // " -> \.
             return value.Replace("\\", "\\\\").Replace("\"", "\\.");
         }
 
-        private string Unescape(string value)
+        private static string Unescape(string value)
         {
             // \. -> "
             // \\ -> \

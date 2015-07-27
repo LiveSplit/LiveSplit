@@ -12,26 +12,13 @@ namespace LiveSplit.UI
 {
     public class SettingsHelper
     {
-        public static Font ChooseFont(Control control, Font previousFont, int minSize, int maxSize)
+        public static CustomFontDialog.FontDialog GetFontDialog(Font previousFont, int minSize, int maxSize)
         {
-            var dialog = new FontDialog();
-            dialog.Font = previousFont;
+            var dialog = new CustomFontDialog.FontDialog();
+            dialog.OriginalFont = previousFont;
             dialog.MinSize = minSize;
             dialog.MaxSize = maxSize;
-            try
-            {
-                var result = dialog.ShowDialog(control);
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    return dialog.Font;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                MessageBox.Show("This font is not supported. If this font is freshly installed, a restart of LiveSplit is required.", "Font Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            return previousFont;
+            return dialog;
         }
 
         public static void ColorButtonClick(Button button, Control control)

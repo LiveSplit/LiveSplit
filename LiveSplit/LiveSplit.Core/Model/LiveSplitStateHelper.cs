@@ -114,21 +114,28 @@ namespace LiveSplit.Model
             if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
             {
                 TimeSpan? curSeg = state.CurrentTime[method] - (state.CurrentSplitIndex > 0 ? state.Run[state.CurrentSplitIndex - 1].SplitTime[method] : TimeSpan.Zero);
-                var bestSegmentDifference = (-state.Run[state.CurrentSplitIndex].Comparisons[comparison][method]
-                    + ((state.CurrentSplitIndex - 1 >= 0) ? state.Run[state.CurrentSplitIndex - 1].Comparisons[comparison][method] : TimeSpan.Zero))
-                    + state.Run[state.CurrentSplitIndex].BestSegmentTime[method];
-                if (bestSegmentDifference == null || bestSegmentDifference > TimeSpan.Zero || !useBestSegment)
-                    bestSegmentDifference = TimeSpan.Zero;
+                TimeSpan? curSplit = state.Run[state.CurrentSplitIndex].Comparisons[comparison][method];
+                TimeSpan? curBestSegment = state.Run[state.CurrentSplitIndex].BestSegmentTime[method];
+                TimeSpan? comparisonDelta = TimeSpan.Zero;
 
-                var lastDelta = GetLastDelta(state, state.CurrentSplitIndex - 1, comparison, method);
-                if (lastDelta == null)
-                    lastDelta = TimeSpan.Zero;
+                if (useBestSegment)
+                {
+                    comparisonDelta = (-curSplit
+                        + ((state.CurrentSplitIndex > 0) ? state.Run[state.CurrentSplitIndex - 1].Comparisons[comparison][method] : TimeSpan.Zero))
+                        + curBestSegment;
+                    if (comparisonDelta == null || comparisonDelta > TimeSpan.Zero)
+                        comparisonDelta = TimeSpan.Zero;
+                }
 
-                if (state.Run[state.CurrentSplitIndex].Comparisons[comparison][method] != null &&
-                        ((state.CurrentTime[method] > state.Run[state.CurrentSplitIndex].Comparisons[comparison][method] + lastDelta + bestSegmentDifference) ||
-                        (useBestSegment && curSeg != null && curSeg > state.Run[state.CurrentSplitIndex].BestSegmentTime[method]) ||
-                        !showWhenBehind && state.CurrentTime[method] > state.Run[state.CurrentSplitIndex].Comparisons[comparison][method]))
-                    return state.CurrentTime[method] - state.Run[state.CurrentSplitIndex].Comparisons[comparison][method];
+                comparisonDelta += GetLastDelta(state, state.CurrentSplitIndex - 1, comparison, method) ?? TimeSpan.Zero;
+
+                if (showWhenBehind && comparisonDelta > TimeSpan.Zero)
+                    comparisonDelta = TimeSpan.Zero;
+
+                if (curSplit != null &&
+                        (state.CurrentTime[method] > curSplit + comparisonDelta ||
+                        useBestSegment && curSeg != null && curSeg > curBestSegment))
+                    return state.CurrentTime[method] - curSplit;
             }
             return null;
         }

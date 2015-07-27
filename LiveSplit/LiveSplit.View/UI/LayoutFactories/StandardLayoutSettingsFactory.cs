@@ -1,5 +1,4 @@
-﻿using LiveSplit.Options;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace LiveSplit.UI.LayoutFactories
 {

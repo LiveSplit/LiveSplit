@@ -80,12 +80,15 @@ namespace LiveSplit.Web.Share
         public string LoginAnonymous()
         {
             var request = (HttpWebRequest)WebRequest.Create("http://ge.tt/");
-            var response = request.GetResponse();
-            var cookies = response.Headers.GetValues("set-cookie")[0];
-            var remaining = cookies.Substring(cookies.IndexOf("accesstoken%22%3A%22") + "accesstoken%22%3A%22".Length);
-            var accesstoken = remaining.Substring(0, remaining.IndexOf("%22"));
 
-            return accesstoken;
+            using (var response = request.GetResponse())
+            {
+                var cookies = response.Headers.GetValues("set-cookie")[0];
+                var remaining = cookies.Substring(cookies.IndexOf("accesstoken%22%3A%22") + "accesstoken%22%3A%22".Length);
+                var accesstoken = remaining.Substring(0, remaining.IndexOf("%22"));
+
+                return accesstoken;
+            }
         }
 
         public dynamic CreateShare(string accessToken, string title = null)

@@ -6,7 +6,6 @@ using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Xml;
 
 namespace LiveSplit.Web.Share
 {
@@ -71,7 +70,10 @@ namespace LiveSplit.Web.Share
 
         private static Image DownloadImage(string url)
         {
-            using (var stream = WebRequest.Create(url).GetResponse().GetResponseStream())
+            var request = WebRequest.Create(url);
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
             {
                 return Image.FromStream(stream);
             }

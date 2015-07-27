@@ -1,5 +1,4 @@
 ﻿using LiveSplit.UI;
-using System.Globalization;
 using System.Xml;
 
 namespace LiveSplit.Options.SettingsSavers

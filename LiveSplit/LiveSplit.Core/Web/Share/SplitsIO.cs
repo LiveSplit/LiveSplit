@@ -94,7 +94,7 @@ namespace LiveSplit.Web.Share
 
         #endregion
 
-        private IEnumerable<dynamic> DoPaginatedRequest(Uri uri)
+        private static IEnumerable<dynamic> DoPaginatedRequest(Uri uri)
         {
             var page = 1;
             var totalItems = 1;
@@ -104,12 +104,15 @@ namespace LiveSplit.Web.Share
             do
             {
                 var request = WebRequest.Create(string.Format("{0}?page={1}", uri.AbsoluteUri, page));
-                var response = request.GetResponse();
-                Int32.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
-                Int32.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
-                lastPage = (int)Math.Ceiling(totalItems / (double)perPage);
-                
-                yield return JSON.FromResponse(response);
+
+                using (var response = request.GetResponse())
+                {
+                    Int32.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
+                    Int32.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
+                    lastPage = (int) Math.Ceiling(totalItems/(double) perPage);
+
+                    yield return JSON.FromResponse(response);
+                }
 
             } while (page++ < lastPage);
         }
@@ -177,7 +180,9 @@ namespace LiveSplit.Web.Share
             var downloadUri = GetSiteUri(string.Format("{0}/download/livesplit", uri.LocalPath));
 
             var request = WebRequest.Create(downloadUri);
-            using (var stream = request.GetResponse().GetResponseStream())
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
             {
                 using (var memoryStream = new MemoryStream())
                 {
@@ -201,7 +206,7 @@ namespace LiveSplit.Web.Share
             return DownloadRunByUri(uri);
         }
 
-        public string Share(IRun run, Func<Image> screenShotFunction = null)
+        public string Share(IRun run, Func<Image> screenShotFunction = null, bool claimTokenUri = false)
         {
             string image_url = null;
 
@@ -252,16 +257,28 @@ namespace LiveSplit.Web.Share
                 writer.Flush();
             }
 
-            var response = request.GetResponse();
-            var json = JSON.FromResponse(response);
+            dynamic json;
+            using (var response = request.GetResponse())
+            {
+                json = JSON.FromResponse(response);
+            }
 
-            var url = json.uris.claim_uri;
+            string url;
+            if (claimTokenUri)
+            {
+                url = json.uris.claim_uri;
+            }
+            else
+            {
+                url = json.uris.public_uri;
+            }
+
             return url;
         }
 
         public bool SubmitRun(IRun run, string username, string password, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)
         {
-            var url = Share(run, screenShotFunction);
+            var url = Share(run, screenShotFunction, claimTokenUri: true);
             Process.Start(url);
             Clipboard.SetText(url);
 

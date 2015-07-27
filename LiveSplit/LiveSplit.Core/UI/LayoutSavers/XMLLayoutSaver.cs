@@ -2,17 +2,14 @@
 using LiveSplit.UI.Components;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 
 namespace LiveSplit.UI.LayoutSavers
 {
     public class XMLLayoutSaver : ILayoutSaver
     {
-        private XmlElement ToElement(XmlDocument document, LayoutSettings settings)
+        private static XmlElement ToElement(XmlDocument document, LayoutSettings settings)
         {
             var element = document.CreateElement("Settings");
             element.AppendChild(SettingsHelper.ToElement(document, settings.TextColor, "TextColor"));

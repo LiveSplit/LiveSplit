@@ -54,7 +54,7 @@ namespace LiveSplit.Model
 
         public void Split()
         {
-            if (CurrentState.CurrentPhase == TimerPhase.Running && CurrentState.CurrentTime[TimingMethod.RealTime] > TimeSpan.Zero)
+            if (CurrentState.CurrentPhase == TimerPhase.Running && CurrentState.CurrentTime.RealTime > TimeSpan.Zero)
             {
                 CurrentState.CurrentSplit.SplitTime = CurrentState.CurrentTime;
                 CurrentState.CurrentSplitIndex++;
@@ -150,7 +150,7 @@ namespace LiveSplit.Model
         {
             if (CurrentState.CurrentPhase == TimerPhase.Running)
             {
-                CurrentState.PauseTime = CurrentState.CurrentTime[TimingMethod.RealTime].Value;
+                CurrentState.PauseTime = CurrentState.CurrentTime.RealTime.Value;
                 CurrentState.CurrentPhase = TimerPhase.Paused;
                 if (OnPause != null)
                     OnPause(this, null);
@@ -215,19 +215,19 @@ namespace LiveSplit.Model
             foreach (var split in CurrentState.Run)
             {
                 var newBestSegment = new Time(split.BestSegmentTime);
-                if (split.SplitTime[TimingMethod.RealTime] != null)
+                if (split.SplitTime.RealTime != null)
                 {
-                    currentSegmentRTA = split.SplitTime[TimingMethod.RealTime] - previousSplitTimeRTA;
-                    previousSplitTimeRTA = split.SplitTime[TimingMethod.RealTime];
-                    if (split.BestSegmentTime[TimingMethod.RealTime] == null || currentSegmentRTA < split.BestSegmentTime[TimingMethod.RealTime])
-                        newBestSegment[TimingMethod.RealTime] = currentSegmentRTA;
+                    currentSegmentRTA = split.SplitTime.RealTime - previousSplitTimeRTA;
+                    previousSplitTimeRTA = split.SplitTime.RealTime;
+                    if (split.BestSegmentTime.RealTime == null || currentSegmentRTA < split.BestSegmentTime.RealTime)
+                        newBestSegment.RealTime = currentSegmentRTA;
                 }
-                if (split.SplitTime[TimingMethod.GameTime] != null)
+                if (split.SplitTime.GameTime != null)
                 {
-                    currentSegmentGameTime = split.SplitTime[TimingMethod.GameTime] - previousSplitTimeGameTime;
-                    previousSplitTimeGameTime = split.SplitTime[TimingMethod.GameTime];
-                    if (split.BestSegmentTime[TimingMethod.GameTime] == null || currentSegmentGameTime < split.BestSegmentTime[TimingMethod.GameTime])
-                        newBestSegment[TimingMethod.GameTime] = currentSegmentGameTime;
+                    currentSegmentGameTime = split.SplitTime.GameTime - previousSplitTimeGameTime;
+                    previousSplitTimeGameTime = split.SplitTime.GameTime;
+                    if (split.BestSegmentTime.GameTime == null || currentSegmentGameTime < split.BestSegmentTime.GameTime)
+                        newBestSegment.GameTime = currentSegmentGameTime;
                 }
                 split.BestSegmentTime = newBestSegment;
             }

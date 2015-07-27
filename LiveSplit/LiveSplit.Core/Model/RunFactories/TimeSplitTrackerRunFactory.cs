@@ -19,7 +19,7 @@ namespace LiveSplit.Model.RunFactories
             Path = path;
         }
 
-        TimeSpan? parseTimeNullable(string timeString)
+        private static TimeSpan? parseTimeNullable(string timeString)
         {
             var time = TimeSpanParser.Parse(timeString);
             return (time == TimeSpan.Zero) ? (TimeSpan?)null : time;

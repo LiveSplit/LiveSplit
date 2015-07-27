@@ -52,7 +52,10 @@ namespace LiveSplit.Web.Share
 
         public static Image GetBoxartImage(this Assets assets)
         {
-            using (var stream = WebRequest.Create(assets.CoverMedium.Uri).GetResponse().GetResponseStream())
+            var request = WebRequest.Create(assets.CoverMedium.Uri);
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
             {
                 return Image.FromStream(stream);
             }

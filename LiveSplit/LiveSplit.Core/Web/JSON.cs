@@ -54,8 +54,11 @@ namespace LiveSplit.Web
         public static dynamic FromUri(Uri uri)
         {
             var request = WebRequest.Create(uri);
-            var response = request.GetResponse();
-            return FromResponse(response);
+
+            using (var response = request.GetResponse())
+            {
+                return FromResponse(response);
+            }
         }
 
         public static string Escape(string value)
@@ -89,9 +92,10 @@ namespace LiveSplit.Web
                 writer.Write(parameters.ToString());
             }
 
-            var response = request.GetResponse();
-
-            return FromResponse(response);
+            using (var response = request.GetResponse())
+            {
+                return FromResponse(response);
+            }
         }
     }
 

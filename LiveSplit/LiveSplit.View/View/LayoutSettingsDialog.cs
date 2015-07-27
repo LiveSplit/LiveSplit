@@ -33,12 +33,11 @@ namespace LiveSplit.View
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            var i = 0;
-            foreach(var component in Components)
+            for (int i = 0; i < Components.Count; i++)
             {
-                component.SetSettings(ComponentSettings[i]);
-                i++;
+                Components[i].SetSettings(ComponentSettings[i]);
             }
+
             DialogResult = DialogResult.Cancel;
             Close();
         }

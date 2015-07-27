@@ -13,13 +13,14 @@
       <Game>Half-Life 2: Lost Coast</Game>
       <Game>Portal</Game>
       <Game>Portal 2</Game>
+      <Game>Portal Stories: Mel</Game>
     </Games>
     <URLs>
       <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.SourceSplit.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting are available. (By Fatalis)</Description>
-	<ShowInLayoutEditor />
+    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -69,8 +70,8 @@
       <Game>Halo PC</Game>
     </Games>
     <URLs>
-		<URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.dll</URL>
-		<URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.UI.dll</URL>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.dll</URL>
+      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.HaloSplit.UI.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting is available. (By Fatalis)</Description>
@@ -112,7 +113,7 @@
   <AutoSplitter>
     <Games>
       <Game>Love</Game>
-	  <Game>Love+</Game>
+      <Game>Love+</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/madzinah/LiveSplits_Scripts/master/Love.asl</URL>
@@ -165,7 +166,7 @@
   <AutoSplitter>
     <Games>
       <Game>The Wheel of Time</Game>
-	  <Game>Wheel of Time</Game>
+      <Game>Wheel of Time</Game>
     </Games>
     <URLs>
       <URL>https://github.com/Dalet/LiveSplit.WheelOfTime/raw/master/Components/LiveSplit.WheelOfTime.dll</URL>
@@ -240,26 +241,26 @@
     <Description>Load Removal is available. (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
-  	<Games>
-  		<Game>Shrek 2</Game>
-  		<Game>Shrek 2 (PC)</Game>
-  	</Games>
-  	<URLs>
-  		<URL>https://github.com/Dalet/LiveSplit.Shrek2/raw/master/Components/LiveSplit.Shrek2.dll</URL>
-  	</URLs>
-  	<Type>Component</Type>
+    <Games>
+      <Game>Shrek 2</Game>
+      <Game>Shrek 2 (PC)</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Dalet/LiveSplit.Shrek2/raw/master/Components/LiveSplit.Shrek2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
     <Description>Auto Splitting is available. (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
-  	<Games>
-  		<Game>Bully: Scholarship Edition</Game>
-  		<Game>Bully</Game>
-  		<Game>Canis Canem Edit</Game>
-  	</Games>
-  	<URLs>
-  		<URL>https://github.com/Dalet/LiveSplit.Bully/raw/master/Components/LiveSplit.Bully.dll</URL>
-  	</URLs>
-  	<Type>Component</Type>
+    <Games>
+      <Game>Bully: Scholarship Edition</Game>
+      <Game>Bully</Game>
+      <Game>Canis Canem Edit</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Dalet/LiveSplit.Bully/raw/master/Components/LiveSplit.Bully.dll</URL>
+    </URLs>
+    <Type>Component</Type>
     <Description>Load Removal is available. (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
@@ -280,10 +281,10 @@
       <Game>Fallout 3</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/drtchops/LiveSplit.Fallout3/raw/master/Components/LiveSplit.Fallout3.dll</URL>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/fallout3.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By DrTChops)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -345,9 +346,9 @@
       <Game>Mass Effect</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/drtchops/LiveSplit.MassEffect/raw/master/Components/LiveSplit.MassEffect.dll</URL>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/masseffect.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Load Removal is available. (By DrTChops)</Description>
   </AutoSplitter>
   <AutoSplitter>
@@ -575,26 +576,141 @@
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/MGR.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is avaliable. (By Dread and Chops)</Description>  
+    <Description>Load Removal is available. (By Dread and Chops)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>SWJKJA</Game>
+      <Game>JKJA</Game>
       <Game>Jedi Knight 3</Game>
+      <Game>Jedi Knight III</Game>
       <Game>Jedi Academy</Game>
       <Game>Star Wars: Jedi Knight - Jedi Academy</Game>
+      <Game>Star Wars: Jedi Knight Jedi Academy</Game>
+      <Game>Star Wars: Jedi Knight : Jedi Academy</Game>
+      <Game>Star Wars - Jedi Knight - Jedi Academy</Game>
+      <Game>Star Wars - Jedi Knight Jedi Academy</Game>
+      <Game>Star Wars - Jedi Knight: Jedi Academy</Game>
+      <Game>Star Wars Jedi Knight - Jedi Academy</Game>
+      <Game>Star Wars Jedi Knight Jedi Academy</Game>
       <Game>Star Wars Jedi Knight: Jedi Academy</Game>
       <Game>Jedi Knight - Jedi Academy</Game>
-      <Game>Star Wars: Jedi Knight: Jedi Academy</Game>
       <Game>Jedi Knight: Jedi Academy</Game>
+      <Game>Jedi Knight Jedi Academy</Game>
       <Game>JK 3: Jedi Academy</Game>
       <Game>Jedi Knight 3: Jedi Academy</Game>
       <Game>Jedi Knight 3 - Jedi Academy</Game>
+      <Game>Jedi Knight 3 Jedi Academy</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/JKJA.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is avaliable. (By Dread)</Description>  
+    <Description>Autosplitting and Load Removal are available. (By Dread and Zefie)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>RE5</Game>
+      <Game>Resident Evil 5</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/RE5.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Load Removal are available. (By Dread)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Styx</Game>
+      <Game>Styx: MoS</Game>
+      <Game>Styx: Master of Shadows</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/Styx.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Zefie)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Bio Inf</Game>
+      <Game>BioShock Infinite</Game>
+      <Game>BioShock Infinite (PC)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/BioInf.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dread)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>BioShock</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/MrWalrus3451/413423315910e1103149/raw/052ebaffde0d06cfd5f2599523ed1b812706e590/LiveSplit.Bioshock.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By MrWalrus)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SWJKJO</Game>
+      <Game>JKJO</Game>
+      <Game>Jedi Knight 2</Game>
+      <Game>Jedi Knight II</Game>
+      <Game>Jedi Outcast</Game>
+      <Game>Star Wars: Jedi Knight II - Jedi Outcast</Game>
+      <Game>Star Wars: Jedi Knight II Jedi Outcast</Game>
+      <Game>Star Wars: Jedi Knight II : Jedi Outcast</Game>
+      <Game>Star Wars - Jedi Knight II - Jedi Outcast</Game>
+      <Game>Star Wars - Jedi Knight II Jedi Outcast</Game>
+      <Game>Star Wars - Jedi Knight II: Jedi Outcast</Game>
+      <Game>Star Wars Jedi Knight II - Jedi Outcast</Game>
+      <Game>Star Wars Jedi Knight II Jedi Outcast</Game>
+      <Game>Star Wars Jedi Knight II: Jedi Outcast</Game>
+      <Game>Star Wars: Jedi Knight 2 - Jedi Outcast</Game>
+      <Game>Star Wars: Jedi Knight 2 Jedi Outcast</Game>
+      <Game>Star Wars: Jedi Knight 2 : Jedi Outcast</Game>
+      <Game>Star Wars - Jedi Knight 2 - Jedi Outcast</Game>
+      <Game>Star Wars - Jedi Knight 2 Jedi Outcast</Game>
+      <Game>Star Wars - Jedi Knight 2: Jedi Outcast</Game>
+      <Game>Star Wars Jedi Knight 2 - Jedi Outcast</Game>
+      <Game>Star Wars Jedi Knight 2 Jedi Outcast</Game>
+      <Game>Star Wars Jedi Knight 2: Jedi Outcast</Game>
+      <Game>Jedi Knight II Jedi Outcast</Game>
+      <Game>Jedi Knight II: Jedi Outcast</Game>
+      <Game>Jedi Knight II - Jedi Outcast</Game>
+      <Game>Jedi Knight 2 Jedi Outcast</Game>
+      <Game>Jedi Knight 2: Jedi Outcast</Game>
+      <Game>Jedi Knight 2 - Jedi Outcast</Game>
+      <Game>JK 2: Jedi Outcast</Game>
+      <Game>JK II: Jedi Outcast</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/JKJO.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dread)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Super Mario World</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/rainjacket/0ccadd17f8f4f61b1372/raw/1fb99108779a4a476a3ed044d1b174931e1b9f75/LiveSplit.SMW.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available on Snes9x v1.53 (x86). (By calmdowntime)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Advent Rising</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/glasnonck/LiveSplit.AdventRising/raw/master/Components/LiveSplit.AdventRising.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
 </AutoSplitters>

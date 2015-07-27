@@ -1,9 +1,5 @@
 ﻿using LiveSplit.UI;
 using LiveSplit.View;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LiveSplit.Model.RunImporters

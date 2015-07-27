@@ -27,15 +27,17 @@ namespace LiveSplit.Web
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
-            try
-            {
-                result = Attributes[binder.Name];
-                return true;
-            }
-            catch { }
+            var attribute = Attributes[binder.Name];
 
-            result = null;
-            return false;
+            // Attribute is not present.
+            if (attribute == null)
+            {
+                result = null;
+                return false;
+            }
+
+            result = attribute;
+            return true;
         }
     }
 
@@ -55,30 +57,27 @@ namespace LiveSplit.Web
 
         public override bool TryGetMember(GetMemberBinder binder, out object result)
         {
-            try
+            if (binder.Name == "Attributes")
             {
-                if (binder.Name == "Attributes")
-                {
-                    result = new DynamicXMLAttributesCollection(Element.Attributes);
-                    return true;
-                }
-
-                var memberElement = Element[binder.Name];
-                if (memberElement.HasChildNodes)
-                {
-                    result = new DynamicXMLElement(memberElement);
-                    return true;
-                }
-                else
-                {
-                    result = memberElement.InnerText;
-                    return true;
-                }
+                result = new DynamicXMLAttributesCollection(Element.Attributes);
+                return true;
             }
-            catch { }
 
-            result = null;
-            return false;
+            var memberElement = Element[binder.Name];
+
+            // Child element is not present
+            if (memberElement == null)
+            {
+                result = null;
+                return false;
+            }
+
+            if (memberElement.HasChildNodes)
+                result = new DynamicXMLElement(memberElement);
+            else
+                result = memberElement.InnerText;
+
+            return true;
         }
     }
 }

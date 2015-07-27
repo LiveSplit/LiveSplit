@@ -1,40 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
-using System.Net.Sockets;
 
 namespace LiveSplit.Model
 {
     public class TripleDateTime
     {
         private static Stopwatch QPC;
-
-        public static TimeSpan NISTQPCOffset { get; protected set; }
-
-        private static System.Timers.Timer SynchronizationTimer;
-
-        public static double SynchronizationInterval
-        {
-            get
-            {
-                return SynchronizationTimer.Interval;
-            }
-            set
-            {
-                SynchronizationTimer.Interval = value;
-            }
-        }
-        public static bool SynchronizationEnabled
-        {
-            get
-            {
-                return SynchronizationTimer.Enabled;
-            }
-            set
-            {
-                SynchronizationTimer.Enabled = value;
-            }
-        }
 
         public TimeSpan QPCValue { get; protected set; }
         public double EnvironmentTickCount { get; protected set; }
@@ -54,70 +25,11 @@ namespace LiveSplit.Model
             {
                 return new TripleDateTime()
                 {
-                    QPCValue = QPC.Elapsed + NISTQPCOffset,
-                    EnvironmentTickCount = Environment.TickCount + NISTQPCOffset.TotalMilliseconds,
-                    UtcNow = DateTime.UtcNow + NISTQPCOffset
+                    QPCValue = QPC.Elapsed,
+                    EnvironmentTickCount = Environment.TickCount,
+                    UtcNow = DateTime.UtcNow
                 };
             }
-        }
-
-        private static DateTime GetNISTDate()
-        {
-            Random ran = new Random(DateTime.Now.Millisecond);
-            DateTime date = new DateTime(1000, 1, 1);
-            string serverResponse = string.Empty;
-
-            // Represents the list of NIST servers
-            string[] servers = new string[] {
-                /*"nist1-ny.ustiming.org",
-                "time-a.nist.gov",
-                "nist1-chi.ustiming.org",*/
-                "time.nist.gov",
-                /*"ntp-nist.ldsbc.edu",
-                "nist1-la.ustiming.org"       */                  
-            };
-
-            // Try each server in random order to avoid blocked requests due to too frequent request
-            for (int i = 0; i < 5; i++)
-            {
-                try
-                {
-                    // Open a StreamReader to a random time server
-                    using (var tcpClient = new TcpClient(servers[ran.Next(0, servers.Length)], 13))
-                    using (var reader = new StreamReader(tcpClient.GetStream()))
-                    {
-                        serverResponse = reader.ReadToEnd();
-                    }
-
-                    // Check to see that the signature is there
-                    if (serverResponse.Length > 47 && serverResponse.Substring(38, 9).Equals("UTC(NIST)"))
-                    {
-                        // Parse the date
-                        int jd = int.Parse(serverResponse.Substring(1, 5));
-                        int yr = int.Parse(serverResponse.Substring(7, 2));
-                        int mo = int.Parse(serverResponse.Substring(10, 2));
-                        int dy = int.Parse(serverResponse.Substring(13, 2));
-                        int hr = int.Parse(serverResponse.Substring(16, 2));
-                        int mm = int.Parse(serverResponse.Substring(19, 2));
-                        int sc = int.Parse(serverResponse.Substring(22, 2));
-
-                        if (jd > 51544)
-                            yr += 2000;
-                        else
-                            yr += 1999;
-
-                        date = new DateTime(yr, mo, dy, hr, mm, sc);
-
-                        // Exit the loop
-                        break;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    /* Do Nothing...try the next server */
-                }
-            }
-            return date;
         }
 
         private static TimeSpan fromMs(double ms)
