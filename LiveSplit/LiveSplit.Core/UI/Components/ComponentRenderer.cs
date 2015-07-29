@@ -132,7 +132,7 @@ namespace LiveSplit.UI.Components
             return component.HorizontalWidth - rightPadding * 2f;
         }
 
-        public void CalculateOverallHeight(LayoutMode mode)
+        public void CalculateOverallSize(LayoutMode mode)
         {
             var totalSize = 0f;
             var index = 0;
@@ -146,15 +146,9 @@ namespace LiveSplit.UI.Components
             }
 
             if (mode == LayoutMode.Vertical)
-            {
                 OverallHeight = totalSize;
-                OverallWidth = VisibleComponents.Aggregate(0.0f, (x, y) => x + y.HorizontalWidth);
-            }
             else
-            {
                 OverallWidth = totalSize;
-                OverallHeight = VisibleComponents.Aggregate(0.0f, (x, y) => x + y.VerticalHeight);
-            }
         }
 
         public void Render(Graphics g, LiveSplitState state, float width, float height, LayoutMode mode, Region clipRegion)
@@ -191,7 +185,6 @@ namespace LiveSplit.UI.Components
                     {
                         var remainingComponents = VisibleComponents.ToList();
                         crashedComponents.ForEach(x => remainingComponents.Remove(x));
-                        //crashedComponents.ForEach(x => MessageBox.Show(String.Format("The component {0} crashed.", x.ComponentName), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error));
                         VisibleComponents = remainingComponents;
                     }
                     g.Transform = transform;
@@ -202,7 +195,6 @@ namespace LiveSplit.UI.Components
                     errorInComponent = false;
                 }
             }
-            CalculateOverallHeight(mode);
         }
 
         protected void InvalidateVerticalComponent(int index, LiveSplitState state, IInvalidator invalidator, float width, float height, float scaleFactor)

@@ -81,7 +81,7 @@ namespace LiveSplit.View
         protected Point MousePoint;
 
         protected Task RefreshTask { get; set; }
-        protected int RefreshCounter { get; set; }
+        protected bool InvalidationRequired { get; set; }
 
         public string BasePath { get; set; }
 
@@ -228,11 +228,9 @@ namespace LiveSplit.View
 
             SetLayout(Layout);
 
-            OldSize = -20;
-
             RefreshTask = Task.Factory.StartNew(RefreshTimerWorker);
 
-            RefreshCounter = 0;
+            InvalidationRequired = false;
 
             Hook = new CompositeHook();
             Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
@@ -1073,18 +1071,18 @@ namespace LiveSplit.View
                         if (DontRedraw)
                             return;
 
-                        if (OldSize <= 0 || (RefreshCounter > 0 && RefreshCounter % 5 == 0))
+                        if (OldSize <= 0 || InvalidationRequired)
                         {
                             InvalidateForm();
-                            if (RefreshCounter > 0)
-                                RefreshCounter--;
+                            if (InvalidationRequired)
+                                InvalidationRequired = false;
                         }
                         else
                         {
                             GlobalCache.Restart();
                             GlobalCache["Layout"] = new XMLLayoutSaver().GetLayoutNode(new XmlDocument(), Layout).OuterXml;
 
-                            if (GlobalCache.HasChanged || OldSize <= 0)
+                            if (GlobalCache.HasChanged)
                                 InvalidateForm();
                             else
                             {
@@ -1187,6 +1185,8 @@ namespace LiveSplit.View
             g.InterpolationMode = InterpolationMode.Bilinear;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
+            ComponentRenderer.CalculateOverallSize(Layout.Mode);
+
             var scaleFactor = Layout.Mode == LayoutMode.Vertical
                 ? Height / Math.Max(ComponentRenderer.OverallHeight, 1f)
                 : Width / Math.Max(ComponentRenderer.OverallWidth, 1f);
@@ -1235,14 +1235,9 @@ namespace LiveSplit.View
                 OldSize++;
             }
 
-            if (OldSize == 0)
-                RefreshCounter = 50;
-
             if (OldSize >= 0)
                 OldSize = currentSize;
         }
-
-        Random rng = new Random();
 
         private void TimerForm_Paint(object sender, PaintEventArgs e)
         {
@@ -1429,7 +1424,7 @@ namespace LiveSplit.View
             run.FixSplits();
             DeactivateAutoSplitter();
             CurrentState.Run = run;
-            RefreshCounter = 50;
+            InvalidationRequired = true;
             RegenerateComparisons();
             SwitchComparison(CurrentState.CurrentComparison);
             CreateAutoSplitter();
@@ -1697,7 +1692,7 @@ namespace LiveSplit.View
 
         void editor_SegmentRemovedOrAdded(object sender, EventArgs e)
         {
-            RefreshCounter = 50;
+            InvalidationRequired = true;
         }
 
         void editor_ComparisonRenamed(object sender, EventArgs e)
@@ -1795,7 +1790,7 @@ namespace LiveSplit.View
 
         void editor_LayoutSettingsAssigned(object sender, EventArgs e)
         {
-            RefreshCounter = 50;
+            InvalidationRequired = true;
         }
 
         void editor_LayoutResized(object sender, EventArgs e)
@@ -1815,6 +1810,7 @@ namespace LiveSplit.View
 
         void editor_OrientationSwitched(object sender, EventArgs e)
         {
+            ComponentRenderer.CalculateOverallSize(Layout.Mode);
             if (Layout.Mode == LayoutMode.Vertical)
             {
                 Layout.HorizontalWidth = Size.Width;
@@ -2212,8 +2208,6 @@ namespace LiveSplit.View
                         Width = (int)(Width / (minimumHeight / Height) + 0.5f);
                 }
             }
-            else
-                OldSize++;
             if (OldSize >= 0)
                 OldSize = currentSize;
         }
