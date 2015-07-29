@@ -1188,8 +1188,8 @@ namespace LiveSplit.View
             ComponentRenderer.CalculateOverallSize(Layout.Mode);
 
             var scaleFactor = Layout.Mode == LayoutMode.Vertical
-                ? Height / Math.Max(ComponentRenderer.OverallHeight, 1f)
-                : Width / Math.Max(ComponentRenderer.OverallWidth, 1f);
+                ? Height / Math.Max(ComponentRenderer.OverallSize, 1f)
+                : Width / Math.Max(ComponentRenderer.OverallSize, 1f);
 
             g.ResetTransform();
             g.ScaleTransform(scaleFactor, scaleFactor);
@@ -1208,7 +1208,7 @@ namespace LiveSplit.View
 
             ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
                 
-            var currentSize = Layout.Mode == LayoutMode.Vertical ? ComponentRenderer.OverallHeight : ComponentRenderer.OverallWidth;
+            var currentSize = ComponentRenderer.OverallSize;
 
             if (OldSize >= 0)
             {
@@ -1222,9 +1222,9 @@ namespace LiveSplit.View
                 }
                 FixSize();
                 if (Layout.Mode == LayoutMode.Vertical)
-                    MinimumSize = new Size(100, (int)((ComponentRenderer.OverallHeight / 3) + 0.5f));
+                    MinimumSize = new Size(100, (int)((ComponentRenderer.OverallSize / 3) + 0.5f));
                 else
-                    MinimumSize = new Size((int)((ComponentRenderer.OverallWidth / 3) + 0.5f), 25);
+                    MinimumSize = new Size((int)((ComponentRenderer.OverallSize / 3) + 0.5f), 25);
             }
             else
             {
@@ -1818,7 +1818,7 @@ namespace LiveSplit.View
                 if (Layout.VerticalHeight == UI.Layout.InvalidSize || Layout.VerticalWidth == UI.Layout.InvalidSize)
                 {
                     Layout.VerticalWidth = 300;
-                    Layout.VerticalHeight = (int)(ComponentRenderer.OverallHeight + 0.5);
+                    Layout.VerticalHeight = (int)(ComponentRenderer.OverallSize + 0.5);
                 }
             }
             else
@@ -1827,7 +1827,7 @@ namespace LiveSplit.View
                 Layout.VerticalHeight = Size.Height;
                 if (Layout.HorizontalWidth == UI.Layout.InvalidSize || Layout.HorizontalHeight == UI.Layout.InvalidSize)
                 {
-                    Layout.HorizontalWidth = (int)(ComponentRenderer.OverallWidth + 0.5);
+                    Layout.HorizontalWidth = (int)(ComponentRenderer.OverallSize + 0.5);
                     Layout.HorizontalHeight = 45;
                 }
             }
@@ -2192,18 +2192,18 @@ namespace LiveSplit.View
 
         private void FixSize()
         {
-            var currentSize = Layout.Mode == LayoutMode.Vertical ? ComponentRenderer.OverallHeight : ComponentRenderer.OverallWidth;
+            var currentSize = ComponentRenderer.OverallSize;
             if (OldSize >= 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
                 {
-                    var minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallHeight);
+                    var minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallSize);
                     if (Width < minimumWidth)
                         Height = (int)(Height / (minimumWidth / Width) + 0.5f);
                 }
                 else
                 {
-                    var minimumHeight = ComponentRenderer.MinimumHeight * (Width / ComponentRenderer.OverallWidth);
+                    var minimumHeight = ComponentRenderer.MinimumHeight * (Width / ComponentRenderer.OverallSize);
                     if (Height < minimumHeight)
                         Width = (int)(Width / (minimumHeight / Height) + 0.5f);
                 }

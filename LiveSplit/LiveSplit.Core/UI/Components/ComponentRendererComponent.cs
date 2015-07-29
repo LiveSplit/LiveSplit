@@ -14,7 +14,7 @@ namespace LiveSplit.UI.Components
             get
             {
                 CalculateOverallSize(LayoutMode.Vertical);
-                return OverallHeight;
+                return OverallSize;
             }
         }
         public float HorizontalWidth
@@ -22,7 +22,7 @@ namespace LiveSplit.UI.Components
             get
             {
                 CalculateOverallSize(LayoutMode.Horizontal);
-                return OverallWidth;
+                return OverallSize;
             }
         }
 

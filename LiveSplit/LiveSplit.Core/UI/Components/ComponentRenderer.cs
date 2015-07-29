@@ -11,8 +11,7 @@ namespace LiveSplit.UI.Components
     {
         public IEnumerable<IComponent> VisibleComponents { get; set; }
 
-        public float OverallHeight = 10f;
-        public float OverallWidth = 10f;
+        public float OverallSize = 10f;
 
         public float MinimumWidth
         {
@@ -145,10 +144,7 @@ namespace LiveSplit.UI.Components
                 index++;
             }
 
-            if (mode == LayoutMode.Vertical)
-                OverallHeight = totalSize;
-            else
-                OverallWidth = totalSize;
+            OverallSize = totalSize;
         }
 
         public void Render(Graphics g, LiveSplitState state, float width, float height, LayoutMode mode, Region clipRegion)
@@ -221,8 +217,8 @@ namespace LiveSplit.UI.Components
         {
             var oldTransform = invalidator.Transform.Clone();
             var scaleFactor = mode == LayoutMode.Vertical
-                    ? height / OverallHeight
-                    : width / OverallWidth;
+                    ? height / OverallSize
+                    : width / OverallSize;
 
             for (var ind = 0; ind < VisibleComponents.Count(); ind++)
             {
