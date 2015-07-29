@@ -55,10 +55,9 @@ namespace LiveSplit.View
         }
         protected float OldSize { get; set; }
         public ISettings Settings { get; set; }
-        protected ILayout TimerOnlyLayout;
-        protected IRun TimerOnlyRun { get; set; }
         protected Invalidator Invalidator { get; set; }
         protected bool InTimerOnlyMode { get; set; }
+        protected ILayout DefaultLayout { get; set; }
 
         protected GraphicsCache GlobalCache { get; set; }
 
@@ -135,10 +134,6 @@ namespace LiveSplit.View
 
             ComparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
 
-            TimerOnlyLayout = new TimerOnlyLayoutFactory().Create(CurrentState);
-            TimerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
-            InTimerOnlyMode = false;
-
             Model = new DoubleTapPrevention(new TimerModel());
             //LiveSplit.Web.Share.Twitch.Instance.AutoUpdateModel = Model;
 
@@ -151,7 +146,10 @@ namespace LiveSplit.View
             UpdateRecentSplits();
             UpdateRecentLayouts();
 
-            IRun run = TimerOnlyRun;
+            InTimerOnlyMode = false;
+            var timerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
+
+            IRun run = timerOnlyRun;
             try
             {
                 if (!string.IsNullOrEmpty(splitsPath))
@@ -186,21 +184,23 @@ namespace LiveSplit.View
                     {
                         Layout = LoadLayoutFromFile(Settings.RecentLayouts.Last());
                     }
-                    else if (run == TimerOnlyRun)
+                    else if (run == timerOnlyRun)
                     {
-                        Layout = TimerOnlyLayout;
+                        Layout = new TimerOnlyLayoutFactory().Create(CurrentState);
                         InTimerOnlyMode = true;
                     }
                     else
                     {
-                        Layout = new StandardLayoutFactory().Create(CurrentState);
+                        DefaultLayout = new StandardLayoutFactory().Create(CurrentState);
+                        Layout = (ILayout)DefaultLayout.Clone();
                     }
                 }
             }
             catch (Exception e)
             {
                 Log.Error(e);
-                Layout = new StandardLayoutFactory().Create(CurrentState);
+                DefaultLayout = new StandardLayoutFactory().Create(CurrentState);
+                Layout = (ILayout)DefaultLayout.Clone();
             }
 
             CurrentState.LayoutSettings = Layout.Settings;
@@ -610,12 +610,10 @@ namespace LiveSplit.View
             {
                 if (InTimerOnlyMode)
                 {
-                    var offset = CurrentState.Run.Offset;
-                    TimerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
-                    TimerOnlyRun.Offset = offset;
-                    var run = TimerOnlyRun;
+                    var timerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
+                    timerOnlyRun.Offset = CurrentState.Run.Offset;
 
-                    SetRun(run);
+                    SetRun(timerOnlyRun);
                 }
                 resetMenuItem.Enabled = false;
                 pauseMenuItem.Enabled = false;
@@ -1711,23 +1709,24 @@ namespace LiveSplit.View
         protected void RemoveTimerOnly()
         {
             InTimerOnlyMode = false;
-            ILayout layout;
             try
             {
                 var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
                 if (lastLayoutPath != null)
-                    layout = LoadLayoutFromFile(lastLayoutPath);
+                {
+                    var layout = LoadLayoutFromFile(lastLayoutPath);
+                    layout.X = Location.X;
+                    layout.Y = Location.Y;
+                    SetLayout(layout);
+                }
                 else
-                    layout = new StandardLayoutFactory().Create(CurrentState);
+                    LoadDefaultLayout();
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                layout = new StandardLayoutFactory().Create(CurrentState);
+                LoadDefaultLayout();
             }
-            layout.X = Location.X;
-            layout.Y = Location.Y;
-            SetLayout(layout);
         }
 
         private void EditLayout()
@@ -1912,8 +1911,12 @@ namespace LiveSplit.View
         {
             if (WarnUserAboutLayoutSave())
             {
-                var layoutFactory = new StandardLayoutFactory();
-                var layout = layoutFactory.Create(CurrentState);
+                if (DefaultLayout == null)
+                {
+                    DefaultLayout = new StandardLayoutFactory().Create(CurrentState);
+                }
+
+                var layout = (ILayout)DefaultLayout.Clone();
                 layout.X = Location.X;
                 layout.Y = Location.Y;
                 SetLayout(layout);
@@ -1962,16 +1965,14 @@ namespace LiveSplit.View
                 return;
             if (!WarnUserAboutLayoutSave())
                 return;
-            TimerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
-            var run = TimerOnlyRun;
+            var run = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
             Model.Reset();
             SetRun(run);
             Settings.AddToRecentSplits("", null);
             InTimerOnlyMode = true;
             if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
             {
-                TimerOnlyLayout = new TimerOnlyLayoutFactory().Create(CurrentState);
-                var layout = TimerOnlyLayout;
+                var layout = new TimerOnlyLayoutFactory().Create(CurrentState);
                 layout.Settings = Layout.Settings;
                 layout.X = Location.X;
                 layout.Y = Location.Y;
