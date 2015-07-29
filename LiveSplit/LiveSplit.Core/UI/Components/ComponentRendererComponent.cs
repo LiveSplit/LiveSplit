@@ -9,8 +9,22 @@ namespace LiveSplit.UI.Components
 {
     public class ComponentRendererComponent : ComponentRenderer, IComponent
     {
-        public float VerticalHeight { get { return OverallHeight; } }
-        public float HorizontalWidth { get { return OverallWidth; } }
+        public float VerticalHeight
+        {
+            get
+            {
+                CalculateOverallSize(LayoutMode.Vertical);
+                return OverallSize;
+            }
+        }
+        public float HorizontalWidth
+        {
+            get
+            {
+                CalculateOverallSize(LayoutMode.Horizontal);
+                return OverallSize;
+            }
+        }
 
         public float PaddingTop { get { return base.VisibleComponents.Count() > 0 ? base.VisibleComponents.First().PaddingTop : 0; } }
         public float PaddingLeft { get { return base.VisibleComponents.Count() > 0 ? base.VisibleComponents.First().PaddingLeft : 0; } }
