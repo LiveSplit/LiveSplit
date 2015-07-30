@@ -138,11 +138,11 @@
             this.linkLabel2.Location = new System.Drawing.Point(6, 114);
             this.linkLabel2.Margin = new System.Windows.Forms.Padding(6, 0, 3, 0);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(59, 13);
+            this.linkLabel2.Size = new System.Drawing.Size(53, 13);
             this.linkLabel2.TabIndex = 27;
             this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "wooferzfg1";
-            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.wooferzfg1LinkClicked);
+            this.linkLabel2.Text = "wooferzfg";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.wooferzfgLinkClicked);
             // 
             // label1
             // 
