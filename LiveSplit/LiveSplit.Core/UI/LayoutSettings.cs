@@ -22,6 +22,9 @@ namespace LiveSplit.UI
 
         public GradientType BackgroundGradient { get; set; }
 
+        public Image BackgroundImage { get; set; }
+        public string BackgroundImagePath { get; set; }
+
         public Font TimerFont { get; set; }
         public Font TimesFont { get; set; }
         public Font TextFont { get; set; }
@@ -54,6 +57,7 @@ namespace LiveSplit.UI
             BehindGainingTimeColor = settings.BehindGainingTimeColor;
             BehindLosingTimeColor = settings.BehindLosingTimeColor;
             BestSegmentColor = settings.BestSegmentColor;
+            UseRainbowColor = settings.UseRainbowColor;
             NotRunningColor = settings.NotRunningColor;
             PausedColor = settings.PausedColor;
             ShadowsColor = settings.ShadowsColor;
@@ -66,7 +70,8 @@ namespace LiveSplit.UI
             DropShadows = settings.DropShadows;
             Opacity = settings.Opacity;
             BackgroundGradient = settings.BackgroundGradient;
-            UseRainbowColor = settings.UseRainbowColor;
+            BackgroundImage = settings.BackgroundImage;
+            BackgroundImagePath = settings.BackgroundImagePath;
         }
     }
 }

@@ -31,6 +31,8 @@ namespace LiveSplit.UI.LayoutFactories
                 AntiAliasing = true,
                 DropShadows = true,
                 BackgroundGradient = GradientType.Plain,
+                BackgroundImagePath = string.Empty,
+                BackgroundImage = null,
                 Opacity = 1
             };
         }

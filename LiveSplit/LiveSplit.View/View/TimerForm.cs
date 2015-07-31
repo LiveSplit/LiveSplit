@@ -1079,6 +1079,7 @@ namespace LiveSplit.View
                         {
                             GlobalCache.Restart();
                             GlobalCache["Layout"] = new XMLLayoutSaver().GetLayoutNode(new XmlDocument(), Layout).OuterXml;
+                            GlobalCache["BackgroundImage"] = Layout.Settings.BackgroundImage;
 
                             if (GlobalCache.HasChanged)
                                 InvalidateForm();
@@ -1157,7 +1158,18 @@ namespace LiveSplit.View
 
         private void PaintForm(Graphics g, Region clip)
         {
-            if (Layout.Settings.BackgroundColor != Color.Transparent
+            if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
+                UpdateRegion.Union(clip);
+
+            if (Layout.Settings.BackgroundImage != null)
+            {
+                foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
+                {
+                    var rect = Rectangle.Round(rectangle);
+                    g.DrawImage(Layout.Settings.BackgroundImage, rect, rect, GraphicsUnit.Pixel);
+                }
+            }
+            else if (Layout.Settings.BackgroundColor != Color.Transparent
                 || Layout.Settings.BackgroundGradient != GradientType.Plain
                 && Layout.Settings.BackgroundColor2 != Color.Transparent)
             {
@@ -1171,15 +1183,6 @@ namespace LiveSplit.View
                             ? Layout.Settings.BackgroundColor
                             : Layout.Settings.BackgroundColor2);
                 g.FillRectangle(gradientBrush, 0, 0, Size.Width, Size.Height);
-            }
-
-            if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
-                UpdateRegion.Union(clip);
-
-            foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
-            {
-                var rect = Rectangle.Round(rectangle);
-                g.DrawImage(CurrentState.Run[0].Icon, rect, rect, GraphicsUnit.Pixel);
             }
 
             Opacity = Layout.Settings.Opacity;
