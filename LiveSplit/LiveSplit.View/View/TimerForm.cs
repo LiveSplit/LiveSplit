@@ -1160,7 +1160,7 @@ namespace LiveSplit.View
             if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
                 UpdateRegion.Union(clip);
 
-            if (Layout.Settings.BackgroundGradient == BackgroundGradientType.Image)
+            if (Layout.Settings.BackgroundType == BackgroundType.Image)
             {
                 if (Layout.Settings.BackgroundImage != null)
                 {
@@ -1172,16 +1172,16 @@ namespace LiveSplit.View
                 }
             }
             else if (Layout.Settings.BackgroundColor != Color.Transparent
-                || Layout.Settings.BackgroundGradient != BackgroundGradientType.Plain
+                || Layout.Settings.BackgroundType != BackgroundType.SolidColor
                 && Layout.Settings.BackgroundColor2 != Color.Transparent)
             {
                 var gradientBrush = new LinearGradientBrush(
                             new PointF(0, 0),
-                            Layout.Settings.BackgroundGradient == BackgroundGradientType.Horizontal
+                            Layout.Settings.BackgroundType == BackgroundType.HorizontalGradient
                             ? new PointF(Size.Width, 0)
                             : new PointF(0, Size.Height),
                             Layout.Settings.BackgroundColor,
-                            Layout.Settings.BackgroundGradient == BackgroundGradientType.Plain
+                            Layout.Settings.BackgroundType == BackgroundType.SolidColor
                             ? Layout.Settings.BackgroundColor
                             : Layout.Settings.BackgroundColor2);
                 g.FillRectangle(gradientBrush, 0, 0, Size.Width, Size.Height);

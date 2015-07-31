@@ -22,13 +22,6 @@ namespace LiveSplit.View
         public string MainFont { get { return string.Format("{0} {1}", Settings.TimesFont.FontFamily.Name, Settings.TimesFont.Style); ; } }
         public string SplitNamesFont { get { return string.Format("{0} {1}", Settings.TextFont.FontFamily.Name, Settings.TextFont.Style); ; } }
 
-        public BackgroundGradientType BackgroundGradient { get { return Settings.BackgroundGradient; } set { Settings.BackgroundGradient = value; } }
-        public string GradientString
-        {
-            get { return BackgroundGradient.ToString(); }
-            set { BackgroundGradient = (BackgroundGradientType)Enum.Parse(typeof(BackgroundGradientType), value); }
-        }
-
         public float Opacity { get { return Settings.Opacity*100f; } set { Settings.Opacity = value/100f; } }
 
         public LayoutSettingsControl(LiveSplit.UI.LayoutSettings settings, ILayout layout)
@@ -59,15 +52,30 @@ namespace LiveSplit.View
             lblText.DataBindings.Add("Text", this, "SplitNamesFont", false, DataSourceUpdateMode.OnPropertyChanged);
             lblTimes.DataBindings.Add("Text", this, "MainFont", false, DataSourceUpdateMode.OnPropertyChanged);
             trkOpacity.DataBindings.Add("Value", this, "Opacity", false, DataSourceUpdateMode.OnPropertyChanged);
-            cmbGradientType.SelectedItem = GradientString;
 
+            cmbBackgroundType.SelectedItem = GetBackgroundTypeString(Settings.BackgroundType);
             originalBackgroundImage = Settings.BackgroundImage;
+        }
+
+        private string GetBackgroundTypeString(BackgroundType type)
+        {
+            switch (type)
+            {
+                case BackgroundType.HorizontalGradient:
+                    return "Horizontal Gradient";
+                case BackgroundType.VerticalGradient:
+                    return "Vertical Gradient";
+                case BackgroundType.Image:
+                    return "Image";
+                default:
+                    return "Solid Color";
+            }
         }
 
         void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var selectedItem = cmbGradientType.SelectedItem.ToString();
-            btnBackground.Visible = selectedItem != "Plain" && selectedItem != "Image";
+            var selectedItem = cmbBackgroundType.SelectedItem.ToString();
+            btnBackground.Visible = selectedItem != "Solid Color" && selectedItem != "Image";
             btnBackground2.DataBindings.Clear();
             if (selectedItem == "Image")
             {
@@ -79,7 +87,7 @@ namespace LiveSplit.View
                 btnBackground2.BackgroundImage = null;
                 btnBackground2.DataBindings.Add("BackColor", Settings, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
             }
-            GradientString = selectedItem;
+            Settings.BackgroundType = (BackgroundType)Enum.Parse(typeof(BackgroundType), selectedItem.Replace(" ", ""));
         }
 
         private void ColorButtonClick(object sender, EventArgs e)
@@ -89,7 +97,7 @@ namespace LiveSplit.View
 
         private void BackgroundColorButtonClick(object sender, EventArgs e)
         {
-            if (cmbGradientType.SelectedItem.ToString() == "Image")
+            if (cmbBackgroundType.SelectedItem.ToString() == "Image")
             {
                 var dialog = new OpenFileDialog();
                 dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";

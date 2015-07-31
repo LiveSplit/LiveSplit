@@ -20,7 +20,7 @@ namespace LiveSplit.UI
         public Color PausedColor { get; set; }
         public Color ShadowsColor { get; set; }
 
-        public BackgroundGradientType BackgroundGradient { get; set; }
+        public BackgroundType BackgroundType { get; set; }
 
         public Image BackgroundImage { get; set; }
         public string BackgroundImagePath { get; set; }
@@ -69,7 +69,7 @@ namespace LiveSplit.UI
             AntiAliasing = settings.AntiAliasing;
             DropShadows = settings.DropShadows;
             Opacity = settings.Opacity;
-            BackgroundGradient = settings.BackgroundGradient;
+            BackgroundType = settings.BackgroundType;
             BackgroundImage = settings.BackgroundImage;
             BackgroundImagePath = settings.BackgroundImagePath;
         }

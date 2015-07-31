@@ -146,7 +146,7 @@
     <Compile Include="TimeFormatters\PossibleTimeSaveFormatter.cs" />
     <Compile Include="TimeFormatters\TimeFormat.cs" />
     <Compile Include="TimeFormatters\TimeAccuracy.cs" />
-    <Compile Include="UI\BackgroundGradientType.cs" />
+    <Compile Include="UI\BackgroundType.cs" />
     <Compile Include="UI\Components\AutoSplit\AutoSplitComponent.cs" />
     <Compile Include="UI\Components\AutoSplit\IAutoSplitter.cs" />
     <Compile Include="UI\Components\ComponentCategory.cs" />

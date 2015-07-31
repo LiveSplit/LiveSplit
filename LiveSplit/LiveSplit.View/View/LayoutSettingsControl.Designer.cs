@@ -31,7 +31,7 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbGradientType = new System.Windows.Forms.ComboBox();
+            this.cmbBackgroundType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBackground = new System.Windows.Forms.Button();
             this.btnBackground2 = new System.Windows.Forms.Button();
@@ -128,7 +128,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.Controls.Add(this.cmbGradientType, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cmbBackgroundType, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnBackground, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnBackground2, 2, 0);
@@ -172,22 +172,22 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(450, 232);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // cmbGradientType
+            // cmbBackgroundType
             // 
-            this.cmbGradientType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.SetColumnSpan(this.cmbGradientType, 2);
-            this.cmbGradientType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbGradientType.FormattingEnabled = true;
-            this.cmbGradientType.Items.AddRange(new object[] {
-            "Plain",
-            "Vertical",
-            "Horizontal",
+            this.cmbBackgroundType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.SetColumnSpan(this.cmbBackgroundType, 2);
+            this.cmbBackgroundType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBackgroundType.FormattingEnabled = true;
+            this.cmbBackgroundType.Items.AddRange(new object[] {
+            "Solid Color",
+            "Vertical Gradient",
+            "Horizontal Gradient",
             "Image"});
-            this.cmbGradientType.Location = new System.Drawing.Point(227, 4);
-            this.cmbGradientType.Name = "cmbGradientType";
-            this.cmbGradientType.Size = new System.Drawing.Size(220, 21);
-            this.cmbGradientType.TabIndex = 2;
-            this.cmbGradientType.SelectedIndexChanged += new System.EventHandler(this.cmbGradientType_SelectedIndexChanged);
+            this.cmbBackgroundType.Location = new System.Drawing.Point(227, 4);
+            this.cmbBackgroundType.Name = "cmbBackgroundType";
+            this.cmbBackgroundType.Size = new System.Drawing.Size(220, 21);
+            this.cmbBackgroundType.TabIndex = 2;
+            this.cmbBackgroundType.SelectedIndexChanged += new System.EventHandler(this.cmbGradientType_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -797,7 +797,7 @@
         private System.Windows.Forms.CheckBox chkBestSegments;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TrackBar trkOpacity;
-        private System.Windows.Forms.ComboBox cmbGradientType;
+        private System.Windows.Forms.ComboBox cmbBackgroundType;
         private System.Windows.Forms.Button btnBackground2;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnShadowsColor;

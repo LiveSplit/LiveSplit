@@ -36,7 +36,6 @@ namespace LiveSplit.UI.LayoutFactories
             settings.AntiAliasing = SettingsHelper.ParseBool(element["AntiAliasing"], true);
             settings.DropShadows = SettingsHelper.ParseBool(element["DropShadows"], true);
             settings.Opacity = SettingsHelper.ParseFloat(element["Opacity"], 1);
-            settings.BackgroundGradient = SettingsHelper.ParseEnum<BackgroundGradientType>(element["BackgroundGradient"], BackgroundGradientType.Plain);
             settings.ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0));
             settings.ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]);
             settings.AlwaysOnTop = SettingsHelper.ParseBool(element["AlwaysOnTop"]);
@@ -60,6 +59,21 @@ namespace LiveSplit.UI.LayoutFactories
                     settings.BackgroundColor2 = settings.BackgroundColor;
                 settings.TimesFont = SettingsHelper.GetFontFromElement(element["MainFont"]);
                 settings.TextFont = SettingsHelper.GetFontFromElement(element["SplitNamesFont"]);
+            }
+
+            if (version >= new Version(1, 6, 1))
+            {
+                settings.BackgroundType = SettingsHelper.ParseEnum<BackgroundType>(element["BackgroundType"], BackgroundType.SolidColor);
+            }
+            else
+            {
+                var gradientType = element["BackgroundGradient"];
+                if (gradientType == null || gradientType.InnerText == "Plain")
+                    settings.BackgroundType = BackgroundType.SolidColor;
+                else if (gradientType.InnerText == "Vertical")
+                    settings.BackgroundType = BackgroundType.VerticalGradient;
+                else
+                    settings.BackgroundType = BackgroundType.HorizontalGradient;
             }
 
             settings.BackgroundImagePath = SettingsHelper.ParseString(element["BackgroundImagePath"]);

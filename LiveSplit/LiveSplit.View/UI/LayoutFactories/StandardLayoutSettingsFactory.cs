@@ -30,7 +30,7 @@ namespace LiveSplit.UI.LayoutFactories
                 AlwaysOnTop = true,
                 AntiAliasing = true,
                 DropShadows = true,
-                BackgroundGradient = BackgroundGradientType.Plain,
+                BackgroundType = BackgroundType.SolidColor,
                 BackgroundImagePath = string.Empty,
                 BackgroundImage = null,
                 Opacity = 1
