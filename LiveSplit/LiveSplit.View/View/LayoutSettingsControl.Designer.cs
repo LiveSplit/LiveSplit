@@ -122,14 +122,13 @@
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 6;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 168F));
+            this.tableLayoutPanel2.ColumnCount = 5;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.Controls.Add(this.cmbGradientType, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.cmbGradientType, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnBackground, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnBackground2, 2, 0);
@@ -147,17 +146,17 @@
             this.tableLayoutPanel2.Controls.Add(this.btnBehindGaining, 2, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnTextColor, 2, 6);
             this.tableLayoutPanel2.Controls.Add(this.btnBehindLosing, 2, 5);
-            this.tableLayoutPanel2.Controls.Add(this.chkRainbow, 4, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label10, 4, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 4, 5);
-            this.tableLayoutPanel2.Controls.Add(this.label4, 4, 3);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 4, 6);
-            this.tableLayoutPanel2.Controls.Add(this.label12, 4, 4);
-            this.tableLayoutPanel2.Controls.Add(this.btnNotRunning, 5, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnThinSep, 5, 5);
-            this.tableLayoutPanel2.Controls.Add(this.btnPB, 5, 3);
-            this.tableLayoutPanel2.Controls.Add(this.btnSeparators, 5, 6);
-            this.tableLayoutPanel2.Controls.Add(this.btnPausedColor, 5, 4);
+            this.tableLayoutPanel2.Controls.Add(this.chkRainbow, 3, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label10, 3, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 3, 5);
+            this.tableLayoutPanel2.Controls.Add(this.label4, 3, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 3, 6);
+            this.tableLayoutPanel2.Controls.Add(this.label12, 3, 4);
+            this.tableLayoutPanel2.Controls.Add(this.btnNotRunning, 4, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnThinSep, 4, 5);
+            this.tableLayoutPanel2.Controls.Add(this.btnPB, 4, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnSeparators, 4, 6);
+            this.tableLayoutPanel2.Controls.Add(this.btnPausedColor, 4, 4);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -196,7 +195,7 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 8);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 13);
+            this.label1.Size = new System.Drawing.Size(160, 13);
             this.label1.TabIndex = 19;
             this.label1.Text = "Background:";
             // 
@@ -206,7 +205,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBackground.Location = new System.Drawing.Point(171, 3);
+            this.btnBackground.Location = new System.Drawing.Point(169, 3);
             this.btnBackground.Name = "btnBackground";
             this.btnBackground.Size = new System.Drawing.Size(23, 23);
             this.btnBackground.TabIndex = 0;
@@ -220,7 +219,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBackground2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnBackground2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBackground2.Location = new System.Drawing.Point(200, 3);
+            this.btnBackground2.Location = new System.Drawing.Point(198, 3);
             this.btnBackground2.Name = "btnBackground2";
             this.btnBackground2.Size = new System.Drawing.Size(23, 23);
             this.btnBackground2.TabIndex = 1;
@@ -233,7 +232,7 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(3, 37);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(162, 13);
+            this.label9.Size = new System.Drawing.Size(160, 13);
             this.label9.TabIndex = 27;
             this.label9.Text = "Best Segment:";
             // 
@@ -243,7 +242,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGlod.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGlod.Location = new System.Drawing.Point(200, 32);
+            this.btnGlod.Location = new System.Drawing.Point(198, 32);
             this.btnGlod.Name = "btnGlod";
             this.btnGlod.Size = new System.Drawing.Size(23, 23);
             this.btnGlod.TabIndex = 8;
@@ -256,7 +255,7 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(3, 211);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(162, 13);
+            this.label14.Size = new System.Drawing.Size(160, 13);
             this.label14.TabIndex = 44;
             this.label14.Text = "Shadows:";
             // 
@@ -266,7 +265,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnShadowsColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnShadowsColor.Location = new System.Drawing.Point(200, 206);
+            this.btnShadowsColor.Location = new System.Drawing.Point(198, 206);
             this.btnShadowsColor.Name = "btnShadowsColor";
             this.btnShadowsColor.Size = new System.Drawing.Size(23, 23);
             this.btnShadowsColor.TabIndex = 3;
@@ -279,7 +278,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(3, 66);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(162, 13);
+            this.label5.Size = new System.Drawing.Size(160, 13);
             this.label5.TabIndex = 23;
             this.label5.Text = "Ahead (Gaining Time):";
             // 
@@ -289,7 +288,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(3, 95);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(162, 13);
+            this.label6.Size = new System.Drawing.Size(160, 13);
             this.label6.TabIndex = 24;
             this.label6.Text = "Ahead (Losing Time):";
             // 
@@ -299,7 +298,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(3, 124);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(162, 13);
+            this.label7.Size = new System.Drawing.Size(160, 13);
             this.label7.TabIndex = 25;
             this.label7.Text = "Behind (Gaining Time):";
             // 
@@ -309,7 +308,7 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(3, 182);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(162, 13);
+            this.label11.Size = new System.Drawing.Size(160, 13);
             this.label11.TabIndex = 29;
             this.label11.Text = "Text:";
             // 
@@ -319,7 +318,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(3, 153);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(162, 13);
+            this.label8.Size = new System.Drawing.Size(160, 13);
             this.label8.TabIndex = 26;
             this.label8.Text = "Behind (Losing Time):";
             // 
@@ -329,7 +328,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAheadGaining.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAheadGaining.Location = new System.Drawing.Point(200, 61);
+            this.btnAheadGaining.Location = new System.Drawing.Point(198, 61);
             this.btnAheadGaining.Name = "btnAheadGaining";
             this.btnAheadGaining.Size = new System.Drawing.Size(23, 23);
             this.btnAheadGaining.TabIndex = 11;
@@ -342,7 +341,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAheadLosing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAheadLosing.Location = new System.Drawing.Point(200, 90);
+            this.btnAheadLosing.Location = new System.Drawing.Point(198, 90);
             this.btnAheadLosing.Name = "btnAheadLosing";
             this.btnAheadLosing.Size = new System.Drawing.Size(23, 23);
             this.btnAheadLosing.TabIndex = 13;
@@ -355,7 +354,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBehindGaining.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBehindGaining.Location = new System.Drawing.Point(200, 119);
+            this.btnBehindGaining.Location = new System.Drawing.Point(198, 119);
             this.btnBehindGaining.Name = "btnBehindGaining";
             this.btnBehindGaining.Size = new System.Drawing.Size(23, 23);
             this.btnBehindGaining.TabIndex = 4;
@@ -368,7 +367,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTextColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnTextColor.Location = new System.Drawing.Point(200, 177);
+            this.btnTextColor.Location = new System.Drawing.Point(198, 177);
             this.btnTextColor.Name = "btnTextColor";
             this.btnTextColor.Size = new System.Drawing.Size(23, 23);
             this.btnTextColor.TabIndex = 14;
@@ -381,7 +380,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBehindLosing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBehindLosing.Location = new System.Drawing.Point(200, 148);
+            this.btnBehindLosing.Location = new System.Drawing.Point(198, 148);
             this.btnBehindLosing.Name = "btnBehindLosing";
             this.btnBehindLosing.Size = new System.Drawing.Size(23, 23);
             this.btnBehindLosing.TabIndex = 6;
