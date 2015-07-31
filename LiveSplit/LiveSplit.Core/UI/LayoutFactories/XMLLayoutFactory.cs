@@ -36,7 +36,7 @@ namespace LiveSplit.UI.LayoutFactories
             settings.AntiAliasing = SettingsHelper.ParseBool(element["AntiAliasing"], true);
             settings.DropShadows = SettingsHelper.ParseBool(element["DropShadows"], true);
             settings.Opacity = SettingsHelper.ParseFloat(element["Opacity"], 1);
-            settings.BackgroundGradient = SettingsHelper.ParseEnum<GradientType>(element["BackgroundGradient"], GradientType.Plain);
+            settings.BackgroundGradient = SettingsHelper.ParseEnum<BackgroundGradientType>(element["BackgroundGradient"], BackgroundGradientType.Plain);
             settings.ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0));
             settings.ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]);
             settings.AlwaysOnTop = SettingsHelper.ParseBool(element["AlwaysOnTop"]);

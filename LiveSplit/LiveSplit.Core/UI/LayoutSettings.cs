@@ -20,7 +20,7 @@ namespace LiveSplit.UI
         public Color PausedColor { get; set; }
         public Color ShadowsColor { get; set; }
 
-        public GradientType BackgroundGradient { get; set; }
+        public BackgroundGradientType BackgroundGradient { get; set; }
 
         public Image BackgroundImage { get; set; }
         public string BackgroundImagePath { get; set; }

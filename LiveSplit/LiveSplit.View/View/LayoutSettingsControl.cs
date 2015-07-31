@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using LiveSplit.UI;
+using LiveSplit.Options;
 
 namespace LiveSplit.View
 {
@@ -19,11 +20,11 @@ namespace LiveSplit.View
         public string MainFont { get { return string.Format("{0} {1}", Settings.TimesFont.FontFamily.Name, Settings.TimesFont.Style); ; } }
         public string SplitNamesFont { get { return string.Format("{0} {1}", Settings.TextFont.FontFamily.Name, Settings.TextFont.Style); ; } }
 
-        public GradientType BackgroundGradient { get { return Settings.BackgroundGradient; } set { Settings.BackgroundGradient = value; } }
+        public BackgroundGradientType BackgroundGradient { get { return Settings.BackgroundGradient; } set { Settings.BackgroundGradient = value; } }
         public string GradientString
         {
             get { return BackgroundGradient.ToString(); }
-            set { BackgroundGradient = (GradientType)Enum.Parse(typeof(GradientType), value); }
+            set { BackgroundGradient = (BackgroundGradientType)Enum.Parse(typeof(BackgroundGradientType), value); }
         }
 
         public float Opacity { get { return Settings.Opacity*100f; } set { Settings.Opacity = value/100f; } }
@@ -56,20 +57,58 @@ namespace LiveSplit.View
             lblText.DataBindings.Add("Text", this, "SplitNamesFont", false, DataSourceUpdateMode.OnPropertyChanged);
             lblTimes.DataBindings.Add("Text", this, "MainFont", false, DataSourceUpdateMode.OnPropertyChanged);
             trkOpacity.DataBindings.Add("Value", this, "Opacity", false, DataSourceUpdateMode.OnPropertyChanged);
-            cmbGradientType.DataBindings.Add("SelectedItem", this, "GradientString", false, DataSourceUpdateMode.OnPropertyChanged);
+            cmbGradientType.SelectedItem = GradientString;
         }
 
         void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnBackground.Visible = cmbGradientType.SelectedItem.ToString() != "Plain";
+            var selectedItem = cmbGradientType.SelectedItem.ToString();
+            btnBackground.Visible = selectedItem != "Plain" && selectedItem != "Image";
             btnBackground2.DataBindings.Clear();
-            btnBackground2.DataBindings.Add("BackColor", Settings, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            GradientString = cmbGradientType.SelectedItem.ToString();
+            if (selectedItem == "Image")
+            {
+                btnBackground2.Image = Settings.BackgroundImage;
+                btnBackground2.BackColor = Color.Transparent;
+            }
+            else
+            {
+                btnBackground2.Image = null;
+                btnBackground2.DataBindings.Add("BackColor", Settings, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            }
+            GradientString = selectedItem;
         }
 
         private void ColorButtonClick(object sender, EventArgs e)
         {
             SettingsHelper.ColorButtonClick((Button)sender, this);
+        }
+
+        private void BackgroundColorButtonClick(object sender, EventArgs e)
+        {
+            if (cmbGradientType.SelectedItem.ToString() == "Image")
+            {
+                var dialog = new OpenFileDialog();
+                dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
+                dialog.Title = "Set Background Image...";
+                var result = dialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    try
+                    {
+                        Settings.BackgroundImage = ((Button)sender).Image = Image.FromFile(dialog.FileName);
+                        Settings.BackgroundImagePath = dialog.FileName;
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                        MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                SettingsHelper.ColorButtonClick((Button)sender, this);
+            }
         }
 
         private void btnTimer_Click(object sender, EventArgs e)

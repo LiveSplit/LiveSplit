@@ -31,8 +31,6 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnNotRunning = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
             this.cmbGradientType = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnBackground = new System.Windows.Forms.Button();
@@ -41,14 +39,6 @@
             this.btnGlod = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.btnShadowsColor = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btnSeparators = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnThinSep = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.btnPausedColor = new System.Windows.Forms.Button();
-            this.btnPB = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,6 +50,16 @@
             this.btnTextColor = new System.Windows.Forms.Button();
             this.btnBehindLosing = new System.Windows.Forms.Button();
             this.chkRainbow = new System.Windows.Forms.CheckBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnNotRunning = new System.Windows.Forms.Button();
+            this.btnThinSep = new System.Windows.Forms.Button();
+            this.btnPB = new System.Windows.Forms.Button();
+            this.btnSeparators = new System.Windows.Forms.Button();
+            this.btnPausedColor = new System.Windows.Forms.Button();
             this.chkAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -173,29 +173,6 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(450, 232);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // btnNotRunning
-            // 
-            this.btnNotRunning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNotRunning.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNotRunning.Location = new System.Drawing.Point(424, 61);
-            this.btnNotRunning.Name = "btnNotRunning";
-            this.btnNotRunning.Size = new System.Drawing.Size(23, 23);
-            this.btnNotRunning.TabIndex = 10;
-            this.btnNotRunning.UseVisualStyleBackColor = false;
-            this.btnNotRunning.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(227, 66);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(191, 13);
-            this.label10.TabIndex = 28;
-            this.label10.Text = "Not Running:";
-            // 
             // cmbGradientType
             // 
             this.cmbGradientType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -205,7 +182,8 @@
             this.cmbGradientType.Items.AddRange(new object[] {
             "Plain",
             "Vertical",
-            "Horizontal"});
+            "Horizontal",
+            "Image"});
             this.cmbGradientType.Location = new System.Drawing.Point(227, 4);
             this.cmbGradientType.Name = "cmbGradientType";
             this.cmbGradientType.Size = new System.Drawing.Size(220, 21);
@@ -246,7 +224,7 @@
             this.btnBackground2.Size = new System.Drawing.Size(23, 23);
             this.btnBackground2.TabIndex = 1;
             this.btnBackground2.UseVisualStyleBackColor = false;
-            this.btnBackground2.Click += new System.EventHandler(this.ColorButtonClick);
+            this.btnBackground2.Click += new System.EventHandler(this.BackgroundColorButtonClick);
             // 
             // label9
             // 
@@ -293,98 +271,6 @@
             this.btnShadowsColor.TabIndex = 3;
             this.btnShadowsColor.UseVisualStyleBackColor = false;
             this.btnShadowsColor.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(227, 182);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(191, 13);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Separators:";
-            // 
-            // btnSeparators
-            // 
-            this.btnSeparators.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSeparators.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSeparators.Location = new System.Drawing.Point(424, 177);
-            this.btnSeparators.Name = "btnSeparators";
-            this.btnSeparators.Size = new System.Drawing.Size(23, 23);
-            this.btnSeparators.TabIndex = 7;
-            this.btnSeparators.UseVisualStyleBackColor = false;
-            this.btnSeparators.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(227, 153);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(191, 13);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Thin Separators:";
-            // 
-            // btnThinSep
-            // 
-            this.btnThinSep.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThinSep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnThinSep.Location = new System.Drawing.Point(424, 148);
-            this.btnThinSep.Name = "btnThinSep";
-            this.btnThinSep.Size = new System.Drawing.Size(23, 23);
-            this.btnThinSep.TabIndex = 5;
-            this.btnThinSep.UseVisualStyleBackColor = false;
-            this.btnThinSep.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(227, 124);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(191, 13);
-            this.label12.TabIndex = 41;
-            this.label12.Text = "Paused:";
-            // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(227, 95);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(191, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Personal Best:";
-            // 
-            // btnPausedColor
-            // 
-            this.btnPausedColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPausedColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPausedColor.Location = new System.Drawing.Point(424, 119);
-            this.btnPausedColor.Name = "btnPausedColor";
-            this.btnPausedColor.Size = new System.Drawing.Size(23, 23);
-            this.btnPausedColor.TabIndex = 12;
-            this.btnPausedColor.UseVisualStyleBackColor = false;
-            this.btnPausedColor.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // btnPB
-            // 
-            this.btnPB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPB.Location = new System.Drawing.Point(424, 90);
-            this.btnPB.Name = "btnPB";
-            this.btnPB.Size = new System.Drawing.Size(23, 23);
-            this.btnPB.TabIndex = 9;
-            this.btnPB.UseVisualStyleBackColor = false;
-            this.btnPB.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // label5
             // 
@@ -514,6 +400,121 @@
             this.chkRainbow.Text = "Use Rainbow Best Segment Color";
             this.chkRainbow.UseVisualStyleBackColor = true;
             this.chkRainbow.CheckedChanged += new System.EventHandler(this.chkRainbow_CheckedChanged);
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(227, 66);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(191, 13);
+            this.label10.TabIndex = 28;
+            this.label10.Text = "Not Running:";
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(227, 153);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(191, 13);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Thin Separators:";
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(227, 95);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(191, 13);
+            this.label4.TabIndex = 22;
+            this.label4.Text = "Personal Best:";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(227, 182);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(191, 13);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Separators:";
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(227, 124);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(191, 13);
+            this.label12.TabIndex = 41;
+            this.label12.Text = "Paused:";
+            // 
+            // btnNotRunning
+            // 
+            this.btnNotRunning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNotRunning.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNotRunning.Location = new System.Drawing.Point(424, 61);
+            this.btnNotRunning.Name = "btnNotRunning";
+            this.btnNotRunning.Size = new System.Drawing.Size(23, 23);
+            this.btnNotRunning.TabIndex = 10;
+            this.btnNotRunning.UseVisualStyleBackColor = false;
+            this.btnNotRunning.Click += new System.EventHandler(this.ColorButtonClick);
+            // 
+            // btnThinSep
+            // 
+            this.btnThinSep.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnThinSep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnThinSep.Location = new System.Drawing.Point(424, 148);
+            this.btnThinSep.Name = "btnThinSep";
+            this.btnThinSep.Size = new System.Drawing.Size(23, 23);
+            this.btnThinSep.TabIndex = 5;
+            this.btnThinSep.UseVisualStyleBackColor = false;
+            this.btnThinSep.Click += new System.EventHandler(this.ColorButtonClick);
+            // 
+            // btnPB
+            // 
+            this.btnPB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPB.Location = new System.Drawing.Point(424, 90);
+            this.btnPB.Name = "btnPB";
+            this.btnPB.Size = new System.Drawing.Size(23, 23);
+            this.btnPB.TabIndex = 9;
+            this.btnPB.UseVisualStyleBackColor = false;
+            this.btnPB.Click += new System.EventHandler(this.ColorButtonClick);
+            // 
+            // btnSeparators
+            // 
+            this.btnSeparators.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSeparators.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSeparators.Location = new System.Drawing.Point(424, 177);
+            this.btnSeparators.Name = "btnSeparators";
+            this.btnSeparators.Size = new System.Drawing.Size(23, 23);
+            this.btnSeparators.TabIndex = 7;
+            this.btnSeparators.UseVisualStyleBackColor = false;
+            this.btnSeparators.Click += new System.EventHandler(this.ColorButtonClick);
+            // 
+            // btnPausedColor
+            // 
+            this.btnPausedColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPausedColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnPausedColor.Location = new System.Drawing.Point(424, 119);
+            this.btnPausedColor.Name = "btnPausedColor";
+            this.btnPausedColor.Size = new System.Drawing.Size(23, 23);
+            this.btnPausedColor.TabIndex = 12;
+            this.btnPausedColor.UseVisualStyleBackColor = false;
+            this.btnPausedColor.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // chkAlwaysOnTop
             // 

@@ -1079,7 +1079,6 @@ namespace LiveSplit.View
                         {
                             GlobalCache.Restart();
                             GlobalCache["Layout"] = new XMLLayoutSaver().GetLayoutNode(new XmlDocument(), Layout).OuterXml;
-                            GlobalCache["BackgroundImage"] = Layout.Settings.BackgroundImage;
 
                             if (GlobalCache.HasChanged)
                                 InvalidateForm();
@@ -1161,25 +1160,28 @@ namespace LiveSplit.View
             if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
                 UpdateRegion.Union(clip);
 
-            if (Layout.Settings.BackgroundImage != null)
+            if (Layout.Settings.BackgroundGradient == BackgroundGradientType.Image)
             {
-                foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
+                if (Layout.Settings.BackgroundImage != null)
                 {
-                    var rect = Rectangle.Round(rectangle);
-                    g.DrawImage(Layout.Settings.BackgroundImage, rect, rect, GraphicsUnit.Pixel);
+                    foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
+                    {
+                        var rect = Rectangle.Round(rectangle);
+                        g.DrawImage(Layout.Settings.BackgroundImage, rect, rect, GraphicsUnit.Pixel);
+                    }
                 }
             }
             else if (Layout.Settings.BackgroundColor != Color.Transparent
-                || Layout.Settings.BackgroundGradient != GradientType.Plain
+                || Layout.Settings.BackgroundGradient != BackgroundGradientType.Plain
                 && Layout.Settings.BackgroundColor2 != Color.Transparent)
             {
                 var gradientBrush = new LinearGradientBrush(
                             new PointF(0, 0),
-                            Layout.Settings.BackgroundGradient == GradientType.Horizontal
+                            Layout.Settings.BackgroundGradient == BackgroundGradientType.Horizontal
                             ? new PointF(Size.Width, 0)
                             : new PointF(0, Size.Height),
                             Layout.Settings.BackgroundColor,
-                            Layout.Settings.BackgroundGradient == GradientType.Plain
+                            Layout.Settings.BackgroundGradient == BackgroundGradientType.Plain
                             ? Layout.Settings.BackgroundColor
                             : Layout.Settings.BackgroundColor2);
                 g.FillRectangle(gradientBrush, 0, 0, Size.Width, Size.Height);
