@@ -1157,20 +1157,29 @@ namespace LiveSplit.View
 
         private void PaintForm(Graphics g, Region clip)
         {
-            if (CurrentState.LayoutSettings.BackgroundColor != Color.Transparent
-                || CurrentState.LayoutSettings.BackgroundGradient != GradientType.Plain
-                && CurrentState.LayoutSettings.BackgroundColor2 != Color.Transparent)
+            if (Layout.Settings.BackgroundColor != Color.Transparent
+                || Layout.Settings.BackgroundGradient != GradientType.Plain
+                && Layout.Settings.BackgroundColor2 != Color.Transparent)
             {
                 var gradientBrush = new LinearGradientBrush(
                             new PointF(0, 0),
-                            CurrentState.LayoutSettings.BackgroundGradient == GradientType.Horizontal
+                            Layout.Settings.BackgroundGradient == GradientType.Horizontal
                             ? new PointF(Size.Width, 0)
                             : new PointF(0, Size.Height),
-                            CurrentState.LayoutSettings.BackgroundColor,
-                            CurrentState.LayoutSettings.BackgroundGradient == GradientType.Plain
-                            ? CurrentState.LayoutSettings.BackgroundColor
-                            : CurrentState.LayoutSettings.BackgroundColor2);
+                            Layout.Settings.BackgroundColor,
+                            Layout.Settings.BackgroundGradient == GradientType.Plain
+                            ? Layout.Settings.BackgroundColor
+                            : Layout.Settings.BackgroundColor2);
                 g.FillRectangle(gradientBrush, 0, 0, Size.Width, Size.Height);
+            }
+
+            if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
+                UpdateRegion.Union(clip);
+
+            foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
+            {
+                var rect = Rectangle.Round(rectangle);
+                g.DrawImage(CurrentState.Run[0].Icon, rect, rect, GraphicsUnit.Pixel);
             }
 
             Opacity = Layout.Settings.Opacity;
@@ -1200,9 +1209,6 @@ namespace LiveSplit.View
                 transformedHeight /= scaleFactor;
 
             BackColor = Color.Black;
-
-            if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
-                UpdateRegion.Union(clip);
 
             ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
                 
