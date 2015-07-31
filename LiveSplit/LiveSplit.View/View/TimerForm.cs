@@ -1427,12 +1427,10 @@ namespace LiveSplit.View
 
         private void SetRun(IRun run)
         {
-            foreach (var split in CurrentState.Run)
+            foreach (var icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
             {
-                if (split.Icon != null && !run.Any(x => x.Icon == split.Icon))
-                {
-                    split.Icon.Dispose();
-                }
+                if (icon != null)
+                    icon.Dispose();
             }
             if (CurrentState.Run.GameIcon != null && CurrentState.Run.GameIcon != run.GameIcon)
             {
