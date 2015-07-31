@@ -1157,19 +1157,33 @@ namespace LiveSplit.View
 
         private void PaintForm(Graphics g, Region clip)
         {
-            if (CurrentState.LayoutSettings.BackgroundColor != Color.Transparent
-                || CurrentState.LayoutSettings.BackgroundGradient != GradientType.Plain
-                && CurrentState.LayoutSettings.BackgroundColor2 != Color.Transparent)
+            if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
+                UpdateRegion.Union(clip);
+
+            if (Layout.Settings.BackgroundType == BackgroundType.Image)
+            {
+                if (Layout.Settings.BackgroundImage != null)
+                {
+                    foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
+                    {
+                        var rect = Rectangle.Round(rectangle);
+                        g.DrawImage(Layout.Settings.BackgroundImage, rect, rect, GraphicsUnit.Pixel);
+                    }
+                }
+            }
+            else if (Layout.Settings.BackgroundColor != Color.Transparent
+                || Layout.Settings.BackgroundType != BackgroundType.SolidColor
+                && Layout.Settings.BackgroundColor2 != Color.Transparent)
             {
                 var gradientBrush = new LinearGradientBrush(
                             new PointF(0, 0),
-                            CurrentState.LayoutSettings.BackgroundGradient == GradientType.Horizontal
+                            Layout.Settings.BackgroundType == BackgroundType.HorizontalGradient
                             ? new PointF(Size.Width, 0)
                             : new PointF(0, Size.Height),
-                            CurrentState.LayoutSettings.BackgroundColor,
-                            CurrentState.LayoutSettings.BackgroundGradient == GradientType.Plain
-                            ? CurrentState.LayoutSettings.BackgroundColor
-                            : CurrentState.LayoutSettings.BackgroundColor2);
+                            Layout.Settings.BackgroundColor,
+                            Layout.Settings.BackgroundType == BackgroundType.SolidColor
+                            ? Layout.Settings.BackgroundColor
+                            : Layout.Settings.BackgroundColor2);
                 g.FillRectangle(gradientBrush, 0, 0, Size.Width, Size.Height);
             }
 
@@ -1200,9 +1214,6 @@ namespace LiveSplit.View
                 transformedHeight /= scaleFactor;
 
             BackColor = Color.Black;
-
-            if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
-                UpdateRegion.Union(clip);
 
             ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
                 
@@ -1416,6 +1427,16 @@ namespace LiveSplit.View
 
         private void SetRun(IRun run)
         {
+            foreach (var icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
+            {
+                if (icon != null)
+                    icon.Dispose();
+            }
+            if (CurrentState.Run.GameIcon != null && CurrentState.Run.GameIcon != run.GameIcon)
+            {
+                CurrentState.Run.GameIcon.Dispose();
+            }
+
             run.ComparisonGenerators = new List<IComparisonGenerator>(CurrentState.Run.ComparisonGenerators);
             foreach (var generator in run.ComparisonGenerators)
                 generator.Run = run;
@@ -1676,10 +1697,16 @@ namespace LiveSplit.View
                 var result = editor.ShowDialog(this);
                 if (result == DialogResult.Cancel)
                 {
+                    foreach (var image in runCopy.Select(x => x.Icon))
+                        editor.ImagesToDispose.Remove(image);
+                    editor.ImagesToDispose.Remove(runCopy.GameIcon);
+                    
                     CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
                     SetRun(runCopy);
                     CurrentState.CallRunManuallyModified();
                 }
+                foreach (var image in editor.ImagesToDispose)
+                    image.Dispose();
             }
             finally
             {
@@ -1769,6 +1796,8 @@ namespace LiveSplit.View
                 {
                     foreach (var component in layoutCopy.Components)
                         editor.ComponentsToDispose.Remove(component);
+                    editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
+
                     var enumerator = componentSettings.GetEnumerator();
                     foreach (var component in layoutCopy.Components)
                     {
@@ -1780,6 +1809,8 @@ namespace LiveSplit.View
                 }
                 foreach (var component in editor.ComponentsToDispose)
                     component.Dispose();
+                foreach (var image in editor.ImagesToDispose)
+                    image.Dispose();
             }
             finally
             {
@@ -1930,6 +1961,9 @@ namespace LiveSplit.View
             {
                 if (Layout != null && Layout != layout)
                 {
+                    if (Layout.Settings.BackgroundImage != null && Layout.Settings.BackgroundImage != layout.Settings.BackgroundImage)
+                        Layout.Settings.BackgroundImage.Dispose();
+
                     foreach (var component in Layout.Components.Except(layout.Components))
                         component.Dispose();
 

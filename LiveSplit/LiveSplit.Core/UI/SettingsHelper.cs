@@ -121,8 +121,10 @@ namespace LiveSplit.UI
             return floatElement != null ? Single.Parse(floatElement.InnerText.Replace(',', '.'), CultureInfo.InvariantCulture) : defaultFloat;
         }
 
-        public static string ParseString(XmlElement stringElement, string defaultString = default(string))
+        public static string ParseString(XmlElement stringElement, string defaultString = null)
         {
+            if (defaultString == null)
+                defaultString = string.Empty;
             return stringElement != null ? stringElement.InnerText : defaultString;
         }
 

@@ -30,15 +30,14 @@ namespace LiveSplit.UI.LayoutFactories
             settings.BehindGainingTimeColor = SettingsHelper.ParseColor(element["BehindGainingTimeColor"]);
             settings.BehindLosingTimeColor = SettingsHelper.ParseColor(element["BehindLosingTimeColor"]);
             settings.BestSegmentColor = SettingsHelper.ParseColor(element["BestSegmentColor"]);
+            settings.UseRainbowColor = SettingsHelper.ParseBool(element["UseRainbowColor"], false);
             settings.NotRunningColor = SettingsHelper.ParseColor(element["NotRunningColor"]);
             settings.PausedColor = SettingsHelper.ParseColor(element["PausedColor"], Color.FromArgb(122, 122, 122));
             settings.AntiAliasing = SettingsHelper.ParseBool(element["AntiAliasing"], true);
             settings.DropShadows = SettingsHelper.ParseBool(element["DropShadows"], true);
             settings.Opacity = SettingsHelper.ParseFloat(element["Opacity"], 1);
-            settings.BackgroundGradient = SettingsHelper.ParseEnum<GradientType>(element["BackgroundGradient"], GradientType.Plain);
             settings.ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0));
             settings.ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]);
-            settings.UseRainbowColor = SettingsHelper.ParseBool(element["UseRainbowColor"], false);
             settings.AlwaysOnTop = SettingsHelper.ParseBool(element["AlwaysOnTop"]);
             settings.TimerFont = SettingsHelper.GetFontFromElement(element["TimerFont"]);
             using (var timerFont = new Font(settings.TimerFont.FontFamily.Name, (settings.TimerFont.Size / 50f) * 18f, settings.TimerFont.Style, GraphicsUnit.Point))
@@ -60,6 +59,34 @@ namespace LiveSplit.UI.LayoutFactories
                     settings.BackgroundColor2 = settings.BackgroundColor;
                 settings.TimesFont = SettingsHelper.GetFontFromElement(element["MainFont"]);
                 settings.TextFont = SettingsHelper.GetFontFromElement(element["SplitNamesFont"]);
+            }
+
+            if (version >= new Version(1, 6, 1))
+            {
+                settings.BackgroundType = SettingsHelper.ParseEnum<BackgroundType>(element["BackgroundType"], BackgroundType.SolidColor);
+            }
+            else
+            {
+                var gradientType = element["BackgroundGradient"];
+                if (gradientType == null || gradientType.InnerText == "Plain")
+                    settings.BackgroundType = BackgroundType.SolidColor;
+                else if (gradientType.InnerText == "Vertical")
+                    settings.BackgroundType = BackgroundType.VerticalGradient;
+                else
+                    settings.BackgroundType = BackgroundType.HorizontalGradient;
+            }
+
+            settings.BackgroundImagePath = SettingsHelper.ParseString(element["BackgroundImagePath"]);
+            if (!string.IsNullOrEmpty(settings.BackgroundImagePath))
+            {
+                try
+                {
+                    settings.BackgroundImage = Image.FromFile(settings.BackgroundImagePath);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
             }
 
             return settings;

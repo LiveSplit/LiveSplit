@@ -34,6 +34,8 @@ namespace LiveSplit.View
         protected IList<TimeSpan?> SegmentTimeList { get; set; }
         protected bool IsInitialized = false;
 
+        public List<Image> ImagesToDispose { get; set; }
+
         protected TimingMethod SelectedMethod
         {
             get { return tabControl.SelectedTab.Text == "Real Time" ? TimingMethod.RealTime : TimingMethod.GameTime; }
@@ -107,6 +109,7 @@ namespace LiveSplit.View
             Run = state.Run;
             CurrentSplitIndexOffset = 0;
             AllowChangingSegments = false;
+            ImagesToDispose = new List<Image>();
             SegmentTimeList = new List<TimeSpan?>();
             TimeFormatter = new ShortTimeFormatter();
             SegmentList = new BindingList<ISegment>(Run);
@@ -573,7 +576,12 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value = Image.FromFile(dialog.FileName);
+                        var image = Image.FromFile(dialog.FileName);
+                        var oldImage = (Image)runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value;
+                        if (oldImage != null)
+                            ImagesToDispose.Add(oldImage);
+
+                        runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value = image;
                         runGrid.NotifyCurrentCellDirty(true);
                     }
                     catch (Exception ex)
@@ -626,8 +634,11 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    GameIcon = Image.FromFile(dialog.FileName);
-                    picGameIcon.Image = GameIcon;
+                    var icon = Image.FromFile(dialog.FileName);
+                    if (GameIcon != null)
+                        ImagesToDispose.Add(GameIcon);
+
+                    GameIcon = picGameIcon.Image = icon;
                     RaiseRunEdited();
                 }
                 catch (Exception ex)
@@ -762,6 +773,7 @@ namespace LiveSplit.View
                     }
                     else if (selectedCell.ColumnIndex == ICONINDEX)
                     {
+                        ImagesToDispose.Add(Run[selectedCell.RowIndex].Icon);
                         Run[selectedCell.RowIndex].Icon = null;
                     }
                     else if (selectedCell.ColumnIndex == SPLITTIMEINDEX)
@@ -939,6 +951,7 @@ namespace LiveSplit.View
 
         private void removeIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            ImagesToDispose.Add(GameIcon);
             GameIcon = null;
             picGameIcon.Image = GameIcon;
             RaiseRunEdited();
@@ -959,9 +972,11 @@ namespace LiveSplit.View
             try
             {
                 var gameId = SpeedrunCom.Instance.GetGameID(cbxGameName.Text);
+                var cover = SpeedrunCom.Instance.GetGameCover(gameId);
+                if (GameIcon != null)
+                    ImagesToDispose.Add(GameIcon);
 
-                GameIcon = SpeedrunCom.Instance.GetGameCover(gameId);
-                picGameIcon.Image = GameIcon;
+                GameIcon = picGameIcon.Image = cover;
                 RaiseRunEdited();
                 return;
             }
@@ -973,9 +988,11 @@ namespace LiveSplit.View
             try
             {
                 var gameId = PBTracker.Instance.GetGameIdByName(cbxGameName.Text);
+                var cover = PBTracker.Instance.GetGameBoxArt(gameId);
+                if (GameIcon != null)
+                    ImagesToDispose.Add(GameIcon);
 
-                GameIcon = PBTracker.Instance.GetGameBoxArt(gameId);
-                picGameIcon.Image = GameIcon;
+                GameIcon = picGameIcon.Image = cover;
                 RaiseRunEdited();
                 return;
             }
@@ -986,8 +1003,11 @@ namespace LiveSplit.View
 
             try
             {
-                GameIcon = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
-                picGameIcon.Image = GameIcon;
+                var cover = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
+                if (GameIcon != null)
+                    ImagesToDispose.Add(GameIcon);
+
+                GameIcon = picGameIcon.Image = cover;
                 RaiseRunEdited();
             }
             catch (Exception ex)
@@ -1014,8 +1034,11 @@ namespace LiveSplit.View
                     {
                         try
                         {
-                            GameIcon = Image.FromStream(stream);
-                            picGameIcon.Image = GameIcon;
+                            var icon = Image.FromStream(stream);
+                            if (GameIcon != null)
+                                ImagesToDispose.Add(GameIcon);
+
+                            GameIcon = picGameIcon.Image = icon;
                             RaiseRunEdited();
                         }
                         catch (Exception ex)
