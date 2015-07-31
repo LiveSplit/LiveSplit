@@ -9,7 +9,7 @@
 	- [Automatic Resets](#automatic-resets)
 - [How an Auto Splitter works](#how-an-auto-splitter-works)
 	- [Pointer Paths](#pointer-paths)
-- [The Auto Splitting Language - ASL](#the-auto-splitting-language-asl)
+- [The Auto Splitting Language - ASL](#the-auto-splitting-language---asl)
 	- [State Descriptors](#state-descriptors)
 	- [State objects](#state-objects)
 	- [Actions](#actions)
