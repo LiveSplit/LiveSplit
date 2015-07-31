@@ -67,12 +67,12 @@ namespace LiveSplit.View
             btnBackground2.DataBindings.Clear();
             if (selectedItem == "Image")
             {
-                btnBackground2.Image = Settings.BackgroundImage;
+                btnBackground2.BackgroundImage = Settings.BackgroundImage;
                 btnBackground2.BackColor = Color.Transparent;
             }
             else
             {
-                btnBackground2.Image = null;
+                btnBackground2.BackgroundImage = null;
                 btnBackground2.DataBindings.Add("BackColor", Settings, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
             }
             GradientString = selectedItem;
@@ -99,7 +99,7 @@ namespace LiveSplit.View
                         if (Settings.BackgroundImage != null)
                             Settings.BackgroundImage.Dispose();
 
-                        Settings.BackgroundImage = ((Button)sender).Image = image;
+                        Settings.BackgroundImage = ((Button)sender).BackgroundImage = image;
                         Settings.BackgroundImagePath = dialog.FileName;
                     }
                     catch (Exception ex)
