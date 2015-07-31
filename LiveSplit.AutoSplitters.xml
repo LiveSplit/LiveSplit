@@ -724,4 +724,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dread)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dragon Age Inquisition</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/glasnonck/LiveSplit.DragonAgeInquisition/raw/master/Components/LiveSplit.DragonAgeInquisition.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By glasnonck)</Description>
+  </AutoSplitter>
 </AutoSplitters>
