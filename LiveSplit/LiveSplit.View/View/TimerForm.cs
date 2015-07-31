@@ -1429,11 +1429,15 @@ namespace LiveSplit.View
         {
             foreach (var split in CurrentState.Run)
             {
-                if (split.Icon != null)
+                if (split.Icon != null && !run.Any(x => x.Icon == split.Icon))
+                {
                     split.Icon.Dispose();
+                }
             }
-            if (CurrentState.Run.GameIcon != null)
+            if (CurrentState.Run.GameIcon != null && CurrentState.Run.GameIcon != run.GameIcon)
+            {
                 CurrentState.Run.GameIcon.Dispose();
+            }
 
             run.ComparisonGenerators = new List<IComparisonGenerator>(CurrentState.Run.ComparisonGenerators);
             foreach (var generator in run.ComparisonGenerators)
@@ -1695,10 +1699,16 @@ namespace LiveSplit.View
                 var result = editor.ShowDialog(this);
                 if (result == DialogResult.Cancel)
                 {
+                    foreach (var image in runCopy.Select(x => x.Icon))
+                        editor.ImagesToDispose.Remove(image);
+                    editor.ImagesToDispose.Remove(runCopy.GameIcon);
+                    
                     CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
                     SetRun(runCopy);
                     CurrentState.CallRunManuallyModified();
                 }
+                foreach (var image in editor.ImagesToDispose)
+                    image.Dispose();
             }
             finally
             {
@@ -1788,6 +1798,8 @@ namespace LiveSplit.View
                 {
                     foreach (var component in layoutCopy.Components)
                         editor.ComponentsToDispose.Remove(component);
+                    editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
+
                     var enumerator = componentSettings.GetEnumerator();
                     foreach (var component in layoutCopy.Components)
                     {
@@ -1799,6 +1811,8 @@ namespace LiveSplit.View
                 }
                 foreach (var component in editor.ComponentsToDispose)
                     component.Dispose();
+                foreach (var image in editor.ImagesToDispose)
+                    image.Dispose();
             }
             finally
             {
@@ -1949,7 +1963,7 @@ namespace LiveSplit.View
             {
                 if (Layout != null && Layout != layout)
                 {
-                    if (Layout.Settings.BackgroundImage != null)
+                    if (Layout.Settings.BackgroundImage != null && Layout.Settings.BackgroundImage != layout.Settings.BackgroundImage)
                         Layout.Settings.BackgroundImage.Dispose();
 
                     foreach (var component in Layout.Components.Except(layout.Components))

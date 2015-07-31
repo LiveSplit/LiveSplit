@@ -16,6 +16,8 @@ namespace LiveSplit.View
         public LiveSplit.UI.LayoutSettings Settings { get; set; }
         public ILayout Layout { get; set; }
 
+        private Image originalBackgroundImage { get; set; }
+
         public string TimerFont { get { return string.Format("{0} {1}", Settings.TimerFont.FontFamily.Name, Settings.TimerFont.Style); }}
         public string MainFont { get { return string.Format("{0} {1}", Settings.TimesFont.FontFamily.Name, Settings.TimesFont.Style); ; } }
         public string SplitNamesFont { get { return string.Format("{0} {1}", Settings.TextFont.FontFamily.Name, Settings.TextFont.Style); ; } }
@@ -58,6 +60,8 @@ namespace LiveSplit.View
             lblTimes.DataBindings.Add("Text", this, "MainFont", false, DataSourceUpdateMode.OnPropertyChanged);
             trkOpacity.DataBindings.Add("Value", this, "Opacity", false, DataSourceUpdateMode.OnPropertyChanged);
             cmbGradientType.SelectedItem = GradientString;
+
+            originalBackgroundImage = Settings.BackgroundImage;
         }
 
         void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
@@ -96,7 +100,7 @@ namespace LiveSplit.View
                     try
                     {
                         var image = Image.FromFile(dialog.FileName);
-                        if (Settings.BackgroundImage != null)
+                        if (Settings.BackgroundImage != null && Settings.BackgroundImage != originalBackgroundImage)
                             Settings.BackgroundImage.Dispose();
 
                         Settings.BackgroundImage = ((Button)sender).BackgroundImage = image;
