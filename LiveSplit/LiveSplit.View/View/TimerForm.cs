@@ -1427,6 +1427,14 @@ namespace LiveSplit.View
 
         private void SetRun(IRun run)
         {
+            foreach (var split in CurrentState.Run)
+            {
+                if (split.Icon != null)
+                    split.Icon.Dispose();
+            }
+            if (CurrentState.Run.GameIcon != null)
+                CurrentState.Run.GameIcon.Dispose();
+
             run.ComparisonGenerators = new List<IComparisonGenerator>(CurrentState.Run.ComparisonGenerators);
             foreach (var generator in run.ComparisonGenerators)
                 generator.Run = run;
@@ -1941,6 +1949,9 @@ namespace LiveSplit.View
             {
                 if (Layout != null && Layout != layout)
                 {
+                    if (Layout.Settings.BackgroundImage != null)
+                        Layout.Settings.BackgroundImage.Dispose();
+
                     foreach (var component in Layout.Components.Except(layout.Components))
                         component.Dispose();
 

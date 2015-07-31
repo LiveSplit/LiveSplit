@@ -95,7 +95,11 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        Settings.BackgroundImage = ((Button)sender).Image = Image.FromFile(dialog.FileName);
+                        var image = Image.FromFile(dialog.FileName);
+                        if (Settings.BackgroundImage != null)
+                            Settings.BackgroundImage.Dispose();
+
+                        Settings.BackgroundImage = ((Button)sender).Image = image;
                         Settings.BackgroundImagePath = dialog.FileName;
                     }
                     catch (Exception ex)

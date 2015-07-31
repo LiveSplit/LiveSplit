@@ -573,7 +573,12 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value = Image.FromFile(dialog.FileName);
+                        var image = Image.FromFile(dialog.FileName);
+                        var oldImage = (Image)runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value;
+                        if (oldImage != null)
+                            oldImage.Dispose();
+
+                        runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value = image;
                         runGrid.NotifyCurrentCellDirty(true);
                     }
                     catch (Exception ex)
@@ -626,8 +631,11 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    GameIcon = Image.FromFile(dialog.FileName);
-                    picGameIcon.Image = GameIcon;
+                    var icon = Image.FromFile(dialog.FileName);
+                    if (GameIcon != null)
+                        GameIcon.Dispose();
+
+                    GameIcon = picGameIcon.Image = icon;
                     RaiseRunEdited();
                 }
                 catch (Exception ex)

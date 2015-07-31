@@ -254,6 +254,9 @@ namespace LiveSplit.View
             }
             else if (result == DialogResult.Cancel)
             {
+                if (Layout.Settings.BackgroundImage != null)
+                    Layout.Settings.BackgroundImage.Dispose();
+
                 Layout.Settings.Assign(oldSettings);
                 LayoutSettingsAssigned(null, null);
             }
