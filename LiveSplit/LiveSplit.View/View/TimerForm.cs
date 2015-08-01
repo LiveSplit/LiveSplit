@@ -59,6 +59,9 @@ namespace LiveSplit.View
         protected bool InTimerOnlyMode { get; set; }
         protected ILayout DefaultLayout { get; set; }
 
+        private Image previousBackground { get; set; }
+        private Image resizedBackground { get; set; }
+
         protected GraphicsCache GlobalCache { get; set; }
 
         protected StandardFormatsRunFactory RunFactory { get; set; }
@@ -504,6 +507,7 @@ namespace LiveSplit.View
 
         void TimerForm_SizeChanged(object sender, EventArgs e)
         {
+            CreateResizedBackground();
             if (OldSize > 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
@@ -1164,10 +1168,15 @@ namespace LiveSplit.View
             {
                 if (Layout.Settings.BackgroundImage != null)
                 {
+                    if (Layout.Settings.BackgroundImage != previousBackground)
+                    {
+                        CreateResizedBackground();
+                        previousBackground = Layout.Settings.BackgroundImage;
+                    }
                     foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
                     {
                         var rect = Rectangle.Round(rectangle);
-                        g.DrawImage(Layout.Settings.BackgroundImage, rect, rect, GraphicsUnit.Pixel);
+                        g.DrawImage(resizedBackground, rect, rect, GraphicsUnit.Pixel);
                     }
                 }
             }
@@ -1284,6 +1293,44 @@ namespace LiveSplit.View
             {
                 Log.Error(ex);
                 Invalidate();
+            }
+        }
+
+        private void CreateResizedBackground()
+        {
+            var image = Layout.Settings.BackgroundImage;
+            if (image != null)
+            {
+                var croppedWidth = (float)image.Width;
+                var croppedHeight = (float)image.Height;
+
+                if (image.Width / (float)image.Height > Width / (float)Height)
+                {
+                    croppedWidth = image.Height * (Width / (float)Height);
+                }
+                else
+                {
+                    croppedHeight = image.Width * (Height / (float)Width);
+                }
+
+                var bitmap = new Bitmap(Width, Height, image.PixelFormat);
+
+                using (var graphics = Graphics.FromImage(bitmap))
+                {
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(image,
+                        new Rectangle(0, 0, Width, Height),
+                        (image.Width - croppedWidth) / 2,
+                        (image.Height - croppedHeight) / 2,
+                        croppedWidth,
+                        croppedHeight,
+                        GraphicsUnit.Pixel);
+                }
+
+                if (resizedBackground != null)
+                    resizedBackground.Dispose();
+
+                resizedBackground = bitmap;
             }
         }
 
