@@ -97,11 +97,22 @@ VARIABLE_TYPE VARIABLE_NAME : "BASE_MODULE", OFFSET, OFFSET, OFFSET, ...;
 ```
 
 The variable type `VARIABLE_TYPE` describes the type of the value found at the pointer path. It can be one of the following:
-```
-int, uint, float, double, byte, bool, short, sbyte, string1234, byte1234
-```
 
-The numbers in `string1234` and `byte1234` indicate a length. In the case of the string, it describes the maximum length of the string and in the case of the byte array, it describes how many bytes are supposed to be read.
+| Type             | Description                |
+|------------------|----------------------------|
+| sbyte            | Signed 8-bit integer       |
+| byte             | Unsigned 8-bit integer     |
+| short            | Signed 16-bit integer      |
+| ushort           | Unsigned 16-bit integer    |
+| int              | Signed 32-bit integer      |
+| uint             | Unsigned 32-bit integer    |
+| long             | Signed 64-bit integer      |
+| ulong            | Unsigned 64-bit integer    |
+| float            | 32-bit IEEE floating-point |
+| double           | 64-bit IEEE floating-point |
+| bool             | Boolean                    |
+| string\<length\> | String (e.g. string255)    |
+| byte\<length\>   | Byte array (e.g. byte255)  |
 
 The variable name `VARIABLE_NAME` can be any variable name you choose, describing what is found at the pointer path. The naming is up to you, but should be distinct from the other variable names.
 
