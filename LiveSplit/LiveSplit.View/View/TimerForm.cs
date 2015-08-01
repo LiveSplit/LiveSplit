@@ -1171,7 +1171,6 @@ namespace LiveSplit.View
                     if (Layout.Settings.BackgroundImage != previousBackground)
                     {
                         CreateResizedBackground();
-                        previousBackground = Layout.Settings.BackgroundImage;
                     }
                     foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
                     {
@@ -1331,6 +1330,7 @@ namespace LiveSplit.View
                     resizedBackground.Dispose();
 
                 resizedBackground = bitmap;
+                previousBackground = image;
             }
         }
 
