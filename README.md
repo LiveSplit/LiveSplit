@@ -69,9 +69,11 @@ Simply open the project with Visual Studio and it should be able to compile and 
  - Cloning for the first time: `git clone --recursive git://repo/repo.git`
  - If already cloned, execute this in the root directory: `git submodule update --init --recursive`
 
-## Adding an Auto Splitter
+## Auto Splitters
 
-If you implemented an Auto Splitter and want to add it to the Auto Splitters that are automatically being downloaded by LiveSplit, feel free to add it to the [Auto Splitters XML](https://github.com/LiveSplit/LiveSplit/blob/master/LiveSplit.AutoSplitters.xml). Just click the link, click the icon for modifying the file and Github will automatically create a fork, branch and pull request for you, which we can review and then merge in.
+The Documentation about how to develop, test and submit an Auto Splitter can be found here:
+
+[Auto Splitters Documentation](Documentation/Auto-Splitters.md)
 
 ## License
 
