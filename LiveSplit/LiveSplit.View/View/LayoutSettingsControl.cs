@@ -22,7 +22,9 @@ namespace LiveSplit.View
         public string MainFont { get { return string.Format("{0} {1}", Settings.TimesFont.FontFamily.Name, Settings.TimesFont.Style); ; } }
         public string SplitNamesFont { get { return string.Format("{0} {1}", Settings.TextFont.FontFamily.Name, Settings.TextFont.Style); ; } }
 
-        public float Opacity { get { return Settings.Opacity*100f; } set { Settings.Opacity = value/100f; } }
+        public float Opacity { get { return Settings.Opacity * 100f; } set { Settings.Opacity = value / 100f; } }
+        public float ImageOpacity { get { return Settings.ImageOpacity * 100f; } set { Settings.ImageOpacity = value / 100f; } }
+        public float ImageBlur { get { return Settings.ImageBlur * 100f; } set { Settings.ImageBlur = value / 100f; } }
 
         public LayoutSettingsControl(LiveSplit.UI.LayoutSettings settings, ILayout layout)
         {
@@ -52,6 +54,8 @@ namespace LiveSplit.View
             lblText.DataBindings.Add("Text", this, "SplitNamesFont", false, DataSourceUpdateMode.OnPropertyChanged);
             lblTimes.DataBindings.Add("Text", this, "MainFont", false, DataSourceUpdateMode.OnPropertyChanged);
             trkOpacity.DataBindings.Add("Value", this, "Opacity", false, DataSourceUpdateMode.OnPropertyChanged);
+            trkImageOpacity.DataBindings.Add("Value", this, "ImageOpacity", false, DataSourceUpdateMode.OnPropertyChanged);
+            trkBlur.DataBindings.Add("Value", this, "ImageBlur", false, DataSourceUpdateMode.OnPropertyChanged);
 
             cmbBackgroundType.SelectedItem = GetBackgroundTypeString(Settings.BackgroundType);
             originalBackgroundImage = Settings.BackgroundImage;
@@ -77,15 +81,18 @@ namespace LiveSplit.View
             var selectedItem = cmbBackgroundType.SelectedItem.ToString();
             btnBackground.Visible = selectedItem != "Solid Color" && selectedItem != "Image";
             btnBackground2.DataBindings.Clear();
+            lblImageOpacity.Enabled = lblBlur.Enabled = trkImageOpacity.Enabled = trkBlur.Enabled = selectedItem == "Image";
             if (selectedItem == "Image")
             {
                 btnBackground2.BackgroundImage = Settings.BackgroundImage;
                 btnBackground2.BackColor = Color.Transparent;
+                lblBackground.Text = "Image:";
             }
             else
             {
                 btnBackground2.BackgroundImage = null;
                 btnBackground2.DataBindings.Add("BackColor", Settings, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
+                lblBackground.Text = "Color:";
             }
             Settings.BackgroundType = (BackgroundType)Enum.Parse(typeof(BackgroundType), selectedItem.Replace(" ", ""));
         }

@@ -23,6 +23,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
@@ -60,7 +61,9 @@ namespace LiveSplit.View
         protected ILayout DefaultLayout { get; set; }
 
         private Image previousBackground { get; set; }
-        private Image resizedBackground { get; set; }
+        private float previousOpacity { get; set; }
+        private float previousBlur { get; set; }
+        private Image bakedBackground { get; set; }
 
         protected GraphicsCache GlobalCache { get; set; }
 
@@ -507,7 +510,7 @@ namespace LiveSplit.View
 
         void TimerForm_SizeChanged(object sender, EventArgs e)
         {
-            CreateResizedBackground();
+            CreateBakedBackground();
             if (OldSize > 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
@@ -1168,14 +1171,16 @@ namespace LiveSplit.View
             {
                 if (Layout.Settings.BackgroundImage != null)
                 {
-                    if (Layout.Settings.BackgroundImage != previousBackground)
+                    if (Layout.Settings.BackgroundImage != previousBackground
+                        || Layout.Settings.ImageOpacity != previousOpacity
+                        || Layout.Settings.ImageBlur != previousBlur)
                     {
-                        CreateResizedBackground();
+                        CreateBakedBackground();
                     }
                     foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
                     {
                         var rect = Rectangle.Round(rectangle);
-                        g.DrawImage(resizedBackground, rect, rect, GraphicsUnit.Pixel);
+                        g.DrawImage(bakedBackground, rect, rect, GraphicsUnit.Pixel);
                     }
                 }
             }
@@ -1295,11 +1300,19 @@ namespace LiveSplit.View
             }
         }
 
-        private void CreateResizedBackground()
+        private void CreateBakedBackground()
         {
             var image = Layout.Settings.BackgroundImage;
+            var opacity = Layout.Settings.ImageOpacity;
+            var blur = Layout.Settings.ImageBlur;
+            var usesBlur = blur > 0;
+
             if (image != null)
             {
+                if (usesBlur)
+                {
+                    image = ImageBlur.Generate(image, blur * 10);
+                }
                 var croppedWidth = (float)image.Width;
                 var croppedHeight = (float)image.Height;
 
@@ -1316,6 +1329,11 @@ namespace LiveSplit.View
 
                 using (var graphics = Graphics.FromImage(bitmap))
                 {
+                    var matrix = new ColorMatrix();
+                    matrix.Matrix33 = opacity;
+                    var attributes = new ImageAttributes();
+                    attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+
                     graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
                     graphics.DrawImage(image,
                         new Rectangle(0, 0, Width, Height),
@@ -1323,14 +1341,19 @@ namespace LiveSplit.View
                         (image.Height - croppedHeight) / 2,
                         croppedWidth,
                         croppedHeight,
-                        GraphicsUnit.Pixel);
+                        GraphicsUnit.Pixel,
+                        attributes);
                 }
 
-                if (resizedBackground != null)
-                    resizedBackground.Dispose();
+                if (bakedBackground != null)
+                    bakedBackground.Dispose();
+                if (usesBlur)
+                    image.Dispose();
 
-                resizedBackground = bitmap;
-                previousBackground = image;
+                bakedBackground = bitmap;
+                previousBackground = Layout.Settings.BackgroundImage;
+                previousOpacity = opacity;
+                previousBlur = blur;
             }
         }
 

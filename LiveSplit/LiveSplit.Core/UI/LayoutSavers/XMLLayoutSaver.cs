@@ -36,6 +36,8 @@ namespace LiveSplit.UI.LayoutSavers
             element.AppendChild(SettingsHelper.ToElement(document, "DropShadows", settings.DropShadows));
             element.AppendChild(SettingsHelper.ToElement(document, "BackgroundType", settings.BackgroundType));
             element.AppendChild(SettingsHelper.ToElement(document, "BackgroundImagePath", settings.BackgroundImagePath));
+            element.AppendChild(SettingsHelper.ToElement(document, "ImageOpacity", settings.ImageOpacity));
+            element.AppendChild(SettingsHelper.ToElement(document, "ImageBlur", settings.ImageBlur));
             element.AppendChild(SettingsHelper.ToElement(document, "Opacity", settings.Opacity));
             return element;
         }

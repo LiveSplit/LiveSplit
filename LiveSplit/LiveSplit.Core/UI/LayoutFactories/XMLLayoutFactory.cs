@@ -44,6 +44,8 @@ namespace LiveSplit.UI.LayoutFactories
             {
                 settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
             }
+            settings.ImageOpacity = SettingsHelper.ParseFloat(element["ImageOpacity"], 1f);
+            settings.ImageBlur = SettingsHelper.ParseFloat(element["ImageBlur"], 0f);
 
             if (version >= new Version(1, 3))
             {
