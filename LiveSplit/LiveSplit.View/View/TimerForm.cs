@@ -57,7 +57,6 @@ namespace LiveSplit.View
         public ISettings Settings { get; set; }
         protected Invalidator Invalidator { get; set; }
         protected bool InTimerOnlyMode { get; set; }
-        protected ILayout DefaultLayout { get; set; }
 
         private Image previousBackground { get; set; }
         private Image resizedBackground { get; set; }
@@ -194,16 +193,14 @@ namespace LiveSplit.View
                     }
                     else
                     {
-                        DefaultLayout = new StandardLayoutFactory().Create(CurrentState);
-                        Layout = (ILayout)DefaultLayout.Clone();
+                        Layout = new StandardLayoutFactory().Create(CurrentState);
                     }
                 }
             }
             catch (Exception e)
             {
                 Log.Error(e);
-                DefaultLayout = new StandardLayoutFactory().Create(CurrentState);
-                Layout = (ILayout)DefaultLayout.Clone();
+                Layout = new StandardLayoutFactory().Create(CurrentState);
             }
 
             CurrentState.LayoutSettings = Layout.Settings;
@@ -1731,24 +1728,23 @@ namespace LiveSplit.View
         protected void RemoveTimerOnly()
         {
             InTimerOnlyMode = false;
+            ILayout layout;
             try
             {
                 var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
                 if (lastLayoutPath != null)
-                {
-                    var layout = LoadLayoutFromFile(lastLayoutPath);
-                    layout.X = Location.X;
-                    layout.Y = Location.Y;
-                    SetLayout(layout);
-                }
+                    layout = LoadLayoutFromFile(lastLayoutPath);
                 else
-                    LoadDefaultLayout();
+                    layout = new StandardLayoutFactory().Create(CurrentState);
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                LoadDefaultLayout();
+                layout = new StandardLayoutFactory().Create(CurrentState);
             }
+            layout.X = Location.X;
+            layout.Y = Location.Y;
+            SetLayout(layout);
         }
 
         private void EditLayout()
@@ -1937,12 +1933,7 @@ namespace LiveSplit.View
         {
             if (WarnUserAboutLayoutSave())
             {
-                if (DefaultLayout == null)
-                {
-                    DefaultLayout = new StandardLayoutFactory().Create(CurrentState);
-                }
-
-                var layout = (ILayout)DefaultLayout.Clone();
+                var layout = new StandardLayoutFactory().Create(CurrentState);
                 layout.X = Location.X;
                 layout.Y = Location.Y;
                 SetLayout(layout);
