@@ -2,6 +2,7 @@
 using LiveSplit.Options;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
+using LiveSplit.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -78,7 +79,8 @@ namespace LiveSplit.View
                 var component = componentFactory.Value == null
                     ? new LayoutComponent("", new SeparatorComponent())
                     : new LayoutComponent(componentFactory.Key, componentFactory.Value.Create(CurrentState));
-                Action y = () =>
+
+                Form.InvokeIfRequired(() =>
                 {
                     try
                     {
@@ -88,12 +90,8 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                };
+                });
 
-                if (Form.InvokeRequired)
-                    Form.Invoke(y);
-                else
-                    y();
                 Layout.HasChanged = true;
                 if (LayoutResized != null)
                     LayoutResized(this, null);
@@ -166,7 +164,7 @@ namespace LiveSplit.View
         {
             if (BindingList.Count > 1)
             {
-                Action x = () =>
+                Form.InvokeIfRequired(() =>
                 {
                     try
                     {
@@ -180,12 +178,8 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                };
+                });
 
-                if (Form.InvokeRequired)
-                    Form.Invoke(x);
-                else
-                    x();
                 Layout.HasChanged = true;
                 if (LayoutResized != null)
                     LayoutResized(this, null);
@@ -196,7 +190,7 @@ namespace LiveSplit.View
         {
             if (lbxComponents.SelectedIndex > 0)
             {
-                Action x = () =>
+                Form.InvokeIfRequired(() =>
                 {
                     try
                     {
@@ -208,12 +202,7 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                };
-
-                if (Form.InvokeRequired)
-                    Form.Invoke(x);
-                else
-                    x();
+                });
 
                 Layout.HasChanged = true;
             }
@@ -223,7 +212,7 @@ namespace LiveSplit.View
         {
             if (lbxComponents.SelectedIndex < BindingList.Count - 1)
             {
-                Action x = () =>
+                Form.InvokeIfRequired(() =>
                 {
                     try
                     {
@@ -234,12 +223,8 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                };
+                });
 
-                if (Form.InvokeRequired)
-                    Form.Invoke(x);
-                else
-                    x();
                 lbxComponents.SelectedIndex += 1;
                 Layout.HasChanged = true;
             }
