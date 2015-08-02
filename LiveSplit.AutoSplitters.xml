@@ -401,9 +401,9 @@
       <Game>KotOR</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.Kotor/raw/master/Components/LiveSplit.Kotor.dll</URL>
+      <URL>https://github.com/glasnonck/LiveSplit.ASL/raw/master/KotOR.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
   <AutoSplitter>
@@ -414,9 +414,9 @@
       <Game>KotOR 2</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.Kotor2/raw/master/Components/LiveSplit.Kotor2.dll</URL>
+      <URL>https://github.com/glasnonck/LiveSplit.ASL/raw/master/KotOR2.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
   <AutoSplitter>
@@ -708,9 +708,9 @@
       <Game>Advent Rising</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.AdventRising/raw/master/Components/LiveSplit.AdventRising.dll</URL>
+      <URL>https://github.com/glasnonck/LiveSplit.ASL/raw/master/AdventRising.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
   <AutoSplitter>
@@ -723,15 +723,5 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dread)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Dragon Age Inquisition</Game>
-    </Games>
-    <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.DragonAgeInquisition/raw/master/Components/LiveSplit.DragonAgeInquisition.dll</URL>
-    </URLs>
-    <Type>Component</Type>
-    <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
 </AutoSplitters>
