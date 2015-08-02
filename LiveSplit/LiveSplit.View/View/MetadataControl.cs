@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Fetze.WinFormsColor;
 using LiveSplit.Options;
 using LiveSplit.UI;
 using LiveSplit.Model;
