@@ -4,6 +4,7 @@ using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using LiveSplit.UI;
 using LiveSplit.Web;
+using LiveSplit.Utils;
 using LiveSplit.Web.Share;
 using System;
 using System.Collections.Generic;
@@ -200,7 +201,7 @@ namespace LiveSplit.View
                     try
                     {
                         var gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
-                        Action invokation = () =>
+                        this.InvokeIfRequired(() =>
                         {
                             try
                             {
@@ -210,11 +211,7 @@ namespace LiveSplit.View
                             {
                                 Log.Error(ex);
                             }
-                        };
-                        if (InvokeRequired)
-                            Invoke(invokation);
-                        else
-                            invokation();
+                        });
                     }
                     catch (Exception ex)
                     {
@@ -300,7 +297,7 @@ namespace LiveSplit.View
 
                         categoryNames = new[] { "Any%", "Low%", "100%" };
                     }
-                    Action invokation = () =>
+                    this.InvokeIfRequired(() =>
                     {
                         try
                         {
@@ -311,11 +308,7 @@ namespace LiveSplit.View
                         {
                             Log.Error(ex);
                         }
-                    };
-                    if (InvokeRequired)
-                        Invoke(invokation);
-                    else
-                        invokation();
+                    });
                 }
                 catch (Exception ex)
                 {

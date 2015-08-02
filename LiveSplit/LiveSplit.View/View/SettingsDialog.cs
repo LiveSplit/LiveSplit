@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model.Input;
 using LiveSplit.Options;
+using LiveSplit.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -145,16 +146,13 @@ namespace LiveSplit.View
                 var key = new KeyOrButton(x);
                 keySetCallback(key);
                 unregisterEvents();
-                Action action = () =>
+
+                this.InvokeIfRequired(() =>
                 {
                     txtBox.Select(0, 0);
                     chkGlobalHotkeys.Select();
                     txtBox.Text = FormatKey(key);
-                };
-                if (InvokeRequired)
-                    Invoke(action);
-                else
-                    action();
+                });
             };
             txtBox.KeyDown += handlerDown;
             txtBox.KeyUp += handlerUp;

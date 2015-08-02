@@ -98,6 +98,7 @@
     </Compile>
     <Compile Include="UI\LayoutFactories\StandardLayoutSettingsFactory.cs" />
     <Compile Include="Updates\LiveSplitUpdateable.cs" />
+    <Compile Include="Utils\FormUtils.cs" />
     <Compile Include="View\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -309,6 +310,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
