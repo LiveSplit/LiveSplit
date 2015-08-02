@@ -60,14 +60,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="WinFormsColor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -87,10 +80,6 @@
     <ProjectReference Include="..\LiveSplit.View\LiveSplit.View.csproj">
       <Project>{f8cf1482-0687-44f3-aba1-967e10c3bb96}</Project>
       <Name>LiveSplit.View</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UpdateManager\UpdateManager.csproj">
-      <Project>{56dea3a0-2eb7-493b-b50f-a5e3aa8ae52a}</Project>
-      <Name>UpdateManager</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
