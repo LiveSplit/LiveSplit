@@ -39,15 +39,10 @@ namespace LiveSplit
                 if (Twitch.Instance != null)
                     Twitch.Instance.CloseAllChatConnections();
             }
-#if !DEBUG
             catch (Exception e)
             {
                 Log.Error(e);
-                MessageBox.Show("LiveSplit crashed due to an unknown cause.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-#endif
-            finally
-            {
+                MessageBox.Show(string.Format("LiveSplit has crashed due to the following reason:\n\n{0}", e.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
