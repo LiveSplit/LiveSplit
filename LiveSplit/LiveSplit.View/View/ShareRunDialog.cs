@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
+using LiveSplit.Utils;
 using LiveSplit.Web.Share;
 using System;
 using System.Drawing;
@@ -55,7 +56,8 @@ namespace LiveSplit.View
 
                         categoryNames = new string[0];
                     }
-                    Action invokation = () =>
+
+                    this.InvokeIfRequired(() =>
                     {
                         try
                         {
@@ -67,11 +69,7 @@ namespace LiveSplit.View
                         {
                             Log.Error(ex);
                         }
-                    };
-                    if (InvokeRequired)
-                        Invoke(invokation);
-                    else
-                        invokation();
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -97,7 +95,8 @@ namespace LiveSplit.View
 
                         gameNames = new string[0];
                     }
-                    Action invokation = () =>
+
+                    this.InvokeIfRequired(() =>
                     {
                         try
                         {
@@ -111,11 +110,7 @@ namespace LiveSplit.View
                         {
                             Log.Error(ex);
                         }
-                    };
-                    if (InvokeRequired)
-                        Invoke(invokation);
-                    else
-                        invokation();
+                    });
                 }
                 catch (Exception ex)
                 {

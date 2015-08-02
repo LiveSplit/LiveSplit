@@ -13,6 +13,7 @@ using LiveSplit.UI.Components;
 using LiveSplit.UI.LayoutFactories;
 using LiveSplit.UI.LayoutSavers;
 using LiveSplit.Updates;
+using LiveSplit.Utils;
 using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 using Microsoft.WindowsAPICodePack.Taskbar;
@@ -450,18 +451,14 @@ namespace LiveSplit.View
                 try
                 {
                     var image = SpeedRunsLiveAPI.Instance.GetGameImage(race.game.abbrev);
-                    Action setImage = () =>
+                    this.InvokeIfRequired(() =>
                     {
                         try
                         {
                             item.Image = image;
                         }
                         catch { }
-                    };
-                    if (InvokeRequired)
-                        Invoke(setImage);
-                    else
-                        setImage();
+                    });
                 }
                 catch { }
             });
@@ -538,7 +535,7 @@ namespace LiveSplit.View
 
         void CurrentState_OnUndoSplit(object sender, EventArgs e)
         {
-            Action x = () =>
+            this.InvokeIfRequired(() =>
             {
                 pauseMenuItem.Enabled = true;
                 splitMenuItem.Enabled = true;
@@ -546,32 +543,22 @@ namespace LiveSplit.View
                     undoSplitMenuItem.Enabled = false;
                 if (CurrentState.CurrentSplitIndex < CurrentState.Run.Count - 1)
                     skipSplitMenuItem.Enabled = true;
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
         }
 
         void CurrentState_OnSkipSplit(object sender, EventArgs e)
         {
-            Action x = () =>
+            this.InvokeIfRequired(() =>
             {
                 if (CurrentState.CurrentSplitIndex >= CurrentState.Run.Count - 1)
                     skipSplitMenuItem.Enabled = false;
                 undoSplitMenuItem.Enabled = true;
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
         }
 
         void CurrentState_OnSplit(object sender, EventArgs e)
         {
-            Action x = () =>
+            this.InvokeIfRequired(() =>
             {
                 if (CurrentState.CurrentSplitIndex == CurrentState.Run.Count)
                 {
@@ -581,35 +568,26 @@ namespace LiveSplit.View
                 if (CurrentState.CurrentSplitIndex >= CurrentState.Run.Count - 1)
                     skipSplitMenuItem.Enabled = false;
                 undoSplitMenuItem.Enabled = true;
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
         }
 
         void CurrentState_OnStart(object sender, EventArgs e)
         {
-            Action x = () =>
-                {
-                    pauseMenuItem.Enabled = true;
-                    resetMenuItem.Enabled = true;
-                    undoSplitMenuItem.Enabled = false;
-                    skipSplitMenuItem.Enabled = true;
-                    splitMenuItem.Text = "Split";
-                };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            this.InvokeIfRequired(() =>
+            {
+                pauseMenuItem.Enabled = true;
+                resetMenuItem.Enabled = true;
+                undoSplitMenuItem.Enabled = false;
+                skipSplitMenuItem.Enabled = true;
+                splitMenuItem.Text = "Split";
+            });
         }
 
         void CurrentState_OnReset(object sender, TimerPhase e)
         {
             RegenerateComparisons();
-            Action x = () =>
+
+            this.InvokeIfRequired(() =>
             {
                 if (InTimerOnlyMode)
                 {
@@ -624,40 +602,25 @@ namespace LiveSplit.View
                 skipSplitMenuItem.Enabled = false;
                 splitMenuItem.Enabled = true;
                 splitMenuItem.Text = "Start";
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
         }
 
         void CurrentState_OnResume(object sender, EventArgs e)
         {
-            Action x = () =>
+            this.InvokeIfRequired(() =>
             {
                 splitMenuItem.Text = "Split";
                 pauseMenuItem.Enabled = true;
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
         }
 
         void CurrentState_OnPause(object sender, EventArgs e)
         {
-            Action x = () =>
+            this.InvokeIfRequired(() =>
             {
                 splitMenuItem.Text = "Resume";
                 pauseMenuItem.Enabled = false;
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
         }
 
         private void AddSplitsFileToLRU(string filePath, IRun run)
@@ -1059,7 +1022,7 @@ namespace LiveSplit.View
         {
             try
             {
-                Action timerAction = () =>
+                this.InvokeIfRequired(() =>
                 {
                     try
                     {
@@ -1088,7 +1051,8 @@ namespace LiveSplit.View
                             else
                             {
                                 Invalidator.Restart();
-                                Action x = () =>
+
+                                this.InvokeIfRequired(() =>
                                 {
                                     try
                                     {
@@ -1099,12 +1063,7 @@ namespace LiveSplit.View
                                         Log.Error(ex);
                                         Invalidate();
                                     }
-                                };
-
-                                if (InvokeRequired)
-                                    Invoke(x);
-                                else
-                                    x();
+                                });
                             }
                         }
                     }
@@ -1113,12 +1072,7 @@ namespace LiveSplit.View
                         Log.Error(ex);
                         Invalidate();
                     }
-                };
-
-                if (InvokeRequired)
-                    Invoke(timerAction);
-                else
-                    timerAction();
+                });
             }
             catch (Exception ex)
             {
@@ -1132,7 +1086,7 @@ namespace LiveSplit.View
 
         protected void InvalidateForm()
         {
-            Action x = () =>
+            this.InvokeIfRequired(() =>
             {
                 try
                 {
@@ -1142,12 +1096,7 @@ namespace LiveSplit.View
                 {
                     Log.Error(ex);
                 }
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
 
             Invalidate();
         }
