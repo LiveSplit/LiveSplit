@@ -83,10 +83,7 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="WinFormsColor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -148,6 +145,7 @@
     <Compile Include="TimeFormatters\PossibleTimeSaveFormatter.cs" />
     <Compile Include="TimeFormatters\TimeFormat.cs" />
     <Compile Include="TimeFormatters\TimeAccuracy.cs" />
+    <Compile Include="UI\BackgroundType.cs" />
     <Compile Include="UI\Components\AutoSplit\AutoSplitComponent.cs" />
     <Compile Include="UI\Components\AutoSplit\IAutoSplitter.cs" />
     <Compile Include="UI\Components\ComponentCategory.cs" />

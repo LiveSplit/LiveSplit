@@ -713,4 +713,25 @@
     <Type>Component</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Rune</Game>
+      <Game>Rune Classic</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/Rune.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dread)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dragon Age Inquisition</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/glasnonck/LiveSplit.DragonAgeInquisition/raw/master/Components/LiveSplit.DragonAgeInquisition.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By glasnonck)</Description>
+  </AutoSplitter>
 </AutoSplitters>

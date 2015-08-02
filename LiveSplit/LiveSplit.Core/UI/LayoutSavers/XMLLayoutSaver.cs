@@ -23,6 +23,7 @@ namespace LiveSplit.UI.LayoutSavers
             element.AppendChild(SettingsHelper.ToElement(document, settings.BehindGainingTimeColor, "BehindGainingTimeColor"));
             element.AppendChild(SettingsHelper.ToElement(document, settings.BehindLosingTimeColor, "BehindLosingTimeColor"));
             element.AppendChild(SettingsHelper.ToElement(document, settings.BestSegmentColor, "BestSegmentColor"));
+            element.AppendChild(SettingsHelper.ToElement(document, "UseRainbowColor", settings.UseRainbowColor));
             element.AppendChild(SettingsHelper.ToElement(document, settings.NotRunningColor, "NotRunningColor"));
             element.AppendChild(SettingsHelper.ToElement(document, settings.PausedColor, "PausedColor"));
             element.AppendChild(SettingsHelper.ToElement(document, settings.ShadowsColor, "ShadowsColor"));
@@ -33,16 +34,16 @@ namespace LiveSplit.UI.LayoutSavers
             element.AppendChild(SettingsHelper.ToElement(document, "ShowBestSegments", settings.ShowBestSegments));
             element.AppendChild(SettingsHelper.ToElement(document, "AntiAliasing", settings.AntiAliasing));
             element.AppendChild(SettingsHelper.ToElement(document, "DropShadows", settings.DropShadows));
-            element.AppendChild(SettingsHelper.ToElement(document, "BackgroundGradient", settings.BackgroundGradient));
+            element.AppendChild(SettingsHelper.ToElement(document, "BackgroundType", settings.BackgroundType));
+            element.AppendChild(SettingsHelper.ToElement(document, "BackgroundImagePath", settings.BackgroundImagePath));
             element.AppendChild(SettingsHelper.ToElement(document, "Opacity", settings.Opacity));
-            element.AppendChild(SettingsHelper.ToElement(document, "UseRainbowColor", settings.UseRainbowColor));
             return element;
         }
 
         public XmlNode GetLayoutNode(XmlDocument document, ILayout layout)
         {
             var parent = document.CreateElement("Layout");
-            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.6"));
+            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.6.1"));
 
             parent.AppendChild(SettingsHelper.ToElement(document, "Mode", layout.Mode));
             parent.AppendChild(SettingsHelper.ToElement(document, "X", layout.X));

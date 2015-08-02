@@ -3,7 +3,6 @@ using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using LiveSplit.Web.Share;
 using System;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;

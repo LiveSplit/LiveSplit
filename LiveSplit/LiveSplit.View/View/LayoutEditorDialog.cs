@@ -23,6 +23,7 @@ namespace LiveSplit.View
         public LiveSplitState CurrentState { get; set; }
 
         public List<UI.Components.IComponent> ComponentsToDispose { get; set; }
+        public List<Image> ImagesToDispose { get; set; }
 
         protected ILayout Layout { get; set; }
         protected BindingList<ILayoutComponent> BindingList { get; set; }
@@ -46,6 +47,7 @@ namespace LiveSplit.View
             Layout = layout;
             BindingList = new BindingList<ILayoutComponent>(Layout.LayoutComponents);
             ComponentsToDispose = new List<UI.Components.IComponent>();
+            ImagesToDispose = new List<Image>();
             lbxComponents.DataSource = BindingList;
             lbxComponents.DisplayMember = "Component.ComponentName";
             LoadAllComponentsAvailable();
@@ -250,10 +252,16 @@ namespace LiveSplit.View
             var result = settingsDialog.ShowDialog(this);
             if (result == DialogResult.OK)
             {
+                if (oldSettings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+                    ImagesToDispose.Add(oldSettings.BackgroundImage);
+
                 Layout.HasChanged = true;
             }
             else if (result == DialogResult.Cancel)
             {
+                if (Layout.Settings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+                    Layout.Settings.BackgroundImage.Dispose();
+
                 Layout.Settings.Assign(oldSettings);
                 LayoutSettingsAssigned(null, null);
             }

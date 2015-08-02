@@ -9,7 +9,7 @@
 	- [Automatic Resets](#automatic-resets)
 - [How an Auto Splitter works](#how-an-auto-splitter-works)
 	- [Pointer Paths](#pointer-paths)
-- [The Auto Splitting Language - ASL](#the-auto-splitting-language-asl)
+- [The Auto Splitting Language - ASL](#the-auto-splitting-language---asl)
 	- [State Descriptors](#state-descriptors)
 	- [State objects](#state-objects)
 	- [Actions](#actions)
@@ -18,6 +18,8 @@
 		- [Automatic Resets](#automatic-resets-1)
 		- [Load Time Removal](#load-time-removal)
 		- [Game Time](#game-time-1)
+	- [Testing your Script](#testing-your-script)
+- [Adding an Auto Splitter](#adding-an-auto-splitter)
 
 <!-- /TOC -->
 
@@ -97,11 +99,22 @@ VARIABLE_TYPE VARIABLE_NAME : "BASE_MODULE", OFFSET, OFFSET, OFFSET, ...;
 ```
 
 The variable type `VARIABLE_TYPE` describes the type of the value found at the pointer path. It can be one of the following:
-```
-int, uint, float, double, byte, bool, short, sbyte, string1234, byte1234
-```
 
-The numbers in `string1234` and `byte1234` indicate a length. In the case of the string, it describes the maximum length of the string and in the case of the byte array, it describes how many bytes are supposed to be read.
+| Type             | Description                |
+|------------------|----------------------------|
+| sbyte            | Signed 8-bit integer       |
+| byte             | Unsigned 8-bit integer     |
+| short            | Signed 16-bit integer      |
+| ushort           | Unsigned 16-bit integer    |
+| int              | Signed 32-bit integer      |
+| uint             | Unsigned 32-bit integer    |
+| long             | Signed 64-bit integer      |
+| ulong            | Unsigned 64-bit integer    |
+| float            | 32-bit IEEE floating-point |
+| double           | 64-bit IEEE floating-point |
+| bool             | Boolean                    |
+| string\<length\> | String (e.g. string255)    |
+| byte\<length\>   | Byte array (e.g. byte255)  |
 
 The variable name `VARIABLE_NAME` can be any variable name you choose, describing what is found at the pointer path. The naming is up to you, but should be distinct from the other variable names.
 
@@ -153,3 +166,15 @@ The name of this action is `isLoading`. Return `true` whenever the game is loadi
 #### Game Time
 
 The name of this action is `gameTime`. Return a [`TimeSpan`](https://msdn.microsoft.com/en-us/library/system.timespan(v=vs.110).aspx) object that contains the current time of the game. You can also combine this with `isLoading`. If `isLoading` returns false, nothing, or isn't implemented, LiveSplit's Game Time Timer is always running and syncs with the game's Game Time at a constant interval. Everything in between is therefore a Real Time approximation of the Game Time. If you want the Game Time to not run in between the synchronization interval and only ever return the actual Game Time of the game, make sure to implement `isLoading` with a constant return value of `true`.
+
+### Testing your Script
+
+You can test your Script by adding the *Scriptable Auto Splitter* component to your Layout. You can find it in the section "Control". You can set the Path of the Script by going into the component settings of the Scriptable Auto Splitter. To get to the settings of the component you can either double click it in the Layout Editor or go into to the Scriptable Auto Splitter Tab of the Layout Settings. Once you've set the Path, the script should automatically load and hopefully work. Unfortunately there's no good way to debug the script at the moment. If LiveSplit causes a lot CPU Usage, that might be an indicator of something causing an exception in your Script. In that case you should check out your Event Logs. You can find it by doing the following:
+
+Control Panel ➞ Search for Event Viewer ➞ Open it ➞ Windows Logs ➞ Application ➞ Find the LiveSplit Errors
+
+Some might be unrelated to the Script, but it'll be fairly obvious which ones are caused by you.
+
+## Adding an Auto Splitter
+
+If you implemented an Auto Splitter and want to add it to the Auto Splitters that are automatically being downloaded by LiveSplit, feel free to add it to the [Auto Splitters XML](../LiveSplit.AutoSplitters.xml). Just click the link, click the icon for modifying the file and GitHub will automatically create a fork, branch and pull request for you, which we can review and then merge in.

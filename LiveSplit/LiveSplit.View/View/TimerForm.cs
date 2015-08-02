@@ -19,7 +19,6 @@ using Microsoft.WindowsAPICodePack.Taskbar;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -55,10 +54,12 @@ namespace LiveSplit.View
         }
         protected float OldSize { get; set; }
         public ISettings Settings { get; set; }
-        protected ILayout TimerOnlyLayout;
-        protected IRun TimerOnlyRun { get; set; }
         protected Invalidator Invalidator { get; set; }
         protected bool InTimerOnlyMode { get; set; }
+        protected ILayout DefaultLayout { get; set; }
+
+        private Image previousBackground { get; set; }
+        private Image resizedBackground { get; set; }
 
         protected GraphicsCache GlobalCache { get; set; }
 
@@ -81,7 +82,7 @@ namespace LiveSplit.View
         protected Point MousePoint;
 
         protected Task RefreshTask { get; set; }
-        protected int RefreshCounter { get; set; }
+        protected bool InvalidationRequired { get; set; }
 
         public string BasePath { get; set; }
 
@@ -135,10 +136,6 @@ namespace LiveSplit.View
 
             ComparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
 
-            TimerOnlyLayout = new TimerOnlyLayoutFactory().Create(CurrentState);
-            TimerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
-            InTimerOnlyMode = false;
-
             Model = new DoubleTapPrevention(new TimerModel());
             //LiveSplit.Web.Share.Twitch.Instance.AutoUpdateModel = Model;
 
@@ -151,7 +148,10 @@ namespace LiveSplit.View
             UpdateRecentSplits();
             UpdateRecentLayouts();
 
-            IRun run = TimerOnlyRun;
+            InTimerOnlyMode = false;
+            var timerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
+
+            IRun run = timerOnlyRun;
             try
             {
                 if (!string.IsNullOrEmpty(splitsPath))
@@ -186,21 +186,23 @@ namespace LiveSplit.View
                     {
                         Layout = LoadLayoutFromFile(Settings.RecentLayouts.Last());
                     }
-                    else if (run == TimerOnlyRun)
+                    else if (run == timerOnlyRun)
                     {
-                        Layout = TimerOnlyLayout;
+                        Layout = new TimerOnlyLayoutFactory().Create(CurrentState);
                         InTimerOnlyMode = true;
                     }
                     else
                     {
-                        Layout = new StandardLayoutFactory().Create(CurrentState);
+                        DefaultLayout = new StandardLayoutFactory().Create(CurrentState);
+                        Layout = (ILayout)DefaultLayout.Clone();
                     }
                 }
             }
             catch (Exception e)
             {
                 Log.Error(e);
-                Layout = new StandardLayoutFactory().Create(CurrentState);
+                DefaultLayout = new StandardLayoutFactory().Create(CurrentState);
+                Layout = (ILayout)DefaultLayout.Clone();
             }
 
             CurrentState.LayoutSettings = Layout.Settings;
@@ -228,11 +230,9 @@ namespace LiveSplit.View
 
             SetLayout(Layout);
 
-            OldSize = -20;
-
             RefreshTask = Task.Factory.StartNew(RefreshTimerWorker);
 
-            RefreshCounter = 0;
+            InvalidationRequired = false;
 
             Hook = new CompositeHook();
             Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
@@ -506,6 +506,7 @@ namespace LiveSplit.View
 
         void TimerForm_SizeChanged(object sender, EventArgs e)
         {
+            CreateResizedBackground();
             if (OldSize > 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
@@ -612,12 +613,10 @@ namespace LiveSplit.View
             {
                 if (InTimerOnlyMode)
                 {
-                    var offset = CurrentState.Run.Offset;
-                    TimerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
-                    TimerOnlyRun.Offset = offset;
-                    var run = TimerOnlyRun;
+                    var timerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
+                    timerOnlyRun.Offset = CurrentState.Run.Offset;
 
-                    SetRun(run);
+                    SetRun(timerOnlyRun);
                 }
                 resetMenuItem.Enabled = false;
                 pauseMenuItem.Enabled = false;
@@ -1073,18 +1072,18 @@ namespace LiveSplit.View
                         if (DontRedraw)
                             return;
 
-                        if (OldSize <= 0 || (RefreshCounter > 0 && RefreshCounter % 5 == 0))
+                        if (OldSize <= 0 || InvalidationRequired)
                         {
                             InvalidateForm();
-                            if (RefreshCounter > 0)
-                                RefreshCounter--;
+                            if (InvalidationRequired)
+                                InvalidationRequired = false;
                         }
                         else
                         {
                             GlobalCache.Restart();
                             GlobalCache["Layout"] = new XMLLayoutSaver().GetLayoutNode(new XmlDocument(), Layout).OuterXml;
 
-                            if (GlobalCache.HasChanged || OldSize <= 0)
+                            if (GlobalCache.HasChanged)
                                 InvalidateForm();
                             else
                             {
@@ -1161,19 +1160,37 @@ namespace LiveSplit.View
 
         private void PaintForm(Graphics g, Region clip)
         {
-            if (CurrentState.LayoutSettings.BackgroundColor != Color.Transparent
-                || CurrentState.LayoutSettings.BackgroundGradient != GradientType.Plain
-                && CurrentState.LayoutSettings.BackgroundColor2 != Color.Transparent)
+            if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
+                UpdateRegion.Union(clip);
+
+            if (Layout.Settings.BackgroundType == BackgroundType.Image)
+            {
+                if (Layout.Settings.BackgroundImage != null)
+                {
+                    if (Layout.Settings.BackgroundImage != previousBackground)
+                    {
+                        CreateResizedBackground();
+                    }
+                    foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
+                    {
+                        var rect = Rectangle.Round(rectangle);
+                        g.DrawImage(resizedBackground, rect, rect, GraphicsUnit.Pixel);
+                    }
+                }
+            }
+            else if (Layout.Settings.BackgroundColor != Color.Transparent
+                || Layout.Settings.BackgroundType != BackgroundType.SolidColor
+                && Layout.Settings.BackgroundColor2 != Color.Transparent)
             {
                 var gradientBrush = new LinearGradientBrush(
                             new PointF(0, 0),
-                            CurrentState.LayoutSettings.BackgroundGradient == GradientType.Horizontal
+                            Layout.Settings.BackgroundType == BackgroundType.HorizontalGradient
                             ? new PointF(Size.Width, 0)
                             : new PointF(0, Size.Height),
-                            CurrentState.LayoutSettings.BackgroundColor,
-                            CurrentState.LayoutSettings.BackgroundGradient == GradientType.Plain
-                            ? CurrentState.LayoutSettings.BackgroundColor
-                            : CurrentState.LayoutSettings.BackgroundColor2);
+                            Layout.Settings.BackgroundColor,
+                            Layout.Settings.BackgroundType == BackgroundType.SolidColor
+                            ? Layout.Settings.BackgroundColor
+                            : Layout.Settings.BackgroundColor2);
                 g.FillRectangle(gradientBrush, 0, 0, Size.Width, Size.Height);
             }
 
@@ -1187,9 +1204,11 @@ namespace LiveSplit.View
             g.InterpolationMode = InterpolationMode.Bilinear;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
+            ComponentRenderer.CalculateOverallSize(Layout.Mode);
+
             var scaleFactor = Layout.Mode == LayoutMode.Vertical
-                ? Height / Math.Max(ComponentRenderer.OverallHeight, 1f)
-                : Width / Math.Max(ComponentRenderer.OverallWidth, 1f);
+                ? Height / Math.Max(ComponentRenderer.OverallSize, 1f)
+                : Width / Math.Max(ComponentRenderer.OverallSize, 1f);
 
             g.ResetTransform();
             g.ScaleTransform(scaleFactor, scaleFactor);
@@ -1203,12 +1222,9 @@ namespace LiveSplit.View
 
             BackColor = Color.Black;
 
-            if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
-                UpdateRegion.Union(clip);
-
             ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
                 
-            var currentSize = Layout.Mode == LayoutMode.Vertical ? ComponentRenderer.OverallHeight : ComponentRenderer.OverallWidth;
+            var currentSize = ComponentRenderer.OverallSize;
 
             if (OldSize >= 0)
             {
@@ -1222,9 +1238,9 @@ namespace LiveSplit.View
                 }
                 FixSize();
                 if (Layout.Mode == LayoutMode.Vertical)
-                    MinimumSize = new Size(100, (int)((ComponentRenderer.OverallHeight / 3) + 0.5f));
+                    MinimumSize = new Size(100, (int)((ComponentRenderer.OverallSize / 3) + 0.5f));
                 else
-                    MinimumSize = new Size((int)((ComponentRenderer.OverallWidth / 3) + 0.5f), 25);
+                    MinimumSize = new Size((int)((ComponentRenderer.OverallSize / 3) + 0.5f), 25);
             }
             else
             {
@@ -1235,14 +1251,9 @@ namespace LiveSplit.View
                 OldSize++;
             }
 
-            if (OldSize == 0)
-                RefreshCounter = 50;
-
             if (OldSize >= 0)
                 OldSize = currentSize;
         }
-
-        Random rng = new Random();
 
         private void TimerForm_Paint(object sender, PaintEventArgs e)
         {
@@ -1280,6 +1291,45 @@ namespace LiveSplit.View
             {
                 Log.Error(ex);
                 Invalidate();
+            }
+        }
+
+        private void CreateResizedBackground()
+        {
+            var image = Layout.Settings.BackgroundImage;
+            if (image != null)
+            {
+                var croppedWidth = (float)image.Width;
+                var croppedHeight = (float)image.Height;
+
+                if (image.Width / (float)image.Height > Width / (float)Height)
+                {
+                    croppedWidth = image.Height * (Width / (float)Height);
+                }
+                else
+                {
+                    croppedHeight = image.Width * (Height / (float)Width);
+                }
+
+                var bitmap = new Bitmap(Width, Height, image.PixelFormat);
+
+                using (var graphics = Graphics.FromImage(bitmap))
+                {
+                    graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    graphics.DrawImage(image,
+                        new Rectangle(0, 0, Width, Height),
+                        (image.Width - croppedWidth) / 2,
+                        (image.Height - croppedHeight) / 2,
+                        croppedWidth,
+                        croppedHeight,
+                        GraphicsUnit.Pixel);
+                }
+
+                if (resizedBackground != null)
+                    resizedBackground.Dispose();
+
+                resizedBackground = bitmap;
+                previousBackground = image;
             }
         }
 
@@ -1423,13 +1473,23 @@ namespace LiveSplit.View
 
         private void SetRun(IRun run)
         {
+            foreach (var icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
+            {
+                if (icon != null)
+                    icon.Dispose();
+            }
+            if (CurrentState.Run.GameIcon != null && CurrentState.Run.GameIcon != run.GameIcon)
+            {
+                CurrentState.Run.GameIcon.Dispose();
+            }
+
             run.ComparisonGenerators = new List<IComparisonGenerator>(CurrentState.Run.ComparisonGenerators);
             foreach (var generator in run.ComparisonGenerators)
                 generator.Run = run;
             run.FixSplits();
             DeactivateAutoSplitter();
             CurrentState.Run = run;
-            RefreshCounter = 50;
+            InvalidationRequired = true;
             RegenerateComparisons();
             SwitchComparison(CurrentState.CurrentComparison);
             CreateAutoSplitter();
@@ -1683,10 +1743,16 @@ namespace LiveSplit.View
                 var result = editor.ShowDialog(this);
                 if (result == DialogResult.Cancel)
                 {
+                    foreach (var image in runCopy.Select(x => x.Icon))
+                        editor.ImagesToDispose.Remove(image);
+                    editor.ImagesToDispose.Remove(runCopy.GameIcon);
+                    
                     CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
                     SetRun(runCopy);
                     CurrentState.CallRunManuallyModified();
                 }
+                foreach (var image in editor.ImagesToDispose)
+                    image.Dispose();
             }
             finally
             {
@@ -1697,7 +1763,7 @@ namespace LiveSplit.View
 
         void editor_SegmentRemovedOrAdded(object sender, EventArgs e)
         {
-            RefreshCounter = 50;
+            InvalidationRequired = true;
         }
 
         void editor_ComparisonRenamed(object sender, EventArgs e)
@@ -1716,23 +1782,24 @@ namespace LiveSplit.View
         protected void RemoveTimerOnly()
         {
             InTimerOnlyMode = false;
-            ILayout layout;
             try
             {
                 var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
                 if (lastLayoutPath != null)
-                    layout = LoadLayoutFromFile(lastLayoutPath);
+                {
+                    var layout = LoadLayoutFromFile(lastLayoutPath);
+                    layout.X = Location.X;
+                    layout.Y = Location.Y;
+                    SetLayout(layout);
+                }
                 else
-                    layout = new StandardLayoutFactory().Create(CurrentState);
+                    LoadDefaultLayout();
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                layout = new StandardLayoutFactory().Create(CurrentState);
+                LoadDefaultLayout();
             }
-            layout.X = Location.X;
-            layout.Y = Location.Y;
-            SetLayout(layout);
         }
 
         private void EditLayout()
@@ -1775,6 +1842,8 @@ namespace LiveSplit.View
                 {
                     foreach (var component in layoutCopy.Components)
                         editor.ComponentsToDispose.Remove(component);
+                    editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
+
                     var enumerator = componentSettings.GetEnumerator();
                     foreach (var component in layoutCopy.Components)
                     {
@@ -1786,6 +1855,8 @@ namespace LiveSplit.View
                 }
                 foreach (var component in editor.ComponentsToDispose)
                     component.Dispose();
+                foreach (var image in editor.ImagesToDispose)
+                    image.Dispose();
             }
             finally
             {
@@ -1795,7 +1866,7 @@ namespace LiveSplit.View
 
         void editor_LayoutSettingsAssigned(object sender, EventArgs e)
         {
-            RefreshCounter = 50;
+            InvalidationRequired = true;
         }
 
         void editor_LayoutResized(object sender, EventArgs e)
@@ -1815,6 +1886,7 @@ namespace LiveSplit.View
 
         void editor_OrientationSwitched(object sender, EventArgs e)
         {
+            ComponentRenderer.CalculateOverallSize(Layout.Mode);
             if (Layout.Mode == LayoutMode.Vertical)
             {
                 Layout.HorizontalWidth = Size.Width;
@@ -1822,7 +1894,7 @@ namespace LiveSplit.View
                 if (Layout.VerticalHeight == UI.Layout.InvalidSize || Layout.VerticalWidth == UI.Layout.InvalidSize)
                 {
                     Layout.VerticalWidth = 300;
-                    Layout.VerticalHeight = (int)(ComponentRenderer.OverallHeight + 0.5);
+                    Layout.VerticalHeight = (int)(ComponentRenderer.OverallSize + 0.5);
                 }
             }
             else
@@ -1831,7 +1903,7 @@ namespace LiveSplit.View
                 Layout.VerticalHeight = Size.Height;
                 if (Layout.HorizontalWidth == UI.Layout.InvalidSize || Layout.HorizontalHeight == UI.Layout.InvalidSize)
                 {
-                    Layout.HorizontalWidth = (int)(ComponentRenderer.OverallWidth + 0.5);
+                    Layout.HorizontalWidth = (int)(ComponentRenderer.OverallSize + 0.5);
                     Layout.HorizontalHeight = 45;
                 }
             }
@@ -1916,8 +1988,12 @@ namespace LiveSplit.View
         {
             if (WarnUserAboutLayoutSave())
             {
-                var layoutFactory = new StandardLayoutFactory();
-                var layout = layoutFactory.Create(CurrentState);
+                if (DefaultLayout == null)
+                {
+                    DefaultLayout = new StandardLayoutFactory().Create(CurrentState);
+                }
+
+                var layout = (ILayout)DefaultLayout.Clone();
                 layout.X = Location.X;
                 layout.Y = Location.Y;
                 SetLayout(layout);
@@ -1931,6 +2007,9 @@ namespace LiveSplit.View
             {
                 if (Layout != null && Layout != layout)
                 {
+                    if (Layout.Settings.BackgroundImage != null && Layout.Settings.BackgroundImage != layout.Settings.BackgroundImage)
+                        Layout.Settings.BackgroundImage.Dispose();
+
                     foreach (var component in Layout.Components.Except(layout.Components))
                         component.Dispose();
 
@@ -1966,16 +2045,14 @@ namespace LiveSplit.View
                 return;
             if (!WarnUserAboutLayoutSave())
                 return;
-            TimerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
-            var run = TimerOnlyRun;
+            var run = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
             Model.Reset();
             SetRun(run);
             Settings.AddToRecentSplits("", null);
             InTimerOnlyMode = true;
             if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
             {
-                TimerOnlyLayout = new TimerOnlyLayoutFactory().Create(CurrentState);
-                var layout = TimerOnlyLayout;
+                var layout = new TimerOnlyLayoutFactory().Create(CurrentState);
                 layout.Settings = Layout.Settings;
                 layout.X = Location.X;
                 layout.Y = Location.Y;
@@ -2196,24 +2273,22 @@ namespace LiveSplit.View
 
         private void FixSize()
         {
-            var currentSize = Layout.Mode == LayoutMode.Vertical ? ComponentRenderer.OverallHeight : ComponentRenderer.OverallWidth;
+            var currentSize = ComponentRenderer.OverallSize;
             if (OldSize >= 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
                 {
-                    var minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallHeight);
+                    var minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallSize);
                     if (Width < minimumWidth)
                         Height = (int)(Height / (minimumWidth / Width) + 0.5f);
                 }
                 else
                 {
-                    var minimumHeight = ComponentRenderer.MinimumHeight * (Width / ComponentRenderer.OverallWidth);
+                    var minimumHeight = ComponentRenderer.MinimumHeight * (Width / ComponentRenderer.OverallSize);
                     if (Height < minimumHeight)
                         Width = (int)(Width / (minimumHeight / Height) + 0.5f);
                 }
             }
-            else
-                OldSize++;
             if (OldSize >= 0)
                 OldSize = currentSize;
         }

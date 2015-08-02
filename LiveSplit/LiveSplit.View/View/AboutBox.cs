@@ -111,9 +111,9 @@ namespace LiveSplit.View
             Process.Start("http://twitter.com/CryZe107");
         }
 
-        private void wooferzfg1LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void wooferzfgLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://twitter.com/wooferzfg1");
+            Process.Start("http://twitter.com/wooferzfg");
         }
 
         private void donateButton_Click(object sender, EventArgs e)
