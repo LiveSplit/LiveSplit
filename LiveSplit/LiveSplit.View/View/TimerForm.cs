@@ -63,6 +63,7 @@ namespace LiveSplit.View
         private Image previousBackground { get; set; }
         private float previousOpacity { get; set; }
         private float previousBlur { get; set; }
+        private Image blurredBackground { get; set; }
         private Image bakedBackground { get; set; }
 
         protected GraphicsCache GlobalCache { get; set; }
@@ -1167,38 +1168,7 @@ namespace LiveSplit.View
             if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
                 UpdateRegion.Union(clip);
 
-            if (Layout.Settings.BackgroundType == BackgroundType.Image)
-            {
-                if (Layout.Settings.BackgroundImage != null)
-                {
-                    if (Layout.Settings.BackgroundImage != previousBackground
-                        || Layout.Settings.ImageOpacity != previousOpacity
-                        || Layout.Settings.ImageBlur != previousBlur)
-                    {
-                        CreateBakedBackground();
-                    }
-                    foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
-                    {
-                        var rect = Rectangle.Round(rectangle);
-                        g.DrawImage(bakedBackground, rect, rect, GraphicsUnit.Pixel);
-                    }
-                }
-            }
-            else if (Layout.Settings.BackgroundColor != Color.Transparent
-                || Layout.Settings.BackgroundType != BackgroundType.SolidColor
-                && Layout.Settings.BackgroundColor2 != Color.Transparent)
-            {
-                var gradientBrush = new LinearGradientBrush(
-                            new PointF(0, 0),
-                            Layout.Settings.BackgroundType == BackgroundType.HorizontalGradient
-                            ? new PointF(Size.Width, 0)
-                            : new PointF(0, Size.Height),
-                            Layout.Settings.BackgroundColor,
-                            Layout.Settings.BackgroundType == BackgroundType.SolidColor
-                            ? Layout.Settings.BackgroundColor
-                            : Layout.Settings.BackgroundColor2);
-                g.FillRectangle(gradientBrush, 0, 0, Size.Width, Size.Height);
-            }
+            DrawBackground(g);
 
             Opacity = Layout.Settings.Opacity;
 
@@ -1300,19 +1270,62 @@ namespace LiveSplit.View
             }
         }
 
+        private void DrawBackground(Graphics g)
+        {
+            if (Layout.Settings.BackgroundType == BackgroundType.Image)
+            {
+                if (Layout.Settings.BackgroundImage != null)
+                {
+                    if (Layout.Settings.BackgroundImage != previousBackground
+                        || Layout.Settings.ImageOpacity != previousOpacity
+                        || Layout.Settings.ImageBlur != previousBlur)
+                    {
+                        CreateBakedBackground();
+                    }
+                    foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
+                    {
+                        var rect = Rectangle.Round(rectangle);
+                        g.DrawImage(bakedBackground, rect, rect, GraphicsUnit.Pixel);
+                    }
+                }
+            }
+            else if (Layout.Settings.BackgroundColor != Color.Transparent
+                || Layout.Settings.BackgroundType != BackgroundType.SolidColor
+                && Layout.Settings.BackgroundColor2 != Color.Transparent)
+            {
+                var gradientBrush = new LinearGradientBrush(
+                            new PointF(0, 0),
+                            Layout.Settings.BackgroundType == BackgroundType.HorizontalGradient
+                            ? new PointF(Size.Width, 0)
+                            : new PointF(0, Size.Height),
+                            Layout.Settings.BackgroundColor,
+                            Layout.Settings.BackgroundType == BackgroundType.SolidColor
+                            ? Layout.Settings.BackgroundColor
+                            : Layout.Settings.BackgroundColor2);
+                g.FillRectangle(gradientBrush, 0, 0, Size.Width, Size.Height);
+            }
+        }
+
         private void CreateBakedBackground()
         {
             var image = Layout.Settings.BackgroundImage;
             var opacity = Layout.Settings.ImageOpacity;
             var blur = Layout.Settings.ImageBlur;
-            var usesBlur = blur > 0;
 
             if (image != null)
             {
-                if (usesBlur)
+                if (blur > 0)
                 {
-                    image = ImageBlur.Generate(image, blur * 10);
+                    if (blur != previousBlur)
+                    {
+                        if (blurredBackground != null)
+                            blurredBackground.Dispose();
+                        blurredBackground = ImageBlur.Generate(image, blur * 10);
+                        previousBlur = blur;
+                    }
+                    image = blurredBackground;
                 }
+
                 var croppedWidth = (float)image.Width;
                 var croppedHeight = (float)image.Height;
 
@@ -1347,13 +1360,10 @@ namespace LiveSplit.View
 
                 if (bakedBackground != null)
                     bakedBackground.Dispose();
-                if (usesBlur)
-                    image.Dispose();
 
                 bakedBackground = bitmap;
                 previousBackground = Layout.Settings.BackgroundImage;
                 previousOpacity = opacity;
-                previousBlur = blur;
             }
         }
 
