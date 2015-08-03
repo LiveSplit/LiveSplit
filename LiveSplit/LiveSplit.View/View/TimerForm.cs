@@ -1316,12 +1316,11 @@ namespace LiveSplit.View
             {
                 if (blur > 0)
                 {
-                    if (blur != previousBlur)
+                    if (blur != previousBlur || image != previousBackground)
                     {
                         if (blurredBackground != null)
                             blurredBackground.Dispose();
                         blurredBackground = ImageBlur.Generate(image, blur * 10);
-                        previousBlur = blur;
                     }
                     image = blurredBackground;
                 }
@@ -1364,6 +1363,7 @@ namespace LiveSplit.View
                 bakedBackground = bitmap;
                 previousBackground = Layout.Settings.BackgroundImage;
                 previousOpacity = opacity;
+                previousBlur = blur;
             }
         }
 
