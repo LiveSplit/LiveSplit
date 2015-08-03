@@ -116,7 +116,6 @@ namespace LiveSplit.View
             SegmentList.AllowNew = true;
             SegmentList.AllowRemove = true;
             SegmentList.AllowEdit = true;
-            SegmentList.AddingNew += SegmentList_AddingNew;
             SegmentList.ListChanged += SegmentList_ListChanged;
             runGrid.AutoGenerateColumns = false;
             runGrid.AutoSize = true;
@@ -128,8 +127,6 @@ namespace LiveSplit.View
             runGrid.CellParsing += runGrid_CellParsing;
             runGrid.CellValidating += runGrid_CellValidating;
             runGrid.CellEndEdit += runGrid_CellEndEdit;
-            runGrid.UserDeletingRow += runGrid_UserDeletingRow;
-            runGrid.UserDeletedRow += runGrid_UserDeletedRow;
             runGrid.SelectionChanged += runGrid_SelectionChanged;
 
             var iconColumn = new DataGridViewImageColumn() { ImageLayout = DataGridViewImageCellLayout.Zoom };
@@ -177,7 +174,9 @@ namespace LiveSplit.View
             cbxRunCategory.DataBindings.Add("Text", this, "CategoryName");
             tbxTimeOffset.DataBindings.Add("Text", this, "Offset");
             tbxAttempts.DataBindings.Add("Text", this, "AttemptCount");
-            picGameIcon.DataBindings.Add("Image", this, "GameIcon");
+            
+            picGameIcon.Image = GameIcon;
+            removeIconToolStripMenuItem.Enabled = state.Run.GameIcon != null;
 
             cbxGameName.AutoCompleteSource = AutoCompleteSource.ListItems;
 
@@ -289,11 +288,6 @@ namespace LiveSplit.View
             RaiseRunEdited();
         }
 
-        void runGrid_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            UpdateSegmentList();
-        }
-
         private void UpdateButtonsStatus()
         {
             if (!AllowChangingSegments)
@@ -320,27 +314,6 @@ namespace LiveSplit.View
                     btnMoveDown.Enabled = false;
                 }
             }
-        }
-
-        void runGrid_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
-            var curIndex = e.Row.Index;
-            var curSegment = Run[curIndex].BestSegmentTime;
-            if (curIndex < Run.Count - 1)
-            {
-                var nextSegment = Run[curIndex + 1].BestSegmentTime;
-                var newBestSegment = new Time(Run[curIndex + 1].BestSegmentTime);
-                if (curSegment.RealTime != null && nextSegment.GameTime != null)
-                {
-                    newBestSegment.RealTime = curSegment.RealTime + nextSegment.RealTime;
-                }
-                if (curSegment.GameTime != null && nextSegment.GameTime != null)
-                {
-                    newBestSegment.GameTime = curSegment.GameTime + newBestSegment.GameTime;
-                }
-                Run[curIndex + 1].BestSegmentTime = newBestSegment;
-            }
-            UpdateButtonsStatus();
         }
 
         void runGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -604,9 +577,12 @@ namespace LiveSplit.View
             Fix();
         }
 
-        void SegmentList_AddingNew(object sender, AddingNewEventArgs e)
+        private void SetGameIcon(Image icon)
         {
-            e.NewObject = new Segment("");
+            ImagesToDispose.Add(GameIcon);
+            GameIcon = icon;
+            picGameIcon.Image = GameIcon;
+            removeIconToolStripMenuItem.Enabled = icon != null;
         }
 
         private void picGameIcon_DoubleClick(object sender, EventArgs e)
@@ -627,10 +603,7 @@ namespace LiveSplit.View
                 try
                 {
                     var icon = Image.FromFile(dialog.FileName);
-                    if (GameIcon != null)
-                        ImagesToDispose.Add(GameIcon);
-
-                    GameIcon = picGameIcon.Image = icon;
+                    SetGameIcon(icon);
                     RaiseRunEdited();
                 }
                 catch (Exception ex)
@@ -803,17 +776,20 @@ namespace LiveSplit.View
             foreach (var selectedObject in runGrid.SelectedCells)
             {
                 var selectedCell = (DataGridViewCell)selectedObject;
+                var selectedIndex = selectedCell.RowIndex;
 
-                if (Run.Count <= 1 || selectedCell.RowIndex >= Run.Count || selectedCell.RowIndex < 0)
+                if (Run.Count <= 1 || selectedIndex >= Run.Count || selectedIndex < 0)
                     continue;
-                FixAfterDeletion(selectedCell.RowIndex);
-                if (selectedCell.RowIndex == Run.Count - 1)
+                FixAfterDeletion(selectedIndex);
+                if (selectedIndex == Run.Count - 1)
                 {
                     runGrid.ClearSelection();
                     runGrid.CurrentCell = runGrid.Rows[runGrid.CurrentRow.Index - 1].Cells[runGrid.CurrentCell.ColumnIndex];
                     runGrid.CurrentCell.Selected = true;
                 }
-                SegmentList.RemoveAt(selectedCell.RowIndex);
+                if (Run[selectedIndex].Icon != null)
+                    ImagesToDispose.Add(Run[selectedIndex].Icon);
+                SegmentList.RemoveAt(selectedIndex);
             }
 
             Fix();
@@ -944,8 +920,7 @@ namespace LiveSplit.View
         private void removeIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ImagesToDispose.Add(GameIcon);
-            GameIcon = null;
-            picGameIcon.Image = GameIcon;
+            SetGameIcon(null);
             RaiseRunEdited();
         }
 
@@ -965,10 +940,7 @@ namespace LiveSplit.View
             {
                 var gameId = SpeedrunCom.Instance.GetGameID(cbxGameName.Text);
                 var cover = SpeedrunCom.Instance.GetGameCover(gameId);
-                if (GameIcon != null)
-                    ImagesToDispose.Add(GameIcon);
-
-                GameIcon = picGameIcon.Image = cover;
+                SetGameIcon(cover);
                 RaiseRunEdited();
                 return;
             }
@@ -981,10 +953,7 @@ namespace LiveSplit.View
             {
                 var gameId = PBTracker.Instance.GetGameIdByName(cbxGameName.Text);
                 var cover = PBTracker.Instance.GetGameBoxArt(gameId);
-                if (GameIcon != null)
-                    ImagesToDispose.Add(GameIcon);
-
-                GameIcon = picGameIcon.Image = cover;
+                SetGameIcon(cover);
                 RaiseRunEdited();
                 return;
             }
@@ -996,10 +965,7 @@ namespace LiveSplit.View
             try
             {
                 var cover = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
-                if (GameIcon != null)
-                    ImagesToDispose.Add(GameIcon);
-
-                GameIcon = picGameIcon.Image = cover;
+                SetGameIcon(cover);
                 RaiseRunEdited();
             }
             catch (Exception ex)
@@ -1027,10 +993,7 @@ namespace LiveSplit.View
                         try
                         {
                             var icon = Image.FromStream(stream);
-                            if (GameIcon != null)
-                                ImagesToDispose.Add(GameIcon);
-
-                            GameIcon = picGameIcon.Image = icon;
+                            SetGameIcon(icon);
                             RaiseRunEdited();
                         }
                         catch (Exception ex)
