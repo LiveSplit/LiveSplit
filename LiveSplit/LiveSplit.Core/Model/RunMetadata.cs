@@ -14,13 +14,16 @@ namespace LiveSplit.Model
     public class RunMetadata
     {
         public IRun LiveSplitRun { get; private set; }
+
         private string oldGameName;
         private string oldCategoryName;
         private Lazy<Game> game;
         private Lazy<Category> category;
         private Lazy<SpeedrunComSharp.Run> run;
-        private bool usesEmulator;
         private string runId;
+        private string platformName;
+        private string regionName;
+        private bool usesEmulator;
 
         public event EventHandler PropertyChanged;
 
@@ -39,6 +42,7 @@ namespace LiveSplit.Model
                     TriggerPropertyChanged(false);
             }
         }
+
         public SpeedrunComSharp.Run Run
         {
             get
@@ -51,26 +55,15 @@ namespace LiveSplit.Model
             }
         }
 
-        public string PlatformID { get; set; }
         public string PlatformName
         {
             get
             {
-                if (Platform != null)
-                    return Platform.Name;
-                return string.Empty;
+                return platformName;
             }
             set
             {
-                if (Game == null)
-                    return;
-
-                var platform = Game.Platforms.FirstOrDefault(x => x.Name == value);
-                if (platform == null)
-                    PlatformID = string.Empty;
-                else
-                    PlatformID = platform.ID;
-
+                platformName = value; 
                 TriggerPropertyChanged(true);
             }
         }
@@ -81,30 +74,19 @@ namespace LiveSplit.Model
                 if (Game == null)
                     return null;
 
-                return Game.Platforms.FirstOrDefault(x => x.ID == PlatformID);
+                return Game.Platforms.FirstOrDefault(x => x.Name == PlatformName);
             }
         }
 
-        public string RegionID { get; set; }
         public string RegionName
         {
             get
             {
-                if (Region != null)
-                    return Region.Name;
-                return string.Empty;
+                return regionName;
             }
             set
             {
-                if (Game == null)
-                    return;
-
-                var region = Game.Regions.FirstOrDefault(x => x.Name == value);
-                if (region == null)
-                    RegionID = string.Empty;
-                else
-                    RegionID = region.ID;
-
+                regionName = value;
                 TriggerPropertyChanged(true);
             }
         }
@@ -115,12 +97,11 @@ namespace LiveSplit.Model
                 if (Game == null)
                     return null;
 
-                return Game.Regions.FirstOrDefault(x => x.ID == RegionID);
+                return Game.Regions.FirstOrDefault(x => x.Name == RegionName);
             }
         }
 
-        public IDictionary<string, string> VariableValueIDs { get; set; }
-        public IDictionary<string, string> VariableValueNames { get { return VariableValues.ToDictionary(x => x.Key.Name, x => (x.Value != null) ? x.Value.Value : string.Empty); } }
+        public IDictionary<string, string> VariableValueNames { get; set; }
         public IDictionary<Variable, VariableValue> VariableValues
         {
             get
@@ -130,13 +111,13 @@ namespace LiveSplit.Model
 
                 var categoryId = Category != null ? Category.ID : null;
                 var variables = Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);
-                return variables.ToDictionary(x => x, x => 
+                return variables.ToDictionary(x => x, x =>
                 {
-                    if (!VariableValueIDs.ContainsKey(x.ID))
+                    if (!VariableValueNames.ContainsKey(x.Name))
                         return null;
 
-                    var variableChoiceID = VariableValueIDs[x.ID];
-                    return x.Choices.FirstOrDefault(y => y.ID == variableChoiceID); 
+                    var variableValue = VariableValueNames[x.Name];
+                    return x.Choices.FirstOrDefault(y => y.Value == variableValue);
                 });
             }
         }
@@ -145,14 +126,11 @@ namespace LiveSplit.Model
         {
             get
             {
-                if (Game == null || !Game.Ruleset.EmulatorsAllowed)
-                    return false;
                 return usesEmulator;
             }
             set
             {
-                usesEmulator = Game != null && Game.Ruleset.EmulatorsAllowed && value;
-
+                usesEmulator = value;
                 TriggerPropertyChanged(true);
             }
         }
@@ -178,7 +156,7 @@ namespace LiveSplit.Model
         public RunMetadata(IRun run)
         {
             this.LiveSplitRun = run;
-            VariableValueIDs = new Dictionary<string, string>();
+            VariableValueNames = new Dictionary<string, string>();
             game = new Lazy<Game>(() => null);
             category = new Lazy<Category>(() => null);
             this.run = new Lazy<SpeedrunComSharp.Run>(() => null);
@@ -193,31 +171,74 @@ namespace LiveSplit.Model
                     oldGameName = LiveSplitRun.GameName;
                     if (!string.IsNullOrEmpty(LiveSplitRun.GameName))
                     {
-                        var gameTask = Task.Factory.StartNew(() => SpeedrunCom.Client.Games.SearchGameExact(LiveSplitRun.GameName, new GameEmbeds(embedRegions: true, embedPlatforms: true)));
-                        game = new Lazy<Game>(() => gameTask.Result);
+                        var gameTask = Task.Factory.StartNew(() => SpeedrunCom.Client.Games.SearchGameExact(oldGameName, new GameEmbeds(embedRegions: true, embedPlatforms: true)));
+                        this.game = new Lazy<Game>(() => gameTask.Result);
+
+                        var platformTask = Task.Factory.StartNew(() =>
+                            {
+                                var game = this.game.Value;
+                                if (game != null && !game.Platforms.Any(x => x.Name == PlatformName))
+                                    PlatformName = string.Empty;
+                            });
+                        var regionTask = Task.Factory.StartNew(() =>
+                            {
+                                var game = this.game.Value;
+                                if (game != null && !game.Regions.Any(x => x.Name == RegionName))
+                                    RegionName = string.Empty;
+                            });
                     }
                     else
-                        game = new Lazy<Game>(() => null);
+                        this.game = new Lazy<Game>(() => null);
+
                     oldCategoryName = null;
+                    //TODO: kill off bad platforms and regions
                 }
+
 
                 if (LiveSplitRun.CategoryName != oldCategoryName)
                 {
                     oldCategoryName = LiveSplitRun.CategoryName;
-                    if (!string.IsNullOrEmpty(LiveSplitRun.CategoryName))
+                    if (!string.IsNullOrEmpty(oldCategoryName))
                     {
-                        var categoryTask = Task.Factory.StartNew(() => 
+                        var categoryTask = Task.Factory.StartNew(() =>
                         {
-                            if (Game == null)
+                            var game = this.game.Value;
+                            if (game == null)
                                 return null;
 
-                            return SpeedrunCom.Client.Games.GetCategories(Game.ID, embeds: new CategoryEmbeds(embedVariables: true))
-                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == LiveSplitRun.CategoryName);
+                            var category = SpeedrunCom.Client.Games.GetCategories(game.ID, embeds: new CategoryEmbeds(embedVariables: true))
+                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == oldCategoryName);
+                            return category;
                         });
-                        category = new Lazy<Category>(() => categoryTask.Result);
+                        this.category = new Lazy<Category>(() => categoryTask.Result);
+
+                        var variableTask = Task.Factory.StartNew(() =>
+                            {
+                                var category = this.category.Value;
+                                var categoryId = category != null ? category.ID : null;
+                                var game = this.game.Value;
+                                if (game == null)
+                                    return;
+
+                                var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).ToList();
+                                var deletions = new List<string>();
+                                var variableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value);
+
+                                foreach (var variableNamePair in variableValueNames)
+                                {
+                                    var variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
+                                    if (variable == null || !variable.Choices.Any(x => x.Value == variableNamePair.Value))
+                                        deletions.Add(variableNamePair.Key);
+                                }
+                                foreach (var variable in deletions)
+                                {
+                                    variableValueNames.Remove(variable);
+                                }
+                                VariableValueNames = variableValueNames;
+                            });
                     }
                     else
-                        category = new Lazy<Category>(() => null);
+                        this.category = new Lazy<Category>(() => null);
                 }
             }
         }
@@ -232,10 +253,12 @@ namespace LiveSplit.Model
                 category = category,
                 run = this.run,
                 runId = runId,
-                PlatformID = PlatformID,
-                RegionID = RegionID,
-                VariableValueIDs = VariableValueIDs.ToDictionary(x => x.Key, x => x.Value),
-                usesEmulator = usesEmulator
+                platformName = platformName,
+                regionName = regionName,
+                usesEmulator = usesEmulator,
+                VariableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value),
+                //TODO: set members instead later
+                //TODO: clone PropertyChanged
             };
         }
 

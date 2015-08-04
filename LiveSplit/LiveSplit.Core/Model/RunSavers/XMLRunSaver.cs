@@ -70,22 +70,22 @@ namespace LiveSplit.Model.RunSavers
             parent.AppendChild(autoSplitterSettings);
 
             var metadata = document.CreateElement("Metadata");
+
             var runElement = document.CreateElement("Run");
             runElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RunID ?? string.Empty));
             metadata.AppendChild(runElement);
-            var platform = document.CreateElement("Platform");
-            platform.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.PlatformID ?? string.Empty));
+
+            var platform = SettingsHelper.ToElement(document, "Platform", run.Metadata.PlatformName ?? string.Empty);
             platform.Attributes.Append(SettingsHelper.ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
             metadata.AppendChild(platform);
-            var region = document.CreateElement("Region");
-            region.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RegionID ?? string.Empty));
-            metadata.AppendChild(region);
+
+            metadata.AppendChild(SettingsHelper.ToElement(document, "Region", run.Metadata.RegionName ?? string.Empty));
+
             var variables = document.CreateElement("Variables");
-            foreach (var variable in run.Metadata.VariableValueIDs)
+            foreach (var variable in run.Metadata.VariableValueNames)
             {
-                var variableElement = document.CreateElement("Variable");
-                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", variable.Key ?? string.Empty));
-                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "valueId", variable.Value ?? string.Empty));
+                var variableElement = SettingsHelper.ToElement(document, "Variable", variable.Value ?? string.Empty);
+                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "name", variable.Key ?? string.Empty));
                 variables.AppendChild(variableElement);
             }
             metadata.AppendChild(variables);

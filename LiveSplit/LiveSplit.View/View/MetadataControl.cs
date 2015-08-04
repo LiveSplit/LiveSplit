@@ -24,16 +24,19 @@ namespace LiveSplit.View
             {
                 get
                 {
-                    return Metadata.VariableValueNames[Variable.Name];
+                    if (Metadata.VariableValueNames.ContainsKey(Variable.Name))
+                        return Metadata.VariableValueNames[Variable.Name];
+
+                    return string.Empty;
                 }
                 set
                 {
                     var choice = Variable.Choices.FirstOrDefault(x => x.Value == value);
-                    var choiceId = choice != null ? choice.ID : string.Empty;
-                    if (Metadata.VariableValueIDs.ContainsKey(Variable.ID))
-                        Metadata.VariableValueIDs[Variable.ID] = choiceId;
+                    var variableValue = choice != null ? choice.Value : string.Empty;
+                    if (Metadata.VariableValueNames.ContainsKey(Variable.Name))
+                        Metadata.VariableValueNames[Variable.Name] = variableValue;
                     else
-                        Metadata.VariableValueIDs.Add(Variable.ID, choiceId);
+                        Metadata.VariableValueNames.Add(Variable.Name, variableValue);
 
                     if (VariableChanged != null)
                         VariableChanged(this, new MetadataChangedEventArgs(true));

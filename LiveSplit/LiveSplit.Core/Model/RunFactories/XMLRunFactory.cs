@@ -61,6 +61,19 @@ namespace LiveSplit.Model.RunFactories
             var parent = document["Run"];
             var version = SettingsHelper.ParseAttributeVersion(parent);
 
+            if (version >= new Version(1, 6))
+            {
+                var metadata = parent["Metadata"];
+                run.Metadata.RunID = metadata["Run"].GetAttribute("id");
+                run.Metadata.PlatformName = metadata["Platform"].InnerText;
+                run.Metadata.UsesEmulator = bool.Parse(metadata["Platform"].GetAttribute("usesEmulator"));
+                run.Metadata.RegionName = metadata["Region"].InnerText;
+                foreach (var variableNode in metadata["Variables"].ChildNodes.OfType<XmlElement>())
+                {
+                    run.Metadata.VariableValueNames.Add(variableNode.GetAttribute("name"), variableNode.InnerText);
+                }
+            }
+
             run.GameIcon = SettingsHelper.GetImageFromElement(parent["GameIcon"]);
             run.GameName = SettingsHelper.ParseString(parent["GameName"]);
             run.CategoryName = SettingsHelper.ParseString(parent["CategoryName"]);
@@ -123,19 +136,6 @@ namespace LiveSplit.Model.RunFactories
                 newXmlDoc.InnerXml = parent["AutoSplitterSettings"].OuterXml;
                 run.AutoSplitterSettings = newXmlDoc.FirstChild as XmlElement;
                 run.AutoSplitterSettings.Attributes.Append(SettingsHelper.ToAttribute(newXmlDoc, "gameName", run.GameName));
-            }
-
-            if (version >= new Version(1, 6))
-            {
-                var metadata = parent["Metadata"];
-                run.Metadata.RunID = metadata["Run"].GetAttribute("id");
-                run.Metadata.PlatformID = metadata["Platform"].GetAttribute("id");
-                run.Metadata.UsesEmulator = bool.Parse(metadata["Platform"].GetAttribute("usesEmulator"));
-                run.Metadata.RegionID = metadata["Region"].GetAttribute("id");
-                foreach (var variableNode in metadata["Variables"].ChildNodes.OfType<XmlElement>())
-                {
-                    run.Metadata.VariableValueIDs.Add(variableNode.GetAttribute("id"), variableNode.GetAttribute("valueId"));
-                }
             }
 
             if (!string.IsNullOrEmpty(FilePath))

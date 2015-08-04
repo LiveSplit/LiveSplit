@@ -108,13 +108,18 @@ namespace LiveSplit.Model
             Metadata = new RunMetadata(this);
         }
 
-        public Run(IEnumerable<ISegment> collection, IComparisonGeneratorsFactory factory)
-            : this(factory)
+        private Run(IEnumerable<ISegment> collection, IComparisonGeneratorsFactory factory, RunMetadata metadata)
         {
+            InternalList = new List<ISegment>();
             foreach (var x in collection)
             {
                 InternalList.Add(x.Clone() as ISegment);
             }
+            AttemptHistory = new List<Attempt>();
+            Factory = factory;
+            ComparisonGenerators = Factory.Create(this).ToList();
+            CustomComparisons = new List<string>() { PersonalBestComparisonName };
+            Metadata = metadata.Clone(this);
         }
 
         public int IndexOf(ISegment item)
@@ -191,7 +196,7 @@ namespace LiveSplit.Model
 
         public object Clone()
         {
-            var newRun = new Run(this, Factory)
+            var newRun = new Run(this, Factory, Metadata)
             {
                 GameIcon = GameIcon,
                 GameName = GameName,
@@ -204,9 +209,8 @@ namespace LiveSplit.Model
                 CustomComparisons = new List<string>(CustomComparisons),
                 ComparisonGenerators = new List<IComparisonGenerator>(ComparisonGenerators),
                 AutoSplitter = AutoSplitter != null ? (AutoSplitter)AutoSplitter.Clone() : null,
-                AutoSplitterSettings = AutoSplitterSettings,
+                AutoSplitterSettings = AutoSplitterSettings
             };
-            newRun.Metadata = Metadata.Clone(newRun);
             return newRun;
         }
     }
