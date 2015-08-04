@@ -1548,40 +1548,45 @@ namespace LiveSplit.View
 
         private void OpenSplits()
         {
-            var splitDialog = new OpenFileDialog();
-            IsInDialogMode = true;
-            try
+            using (var splitDialog = new OpenFileDialog())
             {
-                if (Settings.RecentSplits.Any() && !string.IsNullOrEmpty(Settings.RecentSplits.Last().Path))
-                    splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last().Path);
-                var result = splitDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
+                IsInDialogMode = true;
+                try
                 {
-                    OpenRunFromFile(splitDialog.FileName);
+                    if (Settings.RecentSplits.Any() && !string.IsNullOrEmpty(Settings.RecentSplits.Last().Path))
+                        splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last().Path);
+                    var result = splitDialog.ShowDialog(this);
+                    if (result == DialogResult.OK)
+                    {
+                        OpenRunFromFile(splitDialog.FileName);
+                    }
                 }
-            }
-            finally
-            {
-                IsInDialogMode = false;
+                finally
+                {
+                    IsInDialogMode = false;
+                }
             }
         }
 
         private void SaveSplitsAs(bool promptPBMessage)
         {
-            var splitDialog = new SaveFileDialog();
-            splitDialog.Filter = "LiveSplit Splits (*.lss)|*.lss|All Files (*.*)|*.*";
-            try
+            using (var splitDialog = new SaveFileDialog())
             {
-                var result = splitDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
+                splitDialog.Filter = "LiveSplit Splits (*.lss)|*.lss|All Files (*.*)|*.*";
+                IsInDialogMode = true;
+                try
                 {
-                    CurrentState.Run.FilePath = splitDialog.FileName;
-                    SaveSplits(promptPBMessage);
+                    var result = splitDialog.ShowDialog(this);
+                    if (result == DialogResult.OK)
+                    {
+                        CurrentState.Run.FilePath = splitDialog.FileName;
+                        SaveSplits(promptPBMessage);
+                    }
                 }
-            }
-            finally
-            {
-
+                finally
+                {
+                    IsInDialogMode = false;
+                }
             }
         }
 
@@ -1891,53 +1896,61 @@ namespace LiveSplit.View
 
         private void SaveLayoutAs()
         {
-            var layoutDialog = new SaveFileDialog();
-            layoutDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All Files (*.*)|*.*";
-            try
+            using (var layoutDialog = new SaveFileDialog())
             {
-                var result = layoutDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
+                layoutDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All Files (*.*)|*.*";
+                IsInDialogMode = true;
+                try
                 {
-                    Layout.FilePath = layoutDialog.FileName;
-                    SaveLayout();
+                    var result = layoutDialog.ShowDialog(this);
+                    if (result == DialogResult.OK)
+                    {
+                        Layout.FilePath = layoutDialog.FileName;
+                        SaveLayout();
+                    }
                 }
-            }
-            finally
-            {
+                finally
+                {
+                    IsInDialogMode = false;
+                }
             }
         }
         private void OpenAboutBox()
         {
-            var aboutBox = new AboutBox();
-            try
+            using (var aboutBox = new AboutBox())
             {
-                TopMost = false;
-                aboutBox.ShowDialog(this);
-            }
-            finally
-            {
-                TopMost = Layout.Settings.AlwaysOnTop;
+                try
+                {
+                    TopMost = false;
+                    aboutBox.ShowDialog(this);
+                }
+                finally
+                {
+                    TopMost = Layout.Settings.AlwaysOnTop;
+                }
             }
         }
 
         private void OpenLayout()
         {
-            var layoutDialog = new OpenFileDialog();
-            layoutDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All Files (*.*)|*.*";
-            IsInDialogMode = true;
-            try
+            using (var layoutDialog = new OpenFileDialog())
             {
-                if (Settings.RecentLayouts.Any() && !string.IsNullOrEmpty(Settings.RecentLayouts.Last()))
-                    layoutDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentLayouts.Last());
-                var result = layoutDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
+                layoutDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All Files (*.*)|*.*";
+                IsInDialogMode = true;
+                try
                 {
-                    OpenLayoutFromFile(layoutDialog.FileName);
+                    if (Settings.RecentLayouts.Any() && !string.IsNullOrEmpty(Settings.RecentLayouts.Last()))
+                        layoutDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentLayouts.Last());
+                    var result = layoutDialog.ShowDialog(this);
+                    if (result == DialogResult.OK)
+                    {
+                        OpenLayoutFromFile(layoutDialog.FileName);
+                    }
                 }
-            }
-            finally
-            {
-                IsInDialogMode = false;
+                finally
+                {
+                    IsInDialogMode = false;
+                }
             }
         }
 
