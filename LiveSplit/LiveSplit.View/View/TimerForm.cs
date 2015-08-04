@@ -1573,6 +1573,7 @@ namespace LiveSplit.View
             using (var splitDialog = new SaveFileDialog())
             {
                 splitDialog.Filter = "LiveSplit Splits (*.lss)|*.lss|All Files (*.*)|*.*";
+                IsInDialogMode = true;
                 try
                 {
                     var result = splitDialog.ShowDialog(this);
@@ -1584,7 +1585,7 @@ namespace LiveSplit.View
                 }
                 finally
                 {
-
+                    IsInDialogMode = false;
                 }
             }
         }
@@ -1898,6 +1899,7 @@ namespace LiveSplit.View
             using (var layoutDialog = new SaveFileDialog())
             {
                 layoutDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All Files (*.*)|*.*";
+                IsInDialogMode = true;
                 try
                 {
                     var result = layoutDialog.ShowDialog(this);
@@ -1909,6 +1911,7 @@ namespace LiveSplit.View
                 }
                 finally
                 {
+                    IsInDialogMode = false;
                 }
             }
         }
