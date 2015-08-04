@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Model.Comparisons;
+using LiveSplit.Options;
 using LiveSplit.Web.Share;
 using SpeedrunComSharp;
 using System;
@@ -182,7 +183,11 @@ namespace LiveSplit.Model
                     oldGameName = LiveSplitRun.GameName;
                     if (!string.IsNullOrEmpty(LiveSplitRun.GameName))
                     {
-                        var gameTask = Task.Factory.StartNew(() => SpeedrunCom.Client.Games.SearchGameExact(oldGameName, new GameEmbeds(embedRegions: true, embedPlatforms: true)));
+                        var gameTask = Task.Factory.StartNew(() =>
+                        {
+                            try { return SpeedrunCom.Client.Games.SearchGameExact(oldGameName, new GameEmbeds(embedRegions: true, embedPlatforms: true)); }
+                            catch { return null; }
+                        });
                         this.game = new Lazy<Game>(() => gameTask.Result);
 
                         var platformTask = Task.Factory.StartNew(() =>
@@ -202,7 +207,6 @@ namespace LiveSplit.Model
                         this.game = new Lazy<Game>(() => null);
 
                     oldCategoryName = null;
-                    //TODO: kill off bad platforms and regions
                 }
 
 
@@ -217,9 +221,16 @@ namespace LiveSplit.Model
                             if (game == null)
                                 return null;
 
-                            var category = SpeedrunCom.Client.Games.GetCategories(game.ID, embeds: new CategoryEmbeds(embedVariables: true))
-                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == oldCategoryName);
-                            return category;
+                            try
+                            {
+                                var category = SpeedrunCom.Client.Games.GetCategories(game.ID, embeds: new CategoryEmbeds(embedVariables: true))
+                                    .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == oldCategoryName);
+                                return category;
+                            }
+                            catch
+                            {
+                                return null;
+                            }
                         });
                         this.category = new Lazy<Category>(() => categoryTask.Result);
 
@@ -231,22 +242,29 @@ namespace LiveSplit.Model
                                 if (game == null)
                                     return;
 
-                                var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).ToList();
-                                var deletions = new List<string>();
-                                var variableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value);
+                                try
+                                {
+                                    var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).ToList();
+                                    var deletions = new List<string>();
+                                    var variableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value);
 
-                                foreach (var variableNamePair in variableValueNames)
-                                {
-                                    var variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
-                                    if (variable == null 
-                                    || (!variable.Values.Any(x => x.Value == variableNamePair.Value) && !variable.IsUserDefined))
-                                        deletions.Add(variableNamePair.Key);
+                                    foreach (var variableNamePair in variableValueNames)
+                                    {
+                                        var variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
+                                        if (variable == null
+                                        || (!variable.Values.Any(x => x.Value == variableNamePair.Value) && !variable.IsUserDefined))
+                                            deletions.Add(variableNamePair.Key);
+                                    }
+                                    foreach (var variable in deletions)
+                                    {
+                                        variableValueNames.Remove(variable);
+                                    }
+                                    VariableValueNames = variableValueNames;
                                 }
-                                foreach (var variable in deletions)
+                                catch (Exception ex)
                                 {
-                                    variableValueNames.Remove(variable);
+                                    Log.Error(ex);
                                 }
-                                VariableValueNames = variableValueNames;
                             });
                     }
                     else

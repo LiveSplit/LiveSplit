@@ -281,20 +281,16 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    string[] categoryNames;
+                    string[] categoryNames = new[] { "Any%", "Low%", "100%" };
                     try
                     {
                         var game = Run.Metadata.Game;
                         if (game != null)
                             categoryNames = game.FullGameCategories.Select(x => x.Name).ToArray();
-                        else
-                            categoryNames = new[] { "Any%", "Low%", "100%" };
                     }
                     catch (Exception ex)
                     {
                         Log.Error(ex);
-
-                        categoryNames = new[] { "Any%", "Low%", "100%" };
                     }
                     this.InvokeIfRequired(() =>
                     {
