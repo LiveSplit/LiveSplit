@@ -121,6 +121,9 @@
   <data name="btnInsertTitle.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 301</value>
   </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 197</value>
+  </data>
   <data name="&gt;&gt;btnInsertStreamLink.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
@@ -152,9 +155,6 @@
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="txtUser.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left, Right</value>
-  </data>
   <data name="&gt;&gt;label5.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -164,6 +164,9 @@
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
+  </data>
+  <data name="btnInsertSplitName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 21</value>
   </data>
   <data name="btnInsertDeltaTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
@@ -183,14 +186,14 @@
   <data name="&gt;&gt;btnPreview.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
-  <data name="&gt;&gt;txtNotes.Name" xml:space="preserve">
-    <value>txtNotes</value>
-  </data>
   <data name="&gt;&gt;btnInsertSplitName.Name" xml:space="preserve">
     <value>btnInsertSplitName</value>
   </data>
   <data name="&gt;&gt;txtVideoURL.Name" xml:space="preserve">
     <value>txtVideoURL</value>
+  </data>
+  <data name="lblDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
   </data>
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -201,17 +204,20 @@
   <data name="lblDescription.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
+  <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>476, 49</value>
+  </data>
   <data name="&gt;&gt;label6.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="chkAttachSplits.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+  <data name="&gt;&gt;cbxGame.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnInsertGame.Location" type="System.Drawing.Point, System.Drawing">
     <value>76, 301</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>7, 6, 7, 6</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -221,9 +227,6 @@
   </data>
   <data name="&gt;&gt;btnInsertDeltaTime.ZOrder" xml:space="preserve">
     <value>25</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 12</value>
   </data>
   <data name="&gt;&gt;btnShare.ZOrder" xml:space="preserve">
     <value>29</value>
@@ -240,20 +243,29 @@
   <data name="txtVersion.Size" type="System.Drawing.Size, System.Drawing">
     <value>476, 19</value>
   </data>
+  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;btnInsertStreamLink.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="cbxGame.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left, Right</value>
   </data>
   <data name="txtNotes.ScrollBars" type="System.Windows.Forms.ScrollBars, System.Windows.Forms">
     <value>Vertical</value>
   </data>
-  <data name="txtUser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 86</value>
+  <data name="txtVersion.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
   </data>
   <data name="cbxGame.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Run Sharer</value>
+  </data>
+  <data name="btnInsertPB.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -267,8 +279,8 @@
   <data name="&gt;&gt;txtUser.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblDescription.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="&gt;&gt;btnInsertSplitTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnInsertSplitTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
@@ -276,8 +288,11 @@
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
-    <value>17</value>
+  <data name="&gt;&gt;txtVideoURL.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="btnClose.Text" xml:space="preserve">
+    <value>Close</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -290,6 +305,9 @@
   </data>
   <data name="btnInsertStreamLink.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
+  </data>
+  <data name="cbxCategory.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
   </data>
   <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
     <value>477, 383</value>
@@ -2827,9 +2845,6 @@
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
   </data>
-  <data name="&gt;&gt;btnInsertDeltaTime.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
   <data name="txtPassword.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left, Right</value>
   </data>
@@ -2839,14 +2854,11 @@
   <data name="&gt;&gt;btnInsertDeltaTime.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>Video URL:</value>
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Password:</value>
   </data>
-  <data name="&gt;&gt;cbxGame.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;chkAttachSplits.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>Category:</value>
@@ -2865,9 +2877,6 @@
   </data>
   <data name="txtNotes.Multiline" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="&gt;&gt;cbxPlatform.Name" xml:space="preserve">
-    <value>cbxPlatform</value>
   </data>
   <data name="&gt;&gt;label2.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2890,8 +2899,8 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="&gt;&gt;btnInsertSplitName.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;btnInsertTitle.ZOrder" xml:space="preserve">
     <value>21</value>
@@ -2901,9 +2910,6 @@
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
   </data>
   <data name="&gt;&gt;txtVersion.Name" xml:space="preserve">
     <value>txtVersion</value>
@@ -2917,17 +2923,14 @@
   <data name="btnInsertCategory.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
   </data>
-  <data name="label8.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <data name="btnInsertTitle.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
+  </data>
+  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
@@ -2938,11 +2941,8 @@
   <data name="cbxPlatform.Size" type="System.Drawing.Size, System.Drawing">
     <value>476, 20</value>
   </data>
-  <data name="chkAttachSplits.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;btnPreview.Name" xml:space="preserve">
-    <value>btnPreview</value>
+  <data name="&gt;&gt;cbxGame.Name" xml:space="preserve">
+    <value>cbxGame</value>
   </data>
   <data name="&gt;&gt;btnShare.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2950,8 +2950,8 @@
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 143</value>
   </data>
-  <data name="&gt;&gt;txtUser.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="btnInsertPB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>319, 301</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 7</value>
@@ -2977,8 +2977,11 @@
   <data name="&gt;&gt;txtPassword.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;btnInsertSplitTime.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;btnInsertGame.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2989,14 +2992,14 @@
   <data name="&gt;&gt;cbxPlatform.ZOrder" xml:space="preserve">
     <value>15</value>
   </data>
-  <data name="label7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left</value>
+  <data name="btnInsertDeltaTime.Location" type="System.Drawing.Point, System.Drawing">
+    <value>157, 328</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
+    <value>lblDescription</value>
   </data>
   <data name="&gt;&gt;btnInsertPB.ZOrder" xml:space="preserve">
     <value>22</value>
-  </data>
-  <data name="&gt;&gt;btnInsertSplitTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -3004,20 +3007,20 @@
   <data name="$this.MinimumSize" type="System.Drawing.Size, System.Drawing">
     <value>508, 449</value>
   </data>
+  <data name="txtVideoURL.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left</value>
+  <data name="&gt;&gt;btnClose.Name" xml:space="preserve">
+    <value>btnClose</value>
   </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 224</value>
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.Type" xml:space="preserve">
     <value>System.Windows.Forms.TableLayoutPanel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnInsertTitle.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;txtVersion.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -3033,9 +3036,6 @@
   </data>
   <data name="&gt;&gt;tableLayoutPanel1.Parent" xml:space="preserve">
     <value>$this</value>
-  </data>
-  <data name="txtNotes.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
   </data>
   <data name="chkAttachSplits.Location" type="System.Drawing.Point, System.Drawing">
     <value>7, 388</value>
@@ -3076,14 +3076,11 @@
   <data name="&gt;&gt;btnInsertCategory.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="cbxPlatform.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
   <data name="&gt;&gt;btnClose.ZOrder" xml:space="preserve">
     <value>16</value>
   </data>
-  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>555, 407</value>
+  <data name="cbxPlatform.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 3</value>
   </data>
   <data name="&gt;&gt;txtPassword.Name" xml:space="preserve">
     <value>txtPassword</value>
@@ -3097,17 +3094,14 @@
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
   <data name="&gt;&gt;cbxPlatform.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label8.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="lblDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 30</value>
+  <data name="&gt;&gt;txtVideoURL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnShare.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
@@ -3121,8 +3115,8 @@
   <data name="btnShare.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;cbxGame.Name" xml:space="preserve">
-    <value>cbxGame</value>
+  <data name="txtNotes.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Insert:</value>
@@ -3145,29 +3139,32 @@
   <data name="&gt;&gt;txtNotes.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnInsertGame.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="txtUser.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
   </data>
   <data name="txtPassword.Size" type="System.Drawing.Size, System.Drawing">
     <value>476, 19</value>
   </data>
-  <data name="btnInsertPB.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+  <data name="lblDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 30</value>
   </data>
-  <data name="&gt;&gt;btnInsertGame.Name" xml:space="preserve">
-    <value>btnInsertGame</value>
+  <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
+    <value>17</value>
   </data>
-  <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>7, 6, 7, 6</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>Video URL:</value>
   </data>
-  <data name="btnClose.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="btnInsertStreamLink.Location" type="System.Drawing.Point, System.Drawing">
     <value>319, 328</value>
   </data>
-  <data name="&gt;&gt;btnClose.Name" xml:space="preserve">
-    <value>btnClose</value>
+  <data name="label6.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;btnClose.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -3193,11 +3190,11 @@
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;btnShare.Name" xml:space="preserve">
-    <value>btnShare</value>
+  <data name="&gt;&gt;btnInsertGame.Name" xml:space="preserve">
+    <value>btnInsertGame</value>
   </data>
-  <data name="&gt;&gt;btnInsertSplitTime.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
   </data>
   <data name="lblDescription.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -3205,8 +3202,8 @@
   <data name="btnInsertDeltaTime.Text" xml:space="preserve">
     <value>Delta Time</value>
   </data>
-  <data name="cbxPlatform.Location" type="System.Drawing.Point, System.Drawing">
-    <value>76, 3</value>
+  <data name="chkAttachSplits.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
   <data name="txtPassword.Location" type="System.Drawing.Point, System.Drawing">
     <value>76, 113</value>
@@ -3220,20 +3217,20 @@
   <data name="&gt;&gt;cbxCategory.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="cbxPlatform.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left, Right</value>
+  </data>
   <data name="txtUser.Size" type="System.Drawing.Size, System.Drawing">
     <value>476, 19</value>
   </data>
-  <data name="btnInsertDeltaTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>157, 328</value>
+  <data name="&gt;&gt;txtNotes.Name" xml:space="preserve">
+    <value>txtNotes</value>
   </data>
   <data name="&gt;&gt;cbxPlatform.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="chkAttachSplits.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>46, 12</value>
   </data>
   <data name="cbxGame.Size" type="System.Drawing.Size, System.Drawing">
     <value>476, 20</value>
@@ -3247,13 +3244,10 @@
   <data name="&gt;&gt;btnPreview.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnInsertSplitName.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="&gt;&gt;btnShare.Name" xml:space="preserve">
+    <value>btnShare</value>
   </data>
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
-  </data>
-  <data name="&gt;&gt;cbxCategory.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;txtVideoURL.ZOrder" xml:space="preserve">
@@ -3268,6 +3262,9 @@
   <data name="&gt;&gt;label1.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
+  <data name="&gt;&gt;txtPassword.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -3280,17 +3277,17 @@
   <data name="btnInsertSplitTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>238, 328</value>
   </data>
-  <data name="&gt;&gt;txtVideoURL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btnPreview.Name" xml:space="preserve">
+    <value>btnPreview</value>
   </data>
-  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
-    <value>lblDescription</value>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;txtNotes.ZOrder" xml:space="preserve">
-    <value>13</value>
+  <data name="chkAttachSplits.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="txtVideoURL.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left, Right</value>
+  <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>555, 407</value>
   </data>
   <data name="btnInsertGame.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
@@ -3298,7 +3295,7 @@
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
-  <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
+  <data name="cbxPlatform.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
@@ -3307,17 +3304,17 @@
   <data name="&gt;&gt;btnInsertPB.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cbxPlatform.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left, Right</value>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
-  <data name="&gt;&gt;chkAttachSplits.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtNotes.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="btnInsertPB.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
   </data>
-  <data name="btnInsertSplitName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 21</value>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>50, 12</value>
   </data>
   <data name="btnInsertSplitTime.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -3325,8 +3322,8 @@
   <data name="chkAttachSplits.Text" xml:space="preserve">
     <value>Attach Splits</value>
   </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
+  <data name="&gt;&gt;cbxCategory.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;btnInsertCategory.Name" xml:space="preserve">
     <value>btnInsertCategory</value>
@@ -3343,8 +3340,8 @@
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;txtPassword.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>Platform:</value>
@@ -3352,11 +3349,11 @@
   <data name="&gt;&gt;btnInsertSplitName.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;tableLayoutPanel1.Name" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="&gt;&gt;btnInsertSplitName.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="txtUser.Location" type="System.Drawing.Point, System.Drawing">
+    <value>76, 86</value>
   </data>
   <data name="btnInsertGame.Text" xml:space="preserve">
     <value>Game</value>
@@ -3367,8 +3364,8 @@
   <data name="&gt;&gt;chkAttachSplits.ZOrder" xml:space="preserve">
     <value>28</value>
   </data>
-  <data name="&gt;&gt;btnInsertDeltaTime.Name" xml:space="preserve">
-    <value>btnInsertDeltaTime</value>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>46, 12</value>
   </data>
   <data name="&gt;&gt;btnInsertGame.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -3388,14 +3385,11 @@
   <data name="txtNotes.Size" type="System.Drawing.Size, System.Drawing">
     <value>476, 48</value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>Text:</value>
+  <data name="&gt;&gt;txtUser.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>36, 12</value>
   </data>
   <data name="txtVersion.Location" type="System.Drawing.Point, System.Drawing">
     <value>76, 194</value>
@@ -3406,8 +3400,8 @@
   <data name="&gt;&gt;lblDescription.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="cbxCategory.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left, Right</value>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Text:</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 89</value>
@@ -3415,14 +3409,17 @@
   <data name="cbxCategory.Items" xml:space="preserve">
     <value>PBTracker</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>569, 419</value>
+  <data name="&gt;&gt;btnInsertTitle.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="btnInsertStreamLink.Text" xml:space="preserve">
     <value>Stream Link</value>
   </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="&gt;&gt;btnInsertSplitName.ZOrder" xml:space="preserve">
+    <value>24</value>
   </data>
   <data name="label8.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
@@ -3442,11 +3439,14 @@
   <data name="btnClose.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 21</value>
   </data>
-  <data name="&gt;&gt;txtVideoURL.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
-  <data name="btnClose.Text" xml:space="preserve">
-    <value>Close</value>
+  <data name="&gt;&gt;cbxPlatform.Name" xml:space="preserve">
+    <value>cbxPlatform</value>
+  </data>
+  <data name="btnInsertSplitName.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
   </data>
   <data name="&gt;&gt;cbxGame.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -3454,11 +3454,11 @@
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>476, 49</value>
+  <data name="btnClose.TabIndex" type="System.Int32, mscorlib">
+    <value>23</value>
   </data>
-  <data name="&gt;&gt;btnInsertSplitName.ZOrder" xml:space="preserve">
-    <value>24</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>569, 419</value>
   </data>
   <data name="&gt;&gt;cbxCategory.Name" xml:space="preserve">
     <value>cbxCategory</value>
@@ -3472,8 +3472,8 @@
   <data name="label9.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Left</value>
   </data>
-  <data name="&gt;&gt;btnInsertStreamLink.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>36, 12</value>
   </data>
   <data name="txtVersion.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -3481,35 +3481,35 @@
   <data name="&gt;&gt;cbxGame.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="label7.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Left</value>
   </data>
   <data name="btnShare.Text" xml:space="preserve">
     <value>Share</value>
   </data>
-  <data name="btnInsertGame.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 197</value>
+  <data name="&gt;&gt;btnInsertDeltaTime.Name" xml:space="preserve">
+    <value>btnInsertDeltaTime</value>
   </data>
   <data name="btnInsertSplitName.Text" xml:space="preserve">
     <value>Split Name</value>
   </data>
-  <data name="btnInsertPB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>319, 301</value>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>Game:</value>
   </data>
-  <data name="&gt;&gt;txtNotes.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnInsertDeltaTime.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
-  <data name="txtVersion.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Left, Right</value>
+  <data name="&gt;&gt;txtNotes.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 224</value>
+  <data name="btnInsertGame.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

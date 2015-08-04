@@ -154,6 +154,9 @@
   <data name="controlMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
   </data>
+  <data name="controlMenuItem.Text" xml:space="preserve">
+    <value>コントロール</value>
+  </data>
   <data name="comparisonMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>
   </data>
@@ -168,9 +171,6 @@
   </data>
   <data name="shareMenuItem.Text" xml:space="preserve">
     <value>共有</value>
-  </data>
-  <data name="newRaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
   </data>
   <data name="racingMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>185, 22</value>

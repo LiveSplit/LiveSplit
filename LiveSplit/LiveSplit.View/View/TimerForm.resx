@@ -130,6 +130,9 @@
   <data name="editLayoutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
+  <data name="&gt;&gt;saveSplitsAsMenuItem.Name" xml:space="preserve">
+    <value>saveSplitsAsMenuItem</value>
+  </data>
   <data name="&gt;&gt;saveLayoutAsMenuItem.Name" xml:space="preserve">
     <value>saveLayoutAsMenuItem</value>
   </data>
@@ -139,8 +142,14 @@
   <data name="&gt;&gt;openLayoutMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;openSplitsMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>150, 138</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>TimerForm</value>
@@ -166,9 +175,6 @@
   <data name="&gt;&gt;editSplitsMenuItem.Name" xml:space="preserve">
     <value>editSplitsMenuItem</value>
   </data>
-  <data name="newRaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>144, 22</value>
-  </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="resetMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -188,8 +194,8 @@
   <data name="&gt;&gt;comparisonMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;shareMenuItem.Name" xml:space="preserve">
-    <value>shareMenuItem</value>
+  <data name="newRaceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>144, 22</value>
   </data>
   <data name="pauseMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -199,6 +205,12 @@
   </data>
   <data name="&gt;&gt;hotkeysMenuItem.Name" xml:space="preserve">
     <value>hotkeysMenuItem</value>
+  </data>
+  <data name="&gt;&gt;shareMenuItem.Name" xml:space="preserve">
+    <value>shareMenuItem</value>
+  </data>
+  <data name="&gt;&gt;saveLayoutAsMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;racingMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -236,26 +248,17 @@
   <data name="&gt;&gt;exitMenuItem.Name" xml:space="preserve">
     <value>exitMenuItem</value>
   </data>
-  <data name="pauseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
   <data name="&gt;&gt;controlMenuItem.Name" xml:space="preserve">
     <value>controlMenuItem</value>
   </data>
-  <data name="settingsMenuItem.Text" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="controlMenuItem.Text" xml:space="preserve">
-    <value>Control</value>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 6</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="skipSplitMenuItem.Text" xml:space="preserve">
     <value>Skip Split</value>
-  </data>
-  <data name="resetMenuItem.Text" xml:space="preserve">
-    <value>Reset</value>
   </data>
   <data name="undoSplitMenuItem.Text" xml:space="preserve">
     <value>Undo Split</value>
@@ -290,9 +293,6 @@
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 6</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;skipSplitMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -319,6 +319,9 @@
   </data>
   <data name="&gt;&gt;racingMenuItem.Name" xml:space="preserve">
     <value>racingMenuItem</value>
+  </data>
+  <data name="&gt;&gt;saveSplitsMenuItem.Name" xml:space="preserve">
+    <value>saveSplitsMenuItem</value>
   </data>
   <data name="closeSplitsMenuItem.Text" xml:space="preserve">
     <value>Close Splits</value>
@@ -352,6 +355,9 @@
   </data>
   <data name="&gt;&gt;splitMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;comparisonMenuItem.Name" xml:space="preserve">
+    <value>comparisonMenuItem</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2877,11 +2883,11 @@
         3hs73CT8tQAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="&gt;&gt;あToolStripMenuItem.Name" xml:space="preserve">
-    <value>あToolStripMenuItem</value>
-  </data>
   <data name="&gt;&gt;RightClickMenu.Name" xml:space="preserve">
     <value>RightClickMenu</value>
+  </data>
+  <data name="saveSplitsMenuItem.Text" xml:space="preserve">
+    <value>Save Splits</value>
   </data>
   <data name="comparisonMenuItem.Text" xml:space="preserve">
     <value>Compare Against</value>
@@ -2895,14 +2901,11 @@
   <data name="&gt;&gt;あToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comparisonMenuItem.Name" xml:space="preserve">
-    <value>comparisonMenuItem</value>
+  <data name="pauseMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
   </data>
   <data name="&gt;&gt;newRaceToolStripMenuItem.Name" xml:space="preserve">
     <value>newRaceToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pauseMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -2913,11 +2916,8 @@
   <data name="&gt;&gt;openSplitsMenuItem.Name" xml:space="preserve">
     <value>openSplitsMenuItem</value>
   </data>
-  <data name="&gt;&gt;saveSplitsMenuItem.Name" xml:space="preserve">
-    <value>saveSplitsMenuItem</value>
-  </data>
-  <data name="&gt;&gt;editLayoutMenuItem.Name" xml:space="preserve">
-    <value>editLayoutMenuItem</value>
+  <data name="controlMenuItem.Text" xml:space="preserve">
+    <value>Control</value>
   </data>
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 6</value>
@@ -2934,8 +2934,8 @@
   <data name="&gt;&gt;newRaceToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;saveSplitsAsMenuItem.Name" xml:space="preserve">
-    <value>saveSplitsAsMenuItem</value>
+  <data name="&gt;&gt;あToolStripMenuItem.Name" xml:space="preserve">
+    <value>あToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
     <value>toolStripSeparator1</value>
@@ -2967,26 +2967,26 @@
   <data name="openLayoutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
-    <value>toolStripSeparator2</value>
+  <data name="resetMenuItem.Text" xml:space="preserve">
+    <value>Reset</value>
   </data>
   <data name="&gt;&gt;editLayoutMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>150, 138</value>
+  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;saveLayoutAsMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
+    <value>toolStripSeparator2</value>
   </data>
-  <data name="&gt;&gt;openSplitsMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;saveLayoutMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 6</value>
+  <data name="settingsMenuItem.Text" xml:space="preserve">
+    <value>Settings</value>
   </data>
   <data name="&gt;&gt;skipSplitMenuItem.Name" xml:space="preserve">
     <value>skipSplitMenuItem</value>
@@ -2994,8 +2994,8 @@
   <data name="&gt;&gt;hotkeysMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="saveSplitsMenuItem.Text" xml:space="preserve">
-    <value>Save Splits</value>
+  <data name="&gt;&gt;editLayoutMenuItem.Name" xml:space="preserve">
+    <value>editLayoutMenuItem</value>
   </data>
   <data name="saveLayoutMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>177, 22</value>
