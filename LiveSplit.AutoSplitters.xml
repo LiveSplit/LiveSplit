@@ -729,4 +729,17 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dread)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Castle of Illusion Starring Mickey Mouse HD</Game>
+      <Game>Castle of Illusion Starring Mickey Mouse (HD)</Game>
+      <Game>Castle of Illusion HD</Game>
+      <Game>Castle of Illusion (HD)</Game>
+    </Games> 
+    <URLs>
+      <URL>https://raw.githubusercontent.com/btrim/CastleOfIllusionAutoSplitter/stable/CastleOfIllusionHD.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>English translation only. Load Removal is available. (By btrim)</Description>
+  </AutoSplitter>
 </AutoSplitters>
