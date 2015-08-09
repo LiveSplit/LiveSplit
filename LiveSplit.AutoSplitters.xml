@@ -755,6 +755,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Dark Souls</Game>
+      <Game>Dark Souls 1</Game>
+      <Game>Dark Souls 1: Prepare to Die Edition</Game>
+      <Game>Dark Souls: Prepare to Die Edition</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/DarkSouls.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dread)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Dark Souls 2</Game>
       <Game>Dark Souls II</Game>
     </Games>
