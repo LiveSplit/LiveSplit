@@ -742,4 +742,15 @@
     <Type>Script</Type>
     <Description>English translation only. Load Removal is available. (By btrim)</Description>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Minecraft</Game>
+      <Game>Minecraft Set-Seed</Game>
+    </Games> 
+    <URLs>
+      <URL>https://raw.githubusercontent.com/LiveSplit/LiveSplit.ScriptableAutoSplit/master/Scripts/LiveSplit.Minecraft.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time is available for 1.6.4. (By CryZe)</Description>
+  </AutoSplitter>
 </AutoSplitters>
