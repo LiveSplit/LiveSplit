@@ -13,9 +13,28 @@ namespace LiveSplit.Web.Share
     {
         public static SpeedrunComClient Client { get; private set; }
 
+        public static ISpeedrunComAuthenticator Authenticator { private get; set; }
+
         static SpeedrunCom()
         {
-            Client = new SpeedrunComClient("LiveSplit/" + LiveSplit.Updates.UpdateHelper.Version);
+            Client = new SpeedrunComClient("LiveSplit/" + Updates.UpdateHelper.Version);
+        }
+
+        public static bool MakeSureUserIsAuthenticated()
+        {
+            if (Client.IsAccessTokenValid)
+                return true;
+
+            if (Authenticator == null)
+                return false;
+
+            var accessToken = Authenticator.GetAccessToken();
+            if (string.IsNullOrEmpty(accessToken))
+                return false;
+
+            Client.AccessToken = accessToken;
+
+            return Client.IsAccessTokenValid;
         }
 
         public static Time ToTime(this RunTimes times)
@@ -29,14 +48,14 @@ namespace LiveSplit.Web.Share
 
             return time;
         }
-        public static LiveSplit.Model.IRun GetRun(this Record record)
+        public static IRun GetRun(this Record record)
         {
             var apiUri = record.SplitsUri.AbsoluteUri;
             var path = apiUri.Substring(apiUri.LastIndexOf("/") + 1);
             return SplitsIO.Instance.DownloadRunByPath(path);
         }
 
-        public static LiveSplit.Model.TimingMethod ToLiveSplitTimingMethod(this SpeedrunComSharp.TimingMethod timingMethod)
+        public static Model.TimingMethod ToLiveSplitTimingMethod(this SpeedrunComSharp.TimingMethod timingMethod)
         {
             switch (timingMethod)
             {

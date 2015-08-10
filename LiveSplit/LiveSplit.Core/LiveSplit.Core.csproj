@@ -185,6 +185,7 @@
     <Compile Include="Web\Share\Gett.cs" />
     <Compile Include="Web\Share\Imgur.cs" />
     <Compile Include="Web\Share\IRunUploadPlatform.cs" />
+    <Compile Include="Web\Share\ISpeedrunComAuthenticator.cs" />
     <Compile Include="Web\Share\Screenshot.cs" />
     <Compile Include="Web\Share\SpeedrunCom.cs">
       <SubType>Code</SubType>
