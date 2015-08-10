@@ -28,7 +28,7 @@ namespace LiveSplit.Web.Share
                 if (index >= 0 && secondIndex >= 0)
                 {
                     index = index + "id=\"api-key\">".Length;
-                    var accessToken = html.Substring(index, secondIndex - index);
+                    accessToken = html.Substring(index, secondIndex - index);
                     try
                     {
                         ShareSettings.Default.SpeedrunComAccessToken = accessToken;
