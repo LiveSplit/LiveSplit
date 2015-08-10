@@ -27,18 +27,11 @@ namespace LiveSplit.Web.Share
                 var secondIndex = html.IndexOf("</code");
                 if (index >= 0 && secondIndex >= 0)
                 {
-                    var accessToken = html.Substring(index + "id=\"api-key\">".Length, secondIndex - index);
-                }
-
-                var url = OAuthWebBrowser.Url.Fragment.ToLowerInvariant();
-                if (url.Contains("access_token"))
-                {
-                    var cutoff = url.Substring(url.IndexOf("access_token") + "access_token=".Length);
-                    accessToken = cutoff.Substring(0, cutoff.IndexOf("&"));
-
+                    index = index + "id=\"api-key\">".Length;
+                    var accessToken = html.Substring(index, secondIndex - index);
                     try
                     {
-                        ShareSettings.Default.TwitchAccessToken = ;
+                        ShareSettings.Default.SpeedrunComAccessToken = accessToken;
                         ShareSettings.Default.Save();
                     }
                     catch (Exception ex)
@@ -62,7 +55,9 @@ namespace LiveSplit.Web.Share
 
         public string GetAccessToken()
         {
-            var result = ShowDialog();
+            accessToken = null;
+            ShowDialog();
+            return accessToken;
         }
     }
 }

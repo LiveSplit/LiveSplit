@@ -154,6 +154,9 @@ namespace LiveSplit.View
                     controlIndex++;
                 }
 
+                if (SpeedrunCom.MakeSureUserIsAuthenticated())
+                    MessageBox.Show(SpeedrunCom.Client.Profile.GetProfile().Name);
+
                 foreach (var variable in Metadata.VariableValues.Keys)
                 {
                     var variableLabel = new Label()

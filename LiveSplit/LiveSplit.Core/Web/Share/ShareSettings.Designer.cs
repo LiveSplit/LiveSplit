@@ -146,5 +146,20 @@ namespace LiveSplit.Web.Share
                 this["SRLIRCPassword"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SpeedrunComAccessToken
+        {
+            get
+            {
+                return ((string)(this["SpeedrunComAccessToken"]));
+            }
+            set
+            {
+                this["SpeedrunComAccessToken"] = value;
+            }
+        }
     }
 }

@@ -127,6 +127,8 @@ namespace LiveSplit.View
         {
             SetWindowTitle();
 
+            SpeedrunCom.Authenticator = new SpeedrunComOAuthForm();
+
             GlobalCache = new GraphicsCache();
             Invalidator = new Invalidator(this);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
