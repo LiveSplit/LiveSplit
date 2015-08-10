@@ -117,7 +117,14 @@ namespace LiveSplit.Model
                         return null;
 
                     var variableValue = VariableValueNames[x.Name];
-                    return x.Choices.FirstOrDefault(y => y.Value == variableValue);
+                    var foundValue = x.Values.FirstOrDefault(y => y.Value == variableValue);
+
+                    if (foundValue == null && x.IsUserDefined)
+                    {
+                        foundValue = x.CreateCustomValue(variableValue);
+                    }
+
+                    return foundValue;
                 });
             }
         }
@@ -227,7 +234,8 @@ namespace LiveSplit.Model
                                 foreach (var variableNamePair in variableValueNames)
                                 {
                                     var variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
-                                    if (variable == null || !variable.Choices.Any(x => x.Value == variableNamePair.Value))
+                                    if (variable == null 
+                                    || (!variable.Values.Any(x => x.Value == variableNamePair.Value) && !variable.IsUserDefined))
                                         deletions.Add(variableNamePair.Key);
                                 }
                                 foreach (var variable in deletions)

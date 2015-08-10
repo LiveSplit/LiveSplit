@@ -31,8 +31,17 @@ namespace LiveSplit.View
                 }
                 set
                 {
-                    var choice = Variable.Choices.FirstOrDefault(x => x.Value == value);
-                    var variableValue = choice != null ? choice.Value : string.Empty;
+                    var choice = Variable.Values.FirstOrDefault(x => x.Value == value);
+                    string variableValue = string.Empty;
+                    if (choice == null)
+                    {
+                        if (Variable.IsUserDefined)
+                            variableValue = value;
+                    }
+                    else
+                    {
+                        variableValue = choice.Value;
+                    }
                     if (Metadata.VariableValueNames.ContainsKey(Variable.Name))
                         Metadata.VariableValueNames[Variable.Name] = variableValue;
                     else
@@ -157,14 +166,14 @@ namespace LiveSplit.View
 
                     var variableComboBox = new ComboBox()
                     {
-                        DropDownStyle = ComboBoxStyle.DropDownList,
+                        DropDownStyle = variable.IsUserDefined ? ComboBoxStyle.DropDown : ComboBoxStyle.DropDownList,
                         FormattingEnabled = true,
                         Anchor = AnchorLeftRight,
                         Visible = false
                     };
 
                     variableComboBox.Items.Add(string.Empty);
-                    variableComboBox.Items.AddRange(variable.Choices.Select(x => x.Value).ToArray());
+                    variableComboBox.Items.AddRange(variable.Values.Select(x => x.Value).ToArray());
 
                     var variableRow = getDynamicControlRowIndex(controlIndex);
                     var variableLabelColumn = getDynamicControlColumnIndex(controlIndex);
@@ -180,7 +189,7 @@ namespace LiveSplit.View
                     };
                     variableBinding.VariableChanged += Metadata_Changed;
 
-                    variableComboBox.DataBindings.Add("SelectedItem", variableBinding, "Value", false, DataSourceUpdateMode.OnPropertyChanged);
+                    variableComboBox.DataBindings.Add("Text", variableBinding, "Value", false, DataSourceUpdateMode.OnPropertyChanged);
 
                     dynamicControls.Add(variableLabel);
                     dynamicControls.Add(variableComboBox);
