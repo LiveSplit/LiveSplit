@@ -93,7 +93,14 @@ namespace LiveSplit.Options
             {
                 Log.Error(ex);
             }
-            RegisterScrolling(hook);
+            try
+            {
+                RegisterScrolling(hook);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
             if (SplitKey != null)
             {
                 try
