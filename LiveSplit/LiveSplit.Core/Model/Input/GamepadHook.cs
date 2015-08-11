@@ -55,10 +55,20 @@ namespace LiveSplit.Model.Input
                 .Where(x => x.Type != DeviceType.Keyboard)
                 .Select(x => new Joystick(input, x.InstanceGuid)).ToList();
 
-            foreach (var joystick in Joysticks)
+            for (var ind = 0; ind < Joysticks.Count; ind++)
             {
-                joystick.Properties.BufferSize = 128;
-                joystick.Acquire();
+                var joystick = Joysticks[ind];
+                try
+                {
+                    joystick.Properties.BufferSize = 128;
+                    joystick.Acquire();
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                    Joysticks.RemoveAt(ind);
+                    ind--;
+                }
             }
         }
 
