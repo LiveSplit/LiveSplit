@@ -742,7 +742,7 @@
     <Type>Script</Type>
     <Description>English translation only. Load Removal is available. (By btrim)</Description>
   </AutoSplitter>
-    <AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Minecraft</Game>
       <Game>Minecraft Set-Seed</Game>
@@ -752,19 +752,6 @@
     </URLs>
     <Type>Script</Type>
     <Description>Game Time is available for 1.6.4. (By CryZe)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Dark Souls</Game>
-      <Game>Dark Souls 1</Game>
-      <Game>Dark Souls 1: Prepare to Die Edition</Game>
-      <Game>Dark Souls: Prepare to Die Edition</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/DarkSouls.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available. (By Dread)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
