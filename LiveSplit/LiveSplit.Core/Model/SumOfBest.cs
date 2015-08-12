@@ -23,8 +23,12 @@ namespace LiveSplit.Model
                 {
                     foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Time[method].HasValue))
                     {
-                        var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
-                        PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
+                        var segmentTime = segmentIndex > 0 ? run[segmentIndex - 1].SegmentHistory.FirstOrDefault(x => x.Index == nullSegment.Index) : null;
+                        if (segmentTime == null || segmentTime.Time[method] != null)
+                        {
+                            var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
+                            PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
+                        }
                     }
                 }
                 var currentRunPrediction = SumOfSegmentsHelper.TrackCurrentRun(run, currentTime, segmentIndex, method);
