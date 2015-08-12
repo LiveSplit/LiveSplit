@@ -11,7 +11,12 @@
       <Game>Half-Life 2: Episode One</Game>
       <Game>Half-Life 2: Episode Two</Game>
       <Game>Half-Life 2: Lost Coast</Game>
+      <Game>Half-Life 2: Sniper's Episode</Game>
+      <Game>Half-Life 2: Ghosting Mod</Game>
       <Game>Portal</Game>
+      <Game>Portal Mods</Game>
+      <Game>Rexaura</Game>
+      <Game>Blue Portals</Game>
       <Game>Portal 2</Game>
       <Game>Portal Stories: Mel</Game>
     </Games>
@@ -401,9 +406,9 @@
       <Game>KotOR</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.Kotor/raw/master/Components/LiveSplit.Kotor.dll</URL>
+      <URL>https://github.com/glasnonck/LiveSplit.ASL/raw/master/KotOR.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
   <AutoSplitter>
@@ -414,9 +419,9 @@
       <Game>KotOR 2</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.Kotor2/raw/master/Components/LiveSplit.Kotor2.dll</URL>
+      <URL>https://github.com/glasnonck/LiveSplit.ASL/raw/master/KotOR2.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
   <AutoSplitter>
@@ -708,9 +713,9 @@
       <Game>Advent Rising</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.AdventRising/raw/master/Components/LiveSplit.AdventRising.dll</URL>
+      <URL>https://github.com/glasnonck/LiveSplit.ASL/raw/master/AdventRising.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
   <AutoSplitter>
@@ -726,12 +731,50 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Dragon Age Inquisition</Game>
+      <Game>Castle of Illusion Starring Mickey Mouse HD</Game>
+      <Game>Castle of Illusion Starring Mickey Mouse (HD)</Game>
+      <Game>Castle of Illusion HD</Game>
+      <Game>Castle of Illusion (HD)</Game>
+    </Games> 
+    <URLs>
+      <URL>https://raw.githubusercontent.com/btrim/CastleOfIllusionAutoSplitter/stable/CastleOfIllusionHD.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>English translation only. Load Removal is available. (By btrim)</Description>
+  </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Minecraft</Game>
+      <Game>Minecraft Set-Seed</Game>
+    </Games> 
+    <URLs>
+      <URL>https://raw.githubusercontent.com/LiveSplit/LiveSplit.ScriptableAutoSplit/master/Scripts/LiveSplit.Minecraft.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time is available for 1.6.4. (By CryZe)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dark Souls</Game>
+      <Game>Dark Souls 1</Game>
+      <Game>Dark Souls 1: Prepare to Die Edition</Game>
+      <Game>Dark Souls: Prepare to Die Edition</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.DragonAgeInquisition/raw/master/Components/LiveSplit.DragonAgeInquisition.dll</URL>
+      <URL>http://speedsouls.com/jiiks/DsIgt.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Load Removal is available. (By glasnonck)</Description>
+    <Description>Game Time is available. (By Jiiks)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dark Souls 2</Game>
+      <Game>Dark Souls II</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/DarkSouls2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dread)</Description>
   </AutoSplitter>
 </AutoSplitters>

@@ -60,7 +60,7 @@
             this.btnImportComparison = new System.Windows.Forms.Button();
             this.btnOther = new System.Windows.Forms.Button();
             this.RemoveIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.setIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadBoxartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFromURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -497,19 +497,19 @@
             // RemoveIconMenu
             // 
             this.RemoveIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
+            this.setIconToolStripMenuItem,
             this.downloadBoxartToolStripMenuItem,
             this.openFromURLMenuItem,
             this.removeIconToolStripMenuItem});
             this.RemoveIconMenu.Name = "RemoveIconMenu";
-            this.RemoveIconMenu.Size = new System.Drawing.Size(170, 92);
+            this.RemoveIconMenu.Size = new System.Drawing.Size(170, 114);
             // 
-            // toolStripMenuItem1
+            // setIconToolStripMenuItem
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(169, 22);
-            this.toolStripMenuItem1.Text = "Set Icon...";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+            this.setIconToolStripMenuItem.Name = "setIconToolStripMenuItem";
+            this.setIconToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.setIconToolStripMenuItem.Text = "Set Icon...";
+            this.setIconToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // downloadBoxartToolStripMenuItem
             // 
@@ -655,7 +655,7 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ContextMenuStrip RemoveIconMenu;
         private System.Windows.Forms.ToolStripMenuItem removeIconToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem setIconToolStripMenuItem;
         private System.Windows.Forms.ComboBox cbxGameName;
         private System.Windows.Forms.ComboBox cbxRunCategory;
         private System.Windows.Forms.TextBox tbxTimeOffset;

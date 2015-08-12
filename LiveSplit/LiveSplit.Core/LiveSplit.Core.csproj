@@ -156,6 +156,7 @@
     <Compile Include="UI\Components\SeparatorFactory.cs" />
     <Compile Include="UI\GradientType.cs" />
     <Compile Include="UI\GraphicsCache.cs" />
+    <Compile Include="UI\ImageBlur.cs" />
     <Compile Include="UI\IInvalidator.cs" />
     <Compile Include="UI\InputBox.cs" />
     <Compile Include="UI\Invalidator.cs" />

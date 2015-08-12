@@ -33,6 +33,8 @@ namespace LiveSplit.UI.LayoutFactories
                 BackgroundType = BackgroundType.SolidColor,
                 BackgroundImagePath = string.Empty,
                 BackgroundImage = null,
+                ImageOpacity = 1f,
+                ImageBlur = 0f,
                 Opacity = 1
             };
         }

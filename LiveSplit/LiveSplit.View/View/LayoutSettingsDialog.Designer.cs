@@ -41,7 +41,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(412, 522);
+            this.btnCancel.Location = new System.Drawing.Point(412, 567);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 17;
@@ -52,7 +52,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(331, 522);
+            this.btnOK.Location = new System.Drawing.Point(331, 567);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 16;
@@ -74,7 +74,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(490, 548);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(490, 593);
             this.tableLayoutPanel3.TabIndex = 41;
             // 
             // tabControl
@@ -84,7 +84,7 @@
             this.tabControl.Location = new System.Drawing.Point(3, 3);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(484, 513);
+            this.tabControl.Size = new System.Drawing.Size(484, 558);
             this.tabControl.TabIndex = 41;
             // 
             // LayoutSettingsDialog
@@ -92,11 +92,11 @@
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 562);
+            this.ClientSize = new System.Drawing.Size(504, 607);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(520, 10000);
-            this.MinimumSize = new System.Drawing.Size(520, 600);
+            this.MinimumSize = new System.Drawing.Size(520, 645);
             this.Name = "LayoutSettingsDialog";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Text = "Layout Settings";

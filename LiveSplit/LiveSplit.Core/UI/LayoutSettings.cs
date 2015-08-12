@@ -24,6 +24,8 @@ namespace LiveSplit.UI
 
         public Image BackgroundImage { get; set; }
         public string BackgroundImagePath { get; set; }
+        public float ImageOpacity { get; set; }
+        public float ImageBlur { get; set; }
 
         public Font TimerFont { get; set; }
         public Font TimesFont { get; set; }
@@ -72,6 +74,8 @@ namespace LiveSplit.UI
             BackgroundType = settings.BackgroundType;
             BackgroundImage = settings.BackgroundImage;
             BackgroundImagePath = settings.BackgroundImagePath;
+            ImageOpacity = settings.ImageOpacity;
+            ImageBlur = settings.ImageBlur;
         }
     }
 }
