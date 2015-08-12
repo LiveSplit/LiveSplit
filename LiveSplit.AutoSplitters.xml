@@ -761,10 +761,10 @@
       <Game>Dark Souls: Prepare to Die Edition</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/DarkSouls.asl</URL>
+      <URL>http://speedsouls.com/jiiks/DsIgt.dll</URL>
     </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available. (By Dread)</Description>
+    <Type>Component</Type>
+    <Description>Game Time is available. (By Jiiks)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
