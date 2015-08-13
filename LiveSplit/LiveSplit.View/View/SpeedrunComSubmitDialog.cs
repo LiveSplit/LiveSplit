@@ -53,9 +53,12 @@ namespace LiveSplit.View
 
             if (!string.IsNullOrEmpty(txtVideo.Text))
             {
-                if (Uri.IsWellFormedUriString(txtVideo.Text, UriKind.Absolute))
+                var videoText = txtVideo.Text;
+                if (!videoText.StartsWith("http"))
+                    videoText = "http://" + videoText;
+                if (Uri.IsWellFormedUriString(videoText, UriKind.Absolute))
                 {
-                    videoUri = new Uri(txtVideo.Text);
+                    videoUri = new Uri(videoText);
                 }
                 else
                 {
