@@ -8,6 +8,7 @@ using LiveSplit.Web.Share;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -1153,6 +1154,7 @@ namespace LiveSplit.View
                 : "Activate";
             btnActivate.Enabled = Run.AutoSplitter != null;
             btnSettings.Enabled = Run.IsAutoSplitterActive() && Run.AutoSplitter.Component.GetSettingsControl(LayoutMode.Vertical) != null;
+            btnWebsite.Visible = Run.AutoSplitter != null && Run.AutoSplitter.Website != null;
         }
 
         private void btnActivate_Click(object sender, EventArgs e)
@@ -1181,6 +1183,22 @@ namespace LiveSplit.View
                 autoSplitterSettings.InnerXml = Run.AutoSplitter.Component.GetSettings(document).InnerXml;
                 autoSplitterSettings.Attributes.Append(SettingsHelper.ToAttribute(document, "gameName", Run.GameName));
                 Run.AutoSplitterSettings = autoSplitterSettings;
+            }
+        }
+
+        private void btnWebsite_Click(object sender, EventArgs e)
+        {
+            Uri url = new Uri(Run.AutoSplitter.Website);
+            if (url.Scheme == "http" || url.Scheme == "https")
+            {
+                try
+                {
+                    Process.Start(Run.AutoSplitter.Website);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
             }
         }
 

@@ -26,6 +26,7 @@ namespace LiveSplit.Model
         public IComponent Component { get; set; }
         public IComponentFactory Factory { get; set; }
         public bool IsDownloaded { get { return File.Exists(LocalPath); } }
+        public string Website { get; set; }
 
         public void Activate(LiveSplitState state)
         {

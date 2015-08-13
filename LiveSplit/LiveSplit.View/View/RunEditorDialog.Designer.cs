@@ -73,6 +73,8 @@
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnWebsite = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
@@ -83,6 +85,7 @@
             this.OtherMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iRunBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iSegmentBindingSource)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // runGrid
@@ -104,7 +107,7 @@
             this.runGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tableLayoutPanel1.SetRowSpan(this.runGrid, 8);
             this.runGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.runGrid.Size = new System.Drawing.Size(530, 301);
+            this.runGrid.Size = new System.Drawing.Size(530, 255);
             this.runGrid.TabIndex = 0;
             this.runGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.runGrid_KeyDown);
             // 
@@ -135,8 +138,6 @@
             this.tableLayoutPanel1.Controls.Add(this.label4, 5, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 6, 14);
             this.tableLayoutPanel1.Controls.Add(this.lblDescription, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnActivate, 6, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 7, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnInsert, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnAdd, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.btnRemove, 0, 8);
@@ -145,6 +146,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnAddComparison, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.btnImportComparison, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.btnOther, 0, 13);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 5, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -164,7 +166,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 517);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 471);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label2
@@ -314,7 +316,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnOK, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(491, 481);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(491, 435);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -351,18 +353,18 @@
             // 
             this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescription.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lblDescription, 5);
+            this.tableLayoutPanel1.SetColumnSpan(this.lblDescription, 4);
             this.lblDescription.Location = new System.Drawing.Point(140, 121);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(346, 13);
+            this.lblDescription.Size = new System.Drawing.Size(281, 13);
             this.lblDescription.TabIndex = 13;
             this.lblDescription.Text = "Description";
             // 
             // btnActivate
             // 
             this.btnActivate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnActivate.Location = new System.Drawing.Point(517, 116);
+            this.btnActivate.Location = new System.Drawing.Point(11, 3);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(75, 23);
             this.btnActivate.TabIndex = 5;
@@ -372,8 +374,8 @@
             // 
             // btnSettings
             // 
-            this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSettings.Location = new System.Drawing.Point(598, 116);
+            this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSettings.Location = new System.Drawing.Point(92, 3);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(75, 23);
             this.btnSettings.TabIndex = 6;
@@ -487,7 +489,7 @@
             this.openFromURLMenuItem,
             this.removeIconToolStripMenuItem});
             this.RemoveIconMenu.Name = "RemoveIconMenu";
-            this.RemoveIconMenu.Size = new System.Drawing.Size(170, 114);
+            this.RemoveIconMenu.Size = new System.Drawing.Size(170, 92);
             // 
             // setIconToolStripMenuItem
             // 
@@ -585,12 +587,36 @@
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
             // 
+            // btnWebsite
+            // 
+            this.btnWebsite.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnWebsite.Location = new System.Drawing.Point(173, 3);
+            this.btnWebsite.Name = "btnWebsite";
+            this.btnWebsite.Size = new System.Drawing.Size(75, 23);
+            this.btnWebsite.TabIndex = 7;
+            this.btnWebsite.Text = "Website";
+            this.btnWebsite.UseVisualStyleBackColor = true;
+            this.btnWebsite.Visible = false;
+            this.btnWebsite.Click += new System.EventHandler(this.btnWebsite_Click);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 3);
+            this.flowLayoutPanel1.Controls.Add(this.btnWebsite);
+            this.flowLayoutPanel1.Controls.Add(this.btnSettings);
+            this.flowLayoutPanel1.Controls.Add(this.btnActivate);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(429, 113);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(251, 29);
+            this.flowLayoutPanel1.TabIndex = 18;
+            // 
             // RunEditorDialog
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 517);
+            this.ClientSize = new System.Drawing.Size(684, 471);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(700, 510);
@@ -608,6 +634,7 @@
             this.OtherMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.iRunBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iSegmentBindingSource)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -657,5 +684,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromSpeedruncomToolStripMenuItem;
+        private System.Windows.Forms.Button btnWebsite;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
