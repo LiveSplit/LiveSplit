@@ -42,6 +42,7 @@
             this.tabControl = new System.Windows.Forms.TabControl();
             this.RealTime = new System.Windows.Forms.TabPage();
             this.GameTime = new System.Windows.Forms.TabPage();
+            this.Metadata = new System.Windows.Forms.TabPage();
             this.tbxAttempts = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -73,10 +74,12 @@
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.metadataControl = new LiveSplit.View.MetadataControl();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
             this.tabControl.SuspendLayout();
+            this.Metadata.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.RemoveIconMenu.SuspendLayout();
             this.ImportComparisonMenu.SuspendLayout();
@@ -104,7 +107,7 @@
             this.runGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tableLayoutPanel1.SetRowSpan(this.runGrid, 8);
             this.runGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.runGrid.Size = new System.Drawing.Size(530, 301);
+            this.runGrid.Size = new System.Drawing.Size(530, 295);
             this.runGrid.TabIndex = 0;
             this.runGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.runGrid_KeyDown);
             // 
@@ -164,7 +167,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 517);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 511);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // label2
@@ -256,6 +260,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.tabControl, 9);
             this.tabControl.Controls.Add(this.RealTime);
             this.tabControl.Controls.Add(this.GameTime);
+            this.tabControl.Controls.Add(this.Metadata);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(144, 148);
             this.tabControl.Margin = new System.Windows.Forms.Padding(4, 3, 10, 0);
@@ -284,6 +289,16 @@
             this.GameTime.TabIndex = 1;
             this.GameTime.Text = "Game Time";
             this.GameTime.UseVisualStyleBackColor = true;
+            // 
+            // Metadata
+            // 
+            this.Metadata.Controls.Add(this.metadataControl);
+            this.Metadata.Location = new System.Drawing.Point(4, 22);
+            this.Metadata.Name = "Metadata";
+            this.Metadata.Size = new System.Drawing.Size(522, 0);
+            this.Metadata.TabIndex = 2;
+            this.Metadata.Text = "Additional Info";
+            this.Metadata.UseVisualStyleBackColor = true;
             // 
             // tbxAttempts
             // 
@@ -314,7 +329,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnOK, 0, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(491, 481);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(491, 475);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 1;
@@ -585,12 +600,22 @@
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
             // 
+            // metadataControl
+            // 
+            this.metadataControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metadataControl.Location = new System.Drawing.Point(0, 0);
+            this.metadataControl.Metadata = null;
+            this.metadataControl.Name = "metadataControl";
+            this.metadataControl.Padding = new System.Windows.Forms.Padding(7);
+            this.metadataControl.Size = new System.Drawing.Size(522, 0);
+            this.metadataControl.TabIndex = 0;
+            // 
             // RunEditorDialog
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 517);
+            this.ClientSize = new System.Drawing.Size(684, 511);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(700, 510);
@@ -602,6 +627,7 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).EndInit();
             this.tabControl.ResumeLayout(false);
+            this.Metadata.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.RemoveIconMenu.ResumeLayout(false);
             this.ImportComparisonMenu.ResumeLayout(false);
@@ -657,5 +683,7 @@
         private System.Windows.Forms.ToolStripMenuItem clearTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromSpeedruncomToolStripMenuItem;
+        private System.Windows.Forms.TabPage Metadata;
+        private MetadataControl metadataControl;
     }
 }

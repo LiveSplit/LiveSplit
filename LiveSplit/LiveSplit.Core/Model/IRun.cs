@@ -1,13 +1,14 @@
 ﻿using LiveSplit.Model.Comparisons;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
 
 namespace LiveSplit.Model
 {
-    public interface IRun : IList<ISegment>, ICloneable
+    public interface IRun : IList<ISegment>, ICloneable, INotifyPropertyChanged
     {
         Image GameIcon { get; set; }
         string GameName { get; set; }
@@ -22,6 +23,8 @@ namespace LiveSplit.Model
         IList<IComparisonGenerator> ComparisonGenerators { get; set; }
         IList<string> CustomComparisons { get; set; }
         IEnumerable<string> Comparisons { get; }
+
+        RunMetadata Metadata { get; }
 
         bool HasChanged { get; set; }
         string FilePath { get; set; }
@@ -40,6 +43,29 @@ namespace LiveSplit.Model
             if (segmentHistory != null)
                 segment.SegmentHistory = segmentHistory;
             run.Add(segment);
+        }
+
+        public static void ClearHistory(this IRun run)
+        {
+            run.AttemptHistory.Clear();
+            foreach (var segment in run)
+            {
+                segment.SegmentHistory.Clear();
+            }
+        }
+
+        public static void ClearTimes(this IRun run)
+        {
+            run.ClearHistory();
+            run.CustomComparisons.Clear();
+            run.CustomComparisons.Add(Model.Run.PersonalBestComparisonName);
+            foreach (var segment in run)
+            {
+                segment.Comparisons.Clear();
+                segment.BestSegmentTime = default(Time);
+            }
+            run.AttemptCount = 0;
+            run.Metadata.RunID = null;
         }
 
         public static void FixSplits(this IRun run)
@@ -211,6 +237,74 @@ namespace LiveSplit.Model
             {
                 segment.SegmentHistory.Add(new IndexedTime(segment.BestSegmentTime, GetMinSegmentHistoryIndex(run) - 1));
             }
+        }
+
+        public static string GetExtendedCategoryName(this IRun run, bool showRegion = false, bool showPlatform = false, bool showVariables = true)
+        {
+            var list = new List<string>();
+
+            var categoryName = run.CategoryName;
+
+            while (categoryName.Contains('(') && categoryName.Contains(')'))
+            {
+                var indexStart = categoryName.IndexOf('(');
+                var indexEnd = categoryName.IndexOf(')');
+                var inside = categoryName.Substring(indexStart + 1, indexEnd - indexStart - 1);
+                list.Add(inside);
+                categoryName = categoryName.Substring(0, indexStart).Trim();
+            }
+
+            if (showVariables)
+            {
+                var variables = run.Metadata.VariableValueNames.Where(x => !string.IsNullOrEmpty(x.Value));
+
+                foreach (var variable in variables)
+                {
+                    var name = variable.Key.TrimEnd('?');
+                    var value = variable.Value;
+                    var valueLower = value.ToLowerInvariant();
+
+                    if (valueLower == "yes")
+                    {
+                        list.Add(name);
+                    }
+                    else if (valueLower == "no")
+                    {
+                        list.Add("No " + name);
+                    }
+                    else
+                    {
+                        list.Add(value);
+                    }
+                }
+            }
+
+            if (run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game.Regions.Count > 1 && showRegion)
+            {
+                list.Add(run.Metadata.Region.Abbreviation);
+            }
+
+            if (showPlatform)
+            {
+                if (run.Metadata.Platform != null && !string.IsNullOrEmpty(run.Metadata.PlatformName) && run.Metadata.Game.Platforms.Count > 1)
+                {
+                    if (run.Metadata.UsesEmulator)
+                        list.Add(run.Metadata.PlatformName + " Emulator");
+                    else
+                        list.Add(run.Metadata.PlatformName);
+                }
+                else if (run.Metadata.UsesEmulator)
+                {
+                    list.Add("Emulator");
+                }
+            }
+
+            if (list.Any())
+            {
+                categoryName += " (" + list.Aggregate((a, b) => a + ", " + b) + ")";
+            }
+
+            return categoryName;
         }
     }
 }

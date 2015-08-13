@@ -1,5 +1,6 @@
 ﻿using LiveSplit.UI;
 using System.IO;
+using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
 
@@ -15,7 +16,7 @@ namespace LiveSplit.Model.RunSavers
             document.AppendChild(docNode);
 
             var parent = document.CreateElement("Run");
-            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.5.0"));
+            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.6.0"));
             document.AppendChild(parent);
 
             parent.AppendChild(SettingsHelper.CreateImageElement(document, "GameIcon", run.GameIcon));
@@ -67,6 +68,28 @@ namespace LiveSplit.Model.RunSavers
             if (run.IsAutoSplitterActive())
                 autoSplitterSettings.InnerXml = run.AutoSplitter.Component.GetSettings(document).InnerXml;
             parent.AppendChild(autoSplitterSettings);
+
+            var metadata = document.CreateElement("Metadata");
+
+            var runElement = document.CreateElement("Run");
+            runElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RunID ?? string.Empty));
+            metadata.AppendChild(runElement);
+
+            var platform = SettingsHelper.ToElement(document, "Platform", run.Metadata.PlatformName ?? string.Empty);
+            platform.Attributes.Append(SettingsHelper.ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
+            metadata.AppendChild(platform);
+
+            metadata.AppendChild(SettingsHelper.ToElement(document, "Region", run.Metadata.RegionName ?? string.Empty));
+
+            var variables = document.CreateElement("Variables");
+            foreach (var variable in run.Metadata.VariableValueNames)
+            {
+                var variableElement = SettingsHelper.ToElement(document, "Variable", variable.Value ?? string.Empty);
+                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "name", variable.Key ?? string.Empty));
+                variables.AppendChild(variableElement);
+            }
+            metadata.AppendChild(variables);
+            parent.AppendChild(metadata);
 
             document.Save(stream);
         }

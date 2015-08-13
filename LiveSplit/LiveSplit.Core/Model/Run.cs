@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model.Comparisons;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
@@ -11,8 +12,11 @@ namespace LiveSplit.Model
     /// Describes a run for a game with all the splits and times.
     /// </summary>
     [Serializable]
-    public class Run : IRun
+    public class Run : IRun, INotifyPropertyChanged
     {
+        private string gameName;
+        private string categoryName;
+
         /// <summary>
         /// The name of the comparison used to save your Personal Best splits.
         /// </summary>
@@ -27,14 +31,35 @@ namespace LiveSplit.Model
         /// Gets or sets the icon of the game the run is for.
         /// </summary>
         public Image GameIcon { get; set; }
+
         /// <summary>
         /// Gets or sets the name of the game the run is for.
         /// </summary>
-        public string GameName { get; set; }
+        public string GameName
+        {
+            get { return gameName; }
+            set
+            {
+                gameName = value; 
+                Metadata.Refresh();
+                TriggerPropertyChanged("GameName");
+            }
+        }
+
         /// <summary>
         /// Gets or sets the category of the run.
         /// </summary>
-        public string CategoryName { get; set; }
+        public string CategoryName
+        {
+            get { return categoryName; }
+            set
+            {
+                categoryName = value;
+                Metadata.Refresh();
+                TriggerPropertyChanged("CategoryName");
+            }
+        }
+
         /// <summary>
         /// Gets or sets the time where the timer starts at.
         /// <remarks>This can be both a negative time as well to simulate a countdown.</remarks>
@@ -57,6 +82,17 @@ namespace LiveSplit.Model
         public IList<string> CustomComparisons { get; set; }
         public IEnumerable<string> Comparisons { get { return CustomComparisons.Concat(ComparisonGenerators.Select(x => x.Name)); } }
 
+        public RunMetadata Metadata { get; private set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void TriggerPropertyChanged(string propertyName)
+        {
+            var propertyChanged = PropertyChanged;
+            if (propertyChanged != null)
+                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         protected IComparisonGeneratorsFactory Factory { get; set; }
 
         public bool HasChanged { get; set; }
@@ -69,9 +105,10 @@ namespace LiveSplit.Model
             Factory = factory;
             ComparisonGenerators = Factory.Create(this).ToList();
             CustomComparisons = new List<string>() { PersonalBestComparisonName };
+            Metadata = new RunMetadata(this);
         }
 
-        public Run(IEnumerable<ISegment> collection, IComparisonGeneratorsFactory factory)
+        private Run(IEnumerable<ISegment> collection, IComparisonGeneratorsFactory factory, RunMetadata metadata)
         {
             InternalList = new List<ISegment>();
             foreach (var x in collection)
@@ -82,6 +119,7 @@ namespace LiveSplit.Model
             Factory = factory;
             ComparisonGenerators = Factory.Create(this).ToList();
             CustomComparisons = new List<string>() { PersonalBestComparisonName };
+            Metadata = metadata.Clone(this);
         }
 
         public int IndexOf(ISegment item)
@@ -158,7 +196,7 @@ namespace LiveSplit.Model
 
         public object Clone()
         {
-            return new Run(this, Factory)
+            var newRun = new Run(this, Factory, Metadata)
             {
                 GameIcon = GameIcon,
                 GameName = GameName,
@@ -173,6 +211,7 @@ namespace LiveSplit.Model
                 AutoSplitter = AutoSplitter != null ? (AutoSplitter)AutoSplitter.Clone() : null,
                 AutoSplitterSettings = AutoSplitterSettings
             };
+            return newRun;
         }
     }
 }

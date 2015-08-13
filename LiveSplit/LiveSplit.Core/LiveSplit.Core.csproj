@@ -118,6 +118,8 @@
     <Compile Include="Model\Input\KeyboardHook.cs" />
     <Compile Include="Model\Input\XGamePad.cs" />
     <Compile Include="Model\Input\XInput.cs" />
+    <Compile Include="Model\MetadataChangedEventArgs.cs" />
+    <Compile Include="Model\RunMetadata.cs" />
     <Compile Include="Model\RunFactories\CompositeRunFactory.cs" />
     <Compile Include="Model\RunFactories\Portal2LiveTimerRunFactory.cs" />
     <Compile Include="Model\RunFactories\ShitSplitRunFactory.cs" />
@@ -183,8 +185,11 @@
     <Compile Include="Web\Share\Gett.cs" />
     <Compile Include="Web\Share\Imgur.cs" />
     <Compile Include="Web\Share\IRunUploadPlatform.cs" />
+    <Compile Include="Web\Share\ISpeedrunComAuthenticator.cs" />
     <Compile Include="Web\Share\Screenshot.cs" />
-    <Compile Include="Web\Share\SpeedrunCom.cs" />
+    <Compile Include="Web\Share\SpeedrunCom.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Web\Share\Twitch.cs" />
     <Compile Include="Web\Share\TwitchEmoteResolver.cs" />
     <Compile Include="Web\Share\TwitchGameResolveDialog.cs">
@@ -320,6 +325,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj">
+      <Project>{924aaffe-5b89-49e2-99ad-ec9373cc838d}</Project>
+      <Name>SpeedrunComSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Libs\xlio\Source\Codaxy.Xlio\Codaxy.Xlio.csproj">
       <Project>{11f82973-690a-48a9-8cb8-bd97e0024e2c}</Project>
       <Name>Codaxy.Xlio</Name>

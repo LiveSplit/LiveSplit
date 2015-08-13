@@ -63,6 +63,7 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
@@ -129,6 +130,12 @@
     <Compile Include="View\LayoutEditorDialog.Designer.cs">
       <DependentUpon>LayoutEditorDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\MetadataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\MetadataControl.Designer.cs">
+      <DependentUpon>MetadataControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\LayoutSettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -171,6 +178,12 @@
     <Compile Include="View\ShareRunDialog.Designer.cs">
       <DependentUpon>ShareRunDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SpeedrunComSubmitDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SpeedrunComSubmitDialog.Designer.cs">
+      <DependentUpon>SpeedrunComSubmitDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SpeedRunsLiveForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -189,6 +202,13 @@
     <Compile Include="View\TimerForm.Designer.cs">
       <DependentUpon>TimerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SpeedrunComOAuthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SpeedrunComOAuthForm.Designer.cs">
+      <DependentUpon>SpeedrunComOAuthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web\Share\SpeedrunComRunUploadPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LiveSplit.pfx" />
@@ -243,6 +263,9 @@
       <DependentUpon>LayoutEditorDialog.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\MetadataControl.resx">
+      <DependentUpon>MetadataControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\LayoutSettingsControl.resx">
       <DependentUpon>LayoutSettingsControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -265,6 +288,9 @@
     <EmbeddedResource Include="View\ShareRunDialog.resx">
       <DependentUpon>ShareRunDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\SpeedrunComSubmitDialog.resx">
+      <DependentUpon>SpeedrunComSubmitDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\SpeedRunsLiveForm.resx">
       <DependentUpon>SpeedRunsLiveForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -275,8 +301,15 @@
       <DependentUpon>TimerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\SpeedrunComOAuthForm.resx">
+      <DependentUpon>SpeedrunComOAuthForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj">
+      <Project>{924aaffe-5b89-49e2-99ad-ec9373cc838d}</Project>
+      <Name>SpeedrunComSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj">
       <Project>{6de847db-20a3-4848-aeee-1b4364aecdfb}</Project>
       <Name>LiveSplit.Core</Name>

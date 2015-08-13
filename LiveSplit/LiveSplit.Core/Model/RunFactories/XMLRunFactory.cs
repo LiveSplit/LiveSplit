@@ -2,6 +2,8 @@
 using LiveSplit.UI;
 using System;
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Linq;
 using System.Xml;
 
 namespace LiveSplit.Model.RunFactories
@@ -58,6 +60,19 @@ namespace LiveSplit.Model.RunFactories
             var run = new Run(factory);
             var parent = document["Run"];
             var version = SettingsHelper.ParseAttributeVersion(parent);
+
+            if (version >= new Version(1, 6))
+            {
+                var metadata = parent["Metadata"];
+                run.Metadata.RunID = metadata["Run"].GetAttribute("id");
+                run.Metadata.PlatformName = metadata["Platform"].InnerText;
+                run.Metadata.UsesEmulator = bool.Parse(metadata["Platform"].GetAttribute("usesEmulator"));
+                run.Metadata.RegionName = metadata["Region"].InnerText;
+                foreach (var variableNode in metadata["Variables"].ChildNodes.OfType<XmlElement>())
+                {
+                    run.Metadata.VariableValueNames.Add(variableNode.GetAttribute("name"), variableNode.InnerText);
+                }
+            }
 
             run.GameIcon = SettingsHelper.GetImageFromElement(parent["GameIcon"]);
             run.GameName = SettingsHelper.ParseString(parent["GameName"]);

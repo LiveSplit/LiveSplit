@@ -106,6 +106,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.TotalPlaytime", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Tests", "LiveSplit.Tests\LiveSplit.Tests.csproj", "{970684D3-6795-4696-B8C2-82E222FCEB68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedrunComSharp", "Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj", "{924AAFFE-5B89-49E2-99AD-EC9373CC838D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -287,6 +289,12 @@ Global
 		{970684D3-6795-4696-B8C2-82E222FCEB68}.Release Candidate|Any CPU.Build.0 = Release|Any CPU
 		{970684D3-6795-4696-B8C2-82E222FCEB68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{970684D3-6795-4696-B8C2-82E222FCEB68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{924AAFFE-5B89-49E2-99AD-EC9373CC838D}.Debug|Any CPU.ActiveCfg = Debug with API Calls|Any CPU
+		{924AAFFE-5B89-49E2-99AD-EC9373CC838D}.Debug|Any CPU.Build.0 = Debug with API Calls|Any CPU
+		{924AAFFE-5B89-49E2-99AD-EC9373CC838D}.Release Candidate|Any CPU.ActiveCfg = Release|Any CPU
+		{924AAFFE-5B89-49E2-99AD-EC9373CC838D}.Release Candidate|Any CPU.Build.0 = Release|Any CPU
+		{924AAFFE-5B89-49E2-99AD-EC9373CC838D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924AAFFE-5B89-49E2-99AD-EC9373CC838D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -320,6 +328,7 @@ Global
 		{11F82973-690A-48A9-8CB8-BD97E0024E2C} = {FAF78A7D-B7F6-4302-88E9-4B1E7AAC3552}
 		{B0470637-949C-4A41-9C8C-0CE46561037F} = {F860D526-C1CE-4FDC-A871-202201859C42}
 		{14DF9AF3-F142-4133-A857-BFBC679421DF} = {F860D526-C1CE-4FDC-A871-202201859C42}
+		{924AAFFE-5B89-49E2-99AD-EC9373CC838D} = {FAF78A7D-B7F6-4302-88E9-4B1E7AAC3552}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

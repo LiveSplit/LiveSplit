@@ -3,6 +3,7 @@ using LiveSplit.Model.RunImporters;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using LiveSplit.UI;
+using LiveSplit.Web;
 using LiveSplit.Utils;
 using LiveSplit.Web.Share;
 using System;
@@ -33,6 +34,10 @@ namespace LiveSplit.View
         protected ITimeFormatter TimeFormatter { get; set; }
         protected IList<TimeSpan?> SegmentTimeList { get; set; }
         protected bool IsInitialized = false;
+        protected Time PreviousPersonalBestTime;
+
+        protected bool IsGridTab { get { return tabControl.SelectedTab == RealTime || tabControl.SelectedTab == GameTime; } }
+        protected bool IsMetadataTab { get { return tabControl.SelectedTab == Metadata; } }
 
         public List<Image> ImagesToDispose { get; set; }
 
@@ -61,8 +66,11 @@ namespace LiveSplit.View
                 if (Run.GameName != value)
                 {
                     Run.GameName = value;
+                    if (IsMetadataTab)
+                        metadataControl.RefreshInformation();
                     RefreshCategoryAutoCompleteList(); 
                     RaiseRunEdited();
+                    Run.Metadata.RunID = null;
                 }
             }
         }
@@ -74,7 +82,10 @@ namespace LiveSplit.View
                 if (Run.CategoryName != value)
                 {
                     Run.CategoryName = value;
+                    if (IsMetadataTab)
+                        metadataControl.RefreshInformation();
                     RaiseRunEdited();
+                    Run.Metadata.RunID = null;
                 }
             }
         }
@@ -107,6 +118,10 @@ namespace LiveSplit.View
             InitializeComponent();
             CurrentState = state;
             Run = state.Run;
+            Run.PropertyChanged += Run_PropertyChanged;
+            PreviousPersonalBestTime = Run.Last().PersonalBestSplitTime;
+            metadataControl.Metadata = Run.Metadata;
+            metadataControl.MetadataChanged += metadataControl_MetadataChanged;
             CurrentSplitIndexOffset = 0;
             AllowChangingSegments = false;
             ImagesToDispose = new List<Image>();
@@ -183,7 +198,7 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        var gameNames = SpeedrunCom.Instance.GetGameNames().ToArray();
+                        var gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
                         this.InvokeIfRequired(() =>
                         {
                             try
@@ -213,6 +228,25 @@ namespace LiveSplit.View
             RefreshCategoryAutoCompleteList();
             UpdateSegmentList();
             RefreshAutoSplittingUI();
+        }
+
+        void Run_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "GameName")
+                cbxGameName.Text = Run.GameName;
+            else if (e.PropertyName == "CategoryName")
+                cbxRunCategory.Text = Run.CategoryName;
+        }
+
+        void metadataControl_MetadataChanged(object sender, EventArgs e)
+        {
+            var args = (MetadataChangedEventArgs)e;
+            if (args.ClearRunID)
+            {
+                Run.Metadata.RunID = null;
+                metadataControl.RefreshAssociateButton();
+            }
+            RaiseRunEdited();
         }
 
         void cbxGameName_TextChanged(object sender, EventArgs e)
@@ -246,16 +280,16 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    string[] categoryNames;
+                    string[] categoryNames = new[] { "Any%", "Low%", "100%" };
                     try
                     {
-                        categoryNames = SpeedrunCom.Instance.GetCategories(Run.GameName).ToArray();
+                        var game = Run.Metadata.Game;
+                        if (game != null)
+                            categoryNames = game.FullGameCategories.Select(x => x.Name).ToArray();
                     }
                     catch (Exception ex)
                     {
                         Log.Error(ex);
-
-                        categoryNames = new[] { "Any%", "Low%", "100%" };
                     }
                     this.InvokeIfRequired(() =>
                     {
@@ -284,7 +318,7 @@ namespace LiveSplit.View
 
         void SegmentList_ListChanged(object sender, ListChangedEventArgs e)
         {
-            RaiseRunEdited();
+            TimesModified();
         }
 
         private void UpdateButtonsStatus()
@@ -761,7 +795,7 @@ namespace LiveSplit.View
                     Fix();
                 }
                 runGrid.Invalidate();
-                RaiseRunEdited();
+                TimesModified();
             }
         }
 
@@ -884,6 +918,17 @@ namespace LiveSplit.View
             }
         }
 
+        private void TimesModified()
+        {
+            if (Run.Last().PersonalBestSplitTime.RealTime != PreviousPersonalBestTime.RealTime 
+                || Run.Last().PersonalBestSplitTime.GameTime != PreviousPersonalBestTime.GameTime)
+            {
+                Run.Metadata.RunID = null;
+                PreviousPersonalBestTime = Run.Last().PersonalBestSplitTime;
+            }
+            RaiseRunEdited();
+        }
+
         private void RaiseRunEdited()
         {
             if (IsInitialized)
@@ -932,8 +977,8 @@ namespace LiveSplit.View
         {
             try
             {
-                var gameId = SpeedrunCom.Instance.GetGameID(cbxGameName.Text);
-                var cover = SpeedrunCom.Instance.GetGameCover(gameId);
+                var game = Run.Metadata.Game;
+                var cover = game.Assets.GetBoxartImage();
                 SetGameIcon(cover);
                 RaiseRunEdited();
                 return;
@@ -1007,6 +1052,10 @@ namespace LiveSplit.View
 
         private void RebuildComparisonColumns()
         {
+            while (runGrid.Columns.Count > CUSTOMCOMPARISONSINDEX)
+            {
+                runGrid.Columns.RemoveAt(CUSTOMCOMPARISONSINDEX);
+            }
             foreach (var comparison in Run.CustomComparisons)
             {
                 if (comparison != Model.Run.PersonalBestComparisonName)
@@ -1133,8 +1182,24 @@ namespace LiveSplit.View
 
         private void TabSelected(object sender, TabControlEventArgs e)
         {
-            UpdateSegmentList();
-            runGrid.Invalidate();
+            var margin = this.tabControl.Margin;
+            if (IsGridTab)
+            {
+                margin.Bottom = 0;
+                this.tabControl.Margin = margin;
+                UpdateSegmentList();
+                this.tableLayoutPanel1.SetRowSpan(this.tabControl, 1);
+                runGrid.Visible = true;
+                runGrid.Invalidate();
+            }
+            else
+            {
+                runGrid.Visible = false;
+                this.tableLayoutPanel1.SetRowSpan(this.tabControl, 9);
+                metadataControl.RefreshInformation();
+                margin.Bottom = 10;
+                this.tabControl.Margin = margin;
+            }
         }
 
         protected void RefreshAutoSplittingUI()
@@ -1245,33 +1310,20 @@ namespace LiveSplit.View
             OtherMenu.Show(MousePosition);
         }
 
-        private void ClearHistory(bool clearTimes)
-        {
-            Run.AttemptHistory.Clear();
-            foreach (var segment in Run)
-            {
-                segment.SegmentHistory.Clear();
-                if (clearTimes)
-                {
-                    foreach (var comparison in Run.CustomComparisons)
-                        segment.Comparisons[comparison] = default(Time);
-                    segment.BestSegmentTime = default(Time);
-                }
-            }
-            Fix();
-            RaiseRunEdited();
-        }
-
         private void clearHistoryToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ClearHistory(false);
+            Run.ClearHistory();
+            Fix();
+            RaiseRunEdited();
         }
 
         private void clearTimesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             tbxAttempts.Text = "0";
-            Run.AttemptCount = 0;
-            ClearHistory(true);
+            Run.ClearTimes();
+            RebuildComparisonColumns();
+            Fix();
+            TimesModified();
         }
 
         private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)
