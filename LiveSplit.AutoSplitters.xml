@@ -4,6 +4,9 @@
     <Games>
       <Game>Aperture Tag</Game>
       <Game>Aperture Tag: The Paint Gun Testing Initiative</Game>
+      <Game>Black Mesa: Source</Game>
+      <Game>Black Mesa</Game>
+      <Game>Blue Portals</Game>
       <Game>Dark Messiah of Might and Magic</Game>
       <Game>Dear Esther</Game>
       <Game>E.Y.E: Divine Cybermancy</Game>
@@ -13,12 +16,13 @@
       <Game>Half-Life 2: Lost Coast</Game>
       <Game>Half-Life 2: Sniper's Episode</Game>
       <Game>Half-Life 2: Ghosting Mod</Game>
+      <Game>Half-Life 2 Mods</Game>
       <Game>Portal</Game>
       <Game>Portal Mods</Game>
       <Game>Rexaura</Game>
-      <Game>Blue Portals</Game>
       <Game>Portal 2</Game>
       <Game>Portal Stories: Mel</Game>
+      <Game>Source Mods</Game>
     </Games>
     <URLs>
       <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.SourceSplit.dll</URL>
