@@ -766,7 +766,8 @@ namespace LiveSplit.View
                     }
                     else if (selectedCell.ColumnIndex == ICONINDEX)
                     {
-                        ImagesToDispose.Add(Run[selectedCell.RowIndex].Icon);
+                        if (Run[selectedCell.RowIndex].Icon != null)
+                            ImagesToDispose.Add(Run[selectedCell.RowIndex].Icon);
                         Run[selectedCell.RowIndex].Icon = null;
                     }
                     else if (selectedCell.ColumnIndex == SPLITTIMEINDEX)
