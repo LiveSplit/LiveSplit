@@ -14,7 +14,7 @@ namespace LiveSplit.Model
             }
         }
 
-        private static void PopulatePredictions(IRun run, TimeSpan? currentTime, int segmentIndex, IList<TimeSpan?> predictions, bool simpleCalculation, TimingMethod method = TimingMethod.RealTime)
+        private static void PopulatePredictions(IRun run, TimeSpan? currentTime, int segmentIndex, IList<TimeSpan?> predictions, bool simpleCalculation, bool useCurrentRun, TimingMethod method)
         {
             if (currentTime != null)
             {
@@ -31,20 +31,17 @@ namespace LiveSplit.Model
                         }
                     }
                 }
-                var currentRunPrediction = SumOfSegmentsHelper.TrackCurrentRun(run, currentTime, segmentIndex, method);
-                PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
+                if (useCurrentRun)
+                {
+                    var currentRunPrediction = SumOfSegmentsHelper.TrackCurrentRun(run, currentTime, segmentIndex, method);
+                    PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
+                }
                 var personalBestRunPrediction = SumOfSegmentsHelper.TrackPersonalBestRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index);
             }
         }
 
-        public static TimeSpan? CalculateSumOfBest(IRun run, int startIndex, int endIndex, bool simpleCalculation, TimingMethod method = TimingMethod.RealTime)
-        {
-            var predictions = new TimeSpan?[run.Count + 1];
-            return CalculateSumOfBest(run, startIndex, endIndex, predictions, simpleCalculation, method);
-        }
-
-        public static TimeSpan? CalculateSumOfBest(IRun run, int startIndex, int endIndex, IList<TimeSpan?> predictions, bool simpleCalculation, TimingMethod method = TimingMethod.RealTime)
+        public static TimeSpan? CalculateSumOfBest(IRun run, int startIndex, int endIndex, IList<TimeSpan?> predictions, bool simpleCalculation = false, bool useCurrentRun = true, TimingMethod method = TimingMethod.RealTime)
         {
             int segmentIndex = 0;
             TimeSpan? currentTime = TimeSpan.Zero;
@@ -52,31 +49,22 @@ namespace LiveSplit.Model
             foreach (var segment in run.Skip(startIndex).Take(endIndex - startIndex + 1))
             {
                 currentTime = predictions[segmentIndex];
-                PopulatePredictions(run, currentTime, segmentIndex, predictions, simpleCalculation, method);
+                PopulatePredictions(run, currentTime, segmentIndex, predictions, simpleCalculation, useCurrentRun, method);
                 segmentIndex++;
             }
             return predictions[endIndex + 1];
         }
 
-        public static TimeSpan? CalculateSumOfBest(IRun run, int endIndex, bool simpleCalculation, TimingMethod method = TimingMethod.RealTime)
+        public static TimeSpan? CalculateSumOfBest(IRun run, bool simpleCalculation = false, bool useCurrentRun = true, TimingMethod method = TimingMethod.RealTime)
         {
-            return CalculateSumOfBest(run, 0, endIndex, simpleCalculation, method);
-        }
-
-        public static TimeSpan? CalculateSumOfBest(IRun run, int startIndex, TimeSpan? startTime, int endIndex, bool simpleCalculation, TimingMethod method = TimingMethod.RealTime)
-        {
-            return CalculateSumOfBest(run, startIndex, endIndex, simpleCalculation, method) + startTime;
-        }
-
-        public static TimeSpan? CalculateSumOfBest(IRun run, bool simpleCalculation, TimingMethod method = TimingMethod.RealTime)
-        {
-            return CalculateSumOfBest(run, run.Count() - 1, simpleCalculation, method);
+            var predictions = new TimeSpan?[run.Count + 1];
+            return CalculateSumOfBest(run, 0, run.Count() - 1, predictions, simpleCalculation, useCurrentRun, method);
         }
 
         public static void Clean(IRun run, TimingMethod method, CleanUpCallback callback = null)
         {
             var predictions = new TimeSpan?[run.Count + 1];
-            CalculateSumOfBest(run, 0, run.Count() - 1, predictions, true, method);
+            CalculateSumOfBest(run, 0, run.Count() - 1, predictions, true, false, method);
             int segmentIndex = 0;
             TimeSpan? currentTime = TimeSpan.Zero;
             foreach (var segment in run)
@@ -91,7 +79,7 @@ namespace LiveSplit.Model
             }
         }
 
-        private static void CheckPrediction(IRun run, TimeSpan?[] predictions, TimeSpan? predictedTime, int startingIndex, int endingIndex, int runIndex, TimingMethod method = TimingMethod.RealTime, CleanUpCallback callback = null)
+        private static void CheckPrediction(IRun run, TimeSpan?[] predictions, TimeSpan? predictedTime, int startingIndex, int endingIndex, int runIndex, TimingMethod method, CleanUpCallback callback)
         {
             if (predictedTime.HasValue && (!predictions[endingIndex + 1].HasValue || predictedTime < predictions[endingIndex + 1].Value))
             {

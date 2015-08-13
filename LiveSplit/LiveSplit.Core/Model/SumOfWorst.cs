@@ -14,7 +14,7 @@ namespace LiveSplit.Model
             }
         }
 
-        private static void PopulatePredictions(IRun run, TimeSpan? currentTime, int segmentIndex, IList<TimeSpan?> predictions, bool simpleCalculation, TimingMethod method = TimingMethod.RealTime)
+        private static void PopulatePredictions(IRun run, TimeSpan? currentTime, int segmentIndex, IList<TimeSpan?> predictions, bool useCurrentRun, TimingMethod method)
         {
             if (currentTime != null)
             {
@@ -28,8 +28,11 @@ namespace LiveSplit.Model
                         PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                     }
                 }
-                var currentRunPrediction = SumOfSegmentsHelper.TrackCurrentRun(run, currentTime, segmentIndex, method);
-                PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
+                if (useCurrentRun)
+                {
+                    var currentRunPrediction = SumOfSegmentsHelper.TrackCurrentRun(run, currentTime, segmentIndex, method);
+                    PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
+                }
                 var personalBestRunPrediction = SumOfSegmentsHelper.TrackPersonalBestRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index);
             }
@@ -37,7 +40,7 @@ namespace LiveSplit.Model
 
         
 
-        public static TimeSpan? CalculateSumOfWorst(IRun run, int startIndex, int endIndex, IList<TimeSpan?> predictions, bool simpleCalculation, TimingMethod method = TimingMethod.RealTime)
+        public static TimeSpan? CalculateSumOfWorst(IRun run, int startIndex, int endIndex, IList<TimeSpan?> predictions, bool useCurrentRun = true, TimingMethod method = TimingMethod.RealTime)
         {
             int segmentIndex = 0;
             TimeSpan? currentTime = TimeSpan.Zero;
@@ -45,7 +48,7 @@ namespace LiveSplit.Model
             foreach (var segment in run.Skip(startIndex).Take(endIndex - startIndex + 1))
             {
                 currentTime = predictions[segmentIndex];
-                PopulatePredictions(run, currentTime, segmentIndex, predictions, simpleCalculation, method);
+                PopulatePredictions(run, currentTime, segmentIndex, predictions, useCurrentRun, method);
                 segmentIndex++;
             }
             return predictions[endIndex + 1];
