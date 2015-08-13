@@ -36,6 +36,7 @@
             this.lblRules = new System.Windows.Forms.Label();
             this.btnAssociate = new System.Windows.Forms.Button();
             this.tbxRules = new System.Windows.Forms.RichTextBox();
+            this.btnSubmit = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +55,7 @@
             this.tableLayoutPanel1.Controls.Add(this.lblRules, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnAssociate, 3, 8);
             this.tableLayoutPanel1.Controls.Add(this.tbxRules, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnSubmit, 0, 8);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -150,6 +152,18 @@
             this.tbxRules.Text = "";
             this.tbxRules.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.tbxRules_LinkClicked);
             // 
+            // btnSubmit
+            // 
+            this.btnSubmit.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnSubmit.AutoSize = true;
+            this.btnSubmit.Location = new System.Drawing.Point(3, 373);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(81, 23);
+            this.btnSubmit.TabIndex = 8;
+            this.btnSubmit.Text = "Submit Run...";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
             // MetadataControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,7 +189,6 @@
         private System.Windows.Forms.Label lblRules;
         private System.Windows.Forms.Button btnAssociate;
         private System.Windows.Forms.RichTextBox tbxRules;
-
-
+        private System.Windows.Forms.Button btnSubmit;
     }
 }

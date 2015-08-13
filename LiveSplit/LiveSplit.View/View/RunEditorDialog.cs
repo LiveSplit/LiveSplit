@@ -284,7 +284,7 @@ namespace LiveSplit.View
                     string[] categoryNames;
                     try
                     {
-                        var game = SpeedrunCom.Client.Games.GetGames(name: Run.GameName).FirstOrDefault();
+                        var game = Run.Metadata.Game;
                         if (game != null)
                             categoryNames = game.FullGameCategories.Select(x => x.Name).ToArray();
                         else

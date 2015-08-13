@@ -51,7 +51,11 @@ namespace LiveSplit.Model
             }
             set
             {
-                RunID = value.ID;
+                runId = value.ID;
+                run = new Lazy<SpeedrunComSharp.Run>(() => value);
+
+                if (value != null)
+                    TriggerPropertyChanged(false);
             }
         }
 

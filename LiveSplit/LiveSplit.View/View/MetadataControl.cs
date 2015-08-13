@@ -154,9 +154,6 @@ namespace LiveSplit.View
                     controlIndex++;
                 }
 
-                if (SpeedrunCom.MakeSureUserIsAuthenticated())
-                    MessageBox.Show(SpeedrunCom.Client.Profile.GetProfile().Name);
-
                 foreach (var variable in Metadata.VariableValues.Keys)
                 {
                     var variableLabel = new Label()
@@ -215,18 +212,20 @@ namespace LiveSplit.View
 
         public void RefreshAssociateButton()
         {
-            if (this.InvokeRequired)
+            if (InvokeRequired)
             {
-                this.Invoke(new Action(RefreshAssociateButton));
+                Invoke(new Action(RefreshAssociateButton));
                 return;
             }
             
             if (string.IsNullOrEmpty(Metadata.RunID))
             {
+                btnSubmit.Enabled = true;
                 btnAssociate.Text = "Associate with Speedrun.com...";
             }
             else
             {
+                btnSubmit.Enabled = false;
                 btnAssociate.Text = "Show on Speedrun.com...";
             }
         }
@@ -279,6 +278,27 @@ namespace LiveSplit.View
                 Process.Start(e.LinkText);
             }
             catch { }
+        }
+
+        private void btnSubmit_Click(object sender, EventArgs e)
+        {
+            string reason;
+            var isValid = SpeedrunCom.ValidateRun(Metadata.LiveSplitRun, out reason);
+
+            if (!isValid)
+            {
+                MessageBox.Show(this, reason, "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (var submitDialog = new SpeedrunComSubmitDialog(Metadata))
+            {
+                var result = submitDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    RefreshAssociateButton();
+                }
+            }
         }
     }
 }
