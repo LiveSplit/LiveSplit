@@ -148,7 +148,7 @@ namespace LiveSplit.View
             iconColumn.Name = "Icon";
             iconColumn.Width = 50;
             iconColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            iconColumn.DefaultCellStyle.NullValue = Properties.Resources.DefaultSplitIcon;
+            iconColumn.DefaultCellStyle.NullValue = new Bitmap(1, 1);
             runGrid.Columns.Add(iconColumn);
 
             var column = new DataGridViewTextBoxColumn();
@@ -552,7 +552,7 @@ namespace LiveSplit.View
             {
                 if (e.RowIndex == Run.Count)
                 {
-                    e.Value = Properties.Resources.DefaultSplitIcon;
+                    e.Value = null;
                     e.FormattingApplied = true;
                 }
             }
