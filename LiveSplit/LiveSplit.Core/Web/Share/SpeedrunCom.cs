@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Model;
+using LiveSplit.Options;
 using SpeedrunComSharp;
 using System;
 using System.Collections.Generic;
@@ -105,152 +106,170 @@ namespace LiveSplit.Web.Share
 
         public static bool ValidateRun(IRun run, out string reasonForRejection)
         {
-            var metadata = run.Metadata;
-
-            if (!string.IsNullOrEmpty(metadata.RunID))
+            try
             {
-                reasonForRejection = "This run already exists on speedrun.com.";
+                var metadata = run.Metadata;
+
+                if (!string.IsNullOrEmpty(metadata.RunID))
+                {
+                    reasonForRejection = "This run already exists on speedrun.com.";
+                    return false;
+                }
+
+                if (!MakeSureUserIsAuthenticated())
+                {
+                    reasonForRejection = "You can't submit a run without being authenticated.";
+                    return false;
+                }
+
+                if (string.IsNullOrEmpty(run.GameName))
+                {
+                    reasonForRejection = "You need to specify a game.";
+                    return false;
+                }
+
+                if (metadata.Game == null)
+                {
+                    reasonForRejection = "The game could not be found on speedrun.com.";
+                    return false;
+                }
+
+                if (string.IsNullOrEmpty(run.CategoryName))
+                {
+                    reasonForRejection = "You need to specify a category.";
+                    return false;
+                }
+
+                if (metadata.Category == null)
+                {
+                    reasonForRejection = "The category could not be found on speedrun.com.";
+                    return false;
+                }
+
+                if (metadata.Platform == null)
+                {
+                    reasonForRejection = "You need to specify the platform of the game.";
+                    return false;
+                }
+
+                var primaryTimingMethod = metadata.Game.Ruleset.DefaultTimingMethod.ToLiveSplitTimingMethod();
+
+                var runTime = run.Last().PersonalBestSplitTime;
+
+                if (!runTime[primaryTimingMethod].HasValue)
+                {
+                    reasonForRejection = "You can't submit a run without a time.";
+                    return false;
+                }
+
+                var variableThatNeedsAValueButHasNone = metadata.VariableValues.Where(x => x.Key.IsMandatory).FirstOrDefault(x => x.Value == null);
+                if (variableThatNeedsAValueButHasNone.Value != null)
+                {
+                    reasonForRejection = string.Format("You need to specify a value for the variable \"{0}\".", variableThatNeedsAValueButHasNone.Key.Name);
+                    return false;
+                }
+
+                reasonForRejection = null;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                reasonForRejection = "The run could not be validated for an unknown reason.";
+                Log.Error(ex);
                 return false;
             }
-
-            if (!MakeSureUserIsAuthenticated())
-            {
-                reasonForRejection = "You can't submit a run without being authenticated.";
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(run.GameName))
-            {
-                reasonForRejection = "You need to specify a game.";
-                return false;
-            }
-
-            if (metadata.Game == null)
-            {
-                reasonForRejection = "The game could not be found on speedrun.com.";
-                return false;
-            }
-
-            if (string.IsNullOrEmpty(run.CategoryName))
-            {
-                reasonForRejection = "You need to specify a category.";
-                return false;
-            }
-
-            if (metadata.Category == null)
-            {
-                reasonForRejection = "The category could not be found on speedrun.com.";
-                return false;
-            }
-
-            if (metadata.Platform == null)
-            {
-                reasonForRejection = "You need to specify the platform of the game.";
-                return false;
-            }
-
-            var primaryTimingMethod = metadata.Game.Ruleset.DefaultTimingMethod.ToLiveSplitTimingMethod();
-
-            var runTime = run.Last().PersonalBestSplitTime;
-
-            if (!runTime[primaryTimingMethod].HasValue)
-            {
-                reasonForRejection = "You can't submit a run without a time.";
-                return false;
-            }
-
-            var variableThatNeedsAValueButHasNone = metadata.VariableValues.Where(x => x.Key.IsMandatory).FirstOrDefault(x => x.Value == null);
-            if (variableThatNeedsAValueButHasNone.Value != null)
-            {
-                reasonForRejection = string.Format("You need to specify a value for the variable \"{0}\".", variableThatNeedsAValueButHasNone.Key.Name);
-                return false;
-            }
-
-            reasonForRejection = null;
-            return true;
         }
 
         public static bool SubmitRun(IRun run, out string reasonForRejection, 
             string comment = null, Uri videoUri = null, DateTime? date = null,
             bool submitToSplitsIO = true)
         {
-            var metadata = run.Metadata;
-
-            var isValid = ValidateRun(run, out reasonForRejection);
-            if (!isValid)
-            {
-                return false;
-            }
-
-            //This is legal for mods, so we either have to check the mods or rely on the API responding
-            //This results in unnecessary submits to splits i/o though.
-            //This is also ignoring series moderators. That's such a rare case that it probably never happens.
-            if (metadata.Game.Ruleset.RequiresVideo && videoUri == null && !metadata.Game.ModeratorUsers.Contains(Client.Profile.GetProfile()))
-            {
-                reasonForRejection = "Runs of this game require a video.";
-                return false;
-            }
-
-            var timingMethods = metadata.Game.Ruleset.TimingMethods;
-            var runTime = run.Last().PersonalBestSplitTime;
-
-            if (date == null)
-            {
-                date = FindPersonalBestAttemptDate(run);
-            }
-
-            if (date.HasValue && date.Value.ToUniversalTime().Date > DateTime.UtcNow.Date)
-            {
-                reasonForRejection = "The date of the run can't be in the future.";
-                return false;
-            }
-
-            if (date.HasValue && metadata.Game.YearOfRelease.HasValue && date.Value.ToUniversalTime().Date.Year < metadata.Game.YearOfRelease)
-            {
-                reasonForRejection = "The date of the run can't be before the release date of the game.";
-                return false;
-            }
-
             try
             {
-                var categoryId = metadata.Category.ID;
-                var platformId = metadata.Platform.ID;
-                var regionId = metadata.Region != null ? metadata.Region.ID : null;
-                var realTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTime) ? runTime.RealTime : null;
-                var realTimeWithoutLoads = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads) ? runTime.GameTime : null;
-                var gameTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.GameTime) ? runTime.GameTime : null;
+                var metadata = run.Metadata;
 
-                var emulated = metadata.Game.Ruleset.EmulatorsAllowed && metadata.UsesEmulator;
-                var splitsIOUri = submitToSplitsIO ? new Uri(SplitsIO.Instance.Share(run)) : null;
-                var variables = metadata.VariableValues.Values.Where(x => x != null);
+                var isValid = ValidateRun(run, out reasonForRejection);
+                if (!isValid)
+                {
+                    return false;
+                }
 
-                var submittedRun = Client.Runs.Submit(
-                    //simulateSubmitting: true,
-                    categoryId: categoryId,
-                    platformId: platformId,
-                    regionId: regionId,
-                    realTime: realTime,
-                    realTimeWithoutLoads: realTimeWithoutLoads,
-                    gameTime: gameTime,
-                    comment: comment,
-                    videoUri: videoUri,
-                    date: date, 
-                    emulated: emulated,
-                    splitsIOUri: splitsIOUri,
-                    verify: false,
-                    variables: variables
-                    );
+                //This is legal for mods, so we either have to check the mods or rely on the API responding
+                //This results in unnecessary submits to splits i/o though.
+                //This is also ignoring series moderators. That's such a rare case that it probably never happens.
+                if (metadata.Game.Ruleset.RequiresVideo && videoUri == null && !metadata.Game.ModeratorUsers.Contains(Client.Profile.GetProfile()))
+                {
+                    reasonForRejection = "Runs of this game require a video.";
+                    return false;
+                }
 
-                run.Metadata.Run = submittedRun;
+                var timingMethods = metadata.Game.Ruleset.TimingMethods;
+                var runTime = run.Last().PersonalBestSplitTime;
+
+                if (date == null)
+                {
+                    date = FindPersonalBestAttemptDate(run);
+                }
+
+                if (date.HasValue && date.Value.ToUniversalTime().Date > DateTime.UtcNow.Date)
+                {
+                    reasonForRejection = "The date of the run can't be in the future.";
+                    return false;
+                }
+
+                if (date.HasValue && metadata.Game.YearOfRelease.HasValue && date.Value.ToUniversalTime().Date.Year < metadata.Game.YearOfRelease)
+                {
+                    reasonForRejection = "The date of the run can't be before the release date of the game.";
+                    return false;
+                }
+
+                try
+                {
+                    var categoryId = metadata.Category.ID;
+                    var platformId = metadata.Platform.ID;
+                    var regionId = metadata.Region != null ? metadata.Region.ID : null;
+                    var realTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTime) ? runTime.RealTime : null;
+                    var realTimeWithoutLoads = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads) ? runTime.GameTime : null;
+                    var gameTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.GameTime) ? runTime.GameTime : null;
+
+                    var emulated = metadata.Game.Ruleset.EmulatorsAllowed && metadata.UsesEmulator;
+                    var splitsIOUri = submitToSplitsIO ? new Uri(SplitsIO.Instance.Share(run)) : null;
+                    var variables = metadata.VariableValues.Values.Where(x => x != null);
+
+                    var submittedRun = Client.Runs.Submit(
+                        //simulateSubmitting: true,
+                        categoryId: categoryId,
+                        platformId: platformId,
+                        regionId: regionId,
+                        realTime: realTime,
+                        realTimeWithoutLoads: realTimeWithoutLoads,
+                        gameTime: gameTime,
+                        comment: comment,
+                        videoUri: videoUri,
+                        date: date,
+                        emulated: emulated,
+                        splitsIOUri: splitsIOUri,
+                        verify: false,
+                        variables: variables
+                        );
+
+                    run.Metadata.Run = submittedRun;
+                }
+                catch (APIException ex)
+                {
+                    reasonForRejection = string.Join(Environment.NewLine, ex.Errors);
+                    return false;
+                }
+
+                reasonForRejection = null;
+                return true;
             }
-            catch (APIException ex)
+            catch (Exception ex)
             {
-                reasonForRejection = string.Join(Environment.NewLine, ex.Errors);
+                reasonForRejection = "The run could not be submitted for an unknown reason.";
+                Log.Error(ex);
                 return false;
             }
-
-            reasonForRejection = null;
-            return true;
         }
     }
 }
