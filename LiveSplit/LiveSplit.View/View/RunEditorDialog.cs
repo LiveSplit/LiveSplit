@@ -121,7 +121,6 @@ namespace LiveSplit.View
             runGrid.AutoSize = true;
             runGrid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             runGrid.DataSource = SegmentList;
-            runGrid.CellValueChanged += runGrid_CellValueChanged;
             runGrid.CellDoubleClick += runGrid_CellDoubleClick;
             runGrid.CellFormatting += runGrid_CellFormatting;
             runGrid.CellParsing += runGrid_CellParsing;
@@ -396,15 +395,14 @@ namespace LiveSplit.View
                     {
                         SegmentTimeList[e.RowIndex] = null;
                         FixSplitsFromSegments();
-                        Fix();
                     }
                     if (e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
                     {
                         var time = new Time(Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name]);
                         time[SelectedMethod] = null;
                         Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name] = time;
-                        Fix();
                     }
+                    Fix();
                     e.ParsingApplied = true;
                     return;
                 }
@@ -413,7 +411,10 @@ namespace LiveSplit.View
                 {
                     e.Value = TimeSpanParser.Parse(e.Value.ToString());
                     if (e.ColumnIndex == SEGMENTTIMEINDEX)
+                    {
                         SegmentTimeList[e.RowIndex] = (TimeSpan)e.Value;
+                        FixSplitsFromSegments();
+                    }
                     if (e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
                     {
                         var time = new Time(Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name]);
@@ -432,6 +433,7 @@ namespace LiveSplit.View
                         time[SelectedMethod] = (TimeSpan)e.Value;
                         Run[e.RowIndex].BestSegmentTime = time;
                     }
+                    Fix();
                     e.ParsingApplied = true;
                 }
                 catch (Exception ex)
@@ -567,14 +569,6 @@ namespace LiveSplit.View
             runGrid.InvalidateColumn(SEGMENTTIMEINDEX);
             for (var index = CUSTOMCOMPARISONSINDEX; index < runGrid.Columns.Count; index++)
                 runGrid.InvalidateColumn(index);
-        }
-
-        void runGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            RaiseRunEdited();
-            if (e.ColumnIndex == SEGMENTTIMEINDEX)
-                FixSplitsFromSegments();
-            Fix();
         }
 
         private void SetGameIcon(Image icon)
