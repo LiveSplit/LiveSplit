@@ -127,12 +127,12 @@ namespace LiveSplit.View
         private void SubmitDialog_Load(object sender, EventArgs e)
         {
             cbxPlatform.Items.Add("Twitter");
-            cbxPlatform.Items.Add("Twitch");
 
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
             {
                 if (HasPersonalBest(Run))
                 {
+                    cbxPlatform.Items.Add("Speedrun.com");
                     if (Congratsio.Instance.CheckIfPersonalBestIsValid(Run))
                     {
                         cbxPlatform.Items.Add("Congratsio");
@@ -144,6 +144,7 @@ namespace LiveSplit.View
                 //cbxPlatform.Items.Add("Ge.tt");
             }
 
+            cbxPlatform.Items.Add("Twitch");
             cbxPlatform.Items.Add("Screenshot");
             cbxPlatform.Items.Add("Imgur");
             cbxPlatform.Items.Add("Excel");
@@ -181,6 +182,7 @@ namespace LiveSplit.View
                 case "Screenshot": CurrentPlatform = Screenshot.Instance; break;
                 case "Imgur": CurrentPlatform = Imgur.Instance; break;
                 case "Excel": CurrentPlatform = Excel.Instance; break;
+                case "Speedrun.com": CurrentPlatform = SpeedrunComRunUploadPlatform.Instance; break;
             }
 
             CurrentPlatform.Settings = Settings;
@@ -195,7 +197,7 @@ namespace LiveSplit.View
 
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
                 chkAttachSplits.Enabled = !(CurrentPlatform == Screenshot.Instance || CurrentPlatform == SplitsIO.Instance
-                    || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance);
+                    || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance || CurrentPlatform == SpeedrunComRunUploadPlatform.Instance);
             else
                 chkAttachSplits.Enabled = false;
 

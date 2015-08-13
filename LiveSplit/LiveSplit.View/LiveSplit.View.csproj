@@ -208,6 +208,7 @@
     <Compile Include="View\SpeedrunComOAuthForm.Designer.cs">
       <DependentUpon>SpeedrunComOAuthForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Web\Share\SpeedrunComRunUploadPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LiveSplit.pfx" />
