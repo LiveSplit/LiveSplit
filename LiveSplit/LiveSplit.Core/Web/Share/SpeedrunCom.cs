@@ -146,6 +146,12 @@ namespace LiveSplit.Web.Share
                     return false;
                 }
 
+                if (metadata.Category.Players.Value > 1)
+                {
+                    reasonForRejection = "Submitting runs for more than the currently authenticated user is not implemented yet.";
+                    return false;
+                }
+
                 if (metadata.Platform == null)
                 {
                     reasonForRejection = "You need to specify the platform of the game.";
