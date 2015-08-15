@@ -231,26 +231,9 @@ namespace LiveSplit.View
             var deltaTimeFormatter = new DeltaTimeFormatter();
 
             var game = Run.GameName ?? "";
-            var category = Run.CategoryName ?? "";
+            var category = Run.GetExtendedCategoryName();
             var pb = timeFormatter.Format(Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod]) ?? "";
-
-            var titleBuilder = new StringBuilder();
-            var gameNameEmpty = string.IsNullOrEmpty(Run.GameName);
-            var categoryEmpty = string.IsNullOrEmpty(Run.CategoryName);
-
-            if (!gameNameEmpty || !categoryEmpty)
-            {
-                titleBuilder.Append(Run.GameName);
-
-                if (!categoryEmpty)
-                {
-                    if (!gameNameEmpty)
-                        titleBuilder.Append(" - ");
-                    titleBuilder.Append(Run.CategoryName);
-                }
-            }
-
-            var title = titleBuilder.ToString();
+            var title = Run.GetExtendedName();
 
             var splitName = "";
             var splitTime = "-";
