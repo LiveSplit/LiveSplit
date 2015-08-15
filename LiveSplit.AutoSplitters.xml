@@ -89,9 +89,11 @@
     <Games>
       <Game>Mirror's Edge</Game>
       <Game>Mirrors Edge</Game>
+      <Game>Mirror's Edge (PC)</Game>
     </Games>
     <URLs>
       <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.MirrorsEdgeNoLoads.dll</URL>
+      <URL>http://fatalis.pw/livesplit/update/Components/menl_hooks.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal is available. (By Fatalis)</Description>
