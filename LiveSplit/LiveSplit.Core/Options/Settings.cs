@@ -191,7 +191,6 @@ namespace LiveSplit.Options
             }
         }
 
-
         public void AddToRecentSplits(string path, IRun run)
         {
             var foundRecentSplitsFile = RecentSplits.FirstOrDefault(x => x.Path == path);

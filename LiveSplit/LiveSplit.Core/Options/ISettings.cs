@@ -18,7 +18,7 @@ namespace LiveSplit.Options
             if (run != null)
             {
                 GameName = run.GameName;
-                CategoryName = run.CategoryName;
+                CategoryName = run.GetExtendedCategoryName();
             }
         }
 

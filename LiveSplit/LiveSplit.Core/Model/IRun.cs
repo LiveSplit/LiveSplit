@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
+using System.Text;
 
 namespace LiveSplit.Model
 {
@@ -239,11 +240,58 @@ namespace LiveSplit.Model
             }
         }
 
+        public static string GetExtendedFileName(this IRun run, bool useExtendedCategoryName = true)
+        {
+            var extendedName = run.GetExtendedName(useExtendedCategoryName);
+
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in extendedName)
+            {
+                if (c != '\\' && c != '/' && c != ':' && c != '*' && c != '?' && c != '"' && c != '<' && c != '>' && c != '|')
+                    stringBuilder.Append(c);
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public static string GetExtendedName(this IRun run, bool useExtendedCategoryName = true)
+        {
+            var stringBuilder = new StringBuilder();
+
+            if (!string.IsNullOrWhiteSpace(run.GameName))
+            {
+                stringBuilder.Append(run.GameName);
+            }
+
+            var categoryName = run.CategoryName;
+
+            if (useExtendedCategoryName)
+            {
+                categoryName = run.GetExtendedCategoryName();
+            }
+
+            if (!string.IsNullOrWhiteSpace(categoryName))
+            {
+                if (stringBuilder.Length > 0)
+                {
+                    stringBuilder.Append(" - ");
+                }
+
+                stringBuilder.Append(categoryName);
+            }
+
+            return stringBuilder.ToString();
+        }
+
         public static string GetExtendedCategoryName(this IRun run, bool showRegion = false, bool showPlatform = false, bool showVariables = true)
         {
             var list = new List<string>();
 
             var categoryName = run.CategoryName;
+
+            if (string.IsNullOrEmpty(categoryName))
+                return string.Empty;
 
             while (categoryName.Contains('(') && categoryName.Contains(')'))
             {

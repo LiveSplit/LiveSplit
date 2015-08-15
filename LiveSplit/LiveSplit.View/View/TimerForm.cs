@@ -1574,6 +1574,7 @@ namespace LiveSplit.View
         {
             using (var splitDialog = new SaveFileDialog())
             {
+                splitDialog.FileName = CurrentState.Run.GetExtendedFileName();
                 splitDialog.Filter = "LiveSplit Splits (*.lss)|*.lss|All Files (*.*)|*.*";
                 IsInDialogMode = true;
                 try
