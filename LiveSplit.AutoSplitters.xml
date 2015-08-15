@@ -781,4 +781,46 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dread)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Quake</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/kugelrund/LiveSplit.Quake/blob/master/Components/LiveSplit.Quake.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>For joequake-gl with qdqstats. Game Time is available. (By Sphere)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Quake 2</Game>
+      <Game>Quake II</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/kugelrund/LiveSplit.Quake2/blob/master/Components/LiveSplit.Quake2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>For q2pro. Load removal is available. (By Sphere)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Star Trek: Voyager - Elite Force</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/kugelrund/LiveSplit.StVoyEf/blob/master/Components/LiveSplit.StVoyEf.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load removal is available. (By Sphere)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Star Trek: Elite Force 2</Game>
+      <Game>Star Trek: Elite Force II</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/kugelrund/LiveSplit.StEf2/blob/master/Components/LiveSplit.StEf2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load removal is available. (By Sphere)</Description>
+  </AutoSplitter>
 </AutoSplitters>
