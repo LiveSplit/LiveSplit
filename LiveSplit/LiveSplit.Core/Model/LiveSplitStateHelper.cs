@@ -192,7 +192,10 @@ namespace LiveSplit.Model
         private static Color GetBestSegmentColor(LiveSplitState state)
         {
             if (state.LayoutSettings.UseRainbowColor)
-                return ColorExtensions.FromHSV((TripleDateTime.Now.QPCValue.TotalMilliseconds / 6) % 360, 1, 1);
+            {
+                var rainbowColor = ColorExtensions.FromHSV((TripleDateTime.Now.QPCValue.TotalMilliseconds / 10) % 360, 1, 1);
+                return Color.FromArgb((rainbowColor.R*2 + 255*1) / 3, (rainbowColor.G*2 + 255*1) / 3, (rainbowColor.B*2 + 255*1) / 3);
+            }
 
             return state.LayoutSettings.BestSegmentColor;
         }
