@@ -193,7 +193,7 @@ namespace LiveSplit.Model
         {
             if (state.LayoutSettings.UseRainbowColor)
             {
-                var rainbowColor = ColorExtensions.FromHSV((TripleDateTime.Now.QPCValue.TotalMilliseconds / 10) % 360, 1, 1);
+                var rainbowColor = ColorExtensions.FromHSV((DateTime.Now.TimeOfDay.TotalMilliseconds / 10) % 360, 1, 1);
                 return Color.FromArgb((rainbowColor.R*2 + 255*1) / 3, (rainbowColor.G*2 + 255*1) / 3, (rainbowColor.B*2 + 255*1) / 3);
             }
 

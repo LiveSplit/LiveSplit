@@ -15,10 +15,10 @@ namespace LiveSplit.Model
         public ISettings Settings { get; set; }
         public Forms.Form Form { get; set; }
 
-        public TripleDateTime AttemptStarted { get; set; }
-        public TripleDateTime AttemptEnded { get; set; }
+        public DateTime AttemptStarted { get; set; }
+        public DateTime AttemptEnded { get; set; }
 
-        public TripleDateTime StartTime { get; set; }
+        public TimeStamp StartTime { get; set; }
         public TimeSpan PauseTime { get; set; }
         public TimeSpan GameTimePauseTime { get; set; }
         public TimerPhase CurrentPhase { get; set; }
@@ -68,7 +68,7 @@ namespace LiveSplit.Model
                 if (CurrentPhase == TimerPhase.NotRunning)
                     curTime.RealTime = TimeSpan.Zero;
                 else if (CurrentPhase == TimerPhase.Running)
-                    curTime.RealTime = TripleDateTime.Now - StartTime;
+                    curTime.RealTime = TimeStamp.Now - StartTime;
                 else if (CurrentPhase == TimerPhase.Paused)
                     curTime.RealTime = PauseTime;
                 else
@@ -97,7 +97,7 @@ namespace LiveSplit.Model
             Layout = layout;
             Settings = settings;
             LayoutSettings = layoutSettings;
-            StartTime = TripleDateTime.Now;
+            StartTime = TimeStamp.Now;
             CurrentPhase = TimerPhase.NotRunning;
             CurrentSplitIndex = -1;
             //DrawLock = new ReaderWriterLockSlim();

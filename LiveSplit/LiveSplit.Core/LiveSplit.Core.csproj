@@ -139,7 +139,7 @@
     <Compile Include="Model\Time.cs" />
     <Compile Include="Model\TimeSpanParser.cs" />
     <Compile Include="Model\TimingMethod.cs" />
-    <Compile Include="Model\TripleDateTime.cs" />
+    <Compile Include="Model\TimeStamp.cs" />
     <Compile Include="Options\Log.cs" />
     <Compile Include="TimeFormatters\AutomaticPrecisionTimeFormatter.cs" />
     <Compile Include="TimeFormatters\PossibleTimeSaveFormatter.cs" />

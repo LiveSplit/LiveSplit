@@ -1,4 +1,5 @@
-﻿using LiveSplit.UI;
+﻿using LiveSplit.Model;
+using LiveSplit.UI;
 using System.Xml;
 
 namespace LiveSplit.Options.SettingsSavers
@@ -106,6 +107,8 @@ namespace LiveSplit.Options.SettingsSavers
                 autoSplittersActive.AppendChild(SettingsHelper.ToElement(document, "AutoSplitter", splitter));
             }
             parent.AppendChild(autoSplittersActive);
+
+            parent.AppendChild(SettingsHelper.ToElement(document, "Drift", TimeStamp.NewDrift));
 
             document.Save(stream);
         }
