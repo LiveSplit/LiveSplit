@@ -125,7 +125,13 @@ namespace LiveSplit.View
 
                 if (Metadata.Category != null)
                 {
-                    tbxRules.Text = Metadata.Category.Rules ?? string.Empty;
+                    if (Metadata.Game.Ruleset.RequiresVideo)
+                    {
+                        tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Bold);
+                        tbxRules.AppendText("Runs of this game require video proof." + Environment.NewLine + Environment.NewLine);
+                        tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Regular);
+                    }
+                    tbxRules.AppendText(Metadata.Category.Rules ?? string.Empty);
                 }
 
                 var controlIndex = 0;
