@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Diagnostics;
 using System.IO;
 using System.Net;
@@ -73,13 +75,28 @@ namespace LiveSplit.Model
 
         private static void RefreshDrift()
         {
-            //Thread.Sleep(TimeSpan.FromHours(3));
             while (true)
             {
-                try
+                var times = new List<long>();
+                DateTime networkTime;
+                TimeSpan qpcTime = TimeSpan.Zero;
+                for (var count = 1; count <= 10; count++)
                 {
-                    var networkTime = GetNetworkTime();
-                    var qpcTime = qpc.Elapsed;
+                    try
+                    {
+                        networkTime = GetNetworkTime();
+                        qpcTime = qpc.Elapsed;
+                        times.Add(networkTime.Ticks - qpcTime.Ticks);
+                        Debug.WriteLine(qpcTime);
+                    }
+                    catch { }
+                    Thread.Sleep(TimeSpan.FromSeconds(5));
+                }
+                if (times.Count > 0)
+                {
+                    var averageDifference = times.Average();
+                    networkTime = new DateTime(qpcTime.Ticks + (long)averageDifference);
+
                     if (firstQPCTime != TimeSpan.Zero)
                     {
                         var qpcDelta = qpcTime - firstQPCTime;
@@ -92,18 +109,20 @@ namespace LiveSplit.Model
                         accumulatedTime = newAccumulatedTime;
 
                         Debug.WriteLine(qpcDelta.TotalMilliseconds / nistDelta.TotalMilliseconds);
+                        Thread.Sleep(TimeSpan.FromHours(0.5));
                     }
                     else
                     {
                         firstQPCTime = qpcTime;
                         firstNISTTime = networkTime;
+                        Thread.Sleep(TimeSpan.FromHours(1));
                     }
                 }
-                catch { }
-                Thread.Sleep(TimeSpan.FromMinutes(0.5));
+                else break;
             }
         }
 
+        // stackoverflow.com/a/12150289
         public static DateTime GetNetworkTime()
         {
             var before = Now;
@@ -159,7 +178,7 @@ namespace LiveSplit.Model
             return networkDateTime + delta;
         }
 
-        // stackoverflow.com/a/3294698/162671
+        // stackoverflow.com/a/3294698
         static uint SwapEndianness(ulong x)
         {
             return (uint)(((x & 0x000000ff) << 24) +
