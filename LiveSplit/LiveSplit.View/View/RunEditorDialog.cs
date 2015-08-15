@@ -259,10 +259,7 @@ namespace LiveSplit.View
                 if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
                 {
                     splitter.Activate(CurrentState);
-                    if (splitter.IsActivated
-                    && Run.AutoSplitterSettings != null
-                    && Run.AutoSplitterSettings.GetAttribute("gameName") == cbxGameName.Text)
-                        Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
+                    SetAutoSplitterSettings();
                 }
                 RefreshAutoSplittingUI();
             }
@@ -1226,8 +1223,17 @@ namespace LiveSplit.View
             {
                 CurrentState.Settings.ActiveAutoSplitters.Add(Run.GameName);
                 Run.AutoSplitter.Activate(CurrentState);
+                SetAutoSplitterSettings();
             }
             RefreshAutoSplittingUI();
+        }
+
+        private void SetAutoSplitterSettings()
+        {
+            if (Run.AutoSplitter.IsActivated
+            && Run.AutoSplitterSettings != null
+            && Run.AutoSplitterSettings.GetAttribute("gameName") == cbxGameName.Text)
+                Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
