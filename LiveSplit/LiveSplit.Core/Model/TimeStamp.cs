@@ -16,16 +16,6 @@ namespace LiveSplit.Model
         public static double NewDrift { get; set; }
 
         private static Stopwatch qpc;
-        private static double Drift
-        {
-            get
-            {
-                if (PersistentDrift == 0)
-                    return 1;
-
-                return PersistentDrift;
-            }
-        }
 
         private static TimeSpan firstQPCTime;
         private static DateTime firstNTPTime;
@@ -39,8 +29,8 @@ namespace LiveSplit.Model
 
         static TimeStamp()
         {
-            PersistentDrift = 0.0;
-            NewDrift = 0.0;
+            PersistentDrift = 1.0;
+            NewDrift = 1.0;
 
             firstQPCTime = TimeSpan.Zero;
             firstNTPTime = DateTime.MinValue;
@@ -173,7 +163,7 @@ namespace LiveSplit.Model
 
         public static TimeSpan operator -(TimeStamp a, TimeStamp b)
         {
-            return TimeSpan.FromMilliseconds((a.value.TotalMilliseconds - b.value.TotalMilliseconds) / Drift);
+            return TimeSpan.FromMilliseconds((a.value.TotalMilliseconds - b.value.TotalMilliseconds) / PersistentDrift);
         }
 
         public static TimeStamp operator -(TimeStamp a, TimeSpan b)

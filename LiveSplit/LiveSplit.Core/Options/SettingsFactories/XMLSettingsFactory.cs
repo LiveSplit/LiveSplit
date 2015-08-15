@@ -156,7 +156,7 @@ namespace LiveSplit.Options.SettingsFactories
                 }
             }
 
-            TimeStamp.PersistentDrift = TimeStamp.NewDrift = SettingsHelper.ParseDouble(parent["Drift"]);
+            TimeStamp.PersistentDrift = TimeStamp.NewDrift = SettingsHelper.ParseDouble(parent["Drift"], 1.0);
 
             return settings;
         }
