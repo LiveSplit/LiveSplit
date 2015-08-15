@@ -327,7 +327,7 @@ namespace LiveSplit.Model
                 }
             }
 
-            if (run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game.Regions.Count > 1 && showRegion)
+            if (showRegion && run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game.Regions.Count > 1)
             {
                 list.Add(run.Metadata.Region.Abbreviation);
             }
