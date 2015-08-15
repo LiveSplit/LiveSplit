@@ -12,25 +12,18 @@ namespace LiveSplit.Model
 {
     public sealed class TimeStamp
     {
-        public struct AccumulatedTime
-        {
-            public TimeSpan QPC;
-            public TimeSpan NTP;
-        }
-
-        public static AccumulatedTime PersistentAccumulatedTime { get; set; }
-        public static AccumulatedTime NewAccumulatedTime { get; set; }
+        public static double PersistentDrift { get; set; }
+        public static double NewDrift { get; set; }
 
         private static Stopwatch qpc;
         private static double Drift
         {
             get
             {
-                if (PersistentAccumulatedTime.NTP.TotalMilliseconds == 0)
+                if (PersistentDrift == 0)
                     return 1;
 
-                return PersistentAccumulatedTime.QPC.TotalMilliseconds
-                    / PersistentAccumulatedTime.NTP.TotalMilliseconds;
+                return PersistentDrift;
             }
         }
 
@@ -46,16 +39,8 @@ namespace LiveSplit.Model
 
         static TimeStamp()
         {
-            PersistentAccumulatedTime = new AccumulatedTime
-            {
-                NTP = TimeSpan.Zero,
-                QPC = TimeSpan.Zero
-            };
-            NewAccumulatedTime = new AccumulatedTime
-            {
-                NTP = TimeSpan.Zero,
-                QPC = TimeSpan.Zero
-            };
+            PersistentDrift = 0.0;
+            NewDrift = 0.0;
 
             firstQPCTime = TimeSpan.Zero;
             firstNTPTime = DateTime.MinValue;
@@ -88,7 +73,6 @@ namespace LiveSplit.Model
                         ntpTime = GetNetworkTime();
                         qpcTime = qpc.Elapsed;
                         times.Add(ntpTime.Ticks - qpcTime.Ticks);
-                        Debug.WriteLine(qpcTime);
                     }
                     catch { }
                     if (count < 10)
@@ -104,13 +88,10 @@ namespace LiveSplit.Model
                         var qpcDelta = qpcTime - firstQPCTime;
                         var ntpDelta = ntpTime - firstNTPTime;
 
-                        var newAccumulatedTime = NewAccumulatedTime;
-                        newAccumulatedTime.QPC = PersistentAccumulatedTime.QPC + qpcDelta;
-                        newAccumulatedTime.NTP = PersistentAccumulatedTime.NTP + ntpDelta;
+                        var newDrift = qpcDelta.TotalMilliseconds / ntpDelta.TotalMilliseconds;
+                        var weight = Math.Pow(0.9, ntpDelta.TotalHours);
+                        NewDrift = newDrift * (1 - weight) + PersistentDrift * weight;
 
-                        NewAccumulatedTime = newAccumulatedTime;
-
-                        Debug.WriteLine(qpcDelta.TotalMilliseconds / ntpDelta.TotalMilliseconds);
                         Thread.Sleep(TimeSpan.FromHours(0.5));
                     }
                     else
@@ -127,9 +108,6 @@ namespace LiveSplit.Model
         // stackoverflow.com/a/12150289
         public static DateTime GetNetworkTime()
         {
-            var before = Now;
-            TimeStamp after;
-
             //default Windows time server
             const string ntpServer = "time.windows.com";
 
@@ -140,7 +118,7 @@ namespace LiveSplit.Model
             ntpData[0] = 0x1B; //LI = 0 (no warning), VN = 3 (IPv4 only), Mode = 3 (Client Mode)
 
             var addresses = Dns.GetHostEntry(ntpServer).AddressList;
-
+            
             //The UDP port number assigned to NTP is 123
             var ipEndPoint = new IPEndPoint(addresses[0], 123);
             //NTP uses UDP
@@ -151,8 +129,15 @@ namespace LiveSplit.Model
             //Stops code hang if NTP is blocked
             socket.ReceiveTimeout = 3000;
 
+            var before = Now;
+            TimeStamp after;
+
             socket.Send(ntpData);
             socket.Receive(ntpData);
+
+            after = Now;
+            var delta = TimeSpan.FromMilliseconds((after - before).TotalMilliseconds / 2);
+
             socket.Close();
 
             //Offset to get to the "Transmit Timestamp" field (time at which the reply 
@@ -173,9 +158,6 @@ namespace LiveSplit.Model
 
             //**UTC** time
             var networkDateTime = (new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddMilliseconds((long)milliseconds);
-
-            after = Now;
-            var delta = TimeSpan.FromMilliseconds((after - before).TotalMilliseconds / 2);
 
             return networkDateTime + delta;
         }

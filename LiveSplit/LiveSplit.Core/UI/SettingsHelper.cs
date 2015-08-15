@@ -121,6 +121,11 @@ namespace LiveSplit.UI
             return floatElement != null ? Single.Parse(floatElement.InnerText.Replace(',', '.'), CultureInfo.InvariantCulture) : defaultFloat;
         }
 
+        public static double ParseDouble(XmlElement doubleElement, double defaultDouble = 0.0)
+        {
+            return doubleElement != null ? Double.Parse(doubleElement.InnerText, CultureInfo.InvariantCulture) : defaultDouble;
+        }
+
         public static string ParseString(XmlElement stringElement, string defaultString = null)
         {
             if (defaultString == null)
@@ -148,6 +153,13 @@ namespace LiveSplit.UI
         }
 
         public static XmlElement ToElement(XmlDocument document, string name, float value)
+        {
+            var element = document.CreateElement(name);
+            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
+            return element;
+        }
+
+        public static XmlElement ToElement(XmlDocument document, string name, double value)
         {
             var element = document.CreateElement(name);
             element.InnerText = value.ToString(CultureInfo.InvariantCulture);

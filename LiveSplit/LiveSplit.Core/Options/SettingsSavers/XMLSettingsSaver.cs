@@ -108,10 +108,7 @@ namespace LiveSplit.Options.SettingsSavers
             }
             parent.AppendChild(autoSplittersActive);
 
-            var accumulatedTime = document.CreateElement("AccumulatedTime");
-            accumulatedTime.AppendChild(SettingsHelper.ToElement(document, "QPC", TimeStamp.NewAccumulatedTime.QPC));
-            accumulatedTime.AppendChild(SettingsHelper.ToElement(document, "NTP", TimeStamp.NewAccumulatedTime.NTP));
-            parent.AppendChild(accumulatedTime);
+            parent.AppendChild(SettingsHelper.ToElement(document, "Drift", TimeStamp.NewDrift));
 
             document.Save(stream);
         }
