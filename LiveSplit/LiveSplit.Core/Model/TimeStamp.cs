@@ -12,29 +12,30 @@ namespace LiveSplit.Model
 {
     public sealed class TimeStamp
     {
-        private struct AccumulatedTime
+        public struct AccumulatedTime
         {
             public TimeSpan QPC;
-            public TimeSpan NIST;
+            public TimeSpan NTP;
         }
 
+        public static AccumulatedTime PersistentAccumulatedTime { get; set; }
+        public static AccumulatedTime NewAccumulatedTime { get; set; }
+
         private static Stopwatch qpc;
-        private static AccumulatedTime persistentAccumulatedTime { get; set; }
-        private static AccumulatedTime accumulatedTime { get; set; }
         private static double Drift
         {
             get
             {
-                if (persistentAccumulatedTime.NIST.TotalMilliseconds == 0)
+                if (PersistentAccumulatedTime.NTP.TotalMilliseconds == 0)
                     return 1;
 
-                return persistentAccumulatedTime.QPC.TotalMilliseconds
-                    / persistentAccumulatedTime.NIST.TotalMilliseconds;
+                return PersistentAccumulatedTime.QPC.TotalMilliseconds
+                    / PersistentAccumulatedTime.NTP.TotalMilliseconds;
             }
         }
 
         private static TimeSpan firstQPCTime;
-        private static DateTime firstNISTTime;
+        private static DateTime firstNTPTime;
 
         private readonly TimeSpan value;
 
@@ -45,19 +46,19 @@ namespace LiveSplit.Model
 
         static TimeStamp()
         {
-            persistentAccumulatedTime = new AccumulatedTime
+            PersistentAccumulatedTime = new AccumulatedTime
             {
-                NIST = TimeSpan.Zero,
+                NTP = TimeSpan.Zero,
                 QPC = TimeSpan.Zero
             };
-            accumulatedTime = new AccumulatedTime
+            NewAccumulatedTime = new AccumulatedTime
             {
-                NIST = TimeSpan.Zero,
+                NTP = TimeSpan.Zero,
                 QPC = TimeSpan.Zero
             };
 
             firstQPCTime = TimeSpan.Zero;
-            firstNISTTime = DateTime.MinValue;
+            firstNTPTime = DateTime.MinValue;
 
             qpc = new Stopwatch();
             qpc.Start();
@@ -78,47 +79,48 @@ namespace LiveSplit.Model
             while (true)
             {
                 var times = new List<long>();
-                DateTime networkTime;
+                DateTime ntpTime;
                 TimeSpan qpcTime = TimeSpan.Zero;
                 for (var count = 1; count <= 10; count++)
                 {
                     try
                     {
-                        networkTime = GetNetworkTime();
+                        ntpTime = GetNetworkTime();
                         qpcTime = qpc.Elapsed;
-                        times.Add(networkTime.Ticks - qpcTime.Ticks);
+                        times.Add(ntpTime.Ticks - qpcTime.Ticks);
                         Debug.WriteLine(qpcTime);
                     }
                     catch { }
-                    Thread.Sleep(TimeSpan.FromSeconds(5));
+                    if (count < 10)
+                        Thread.Sleep(TimeSpan.FromSeconds(5));
                 }
-                if (times.Count > 0)
+                if (times.Count >= 5)
                 {
                     var averageDifference = times.Average();
-                    networkTime = new DateTime(qpcTime.Ticks + (long)averageDifference);
+                    ntpTime = new DateTime(qpcTime.Ticks + (long)averageDifference);
 
                     if (firstQPCTime != TimeSpan.Zero)
                     {
                         var qpcDelta = qpcTime - firstQPCTime;
-                        var nistDelta = networkTime - firstNISTTime;
+                        var ntpDelta = ntpTime - firstNTPTime;
 
-                        var newAccumulatedTime = accumulatedTime;
-                        newAccumulatedTime.QPC = persistentAccumulatedTime.QPC + qpcDelta;
-                        newAccumulatedTime.NIST = persistentAccumulatedTime.NIST + nistDelta;
+                        var newAccumulatedTime = NewAccumulatedTime;
+                        newAccumulatedTime.QPC = PersistentAccumulatedTime.QPC + qpcDelta;
+                        newAccumulatedTime.NTP = PersistentAccumulatedTime.NTP + ntpDelta;
 
-                        accumulatedTime = newAccumulatedTime;
+                        NewAccumulatedTime = newAccumulatedTime;
 
-                        Debug.WriteLine(qpcDelta.TotalMilliseconds / nistDelta.TotalMilliseconds);
+                        Debug.WriteLine(qpcDelta.TotalMilliseconds / ntpDelta.TotalMilliseconds);
                         Thread.Sleep(TimeSpan.FromHours(0.5));
                     }
                     else
                     {
                         firstQPCTime = qpcTime;
-                        firstNISTTime = networkTime;
+                        firstNTPTime = ntpTime;
                         Thread.Sleep(TimeSpan.FromHours(1));
                     }
                 }
-                else break;
+                else Thread.Sleep(TimeSpan.FromHours(0.5));
             }
         }
 

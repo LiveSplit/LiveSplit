@@ -156,6 +156,17 @@ namespace LiveSplit.Options.SettingsFactories
                 }
             }
 
+            var accumulatedTimeElement = parent["AccumulatedTime"];
+            if (accumulatedTimeElement != null)
+            {
+                var persistentAccumulatedTime = new LiveSplit.Model.TimeStamp.AccumulatedTime()
+                {
+                    QPC = SettingsHelper.ParseTimeSpan(accumulatedTimeElement["QPC"]),
+                    NTP = SettingsHelper.ParseTimeSpan(accumulatedTimeElement["NTP"])
+                };
+                TimeStamp.PersistentAccumulatedTime = TimeStamp.NewAccumulatedTime = persistentAccumulatedTime;
+            }
+
             return settings;
         }
     }

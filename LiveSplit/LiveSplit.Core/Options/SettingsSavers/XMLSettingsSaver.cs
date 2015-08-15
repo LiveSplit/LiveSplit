@@ -1,4 +1,5 @@
-﻿using LiveSplit.UI;
+﻿using LiveSplit.Model;
+using LiveSplit.UI;
 using System.Xml;
 
 namespace LiveSplit.Options.SettingsSavers
@@ -106,6 +107,11 @@ namespace LiveSplit.Options.SettingsSavers
                 autoSplittersActive.AppendChild(SettingsHelper.ToElement(document, "AutoSplitter", splitter));
             }
             parent.AppendChild(autoSplittersActive);
+
+            var accumulatedTime = document.CreateElement("AccumulatedTime");
+            accumulatedTime.AppendChild(SettingsHelper.ToElement(document, "QPC", TimeStamp.NewAccumulatedTime.QPC));
+            accumulatedTime.AppendChild(SettingsHelper.ToElement(document, "NTP", TimeStamp.NewAccumulatedTime.NTP));
+            parent.AppendChild(accumulatedTime);
 
             document.Save(stream);
         }
