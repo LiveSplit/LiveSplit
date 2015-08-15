@@ -87,7 +87,7 @@ namespace LiveSplit.Web.Share
             run.GameName = srdcRun.Game.Name;
             run.CategoryName = srdcRun.Category.Name;
             run.Metadata.PlatformName = srdcRun.System.Platform.Name;
-            run.Metadata.RegionName = srdcRun.System.Region.Name;
+            run.Metadata.RegionName = srdcRun.System.Region != null ? srdcRun.System.Region.Name : null;
             run.Metadata.UsesEmulator = srdcRun.System.IsEmulated;
             run.Metadata.VariableValueNames = srdcRun.VariableValues.ToDictionary(x => x.Name, x => x.Value);
             run.Metadata.RunID = srdcRun.ID;

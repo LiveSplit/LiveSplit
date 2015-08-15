@@ -237,15 +237,23 @@ namespace LiveSplit.View
 
             if (result == DialogResult.OK)
             {
-                var run = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
-                if (run != null)
+                try
                 {
-                    Metadata.LiveSplitRun.PatchRun(run);
-                    RefreshInformation();
+                    var run = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
+                    if (run != null)
+                    {
+                        Metadata.LiveSplitRun.PatchRun(run);
+                        RefreshInformation();
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "The URL provided is not a valid speedrun.com Run URL.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show(this, "The URL provided is not a valid speedrun.com Run URL.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    Log.Error(ex);
+                    MessageBox.Show(this, "The run could not be associated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
