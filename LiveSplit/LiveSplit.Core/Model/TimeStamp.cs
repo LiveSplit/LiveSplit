@@ -66,7 +66,7 @@ namespace LiveSplit.Model
                     }
                     catch { }
                     if (count < 10)
-                        Thread.Sleep(TimeSpan.FromSeconds(5));
+                        Wait(TimeSpan.FromSeconds(5));
                 }
                 if (times.Count >= 5)
                 {
@@ -82,16 +82,28 @@ namespace LiveSplit.Model
                         var weight = Math.Pow(0.95, ntpDelta.TotalHours);
                         NewDrift = newDrift * (1 - weight) + PersistentDrift * weight;
 
-                        Thread.Sleep(TimeSpan.FromHours(0.5));
+                        Wait(TimeSpan.FromHours(0.5));
                     }
                     else
                     {
                         firstQPCTime = qpcTime;
                         firstNTPTime = ntpTime;
-                        Thread.Sleep(TimeSpan.FromHours(1));
+                        Wait(TimeSpan.FromHours(1));
                     }
                 }
-                else Thread.Sleep(TimeSpan.FromHours(0.5));
+                else Wait(TimeSpan.FromHours(0.5));
+            }
+        }
+
+        private static void Wait(TimeSpan waitTime)
+        {
+            var before = Now;
+            Thread.Sleep(waitTime);
+            var elapsed = Now - before;
+            if (elapsed.TotalMinutes > waitTime.TotalMinutes + 2)
+            {
+                firstQPCTime = TimeSpan.Zero;
+                firstNTPTime = DateTime.MinValue;
             }
         }
 
