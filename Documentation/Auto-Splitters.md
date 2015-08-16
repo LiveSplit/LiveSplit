@@ -133,7 +133,7 @@ current.myCustomValue = 5;
 
 Make sure not to access values that haven't been created at that point in time though, as this might cause your script to crash.
 
-LiveSplit's internal state is also available through the object `timer`. This is an object of the type `LiveSplitState` and can be used to interact with LiveSplit in ways that are not directly available through ASL.
+LiveSplit's internal state is also available through the object `timer`. This is an object of the type [`LiveSplitState`](../LiveSplit/LiveSplit.Core/Model/LiveSplitState.cs) and can be used to interact with LiveSplit in ways that are not directly available through ASL.
 
 ### Actions
 
