@@ -85,6 +85,7 @@
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting is available. (By Fatalis)</Description>
+    <Website>https://github.com/fatalis/halosplit/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -98,6 +99,7 @@
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal is available. (By Fatalis)</Description>
+    <Website>https://github.com/fatalis/MENL/blob/master/readme.txt</Website>
   </AutoSplitter>
     <AutoSplitter>
     <Games>
@@ -181,20 +183,22 @@
       <Game>Wheel of Time</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Dalet/LiveSplit.WheelOfTime/raw/master/Components/LiveSplit.WheelOfTime.dll</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.WheelOfTime/master/Components/LiveSplit.WheelOfTime.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By Dalet)</Description>
+    <Website>https://github.com/Dalet/LiveSplit.WheelOfTime/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Wrack</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Dalet/LiveSplit.Wrack/raw/master/Components/LiveSplit.Wrack.dll</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.Wrack/master/Components/LiveSplit.Wrack.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Game Time are available. (By Dalet)</Description>
+    <Website>https://github.com/Dalet/LiveSplit.Wrack/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -221,10 +225,11 @@
       <Game>Yume Penguin Monogatari</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Dalet/LiveSplit.YumePenguinMonogatari/raw/master/Components/LiveSplit.YumePenguinMonogatari.dll</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.YumePenguinMonogatari/master/Components/LiveSplit.YumePenguinMonogatari.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting is available for Emulator. (By Dalet)</Description>
+    <Website>https://github.com/Dalet/LiveSplit.YumePenguinMonogatari/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -247,10 +252,11 @@
       <Game>Harry Potter and the Chamber of Secrets (PC)</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Dalet/LiveSplit.HP2/raw/master/Components/LiveSplit.HP2.dll</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.HP2/master/Components/LiveSplit.HP2.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal is available. (By Dalet)</Description>
+    <Website>https://github.com/Dalet/LiveSplit.HP2/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -258,10 +264,11 @@
       <Game>Shrek 2 (PC)</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Dalet/LiveSplit.Shrek2/raw/master/Components/LiveSplit.Shrek2.dll</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.Shrek2/master/Components/LiveSplit.Shrek2.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting is available. (By Dalet)</Description>
+    <Website>https://github.com/Dalet/LiveSplit.Shrek2/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -270,7 +277,7 @@
       <Game>Canis Canem Edit</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Dalet/LiveSplit.Bully/raw/master/Components/LiveSplit.Bully.dll</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.Bully/master/Components/LiveSplit.Bully.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal is available. (By Dalet)</Description>
@@ -283,10 +290,11 @@
       <Game>The Elder Scrolls 5: Skyrim</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/drtchops/LiveSplit.Skyrim/raw/master/Components/LiveSplit.Skyrim.dll</URL>
+      <URL>https://raw.githubusercontent.com/drtchops/LiveSplit.Skyrim/master/Components/LiveSplit.Skyrim.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By Dalet and DrTChops)</Description>
+    <Website>https://github.com/drtchops/LiveSplit.Skyrim/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -332,10 +340,11 @@
       <Game>DXHR</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/drtchops/LiveSplit.DXHR/raw/master/Components/LiveSplit.DXHR.dll</URL>
+      <URL>https://raw.githubusercontent.com/drtchops/LiveSplit.DXHR/master/Components/LiveSplit.DXHR.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By DrTChops)</Description>
+    <Website>https://github.com/drtchops/LiveSplit.DXHR/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -375,6 +384,7 @@
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal is available. (By Fatalis)</Description>
+    <Website>https://github.com/fatalis/LiveSplit.Amnesia/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -386,6 +396,7 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Abahbob)</Description>
   </AutoSplitter>
+  <!-- 404?
   <AutoSplitter>
     <Games>
       <Game>Magnetic By Nature</Game>
@@ -396,16 +407,18 @@
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available (By 0Seren)</Description>
   </AutoSplitter>
+  -->
   <AutoSplitter>
     <Games>
       <Game>Hitman: Absolution</Game>
       <Game>Hitman Absolution</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.HitmanAbsolution/raw/Master/Components/LiveSplit.HMA.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.HitmanAbsolution/Master/Components/LiveSplit.HMA.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available (By SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.HitmanAbsolution/blob/Master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -413,7 +426,7 @@
       <Game>KotOR</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.ASL/raw/master/KotOR.asl</URL>
+      <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/KotOR.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
@@ -426,7 +439,7 @@
       <Game>KotOR 2</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.ASL/raw/master/KotOR2.asl</URL>
+      <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/KotOR2.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
@@ -467,10 +480,11 @@
       <Game>AVP2010</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.AVP2010/raw/master/Components/LiveSplit.AVP2010.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.AVP2010/master/Components/LiveSplit.AVP2010.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.AVP2010/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
     <Games>
@@ -499,10 +513,11 @@
       <Game>Deus Ex The Fall</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.DXTF/raw/master/Components/LiveSplit.DXTF.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.DXTF/master/Components/LiveSplit.DXTF.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.DXTF/blob/master/README.md</Website>
     </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -510,10 +525,11 @@
       <Game>Deus Ex Invisible War</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.DXIW/raw/master/Components/LiveSplit.DXIW.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.DXIW/master/Components/LiveSplit.DXIW.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.DXIW/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -720,7 +736,7 @@
       <Game>Advent Rising</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/glasnonck/LiveSplit.ASL/raw/master/AdventRising.asl</URL>
+      <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/AdventRising.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
@@ -789,10 +805,11 @@
       <Game>Quake</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/kugelrund/LiveSplit.Quake/raw/master/Components/LiveSplit.Quake.dll</URL>
+      <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.Quake/master/Components/LiveSplit.Quake.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>For joequake-gl with qdqstats. Game Time is available. (By Sphere)</Description>
+    <Website>https://github.com/kugelrund/LiveSplit.Quake/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -800,20 +817,22 @@
       <Game>Quake II</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/kugelrund/LiveSplit.Quake2/raw/master/Components/LiveSplit.Quake2.dll</URL>
+      <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.Quake2/master/Components/LiveSplit.Quake2.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>For q2pro. Load removal is available. (By Sphere)</Description>
+    <Website>https://github.com/kugelrund/LiveSplit.Quake2/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Star Trek: Voyager - Elite Force</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/kugelrund/LiveSplit.StVoyEf/raw/master/Components/LiveSplit.StVoyEf.dll</URL>
+      <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.StVoyEf/master/Components/LiveSplit.StVoyEf.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load removal is available. (By Sphere)</Description>
+    <Website>https://github.com/kugelrund/LiveSplit.StVoyEf/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -821,9 +840,10 @@
       <Game>Star Trek: Elite Force II</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/kugelrund/LiveSplit.StEf2/raw/master/Components/LiveSplit.StEf2.dll</URL>
+      <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.StEf2/master/Components/LiveSplit.StEf2.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load removal is available. (By Sphere)</Description>
+    <Website>https://github.com/kugelrund/LiveSplit.StEf2/blob/master/README.md</Website>
   </AutoSplitter>
 </AutoSplitters>
