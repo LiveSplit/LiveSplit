@@ -119,7 +119,6 @@ namespace LiveSplit.View
                             Settings.BackgroundImage.Dispose();
 
                         Settings.BackgroundImage = ((Button)sender).BackgroundImage = image;
-                        Settings.BackgroundImagePath = dialog.FileName;
                     }
                     catch (Exception ex)
                     {

@@ -23,7 +23,6 @@ namespace LiveSplit.UI
         public BackgroundType BackgroundType { get; set; }
 
         public Image BackgroundImage { get; set; }
-        public string BackgroundImagePath { get; set; }
         public float ImageOpacity { get; set; }
         public float ImageBlur { get; set; }
 
@@ -73,7 +72,6 @@ namespace LiveSplit.UI
             Opacity = settings.Opacity;
             BackgroundType = settings.BackgroundType;
             BackgroundImage = settings.BackgroundImage;
-            BackgroundImagePath = settings.BackgroundImagePath;
             ImageOpacity = settings.ImageOpacity;
             ImageBlur = settings.ImageBlur;
         }

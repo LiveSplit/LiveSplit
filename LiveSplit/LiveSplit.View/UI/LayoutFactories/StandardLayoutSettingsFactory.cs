@@ -31,7 +31,6 @@ namespace LiveSplit.UI.LayoutFactories
                 AntiAliasing = true,
                 DropShadows = true,
                 BackgroundType = BackgroundType.SolidColor,
-                BackgroundImagePath = string.Empty,
                 BackgroundImage = null,
                 ImageOpacity = 1f,
                 ImageBlur = 0f,

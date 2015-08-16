@@ -36,7 +36,7 @@ namespace LiveSplit.UI
 
         public static Font GetFontFromElement(XmlElement element)
         {
-            if (!element.IsEmpty)
+            if (element != null && !element.IsEmpty)
             {
                 var bf = new BinaryFormatter();
 
@@ -135,12 +135,12 @@ namespace LiveSplit.UI
                 parent.AppendChild(element);
             }
 
-            return image.GetHashCode();
+            return image != null ? image.GetHashCode() : 0;
         }
 
         public static Image GetImageFromElement(XmlElement element)
         {
-            if (!element.IsEmpty)
+            if (element != null && !element.IsEmpty)
             {
                 var bf = new BinaryFormatter();
 
