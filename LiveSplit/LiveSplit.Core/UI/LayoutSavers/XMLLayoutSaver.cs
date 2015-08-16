@@ -53,9 +53,9 @@ namespace LiveSplit.UI.LayoutSavers
                 ^ SettingsHelper.CreateSetting(document, parent, "X", layout.X)
                 ^ SettingsHelper.CreateSetting(document, parent, "Y", layout.Y)
                 ^ SettingsHelper.CreateSetting(document, parent, "VerticalWidth", layout.VerticalWidth)
-                ^ SettingsHelper.CreateSetting(document, parent, "VerticalHeight", layout.VerticalHeight)
+                ^ (SettingsHelper.CreateSetting(document, parent, "VerticalHeight", layout.VerticalHeight) * 1000)
                 ^ SettingsHelper.CreateSetting(document, parent, "HorizontalWidth", layout.HorizontalWidth)
-                ^ SettingsHelper.CreateSetting(document, parent, "HorizontalHeight", layout.HorizontalHeight)
+                ^ (SettingsHelper.CreateSetting(document, parent, "HorizontalHeight", layout.HorizontalHeight) * 1000)
                 ^ ToElement(document, element, layout.Settings);
 
             if (document != null)
