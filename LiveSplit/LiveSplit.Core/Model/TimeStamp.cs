@@ -79,7 +79,7 @@ namespace LiveSplit.Model
                         var ntpDelta = ntpTime - firstNTPTime;
 
                         var newDrift = qpcDelta.TotalMilliseconds / ntpDelta.TotalMilliseconds;
-                        var weight = Math.Pow(0.9, ntpDelta.TotalHours);
+                        var weight = Math.Pow(0.95, ntpDelta.TotalHours);
                         NewDrift = newDrift * (1 - weight) + PersistentDrift * weight;
 
                         Thread.Sleep(TimeSpan.FromHours(0.5));
