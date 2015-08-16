@@ -29,6 +29,7 @@
     </URLs>
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting are available. (By Fatalis)</Description>
+    <Website>https://github.com/fatalis/sourcesplit/blob/master/README.md</Website>
     <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>

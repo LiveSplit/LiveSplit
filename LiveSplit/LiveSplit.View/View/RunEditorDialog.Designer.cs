@@ -49,8 +49,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
-            this.btnActivate = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -59,6 +57,10 @@
             this.btnAddComparison = new System.Windows.Forms.Button();
             this.btnImportComparison = new System.Windows.Forms.Button();
             this.btnOther = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnWebsite = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnActivate = new System.Windows.Forms.Button();
             this.RemoveIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.setIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadBoxartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,15 +74,16 @@
             this.clearHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.metadataControl = new LiveSplit.View.MetadataControl();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.metadataControl = new LiveSplit.View.MetadataControl();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
             this.tabControl.SuspendLayout();
             this.Metadata.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.RemoveIconMenu.SuspendLayout();
             this.ImportComparisonMenu.SuspendLayout();
             this.OtherMenu.SuspendLayout();
@@ -138,8 +141,6 @@
             this.tableLayoutPanel1.Controls.Add(this.label4, 5, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 6, 14);
             this.tableLayoutPanel1.Controls.Add(this.lblDescription, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnActivate, 6, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 7, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnInsert, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnAdd, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.btnRemove, 0, 8);
@@ -148,6 +149,7 @@
             this.tableLayoutPanel1.Controls.Add(this.btnAddComparison, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.btnImportComparison, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.btnOther, 0, 13);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 5, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -366,35 +368,13 @@
             // 
             this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDescription.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.lblDescription, 5);
+            this.tableLayoutPanel1.SetColumnSpan(this.lblDescription, 4);
             this.lblDescription.Location = new System.Drawing.Point(140, 121);
             this.lblDescription.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(346, 13);
+            this.lblDescription.Size = new System.Drawing.Size(281, 13);
             this.lblDescription.TabIndex = 13;
             this.lblDescription.Text = "Description";
-            // 
-            // btnActivate
-            // 
-            this.btnActivate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnActivate.Location = new System.Drawing.Point(517, 116);
-            this.btnActivate.Name = "btnActivate";
-            this.btnActivate.Size = new System.Drawing.Size(75, 23);
-            this.btnActivate.TabIndex = 5;
-            this.btnActivate.Text = "Activate";
-            this.btnActivate.UseVisualStyleBackColor = true;
-            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
-            // 
-            // btnSettings
-            // 
-            this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSettings.Location = new System.Drawing.Point(598, 116);
-            this.btnSettings.Name = "btnSettings";
-            this.btnSettings.Size = new System.Drawing.Size(75, 23);
-            this.btnSettings.TabIndex = 6;
-            this.btnSettings.Text = "Settings";
-            this.btnSettings.UseVisualStyleBackColor = true;
-            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnInsert
             // 
@@ -494,6 +474,53 @@
             this.btnOther.UseVisualStyleBackColor = true;
             this.btnOther.Click += new System.EventHandler(this.btnOther_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 3);
+            this.flowLayoutPanel1.Controls.Add(this.btnWebsite);
+            this.flowLayoutPanel1.Controls.Add(this.btnSettings);
+            this.flowLayoutPanel1.Controls.Add(this.btnActivate);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(429, 113);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(247, 29);
+            this.flowLayoutPanel1.TabIndex = 18;
+            // 
+            // btnWebsite
+            // 
+            this.btnWebsite.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnWebsite.Location = new System.Drawing.Point(169, 3);
+            this.btnWebsite.Name = "btnWebsite";
+            this.btnWebsite.Size = new System.Drawing.Size(75, 23);
+            this.btnWebsite.TabIndex = 7;
+            this.btnWebsite.Text = "Website";
+            this.btnWebsite.UseVisualStyleBackColor = true;
+            this.btnWebsite.Visible = false;
+            this.btnWebsite.Click += new System.EventHandler(this.btnWebsite_Click);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSettings.Location = new System.Drawing.Point(88, 3);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(75, 23);
+            this.btnSettings.TabIndex = 6;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnActivate
+            // 
+            this.btnActivate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnActivate.Location = new System.Drawing.Point(7, 3);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(75, 23);
+            this.btnActivate.TabIndex = 5;
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.UseVisualStyleBackColor = true;
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
+            // 
             // RemoveIconMenu
             // 
             this.RemoveIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -502,7 +529,7 @@
             this.openFromURLMenuItem,
             this.removeIconToolStripMenuItem});
             this.RemoveIconMenu.Name = "RemoveIconMenu";
-            this.RemoveIconMenu.Size = new System.Drawing.Size(170, 114);
+            this.RemoveIconMenu.Size = new System.Drawing.Size(170, 92);
             // 
             // setIconToolStripMenuItem
             // 
@@ -592,14 +619,6 @@
             this.cleanSumOfBestToolStripMenuItem.Text = "Clean Sum of Best";
             this.cleanSumOfBestToolStripMenuItem.Click += new System.EventHandler(this.cleanSumOfBestToolStripMenuItem_Click);
             // 
-            // iRunBindingSource
-            // 
-            this.iRunBindingSource.DataSource = typeof(LiveSplit.Model.IRun);
-            // 
-            // iSegmentBindingSource
-            // 
-            this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
-            // 
             // metadataControl
             // 
             this.metadataControl.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -609,6 +628,14 @@
             this.metadataControl.Padding = new System.Windows.Forms.Padding(7);
             this.metadataControl.Size = new System.Drawing.Size(522, 0);
             this.metadataControl.TabIndex = 0;
+            // 
+            // iRunBindingSource
+            // 
+            this.iRunBindingSource.DataSource = typeof(LiveSplit.Model.IRun);
+            // 
+            // iSegmentBindingSource
+            // 
+            this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
             // 
             // RunEditorDialog
             // 
@@ -629,6 +656,7 @@
             this.tabControl.ResumeLayout(false);
             this.Metadata.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.RemoveIconMenu.ResumeLayout(false);
             this.ImportComparisonMenu.ResumeLayout(false);
             this.OtherMenu.ResumeLayout(false);
@@ -685,5 +713,7 @@
         private System.Windows.Forms.ToolStripMenuItem fromSpeedruncomToolStripMenuItem;
         private System.Windows.Forms.TabPage Metadata;
         private MetadataControl metadataControl;
+        private System.Windows.Forms.Button btnWebsite;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
