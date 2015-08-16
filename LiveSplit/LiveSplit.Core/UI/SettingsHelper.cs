@@ -1,5 +1,4 @@
 ﻿using Fetze.WinFormsColor;
-using LiveSplit.Options;
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -49,6 +48,7 @@ namespace LiveSplit.UI
             return null;
         }
 
+        // REMOVE
         public static XmlElement CreateFontElement(XmlDocument document, string elementName, Font font)
         {
             var element = document.CreateElement(elementName);
@@ -69,6 +69,30 @@ namespace LiveSplit.UI
             return element;
         }
 
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string elementName, Font font)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(elementName);
+
+                if (font != null)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        var bf = new BinaryFormatter();
+
+                        bf.Serialize(ms, font);
+                        var data = ms.ToArray();
+                        var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+                        element.InnerXml = cdata.OuterXml;
+                    }
+                }
+                parent.AppendChild(element);
+            }
+            return font.ToString().GetHashCode();
+        }
+
+        //REMOVE
         public static XmlElement CreateImageElement(XmlDocument document, string elementName, Image image)
         {
             var element = document.CreateElement(elementName);
@@ -87,6 +111,31 @@ namespace LiveSplit.UI
             }
 
             return element;
+        }
+
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string elementName, Image image)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(elementName);
+
+                if (image != null)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        var bf = new BinaryFormatter();
+
+                        bf.Serialize(ms, image);
+                        var data = ms.ToArray();
+                        var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+                        element.InnerXml = cdata.OuterXml;
+                    }
+                }
+
+                parent.AppendChild(element);
+            }
+
+            return image.GetHashCode();
         }
 
         public static Image GetImageFromElement(XmlElement element)
@@ -138,6 +187,7 @@ namespace LiveSplit.UI
             return timeSpanElement != null ? TimeSpan.Parse(timeSpanElement.InnerText) : defaultTimeSpan;
         }
 
+        //REMOVE
         public static XmlElement ToElement(XmlDocument document, Color color, string name)
         {
             var element = document.CreateElement(name);
@@ -145,6 +195,7 @@ namespace LiveSplit.UI
             return element;
         }
 
+        //REMOVE
         public static XmlElement ToElement<T>(XmlDocument document, string name, T value)
         {
             var element = document.CreateElement(name);
@@ -152,6 +203,7 @@ namespace LiveSplit.UI
             return element;
         }
 
+        //REMOVE
         public static XmlElement ToElement(XmlDocument document, string name, float value)
         {
             var element = document.CreateElement(name);
@@ -159,11 +211,56 @@ namespace LiveSplit.UI
             return element;
         }
 
+        //REMOVE
         public static XmlElement ToElement(XmlDocument document, string name, double value)
         {
             var element = document.CreateElement(name);
             element.InnerText = value.ToString(CultureInfo.InvariantCulture);
             return element;
+        }
+
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string name, Color color)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(name);
+                element.InnerText = color.ToArgb().ToString("X8");
+                parent.AppendChild(element);
+            }
+            return color.GetHashCode();
+        }
+
+        public static int CreateSetting<T>(XmlDocument document, XmlElement parent, string name, T value)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(name);
+            element.InnerText = value.ToString();
+                parent.AppendChild(element);
+            }
+            return value.GetHashCode();
+        }
+
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string name, float value)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(name);
+            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
+                parent.AppendChild(element);
+            }
+            return value.GetHashCode();
+        }
+
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string name, double value)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(name);
+            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
+                parent.AppendChild(element);
+            }
+            return value.GetHashCode();
         }
 
         public static XmlAttribute ToAttribute<T>(XmlDocument document, string name, T value)
