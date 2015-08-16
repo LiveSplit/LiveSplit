@@ -162,7 +162,7 @@ namespace LiveSplit.UI.Components
 
         public int GetSettingsHashCode()
         {
-            return 0;
+            return 1;
         }
     }
 }

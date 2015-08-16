@@ -48,27 +48,6 @@ namespace LiveSplit.UI
             return null;
         }
 
-        // REMOVE
-        public static XmlElement CreateFontElement(XmlDocument document, string elementName, Font font)
-        {
-            var element = document.CreateElement(elementName);
-
-            if (font != null)
-            {
-                using (var ms = new MemoryStream())
-                {
-                    var bf = new BinaryFormatter();
-
-                    bf.Serialize(ms, font);
-                    var data = ms.ToArray();
-                    var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
-                    element.InnerXml = cdata.OuterXml;
-                }
-            }
-
-            return element;
-        }
-
         public static int CreateSetting(XmlDocument document, XmlElement parent, string elementName, Font font)
         {
             if (document != null)
@@ -89,28 +68,20 @@ namespace LiveSplit.UI
                 }
                 parent.AppendChild(element);
             }
-            return font.ToString().GetHashCode();
+            return getFontHashCode(font);
         }
 
-        //REMOVE
-        public static XmlElement CreateImageElement(XmlDocument document, string elementName, Image image)
+        private static int getFontHashCode(Font font)
         {
-            var element = document.CreateElement(elementName);
-
-            if (image != null)
+            int hash = 17;
+            unchecked
             {
-                using (var ms = new MemoryStream())
-                {
-                    var bf = new BinaryFormatter();
-
-                    bf.Serialize(ms, image);
-                    var data = ms.ToArray();
-                    var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
-                    element.InnerXml = cdata.OuterXml;
-                }
+                hash = hash * 23 + font.Name.GetHashCode();
+                hash = hash * 23 + font.FontFamily.GetHashCode();
+                hash = hash * 23 + font.Size.GetHashCode();
+                hash = hash * 23 + font.Style.GetHashCode();
             }
-
-            return element;
+            return hash;
         }
 
         public static int CreateSetting(XmlDocument document, XmlElement parent, string elementName, Image image)
@@ -187,35 +158,10 @@ namespace LiveSplit.UI
             return timeSpanElement != null ? TimeSpan.Parse(timeSpanElement.InnerText) : defaultTimeSpan;
         }
 
-        //REMOVE
-        public static XmlElement ToElement(XmlDocument document, Color color, string name)
-        {
-            var element = document.CreateElement(name);
-            element.InnerText = color.ToArgb().ToString("X8");
-            return element;
-        }
-
-        //REMOVE
         public static XmlElement ToElement<T>(XmlDocument document, string name, T value)
         {
             var element = document.CreateElement(name);
             element.InnerText = value.ToString();
-            return element;
-        }
-
-        //REMOVE
-        public static XmlElement ToElement(XmlDocument document, string name, float value)
-        {
-            var element = document.CreateElement(name);
-            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
-            return element;
-        }
-
-        //REMOVE
-        public static XmlElement ToElement(XmlDocument document, string name, double value)
-        {
-            var element = document.CreateElement(name);
-            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
             return element;
         }
 

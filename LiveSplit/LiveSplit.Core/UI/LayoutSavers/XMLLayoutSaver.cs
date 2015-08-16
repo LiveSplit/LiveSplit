@@ -65,6 +65,7 @@ namespace LiveSplit.UI.LayoutSavers
             }
 
             var layoutComponents = new List<ILayoutComponent>(layout.LayoutComponents);
+            var count = 0;
 
             foreach (var component in layoutComponents)
             {
@@ -74,7 +75,7 @@ namespace LiveSplit.UI.LayoutSavers
                     {
                         var componentElement = document.CreateElement("Component");
                         components.AppendChild(componentElement);
-                        componentElement.AppendChild(SettingsHelper.ToElement(document, "Path", component.Path));
+                        SettingsHelper.CreateSetting(document, componentElement, "Path", component.Path);
                         var settings = document.CreateElement("Settings");
 
                         settings.InnerXml = component.Component.GetSettings(document).InnerXml;
@@ -84,17 +85,18 @@ namespace LiveSplit.UI.LayoutSavers
                     else
                     {
                         //This is temporary. GetSettingsHashCode() will become a part of IComponent at some point
-                        var type = component.GetType();
+                        var type = component.Component.GetType();
                         if (type.GetMethod("GetSettingsHashCode") != null)
-                            hashCode ^= ((dynamic)component.Component).GetSettingsHashCode();
+                            hashCode ^= ((dynamic)component.Component).GetSettingsHashCode() * count;
                         else
-                            hashCode ^= component.Component.GetSettings(new XmlDocument()).InnerXml.GetHashCode();
+                            hashCode ^= component.Component.GetSettings(new XmlDocument()).InnerXml.GetHashCode() * count;
                     }
                 }
                 catch (Exception e)
                 {
                     Log.Error(e);
                 }
+                count++;
             }
 
             return hashCode;
