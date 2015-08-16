@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.UI;
+using System;
 using System.Xml;
 
 namespace LiveSplit.Options.SettingsSavers
@@ -108,9 +109,20 @@ namespace LiveSplit.Options.SettingsSavers
             }
             parent.AppendChild(autoSplittersActive);
 
-            SettingsHelper.CreateSetting(document, parent, "Drift", TimeStamp.NewDrift);
+            AddDriftToSettings(document, parent);
 
             document.Save(stream);
         }
+
+        public static void AddDriftToSettings(XmlDocument document, XmlElement parent)
+        {
+            var element = document.CreateElement("TimerDrift");
+            var data = BitConverter.GetBytes(TimeStamp.NewDrift);
+            var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+            element.InnerXml = cdata.OuterXml;
+            parent.AppendChild(element);
+        }
     }
+
+    
 }

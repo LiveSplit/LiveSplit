@@ -14,8 +14,8 @@ namespace LiveSplit.Options.SettingsFactories
     public class XMLSettingsFactory : ISettingsFactory
     {
         public Stream Stream { get; set; }
- 
-        public XMLSettingsFactory (Stream stream)
+
+        public XMLSettingsFactory(Stream stream)
         {
             Stream = stream;
         }
@@ -156,9 +156,20 @@ namespace LiveSplit.Options.SettingsFactories
                 }
             }
 
-            TimeStamp.PersistentDrift = TimeStamp.NewDrift = SettingsHelper.ParseDouble(parent["Drift"], 1.0);
+            LoadDrift(parent);
 
             return settings;
+        }
+
+        private static void LoadDrift(XmlElement parent)
+        {
+            var element = parent["TimerDrift"];
+            if (element != null)
+            {
+                var base64String = element.InnerText;
+                var data = Convert.FromBase64String(base64String);
+                TimeStamp.PersistentDrift = TimeStamp.NewDrift = BitConverter.ToDouble(data, 0);
+            }
         }
     }
 }
