@@ -46,9 +46,7 @@ namespace LiveSplit.UI.LayoutSavers
             if (document != null)
             {
                 element = document.CreateElement("Settings");
-
                 components = document.CreateElement("Components");
-                parent.AppendChild(components);
             }
 
             var hashCode = SettingsHelper.CreateSetting(document, parent, "Mode", layout.Mode)
@@ -59,6 +57,12 @@ namespace LiveSplit.UI.LayoutSavers
                 ^ SettingsHelper.CreateSetting(document, parent, "HorizontalWidth", layout.HorizontalWidth)
                 ^ SettingsHelper.CreateSetting(document, parent, "HorizontalHeight", layout.HorizontalHeight)
                 ^ ToElement(document, element, layout.Settings);
+
+            if (document != null)
+            {
+                parent.AppendChild(element);
+                parent.AppendChild(components);
+            }
 
             var layoutComponents = new List<ILayoutComponent>(layout.LayoutComponents);
 
