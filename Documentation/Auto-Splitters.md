@@ -118,7 +118,7 @@ The variable type `VARIABLE_TYPE` describes the type of the value found at the p
 
 The variable name `VARIABLE_NAME` can be any variable name you choose, describing what is found at the pointer path. The naming is up to you, but should be distinct from the other variable names.
 
-The base module name `BASE_MODULE` describes the name of the module the Pointer Path starts at. Every \*.exe and \*.dll file loaded into the process has its own base address. Instead of specifying the base address of the Pointer Path, you specify the base module and an offset from there.
+The base module name `BASE_MODULE` describes the name of the module the Pointer Path starts at. Every \*.exe and \*.dll file loaded into the process has its own base address. Instead of specifying the base address of the Pointer Path, you specify the base module and an offset from there. An empty string means the default module.
 
 You can use as many offsets `OFFSET` as you want. They need to be integer literals, either written as decimal or hexadecimal.
 
