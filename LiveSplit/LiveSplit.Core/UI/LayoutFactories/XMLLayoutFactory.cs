@@ -78,18 +78,7 @@ namespace LiveSplit.UI.LayoutFactories
                     settings.BackgroundType = BackgroundType.HorizontalGradient;
             }
 
-            settings.BackgroundImagePath = SettingsHelper.ParseString(element["BackgroundImagePath"]);
-            if (!string.IsNullOrEmpty(settings.BackgroundImagePath))
-            {
-                try
-                {
-                    settings.BackgroundImage = Image.FromFile(settings.BackgroundImagePath);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                }
-            }
+            settings.BackgroundImage = SettingsHelper.GetImageFromElement(element["BackgroundImage"]);
 
             return settings;
         }

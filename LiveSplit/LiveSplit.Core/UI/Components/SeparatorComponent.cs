@@ -159,5 +159,10 @@ namespace LiveSplit.UI.Components
         {
             GC.SuppressFinalize(this);
         }
+
+        public int GetSettingsHashCode()
+        {
+            return 1;
+        }
     }
 }

@@ -59,15 +59,15 @@ namespace LiveSplit.Options.SettingsSavers
                 switchComparisonNext.InnerText = settings.SwitchComparisonNext.ToString();
             parent.AppendChild(switchComparisonNext);
 
-            parent.AppendChild(SettingsHelper.ToElement(document, "GlobalHotkeysEnabled", settings.GlobalHotkeysEnabled));
-            parent.AppendChild(SettingsHelper.ToElement(document, "DeactivateHotkeysForOtherPrograms", settings.DeactivateHotkeysForOtherPrograms));
-            parent.AppendChild(SettingsHelper.ToElement(document, "WarnOnReset", settings.WarnOnReset));
-            parent.AppendChild(SettingsHelper.ToElement(document, "DoubleTapPrevention", settings.DoubleTapPrevention));
-            parent.AppendChild(SettingsHelper.ToElement(document, "HotkeyDelay", settings.HotkeyDelay));
+            SettingsHelper.CreateSetting(document, parent, "GlobalHotkeysEnabled", settings.GlobalHotkeysEnabled);
+            SettingsHelper.CreateSetting(document, parent, "DeactivateHotkeysForOtherPrograms", settings.DeactivateHotkeysForOtherPrograms);
+            SettingsHelper.CreateSetting(document, parent, "WarnOnReset", settings.WarnOnReset);
+            SettingsHelper.CreateSetting(document, parent, "DoubleTapPrevention", settings.DoubleTapPrevention);
+            SettingsHelper.CreateSetting(document, parent, "HotkeyDelay", settings.HotkeyDelay);
 
-            parent.AppendChild(SettingsHelper.ToElement(document, "RaceViewer", settings.RaceViewer.Name));
+            SettingsHelper.CreateSetting(document, parent, "RaceViewer", settings.RaceViewer.Name);
 
-            parent.AppendChild(SettingsHelper.ToElement(document, "AgreedToSRLRules", settings.AgreedToSRLRules));
+            SettingsHelper.CreateSetting(document, parent, "AgreedToSRLRules", settings.AgreedToSRLRules);
 
             var recentSplits = document.CreateElement("RecentSplits");
             foreach (var splitsFile in settings.RecentSplits)
@@ -81,13 +81,13 @@ namespace LiveSplit.Options.SettingsSavers
             var recentLayouts = document.CreateElement("RecentLayouts");
             foreach (var layout in settings.RecentLayouts)
             {
-                recentLayouts.AppendChild(SettingsHelper.ToElement(document, "LayoutPath", layout));
+                SettingsHelper.CreateSetting(document, recentLayouts, "LayoutPath", layout); 
             }
             parent.AppendChild(recentLayouts);
 
-            parent.AppendChild(SettingsHelper.ToElement(document, "LastComparison", settings.LastComparison));
-            parent.AppendChild(SettingsHelper.ToElement(document, "LastTimingMethod", settings.LastTimingMethod));
-            parent.AppendChild(SettingsHelper.ToElement(document, "SimpleSumOfBest", settings.SimpleSumOfBest));
+            SettingsHelper.CreateSetting(document, parent, "LastComparison", settings.LastComparison);
+            SettingsHelper.CreateSetting(document, parent, "LastTimingMethod", settings.LastTimingMethod);
+            SettingsHelper.CreateSetting(document, parent, "SimpleSumOfBest", settings.SimpleSumOfBest);
 
             var generatorStates = document.CreateElement("ComparisonGeneratorStates");
             foreach (var generator in settings.ComparisonGeneratorStates)
@@ -104,11 +104,11 @@ namespace LiveSplit.Options.SettingsSavers
             var autoSplittersActive = document.CreateElement("ActiveAutoSplitters");
             foreach (var splitter in settings.ActiveAutoSplitters)
             {
-                autoSplittersActive.AppendChild(SettingsHelper.ToElement(document, "AutoSplitter", splitter));
+                SettingsHelper.CreateSetting(document, autoSplittersActive, "AutoSplitter", splitter);
             }
             parent.AppendChild(autoSplittersActive);
 
-            parent.AppendChild(SettingsHelper.ToElement(document, "Drift", TimeStamp.NewDrift));
+            SettingsHelper.CreateSetting(document, parent, "Drift", TimeStamp.NewDrift);
 
             document.Save(stream);
         }

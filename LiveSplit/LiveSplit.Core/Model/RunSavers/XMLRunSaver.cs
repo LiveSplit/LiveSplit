@@ -19,11 +19,11 @@ namespace LiveSplit.Model.RunSavers
             parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.6.0"));
             document.AppendChild(parent);
 
-            parent.AppendChild(SettingsHelper.CreateImageElement(document, "GameIcon", run.GameIcon));
-            parent.AppendChild(SettingsHelper.ToElement(document, "GameName", run.GameName));
-            parent.AppendChild(SettingsHelper.ToElement(document, "CategoryName", run.CategoryName));
-            parent.AppendChild(SettingsHelper.ToElement(document, "Offset", run.Offset));
-            parent.AppendChild(SettingsHelper.ToElement(document, "AttemptCount", run.AttemptCount));
+            SettingsHelper.CreateSetting(document, parent, "GameIcon", run.GameIcon);
+            SettingsHelper.CreateSetting(document, parent, "GameName", run.GameName);
+            SettingsHelper.CreateSetting(document, parent, "CategoryName", run.CategoryName);
+            SettingsHelper.CreateSetting(document, parent, "Offset", run.Offset);
+            SettingsHelper.CreateSetting(document, parent, "AttemptCount", run.AttemptCount);
 
             var runHistory = document.CreateElement("AttemptHistory");
             foreach (var attempt in run.AttemptHistory)
@@ -42,8 +42,8 @@ namespace LiveSplit.Model.RunSavers
                 var splitElement = document.CreateElement("Segment");
                 segmentElement.AppendChild(splitElement);
 
-                splitElement.AppendChild(SettingsHelper.ToElement(document, "Name", segment.Name));
-                splitElement.AppendChild(SettingsHelper.CreateImageElement(document, "Icon", segment.Icon));
+                SettingsHelper.CreateSetting(document, splitElement, "Name", segment.Name);
+                SettingsHelper.CreateSetting(document, splitElement, "Icon", segment.Icon);
 
                 var splitTimes = document.CreateElement("SplitTimes");
                 foreach (var comparison in run.CustomComparisons)
@@ -79,7 +79,7 @@ namespace LiveSplit.Model.RunSavers
             platform.Attributes.Append(SettingsHelper.ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
             metadata.AppendChild(platform);
 
-            metadata.AppendChild(SettingsHelper.ToElement(document, "Region", run.Metadata.RegionName ?? string.Empty));
+            SettingsHelper.CreateSetting(document, metadata, "Region", run.Metadata.RegionName ?? string.Empty);
 
             var variables = document.CreateElement("Variables");
             foreach (var variable in run.Metadata.VariableValueNames)

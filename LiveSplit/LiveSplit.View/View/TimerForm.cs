@@ -1047,7 +1047,7 @@ namespace LiveSplit.View
                         else
                         {
                             GlobalCache.Restart();
-                            GlobalCache["Layout"] = new XMLLayoutSaver().GetLayoutNode(new XmlDocument(), Layout).OuterXml;
+                            GlobalCache["LayoutHashCode"] = new XMLLayoutSaver().CreateLayoutNode(null, null, Layout);
 
                             if (GlobalCache.HasChanged)
                                 InvalidateForm();
