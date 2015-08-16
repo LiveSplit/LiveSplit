@@ -65,7 +65,7 @@ namespace LiveSplit.UI.LayoutSavers
             }
 
             var layoutComponents = new List<ILayoutComponent>(layout.LayoutComponents);
-            var count = 0;
+            var count = 1;
 
             foreach (var component in layoutComponents)
             {
