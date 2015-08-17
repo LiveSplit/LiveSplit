@@ -96,34 +96,19 @@ namespace LiveSplit.View
         }
 #endregion
 
-        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void WebsiteLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("http://livesplit.org");
         }
 
-        private void CryZeLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://twitter.com/CryZe107");
-        }
-
-        private void wooferzfgLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://twitter.com/wooferzfg");
-        }
-
-        private void donateButton_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R3Z2LGPKRNBNJ");
-        }
-
         private void lblVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(Git.RevisionUri.AbsoluteUri);
+        }
+
+        private void lnkContributors_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/LiveSplit/LiveSplit/graphs/contributors");
         }
     }
 }
