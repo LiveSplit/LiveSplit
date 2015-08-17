@@ -18,7 +18,7 @@ namespace LiveSplit.Model
         public IComparisons Comparisons { get; set; }
         public Time BestSegmentTime { get; set; }
         public Time SplitTime { get; set; }
-        public IList<IIndexedTime> SegmentHistory { get; set;}
+        public SegmentHistory SegmentHistory { get; set;}
         
         public Segment(
             string name, Time pbSplitTime = default(Time), 
@@ -31,14 +31,12 @@ namespace LiveSplit.Model
             BestSegmentTime = bestSegmentTime;
             SplitTime = splitTime;
             Icon = icon;
-            SegmentHistory = new List<IIndexedTime>();
+            SegmentHistory = new SegmentHistory();
         }
 
         public object Clone()
         {
-            var newSegmentHistory = new List<IIndexedTime>();
-            foreach (var element in SegmentHistory)
-                newSegmentHistory.Add(new IndexedTime(element.Time, element.Index));
+            var newSegmentHistory = SegmentHistory.Clone();
 
             return new Segment(Name)
             {

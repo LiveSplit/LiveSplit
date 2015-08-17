@@ -24,10 +24,10 @@ namespace LiveSplit.Model.Comparisons
 
                 foreach (var segment in Run)
                 {
-                    var segmentHistoryElement = segment.SegmentHistory.FirstOrDefault(x => x.Index == y);
-                    if (segmentHistoryElement != null)
+                    Time segmentHistoryElement;
+                    if (segment.SegmentHistory.TryGetValue(y, out segmentHistoryElement))
                     {
-                        var segmentTime = segmentHistoryElement.Time[method];
+                        var segmentTime = segmentHistoryElement[method];
                         if (segmentTime != null)
                         {
                             time += segmentTime.Value;

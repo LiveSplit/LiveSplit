@@ -21,10 +21,12 @@ namespace LiveSplit.Model
                 PopulatePrediction(predictions, currentTime + run[segmentIndex].BestSegmentTime[method], segmentIndex + 1);
                 foreach (var segment in run[segmentIndex].SegmentHistory)
                 {
-                    var segmentTime = segmentIndex > 0 ? run[segmentIndex - 1].SegmentHistory.FirstOrDefault(x => x.Index == segment.Index) : null;
-                    if (segmentTime == null || segmentTime.Time[method] != null)
+                    Time segmentTime;
+                    if (segmentIndex == 0 
+                        || !run[segmentIndex - 1].SegmentHistory.TryGetValue(segment.Key, out segmentTime) 
+                        || segmentTime[method] != null)
                     {
-                        var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex, segment.Index, method);
+                        var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex, segment.Key, method);
                         PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                     }
                 }

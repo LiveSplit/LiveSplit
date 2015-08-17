@@ -133,6 +133,7 @@
     <Compile Include="Model\RunSavers\WSplitRunSaver.cs" />
     <Compile Include="Model\RunSavers\SplitterZRunSaver.cs" />
     <Compile Include="Model\AbbreviationExtensions.cs" />
+    <Compile Include="Model\SegmentHistory.cs" />
     <Compile Include="Model\StringExtensions.cs" />
     <Compile Include="Model\SumOfWorst.cs" />
     <Compile Include="Model\SumOfSegmentsHelper.cs" />

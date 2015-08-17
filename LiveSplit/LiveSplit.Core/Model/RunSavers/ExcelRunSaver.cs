@@ -173,10 +173,10 @@ namespace LiveSplit.Model.RunSavers
                 foreach (var segment in run)
                 {
                     var cell = row[columnIndex];
-                    var segmentHistoryElement = segment.SegmentHistory.FirstOrDefault(x => x.Index == attempt.Index);
-                    if (segmentHistoryElement != null)
+                    Time segmentHistoryElement;
+                    if (segment.SegmentHistory.TryGetValue(attempt.Index, out segmentHistoryElement))
                     {
-                        var time = segmentHistoryElement.Time.RealTime;
+                        var time = segmentHistoryElement.RealTime;
                         if (time.HasValue)
                             cell.Value = time.Value.TotalDays;
                     }

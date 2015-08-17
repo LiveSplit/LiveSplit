@@ -43,10 +43,10 @@ namespace LiveSplit.Model
         {
             while (segmentIndex < run.Count)
             {
-                var segmentTime = run[segmentIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                if (segmentTime != null)
+                Time segmentTime;
+                if (run[segmentIndex].SegmentHistory.TryGetValue(runIndex, out segmentTime))
                 {
-                    var curTime = segmentTime.Time[method];
+                    var curTime = segmentTime[method];
                     if (curTime.HasValue)
                     {
                         return new IndexedTime(new Time(method, curTime + currentTime), segmentIndex + 1);

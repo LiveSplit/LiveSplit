@@ -5,8 +5,8 @@ namespace LiveSplit.Model
 {
     public interface IIndexedTime
     {
-        Time Time { get; set; }
-        int Index { get; set; }
+        Time Time { get; }
+        int Index { get; }
     }
     public static class IndexedTimeHelper
     {
