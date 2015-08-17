@@ -7,12 +7,6 @@ namespace LiveSplit.TimeFormatters
     {
         public string Format(TimeSpan? time)
         {
-            //APRIL FOOLS
-            /*if (DateTime.Now.Date.Month == 4 && DateTime.Now.Date.Day == 1 && time.HasValue)
-            {
-                time = time.Value + TimeSpan.FromSeconds(Math.Sin(DateTime.Now.TimeOfDay.TotalSeconds));
-            }*/
-
             if (time.HasValue)
             {
                 string minusString = "";
@@ -34,12 +28,6 @@ namespace LiveSplit.TimeFormatters
 
         public string Format(TimeSpan? time, TimeFormat format)
         {
-            //APRIL FOOLS
-            /*if (DateTime.Now.Date.Month == 4 && DateTime.Now.Date.Day == 1 && time.HasValue)
-            {
-                time = time.Value + TimeSpan.FromSeconds(Math.Sin(DateTime.Now.TimeOfDay.TotalSeconds));
-            }*/
-
             if (time.HasValue)
             {
                 string minusString = "";

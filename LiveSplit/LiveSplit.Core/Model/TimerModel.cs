@@ -40,7 +40,7 @@ namespace LiveSplit.Model
             {
                 CurrentState.CurrentPhase = TimerPhase.Running;
                 CurrentState.CurrentSplitIndex = 0;
-                CurrentState.AttemptStarted = DateTime.UtcNow;
+                CurrentState.AttemptStarted = TimeStamp.CurrentDateTime;
                 CurrentState.StartTime = TimeStamp.Now - CurrentState.Run.Offset;
                 CurrentState.PauseTime = CurrentState.Run.Offset;
                 CurrentState.LoadingTimes = TimeSpan.Zero;
@@ -61,7 +61,7 @@ namespace LiveSplit.Model
                 if (CurrentState.Run.Count == CurrentState.CurrentSplitIndex)
                 {
                     CurrentState.CurrentPhase = TimerPhase.Ended;
-                    CurrentState.AttemptEnded = DateTime.UtcNow;
+                    CurrentState.AttemptEnded = TimeStamp.CurrentDateTime;
                 }
                 CurrentState.Run.HasChanged = true;
 
@@ -111,7 +111,7 @@ namespace LiveSplit.Model
             if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
             {
                 if (CurrentState.CurrentPhase != TimerPhase.Ended)
-                    CurrentState.AttemptEnded = DateTime.UtcNow;
+                    CurrentState.AttemptEnded = TimeStamp.CurrentDateTime;
                 CurrentState.IsGameTimePaused = false;
                 CurrentState.StartTime = TimeStamp.Now;
                 CurrentState.LoadingTimes = TimeSpan.Zero;

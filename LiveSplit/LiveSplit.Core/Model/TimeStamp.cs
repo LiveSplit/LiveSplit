@@ -19,6 +19,8 @@ namespace LiveSplit.Model
 
         private static TimeSpan firstQPCTime;
         private static DateTime firstNTPTime;
+        private static TimeSpan lastQPCTime;
+        private static DateTime lastNTPTime;
 
         private readonly TimeSpan value;
 
@@ -32,8 +34,8 @@ namespace LiveSplit.Model
             PersistentDrift = 1.0;
             NewDrift = 1.0;
 
-            firstQPCTime = TimeSpan.Zero;
-            firstNTPTime = DateTime.MinValue;
+            firstQPCTime = lastQPCTime = TimeSpan.Zero;
+            firstNTPTime = lastNTPTime = DateTime.MinValue;
 
             qpc = new Stopwatch();
             qpc.Start();
@@ -46,6 +48,18 @@ namespace LiveSplit.Model
             get
             {
                 return new TimeStamp(qpc.Elapsed);
+            }
+        }
+
+        public static DateTime CurrentDateTime
+        {
+            get
+            {
+                if (lastQPCTime != TimeSpan.Zero)
+                {
+                    return lastNTPTime.Add(Now - new TimeStamp(lastQPCTime));
+                }
+                return DateTime.UtcNow;
             }
         }
 
@@ -71,12 +85,13 @@ namespace LiveSplit.Model
                 if (times.Count >= 5)
                 {
                     var averageDifference = times.Average();
-                    ntpTime = new DateTime(qpcTime.Ticks + (long)averageDifference);
+                    lastQPCTime = qpcTime;
+                    lastNTPTime = new DateTime(qpcTime.Ticks + (long)averageDifference);
 
                     if (firstQPCTime != TimeSpan.Zero)
                     {
-                        var qpcDelta = qpcTime - firstQPCTime;
-                        var ntpDelta = ntpTime - firstNTPTime;
+                        var qpcDelta = lastQPCTime - firstQPCTime;
+                        var ntpDelta = lastNTPTime - firstNTPTime;
 
                         var newDrift = qpcDelta.TotalMilliseconds / ntpDelta.TotalMilliseconds;
                         var weight = Math.Pow(0.95, ntpDelta.TotalHours);
@@ -86,8 +101,8 @@ namespace LiveSplit.Model
                     }
                     else
                     {
-                        firstQPCTime = qpcTime;
-                        firstNTPTime = ntpTime;
+                        firstQPCTime = lastQPCTime;
+                        firstNTPTime = lastNTPTime;
                         Wait(TimeSpan.FromHours(1));
                     }
                 }

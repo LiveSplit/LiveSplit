@@ -402,7 +402,7 @@ namespace LiveSplit.View
                         {
                             try
                             {
-                                var timeSpan = DateTime.UtcNow.ToUniversalTime() - startTime;
+                                var timeSpan = TimeStamp.CurrentDateTime - startTime;
                                 if (timeSpan < TimeSpan.Zero)
                                     timeSpan = TimeSpan.Zero;
                                 var time = new RegularTimeFormatter().Format(timeSpan);
