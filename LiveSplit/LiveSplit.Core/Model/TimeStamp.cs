@@ -86,7 +86,7 @@ namespace LiveSplit.Model
                 {
                     var averageDifference = times.Average();
                     lastQPCTime = qpcTime;
-                    lastNTPTime = new DateTime(qpcTime.Ticks + (long)averageDifference);
+                    lastNTPTime = new DateTime(qpcTime.Ticks + (long)averageDifference, DateTimeKind.Utc);
 
                     if (firstQPCTime != TimeSpan.Zero)
                     {
