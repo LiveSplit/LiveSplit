@@ -831,6 +831,7 @@ namespace LiveSplit.View
             var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
             {
+                //Remove both segment history elements if one of them has a null time and the other has has a non null time
                 Time firstHistory;
                 Time secondHistory;
                 var firstExists = firstSegment.SegmentHistory.TryGetValue(runIndex, out firstHistory);
@@ -850,6 +851,7 @@ namespace LiveSplit.View
             var comparisonKeys = new List<string>(firstSegment.Comparisons.Keys);
             foreach (var comparison in comparisonKeys)
             {
+                //Fix the comparison times based on the new positions of the two segments
                 var previousTime = segIndex > 0 ? SegmentList.ElementAt(segIndex - 1).Comparisons[comparison] : new Time(TimeSpan.Zero, TimeSpan.Zero);
                 var firstSegmentTime = firstSegment.Comparisons[comparison] - previousTime;
                 var secondSegmentTime = secondSegment.Comparisons[comparison] - firstSegment.Comparisons[comparison];
@@ -879,6 +881,7 @@ namespace LiveSplit.View
                 for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
                 {
                     curIndex = index + 1;
+                    //If a history element isn't there in the segment that's deleted, remove it from the next segment's history as well
                     Time segmentHistoryElement;
                     if (!Run[index].SegmentHistory.TryGetValue(runIndex, out segmentHistoryElement))
                     {
@@ -890,6 +893,7 @@ namespace LiveSplit.View
                     var curSegment = segmentHistoryElement[method];
                     while (curSegment != null && curIndex < Run.Count)
                     {
+                        //Add the removed segment's history times to the next non null times
                         Time segment;
                         if (Run[curIndex].SegmentHistory.TryGetValue(runIndex, out segment) && segment[method] != null)
                         {
@@ -903,17 +907,17 @@ namespace LiveSplit.View
 
                 curIndex = index + 1;
 
-                var curSegmentTime = Run[index].BestSegmentTime[method];
-                var nextSegmentTime = Run[curIndex].BestSegmentTime[method];
-                var minBestSegment = curSegmentTime + nextSegmentTime;
+                //Set the new Best Segment time to be the sum of the two Best Segments
+                var minBestSegment = Run[index].BestSegmentTime[method] + Run[curIndex].BestSegmentTime[method];
+                //Use any element in the history that has a lower time than this sum
                 foreach (var history in Run[curIndex].SegmentHistory)
                 {
                     if (history.Value[method] < minBestSegment)
                         minBestSegment = history.Value[method];
                 }
-                var time2 = Run[curIndex].BestSegmentTime;
-                time2[method] = minBestSegment;
-                Run[curIndex].BestSegmentTime = time2;
+                var newTime = Run[curIndex].BestSegmentTime;
+                newTime[method] = minBestSegment;
+                Run[curIndex].BestSegmentTime = newTime;
             }
         }
 
