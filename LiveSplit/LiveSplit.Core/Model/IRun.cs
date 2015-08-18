@@ -85,22 +85,23 @@ namespace LiveSplit.Model
 
         private static void FixSegmentHistory(IRun run, TimingMethod method)
         {
+            var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             foreach (var curSplit in run)
             {
-                var keysToRemove = new List<int>();
-                foreach (var historyElement in curSplit.SegmentHistory)
+                for (var runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
                 {
-                    var historyTime = historyElement.Value;
-                    if (curSplit.BestSegmentTime[method] != null && historyTime[method] < curSplit.BestSegmentTime[method])
-                        historyTime[method] = curSplit.BestSegmentTime[method];
-                    
-                    if (curSplit.BestSegmentTime[method] == null && historyTime[method] != null)
-                        keysToRemove.Add(historyElement.Key);
-                    else
-                        curSplit.SegmentHistory[historyElement.Key] = historyTime;
+                    Time historyTime;
+                    if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
+                    {
+                        if (curSplit.BestSegmentTime[method] != null && historyTime[method] < curSplit.BestSegmentTime[method])
+                            historyTime[method] = curSplit.BestSegmentTime[method];
+
+                        if (curSplit.BestSegmentTime[method] == null && historyTime[method] != null)
+                            curSplit.SegmentHistory.Remove(runIndex);
+                        else
+                            curSplit.SegmentHistory[runIndex] = historyTime;
+                    }
                 }
-                foreach (var key in keysToRemove)
-                    curSplit.SegmentHistory.Remove(key);
             }
         }
 

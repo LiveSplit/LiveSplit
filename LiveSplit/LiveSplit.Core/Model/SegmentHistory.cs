@@ -29,7 +29,9 @@ namespace LiveSplit.Model
 
         public int GetMinIndex()
         {
-            return this.Min(x => x.Key);
+            if (this.Count > 0)
+                return Math.Min(this.Min(x => x.Key), 1);
+            return 1;
         }
     }
 }

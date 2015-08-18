@@ -716,10 +716,8 @@ namespace LiveSplit.View
 
             var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
-                newSegment.SegmentHistory.Add(new IndexedTime(default(Time), x));
+                newSegment.SegmentHistory.Add(x, default(Time));
             SegmentList.Insert(runGrid.CurrentRow.Index, newSegment);
-            //TODO: Auto Delete?
-            //SegmentList[runGrid.CurrentRow.Index].BestSegmentTime = null;
             runGrid.ClearSelection();
             runGrid.CurrentCell = runGrid.Rows[runGrid.CurrentRow.Index - 1].Cells[runGrid.CurrentCell.ColumnIndex];
             runGrid.CurrentCell.Selected = true;
@@ -736,7 +734,7 @@ namespace LiveSplit.View
                 Run.ImportBestSegment(runGrid.CurrentRow.Index + 1);
             var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
-                newSegment.SegmentHistory.Add(new IndexedTime(default(Time), x));
+                newSegment.SegmentHistory.Add(x, default(Time));
             SegmentList.Insert(runGrid.CurrentRow.Index + 1, newSegment);
             runGrid.ClearSelection();
             runGrid.CurrentCell = runGrid.Rows[runGrid.CurrentRow.Index + 1].Cells[runGrid.CurrentCell.ColumnIndex];
@@ -830,18 +828,22 @@ namespace LiveSplit.View
             var firstSegment = SegmentList.ElementAt(segIndex);
             var secondSegment = SegmentList.ElementAt(segIndex + 1);
 
-            firstSegment.SegmentHistory.Clear();
-            secondSegment.SegmentHistory.Clear();
-
             var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
             {
-                var firstHistory = firstSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                var secondHistory = secondSegment.SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                if ((firstHistory != null && firstHistory.Time.RealTime == null) || (secondHistory != null && secondHistory.Time.RealTime == null))
+                Time firstHistory;
+                Time secondHistory;
+                var firstExists = firstSegment.SegmentHistory.TryGetValue(runIndex, out firstHistory);
+                var secondExists = secondSegment.SegmentHistory.TryGetValue(runIndex, out secondHistory);
+
+                if ((firstExists && firstHistory.RealTime == null
+                    || secondExists && secondHistory.RealTime == null)
+                    && !(firstHistory.RealTime == null && secondHistory.RealTime == null))
                 {
-                    firstSegment.SegmentHistory.Remove(firstHistory);
-                    secondSegment.SegmentHistory.Remove(secondHistory);
+                    if (firstExists)
+                        firstSegment.SegmentHistory.Remove(runIndex);
+                    if (secondExists)
+                        secondSegment.SegmentHistory.Remove(runIndex);
                 }
             }
 
@@ -877,25 +879,22 @@ namespace LiveSplit.View
                 for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
                 {
                     curIndex = index + 1;
-                    var segmentHistoryElement = Run[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                    if (segmentHistoryElement == null)
+                    Time segmentHistoryElement;
+                    if (!Run[index].SegmentHistory.TryGetValue(runIndex, out segmentHistoryElement))
                     {
-                        var nextSegment = Run[curIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                        if (nextSegment != null)
-                            Run[curIndex].SegmentHistory.Remove(nextSegment);
+                        if (Run[curIndex].SegmentHistory.ContainsKey(runIndex))
+                            Run[curIndex].SegmentHistory.Remove(runIndex);
                         continue;
                     }
 
-                    var curSegment = segmentHistoryElement.Time[method];
+                    var curSegment = segmentHistoryElement[method];
                     while (curSegment != null && curIndex < Run.Count)
                     {
-                        var segment = Run[curIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                        if (segment != null && segment.Time[method] != null)
+                        Time segment;
+                        if (Run[curIndex].SegmentHistory.TryGetValue(runIndex, out segment) && segment[method] != null)
                         {
-                            var time = segment.Time;
-                            time[method] = curSegment + segment.Time[method];
-                            segment.Time = time;
-                            break;
+                            segment[method] = curSegment + segment[method];
+                            Run[curIndex].SegmentHistory[runIndex] = segment;
                         }
                         curIndex++;
                     }
@@ -908,8 +907,8 @@ namespace LiveSplit.View
                 var minBestSegment = curSegmentTime + nextSegmentTime;
                 foreach (var history in Run[curIndex].SegmentHistory)
                 {
-                    if (history.Time[method] < minBestSegment)
-                        minBestSegment = history.Time[method];
+                    if (history.Value[method] < minBestSegment)
+                        minBestSegment = history.Value[method];
                 }
                 var time2 = Run[curIndex].BestSegmentTime;
                 time2[method] = minBestSegment;
