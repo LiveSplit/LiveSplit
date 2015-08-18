@@ -895,6 +895,7 @@ namespace LiveSplit.View
                         {
                             segment[method] = curSegment + segment[method];
                             Run[curIndex].SegmentHistory[runIndex] = segment;
+                            break;
                         }
                         curIndex++;
                     }
