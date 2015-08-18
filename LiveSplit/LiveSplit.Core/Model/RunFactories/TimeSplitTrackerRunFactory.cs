@@ -150,7 +150,7 @@ namespace LiveSplit.Model.RunFactories
                                 lastSplit = currentSplit;
                             }
 
-                            segment.SegmentHistory.Add(new IndexedTime(segmentTime, attemptId));
+                            segment.SegmentHistory.Add(attemptId, segmentTime);
                             if (segmentTime.RealTime < segment.BestSegmentTime.RealTime)
                                 segment.BestSegmentTime = segmentTime;
                             i++;

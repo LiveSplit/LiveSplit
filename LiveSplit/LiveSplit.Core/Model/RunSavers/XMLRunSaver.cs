@@ -59,7 +59,8 @@ namespace LiveSplit.Model.RunSavers
                 var history = document.CreateElement("SegmentHistory");
                 foreach (var historySegment in segment.SegmentHistory)
                 {
-                    history.AppendChild(historySegment.ToXml(document));
+                    var indexedTime = new IndexedTime(historySegment.Value, historySegment.Key);
+                    history.AppendChild(indexedTime.ToXml(document));
                 }
                 splitElement.AppendChild(history);
             }

@@ -47,12 +47,12 @@ namespace LiveSplit.Model.Comparisons
                 foreach (var segment in Run)
                 {
                     var currentIndex = Run.IndexOf(segment);
-                    IIndexedTime history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
-                    if (history != null)
+                    Time history;
+                    if (segment.SegmentHistory.TryGetValue(ind, out history))
                     {
-                        if (history.Time[method] != null)
+                        if (history[method] != null)
                         {
-                            allHistory[Run.IndexOf(segment)].Add(new IndexedTimeSpan(history.Time[method].Value, historyStartingIndex));
+                            allHistory[Run.IndexOf(segment)].Add(new IndexedTimeSpan(history[method].Value, historyStartingIndex));
                             historyStartingIndex = currentIndex;
                         }
                     }

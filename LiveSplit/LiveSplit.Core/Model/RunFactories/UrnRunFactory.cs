@@ -62,10 +62,10 @@ namespace LiveSplit.Model.RunFactories
                     //Insert a new run that skips to the current split
                     foreach (var alreadyInsertedSegment in run)
                     {
-                        alreadyInsertedSegment.SegmentHistory.Add(new IndexedTime(default(Time), attemptHistoryIndex));
+                        alreadyInsertedSegment.SegmentHistory.Add(attemptHistoryIndex, default(Time));
                     }
 
-                    parsedSegment.SegmentHistory.Add(new IndexedTime(bestSplitTime, attemptHistoryIndex));
+                    parsedSegment.SegmentHistory.Add(attemptHistoryIndex, bestSplitTime);
 
                     attemptHistoryIndex++;
                 }

@@ -21,12 +21,14 @@ namespace LiveSplit.Model
                 PopulatePrediction(predictions, currentTime + run[segmentIndex].BestSegmentTime[method], segmentIndex + 1);
                 if (!simpleCalculation)
                 {
-                    foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Time[method].HasValue))
+                    foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Value[method].HasValue))
                     {
-                        var segmentTime = segmentIndex > 0 ? run[segmentIndex - 1].SegmentHistory.FirstOrDefault(x => x.Index == nullSegment.Index) : null;
-                        if (segmentTime == null || segmentTime.Time[method] != null)
+                        Time segmentTime;
+                        if (segmentIndex == 0 
+                            || !run[segmentIndex - 1].SegmentHistory.TryGetValue(nullSegment.Key, out segmentTime)
+                            || segmentTime[method] != null)
                         {
-                            var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
+                            var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
                             PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                         }
                     }
@@ -70,10 +72,10 @@ namespace LiveSplit.Model
             foreach (var segment in run)
             {
                 currentTime = predictions[segmentIndex];
-                foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Time[method].HasValue))
+                foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Value[method].HasValue))
                 {
-                    var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Index, method);
-                    CheckPrediction(run, predictions, prediction.Time[method], segmentIndex - 1, prediction.Index - 1, nullSegment.Index, method, callback);
+                    var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
+                    CheckPrediction(run, predictions, prediction.Time[method], segmentIndex - 1, prediction.Index - 1, nullSegment.Key, method, callback);
                 } 
                 segmentIndex++;
             }
@@ -83,19 +85,22 @@ namespace LiveSplit.Model
         {
             if (predictedTime.HasValue && (!predictions[endingIndex + 1].HasValue || predictedTime < predictions[endingIndex + 1].Value))
             {
-                var segmentHistoryElement = run[endingIndex].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                var parameters = new CleanUpCallbackParameters
+                Time segmentHistoryElement;
+                if (run[endingIndex].SegmentHistory.TryGetValue(runIndex, out segmentHistoryElement))
                 {
-                    startingSegment = startingIndex >= 0 ? run[startingIndex] : null,
-                    endingSegment = endingIndex >= 0 ? run[endingIndex] : null,
-                    timeBetween = segmentHistoryElement.Time[method].Value,
-                    combinedSumOfBest = predictions[endingIndex + 1].HasValue ? (TimeSpan?)(predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value) : null,
-                    attempt = run.AttemptHistory.FirstOrDefault(x => x.Index == runIndex),
-                    method = method
-                };
-                if (callback == null || callback(parameters))
-                {
-                    run[endingIndex].SegmentHistory.Remove(segmentHistoryElement);
+                    var parameters = new CleanUpCallbackParameters
+                    {
+                        startingSegment = startingIndex >= 0 ? run[startingIndex] : null,
+                        endingSegment = endingIndex >= 0 ? run[endingIndex] : null,
+                        timeBetween = segmentHistoryElement[method].Value,
+                        combinedSumOfBest = predictions[endingIndex + 1].HasValue ? (TimeSpan?)(predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value) : null,
+                        attempt = run.AttemptHistory.FirstOrDefault(x => x.Index == runIndex),
+                        method = method
+                    };
+                    if (callback == null || callback(parameters))
+                    {
+                        run[endingIndex].SegmentHistory.Remove(runIndex);
+                    }
                 }
             }
         }

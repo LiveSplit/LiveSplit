@@ -44,15 +44,14 @@ namespace LiveSplit.Model.Comparisons
                 var ignoreNextHistory = false;
                 foreach (var segment in Run)
                 {
-                    IIndexedTime history;
-                    history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
-                    if (history != null)
+                    Time history;
+                    if (segment.SegmentHistory.TryGetValue(ind, out history))
                     {
-                        if (history.Time[method] == null)
+                        if (history[method] == null)
                             ignoreNextHistory = true;
                         else if (!ignoreNextHistory)
                         {
-                            allHistory[Run.IndexOf(segment)].Add(history.Time[method].Value);
+                            allHistory[Run.IndexOf(segment)].Add(history[method].Value);
                         }
                         else ignoreNextHistory = false;
                     }

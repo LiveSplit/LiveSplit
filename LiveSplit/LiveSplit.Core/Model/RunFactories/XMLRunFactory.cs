@@ -124,7 +124,14 @@ namespace LiveSplit.Model.RunFactories
                 var history = segmentElement["SegmentHistory"];
                 foreach (var historyNode in history.GetElementsByTagName("Time"))
                 {
-                    split.SegmentHistory.Add(version >= new Version(1, 4, 1) ? IndexedTimeHelper.ParseXml(historyNode as XmlElement) : IndexedTimeHelper.ParseXmlOld(historyNode as XmlElement));
+                    var node = historyNode as XmlElement;
+                    IIndexedTime indexedTime;
+                    if (version >= new Version(1, 4, 1))
+                        indexedTime = IndexedTimeHelper.ParseXml(node);
+                    else
+                        indexedTime = IndexedTimeHelper.ParseXmlOld(node);
+
+                    split.SegmentHistory.Add(indexedTime.Index, indexedTime.Time);
                 }
 
                 run.Add(split);

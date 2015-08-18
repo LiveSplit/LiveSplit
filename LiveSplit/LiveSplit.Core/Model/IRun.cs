@@ -38,7 +38,7 @@ namespace LiveSplit.Model
             return run.AutoSplitter != null && run.AutoSplitter.IsActivated;
         }
 
-        public static void AddSegment(this IRun run, string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<IIndexedTime> segmentHistory = null)
+        public static void AddSegment(this IRun run, string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), SegmentHistory segmentHistory = null)
         {
             var segment = new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime);
             if (segmentHistory != null)
@@ -85,23 +85,25 @@ namespace LiveSplit.Model
 
         private static void FixSegmentHistory(IRun run, TimingMethod method)
         {
+            var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             foreach (var curSplit in run)
             {
-                var x = 0;
-                while (x < curSplit.SegmentHistory.Count)
+                for (var runIndex = curSplit.SegmentHistory.GetMinIndex(); runIndex <= maxIndex; runIndex++)
                 {
-                    var history = new Time(curSplit.SegmentHistory[x].Time);
-                    if (curSplit.BestSegmentTime[method] != null && history[method] < curSplit.BestSegmentTime[method])
-                        history[method] = curSplit.BestSegmentTime[method];
-                    if (curSplit.BestSegmentTime[method] == null && history[method] != null)
-                        curSplit.SegmentHistory.RemoveAt(x);
-                    else
+                    Time historyTime;
+                    if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
                     {
-                        curSplit.SegmentHistory[x].Time = history;
-                        x++;
+                        //Make sure no times in the history are lower than the Best Segment
+                        if (curSplit.BestSegmentTime[method] != null && historyTime[method] < curSplit.BestSegmentTime[method])
+                            historyTime[method] = curSplit.BestSegmentTime[method];
+
+                        //If the Best Segment is gone, clear the history
+                        if (curSplit.BestSegmentTime[method] == null && historyTime[method] != null)
+                            curSplit.SegmentHistory.Remove(runIndex);
+                        else
+                            curSplit.SegmentHistory[runIndex] = historyTime;
                     }
                 }
-
             }
         }
 
@@ -114,16 +116,19 @@ namespace LiveSplit.Model
                 {
                     if (curSplit.Comparisons[comparison][method] != null)
                     {
+                        //Prevent comparison times from decreasing from one split to the next
                         if (curSplit.Comparisons[comparison][method] < previousTime)
                         {
-                            var newComparison = new Time(curSplit.Comparisons[comparison]);
+                            var newComparison = curSplit.Comparisons[comparison];
                             newComparison[method] = previousTime;
                             curSplit.Comparisons[comparison] = newComparison;
                         }
+
+                        //Fix Best Segment time if the PB segment is faster
                         var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
                         if (comparison == Run.PersonalBestComparisonName && (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment))
                         {
-                            var newTime = new Time(curSplit.BestSegmentTime);
+                            var newTime = curSplit.BestSegmentTime;
                             newTime[method] = currentSegment;
                             curSplit.BestSegmentTime = newTime;
                         }
@@ -141,13 +146,14 @@ namespace LiveSplit.Model
             {
                 for (var index = 0; index < run.Count; index++)
                 {
-                    var segmentHistoryElement = run[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                    if (segmentHistoryElement == null)
+                    Time segmentHistoryElement;
+                    if (!run[index].SegmentHistory.TryGetValue(runIndex, out segmentHistoryElement))
                     {
+                        //Remove null times in history that aren't followed by a non-null time
                         RemoveItemsFromCache(run, index, cache);
                     }
-                    else if (segmentHistoryElement.Time.RealTime == null && segmentHistoryElement.Time.GameTime == null)
-                        cache.Add(segmentHistoryElement);
+                    else if (segmentHistoryElement.RealTime == null && segmentHistoryElement.GameTime == null)
+                        cache.Add(new IndexedTime(segmentHistoryElement, runIndex));
                     else
                         cache.Clear();
                 }
@@ -160,15 +166,16 @@ namespace LiveSplit.Model
         {
             for (var index = 0; index < run.Count; index++)
             {
-                var history = run[index].SegmentHistory.Select(x => x.Time[method]).Where(x => x != null);
-                for (var runIndex = GetMinSegmentHistoryIndex(run); runIndex <= 0; runIndex++)
+                var history = run[index].SegmentHistory.Select(x => x.Value[method]).Where(x => x != null).ToList();
+                for (var runIndex = run[index].SegmentHistory.GetMinIndex(); runIndex <= 0; runIndex++)
                 {
-                    var element = run[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                    if (element != null && history.Where(x => x.Equals(element.Time[method])).Count() > 1)
+                    //Remove elements in the imported Segment History if they're duplicates of the real Segment History
+                    Time element;
+                    if (run[index].SegmentHistory.TryGetValue(runIndex, out element) && history.Count(x => x.Equals(element[method])) > 1)
                     {
-                        var newTime = new Time(element.Time);
+                        var newTime = element;
                         newTime[method] = null;
-                        element.Time = newTime;
+                        run[index].SegmentHistory[runIndex] = newTime;
                     }
                 }
             }
@@ -180,7 +187,7 @@ namespace LiveSplit.Model
             var ind = index - cache.Count;
             foreach (var item in cache)
             {
-                run[ind].SegmentHistory.Remove(item);
+                run[ind].SegmentHistory.Remove(item.Index);
                 ind++;
             }
             cache.Clear();
@@ -191,11 +198,7 @@ namespace LiveSplit.Model
             var minIndex = 1;
             foreach (var segment in run)
             {
-                foreach (var history in segment.SegmentHistory)
-                {
-                    if (history.Index < minIndex)
-                        minIndex = history.Index;
-                }
+                minIndex = segment.SegmentHistory.GetMinIndex();
             }
             return minIndex;
         }
@@ -209,12 +212,11 @@ namespace LiveSplit.Model
 
             foreach (var segment in run)
             {
+                //Import into the history any segments in the PB that include skipped splits
                 if (segment.PersonalBestSplitTime.RealTime == null || segment.PersonalBestSplitTime.GameTime == null || nullValue)
                 {
-                    segment.SegmentHistory.Add(new IndexedTime(
-                        new Time(segment.PersonalBestSplitTime.RealTime - prevTimeRTA,
-                        segment.PersonalBestSplitTime.GameTime - prevTimeGameTime)
-                        , index));
+                    segment.SegmentHistory.Add(index, new Time(segment.PersonalBestSplitTime.RealTime - prevTimeRTA,
+                        segment.PersonalBestSplitTime.GameTime - prevTimeGameTime));
                     nullValue = false;
                 }
 
@@ -236,7 +238,7 @@ namespace LiveSplit.Model
             var segment = run[segmentIndex];
             if (segment.BestSegmentTime.RealTime != null || segment.BestSegmentTime.GameTime != null)
             {
-                segment.SegmentHistory.Add(new IndexedTime(segment.BestSegmentTime, GetMinSegmentHistoryIndex(run) - 1));
+                segment.SegmentHistory.Add(GetMinSegmentHistoryIndex(run) - 1, segment.BestSegmentTime);
             }
         }
 
