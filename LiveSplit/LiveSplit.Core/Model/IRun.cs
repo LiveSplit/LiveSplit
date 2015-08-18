@@ -88,7 +88,7 @@ namespace LiveSplit.Model
             var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             foreach (var curSplit in run)
             {
-                for (var runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
+                for (var runIndex = curSplit.SegmentHistory.GetMinIndex(); runIndex <= maxIndex; runIndex++)
                 {
                     Time historyTime;
                     if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
@@ -161,10 +161,10 @@ namespace LiveSplit.Model
             for (var index = 0; index < run.Count; index++)
             {
                 var history = run[index].SegmentHistory.Select(x => x.Value[method]).Where(x => x != null).ToList();
-                for (var runIndex = GetMinSegmentHistoryIndex(run); runIndex <= 0; runIndex++)
+                for (var runIndex = run[index].SegmentHistory.GetMinIndex(); runIndex <= 0; runIndex++)
                 {
                     Time element;
-                    if (run[index].SegmentHistory.TryGetValue(runIndex, out element) && history.Any(x => x.Equals(element[method])))
+                    if (run[index].SegmentHistory.TryGetValue(runIndex, out element) && history.Count(x => x.Equals(element[method])) > 1)
                     {
                         var newTime = element;
                         newTime[method] = null;

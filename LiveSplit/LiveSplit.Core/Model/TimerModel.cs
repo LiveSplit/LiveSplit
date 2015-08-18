@@ -249,8 +249,7 @@ namespace LiveSplit.Model
                 var newTime = new Time();
                 newTime.RealTime = split.SplitTime.RealTime - splitTimeRTA;
                 newTime.GameTime = split.SplitTime.GameTime - splitTimeGameTime;
-                var index = CurrentState.Run.AttemptHistory.Last().Index;
-                split.SegmentHistory.Add(index, newTime);
+                split.SegmentHistory.Add(CurrentState.Run.AttemptHistory.Last().Index, newTime);
                 if (split.SplitTime.RealTime.HasValue)
                     splitTimeRTA = split.SplitTime.RealTime;
                 if (split.SplitTime.GameTime.HasValue)
