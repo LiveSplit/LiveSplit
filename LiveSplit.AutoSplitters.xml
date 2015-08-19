@@ -846,4 +846,15 @@
     <Description>Load removal is available. (By Sphere)</Description>
     <Website>https://github.com/kugelrund/LiveSplit.StEf2/blob/master/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Shadow Warrior 2013</Game>
+      <Game>Shadow Warrior (2013)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/ShadowWarrior2013.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available. (By glasnonck)</Description>
+  </AutoSplitter>
 </AutoSplitters>
