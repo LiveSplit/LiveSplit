@@ -10,6 +10,7 @@ using SpeedrunComSharp;
 using LiveSplit.Web.Share;
 using System.Diagnostics;
 using System.Text;
+using LiveSplit.Utils;
 
 namespace LiveSplit.View
 {
@@ -256,7 +257,7 @@ namespace LiveSplit.View
 
             if (Metadata.Category != null)
             {
-                tbxRules.AppendText(Metadata.Category.Rules ?? string.Empty);
+                tbxRules.AppendBBCode(Metadata.Category.Rules ?? string.Empty);
             }
         }
 
