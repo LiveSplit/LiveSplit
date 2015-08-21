@@ -107,7 +107,7 @@ namespace LiveSplit.View
                             var gameNode = new TreeNode(game.Name);
                             gameNode.Tag = game.WebLink;
                             var categories = game.FullGameCategories;
-                            var timeFormatter = new RegularTimeFormatter(game.Ruleset.ShowMilliseconds ? TimeAccuracy.Hundredths : TimeAccuracy.Seconds);
+                            var timeFormatter = new AutomaticPrecisionTimeFormatter();
 
                             foreach (var category in categories)
                             {
@@ -152,7 +152,7 @@ namespace LiveSplit.View
                                 var gameName = recordsForGame.Key;
                                 var gameNode = new TreeNode(gameName);
                                 var game = recordsForGame.First().Game;
-                                var timeFormatter = new RegularTimeFormatter(game.Ruleset.ShowMilliseconds ? TimeAccuracy.Hundredths : TimeAccuracy.Seconds);
+                                var timeFormatter = new AutomaticPrecisionTimeFormatter();
                                 gameNode.Tag = game.WebLink;
 
                                 foreach (var record in recordsForGame)
