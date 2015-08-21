@@ -123,13 +123,28 @@ namespace LiveSplit.View
                 cmbRegion.DataBindings.Add("SelectedItem", Metadata, "RegionName", false, DataSourceUpdateMode.OnPropertyChanged);
                 cmbPlatform.DataBindings.Add("SelectedItem", Metadata, "PlatformName", false, DataSourceUpdateMode.OnPropertyChanged);
 
+                if (Metadata.Game.Ruleset.DefaultTimingMethod != SpeedrunComSharp.TimingMethod.RealTime)
+                {
+                    var timingMethodText = Metadata.Game.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads
+                        ? "Runs of this game are timed without the loading times."
+                        : "Runs of this game are timed with the Game Time.";
+
+                    tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Bold);
+                    tbxRules.AppendText(timingMethodText + Environment.NewLine);
+                    tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Regular);
+                }
+
                 if (Metadata.Category != null)
                 {
                     if (Metadata.Game.Ruleset.RequiresVideo)
                     {
                         tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Bold);
-                        tbxRules.AppendText("Runs of this game require video proof." + Environment.NewLine + Environment.NewLine);
+                        tbxRules.AppendText("Runs of this game require video proof." + Environment.NewLine);
                         tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Regular);
+                    }
+                    if (tbxRules.Text.Length > 0)
+                    {
+                        tbxRules.AppendText(Environment.NewLine);
                     }
                     tbxRules.AppendText(Metadata.Category.Rules ?? string.Empty);
                 }
