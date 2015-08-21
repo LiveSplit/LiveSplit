@@ -43,6 +43,7 @@
             this.RealTime = new System.Windows.Forms.TabPage();
             this.GameTime = new System.Windows.Forms.TabPage();
             this.Metadata = new System.Windows.Forms.TabPage();
+            this.metadataControl = new LiveSplit.View.MetadataControl();
             this.tbxAttempts = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
@@ -64,6 +65,7 @@
             this.RemoveIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.setIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadBoxartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downloadIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFromURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportComparisonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -74,7 +76,6 @@
             this.clearHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.metadataControl = new LiveSplit.View.MetadataControl();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
@@ -302,6 +303,16 @@
             this.Metadata.Text = "Additional Info";
             this.Metadata.UseVisualStyleBackColor = true;
             // 
+            // metadataControl
+            // 
+            this.metadataControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metadataControl.Location = new System.Drawing.Point(0, 0);
+            this.metadataControl.Metadata = null;
+            this.metadataControl.Name = "metadataControl";
+            this.metadataControl.Padding = new System.Windows.Forms.Padding(7);
+            this.metadataControl.Size = new System.Drawing.Size(522, 0);
+            this.metadataControl.TabIndex = 0;
+            // 
             // tbxAttempts
             // 
             this.tbxAttempts.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -526,10 +537,11 @@
             this.RemoveIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.setIconToolStripMenuItem,
             this.downloadBoxartToolStripMenuItem,
+            this.downloadIconToolStripMenuItem,
             this.openFromURLMenuItem,
             this.removeIconToolStripMenuItem});
             this.RemoveIconMenu.Name = "RemoveIconMenu";
-            this.RemoveIconMenu.Size = new System.Drawing.Size(170, 92);
+            this.RemoveIconMenu.Size = new System.Drawing.Size(170, 136);
             // 
             // setIconToolStripMenuItem
             // 
@@ -544,6 +556,13 @@
             this.downloadBoxartToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.downloadBoxartToolStripMenuItem.Text = "Download Box Art";
             this.downloadBoxartToolStripMenuItem.Click += new System.EventHandler(this.downloadBoxartToolStripMenuItem_Click);
+            // 
+            // downloadIconToolStripMenuItem
+            // 
+            this.downloadIconToolStripMenuItem.Name = "downloadIconToolStripMenuItem";
+            this.downloadIconToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.downloadIconToolStripMenuItem.Text = "Download Icon";
+            this.downloadIconToolStripMenuItem.Click += new System.EventHandler(this.downloadIconToolStripMenuItem_Click);
             // 
             // openFromURLMenuItem
             // 
@@ -618,16 +637,6 @@
             this.cleanSumOfBestToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.cleanSumOfBestToolStripMenuItem.Text = "Clean Sum of Best";
             this.cleanSumOfBestToolStripMenuItem.Click += new System.EventHandler(this.cleanSumOfBestToolStripMenuItem_Click);
-            // 
-            // metadataControl
-            // 
-            this.metadataControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metadataControl.Location = new System.Drawing.Point(0, 0);
-            this.metadataControl.Metadata = null;
-            this.metadataControl.Name = "metadataControl";
-            this.metadataControl.Padding = new System.Windows.Forms.Padding(7);
-            this.metadataControl.Size = new System.Drawing.Size(522, 0);
-            this.metadataControl.TabIndex = 0;
             // 
             // iRunBindingSource
             // 
@@ -715,5 +724,6 @@
         private MetadataControl metadataControl;
         private System.Windows.Forms.Button btnWebsite;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ToolStripMenuItem downloadIconToolStripMenuItem;
     }
 }

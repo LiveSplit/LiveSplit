@@ -976,6 +976,23 @@ namespace LiveSplit.View
             RemoveSelected();
         }
 
+        private void downloadIconToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var game = Run.Metadata.Game;
+                var cover = game.Assets.GetIconImage();
+                SetGameIcon(cover);
+                RaiseRunEdited();
+                return;
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                MessageBox.Show("Could not download the icon of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void downloadBoxartToolStripMenuItem_Click(object sender, EventArgs e)
         {
             try

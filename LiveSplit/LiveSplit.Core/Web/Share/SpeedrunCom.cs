@@ -82,6 +82,17 @@ namespace LiveSplit.Web.Share
             }
         }
 
+        public static Image GetIconImage(this Assets assets)
+        {
+            var request = WebRequest.Create(assets.Icon.Uri);
+
+            using (var response = request.GetResponse())
+            using (var stream = response.GetResponseStream())
+            {
+                return Image.FromStream(stream);
+            }
+        }
+
         public static void PatchRun(this IRun run, SpeedrunComSharp.Run srdcRun)
         {
             run.GameName = srdcRun.Game.Name;
