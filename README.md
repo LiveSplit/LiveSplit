@@ -51,8 +51,6 @@ You can browse the [Issues](https://waffle.io/LiveSplit/LiveSplit) to find good 
 ## Compiling
 
 LiveSplit is written in C# 5 with Visual Studio and uses .NET Framework 4.0. To compile LiveSplit you can get any version of Visual Studio that supports .NET Framework 4.0, these include:
- - Visual C# 2010 Express
- - Visual Studio 2010
  - Visual Studio 2013 Express for Windows Desktop
  - Visual Studio 2013 Community Edition
  - Visual Studio 2013
