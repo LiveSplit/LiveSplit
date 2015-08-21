@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using SpeedrunComSharp;
 using LiveSplit.Web.Share;
 using System.Diagnostics;
+using System.Text;
 
 namespace LiveSplit.View
 {
@@ -122,32 +123,7 @@ namespace LiveSplit.View
                 cmbPlatform.Items.AddRange(Metadata.Game.Platforms.Select(x => x.Name).ToArray());
                 cmbRegion.DataBindings.Add("SelectedItem", Metadata, "RegionName", false, DataSourceUpdateMode.OnPropertyChanged);
                 cmbPlatform.DataBindings.Add("SelectedItem", Metadata, "PlatformName", false, DataSourceUpdateMode.OnPropertyChanged);
-
-                if (Metadata.Game.Ruleset.DefaultTimingMethod != SpeedrunComSharp.TimingMethod.RealTime)
-                {
-                    var timingMethodText = Metadata.Game.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads
-                        ? "Runs of this game are timed without the loading times."
-                        : "Runs of this game are timed with the Game Time.";
-
-                    tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Bold);
-                    tbxRules.AppendText(timingMethodText + Environment.NewLine);
-                    tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Regular);
-                }
-
-                if (Metadata.Category != null)
-                {
-                    if (Metadata.Game.Ruleset.RequiresVideo)
-                    {
-                        tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Bold);
-                        tbxRules.AppendText("Runs of this game require video proof." + Environment.NewLine);
-                        tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Regular);
-                    }
-                    if (tbxRules.Text.Length > 0)
-                    {
-                        tbxRules.AppendText(Environment.NewLine);
-                    }
-                    tbxRules.AppendText(Metadata.Category.Rules ?? string.Empty);
-                }
+                refreshRules();
 
                 var controlIndex = 0;
 
@@ -229,6 +205,59 @@ namespace LiveSplit.View
             cmbPlatform.Enabled = cmbPlatform.Items.Count > 1;
 
             RefreshAssociateButton();
+        }
+
+        private void refreshRules()
+        {
+            var additionalRules = new List<string>();
+
+            if (Metadata.Game.Ruleset.DefaultTimingMethod != SpeedrunComSharp.TimingMethod.RealTime)
+            {
+                var timingText = Metadata.Game.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads
+                    ? "are timed without the loading times"
+                    : "are timed with the Game Time";
+
+                additionalRules.Add(timingText);
+            }
+
+            if (Metadata.Game.Ruleset.RequiresVideo)
+            {
+                additionalRules.Add("require video proof");
+            }
+
+            if (additionalRules.Any())
+            {
+                var firstRule = additionalRules.First();
+                var lastRule = additionalRules.Last();
+
+                var stringBuilder = new StringBuilder();
+                stringBuilder.Append("Runs of this game ");
+
+                foreach (var additionalRule in additionalRules)
+                {
+                    if (additionalRule != firstRule)
+                    {
+                        if (additionalRule != lastRule)
+                            stringBuilder.Append(", ");
+                        else
+                            stringBuilder.Append(" and ");
+                    }
+
+                    stringBuilder.Append(additionalRule);
+                }
+
+                stringBuilder.AppendLine(".");
+                stringBuilder.AppendLine();
+
+                tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Bold);
+                tbxRules.AppendText(stringBuilder.ToString());
+                tbxRules.SelectionFont = new Font(tbxRules.Font, FontStyle.Regular);
+            }
+
+            if (Metadata.Category != null)
+            {
+                tbxRules.AppendText(Metadata.Category.Rules ?? string.Empty);
+            }
         }
 
         public void RefreshAssociateButton()
