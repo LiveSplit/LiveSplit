@@ -22,6 +22,29 @@ namespace LiveSplit.Model.RunSavers
             SettingsHelper.CreateSetting(document, parent, "GameIcon", run.GameIcon);
             SettingsHelper.CreateSetting(document, parent, "GameName", run.GameName);
             SettingsHelper.CreateSetting(document, parent, "CategoryName", run.CategoryName);
+
+            var metadata = document.CreateElement("Metadata");
+
+            var runElement = document.CreateElement("Run");
+            runElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RunID ?? string.Empty));
+            metadata.AppendChild(runElement);
+
+            var platform = SettingsHelper.ToElement(document, "Platform", run.Metadata.PlatformName ?? string.Empty);
+            platform.Attributes.Append(SettingsHelper.ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
+            metadata.AppendChild(platform);
+
+            SettingsHelper.CreateSetting(document, metadata, "Region", run.Metadata.RegionName ?? string.Empty);
+
+            var variables = document.CreateElement("Variables");
+            foreach (var variable in run.Metadata.VariableValueNames)
+            {
+                var variableElement = SettingsHelper.ToElement(document, "Variable", variable.Value ?? string.Empty);
+                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "name", variable.Key ?? string.Empty));
+                variables.AppendChild(variableElement);
+            }
+            metadata.AppendChild(variables);
+            parent.AppendChild(metadata);
+
             SettingsHelper.CreateSetting(document, parent, "Offset", run.Offset);
             SettingsHelper.CreateSetting(document, parent, "AttemptCount", run.AttemptCount);
 
@@ -69,28 +92,6 @@ namespace LiveSplit.Model.RunSavers
             if (run.IsAutoSplitterActive())
                 autoSplitterSettings.InnerXml = run.AutoSplitter.Component.GetSettings(document).InnerXml;
             parent.AppendChild(autoSplitterSettings);
-
-            var metadata = document.CreateElement("Metadata");
-
-            var runElement = document.CreateElement("Run");
-            runElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RunID ?? string.Empty));
-            metadata.AppendChild(runElement);
-
-            var platform = SettingsHelper.ToElement(document, "Platform", run.Metadata.PlatformName ?? string.Empty);
-            platform.Attributes.Append(SettingsHelper.ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
-            metadata.AppendChild(platform);
-
-            SettingsHelper.CreateSetting(document, metadata, "Region", run.Metadata.RegionName ?? string.Empty);
-
-            var variables = document.CreateElement("Variables");
-            foreach (var variable in run.Metadata.VariableValueNames)
-            {
-                var variableElement = SettingsHelper.ToElement(document, "Variable", variable.Value ?? string.Empty);
-                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "name", variable.Key ?? string.Empty));
-                variables.AppendChild(variableElement);
-            }
-            metadata.AppendChild(variables);
-            parent.AppendChild(metadata);
 
             document.Save(stream);
         }
