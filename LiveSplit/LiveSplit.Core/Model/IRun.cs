@@ -306,7 +306,7 @@ namespace LiveSplit.Model
 
             if (showVariables)
             {
-                var variables = run.Metadata.VariableValueNames.Where(x => !string.IsNullOrEmpty(x.Value));
+                var variables = run.Metadata.VariableValueNames.Where(x => !string.IsNullOrEmpty(x.Value)).OrderBy(x => x.Key);
 
                 foreach (var variable in variables)
                 {

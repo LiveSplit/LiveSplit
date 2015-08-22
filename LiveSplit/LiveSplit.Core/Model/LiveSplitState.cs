@@ -20,11 +20,11 @@ namespace LiveSplit.Model
 
         public TimeStamp StartTime { get; set; }
         public TimeSpan PauseTime { get; set; }
-        public TimeSpan GameTimePauseTime { get; set; }
+        public TimeSpan? GameTimePauseTime { get; set; }
         public TimerPhase CurrentPhase { get; set; }
         public string CurrentComparison { get; set; }
         public TimingMethod CurrentTimingMethod { get; set; }
-        public TimeSpan LoadingTimes { get; set; }
+        public TimeSpan? LoadingTimes { get; set; }
         private bool isGameTimePaused;
         public bool IsGameTimePaused
         {
@@ -32,9 +32,9 @@ namespace LiveSplit.Model
             set
             {
                 if (!value && isGameTimePaused)
-                    LoadingTimes = CurrentTime.RealTime.Value - CurrentTime.GameTime.Value;
+                    LoadingTimes = CurrentTime.RealTime.Value - (CurrentTime.GameTime ?? TimeSpan.Zero);
                 else if (value && !isGameTimePaused)
-                    GameTimePauseTime = CurrentTime.GameTime.Value;
+                    GameTimePauseTime = (CurrentTime.GameTime ?? TimeSpan.Zero);
 
                 isGameTimePaused = value;
             }
