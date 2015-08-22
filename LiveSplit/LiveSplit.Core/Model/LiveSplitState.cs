@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.UI;
+using LiveSplit.Web.Share;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -209,10 +210,17 @@ namespace LiveSplit.Model
         {
             Task.Factory.StartNew(() =>
             {
-                if (Run.Metadata.Game.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTime)
-                    CurrentTimingMethod = TimingMethod.RealTime;
-                else
-                    CurrentTimingMethod = TimingMethod.GameTime;
+                try
+                {
+                    if (Run.Metadata.Game != null)
+                    {
+                        CurrentTimingMethod = SpeedrunCom.ToLiveSplitTimingMethod(Run.Metadata.Game.Ruleset.DefaultTimingMethod);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
             });
         }
 
