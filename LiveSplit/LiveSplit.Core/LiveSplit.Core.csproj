@@ -121,6 +121,7 @@
     <Compile Include="Model\Input\XInput.cs" />
     <Compile Include="Model\MetadataChangedEventArgs.cs" />
     <Compile Include="Model\RunFactories\FaceSplitRunFactory.cs" />
+    <Compile Include="ComponentUtil\ProcessExtensions.cs" />
     <Compile Include="Model\RunMetadata.cs" />
     <Compile Include="Model\RunFactories\CompositeRunFactory.cs" />
     <Compile Include="Model\RunFactories\Portal2LiveTimerRunFactory.cs" />
