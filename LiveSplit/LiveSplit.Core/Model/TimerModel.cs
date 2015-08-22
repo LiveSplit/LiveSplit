@@ -43,7 +43,7 @@ namespace LiveSplit.Model
                 CurrentState.AttemptStarted = TimeStamp.CurrentDateTime;
                 CurrentState.StartTime = TimeStamp.Now - CurrentState.Run.Offset;
                 CurrentState.PauseTime = CurrentState.Run.Offset;
-                CurrentState.LoadingTimes = null;
+                CurrentState.IsGameTimeInitialized = false;
                 CurrentState.Run.AttemptCount++;
                 CurrentState.Run.HasChanged = true;
 
@@ -54,7 +54,7 @@ namespace LiveSplit.Model
 
         public void InitializeGameTime()
         {
-            CurrentState.LoadingTimes = TimeSpan.Zero;
+            CurrentState.IsGameTimeInitialized = true;
         }
 
         public void Split()

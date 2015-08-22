@@ -24,7 +24,20 @@ namespace LiveSplit.Model
         public TimerPhase CurrentPhase { get; set; }
         public string CurrentComparison { get; set; }
         public TimingMethod CurrentTimingMethod { get; set; }
-        public TimeSpan? LoadingTimes { get; set; }
+
+        internal TimeSpan? loadingTimes;
+        public TimeSpan LoadingTimes { get { return loadingTimes ?? TimeSpan.Zero; } set { loadingTimes = value; } }
+        public bool IsGameTimeInitialized
+        {
+            get
+            {
+                return loadingTimes.HasValue;
+            }
+            set
+            {
+                loadingTimes = value ? (TimeSpan?)TimeSpan.Zero : null;
+            }
+        }
         private bool isGameTimePaused;
         public bool IsGameTimePaused
         {
@@ -39,10 +52,6 @@ namespace LiveSplit.Model
                 isGameTimePaused = value;
             }
         }
-
-        
-
-        //public ReaderWriterLockSlim DrawLock { get; set; }
 
         public event EventHandler OnSplit;
         public event EventHandler OnUndoSplit;
@@ -79,7 +88,7 @@ namespace LiveSplit.Model
                 else
                     curTime.GameTime = IsGameTimePaused 
                         ? GameTimePauseTime 
-                        : curTime.RealTime - LoadingTimes;
+                        : curTime.RealTime - (IsGameTimeInitialized ? (TimeSpan?)LoadingTimes : null);
 
                 return curTime;
             }
