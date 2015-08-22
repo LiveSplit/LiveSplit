@@ -1474,6 +1474,7 @@ namespace LiveSplit.View
             RegenerateComparisons();
             SwitchComparison(CurrentState.CurrentComparison);
             CreateAutoSplitter();
+            CurrentState.FixTimingMethodFromRuleset();
         }
 
         private void CreateAutoSplitter()

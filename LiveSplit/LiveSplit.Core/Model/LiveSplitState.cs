@@ -3,6 +3,7 @@ using LiveSplit.Options;
 using LiveSplit.UI;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Forms = System.Windows.Forms;
 
 namespace LiveSplit.Model
@@ -202,6 +203,17 @@ namespace LiveSplit.Model
                 if (IsGameTimePaused)
                     GameTimePauseTime = gameTime.Value;
             }
+        }
+
+        public void FixTimingMethodFromRuleset()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                if (Run.Metadata.Game.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTime)
+                    CurrentTimingMethod = TimingMethod.RealTime;
+                else
+                    CurrentTimingMethod = TimingMethod.GameTime;
+            });
         }
 
         public void CallRunManuallyModified()

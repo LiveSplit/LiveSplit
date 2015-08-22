@@ -71,6 +71,7 @@ namespace LiveSplit.View
                         metadataControl.RefreshInformation();
                     RefreshCategoryAutoCompleteList(); 
                     RaiseRunEdited();
+                    CurrentState.FixTimingMethodFromRuleset();
                     Run.Metadata.RunID = null;
                 }
             }
