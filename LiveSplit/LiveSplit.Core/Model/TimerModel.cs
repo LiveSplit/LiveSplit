@@ -52,7 +52,7 @@ namespace LiveSplit.Model
             }
         }
 
-        public void StartGameTime()
+        public void InitializeGameTime()
         {
             CurrentState.LoadingTimes = TimeSpan.Zero;
         }
