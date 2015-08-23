@@ -195,12 +195,7 @@ namespace LiveSplit.Model
 
         public static int GetMinSegmentHistoryIndex(this IRun run)
         {
-            var minIndex = 1;
-            foreach (var segment in run)
-            {
-                minIndex = segment.SegmentHistory.GetMinIndex();
-            }
-            return minIndex;
+            return run.Min(segment => segment.SegmentHistory.GetMinIndex());
         }
 
         public static void ImportSegmentHistory(this IRun run)
