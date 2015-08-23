@@ -215,7 +215,7 @@ namespace LiveSplit.Web.Share
                 //This is legal for mods, so we either have to check the mods or rely on the API responding
                 //This results in unnecessary submits to splits i/o though.
                 //This is also ignoring series moderators. That's such a rare case that it probably never happens.
-                if (metadata.Game.Ruleset.RequiresVideo && videoUri == null && !metadata.Game.ModeratorUsers.Contains(Client.Profile.GetProfile()))
+                if (metadata.Game.Ruleset.RequiresVideo && videoUri == null && !metadata.Game.ModeratorUsers.Contains(Client.Profile))
                 {
                     reasonForRejection = "Runs of this game require a video.";
                     return false;
