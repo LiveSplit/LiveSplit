@@ -257,6 +257,38 @@ namespace LiveSplit.ComponentUtil
             return true;
         }
 
+        public static T ReadValue<T>(this Process process, IntPtr addr, T default_ = default(T)) where T : struct
+        {
+            T val;
+            if (!process.ReadValue(addr, out val))
+                val = default_;
+            return val;
+        }
+
+        public static byte[] ReadBytes(this Process process, IntPtr addr, int count)
+        {
+            byte[] bytes;
+            if (!process.ReadBytes(addr, count, out bytes))
+                return new byte[0];
+            return bytes;
+        }
+
+        public static IntPtr ReadPointer(this Process process, IntPtr addr, IntPtr default_ = default(IntPtr))
+        {
+            IntPtr ptr;
+            if (!process.ReadPointer(addr, out ptr))
+                return default_;
+            return ptr;
+        }
+
+        public static string ReadString(this Process process, IntPtr addr, int len, string default_ = "")
+        {
+            string str;
+            if (!process.ReadString(addr, len, out str))
+                return default_;
+            return str;
+        }
+
         static object ResolveToType(byte[] bytes, Type type)
         {
             object val;
