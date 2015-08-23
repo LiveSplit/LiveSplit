@@ -204,6 +204,7 @@ namespace LiveSplit.UI.Components
             Cache["ValueText"] = InformationValue;
             Cache["NameColor"] = NameLabel.ForeColor.ToArgb();
             Cache["ValueColor"] = ValueLabel.ForeColor.ToArgb();
+            Cache["DisplayTwoRows"] = DisplayTwoRows;
 
             if (invalidator != null && Cache.HasChanged)
             {
