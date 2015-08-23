@@ -47,9 +47,9 @@ namespace LiveSplit.Model
             set
             {
                 if (!value && isGameTimePaused)
-                    LoadingTimes = CurrentTime.RealTime.Value - (CurrentTime.GameTime ?? TimeSpan.Zero);
+                    LoadingTimes = CurrentTime.RealTime.Value - (CurrentTime.GameTime ?? CurrentTime.RealTime.Value);
                 else if (value && !isGameTimePaused)
-                    GameTimePauseTime = (CurrentTime.GameTime ?? TimeSpan.Zero);
+                    GameTimePauseTime = (CurrentTime.GameTime ?? CurrentTime.RealTime);
 
                 isGameTimePaused = value;
             }

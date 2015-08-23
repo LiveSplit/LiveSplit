@@ -136,5 +136,10 @@ namespace LiveSplit.Model
         {
             InternalModel.SwitchComparisonNext();
         }
+
+        public void InitializeGameTime()
+        {
+            InternalModel.InitializeGameTime();
+        }
     }
 }
