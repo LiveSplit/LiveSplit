@@ -173,9 +173,9 @@ namespace LiveSplit.Web.Share
 
                 var runTime = run.Last().PersonalBestSplitTime;
 
-                if (!runTime[primaryTimingMethod].HasValue)
+                if (!runTime.RealTime.HasValue)
                 {
-                    reasonForRejection = "You can't submit a run without a time.";
+                    reasonForRejection = "You can't submit a run without a Real Time.";
                     return false;
                 }
 
@@ -199,6 +199,7 @@ namespace LiveSplit.Web.Share
 
         public static bool SubmitRun(IRun run, out string reasonForRejection, 
             string comment = null, Uri videoUri = null, DateTime? date = null,
+            TimeSpan? withoutLoads = null,
             bool submitToSplitsIO = true)
         {
             try
@@ -247,6 +248,12 @@ namespace LiveSplit.Web.Share
                     var regionId = metadata.Region != null ? metadata.Region.ID : null;
                     var realTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTime) ? runTime.RealTime : null;
                     var realTimeWithoutLoads = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads) ? runTime.GameTime : null;
+
+                    if (withoutLoads.HasValue)
+                    {
+                        realTimeWithoutLoads = withoutLoads;
+                    }
+
                     var gameTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.GameTime) ? runTime.GameTime : null;
 
                     var emulated = metadata.Game.Ruleset.EmulatorsAllowed && metadata.UsesEmulator;
