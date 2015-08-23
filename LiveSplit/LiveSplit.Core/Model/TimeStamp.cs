@@ -82,8 +82,8 @@ namespace LiveSplit.Model
                 {
                     try
                     {
-                        ntpTime = NTP.Now;
-                        qpcTime = qpc.Elapsed;
+                        lastNTPTime = ntpTime = NTP.Now;
+                        lastQPCTime = qpcTime = qpc.Elapsed;
                         times.Add(ntpTime.Ticks - qpcTime.Ticks);
                     }
                     catch { }
