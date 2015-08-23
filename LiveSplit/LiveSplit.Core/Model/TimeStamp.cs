@@ -50,12 +50,20 @@ namespace LiveSplit.Model
                 return new TimeStamp(qpc.Elapsed);
             }
         }
+        
+        public static bool IsSyncedWithAtomicClock
+        {
+            get
+            {
+                return lastQPCTime != TimeSpan.Zero;
+            }
+        }
 
         public static DateTime CurrentDateTime
         {
             get
             {
-                if (lastQPCTime != TimeSpan.Zero)
+                if (IsSyncedWithAtomicClock)
                 {
                     return lastNTPTime.Add(Now - new TimeStamp(lastQPCTime));
                 }
