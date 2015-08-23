@@ -7,7 +7,7 @@ namespace LiveSplit.Model
         public DateTime Time { get; private set; }
         public bool SyncedWithAtomicClock { get; private set; }
 
-        public AtomicDateTime(DateTime time, bool synced)
+        public AtomicDateTime(DateTime time, bool synced) : this()
         {
             Time = time;
             SyncedWithAtomicClock = synced;
