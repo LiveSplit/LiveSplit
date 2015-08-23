@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="ComponentUtil\DeepPointer.cs" />
     <Compile Include="ComponentUtil\SignatureScanner.cs" />
+    <Compile Include="Model\AtomicDateTime.cs" />
     <Compile Include="Model\Attempt.cs" />
     <Compile Include="Model\AutoSplitter.cs" />
     <Compile Include="Model\AutoSplitterFactory.cs" />

@@ -59,15 +59,15 @@ namespace LiveSplit.Model
             }
         }
 
-        public static DateTime CurrentDateTime
+        public static AtomicDateTime CurrentDateTime
         {
             get
             {
                 if (IsSyncedWithAtomicClock)
                 {
-                    return lastNTPTime.Add(Now - new TimeStamp(lastQPCTime));
+                    return new AtomicDateTime(lastNTPTime.Add(Now - new TimeStamp(lastQPCTime)), true);
                 }
-                return DateTime.UtcNow;
+                return new AtomicDateTime(DateTime.UtcNow, false);
             }
         }
 

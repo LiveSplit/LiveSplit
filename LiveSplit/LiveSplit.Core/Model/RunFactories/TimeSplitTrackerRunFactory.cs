@@ -126,14 +126,16 @@ namespace LiveSplit.Model.RunFactories
 
                         var started = DateTime.Parse(timeStampString, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
                         Time finalTime = default(Time);
-                        DateTime? ended = null;
+                        AtomicDateTime? ended = null;
                         if (completed)
                         {
                             finalTime.RealTime = splits.Last().Value;
-                            ended = started + finalTime.RealTime;
+                            var finalDate = started + finalTime.RealTime;
+                            if (finalDate.HasValue)
+                                ended = new AtomicDateTime(finalDate.Value, false);
                         }
 
-                        run.AttemptHistory.Add(new Attempt(attemptId, finalTime, started, ended));
+                        run.AttemptHistory.Add(new Attempt(attemptId, finalTime, new AtomicDateTime(started, false), ended));
 
                         var i = 0;
                         TimeSpan? lastSplit = TimeSpan.Zero;

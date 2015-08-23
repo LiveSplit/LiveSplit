@@ -138,7 +138,7 @@ namespace LiveSplit.Web.Share
                 writer.Write(HttpUtility.UrlEncode(timeFormatter.Format(run.Last().PersonalBestSplitTime.RealTime)));
 
                 writer.Write("&date=");
-                var dateTime = run.AttemptHistory.First(x => x.Time.RealTime == run.Last().PersonalBestSplitTime.RealTime).Ended.Value;
+                var dateTime = run.AttemptHistory.First(x => x.Time.RealTime == run.Last().PersonalBestSplitTime.RealTime).Ended.Value.Time;
                 writer.Write(HttpUtility.UrlEncode(String.Format("{0:00}/{1:00}/{2}", dateTime.Month, dateTime.Day, dateTime.Year)));
 
                 writer.Write("&video=");

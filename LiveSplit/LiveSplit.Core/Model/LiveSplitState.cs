@@ -17,8 +17,8 @@ namespace LiveSplit.Model
         public ISettings Settings { get; set; }
         public Forms.Form Form { get; set; }
 
-        public DateTime AttemptStarted { get; set; }
-        public DateTime AttemptEnded { get; set; }
+        public AtomicDateTime AttemptStarted { get; set; }
+        public AtomicDateTime AttemptEnded { get; set; }
 
         public TimeStamp StartTime { get; set; }
         public TimeSpan PauseTime { get; set; }
