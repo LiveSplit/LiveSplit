@@ -9,12 +9,12 @@ namespace LiveSplit.View
 {
     public partial class LayoutSettingsDialog : Form
     {
-        public LiveSplit.UI.LayoutSettings Settings { get; set; }
+        public Options.LayoutSettings Settings { get; set; }
         public UI.ILayout Layout { get; set; }
         public List<XmlNode> ComponentSettings { get; set; }
         public List<IComponent> Components { get; set; }
 
-        public LayoutSettingsDialog(LiveSplit.UI.LayoutSettings settings, UI.ILayout layout, IComponent tabComponent = null)
+        public LayoutSettingsDialog(Options.LayoutSettings settings, UI.ILayout layout, IComponent tabComponent = null)
         {
             InitializeComponent();
             Settings = settings;

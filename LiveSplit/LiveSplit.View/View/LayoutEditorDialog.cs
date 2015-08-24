@@ -232,7 +232,7 @@ namespace LiveSplit.View
 
         private void ShowLayoutSettings(LiveSplit.UI.Components.IComponent tabControl = null)
         {
-            var oldSettings = (LiveSplit.UI.LayoutSettings)Layout.Settings.Clone();
+            var oldSettings = (Options.LayoutSettings)Layout.Settings.Clone();
             var settingsDialog = new LayoutSettingsDialog(Layout.Settings, Layout, tabControl);
             var result = settingsDialog.ShowDialog(this);
             if (result == DialogResult.OK)

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace LiveSplit.UI
+namespace LiveSplit.Options
 {
     public class LayoutSettings : ICloneable
     {

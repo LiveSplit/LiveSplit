@@ -1,4 +1,4 @@
-﻿namespace LiveSplit.UI
+﻿namespace LiveSplit.Options
 {
     public enum BackgroundType
     {

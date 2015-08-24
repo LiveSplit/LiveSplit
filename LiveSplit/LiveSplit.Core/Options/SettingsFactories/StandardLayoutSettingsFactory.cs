@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace LiveSplit.UI.LayoutFactories
+namespace LiveSplit.Options.SettingsFactories
 {
     public class StandardLayoutSettingsFactory : ILayoutSettingsFactory
     {

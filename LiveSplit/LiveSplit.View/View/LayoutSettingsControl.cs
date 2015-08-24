@@ -13,7 +13,7 @@ namespace LiveSplit.View
             InitializeComponent();
         }
 
-        public LiveSplit.UI.LayoutSettings Settings { get; set; }
+        public Options.LayoutSettings Settings { get; set; }
         public ILayout Layout { get; set; }
 
         private Image originalBackgroundImage { get; set; }
@@ -26,7 +26,7 @@ namespace LiveSplit.View
         public float ImageOpacity { get { return Settings.ImageOpacity * 100f; } set { Settings.ImageOpacity = value / 100f; } }
         public float ImageBlur { get { return Settings.ImageBlur * 100f; } set { Settings.ImageBlur = value / 100f; } }
 
-        public LayoutSettingsControl(LiveSplit.UI.LayoutSettings settings, ILayout layout)
+        public LayoutSettingsControl(Options.LayoutSettings settings, ILayout layout)
         {
             InitializeComponent();
             Settings = settings;

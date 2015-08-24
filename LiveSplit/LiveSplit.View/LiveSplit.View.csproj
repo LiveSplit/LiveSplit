@@ -97,7 +97,6 @@
     <Compile Include="UI\NewRaceInputBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\LayoutFactories\StandardLayoutSettingsFactory.cs" />
     <Compile Include="Updates\LiveSplitUpdateable.cs" />
     <Compile Include="Utils\FormUtils.cs" />
     <Compile Include="Utils\RichTextBoxExtensions.cs" />
