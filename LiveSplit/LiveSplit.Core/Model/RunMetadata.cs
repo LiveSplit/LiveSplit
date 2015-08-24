@@ -157,9 +157,12 @@ namespace LiveSplit.Model
             {
                 Refresh();
                 var value = game.Value;
-                GameAvailable = true;
-                RegionAvailable = true;
-                PlatformAvailable = true;
+                if (value != null)
+                {
+                    GameAvailable = true;
+                    RegionAvailable = true;
+                    PlatformAvailable = true;
+                }
                 return value;
             }
         }
@@ -171,7 +174,10 @@ namespace LiveSplit.Model
             {
                 Refresh();
                 var value = category.Value;
-                CategoryAvailable = true;
+                if (value != null)
+                {
+                    CategoryAvailable = true;
+                }
                 return value;
             }
         }
@@ -305,6 +311,10 @@ namespace LiveSplit.Model
                 regionName = regionName,
                 usesEmulator = usesEmulator,
                 VariableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value),
+                CategoryAvailable = CategoryAvailable,
+                GameAvailable = GameAvailable,
+                RegionAvailable = RegionAvailable,
+                PlatformAvailable = PlatformAvailable
                 //TODO: set members instead later
                 //TODO: clone PropertyChanged
             };
