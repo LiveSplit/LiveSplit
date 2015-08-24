@@ -300,7 +300,7 @@ namespace LiveSplit.View
                     if (numSeparators == 0)
                         toolItem.Checked = toolItem.Name == CurrentState.CurrentTimingMethod.ToString();
                     else
-                        toolItem.Checked = toolItem.Text == CurrentState.CurrentComparison;
+                        toolItem.Checked = toolItem.Text == CurrentState.CurrentComparison.EscapeMenuItemText();
                 }
             }
         }
@@ -348,9 +348,9 @@ namespace LiveSplit.View
                 var goal = race.goal;
                 var entrants = race.numentrants;
                 var plural = entrants == 1 ? "" : "s";
-                var title = string.Format("{0} - {1} ({2} Entrant{3})", game, goal, entrants, plural);
+                var title = string.Format("{0} - {1} ({2} Entrant{3})", game, goal, entrants, plural) as string;
                 var item = new ToolStripMenuItem();
-                item.Text = title;
+                item.Text = title.EscapeMenuItemText();
                 item.Tag = race.id;
                 item.Click += Race_Click;
                 addItem(item);
@@ -406,9 +406,8 @@ namespace LiveSplit.View
                                 if (timeSpan < TimeSpan.Zero)
                                     timeSpan = TimeSpan.Zero;
                                 var time = new RegularTimeFormatter().Format(timeSpan);
-                                var title = string.Format("[{0}] {1} - {2} ({3} / {4} Finished)", time, game, goal, finishedCount, entrants - forfeitedCount);
-                                title = title.Replace("&", "&&");
-                                tsItem.Text = title;
+                                var title = string.Format("[{0}] {1} - {2} ({3} / {4} Finished)", time, game, goal, finishedCount, entrants - forfeitedCount) as string;
+                                tsItem.Text = title.EscapeMenuItemText();
                             }
                             catch { }
                         }
@@ -665,7 +664,7 @@ namespace LiveSplit.View
                     {
                         string fileName = Path.GetFileName(splitsFile.Path);
 
-                        var menuItem = new ToolStripMenuItem(fileName);
+                        var menuItem = new ToolStripMenuItem(fileName.EscapeMenuItemText());
                         menuItem.Tag = "FileName";
                         menuItem.Click += (x, y) => { OpenRunFromFile(splitsFile.Path); };
                         categoryMenuItem.DropDownItems.Add(menuItem);
@@ -676,7 +675,7 @@ namespace LiveSplit.View
                         categoryMenuItem = (ToolStripMenuItem)categoryMenuItem.DropDownItems[0];
                         if (!string.IsNullOrEmpty(category.Key))
                         {
-                            categoryMenuItem.Text = category.Key;
+                            categoryMenuItem.Text = category.Key.EscapeMenuItemText();
                             categoryMenuItem.Tag = "Category";
                         }
                     }
@@ -690,7 +689,7 @@ namespace LiveSplit.View
                             categoryName = category.Key;
                         }
 
-                        categoryMenuItem.Text = categoryName;
+                        categoryMenuItem.Text = categoryName.EscapeMenuItemText();
                     }
 
                     gameMenuItem.DropDownItems.Add(categoryMenuItem);
@@ -728,7 +727,7 @@ namespace LiveSplit.View
                     }
                 }
 
-                gameMenuItem.Text = gameName;
+                gameMenuItem.Text = gameName.EscapeMenuItemText();
 
                 openSplitsMenuItem.DropDownItems.Add(gameMenuItem);
             }
@@ -790,7 +789,7 @@ namespace LiveSplit.View
             
             foreach (var item in Settings.RecentLayouts.Reverse().Where(x => !string.IsNullOrEmpty(x)))
             {
-                var menuItem = new ToolStripMenuItem(Path.GetFileNameWithoutExtension(item));
+                var menuItem = new ToolStripMenuItem(Path.GetFileNameWithoutExtension(item).EscapeMenuItemText());
                 menuItem.Click += (x, y) => { OpenLayoutFromFile(item); };
                 openLayoutMenuItem.DropDownItems.Add(menuItem);
             }
@@ -2531,14 +2530,14 @@ namespace LiveSplit.View
 
         private void AddActionToComparisonsMenu(string name)
         {
-            var menuItem = new ToolStripMenuItem(name);
+            var menuItem = new ToolStripMenuItem(name.EscapeMenuItemText());
             menuItem.Click += (s, e) => SwitchComparison(name);
             comparisonMenuItem.DropDownItems.Add(menuItem);
         }
 
         private void AddActionToControlMenu(string name, Action action)
         {
-            var menuItem = new ToolStripMenuItem(name);
+            var menuItem = new ToolStripMenuItem(name.EscapeMenuItemText());
             menuItem.Click += (s, e) => action();
             controlMenuItem.DropDownItems.Add(menuItem);
         }

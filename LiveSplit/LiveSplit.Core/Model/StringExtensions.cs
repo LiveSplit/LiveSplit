@@ -60,5 +60,10 @@ namespace LiveSplit.Model
         {
             return list.OrderBySimilarityTo(value).FirstOrDefault();
         }
+        
+        public static string EscapeMenuItemText(this string text)
+        {
+            return text.Replace("&", "&&");
+        }
     }
 }
