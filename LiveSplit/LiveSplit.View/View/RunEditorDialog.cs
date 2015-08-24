@@ -1234,6 +1234,19 @@ namespace LiveSplit.View
             btnActivate.Enabled = Run.AutoSplitter != null;
             btnSettings.Enabled = Run.IsAutoSplitterActive() && Run.AutoSplitter.Component.GetSettingsControl(LayoutMode.Vertical) != null;
             btnWebsite.Visible = Run.AutoSplitter != null && Run.AutoSplitter.Website != null;
+
+            if (Run.AutoSplitter != null && Run.AutoSplitter.Website == null)
+            {
+                tableLayoutPanel1.SetColumnSpan(lblDescription, 5);
+                tableLayoutPanel1.SetColumn(flowLayoutPanel1, 6);
+                tableLayoutPanel1.SetColumnSpan(flowLayoutPanel1, 2);
+            }
+            else
+            {
+                tableLayoutPanel1.SetColumnSpan(lblDescription, 4);
+                tableLayoutPanel1.SetColumn(flowLayoutPanel1, 5);
+                tableLayoutPanel1.SetColumnSpan(flowLayoutPanel1, 3);
+            }
         }
 
         private void btnActivate_Click(object sender, EventArgs e)
