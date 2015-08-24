@@ -60,6 +60,7 @@ namespace LiveSplit.Model
             }
         }
 
+        public bool PlatformAvailable { get; private set; }
         public string PlatformName
         {
             get
@@ -83,6 +84,7 @@ namespace LiveSplit.Model
             }
         }
 
+        public bool RegionAvailable { get; private set; }
         public string RegionName
         {
             get
@@ -147,21 +149,30 @@ namespace LiveSplit.Model
             }
         }
 
+
+        public bool GameAvailable { get; private set; }
         public Game Game
         {
             get
             {
                 Refresh();
-                return game.Value;
+                var value = game.Value;
+                GameAvailable = true;
+                RegionAvailable = true;
+                PlatformAvailable = true;
+                return value;
             }
         }
 
+        public bool CategoryAvailable { get; private set; }
         public Category Category
         {
             get
             {
                 Refresh();
-                return category.Value;
+                var value = category.Value;
+                CategoryAvailable = true;
+                return value;
             }
         }
 
@@ -180,6 +191,11 @@ namespace LiveSplit.Model
             {
                 if (LiveSplitRun.GameName != oldGameName)
                 {
+                    GameAvailable = false;
+                    CategoryAvailable = false;
+                    RegionAvailable = false;
+                    PlatformAvailable = false;
+
                     oldGameName = LiveSplitRun.GameName;
                     if (!string.IsNullOrEmpty(LiveSplitRun.GameName))
                     {
@@ -212,6 +228,8 @@ namespace LiveSplit.Model
 
                 if (LiveSplitRun.CategoryName != oldCategoryName)
                 {
+                    CategoryAvailable = false;
+
                     oldCategoryName = LiveSplitRun.CategoryName;
                     if (!string.IsNullOrEmpty(oldCategoryName))
                     {
