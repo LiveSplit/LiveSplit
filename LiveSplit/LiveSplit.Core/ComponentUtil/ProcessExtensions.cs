@@ -340,14 +340,14 @@ namespace LiveSplit.ComponentUtil
             return val;
         }
 
-        public static unsafe float ToFloatBits(this uint i)
+        public static float ToFloatBits(this uint i)
         {
-            return *((float*)&i);
+            return BitConverter.ToSingle(BitConverter.GetBytes(i), 0);
         }
 
-        public static unsafe uint ToUInt32Bits(this float f)
+        public static uint ToUInt32Bits(this float f)
         {
-            return *((uint*)&f);
+            return BitConverter.ToUInt32(BitConverter.GetBytes(f), 0);
         }
 
         public static bool BitEquals(this float f, float o)
