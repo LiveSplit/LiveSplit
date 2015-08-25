@@ -22,6 +22,10 @@ namespace LiveSplit.ComponentUtil
         {
             get { return FileVersionInfo.GetVersionInfo(this.FileName); }
         }
+        public override string ToString()
+        {
+            return this.ModuleName ?? base.ToString();
+        }
     }
 
     public enum ReadStringType
@@ -69,8 +73,6 @@ namespace LiveSplit.ComponentUtil
              public IntPtr EntryPoint;
         }
 
-        // 🔔🔔🔔 ＳＨＡＭＥ 🔔🔔🔔
-        // HACK HACK HACK - perf
         private static Dictionary<int, ProcessModuleWow64Safe[]> ModuleCache = new Dictionary<int, ProcessModuleWow64Safe[]>();
 
         public static ProcessModuleWow64Safe MainModuleWow64Safe(this Process p)
@@ -80,9 +82,8 @@ namespace LiveSplit.ComponentUtil
 
         public static ProcessModuleWow64Safe[] ModulesWow64Safe(this Process p)
         {
-            int hash = p.StartTime.GetHashCode() + p.Id;
-            if (ModuleCache.ContainsKey(hash))
-                return ModuleCache[hash];
+            if (ModuleCache.Count > 100)
+                ModuleCache.Clear();
 
             const int LIST_MODULES_ALL = 3;
             const int MAX_PATH = 260;
@@ -94,10 +95,15 @@ namespace LiveSplit.ComponentUtil
 
             if (!EnumProcessModulesEx(p.Handle, hModules, cb, out cbNeeded, LIST_MODULES_ALL))
                 throw new Win32Exception();
+            uint numMods = cbNeeded / (uint)IntPtr.Size;
+
+            int hash = p.StartTime.GetHashCode() + p.Id + (int)numMods;
+            if (ModuleCache.ContainsKey(hash))
+                return ModuleCache[hash];
 
             var ret = new List<ProcessModuleWow64Safe>();
 
-            uint numMods = cb/(uint)IntPtr.Size;
+            // everything below is fairly expensive, which is why we cache!
             var sb = new StringBuilder(MAX_PATH);
             for (int i = 0; i < numMods; i++)
             {
