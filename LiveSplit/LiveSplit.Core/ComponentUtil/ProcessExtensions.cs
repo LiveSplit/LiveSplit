@@ -35,10 +35,12 @@ namespace LiveSplit.ComponentUtil
     public static class ExtensionMethods
     {
         [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer,
             SizeT dwSize, out SizeT lpNumberOfBytesRead);
 
         [DllImport("psapi.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumProcessModulesEx(IntPtr hProcess, [Out] IntPtr[] lphModule, uint cb,
             out uint lpcbNeeded, uint dwFilterFlag);
 
@@ -47,6 +49,7 @@ namespace LiveSplit.ComponentUtil
             uint nSize);
 
         [DllImport("psapi.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetModuleInformation(IntPtr hProcess, IntPtr hModule, [Out] out MODULEINFO lpmodinfo,
             uint cb);
 
@@ -55,7 +58,8 @@ namespace LiveSplit.ComponentUtil
             uint nSize);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool IsWow64Process(IntPtr hProcess, [Out] out bool wow64Process);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool IsWow64Process(IntPtr hProcess, [Out, MarshalAs(UnmanagedType.Bool)] out bool wow64Process);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct MODULEINFO
@@ -340,14 +344,14 @@ namespace LiveSplit.ComponentUtil
             return val;
         }
 
-        public static unsafe float ToFloatBits(this uint i)
+        public static float ToFloatBits(this uint i)
         {
-            return *((float*)&i);
+            return BitConverter.ToSingle(BitConverter.GetBytes(i), 0);
         }
 
-        public static unsafe uint ToUInt32Bits(this float f)
+        public static uint ToUInt32Bits(this float f)
         {
-            return *((uint*)&f);
+            return BitConverter.ToUInt32(BitConverter.GetBytes(f), 0);
         }
 
         public static bool BitEquals(this float f, float o)
