@@ -374,6 +374,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Resident Evil 4</Game>
+      <Game>Biohazard 4</Game>
+      <Game>RE4</Game>
+      <Game>re4</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/bio4.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By LetsGetPitted)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Amnesia: The Dark Descent</Game>
       <Game>Amnesia: Justine</Game>
       <Game>Amnesia: TDD</Game>
