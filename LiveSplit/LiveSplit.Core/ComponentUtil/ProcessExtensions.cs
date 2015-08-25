@@ -22,6 +22,10 @@ namespace LiveSplit.ComponentUtil
         {
             get { return FileVersionInfo.GetVersionInfo(this.FileName); }
         }
+        public override string ToString()
+        {
+            return this.ModuleName ?? base.ToString();
+        }
     }
 
     public enum ReadStringType
@@ -35,10 +39,12 @@ namespace LiveSplit.ComponentUtil
     public static class ExtensionMethods
     {
         [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer,
             SizeT dwSize, out SizeT lpNumberOfBytesRead);
 
         [DllImport("psapi.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumProcessModulesEx(IntPtr hProcess, [Out] IntPtr[] lphModule, uint cb,
             out uint lpcbNeeded, uint dwFilterFlag);
 
@@ -47,6 +53,7 @@ namespace LiveSplit.ComponentUtil
             uint nSize);
 
         [DllImport("psapi.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool GetModuleInformation(IntPtr hProcess, IntPtr hModule, [Out] out MODULEINFO lpmodinfo,
             uint cb);
 
@@ -55,7 +62,8 @@ namespace LiveSplit.ComponentUtil
             uint nSize);
 
         [DllImport("kernel32.dll", SetLastError = true)]
-        public static extern bool IsWow64Process(IntPtr hProcess, [Out] out bool wow64Process);
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool IsWow64Process(IntPtr hProcess, [Out, MarshalAs(UnmanagedType.Bool)] out bool wow64Process);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct MODULEINFO
@@ -65,8 +73,6 @@ namespace LiveSplit.ComponentUtil
              public IntPtr EntryPoint;
         }
 
-        // 🔔🔔🔔 ＳＨＡＭＥ 🔔🔔🔔
-        // HACK HACK HACK - perf
         private static Dictionary<int, ProcessModuleWow64Safe[]> ModuleCache = new Dictionary<int, ProcessModuleWow64Safe[]>();
 
         public static ProcessModuleWow64Safe MainModuleWow64Safe(this Process p)
@@ -76,9 +82,8 @@ namespace LiveSplit.ComponentUtil
 
         public static ProcessModuleWow64Safe[] ModulesWow64Safe(this Process p)
         {
-            int hash = p.StartTime.GetHashCode() + p.Id;
-            if (ModuleCache.ContainsKey(hash))
-                return ModuleCache[hash];
+            if (ModuleCache.Count > 100)
+                ModuleCache.Clear();
 
             const int LIST_MODULES_ALL = 3;
             const int MAX_PATH = 260;
@@ -90,10 +95,15 @@ namespace LiveSplit.ComponentUtil
 
             if (!EnumProcessModulesEx(p.Handle, hModules, cb, out cbNeeded, LIST_MODULES_ALL))
                 throw new Win32Exception();
+            uint numMods = cbNeeded / (uint)IntPtr.Size;
+
+            int hash = p.StartTime.GetHashCode() + p.Id + (int)numMods;
+            if (ModuleCache.ContainsKey(hash))
+                return ModuleCache[hash];
 
             var ret = new List<ProcessModuleWow64Safe>();
 
-            uint numMods = cb/(uint)IntPtr.Size;
+            // everything below is fairly expensive, which is why we cache!
             var sb = new StringBuilder(MAX_PATH);
             for (int i = 0; i < numMods; i++)
             {
@@ -340,14 +350,14 @@ namespace LiveSplit.ComponentUtil
             return val;
         }
 
-        public static unsafe float ToFloatBits(this uint i)
+        public static float ToFloatBits(this uint i)
         {
-            return *((float*)&i);
+            return BitConverter.ToSingle(BitConverter.GetBytes(i), 0);
         }
 
-        public static unsafe uint ToUInt32Bits(this float f)
+        public static uint ToUInt32Bits(this float f)
         {
-            return *((uint*)&f);
+            return BitConverter.ToUInt32(BitConverter.GetBytes(f), 0);
         }
 
         public static bool BitEquals(this float f, float o)

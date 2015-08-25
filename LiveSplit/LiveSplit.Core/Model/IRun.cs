@@ -330,7 +330,7 @@ namespace LiveSplit.Model
                 if (!string.IsNullOrEmpty(run.Metadata.RegionName))
                     list.Add(run.Metadata.RegionName);
             }
-            else if (showRegion && run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game.Regions.Count > 1)
+            else if (showRegion && run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game != null && run.Metadata.Game.Regions.Count > 1)
             {
                 list.Add(run.Metadata.Region.Abbreviation);
             }
@@ -338,7 +338,7 @@ namespace LiveSplit.Model
             if (showPlatform)
             {
                 var doSimplePlatform = !run.Metadata.PlatformAvailable && !waitForOnlineData;
-                if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || run.Metadata.Game.Platforms.Count > 1))
+                if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || (run.Metadata.Game != null && run.Metadata.Game.Platforms.Count > 1)))
                 {
                     if (run.Metadata.UsesEmulator)
                         list.Add(run.Metadata.PlatformName + " Emulator");
