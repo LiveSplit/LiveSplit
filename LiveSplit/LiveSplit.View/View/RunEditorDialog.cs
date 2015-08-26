@@ -1456,7 +1456,8 @@ namespace LiveSplit.View
         {
             foreach (Control childControl in control.Controls)
             {
-                SetClickEvents(childControl);
+                if (childControl is Label || childControl is TableLayoutPanel || childControl is PictureBox || childControl is FlowLayoutPanel)
+                    SetClickEvents(childControl);
             }
             control.Click += ClickControl;
         }
@@ -1504,6 +1505,13 @@ namespace LiveSplit.View
                     }
                 }
             }
+        }
+
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+            if (!_dropDown.Focused)
+                CloseDropDown();
         }
 
         public void CloseDropDown()
