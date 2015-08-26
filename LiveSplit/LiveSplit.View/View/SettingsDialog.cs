@@ -47,7 +47,7 @@ namespace LiveSplit.View
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
 
-            SetClickEvents();
+            SetClickEvents(this);
         }
 
         void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
@@ -191,30 +191,22 @@ namespace LiveSplit.View
         {
             SetHotkeyHandlers((TextBox)sender, x => { Settings.SwitchComparisonNext = x; });
         }
+
         private void ClickControl(object sender, EventArgs e)
         {
             chkGlobalHotkeys.Select();
         }
-        private void SetClickEvents()
+
+        private void SetClickEvents(Control control)
         {
-            //shitty code to remove "set hotkey" if you click out of it
-            tableLayoutPanel1.Click += ClickControl;
-            tableLayoutPanel2.Click += ClickControl;
-            groupBox1.Click += ClickControl;
-            label1.Click += ClickControl;
-            label2.Click += ClickControl;
-            label3.Click += ClickControl;
-            label4.Click += ClickControl;
-            label5.Click += ClickControl;
-            label6.Click += ClickControl;
-            label7.Click += ClickControl;
-            label8.Click += ClickControl;
-            label9.Click += ClickControl;
-            label10.Click += ClickControl;
-            label11.Click += ClickControl;
-            /*lblDisplayInterval.Click += ClickControl;
-            lblRefreshRate.Click += ClickControl;*/
-            Click += ClickControl;
+            foreach (Control childControl in control.Controls)
+            {
+                if (childControl is TableLayoutPanel || childControl is Label || childControl is GroupBox)
+                {
+                    SetClickEvents(childControl);
+                }
+            }
+            control.Click += ClickControl;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
