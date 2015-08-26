@@ -1456,8 +1456,7 @@ namespace LiveSplit.View
         {
             foreach (Control childControl in control.Controls)
             {
-                if (childControl != cbxGameName)
-                    SetClickEvents(childControl);
+                SetClickEvents(childControl);
             }
             control.Click += ClickControl;
         }
@@ -1500,6 +1499,7 @@ namespace LiveSplit.View
                             _box.Items.Add(_startString);
                         foreach (string str in legalStrings)
                             _box.Items.Add(str);
+                        DroppedDown = false;
                         _dropDown.Show(this, new Point(0, Height));
                     }
                 }
