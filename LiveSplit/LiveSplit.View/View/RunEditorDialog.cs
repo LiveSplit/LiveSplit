@@ -238,6 +238,7 @@ namespace LiveSplit.View
             RefreshCategoryAutoCompleteList();
             UpdateSegmentList();
             RefreshAutoSplittingUI();
+            SetClickEvents(this);
         }
 
         private IEnumerable<string> SearchForGameName(string name)
@@ -1445,6 +1446,21 @@ namespace LiveSplit.View
             SumOfBest.Clean(Run, callback);
             RaiseRunEdited();
         }
+
+        private void ClickControl(object sender, EventArgs e)
+        {
+            cbxGameName.CloseDropDown();
+        }
+
+        private void SetClickEvents(Control control)
+        {
+            foreach (Control childControl in control.Controls)
+            {
+                if (childControl != cbxGameName)
+                    SetClickEvents(childControl);
+            }
+            control.Click += ClickControl;
+        }
     }
 
     public class CustomAutoCompleteComboBox : ComboBox
@@ -1488,6 +1504,11 @@ namespace LiveSplit.View
                     }
                 }
             }
+        }
+
+        public void CloseDropDown()
+        {
+            _dropDown.Close();
         }
 
         protected override void OnKeyDown(KeyEventArgs e)
