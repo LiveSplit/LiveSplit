@@ -279,7 +279,7 @@ namespace LiveSplit.ComponentUtil
         {
             byte[] bytes;
             if (!process.ReadBytes(addr, count, out bytes))
-                return new byte[0];
+                return null;
             return bytes;
         }
 
@@ -291,7 +291,7 @@ namespace LiveSplit.ComponentUtil
             return ptr;
         }
 
-        public static string ReadString(this Process process, IntPtr addr, int len, string default_ = "")
+        public static string ReadString(this Process process, IntPtr addr, int len, string default_ = null)
         {
             string str;
             if (!process.ReadString(addr, len, out str))

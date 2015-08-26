@@ -31,7 +31,15 @@ namespace LiveSplit.ComponentUtil
             _offsets.AddRange(offsets);
         }
 
-        public bool Deref<T>(Process process, out T value) where T : struct // all value types including structs
+        public T Deref<T>(Process process, T default_ = default(T)) where T : struct // all value types including structs
+        {
+            T val;
+            if (!this.Deref(process, out val))
+                val = default_;
+            return val;
+        }
+
+        public bool Deref<T>(Process process, out T value) where T : struct
         {
             OffsetT offset = _offsets[_offsets.Count - 1];
             IntPtr ptr;
@@ -45,7 +53,15 @@ namespace LiveSplit.ComponentUtil
             return true;
         }
 
-        public bool Deref(Process process, int count, out byte[] value)
+        public byte[] DerefBytes(Process process, int count)
+        {
+            byte[] bytes;
+            if (!this.DerefBytes(process, count, out bytes))
+                bytes = null;
+            return bytes;
+        }
+
+        public bool DerefBytes(Process process, int count, out byte[] value)
         {
             OffsetT offset = _offsets[_offsets.Count - 1];
             IntPtr ptr;
@@ -59,23 +75,57 @@ namespace LiveSplit.ComponentUtil
             return true;
         }
 
-        public bool Deref(Process process, out string str, int max)
+        public string DerefString(Process process, int len, string default_ = null)
         {
-            var sb = new StringBuilder(max);
-            OffsetT offset = _offsets[_offsets.Count - 1];
-            IntPtr ptr;
-            if (!this.DerefOffsets(process, out ptr)
-                || !process.ReadString(ptr + offset, sb))
+            string str;
+            if (!this.DerefString(process, ReadStringType.AutoDetect, len, out str))
+                str = default_;
+            return str;
+        }
+
+        public string DerefString(Process process, ReadStringType type, int len, string default_ = null)
+        {
+            string str;
+            if (!this.DerefString(process, type, len, out str))
+                str = default_;
+            return str;
+        }
+
+        public bool DerefString(Process process, int len, out string str)
+        {
+            return this.DerefString(process, ReadStringType.AutoDetect, len, out str);
+        }
+
+        public bool DerefString(Process process, ReadStringType type, int len, out string str)
+        {
+            var sb = new StringBuilder(len);
+            if (!this.DerefString(process, type, sb))
             {
-                str = String.Empty;
+                str = null;
                 return false;
             }
-
             str = sb.ToString();
             return true;
         }
 
-        bool DerefOffsets(Process process,  out IntPtr ptr)
+        public bool DerefString(Process process, StringBuilder sb)
+        {
+            return this.DerefString(process, ReadStringType.AutoDetect, sb);
+        }
+
+        public bool DerefString(Process process, ReadStringType type, StringBuilder sb)
+        {
+            OffsetT offset = _offsets[_offsets.Count - 1];
+            IntPtr ptr;
+            if (!this.DerefOffsets(process, out ptr)
+                || !process.ReadString(ptr + offset, type, sb))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        bool DerefOffsets(Process process, out IntPtr ptr)
         {
             bool is64Bit = process.Is64Bit();
 
