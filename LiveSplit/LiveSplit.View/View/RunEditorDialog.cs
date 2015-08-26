@@ -1513,6 +1513,12 @@ namespace LiveSplit.View
 
         protected override void OnKeyDown(KeyEventArgs e)
         {
+            if (e.KeyCode == Keys.Down)
+            {
+                if (_box.Items.Count > 0)
+                    SelectedItem = _box.Items[0];
+                CloseDropDown();
+            }
             if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
                 e.SuppressKeyPress = true;
             base.OnKeyDown(e);
