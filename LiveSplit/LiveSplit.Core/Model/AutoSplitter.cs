@@ -67,6 +67,12 @@ namespace LiveSplit.Model
                 try
                 {
                     client.DownloadFile(new Uri(url), localPath);
+                    if (url != URLs.First())
+                    {
+                        var factory = ComponentManager.LoadFactory(localPath);
+                        if (factory != null)
+                            ComponentManager.ComponentFactories.Add(fileName, factory);
+                    }
                 }
                 catch (WebException)
                 {
