@@ -1487,24 +1487,27 @@ namespace LiveSplit.View
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
-            lock(_box)
+
+            _dropDown.AutoClose = false;
+            if (Text != "")
             {
-                _dropDown.AutoClose = false;
-                if (Text != "")
+                var legalStrings = GetAllItemsForText(Text);
+                if (legalStrings.Count() > 0 && Text != legalStrings.First())
                 {
-                    var legalStrings = GetAllItemsForText(Text);
-                    if (legalStrings.Count() > 0 && Text != legalStrings.First())
+                    lock (_box)
                     {
                         _box.Items.Clear();
                         if (string.IsNullOrEmpty(_startString) == false)
                             _box.Items.Add(_startString);
                         foreach (string str in legalStrings)
                             _box.Items.Add(str);
-                        DroppedDown = false;
-                        _dropDown.Show(this, new Point(0, Height));
                     }
+                    DroppedDown = false;
+                    _dropDown.Show(this, new Point(0, Height));
                 }
             }
+            else
+                CloseDropDown();
         }
 
         protected override void OnLostFocus(EventArgs e)
