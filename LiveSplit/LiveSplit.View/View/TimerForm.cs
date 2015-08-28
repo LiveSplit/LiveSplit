@@ -857,7 +857,7 @@ namespace LiveSplit.View
                             {
                                 Log.Error(ex);
                                 DontRedraw = true;
-                                MessageBox.Show(this, "The selected file was not recognized as a layout file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(this, "The selected file was not recognized as a layout file. (" + ex.Message + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 DontRedraw = false;
                             }
                         }
@@ -1971,7 +1971,7 @@ namespace LiveSplit.View
                 {
                     Log.Error(e);
                     DontRedraw = true;
-                    MessageBox.Show(this, "The selected file was not recognized as a layout file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, "The selected file was not recognized as a layout file. (" + e.Message + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     DontRedraw = false;
                 }
                 Cursor.Current = Cursors.Arrow;

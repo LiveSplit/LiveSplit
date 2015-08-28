@@ -4,6 +4,7 @@ using LiveSplit.UI.Components;
 using System;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 using System.Xml;
 
 namespace LiveSplit.UI.LayoutFactories
@@ -17,9 +18,9 @@ namespace LiveSplit.UI.LayoutFactories
             Stream = stream;
         }
 
-        private static LayoutSettings ParseSettings(XmlElement element, Version version)
+        private static Options.LayoutSettings ParseSettings(XmlElement element, Version version)
         {
-            var settings = new LayoutSettings();
+            var settings = new Options.LayoutSettings();
             settings.TextColor = SettingsHelper.ParseColor(element["TextColor"]);
             settings.BackgroundColor = SettingsHelper.ParseColor(element["BackgroundColor"]);
             settings.ThinSeparatorsColor = SettingsHelper.ParseColor(element["ThinSeparatorsColor"]);
@@ -107,15 +108,22 @@ namespace LiveSplit.UI.LayoutFactories
                 var path = componentElement["Path"];
                 var settings = componentElement["Settings"];
                 var layoutComponent = ComponentManager.LoadLayoutComponent(path.InnerText, state);
-                try
+                if (layoutComponent != null)
                 {
-                    layoutComponent.Component.SetSettings(settings);
+                    try
+                    {
+                        layoutComponent.Component.SetSettings(settings);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                    layout.LayoutComponents.Add(layoutComponent);
                 }
-                catch (Exception e)
+                else
                 {
-                    Log.Error(e);
+                    throw new Exception(path.InnerText + " could not be found");
                 }
-                layout.LayoutComponents.Add(layoutComponent);
             }
             return layout;
         }
