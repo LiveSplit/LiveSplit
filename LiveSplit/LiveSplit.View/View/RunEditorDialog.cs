@@ -17,6 +17,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Threading;
 
 namespace LiveSplit.View
 {
@@ -1466,9 +1467,12 @@ namespace LiveSplit.View
     public class CustomAutoCompleteComboBox : ComboBox
     {
         private IList<string> _autoCompleteSource = null;
-        private string _startString = null;
         private ToolStripDropDown _dropDown = null;
         private ListBox _box = null;
+        private Form form;
+        private SemaphoreSlim refreshDropDown;
+        private string currentText = "";
+        private bool taskCanceled = false;
 
         public IList<string> MyAutoCompleteSource
         {
@@ -1476,38 +1480,69 @@ namespace LiveSplit.View
             set { _autoCompleteSource = value; }
         }
 
-        public string StartString
+        public Func<string, IEnumerable<string>> GetAllItemsForText { get; set; }
+
+        public CustomAutoCompleteComboBox(Form controlForm) : base()
         {
-            get { return _startString; }
-            set { _startString = value; }
+            form = controlForm;
+            form.FormClosed += Form_FormClosed;
+            refreshDropDown = new SemaphoreSlim(0, 1);
+            UpdateUI();
         }
 
-        public Func<string, IEnumerable<string>> GetAllItemsForText { get; set; }
+        private void Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            taskCanceled = true;
+            TryReleaseRefreshDropDown();
+        }
+
+        private void UpdateUI()
+        {
+            Task.Factory.StartNew(() =>
+                {
+                    while (true)
+                    {
+                        refreshDropDown.Wait();
+                        if (taskCanceled || IsDisposed)
+                            return;
+
+                        var text = currentText;
+                        var legalStrings = GetAllItemsForText(text);
+
+                        if (currentText == text)
+                        {
+                            if (text != "" && legalStrings.Count() > 0 && text != legalStrings.First())
+                            {
+                                form.InvokeIfRequired(() =>
+                                {
+                                    _box.Items.Clear();
+                                    foreach (string str in legalStrings)
+                                        _box.Items.Add(str);
+                                    DroppedDown = false;
+                                    _dropDown.Show(this, new Point(0, Height));
+                                });
+
+                            }
+                            else
+                            {
+                                form.InvokeIfRequired(() =>
+                                {
+                                    CloseDropDown();
+                                });
+                            }
+                        }
+                    }
+                });
+        }
 
         protected override void OnTextChanged(EventArgs e)
         {
             base.OnTextChanged(e);
 
             _dropDown.AutoClose = false;
-            if (Text != "")
-            {
-                var legalStrings = GetAllItemsForText(Text);
-                if (legalStrings.Count() > 0 && Text != legalStrings.First())
-                {
-                    lock (_box)
-                    {
-                        _box.Items.Clear();
-                        if (string.IsNullOrEmpty(_startString) == false)
-                            _box.Items.Add(_startString);
-                        foreach (string str in legalStrings)
-                            _box.Items.Add(str);
-                    }
-                    DroppedDown = false;
-                    _dropDown.Show(this, new Point(0, Height));
-                }
-            }
-            else
-                CloseDropDown();
+
+            currentText = Text;
+            TryReleaseRefreshDropDown();
         }
 
         protected override void OnLostFocus(EventArgs e)
@@ -1515,6 +1550,12 @@ namespace LiveSplit.View
             base.OnLostFocus(e);
             if (!_dropDown.Focused)
                 CloseDropDown();
+        }
+
+        private void TryReleaseRefreshDropDown()
+        {
+            if (refreshDropDown.CurrentCount == 0)
+                refreshDropDown.Release();
         }
 
         public void CloseDropDown()

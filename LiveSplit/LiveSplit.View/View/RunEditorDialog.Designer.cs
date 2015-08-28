@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbxGameName = new LiveSplit.View.CustomAutoCompleteComboBox();
+            this.cbxGameName = new LiveSplit.View.CustomAutoCompleteComboBox(this);
             this.cbxRunCategory = new System.Windows.Forms.ComboBox();
             this.tbxTimeOffset = new System.Windows.Forms.TextBox();
             this.picGameIcon = new System.Windows.Forms.PictureBox();
