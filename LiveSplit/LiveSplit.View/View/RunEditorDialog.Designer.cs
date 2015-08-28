@@ -35,7 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbxGameName = new System.Windows.Forms.ComboBox();
+            this.cbxGameName = new LiveSplit.View.CustomAutoCompleteComboBox(this);
             this.cbxRunCategory = new System.Windows.Forms.ComboBox();
             this.tbxTimeOffset = new System.Windows.Forms.TextBox();
             this.picGameIcon = new System.Windows.Forms.PictureBox();
@@ -214,6 +214,7 @@
             // 
             this.cbxGameName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.cbxGameName, 5);
+            this.cbxGameName.GetAllItemsForText = null;
             this.cbxGameName.Location = new System.Drawing.Point(246, 12);
             this.cbxGameName.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.cbxGameName.Name = "cbxGameName";
@@ -693,7 +694,7 @@
         private System.Windows.Forms.ContextMenuStrip RemoveIconMenu;
         private System.Windows.Forms.ToolStripMenuItem removeIconToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setIconToolStripMenuItem;
-        private System.Windows.Forms.ComboBox cbxGameName;
+        private CustomAutoCompleteComboBox cbxGameName;
         private System.Windows.Forms.ComboBox cbxRunCategory;
         private System.Windows.Forms.TextBox tbxTimeOffset;
         private System.Windows.Forms.TextBox tbxAttempts;

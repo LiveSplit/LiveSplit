@@ -17,6 +17,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using System.Threading;
 
 namespace LiveSplit.View
 {
@@ -58,6 +59,9 @@ namespace LiveSplit.View
 
         private Control eCtl;
 
+        private string[] gameNames;
+        private IEnumerable<IGrouping<string, string>> abbreviations;
+
         public Image GameIcon { get { return Run.GameIcon ?? Properties.Resources.DefaultGameIcon; } set { Run.GameIcon = value; } }
         public string GameName
         {
@@ -69,7 +73,7 @@ namespace LiveSplit.View
                     Run.GameName = value;
                     if (IsMetadataTab)
                         metadataControl.RefreshInformation();
-                    RefreshCategoryAutoCompleteList(); 
+                    RefreshCategoryAutoCompleteList();
                     RaiseRunEdited();
                     CurrentState.FixTimingMethodFromRuleset();
                     Run.Metadata.RunID = null;
@@ -190,17 +194,23 @@ namespace LiveSplit.View
             cbxRunCategory.DataBindings.Add("Text", this, "CategoryName");
             tbxTimeOffset.DataBindings.Add("Text", this, "Offset");
             tbxAttempts.DataBindings.Add("Text", this, "AttemptCount");
-            
+
             picGameIcon.Image = GameIcon;
             removeIconToolStripMenuItem.Enabled = state.Run.GameIcon != null;
 
-            cbxGameName.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbxGameName.GetAllItemsForText = x => new string[0];
 
             Task.Factory.StartNew(() =>
                 {
                     try
                     {
-                        var gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
+                        gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
+                        abbreviations = gameNames
+                        .Select(x => x.GetAbbreviations()
+                            .Select(y => new KeyValuePair<string, string>(x, y)))
+                        .SelectMany(x => x)
+                        .GroupBy(x => x.Value, x => x.Key);
+                        cbxGameName.GetAllItemsForText = x => SearchForGameName(x);
                         this.InvokeIfRequired(() =>
                         {
                             try
@@ -219,7 +229,6 @@ namespace LiveSplit.View
                     }
                 });
 
-            cbxGameName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
             cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
@@ -230,6 +239,18 @@ namespace LiveSplit.View
             RefreshCategoryAutoCompleteList();
             UpdateSegmentList();
             RefreshAutoSplittingUI();
+            SetClickEvents(this);
+        }
+
+        private IEnumerable<string> SearchForGameName(string name)
+        {
+            name = name.ToLowerInvariant();
+            return abbreviations
+                .Where(x => x.Key.ToLowerInvariant().Contains(name))
+                .OrderBy(x => x.Key.ToLowerInvariant().Similarity(name))
+                .SelectMany(x => x)
+                .Distinct()
+                .Take(10);
         }
 
         void Run_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -924,7 +945,7 @@ namespace LiveSplit.View
 
         private void TimesModified()
         {
-            if (Run.Last().PersonalBestSplitTime.RealTime != PreviousPersonalBestTime.RealTime 
+            if (Run.Last().PersonalBestSplitTime.RealTime != PreviousPersonalBestTime.RealTime
                 || Run.Last().PersonalBestSplitTime.GameTime != PreviousPersonalBestTime.GameTime)
             {
                 Run.Metadata.RunID = null;
@@ -1203,23 +1224,23 @@ namespace LiveSplit.View
 
         private void TabSelected(object sender, TabControlEventArgs e)
         {
-            var margin = this.tabControl.Margin;
+            var margin = tabControl.Margin;
             if (IsGridTab)
             {
                 margin.Bottom = 0;
-                this.tabControl.Margin = margin;
+                tabControl.Margin = margin;
                 UpdateSegmentList();
-                this.tableLayoutPanel1.SetRowSpan(this.tabControl, 1);
+                tableLayoutPanel1.SetRowSpan(tabControl, 1);
                 runGrid.Visible = true;
                 runGrid.Invalidate();
             }
             else
             {
                 runGrid.Visible = false;
-                this.tableLayoutPanel1.SetRowSpan(this.tabControl, 9);
+                tableLayoutPanel1.SetRowSpan(tabControl, 9);
                 metadataControl.RefreshInformation();
                 margin.Bottom = 10;
-                this.tabControl.Margin = margin;
+                tabControl.Margin = margin;
             }
         }
 
@@ -1395,8 +1416,8 @@ namespace LiveSplit.View
                     if (!alwaysCancel)
                     {
                         var formatter = new ShortTimeFormatter();
-                        var messageText = formatter.Format(parameters.timeBetween) + " between " 
-                            + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name 
+                        var messageText = formatter.Format(parameters.timeBetween) + " between "
+                            + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name
                             + (parameters.combinedSumOfBest != null ? ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest) : "");
                         if (parameters.attempt.Ended.HasValue)
                         {
@@ -1425,6 +1446,154 @@ namespace LiveSplit.View
                 };
             SumOfBest.Clean(Run, callback);
             RaiseRunEdited();
+        }
+
+        private void ClickControl(object sender, EventArgs e)
+        {
+            cbxGameName.CloseDropDown();
+        }
+
+        private void SetClickEvents(Control control)
+        {
+            foreach (Control childControl in control.Controls)
+            {
+                if (childControl is Label || childControl is TableLayoutPanel || childControl is PictureBox || childControl is FlowLayoutPanel)
+                    SetClickEvents(childControl);
+            }
+            control.Click += ClickControl;
+        }
+    }
+
+    public class CustomAutoCompleteComboBox : ComboBox
+    {
+        private IList<string> _autoCompleteSource = null;
+        private ToolStripDropDown _dropDown = null;
+        private ListBox _box = null;
+        private Form form;
+        private SemaphoreSlim refreshDropDown;
+        private string currentText = "";
+        private bool taskCanceled = false;
+
+        public IList<string> MyAutoCompleteSource
+        {
+            get { return _autoCompleteSource; }
+            set { _autoCompleteSource = value; }
+        }
+
+        public Func<string, IEnumerable<string>> GetAllItemsForText { get; set; }
+
+        public CustomAutoCompleteComboBox(Form controlForm) : base()
+        {
+            form = controlForm;
+            form.FormClosed += Form_FormClosed;
+            refreshDropDown = new SemaphoreSlim(0, 1);
+            UpdateUI();
+        }
+
+        private void Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            taskCanceled = true;
+            TryReleaseRefreshDropDown();
+        }
+
+        private void UpdateUI()
+        {
+            Task.Factory.StartNew(() =>
+                {
+                    while (true)
+                    {
+                        refreshDropDown.Wait();
+                        if (taskCanceled || IsDisposed)
+                            return;
+
+                        var text = currentText;
+                        var legalStrings = GetAllItemsForText(text);
+
+                        if (currentText == text)
+                        {
+                            if (text != "" && legalStrings.Count() > 0 && text != legalStrings.First())
+                            {
+                                form.InvokeIfRequired(() =>
+                                {
+                                    _box.Items.Clear();
+                                    foreach (string str in legalStrings)
+                                        _box.Items.Add(str);
+                                    DroppedDown = false;
+                                    _dropDown.Show(this, new Point(0, Height));
+                                });
+
+                            }
+                            else
+                            {
+                                form.InvokeIfRequired(() =>
+                                {
+                                    CloseDropDown();
+                                });
+                            }
+                        }
+                    }
+                });
+        }
+
+        protected override void OnTextChanged(EventArgs e)
+        {
+            base.OnTextChanged(e);
+
+            _dropDown.AutoClose = false;
+
+            currentText = Text;
+            TryReleaseRefreshDropDown();
+        }
+
+        protected override void OnLostFocus(EventArgs e)
+        {
+            base.OnLostFocus(e);
+            if (!_dropDown.Focused)
+                CloseDropDown();
+        }
+
+        private void TryReleaseRefreshDropDown()
+        {
+            if (refreshDropDown.CurrentCount == 0)
+                refreshDropDown.Release();
+        }
+
+        public void CloseDropDown()
+        {
+            _dropDown.Close();
+        }
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Down)
+            {
+                if (_box.Items.Count > 0)
+                    SelectedItem = _box.Items[0];
+                CloseDropDown();
+            }
+            if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+                e.SuppressKeyPress = true;
+            base.OnKeyDown(e);
+        }
+
+        protected override void OnHandleCreated(EventArgs e)
+        {
+            base.OnHandleCreated(e);
+            _dropDown = new ToolStripDropDown();
+            _box = new ListBox();
+            _box.Width = Width - 2;
+            _box.Click += (sender, arg) =>
+            { Text = _box.SelectedItem as string; _dropDown.Close(); };
+            ToolStripControlHost host = new ToolStripControlHost(_box);
+            host.AutoSize = false;
+            host.Margin = Padding.Empty;
+            host.Padding = Padding.Empty;
+            _dropDown.Items.Add(host);
+            _dropDown.Height = _box.Height;
+            _dropDown.AutoSize = false;
+            _dropDown.Margin = Padding.Empty;
+            _dropDown.Padding = Padding.Empty;
+            _dropDown.Size = host.Size = _box.Size;
         }
     }
 }
