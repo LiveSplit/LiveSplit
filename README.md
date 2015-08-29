@@ -15,9 +15,9 @@ LiveSplit is a timer program for speedrunners that is both easy to use and full 
 
 ## Features
 
-**Speedrun.com Integration:** [Speedrun.com](http://speedrun.com) is fully integrated into LiveSplit. You can browse their Leaderboards, download splits and even submit your own runs directly from within LiveSplit, simplifying the process a lot. You can even show the World Record of the Games you run with the World Record Component.
+**Speedrun.com Integration:** [Speedrun.com](http://speedrun.com) is fully integrated into LiveSplit. You can browse their leaderboards, download splits, and even submit your own runs directly from LiveSplit. You can also show the World Records for the games you run with the World Record Component.
 
-**Accurate Timing:** LiveSplit automatically synchronizes with an Atomic Clock over the Internet to estimate inaccuracies of the local timer in the PC. LiveSplit's timer automatically adjusts the local timer to fix those inaccuracies.
+**Accurate Timing:** LiveSplit automatically synchronizes with an atomic clock over the Internet to estimate inaccuracies of the local timer in the PC. LiveSplit's timer automatically adjusts the local timer to fix those inaccuracies.
 
 **Game Time and Auto Splitting:** LiveSplit will automatically detect if Game Time and/or Auto Splitting is available for a game and lets you activate it in the Splits Editor. Game Time is automatically being read directly from an emulator or PC game. You can use it by switching to Game Time under Compare Against.
 
