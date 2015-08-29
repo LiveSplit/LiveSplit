@@ -7,6 +7,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 #pragma warning disable 1591
 
+// Note: Please be careful when modifying this because it could break existing components!
+
 namespace LiveSplit.ComponentUtil
 {
     using SizeT = UIntPtr;
@@ -209,14 +211,14 @@ namespace LiveSplit.ComponentUtil
             return true;
         }
 
-        public static bool ReadString(this Process process, IntPtr addr, int len, out string str)
+        public static bool ReadString(this Process process, IntPtr addr, int numBytes, out string str)
         {
-            return ReadString(process, addr, ReadStringType.AutoDetect, len, out str);
+            return ReadString(process, addr, ReadStringType.AutoDetect, numBytes, out str);
         }
 
-        public static bool ReadString(this Process process, IntPtr addr, ReadStringType type, int len, out string str)
+        public static bool ReadString(this Process process, IntPtr addr, ReadStringType type, int numBytes, out string str)
         {
-            var sb = new StringBuilder(len);
+            var sb = new StringBuilder(numBytes);
             if (!ReadString(process, addr, type, sb))
             {
                 str = String.Empty;
@@ -291,10 +293,18 @@ namespace LiveSplit.ComponentUtil
             return ptr;
         }
 
-        public static string ReadString(this Process process, IntPtr addr, int len, string default_ = null)
+        public static string ReadString(this Process process, IntPtr addr, int numBytes, string default_ = null)
         {
             string str;
-            if (!process.ReadString(addr, len, out str))
+            if (!process.ReadString(addr, numBytes, out str))
+                return default_;
+            return str;
+        }
+
+        public static string ReadString(this Process process, IntPtr addr, ReadStringType type, int numBytes, string default_ = null)
+        {
+            string str;
+            if (!process.ReadString(addr, type, numBytes, out str))
                 return default_;
             return str;
         }

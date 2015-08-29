@@ -5,6 +5,8 @@ using System.Diagnostics;
 using System.Globalization;
 #pragma warning disable 1591
 
+// Note: Please be careful when modifying this because it could break existing components!
+
 namespace LiveSplit.ComponentUtil
 {
     public class SignatureScanner
