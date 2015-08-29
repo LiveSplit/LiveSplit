@@ -15,21 +15,21 @@ LiveSplit is a timer program for speedrunners that is both easy to use and full 
 
 ## Features
 
-**Game Time and Auto Splitting:** LiveSplit will automatically detect if Game Time and/or Auto Splitting is available for a game and lets you activate it in the Splits Editor. Game Time reads directly from an emulator or PC game, and you can use it by switching to Game Time under Compare Against.
+**Speedrun.com Integration:** [Speedrun.com](http://speedrun.com) is fully integrated into LiveSplit. You can browse their Leaderboards, download splits and even submit your own runs directly from within LiveSplit, simplifying the process a lot. You can even show the World Record of the Games you run with the World Record Component.
+
+**Game Time and Auto Splitting:** LiveSplit will automatically detect if Game Time and/or Auto Splitting is available for a game and lets you activate it in the Splits Editor. Game Time is automatically being read directly from an emulator or PC game. You can use it by switching to Game Time under Compare Against.
 
 **Video Component:** With the Video Component, you can play a video from a local file alongside your run. The video will start when you start your run and stop whenever you reset. You can also specify at what point the video should start at.
 
-**SpeedRunsLive Racing:** In LiveSplit, you are able to start and join races on SpeedRunsLive within LiveSplit itself. The timer automatically starts when the race begins and automatically writes “.done” whenever you complete the race. Also, you are able to compare your current run with the other runners during the race, as long as they use LiveSplit as well.
+**SpeedRunsLive Racing:** In LiveSplit, you are able to start and join races on [SpeedRunsLive](http://www.speedrunslive.com/) within LiveSplit itself. The timer automatically starts when the race begins and automatically writes ``.done`` whenever you complete the race. Also, you are able to compare your current run with the other runners during the race, as long as they use LiveSplit as well.
 
-**Comparisons:** In LiveSplit, you are able to dynamically switch between multiple comparisons, even mid-run. You can either compare your run to comparisons that you define yourself or compare it to multiple automatically generated comparisons, like your sum of best or your average run. While racing on SpeedRunsLive, comparisons for the other runners are automatically generated as well.
+**Comparisons:** In LiveSplit, you are able to dynamically switch between multiple comparisons, even mid-run. You can either compare your run to comparisons that you define yourself or compare it to multiple automatically generated comparisons, like your sum of best or your average run. While racing on [SpeedRunsLive](http://www.speedrunslive.com/), comparisons for the other runners are automatically generated as well.
+
+**Layout System:** Users can modify every part of LiveSplit’s appearance using layouts. Every user has the ability to add or remove parts along with being able to rearrange and customize each part of LiveSplit. You can even define your own background images.
 
 **Dynamic Resizing:** LiveSplit can be resized to any size so that it looks good on stream. As LiveSplit’s size is changed, all of its parts are automatically scaled up in order to preserve its appearance.
 
-**Layout System:** Users can modify every part of LiveSplit’s appearance using layouts. Every user has the ability to add or remove parts along with being able to rearrange and customize each part of LiveSplit.
-
-**Sharing Runs:** Any run can be shared to websites such as PBTracker, AllSpeedruns, Congratsio and Twitter. Splits can also be distributed using Splits.io and imported from a URL. You can also share a screenshot of your splits to Imgur or save it as a file. Your Twitch title can be updated as well based on the game you are playing. Additional websites will be supported in the future.
-
-**OBS Plugin:** The LiveSplit plugin for OBS (Open Broadcaster Software) allows users to easily use LiveSplit in their streams, including putting LiveSplit over a background or a game capture without the need to chroma key.
+**Sharing Runs:** Any run can be shared to websites such as [Speedrun.com](http://speedrun.com/), [Congratsio](http://www.congratsio.com/) and [Twitter](https://twitter.com/). Splits can also be distributed using [splits i/o](https://splits.io/) and imported from a URL. You can also share a screenshot of your splits to [Imgur](http://imgur.com/) or save it as a file. Your [Twitch](http://www.twitch.tv/) title can be updated as well based on the game you are playing.
 
 **Gamepad Support:** You can easily use gamepads, steering wheels, foot pedals, special mouse keys for controlling LiveSplit if you want to. You don’t need to simulate keyboard keys to use them. It just works.
 
