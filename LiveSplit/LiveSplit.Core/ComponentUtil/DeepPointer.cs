@@ -6,6 +6,8 @@ using System.Runtime.InteropServices;
 using System.Text;
 #pragma warning disable 1591
 
+// Note: Please be careful when modifying this because it could break existing components!
+
 namespace LiveSplit.ComponentUtil
 {
     using SizeT = UIntPtr;
@@ -75,30 +77,30 @@ namespace LiveSplit.ComponentUtil
             return true;
         }
 
-        public string DerefString(Process process, int len, string default_ = null)
+        public string DerefString(Process process, int numBytes, string default_ = null)
         {
             string str;
-            if (!this.DerefString(process, ReadStringType.AutoDetect, len, out str))
+            if (!this.DerefString(process, ReadStringType.AutoDetect, numBytes, out str))
                 str = default_;
             return str;
         }
 
-        public string DerefString(Process process, ReadStringType type, int len, string default_ = null)
+        public string DerefString(Process process, ReadStringType type, int numBytes, string default_ = null)
         {
             string str;
-            if (!this.DerefString(process, type, len, out str))
+            if (!this.DerefString(process, type, numBytes, out str))
                 str = default_;
             return str;
         }
 
-        public bool DerefString(Process process, int len, out string str)
+        public bool DerefString(Process process, int numBytes, out string str)
         {
-            return this.DerefString(process, ReadStringType.AutoDetect, len, out str);
+            return this.DerefString(process, ReadStringType.AutoDetect, numBytes, out str);
         }
 
-        public bool DerefString(Process process, ReadStringType type, int len, out string str)
+        public bool DerefString(Process process, ReadStringType type, int numBytes, out string str)
         {
-            var sb = new StringBuilder(len);
+            var sb = new StringBuilder(numBytes);
             if (!this.DerefString(process, type, sb))
             {
                 str = null;
