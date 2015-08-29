@@ -47,7 +47,7 @@ namespace LiveSplit.Model
         {
             get
             {
-                return new TimeStamp(qpc.Elapsed);
+                return new TimeStamp(TimeSpan.FromMilliseconds(qpc.Elapsed.TotalMilliseconds / PersistentDrift));
             }
         }
         
@@ -132,7 +132,7 @@ namespace LiveSplit.Model
 
         public static TimeSpan operator -(TimeStamp a, TimeStamp b)
         {
-            return TimeSpan.FromMilliseconds((a.value.TotalMilliseconds - b.value.TotalMilliseconds) / PersistentDrift);
+            return a.value - b.value;
         }
 
         public static TimeStamp operator -(TimeStamp a, TimeSpan b)
