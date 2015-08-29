@@ -1581,7 +1581,7 @@ namespace LiveSplit.View
             base.OnHandleCreated(e);
             _dropDown = new ToolStripDropDown();
             _box = new ListBox();
-            _box.Width = Width - 2;
+            _box.Width = Width;
             _box.Click += (sender, arg) =>
             { Text = _box.SelectedItem as string; _dropDown.Close(); };
             ToolStripControlHost host = new ToolStripControlHost(_box);
