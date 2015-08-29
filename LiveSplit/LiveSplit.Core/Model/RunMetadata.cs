@@ -19,6 +19,7 @@ namespace LiveSplit.Model
         private string oldGameName;
         private string oldCategoryName;
         private Lazy<Game> game;
+        private bool gameLoaded;
         private Lazy<Category> category;
         private Lazy<SpeedrunComSharp.Run> run;
         private string runId;
@@ -207,21 +208,30 @@ namespace LiveSplit.Model
                     {
                         var gameTask = Task.Factory.StartNew(() =>
                         {
-                            try { return SpeedrunCom.Client.Games.SearchGameExact(oldGameName, new GameEmbeds(embedRegions: true, embedPlatforms: true)); }
-                            catch { return null; }
+                            try
+                            {
+                                var game = SpeedrunCom.Client.Games.SearchGameExact(oldGameName, new GameEmbeds(embedRegions: true, embedPlatforms: true));
+                                gameLoaded = true;
+                                return game;
+                            }
+                            catch
+                            {
+                                gameLoaded = false;
+                                return null;
+                            }
                         });
                         this.game = new Lazy<Game>(() => gameTask.Result);
 
                         var platformTask = Task.Factory.StartNew(() =>
                             {
                                 var game = this.game.Value;
-                                if (game != null && !game.Platforms.Any(x => x.Name == PlatformName))
+                                if (game != null && !game.Platforms.Any(x => x.Name == PlatformName) || gameLoaded && game == null)
                                     PlatformName = string.Empty;
                             });
                         var regionTask = Task.Factory.StartNew(() =>
                             {
                                 var game = this.game.Value;
-                                if (game != null && !game.Regions.Any(x => x.Name == RegionName))
+                                if (game != null && !game.Regions.Any(x => x.Name == RegionName) || gameLoaded && game == null)
                                     RegionName = string.Empty;
                             });
                     }
@@ -263,22 +273,31 @@ namespace LiveSplit.Model
                                 var category = this.category.Value;
                                 var categoryId = category != null ? category.ID : null;
                                 var game = this.game.Value;
-                                if (game == null)
+                                if (game == null && !gameLoaded)
                                     return;
 
                                 try
                                 {
-                                    var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).ToList();
                                     var deletions = new List<string>();
                                     var variableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value);
 
-                                    foreach (var variableNamePair in variableValueNames)
+                                    if (game != null)
                                     {
-                                        var variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
-                                        if (variable == null
-                                        || (!variable.Values.Any(x => x.Value == variableNamePair.Value) && !variable.IsUserDefined))
-                                            deletions.Add(variableNamePair.Key);
+                                        var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).ToList();
+
+                                        foreach (var variableNamePair in variableValueNames)
+                                        {
+                                            var variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
+                                            if (variable == null
+                                            || (!variable.Values.Any(x => x.Value == variableNamePair.Value) && !variable.IsUserDefined))
+                                                deletions.Add(variableNamePair.Key);
+                                        }
                                     }
+                                    else
+                                    {
+                                        deletions.AddRange(variableValueNames.Keys);
+                                    }
+
                                     foreach (var variable in deletions)
                                     {
                                         variableValueNames.Remove(variable);
@@ -304,6 +323,7 @@ namespace LiveSplit.Model
                 oldGameName = oldGameName,
                 oldCategoryName = oldCategoryName,
                 game = game,
+                gameLoaded = gameLoaded,
                 category = category,
                 run = this.run,
                 runId = runId,
