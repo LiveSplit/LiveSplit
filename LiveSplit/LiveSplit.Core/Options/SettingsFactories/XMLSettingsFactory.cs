@@ -56,7 +56,6 @@ namespace LiveSplit.Options.SettingsFactories
             settings.GlobalHotkeysEnabled = SettingsHelper.ParseBool(parent["GlobalHotkeysEnabled"]);
             settings.WarnOnReset = SettingsHelper.ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
             settings.DoubleTapPrevention = SettingsHelper.ParseBool(parent["DoubleTapPrevention"], settings.DoubleTapPrevention);
-            settings.LastTimingMethod = SettingsHelper.ParseEnum<TimingMethod>(parent["LastTimingMethod"], settings.LastTimingMethod);
             settings.SimpleSumOfBest = SettingsHelper.ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
             settings.LastComparison = SettingsHelper.ParseString(parent["LastComparison"], settings.LastComparison);
             settings.DeactivateHotkeysForOtherPrograms = SettingsHelper.ParseBool(parent["DeactivateHotkeysForOtherPrograms"], settings.DeactivateHotkeysForOtherPrograms);
@@ -116,7 +115,7 @@ namespace LiveSplit.Options.SettingsFactories
             {
                 foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes.OfType<XmlElement>())
                 {
-                    settings.ComparisonGeneratorStates[generatorNode.GetAttribute("name")] = Boolean.Parse(generatorNode.InnerText);
+                    settings.ComparisonGeneratorStates[generatorNode.GetAttribute("name")] = bool.Parse(generatorNode.InnerText);
                 }
 
                 foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsFile"))
@@ -124,9 +123,12 @@ namespace LiveSplit.Options.SettingsFactories
                     var splitElement = splitNode as XmlElement;
                     string gameName = splitElement.GetAttribute("gameName");
                     string categoryName = splitElement.GetAttribute("categoryName");
+                    var method = TimingMethod.RealTime;
+                    if (version >= new Version(1, 6, 1))
+                        method = (TimingMethod)Enum.Parse(typeof(TimingMethod), splitElement.GetAttribute("lastTimingMethod"));
                     var path = splitElement.InnerText;
 
-                    var recentSplitsFile = new RecentSplitsFile(path, gameName, categoryName);
+                    var recentSplitsFile = new RecentSplitsFile(path, method, gameName, categoryName);
                     settings.RecentSplits.Add(recentSplitsFile);
                 }
             }
@@ -148,7 +150,7 @@ namespace LiveSplit.Options.SettingsFactories
                             runFactory.Stream = stream;
                             var run = runFactory.Create(comparisonsFactory);
 
-                            var recentSplitsFile = new RecentSplitsFile(path, run.GameName, run.CategoryName);
+                            var recentSplitsFile = new RecentSplitsFile(path, run, TimingMethod.RealTime);
                             settings.RecentSplits.Add(recentSplitsFile);
                         }
                     }

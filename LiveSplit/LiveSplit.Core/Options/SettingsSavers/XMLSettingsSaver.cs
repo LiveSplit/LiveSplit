@@ -16,7 +16,7 @@ namespace LiveSplit.Options.SettingsSavers
 
             var parent = document.CreateElement("Settings");
             var version = document.CreateAttribute("version");
-            version.Value = "1.6";
+            version.Value = "1.6.1";
             parent.Attributes.Append(version);
             document.AppendChild(parent);
 
@@ -76,6 +76,7 @@ namespace LiveSplit.Options.SettingsSavers
                 var splitsFileElement = SettingsHelper.ToElement(document, "SplitsFile", splitsFile.Path);
                 splitsFileElement.SetAttribute("gameName", splitsFile.GameName);
                 splitsFileElement.SetAttribute("categoryName", splitsFile.CategoryName);
+                splitsFileElement.SetAttribute("lastTimingMethod", splitsFile.LastTimingMethod.ToString());
                 recentSplits.AppendChild(splitsFileElement);
             }
             parent.AppendChild(recentSplits);
@@ -87,7 +88,6 @@ namespace LiveSplit.Options.SettingsSavers
             parent.AppendChild(recentLayouts);
 
             SettingsHelper.CreateSetting(document, parent, "LastComparison", settings.LastComparison);
-            SettingsHelper.CreateSetting(document, parent, "LastTimingMethod", settings.LastTimingMethod);
             SettingsHelper.CreateSetting(document, parent, "SimpleSumOfBest", settings.SimpleSumOfBest);
 
             var generatorStates = document.CreateElement("ComparisonGeneratorStates");

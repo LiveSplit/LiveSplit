@@ -162,12 +162,16 @@ namespace LiveSplit.View
             {
                 if (!string.IsNullOrEmpty(splitsPath))
                 {
-                    run = LoadRunFromFile(splitsPath, true);
+                    run = LoadRunFromFile(splitsPath, TimingMethod.RealTime);
                 }
-                else if (Settings.RecentSplits.Count > 0 
-                    && !string.IsNullOrEmpty(Settings.RecentSplits.Last().Path))
+                else if (Settings.RecentSplits.Count > 0)
                 {
-                    run = LoadRunFromFile(Settings.RecentSplits.Last().Path, true);
+                    var lastSplitFile = Settings.RecentSplits.Last();
+                    if (!string.IsNullOrEmpty(lastSplitFile.Path))
+                    {
+                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod);
+                        CurrentState.CurrentTimingMethod = lastSplitFile.LastTimingMethod;
+                    }
                 }
             }
             catch (Exception e)
@@ -211,8 +215,7 @@ namespace LiveSplit.View
 
             CurrentState.LayoutSettings = Layout.Settings;
             CreateAutoSplitter();
-
-            CurrentState.CurrentTimingMethod = Settings.LastTimingMethod;
+            CurrentState.FixTimingMethodFromRuleset();
 
             SwitchComparisonGenerators();
             SwitchComparison(Settings.LastComparison);
@@ -625,9 +628,9 @@ namespace LiveSplit.View
             });
         }
 
-        private void AddSplitsFileToLRU(string filePath, IRun run)
+        private void AddSplitsFileToLRU(string filePath, IRun run, TimingMethod lastTimingMethod)
         {
-            Settings.AddToRecentSplits(filePath, run);
+            Settings.AddToRecentSplits(filePath, run, lastTimingMethod);
             UpdateRecentSplits();
         }
 
@@ -666,7 +669,12 @@ namespace LiveSplit.View
 
                         var menuItem = new ToolStripMenuItem(fileName.EscapeMenuItemText());
                         menuItem.Tag = "FileName";
-                        menuItem.Click += (x, y) => { OpenRunFromFile(splitsFile.Path); };
+                        menuItem.Click += (x, y) =>
+                        {
+                            var previousMethod = CurrentState.CurrentTimingMethod;
+                            CurrentState.CurrentTimingMethod = splitsFile.LastTimingMethod;
+                            OpenRunFromFile(splitsFile.Path, previousMethod);
+                        };
                         categoryMenuItem.DropDownItems.Add(menuItem);
                     }
 
@@ -1496,7 +1504,13 @@ namespace LiveSplit.View
                 CurrentState.Run.AutoSplitter.Deactivate();
         }
 
-        private IRun LoadRunFromFile(string filePath, bool addToRecent)
+        private void AddCurrentSplitsToLRU(TimingMethod lastTimingMethod)
+        {
+            if (CurrentState.Run != null)
+                AddSplitsFileToLRU(CurrentState.Run.FilePath, CurrentState.Run, lastTimingMethod);
+        }
+
+        private IRun LoadRunFromFile(string filePath, TimingMethod previousTimingMethod)
         {
             IRun run;
 
@@ -1508,8 +1522,9 @@ namespace LiveSplit.View
                 run = RunFactory.Create(ComparisonGeneratorsFactory);
             }
 
-            if (addToRecent)
-                AddSplitsFileToLRU(filePath, run);
+            AddCurrentSplitsToLRU(previousTimingMethod);
+            AddSplitsFileToLRU(filePath, run, CurrentState.CurrentTimingMethod);
+
             if (InTimerOnlyMode)
                 RemoveTimerOnly();
             return run;
@@ -1526,7 +1541,7 @@ namespace LiveSplit.View
             }
         }
 
-        private void OpenRunFromFile(string filePath)
+        private void OpenRunFromFile(string filePath, TimingMethod previousTimingMethod)
         {
             Cursor.Current = Cursors.WaitCursor;
             try
@@ -1534,7 +1549,7 @@ namespace LiveSplit.View
                 if (!WarnUserAboutSplitsSave())
                     return;
 
-                var run = LoadRunFromFile(filePath, true);
+                var run = LoadRunFromFile(filePath, previousTimingMethod);
                 SetRun(run);
                 CurrentState.CallRunManuallyModified();
             }
@@ -1560,7 +1575,7 @@ namespace LiveSplit.View
                     var result = splitDialog.ShowDialog(this);
                     if (result == DialogResult.OK)
                     {
-                        OpenRunFromFile(splitDialog.FileName);
+                        OpenRunFromFile(splitDialog.FileName, CurrentState.CurrentTimingMethod);
                     }
                 }
                 finally
@@ -1655,7 +1670,7 @@ namespace LiveSplit.View
                     CurrentState.Run.HasChanged = false;
                 }
 
-                AddSplitsFileToLRU(savePath, stateCopy.Run);
+                AddSplitsFileToLRU(savePath, stateCopy.Run, CurrentState.CurrentTimingMethod);
             }
             catch (Exception ex)
             {
@@ -2037,7 +2052,7 @@ namespace LiveSplit.View
             var run = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
             Model.Reset();
             SetRun(run);
-            Settings.AddToRecentSplits("", null);
+            Settings.AddToRecentSplits("", null, TimingMethod.RealTime);
             InTimerOnlyMode = true;
             if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
             {
@@ -2160,8 +2175,6 @@ namespace LiveSplit.View
 
         private void TimerForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Settings.LastComparison = CurrentState.CurrentComparison;
-            Settings.LastTimingMethod = CurrentState.CurrentTimingMethod;
             if (!WarnUserAboutSplitsSave())
             {
                 e.Cancel = true;
@@ -2172,6 +2185,9 @@ namespace LiveSplit.View
                 e.Cancel = true;
                 return;
             }
+
+            Settings.LastComparison = CurrentState.CurrentComparison;
+            AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod);
 
             try
             {

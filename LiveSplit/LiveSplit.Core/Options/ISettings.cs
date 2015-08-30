@@ -11,9 +11,10 @@ namespace LiveSplit.Options
         public string GameName;
         public string CategoryName;
         public string Path;
+        public TimingMethod LastTimingMethod;
 
-        public RecentSplitsFile(string path, IRun run)
-            : this(path)
+        public RecentSplitsFile(string path, IRun run, TimingMethod method)
+            : this(path, method)
         {
             if (run != null)
             {
@@ -22,11 +23,12 @@ namespace LiveSplit.Options
             }
         }
 
-        public RecentSplitsFile(string path, string gameName = null, string categoryName = null)
+        public RecentSplitsFile(string path, TimingMethod method, string gameName = null, string categoryName = null)
         {
             GameName = gameName;
             CategoryName = categoryName;
             Path = path;
+            LastTimingMethod = method;
         }
     }
 
@@ -45,7 +47,6 @@ namespace LiveSplit.Options
         IList<RecentSplitsFile> RecentSplits { get; set; }
         IList<string> RecentLayouts { get; set; }
         string LastComparison { get; set; }
-        TimingMethod LastTimingMethod { get; set; }
         float HotkeyDelay { get; set; }
         bool GlobalHotkeysEnabled { get; set; }
         bool DeactivateHotkeysForOtherPrograms { get; set; }
@@ -58,7 +59,7 @@ namespace LiveSplit.Options
 
         bool AgreedToSRLRules { get; set; }
 
-        void AddToRecentSplits(string path, IRun run);
+        void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod);
         void AddToRecentLayouts(string path);
         void RegisterHotkeys(CompositeHook hook);
         void UnregisterAllHotkeys(CompositeHook hook);
