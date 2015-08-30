@@ -220,7 +220,7 @@ namespace LiveSplit.Model
                 else
                     nullValue = true;
 
-                if (segment.PersonalBestSplitTime.GameTime!= null)
+                if (segment.PersonalBestSplitTime.GameTime != null)
                     prevTimeGameTime = segment.PersonalBestSplitTime.GameTime.Value;
                 else
                     nullValue = true;
@@ -286,16 +286,18 @@ namespace LiveSplit.Model
             var list = new List<string>();
 
             var categoryName = run.CategoryName;
+            var afterParentheses = "";
 
             if (string.IsNullOrEmpty(categoryName))
                 return string.Empty;
 
-            while (categoryName.Contains('(') && categoryName.Contains(')'))
+            var indexStart = categoryName.IndexOf('(');
+            var indexEnd = categoryName.IndexOf(')', indexStart + 1);
+            if (indexStart >= 0 && indexEnd >= 0)
             {
-                var indexStart = categoryName.IndexOf('(');
-                var indexEnd = categoryName.IndexOf(')');
                 var inside = categoryName.Substring(indexStart + 1, indexEnd - indexStart - 1);
                 list.Add(inside);
+                afterParentheses = categoryName.Substring(indexEnd + 1).Trim();
                 categoryName = categoryName.Substring(0, indexStart).Trim();
             }
 
@@ -353,10 +355,10 @@ namespace LiveSplit.Model
 
             if (list.Any())
             {
-                categoryName += " (" + list.Aggregate((a, b) => a + ", " + b) + ")";
+                categoryName += " (" + list.Aggregate((a, b) => a + ", " + b) + ") " + afterParentheses;
             }
 
-            return categoryName;
+            return categoryName.Trim();
         }
     }
 }
