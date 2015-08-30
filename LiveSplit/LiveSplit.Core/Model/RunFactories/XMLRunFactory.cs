@@ -131,7 +131,8 @@ namespace LiveSplit.Model.RunFactories
                     else
                         indexedTime = IndexedTimeHelper.ParseXmlOld(node);
 
-                    split.SegmentHistory.Add(indexedTime.Index, indexedTime.Time);
+                    if (!split.SegmentHistory.ContainsKey(indexedTime.Index))
+                        split.SegmentHistory.Add(indexedTime.Index, indexedTime.Time);
                 }
 
                 run.Add(split);
