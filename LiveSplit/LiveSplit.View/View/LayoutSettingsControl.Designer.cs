@@ -28,13 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayoutSettingsControl));
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbBackgroundType = new System.Windows.Forms.ComboBox();
-            this.lblBackground = new System.Windows.Forms.Label();
-            this.btnBackground = new System.Windows.Forms.Button();
-            this.btnBackground2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.btnGlod = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
@@ -79,10 +76,14 @@
             this.trkOpacity = new System.Windows.Forms.TrackBar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblImageOpacity = new System.Windows.Forms.Label();
-            this.trkImageOpacity = new System.Windows.Forms.TrackBar();
-            this.lblBlur = new System.Windows.Forms.Label();
+            this.cmbBackgroundType = new System.Windows.Forms.ComboBox();
             this.trkBlur = new System.Windows.Forms.TrackBar();
+            this.trkImageOpacity = new System.Windows.Forms.TrackBar();
+            this.lblBackground = new System.Windows.Forms.Label();
+            this.btnBackground2 = new System.Windows.Forms.Button();
+            this.btnBackground = new System.Windows.Forms.Button();
+            this.lblImageOpacity = new System.Windows.Forms.Label();
+            this.lblBlur = new System.Windows.Forms.Label();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -91,16 +92,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.trkOpacity)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkBlur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel5
             // 
-            this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.99567F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.78788F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.94857F));
+            resources.ApplyResources(this.tableLayoutPanel5, "tableLayoutPanel5");
             this.tableLayoutPanel5.Controls.Add(this.groupBox2, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.chkAlwaysOnTop, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.groupBox1, 0, 2);
@@ -108,38 +106,19 @@
             this.tableLayoutPanel5.Controls.Add(this.label13, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.trkOpacity, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.groupBox3, 0, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 5;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 228F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 512);
-            this.tableLayoutPanel5.TabIndex = 41;
             // 
             // groupBox2
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.groupBox2, 3);
             this.groupBox2.Controls.Add(this.tableLayoutPanel2);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 258);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(456, 222);
-            this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Colors";
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 5;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            resources.ApplyResources(this.tableLayoutPanel2, "tableLayoutPanel2");
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnGlod, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.label14, 0, 6);
@@ -165,398 +144,178 @@
             this.tableLayoutPanel2.Controls.Add(this.btnPB, 4, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnSeparators, 4, 5);
             this.tableLayoutPanel2.Controls.Add(this.btnPausedColor, 4, 3);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 7;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(450, 203);
-            this.tableLayoutPanel2.TabIndex = 0;
-            // 
-            // cmbBackgroundType
-            // 
-            this.cmbBackgroundType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.SetColumnSpan(this.cmbBackgroundType, 2);
-            this.cmbBackgroundType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBackgroundType.FormattingEnabled = true;
-            this.cmbBackgroundType.Items.AddRange(new object[] {
-            "Solid Color",
-            "Vertical Gradient",
-            "Horizontal Gradient",
-            "Image"});
-            this.cmbBackgroundType.Location = new System.Drawing.Point(227, 4);
-            this.cmbBackgroundType.Name = "cmbBackgroundType";
-            this.cmbBackgroundType.Size = new System.Drawing.Size(220, 21);
-            this.cmbBackgroundType.TabIndex = 2;
-            this.cmbBackgroundType.SelectedIndexChanged += new System.EventHandler(this.cmbGradientType_SelectedIndexChanged);
-            // 
-            // lblBackground
-            // 
-            this.lblBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBackground.AutoSize = true;
-            this.lblBackground.Location = new System.Drawing.Point(3, 8);
-            this.lblBackground.Name = "lblBackground";
-            this.lblBackground.Size = new System.Drawing.Size(85, 13);
-            this.lblBackground.TabIndex = 19;
-            this.lblBackground.Text = "Color:";
-            // 
-            // btnBackground
-            // 
-            this.btnBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBackground.Location = new System.Drawing.Point(169, 3);
-            this.btnBackground.Name = "btnBackground";
-            this.btnBackground.Size = new System.Drawing.Size(23, 23);
-            this.btnBackground.TabIndex = 0;
-            this.btnBackground.UseVisualStyleBackColor = false;
-            this.btnBackground.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // btnBackground2
-            // 
-            this.btnBackground2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBackground2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnBackground2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBackground2.Location = new System.Drawing.Point(198, 3);
-            this.btnBackground2.Name = "btnBackground2";
-            this.btnBackground2.Size = new System.Drawing.Size(23, 23);
-            this.btnBackground2.TabIndex = 1;
-            this.btnBackground2.UseVisualStyleBackColor = false;
-            this.btnBackground2.Click += new System.EventHandler(this.BackgroundColorButtonClick);
             // 
             // label9
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 8);
+            resources.ApplyResources(this.label9, "label9");
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(160, 13);
-            this.label9.TabIndex = 27;
-            this.label9.Text = "Best Segment:";
             // 
             // btnGlod
             // 
-            this.btnGlod.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGlod.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnGlod.Location = new System.Drawing.Point(198, 3);
+            resources.ApplyResources(this.btnGlod, "btnGlod");
             this.btnGlod.Name = "btnGlod";
-            this.btnGlod.Size = new System.Drawing.Size(23, 23);
-            this.btnGlod.TabIndex = 8;
             this.btnGlod.UseVisualStyleBackColor = false;
             this.btnGlod.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // label14
             // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 182);
+            resources.ApplyResources(this.label14, "label14");
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(160, 13);
-            this.label14.TabIndex = 44;
-            this.label14.Text = "Shadows:";
             // 
             // btnShadowsColor
             // 
-            this.btnShadowsColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShadowsColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnShadowsColor.Location = new System.Drawing.Point(198, 177);
+            resources.ApplyResources(this.btnShadowsColor, "btnShadowsColor");
             this.btnShadowsColor.Name = "btnShadowsColor";
-            this.btnShadowsColor.Size = new System.Drawing.Size(23, 23);
-            this.btnShadowsColor.TabIndex = 3;
             this.btnShadowsColor.UseVisualStyleBackColor = false;
             this.btnShadowsColor.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 37);
+            resources.ApplyResources(this.label5, "label5");
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 13);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Ahead (Gaining Time):";
             // 
             // label6
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 66);
+            resources.ApplyResources(this.label6, "label6");
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(160, 13);
-            this.label6.TabIndex = 24;
-            this.label6.Text = "Ahead (Losing Time):";
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 95);
+            resources.ApplyResources(this.label7, "label7");
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(160, 13);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "Behind (Gaining Time):";
             // 
             // label11
             // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 153);
+            resources.ApplyResources(this.label11, "label11");
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(160, 13);
-            this.label11.TabIndex = 29;
-            this.label11.Text = "Text:";
             // 
             // label8
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 124);
+            resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(160, 13);
-            this.label8.TabIndex = 26;
-            this.label8.Text = "Behind (Losing Time):";
             // 
             // btnAheadGaining
             // 
-            this.btnAheadGaining.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAheadGaining.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAheadGaining.Location = new System.Drawing.Point(198, 32);
+            resources.ApplyResources(this.btnAheadGaining, "btnAheadGaining");
             this.btnAheadGaining.Name = "btnAheadGaining";
-            this.btnAheadGaining.Size = new System.Drawing.Size(23, 23);
-            this.btnAheadGaining.TabIndex = 11;
             this.btnAheadGaining.UseVisualStyleBackColor = false;
             this.btnAheadGaining.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // btnAheadLosing
             // 
-            this.btnAheadLosing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAheadLosing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnAheadLosing.Location = new System.Drawing.Point(198, 61);
+            resources.ApplyResources(this.btnAheadLosing, "btnAheadLosing");
             this.btnAheadLosing.Name = "btnAheadLosing";
-            this.btnAheadLosing.Size = new System.Drawing.Size(23, 23);
-            this.btnAheadLosing.TabIndex = 13;
             this.btnAheadLosing.UseVisualStyleBackColor = false;
             this.btnAheadLosing.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // btnBehindGaining
             // 
-            this.btnBehindGaining.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBehindGaining.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBehindGaining.Location = new System.Drawing.Point(198, 90);
+            resources.ApplyResources(this.btnBehindGaining, "btnBehindGaining");
             this.btnBehindGaining.Name = "btnBehindGaining";
-            this.btnBehindGaining.Size = new System.Drawing.Size(23, 23);
-            this.btnBehindGaining.TabIndex = 4;
             this.btnBehindGaining.UseVisualStyleBackColor = false;
             this.btnBehindGaining.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // btnTextColor
             // 
-            this.btnTextColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTextColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnTextColor.Location = new System.Drawing.Point(198, 148);
+            resources.ApplyResources(this.btnTextColor, "btnTextColor");
             this.btnTextColor.Name = "btnTextColor";
-            this.btnTextColor.Size = new System.Drawing.Size(23, 23);
-            this.btnTextColor.TabIndex = 14;
             this.btnTextColor.UseVisualStyleBackColor = false;
             this.btnTextColor.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // btnBehindLosing
             // 
-            this.btnBehindLosing.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBehindLosing.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBehindLosing.Location = new System.Drawing.Point(198, 119);
+            resources.ApplyResources(this.btnBehindLosing, "btnBehindLosing");
             this.btnBehindLosing.Name = "btnBehindLosing";
-            this.btnBehindLosing.Size = new System.Drawing.Size(23, 23);
-            this.btnBehindLosing.TabIndex = 6;
             this.btnBehindLosing.UseVisualStyleBackColor = false;
             this.btnBehindLosing.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // chkRainbow
             // 
-            this.chkRainbow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkRainbow.AutoSize = true;
+            resources.ApplyResources(this.chkRainbow, "chkRainbow");
             this.tableLayoutPanel2.SetColumnSpan(this.chkRainbow, 2);
-            this.chkRainbow.Location = new System.Drawing.Point(231, 6);
-            this.chkRainbow.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkRainbow.Name = "chkRainbow";
-            this.chkRainbow.Size = new System.Drawing.Size(216, 17);
-            this.chkRainbow.TabIndex = 45;
-            this.chkRainbow.Text = "Use Rainbow Best Segment Color";
             this.chkRainbow.UseVisualStyleBackColor = true;
             this.chkRainbow.CheckedChanged += new System.EventHandler(this.chkRainbow_CheckedChanged);
             // 
             // label10
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(227, 37);
+            resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(191, 13);
-            this.label10.TabIndex = 28;
-            this.label10.Text = "Not Running:";
             // 
             // label2
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(227, 124);
+            resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(191, 13);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Thin Separators:";
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(227, 66);
+            resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(191, 13);
-            this.label4.TabIndex = 22;
-            this.label4.Text = "Personal Best:";
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(227, 153);
+            resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(191, 13);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Separators:";
             // 
             // label12
             // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(227, 95);
+            resources.ApplyResources(this.label12, "label12");
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(191, 13);
-            this.label12.TabIndex = 41;
-            this.label12.Text = "Paused:";
             // 
             // btnNotRunning
             // 
-            this.btnNotRunning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNotRunning.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnNotRunning.Location = new System.Drawing.Point(424, 32);
+            resources.ApplyResources(this.btnNotRunning, "btnNotRunning");
             this.btnNotRunning.Name = "btnNotRunning";
-            this.btnNotRunning.Size = new System.Drawing.Size(23, 23);
-            this.btnNotRunning.TabIndex = 10;
             this.btnNotRunning.UseVisualStyleBackColor = false;
             this.btnNotRunning.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // btnThinSep
             // 
-            this.btnThinSep.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThinSep.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnThinSep.Location = new System.Drawing.Point(424, 119);
+            resources.ApplyResources(this.btnThinSep, "btnThinSep");
             this.btnThinSep.Name = "btnThinSep";
-            this.btnThinSep.Size = new System.Drawing.Size(23, 23);
-            this.btnThinSep.TabIndex = 5;
             this.btnThinSep.UseVisualStyleBackColor = false;
             this.btnThinSep.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // btnPB
             // 
-            this.btnPB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPB.Location = new System.Drawing.Point(424, 61);
+            resources.ApplyResources(this.btnPB, "btnPB");
             this.btnPB.Name = "btnPB";
-            this.btnPB.Size = new System.Drawing.Size(23, 23);
-            this.btnPB.TabIndex = 9;
             this.btnPB.UseVisualStyleBackColor = false;
             this.btnPB.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // btnSeparators
             // 
-            this.btnSeparators.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSeparators.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSeparators.Location = new System.Drawing.Point(424, 148);
+            resources.ApplyResources(this.btnSeparators, "btnSeparators");
             this.btnSeparators.Name = "btnSeparators";
-            this.btnSeparators.Size = new System.Drawing.Size(23, 23);
-            this.btnSeparators.TabIndex = 7;
             this.btnSeparators.UseVisualStyleBackColor = false;
             this.btnSeparators.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // btnPausedColor
             // 
-            this.btnPausedColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPausedColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPausedColor.Location = new System.Drawing.Point(424, 90);
+            resources.ApplyResources(this.btnPausedColor, "btnPausedColor");
             this.btnPausedColor.Name = "btnPausedColor";
-            this.btnPausedColor.Size = new System.Drawing.Size(23, 23);
-            this.btnPausedColor.TabIndex = 12;
             this.btnPausedColor.UseVisualStyleBackColor = false;
             this.btnPausedColor.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // chkAlwaysOnTop
             // 
-            this.chkAlwaysOnTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkAlwaysOnTop.AutoSize = true;
+            resources.ApplyResources(this.chkAlwaysOnTop, "chkAlwaysOnTop");
             this.tableLayoutPanel5.SetColumnSpan(this.chkAlwaysOnTop, 2);
-            this.chkAlwaysOnTop.Location = new System.Drawing.Point(7, 486);
-            this.chkAlwaysOnTop.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkAlwaysOnTop.Name = "chkAlwaysOnTop";
-            this.chkAlwaysOnTop.Size = new System.Drawing.Size(96, 23);
-            this.chkAlwaysOnTop.TabIndex = 14;
-            this.chkAlwaysOnTop.Text = "Always on Top";
             this.chkAlwaysOnTop.UseVisualStyleBackColor = true;
             // 
             // groupBox1
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.groupBox1, 3);
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 116);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(456, 136);
-            this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Fonts";
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 63F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 161F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.chkAntiAliasing, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.label16, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label17, 0, 1);
@@ -568,172 +327,94 @@
             this.tableLayoutPanel1.Controls.Add(this.lblTimer, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblTimes, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblText, 1, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(450, 117);
-            this.tableLayoutPanel1.TabIndex = 0;
             // 
             // chkAntiAliasing
             // 
-            this.chkAntiAliasing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkAntiAliasing.AutoSize = true;
+            resources.ApplyResources(this.chkAntiAliasing, "chkAntiAliasing");
             this.tableLayoutPanel1.SetColumnSpan(this.chkAntiAliasing, 2);
-            this.chkAntiAliasing.Location = new System.Drawing.Point(7, 93);
-            this.chkAntiAliasing.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkAntiAliasing.Name = "chkAntiAliasing";
-            this.chkAntiAliasing.Size = new System.Drawing.Size(214, 17);
-            this.chkAntiAliasing.TabIndex = 26;
-            this.chkAntiAliasing.Text = "Anti-Aliasing";
             this.chkAntiAliasing.UseVisualStyleBackColor = true;
             // 
             // label16
             // 
-            this.label16.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(3, 8);
+            resources.ApplyResources(this.label16, "label16");
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(57, 13);
-            this.label16.TabIndex = 20;
-            this.label16.Text = "Timer:";
             // 
             // label17
             // 
-            this.label17.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(3, 37);
+            resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(57, 13);
-            this.label17.TabIndex = 21;
-            this.label17.Text = "Times:";
             // 
             // label18
             // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(3, 66);
+            resources.ApplyResources(this.label18, "label18");
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(57, 13);
-            this.label18.TabIndex = 22;
-            this.label18.Text = "Text:";
             // 
             // btnTimer
             // 
-            this.btnTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTimer.Location = new System.Drawing.Point(372, 3);
+            resources.ApplyResources(this.btnTimer, "btnTimer");
             this.btnTimer.Name = "btnTimer";
-            this.btnTimer.Size = new System.Drawing.Size(75, 23);
-            this.btnTimer.TabIndex = 0;
-            this.btnTimer.Text = "Choose...";
             this.btnTimer.UseVisualStyleBackColor = true;
             this.btnTimer.Click += new System.EventHandler(this.btnTimer_Click);
             // 
             // btnTimes
             // 
-            this.btnTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTimes.Location = new System.Drawing.Point(372, 32);
+            resources.ApplyResources(this.btnTimes, "btnTimes");
             this.btnTimes.Name = "btnTimes";
-            this.btnTimes.Size = new System.Drawing.Size(75, 23);
-            this.btnTimes.TabIndex = 1;
-            this.btnTimes.Text = "Choose...";
             this.btnTimes.UseVisualStyleBackColor = true;
             this.btnTimes.Click += new System.EventHandler(this.btnTimes_Click);
             // 
             // btnTextFont
             // 
-            this.btnTextFont.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTextFont.Location = new System.Drawing.Point(372, 61);
+            resources.ApplyResources(this.btnTextFont, "btnTextFont");
             this.btnTextFont.Name = "btnTextFont";
-            this.btnTextFont.Size = new System.Drawing.Size(75, 23);
-            this.btnTextFont.TabIndex = 2;
-            this.btnTextFont.Text = "Choose...";
             this.btnTextFont.UseVisualStyleBackColor = true;
             this.btnTextFont.Click += new System.EventHandler(this.btnTextFont_Click);
             // 
             // chkDropShadows
             // 
-            this.chkDropShadows.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkDropShadows.AutoSize = true;
+            resources.ApplyResources(this.chkDropShadows, "chkDropShadows");
             this.tableLayoutPanel1.SetColumnSpan(this.chkDropShadows, 2);
-            this.chkDropShadows.Location = new System.Drawing.Point(231, 93);
-            this.chkDropShadows.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDropShadows.Name = "chkDropShadows";
-            this.chkDropShadows.Size = new System.Drawing.Size(216, 17);
-            this.chkDropShadows.TabIndex = 27;
-            this.chkDropShadows.Text = "Drop Shadows";
             this.chkDropShadows.UseVisualStyleBackColor = true;
             // 
             // lblTimer
             // 
-            this.lblTimer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTimer.AutoSize = true;
+            resources.ApplyResources(this.lblTimer, "lblTimer");
             this.tableLayoutPanel1.SetColumnSpan(this.lblTimer, 2);
-            this.lblTimer.Location = new System.Drawing.Point(66, 8);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(300, 13);
-            this.lblTimer.TabIndex = 23;
-            this.lblTimer.Text = "something";
             // 
             // lblTimes
             // 
-            this.lblTimes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblTimes.AutoSize = true;
+            resources.ApplyResources(this.lblTimes, "lblTimes");
             this.tableLayoutPanel1.SetColumnSpan(this.lblTimes, 2);
-            this.lblTimes.Location = new System.Drawing.Point(66, 37);
             this.lblTimes.Name = "lblTimes";
-            this.lblTimes.Size = new System.Drawing.Size(300, 13);
-            this.lblTimes.TabIndex = 24;
-            this.lblTimes.Text = "something";
             // 
             // lblText
             // 
-            this.lblText.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblText.AutoSize = true;
+            resources.ApplyResources(this.lblText, "lblText");
             this.tableLayoutPanel1.SetColumnSpan(this.lblText, 2);
-            this.lblText.Location = new System.Drawing.Point(66, 66);
             this.lblText.Name = "lblText";
-            this.lblText.Size = new System.Drawing.Size(300, 13);
-            this.lblText.TabIndex = 25;
-            this.lblText.Text = "something";
             // 
             // chkBestSegments
             // 
-            this.chkBestSegments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkBestSegments.AutoSize = true;
-            this.chkBestSegments.Location = new System.Drawing.Point(237, 486);
-            this.chkBestSegments.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            resources.ApplyResources(this.chkBestSegments, "chkBestSegments");
             this.chkBestSegments.Name = "chkBestSegments";
-            this.chkBestSegments.Size = new System.Drawing.Size(127, 23);
-            this.chkBestSegments.TabIndex = 15;
-            this.chkBestSegments.Text = "Show Best Segments";
             this.chkBestSegments.UseVisualStyleBackColor = true;
             // 
             // label13
             // 
-            this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 92);
+            resources.ApplyResources(this.label13, "label13");
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(91, 13);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "Opacity:";
             // 
             // trkOpacity
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.trkOpacity, 2);
-            this.trkOpacity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trkOpacity.Location = new System.Drawing.Point(100, 87);
+            resources.ApplyResources(this.trkOpacity, "trkOpacity");
             this.trkOpacity.Maximum = 100;
             this.trkOpacity.Minimum = 5;
             this.trkOpacity.Name = "trkOpacity";
-            this.trkOpacity.Size = new System.Drawing.Size(359, 23);
-            this.trkOpacity.TabIndex = 0;
             this.trkOpacity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkOpacity.Value = 5;
             // 
@@ -741,23 +422,13 @@
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.groupBox3, 3);
             this.groupBox3.Controls.Add(this.tableLayoutPanel3);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(456, 78);
-            this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Background";
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 6;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 133F));
+            resources.ApplyResources(this.tableLayoutPanel3, "tableLayoutPanel3");
             this.tableLayoutPanel3.Controls.Add(this.trkBlur, 5, 1);
             this.tableLayoutPanel3.Controls.Add(this.trkImageOpacity, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.cmbBackgroundType, 4, 0);
@@ -766,66 +437,74 @@
             this.tableLayoutPanel3.Controls.Add(this.btnBackground, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.lblImageOpacity, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.lblBlur, 4, 1);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(450, 59);
-            this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // lblImageOpacity
+            // cmbBackgroundType
             // 
-            this.lblImageOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblImageOpacity.AutoSize = true;
-            this.lblImageOpacity.Location = new System.Drawing.Point(3, 37);
-            this.lblImageOpacity.Name = "lblImageOpacity";
-            this.lblImageOpacity.Size = new System.Drawing.Size(85, 13);
-            this.lblImageOpacity.TabIndex = 20;
-            this.lblImageOpacity.Text = "Image Opacity:";
+            resources.ApplyResources(this.cmbBackgroundType, "cmbBackgroundType");
+            this.tableLayoutPanel3.SetColumnSpan(this.cmbBackgroundType, 2);
+            this.cmbBackgroundType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBackgroundType.FormattingEnabled = true;
+            this.cmbBackgroundType.Items.AddRange(new object[] {
+            resources.GetString("cmbBackgroundType.Items"),
+            resources.GetString("cmbBackgroundType.Items1"),
+            resources.GetString("cmbBackgroundType.Items2"),
+            resources.GetString("cmbBackgroundType.Items3")});
+            this.cmbBackgroundType.Name = "cmbBackgroundType";
+            this.cmbBackgroundType.SelectedIndexChanged += new System.EventHandler(this.cmbGradientType_SelectedIndexChanged);
+            // 
+            // trkBlur
+            // 
+            resources.ApplyResources(this.trkBlur, "trkBlur");
+            this.trkBlur.Maximum = 100;
+            this.trkBlur.Name = "trkBlur";
+            this.trkBlur.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // trkImageOpacity
             // 
             this.tableLayoutPanel3.SetColumnSpan(this.trkImageOpacity, 3);
-            this.trkImageOpacity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trkImageOpacity.Location = new System.Drawing.Point(94, 32);
+            resources.ApplyResources(this.trkImageOpacity, "trkImageOpacity");
             this.trkImageOpacity.Maximum = 100;
             this.trkImageOpacity.Minimum = 5;
             this.trkImageOpacity.Name = "trkImageOpacity";
-            this.trkImageOpacity.Size = new System.Drawing.Size(127, 24);
-            this.trkImageOpacity.TabIndex = 21;
             this.trkImageOpacity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkImageOpacity.Value = 5;
             // 
+            // lblBackground
+            // 
+            resources.ApplyResources(this.lblBackground, "lblBackground");
+            this.lblBackground.Name = "lblBackground";
+            // 
+            // btnBackground2
+            // 
+            resources.ApplyResources(this.btnBackground2, "btnBackground2");
+            this.btnBackground2.Name = "btnBackground2";
+            this.btnBackground2.UseVisualStyleBackColor = false;
+            this.btnBackground2.Click += new System.EventHandler(this.BackgroundColorButtonClick);
+            // 
+            // btnBackground
+            // 
+            resources.ApplyResources(this.btnBackground, "btnBackground");
+            this.btnBackground.Name = "btnBackground";
+            this.btnBackground.UseVisualStyleBackColor = false;
+            this.btnBackground.Click += new System.EventHandler(this.ColorButtonClick);
+            // 
+            // lblImageOpacity
+            // 
+            resources.ApplyResources(this.lblImageOpacity, "lblImageOpacity");
+            this.lblImageOpacity.Name = "lblImageOpacity";
+            // 
             // lblBlur
             // 
-            this.lblBlur.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBlur.AutoSize = true;
-            this.lblBlur.Location = new System.Drawing.Point(227, 37);
+            resources.ApplyResources(this.lblBlur, "lblBlur");
             this.lblBlur.Name = "lblBlur";
-            this.lblBlur.Size = new System.Drawing.Size(87, 13);
-            this.lblBlur.TabIndex = 22;
-            this.lblBlur.Text = "Image Blur:";
-            // 
-            // trkBlur
-            // 
-            this.trkBlur.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trkBlur.Location = new System.Drawing.Point(320, 32);
-            this.trkBlur.Maximum = 100;
-            this.trkBlur.Name = "trkBlur";
-            this.trkBlur.Size = new System.Drawing.Size(127, 24);
-            this.trkBlur.TabIndex = 23;
-            this.trkBlur.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // LayoutSettingsControl
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel5);
             this.Name = "LayoutSettingsControl";
-            this.Padding = new System.Windows.Forms.Padding(7);
-            this.Size = new System.Drawing.Size(476, 526);
             this.Load += new System.EventHandler(this.LayoutSettingsControl_Load);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -839,8 +518,8 @@
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkBlur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -34,24 +34,17 @@
             // 
             // OAuthWebBrowser
             // 
-            this.OAuthWebBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OAuthWebBrowser.Location = new System.Drawing.Point(0, 0);
-            this.OAuthWebBrowser.MinimumSize = new System.Drawing.Size(20, 20);
+            resources.ApplyResources(this.OAuthWebBrowser, "OAuthWebBrowser");
             this.OAuthWebBrowser.Name = "OAuthWebBrowser";
             this.OAuthWebBrowser.ScriptErrorsSuppressed = true;
-            this.OAuthWebBrowser.Size = new System.Drawing.Size(707, 556);
-            this.OAuthWebBrowser.TabIndex = 2;
             this.OAuthWebBrowser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.OAuthWebBrowser_DocumentCompleted);
             // 
-            // TwitchOAuthForm
+            // SpeedrunComOAuthForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 556);
             this.Controls.Add(this.OAuthWebBrowser);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "TwitchOAuthForm";
-            this.Text = "Authorize LiveSplit";
+            this.Name = "SpeedrunComOAuthForm";
             this.Load += new System.EventHandler(this.OAuthForm_Load);
             this.ResumeLayout(false);
 
