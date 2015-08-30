@@ -284,6 +284,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Dying Light</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Dalet/DyingLightIGT/master/Components/LiveSplit.DyingLightIGT.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Automatic Timer Start/Reset and Game Time is available. (By Dalet)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>The Elder Scrolls V: Skyrim</Game>
       <Game>Skyrim</Game>
       <Game>TESV</Game>
