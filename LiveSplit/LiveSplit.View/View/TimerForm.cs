@@ -1506,7 +1506,7 @@ namespace LiveSplit.View
 
         private void AddCurrentSplitsToLRU(TimingMethod lastTimingMethod)
         {
-            if (CurrentState.Run != null)
+            if (CurrentState.Run != null && Settings.RecentSplits.Any(x => x.Path == CurrentState.Run.FilePath))
                 AddSplitsFileToLRU(CurrentState.Run.FilePath, CurrentState.Run, lastTimingMethod);
         }
 
