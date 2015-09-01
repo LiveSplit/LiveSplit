@@ -37,7 +37,13 @@ namespace LiveSplit.Model
             }
             set
             {
-                loadingTimes = value ? (TimeSpan?)TimeSpan.Zero : null;
+                if (value)
+                {
+                    if (loadingTimes == null)
+                        loadingTimes = TimeSpan.Zero;
+                }
+                else
+                    loadingTimes = null;
             }
         }
         private bool isGameTimePaused;
