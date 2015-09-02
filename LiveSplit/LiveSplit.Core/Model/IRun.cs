@@ -198,28 +198,26 @@ namespace LiveSplit.Model
 
         public static void ImportSegmentHistory(this IRun run)
         {
-            var prevTimeRTA = TimeSpan.Zero;
-            var prevTimeGameTime = TimeSpan.Zero;
             var minIndex = GetMinSegmentHistoryIndex(run);
+            run.ImportSegmentHistory(TimingMethod.RealTime, minIndex - 1);
+            run.ImportSegmentHistory(TimingMethod.GameTime, minIndex - 2);
+        }
+
+        private static void ImportSegmentHistory(this IRun run, TimingMethod method, int index)
+        {
+            var prevTime = TimeSpan.Zero;
             var nullValue = false;
 
             foreach (var segment in run)
             {
                 //Import into the history any segments in the PB that include skipped splits
-                if (segment.PersonalBestSplitTime.RealTime == null || segment.PersonalBestSplitTime.GameTime == null || nullValue)
+                if (segment.PersonalBestSplitTime[method] == null || nullValue)
                 {
-                    segment.SegmentHistory.Add(minIndex - 1, new Time(segment.PersonalBestSplitTime.RealTime - prevTimeRTA, null));
-                    segment.SegmentHistory.Add(minIndex - 2, new Time(null, segment.PersonalBestSplitTime.GameTime - prevTimeGameTime));
+                    segment.SegmentHistory.Add(index, new Time(method, segment.PersonalBestSplitTime[method] - prevTime));
                     nullValue = false;
                 }
-
-                if (segment.PersonalBestSplitTime.RealTime != null)
-                    prevTimeRTA = segment.PersonalBestSplitTime.RealTime.Value;
-                else
-                    nullValue = true;
-
-                if (segment.PersonalBestSplitTime.GameTime != null)
-                    prevTimeGameTime = segment.PersonalBestSplitTime.GameTime.Value;
+                if (segment.PersonalBestSplitTime[method].HasValue)
+                    prevTime = segment.PersonalBestSplitTime[method].Value;
                 else
                     nullValue = true;
             }
@@ -229,7 +227,7 @@ namespace LiveSplit.Model
         public static void ImportBestSegment(this IRun run, int segmentIndex)
         {
             var segment = run[segmentIndex];
-            if (segment.BestSegmentTime.RealTime != null || segment.BestSegmentTime.GameTime != null)
+            if (segment.BestSegmentTime.RealTime.HasValue || segment.BestSegmentTime.GameTime.HasValue)
             {
                 segment.SegmentHistory.Add(GetMinSegmentHistoryIndex(run) - 1, segment.BestSegmentTime);
             }
