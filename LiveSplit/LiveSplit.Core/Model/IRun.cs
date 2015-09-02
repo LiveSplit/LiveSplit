@@ -173,9 +173,7 @@ namespace LiveSplit.Model
                     Time element;
                     if (run[index].SegmentHistory.TryGetValue(runIndex, out element) && history.Count(x => x.Equals(element[method])) > 1)
                     {
-                        var newTime = element;
-                        newTime[method] = null;
-                        run[index].SegmentHistory[runIndex] = newTime;
+                        run[index].SegmentHistory.Remove(runIndex);
                     }
                 }
             }
@@ -202,7 +200,7 @@ namespace LiveSplit.Model
         {
             var prevTimeRTA = TimeSpan.Zero;
             var prevTimeGameTime = TimeSpan.Zero;
-            var index = GetMinSegmentHistoryIndex(run) - 1;
+            var minIndex = GetMinSegmentHistoryIndex(run);
             var nullValue = false;
 
             foreach (var segment in run)
@@ -210,8 +208,8 @@ namespace LiveSplit.Model
                 //Import into the history any segments in the PB that include skipped splits
                 if (segment.PersonalBestSplitTime.RealTime == null || segment.PersonalBestSplitTime.GameTime == null || nullValue)
                 {
-                    segment.SegmentHistory.Add(index, new Time(segment.PersonalBestSplitTime.RealTime - prevTimeRTA,
-                        segment.PersonalBestSplitTime.GameTime - prevTimeGameTime));
+                    segment.SegmentHistory.Add(minIndex - 1, new Time(segment.PersonalBestSplitTime.RealTime - prevTimeRTA, null));
+                    segment.SegmentHistory.Add(minIndex - 2, new Time(null, segment.PersonalBestSplitTime.GameTime - prevTimeGameTime));
                     nullValue = false;
                 }
 
