@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using LiveSplit.Model.Comparisons;
+using LiveSplit.Options;
 
 namespace LiveSplit.Model.RunFactories
 {
@@ -52,26 +54,31 @@ namespace LiveSplit.Model.RunFactories
             string segmentLine;
             while ((segmentLine = reader.ReadLine()) != null)
             {
-                //Parse the Segment Line from right to left, as dashes in the 
-                //title are not escaped. Therefore we can't just split it by
-                //the dashes. FaceSplit itself does that, but LiveSplit fixes 
-                //that bug.
-                var index = segmentLine.LastIndexOf('-');
-                var bestSegment = segmentLine.Substring(index + 1);
-                var bestSegmentTime = parseTime(bestSegment);
+                var splitted = segmentLine.Split(new[] { '-' }, 5);
 
-                segmentLine = segmentLine.Substring(0, index);
-                index = segmentLine.LastIndexOf('-');
-                //Ignore Segment Time
+                var segmentName = (splitted.Length >= 1) ? splitted[0].Replace("\"?\"", "-") : string.Empty;
 
-                segmentLine = segmentLine.Substring(0, index);
-                index = segmentLine.LastIndexOf('-');
-                var splitTimeString = segmentLine.Substring(index + 1);
+                var splitTimeString = (splitted.Length >= 2) ? splitted[1] : string.Empty;
                 var splitTime = parseTime(splitTimeString);
 
-                var segmentName = segmentLine.Substring(0, index);
+                var bestSegment = (splitted.Length >= 4) ? splitted[3] : string.Empty;
+                var bestSegmentTime = parseTime(bestSegment);
 
-                run.AddSegment(segmentName, splitTime, bestSegmentTime);
+                var iconPath = (splitted.Length >= 5) ? splitted[4] : string.Empty;
+                Image icon = null;
+                if (!string.IsNullOrWhiteSpace(iconPath))
+                {
+                    try
+                    {
+                        icon = Image.FromFile(iconPath);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
+
+                run.AddSegment(segmentName, splitTime, bestSegmentTime, icon);
             }
 
             return run;
