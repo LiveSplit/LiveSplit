@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -33,7 +34,14 @@ namespace LiveSplit.UI
         {
             get
             {
-                return ((SolidBrush)Brush).Color;
+                if ((Brush.GetType() == typeof(LinearGradientBrush)))
+                {
+                    return ((LinearGradientBrush)Brush).LinearColors[0];
+                }
+                else
+                {
+                    return ((SolidBrush)Brush).Color;
+                }
             }
             set
             {

@@ -1,6 +1,7 @@
 ﻿using LiveSplit.UI;
 using System;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 
 namespace LiveSplit.Model
 {
@@ -182,23 +183,42 @@ namespace LiveSplit.Model
                 {
                     if (state.Run[splitNumber].BestSegmentTime[method] == null || curSegment < state.Run[splitNumber].BestSegmentTime[method])
                     {
-                        splitColor = GetBestSegmentColor(state);
+                        splitColor = state.LayoutSettings.BestSegmentColor;
                     }
                 }
             }
             return splitColor;
         }
 
-        private static Color GetBestSegmentColor(LiveSplitState state)
+        /// <summary>
+        /// Chooses a split brush from the Layout Settings based on the current run.
+        /// </summary>
+        /// <param name="state">The current state.</param>
+        /// <param name="timeDifference">The delta that you want to find a color for.</param>
+        /// <param name="splitNumber">The split number that is associated with this delta.</param>
+        /// <param name="showSegmentDeltas">Can show ahead gaining and behind losing colors if true.</param>
+        /// <param name="showBestSegments">Can show the best segment color if true.</param>
+        /// <param name="comparison">The comparison that you are comparing this delta to.</param>
+        /// <param name="method">The timing method of this delta.</param>
+        /// <param name="height">Height of layout element</param>
+        /// <returns>Returns the brush.</returns>
+        public static Brush GetSplitBrush(LiveSplitState state, TimeSpan? timeDifference, int splitNumber, bool showSegmentDeltas, bool showBestSegments, string comparison, TimingMethod method, float height)
         {
-            if (state.LayoutSettings.UseRainbowColor)
-            {
-                var hue = (((int)DateTime.Now.TimeOfDay.TotalMilliseconds / 100) % 36) * 10;
-                var rainbowColor = ColorExtensions.FromHSV(hue, 1, 1);
-                return Color.FromArgb((rainbowColor.R*2 + 255*1) / 3, (rainbowColor.G*2 + 255*1) / 3, (rainbowColor.B*2 + 255*1) / 3);
+            Brush brush = null;
+
+            var color = GetSplitColor(state, timeDifference, splitNumber, showSegmentDeltas, showBestSegments, comparison, method);
+            if (color.HasValue) brush = new SolidBrush(color.Value);
+
+            if (state.LayoutSettings.UseRainbowColor && color.Equals(state.LayoutSettings.BestSegmentColor)) {
+                var rainbowColors = RainbowHelper.GetRainbowColors();
+                brush = new LinearGradientBrush(
+                    new PointF(0, 0),
+                    new PointF(0, height),
+                    rainbowColors.Item1,
+                    rainbowColors.Item2);
             }
 
-            return state.LayoutSettings.BestSegmentColor;
+            return brush;
         }
     }
 }
