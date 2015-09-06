@@ -928,4 +928,14 @@
     <Description>Load removal is available. (By zoton2 and PessimisticMango)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Call of Duty: Modern Warfare 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Jukspa/MW2LoadRemoval/master/mw2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available. (By Jukspa)</Description>
+  </AutoSplitter>
 </AutoSplitters>
