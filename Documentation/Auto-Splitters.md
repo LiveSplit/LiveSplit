@@ -24,9 +24,9 @@
 <!-- /TOC -->
 
 LiveSplit has integrated support for Auto Splitters. An Auto Splitter can be one of the following:
+* A Script written in the Auto Splitting Language (ASL).
 * A LiveSplit Component written in any .NET compatible language.
 * A third party application communicating with LiveSplit through the LiveSplit  Server.
-* A Script written in the Auto Splitting Language (ASL).
 
 At the moment LiveSplit can automatically download and activate Auto Splitters that are LiveSplit Components or ASL Scripts. Support for applications using the LiveSplit Server is planned, but is not yet available.
 
@@ -74,8 +74,7 @@ The Auto Splitting Language is a small scripting language made specifically for 
  * No Visual Studio or any compiler is needed; you can write it in Notepad.
 
 **Disadvantages:**
- * Pointer Paths need to be defined as Constants, which means only one version of the game can be supported.
- * Only Pointer Paths are available; no Memory Scans can be done.
+ * Currently cannot provide settings for the user to change.
 
 An Auto Splitting Language Script contains a State Descriptor and multiple Actions.
 
@@ -90,11 +89,17 @@ state("PROCESS_NAME")
 	...
 }
 ```
-
-The `PROCESS_NAME` is the name of the process the Auto Splitter should look for. The Script is inactive while it's not connected to a process. Once a process with that name is found, it automatically connects to that process. A Process Name should not include the `.exe`.
-
-`POINTER_PATH` describes a Pointer Path and looks like this:
+If the script needs to support multiple versions of the game, you can specify an optional version identifier:
 ```
+state("PROCESS_NAME", "VERSION_IDENTIFIER")
+...
+```
+
+The `PROCESS_NAME` is the name of the process the Auto Splitter should look for. The Script is inactive while it's not connected to a process. Once a process with that name is found, it automatically connects to that process. A Process Name should not include the `.exe`. The optional `VERSION_IDENTIFIER` can be any arbitrary string you wish to use. Note that the script can define multiple State Descriptors for different processes/games. These optional features are extremely useful for emulators.
+
+`POINTER_PATH` describes a Pointer Path and has two ways to declare:
+```
+VARIABLE_TYPE VARIABLE_NAME : OFFSET, OFFSET, OFFSET, ...;
 VARIABLE_TYPE VARIABLE_NAME : "BASE_MODULE", OFFSET, OFFSET, OFFSET, ...;
 ```
 
@@ -118,20 +123,13 @@ The variable type `VARIABLE_TYPE` describes the type of the value found at the p
 
 The variable name `VARIABLE_NAME` can be any variable name you choose, describing what is found at the pointer path. The naming is up to you, but should be distinct from the other variable names.
 
-The base module name `BASE_MODULE` describes the name of the module the Pointer Path starts at. Every \*.exe and \*.dll file loaded into the process has its own base address. Instead of specifying the base address of the Pointer Path, you specify the base module and an offset from there. An empty string means the default module.
+The optional base module name `BASE_MODULE` describes the name of the module the Pointer Path starts at. Every \*.exe and \*.dll file loaded into the process has its own base address. Instead of specifying the base address of the Pointer Path, you specify the base module and an offset from there. If this is not defined, it will default to the main (.exe) module.
 
 You can use as many offsets `OFFSET` as you want. They need to be integer literals, either written as decimal or hexadecimal.
 
 ### State objects
 
-The State Variables described through the State Descriptor are available through two State objects: `current` and `old`. The `current` object contains the current state of the game with all the up-to-date variables, while the `old` object contains the state of the variables at the last execution of the ASL Script in LiveSplit. These objects are useful for checking for state changes. For example, you could check if the last level of a game was a certain value and is now a certain other value, which might mean that a split needs to happen. Both the `current` and `old` objects are also completely dynamic, which means that you can store any of your own values in them.
-
-For example, you can just do the following:
-```
-current.myCustomValue = 5;
-```
-
-Make sure not to access values that haven't been created at that point in time though, as this might cause your script to crash.
+The State Variables described through the State Descriptor are available through two State objects: `current` and `old`. The `current` object contains the current state of the game with all the up-to-date variables, while the `old` object contains the state of the variables at the last execution of the ASL Script in LiveSplit. These objects are useful for checking for state changes. For example, you could check if the last level of a game was a certain value and is now a certain other value, which might mean that a split needs to happen.
 
 LiveSplit's internal state is also available through the object `timer`. This is an object of the type [`LiveSplitState`](../LiveSplit/LiveSplit.Core/Model/LiveSplitState.cs) and can be used to interact with LiveSplit in ways that are not directly available through ASL.
 
@@ -141,7 +139,7 @@ After writing a State Descriptor, you can implement multiple Actions such as spl
 ```
 ACTION_NAME
 {
-	CODE
+	C# CODE
 }
 ```
 
@@ -159,6 +157,14 @@ The name of this action is `split`. Return `true` whenever you want to trigger a
 
 The name of this action is `reset`. Return `true` whenever you want to reset the run.
 
+#### Script Initialization
+
+The name of this action is `init`. This action is triggered when a game process has been found according to the State Descriptors.
+
+#### Generic Update
+
+The name of this action is `update`. You can use this for generic updating.
+
 #### Load Time Removal
 
 The name of this action is `isLoading`. Return `true` whenever the game is loading. LiveSplit's Game Time Timer will be stopped as long as you return `true`.
@@ -166,6 +172,84 @@ The name of this action is `isLoading`. Return `true` whenever the game is loadi
 #### Game Time
 
 The name of this action is `gameTime`. Return a [`TimeSpan`](https://msdn.microsoft.com/en-us/library/system.timespan(v=vs.110).aspx) object that contains the current time of the game. You can also combine this with `isLoading`. If `isLoading` returns false, nothing, or isn't implemented, LiveSplit's Game Time Timer is always running and syncs with the game's Game Time at a constant interval. Everything in between is therefore a Real Time approximation of the Game Time. If you want the Game Time to not run in between the synchronization interval and only ever return the actual Game Time of the game, make sure to implement `isLoading` with a constant return value of `true`.
+
+### Action variables
+
+Actions have a few hidden variables available.
+
+##### current / old
+State objects representing the current and previous states.
+```
+split { return current.levelID != old.levelID; }
+```
+
+##### vars
+A dynamic object which can be used to store variables. You should declare these in the `init` action.
+```
+init { vars.test = 5; }
+update { print(vars.test.ToString()); }
+```
+
+##### game
+The currently connected [Process](https://msdn.microsoft.com/en-us/library/system.diagnostics.process%28v=vs.110%29.aspx) object.
+```
+update { if (game.ProcessName == "snes9x") { } }
+```
+
+##### modules
+The modules of the currently connected process. Please use this instead of game.Modules! Use modules.First() instead of game.MainModule.
+
+##### memory
+Provides a means to read memory from the game without using Pointer Paths.
+```
+vars.exe = memory.ReadBytes(modules.First().BaseAddress, modules.First().ModuleMemorySize);
+vars.test = memory.ReadValue<byte>(modules.First().BaseAddress + 0x9001);
+vars.test2 = memory.ReadString(modules.First().BaseAddress + 0x9002);
+vars.test3 = new DeepPointer("some.dll", 0x9003, vars.test, 0x02).Deref<int>(game);
+vars.test4 = memory.ReadString(modules.Where(m => x.ModuleName == "some.dll").First().BaseAddress + 0x9002);
+```
+
+##### version
+When you set `version` in `init`, the corrosponding State Descriptor will be activated. The default is the first defined State Descriptor with `version` set to an empty string.
+```
+state("game", "v1.2")
+{
+    byte levelID : 0x9001;
+}
+state("game", "v1.3")
+{
+    byte levelID : 0x9002;
+}
+init
+{
+    if (modules.First().ModuleMemorySize == 0x123456)
+        version = "v1.2";
+    else if (modules.First().ModuleMemorySize == 0x654321)
+        version = "v1.3";
+}
+update
+{
+    if (version == "") return;
+    print(current.levelID.ToString());
+}
+```
+
+##### refreshRate
+Each action (except `init`, which is only triggered once) is triggered approximately 60 times per second. You can set this variable lower to reduce CPU usage.
+```
+refreshRate = 30;
+```
+
+### Built-in functions
+
+##### print
+Used for debug printing. Use [DbgView](https://technet.microsoft.com/en-us/Library/bb896647.aspx) to watch the output.
+```
+print("current level is " + current.levelID);
+```
+
+##### other
+There are some advanced memory utilities not covered here. You can find them [here](../LiveSplit/LiveSplit.Core/ComponentUtil).
 
 ### Testing your Script
 
