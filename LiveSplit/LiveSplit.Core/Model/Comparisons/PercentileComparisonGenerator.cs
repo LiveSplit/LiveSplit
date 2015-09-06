@@ -11,7 +11,7 @@ namespace LiveSplit.Model.Comparisons
         public const string ComparisonName = "Balanced PB";
         public const string ShortComparisonName = "Balanced";
         public string Name { get { return ComparisonName; } }
-        public const double Weight = 0.93333;
+        public const double Weight = 0.9375;
 
         public PercentileComparisonGenerator(IRun run)
         {
