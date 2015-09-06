@@ -18,6 +18,8 @@
 		- [Automatic Resets](#automatic-resets-1)
 		- [Load Time Removal](#load-time-removal)
 		- [Game Time](#game-time-1)
+	- [Action Variables](#action-variables)
+	- [Built-in Functions](#built-in-functions)
 	- [Testing your Script](#testing-your-script)
 - [Adding an Auto Splitter](#adding-an-auto-splitter)
 
@@ -173,7 +175,7 @@ The name of this action is `isLoading`. Return `true` whenever the game is loadi
 
 The name of this action is `gameTime`. Return a [`TimeSpan`](https://msdn.microsoft.com/en-us/library/system.timespan(v=vs.110).aspx) object that contains the current time of the game. You can also combine this with `isLoading`. If `isLoading` returns false, nothing, or isn't implemented, LiveSplit's Game Time Timer is always running and syncs with the game's Game Time at a constant interval. Everything in between is therefore a Real Time approximation of the Game Time. If you want the Game Time to not run in between the synchronization interval and only ever return the actual Game Time of the game, make sure to implement `isLoading` with a constant return value of `true`.
 
-### Action variables
+### Action Variables
 
 Actions have a few hidden variables available.
 
@@ -204,9 +206,9 @@ Provides a means to read memory from the game without using Pointer Paths.
 ```
 vars.exe = memory.ReadBytes(modules.First().BaseAddress, modules.First().ModuleMemorySize);
 vars.test = memory.ReadValue<byte>(modules.First().BaseAddress + 0x9001);
-vars.test2 = memory.ReadString(modules.First().BaseAddress + 0x9002);
+vars.test2 = memory.ReadString(modules.First().BaseAddress + 0x9002, 256);
 vars.test3 = new DeepPointer("some.dll", 0x9003, vars.test, 0x02).Deref<int>(game);
-vars.test4 = memory.ReadString(modules.Where(m => x.ModuleName == "some.dll").First().BaseAddress + 0x9002);
+vars.test4 = memory.ReadString(modules.Where(m => x.ModuleName == "some.dll").First().BaseAddress + 0x9002, 256);
 ```
 
 ##### version
@@ -240,7 +242,7 @@ Each action (except `init`, which is only triggered once) is triggered approxima
 refreshRate = 30;
 ```
 
-### Built-in functions
+### Built-in Functions
 
 ##### print
 Used for debug printing. Use [DbgView](https://technet.microsoft.com/en-us/Library/bb896647.aspx) to watch the output.
