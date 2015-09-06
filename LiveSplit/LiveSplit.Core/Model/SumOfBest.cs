@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static LiveSplit.Model.SumOfSegmentsHelper;
 
 namespace LiveSplit.Model
 {
@@ -28,17 +29,17 @@ namespace LiveSplit.Model
                             || !run[segmentIndex - 1].SegmentHistory.TryGetValue(nullSegment.Key, out segmentTime)
                             || segmentTime[method] != null)
                         {
-                            var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
+                            var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
                             PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                         }
                     }
                 }
                 if (useCurrentRun)
                 {
-                    var currentRunPrediction = SumOfSegmentsHelper.TrackCurrentRun(run, currentTime, segmentIndex, method);
+                    var currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex, method);
                     PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
                 }
-                var personalBestRunPrediction = SumOfSegmentsHelper.TrackPersonalBestRun(run, currentTime, segmentIndex, method);
+                var personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index);
             }
         }
@@ -74,7 +75,7 @@ namespace LiveSplit.Model
                 currentTime = predictions[segmentIndex];
                 foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Value[method].HasValue))
                 {
-                    var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
+                    var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
                     CheckPrediction(run, predictions, prediction.Time[method], segmentIndex - 1, prediction.Index - 1, nullSegment.Key, method, callback);
                 } 
                 segmentIndex++;

@@ -105,19 +105,10 @@ namespace LiveSplit.Model
             return newTime;
         }
 
-        public override string ToString()
-        {
-            return RealTime + " | " + GameTime;
-        }
+        public override string ToString() => $"{ RealTime } | { GameTime }";
 
-        public static Time operator + (Time a, Time b)
-        {
-            return new Time(a.RealTime + b.RealTime, a.GameTime + b.GameTime);
-        }
+        public static Time operator + (Time a, Time b) => new Time(a.RealTime + b.RealTime, a.GameTime + b.GameTime);
 
-        public static Time operator -(Time a, Time b)
-        {
-            return new Time(a.RealTime - b.RealTime, a.GameTime - b.GameTime);
-        }
+        public static Time operator -(Time a, Time b) => new Time(a.RealTime - b.RealTime, a.GameTime - b.GameTime);
     }
 }

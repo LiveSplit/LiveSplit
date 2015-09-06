@@ -18,12 +18,7 @@ namespace LiveSplit.Web.Share
         public EventHandlerT<User> OnNewSubscriber;
 
         public IEnumerable<User> Users 
-        { 
-            get 
-            {
-                return Client.Channels.FirstOrDefault().Users.Select(x => new User(x.User, GetFlags(x.User.NickName), GetColor(x.User.NickName))); 
-            }
-        }
+            => Client.Channels.FirstOrDefault().Users.Select(x => new User(x.User, GetFlags(x.User.NickName), GetColor(x.User.NickName))); 
 
         protected Dictionary<string, ChatBadges> UserFlags { get; set; }
         protected Dictionary<string, Color> UserColors { get; set; }
@@ -91,7 +86,6 @@ namespace LiveSplit.Web.Share
 
         void Client_Registered(object sender, EventArgs e)
         {
-            
         }
 
         void Client_Connected(object sender, EventArgs e)

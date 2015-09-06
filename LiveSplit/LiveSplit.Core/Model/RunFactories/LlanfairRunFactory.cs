@@ -5,6 +5,9 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using static System.Environment;
+using static System.IO.File;
+using static System.TimeSpan;
 
 namespace LiveSplit.Model.RunFactories
 {
@@ -26,13 +29,11 @@ namespace LiveSplit.Model.RunFactories
         }
 
         protected string Unescape(string text)
-        {
-            return text.Replace(@"\.", @",").Replace(@"\\", @"\");
-        }
+            => text.Replace(@"\.", @",").Replace(@"\\", @"\");
 
         private string GetJavaInstallationPath()
         {
-            string environmentPath = Environment.GetEnvironmentVariable("JAVA_HOME");
+            string environmentPath = GetEnvironmentVariable("JAVA_HOME");
             if (!string.IsNullOrEmpty(environmentPath))
             {
                 return environmentPath;
@@ -92,40 +93,40 @@ namespace LiveSplit.Model.RunFactories
 
                         try
                         {
-                            pbSplitTime.RealTime = TimeSpan.Parse(Unescape(splitInfo[1]));
+                            pbSplitTime.RealTime = Parse(Unescape(splitInfo[1]));
                         }
                         catch
                         {
                             try
                             {
-                                pbSplitTime.RealTime = TimeSpan.Parse(Unescape("0:" + splitInfo[1]));
+                                pbSplitTime.RealTime = Parse(Unescape("0:" + splitInfo[1]));
                             }
                             catch
                             {
-                                pbSplitTime.RealTime = TimeSpan.Parse(Unescape("0:0:" + splitInfo[1]));
+                                pbSplitTime.RealTime = Parse(Unescape("0:0:" + splitInfo[1]));
                             }
                         }
 
                         try
                         {
-                            goldTime.RealTime = TimeSpan.Parse(Unescape(splitInfo[2]));
+                            goldTime.RealTime = Parse(Unescape(splitInfo[2]));
                         }
                         catch
                         {
                             try
                             {
-                                goldTime.RealTime = TimeSpan.Parse(Unescape("0:" + splitInfo[2]));
+                                goldTime.RealTime = Parse(Unescape("0:" + splitInfo[2]));
                             }
                             catch
                             {
-                                goldTime.RealTime = TimeSpan.Parse(Unescape("0:0:" + splitInfo[2]));
+                                goldTime.RealTime = Parse(Unescape("0:0:" + splitInfo[2]));
                             }
                         }
 
-                        if (pbSplitTime.RealTime == TimeSpan.Zero)
+                        if (pbSplitTime.RealTime == Zero)
                             pbSplitTime.RealTime = null;
 
-                        if (goldTime.RealTime == TimeSpan.Zero)
+                        if (goldTime.RealTime == Zero)
                             goldTime.RealTime = null;
 
                         var realIconPath = "";
@@ -136,7 +137,7 @@ namespace LiveSplit.Model.RunFactories
                         {
                             try
                             {
-                                using (var imageStream = File.OpenRead(realIconPath))
+                                using (var imageStream = OpenRead(realIconPath))
                                 {
                                     icon = Image.FromStream(imageStream);
                                 }
@@ -156,7 +157,7 @@ namespace LiveSplit.Model.RunFactories
 
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
-            using (var stream = File.OpenRead(Path))
+            using (var stream = OpenRead(Path))
             {
                 var data = new byte[4];
                 stream.Read(data, 0, 4);
@@ -179,17 +180,17 @@ namespace LiveSplit.Model.RunFactories
             if (!Directory.Exists(splitsBasePath))
                 Directory.CreateDirectory(splitsBasePath);
 
-            if (File.Exists(loaderPath) && File.GetCreationTimeUtc(loaderPath) < new DateTime(2013, 12, 13, 20, 0, 0, 0, DateTimeKind.Utc))
+            if (Exists(loaderPath) && GetCreationTimeUtc(loaderPath) < new DateTime(2013, 12, 13, 20, 0, 0, 0, DateTimeKind.Utc))
             {
-                File.Delete(loaderPath);
+                Delete(loaderPath);
             }
 
-            if (!File.Exists(loaderPath))
+            if (!Exists(loaderPath))
             {
                 File.Create(loaderPath).Close();
                 using (var memoryStream = new MemoryStream(Resources.LlanfairLoader))
                 {
-                    using (var stream = File.Open(loaderPath, FileMode.Create, FileAccess.Write))
+                    using (var stream = Open(loaderPath, FileMode.Create, FileAccess.Write))
                     {
                         memoryStream.CopyTo(stream);
                     }
@@ -202,7 +203,7 @@ namespace LiveSplit.Model.RunFactories
             process.WaitForExit();
             process.Close();
 
-            using (var stream = File.OpenRead(splitsFilePath))
+            using (var stream = OpenRead(splitsFilePath))
             {
                 return ReadFromLlanfairTextFile(stream, factory);
             }

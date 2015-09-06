@@ -1,9 +1,6 @@
 ﻿using CLROBS;
 using LiveSplit.Options;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace LiveSplit.Plugin
 {
@@ -34,9 +31,9 @@ namespace LiveSplit.Plugin
 
                             var parent = xmlDoc["Layout"];
                             var width = parent["VerticalWidth"];
-                            config.Parent.SetInt("cx", Int32.Parse(width.InnerText));
+                            config.Parent.SetInt("cx", int.Parse(width.InnerText));
                             var height = parent["VerticalHeight"];
-                            config.Parent.SetInt("cy", Int32.Parse(height.InnerText)); //TODO Will break with horizontal
+                            config.Parent.SetInt("cy", int.Parse(height.InnerText)); //TODO Will break with horizontal
                         }
                     }
                     catch (Exception ex)

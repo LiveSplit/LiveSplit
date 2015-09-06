@@ -1,6 +1,5 @@
 ﻿using LiveSplit.Model.Comparisons;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace LiveSplit.Model

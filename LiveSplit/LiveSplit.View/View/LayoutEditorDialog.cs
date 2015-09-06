@@ -28,7 +28,7 @@ namespace LiveSplit.View
 
         protected ILayout Layout { get; set; }
         protected BindingList<ILayoutComponent> BindingList { get; set; }
-        protected float OverallHeight { get { return BindingList.OfType<ILayoutComponent>().Aggregate(0.0f, (x, y) => x + y.Component.VerticalHeight); } }
+        protected float OverallHeight => BindingList.OfType<ILayoutComponent>().Aggregate(0.0f, (x, y) => x + y.Component.VerticalHeight);
         protected bool IsVertical
         {
             get { return Layout.Mode == LayoutMode.Vertical; }

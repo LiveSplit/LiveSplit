@@ -104,17 +104,6 @@ namespace LiveSplit.View
         [DllImport("gdi32.dll")]
         static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
 
-        /*protected override CreateParams CreateParams
-        {
-            get
-            {
-                // Add the layered extended style (WS_EX_LAYERED) to this window.
-                CreateParams createParams = base.CreateParams;
-                createParams.ExStyle |= Win32.WS_EX_LAYERED;
-                return createParams;
-            }
-        }*/
-        
         public TimerForm(string splitsPath = null, string layoutPath = null, bool drawToBackBuffer = false, string basePath = "")
         {
             BasePath = basePath;
@@ -143,7 +132,6 @@ namespace LiveSplit.View
             ComparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
 
             Model = new DoubleTapPrevention(new TimerModel());
-            //LiveSplit.Web.Share.Twitch.Instance.AutoUpdateModel = Model;
 
             RunFactory = new StandardFormatsRunFactory();
             RunSaver = new XMLRunSaver();
@@ -191,7 +179,7 @@ namespace LiveSplit.View
                 }
                 else
                 {
-                    if (Settings.RecentLayouts.Count > 0 
+                    if (Settings.RecentLayouts.Count > 0
                         && !string.IsNullOrEmpty(Settings.RecentLayouts.Last()))
                     {
                         Layout = LoadLayoutFromFile(Settings.RecentLayouts.Last());
@@ -279,10 +267,10 @@ namespace LiveSplit.View
 
             while (processNames.Contains(currentName))
             {
-                currentName = String.Format("LiveSplit ({0})", ++lowestAvailableNumber);
+                currentName = string.Format("LiveSplit ({0})", ++lowestAvailableNumber);
             }
 
-            this.Text = currentName;
+            Text = currentName;
         }
 
         void CurrentState_OnSwitchComparisonNext(object sender, EventArgs e)
@@ -649,7 +637,7 @@ namespace LiveSplit.View
         private void UpdateRecentSplits()
         {
             openSplitsMenuItem.DropDownItems.Clear();
-            
+
             foreach (var game in Settings.RecentSplits
                 .Reverse()
                 .Where(x => !string.IsNullOrEmpty(x.Path))
@@ -794,7 +782,7 @@ namespace LiveSplit.View
         private void UpdateRecentLayouts()
         {
             openLayoutMenuItem.DropDownItems.Clear();
-            
+
             foreach (var item in Settings.RecentLayouts.Reverse().Where(x => !string.IsNullOrEmpty(x)))
             {
                 var menuItem = new ToolStripMenuItem(Path.GetFileNameWithoutExtension(item).EscapeMenuItemText());
@@ -1086,7 +1074,7 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                if (!(this.IsDisposed && ex is ObjectDisposedException))
+                if (!(IsDisposed && ex is ObjectDisposedException))
                 {
                     Log.Error(ex);
                     Invalidate();
@@ -1153,7 +1141,7 @@ namespace LiveSplit.View
             BackColor = Color.Black;
 
             ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
-                
+
             var currentSize = ComponentRenderer.OverallSize;
 
             if (OldSize >= 0)
@@ -1336,7 +1324,7 @@ namespace LiveSplit.View
             {
                 int x = Location.X - MousePoint.X + e.Location.X;
                 int y = Location.Y - MousePoint.Y + e.Location.Y;
-                this.Location = new Point(x, y);
+                Location = new Point(x, y);
             }
         }
 
@@ -1625,7 +1613,7 @@ namespace LiveSplit.View
             modelCopy.CurrentState = stateCopy;
             var result = DialogResult.No;
 
-            if (promptPBMessage && ((CurrentState.CurrentPhase == TimerPhase.Ended 
+            if (promptPBMessage && ((CurrentState.CurrentPhase == TimerPhase.Ended
                 && CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] != null
                 && CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] >= CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod])
                 || CurrentState.CurrentPhase == TimerPhase.Running
@@ -1660,7 +1648,7 @@ namespace LiveSplit.View
                 using (var memoryStream = new MemoryStream())
                 {
                     RunSaver.Save(stateCopy.Run, memoryStream);
-                    
+
                     using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
                     {
                         var buffer = memoryStream.GetBuffer();
@@ -1748,7 +1736,7 @@ namespace LiveSplit.View
                     foreach (var image in runCopy.Select(x => x.Icon))
                         editor.ImagesToDispose.Remove(image);
                     editor.ImagesToDispose.Remove(runCopy.GameIcon);
-                    
+
                     CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
                     SetRun(runCopy);
                     CurrentState.CallRunManuallyModified();
@@ -1838,7 +1826,7 @@ namespace LiveSplit.View
             try
             {
                 TopMost = false;
-                editor.ShowDialog(this);                
+                editor.ShowDialog(this);
                 if (editor.DialogResult == DialogResult.Cancel)
                 {
                     foreach (var component in layoutCopy.Components)
@@ -1972,7 +1960,7 @@ namespace LiveSplit.View
             }
         }
 
-        private void OpenLayoutFromFile (string filePath)
+        private void OpenLayoutFromFile(string filePath)
         {
             if (WarnUserAboutLayoutSave())
             {
@@ -2129,7 +2117,7 @@ namespace LiveSplit.View
                 try
                 {
                     DontRedraw = true;
-                    var result = MessageBox.Show(this,"Your splits have been updated but not yet saved.\nDo you want to save your splits now?", "Save Splits?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    var result = MessageBox.Show(this, "Your splits have been updated but not yet saved.\nDo you want to save your splits now?", "Save Splits?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         SaveSplits(false);
@@ -2373,7 +2361,7 @@ namespace LiveSplit.View
             if (warnUser)
             {
                 DontRedraw = true;
-                var result =  MessageBox.Show(this, "You have beaten some of your best times.\r\nDo you want to update them?", "Update Times?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                var result = MessageBox.Show(this, "You have beaten some of your best times.\r\nDo you want to update them?", "Update Times?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 DontRedraw = false;
                 return result;
             }
@@ -2469,10 +2457,10 @@ namespace LiveSplit.View
         private void RebuildComparisonsMenu()
         {
             comparisonMenuItem.DropDownItems.Clear();
-            
+
             foreach (var customComparison in CurrentState.Run.CustomComparisons)
                 AddActionToComparisonsMenu(customComparison);
-            
+
             if (CurrentState.Run.ComparisonGenerators.Count > 0)
                 comparisonMenuItem.DropDownItems.Add(new ToolStripSeparator());
 
@@ -2493,7 +2481,7 @@ namespace LiveSplit.View
             realTimeMenuItem.Click += realTimeMenuItem_Click;
             realTimeMenuItem.Name = "RealTime";
             comparisonMenuItem.DropDownItems.Add(realTimeMenuItem);
-            
+
             var gameTimeMenuItem = new ToolStripMenuItem("Game Time");
             gameTimeMenuItem.Click += gameTimeMenuItem_Click;
             gameTimeMenuItem.Name = "GameTime";
@@ -2577,7 +2565,7 @@ namespace LiveSplit.View
             if (CurrentState.Run.IsAutoSplitterActive())
                 components = components.Concat(new[] { CurrentState.Run.AutoSplitter.Component });
 
-            var componentControls = 
+            var componentControls =
                 components
                 .Select(x => x.ContextMenuControls)
                 .Where(x => x != null && x.Any());

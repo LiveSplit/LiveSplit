@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading;
 #pragma warning disable 1591
 
 // Note: Please be careful when modifying this because it could break existing components!
@@ -21,7 +20,7 @@ namespace LiveSplit.ComponentUtil
 
         public void UpdateAll(Process process)
         {
-            if (this.OnWatcherDataChanged != null)
+            if (OnWatcherDataChanged != null)
             {
                 var changedList = new List<MemoryWatcher>();
 
@@ -35,7 +34,7 @@ namespace LiveSplit.ComponentUtil
                 // only report changes when all of the other watches are updated too
                 foreach (var watcher in changedList)
                 {
-                    this.OnWatcherDataChanged(watcher);
+                    OnWatcherDataChanged(watcher);
                 }
             }
             else
@@ -82,18 +81,18 @@ namespace LiveSplit.ComponentUtil
 
         protected MemoryWatcher(DeepPointer pointer)
         {
-            this.DeepPtr = pointer;
-            this.AddrType = AddressType.DeepPointer;
-            this.Enabled = true;
-            this.FailAction = ReadFailAction.DontUpdate;
+            DeepPtr = pointer;
+            AddrType = AddressType.DeepPointer;
+            Enabled = true;
+            FailAction = ReadFailAction.DontUpdate;
         }
 
         protected MemoryWatcher(IntPtr address)
         {
-            this.Address = address;
-            this.AddrType = AddressType.Absolute;
-            this.Enabled = true;
-            this.FailAction = ReadFailAction.DontUpdate;
+            Address = address;
+            AddrType = AddressType.Absolute;
+            Enabled = true;
+            FailAction = ReadFailAction.DontUpdate;
         }
 
         /// <summary>
@@ -105,14 +104,14 @@ namespace LiveSplit.ComponentUtil
 
         protected bool CheckInterval()
         {
-            if (this.UpdateInterval.HasValue)
+            if (UpdateInterval.HasValue)
             {
-                if (this.LastUpdateTime.HasValue)
+                if (LastUpdateTime.HasValue)
                 {
-                    if (DateTime.Now - this.LastUpdateTime.Value < this.UpdateInterval.Value)
+                    if (DateTime.Now - LastUpdateTime.Value < UpdateInterval.Value)
                         return false;
                 }
-                this.LastUpdateTime = DateTime.Now;
+                LastUpdateTime = DateTime.Now;
             }
             return true;
         }
@@ -159,20 +158,20 @@ namespace LiveSplit.ComponentUtil
 
         public override bool Update(Process process)
         {
-            this.Changed = false;
+            Changed = false;
 
-            if (!this.Enabled)
+            if (!Enabled)
                 return false;
 
-            if (!this.CheckInterval())
+            if (!CheckInterval())
                 return false;
 
             string str;
             bool success;
-            if (this.AddrType == AddressType.DeepPointer)
-                success = this.DeepPtr.DerefString(process, _stringType, _numBytes, out str);
+            if (AddrType == AddressType.DeepPointer)
+                success = DeepPtr.DerefString(process, _stringType, _numBytes, out str);
             else
-                success = process.ReadString(this.Address, _stringType, _numBytes, out str);
+                success = process.ReadString(Address, _stringType, _numBytes, out str);
 
             if (success)
             {
@@ -181,24 +180,24 @@ namespace LiveSplit.ComponentUtil
             }
             else
             {
-                if (this.FailAction == ReadFailAction.DontUpdate)
+                if (FailAction == ReadFailAction.DontUpdate)
                     return false;
 
                 base.Old = base.Current;
                 base.Current = str;
             }
 
-            if (!this.InitialUpdate)
+            if (!InitialUpdate)
             {
-                this.InitialUpdate = true;
+                InitialUpdate = true;
                 return false;
             }
 
-            if (!this.Current.Equals(this.Old))
+            if (!Current.Equals(Old))
             {
-                if (this.OnChanged != null)
-                    this.OnChanged(this.Old, this.Current);
-                this.Changed = true;
+                if (OnChanged != null)
+                    OnChanged(Old, Current);
+                Changed = true;
                 return true;
             }
 
@@ -209,7 +208,7 @@ namespace LiveSplit.ComponentUtil
         {
             base.Current = null;
             base.Old = null;
-            this.InitialUpdate = false;
+            InitialUpdate = false;
         }
     }
 
@@ -236,22 +235,22 @@ namespace LiveSplit.ComponentUtil
 
         public override bool Update(Process process)
         {
-            this.Changed = false;
+            Changed = false;
 
-            if (!this.Enabled)
+            if (!Enabled)
                 return false;
 
-            if (!this.CheckInterval())
+            if (!CheckInterval())
                 return false;
 
-            base.Old = this.Current;
+            base.Old = Current;
 
             T val;
             bool success;
-            if (this.AddrType == AddressType.DeepPointer)
-                success = this.DeepPtr.Deref(process, out val);
+            if (AddrType == AddressType.DeepPointer)
+                success = DeepPtr.Deref(process, out val);
             else
-                success = process.ReadValue(this.Address, out val);
+                success = process.ReadValue(Address, out val);
 
             if (success)
             {
@@ -260,24 +259,24 @@ namespace LiveSplit.ComponentUtil
             }
             else
             {
-                if (this.FailAction == ReadFailAction.DontUpdate)
+                if (FailAction == ReadFailAction.DontUpdate)
                     return false;
 
                 base.Old = base.Current;
                 base.Current = val;
             }
 
-            if (!this.InitialUpdate)
+            if (!InitialUpdate)
             {
-                this.InitialUpdate = true;
+                InitialUpdate = true;
                 return false;
             }
 
-            if (!this.Current.Equals(this.Old))
+            if (!Current.Equals(Old))
             {
-                if (this.OnChanged != null)
-                    this.OnChanged(this.Old, this.Current);
-                this.Changed = true;
+                if (OnChanged != null)
+                    OnChanged(Old, Current);
+                Changed = true;
                 return true;
             }
 
@@ -288,7 +287,7 @@ namespace LiveSplit.ComponentUtil
         {
             base.Current = default(T);
             base.Old = default(T);
-            this.InitialUpdate = false;
+            InitialUpdate = false;
         }
     }
 }

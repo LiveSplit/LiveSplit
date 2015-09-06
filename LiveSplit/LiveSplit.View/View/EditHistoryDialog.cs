@@ -13,7 +13,7 @@ namespace LiveSplit.View
         {
             InitializeComponent();
             History = history.Reverse().ToList();
-            historyListBox.Items.AddRange(History.Where(x => !String.IsNullOrEmpty(x)).ToArray());
+            historyListBox.Items.AddRange(History.Where(x => !string.IsNullOrEmpty(x)).ToArray());
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -35,7 +35,7 @@ namespace LiveSplit.View
                 History.Remove((string)item);
 
             historyListBox.Items.Clear();
-            historyListBox.Items.AddRange(History.Where(x => !String.IsNullOrEmpty(x)).ToArray());
+            historyListBox.Items.AddRange(History.Where(x => !string.IsNullOrEmpty(x)).ToArray());
         }
     }
 }

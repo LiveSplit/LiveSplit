@@ -43,7 +43,7 @@ namespace LiveSplit.Model.RunFactories
                     }
                     else if (line.StartsWith("Offset="))
                     {
-                        run.Offset = new TimeSpan(0, 0, 0, 0, -int.Parse(line.Substring("Offset=".Length)));
+                        run.Offset = TimeSpan.FromMilliseconds(-int.Parse(line.Substring("Offset=".Length)));
                     }
                     else if (line.StartsWith("Size="))
                     {

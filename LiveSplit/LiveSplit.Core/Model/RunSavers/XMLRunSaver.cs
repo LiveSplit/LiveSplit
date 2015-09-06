@@ -1,8 +1,7 @@
-﻿using LiveSplit.UI;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
+using static LiveSplit.UI.SettingsHelper;
 
 namespace LiveSplit.Model.RunSavers
 {
@@ -16,37 +15,37 @@ namespace LiveSplit.Model.RunSavers
             document.AppendChild(docNode);
 
             var parent = document.CreateElement("Run");
-            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.6.0"));
+            parent.Attributes.Append(ToAttribute(document, "version", "1.6.0"));
             document.AppendChild(parent);
 
-            SettingsHelper.CreateSetting(document, parent, "GameIcon", run.GameIcon);
-            SettingsHelper.CreateSetting(document, parent, "GameName", run.GameName);
-            SettingsHelper.CreateSetting(document, parent, "CategoryName", run.CategoryName);
+            CreateSetting(document, parent, "GameIcon", run.GameIcon);
+            CreateSetting(document, parent, "GameName", run.GameName);
+            CreateSetting(document, parent, "CategoryName", run.CategoryName);
 
             var metadata = document.CreateElement("Metadata");
 
             var runElement = document.CreateElement("Run");
-            runElement.Attributes.Append(SettingsHelper.ToAttribute(document, "id", run.Metadata.RunID ?? string.Empty));
+            runElement.Attributes.Append(ToAttribute(document, "id", run.Metadata.RunID ?? string.Empty));
             metadata.AppendChild(runElement);
 
-            var platform = SettingsHelper.ToElement(document, "Platform", run.Metadata.PlatformName ?? string.Empty);
-            platform.Attributes.Append(SettingsHelper.ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
+            var platform = ToElement(document, "Platform", run.Metadata.PlatformName ?? string.Empty);
+            platform.Attributes.Append(ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
             metadata.AppendChild(platform);
 
-            SettingsHelper.CreateSetting(document, metadata, "Region", run.Metadata.RegionName ?? string.Empty);
+            CreateSetting(document, metadata, "Region", run.Metadata.RegionName ?? string.Empty);
 
             var variables = document.CreateElement("Variables");
             foreach (var variable in run.Metadata.VariableValueNames)
             {
-                var variableElement = SettingsHelper.ToElement(document, "Variable", variable.Value ?? string.Empty);
-                variableElement.Attributes.Append(SettingsHelper.ToAttribute(document, "name", variable.Key ?? string.Empty));
+                var variableElement = ToElement(document, "Variable", variable.Value ?? string.Empty);
+                variableElement.Attributes.Append(ToAttribute(document, "name", variable.Key ?? string.Empty));
                 variables.AppendChild(variableElement);
             }
             metadata.AppendChild(variables);
             parent.AppendChild(metadata);
 
-            SettingsHelper.CreateSetting(document, parent, "Offset", run.Offset);
-            SettingsHelper.CreateSetting(document, parent, "AttemptCount", run.AttemptCount);
+            CreateSetting(document, parent, "Offset", run.Offset);
+            CreateSetting(document, parent, "AttemptCount", run.AttemptCount);
 
             var runHistory = document.CreateElement("AttemptHistory");
             foreach (var attempt in run.AttemptHistory)
@@ -65,14 +64,14 @@ namespace LiveSplit.Model.RunSavers
                 var splitElement = document.CreateElement("Segment");
                 segmentElement.AppendChild(splitElement);
 
-                SettingsHelper.CreateSetting(document, splitElement, "Name", segment.Name);
-                SettingsHelper.CreateSetting(document, splitElement, "Icon", segment.Icon);
+                CreateSetting(document, splitElement, "Name", segment.Name);
+                CreateSetting(document, splitElement, "Icon", segment.Icon);
 
                 var splitTimes = document.CreateElement("SplitTimes");
                 foreach (var comparison in run.CustomComparisons)
                 {
                     var splitTime = segment.Comparisons[comparison].ToXml(document, "SplitTime");
-                    splitTime.Attributes.Append(SettingsHelper.ToAttribute(document, "name", comparison));
+                    splitTime.Attributes.Append(ToAttribute(document, "name", comparison));
                     splitTimes.AppendChild(splitTime);
                 }
                 splitElement.AppendChild(splitTimes);

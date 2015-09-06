@@ -13,7 +13,7 @@ namespace LiveSplit.View
             InitializeComponent();
             lblVersion.Text = Git.Version;
             if (Git.Branch != "master" && Git.Branch != "HEAD")
-                labelProductName.Text += string.Format(" ({0})", Git.Branch);
+                labelProductName.Text = string.Format("{0} ({1})", labelProductName.Text, Git.Branch);
         }
 
 #region Assembly Attribute Accessors

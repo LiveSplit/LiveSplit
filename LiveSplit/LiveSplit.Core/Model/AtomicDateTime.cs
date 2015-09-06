@@ -14,13 +14,9 @@ namespace LiveSplit.Model
         }
 
         public static TimeSpan operator -(AtomicDateTime a, AtomicDateTime b)
-        {
-            return a.Time - b.Time;
-        }
+            => a.Time - b.Time;
 
         public static TimeSpan operator -(AtomicDateTime a, DateTime b)
-        {
-            return a.Time - b;
-        }
+            => a.Time - b;
     }
 }

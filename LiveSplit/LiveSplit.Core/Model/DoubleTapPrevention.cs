@@ -100,10 +100,7 @@ namespace LiveSplit.Model
                 InternalModel.UndoSplit();
         }
 
-        public void Reset()
-        {
-            Reset(true);
-        }
+        public void Reset() => Reset(true);
 
         public void Reset(bool updateSplits = true)
         {
@@ -117,29 +114,14 @@ namespace LiveSplit.Model
                 InternalModel.Pause();
         }
 
-        public void ScrollUp()
-        {
-            InternalModel.ScrollUp();
-        }
+        public void ScrollUp() => InternalModel.ScrollUp();
 
-        public void ScrollDown()
-        {
-            InternalModel.ScrollDown();
-        }
+        public void ScrollDown() => InternalModel.ScrollDown();
 
-        public void SwitchComparisonPrevious()
-        {
-            InternalModel.SwitchComparisonPrevious();
-        }
+        public void SwitchComparisonPrevious() => InternalModel.SwitchComparisonPrevious();
 
-        public void SwitchComparisonNext()
-        {
-            InternalModel.SwitchComparisonNext();
-        }
+        public void SwitchComparisonNext() => InternalModel.SwitchComparisonNext();
 
-        public void InitializeGameTime()
-        {
-            InternalModel.InitializeGameTime();
-        }
+        public void InitializeGameTime() => InternalModel.InitializeGameTime();
     }
 }

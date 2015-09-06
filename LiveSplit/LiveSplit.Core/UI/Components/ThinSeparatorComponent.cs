@@ -9,10 +9,10 @@ namespace LiveSplit.UI.Components
 {
     public class ThinSeparatorComponent : IComponent
     {
-        public float PaddingTop { get { return 0f; } }
-        public float PaddingLeft { get { return 0f; } }
-        public float PaddingBottom { get { return 0f; } }
-        public float PaddingRight { get { return 0f; } }
+        public float PaddingTop => 0f;
+        public float PaddingLeft => 0f;
+        public float PaddingBottom => 0f;
+        public float PaddingRight => 0f;
 
         public bool LockToBottom { get; set; }
 
@@ -20,25 +20,13 @@ namespace LiveSplit.UI.Components
 
         protected LineComponent Line { get; set; }
 
-        public float VerticalHeight
-        {
-            get { return 1f; }
-        }
+        public float VerticalHeight => 1f;
 
-        public float MinimumWidth
-        {
-            get { return 0; }
-        }
+        public float MinimumWidth => 0f;
 
-        public float HorizontalWidth
-        {
-            get { return 1f; }
-        }
+        public float HorizontalWidth => 1f;
 
-        public float MinimumHeight
-        {
-            get { return 0; }
-        }
+        public float MinimumHeight => 0f;
 
         public ThinSeparatorComponent()
         {
@@ -85,9 +73,7 @@ namespace LiveSplit.UI.Components
         }
 
         public string ComponentName
-        {
-            get { return "Thin Separator"; }
-        }
+            => "Thin Separator";
 
 
         public Control GetSettingsControl(LayoutMode mode)
@@ -126,9 +112,7 @@ namespace LiveSplit.UI.Components
         }
 
         public IDictionary<string, Action> ContextMenuControls
-        {
-            get { return null; }
-        }
+            => null;
 
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {

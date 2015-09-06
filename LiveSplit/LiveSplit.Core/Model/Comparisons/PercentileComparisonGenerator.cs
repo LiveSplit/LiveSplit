@@ -2,6 +2,7 @@ using LiveSplit.Options;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using static System.Math;
 
 namespace LiveSplit.Model.Comparisons
 {
@@ -10,7 +11,7 @@ namespace LiveSplit.Model.Comparisons
         public IRun Run { get; set; }
         public const string ComparisonName = "Balanced PB";
         public const string ShortComparisonName = "Balanced";
-        public string Name { get { return ComparisonName; } }
+        public string Name => ComparisonName;
         public const double Weight = 0.9375;
 
         public PercentileComparisonGenerator(IRun run)
@@ -18,15 +19,9 @@ namespace LiveSplit.Model.Comparisons
             Run = run;
         }
 
-        protected double GetWeight(int index, int count)
-        {
-            return Math.Pow(Weight, count - index - 1);
-        }
+        protected double GetWeight(int index, int count) => Pow(Weight, count - index - 1);
 
-        protected double ReWeight(double a, double b, double c)
-        {
-            return (a - b) / c;
-        }
+        protected double ReWeight(double a, double b, double c) => (a - b) / c;
 
         protected TimeSpan Calculate(double perc, TimeSpan Value1, double Key1, TimeSpan Value2, double Key2)
         {

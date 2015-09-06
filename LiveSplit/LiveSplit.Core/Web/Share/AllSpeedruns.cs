@@ -4,7 +4,7 @@
     {
         protected static AllSpeedRuns _Instance = new AllSpeedRuns();
 
-        public static AllSpeedRuns Instance { get { return _Instance; } }
+        public static AllSpeedRuns Instance => _Instance;
 
         protected AllSpeedRuns()
             : base(

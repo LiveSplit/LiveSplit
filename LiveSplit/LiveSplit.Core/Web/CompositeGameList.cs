@@ -9,7 +9,7 @@ namespace LiveSplit.Web
     {
         protected static CompositeGameList _Instance = new CompositeGameList();
 
-        public static CompositeGameList Instance { get { return _Instance; } }
+        public static CompositeGameList Instance => _Instance;
 
         protected IList<string> gameNames;
 

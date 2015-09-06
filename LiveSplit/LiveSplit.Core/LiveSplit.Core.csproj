@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit</RootNamespace>
     <AssemblyName>LiveSplit.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
@@ -28,6 +28,7 @@
     <DocumentationFile>..\bin\Debug\LiveSplit.Core.XML</DocumentationFile>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,6 +40,7 @@
     <DocumentationFile>..\bin\Release\LiveSplit.Core.XML</DocumentationFile>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Candidate|AnyCPU'">
     <OutputPath>..\bin\Release Candidate\</OutputPath>
@@ -50,6 +52,7 @@
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>..\bin\Release Candidate\LiveSplit.Core.XML</DocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -285,7 +288,6 @@
     <Compile Include="Model\RunFactories\WSplitRunFactory.cs" />
     <Compile Include="Model\RunFactories\XMLRunFactory.cs" />
     <Compile Include="Model\RunSavers\XMLRunSaver.cs" />
-    <Compile Include="Updates\BuildTimeHelper.cs" />
     <Compile Include="Updates\UpdateHelper.cs" />
     <Compile Include="Web\Share\ShareSettings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -294,7 +296,6 @@
     </Compile>
     <Compile Include="Web\Share\SplitsIO.cs" />
     <Compile Include="Web\Share\Twitter.cs" />
-    <Compile Include="Web\Share\ZeldaSpeedRuns.cs" />
     <Compile Include="Web\SRL\RaceState.cs" />
     <Compile Include="Web\SRL\RaceViewers\IRaceViewer.cs" />
     <Compile Include="Web\SRL\RaceViewers\Kadgar.cs" />

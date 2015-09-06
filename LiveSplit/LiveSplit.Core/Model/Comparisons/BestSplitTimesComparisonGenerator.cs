@@ -8,7 +8,7 @@ namespace LiveSplit.Model.Comparisons
     {
         public IRun Run { get; set; }
         public const string ComparisonName = "Best Split Times";
-        public string Name { get { return ComparisonName; } }
+        public string Name => ComparisonName;
 
         public BestSplitTimesComparisonGenerator(IRun run)
         {

@@ -1,6 +1,5 @@
 ﻿using LiveSplit.Model.Comparisons;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace LiveSplit.Model
@@ -34,7 +33,7 @@ namespace LiveSplit.Model
             SegmentHistory = new SegmentHistory();
         }
 
-        public object Clone()
+        public Segment Clone()
         {
             var newSegmentHistory = SegmentHistory.Clone();
 
@@ -42,10 +41,12 @@ namespace LiveSplit.Model
             {
                 BestSegmentTime = BestSegmentTime,
                 SplitTime = SplitTime,
-                Icon = Icon, //TODO: Should be a clone //(this.Icon != null) ? this.Icon.Clone() as Image : null,
+                Icon = Icon,
                 SegmentHistory = newSegmentHistory,
                 Comparisons = (IComparisons)Comparisons.Clone()
             };
         }
+
+        object ICloneable.Clone() => Clone();
     }
 }

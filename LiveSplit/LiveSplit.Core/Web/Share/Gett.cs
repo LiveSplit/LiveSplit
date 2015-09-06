@@ -17,7 +17,7 @@ namespace LiveSplit.Web.Share
     {
         protected static Gett _Instance = new Gett();
 
-        public static Gett Instance { get { return _Instance; } }
+        public static Gett Instance => _Instance;
 
         public static readonly Uri BaseUri = new Uri("http://open.ge.tt");
         public static IRunSaver RunSaver = new XMLRunSaver();
@@ -29,21 +29,13 @@ namespace LiveSplit.Web.Share
             return new Uri(BaseUri, subUri);
         }
 
-        public string PlatformName
-        {
-            get { return "Ge.tt"; }
-        }
+        public string PlatformName => "Ge.tt";
 
-        public string Description
-        {
-            get
-            {
-                return "Ge.tt is a useful platform for sharing files "
-                + "with the world. You don't need an account. If you're not logged in, the splits "
-                + "will be deleted after 30 days, though. "
-                + "You can also directly import Ge.tt links with \"Open from URL...\"";
-            }
-        }
+        public string Description =>
+@"Ge.tt is a useful platform for sharing files 
+with the world. You don't need an account. If you're not logged in, the splits 
+will be deleted after 30 days, though. 
+" + "You can also directly import Ge.tt links with \"Open from URL...\"";
 
         public ISettings Settings { get; set; }
 

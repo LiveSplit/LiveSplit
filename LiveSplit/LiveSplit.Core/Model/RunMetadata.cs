@@ -1,14 +1,10 @@
-﻿using LiveSplit.Model.Comparisons;
-using LiveSplit.Options;
+﻿using LiveSplit.Options;
 using LiveSplit.Web.Share;
 using SpeedrunComSharp;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Xml;
 
 namespace LiveSplit.Model
 {
@@ -185,7 +181,7 @@ namespace LiveSplit.Model
 
         public RunMetadata(IRun run)
         {
-            this.LiveSplitRun = run;
+            LiveSplitRun = run;
             VariableValueNames = new Dictionary<string, string>();
             game = new Lazy<Game>(() => null);
             category = new Lazy<Category>(() => null);
@@ -342,9 +338,7 @@ namespace LiveSplit.Model
 
         private void TriggerPropertyChanged(bool clearRunID)
         {
-            var propertyChanged = PropertyChanged;
-            if (propertyChanged != null)
-                propertyChanged(this, new MetadataChangedEventArgs(clearRunID));
+            PropertyChanged?.Invoke(this, new MetadataChangedEventArgs(clearRunID));
         }
     }
 }

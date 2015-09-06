@@ -12,7 +12,7 @@ namespace LiveSplit.Web.SRL
     {
         protected static readonly SpeedRunsLiveAPI _Instance = new SpeedRunsLiveAPI();
 
-        public static SpeedRunsLiveAPI Instance { get { return _Instance; } }
+        public static SpeedRunsLiveAPI Instance => _Instance;
         public static readonly Uri BaseUri = new Uri("http://api.speedrunslive.com:81/");
 
         protected IEnumerable<dynamic> racesList;
@@ -25,7 +25,6 @@ namespace LiveSplit.Web.SRL
         protected SpeedRunsLiveAPI()
         {
             imageList = new Dictionary<string, Image>();
-            //new System.Timers.Timer(20 * 1000) { Enabled = true }.Elapsed += SpeedRunsLiveAPI_Elapsed;
         }
 
         protected Uri GetUri(string subUri)

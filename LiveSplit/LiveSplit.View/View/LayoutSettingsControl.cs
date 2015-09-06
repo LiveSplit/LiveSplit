@@ -18,9 +18,9 @@ namespace LiveSplit.View
 
         private Image originalBackgroundImage { get; set; }
 
-        public string TimerFont { get { return string.Format("{0} {1}", Settings.TimerFont.FontFamily.Name, Settings.TimerFont.Style); }}
-        public string MainFont { get { return string.Format("{0} {1}", Settings.TimesFont.FontFamily.Name, Settings.TimesFont.Style); ; } }
-        public string SplitNamesFont { get { return string.Format("{0} {1}", Settings.TextFont.FontFamily.Name, Settings.TextFont.Style); ; } }
+        public string TimerFont { get { return SettingsHelper.FormatFont(Settings.TimerFont); } }
+        public string MainFont { get { return SettingsHelper.FormatFont(Settings.TimesFont); } }
+        public string SplitNamesFont { get { return SettingsHelper.FormatFont(Settings.TextFont); } }
 
         public float Opacity { get { return Settings.Opacity * 100f; } set { Settings.Opacity = value / 100f; } }
         public float ImageOpacity { get { return Settings.ImageOpacity * 100f; } set { Settings.ImageOpacity = value / 100f; } }
@@ -59,7 +59,7 @@ namespace LiveSplit.View
 
             cmbBackgroundType.SelectedItem = GetBackgroundTypeString(Settings.BackgroundType);
             originalBackgroundImage = Settings.BackgroundImage;
-        }
+        }        
 
         private string GetBackgroundTypeString(BackgroundType type)
         {

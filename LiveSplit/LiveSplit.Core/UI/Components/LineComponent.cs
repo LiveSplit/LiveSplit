@@ -8,10 +8,10 @@ namespace LiveSplit.UI.Components
 {
     public class LineComponent : IComponent
     {
-        public float PaddingTop { get { return 0f; } }
-        public float PaddingLeft { get { return 0f; } }
-        public float PaddingBottom { get { return 0f; } }
-        public float PaddingRight { get { return 0f; } }
+        public float PaddingTop => 0f;
+        public float PaddingLeft => 0f;
+        public float PaddingBottom => 0f;
+        public float PaddingRight => 0f;
 
         public float VerticalHeight { get; set; }
         public float HorizontalWidth { get; set; }
@@ -37,7 +37,7 @@ namespace LiveSplit.UI.Components
             get { throw new NotSupportedException(); }
         }
 
-        public float MinimumWidth { get { return 0; } }
+        public float MinimumWidth => 0f;
 
         public Control GetSettingsControl(LayoutMode mode)
         {
@@ -74,10 +74,7 @@ namespace LiveSplit.UI.Components
             get { throw new NotSupportedException(); }
         }
 
-        public IDictionary<string, Action> ContextMenuControls
-        {
-            get { return null; }
-        }
+        public IDictionary<string, Action> ContextMenuControls  => null;
 
         public float MinimumHeight
         {

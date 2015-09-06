@@ -4,11 +4,11 @@ using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
-using LiveSplit.Updates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using LiveSplit.Updates;
 
 namespace LiveSplit.Web.SRL
 {
@@ -30,7 +30,7 @@ namespace LiveSplit.Web.SRL
         protected IrcClient Client { get; set; }
         public ITimerModel Model { get; set; }
 
-        public bool IsConnected { get { return Client.IsConnected; } }
+        public bool IsConnected => Client.IsConnected;
 
         public event EventHandlerT<string> ChannelJoined;
         public event EventHandlerT<string> RawMessageReceived;
@@ -51,12 +51,12 @@ namespace LiveSplit.Web.SRL
         public string GameName { get; set; }
         public string ChannelTopic { get; set; }
 
-        protected IrcChannel MainChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.Equals("#speedrunslive")); } }
-        protected IrcChannel LiveSplitChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.EndsWith("-livesplit")); } }
-        protected IrcChannel RaceChannel { get { return Client.Channels.FirstOrDefault(x => x.Name.StartsWith("#srl") && !x.Name.EndsWith("-livesplit")); } }
+        protected IrcChannel MainChannel => Client.Channels.FirstOrDefault(x => x.Name.Equals("#speedrunslive"));
+        protected IrcChannel LiveSplitChannel => Client.Channels.FirstOrDefault(x => x.Name.EndsWith("-livesplit"));
+        protected IrcChannel RaceChannel => Client.Channels.FirstOrDefault(x => x.Name.StartsWith("#srl") && !x.Name.EndsWith("-livesplit"));
 
-        public string LiveSplitChannelName { get { return LiveSplitChannel.Name; } }
-        public string RaceChannelName { get { return RaceChannel == null ? null : RaceChannel.Name; } }
+        public string LiveSplitChannelName => LiveSplitChannel.Name;
+        public string RaceChannelName => RaceChannel?.Name;
 
         public SpeedRunsLiveIRC(LiveSplitState state, ITimerModel model, IEnumerable<string> channels)
         {
@@ -77,14 +77,13 @@ namespace LiveSplit.Web.SRL
 
         void RaceChannel_UserKicked(object sender, IrcChannelUserEventArgs e)
         {
-            if (e.ChannelUser.User.NickName == Client.LocalUser.NickName && Kicked != null)
-               Kicked(this, null);
+            if (e.ChannelUser.User.NickName == Client.LocalUser.NickName)
+               Kicked?.Invoke(this, null);
         }
 
         void Client_Disconnected(object sender, EventArgs e)
         {
-            if (Disconnected != null)
-                Disconnected(this, null);
+            Disconnected?.Invoke(this, null);
         }
 
         void Model_OnReset(object sender, TimerPhase e)
@@ -95,8 +94,7 @@ namespace LiveSplit.Web.SRL
 
         void RaiseUserListRefreshed(object sender, EventArgs e)
         {
-            if (UserListRefreshed != null)
-                UserListRefreshed(this, null);
+            UserListRefreshed?.Invoke(this, null);
         }
 
         void LocalUser_JoinedChannel(object sender, IrcChannelEventArgs e)
@@ -120,8 +118,7 @@ namespace LiveSplit.Web.SRL
                 e.Channel.UsersListReceived += Channel_UsersListReceived;
             }
 
-            if (ChannelJoined != null)
-                ChannelJoined(this, e.Channel.Name);
+            ChannelJoined?.Invoke(this, e.Channel.Name);
         }
 
         void Channel_UsersListReceived(object sender, EventArgs e)
@@ -147,8 +144,7 @@ namespace LiveSplit.Web.SRL
         void RaceChannel_TopicChanged(object sender, EventArgs e)
         {
             ChannelTopic = RaceChannel.Topic;
-            if (GoalChanged != null)
-                GoalChanged(null, null);
+            GoalChanged?.Invoke(null, null);
         }
 
         private static string Escape(string value)
@@ -263,9 +259,7 @@ namespace LiveSplit.Web.SRL
                 }
             }
             
-
-            if (RawMessageReceived != null)
-                RawMessageReceived(this, string.Format("{0} - {1}", e.Message.Command, e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)));
+            RawMessageReceived?.Invoke(this, string.Format("{0} - {1}", e.Message.Command, e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)));
         }
 
         protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)
@@ -299,7 +293,6 @@ namespace LiveSplit.Web.SRL
                 {
                     Model.Start();
                     RaceState = RaceState.RaceStarted;
-                    //Client.LocalUser.SendMessage(LiveSplitChannel, ".enter");
                 }
                 else if (message == Client.LocalUser.NickName + " has been removed from the race.")
                 {
@@ -473,11 +466,7 @@ namespace LiveSplit.Web.SRL
             {
                 UserName = username,
                 NickName = username,
-#if DEBUG            
-                RealName = "xd"
-#else
-                RealName = "LiveSplit " + UpdateHelper.Version
-#endif
+                RealName = UpdateHelper.UserAgent
             });
         }
 
@@ -609,7 +598,6 @@ namespace LiveSplit.Web.SRL
         public void Dispose()
         {
             Client.Dispose();
-
             GC.SuppressFinalize(this);
         }
     }

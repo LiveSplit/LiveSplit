@@ -52,10 +52,7 @@ namespace LiveSplit.Model
             }
         }
 
-        public void InitializeGameTime()
-        {
-            CurrentState.IsGameTimeInitialized = true;
-        }
+        public void InitializeGameTime() => CurrentState.IsGameTimeInitialized = true;
 
         public void Split()
         {

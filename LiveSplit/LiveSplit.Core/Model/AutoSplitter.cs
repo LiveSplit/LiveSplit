@@ -17,15 +17,15 @@ namespace LiveSplit.Model
     {
         public string Description { get; set; }
         public IEnumerable<string> Games { get; set; }
-        public bool IsActivated { get { return Component != null; } }
+        public bool IsActivated => Component != null;
         public List<string> URLs { get; set; }
-        public string LocalPath { get { return Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, FileName)); } }
-        public string FileName { get { return URLs.First().Substring(URLs.First().LastIndexOf('/') + 1); } }
+        public string LocalPath => Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, FileName));
+        public string FileName => URLs.First().Substring(URLs.First().LastIndexOf('/') + 1);
         public AutoSplitterType Type { get; set; }
         public bool ShowInLayoutEditor { get; set; }
         public IComponent Component { get; set; }
         public IComponentFactory Factory { get; set; }
-        public bool IsDownloaded { get { return File.Exists(LocalPath); } }
+        public bool IsDownloaded => File.Exists(LocalPath);
         public string Website { get; set; }
 
         public void Activate(LiveSplitState state)
@@ -96,7 +96,7 @@ namespace LiveSplit.Model
             }
         }
 
-        public object Clone()
+        public AutoSplitter Clone()
         {
             return new AutoSplitter()
             {
@@ -109,5 +109,7 @@ namespace LiveSplit.Model
                 Factory = Factory
             };
         }
+
+        object ICloneable.Clone() => Clone();
     }
 }

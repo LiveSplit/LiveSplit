@@ -21,7 +21,7 @@ namespace LiveSplit.Tests
             var document = new XmlDocument();
             document.Load(xmlPath);
 
-            IDictionary<String, AutoSplitter> autoSplitters = document["AutoSplitters"].ChildNodes.OfType<XmlElement>().Where(element => element != null).Select(element =>
+            IDictionary<string, AutoSplitter> autoSplitters = document["AutoSplitters"].ChildNodes.OfType<XmlElement>().Where(element => element != null).Select(element =>
                     new AutoSplitter()
                     {
                         Description = element["Description"].InnerText,

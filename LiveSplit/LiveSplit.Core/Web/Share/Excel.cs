@@ -13,24 +13,13 @@ namespace LiveSplit.Web.Share
     {
         protected static Excel _Instance = new Excel();
 
-        public static Excel Instance { get { return _Instance; } }
+        public static Excel Instance => _Instance;
 
-        public string PlatformName
-        {
-            get
-            {
-                return "Excel";
-            }
-        }
+        public string PlatformName => "Excel";
 
-        public string Description
-        {
-            get
-            {
-                return "Export your splits as an Excel Sheet to analyze your splits. "
-                    + "This includes your whole history of all the runs you ever did.";
-            }
-        }
+        public string Description =>
+@"Export your splits as an Excel Sheet to analyze your splits. 
+This includes your whole history of all the runs you ever did.";
 
         public ISettings Settings { get; set; }
 

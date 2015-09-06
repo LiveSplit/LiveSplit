@@ -12,7 +12,7 @@ namespace LiveSplit.UI.Components.AutoSplit
             AutoSplitter = autoSplitter;
         }
 
-        public override void Update(IInvalidator invalidator, Model.LiveSplitState state, float width, float height, LayoutMode mode)
+        public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
             if (state.CurrentPhase == TimerPhase.NotRunning)
             {

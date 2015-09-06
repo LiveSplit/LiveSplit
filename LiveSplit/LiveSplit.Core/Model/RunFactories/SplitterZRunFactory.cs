@@ -3,6 +3,7 @@ using LiveSplit.Options;
 using System;
 using System.Drawing;
 using System.IO;
+using static System.TimeSpan;
 
 namespace LiveSplit.Model.RunFactories
 {
@@ -15,10 +16,7 @@ namespace LiveSplit.Model.RunFactories
             Stream = stream;
         }
 
-        protected string Unescape(string text)
-        {
-            return text.Replace(@"‡", @",");
-        }
+        protected string Unescape(string text) => text.Replace(@"‡", @",");
 
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
@@ -41,40 +39,40 @@ namespace LiveSplit.Model.RunFactories
 
                     try
                     {
-                        pbSplitTime.RealTime = TimeSpan.Parse(splitInfo[1]);
+                        pbSplitTime.RealTime = Parse(splitInfo[1]);
                     }
                     catch
                     {
                         try
                         {
-                            pbSplitTime.RealTime = TimeSpan.Parse("0:" + splitInfo[1]);
+                            pbSplitTime.RealTime = Parse("0:" + splitInfo[1]);
                         }
                         catch
                         {
-                            pbSplitTime.RealTime = TimeSpan.Parse("0:0:" + splitInfo[1]);
+                            pbSplitTime.RealTime = Parse("0:0:" + splitInfo[1]);
                         }
                     }
 
                     try
                     {
-                        goldTime.RealTime = TimeSpan.Parse(splitInfo[2]);
+                        goldTime.RealTime = Parse(splitInfo[2]);
                     }
                     catch 
                     {
                         try
                         {
-                            goldTime.RealTime = TimeSpan.Parse("0:" + splitInfo[2]);
+                            goldTime.RealTime = Parse("0:" + splitInfo[2]);
                         }
                         catch
                         {
-                            goldTime.RealTime = TimeSpan.Parse("0:0:" + splitInfo[2]);
+                            goldTime.RealTime = Parse("0:0:" + splitInfo[2]);
                         }
                     }
 
-                    if (pbSplitTime.RealTime == TimeSpan.Zero)
+                    if (pbSplitTime.RealTime == Zero)
                         pbSplitTime.RealTime = null;
 
-                    if (goldTime.RealTime == TimeSpan.Zero)
+                    if (goldTime.RealTime == Zero)
                         goldTime.RealTime = null;
 
                     var realIconPath = "";

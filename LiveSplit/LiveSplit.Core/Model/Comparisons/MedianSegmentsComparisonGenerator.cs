@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static System.Math;
 
 namespace LiveSplit.Model.Comparisons
 {
@@ -12,7 +13,7 @@ namespace LiveSplit.Model.Comparisons
         public const string ShortComparisonName = "Median";
         public const double Weight = 0.75;
 
-        public string Name { get { return ComparisonName; } }
+        public string Name => ComparisonName;
 
         public MedianSegmentsComparisonGenerator(IRun run)
         {
@@ -36,10 +37,7 @@ namespace LiveSplit.Model.Comparisons
             return TimeSpan.Zero;
         }
 
-        protected double GetWeight(int index, int count)
-        {
-            return Math.Pow(Weight, count - index - 1);
-        }
+        protected double GetWeight(int index, int count) => Pow(Weight, count - index - 1);
 
         public void Generate(TimingMethod method)
         {

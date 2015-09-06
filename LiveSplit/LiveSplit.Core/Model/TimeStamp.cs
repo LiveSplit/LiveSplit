@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
-using System.IO;
-using System.Net;
-using System.Net.Sockets;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -44,20 +41,10 @@ namespace LiveSplit.Model
         }
 
         public static TimeStamp Now
-        {
-            get
-            {
-                return new TimeStamp(TimeSpan.FromMilliseconds(qpc.Elapsed.TotalMilliseconds / PersistentDrift));
-            }
-        }
+            => new TimeStamp(TimeSpan.FromMilliseconds(qpc.Elapsed.TotalMilliseconds / PersistentDrift));
         
         public static bool IsSyncedWithAtomicClock
-        {
-            get
-            {
-                return lastQPCTime != TimeSpan.Zero;
-            }
-        }
+            => lastQPCTime != TimeSpan.Zero;
 
         public static AtomicDateTime CurrentDateTime
         {
@@ -131,13 +118,9 @@ namespace LiveSplit.Model
         }
 
         public static TimeSpan operator -(TimeStamp a, TimeStamp b)
-        {
-            return a.value - b.value;
-        }
+            => a.value - b.value;
 
         public static TimeStamp operator -(TimeStamp a, TimeSpan b)
-        {
-            return new TimeStamp(a.value - b);
-        }
+            => new TimeStamp(a.value - b);
     }
 }

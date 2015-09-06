@@ -4,7 +4,6 @@ using LiveSplit.UI.Components;
 using System;
 using System.Drawing;
 using System.IO;
-using System.Windows.Forms;
 using System.Xml;
 
 namespace LiveSplit.UI.LayoutFactories

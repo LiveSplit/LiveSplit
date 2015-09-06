@@ -5,7 +5,6 @@ using LiveSplit.UI;
 using LiveSplit.Web.Share;
 using System;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Windows.Forms;
 
@@ -21,11 +20,12 @@ namespace LiveSplit.Model.RunImporters
                 var comparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
 
                 var uri = new Uri(url);
-                if (uri.Host.ToLowerInvariant() == "splits.io")
+                var host = uri.Host.ToLowerInvariant();
+                if (host == "splits.io")
                 {
                     return SplitsIO.Instance.DownloadRunByUri(uri, true);
                 }
-                if (uri.Host.ToLowerInvariant() == "www.speedrun.com")
+                if (host == "www.speedrun.com" || host == "speedrun.com")
                 {
                     var speedrunComRun = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
                     if (speedrunComRun != null && speedrunComRun.SplitsAvailable)

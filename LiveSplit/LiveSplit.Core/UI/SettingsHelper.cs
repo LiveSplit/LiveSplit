@@ -20,6 +20,11 @@ namespace LiveSplit.UI
             return dialog;
         }
 
+        public static string FormatFont(Font font)
+        {
+            return $"{ font.FontFamily.Name } { font.Style }";
+        }
+
         public static void ColorButtonClick(Button button, Control control)
         {
             var picker = new ColorPickerDialog();
@@ -31,7 +36,9 @@ namespace LiveSplit.UI
 
         public static Color ParseColor(XmlElement colorElement, Color defaultColor = default(Color))
         {
-            return colorElement != null ? Color.FromArgb(Int32.Parse(colorElement.InnerText, NumberStyles.HexNumber)) : defaultColor;
+            return colorElement != null 
+                ? Color.FromArgb(int.Parse(colorElement.InnerText, NumberStyles.HexNumber)) 
+                : defaultColor;
         }
 
         public static Font GetFontFromElement(XmlElement element)
@@ -128,34 +135,47 @@ namespace LiveSplit.UI
 
         public static bool ParseBool(XmlElement boolElement, bool defaultBool = false)
         {
-            return boolElement != null ? Boolean.Parse(boolElement.InnerText) : defaultBool;
+            return boolElement != null
+                ? bool.Parse(boolElement.InnerText)
+                : defaultBool;
         }
 
         public static int ParseInt(XmlElement intElement, int defaultInt = 0)
         {
-            return intElement != null ? Int32.Parse(intElement.InnerText) : defaultInt;
+            return intElement != null
+                ? int.Parse(intElement.InnerText)
+                : defaultInt;
         }
 
         public static float ParseFloat(XmlElement floatElement, float defaultFloat = 0f)
         {
-            return floatElement != null ? Single.Parse(floatElement.InnerText.Replace(',', '.'), CultureInfo.InvariantCulture) : defaultFloat;
+            return floatElement != null
+                ? float.Parse(floatElement.InnerText.Replace(',', '.'), CultureInfo.InvariantCulture)
+                : defaultFloat;
         }
 
         public static double ParseDouble(XmlElement doubleElement, double defaultDouble = 0.0)
         {
-            return doubleElement != null ? Double.Parse(doubleElement.InnerText, CultureInfo.InvariantCulture) : defaultDouble;
+            return doubleElement != null
+                ? double.Parse(doubleElement.InnerText, CultureInfo.InvariantCulture)
+                : defaultDouble;
         }
 
         public static string ParseString(XmlElement stringElement, string defaultString = null)
         {
             if (defaultString == null)
                 defaultString = string.Empty;
-            return stringElement != null ? stringElement.InnerText : defaultString;
+
+            return stringElement != null
+                ? stringElement.InnerText
+                : defaultString;
         }
 
         public static TimeSpan ParseTimeSpan(XmlElement timeSpanElement, TimeSpan defaultTimeSpan = default(TimeSpan))
         {
-            return timeSpanElement != null ? TimeSpan.Parse(timeSpanElement.InnerText) : defaultTimeSpan;
+            return timeSpanElement != null
+                ? TimeSpan.Parse(timeSpanElement.InnerText)
+                : defaultTimeSpan;
         }
 
         public static XmlElement ToElement<T>(XmlDocument document, string name, T value)
@@ -181,7 +201,7 @@ namespace LiveSplit.UI
             if (document != null)
             {
                 var element = document.CreateElement(name);
-            element.InnerText = value.ToString();
+                element.InnerText = value.ToString();
                 parent.AppendChild(element);
             }
             return value.GetHashCode();
@@ -192,7 +212,7 @@ namespace LiveSplit.UI
             if (document != null)
             {
                 var element = document.CreateElement(name);
-            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
+                element.InnerText = value.ToString(CultureInfo.InvariantCulture);
                 parent.AppendChild(element);
             }
             return value.GetHashCode();
@@ -203,7 +223,7 @@ namespace LiveSplit.UI
             if (document != null)
             {
                 var element = document.CreateElement(name);
-            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
+                element.InnerText = value.ToString(CultureInfo.InvariantCulture);
                 parent.AppendChild(element);
             }
             return value.GetHashCode();
@@ -218,12 +238,16 @@ namespace LiveSplit.UI
 
         public static T ParseEnum<T>(XmlElement element, T defaultEnum = default(T))
         {
-            return element != null ? (T)Enum.Parse(typeof(T), element.InnerText) : defaultEnum;
+            return element != null 
+                ? (T)Enum.Parse(typeof(T), element.InnerText) 
+                : defaultEnum;
         }
 
         public static Version ParseVersion(XmlElement element)
         {
-            return element != null ? Version.Parse(element.InnerText) : new Version(1, 0, 0, 0);
+            return element != null 
+                ? Version.Parse(element.InnerText) 
+                : new Version(1, 0, 0, 0);
         }
 
         public static Version ParseAttributeVersion(XmlElement element)

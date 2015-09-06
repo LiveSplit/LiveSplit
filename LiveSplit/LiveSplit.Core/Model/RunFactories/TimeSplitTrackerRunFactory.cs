@@ -27,7 +27,7 @@ namespace LiveSplit.Model.RunFactories
 
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
-            string path = "";
+            string path = string.Empty;
             if (!string.IsNullOrEmpty(Path))
                 path = System.IO.Path.GetDirectoryName(Path);
 

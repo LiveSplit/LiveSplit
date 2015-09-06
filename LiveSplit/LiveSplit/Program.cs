@@ -1,9 +1,9 @@
-﻿using LiveSplit.Options;
-using LiveSplit.View;
+﻿using LiveSplit.View;
 using LiveSplit.Web.Share;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using LiveSplit.Options;
 
 namespace LiveSplit
 {

@@ -16,7 +16,7 @@ namespace LiveSplit.Model
         /// <returns>Returns the last non-live delta or null if there have been no deltas yet.</returns>
         public static TimeSpan? GetLastDelta(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
         {
-            for (int x = splitNumber; x >= 0; x--)
+            for (var x = splitNumber; x >= 0; x--)
             {
                 if (state.Run[x].Comparisons[comparison][method] != null && state.Run[x].SplitTime[method] != null)
                     return state.Run[x].SplitTime[method] - state.Run[x].Comparisons[comparison][method];
@@ -28,7 +28,7 @@ namespace LiveSplit.Model
         {
             if (!useCurrentTime && (state.Run[splitNumber].SplitTime[method] == null)) return null;
             TimeSpan? currentTime;
-            if (useCurrentTime == false)
+            if (!useCurrentTime)
                 currentTime = state.Run[splitNumber].SplitTime[method];
             else
                 currentTime = state.CurrentTime[method];
