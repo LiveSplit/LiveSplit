@@ -19,14 +19,15 @@ namespace LiveSplit.Model
             if (currentTime != null)
             {
                 PopulatePrediction(predictions, currentTime + run[segmentIndex].BestSegmentTime[method], segmentIndex + 1);
-                foreach (var segment in run[segmentIndex].SegmentHistory)
+                foreach (var attempt in run.AttemptHistory)
                 {
+                    var runIndex = attempt.Index;
                     Time segmentTime;
-                    if (segmentIndex == 0 
-                        || !run[segmentIndex - 1].SegmentHistory.TryGetValue(segment.Key, out segmentTime) 
+                    if (segmentIndex == 0
+                        || !run[segmentIndex - 1].SegmentHistory.TryGetValue(runIndex, out segmentTime)
                         || segmentTime[method] != null)
                     {
-                        var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex, segment.Key, method);
+                        var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex, runIndex, method);
                         PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                     }
                 }
