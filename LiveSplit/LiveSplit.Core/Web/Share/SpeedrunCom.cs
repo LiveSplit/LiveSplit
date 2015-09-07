@@ -50,7 +50,7 @@ namespace LiveSplit.Web.Share
 
             return time;
         }
-        public static IRun GetRun(this Record record)
+        public static IRun GetRun(this SpeedrunComSharp.Run record)
         {
             var apiUri = record.SplitsUri.AbsoluteUri;
             var path = apiUri.Substring(apiUri.LastIndexOf("/") + 1);

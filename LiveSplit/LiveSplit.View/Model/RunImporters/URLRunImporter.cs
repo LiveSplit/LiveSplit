@@ -30,9 +30,9 @@ namespace LiveSplit.Model.RunImporters
                     var speedrunComRun = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
                     if (speedrunComRun != null && speedrunComRun.SplitsAvailable)
                     {
-                        var splitsUri = speedrunComRun.SplitsUri.AbsoluteUri;
-                        var splitsId = splitsUri.Substring(splitsUri.LastIndexOf("/") + 1);
-                        uri = new Uri(string.Format("http://splits.io/{0}/download/livesplit", splitsId));
+                        var run = speedrunComRun.GetRun();
+                        run.PatchRun(speedrunComRun);
+                        return run;
                     }
                 }
                 else if (uri.Host.ToLowerInvariant() == "ge.tt"
