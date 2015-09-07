@@ -174,6 +174,7 @@ namespace LiveSplit.Model
                     if (run[index].SegmentHistory.TryGetValue(runIndex, out element) && history.Count(x => x.Equals(element[method])) > 1)
                     {
                         run[index].SegmentHistory.Remove(runIndex);
+                        history.Remove(element[method]);
                     }
                 }
             }
