@@ -457,7 +457,7 @@ namespace LiveSplit.View
                         Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name] = time;
                     }
                     Fix();
-                    RaiseRunEdited();
+                    TimesModified();
                     e.ParsingApplied = true;
                     return;
                 }
@@ -489,7 +489,7 @@ namespace LiveSplit.View
                         Run[e.RowIndex].BestSegmentTime = time;
                     }
                     Fix();
-                    RaiseRunEdited();
+                    TimesModified();
                     e.ParsingApplied = true;
                 }
                 catch (Exception ex)
