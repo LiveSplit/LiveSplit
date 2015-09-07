@@ -206,20 +206,13 @@ namespace LiveSplit.Model
         private static void ImportSegmentHistory(this IRun run, TimingMethod method, int index)
         {
             var prevTime = TimeSpan.Zero;
-            var nullValue = false;
 
             foreach (var segment in run)
             {
-                //Import into the history any segments in the PB that include skipped splits
-                if (segment.PersonalBestSplitTime[method] == null || nullValue)
-                {
-                    segment.SegmentHistory.Add(index, new Time(method, segment.PersonalBestSplitTime[method] - prevTime));
-                    nullValue = false;
-                }
+                //Import the PB splits into the history
+                segment.SegmentHistory.Add(index, new Time(method, segment.PersonalBestSplitTime[method] - prevTime));
                 if (segment.PersonalBestSplitTime[method].HasValue)
                     prevTime = segment.PersonalBestSplitTime[method].Value;
-                else
-                    nullValue = true;
             }
         }
 
