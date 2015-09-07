@@ -2,6 +2,7 @@
 using LiveSplit.Model.RunFactories;
 using LiveSplit.Options;
 using LiveSplit.UI;
+using LiveSplit.Web.Share;
 using System;
 using System.IO;
 using System.Linq;
@@ -20,13 +21,21 @@ namespace LiveSplit.Model.RunImporters
                 var comparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
 
                 var uri = new Uri(url);
-                if (uri.Host.ToLowerInvariant() == "splits.io"
-                    && uri.LocalPath.Length > 0
-                    && !uri.LocalPath.Substring(1).Contains('/'))
+                if (uri.Host.ToLowerInvariant() == "splits.io")
                 {
                     uri = new Uri(string.Format("{0}/download/livesplit", url));
                 }
-                if (uri.Host.ToLowerInvariant() == "ge.tt"
+                else if (uri.Host.ToLowerInvariant() == "www.speedrun.com")
+                {
+                    var speedrunComRun = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
+                    if (speedrunComRun != null && speedrunComRun.SplitsAvailable)
+                    {
+                        var splitsUri = speedrunComRun.SplitsUri.AbsoluteUri;
+                        var splitsId = splitsUri.Substring(splitsUri.LastIndexOf("/") + 1);
+                        uri = new Uri(string.Format("http://splits.io/{0}/download/livesplit", splitsId));
+                    }
+                }
+                else if (uri.Host.ToLowerInvariant() == "ge.tt"
                     && uri.LocalPath.Length > 0
                     && !uri.LocalPath.Substring(1).Contains('/'))
                 {
