@@ -25,6 +25,7 @@ namespace LiveSplit.Web.Share
 
         public static readonly Uri BaseUri = new Uri("http://splits.io/");
         public static readonly Uri APIUri = new Uri("https://splits.io/api/v3/");
+        public static readonly Uri APIV4Uri = new Uri("https://splits.io/api/v4/");
 
         public const decimal NoTime = 0.0m;
 
@@ -58,6 +59,11 @@ namespace LiveSplit.Web.Share
         public Uri GetAPIUri(string subUri)
         {
             return new Uri(APIUri, subUri);
+        }
+
+        public Uri GetAPIV4Uri(string subUri)
+        {
+            return new Uri(APIV4Uri, subUri);
         }
 
         #region Not supported
@@ -169,15 +175,43 @@ namespace LiveSplit.Web.Share
             return response.run;
         }
 
-        public IRun DownloadRunByPath(string path)
+        public dynamic GetV4RunById(string runId)
         {
-            var uri = GetSiteUri(path);
-            return DownloadRunByUri(uri);
+            var uri = GetAPIV4Uri(string.Format("runs/{0}", runId));
+            return JSON.FromUri(uri);
         }
 
-        public IRun DownloadRunByUri(Uri uri)
+        private void PatchRun(IRun run, string splitsIORunId)
         {
-            var downloadUri = GetSiteUri(string.Format("{0}/download/livesplit", uri.LocalPath));
+            try
+            {
+                var splitsIORun = GetV4RunById(splitsIORunId);
+                var speedrunComId = splitsIORun.srdc_id as string;
+                if (string.IsNullOrEmpty(speedrunComId))
+                    return;
+
+                var speedrunComRun = SpeedrunCom.Client.Runs.GetRun(speedrunComId);
+                if (speedrunComRun == null)
+                    return;
+
+                run.PatchRun(speedrunComRun);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+        }
+
+        public IRun DownloadRunByPath(string path, bool patchRun)
+        {
+            var uri = GetSiteUri(path);
+            return DownloadRunByUri(uri, patchRun);
+        }
+
+        public IRun DownloadRunByUri(Uri uri, bool patchRun)
+        {
+            var id = uri.LocalPath;
+            var downloadUri = GetSiteUri(string.Format("{0}/download/livesplit", id));
 
             var request = WebRequest.Create(downloadUri);
 
@@ -194,16 +228,19 @@ namespace LiveSplit.Web.Share
                     runFactory.Stream = memoryStream;
                     runFactory.FilePath = null;
 
-                    return runFactory.Create(new StandardComparisonGeneratorsFactory());
+                    var run = runFactory.Create(new StandardComparisonGeneratorsFactory());
+                    if (patchRun)
+                        PatchRun(run, id);
+                    return run;
                 }
             }
         }
 
-        public IRun DownloadRunById(int runId)
+        public IRun DownloadRunById(int runId, bool patchRun)
         {
             var run = GetRunById(runId);
             var uri = GetSiteUri(run.path);
-            return DownloadRunByUri(uri);
+            return DownloadRunByUri(uri, patchRun);
         }
 
         public string Share(IRun run, Func<Image> screenShotFunction = null, bool claimTokenUri = false)

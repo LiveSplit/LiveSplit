@@ -23,9 +23,9 @@ namespace LiveSplit.Model.RunImporters
                 var uri = new Uri(url);
                 if (uri.Host.ToLowerInvariant() == "splits.io")
                 {
-                    uri = new Uri(string.Format("{0}/download/livesplit", url));
+                    return SplitsIO.Instance.DownloadRunByUri(uri, true);
                 }
-                else if (uri.Host.ToLowerInvariant() == "www.speedrun.com")
+                if (uri.Host.ToLowerInvariant() == "www.speedrun.com")
                 {
                     var speedrunComRun = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
                     if (speedrunComRun != null && speedrunComRun.SplitsAvailable)
@@ -34,12 +34,6 @@ namespace LiveSplit.Model.RunImporters
                         run.PatchRun(speedrunComRun);
                         return run;
                     }
-                }
-                else if (uri.Host.ToLowerInvariant() == "ge.tt"
-                    && uri.LocalPath.Length > 0
-                    && !uri.LocalPath.Substring(1).Contains('/'))
-                {
-                    uri = new Uri(string.Format("http://ge.tt/api/1/files{0}/0/blob?download", uri.LocalPath));
                 }
 
                 var request = WebRequest.Create(uri);

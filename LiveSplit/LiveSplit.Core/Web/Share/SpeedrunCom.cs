@@ -54,7 +54,7 @@ namespace LiveSplit.Web.Share
         {
             var apiUri = record.SplitsUri.AbsoluteUri;
             var path = apiUri.Substring(apiUri.LastIndexOf("/") + 1);
-            return SplitsIO.Instance.DownloadRunByPath(path);
+            return SplitsIO.Instance.DownloadRunByPath(path, false);
         }
 
         public static Model.TimingMethod ToLiveSplitTimingMethod(this SpeedrunComSharp.TimingMethod timingMethod)
