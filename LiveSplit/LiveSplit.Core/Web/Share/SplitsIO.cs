@@ -243,6 +243,18 @@ namespace LiveSplit.Web.Share
             return DownloadRunByUri(uri, patchRun);
         }
 
+        public void ClaimWithSpeedrunComRun(string splitsIORunId, string claimToken, string srdcRunId)
+        {
+            var uri = GetAPIV4Uri(string.Format("runs/{0}?claim_token={1}&srdc_id={2}", 
+                Uri.EscapeDataString(splitsIORunId), 
+                Uri.EscapeDataString(claimToken), 
+                Uri.EscapeDataString(srdcRunId)));
+
+            var request = WebRequest.Create(uri);
+            request.Method = "PUT";
+            request.GetResponse();
+        }
+
         public string Share(IRun run, Func<Image> screenShotFunction = null, bool claimTokenUri = false)
         {
             string image_url = null;

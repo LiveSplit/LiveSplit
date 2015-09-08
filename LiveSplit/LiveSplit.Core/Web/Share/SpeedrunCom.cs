@@ -259,8 +259,28 @@ namespace LiveSplit.Web.Share
                     var gameTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.GameTime) ? runTime.GameTime : null;
 
                     var emulated = metadata.Game.Ruleset.EmulatorsAllowed && metadata.UsesEmulator;
-                    var splitsIOUri = submitToSplitsIO ? new Uri(SplitsIO.Instance.Share(run)) : null;
                     var variables = metadata.VariableValues.Values.Where(x => x != null);
+
+                    Uri splitsIOUri = null;
+                    string splitsIORunId = null;
+                    string claimToken = null;
+
+                    if (submitToSplitsIO)
+                    {
+                        try
+                        {
+                            var uri = new Uri(SplitsIO.Instance.Share(run, claimTokenUri: true));
+                            splitsIOUri = SplitsIO.Instance.GetSiteUri(uri.AbsolutePath);
+
+                            var splitted = uri.Query.Split('?', '=', '&');
+                            claimToken = splitted.SkipWhile(x => x != "claim_token").Skip(1).FirstOrDefault();
+                            splitsIORunId = uri.AbsolutePath.Substring(1);
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex);
+                        }
+                    }
 
                     var submittedRun = Client.Runs.Submit(
                         //simulateSubmitting: true,
@@ -278,6 +298,21 @@ namespace LiveSplit.Web.Share
                         verify: false,
                         variables: variables
                         );
+
+                    if (submitToSplitsIO
+                        && !string.IsNullOrEmpty(submittedRun.ID)
+                        && !string.IsNullOrEmpty(splitsIORunId)
+                        && !string.IsNullOrEmpty(claimToken))
+                    {
+                        try
+                        {
+                            SplitsIO.Instance.ClaimWithSpeedrunComRun(splitsIORunId, claimToken, submittedRun.ID);
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex);
+                        }
+                    }
 
                     run.Metadata.Run = submittedRun;
                 }
