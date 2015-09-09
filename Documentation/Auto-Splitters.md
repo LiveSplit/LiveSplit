@@ -191,6 +191,7 @@ A dynamic object which can be used to store variables. You should declare these 
 init { vars.test = 5; }
 update { print(vars.test.ToString()); }
 ```
+You can also store variables like this in `current` and the value will be in `old` on the next update.
 
 ##### game
 The currently connected [Process](https://msdn.microsoft.com/en-us/library/system.diagnostics.process%28v=vs.110%29.aspx) object.
