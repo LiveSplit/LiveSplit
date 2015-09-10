@@ -2,6 +2,6 @@
 {
     public enum TimeFormat
     {
-        Hours, Minutes, Seconds
+        TenHours, Hours, Minutes, Seconds
     }
 }
