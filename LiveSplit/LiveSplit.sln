@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit", "LiveSplit\LiveSplit.csproj", "{E8047F95-BA79-4E2E-A9BB-5C48D5FA2467}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -17,6 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit", "LiveSplit\Live
 		{C2539B7C-717D-4788-AE41-459EA1E935DC} = {C2539B7C-717D-4788-AE41-459EA1E935DC}
 		{78F31888-C600-4D5D-9843-13D023893490} = {78F31888-C600-4D5D-9843-13D023893490}
 		{B9045699-7AC0-4B1C-B6A7-0EB4A93C48D7} = {B9045699-7AC0-4B1C-B6A7-0EB4A93C48D7}
+		{C8E2979A-C985-469A-961D-7849B2DC3A4F} = {C8E2979A-C985-469A-961D-7849B2DC3A4F}
 		{B81D159C-C2DA-4C8A-B240-067F38F6AC4A} = {B81D159C-C2DA-4C8A-B240-067F38F6AC4A}
 		{0BE25AA8-DF4D-4473-A52F-15E7C8DF180B} = {0BE25AA8-DF4D-4473-A52F-15E7C8DF180B}
 		{B2045CAE-2D97-4CB1-931C-55837CC77699} = {B2045CAE-2D97-4CB1-931C-55837CC77699}
@@ -108,7 +109,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Tests", "LiveSpli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedrunComSharp", "Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj", "{924AAFFE-5B89-49E2-99AD-EC9373CC838D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.ContextualSlideshow", "Components\LiveSplit.ContextualSlideshow\LiveSplit.ContextualSlideshow.csproj", "{C8E2979A-C985-469A-961D-7849B2DC3A4F}"
+EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release Candidate|Any CPU = Release Candidate|Any CPU
@@ -295,6 +301,12 @@ Global
 		{924AAFFE-5B89-49E2-99AD-EC9373CC838D}.Release Candidate|Any CPU.Build.0 = Release|Any CPU
 		{924AAFFE-5B89-49E2-99AD-EC9373CC838D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{924AAFFE-5B89-49E2-99AD-EC9373CC838D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8E2979A-C985-469A-961D-7849B2DC3A4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8E2979A-C985-469A-961D-7849B2DC3A4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8E2979A-C985-469A-961D-7849B2DC3A4F}.Release Candidate|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E2979A-C985-469A-961D-7849B2DC3A4F}.Release Candidate|Any CPU.Build.0 = Release|Any CPU
+		{C8E2979A-C985-469A-961D-7849B2DC3A4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8E2979A-C985-469A-961D-7849B2DC3A4F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -329,9 +341,7 @@ Global
 		{B0470637-949C-4A41-9C8C-0CE46561037F} = {F860D526-C1CE-4FDC-A871-202201859C42}
 		{14DF9AF3-F142-4133-A857-BFBC679421DF} = {F860D526-C1CE-4FDC-A871-202201859C42}
 		{924AAFFE-5B89-49E2-99AD-EC9373CC838D} = {FAF78A7D-B7F6-4302-88E9-4B1E7AAC3552}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
+		{C8E2979A-C985-469A-961D-7849B2DC3A4F} = {4EE43467-319B-483C-A256-35D76C218160}
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
