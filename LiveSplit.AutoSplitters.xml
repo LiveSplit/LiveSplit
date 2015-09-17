@@ -938,4 +938,18 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Jukspa)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Grand Theft Auto V</Game>
+      <Game>Grand Theft Auto 5</Game>
+      <Game>GTAV</Game>
+      <Game>GTA5</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.GTAV.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available. (By zoton2 and tduva)</Description>
+    <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
