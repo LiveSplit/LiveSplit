@@ -952,4 +952,15 @@
     <Description>Load removal is available. (By zoton2 and tduva)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>BioShock 2</Game>
+      <Game>BioShock 2: Minerva's Den (DLC)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Glurmo/LiveSplit.Scripts/master/LiveSplit.BioShock2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available. (By Glurmo)</Description>
+  </AutoSplitter>
 </AutoSplitters>
