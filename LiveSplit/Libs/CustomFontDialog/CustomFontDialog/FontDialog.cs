@@ -145,27 +145,30 @@ namespace CustomFontDialog
             float size = txtSize.Text != "" ? float.Parse(txtSize.Text) : 1;
             var family = lstFont.SelectedFontFamily;
 
-            FontStyle? style = null;
-            if (chbBold.Checked && family.IsStyleAvailable(FontStyle.Bold))
+            if (family != null)
             {
-                style = FontStyle.Bold;
-            }
-            if (chbItalic.Checked && family.IsStyleAvailable(FontStyle.Italic))
-            {
-                if (style == null)
-                    style = FontStyle.Italic;
-                else
-                    style |= FontStyle.Italic;
-            }
-            if (style == null && family.IsStyleAvailable(FontStyle.Regular))
-            {
-                style = FontStyle.Regular;
-            }
+                FontStyle? style = null;
+                if (chbBold.Checked && family.IsStyleAvailable(FontStyle.Bold))
+                {
+                    style = FontStyle.Bold;
+                }
+                if (chbItalic.Checked && family.IsStyleAvailable(FontStyle.Italic))
+                {
+                    if (style == null)
+                        style = FontStyle.Italic;
+                    else
+                        style |= FontStyle.Italic;
+                }
+                if (style == null && family.IsStyleAvailable(FontStyle.Regular))
+                {
+                    style = FontStyle.Regular;
+                }
 
-            if (style.HasValue)
-                lblSampleText.Font = new Font(family, size, style.Value);
+                if (style.HasValue)
+                    lblSampleText.Font = new Font(family, size, style.Value);
 
-            TriggerFontChanged();
+                TriggerFontChanged();
+            }
         }
 
         /// <summary>
