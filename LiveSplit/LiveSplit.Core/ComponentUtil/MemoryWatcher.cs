@@ -128,7 +128,7 @@ namespace LiveSplit.ComponentUtil
         public new string Old
         {
             get { return (string)base.Old; }
-            set { base.Current = value; }
+            set { base.Old = value; }
         }
 
         public delegate void StringChangedEventHandler(string old, string current);
@@ -223,7 +223,7 @@ namespace LiveSplit.ComponentUtil
         public new T Old
         {
             get { return (T)(base.Old ?? default(T)); }
-            set { base.Current = value; }
+            set { base.Old = value; }
         }
 
         public delegate void DataChangedEventHandler(T old, T current);
