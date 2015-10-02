@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using static LiveSplit.Model.Comparisons.CompositeComparisons;
 
 namespace LiveSplit.Model.Comparisons
 {
@@ -6,11 +7,11 @@ namespace LiveSplit.Model.Comparisons
     {
         static StandardComparisonGeneratorsFactory()
         {
-            CompositeComparisons.AddShortComparisonName(BestSegmentsComparisonGenerator.ComparisonName, BestSegmentsComparisonGenerator.ShortComparisonName);
-            CompositeComparisons.AddShortComparisonName(Run.PersonalBestComparisonName, "PB");
-            CompositeComparisons.AddShortComparisonName(AverageSegmentsComparisonGenerator.ComparisonName, AverageSegmentsComparisonGenerator.ShortComparisonName);
-            CompositeComparisons.AddShortComparisonName(WorstSegmentsComparisonGenerator.ComparisonName, WorstSegmentsComparisonGenerator.ShortComparisonName);
-            CompositeComparisons.AddShortComparisonName(PercentileComparisonGenerator.ComparisonName, PercentileComparisonGenerator.ShortComparisonName);
+            AddShortComparisonName(BestSegmentsComparisonGenerator.ComparisonName, BestSegmentsComparisonGenerator.ShortComparisonName);
+            AddShortComparisonName(Run.PersonalBestComparisonName, "PB");
+            AddShortComparisonName(AverageSegmentsComparisonGenerator.ComparisonName, AverageSegmentsComparisonGenerator.ShortComparisonName);
+            AddShortComparisonName(WorstSegmentsComparisonGenerator.ComparisonName, WorstSegmentsComparisonGenerator.ShortComparisonName);
+            AddShortComparisonName(PercentileComparisonGenerator.ComparisonName, PercentileComparisonGenerator.ShortComparisonName);
         }
         public IEnumerable<IComparisonGenerator> Create(IRun run)
         {

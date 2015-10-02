@@ -1,11 +1,7 @@
 ﻿using LiveSplit.Options;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.Register
@@ -38,7 +34,7 @@ namespace LiveSplit.Register
 
         static void InstallOBSPlugin()
         {
-            String text = "";
+            string text = "";
             try
             {
                 var obsPath = Path.Combine(Environment.GetEnvironmentVariable("ProgramFiles"), "OBS", "plugins");
@@ -78,7 +74,7 @@ namespace LiveSplit.Register
             MessageBox.Show(text, "OBS Plugin Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        static void InstallOBSPluginToPath(String obsPath, bool is64Bit)
+        static void InstallOBSPluginToPath(string obsPath, bool is64Bit)
         {
             if (is64Bit)
                 File.Copy("CLRHostPlugin64.dll", Path.Combine(obsPath, "CLRHostPlugin.dll"), true);
@@ -94,7 +90,7 @@ namespace LiveSplit.Register
             InstallOtherCrap(clrHostPath);
         }
 
-        static void InstallOtherCrap(String clrHostPath)
+        static void InstallOtherCrap(string clrHostPath)
         {
             File.Copy("LiveSplit.Core.dll", Path.Combine(clrHostPath, "LiveSplit.Core.dll"), true);
             File.Copy("LiveSplit.Plugin.dll", Path.Combine(clrHostPath, "LiveSplit.Plugin.dll"), true);

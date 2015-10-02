@@ -12,9 +12,7 @@ namespace LiveSplit.UI
         public LayoutSettings Settings { get; set; }
         public IList<ILayoutComponent> LayoutComponents { get; set; }
         public IEnumerable<IComponent> Components
-        {
-            get { return LayoutComponents.Select(x => x.Component); }
-        }
+            => LayoutComponents.Select(x => x.Component);
 
         public LayoutMode Mode { get; set; }
 

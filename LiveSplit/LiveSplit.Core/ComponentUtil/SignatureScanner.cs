@@ -77,7 +77,7 @@ namespace LiveSplit.ComponentUtil
 
             foreach (SigScanTarget.Signature sig in target.Signatures)
             {
-                IntPtr ptr = this.FindPattern(sig.Pattern, sig.Mask, sig.Offset);
+                IntPtr ptr = FindPattern(sig.Pattern, sig.Mask, sig.Offset);
                 if (ptr != IntPtr.Zero)
                 {
                     if (target.OnFound != null)
@@ -148,7 +148,7 @@ namespace LiveSplit.ComponentUtil
         public SigScanTarget(int offset, params string[] signature)
         {
             _sigs = new List<Signature>();
-            this.AddSignature(offset, signature);
+            AddSignature(offset, signature);
         }
 
         public SigScanTarget(int offset, byte[] binary)
@@ -161,7 +161,7 @@ namespace LiveSplit.ComponentUtil
 
         public void AddSignature(int offset, params string[] signature)
         {
-            string sigStr = String.Join(String.Empty, signature).Replace(" ", String.Empty);
+            string sigStr = string.Join(string.Empty, signature).Replace(" ", string.Empty);
             if (sigStr.Length % 2 != 0)
                 throw new ArgumentException();
 
@@ -171,7 +171,7 @@ namespace LiveSplit.ComponentUtil
             for (int i = 0; i < sigStr.Length; i += 2)
             {
                 byte b;
-                if (Byte.TryParse(sigStr.Substring(i, 2), NumberStyles.HexNumber, null, out b))
+                if (byte.TryParse(sigStr.Substring(i, 2), NumberStyles.HexNumber, null, out b))
                 {
                     sigBytes.Add(b);
                     sigMask.Add(false);

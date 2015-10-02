@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
-using System.Diagnostics;
 
 namespace UpdateManager
 {
@@ -12,7 +10,7 @@ namespace UpdateManager
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
         [STAThread]
-        static void Main(String[] args)
+        static void Main(string[] args)
         {
             try
             {

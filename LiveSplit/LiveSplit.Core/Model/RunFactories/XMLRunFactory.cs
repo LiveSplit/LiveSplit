@@ -1,10 +1,10 @@
 ﻿using LiveSplit.Model.Comparisons;
-using LiveSplit.UI;
 using System;
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.Linq;
 using System.Xml;
+using static LiveSplit.UI.SettingsHelper;
+using static LiveSplit.Model.IndexedTimeHelper;
 
 namespace LiveSplit.Model.RunFactories
 {
@@ -35,7 +35,7 @@ namespace LiveSplit.Model.RunFactories
                 var runHistory = parent["RunHistory"];
                 foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
                 {
-                    var indexedTime = IndexedTimeHelper.ParseXml(runHistoryNode as XmlElement);
+                    var indexedTime = ParseXml(runHistoryNode as XmlElement);
                     var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null);
                     run.AttemptHistory.Add(attempt);
                 }
@@ -45,7 +45,7 @@ namespace LiveSplit.Model.RunFactories
                 var runHistory = parent["RunHistory"];
                 foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
                 {
-                    var indexedTime = IndexedTimeHelper.ParseXmlOld(runHistoryNode as XmlElement);
+                    var indexedTime = ParseXmlOld(runHistoryNode as XmlElement);
                     var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null);
                     run.AttemptHistory.Add(attempt);
                 }
@@ -59,7 +59,7 @@ namespace LiveSplit.Model.RunFactories
 
             var run = new Run(factory);
             var parent = document["Run"];
-            var version = SettingsHelper.ParseAttributeVersion(parent);
+            var version = ParseAttributeVersion(parent);
 
             if (version >= new Version(1, 6))
             {
@@ -74,11 +74,11 @@ namespace LiveSplit.Model.RunFactories
                 }
             }
 
-            run.GameIcon = SettingsHelper.GetImageFromElement(parent["GameIcon"]);
-            run.GameName = SettingsHelper.ParseString(parent["GameName"]);
-            run.CategoryName = SettingsHelper.ParseString(parent["CategoryName"]);
-            run.Offset = SettingsHelper.ParseTimeSpan(parent["Offset"]);
-            run.AttemptCount = SettingsHelper.ParseInt(parent["AttemptCount"]);
+            run.GameIcon = GetImageFromElement(parent["GameIcon"]);
+            run.GameName = ParseString(parent["GameName"]);
+            run.CategoryName = ParseString(parent["CategoryName"]);
+            run.Offset = ParseTimeSpan(parent["Offset"]);
+            run.AttemptCount = ParseInt(parent["AttemptCount"]);
 
             ParseAttemptHistory(version, parent, run);
 
@@ -88,8 +88,8 @@ namespace LiveSplit.Model.RunFactories
             {
                 var segmentElement = segmentNode as XmlElement;
 
-                var split = new Segment(SettingsHelper.ParseString(segmentElement["Name"]));
-                split.Icon = SettingsHelper.GetImageFromElement(segmentElement["Icon"]);
+                var split = new Segment(ParseString(segmentElement["Name"]));
+                split.Icon = GetImageFromElement(segmentElement["Icon"]);
 
                 if (version >= new Version(1, 3))
                 {
@@ -127,9 +127,9 @@ namespace LiveSplit.Model.RunFactories
                     var node = historyNode as XmlElement;
                     IIndexedTime indexedTime;
                     if (version >= new Version(1, 4, 1))
-                        indexedTime = IndexedTimeHelper.ParseXml(node);
+                        indexedTime = ParseXml(node);
                     else
-                        indexedTime = IndexedTimeHelper.ParseXmlOld(node);
+                        indexedTime = ParseXmlOld(node);
 
                     if (!split.SegmentHistory.ContainsKey(indexedTime.Index))
                         split.SegmentHistory.Add(indexedTime.Index, indexedTime.Time);
@@ -143,7 +143,7 @@ namespace LiveSplit.Model.RunFactories
                 var newXmlDoc = new XmlDocument();
                 newXmlDoc.InnerXml = parent["AutoSplitterSettings"].OuterXml;
                 run.AutoSplitterSettings = newXmlDoc.FirstChild as XmlElement;
-                run.AutoSplitterSettings.Attributes.Append(SettingsHelper.ToAttribute(newXmlDoc, "gameName", run.GameName));
+                run.AutoSplitterSettings.Attributes.Append(ToAttribute(newXmlDoc, "gameName", run.GameName));
             }
 
             if (!string.IsNullOrEmpty(FilePath))

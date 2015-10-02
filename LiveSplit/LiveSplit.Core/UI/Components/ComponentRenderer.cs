@@ -14,20 +14,10 @@ namespace LiveSplit.UI.Components
         public float OverallSize = 10f;
 
         public float MinimumWidth
-        {
-            get
-            {
-                return VisibleComponents.Count() == 0 ? 0 : VisibleComponents.Max(x => x.MinimumWidth);
-            }
-        }
+            => !VisibleComponents.Any() ? 0 : VisibleComponents.Max(x => x.MinimumWidth);
 
-        public float MinimumHeight
-        {
-            get
-            {
-                return VisibleComponents.Count() == 0 ? 0 : VisibleComponents.Max(x => x.MinimumHeight);
-            }
-        }
+        public float MinimumHeight 
+            => !VisibleComponents.Any() ? 0 : VisibleComponents.Max(x => x.MinimumHeight);
 
         protected bool errorInComponent = false;
 

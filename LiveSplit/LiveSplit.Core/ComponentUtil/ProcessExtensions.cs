@@ -22,11 +22,11 @@ namespace LiveSplit.ComponentUtil
         public string ModuleName { get; set; }
         public FileVersionInfo FileVersionInfo
         {
-            get { return FileVersionInfo.GetVersionInfo(this.FileName); }
+            get { return FileVersionInfo.GetVersionInfo(FileName); }
         }
         public override string ToString()
         {
-            return this.ModuleName ?? base.ToString();
+            return ModuleName ?? base.ToString();
         }
     }
 
@@ -221,7 +221,7 @@ namespace LiveSplit.ComponentUtil
             var sb = new StringBuilder(numBytes);
             if (!ReadString(process, addr, type, sb))
             {
-                str = String.Empty;
+                str = string.Empty;
                 return false;
             }
 

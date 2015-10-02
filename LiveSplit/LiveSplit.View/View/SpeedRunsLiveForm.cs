@@ -610,7 +610,7 @@ namespace LiveSplit.View
 
             try
             {
-                if (!this.Disposing && !this.IsDisposed)
+                if (!Disposing && !IsDisposed)
                 {
                     this.InvokeIfRequired(action);
                 }

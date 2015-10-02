@@ -9,7 +9,7 @@ namespace LiveSplit.Model.Comparisons
         public IRun Run { get; set; }
         public const string ComparisonName = "Best Segments";
         public const string ShortComparisonName = "Best";
-        public string Name { get { return ComparisonName; } }
+        public string Name => ComparisonName;
 
         public BestSegmentsComparisonGenerator(IRun run)
         {

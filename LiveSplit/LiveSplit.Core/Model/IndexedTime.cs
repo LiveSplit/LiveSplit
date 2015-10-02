@@ -2,10 +2,10 @@
 {
     public struct IndexedTime : IIndexedTime
     {
-        public Time Time { get; private set; }
-        public int Index { get; private set; }
+        public Time Time { get; }
+        public int Index { get; }
 
-        public IndexedTime (Time time, int index) : this()
+        public IndexedTime (Time time, int index)
         {
             Time = time;
             Index = index;

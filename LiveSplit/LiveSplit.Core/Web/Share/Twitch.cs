@@ -20,7 +20,7 @@ namespace LiveSplit.Web.Share
         public static readonly Uri BaseUri = new Uri("https://api.twitch.tv/kraken/");
 
         protected static readonly Twitch _Instance = new Twitch();
-        public static Twitch Instance { get { return _Instance; } }
+        public static Twitch Instance => _Instance;
 
         protected string AccessToken { get; set; }
         public string ChannelName { get; protected set; }
@@ -55,7 +55,7 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        public TwitchChat Chat { get { return ConnectedChats.Values.First(); } }
+        public TwitchChat Chat => ConnectedChats.Values.First();
         public IDictionary<string, TwitchChat> ConnectedChats { get; protected set; }
 
         public ITimerModel _AutoUpdateModel;
@@ -114,13 +114,7 @@ namespace LiveSplit.Web.Share
 
         public bool IsAutoUpdating { get; set; }
 
-        public bool IsLoggedIn
-        {
-            get
-            {
-                return !string.IsNullOrEmpty(ChannelName);
-            }
-        }
+        public bool IsLoggedIn => !string.IsNullOrEmpty(ChannelName);
 
         protected Twitch()
         {
@@ -131,22 +125,14 @@ namespace LiveSplit.Web.Share
         {
             return new Uri(BaseUri, subUri);
         }
+    
+        public string PlatformName => "Twitch";
 
-        public string PlatformName
-        {
-            get { return "Twitch"; }
-        }
-
-        public string Description
-        {
-            get
-            {
-                return "Sharing to Twitch will automatically update your "
-                     + "stream title and game playing based on the information "
-                     + "in your splits. Twitch must authenticate with LiveSplit "
-                     + "the first time that sharing to Twitch is used.";
-            }
-        }
+        public string Description =>
+@"Sharing to Twitch will automatically update your 
+stream title and game playing based on the information 
+in your splits. Twitch must authenticate with LiveSplit 
+the first time that sharing to Twitch is used.";
 
         public ISettings Settings { get; set; }
 

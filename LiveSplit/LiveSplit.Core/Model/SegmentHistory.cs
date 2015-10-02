@@ -1,9 +1,6 @@
-﻿using LiveSplit.Model.Comparisons;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Xml;
 
 namespace LiveSplit.Model
 {
@@ -17,19 +14,13 @@ namespace LiveSplit.Model
         {
         }
 
-        public SegmentHistory Clone()
-        {
-            return new SegmentHistory(this);
-        }
+        public SegmentHistory Clone() => new SegmentHistory(this);
 
-        object ICloneable.Clone()
-        {
-            return Clone();
-        }
+        object ICloneable.Clone() => Clone();
 
         public int GetMinIndex()
         {
-            if (this.Count > 0)
+            if (Count > 0)
                 return Math.Min(this.Min(x => x.Key), 1);
             return 1;
         }

@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using static System.Drawing.Color;
 
 namespace LiveSplit.Options.SettingsFactories
 {
@@ -8,20 +9,20 @@ namespace LiveSplit.Options.SettingsFactories
         {
             return new LayoutSettings()
             {
-                TextColor = Color.FromArgb(255,255,255),
-                BackgroundColor = Color.FromArgb(0, 0, 0, 0),
-                BackgroundColor2 = Color.FromArgb(0, 0, 0, 0),
-                ThinSeparatorsColor = Color.FromArgb(9, 255, 255, 255),
-                SeparatorsColor = Color.FromArgb(38, 255, 255, 255),
-                PersonalBestColor = Color.FromArgb(22, 166, 255),
-                AheadGainingTimeColor = Color.FromArgb(41, 204, 84),
-                AheadLosingTimeColor = Color.FromArgb(112, 204, 137),
-                BehindGainingTimeColor = Color.FromArgb(204, 120, 112),
-                BehindLosingTimeColor = Color.FromArgb(204, 55, 41),                
-                BestSegmentColor = Color.FromArgb(216, 175, 31),
-                NotRunningColor = Color.FromArgb(122,122,122),
-                PausedColor = Color.FromArgb(122,122,122),
-                ShadowsColor = Color.FromArgb(128, 0, 0, 0),
+                TextColor = FromArgb(255,255,255),
+                BackgroundColor = FromArgb(0, 0, 0, 0),
+                BackgroundColor2 = FromArgb(0, 0, 0, 0),
+                ThinSeparatorsColor = FromArgb(9, 255, 255, 255),
+                SeparatorsColor = FromArgb(38, 255, 255, 255),
+                PersonalBestColor = FromArgb(22, 166, 255),
+                AheadGainingTimeColor = FromArgb(41, 204, 84),
+                AheadLosingTimeColor = FromArgb(112, 204, 137),
+                BehindGainingTimeColor = FromArgb(204, 120, 112),
+                BehindLosingTimeColor = FromArgb(204, 55, 41),                
+                BestSegmentColor = FromArgb(216, 175, 31),
+                NotRunningColor = FromArgb(122,122,122),
+                PausedColor = FromArgb(122,122,122),
+                ShadowsColor = FromArgb(128, 0, 0, 0),
                 TimerFont = new Font("Century Gothic", 43.75f, FontStyle.Bold, GraphicsUnit.Pixel),
                 TimesFont = new Font("Segoe UI", 13, FontStyle.Bold, GraphicsUnit.Pixel),
                 TextFont = new Font("Segoe UI", 13, FontStyle.Regular, GraphicsUnit.Pixel),

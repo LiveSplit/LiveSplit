@@ -12,6 +12,7 @@ namespace LiveSplit.Model
                 return null;
             return Parse(timeString);
         }
+
         public static TimeSpan Parse(string timeString)
         {
             var factor = 1;

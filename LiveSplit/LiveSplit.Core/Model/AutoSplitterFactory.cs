@@ -10,7 +10,7 @@ namespace LiveSplit.Model
     public class AutoSplitterFactory
     {
         public static AutoSplitterFactory Instance { get; protected set; }
-        public IDictionary<String, AutoSplitter> AutoSplitters { get; set; }
+        public IDictionary<string, AutoSplitter> AutoSplitters { get; set; }
 
         static AutoSplitterFactory()
         {

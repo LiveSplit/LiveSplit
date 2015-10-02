@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using static LiveSplit.Model.SumOfSegmentsHelper;
 
 namespace LiveSplit.Model
 {
@@ -26,16 +27,16 @@ namespace LiveSplit.Model
                         || !run[segmentIndex - 1].SegmentHistory.TryGetValue(segment.Key, out segmentTime) 
                         || segmentTime[method] != null)
                     {
-                        var prediction = SumOfSegmentsHelper.TrackBranch(run, currentTime, segmentIndex, segment.Key, method);
+                        var prediction = TrackBranch(run, currentTime, segmentIndex, segment.Key, method);
                         PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                     }
                 }
                 if (useCurrentRun)
                 {
-                    var currentRunPrediction = SumOfSegmentsHelper.TrackCurrentRun(run, currentTime, segmentIndex, method);
+                    var currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex, method);
                     PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
                 }
-                var personalBestRunPrediction = SumOfSegmentsHelper.TrackPersonalBestRun(run, currentTime, segmentIndex, method);
+                var personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index);
             }
         }

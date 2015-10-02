@@ -18,6 +18,7 @@ namespace LiveSplit.Model
             element.Attributes.Append(attribute);
             return element;
         }
+
         public static IIndexedTime ParseXml(XmlElement node)
         {
             var newTime = Time.FromXml(node);           

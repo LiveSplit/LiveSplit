@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit", "LiveSplit\LiveSplit.csproj", "{E8047F95-BA79-4E2E-A9BB-5C48D5FA2467}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -109,6 +109,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeedrunComSharp", "Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj", "{924AAFFE-5B89-49E2-99AD-EC9373CC838D}"
 EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release Candidate|Any CPU = Release Candidate|Any CPU
@@ -329,9 +332,6 @@ Global
 		{B0470637-949C-4A41-9C8C-0CE46561037F} = {F860D526-C1CE-4FDC-A871-202201859C42}
 		{14DF9AF3-F142-4133-A857-BFBC679421DF} = {F860D526-C1CE-4FDC-A871-202201859C42}
 		{924AAFFE-5B89-49E2-99AD-EC9373CC838D} = {FAF78A7D-B7F6-4302-88E9-4B1E7AAC3552}
-	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
 	EndGlobalSection
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True

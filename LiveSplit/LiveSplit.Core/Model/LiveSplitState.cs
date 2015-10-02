@@ -1,7 +1,6 @@
 ﻿using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.UI;
-using LiveSplit.Web.Share;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,8 +38,7 @@ namespace LiveSplit.Model
             {
                 if (value)
                 {
-                    if (loadingTimes == null)
-                        loadingTimes = TimeSpan.Zero;
+                    loadingTimes = LoadingTimes;
                 }
                 else
                     loadingTimes = null;
@@ -103,7 +101,7 @@ namespace LiveSplit.Model
         }
 
         public int CurrentSplitIndex { get; set; }
-        public ISegment CurrentSplit { get { return (CurrentSplitIndex >= 0 && CurrentSplitIndex < Run.Count) ? Run[CurrentSplitIndex] : null; } }
+        public ISegment CurrentSplit => (CurrentSplitIndex >= 0 && CurrentSplitIndex < Run.Count) ? Run[CurrentSplitIndex] : null;
 
         private LiveSplitState() { }
 
@@ -231,16 +229,8 @@ namespace LiveSplit.Model
             });
         }
 
-        public void CallRunManuallyModified()
-        {
-            if (RunManuallyModified != null)
-                RunManuallyModified(this, null);
-        }
+        public void CallRunManuallyModified() => RunManuallyModified?.Invoke(this, null);
 
-        public void CallComparisonRenamed(EventArgs e)
-        {
-            if (ComparisonRenamed != null)
-                ComparisonRenamed(this, e);
-        }
+        public void CallComparisonRenamed(EventArgs e) => ComparisonRenamed?.Invoke(this, e);
     }
 }

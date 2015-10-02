@@ -80,7 +80,7 @@ namespace LiveSplit.Model
 
         public IList<IComparisonGenerator> ComparisonGenerators { get; set; }
         public IList<string> CustomComparisons { get; set; }
-        public IEnumerable<string> Comparisons { get { return CustomComparisons.Concat(ComparisonGenerators.Select(x => x.Name)); } }
+        public IEnumerable<string> Comparisons => CustomComparisons.Concat(ComparisonGenerators.Select(x => x.Name));
 
         public RunMetadata Metadata { get; private set; }
 
@@ -122,20 +122,11 @@ namespace LiveSplit.Model
             Metadata = metadata.Clone(this);
         }
 
-        public int IndexOf(ISegment item)
-        {
-            return InternalList.IndexOf(item);
-        }
+        public int IndexOf(ISegment item) => InternalList.IndexOf(item);
 
-        public void Insert(int index, ISegment item)
-        {
-            InternalList.Insert(index, item);
-        }
+        public void Insert(int index, ISegment item) => InternalList.Insert(index, item);
 
-        public void RemoveAt(int index)
-        {
-            InternalList.RemoveAt(index);
-        }
+        public void RemoveAt(int index) => InternalList.RemoveAt(index);
 
         public ISegment this[int index]
         {
@@ -149,52 +140,25 @@ namespace LiveSplit.Model
             }
         }
 
-        public void Add(ISegment item)
-        {
-            InternalList.Add(item);
-        }
+        public void Add(ISegment item) => InternalList.Add(item);
 
-        public void Clear()
-        {
-            InternalList.Clear();
-        }
+        public void Clear() => InternalList.Clear();
 
-        public bool Contains(ISegment item)
-        {
-            return InternalList.Contains(item);
-        }
+        public bool Contains(ISegment item) => InternalList.Contains(item);
 
-        public void CopyTo(ISegment[] array, int arrayIndex)
-        {
-            InternalList.CopyTo(array, arrayIndex);
-        }
+        public void CopyTo(ISegment[] array, int arrayIndex) => InternalList.CopyTo(array, arrayIndex);
 
-        public int Count
-        {
-            get { return InternalList.Count; }
-        }
+        public int Count => InternalList.Count;
 
-        public bool IsReadOnly
-        {
-            get { return InternalList.IsReadOnly; }
-        }
+        public bool IsReadOnly => InternalList.IsReadOnly;
 
-        public bool Remove(ISegment item)
-        {
-            return InternalList.Remove(item);
-        }
+        public bool Remove(ISegment item) => InternalList.Remove(item);
 
-        public IEnumerator<ISegment> GetEnumerator()
-        {
-            return InternalList.GetEnumerator();
-        }
+        public IEnumerator<ISegment> GetEnumerator() => InternalList.GetEnumerator();
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return InternalList.GetEnumerator();
-        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
 
-        public object Clone()
+        public Run Clone()
         {
             var newRun = new Run(this, Factory, Metadata)
             {
@@ -208,10 +172,12 @@ namespace LiveSplit.Model
                 FilePath = FilePath,
                 CustomComparisons = new List<string>(CustomComparisons),
                 ComparisonGenerators = new List<IComparisonGenerator>(ComparisonGenerators),
-                AutoSplitter = AutoSplitter != null ? (AutoSplitter)AutoSplitter.Clone() : null,
+                AutoSplitter = AutoSplitter != null ? AutoSplitter.Clone() : null,
                 AutoSplitterSettings = AutoSplitterSettings
             };
             return newRun;
         }
+
+        object ICloneable.Clone() => Clone();
     }
 }

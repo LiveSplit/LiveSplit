@@ -307,7 +307,7 @@ namespace LiveSplit.Model
                     }
                     else if (valueLower == "no")
                     {
-                        list.Add("No " + name);
+                        list.Add($"No { name }");
                     }
                     else
                     {
@@ -333,7 +333,7 @@ namespace LiveSplit.Model
                 if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || (run.Metadata.Game != null && run.Metadata.Game.Platforms.Count > 1)))
                 {
                     if (run.Metadata.UsesEmulator)
-                        list.Add(run.Metadata.PlatformName + " Emulator");
+                        list.Add($"{ run.Metadata.PlatformName } Emulator");
                     else
                         list.Add(run.Metadata.PlatformName);
                 }
@@ -345,7 +345,7 @@ namespace LiveSplit.Model
 
             if (list.Any())
             {
-                categoryName += " (" + list.Aggregate((a, b) => a + ", " + b) + ") " + afterParentheses;
+                categoryName = $"{ categoryName } ({ string.Join(", ", list) }) { afterParentheses }";
             }
 
             return categoryName.Trim();

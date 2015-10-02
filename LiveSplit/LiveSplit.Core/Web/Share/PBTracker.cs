@@ -7,7 +7,7 @@ namespace LiveSplit.Web.Share
     {
         protected static readonly PBTracker _Instance = new PBTracker();
 
-        public static PBTracker Instance { get { return _Instance; } }
+        public static PBTracker Instance => _Instance;
 
         protected PBTracker()
             : base(

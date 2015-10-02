@@ -2,11 +2,9 @@
 using LiveSplit.Options;
 using LiveSplit.View;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -19,8 +17,8 @@ namespace LiveSplit.Plugin
         private Texture texture;
         bool isAnchorBottom;
         bool isAnchorRight;
-        String splitsPath;
-        String layoutPath;
+        string splitsPath;
+        string layoutPath;
 
         public LiveSplitImageSource(XElement config)
         {

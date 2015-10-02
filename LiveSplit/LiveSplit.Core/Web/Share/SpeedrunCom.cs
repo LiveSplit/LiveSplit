@@ -2,11 +2,9 @@
 using LiveSplit.Options;
 using SpeedrunComSharp;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-using System.Text;
 
 namespace LiveSplit.Web.Share
 {
@@ -19,7 +17,7 @@ namespace LiveSplit.Web.Share
         static SpeedrunCom()
         {
             ShareSettings.Default.Reload();
-            Client = new SpeedrunComClient("LiveSplit/" + Updates.UpdateHelper.Version, ShareSettings.Default.SpeedrunComAccessToken);
+            Client = new SpeedrunComClient(Updates.UpdateHelper.UserAgent, ShareSettings.Default.SpeedrunComAccessToken);
         }
 
         public static bool MakeSureUserIsAuthenticated()

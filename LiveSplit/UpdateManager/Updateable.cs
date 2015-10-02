@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace UpdateManager
 {
@@ -18,7 +15,7 @@ namespace UpdateManager
 
         public Version Version { get; set; }
 
-        public Updateable(String xmlURL, String updateURL, Version version)
+        public Updateable(string xmlURL, string updateURL, Version version)
         {
             XMLURL = xmlURL;
             UpdateURL = updateURL;

@@ -10,7 +10,6 @@ using System.Text;
 
 namespace LiveSplit.ComponentUtil
 {
-    using SizeT = UIntPtr;
     using OffsetT = Int32;
 
     public class DeepPointer
@@ -36,7 +35,7 @@ namespace LiveSplit.ComponentUtil
         public T Deref<T>(Process process, T default_ = default(T)) where T : struct // all value types including structs
         {
             T val;
-            if (!this.Deref(process, out val))
+            if (!Deref(process, out val))
                 val = default_;
             return val;
         }
@@ -45,7 +44,7 @@ namespace LiveSplit.ComponentUtil
         {
             OffsetT offset = _offsets[_offsets.Count - 1];
             IntPtr ptr;
-            if (!this.DerefOffsets(process, out ptr)
+            if (!DerefOffsets(process, out ptr)
                 || !process.ReadValue(ptr + offset, out value))
             {
                 value = default(T);
@@ -58,7 +57,7 @@ namespace LiveSplit.ComponentUtil
         public byte[] DerefBytes(Process process, int count)
         {
             byte[] bytes;
-            if (!this.DerefBytes(process, count, out bytes))
+            if (!DerefBytes(process, count, out bytes))
                 bytes = null;
             return bytes;
         }
@@ -67,7 +66,7 @@ namespace LiveSplit.ComponentUtil
         {
             OffsetT offset = _offsets[_offsets.Count - 1];
             IntPtr ptr;
-            if (!this.DerefOffsets(process, out ptr)
+            if (!DerefOffsets(process, out ptr)
                 || !process.ReadBytes(ptr + offset, count, out value))
             {
                 value = null;
@@ -80,7 +79,7 @@ namespace LiveSplit.ComponentUtil
         public string DerefString(Process process, int numBytes, string default_ = null)
         {
             string str;
-            if (!this.DerefString(process, ReadStringType.AutoDetect, numBytes, out str))
+            if (!DerefString(process, ReadStringType.AutoDetect, numBytes, out str))
                 str = default_;
             return str;
         }
@@ -88,20 +87,20 @@ namespace LiveSplit.ComponentUtil
         public string DerefString(Process process, ReadStringType type, int numBytes, string default_ = null)
         {
             string str;
-            if (!this.DerefString(process, type, numBytes, out str))
+            if (!DerefString(process, type, numBytes, out str))
                 str = default_;
             return str;
         }
 
         public bool DerefString(Process process, int numBytes, out string str)
         {
-            return this.DerefString(process, ReadStringType.AutoDetect, numBytes, out str);
+            return DerefString(process, ReadStringType.AutoDetect, numBytes, out str);
         }
 
         public bool DerefString(Process process, ReadStringType type, int numBytes, out string str)
         {
             var sb = new StringBuilder(numBytes);
-            if (!this.DerefString(process, type, sb))
+            if (!DerefString(process, type, sb))
             {
                 str = null;
                 return false;
@@ -112,14 +111,14 @@ namespace LiveSplit.ComponentUtil
 
         public bool DerefString(Process process, StringBuilder sb)
         {
-            return this.DerefString(process, ReadStringType.AutoDetect, sb);
+            return DerefString(process, ReadStringType.AutoDetect, sb);
         }
 
         public bool DerefString(Process process, ReadStringType type, StringBuilder sb)
         {
             OffsetT offset = _offsets[_offsets.Count - 1];
             IntPtr ptr;
-            if (!this.DerefOffsets(process, out ptr)
+            if (!DerefOffsets(process, out ptr)
                 || !process.ReadString(ptr + offset, type, sb))
             {
                 return false;
@@ -131,7 +130,7 @@ namespace LiveSplit.ComponentUtil
         {
             bool is64Bit = process.Is64Bit();
 
-            if (!String.IsNullOrEmpty(_module))
+            if (!string.IsNullOrEmpty(_module))
             {
                 ProcessModuleWow64Safe module = process.ModulesWow64Safe()
                     .FirstOrDefault(m => m.ModuleName.ToLower() == _module);
@@ -169,48 +168,48 @@ namespace LiveSplit.ComponentUtil
         public float Y { get; set; }
         public float Z { get; set; }
 
-        public int IX { get { return (int)this.X; } }
-        public int IY { get { return (int)this.Y; } }
-        public int IZ { get { return (int)this.Z; } }
+        public int IX { get { return (int)X; } }
+        public int IY { get { return (int)Y; } }
+        public int IZ { get { return (int)Z; } }
 
         public Vector3f(float x, float y, float z) : this()
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
 
         public float Distance(Vector3f other)
         {
-            float result = (this.X - other.X) * (this.X - other.X) +
-                (this.Y - other.Y) * (this.Y - other.Y) +
-                (this.Z - other.Z) * (this.Z - other.Z);
+            float result = (X - other.X) * (X - other.X) +
+                (Y - other.Y) * (Y - other.Y) +
+                (Z - other.Z) * (Z - other.Z);
             return (float)Math.Sqrt(result);
         }
 
         public float DistanceXY(Vector3f other)
         {
-            float result = (this.X - other.X) * (this.X - other.X) +
-                (this.Y - other.Y) * (this.Y - other.Y);
+            float result = (X - other.X) * (X - other.X) +
+                (Y - other.Y) * (Y - other.Y);
             return (float)Math.Sqrt(result);
         }
 
         public bool BitEquals(Vector3f other)
         {
-            return    this.X.BitEquals(other.X)
-                   && this.Y.BitEquals(other.Y)
-                   && this.Z.BitEquals(other.Z);
+            return X.BitEquals(other.X)
+                   && Y.BitEquals(other.Y)
+                   && Z.BitEquals(other.Z);
         }
 
         public bool BitEqualsXY(Vector3f other)
         {
-            return    this.X.BitEquals(other.X)
-                   && this.Y.BitEquals(other.Y);
+            return X.BitEquals(other.X)
+                   && Y.BitEquals(other.Y);
         }
 
         public override string ToString()
         {
-            return this.X + " " + this.Y + " " + this.Z;
+            return X + " " + Y + " " + Z;
         }
     }
 }

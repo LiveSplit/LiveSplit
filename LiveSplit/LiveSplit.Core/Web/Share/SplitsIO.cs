@@ -21,7 +21,7 @@ namespace LiveSplit.Web.Share
     {
         protected static readonly SplitsIO _Instance = new SplitsIO();
 
-        public static SplitsIO Instance { get { return _Instance; } }
+        public static SplitsIO Instance => _Instance;
 
         public static readonly Uri BaseUri = new Uri("http://splits.io/");
         public static readonly Uri APIUri = new Uri("https://splits.io/api/v3/");
@@ -31,23 +31,15 @@ namespace LiveSplit.Web.Share
 
         protected SplitsIO() { }
 
-        public string PlatformName
-        {
-            get { return "Splits.io"; }
-        }
+        public string PlatformName => "Splits.io";
 
-        public string Description
-        {
-            get 
-            {
-                return "Splits.io is the best platform for sharing individual "
-                + "splits with the world and downloading them from there. "
-                + "You can also browse Splits.io with \"Open Splits From Splits.io...\" "
-                + "or import splits as a comparison with \"Import Comparison From Splits.io...\". "
-                + "Splits downloaded from Splits.io have not data loss, and the splits can be "
-                + "downloaded in the format for any timer.";
-            }
-        }
+        public string Description =>
+            "Splits.io is the best platform for sharing individual "
+            + "splits with the world and downloading them from there. "
+            + "You can also browse Splits.io with \"Open Splits From Splits.io...\" "
+            + "or import splits as a comparison with \"Import Comparison From Splits.io...\". "
+            + "Splits downloaded from Splits.io have not data loss, and the splits can be "
+            + "downloaded in the format for any timer.";
 
         public ISettings Settings { get; set; }
 
@@ -113,8 +105,8 @@ namespace LiveSplit.Web.Share
 
                 using (var response = request.GetResponse())
                 {
-                    Int32.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
-                    Int32.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
+                    int.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
+                    int.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
                     lastPage = (int) Math.Ceiling(totalItems/(double) perPage);
 
                     yield return JSON.FromResponse(response);
@@ -276,7 +268,7 @@ namespace LiveSplit.Web.Share
             var request = (HttpWebRequest)WebRequest.Create(GetAPIUri("runs").AbsoluteUri);
             request.Method = "POST";
             request.Host = "splits.io";
-            request.UserAgent = "LiveSplit/" + UpdateHelper.Version.ToString();
+            request.UserAgent = UpdateHelper.UserAgent;
             using (var stream = request.GetRequestStream())
             {
                 request.ContentType = "multipart/form-data; boundary=AaB03x";

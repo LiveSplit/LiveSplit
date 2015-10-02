@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace UpdateManager
 {
@@ -9,7 +6,7 @@ namespace UpdateManager
     {
         string UpdateName { get; }
         string XMLURL { get; }
-        String UpdateURL { get; }
+        string UpdateURL { get; }
         Version Version { get; }
     }
 }

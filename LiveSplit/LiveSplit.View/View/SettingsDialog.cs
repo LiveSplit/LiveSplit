@@ -13,14 +13,14 @@ namespace LiveSplit.View
         public ISettings Settings { get; set; }
         public CompositeHook Hook { get; set; }
 
-        public string SplitKey { get { return FormatKey(Settings.SplitKey); } }
-        public string ResetKey { get { return FormatKey(Settings.ResetKey); } }
-        public string SkipKey { get { return FormatKey(Settings.SkipKey); } }
-        public string UndoKey { get { return FormatKey(Settings.UndoKey); } }
-        public string PauseKey { get { return FormatKey(Settings.PauseKey); } }
-        public string SwitchComparisonPrevious { get { return FormatKey(Settings.SwitchComparisonPrevious); } }
-        public string SwitchComparisonNext { get { return FormatKey(Settings.SwitchComparisonNext); } }
-        public string ToggleGlobalHotkeys { get { return FormatKey(Settings.ToggleGlobalHotkeys); } }
+        public string SplitKey => FormatKey(Settings.SplitKey);
+        public string ResetKey => FormatKey(Settings.ResetKey);
+        public string SkipKey => FormatKey(Settings.SkipKey);
+        public string UndoKey => FormatKey(Settings.UndoKey);
+        public string PauseKey => FormatKey(Settings.PauseKey);
+        public string SwitchComparisonPrevious => FormatKey(Settings.SwitchComparisonPrevious);
+        public string SwitchComparisonNext => FormatKey(Settings.SwitchComparisonNext);
+        public string ToggleGlobalHotkeys => FormatKey(Settings.ToggleGlobalHotkeys);
         public float HotkeyDelay { get { return Settings.HotkeyDelay; } set { Settings.HotkeyDelay = Math.Max(value, 0); } }
 
         public event EventHandler SumOfBestModeChanged;

@@ -5,7 +5,6 @@ using LiveSplit.UI;
 using LiveSplit.Web.Share;
 using SpeedrunComSharp;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;

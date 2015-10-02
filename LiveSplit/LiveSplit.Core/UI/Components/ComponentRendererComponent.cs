@@ -26,11 +26,11 @@ namespace LiveSplit.UI.Components
             }
         }
 
-        public float PaddingTop { get { return base.VisibleComponents.Count() > 0 ? base.VisibleComponents.First().PaddingTop : 0; } }
-        public float PaddingLeft { get { return base.VisibleComponents.Count() > 0 ? base.VisibleComponents.First().PaddingLeft : 0; } }
-        public float PaddingBottom { get { return base.VisibleComponents.Count() > 0 ? base.VisibleComponents.Last().PaddingBottom : 0; } }
-        public float PaddingRight { get { return base.VisibleComponents.Count() > 0 ? base.VisibleComponents.Last().PaddingRight : 0; } }
-       
+        public float PaddingTop { get { return VisibleComponents.Any() ? VisibleComponents.First().PaddingTop : 0; } }
+        public float PaddingLeft { get { return VisibleComponents.Any() ? VisibleComponents.First().PaddingLeft : 0; } }
+        public float PaddingBottom { get { return VisibleComponents.Any() ? VisibleComponents.Last().PaddingBottom : 0; } }
+        public float PaddingRight { get { return VisibleComponents.Any() ? VisibleComponents.Last().PaddingRight : 0; } }
+
         public void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
         {
             Render(g, state, width, 0, LayoutMode.Vertical, clipRegion);
@@ -62,9 +62,10 @@ namespace LiveSplit.UI.Components
         }
 
         public IDictionary<string, Action> ContextMenuControls
-        {
-            get { return VisibleComponents.Select(x => x.ContextMenuControls).Where(x => x != null).SelectMany(x => x).ToDictionary(x => x.Key, x => x.Value); }
-        }
+            => VisibleComponents
+                .Select(x => x.ContextMenuControls)
+                .Where(x => x != null).SelectMany(x => x)
+                .ToDictionary(x => x.Key, x => x.Value);
 
         public void Dispose()
         {

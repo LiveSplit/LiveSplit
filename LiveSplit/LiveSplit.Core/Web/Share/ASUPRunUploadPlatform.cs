@@ -92,11 +92,15 @@ namespace LiveSplit.Web.Share
             {
                 if (attachSplits)
                     comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
+
                 if (gameId == string.Empty)
                     gameId = GetGameIdByName(run.GameName);
+
                 if (categoryId == string.Empty)
                     categoryId = GetCategoryIdByName(gameId, run.CategoryName);
+
                 var json = ASUP.SubmitRun(run, username, password, gameId, categoryId, version, comment, video, additionalParams);
+
                 return json.result == "success";
             }
             catch (Exception e)

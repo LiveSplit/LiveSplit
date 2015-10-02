@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 
 namespace LiveSplit.Model
 {
@@ -63,7 +60,7 @@ namespace LiveSplit.Model
                 var milliseconds = (intPart * 1000) + ((fractPart * 1000) / 0x100000000L);
 
                 //**UTC** time
-                var networkDateTime = (new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddMilliseconds((long)milliseconds);
+                var networkDateTime = (new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddMilliseconds(milliseconds);
 
                 return networkDateTime + delta;
             }

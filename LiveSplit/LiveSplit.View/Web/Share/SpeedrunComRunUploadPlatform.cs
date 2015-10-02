@@ -10,24 +10,16 @@ namespace LiveSplit.Web.Share
     public class SpeedrunComRunUploadPlatform : IRunUploadPlatform
     {
         public ISettings Settings { get; set; }
-        protected static readonly SpeedrunComRunUploadPlatform _Instance = new SpeedrunComRunUploadPlatform();
+        protected static readonly SpeedrunComRunUploadPlatform instance = new SpeedrunComRunUploadPlatform();
 
-        public static SpeedrunComRunUploadPlatform Instance { get { return _Instance; } }
+        public static SpeedrunComRunUploadPlatform Instance => instance;
 
         protected SpeedrunComRunUploadPlatform() { }
 
-        public string PlatformName
-        {
-            get { return "Speedrun.com"; }
-        }
+        public string PlatformName => "Speedrun.com";
 
-        public string Description
-        {
-            get 
-            {
-                return "Speedrun.com is a site intended to provide centralized leaderboards for speedrunning.";
-            }
-        }
+        public string Description =>
+            "Speedrun.com is a site intended to provide centralized leaderboards for speedrunning.";
 
         public IEnumerable<ASUP.IdPair> GetGameList()
         {

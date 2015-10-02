@@ -19,7 +19,7 @@ namespace LiveSplit.Web.Share
 
         protected static readonly Twitter _Instance = new Twitter();
 
-        public static Twitter Instance { get { return _Instance; } }
+        public static Twitter Instance => _Instance;
 
         public TwitterContext Context { get; set; }
         public ISettings Settings { get; set; }
@@ -28,22 +28,14 @@ namespace LiveSplit.Web.Share
 
         protected Twitter() { }
 
-        public string PlatformName
-        {
-            get { return "Twitter"; }
-        }
+        public string PlatformName => "Twitter";
 
-        public string Description
-        {
-            get 
-            { 
-                return "Twitter allows you to share your run with the world. "
-                + "When sharing, a screenshot of your splits will automatically "
-                + "be included. When you click share, Twitter will ask to "
-                + "authenticate with LiveSplit. After the authentication, LiveSplit "
-                + "will automatically send the tweet."; 
-            }
-        }
+        public string Description =>
+@"Twitter allows you to share your run with the world. 
+When sharing, a screenshot of your splits will automatically 
+be included. When you click share, Twitter will ask to 
+authenticate with LiveSplit. After the authentication, LiveSplit 
+will automatically send the tweet."; 
 
         public IEnumerable<ASUP.IdPair> GetGameList()
         {
@@ -128,16 +120,6 @@ namespace LiveSplit.Web.Share
             return auth;
         }
 
-        /*static ITwitterAuthorizer DoPinFormOAuth(out String screenName)
-        {
-            var form = new OAuthForm();
-            form.ShowDialog();
-
-            screenName = form.Authorizer.Credentials.ScreenName;
-
-            return form.Authorizer;
-        }*/
-
         static ITwitterAuthorizer DoFormOAuth(out string screenName)
         {
             var form = new TwitterOAuthForm();
@@ -221,7 +203,6 @@ namespace LiveSplit.Web.Share
 
                 var tweet = Context.TweetWithMedia(comment, false, new List<Media>() { media });
                 var url = tweet.Text.Substring(tweet.Text.LastIndexOf("http://"));
-                //var url = String.Format("http://twitter.com/{0}/status/{1}", url, tweet.StatusID);
                 Process.Start(url);
             }
 
