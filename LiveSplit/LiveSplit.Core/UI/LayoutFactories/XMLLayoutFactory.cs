@@ -17,9 +17,9 @@ namespace LiveSplit.UI.LayoutFactories
             Stream = stream;
         }
 
-        private static Options.LayoutSettings ParseSettings(XmlElement element, Version version)
+        private static LayoutSettings ParseSettings(XmlElement element, Version version)
         {
-            var settings = new Options.LayoutSettings();
+            var settings = new LayoutSettings();
             settings.TextColor = SettingsHelper.ParseColor(element["TextColor"]);
             settings.BackgroundColor = SettingsHelper.ParseColor(element["BackgroundColor"]);
             settings.ThinSeparatorsColor = SettingsHelper.ParseColor(element["ThinSeparatorsColor"]);

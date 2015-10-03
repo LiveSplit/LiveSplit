@@ -46,11 +46,11 @@ namespace LiveSplit.ComponentUtil
         public SignatureScanner(Process proc, IntPtr addr, int size)
         {
             if (proc == null)
-                throw new ArgumentNullException("proc");
+                throw new ArgumentNullException(nameof(proc));
             if (addr == IntPtr.Zero)
-                throw new ArgumentException("addr cannot be IntPtr.Zero.", "addr");
+                throw new ArgumentException("addr cannot be IntPtr.Zero.", nameof(addr));
             if (size <= 0)
-                throw new ArgumentException("size cannot be less than zero.", "size");
+                throw new ArgumentException("size cannot be less than zero.", nameof(size));
 
             _process = proc;
             _address = addr;
@@ -92,7 +92,7 @@ namespace LiveSplit.ComponentUtil
         unsafe IntPtr FindPattern(byte[] sig, bool[] mask, int finalOffset)
         {
             if (sig.Length != mask.Length)
-                throw new ArgumentException("sig length is not equal to mask length.", "sig");
+                throw new ArgumentException("sig length is not equal to mask length.", nameof(sig));
 
             fixed (byte* mem = _memory, s = sig)
             fixed (bool* m = mask)

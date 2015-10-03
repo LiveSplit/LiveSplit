@@ -1,6 +1,6 @@
 ﻿namespace LiveSplit.UI.Components
 {
-    public enum ComponentCategory : int
+    public enum ComponentCategory
     {
         Control = 5,
         Information = 3,

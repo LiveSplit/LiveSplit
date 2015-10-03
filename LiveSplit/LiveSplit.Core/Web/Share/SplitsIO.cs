@@ -304,17 +304,7 @@ namespace LiveSplit.Web.Share
                 json = JSON.FromResponse(response);
             }
 
-            string url;
-            if (claimTokenUri)
-            {
-                url = json.uris.claim_uri;
-            }
-            else
-            {
-                url = json.uris.public_uri;
-            }
-
-            return url;
+            return claimTokenUri ? json.uris.claim_uri : json.uris.public_uri;
         }
 
         public bool SubmitRun(IRun run, string username, string password, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)

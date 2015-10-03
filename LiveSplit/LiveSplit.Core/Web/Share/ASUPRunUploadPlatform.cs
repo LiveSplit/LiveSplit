@@ -38,10 +38,7 @@ namespace LiveSplit.Web.Share
 
         public IEnumerable<ASUP.IdPair> GetGameList()
         {
-            if (gameList == null)
-                gameList = ASUP.GetGameList();
-
-            return gameList;
+            return gameList ?? (gameList = ASUP.GetGameList());
         }
 
         public IEnumerable<string> GetGameNames()

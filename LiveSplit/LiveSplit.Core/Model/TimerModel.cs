@@ -15,8 +15,7 @@ namespace LiveSplit.Model
             set
             {
                 _CurrentState = value;
-                if (value != null)
-                    value.RegisterTimerModel(this);
+                value?.RegisterTimerModel(this);
             }
         }
 
@@ -47,8 +46,7 @@ namespace LiveSplit.Model
                 CurrentState.Run.AttemptCount++;
                 CurrentState.Run.HasChanged = true;
 
-                if (OnStart != null)
-                    OnStart(this,null);
+                OnStart?.Invoke(this,null);
             }
         }
 
@@ -67,8 +65,7 @@ namespace LiveSplit.Model
                 }
                 CurrentState.Run.HasChanged = true;
 
-                if (OnSplit != null)
-                    OnSplit(this, null);
+                OnSplit?.Invoke(this, null);
             }
         }
 
@@ -82,8 +79,7 @@ namespace LiveSplit.Model
                 CurrentState.CurrentSplitIndex++;
                 CurrentState.Run.HasChanged = true;
 
-                if (OnSkipSplit != null)
-                    OnSkipSplit(this, null);
+                OnSkipSplit?.Invoke(this, null);
             }
         }
 
@@ -98,8 +94,7 @@ namespace LiveSplit.Model
                 CurrentState.CurrentSplit.SplitTime = default(Time);
                 CurrentState.Run.HasChanged = true;
 
-                if (OnUndoSplit != null)
-                    OnUndoSplit(this, null);
+                OnUndoSplit?.Invoke(this, null);
             }
         }
 
@@ -144,8 +139,7 @@ namespace LiveSplit.Model
                 split.SplitTime = default(Time);
             }
 
-            if (OnReset != null)
-                OnReset(this, oldPhase);
+            OnReset?.Invoke(this, oldPhase);
         }
 
         public void Pause()
@@ -154,15 +148,13 @@ namespace LiveSplit.Model
             {
                 CurrentState.PauseTime = CurrentState.CurrentTime.RealTime.Value;
                 CurrentState.CurrentPhase = TimerPhase.Paused;
-                if (OnPause != null)
-                    OnPause(this, null);
+                OnPause?.Invoke(this, null);
             }
             else if (CurrentState.CurrentPhase == TimerPhase.Paused)
             {
                 CurrentState.StartTime = TimeStamp.Now - CurrentState.PauseTime;
                 CurrentState.CurrentPhase = TimerPhase.Running;
-                if (OnResume != null)
-                    OnResume(this, null);
+                OnResume?.Invoke(this, null);
             }
             else if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
                  Start(); //fuck abahbob                
@@ -173,8 +165,8 @@ namespace LiveSplit.Model
             var comparisons = CurrentState.Run.Comparisons.ToList();
             CurrentState.CurrentComparison = 
                 comparisons.ElementAt((comparisons.IndexOf(CurrentState.CurrentComparison) + 1) 
-                % (comparisons.Count()));
-            OnSwitchComparisonNext(null, null);
+                % (comparisons.Count));
+            OnSwitchComparisonNext?.Invoke(null, null);
         }
 
         public void SwitchComparisonPrevious()
@@ -182,20 +174,18 @@ namespace LiveSplit.Model
             var comparisons = CurrentState.Run.Comparisons.ToList();
             CurrentState.CurrentComparison = 
                 comparisons.ElementAt((comparisons.IndexOf(CurrentState.CurrentComparison) - 1 + comparisons.Count())
-                % (comparisons.Count()));
-            OnSwitchComparisonPrevious(null, null);
+                % (comparisons.Count));
+            OnSwitchComparisonPrevious?.Invoke(null, null);
         }
 
         public void ScrollUp()
         {
-            if (OnScrollUp != null)
-                OnScrollUp(this, null);
+            OnScrollUp?.Invoke(this, null);
         }
 
         public void ScrollDown()
         {
-            if (OnScrollDown != null)
-                OnScrollDown(this, null);
+            OnScrollDown?.Invoke(this, null);
         }
 
         public void UpdateAttemptHistory()

@@ -89,8 +89,7 @@ namespace LiveSplit.Model
         private void TriggerPropertyChanged(string propertyName)
         {
             var propertyChanged = PropertyChanged;
-            if (propertyChanged != null)
-                propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            propertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         protected IComparisonGeneratorsFactory Factory { get; set; }

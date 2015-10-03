@@ -4,7 +4,7 @@ namespace LiveSplit.Model
 {
     public struct AtomicDateTime
     {
-        public DateTime Time { get; private set; }
+        public DateTime Time { get; }
         public bool SyncedWithAtomicClock { get; private set; }
 
         public AtomicDateTime(DateTime time, bool synced) : this()

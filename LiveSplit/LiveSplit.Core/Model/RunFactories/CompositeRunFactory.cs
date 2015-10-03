@@ -24,8 +24,7 @@ namespace LiveSplit.Model.RunFactories
             {
                 try
                 {
-                    if (Stream != null)
-                        Stream.Seek(0, SeekOrigin.Begin);
+                    Stream?.Seek(0, SeekOrigin.Begin);
 
                     runFactory.Value(Stream, FilePath);
                     var run = runFactory.Key.Create(factory);

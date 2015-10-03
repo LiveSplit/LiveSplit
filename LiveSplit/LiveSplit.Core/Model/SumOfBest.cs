@@ -61,13 +61,13 @@ namespace LiveSplit.Model
         public static TimeSpan? CalculateSumOfBest(IRun run, bool simpleCalculation = false, bool useCurrentRun = true, TimingMethod method = TimingMethod.RealTime)
         {
             var predictions = new TimeSpan?[run.Count + 1];
-            return CalculateSumOfBest(run, 0, run.Count() - 1, predictions, simpleCalculation, useCurrentRun, method);
+            return CalculateSumOfBest(run, 0, run.Count - 1, predictions, simpleCalculation, useCurrentRun, method);
         }
 
         public static void Clean(IRun run, TimingMethod method, CleanUpCallback callback = null)
         {
             var predictions = new TimeSpan?[run.Count + 1];
-            CalculateSumOfBest(run, 0, run.Count() - 1, predictions, true, false, method);
+            CalculateSumOfBest(run, 0, run.Count - 1, predictions, true, false, method);
             int segmentIndex = 0;
             TimeSpan? currentTime = TimeSpan.Zero;
             foreach (var segment in run)

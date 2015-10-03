@@ -67,7 +67,7 @@ namespace LiveSplit.Model.Comparisons
                 var finalList = new List<TimeSpan>();
 
                 var matchingSegmentHistory = currentList.Where(x => x.Index == overallStartingIndex);
-                if (matchingSegmentHistory.Count() > 0)
+                if (matchingSegmentHistory.Any())
                 {
                     finalList = matchingSegmentHistory.Select(x => x.Time).ToList();
                     overallStartingIndex = curIndex;
