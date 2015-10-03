@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Threading;
 using System.IO;
 using System.Xml;
 using System.Diagnostics;
@@ -144,13 +143,13 @@ namespace UpdateManager
                 foreach (string path in addedFiles.Concat(changedFiles))
                 {
                     DownloadFile(UpdateURL + path, path.Replace('/', '\\'));
-                    UpdatePercentageRefreshed(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
+                    UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
 
                 foreach (string path in removedFiles)
                 {
                     File.Delete(path);
-                    UpdatePercentageRefreshed(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
+                    UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
             }
         }
@@ -161,24 +160,11 @@ namespace UpdateManager
 
         private static void DownloadFile(string url, string path)
         {
-            WebRequest request = HttpWebRequest.Create(url);
-            Thread t = Thread.CurrentThread;
-            IAsyncResult result = request.BeginGetResponse(ar => t.Resume(), null);
-            t.Suspend();
-            WebResponse response = request.EndGetResponse(result);
-            string directory = Path.GetDirectoryName(Directory.GetCurrentDirectory() + '\\' + path);
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-            using (Stream webStream = response.GetResponseStream())
-            {
-                using (Stream fileStream = File.Open(path, FileMode.Create, FileAccess.Write))
-                {
-                    byte[] bytes = new BinaryReader(webStream).ReadBytes((int)response.ContentLength);
-                    new BinaryWriter(fileStream).Write(bytes);
-                }
-            }
+            string dir = Path.GetDirectoryName(Path.Combine(Directory.GetCurrentDirectory(), path));
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            new WebClient().DownloadFile(url, path);
         }
 
         public static void UpdateAll(IEnumerable<IUpdateable> updateables, string updateManagerDownloadURL)

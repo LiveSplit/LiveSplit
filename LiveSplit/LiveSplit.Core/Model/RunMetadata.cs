@@ -70,16 +70,7 @@ namespace LiveSplit.Model
                 TriggerPropertyChanged(true);
             }
         }
-        public Platform Platform
-        {
-            get
-            {
-                if (Game == null)
-                    return null;
-
-                return Game.Platforms.FirstOrDefault(x => x.Name == PlatformName);
-            }
-        }
+        public Platform Platform => Game?.Platforms.FirstOrDefault(x => x.Name == PlatformName);
 
         public bool RegionAvailable { get; private set; }
         public string RegionName
@@ -94,16 +85,7 @@ namespace LiveSplit.Model
                 TriggerPropertyChanged(true);
             }
         }
-        public Region Region
-        {
-            get
-            {
-                if (Game == null)
-                    return null;
-
-                return Game.Regions.FirstOrDefault(x => x.Name == RegionName);
-            }
-        }
+        public Region Region => Game?.Regions.FirstOrDefault(x => x.Name == RegionName);
 
         public IDictionary<string, string> VariableValueNames { get; set; }
         public IDictionary<Variable, VariableValue> VariableValues

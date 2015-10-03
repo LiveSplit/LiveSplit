@@ -110,9 +110,7 @@ namespace LiveSplit.Web.Share
                 x.Time.GameTime == runTime.GameTime 
                 && x.Time.RealTime == runTime.RealTime);
 
-            if (attempt.Ended.HasValue)
-                return attempt.Ended.Value.Time;
-            return null;
+            return attempt.Ended?.Time;
         }
 
         public static bool ValidateRun(IRun run, out string reasonForRejection)

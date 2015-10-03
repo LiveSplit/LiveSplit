@@ -156,17 +156,11 @@ namespace LiveSplit.Web.Share
                 var subs = Twitch.Instance.Subscribers;
                 var username = e.Text.Substring(0, e.Text.IndexOf(' '));
                 Twitch.Instance._Subscribers.Add(username);
-                
-                if (OnNewSubscriber != null)
-                {
-                    OnNewSubscriber(this, new User(Client, username));
-                }
+
+                OnNewSubscriber?.Invoke(this, new User(Client, username));
             }
 
-            if (OnMessage != null)
-            {
-                OnMessage(this, new Message(new User(e.Source as IrcUser, GetFlags(e.Source.Name), GetColor(e.Source.Name)), e.Text));
-            }
+            OnMessage?.Invoke(this, new Message(new User(e.Source as IrcUser, GetFlags(e.Source.Name), GetColor(e.Source.Name)), e.Text));
         }
 
         public void SendMessage(string message)

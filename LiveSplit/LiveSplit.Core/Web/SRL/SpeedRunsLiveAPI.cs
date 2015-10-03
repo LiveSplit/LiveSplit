@@ -133,8 +133,7 @@ namespace LiveSplit.Web.SRL
             try
             {
                 racesList = (IEnumerable<dynamic>)JSON.FromUri(GetUri("races")).races;
-                if (RacesRefreshed != null)
-                    RacesRefreshed(this, null);
+                RacesRefreshed?.Invoke(this, null);
             }
             catch { }
         }

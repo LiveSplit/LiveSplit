@@ -19,7 +19,7 @@ namespace LiveSplit.UI.Components
         public float MinimumHeight 
             => !VisibleComponents.Any() ? 0 : VisibleComponents.Max(x => x.MinimumHeight);
 
-        protected bool errorInComponent = false;
+        protected bool errorInComponent;
 
         private void DrawVerticalComponent(int index, Graphics g, LiveSplitState state, float width, float height, Region clipRegion)
         {

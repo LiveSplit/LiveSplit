@@ -33,12 +33,11 @@ namespace LiveSplit.Model
                 socket.ReceiveTimeout = 3000;
 
                 var before = TimeStamp.Now;
-                TimeStamp after;
 
                 socket.Send(ntpData);
                 socket.Receive(ntpData);
 
-                after = TimeStamp.Now;
+                var after = TimeStamp.Now;
                 var delta = TimeSpan.FromMilliseconds((after - before).TotalMilliseconds / 2);
 
                 socket.Close();

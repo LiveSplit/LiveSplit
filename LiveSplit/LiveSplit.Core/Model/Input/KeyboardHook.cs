@@ -58,8 +58,8 @@ namespace LiveSplit.Model.Input
                 var wasPressedBefore = keyPair.Value;
                 RegisteredKeys[key] = isPressed;
 
-                if (modifiersDown && isPressed && !wasPressedBefore && KeyPressed != null)
-                    KeyPressed(this, new KeyEventArgs(key));
+                if (modifiersDown && isPressed && !wasPressedBefore)
+                    KeyPressed?.Invoke(this, new KeyEventArgs(key));
             }
         }
 

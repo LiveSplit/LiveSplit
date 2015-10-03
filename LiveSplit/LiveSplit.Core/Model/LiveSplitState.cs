@@ -143,61 +143,17 @@ namespace LiveSplit.Model
 
         public void RegisterTimerModel(ITimerModel model)
         {
-            model.OnSplit += (s, e) =>
-            {
-                if (OnSplit != null)
-                    OnSplit(this, e);
-            };
-            model.OnSkipSplit += (s, e) =>
-            {
-                if (OnSkipSplit != null)
-                    OnSkipSplit(this, e);
-            };
-            model.OnUndoSplit += (s, e) =>
-            {
-                if (OnUndoSplit != null)
-                    OnUndoSplit(this, e);
-            };
-            model.OnStart += (s, e) =>
-            {
-                if (OnStart != null)
-                    OnStart(this, e);
-            };
-            model.OnReset += (s, e) =>
-            {
-                if (OnReset != null)
-                    OnReset(this, e);
-            };
-            model.OnPause += (s, e) =>
-            {
-                if (OnPause != null)
-                    OnPause(this, e);
-            };
-            model.OnResume += (s, e) =>
-            {
-                if (OnResume != null)
-                    OnResume(this, e);
-            };
-            model.OnScrollUp += (s, e) =>
-            {
-                if (OnScrollUp != null)
-                    OnScrollUp(this, e);
-            };
-            model.OnScrollDown += (s, e) =>
-            {
-                if (OnScrollDown != null)
-                    OnScrollDown(this, e);
-            };
-            model.OnSwitchComparisonPrevious += (s, e) =>
-            {
-                if (OnSwitchComparisonPrevious != null)
-                    OnSwitchComparisonPrevious(this, e);
-            };
-            model.OnSwitchComparisonNext += (s, e) =>
-            {
-                if (OnSwitchComparisonNext != null)
-                    OnSwitchComparisonNext(this, e);
-            };
+            model.OnSplit                    += (s, e) => OnSplit?.Invoke(this, e);
+            model.OnSkipSplit                += (s, e) => OnSkipSplit?.Invoke(this, e);
+            model.OnUndoSplit                += (s, e) => OnUndoSplit?.Invoke(this, e);
+            model.OnStart                    += (s, e) => OnStart?.Invoke(this, e);
+            model.OnReset                    += (s, e) => OnReset?.Invoke(this, e);
+            model.OnPause                    += (s, e) => OnPause?.Invoke(this, e);
+            model.OnResume                   += (s, e) => OnResume?.Invoke(this, e);
+            model.OnScrollUp                 += (s, e) => OnScrollUp?.Invoke(this, e);
+            model.OnScrollDown               += (s, e) => OnScrollDown?.Invoke(this, e);
+            model.OnSwitchComparisonPrevious += (s, e) => OnSwitchComparisonPrevious?.Invoke(this, e);
+            model.OnSwitchComparisonNext     += (s, e) => OnSwitchComparisonNext?.Invoke(this, e);
         }
 
         public void SetGameTime(TimeSpan? gameTime)

@@ -207,10 +207,7 @@ namespace LiveSplit.Model.Input
                     keyBoardHandle, Code, wParam, lParam);
                 }
 
-                if (KeyBoardKeyPressed != null)
-                {
-                    KeyBoardKeyPressed(this, new KeyEventArgs(key | modifiers));
-                }
+                KeyBoardKeyPressed?.Invoke(this, new KeyEventArgs(key | modifiers));
 
                 if (key == Keys.ControlKey)
                     modifiers |= Keys.Control;

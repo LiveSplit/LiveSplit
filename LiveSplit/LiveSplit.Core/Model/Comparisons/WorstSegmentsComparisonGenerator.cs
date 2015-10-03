@@ -20,8 +20,8 @@ namespace LiveSplit.Model.Comparisons
         {
             var realTimePredictions = new TimeSpan?[Run.Count + 1];
             var gameTimePredictions = new TimeSpan?[Run.Count + 1];
-            SumOfWorst.CalculateSumOfWorst(Run, 0, Run.Count() - 1, realTimePredictions, false, TimingMethod.RealTime);
-            SumOfWorst.CalculateSumOfWorst(Run, 0, Run.Count() - 1, gameTimePredictions, false, TimingMethod.GameTime);
+            SumOfWorst.CalculateSumOfWorst(Run, 0, Run.Count - 1, realTimePredictions, false, TimingMethod.RealTime);
+            SumOfWorst.CalculateSumOfWorst(Run, 0, Run.Count - 1, gameTimePredictions, false, TimingMethod.GameTime);
             var index = 1;
             foreach (var segment in Run)
             {

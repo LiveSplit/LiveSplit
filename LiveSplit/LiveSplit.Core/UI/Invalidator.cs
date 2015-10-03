@@ -21,8 +21,7 @@ namespace LiveSplit.UI
         {
             try
             {
-                if (Transform != null)
-                    Transform.Dispose();
+                Transform?.Dispose();
             }
             catch { }
 

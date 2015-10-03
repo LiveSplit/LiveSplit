@@ -76,7 +76,7 @@ namespace LiveSplit.ComponentUtil
         protected DeepPointer DeepPtr { get; set; }
         protected IntPtr Address { get; set; }
 
-        protected AddressType AddrType { get; private set; }
+        protected AddressType AddrType { get; }
         protected enum AddressType { DeepPointer, Absolute }
 
         protected MemoryWatcher(DeepPointer pointer)
@@ -195,8 +195,7 @@ namespace LiveSplit.ComponentUtil
 
             if (!Current.Equals(Old))
             {
-                if (OnChanged != null)
-                    OnChanged(Old, Current);
+                OnChanged?.Invoke(Old, Current);
                 Changed = true;
                 return true;
             }
@@ -274,8 +273,7 @@ namespace LiveSplit.ComponentUtil
 
             if (!Current.Equals(Old))
             {
-                if (OnChanged != null)
-                    OnChanged(Old, Current);
+                OnChanged?.Invoke(Old, Current);
                 Changed = true;
                 return true;
             }

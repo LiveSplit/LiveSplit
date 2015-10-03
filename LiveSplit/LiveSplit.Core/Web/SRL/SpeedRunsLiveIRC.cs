@@ -23,8 +23,7 @@ namespace LiveSplit.Web.SRL
             {
                 _State = value;
 
-                if (StateChanged != null)
-                    StateChanged(this, RaceState);
+                StateChanged?.Invoke(this, RaceState);
             }
         }
         protected IrcClient Client { get; set; }
@@ -236,8 +235,7 @@ namespace LiveSplit.Web.SRL
 
             if (e.Message.Command == "433")
             {
-                if (NicknameInUse != null)
-                    NicknameInUse(this, null);
+                NicknameInUse?.Invoke(this, null);
             }
 
             if (e.Message.Source != null
@@ -254,8 +252,7 @@ namespace LiveSplit.Web.SRL
                 }
                 else if (e.Message.Parameters[1] == "Password incorrect.")
                 {
-                    if (PasswordIncorrect != null)
-                        PasswordIncorrect(this, null);
+                    PasswordIncorrect?.Invoke(this, null);
                 }
             }
             

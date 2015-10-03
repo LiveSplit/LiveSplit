@@ -47,8 +47,7 @@ namespace LiveSplit.UI.Components
             }
             catch (Exception ex)
             {
-                if (errorCallback != null)
-                    errorCallback(ex);
+                errorCallback?.Invoke(ex);
                 throw;
             }
         }

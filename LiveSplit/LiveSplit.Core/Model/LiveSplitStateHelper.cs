@@ -176,8 +176,7 @@ namespace LiveSplit.Model
 
             if (showBestSegments && state.LayoutSettings.ShowBestSegments)
             {
-                TimeSpan? curSegment;
-                curSegment = GetPreviousSegmentTime(state, splitNumber, comparison, method);
+                var curSegment = GetPreviousSegmentTime(state, splitNumber, comparison, method);
                 if (curSegment != null)
                 {
                     if (state.Run[splitNumber].BestSegmentTime[method] == null || curSegment < state.Run[splitNumber].BestSegmentTime[method])
