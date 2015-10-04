@@ -164,20 +164,21 @@ namespace LiveSplit.Model
 
         private static void RemoveDuplicates(IRun run, TimingMethod method)
         {
-            foreach (var segment in run)
+            for (var index = 0; index < run.Count; index++)
             {
-                var history = segment.SegmentHistory.Select(x => x.Value[method]).Where(x => x != null).ToList();
-                for (var runIndex = segment.SegmentHistory.GetMinIndex(); runIndex <= 0; runIndex++)
+                var history = run[index].SegmentHistory.Select(x => x.Value[method]).Where(x => x != null).ToList();
+                for (var runIndex = run[index].SegmentHistory.GetMinIndex(); runIndex <= 0; runIndex++)
                 {
                     //Remove elements in the imported Segment History if they're duplicates of the real Segment History
                     Time element;
-                    if (segment.SegmentHistory.TryGetValue(runIndex, out element) && history.Count(x => x.Equals(element[method])) > 1)
+                    if (run[index].SegmentHistory.TryGetValue(runIndex, out element) && history.Count(x => x.Equals(element[method])) > 1)
                     {
-                        segment.SegmentHistory.Remove(runIndex);
+                        run[index].SegmentHistory.Remove(runIndex);
                         history.Remove(element[method]);
                     }
                 }
             }
+
         }
 
         private static void RemoveItemsFromCache(IRun run, int index, IList<IIndexedTime> cache)
