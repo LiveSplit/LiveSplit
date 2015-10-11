@@ -172,11 +172,8 @@ namespace LiveSplit.Model
             {
                 try
                 {
-                    if (Run.Metadata.Game != null)
-                    {
-                        if (Run.Metadata.Game.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTime)
-                            CurrentTimingMethod = TimingMethod.RealTime;
-                    }
+                    if (Run.Metadata.Game?.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTime)
+                        CurrentTimingMethod = TimingMethod.RealTime;
                 }
                 catch (Exception ex)
                 {

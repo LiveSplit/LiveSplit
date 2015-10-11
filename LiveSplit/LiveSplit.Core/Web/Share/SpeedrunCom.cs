@@ -25,10 +25,7 @@ namespace LiveSplit.Web.Share
             if (Client.IsAccessTokenValid)
                 return true;
 
-            if (Authenticator == null)
-                return false;
-
-            var accessToken = Authenticator.GetAccessToken();
+            var accessToken = Authenticator?.GetAccessToken();
             if (string.IsNullOrEmpty(accessToken))
                 return false;
 
