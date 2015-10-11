@@ -25,10 +25,7 @@ namespace LiveSplit.Web.Share
             if (Client.IsAccessTokenValid)
                 return true;
 
-            if (Authenticator == null)
-                return false;
-
-            var accessToken = Authenticator.GetAccessToken();
+            var accessToken = Authenticator?.GetAccessToken();
             if (string.IsNullOrEmpty(accessToken))
                 return false;
 
@@ -180,7 +177,7 @@ namespace LiveSplit.Web.Share
                 var variableThatNeedsAValueButHasNone = metadata.VariableValues.Where(x => x.Key.IsMandatory).FirstOrDefault(x => x.Value == null);
                 if (variableThatNeedsAValueButHasNone.Value != null)
                 {
-                    reasonForRejection = string.Format("You need to specify a value for the variable \"{0}\".", variableThatNeedsAValueButHasNone.Key.Name);
+                    reasonForRejection = $"You need to specify a value for the variable \"{variableThatNeedsAValueButHasNone.Key.Name}\".";
                     return false;
                 }
 

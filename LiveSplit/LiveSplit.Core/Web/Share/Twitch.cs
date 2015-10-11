@@ -89,7 +89,7 @@ namespace LiveSplit.Web.Share
                             var run = state.Run;
 
                             var deltaFormatter = new DeltaTimeFormatter();
-                            var title = string.Format("{0} - {1} Speedrun", run.GameName, run.CategoryName);
+                            var title = $"{run.GameName} - {run.CategoryName} Speedrun";
 
                             if (phase == TimerPhase.Running)
                             {
@@ -98,7 +98,7 @@ namespace LiveSplit.Web.Share
                                     var lastSplit = run[state.CurrentSplitIndex - 1];
                                     var delta = deltaFormatter.Format(lastSplit.SplitTime[state.CurrentTimingMethod] - lastSplit.PersonalBestSplitTime[state.CurrentTimingMethod]);
                                     var splitname = lastSplit.Name;
-                                    title = string.Format("{0} ({1} on {2})", title, delta, splitname);
+                                    title = $"{title} ({delta} on {splitname})";
                                 }
                             }
 
@@ -213,7 +213,7 @@ the first time that sharing to Twitch is used.";
             request.Method = method;
             request.Accept = "application/vnd.twitchtv.v3+json";
             if (!string.IsNullOrEmpty(AccessToken))
-                request.Headers.Add(string.Format("Authorization: OAuth {0}", AccessToken));
+                request.Headers.Add($"Authorization: OAuth {AccessToken}");
             if (!string.IsNullOrEmpty(data))
             {
                 request.ContentType = "application/json; charset=utf-8";
@@ -236,7 +236,7 @@ the first time that sharing to Twitch is used.";
         public bool SetStreamTitleAndGame(string title, string game = null)
         {
             dynamic result = curl(
-                string.Format("channels/{0}", ChannelName),
+                $"channels/{ChannelName}",
                 "PUT",
                 string.Format("{{" +
                     "\"channel\":{{" +
@@ -266,7 +266,7 @@ the first time that sharing to Twitch is used.";
 
         public dynamic SearchGame(string name)
         {
-            return curl(string.Format("search/games?q={0}&type=suggest", HttpUtility.UrlEncode(name)));
+            return curl($"search/games?q={HttpUtility.UrlEncode(name)}&type=suggest");
         }
 
         public IEnumerable<string> FindGame(string name)

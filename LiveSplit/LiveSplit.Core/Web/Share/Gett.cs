@@ -85,13 +85,13 @@ will be deleted after 30 days, though.
 
         public dynamic CreateShare(string accessToken, string title = null)
         {
-            var uri = GetUri(string.Format("/1/shares/create?accesstoken={0}", accessToken));
+            var uri = GetUri($"/1/shares/create?accesstoken={accessToken}");
             return JSON.FromUriPost(uri, title != null ? new string[] { "title", title } : new string[0]);
         }
 
         public dynamic CreateFile(string accessToken, string shareName, string fileName)
         {
-            var uri = GetUri(string.Format("/1/files/{0}/create?accesstoken={1}", shareName, accessToken));
+            var uri = GetUri($"/1/files/{shareName}/create?accesstoken={accessToken}");
             return JSON.FromUriPost(uri, "filename", fileName);
         }
 

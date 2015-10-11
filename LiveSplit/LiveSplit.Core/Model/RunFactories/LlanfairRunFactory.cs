@@ -199,7 +199,7 @@ namespace LiveSplit.Model.RunFactories
 
             Empty(new DirectoryInfo(splitsBasePath));
 
-            var process = Process.Start(System.IO.Path.Combine(javaPath, "bin\\javaw.exe"), string.Format("-jar \"{0}\" \"{1}\" \"{2}\"", loaderPath, Path, splitsFilePath));
+            var process = Process.Start(System.IO.Path.Combine(javaPath, "bin\\javaw.exe"), $"-jar \"{loaderPath}\" \"{Path}\" \"{splitsFilePath}\"");
             process.WaitForExit();
             process.Close();
 

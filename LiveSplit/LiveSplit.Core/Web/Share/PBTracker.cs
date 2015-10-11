@@ -18,7 +18,7 @@ namespace LiveSplit.Web.Share
 
         public Image GetGameBoxArt(string gameId)
         {
-            var request = WebRequest.Create(GetUri(string.Format("static/boxart/{0}.jpg", gameId)));
+            var request = WebRequest.Create(GetUri($"static/boxart/{gameId}.jpg"));
 
             using (var response = request.GetResponse())
             using (var stream = response.GetResponseStream())
@@ -29,7 +29,7 @@ namespace LiveSplit.Web.Share
 
         public dynamic GetGame(string gameId)
         {
-            return JSON.FromUri(GetUri(string.Format("game/{0}.json", gameId)));
+            return JSON.FromUri(GetUri($"game/{gameId}.json"));
         }
     }
 }

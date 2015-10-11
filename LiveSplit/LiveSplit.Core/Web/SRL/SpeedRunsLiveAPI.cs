@@ -99,7 +99,7 @@ namespace LiveSplit.Web.SRL
 
                     try
                     {
-                        var request = WebRequest.Create(string.Format("http://c15111072.r72.cf2.rackcdn.com/{0}.jpg", gameId));
+                        var request = WebRequest.Create($"http://c15111072.r72.cf2.rackcdn.com/{gameId}.jpg");
 
                         using (var response = request.GetResponse())
                         using (var stream = response.GetResponseStream())

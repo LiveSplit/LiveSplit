@@ -357,9 +357,9 @@ namespace LiveSplit.Options
             var shell = lssApplicationKey.CreateSubKey("shell");
             var open = shell.CreateSubKey("open");
             var command = open.CreateSubKey("command");
-            command.SetValue("", string.Format("\"{0}\" -s \"{1}\"", Application.ExecutablePath.Replace("LiveSplit.Register.exe","LiveSplit.exe"), "%1"));
+            command.SetValue("", $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -s \"{"%1"}\"");
             var iconKey = lssApplicationKey.CreateSubKey("DefaultIcon");
-            iconKey.SetValue("", string.Format("{0}\\Resources\\{1}", Path.GetDirectoryName(Application.ExecutablePath), "SplitsFile.ico"));
+            iconKey.SetValue("", $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"SplitsFile.ico"}");
             SHChangeNotify(HChangeNotifyEventID.SHCNE_ASSOCCHANGED, HChangeNotifyFlags.SHCNF_IDLIST, IntPtr.Zero, IntPtr.Zero);
             
         }
@@ -371,10 +371,10 @@ namespace LiveSplit.Options
             var shell = lssApplicationKey.OpenSubKey("shell");
             var open = shell.OpenSubKey("open");
             var command = open.OpenSubKey("command");
-            if (command.GetValue("").ToString() != string.Format("\"{0}\" -s \"{1}\"", Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe"), "%1"))
+            if (command.GetValue("").ToString() != $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -s \"{"%1"}\"")
                 return false;
             var iconKey = lssApplicationKey.OpenSubKey("DefaultIcon");
-            if (iconKey.GetValue("").ToString() != string.Format("{0}\\Resources\\{1}", Path.GetDirectoryName(Application.ExecutablePath), "SplitsFile.ico"))
+            if (iconKey.GetValue("").ToString() != $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"SplitsFile.ico"}")
                 return false;
             return true;
         }
@@ -400,9 +400,9 @@ namespace LiveSplit.Options
             var shell = lslApplicationKey.CreateSubKey("shell");
             var open = shell.CreateSubKey("open");
             var command = open.CreateSubKey("command");
-            command.SetValue("", string.Format("\"{0}\" -l \"{1}\"", Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe"), "%1"));
+            command.SetValue("", $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -l \"{"%1"}\"");
             var iconKey = lslApplicationKey.CreateSubKey("DefaultIcon");
-            iconKey.SetValue("", string.Format("{0}\\Resources\\{1}", Path.GetDirectoryName(Application.ExecutablePath), "LayoutFile.ico"));
+            iconKey.SetValue("", $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"LayoutFile.ico"}");
             SHChangeNotify(HChangeNotifyEventID.SHCNE_ASSOCCHANGED, HChangeNotifyFlags.SHCNF_IDLIST, IntPtr.Zero, IntPtr.Zero);
         }
 
@@ -413,10 +413,10 @@ namespace LiveSplit.Options
             var shell = lslApplicationKey.OpenSubKey("shell");
             var open = shell.OpenSubKey("open");
             var command = open.OpenSubKey("command");
-            if (command.GetValue("").ToString() != string.Format("\"{0}\" -l \"{1}\"", Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe"), "%1"))
+            if (command.GetValue("").ToString() != $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -l \"{"%1"}\"")
                 return false;
             var iconKey = lslApplicationKey.OpenSubKey("DefaultIcon");
-            if (iconKey.GetValue("").ToString() != string.Format("{0}\\Resources\\{1}", Path.GetDirectoryName(Application.ExecutablePath), "LayoutFile.ico"))
+            if (iconKey.GetValue("").ToString() != $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"LayoutFile.ico"}")
                 return false;
             return true;
         }

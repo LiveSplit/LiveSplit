@@ -39,7 +39,7 @@ namespace LiveSplit.Web.Share
                 new IrcUserRegistrationInfo()
                 {
                     NickName = twitch.ChannelName,
-                    Password = string.Format("oauth:{0}", accessToken)
+                    Password = $"oauth:{accessToken}"
                 });
         }
 
