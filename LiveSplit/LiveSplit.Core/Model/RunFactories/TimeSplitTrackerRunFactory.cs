@@ -110,9 +110,8 @@ namespace LiveSplit.Model.RunFactories
                 if (!string.IsNullOrEmpty(Path))
                 {
                     var path = System.IO.Path.Combine(
-                                System.IO.Path.GetDirectoryName(Path), 
-                                string.Format("{0}-RunLog.txt", 
-                                    System.IO.Path.GetFileNameWithoutExtension(Path)));
+                               System.IO.Path.GetDirectoryName(Path),
+                               $"{System.IO.Path.GetFileNameWithoutExtension(Path)}-RunLog.txt");
 
                     var lines = File.ReadLines(path);
                     var attemptId = 1;

@@ -177,13 +177,13 @@ namespace LiveSplit.Web.SRL
                         timeIGT = timeFormatter.Format(split.SplitTime.GameTime);
                     if (Model.CurrentState.CurrentPhase == TimerPhase.Ended)
                     {
-                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done RealTime {0}", timeRTA));
-                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done GameTime {0}", timeIGT));
+                        Client.LocalUser.SendMessage(LiveSplitChannel, $"!done RealTime {timeRTA}");
+                        Client.LocalUser.SendMessage(LiveSplitChannel, $"!done GameTime {timeIGT}");
                     }
                     else
                     {
-                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time RealTime \"{0}\" {1}", Escape(split.Name), timeRTA));
-                        Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time GameTime \"{0}\" {1}", Escape(split.Name), timeIGT));
+                        Client.LocalUser.SendMessage(LiveSplitChannel, $"!time RealTime \"{Escape(split.Name)}\" {timeRTA}");
+                        Client.LocalUser.SendMessage(LiveSplitChannel, $"!time GameTime \"{Escape(split.Name)}\" {timeIGT}");
                     }
                 }
             }
@@ -207,20 +207,20 @@ namespace LiveSplit.Web.SRL
                 var time = "-";
                 if (Model.CurrentState.CurrentSplitIndex == Model.CurrentState.Run.Count - 1)
                 {
-                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done RealTime {0}", time));
-                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!done GameTime {0}", time));
+                    Client.LocalUser.SendMessage(LiveSplitChannel, $"!done RealTime {time}");
+                    Client.LocalUser.SendMessage(LiveSplitChannel, $"!done GameTime {time}");
                 }
                 else
                 {
-                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time RealTime \"{0}\" {1}", Escape(split.Name), time));
-                    Client.LocalUser.SendMessage(LiveSplitChannel, string.Format("!time GameTime \"{0}\" {1}", Escape(split.Name), time));
+                    Client.LocalUser.SendMessage(LiveSplitChannel, $"!time RealTime \"{Escape(split.Name)}\" {time}");
+                    Client.LocalUser.SendMessage(LiveSplitChannel, $"!time GameTime \"{Escape(split.Name)}\" {time}");
                 }
             }
         }
 
         void Client_Registered(object sender, EventArgs e)
         {
-            Client.LocalUser.SendMessage("NickServ", string.Format("IDENTIFY {0}", Password));
+            Client.LocalUser.SendMessage("NickServ", $"IDENTIFY {Password}");
             Client.LocalUser.JoinedChannel += LocalUser_JoinedChannel;
         }
 
@@ -256,7 +256,7 @@ namespace LiveSplit.Web.SRL
                 }
             }
             
-            RawMessageReceived?.Invoke(this, string.Format("{0} - {1}", e.Message.Command, e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)));
+            RawMessageReceived?.Invoke(this, $"{e.Message.Command} - {e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)}");
         }
 
         protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)

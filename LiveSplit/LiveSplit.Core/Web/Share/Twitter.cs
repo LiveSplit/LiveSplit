@@ -185,7 +185,7 @@ will automatically send the tweet.";
             if (screenShotFunction == null || attachSplits)
             {
                 var status = Context.UpdateStatus(comment);
-                var url = string.Format("http://twitter.com/{0}/status/{1}", status.User.Name, status.StatusID);
+                var url = $"http://twitter.com/{status.User.Name}/status/{status.StatusID}";
                 Process.Start(url);
             }
             else

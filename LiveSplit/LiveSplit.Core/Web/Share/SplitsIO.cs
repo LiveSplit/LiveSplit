@@ -101,7 +101,7 @@ namespace LiveSplit.Web.Share
 
             do
             {
-                var request = WebRequest.Create(string.Format("{0}?page={1}", uri.AbsoluteUri, page));
+                var request = WebRequest.Create($"{uri.AbsoluteUri}?page={page}");
 
                 using (var response = request.GetResponse())
                 {
@@ -118,7 +118,7 @@ namespace LiveSplit.Web.Share
         public IEnumerable<dynamic> SearchGame(string name)
         {
             var escapedName = HttpUtility.UrlPathEncode(name);
-            var uri = GetAPIUri(string.Format("games?search={0}", escapedName));
+            var uri = GetAPIUri($"games?search={escapedName}");
             var response = JSON.FromUri(uri);
             return (response.games as IEnumerable<dynamic>) ?? new dynamic[0];
         }
@@ -128,7 +128,7 @@ namespace LiveSplit.Web.Share
             try
             {
                 var escapedName = HttpUtility.UrlPathEncode(name.ToLowerInvariant());
-                var uri = GetAPIUri(string.Format("users/{0}", escapedName));
+                var uri = GetAPIUri($"users/{escapedName}");
                 var response = JSON.FromUri(uri);
                 return response.user;
             }
@@ -141,35 +141,35 @@ namespace LiveSplit.Web.Share
 
         public dynamic GetGameById(int gameId)
         {
-            var uri = GetAPIUri(string.Format("games/{0}", gameId));
+            var uri = GetAPIUri($"games/{gameId}");
             var response = JSON.FromUri(uri);
             return response.game;
         }
 
         public IEnumerable<dynamic> GetRunsForCategory(int gameId, int categoryId)
         {
-            var uri = GetAPIUri(string.Format("games/{0}/categories/{1}/runs", gameId, categoryId));
+            var uri = GetAPIUri($"games/{gameId}/categories/{categoryId}/runs");
             var pages = DoPaginatedRequest(uri);
             return pages.SelectMany(page => (page.runs as IEnumerable<dynamic>) ?? new dynamic[0]);
         }
 
         public IEnumerable<dynamic> GetRunsForUser(string userId)
         {
-            var uri = GetAPIUri(string.Format("users/{0}/runs", userId));
+            var uri = GetAPIUri($"users/{userId}/runs");
             var pages = DoPaginatedRequest(uri);
             return pages.SelectMany(page => (page.runs as IEnumerable<dynamic>) ?? new dynamic[0]);
         }
 
         public dynamic GetRunById(int runId)
         {
-            var uri = GetAPIUri(string.Format("runs/{0}", runId));
+            var uri = GetAPIUri($"runs/{runId}");
             var response = JSON.FromUri(uri);
             return response.run;
         }
 
         public dynamic GetV4RunById(string runId)
         {
-            var uri = GetAPIV4Uri(string.Format("runs/{0}", runId));
+            var uri = GetAPIV4Uri($"runs/{runId}");
             return JSON.FromUri(uri);
         }
 
@@ -203,7 +203,7 @@ namespace LiveSplit.Web.Share
         public IRun DownloadRunByUri(Uri uri, bool patchRun)
         {
             var id = uri.LocalPath;
-            var downloadUri = GetSiteUri(string.Format("{0}/download/livesplit", id));
+            var downloadUri = GetSiteUri($"{id}/download/livesplit");
 
             var request = WebRequest.Create(downloadUri);
 
@@ -237,10 +237,8 @@ namespace LiveSplit.Web.Share
 
         public void ClaimWithSpeedrunComRun(string splitsIORunId, string claimToken, string srdcRunId)
         {
-            var uri = GetAPIV4Uri(string.Format("runs/{0}?claim_token={1}&srdc_id={2}", 
-                Uri.EscapeDataString(splitsIORunId), 
-                Uri.EscapeDataString(claimToken), 
-                Uri.EscapeDataString(srdcRunId)));
+            var uri = GetAPIV4Uri(
+                $"runs/{Uri.EscapeDataString(splitsIORunId)}?claim_token={Uri.EscapeDataString(claimToken)}&srdc_id={Uri.EscapeDataString(srdcRunId)}");
 
             var request = WebRequest.Create(uri);
             request.Method = "PUT";

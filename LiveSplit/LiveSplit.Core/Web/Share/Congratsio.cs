@@ -130,7 +130,7 @@ tweet whenever you get a new Personal Best.";
 
                 writer.Write("&date=");
                 var dateTime = run.AttemptHistory.First(x => x.Time.RealTime == run.Last().PersonalBestSplitTime.RealTime).Ended.Value.Time;
-                writer.Write(HttpUtility.UrlEncode(string.Format("{0:00}/{1:00}/{2}", dateTime.Month, dateTime.Day, dateTime.Year)));
+                writer.Write(HttpUtility.UrlEncode($"{dateTime.Month:00}/{dateTime.Day:00}/{dateTime.Year}"));
 
                 writer.Write("&video=");
                 writer.Write(HttpUtility.UrlEncode(video));

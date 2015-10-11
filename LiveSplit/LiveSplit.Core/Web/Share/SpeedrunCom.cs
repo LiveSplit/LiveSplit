@@ -180,7 +180,7 @@ namespace LiveSplit.Web.Share
                 var variableThatNeedsAValueButHasNone = metadata.VariableValues.Where(x => x.Key.IsMandatory).FirstOrDefault(x => x.Value == null);
                 if (variableThatNeedsAValueButHasNone.Value != null)
                 {
-                    reasonForRejection = string.Format("You need to specify a value for the variable \"{0}\".", variableThatNeedsAValueButHasNone.Key.Name);
+                    reasonForRejection = $"You need to specify a value for the variable \"{variableThatNeedsAValueButHasNone.Key.Name}\".";
                     return false;
                 }
 
