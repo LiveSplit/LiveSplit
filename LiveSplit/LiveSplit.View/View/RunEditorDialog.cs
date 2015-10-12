@@ -150,7 +150,6 @@ namespace LiveSplit.View
             runGrid.SelectionChanged += runGrid_SelectionChanged;
 
             var iconColumn = new DataGridViewImageColumn() { ImageLayout = DataGridViewImageCellLayout.Zoom };
-            iconColumn.DataPropertyName = "Icon";
             iconColumn.Name = "Icon";
             iconColumn.Width = 50;
             iconColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
@@ -158,7 +157,6 @@ namespace LiveSplit.View
             runGrid.Columns.Add(iconColumn);
 
             var column = new DataGridViewTextBoxColumn();
-            column.DataPropertyName = "Name";
             column.Name = "Segment Name";
             column.MinimumWidth = 120;
             column.SortMode = DataGridViewColumnSortMode.NotSortable;
@@ -428,7 +426,12 @@ namespace LiveSplit.View
 
         void runGrid_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
         {
-            if (e.ColumnIndex == SPLITTIMEINDEX || e.ColumnIndex == BESTSEGMENTINDEX || e.ColumnIndex == SEGMENTTIMEINDEX || e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
+            if (e.ColumnIndex == SEGMENTNAMEINDEX)
+            {
+                Run[e.RowIndex].Name = e.Value.ToString();
+                RaiseRunEdited();
+            }
+            else
             {
                 if (string.IsNullOrWhiteSpace(e.Value.ToString()))
                 {
@@ -503,9 +506,9 @@ namespace LiveSplit.View
 
         void runGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex == SPLITTIMEINDEX)
+            if (e.RowIndex < Run.Count)
             {
-                if (e.RowIndex < Run.Count)
+                if (e.ColumnIndex == SPLITTIMEINDEX)
                 {
                     var comparisonValue = Run[e.RowIndex].PersonalBestSplitTime[SelectedMethod];
                     if (comparisonValue == null)
@@ -519,10 +522,7 @@ namespace LiveSplit.View
                         e.FormattingApplied = true;
                     }
                 }
-            }
-            else if (e.ColumnIndex == BESTSEGMENTINDEX)
-            {
-                if (e.RowIndex < Run.Count)
+                else if (e.ColumnIndex == BESTSEGMENTINDEX)
                 {
                     var comparisonValue = Run[e.RowIndex].BestSegmentTime[SelectedMethod];
                     if (comparisonValue == null)
@@ -536,10 +536,7 @@ namespace LiveSplit.View
                         e.FormattingApplied = true;
                     }
                 }
-            }
-            else if (e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
-            {
-                if (e.RowIndex < Run.Count)
+                else if (e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
                 {
                     var comparisonValue = Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name][SelectedMethod];
                     if (comparisonValue == null)
@@ -553,10 +550,7 @@ namespace LiveSplit.View
                         e.FormattingApplied = true;
                     }
                 }
-            }
-            else if (e.ColumnIndex == SEGMENTTIMEINDEX)
-            {
-                if (e.RowIndex < SegmentTimeList.Count)
+                else if (e.ColumnIndex == SEGMENTTIMEINDEX)
                 {
                     if (SegmentTimeList[e.RowIndex] == null)
                     {
@@ -569,20 +563,20 @@ namespace LiveSplit.View
                         e.FormattingApplied = true;
                     }
                 }
-            }
-            else if (e.ColumnIndex == ICONINDEX)
-            {
-                if (e.RowIndex == Run.Count)
+                else if (e.ColumnIndex == SEGMENTNAMEINDEX)
                 {
-                    e.Value = null;
-                    e.FormattingApplied = true;
+                    e.Value = Run[e.RowIndex].Name;
+                }
+                else if (e.ColumnIndex == ICONINDEX)
+                {
+                    e.Value = Run[e.RowIndex].Icon;
                 }
             }
         }
 
         void runGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0 && e.RowIndex >= 0 && e.RowIndex < Run.Count)
+            if (e.ColumnIndex == ICONINDEX && e.RowIndex >= 0 && e.RowIndex < Run.Count)
             {
                 var dialog = new OpenFileDialog();
                 dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
@@ -604,8 +598,9 @@ namespace LiveSplit.View
                         if (oldImage != null)
                             ImagesToDispose.Add(oldImage);
 
-                        runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value = image;
+                        Run[e.RowIndex].Icon = image;
                         runGrid.NotifyCurrentCellDirty(true);
+                        RaiseRunEdited();
                     }
                     catch (Exception ex)
                     {
@@ -783,40 +778,45 @@ namespace LiveSplit.View
                     if (selectedCell.ColumnIndex == SEGMENTNAMEINDEX)
                     {
                         selectedCell.Value = "";
+                        RaiseRunEdited();
                     }
                     else if (selectedCell.ColumnIndex == ICONINDEX)
                     {
                         if (Run[selectedCell.RowIndex].Icon != null)
                             ImagesToDispose.Add(Run[selectedCell.RowIndex].Icon);
                         Run[selectedCell.RowIndex].Icon = null;
+                        RaiseRunEdited();
                     }
-                    else if (selectedCell.ColumnIndex == SPLITTIMEINDEX)
+                    else
                     {
-                        var time = new Time(Run[selectedCell.RowIndex].PersonalBestSplitTime);
-                        time[SelectedMethod] = null;
-                        Run[selectedCell.RowIndex].PersonalBestSplitTime = time;
+                        if (selectedCell.ColumnIndex == SPLITTIMEINDEX)
+                        {
+                            var time = new Time(Run[selectedCell.RowIndex].PersonalBestSplitTime);
+                            time[SelectedMethod] = null;
+                            Run[selectedCell.RowIndex].PersonalBestSplitTime = time;
+                        }
+                        else if (selectedCell.ColumnIndex == SEGMENTTIMEINDEX)
+                        {
+                            SegmentTimeList[selectedCell.RowIndex] = null;
+                            FixSplitsFromSegments();
+                        }
+                        else if (selectedCell.ColumnIndex == BESTSEGMENTINDEX)
+                        {
+                            var time = new Time(Run[selectedCell.RowIndex].BestSegmentTime);
+                            time[SelectedMethod] = null;
+                            Run[selectedCell.RowIndex].BestSegmentTime = time;
+                        }
+                        else if (selectedCell.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
+                        {
+                            var time = new Time(Run[selectedCell.RowIndex].Comparisons[selectedCell.OwningColumn.Name]);
+                            time[SelectedMethod] = null;
+                            Run[selectedCell.RowIndex].Comparisons[selectedCell.OwningColumn.Name] = time;
+                        }
+                        TimesModified();
+                        Fix();
                     }
-                    else if (selectedCell.ColumnIndex == SEGMENTTIMEINDEX)
-                    {
-                        SegmentTimeList[selectedCell.RowIndex] = null;
-                        FixSplitsFromSegments();
-                    }
-                    else if (selectedCell.ColumnIndex == BESTSEGMENTINDEX)
-                    {
-                        var time = new Time(Run[selectedCell.RowIndex].BestSegmentTime);
-                        time[SelectedMethod] = null;
-                        Run[selectedCell.RowIndex].BestSegmentTime = time;
-                    }
-                    else if (selectedCell.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
-                    {
-                        var time = new Time(Run[selectedCell.RowIndex].Comparisons[selectedCell.OwningColumn.Name]);
-                        time[SelectedMethod] = null;
-                        Run[selectedCell.RowIndex].Comparisons[selectedCell.OwningColumn.Name] = time;
-                    }
-                    Fix();
                 }
                 runGrid.Invalidate();
-                TimesModified();
             }
         }
 
