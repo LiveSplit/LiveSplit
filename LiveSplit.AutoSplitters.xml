@@ -506,4 +506,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available for patch 1.0. (By TheFuncannon)</Description>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Max Payne 2: The Fall of Max Payne</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/TheKotti/081b77109beaee5c3bd3/raw/MaxPayne2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available (by Kotti)</Description>
+  </AutoSplitter>
 </AutoSplitters>
