@@ -202,7 +202,7 @@ will automatically send the tweet.";
                 }
 
                 var tweet = Context.TweetWithMedia(comment, false, new List<Media>() { media });
-                var url = tweet.Text.Substring(tweet.Text.LastIndexOf("http://"));
+                var url = tweet.Text.Substring(tweet.Text.LastIndexOf("https://"));
                 Process.Start(url);
             }
 
