@@ -25,20 +25,20 @@ namespace LiveSplit.Model.RunSavers
             var metadata = document.CreateElement("Metadata");
 
             var runElement = document.CreateElement("Run");
-            runElement.Attributes.Append(ToAttribute(document, "id", run.Metadata.RunID ?? string.Empty));
+            runElement.Attributes.Append(ToAttribute(document, "id", run.Metadata.RunID));
             metadata.AppendChild(runElement);
 
-            var platform = ToElement(document, "Platform", run.Metadata.PlatformName ?? string.Empty);
+            var platform = ToElement(document, "Platform", run.Metadata.PlatformName);
             platform.Attributes.Append(ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
             metadata.AppendChild(platform);
 
-            CreateSetting(document, metadata, "Region", run.Metadata.RegionName ?? string.Empty);
+            CreateSetting(document, metadata, "Region", run.Metadata.RegionName);
 
             var variables = document.CreateElement("Variables");
             foreach (var variable in run.Metadata.VariableValueNames)
             {
-                var variableElement = ToElement(document, "Variable", variable.Value ?? string.Empty);
-                variableElement.Attributes.Append(ToAttribute(document, "name", variable.Key ?? string.Empty));
+                var variableElement = ToElement(document, "Variable", variable.Value);
+                variableElement.Attributes.Append(ToAttribute(document, "name", variable.Key));
                 variables.AppendChild(variableElement);
             }
             metadata.AppendChild(variables);

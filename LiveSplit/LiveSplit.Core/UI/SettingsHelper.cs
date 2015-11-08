@@ -181,7 +181,7 @@ namespace LiveSplit.UI
         public static XmlElement ToElement<T>(XmlDocument document, string name, T value)
         {
             var element = document.CreateElement(name);
-            element.InnerText = value.ToString();
+            element.InnerText = value?.ToString();
             return element;
         }
 
@@ -201,10 +201,10 @@ namespace LiveSplit.UI
             if (document != null)
             {
                 var element = document.CreateElement(name);
-                element.InnerText = value.ToString();
+                element.InnerText = value?.ToString();
                 parent.AppendChild(element);
             }
-            return value.GetHashCode();
+            return value != null ? value.GetHashCode() : 0;
         }
 
         public static int CreateSetting(XmlDocument document, XmlElement parent, string name, float value)
@@ -232,7 +232,7 @@ namespace LiveSplit.UI
         public static XmlAttribute ToAttribute<T>(XmlDocument document, string name, T value)
         {
             var element = document.CreateAttribute(name);
-            element.Value = value.ToString();
+            element.Value = value?.ToString();
             return element;
         }
 
