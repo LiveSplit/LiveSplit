@@ -28,6 +28,8 @@ namespace LiveSplit.Model.RunFactories
 
                     runFactory.Value(Stream, FilePath);
                     var run = runFactory.Key.Create(factory);
+                    if (run.Count < 1)
+                        throw new Exception("Run factory created a run without at least one segment");
                     return run;
                 }
                 catch (Exception e)
