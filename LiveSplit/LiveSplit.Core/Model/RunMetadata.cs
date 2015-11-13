@@ -66,8 +66,10 @@ namespace LiveSplit.Model
             }
             set
             {
+                if (platformName != value)
+                    TriggerPropertyChanged(true);
+
                 platformName = value; 
-                TriggerPropertyChanged(true);
             }
         }
         public Platform Platform => Game?.Platforms.FirstOrDefault(x => x.Name == PlatformName);
@@ -81,8 +83,10 @@ namespace LiveSplit.Model
             }
             set
             {
+                if (regionName != value)
+                    TriggerPropertyChanged(true);
+
                 regionName = value;
-                TriggerPropertyChanged(true);
             }
         }
         public Region Region => Game?.Regions.FirstOrDefault(x => x.Name == RegionName);
@@ -123,8 +127,10 @@ namespace LiveSplit.Model
             }
             set
             {
+                if (usesEmulator != value)
+                    TriggerPropertyChanged(true);
+
                 usesEmulator = value;
-                TriggerPropertyChanged(true);
             }
         }
 
