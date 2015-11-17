@@ -84,12 +84,11 @@ namespace LiveSplit.UI.LayoutSavers
                     }
                     else
                     {
-                        //This is temporary. GetSettingsHashCode() will become a part of IComponent at some point
                         var type = component.Component.GetType();
                         if (type.GetMethod("GetSettingsHashCode") != null)
-                            hashCode ^= ((dynamic)component.Component).GetSettingsHashCode() * count;
+                            hashCode ^= ((dynamic)component.Component).GetSettingsHashCode() * count * type.GetHashCode();
                         else
-                            hashCode ^= component.Component.GetSettings(new XmlDocument()).InnerXml.GetHashCode() * count;
+                            hashCode ^= component.Component.GetSettings(new XmlDocument()).InnerXml.GetHashCode() * count * type.GetHashCode();
                     }
                 }
                 catch (Exception e)
