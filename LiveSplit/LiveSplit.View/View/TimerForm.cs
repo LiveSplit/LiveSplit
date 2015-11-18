@@ -509,8 +509,8 @@ namespace LiveSplit.View
                     Layout.HorizontalWidth = Size.Width;
                     Layout.HorizontalHeight = Size.Height;
                 }
+                FixSize();
             }
-            FixSize();
         }
 
         private void CheckForUpdates()
@@ -1144,7 +1144,7 @@ namespace LiveSplit.View
 
             var currentSize = ComponentRenderer.OverallSize;
 
-            if (OldSize >= 0)
+            if (OldSize > 0)
             {
                 if (OldSize != currentSize)
                 {
@@ -1154,7 +1154,6 @@ namespace LiveSplit.View
                     else
                         Width = (int)((currentSize / (double)OldSize) * Width + 0.5);
                 }
-                FixSize();
                 if (Layout.Mode == LayoutMode.Vertical)
                     MinimumSize = new Size(100, (int)((ComponentRenderer.OverallSize / 3) + 0.5f));
                 else
@@ -1166,11 +1165,12 @@ namespace LiveSplit.View
                     Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
                 else
                     Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
-                OldSize++;
-            }
 
-            if (OldSize >= 0)
-                OldSize = currentSize;
+                if (OldSize == 0)
+                    OldSize = currentSize;
+                else
+                    OldSize++;
+            }
         }
 
         private void TimerForm_Paint(object sender, PaintEventArgs e)
@@ -2267,23 +2267,19 @@ namespace LiveSplit.View
         private void FixSize()
         {
             var currentSize = ComponentRenderer.OverallSize;
-            if (OldSize >= 0)
+            if (Layout.Mode == LayoutMode.Vertical)
             {
-                if (Layout.Mode == LayoutMode.Vertical)
-                {
-                    var minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallSize);
-                    if (Width < minimumWidth)
-                        Height = (int)(Height / (minimumWidth / Width) + 0.5f);
-                }
-                else
-                {
-                    var minimumHeight = ComponentRenderer.MinimumHeight * (Width / ComponentRenderer.OverallSize);
-                    if (Height < minimumHeight)
-                        Width = (int)(Width / (minimumHeight / Height) + 0.5f);
-                }
+                var minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallSize);
+                if (Width < minimumWidth)
+                    Height = (int)(Height / (minimumWidth / Width) + 0.5f);
             }
-            if (OldSize >= 0)
-                OldSize = currentSize;
+            else
+            {
+                var minimumHeight = ComponentRenderer.MinimumHeight * (Width / ComponentRenderer.OverallSize);
+                if (Height < minimumHeight)
+                    Width = (int)(Width / (minimumHeight / Height) + 0.5f);
+            }
+            OldSize = currentSize;
         }
 
         private Image MakeScreenShot(bool transparent = false)
