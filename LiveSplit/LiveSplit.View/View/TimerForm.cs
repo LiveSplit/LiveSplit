@@ -509,7 +509,7 @@ namespace LiveSplit.View
                     Layout.HorizontalWidth = Size.Width;
                     Layout.HorizontalHeight = Size.Height;
                 }
-                FixSize();
+                MaintainMinimumSize();
             }
         }
 
@@ -1024,6 +1024,8 @@ namespace LiveSplit.View
                 {
                     try
                     {
+                        FixSize();
+
                         if (Hook != null)
                             Hook.Poll();
 
@@ -1079,6 +1081,39 @@ namespace LiveSplit.View
                     Log.Error(ex);
                     Invalidate();
                 }
+            }
+        }
+
+        private void FixSize()
+        {
+            var currentSize = ComponentRenderer.OverallSize;
+            if (OldSize > 0)
+            {
+                if (OldSize != currentSize)
+                {
+                    MinimumSize = new Size(0, 0);
+                    if (Layout.Mode == LayoutMode.Vertical)
+                        Height = (int)((currentSize / (double)OldSize) * Height + 0.5);
+                    else
+                        Width = (int)((currentSize / (double)OldSize) * Width + 0.5);
+                    OldSize = currentSize;
+                }
+                if (Layout.Mode == LayoutMode.Vertical)
+                    MinimumSize = new Size(100, (int)((ComponentRenderer.OverallSize / 3) + 0.5f));
+                else
+                    MinimumSize = new Size((int)((ComponentRenderer.OverallSize / 3) + 0.5f), 25);
+            }
+            else
+            {
+                if (Layout.Mode == LayoutMode.Vertical)
+                    Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
+                else
+                    Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
+
+                if (OldSize == 0)
+                    OldSize = currentSize;
+                else
+                    OldSize++;
             }
         }
 
@@ -1140,37 +1175,7 @@ namespace LiveSplit.View
 
             BackColor = Color.Black;
 
-            ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
-
-            var currentSize = ComponentRenderer.OverallSize;
-
-            if (OldSize > 0)
-            {
-                if (OldSize != currentSize)
-                {
-                    MinimumSize = new Size(0, 0);
-                    if (Layout.Mode == LayoutMode.Vertical)
-                        Height = (int)((currentSize / (double)OldSize) * Height + 0.5);
-                    else
-                        Width = (int)((currentSize / (double)OldSize) * Width + 0.5);
-                }
-                if (Layout.Mode == LayoutMode.Vertical)
-                    MinimumSize = new Size(100, (int)((ComponentRenderer.OverallSize / 3) + 0.5f));
-                else
-                    MinimumSize = new Size((int)((ComponentRenderer.OverallSize / 3) + 0.5f), 25);
-            }
-            else
-            {
-                if (Layout.Mode == LayoutMode.Vertical)
-                    Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
-                else
-                    Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
-
-                if (OldSize == 0)
-                    OldSize = currentSize;
-                else
-                    OldSize++;
-            }
+            ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);           
         }
 
         private void TimerForm_Paint(object sender, PaintEventArgs e)
@@ -2264,9 +2269,8 @@ namespace LiveSplit.View
             CloseSplits();
         }
 
-        private void FixSize()
+        private void MaintainMinimumSize()
         {
-            var currentSize = ComponentRenderer.OverallSize;
             if (Layout.Mode == LayoutMode.Vertical)
             {
                 var minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallSize);
@@ -2279,7 +2283,6 @@ namespace LiveSplit.View
                 if (Height < minimumHeight)
                     Width = (int)(Width / (minimumHeight / Height) + 0.5f);
             }
-            OldSize = currentSize;
         }
 
         private Image MakeScreenShot(bool transparent = false)
