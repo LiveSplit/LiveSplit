@@ -2328,31 +2328,12 @@ namespace LiveSplit.View
         private DialogResult WarnAboutResetting()
         {
             var warnUser = false;
-            TimeSpan? currentSegmentRTA = TimeSpan.Zero;
-            TimeSpan? previousSplitTimeRTA = TimeSpan.Zero;
-            TimeSpan? currentSegmentGT = TimeSpan.Zero;
-            TimeSpan? previousSplitTimeGT = TimeSpan.Zero;
-            foreach (var split in CurrentState.Run)
+            for (var index = 0; index < CurrentState.Run.Count; index++)
             {
-                if (split.SplitTime.RealTime != null && CurrentState.CurrentTimingMethod == TimingMethod.RealTime)
+                if (LiveSplitStateHelper.CheckBestSegment(CurrentState, index, CurrentState.CurrentTimingMethod))
                 {
-                    currentSegmentRTA = split.SplitTime.RealTime - previousSplitTimeRTA;
-                    previousSplitTimeRTA = split.SplitTime.RealTime;
-                    if (split.BestSegmentTime.RealTime == null || currentSegmentRTA < split.BestSegmentTime.RealTime)
-                    {
-                        warnUser = true;
-                        break;
-                    }
-                }
-                if (split.SplitTime.GameTime != null && CurrentState.CurrentTimingMethod == TimingMethod.GameTime)
-                {
-                    currentSegmentGT = split.SplitTime.GameTime - previousSplitTimeGT;
-                    previousSplitTimeGT = split.SplitTime.GameTime;
-                    if (split.BestSegmentTime.GameTime == null || currentSegmentGT < split.BestSegmentTime.GameTime)
-                    {
-                        warnUser = true;
-                        break;
-                    }
+                    warnUser = true;
+                    break;
                 }
             }
             if (!warnUser && (CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] != null && CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] == null) || CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] < CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod])
