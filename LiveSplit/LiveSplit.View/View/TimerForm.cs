@@ -1099,11 +1099,15 @@ namespace LiveSplit.View
                     OldSize = currentSize;
                 }
                 if (Layout.Mode == LayoutMode.Vertical)
-                    MinimumSize = new Size(100, (int)((ComponentRenderer.OverallSize / 3) + 0.5f));
+                    MinimumSize = new Size(100, (int)(currentSize / 3 + 0.5f));
                 else
-                    MinimumSize = new Size((int)((ComponentRenderer.OverallSize / 3) + 0.5f), 25);
+                    MinimumSize = new Size((int)(currentSize / 3 + 0.5f), 25);
             }
-            else
+        }
+
+        private void KeepLayoutSize()
+        {
+            if (OldSize <= 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
                     Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
@@ -1111,7 +1115,7 @@ namespace LiveSplit.View
                     Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
 
                 if (OldSize == 0)
-                    OldSize = currentSize;
+                    OldSize = ComponentRenderer.OverallSize;
                 else
                     OldSize++;
             }
@@ -1175,7 +1179,9 @@ namespace LiveSplit.View
 
             BackColor = Color.Black;
 
-            ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);           
+            ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
+
+            KeepLayoutSize();  
         }
 
         private void TimerForm_Paint(object sender, PaintEventArgs e)
