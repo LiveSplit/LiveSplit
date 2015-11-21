@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Text;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
@@ -36,7 +32,7 @@ namespace CustomFontDialog
                         }
                         if (firstAvailableStyle.HasValue)
                         {
-                            lstFont.Items.Add(new Font(f, 12, firstAvailableStyle.Value));
+                            lstFont.Items.Add(new FontItem(new Font(f, 12, firstAvailableStyle.Value)));
                         }
                     }
                 }
@@ -52,7 +48,7 @@ namespace CustomFontDialog
             get
             {
                 if (lstFont.SelectedItem != null)
-                    return ((Font)lstFont.SelectedItem).FontFamily;
+                    return ((FontItem)lstFont.SelectedItem).Font.FontFamily;
                 else
                     return null;
             }
@@ -71,9 +67,8 @@ namespace CustomFontDialog
         {
             for (int i = 1; i < lstFont.Items.Count; i++)
             {
-                if (lstFont.Items[i] == "Section") continue;
-                Font f = (Font)lstFont.Items[i];
-                if (f.FontFamily.Name == ff.Name)
+                var f = (FontItem)lstFont.Items[i];
+                if (f.ToString() == ff.Name)
                 {
                     return i;
                 }
@@ -82,25 +77,13 @@ namespace CustomFontDialog
             return -1;
         }
 
-        private void lstFont_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            // Draw the background of the ListBox control for each item.
-            e.DrawBackground();
-
-            Font font = (Font)lstFont.Items[e.Index];
-            e.Graphics.DrawString(font.Name, font, Brushes.Black, e.Bounds, StringFormat.GenericDefault);
-
-            // If the ListBox has focus, draw a focus rectangle around the selected item.
-            e.DrawFocusRectangle();
-        }
-
         private void lstFont_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstFont.SelectedItem != null)
             {
                 if (!txtFont.Focused)
                 {
-                    Font f = (Font)lstFont.SelectedItem;
+                    var f = ((FontItem)lstFont.SelectedItem).Font;
                     txtFont.Text = f.Name;
                 }
 
@@ -115,7 +98,7 @@ namespace CustomFontDialog
 
             for (int i = 0; i < lstFont.Items.Count; i++)
             {
-                string str = ((Font)lstFont.Items[i]).Name;
+                string str = lstFont.Items[i].ToString();
                 if (str.StartsWith(txtFont.Text, true, null))
                 {
                     lstFont.SelectedIndex = i;

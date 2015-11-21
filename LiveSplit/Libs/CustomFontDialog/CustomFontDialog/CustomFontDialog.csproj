@@ -54,6 +54,7 @@
     <Compile Include="FontDialog.Designer.cs">
       <DependentUpon>FontDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="FontItem.cs" />
     <Compile Include="FontList.cs">
       <SubType>UserControl</SubType>
     </Compile>

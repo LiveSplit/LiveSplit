@@ -38,13 +38,11 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lstFont.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lstFont.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.lstFont.ItemHeight = 20;
             this.lstFont.Location = new System.Drawing.Point(0, 21);
             this.lstFont.Name = "lstFont";
             this.lstFont.Size = new System.Drawing.Size(220, 282);
             this.lstFont.TabIndex = 0;
-            this.lstFont.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.lstFont_DrawItem);
             this.lstFont.SelectedIndexChanged += new System.EventHandler(this.lstFont_SelectedIndexChanged);
             this.lstFont.KeyDown += new System.Windows.Forms.KeyEventHandler(this.lstFont_KeyDown);
             // 
