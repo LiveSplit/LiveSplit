@@ -121,12 +121,11 @@ namespace LiveSplit.Model
                 var curSegment = GetLiveSegmentTime(state, state.CurrentSplitIndex, method);
                 var bestSegment = state.Run[state.CurrentSplitIndex].BestSegmentTime[method];
                 var bestSegmentDelta = GetLiveSegmentDelta(state, state.CurrentSplitIndex, BestSegmentsComparisonGenerator.ComparisonName, method);
+                var personalBestDelta = GetLiveSegmentDelta(state, state.CurrentSplitIndex, Run.PersonalBestComparisonName, method);
 
-                if (currentTime > curSplit 
-                    || useBestSegment 
-                    && bestSegment != null 
-                    && curSegment > bestSegment 
-                    && bestSegmentDelta > TimeSpan.Zero)
+                if (showWhenBehind && currentTime > curSplit 
+                    || useBestSegment && bestSegment != null && curSegment > bestSegment && bestSegmentDelta > TimeSpan.Zero
+                    || personalBestDelta > TimeSpan.Zero)
                     return currentTime - curSplit;
             }
             return null;
