@@ -294,7 +294,17 @@
       <URL>https://raw.githubusercontent.com/Dalet/DyingLightIGT/master/Components/LiveSplit.DyingLightIGT.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Automatic Timer Start/Reset and Game Time is available. (By Dalet)</Description>
+    <Description>Auto Start/Reset and Game Time are available. (By Dalet)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Fallout 4</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/Dalet/9922f69f41190f00b0f2/raw/LiveSplit.Fallout4.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Reset and Load Removal are available. (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
