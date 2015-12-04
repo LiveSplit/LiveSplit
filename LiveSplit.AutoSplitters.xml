@@ -986,7 +986,6 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Kotti)</Description>
   </AutoSplitter>
-</AutoSplitters>
   <AutoSplitter>
     <Games>
       <Game>SAW: The Game</Game>
@@ -1003,3 +1002,4 @@
     <Description>Load removal is available. (By zoton2)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
+</AutoSplitters>
