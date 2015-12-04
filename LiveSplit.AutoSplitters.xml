@@ -470,7 +470,7 @@
     <URLs>
       <URL>https://raw.githubusercontent.com/0Seren/LiveSplit.MagneticByNature/master/LiveSplit.MagneticByNature.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available (By 0Seren)</Description>
   </AutoSplitter>
   <AutoSplitter>
