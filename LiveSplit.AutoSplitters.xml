@@ -463,18 +463,16 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Abahbob)</Description>
   </AutoSplitter>
-  <!-- 404?
   <AutoSplitter>
     <Games>
       <Game>Magnetic By Nature</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Seren-/LiveSplit.MagneticByNature/raw/master/Component/LiveSplit.MagneticByNature.dll</URL>
+      <URL>https://raw.githubusercontent.com/0Seren/LiveSplit.MagneticByNature/master/LiveSplit.MagneticByNature.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available (By 0Seren)</Description>
   </AutoSplitter>
-  -->
   <AutoSplitter>
     <Games>
       <Game>Hitman: Absolution</Game>
