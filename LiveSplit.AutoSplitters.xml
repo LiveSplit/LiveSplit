@@ -468,7 +468,7 @@
       <Game>Magnetic By Nature</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/0Seren/LiveSplit.MagneticByNature/master/LiveSplit.MagneticByNature.asl</URL>
+      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/Magnetic%20By%20Nature/MagneticByNature.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available (By 0Seren)</Description>
@@ -1000,5 +1000,19 @@
     <Type>Script</Type>
     <Description>Load removal is available. (By zoton2)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Woolfe: The Red Hood Diaries</Game>
+      <Game>Woolfe- The Red Hood Diaries</Game>
+      <Game>Woolfe - The Red Hood Diaries</Game>
+      <Game>Woolfe</Game>
+      <Game>The Red Hood Diaries</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/Woolfe/Woolfe.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available (By 0Seren and SuicideMachine)</Description>
   </AutoSplitter>
 </AutoSplitters>
