@@ -733,4 +733,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dread)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Celestial Mechanica</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PackSciences/Celestial-Mechanica-AutoSplitter/master/CelestialMechanica.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time and Auto Splitting are available. (By PackSciences)</Description>
+  </AutoSplitter>
 </AutoSplitters>
