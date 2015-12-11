@@ -830,7 +830,7 @@
     <Type>Script</Type>
     <Description>English translation only. Load Removal is available. (By btrim)</Description>
   </AutoSplitter>
-    <AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Minecraft</Game>
       <Game>Minecraft Set-Seed</Game>
@@ -1014,5 +1014,15 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available (By 0Seren and SuicideMachine)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+	<Games>
+      <Game>Celestial Mechanica</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PackSciences/Celestial-Mechanica-AutoSplitter/master/CelestialMechanica.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time and Auto Splitting are available. (By PackSciences)</Description>
   </AutoSplitter>
 </AutoSplitters>
