@@ -144,7 +144,7 @@
       <Game>Borderlands 2</Game>
     </Games>
     <URLs>
-      <URL>http://abahbob.com/livesplit/LiveSplit.BL2IGT.asl</URL>
+      <URL>https://raw.githubusercontent.com/Matt-Hurd/ASL/master/LiveSplit.BL2IGT.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available for 1.1 and 1.8.3. (By Abahbob)</Description>
@@ -155,7 +155,7 @@
       <Game>Borderlands: The Pre-Sequel</Game>
     </Games>
     <URLs>
-      <URL>http://abahbob.com/livesplit/LiveSplit.BLTPS.asl</URL>
+      <URL>https://raw.githubusercontent.com/Matt-Hurd/ASL/master/LiveSplit.BLTPS.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto-reset, Start, and Load Removal. (By drMalcom)</Description>
@@ -166,7 +166,7 @@
       <Game>SA2B</Game>
     </Games>
     <URLs>
-      <URL>http://abahbob.com/livesplit/LiveSplit.SA2B.asl</URL>
+      <URL>https://raw.githubusercontent.com/Matt-Hurd/ASL/master/LiveSplit.SA2B.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By ShiningFace)</Description>
@@ -458,7 +458,7 @@
       <Game>Psychonauts</Game>
     </Games>
     <URLs>
-      <URL>http://abahbob.com/livesplit/LiveSplit.Psychonauts.asl</URL>
+      <URL>https://raw.githubusercontent.com/Matt-Hurd/ASL/master/LiveSplit.Psychonauts.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Abahbob)</Description>
