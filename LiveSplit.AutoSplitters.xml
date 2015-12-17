@@ -1025,4 +1025,14 @@
     <Type>Script</Type>
     <Description>Game Time and Auto Splitting are available. (By PackSciences)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Spelunky</Game>
+    </Games>
+    <URLs>
+      <URL>http://sashavol.com/frozlunky/autosplitter/Components/LiveSplit.Spelunky.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting is available. (By sashavol)</Description>
+  </AutoSplitter>
 </AutoSplitters>
