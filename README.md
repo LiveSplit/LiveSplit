@@ -10,7 +10,7 @@
 
 LiveSplit is a timer program for speedrunners that is both easy to use and full of features.
 <p align="center">
-  <img src="http://livesplit.org/wp-content/uploads/2014/01/livesplit_1.41.png" alt="LiveSplit"/>
+  <img src="https://raw.githubusercontent.com/LiveSplit/LiveSplit.github.io/master/images/livesplittimer.png" alt="LiveSplit"/>
 </p>
 
 ## Features
