@@ -1013,7 +1013,7 @@
       <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/Woolfe/Woolfe.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Load Removal are available (By 0Seren and SuicideMachine)</Description>
+    <Description>Auto Splitting and Load Removal are available. (By 0Seren and SuicideMachine)</Description>
   </AutoSplitter>
   <AutoSplitter>
 	<Games>
@@ -1034,5 +1034,17 @@
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting is available. (By sashavol)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Star Wars: The Force Unleashed II</Game>
+      <Game>SWTFU II</Game>
+      <Game>SWTFU 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PackSciences/SWTFU2-Autosplitter/master/SWTFU2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (Beta) (By PackSciences and SatsuiBird)</Description>
   </AutoSplitter>
 </AutoSplitters>
