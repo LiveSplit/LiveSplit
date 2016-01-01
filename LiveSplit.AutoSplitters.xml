@@ -743,4 +743,16 @@
     <Type>Script</Type>
     <Description>Game Time and Auto Splitting are available. (By PackSciences)</Description>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Star Wars: The Force Unleashed II</Game>
+	  <Game>SWTFU II</Game>
+	  <Game>SWTFU 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PackSciences/SWTFU2-Autosplitter/master/SWTFU2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available (Beta) (By PackSciences & SatsuiBird)</Description>
+  </AutoSplitter>
 </AutoSplitters>
