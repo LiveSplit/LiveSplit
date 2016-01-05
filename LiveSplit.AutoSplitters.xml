@@ -1047,4 +1047,15 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (Beta) (By PackSciences and SatsuiBird)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Red Faction</Game>
+      <Game>Pure Faction</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.RedFaction/raw/master/Components/LiveSplit.RedFaction.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Spliting is available - requires Pure Faction 3.0d (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
