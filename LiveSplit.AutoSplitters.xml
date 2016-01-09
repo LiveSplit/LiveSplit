@@ -1058,4 +1058,15 @@
     <Type>Component</Type>
     <Description>Auto Spliting is available - requires Pure Faction 3.0d (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Alien Isolation</Game>
+      <Game>Alien: Isolation</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/fatalis/ASL/master/alien_isolation.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available (By Fatalis)</Description>
+  </AutoSplitter>
 </AutoSplitters>
