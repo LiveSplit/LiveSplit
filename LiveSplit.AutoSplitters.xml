@@ -373,6 +373,23 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Dragon Age: Origins</Game>
+      <Game>Dragon Age Origins</Game>
+      <Game>Dragon Age</Game>
+      <Game>daorigins</Game>
+      <Game>DA: O</Game>
+      <Game>DA:O</Game>
+      <Game>DAO</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/daorigins.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Letterswords)</Description>
+    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Dragon Age 2</Game>
       <Game>DA2</Game>
     </Games>
