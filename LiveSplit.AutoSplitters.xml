@@ -504,6 +504,7 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Star Wars: Knights of the Old Republic</Game>
       <Game>Knights of the Old Republic</Game>
       <Game>KotOR</Game>
     </Games>
@@ -515,6 +516,8 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Star Wars: Knights of the Old Republic II</Game>
+      <Game>Star Wars: Knights of the Old Republic 2</Game>
       <Game>Knights of the Old Republic II</Game>
       <Game>Knights of the Old Republic 2</Game>
       <Game>KotOR II</Game>
