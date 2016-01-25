@@ -209,7 +209,7 @@
       <Game>Two Worlds</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/Dalet/1cf593288ae4318986e1/raw/LiveSplit.TwoWorlds_v1.1.asl</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/livesplit-asl/master/TwoWorlds/LiveSplit.TwoWorlds_v1.1.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dalet)</Description>
@@ -219,7 +219,7 @@
       <Game>Two Worlds: Epic Edition</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/Dalet/1cf593288ae4318986e1/raw/LiveSplit.TwoWorlds.asl</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/livesplit-asl/master/TwoWorlds/LiveSplit.TwoWorlds.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dalet)</Description>
@@ -241,7 +241,7 @@
       <Game>Archangel (2002)</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/Dalet/8742f00ac9bd587f3054/raw/LiveSplit.Archangel.asl</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/livesplit-asl/master/Archangel/LiveSplit.Archangel.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dalet)</Description>
@@ -301,7 +301,7 @@
       <Game>Fallout 4</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/Dalet/9922f69f41190f00b0f2/raw/LiveSplit.Fallout4.asl</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/livesplit-asl/master/Fallout4/LiveSplit.Fallout4.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Dalet)</Description>
