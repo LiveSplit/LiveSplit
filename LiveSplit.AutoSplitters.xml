@@ -1101,4 +1101,20 @@
     <Description>Auto Splitting and Load Removal are available. (By tduva)</Description>
     <Website>https://github.com/tduva/LiveSplit-ASL/blob/master/AlanWake-README.md</Website>
   </AutoSplitter>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Resident Evil 0 HD</Game>
+      <Game>RE0HD</Game>
+      <Game>RE0 HD</Game>
+      <Game>Resident Evil Zero HD</Game>
+      <Game>Resident Evil Zero HD Remaster</Game>
+      <Game>Resident Evil 0 HD Remaster</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/cursedtoast/re0livesplit/master/LiveSplit.RE0.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time is available (by CursedToast).</Description>
+  </AutoSplitter>
 </AutoSplitters>
