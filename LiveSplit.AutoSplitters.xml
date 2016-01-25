@@ -488,7 +488,7 @@
       <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/Magnetic%20By%20Nature/MagneticByNature.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Load Removal are available (By 0Seren)</Description>
+    <Description>Auto Splitting and Load Removal are available. (By 0Seren)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -499,7 +499,7 @@
       <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.HitmanAbsolution/Master/Components/LiveSplit.HMA.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Auto Splitting and Load Removal are available (By SuicideMachine)</Description>
+    <Description>Auto Splitting and Load Removal are available. (By SuicideMachine)</Description>
     <Website>https://github.com/SuiMachine/LiveSplit.HitmanAbsolution/blob/Master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -568,7 +568,7 @@
       <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.AVP2010/master/Components/LiveSplit.AVP2010.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+    <Description>Automatic Load Removal is available. (By SuicideMachine)</Description>
     <Website>https://github.com/SuiMachine/LiveSplit.AVP2010/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -601,7 +601,7 @@
       <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.DXTF/master/Components/LiveSplit.DXTF.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+    <Description>Automatic Load Removal is available. (By SuicideMachine)</Description>
     <Website>https://github.com/SuiMachine/LiveSplit.DXTF/blob/master/README.md</Website>
     </AutoSplitter>
   <AutoSplitter>
@@ -613,7 +613,7 @@
       <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.DXIW/master/Components/LiveSplit.DXIW.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Automatic Load Removal is available (By SuicideMachine)</Description>
+    <Description>Automatic Load Removal is available. (By SuicideMachine)</Description>
     <Website>https://github.com/SuiMachine/LiveSplit.DXIW/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -628,7 +628,7 @@
       <URL>https://raw.githubusercontent.com/cheeseandcereal/AutoSplitter/master/LiveSplit.ToyStory2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Start/Reset/Splitting is available for emulator (By cheeseandcereal)</Description>
+    <Description>Auto Start/Reset/Splitting are available for emulator. (By cheeseandcereal)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1077,7 +1077,7 @@
       <URL>https://github.com/SuiMachine/LiveSplit.RedFaction/raw/master/Components/LiveSplit.RedFaction.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Auto Spliting is available - requires Pure Faction 3.0d (By SuicideMachine)</Description>
+    <Description>Auto Spliting is available - requires Pure Faction 3.0d. (By SuicideMachine)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1088,7 +1088,7 @@
       <URL>https://raw.githubusercontent.com/fatalis/ASL/master/alien_isolation.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available (By Fatalis)</Description>
+    <Description>Load Removal is available. (By Fatalis)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1114,6 +1114,6 @@
       <URL>https://raw.githubusercontent.com/cursedtoast/re0livesplit/master/LiveSplit.RE0.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Game Time is available (by CursedToast).</Description>
+    <Description>Game Time is available. (by CursedToast)</Description>
   </AutoSplitter>
 </AutoSplitters>
