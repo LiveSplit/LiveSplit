@@ -1116,4 +1116,15 @@
     <Type>Script</Type>
     <Description>Game Time is available. (by CursedToast)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>LA Noire</Game>
+      <Game>L.A. Noire</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/LA_Noire/LiveSplit.LANoire.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available (by SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
