@@ -888,6 +888,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Rise of the Tomb Raider</Game>
+      <Game>RotTR</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/ROTTR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dread)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Quake</Game>
     </Games>
     <URLs>
