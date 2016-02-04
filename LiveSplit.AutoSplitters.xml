@@ -1138,4 +1138,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available (by SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Medal of Honor: Airborne</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/Components/LiveSplit.MoHA.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available. (By 7imekeeper)</Description>
+  </AutoSplitter>
 </AutoSplitters>
