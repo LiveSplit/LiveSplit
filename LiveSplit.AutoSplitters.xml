@@ -1148,4 +1148,21 @@
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By 7imekeeper)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Big Lolly</Game>
+      <Game>Gunman Chronicles</Game>
+      <Game>Half-Life</Game>
+      <Game>Half-Life: Blue Shift</Game>
+      <Game>Half-Life: Decay</Game>
+      <Game>Half-Life: Opposing Force</Game>
+    </Games>
+    <URLs>
+      <URL>http://play.sourceruns.org/BunnySplit/LiveSplit.BunnySplit.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time and Auto Splitting are available. Requires Bunnymod XT. (By YaLTeR)</Description>
+    <Website>https://github.com/YaLTeR/LiveSplit.BunnySplit</Website>
+    <ShowInLayoutEditor />
+  </AutoSplitter>
 </AutoSplitters>
