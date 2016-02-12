@@ -1158,7 +1158,7 @@
       <Game>Half-Life: Opposing Force</Game>
     </Games>
     <URLs>
-      <URL>http://play.sourceruns.org/BunnySplit/LiveSplit.BunnySplit.dll</URL>
+      <URL>http://play.sourceruns.org/BunnySplit/Components/LiveSplit.BunnySplit.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting are available. Requires Bunnymod XT. (By YaLTeR)</Description>
