@@ -19,6 +19,7 @@
 		- [Load Time Removal](#load-time-removal)
 		- [Game Time](#game-time-1)
 	- [Action Variables](#action-variables)
+	- [Settings](#settings)
 	- [Built-in Functions](#built-in-functions)
 	- [Testing your Script](#testing-your-script)
 - [Adding an Auto Splitter](#adding-an-auto-splitter)
@@ -76,7 +77,7 @@ The Auto Splitting Language is a small scripting language made specifically for 
  * No Visual Studio or any compiler is needed; you can write it in Notepad.
 
 **Disadvantages:**
- * Currently cannot provide settings for the user to change.
+ * Currently only provides boolean settings for the user to change.
 
 An Auto Splitting Language Script contains a State Descriptor and multiple Actions.
 
@@ -159,13 +160,25 @@ The name of this action is `split`. Return `true` whenever you want to trigger a
 
 The name of this action is `reset`. Return `true` whenever you want to reset the run.
 
+#### Script Startup
+
+The name of this action is `startup`. This actions is triggered when the script is first loaded. This is the place where you can put things that you only need to define once and the only place where you can add [Custom Settings](#custom-settings).
+
+#### Script Shutdown
+
+The name of this action is `shutdown`. This action is triggered whenever the script is entirely stopped, for example when the Auto Splitter is disabled, LiveSplit exits, the script path is changed or the script is reloaded (e.g. during development of the ASL script).
+
 #### Script Initialization
 
-The name of this action is `init`. This action is triggered when a game process has been found according to the State Descriptors.
+The name of this action is `init`. This action is triggered whenever a game process has been found according to the State Descriptors. This can occur more than once during the execution of a script. This is the place to do initialization that depends on the game, for example detecting the game version.
+
+#### Game Exit
+
+The name of this action is `exit`. This action is triggered whenever the currently attached game process exits.
 
 #### Generic Update
 
-The name of this action is `update`. You can use this for generic updating.
+The name of this action is `update`. You can use this for generic updating. Explicitly returning `false` will prevent the actions `start`, `reset`, `split`, `gameTime` and `isLoading` from being run. This can be useful if you want to entirely disable the script under some conditions (e.g. for incompatible game versions).
 
 #### Load Time Removal
 
@@ -213,7 +226,11 @@ vars.test4 = memory.ReadString(modules.Where(m => x.ModuleName == "some.dll").Fi
 ```
 
 ##### version
-When you set `version` in `init`, the corrosponding State Descriptor will be activated. The default is the first defined State Descriptor with `version` set to an empty string.
+When you set `version` in `init`, the corrosponding State Descriptor will be activated. When there is no State Descriptor corrosponding to the `version`, the default one will be activated.
+
+The default is the first defined State Descriptor with no version specified, or the first State Descriptor in the file if there is none with no version specified.
+
+The string you set `version` to will also be displayed in the ASL Settings GUI.
 ```
 state("game", "v1.2")
 {
@@ -242,6 +259,82 @@ Each action (except `init`, which is only triggered once) is triggered approxima
 ```
 refreshRate = 30;
 ```
+
+### Settings
+
+#### Basic Settings
+The Auto Splitter Settings GUI has some default settings to allow the user to toggle the actions `start`, `reset` and `split`. In case the action is unchecked, the ignore value of that action is ignored (but the code inside the action is still executed). So for example if the checkbox for `start` is unchecked in the settings, returning `true` in `start` will have no effect.
+
+You can get the current value of the basic settings in your script through the attributes `settings.StartEnabled`, `settings.ResetEnabled` and `settings.SplitEnabled`. This is only for informational purpose if your script needs to do something depending on whether the action was actually performed or not.
+
+#### Custom Settings
+
+You can define custom boolean settings for your script in the `startup` action and then access the setting values as configured by the user in the other actions. If you have custom settings defined, they will be shown in the GUI for the user to check/uncheck. They will appear in the same order you added them in the ASL script.
+
+##### Defining settings
+
+You can define settings in the `startup` action by using the `settings.Add(id, default_value = true, description = null, parent = null)` method:
+
+```
+// Add setting 'mission1', enabled by default, with 'First Mission' being displayed in the GUI
+settings.Add("mission1", true, "First Mission");
+
+// Add setting 'mission2', enabled by default, with 'mission2' being displayed in the GUI
+settings.Add("mission2");
+
+// Add setting 'mission3', disabled by default, with 'mission3' being displayed in the GUI
+settings.Add("mission3", false);
+```
+
+If you want to organize the settings in a hierarchy, you can specify the `parent` parameter. Note that the `parent` has to be the `id` of a setting that you already added:
+
+```
+// Add setting 'main_missions'
+settings.Add("main_missions", true, "Main Missions");
+
+// Add setting 'mission1', with 'main_missions' as parent
+settings.Add("mission1", true, "First Mission", "main_missions");
+```
+
+Settings only return `true` (checked) when their `parent` setting is `true` as well. The user can still freely toggle settings that have their parent unchecked, however they will be grayed out to indicate they are disabled.
+
+Any setting can act as a `parent` setting, so you could for example do the following to go one level deeper (continuing from the last example):
+
+```
+// Add setting 'mission1_part1', with 'mission1' as parent
+settings.Add("mission1_part1", true, "First part of Mission 1", "mission1");
+```
+
+The setting `mission1_part1` will only be enabled, when both `mission1` and `main_missions` are enabled.
+
+When the `parent` parameter is null or omitted, the setting will be added as top-level setting, unless `setting.CurrentDefaultParent` is set to something other than `null`:
+
+```
+// Add top-level setting 'main_missions'
+settings.Add("main_missions");
+
+setting.CurrentDefaultParent = "main_missions";
+
+// Add setting 'mission1', with the parent 'main_missions'
+settings.Add("mission1");
+
+settings.CurrentDefaultParent = null;
+
+// Add top-level setting 'side_missions'
+settings.Add("side_missions");
+```
+
+Using `settings.CurrentDefaultParent` can be useful when adding several settings with the same parent, without having to specify the parent everytime.
+
+##### Reading settings
+
+You can access the current value of a setting in all actions other than `startup` by accessing `settings`:
+
+````
+// Do something depending on the value of the setting 'mission1'
+if (settings["mission1"]) {  }
+````
+
 
 ### Built-in Functions
 
