@@ -1165,4 +1165,14 @@
     <Website>https://github.com/YaLTeR/LiveSplit.BunnySplit</Website>
     <ShowInLayoutEditor />
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>TimeShift</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Ekelbatzen/LiveSplit.Scripts/master/TimeShift.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By Ekelbatzen)</Description>
+  </AutoSplitter>
 </AutoSplitters>
