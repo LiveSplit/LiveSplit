@@ -154,9 +154,7 @@ namespace LiveSplit.ComponentUtil
         public SigScanTarget(int offset, byte[] binary)
         {
             _sigs = new List<Signature>();
-
-            var emptyMask = new bool[binary.Length];
-            _sigs.Add(new Signature { Pattern = binary, Mask = emptyMask, Offset = offset });
+            AddSignature(offset, binary);
         }
 
         public void AddSignature(int offset, params string[] signature)
@@ -188,6 +186,12 @@ namespace LiveSplit.ComponentUtil
                 Mask = sigMask.ToArray(),
                 Offset = offset
             });
+        }
+
+        public void AddSignature(int offset, byte[] binary)
+        {
+            var emptyMask = new bool[binary.Length];
+            _sigs.Add(new Signature { Pattern = binary, Mask = emptyMask, Offset = offset });
         }
     }
 }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+
 #pragma warning disable 1591
 
 // Note: Please be careful when modifying this because it could break existing components!
@@ -38,6 +39,48 @@ namespace LiveSplit.ComponentUtil
         UTF16
     }
 
+    public enum MemPageState : uint
+    {
+        MEM_COMMIT = 0x1000,
+        MEM_RESERVE = 0x2000,
+        MEM_FREE = 0x10000,
+    }
+
+    public enum MemPageType : uint
+    {
+        MEM_PRIVATE = 0x20000,
+        MEM_MAPPED = 0x40000,
+        MEM_IMAGE = 0x1000000
+    }
+
+    [Flags]
+    public enum MemPageProtection : uint
+    {
+        PAGE_NOACCESS = 0x01,
+        PAGE_READONLY = 0x02,
+        PAGE_READWRITE = 0x04,
+        PAGE_WRITECOPY = 0x08,
+        PAGE_EXECUTE = 0x10,
+        PAGE_EXECUTE_READ = 0x20,
+        PAGE_EXECUTE_READWRITE = 0x40,
+        PAGE_EXECUTE_WRITECOPY = 0x80,
+        PAGE_GUARD = 0x100,
+        PAGE_NOCACHE = 0x200,
+        PAGE_WRITECOMBINE = 0x400,
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    public struct MemoryBasicInformation // MEMORY_BASIC_INFORMATION
+    {
+        public IntPtr BaseAddress;
+        public IntPtr AllocationBase;
+        public MemPageProtection AllocationProtect;
+        public SizeT RegionSize;
+        public MemPageState State;
+        public MemPageProtection Protect;
+        public MemPageType Type;
+    }
+
     public static class ExtensionMethods
     {
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -51,7 +94,7 @@ namespace LiveSplit.ComponentUtil
             out uint lpcbNeeded, uint dwFilterFlag);
 
         [DllImport("psapi.dll", SetLastError = true)]
-        private static extern uint GetModuleFileNameEx(IntPtr hProcess, IntPtr hModule, [Out] StringBuilder lpBaseName,
+        public static extern uint GetModuleFileNameEx(IntPtr hProcess, IntPtr hModule, [Out] StringBuilder lpBaseName,
             uint nSize);
 
         [DllImport("psapi.dll", SetLastError = true)]
@@ -60,12 +103,17 @@ namespace LiveSplit.ComponentUtil
             uint cb);
 
         [DllImport("psapi.dll")]
-        private static extern uint GetModuleBaseName(IntPtr hProcess, IntPtr hModule, [Out] StringBuilder lpBaseName,
+        public static extern uint GetModuleBaseName(IntPtr hProcess, IntPtr hModule, [Out] StringBuilder lpBaseName,
             uint nSize);
 
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IsWow64Process(IntPtr hProcess, [Out, MarshalAs(UnmanagedType.Bool)] out bool wow64Process);
+        public static extern bool IsWow64Process(IntPtr hProcess,
+            [Out, MarshalAs(UnmanagedType.Bool)] out bool wow64Process);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern SizeT VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress,
+            [Out] out MemoryBasicInformation lpBuffer, SizeT dwLength);
 
         [StructLayout(LayoutKind.Sequential)]
         public struct MODULEINFO
@@ -136,6 +184,42 @@ namespace LiveSplit.ComponentUtil
             ModuleCache.Add(hash, ret.ToArray());
 
             return ret.ToArray();
+        }
+
+        public static IEnumerable<MemoryBasicInformation> MemoryPages(this Process process, bool all = false)
+        {
+            var ret = new List<MemoryBasicInformation>();
+
+            // hardcoded values because GetSystemInfo / GetNativeSystemInfo can't return info for remote process
+            var min = 0x10000L;
+            var max = process.Is64Bit() ? 0x00007FFFFFFEFFFFL : 0x7FFEFFFFL;
+
+            var mbiSize = (SizeT)Marshal.SizeOf(typeof(MemoryBasicInformation));
+
+            var addr = min;
+            do
+            {
+                MemoryBasicInformation mbi;
+                VirtualQueryEx(process.Handle, (IntPtr)addr, out mbi, mbiSize);
+                addr += (long)mbi.RegionSize;
+
+                // don't care about reserved/free pages
+                if (mbi.State != MemPageState.MEM_COMMIT)
+                    continue;
+
+                // probably don't care about guarded pages
+                if (!all && (mbi.Protect & MemPageProtection.PAGE_GUARD) != 0)
+                    continue;
+
+                // probably don't care about image/file maps
+                if (!all && mbi.Type != MemPageType.MEM_PRIVATE)
+                    continue;
+
+                ret.Add(mbi);
+
+            } while (addr < max);
+
+            return ret;
         }
 
         public static bool Is64Bit(this Process process)
