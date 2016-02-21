@@ -23,7 +23,7 @@ namespace LiveSplit.ComponentUtil
     }
 
     [Flags]
-    public enum MemPageProtection : uint
+    public enum MemPageProtect : uint
     {
         PAGE_NOACCESS = 0x01,
         PAGE_READONLY = 0x02,
@@ -43,10 +43,10 @@ namespace LiveSplit.ComponentUtil
     {
         public IntPtr BaseAddress;
         public IntPtr AllocationBase;
-        public MemPageProtection AllocationProtect;
+        public MemPageProtect AllocationProtect;
         public SizeT RegionSize;
         public MemPageState State;
-        public MemPageProtection Protect;
+        public MemPageProtect Protect;
         public MemPageType Type;
     }
 
@@ -91,11 +91,16 @@ namespace LiveSplit.ComponentUtil
 
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, SizeT dwSize, uint flAllocationType,
-            MemPageProtection flProtect);
+            MemPageProtect flProtect);
 
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress, SizeT dwSize, uint dwFreeType);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool VirtualProtectEx(IntPtr hProcess, IntPtr lpAddress, SizeT dwSize,
+            MemPageProtect flNewProtect, [Out] out MemPageProtect lpflOldProtect);
 
         [DllImport("ntdll.dll", SetLastError = true)]
         public static extern IntPtr NtSuspendProcess(IntPtr hProcess);

@@ -125,7 +125,7 @@ namespace LiveSplit.ComponentUtil
                     continue;
 
                 // probably don't care about guarded pages
-                if (!all && (mbi.Protect & MemPageProtection.PAGE_GUARD) != 0)
+                if (!all && (mbi.Protect & MemPageProtect.PAGE_GUARD) != 0)
                     continue;
 
                 // probably don't care about image/file maps
@@ -320,28 +320,6 @@ namespace LiveSplit.ComponentUtil
             return true;
         }
 
-        public static IntPtr AllocateMemory(this Process process, int size)
-        {
-            return WinAPI.VirtualAllocEx(process.Handle, IntPtr.Zero, (SizeT)size, (uint)MemPageState.MEM_COMMIT,
-                MemPageProtection.PAGE_EXECUTE_READWRITE);
-        }
-
-        public static bool FreeMemory(this Process process, IntPtr addr)
-        {
-            const uint MEM_RELEASE = 0x8000;
-            return WinAPI.VirtualFreeEx(process.Handle, addr, SizeT.Zero, MEM_RELEASE);
-        }
-
-        public static void Suspend(this Process process)
-        {
-            WinAPI.NtSuspendProcess(process.Handle);
-        }
-
-        public static void Resume(this Process process)
-        {
-            WinAPI.NtResumeProcess(process.Handle);
-        }
-
         static object ResolveToType(byte[] bytes, Type type)
         {
             object val;
@@ -391,6 +369,40 @@ namespace LiveSplit.ComponentUtil
             }
 
             return val;
+        }
+
+        public static IntPtr AllocateMemory(this Process process, int size)
+        {
+            return WinAPI.VirtualAllocEx(process.Handle, IntPtr.Zero, (SizeT)size, (uint)MemPageState.MEM_COMMIT,
+                MemPageProtect.PAGE_EXECUTE_READWRITE);
+        }
+
+        public static bool FreeMemory(this Process process, IntPtr addr)
+        {
+            const uint MEM_RELEASE = 0x8000;
+            return WinAPI.VirtualFreeEx(process.Handle, addr, SizeT.Zero, MEM_RELEASE);
+        }
+
+        public static bool VirtualProtect(this Process process, IntPtr addr, int size, MemPageProtect protect,
+            out MemPageProtect oldProtect)
+        {
+            return WinAPI.VirtualProtectEx(process.Handle, addr, (SizeT)size, protect, out oldProtect);
+        }
+
+        public static bool VirtualProtect(this Process process, IntPtr addr, int size, MemPageProtect protect)
+        {
+            MemPageProtect oldProtect;
+            return WinAPI.VirtualProtectEx(process.Handle, addr, (SizeT)size, protect, out oldProtect);
+        }
+
+        public static void Suspend(this Process process)
+        {
+            WinAPI.NtSuspendProcess(process.Handle);
+        }
+
+        public static void Resume(this Process process)
+        {
+            WinAPI.NtResumeProcess(process.Handle);
         }
 
         public static float ToFloatBits(this uint i)
