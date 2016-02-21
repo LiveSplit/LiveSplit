@@ -326,6 +326,12 @@ namespace LiveSplit.ComponentUtil
                 MemPageProtection.PAGE_EXECUTE_READWRITE);
         }
 
+        public static bool FreeMemory(this Process process, IntPtr addr)
+        {
+            const uint MEM_RELEASE = 0x8000;
+            return WinAPI.VirtualFreeEx(process.Handle, addr, SizeT.Zero, MEM_RELEASE);
+        }
+
         public static void Suspend(this Process process)
         {
             WinAPI.NtSuspendProcess(process.Handle);

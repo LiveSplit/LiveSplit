@@ -93,6 +93,10 @@ namespace LiveSplit.ComponentUtil
         public static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, SizeT dwSize, uint flAllocationType,
             MemPageProtection flProtect);
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool VirtualFreeEx(IntPtr hProcess, IntPtr lpAddress, SizeT dwSize, uint dwFreeType);
+
         [DllImport("ntdll.dll", SetLastError = true)]
         public static extern IntPtr NtSuspendProcess(IntPtr hProcess);
 
