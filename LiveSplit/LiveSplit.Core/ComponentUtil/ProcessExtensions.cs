@@ -320,6 +320,12 @@ namespace LiveSplit.ComponentUtil
             return true;
         }
 
+        public static IntPtr AllocateMemory(this Process process, int size)
+        {
+            return WinAPI.VirtualAllocEx(process.Handle, IntPtr.Zero, (SizeT)size, (uint)MemPageState.MEM_COMMIT,
+                MemPageProtection.PAGE_EXECUTE_READWRITE);
+        }
+
         static object ResolveToType(byte[] bytes, Type type)
         {
             object val;

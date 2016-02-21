@@ -89,6 +89,10 @@ namespace LiveSplit.ComponentUtil
         public static extern SizeT VirtualQueryEx(IntPtr hProcess, IntPtr lpAddress,
             [Out] out MemoryBasicInformation lpBuffer, SizeT dwLength);
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, SizeT dwSize, uint flAllocationType,
+            MemPageProtection flProtect);
+
         [StructLayout(LayoutKind.Sequential)]
         public struct MODULEINFO
         {
