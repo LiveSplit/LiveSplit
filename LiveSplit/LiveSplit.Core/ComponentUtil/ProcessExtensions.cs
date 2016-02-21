@@ -310,6 +310,16 @@ namespace LiveSplit.ComponentUtil
             return str;
         }
 
+        public static bool WriteBytes(this Process process, IntPtr addr, byte[] bytes)
+        {
+            SizeT written;
+            if (!WinAPI.WriteProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out written)
+                || written != (SizeT)bytes.Length)
+                return false;
+
+            return true;
+        }
+
         static object ResolveToType(byte[] bytes, Type type)
         {
             object val;
