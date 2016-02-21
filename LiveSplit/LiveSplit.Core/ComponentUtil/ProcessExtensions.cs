@@ -326,6 +326,16 @@ namespace LiveSplit.ComponentUtil
                 MemPageProtection.PAGE_EXECUTE_READWRITE);
         }
 
+        public static void Suspend(this Process process)
+        {
+            WinAPI.NtSuspendProcess(process.Handle);
+        }
+
+        public static void Resume(this Process process)
+        {
+            WinAPI.NtResumeProcess(process.Handle);
+        }
+
         static object ResolveToType(byte[] bytes, Type type)
         {
             object val;

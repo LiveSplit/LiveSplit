@@ -93,6 +93,12 @@ namespace LiveSplit.ComponentUtil
         public static extern IntPtr VirtualAllocEx(IntPtr hProcess, IntPtr lpAddress, SizeT dwSize, uint flAllocationType,
             MemPageProtection flProtect);
 
+        [DllImport("ntdll.dll", SetLastError = true)]
+        public static extern IntPtr NtSuspendProcess(IntPtr hProcess);
+
+        [DllImport("ntdll.dll", SetLastError = true)]
+        public static extern IntPtr NtResumeProcess(IntPtr hProcess);
+
         [StructLayout(LayoutKind.Sequential)]
         public struct MODULEINFO
         {
