@@ -101,6 +101,7 @@
     <Compile Include="ComponentUtil\DeepPointer.cs" />
     <Compile Include="ComponentUtil\MemoryWatcher.cs" />
     <Compile Include="ComponentUtil\SignatureScanner.cs" />
+    <Compile Include="ComponentUtil\WinAPI.cs" />
     <Compile Include="Model\AtomicDateTime.cs" />
     <Compile Include="Model\Attempt.cs" />
     <Compile Include="Model\AutoSplitter.cs" />
