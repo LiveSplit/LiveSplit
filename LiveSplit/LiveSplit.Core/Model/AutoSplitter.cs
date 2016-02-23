@@ -62,11 +62,16 @@ namespace LiveSplit.Model
             foreach (var url in URLs)
             {
                 var fileName = url.Substring(url.LastIndexOf('/') + 1);
+                var tempFileName = fileName + "-temp";
                 var localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
+                var localPathTemp = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, tempFileName));
 
                 try
                 {
-                    client.DownloadFile(new Uri(url), localPath);
+                    // Download to temp file so the original file is kept if it fails downloading
+                    client.DownloadFile(new Uri(url), localPathTemp);
+                    File.Copy(localPathTemp, localPath, true);
+                    File.Delete(localPathTemp);
                     if (url != URLs.First())
                     {
                         var factory = ComponentManager.LoadFactory(localPath);
