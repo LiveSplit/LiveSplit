@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
+
 #pragma warning disable 1591
 
 // Note: Please be careful when modifying this because it could break existing components!
@@ -43,6 +46,15 @@ namespace LiveSplit.ComponentUtil
             }
         }
 
+        public byte[] Memory
+        {
+            get { return _memory; }
+            set {
+                _memory = value;
+                _size = value.Length;
+            }
+        }
+
         public SignatureScanner(Process proc, IntPtr addr, int size)
         {
             if (proc == null)
@@ -58,18 +70,47 @@ namespace LiveSplit.ComponentUtil
             _memory = new byte[1];
         }
 
+        public SignatureScanner(byte[] mem)
+        {
+            if (mem == null)
+                throw new ArgumentNullException(nameof(mem));
+
+            _memory = mem;
+            _size = mem.Length;
+        }
+
+        // backwards compat method signature
         public IntPtr Scan(SigScanTarget target)
+        {
+            return Scan(target, 1);
+        }
+
+        public IntPtr Scan(SigScanTarget target, int align)
+        {
+            if ((long)_address % align != 0)
+                throw new ArgumentOutOfRangeException(nameof(align), "start address must be aligned");
+
+            return ScanAll(target, align).FirstOrDefault();
+        }
+
+        public IEnumerable<IntPtr> ScanAll(SigScanTarget target, int align = 1)
+        {
+            if ((long)_address % align != 0)
+                throw new ArgumentOutOfRangeException(nameof(align), "start address must be aligned");
+
+            return ScanInternal(target, align);
+        }
+
+        IEnumerable<IntPtr> ScanInternal(SigScanTarget target, int align)
         {
             if (_memory == null || _memory.Length != _size)
             {
-                _memory = new byte[_size];
-
                 byte[] bytes;
 
                 if (!_process.ReadBytes(_address, _size, out bytes))
                 {
                     _memory = null;
-                    return IntPtr.Zero;
+                    yield break;
                 }
 
                 _memory = bytes;
@@ -77,48 +118,132 @@ namespace LiveSplit.ComponentUtil
 
             foreach (SigScanTarget.Signature sig in target.Signatures)
             {
-                IntPtr ptr = FindPattern(sig.Pattern, sig.Mask, sig.Offset);
-                if (ptr != IntPtr.Zero)
+                // have to implement IEnumerator manually because you can't yield in an unsafe block...
+                foreach (int off in new ScanEnumerator(_memory, align, sig))
                 {
+                    var ptr = _address + off + sig.Offset;
                     if (target.OnFound != null)
                         ptr = target.OnFound(_process, this, ptr);
-                    return ptr;
+                    yield return ptr;
                 }
             }
-
-            return IntPtr.Zero;
         }
 
-        unsafe IntPtr FindPattern(byte[] sig, bool[] mask, int finalOffset)
+        class ScanEnumerator : IEnumerator<int>, IEnumerable<int>
         {
-            if (sig.Length != mask.Length)
-                throw new ArgumentException("sig length is not equal to mask length.", nameof(sig));
+            // IEnumerator
+            public int Current { get; private set; }
+            object IEnumerator.Current { get { return Current; } }
 
-            fixed (byte* mem = _memory, s = sig)
-            fixed (bool* m = mask)
+            private readonly byte[] _memory;
+            private readonly int _align;
+            private readonly SigScanTarget.Signature _sig;
+
+            private readonly int _sigLen;
+            private readonly int _end;
+
+            private int _nextIndex;
+
+            public ScanEnumerator(byte[] mem, int align, SigScanTarget.Signature sig)
             {
-                int sigLen = sig.Length;
-                int memLen = _memory.Length;
+                if (mem.Length < sig.Pattern.Length)
+                    throw new ArgumentOutOfRangeException(nameof(mem), "memory buffer length must be >= pattern length");
 
-                for (int addr = 0; addr < memLen; addr++)
+                _memory = mem;
+                _align = align;
+                _sig = sig;
+
+                _sigLen = _sig.Pattern.Length;
+                _end = _memory.Length - _sigLen;
+            }
+
+            // IEnumerator
+            public bool MoveNext()
+            {
+                return _sig.Mask != null ? NextPattern() : NextBytes();
+            }
+            public void Reset()
+            {
+                _nextIndex = 0;
+            }
+            public void Dispose()
+            {
+            }
+
+            // IEnumerable
+            public IEnumerator<int> GetEnumerator()
+            {
+                return this;
+            }
+            IEnumerator IEnumerable.GetEnumerator()
+            {
+                return this;
+            }
+
+            unsafe bool NextPattern()
+            {
+                fixed (bool* mask = _sig.Mask)
+                fixed (byte* mem = _memory, sig = _sig.Pattern)
                 {
-                    for (int i = 0; i < sigLen; i++)
-                    {
-                        if (m[i])
-                            continue;
+                    // perf: locals are MUCH faster than properties and fields, especially on writes
+                    int end = _end;
+                    int sigLen = _sigLen;
+                    int align = _align;
+                    int index = _nextIndex; // biggest speed increase
 
-                        if (addr + i >= memLen || s[i] != mem[addr + i])
-                            goto next;
+                    for (; index < end; index += align) // index++ would be ~7% faster
+                    {
+                        for (int sigIndex = 0; sigIndex < sigLen; sigIndex++)
+                        {
+                            if (mask[sigIndex])
+                                continue;
+                            if (sig[sigIndex] != mem[index + sigIndex])
+                                goto next;
+                        }
+
+                        // fully matched
+                        Current = index;
+                        _nextIndex = index + align;
+                        return true;
+
+                    next:
+                        ;
                     }
 
-                    return _address + (addr + finalOffset);
-
-                next:
-                    ;
+                    return false;
                 }
             }
 
-            return IntPtr.Zero;
+            unsafe bool NextBytes()
+            {
+                // just a straight memory compare
+                fixed (byte* mem = _memory, sig = _sig.Pattern)
+                {
+                    int end = _end;
+                    int index = _nextIndex;
+                    int align = _align;
+                    int sigLen = _sigLen;
+
+                    for (; index < end; index += align)
+                    {
+                        for (int sigIndex = 0; sigIndex < sigLen; sigIndex++)
+                        {
+                            if (sig[sigIndex] != mem[index + sigIndex])
+                                goto next;
+                        }
+
+                        // fully matched
+                        Current = index;
+                        _nextIndex = index + align;
+                        return true;
+
+                    next:
+                        ;
+                    }
+
+                    return false;
+                }
+            }
         }
     }
 
@@ -146,25 +271,30 @@ namespace LiveSplit.ComponentUtil
         }
 
         public SigScanTarget(int offset, params string[] signature)
+            : this()
         {
-            _sigs = new List<Signature>();
             AddSignature(offset, signature);
         }
 
-        public SigScanTarget(int offset, byte[] binary)
+        public SigScanTarget(int offset, params byte[] signature)
+            : this()
         {
-            _sigs = new List<Signature>();
-            AddSignature(offset, binary);
+            AddSignature(offset, signature);
         }
+
+        public SigScanTarget(params string[] signature) : this(0, signature) { }
+        // make sure to cast the first arg to byte if using params, so you don't accidentally use offset ctor
+        public SigScanTarget(params byte[] binary) : this(0, binary) { }
 
         public void AddSignature(int offset, params string[] signature)
         {
             string sigStr = string.Join(string.Empty, signature).Replace(" ", string.Empty);
             if (sigStr.Length % 2 != 0)
-                throw new ArgumentException();
+                throw new ArgumentException(nameof(signature));
 
             var sigBytes = new List<byte>();
             var sigMask = new List<bool>();
+            var hasMask = false;
 
             for (int i = 0; i < sigStr.Length; i += 2)
             {
@@ -178,20 +308,34 @@ namespace LiveSplit.ComponentUtil
                 {
                     sigBytes.Add(0);
                     sigMask.Add(true);
+                    hasMask = true;
                 }
             }
 
             _sigs.Add(new Signature {
                 Pattern = sigBytes.ToArray(),
-                Mask = sigMask.ToArray(),
-                Offset = offset
+                Mask = hasMask ? sigMask.ToArray() : null,
+                Offset = offset,
             });
         }
 
-        public void AddSignature(int offset, byte[] binary)
+        public void AddSignature(int offset, params byte[] binary)
         {
-            var emptyMask = new bool[binary.Length];
-            _sigs.Add(new Signature { Pattern = binary, Mask = emptyMask, Offset = offset });
+            _sigs.Add(new Signature {
+                Pattern = binary,
+                Mask = null,
+                Offset = offset,
+            });
+        }
+
+        public void AddSignature(params string[] signature)
+        {
+            AddSignature(0, signature);
+        }
+
+        public void AddSignature(params byte[] binary)
+        {
+            AddSignature(0, binary);
         }
     }
 }
