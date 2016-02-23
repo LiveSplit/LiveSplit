@@ -64,14 +64,23 @@ namespace LiveSplit.Model
                 var fileName = url.Substring(url.LastIndexOf('/') + 1);
                 var tempFileName = fileName + "-temp";
                 var localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
-                var localPathTemp = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, tempFileName));
+                var tempLocalPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, tempFileName));
 
                 try
                 {
                     // Download to temp file so the original file is kept if it fails downloading
-                    client.DownloadFile(new Uri(url), localPathTemp);
-                    File.Copy(localPathTemp, localPath, true);
-                    File.Delete(localPathTemp);
+                    client.DownloadFile(new Uri(url), tempLocalPath);
+                    File.Copy(tempLocalPath, localPath, true);
+                    try
+                    {
+                        // This is not required to run the AutoSplitter, but should still try to clean up
+                        File.Delete(tempLocalPath);
+                    }
+                    catch (Exception)
+                    {
+                        Log.Error($"Failed to delete temp file: {tempLocalPath}");
+                    }
+                    
                     if (url != URLs.First())
                     {
                         var factory = ComponentManager.LoadFactory(localPath);
@@ -82,6 +91,11 @@ namespace LiveSplit.Model
                 catch (WebException)
                 {
                     Log.Error("Error downloading file from " + url);
+                }
+                catch (Exception ex)
+                {
+                    // Catch errors of File.Copy() if necessary
+                    Log.Error(ex);
                 }
             }
 
