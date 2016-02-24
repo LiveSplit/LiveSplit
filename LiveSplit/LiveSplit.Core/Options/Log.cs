@@ -16,7 +16,9 @@ namespace LiveSplit.Options
 
             try
             {
-                Trace.Listeners.Add(new EventLogTraceListener("LiveSplit"));
+                var listener = new EventLogTraceListener("LiveSplit");
+                listener.Filter = new EventTypeFilter(SourceLevels.Warning);
+                Trace.Listeners.Add(listener);
             }
             catch { }
         }
