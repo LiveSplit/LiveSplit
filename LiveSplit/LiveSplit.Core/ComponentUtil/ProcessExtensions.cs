@@ -8,6 +8,7 @@ using System.Text;
 #pragma warning disable 1591
 
 // Note: Please be careful when modifying this because it could break existing components!
+// http://stackoverflow.com/questions/1456785/a-definitive-guide-to-api-breaking-changes-in-net
 
 namespace LiveSplit.ComponentUtil
 {
@@ -105,8 +106,6 @@ namespace LiveSplit.ComponentUtil
 
         public static IEnumerable<MemoryBasicInformation> MemoryPages(this Process process, bool all = false)
         {
-            var ret = new List<MemoryBasicInformation>();
-
             // hardcoded values because GetSystemInfo / GetNativeSystemInfo can't return info for remote process
             var min = 0x10000L;
             var max = process.Is64Bit() ? 0x00007FFFFFFEFFFFL : 0x7FFEFFFFL;
@@ -117,7 +116,8 @@ namespace LiveSplit.ComponentUtil
             do
             {
                 MemoryBasicInformation mbi;
-                WinAPI.VirtualQueryEx(process.Handle, (IntPtr)addr, out mbi, mbiSize);
+                if (WinAPI.VirtualQueryEx(process.Handle, (IntPtr)addr, out mbi, mbiSize) == (SizeT)0)
+                    break;
                 addr += (long)mbi.RegionSize;
 
                 // don't care about reserved/free pages
@@ -132,11 +132,9 @@ namespace LiveSplit.ComponentUtil
                 if (!all && mbi.Type != MemPageType.MEM_PRIVATE)
                     continue;
 
-                ret.Add(mbi);
+                yield return mbi;
 
             } while (addr < max);
-
-            return ret;
         }
 
         public static bool Is64Bit(this Process process)
