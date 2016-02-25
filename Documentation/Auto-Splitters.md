@@ -11,7 +11,7 @@
 	- [Pointer Paths](#pointer-paths)
 - [The Auto Splitting Language - ASL](#the-auto-splitting-language---asl)
 	- [State Descriptors](#state-descriptors)
-	- [State objects](#state-objects)
+		- [State objects](#state-objects)
 	- [Actions](#actions)
 		- [Automatic Timer Start](#automatic-timer-start-1)
 		- [Automatic Splits](#automatic-splits-1)
@@ -20,6 +20,8 @@
 		- [Game Time](#game-time-1)
 	- [Action Variables](#action-variables)
 	- [Settings](#settings)
+		- [Basic Settings](#basic-settings)
+		- [Custom Settings](#custom-settings)
 	- [Built-in Functions](#built-in-functions)
 	- [Testing your Script](#testing-your-script)
 - [Adding an Auto Splitter](#adding-an-auto-splitter)
@@ -237,7 +239,7 @@ init
 }
 update
 {
-    if (version == "") return;
+    if (version == "") return false;
     print(current.levelID.ToString());
 }
 ```
@@ -279,10 +281,14 @@ vars.test4 = memory.ReadString(modules.Where(m => x.ModuleName == "some.dll").Fi
 
 ### Settings
 
-#### Basic Settings
-The Auto Splitter Settings GUI has some default settings to allow the user to toggle the actions `start`, `reset` and `split`. In case the action is unchecked, the return value of that action is ignored (but the code inside the action is still executed). So for example if the checkbox for `start` is unchecked in the settings, returning `true` in `start` will have no effect.
+ASL script settings are stored either with the Layout if you are using the Scriptable Auto Splitter component or with the Splits if you activated the script in the Splits Editor (so make sure to save your Layout or Splits accordingly when exiting LiveSplit if you changed settings).
 
-You can get the current value of the basic settings in your script through the attributes `settings.StartEnabled`, `settings.ResetEnabled` and `settings.SplitEnabled`. This is only for informational purpose if your script needs to do something depending on whether the action was actually performed or not.
+#### Basic Settings
+The Auto Splitter Settings GUI has some default settings to allow the user to toggle the actions `start`, `reset` and `split`. If the checkbox for an action is unchecked, the return value of that action is ignored (but the code inside the action is still executed). So for example if the checkbox for `start` is unchecked, returning `true` in the `start` action will have no effect.
+
+You can access the current value of the basic settings through the attributes `settings.StartEnabled`, `settings.ResetEnabled` and `settings.SplitEnabled`. This is only for informational purposes, for example if your script needs to do something depending on whether the action was actually performed or not, ignoring the return value is done automatically.
+
+Actions that are not present in the ASL script or empty will have their checkboxes disabled.
 
 #### Custom Settings
 
