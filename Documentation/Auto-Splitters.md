@@ -23,6 +23,7 @@
 	- [Built-in Functions](#built-in-functions)
 	- [Testing your Script](#testing-your-script)
 - [Adding an Auto Splitter](#adding-an-auto-splitter)
+- [Additional Resources](#additional-resources)
 
 <!-- /TOC -->
 
@@ -77,7 +78,7 @@ The Auto Splitting Language is a small scripting language made specifically for 
  * No Visual Studio or any compiler is needed; you can write it in Notepad.
 
 **Disadvantages:**
- * Currently only provides boolean settings for the user to change.
+ * Currently only provides simple On/Off settings for the user to change.
 
 An Auto Splitting Language Script contains a State Descriptor and multiple Actions.
 
@@ -130,7 +131,7 @@ The optional base module name `BASE_MODULE` describes the name of the module the
 
 You can use as many offsets `OFFSET` as you want. They need to be integer literals, either written as decimal or hexadecimal.
 
-### State objects
+#### State objects
 
 The State Variables described through the State Descriptor are available through two State objects: `current` and `old`. The `current` object contains the current state of the game with all the up-to-date variables, while the `old` object contains the state of the variables at the last execution of the ASL Script in LiveSplit. These objects are useful for checking for state changes. For example, you could check if the last level of a game was a certain value and is now a certain other value, which might mean that a split needs to happen.
 
@@ -138,7 +139,7 @@ LiveSplit's internal state is also available through the object `timer`. This is
 
 ### Actions
 
-After writing a State Descriptor, you can implement multiple Actions such as splitting and starting the timer. These actions define the logic of the Auto Splitter based on the information described by the State Descriptor. An action looks like this:
+After writing a State Descriptor, you can implement multiple actions such as splitting and starting the timer. These actions define the logic of the Auto Splitter based on the information described by the State Descriptor. An action looks like this:
 ```
 ACTION_NAME
 {
@@ -146,57 +147,63 @@ ACTION_NAME
 }
 ```
 
-All of the actions are optional and are declared by their name `ACTION_NAME` followed by a code block `CODE`. You trigger the action by returning a value. Returning a value is optional though; if no value is returned, the action is not triggered. Actions are only executed while LiveSplit is connected to the process. Their implementation is written in C#. You can use C#'s documentation for any questions you may have regarding the syntax of C#.
+All of the actions are optional and are declared by their name `ACTION_NAME` followed by a code block `CODE`. You trigger the action by returning a value. Returning a value is optional though; if no value is returned, the action is not triggered. Some actions are only executed while LiveSplit is connected to the process. Their implementation is written in C#. You can use C#'s documentation for any questions you may have regarding the syntax of C#.
 
-#### Automatic Timer Start
+#### Timer Control / Update
+
+These actions are repeatedly triggered while LiveSplit is connected to the game process.
+
+##### Generic Update
+
+The name of this action is `update`. You can use this for generic updating. In each update iteration, this is run before the timer control actions, which e.g. means if you set a value in `vars` in `update` you can then access it in `start` on the same update cycle.
+
+Explicitly returning `false` will prevent the actions `start`, `reset`, `split`, `gameTime` and `isLoading` from being run. This can be useful if you want to entirely disable the script under some conditions (e.g. for incompatible game versions).
+
+##### Automatic Timer Start
 
 The name of this action is `start`. Return `true` whenever you want the timer to start.
 
-#### Automatic Splits
+##### Automatic Splits
 
 The name of this action is `split`. Return `true` whenever you want to trigger a split.
 
-#### Automatic Resets
+##### Automatic Resets
 
 The name of this action is `reset`. Return `true` whenever you want to reset the run.
 
-#### Script Startup
-
-The name of this action is `startup`. This actions is triggered when the script is first loaded. This is the place where you can put things that you only need to define once and the only place where you can add [Custom Settings](#custom-settings).
-
-#### Script Shutdown
-
-The name of this action is `shutdown`. This action is triggered whenever the script is entirely stopped, for example when the Auto Splitter is disabled, LiveSplit exits, the script path is changed or the script is reloaded (e.g. during development of the ASL script).
-
-#### Script Initialization
-
-The name of this action is `init`. This action is triggered whenever a game process has been found according to the State Descriptors. This can occur more than once during the execution of a script. This is the place to do initialization that depends on the game, for example detecting the game version.
-
-#### Game Exit
-
-The name of this action is `exit`. This action is triggered whenever the currently attached game process exits.
-
-#### Generic Update
-
-The name of this action is `update`. You can use this for generic updating. Explicitly returning `false` will prevent the actions `start`, `reset`, `split`, `gameTime` and `isLoading` from being run. This can be useful if you want to entirely disable the script under some conditions (e.g. for incompatible game versions).
-
-#### Load Time Removal
+##### Load Time Removal
 
 The name of this action is `isLoading`. Return `true` whenever the game is loading. LiveSplit's Game Time Timer will be stopped as long as you return `true`.
 
-#### Game Time
+##### Game Time
 
 The name of this action is `gameTime`. Return a [`TimeSpan`](https://msdn.microsoft.com/en-us/library/system.timespan(v=vs.110).aspx) object that contains the current time of the game. You can also combine this with `isLoading`. If `isLoading` returns false, nothing, or isn't implemented, LiveSplit's Game Time Timer is always running and syncs with the game's Game Time at a constant interval. Everything in between is therefore a Real Time approximation of the Game Time. If you want the Game Time to not run in between the synchronization interval and only ever return the actual Game Time of the game, make sure to implement `isLoading` with a constant return value of `true`.
+
+
+#### Script Management
+
+##### Script Startup
+
+The name of this action is `startup`. This action is triggered when the script is first loads. This is the place where you can put initialization that doesn't depend on being connected to the process and the only place where you can add [Custom Settings](#custom-settings).
+
+##### Script Shutdown
+
+The name of this action is `shutdown`. This action is triggered whenever the script is entirely stopped, for example when the Auto Splitter is disabled, LiveSplit exits, the script path is changed or the script is reloaded (e.g. during development of the ASL script).
+
+##### Script Initialization (Game Start)
+
+The name of this action is `init`. This action is triggered whenever a game process has been found according to the State Descriptors. This can occur more than once during the execution of a script (e.g. when you restart the game). This is the place to do initialization that depends on the game, for example detecting the game version.
+
+##### Game Exit
+
+The name of this action is `exit`. This action is triggered whenever the currently attached game process exits.
+
 
 ### Action Variables
 
 Actions have a few hidden variables available.
 
-##### current / old
-State objects representing the current and previous states.
-```
-split { return current.levelID != old.levelID; }
-```
+#### General Variables
 
 ##### vars
 A dynamic object which can be used to store variables. You should declare these in the `init` action.
@@ -205,25 +212,6 @@ init { vars.test = 5; }
 update { print(vars.test.ToString()); }
 ```
 You can also store variables like this in `current` and the value will be in `old` on the next update.
-
-##### game
-The currently connected [Process](https://msdn.microsoft.com/en-us/library/system.diagnostics.process%28v=vs.110%29.aspx) object.
-```
-update { if (game.ProcessName == "snes9x") { } }
-```
-
-##### modules
-The modules of the currently connected process. Please use this instead of game.Modules! Use modules.First() instead of game.MainModule.
-
-##### memory
-Provides a means to read memory from the game without using Pointer Paths.
-```
-vars.exe = memory.ReadBytes(modules.First().BaseAddress, modules.First().ModuleMemorySize);
-vars.test = memory.ReadValue<byte>(modules.First().BaseAddress + 0x9001);
-vars.test2 = memory.ReadString(modules.First().BaseAddress + 0x9002, 256);
-vars.test3 = new DeepPointer("some.dll", 0x9003, vars.test, 0x02).Deref<int>(game);
-vars.test4 = memory.ReadString(modules.Where(m => x.ModuleName == "some.dll").First().BaseAddress + 0x9002, 256);
-```
 
 ##### version
 When you set `version` in `init`, the corrosponding State Descriptor will be activated. When there is no State Descriptor corrosponding to the `version`, the default one will be activated.
@@ -255,15 +243,44 @@ update
 ```
 
 ##### refreshRate
-Each action (except `init`, which is only triggered once) is triggered approximately 60 times per second. You can set this variable lower to reduce CPU usage.
+Many actions are triggered repeatedly, by default approximately 60 times per second. You can set this variable lower to reduce CPU usage.
 ```
 refreshRate = 30;
+```
+
+#### Game Specific
+
+These variables depend on being or having been connected to a game process and are not available in the `startup` or `exit` actions and only partly available in `shutdown`.
+
+##### current / old
+State objects representing the current and previous states.
+```
+split { return current.levelID != old.levelID; }
+```
+
+##### game
+The currently connected [Process](https://msdn.microsoft.com/en-us/library/system.diagnostics.process%28v=vs.110%29.aspx) object.
+```
+update { if (game.ProcessName == "snes9x") { } }
+```
+
+##### modules
+The modules of the currently connected process. Please use this instead of game.Modules! Use modules.First() instead of game.MainModule.
+
+##### memory
+Provides a means to read memory from the game without using Pointer Paths.
+```
+vars.exe = memory.ReadBytes(modules.First().BaseAddress, modules.First().ModuleMemorySize);
+vars.test = memory.ReadValue<byte>(modules.First().BaseAddress + 0x9001);
+vars.test2 = memory.ReadString(modules.First().BaseAddress + 0x9002, 256);
+vars.test3 = new DeepPointer("some.dll", 0x9003, vars.test, 0x02).Deref<int>(game);
+vars.test4 = memory.ReadString(modules.Where(m => x.ModuleName == "some.dll").First().BaseAddress + 0x9002, 256);
 ```
 
 ### Settings
 
 #### Basic Settings
-The Auto Splitter Settings GUI has some default settings to allow the user to toggle the actions `start`, `reset` and `split`. In case the action is unchecked, the ignore value of that action is ignored (but the code inside the action is still executed). So for example if the checkbox for `start` is unchecked in the settings, returning `true` in `start` will have no effect.
+The Auto Splitter Settings GUI has some default settings to allow the user to toggle the actions `start`, `reset` and `split`. In case the action is unchecked, the return value of that action is ignored (but the code inside the action is still executed). So for example if the checkbox for `start` is unchecked in the settings, returning `true` in `start` will have no effect.
 
 You can get the current value of the basic settings in your script through the attributes `settings.StartEnabled`, `settings.ResetEnabled` and `settings.SplitEnabled`. This is only for informational purpose if your script needs to do something depending on whether the action was actually performed or not.
 
@@ -271,7 +288,7 @@ You can get the current value of the basic settings in your script through the a
 
 You can define custom boolean settings for your script in the `startup` action and then access the setting values as configured by the user in the other actions. If you have custom settings defined, they will be shown in the GUI for the user to check/uncheck. They will appear in the same order you added them in the ASL script.
 
-##### Defining settings
+##### Basic usage
 
 You can define settings in the `startup` action by using the `settings.Add(id, default_value = true, description = null, parent = null)` method:
 
@@ -286,6 +303,14 @@ settings.Add("mission2");
 settings.Add("mission3", false);
 ```
 
+You can access the current value of a setting in all actions other than `startup` by accessing `settings`:
+
+````
+// Do something depending on the value of the setting 'mission1'
+if (settings["mission1"]) {  }
+````
+
+##### Grouping settings
 If you want to organize the settings in a hierarchy, you can specify the `parent` parameter. Note that the `parent` has to be the `id` of a setting that you already added:
 
 ```
@@ -326,15 +351,14 @@ settings.Add("side_missions");
 
 Using `settings.CurrentDefaultParent` can be useful when adding several settings with the same parent, without having to specify the parent everytime.
 
-##### Reading settings
+##### Tooltips
 
-You can access the current value of a setting in all actions other than `startup` by accessing `settings`:
+You can add a tooltip to settings that appears when hover over the setting in the GUI. This can be useful if you want to add a bit more information. After adding the setting, use `settings.SetToolTip(id, tooltip_text)` to set a tooltip:
 
-````
-// Do something depending on the value of the setting 'mission1'
-if (settings["mission1"]) {  }
-````
-
+```
+settings.Add("main_missions", true, "Main Missions");
+settings.SetToolTip("main_missions", "All main story missions, except Mission A and Mission B");
+```
 
 ### Built-in Functions
 
@@ -344,12 +368,19 @@ Used for debug printing. Use [DbgView](https://technet.microsoft.com/en-us/Libra
 print("current level is " + current.levelID);
 ```
 
-##### other
+##### Other
 There are some advanced memory utilities not covered here. You can find them [here](../LiveSplit/LiveSplit.Core/ComponentUtil).
 
 ### Testing your Script
 
-You can test your Script by adding the *Scriptable Auto Splitter* component to your Layout. You can find it in the section "Control". You can set the Path of the Script by going into the component settings of the Scriptable Auto Splitter. To get to the settings of the component you can either double click it in the Layout Editor or go into to the Scriptable Auto Splitter Tab of the Layout Settings. Once you've set the Path, the script should automatically load and hopefully work. Unfortunately there's no good way to debug the script at the moment. If LiveSplit causes a lot CPU Usage, that might be an indicator of something causing an exception in your Script. In that case you should check out your Event Logs. You can find it by doing the following:
+You can test your Script by adding the *Scriptable Auto Splitter* component to your Layout. You can find it in the section "Control". You can set the Path of the Script by going into the component settings of the Scriptable Auto Splitter. To get to the settings of the component you can either double click it in the Layout Editor or go into to the Scriptable Auto Splitter Tab of the Layout Settings. Once you've set the Path, the script should automatically load and hopefully work.
+
+#### Debugging
+Reading debug output is an integral part of developing ASL scripts, both for your own debug messages which you can output with `print()` and any debug messages or error messages the ASL Component itself provides.
+
+The program [DebugView](https://technet.microsoft.com/en-us/sysinternals/debugview.aspx) can be used for a live view of debug output from the ASL Component.
+
+For errors, you can also check the Windows Event Logs, which you can find via:
 
 Control Panel ➞ Search for Event Viewer ➞ Open it ➞ Windows Logs ➞ Application ➞ Find the LiveSplit Errors
 
@@ -358,3 +389,11 @@ Some might be unrelated to the Script, but it'll be fairly obvious which ones ar
 ## Adding an Auto Splitter
 
 If you implemented an Auto Splitter and want to add it to the Auto Splitters that are automatically being downloaded by LiveSplit, feel free to add it to the [Auto Splitters XML](../LiveSplit.AutoSplitters.xml). Just click the link, click the icon for modifying the file and GitHub will automatically create a fork, branch and pull request for you, which we can review and then merge in.
+
+## Additional Resources
+
+- [Speedrun Tool Development Discord](https://discord.gg/0nuoLLvyUPQQugdL)
+
+### Examples
+
+- [Simple Autosplitter with Settings](https://raw.githubusercontent.com/tduva/LiveSplit-ASL/master/AlanWake.asl)
