@@ -2,6 +2,7 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Source Engine</Game>
       <Game>Aperture Tag</Game>
       <Game>Aperture Tag: The Paint Gun Testing Initiative</Game>
       <Game>Aperture Tag (Portal 2 Mod)</Game>
@@ -655,8 +656,8 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>SADX</Game>
       <Game>Sonic Adventure DX</Game>
+      <Game>SADX</Game>
       <Game>Sonic Adventure DX: Director's Cut</Game>
       <Game>Sonic Adventure DX: Directors Cut</Game>
       <Game>Sonic Adventure DX Director's Cut</Game>
@@ -680,8 +681,8 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>MGR</Game>
       <Game>Metal Gear Rising</Game>
+      <Game>MGR</Game>
       <Game>Metal Gear Rising Revengeance</Game>
       <Game>Metal Gear Rising: Revengeance</Game>
     </Games>
@@ -693,6 +694,7 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Star Wars Jedi Knight: Jedi Academy</Game>
       <Game>SWJKJA</Game>
       <Game>JKJA</Game>
       <Game>Jedi Knight 3</Game>
@@ -706,7 +708,6 @@
       <Game>Star Wars - Jedi Knight: Jedi Academy</Game>
       <Game>Star Wars Jedi Knight - Jedi Academy</Game>
       <Game>Star Wars Jedi Knight Jedi Academy</Game>
-      <Game>Star Wars Jedi Knight: Jedi Academy</Game>
       <Game>Jedi Knight - Jedi Academy</Game>
       <Game>Jedi Knight: Jedi Academy</Game>
       <Game>Jedi Knight Jedi Academy</Game>
@@ -723,8 +724,8 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>RE5</Game>
       <Game>Resident Evil 5</Game>
+      <Game>RE5</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/dread2472/ASL/master/RE5.asl</URL>
@@ -746,8 +747,8 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Bio Inf</Game>
       <Game>BioShock Infinite</Game>
+      <Game>Bio Inf</Game>
       <Game>BioShock Infinite (PC)</Game>
       <Game>BioShock Infinite: Burial at Sea (DLCs)</Game>
     </Games>
@@ -769,6 +770,7 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Star Wars Jedi Knight II: Jedi Outcast</Game>
       <Game>SWJKJO</Game>
       <Game>JKJO</Game>
       <Game>Jedi Knight 2</Game>
@@ -782,7 +784,6 @@
       <Game>Star Wars - Jedi Knight II: Jedi Outcast</Game>
       <Game>Star Wars Jedi Knight II - Jedi Outcast</Game>
       <Game>Star Wars Jedi Knight II Jedi Outcast</Game>
-      <Game>Star Wars Jedi Knight II: Jedi Outcast</Game>
       <Game>Star Wars: Jedi Knight 2 - Jedi Outcast</Game>
       <Game>Star Wars: Jedi Knight 2 Jedi Outcast</Game>
       <Game>Star Wars: Jedi Knight 2 : Jedi Outcast</Game>
