@@ -318,6 +318,99 @@ namespace LiveSplit.ComponentUtil
             return true;
         }
 
+        private static bool WriteJumpOrCall(Process process, IntPtr addr, IntPtr dest, bool call)
+        {
+            var x64 = process.Is64Bit();
+
+            int jmpLen = x64 ? 12 : 5;
+
+            var instruction = new List<byte>(jmpLen);
+            if (x64)
+            {
+                instruction.AddRange(new byte[] { 0x48, 0xB8 }); // mov rax immediate
+                instruction.AddRange(BitConverter.GetBytes((long)dest));
+                instruction.AddRange(new byte[] { 0xFF, call ? (byte)0xD0 : (byte)0xE0 }); // jmp/call rax
+            }
+            else
+            {
+                int offset = unchecked((int)dest - (int)(addr + jmpLen));
+                instruction.AddRange(new byte[] { call ? (byte)0xE8 : (byte)0xE9 }); // jmp/call immediate
+                instruction.AddRange(BitConverter.GetBytes(offset));
+            }
+
+            MemPageProtect oldProtect;
+            process.VirtualProtect(addr, jmpLen, MemPageProtect.PAGE_EXECUTE_READWRITE, out oldProtect);
+            bool success = process.WriteBytes(addr, instruction.ToArray());
+            process.VirtualProtect(addr, jmpLen, oldProtect);
+
+            return success;
+        }
+
+        public static bool WriteJumpInstruction(this Process process, IntPtr addr, IntPtr dest)
+        {
+            return WriteJumpOrCall(process, addr, dest, false);
+        }
+
+        public static bool WriteCallInstruction(this Process process, IntPtr addr, IntPtr dest)
+        {
+            return WriteJumpOrCall(process, addr, dest, true);
+        }
+
+        public static IntPtr WriteDetour(this Process process, IntPtr src, int overwrittenBytes, IntPtr dest)
+        {
+            int jmpLen = process.Is64Bit() ? 12 : 5;
+            if (overwrittenBytes < jmpLen)
+                throw new ArgumentOutOfRangeException(nameof(overwrittenBytes),
+                    $"must be >= length of jmp instruction ({jmpLen})");
+
+            // allocate memory to store the original src prologue bytes we overwrite with jump to dest
+            // along with the jump back to src
+            IntPtr gate;
+            if ((gate = process.AllocateMemory(jmpLen + overwrittenBytes)) == IntPtr.Zero)
+                throw new Win32Exception();
+
+            try
+            {
+                // read the original bytes from the prologue of src
+                var origSrcBytes = process.ReadBytes(src, overwrittenBytes);
+                if (origSrcBytes == null)
+                    throw new Win32Exception();
+
+                // write the original prologue of src into the start of gate
+                if (!process.WriteBytes(gate, origSrcBytes))
+                    throw new Win32Exception();
+
+                // write the jump from the end of the gate back to src
+                if (!process.WriteJumpInstruction(gate + overwrittenBytes, src + overwrittenBytes))
+                    throw new Win32Exception();
+
+                // finally write the jump from src to dest
+                if (!process.WriteJumpInstruction(src, dest))
+                    throw new Win32Exception();
+
+                // nop the leftover bytes in the src prologue
+                int extraBytes = overwrittenBytes - jmpLen;
+                if (extraBytes > 0)
+                {
+                    var nops = Enumerable.Repeat((byte) 0x90, extraBytes).ToArray();
+                    MemPageProtect oldProtect;
+                    if (!process.VirtualProtect(src + jmpLen, nops.Length, MemPageProtect.PAGE_EXECUTE_READWRITE,
+                        out oldProtect))
+                        throw new Win32Exception();
+                    if (!process.WriteBytes(src + jmpLen, nops))
+                        throw new Win32Exception();
+                    process.VirtualProtect(src + jmpLen, nops.Length, oldProtect);
+                }
+            }
+            catch
+            {
+                process.FreeMemory(gate);
+                throw;
+            }
+
+            return gate;
+        }
+
         static object ResolveToType(byte[] bytes, Type type)
         {
             object val;
