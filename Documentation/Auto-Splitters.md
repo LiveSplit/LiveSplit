@@ -16,11 +16,14 @@
 		- [Timer Control](#timer-control)
 		- [Script Management](#script-management)
 	- [Action Variables](#action-variables)
+		- [General Variables](#general-variables)
+		- [Game Dependent](#game-dependent)
 	- [Settings](#settings)
 		- [Basic Settings](#basic-settings)
 		- [Custom Settings](#custom-settings)
 	- [Built-in Functions](#built-in-functions)
 	- [Testing your Script](#testing-your-script)
+		- [Debugging](#debugging)
 - [Adding an Auto Splitter](#adding-an-auto-splitter)
 - [Additional Resources](#additional-resources)
 
@@ -253,7 +256,10 @@ Many actions are triggered repeatedly, by default approximately 60 times per sec
 refreshRate = 30;
 ```
 
-#### Game Specific
+##### settings
+Used to add and access [Settings](#settings).
+
+#### Game Dependent
 
 These variables depend on being or having been connected to a game process and are not available in the `startup` or `exit` actions and only partly available in `shutdown` (might be `null`).
 
