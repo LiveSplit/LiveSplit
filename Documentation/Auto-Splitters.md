@@ -13,11 +13,8 @@
 	- [State Descriptors](#state-descriptors)
 		- [State objects](#state-objects)
 	- [Actions](#actions)
-		- [Automatic Timer Start](#automatic-timer-start-1)
-		- [Automatic Splits](#automatic-splits-1)
-		- [Automatic Resets](#automatic-resets-1)
-		- [Load Time Removal](#load-time-removal)
-		- [Game Time](#game-time-1)
+		- [Timer Control](#timer-control)
+		- [Script Management](#script-management)
 	- [Action Variables](#action-variables)
 	- [Settings](#settings)
 		- [Basic Settings](#basic-settings)
@@ -80,13 +77,13 @@ The Auto Splitting Language is a small scripting language made specifically for 
  * No Visual Studio or any compiler is needed; you can write it in Notepad.
 
 **Disadvantages:**
- * Currently only provides simple On/Off settings for the user to change.
+ * Currently only provides Boolean settings in the GUI for the user to change.
 
 An ASL Script contains a State Descriptor and multiple [Actions](#actions) which contain C# code.
 
 ### State Descriptors
 
-The State Descriptor is the most important part of the script and describes the state of the game that the script is interested in. This is where all of the Pointer Paths, which the Auto Splitter uses to read values from the game, are described. A State Descriptor looks like this:
+The State Descriptor is the most important part of the script and describes which game process and which state of the game the script is interested in. This is where all of the Pointer Paths, which the Auto Splitter uses to read values from the game, are described. A State Descriptor looks like this:
 ```
 state("PROCESS_NAME")
 {
@@ -157,7 +154,7 @@ All of the actions are optional and are declared by their name `ACTION_NAME` fol
 
 Actions are implemented in C#. You can use C#'s documentation for any questions you may have regarding the syntax of C#.
 
-#### Timer Control / Update
+#### Timer Control
 
 These actions are repeatedly triggered while LiveSplit is connected to the game process.
 
