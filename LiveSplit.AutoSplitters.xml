@@ -1187,4 +1187,15 @@
     <Description>Auto Splitting, Load Removal, and Stats are available. (By Mikeware)</Description>
     <Website>https://github.com/hawkerm/LiveSplit.ASL.MicroMachines</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Transistor</Game>
+    </Games>
+    <URLs>
+      <URL>https://dl.dropboxusercontent.com/s/g3m8iqyclfdbawk/Transistor.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal (By VeritasDL And HelpFullDiscordPeople)</Description>
+    <Website>http://www.speedrun.com/transistor/</Website>
+  </AutoSplitter>
 </AutoSplitters>
