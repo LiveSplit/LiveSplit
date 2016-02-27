@@ -18,7 +18,7 @@
 	- [Action Variables](#action-variables)
 		- [General Variables](#general-variables)
 		- [Game Dependent](#game-dependent)
-	- [Settings](#settings)
+	- [Settings](#settings-1)
 		- [Basic Settings](#basic-settings)
 		- [Custom Settings](#custom-settings)
 	- [Built-in Functions](#built-in-functions)
@@ -257,7 +257,7 @@ refreshRate = 30;
 ```
 
 ##### settings
-Used to add and access [Settings](#settings).
+Used to add and access [Settings](#settings-1).
 
 #### Game Dependent
 
