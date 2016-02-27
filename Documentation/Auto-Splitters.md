@@ -82,7 +82,7 @@ The Auto Splitting Language is a small scripting language made specifically for 
 **Disadvantages:**
  * Currently only provides simple On/Off settings for the user to change.
 
-An Auto Splitting Language Script contains a State Descriptor and multiple Actions.
+An ASL Script contains a State Descriptor and multiple [Actions](#actions) which contain C# code.
 
 ### State Descriptors
 
@@ -101,7 +101,9 @@ state("PROCESS_NAME", "VERSION_IDENTIFIER")
 ...
 ```
 
-The `PROCESS_NAME` is the name of the process the Auto Splitter should look for. The Script is inactive while it's not connected to a process. Once a process with that name is found, it automatically connects to that process. A Process Name should not include the `.exe`. The optional `VERSION_IDENTIFIER` can be any arbitrary string you wish to use. Note that the script can define multiple State Descriptors for different processes/games. These optional features are extremely useful for emulators.
+The `PROCESS_NAME` is the name of the process the Auto Splitter should look for. The Script is inactive while it's not connected to a process. Once a process with that name is found, it automatically connects to that process. A Process Name should not include the `.exe`. Even advanced scripts that use other ways to access the game's memory require a State Descriptor to define which process LiveSplit is supposed to connect to.
+
+The optional `VERSION_IDENTIFIER` can be any arbitrary string you wish to use. Note that the script can define multiple State Descriptors for different processes/games. These optional features are extremely useful for emulators.
 
 `POINTER_PATH` describes a Pointer Path and has two ways to declare:
 ```
@@ -149,7 +151,11 @@ ACTION_NAME
 }
 ```
 
-All of the actions are optional and are declared by their name `ACTION_NAME` followed by a code block `CODE`. You trigger the action by returning a value. Returning a value is optional though; if no value is returned, the action is not triggered. Some actions are only executed while LiveSplit is connected to the process. Their implementation is written in C#. You can use C#'s documentation for any questions you may have regarding the syntax of C#.
+You can think of Actions like functions that are automatically called by the ASL Component. These functions can only interact with eachother or LiveSplit via the [special variables](#action-variables) the environment provides.
+
+All of the actions are optional and are declared by their name `ACTION_NAME` followed by a code block `CODE`. You trigger the action by returning a value. Returning a value is optional though; if no value is returned, the action is not triggered. Some actions are only executed while LiveSplit is connected to the process.
+
+Actions are implemented in C#. You can use C#'s documentation for any questions you may have regarding the syntax of C#.
 
 #### Timer Control / Update
 
@@ -208,7 +214,7 @@ Actions have a few hidden variables available.
 #### General Variables
 
 ##### vars
-A dynamic object which can be used to store variables. You should declare these in the `init` action.
+A dynamic object which can be used to store variables. Make sure the variables are defined (for example in `startup` or `init`) before trying to access them. This can be used to exchange data between Actions.
 ```
 init { vars.test = 5; }
 update { print(vars.test.ToString()); }
@@ -245,14 +251,14 @@ update
 ```
 
 ##### refreshRate
-Many actions are triggered repeatedly, by default approximately 60 times per second. You can set this variable lower to reduce CPU usage.
+Many actions are triggered repeatedly, by default approximately 60 times per second. You can set this variable lower to reduce CPU usage. This is commonly done in `startup` or `init`.
 ```
 refreshRate = 30;
 ```
 
 #### Game Specific
 
-These variables depend on being or having been connected to a game process and are not available in the `startup` or `exit` actions and only partly available in `shutdown`.
+These variables depend on being or having been connected to a game process and are not available in the `startup` or `exit` actions and only partly available in `shutdown` (might be `null`).
 
 ##### current / old
 State objects representing the current and previous states.
@@ -270,7 +276,7 @@ update { if (game.ProcessName == "snes9x") { } }
 The modules of the currently connected process. Please use this instead of game.Modules! Use modules.First() instead of game.MainModule.
 
 ##### memory
-Provides a means to read memory from the game without using Pointer Paths.
+Provides a means to read memory from the game without using the State Descriptor.
 ```
 vars.exe = memory.ReadBytes(modules.First().BaseAddress, modules.First().ModuleMemorySize);
 vars.test = memory.ReadValue<byte>(modules.First().BaseAddress + 0x9001);
@@ -379,7 +385,7 @@ There are some advanced memory utilities not covered here. You can find them [he
 
 ### Testing your Script
 
-You can test your Script by adding the *Scriptable Auto Splitter* component to your Layout. You can find it in the section "Control". You can set the Path of the Script by going into the component settings of the Scriptable Auto Splitter. To get to the settings of the component you can either double click it in the Layout Editor or go into to the Scriptable Auto Splitter Tab of the Layout Settings. Once you've set the Path, the script should automatically load and hopefully work.
+You can test your Script by adding the *Scriptable Auto Splitter* component to your Layout. Right-click on LiveSplit and choose "Edit Layout..." to open the Layout Editor, then click on the Plus-sign and choose "Scriptable Auto Splitter" from the section "Control". You can set the Path of the Script by going into the component settings of the Scriptable Auto Splitter. To get to the settings of the component you can either double click it in the Layout Editor or go into to the Scriptable Auto Splitter Tab of the Layout Settings. Once you've set the Path, the script should automatically load and hopefully work.
 
 #### Debugging
 Reading debug output is an integral part of developing ASL scripts, both for your own debug messages which you can output with `print()` and any debug messages or error messages the ASL Component itself provides.
@@ -399,7 +405,5 @@ If you implemented an Auto Splitter and want to add it to the Auto Splitters tha
 ## Additional Resources
 
 - [Speedrun Tool Development Discord](https://discord.gg/0nuoLLvyUPQQugdL)
-
-### Examples
-
-- [Simple Autosplitter with Settings](https://raw.githubusercontent.com/tduva/LiveSplit-ASL/master/AlanWake.asl)
+- [List of ASL Scripts](https://fatalis.pw/livesplit/asl-list/) to learn from, automatically created from the [Auto Splitters XML](../LiveSplit.AutoSplitters.xml) and filterable by different criteria
+- Example: [Simple Autosplitter with Settings](https://raw.githubusercontent.com/tduva/LiveSplit-ASL/master/AlanWake.asl)
