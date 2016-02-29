@@ -813,10 +813,10 @@
       <Game>Super Mario World</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/rainjacket/0ccadd17f8f4f61b1372/raw/1fb99108779a4a476a3ed044d1b174931e1b9f75/LiveSplit.SMW.asl</URL>
+      <URL>https://gist.githubusercontent.com/rainjacket/0ccadd17f8f4f61b1372/raw/c31dc2c926399fba83cd65aa5a7080a7170a5513/LiveSplit.SMW.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available on Snes9x v1.53 (x86). (By calmdowntime)</Description>
+    <Description>Auto Splitting is available on Snes9x v1.53, both x86 and x64. (By calmdowntime)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
