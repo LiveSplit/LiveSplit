@@ -114,7 +114,7 @@
       <Game>REHD</Game>
     </Games>
     <URLs>
-      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.REmaster.asl</URL>
+      <URL>https://raw.githubusercontent.com/fatalis/ASL/master/REmaster.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Automatic Timer Start and Game Time is available. (By Fatalis)</Description>
