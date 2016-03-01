@@ -1221,4 +1221,17 @@
     <Description>Auto Splitting is available. (By tduva)</Description>
     <Website>https://github.com/tduva/LiveSplit-ASL/blob/master/GTASA-README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Total Overdose</Game>
+      <Game>TOD</Game>
+      <Game>Total Overdose: A Gunslinger's Tale in Mexico</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.TotalOverdose.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available. (By zoton2)</Description>
+    <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
