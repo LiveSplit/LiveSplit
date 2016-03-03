@@ -72,7 +72,7 @@ The documentation for how to develop, test, and submit an Auto Splitter can be f
 
 The MIT License (MIT)
 
-Copyright (c) 2015 Christopher Serr and Sergey Papushin
+Copyright (c) 2013-2016 Christopher Serr and Sergey Papushin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
