@@ -1245,4 +1245,14 @@
     <Description>Load removal is available. (By zoton2)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Crysis</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Jukspa/CrysisNoLoads/master/crysis.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. Requires patch 1.1. (By Jukspa)</Description>
+  </AutoSplitter>
 </AutoSplitters>
