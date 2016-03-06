@@ -163,6 +163,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sonic Adventure 2: Battle</Game>
+      <Game>SA2B</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Matt-Hurd/ASL/master/LiveSplit.SA2B.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal/Autosplitter is available (By ShiningFace).</Description>
+  </AutoSplitter>
+    <AutoSplitter>
+    <Games>
       <Game>Sonic Adventure 2 Battle</Game>
       <Game>SA2B</Game>
     </Games>
@@ -172,7 +183,17 @@
     <Type>Script</Type>
     <Description>Load Removal/Autosplitter is available (By ShiningFace).</Description>
   </AutoSplitter>
-  <AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Magrunner: Dark Pulse</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.Magrunner.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available (By ShiningFace).</Description>
+  </AutoSplitter>
+    <AutoSplitter>
     <Games>
       <Game>Super Meat Boy</Game>
     </Games>
