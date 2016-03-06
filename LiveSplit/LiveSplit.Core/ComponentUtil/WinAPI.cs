@@ -108,6 +108,10 @@ namespace LiveSplit.ComponentUtil
         [DllImport("ntdll.dll", SetLastError = true)]
         public static extern IntPtr NtResumeProcess(IntPtr hProcess);
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttributes, SizeT dwStackSize,
+            IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, out IntPtr lpThreadId);
+
         [StructLayout(LayoutKind.Sequential)]
         public struct MODULEINFO
         {

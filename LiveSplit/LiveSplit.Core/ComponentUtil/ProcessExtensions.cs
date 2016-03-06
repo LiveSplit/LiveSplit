@@ -486,6 +486,18 @@ namespace LiveSplit.ComponentUtil
             return WinAPI.VirtualProtectEx(process.Handle, addr, (SizeT)size, protect, out oldProtect);
         }
 
+        public static IntPtr CreateThread(this Process process, IntPtr startAddress, IntPtr parameter)
+        {
+            IntPtr threadId;
+            return WinAPI.CreateRemoteThread(process.Handle, IntPtr.Zero, (SizeT)0, startAddress, parameter, 0,
+                out threadId);
+        }
+
+        public static IntPtr CreateThread(this Process process, IntPtr startAddress)
+        {
+            return CreateThread(process, startAddress, IntPtr.Zero);
+        }
+
         public static void Suspend(this Process process)
         {
             WinAPI.NtSuspendProcess(process.Handle);
