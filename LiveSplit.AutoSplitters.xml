@@ -1245,4 +1245,15 @@
     <Type>Script</Type>
     <Description>Load Removal is available. Requires patch 1.1. (By Jukspa)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Grapple</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Bananeur/Autosplitters/master/Grapple.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Bananeur)</Description>
+    <Website>https://github.com/Bananeur/Autosplitters</Website>
+  </AutoSplitter>
 </AutoSplitters>
