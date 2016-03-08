@@ -195,18 +195,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>The Wheel of Time</Game>
-      <Game>Wheel of Time</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.WheelOfTime/master/Components/LiveSplit.WheelOfTime.dll</URL>
-    </URLs>
-    <Type>Component</Type>
-    <Description>Auto Splitting and Load Removal are available. (By Dalet)</Description>
-    <Website>https://github.com/Dalet/LiveSplit.WheelOfTime/blob/master/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Wrack</Game>
     </Games>
     <URLs>
@@ -260,6 +248,8 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>The Wheel of Time</Game>
+      <Game>Wheel of Time</Game>
       <Game>Harry Potter 2</Game>
       <Game>Harry Potter II</Game>
       <Game>HP2</Game>
@@ -268,11 +258,11 @@
       <Game>Harry Potter and the Chamber of Secrets (PC)</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.HP2/master/Components/LiveSplit.HP2.dll</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.UnrealLoads/master/Components/LiveSplit.UnrealLoads.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Load Removal is available. (By Dalet)</Description>
-    <Website>https://github.com/Dalet/LiveSplit.HP2/blob/master/README.md</Website>
+    <Description>Auto Splitting and Load Removal are available. (By Dalet)</Description>
+    <Website>https://github.com/Dalet/LiveSplit.UnrealLoads/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
