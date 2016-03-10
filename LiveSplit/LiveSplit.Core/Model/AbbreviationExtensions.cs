@@ -97,11 +97,14 @@ namespace LiveSplit.Model
 
             var list = new List<string>() { name };
 
-            if (name.Contains(')'))
+            var indexStart = name.LastIndexOf('(');
+            var indexEnd = name.IndexOf(')', indexStart + 1);
+            if (indexStart >= 0 && indexEnd >= 0)
             {
-                var endingBracketRemoved = name.Substring(0, name.LastIndexOf(')'));
-                var startingBrackedRemoved = endingBracketRemoved.Substring(0, endingBracketRemoved.LastIndexOf('('));
-                list.AddRange(GetAbbreviations(startingBrackedRemoved));
+                var beforeParentheses = name.Substring(0, indexStart).Trim();
+                var afterParentheses = name.Substring(indexEnd + 1).Trim();
+                name = $"{ beforeParentheses } { afterParentheses }".Trim();
+                list.AddRange(name.GetAbbreviations());
             }
             else if (tokenize(name, ": ", list)) { }
             else if (tokenize(name, " - ", list)) { }
