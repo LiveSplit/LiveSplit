@@ -229,11 +229,10 @@
       <Game>Yume Penguin Monogatari</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.YumePenguinMonogatari/master/Components/LiveSplit.YumePenguinMonogatari.dll</URL>
+      <URL>https://raw.githubusercontent.com/Dalet/livesplit-asl/master/YPM/LiveSplit.YumePenguinMonogatari.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Auto Splitting is available for Emulator. (By Dalet)</Description>
-    <Website>https://github.com/Dalet/LiveSplit.YumePenguinMonogatari/blob/master/README.md</Website>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available for Emulator (FCEUX 2.2.2). (By Dalet)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
