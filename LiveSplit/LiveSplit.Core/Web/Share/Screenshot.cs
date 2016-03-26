@@ -24,7 +24,7 @@ namespace LiveSplit.Web.Share
         {
             get 
             {
-                return "Sharing will save a screenshot of LiveSplit.";
+                return "LiveSplitのスクリーンショットを保存します。";
             }
         }
 

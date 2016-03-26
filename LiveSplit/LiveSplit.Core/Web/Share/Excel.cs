@@ -27,8 +27,8 @@ namespace LiveSplit.Web.Share
         {
             get
             {
-                return "Export your splits as an Excel Sheet to analyze your splits. "
-                    + "This includes your whole history of all the runs you ever did.";
+                return "あなたのスプリットをエクセルファイルとして保存します。"
+                    + "今まで試行してきた全履歴が保存されています。";
             }
         }
 

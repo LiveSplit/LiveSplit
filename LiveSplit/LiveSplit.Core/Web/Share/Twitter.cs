@@ -36,12 +36,11 @@ namespace LiveSplit.Web.Share
         public string Description
         {
             get 
-            { 
-                return "Twitter allows you to share your run with the world. "
-                + "When sharing, a screenshot of your splits will automatically "
-                + "be included. When you click share, Twitter will ask to "
-                + "authenticate with LiveSplit. After the authentication, LiveSplit "
-                + "will automatically send the tweet."; 
+            {
+                return "Twitterを使ってあなたの記録を共有することができます。"
+                + "共有時は、スプリットのスクリーンショットもツイート内に含まれます。"
+                + "共有ボタンを押した時、TwitterはLiveSplitを認証するかどうか聞いてきます。"
+                + "共有後は、Livesplitが自動的にツイートします。"; 
             }
         }
 

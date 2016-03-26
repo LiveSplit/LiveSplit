@@ -39,12 +39,12 @@ namespace LiveSplit.Web.Share
         {
             get 
             {
-                return "Splits.io is the best platform for sharing individual "
-                + "splits with the world and downloading them from there. "
-                + "You can also browse Splits.io with \"Open Splits From Splits.io...\" "
-                + "or import splits as a comparison with \"Import Comparison From Splits.io...\". "
-                + "Splits downloaded from Splits.io have not data loss, and the splits can be "
-                + "downloaded in the format for any timer.";
+                return "Splits.ioはスプリット共有サイトで、自分のスプリットをアップロードまたは"
+                + "他人のものをダウンロードすることができます。"
+                + "\"Splits.ioからスプリットを開く\"を使うことでSplits.ioの閲覧、 "
+                + "または\"Splits.ioから比較をインポート\"で他人のスプリットを比較することができます。 "
+                + "Splits.ioからダウンロードしたスプリットはデータ損失なし、そして他タイマー用に形式を選択して"
+                + "ダウンロードすることができます。";
             }
         }
 

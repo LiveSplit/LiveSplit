@@ -141,10 +141,9 @@ namespace LiveSplit.Web.Share
         {
             get
             {
-                return "Sharing to Twitch will automatically update your "
-                     + "stream title and game playing based on the information "
-                     + "in your splits. Twitch must authenticate with LiveSplit "
-                     + "the first time that sharing to Twitch is used.";
+                return "Twitchと共有すると配信タイトルとやっているゲームを更新します。"
+                     + "やっているゲームは自分のスプリットで設定したものになります。"
+                     + "初回使用時はTwitchと連携させる必要があります。";
             }
         }
 

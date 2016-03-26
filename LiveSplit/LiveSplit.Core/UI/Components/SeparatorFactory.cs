@@ -11,7 +11,7 @@ namespace LiveSplit.UI.Components
 
         public string Description
         {
-            get { return "Shows a line to separate components."; }
+            get { return "部品ごとの区切り線を表示"; }
         }
 
         public ComponentCategory Category

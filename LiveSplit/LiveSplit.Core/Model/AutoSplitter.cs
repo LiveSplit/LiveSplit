@@ -49,7 +49,7 @@ namespace LiveSplit.Model
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                    MessageBox.Show(state.Form, "The Auto Splitter could not be activated. (" + ex.Message + ")", "Activation Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(state.Form, "自動スプリットを有効にできませんでした。 (" + ex.Message + ")", "実行失敗", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -69,7 +69,7 @@ namespace LiveSplit.Model
                 }
                 catch (WebException)
                 {
-                    Log.Error("Error downloading file from " + url);
+                    Log.Error(url + "からのダウンロードに失敗しました。");
                 }
             }
 

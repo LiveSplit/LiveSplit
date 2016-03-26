@@ -368,7 +368,7 @@ namespace LiveSplit.View
 
                 if (!CurrentPlatform.VerifyLogin(username, password))
                 {
-                    MessageBox.Show("Your login information seems to be incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("ログイン情報が間違っているようです。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
@@ -386,7 +386,7 @@ namespace LiveSplit.View
 
                 if (runSubmitted)
                 {
-                    MessageBox.Show(string.Format("Your run was successfully shared to {0}.", CurrentPlatform.PlatformName), "Run Shared", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(string.Format("あなたのスプリットが{0}と共有されました。", CurrentPlatform.PlatformName), "Run Shared", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
                 }
             }
@@ -399,7 +399,7 @@ namespace LiveSplit.View
                 Cursor = Cursors.Default;
             }
 
-            MessageBox.Show("The run could not be shared.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("このスプリットは共有できません。", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -410,7 +410,7 @@ namespace LiveSplit.View
 
         private void btnPreview_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(FormatNotes(txtNotes.Text), "Preview", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(FormatNotes(txtNotes.Text), "プレビュー", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void Insert(string insertText)

@@ -38,10 +38,9 @@ namespace LiveSplit.Web.Share
         {
             get
             {
-                return "Ge.tt is a useful platform for sharing files "
-                + "with the world. You don't need an account. If you're not logged in, the splits "
-                + "will be deleted after 30 days, though. "
-                + "You can also directly import Ge.tt links with \"Open from URL...\"";
+                return "Ge.ttはスプリット共有サイトです。"
+                + "アカウント無しでアップロードできますが、その場合は30日後に自動的に削除されます・"
+                + "\"URLから開く\"からGe.ttのリンクからインポートができます。";
             }
         }
 

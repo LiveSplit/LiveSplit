@@ -40,8 +40,7 @@ namespace LiveSplit.Web.Share
         {
             get
             {
-                return "Sharing to Imgur allows you to share a screenshot of "
-                    + "LiveSplit with a popular web database of image content.";
+                return "ImgurにLiveSplitのスクリーンショットを自動的にアップロードできます。";
             }
         }
 
