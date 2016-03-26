@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model.Input;
 using LiveSplit.Options;
+using LiveSplit.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,14 +13,14 @@ namespace LiveSplit.View
         public ISettings Settings { get; set; }
         public CompositeHook Hook { get; set; }
 
-        public string SplitKey { get { return FormatKey(Settings.SplitKey); } }
-        public string ResetKey { get { return FormatKey(Settings.ResetKey); } }
-        public string SkipKey { get { return FormatKey(Settings.SkipKey); } }
-        public string UndoKey { get { return FormatKey(Settings.UndoKey); } }
-        public string PauseKey { get { return FormatKey(Settings.PauseKey); } }
-        public string SwitchComparisonPrevious { get { return FormatKey(Settings.SwitchComparisonPrevious); } }
-        public string SwitchComparisonNext { get { return FormatKey(Settings.SwitchComparisonNext); } }
-        public string ToggleGlobalHotkeys { get { return FormatKey(Settings.ToggleGlobalHotkeys); } }
+        public string SplitKey => FormatKey(Settings.SplitKey);
+        public string ResetKey => FormatKey(Settings.ResetKey);
+        public string SkipKey => FormatKey(Settings.SkipKey);
+        public string UndoKey => FormatKey(Settings.UndoKey);
+        public string PauseKey => FormatKey(Settings.PauseKey);
+        public string SwitchComparisonPrevious => FormatKey(Settings.SwitchComparisonPrevious);
+        public string SwitchComparisonNext => FormatKey(Settings.SwitchComparisonNext);
+        public string ToggleGlobalHotkeys => FormatKey(Settings.ToggleGlobalHotkeys);
         public float HotkeyDelay { get { return Settings.HotkeyDelay; } set { Settings.HotkeyDelay = Math.Max(value, 0); } }
 
         public event EventHandler SumOfBestModeChanged;
@@ -46,7 +47,7 @@ namespace LiveSplit.View
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
 
-            SetClickEvents();
+            SetClickEvents(this);
         }
 
         void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
@@ -145,16 +146,13 @@ namespace LiveSplit.View
                 var key = new KeyOrButton(x);
                 keySetCallback(key);
                 unregisterEvents();
-                Action action = () =>
+
+                this.InvokeIfRequired(() =>
                 {
                     txtBox.Select(0, 0);
                     chkGlobalHotkeys.Select();
                     txtBox.Text = FormatKey(key);
-                };
-                if (InvokeRequired)
-                    Invoke(action);
-                else
-                    action();
+                });
             };
             txtBox.KeyDown += handlerDown;
             txtBox.KeyUp += handlerUp;
@@ -193,30 +191,22 @@ namespace LiveSplit.View
         {
             SetHotkeyHandlers((TextBox)sender, x => { Settings.SwitchComparisonNext = x; });
         }
+
         private void ClickControl(object sender, EventArgs e)
         {
             chkGlobalHotkeys.Select();
         }
-        private void SetClickEvents()
+
+        private void SetClickEvents(Control control)
         {
-            //shitty code to remove "set hotkey" if you click out of it
-            tableLayoutPanel1.Click += ClickControl;
-            tableLayoutPanel2.Click += ClickControl;
-            groupBox1.Click += ClickControl;
-            label1.Click += ClickControl;
-            label2.Click += ClickControl;
-            label3.Click += ClickControl;
-            label4.Click += ClickControl;
-            label5.Click += ClickControl;
-            label6.Click += ClickControl;
-            label7.Click += ClickControl;
-            label8.Click += ClickControl;
-            label9.Click += ClickControl;
-            label10.Click += ClickControl;
-            label11.Click += ClickControl;
-            /*lblDisplayInterval.Click += ClickControl;
-            lblRefreshRate.Click += ClickControl;*/
-            Click += ClickControl;
+            foreach (Control childControl in control.Controls)
+            {
+                if (childControl is TableLayoutPanel || childControl is Label || childControl is GroupBox)
+                {
+                    SetClickEvents(childControl);
+                }
+            }
+            control.Click += ClickControl;
         }
 
         private void btnOK_Click(object sender, EventArgs e)

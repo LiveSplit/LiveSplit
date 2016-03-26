@@ -19,7 +19,21 @@ namespace LiveSplit.UI.Components
                 InformationValue = Formatter.Format(timeValue);
             }
         }
-        public ITimeFormatter Formatter { get; set; }
+
+        private ITimeFormatter formatter;
+        public ITimeFormatter Formatter
+        {
+            get
+            {
+                return formatter;
+            }
+            set
+            {
+                if (value != null && value != formatter)
+                    InformationValue = value.Format(timeValue);
+                formatter = value;
+            }
+        }
 
         public override void PrepareDraw(Model.LiveSplitState state, LayoutMode mode)
         {

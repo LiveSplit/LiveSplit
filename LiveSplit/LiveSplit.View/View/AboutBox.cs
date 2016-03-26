@@ -13,7 +13,7 @@ namespace LiveSplit.View
             InitializeComponent();
             lblVersion.Text = Git.Version;
             if (Git.Branch != "master" && Git.Branch != "HEAD")
-                labelProductName.Text += string.Format(" ({0})", Git.Branch);
+                labelProductName.Text = string.Format("{0} ({1})", labelProductName.Text, Git.Branch);
         }
 
 #region Assembly Attribute Accessors
@@ -111,9 +111,9 @@ namespace LiveSplit.View
             Process.Start("http://twitter.com/CryZe107");
         }
 
-        private void wooferzfg1LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void wooferzfgLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start("http://twitter.com/wooferzfg1");
+            Process.Start("http://twitter.com/wooferzfg");
         }
 
         private void donateButton_Click(object sender, EventArgs e)

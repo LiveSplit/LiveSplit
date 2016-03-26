@@ -2,6 +2,7 @@ using LiveSplit.Options;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using static System.Math;
 
 namespace LiveSplit.Model.Comparisons
 {
@@ -10,23 +11,17 @@ namespace LiveSplit.Model.Comparisons
         public IRun Run { get; set; }
         public const string ComparisonName = "Balanced PB";
         public const string ShortComparisonName = "Balanced";
-        public string Name { get { return ComparisonName; } }
-        public const double Weight = 0.93333;
+        public string Name => ComparisonName;
+        public const double Weight = 0.9375;
 
         public PercentileComparisonGenerator(IRun run)
         {
             Run = run;
         }
 
-        protected double GetWeight(int index, int count)
-        {
-            return Math.Pow(Weight, count - index - 1);
-        }
+        protected double GetWeight(int index, int count) => Pow(Weight, count - index - 1);
 
-        protected double ReWeight(double a, double b, double c)
-        {
-            return (a - b) / c;
-        }
+        protected double ReWeight(double a, double b, double c) => (a - b) / c;
 
         protected TimeSpan Calculate(double perc, TimeSpan Value1, double Key1, TimeSpan Value2, double Key2)
         {
@@ -40,18 +35,19 @@ namespace LiveSplit.Model.Comparisons
             var allHistory = new List<List<IndexedTimeSpan>>();
             foreach (var segment in Run)
                 allHistory.Add(new List<IndexedTimeSpan>());
-            for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++)
+            foreach (var attempt in Run.AttemptHistory)
             {
+                var ind = attempt.Index;
                 var historyStartingIndex = -1;
                 foreach (var segment in Run)
                 {
                     var currentIndex = Run.IndexOf(segment);
-                    IIndexedTime history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
-                    if (history != null)
+                    Time history;
+                    if (segment.SegmentHistory.TryGetValue(ind, out history))
                     {
-                        if (history.Time[method] != null)
+                        if (history[method] != null)
                         {
-                            allHistory[Run.IndexOf(segment)].Add(new IndexedTimeSpan(history.Time[method].Value, historyStartingIndex));
+                            allHistory[Run.IndexOf(segment)].Add(new IndexedTimeSpan(history[method].Value, historyStartingIndex));
                             historyStartingIndex = currentIndex;
                         }
                     }
@@ -71,7 +67,7 @@ namespace LiveSplit.Model.Comparisons
                 var finalList = new List<TimeSpan>();
 
                 var matchingSegmentHistory = currentList.Where(x => x.Index == overallStartingIndex);
-                if (matchingSegmentHistory.Count() > 0)
+                if (matchingSegmentHistory.Any())
                 {
                     finalList = matchingSegmentHistory.Select(x => x.Time).ToList();
                     overallStartingIndex = curIndex;

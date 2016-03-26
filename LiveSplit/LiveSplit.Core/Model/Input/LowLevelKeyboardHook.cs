@@ -14,7 +14,7 @@ namespace LiveSplit.Model.Input
         public int HookState { get; set; }
         public event KeyEventHandler KeyPressed;
         protected KeyboardHook SafetyHook { get; set; }
-        protected TripleDateTime UnstableStateTime { get; set; }
+        protected TimeStamp UnstableStateTime { get; set; }
         private object Lock { get; set; }
 
         public LowLevelKeyboardHook()
@@ -38,7 +38,7 @@ namespace LiveSplit.Model.Input
                 HookState++;
 
                 if (HookState == 1 || HookState < 0)
-                    UnstableStateTime = TripleDateTime.Now;
+                    UnstableStateTime = TimeStamp.Now;
             }
         }
 
@@ -54,7 +54,7 @@ namespace LiveSplit.Model.Input
                     HookState--;
 
                     if (HookState == -1 || HookState > 0)
-                        UnstableStateTime = TripleDateTime.Now;                   
+                        UnstableStateTime = TimeStamp.Now;                   
                 }
             }
         }
@@ -79,12 +79,12 @@ namespace LiveSplit.Model.Input
             SafetyHook.Poll();
             lock (Lock)
             {
-                if (HookState > 0 && (TripleDateTime.Now - UnstableStateTime).TotalSeconds >= 2)
+                if (HookState > 0 && (TimeStamp.Now - UnstableStateTime).TotalSeconds >= 2)
                 {
                     Input.RegisterHook();
                     HookState = 0;
                 }
-                else if (HookState < 0 && (TripleDateTime.Now - UnstableStateTime).TotalSeconds >= 2)
+                else if (HookState < 0 && (TimeStamp.Now - UnstableStateTime).TotalSeconds >= 2)
                     HookState = 0;
             }
         }
@@ -207,10 +207,7 @@ namespace LiveSplit.Model.Input
                     keyBoardHandle, Code, wParam, lParam);
                 }
 
-                if (KeyBoardKeyPressed != null)
-                {
-                    KeyBoardKeyPressed(this, new KeyEventArgs(key | modifiers));
-                }
+                KeyBoardKeyPressed?.Invoke(this, new KeyEventArgs(key | modifiers));
 
                 if (key == Keys.ControlKey)
                     modifiers |= Keys.Control;

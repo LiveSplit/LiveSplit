@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Options;
+using LiveSplit.Utils;
 using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 using System;
@@ -50,19 +51,14 @@ namespace LiveSplit.View
             if (IsDisposed)
                 return;
 
-            Action x = () =>
+            this.InvokeIfRequired(() =>
             {
                 if (!FormIsClosing)
                 {
                     MessageBox.Show(this, "You have been kicked from the IRC Channel.", "Kicked From Channel", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Close();
                 }
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
         }
 
         void SRLClient_Disconnected(object sender, EventArgs e)
@@ -72,19 +68,14 @@ namespace LiveSplit.View
 
             try
             {
-                Action x = () =>
+                this.InvokeIfRequired(() =>
                 {
                     if (!FormIsClosing)
                     {
                         MessageBox.Show(this, "You have been disconnected from the IRC server.", "Disconnected", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Close();
                     }
-                };
-
-                if (InvokeRequired)
-                    Invoke(x);
-                else
-                    x();
+                });
             }
             catch { }
         }
@@ -95,16 +86,12 @@ namespace LiveSplit.View
                 return;
 
             FormIsClosing = true;
-            Action x = () =>
+
+            this.InvokeIfRequired(() =>
             {
                 MessageBox.Show(this, "Your nickname is already in use.", "Nickname In Use", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
         }
 
         void SRLClient_PasswordIncorrect(object sender, EventArgs e)
@@ -113,16 +100,12 @@ namespace LiveSplit.View
                 return;
 
             FormIsClosing = true;
-            Action x = () =>
-                {
-                    MessageBox.Show(this, "The password is incorrect.", "Password Incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    Close();
-                };
 
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            this.InvokeIfRequired(() =>
+            {
+                MessageBox.Show(this, "The password is incorrect.", "Password Incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            });
         }
 
         public SpeedRunsLiveForm(LiveSplitState state, ITimerModel model, string gameName, string gameID, string gameCategory)
@@ -154,14 +137,7 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    Action invokation = () =>
-                    {
-                        TwitchEmoteResolver.DownloadTwitchEmotesList();
-                    };
-                    if (InvokeRequired)
-                        Invoke(invokation);
-                    else
-                        invokation();
+                    this.InvokeIfRequired(TwitchEmoteResolver.DownloadTwitchEmotesList);
                 }
                 catch (Exception ex)
                 {
@@ -175,15 +151,10 @@ namespace LiveSplit.View
             if (IsDisposed)
                 return;
 
-            Action action = () =>
+            this.InvokeIfRequired(() =>
             {
                 Text = SRLClient.ChannelTopic;
-            };
-
-            if (InvokeRequired)
-                Invoke(action);
-            else
-                action();
+            });
         }
 
         void SRLClient_UserListRefreshed(object sender, EventArgs e)
@@ -199,49 +170,44 @@ namespace LiveSplit.View
             if (IsDisposed)
                 return;
 
-            Action action = () =>
+            this.InvokeIfRequired(() =>
+            {
+                if (state == RaceState.EnteredRace)
                 {
-                    if (state == RaceState.EnteredRace)
-                    {
-                        chkReady.Enabled = true;
-                        chkReady.Checked = false;
-                        btnJoinQuit.Text = "Quit Race";
-                        btnJoinQuit.Enabled = true;
-                    }
-                    else if (state == RaceState.EnteredRaceAndReady)
-                    {
-                        chkReady.Enabled = true;
-                        chkReady.Checked = true;
-                        btnJoinQuit.Text = "Quit Race";
-                        btnJoinQuit.Enabled = true;
-                    }
-                    else if (state == RaceState.NotInRace)
-                    {
-                        chkReady.Enabled = false;
-                        chkReady.Checked = false;
-                        btnJoinQuit.Text = "Enter Race";
-                        btnJoinQuit.Enabled = true;
-                    }
-                    else if (state == RaceState.RaceEnded)
-                    {
-                        chkReady.Enabled = false;
-                        chkReady.Checked = true;
-                        btnJoinQuit.Text = "Rejoin Race";
-                        btnJoinQuit.Enabled = true;
-                    }
-                    else if (state == RaceState.RaceStarted)
-                    {
-                        chkReady.Enabled = false;
-                        chkReady.Checked = true;
-                        btnJoinQuit.Text = "Forfeit Race";
-                        btnJoinQuit.Enabled = true;
-                    }
-                };
-
-            if (InvokeRequired)
-                Invoke(action);
-            else
-                action();
+                    chkReady.Enabled = true;
+                    chkReady.Checked = false;
+                    btnJoinQuit.Text = "Quit Race";
+                    btnJoinQuit.Enabled = true;
+                }
+                else if (state == RaceState.EnteredRaceAndReady)
+                {
+                    chkReady.Enabled = true;
+                    chkReady.Checked = true;
+                    btnJoinQuit.Text = "Quit Race";
+                    btnJoinQuit.Enabled = true;
+                }
+                else if (state == RaceState.NotInRace)
+                {
+                    chkReady.Enabled = false;
+                    chkReady.Checked = false;
+                    btnJoinQuit.Text = "Enter Race";
+                    btnJoinQuit.Enabled = true;
+                }
+                else if (state == RaceState.RaceEnded)
+                {
+                    chkReady.Enabled = false;
+                    chkReady.Checked = true;
+                    btnJoinQuit.Text = "Rejoin Race";
+                    btnJoinQuit.Enabled = true;
+                }
+                else if (state == RaceState.RaceStarted)
+                {
+                    chkReady.Enabled = false;
+                    chkReady.Checked = true;
+                    btnJoinQuit.Text = "Forfeit Race";
+                    btnJoinQuit.Enabled = true;
+                }
+            });
         }
 
         void ExitMessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
@@ -350,16 +316,12 @@ namespace LiveSplit.View
         {
             SRLClient.RaceBotResponseTimer.Enabled = false;
             FormIsClosing = true;
-            Action x = () =>
+
+            this.InvokeIfRequired(() =>
             {
                 MessageBox.Show(this, "RaceBot did not respond to your message. If you created a race within the last 5 minutes, you are not allowed to create another race.", "RaceBot Did Not Respond", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
-            };
-
-            if (InvokeRequired)
-                Invoke(x);
-            else
-                x();
+            });
         }
 
         void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
@@ -370,15 +332,10 @@ namespace LiveSplit.View
 
         private void EnableJoinButton()
         {
-            Action action = () =>
+            this.InvokeIfRequired(() =>
             {
                 btnJoinQuit.Enabled = true;
-            };
-
-            if (InvokeRequired)
-                Invoke(action);
-            else
-                action();
+            });
         }
 
         private void SpeedRunsLiveForm_Load(object sender, EventArgs e)
@@ -500,86 +457,81 @@ namespace LiveSplit.View
 
         private void ChatBoxAppend(string message, Color color)
         {
-            Action action = () =>
+            chatBox.InvokeIfRequired(() =>
+            {
+                int begin = chatBox.Text.Length;
+                chatBox.AppendText(DateTime.Now.ToString("HH:mm "));
+                chatBox.Select(begin, chatBox.Text.Length);
+                chatBox.SelectionColor = Color.Gray;
+
+                bool colorSplit = message[0] == 3;
+                Color origColor = color;
+                string colorlessMessage = "";
+                int actualBegin = chatBox.Text.Length;
+                foreach (var split in message.Split(new[] { (char)3 }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    int begin = chatBox.Text.Length;
-                    chatBox.AppendText(DateTime.Now.ToString("HH:mm "));
+                    begin = chatBox.Text.Length;
+                    string useSplit = split;
+                    if (colorSplit && split.Length > 1 && split[1] >= '0' && split[1] <= '9')
+                    {
+                        int code = -1;
+                        bool parsed = int.TryParse(split.Substring(0, 2), out code);
+                        color = parsed ? GetColorByCode(code) : origColor;
+                        useSplit = split.Substring(2);
+                    }
+                    else if (colorSplit)
+                    {
+                        int code = -1;
+                        bool parsed = int.TryParse(split.Substring(0, 1), out code);
+                        color = parsed ? GetColorByCode(code) : origColor;
+                        if (parsed)
+                            useSplit = split.Substring(1);
+                    }
+                    var replacedText = useSplit.Replace(((char)2).ToString(), "");
+                    bool isFirst = true;
+                    foreach (var word in replacedText.Split(' '))
+                    {
+                        if (TwitchEmoteResolver.IsEmote(word))
+                        {
+                            chatBox.AppendText((isFirst ? "" : " "));
+                            var image = TwitchEmoteResolver.Resolve(word);
+                            var whiteImage = new Bitmap(image.Width, image.Height);
+                            var g = Graphics.FromImage(whiteImage);
+                            g.FillRectangle(Brushes.White, 0, 0, image.Width, image.Height);
+                            g.DrawImage(image, 0, 0, image.Width, image.Height);
+                            Clipboard.SetDataObject(whiteImage);
+                            chatBox.ReadOnly = false;
+                            chatBox.Paste();
+                            chatBox.ReadOnly = true;
+                        }
+                        else
+                        {
+                            chatBox.AppendText((isFirst ? "" : " ") + word);
+                        }
+                        isFirst = false;
+                    }
+                    colorlessMessage += useSplit;
                     chatBox.Select(begin, chatBox.Text.Length);
-                    chatBox.SelectionColor = Color.Gray;
-
-                    bool colorSplit = message[0] == 3;
-                    Color origColor = color;
-                    string colorlessMessage = "";
-                    int actualBegin = chatBox.Text.Length;
-                    foreach (var split in message.Split(new[] { (char)3 }, StringSplitOptions.RemoveEmptyEntries))
+                    chatBox.SelectionColor = color;
+                    colorSplit = true;
+                }
+                bool bold = false;
+                int boldBeginPosition = actualBegin;
+                foreach (string boldSplit in colorlessMessage.Split((char)2))
+                {
+                    if (bold)
                     {
-                        begin = chatBox.Text.Length;
-                        string useSplit = split;
-                        if (colorSplit && split.Length > 1 && split[1] >= '0' && split[1] <= '9')
-                        {
-                            int code = -1;
-                            bool parsed = int.TryParse(split.Substring(0, 2), out code);
-                            color = parsed ? GetColorByCode(code) : origColor;
-                            useSplit = split.Substring(2);
-                        }
-                        else if (colorSplit)
-                        {
-                            int code = -1;
-                            bool parsed = int.TryParse(split.Substring(0, 1), out code);
-                            color = parsed ? GetColorByCode(code) : origColor;
-                            if (parsed)
-                                useSplit = split.Substring(1);
-                        }
-                        var replacedText = useSplit.Replace(((char)2).ToString(), "");
-                        bool isFirst = true;
-                        foreach (var word in replacedText.Split(' '))
-                        {
-                            if (TwitchEmoteResolver.IsEmote(word))
-                            {
-                                chatBox.AppendText((isFirst ? "" : " "));
-                                var image = TwitchEmoteResolver.Resolve(word);
-                                var whiteImage = new Bitmap(image.Width, image.Height);
-                                var g = Graphics.FromImage(whiteImage);
-                                g.FillRectangle(Brushes.White, 0, 0, image.Width, image.Height);
-                                g.DrawImage(image, 0, 0, image.Width, image.Height);
-                                Clipboard.SetDataObject(whiteImage);
-                                chatBox.ReadOnly = false;
-                                chatBox.Paste();
-                                chatBox.ReadOnly = true;
-                            }
-                            else
-                            {
-                                chatBox.AppendText((isFirst ? "" : " ") + word);
-                            }
-                            isFirst = false;
-                        }
-                        colorlessMessage += useSplit;
-                        chatBox.Select(begin, chatBox.Text.Length);
-                        chatBox.SelectionColor = color;
-                        colorSplit = true;
+                        chatBox.Select(boldBeginPosition, boldSplit.Length);
+                        chatBox.SelectionFont = new Font(chatBox.SelectionFont, FontStyle.Bold);
                     }
-                    bool bold = false;
-                    int boldBeginPosition = actualBegin;
-                    foreach (string boldSplit in colorlessMessage.Split((char)2))
-                    {
-                        if (bold)
-                        {
-                            chatBox.Select(boldBeginPosition, boldSplit.Length);
-                            chatBox.SelectionFont = new Font(chatBox.SelectionFont, FontStyle.Bold);
-                        }
-                        bold = !bold;
-                        boldBeginPosition += boldSplit.Length;
-                    }
+                    bold = !bold;
+                    boldBeginPosition += boldSplit.Length;
+                }
 
-                    chatBox.AppendText("\r\n");
-                    chatBox.Select(chatBox.TextLength, 0);
-                    chatBox.ScrollToCaret();
-                };
-
-            if (chatBox.InvokeRequired)
-                chatBox.Invoke(action);
-            else
-                action();
+                chatBox.AppendText("\r\n");
+                chatBox.Select(chatBox.TextLength, 0);
+                chatBox.ScrollToCaret();
+            });
         }
 
         private void Append(RichTextBox tbx, string text, Color? color = null)
@@ -658,12 +610,9 @@ namespace LiveSplit.View
 
             try
             {
-                if (!this.Disposing && !this.IsDisposed)
+                if (!Disposing && !IsDisposed)
                 {
-                    if (InvokeRequired)
-                        Invoke(action);
-                    else
-                        action();
+                    this.InvokeIfRequired(action);
                 }
             }
             catch (Exception ex)

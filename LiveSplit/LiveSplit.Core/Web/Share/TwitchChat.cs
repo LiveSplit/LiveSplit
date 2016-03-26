@@ -18,12 +18,7 @@ namespace LiveSplit.Web.Share
         public EventHandlerT<User> OnNewSubscriber;
 
         public IEnumerable<User> Users 
-        { 
-            get 
-            {
-                return Client.Channels.FirstOrDefault().Users.Select(x => new User(x.User, GetFlags(x.User.NickName), GetColor(x.User.NickName))); 
-            }
-        }
+            => Client.Channels.FirstOrDefault().Users.Select(x => new User(x.User, GetFlags(x.User.NickName), GetColor(x.User.NickName))); 
 
         protected Dictionary<string, ChatBadges> UserFlags { get; set; }
         protected Dictionary<string, Color> UserColors { get; set; }
@@ -44,7 +39,7 @@ namespace LiveSplit.Web.Share
                 new IrcUserRegistrationInfo()
                 {
                     NickName = twitch.ChannelName,
-                    Password = string.Format("oauth:{0}", accessToken)
+                    Password = $"oauth:{accessToken}"
                 });
         }
 
@@ -91,7 +86,6 @@ namespace LiveSplit.Web.Share
 
         void Client_Registered(object sender, EventArgs e)
         {
-            
         }
 
         void Client_Connected(object sender, EventArgs e)
@@ -162,17 +156,11 @@ namespace LiveSplit.Web.Share
                 var subs = Twitch.Instance.Subscribers;
                 var username = e.Text.Substring(0, e.Text.IndexOf(' '));
                 Twitch.Instance._Subscribers.Add(username);
-                
-                if (OnNewSubscriber != null)
-                {
-                    OnNewSubscriber(this, new User(Client, username));
-                }
+
+                OnNewSubscriber?.Invoke(this, new User(Client, username));
             }
 
-            if (OnMessage != null)
-            {
-                OnMessage(this, new Message(new User(e.Source as IrcUser, GetFlags(e.Source.Name), GetColor(e.Source.Name)), e.Text));
-            }
+            OnMessage?.Invoke(this, new Message(new User(e.Source as IrcUser, GetFlags(e.Source.Name), GetColor(e.Source.Name)), e.Text));
         }
 
         public void SendMessage(string message)

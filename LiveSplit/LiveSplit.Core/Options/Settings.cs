@@ -23,7 +23,6 @@ namespace LiveSplit.Options
         public IList<RecentSplitsFile> RecentSplits { get; set; }
         public IList<string> RecentLayouts { get; set; }
         public string LastComparison { get; set; }
-        public TimingMethod LastTimingMethod { get; set; }
         public float HotkeyDelay { get; set; }
         public bool GlobalHotkeysEnabled { get; set; }
         public bool DeactivateHotkeysForOtherPrograms { get; set; }
@@ -63,7 +62,6 @@ namespace LiveSplit.Options
                 RecentSplits = new List<RecentSplitsFile>(RecentSplits),
                 RecentLayouts = new List<string>(RecentLayouts),
                 LastComparison = LastComparison,
-                LastTimingMethod = LastTimingMethod,
                 HotkeyDelay = HotkeyDelay,
                 RaceViewer = RaceViewer,
                 AgreedToSRLRules = AgreedToSRLRules,
@@ -93,7 +91,14 @@ namespace LiveSplit.Options
             {
                 Log.Error(ex);
             }
-            RegisterScrolling(hook);
+            try
+            {
+                RegisterScrolling(hook);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
             if (SplitKey != null)
             {
                 try
@@ -184,14 +189,13 @@ namespace LiveSplit.Options
             }
         }
 
-
-        public void AddToRecentSplits(string path, IRun run)
+        public void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod)
         {
             var foundRecentSplitsFile = RecentSplits.FirstOrDefault(x => x.Path == path);
-            if (!string.IsNullOrEmpty(foundRecentSplitsFile.Path))
+            if (foundRecentSplitsFile.Path != null)
                 RecentSplits.Remove(foundRecentSplitsFile);
 
-            var recentSplitsFile = new RecentSplitsFile(path, run);
+            var recentSplitsFile = new RecentSplitsFile(path, run, lastTimingMethod);
 
             RecentSplits.Add(recentSplitsFile);
 

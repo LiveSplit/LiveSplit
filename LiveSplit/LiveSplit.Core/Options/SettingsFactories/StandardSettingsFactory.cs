@@ -26,7 +26,6 @@ namespace LiveSplit.Options.SettingsFactories
                 WarnOnReset = true,
                 DoubleTapPrevention = true,
                 LastComparison = Run.PersonalBestComparisonName,
-                LastTimingMethod = TimingMethod.RealTime,
                 HotkeyDelay = 0f,
                 RaceViewer = new SRLRaceViewer(),
                 AgreedToSRLRules = false,

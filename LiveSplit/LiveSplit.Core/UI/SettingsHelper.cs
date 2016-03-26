@@ -1,5 +1,4 @@
 ﻿using Fetze.WinFormsColor;
-using LiveSplit.Options;
 using System;
 using System.Drawing;
 using System.Globalization;
@@ -12,26 +11,18 @@ namespace LiveSplit.UI
 {
     public class SettingsHelper
     {
-        public static Font ChooseFont(Control control, Font previousFont, int minSize, int maxSize)
+        public static CustomFontDialog.FontDialog GetFontDialog(Font previousFont, int minSize, int maxSize)
         {
-            var dialog = new FontDialog();
-            dialog.Font = previousFont;
+            var dialog = new CustomFontDialog.FontDialog();
+            dialog.OriginalFont = previousFont;
             dialog.MinSize = minSize;
             dialog.MaxSize = maxSize;
-            try
-            {
-                var result = dialog.ShowDialog(control);
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
-                    return dialog.Font;
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                MessageBox.Show("This font is not supported. If this font is freshly installed, a restart of LiveSplit is required.", "Font Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-            return previousFont;
+            return dialog;
+        }
+
+        public static string FormatFont(Font font)
+        {
+            return $"{ font.FontFamily.Name } { font.Style }";
         }
 
         public static void ColorButtonClick(Button button, Control control)
@@ -45,12 +36,14 @@ namespace LiveSplit.UI
 
         public static Color ParseColor(XmlElement colorElement, Color defaultColor = default(Color))
         {
-            return colorElement != null ? Color.FromArgb(Int32.Parse(colorElement.InnerText, NumberStyles.HexNumber)) : defaultColor;
+            return colorElement != null 
+                ? Color.FromArgb(int.Parse(colorElement.InnerText, NumberStyles.HexNumber)) 
+                : defaultColor;
         }
 
         public static Font GetFontFromElement(XmlElement element)
         {
-            if (!element.IsEmpty)
+            if (element != null && !element.IsEmpty)
             {
                 var bf = new BinaryFormatter();
 
@@ -62,49 +55,70 @@ namespace LiveSplit.UI
             return null;
         }
 
-        public static XmlElement CreateFontElement(XmlDocument document, string elementName, Font font)
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string elementName, Font font)
         {
-            var element = document.CreateElement(elementName);
-
-            if (font != null)
+            if (document != null)
             {
-                using (var ms = new MemoryStream())
+                var element = document.CreateElement(elementName);
+
+                if (font != null)
                 {
-                    var bf = new BinaryFormatter();
+                    using (var ms = new MemoryStream())
+                    {
+                        var bf = new BinaryFormatter();
 
-                    bf.Serialize(ms, font);
-                    var data = ms.ToArray();
-                    var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
-                    element.InnerXml = cdata.OuterXml;
+                        bf.Serialize(ms, font);
+                        var data = ms.ToArray();
+                        var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+                        element.InnerXml = cdata.OuterXml;
+                    }
                 }
+                parent.AppendChild(element);
             }
-
-            return element;
+            return getFontHashCode(font);
         }
 
-        public static XmlElement CreateImageElement(XmlDocument document, string elementName, Image image)
+        private static int getFontHashCode(Font font)
         {
-            var element = document.CreateElement(elementName);
-
-            if (image != null)
+            int hash = 17;
+            unchecked
             {
-                using (var ms = new MemoryStream())
-                {
-                    var bf = new BinaryFormatter();
+                hash = hash * 23 + font.Name.GetHashCode();
+                hash = hash * 23 + font.FontFamily.GetHashCode();
+                hash = hash * 23 + font.Size.GetHashCode();
+                hash = hash * 23 + font.Style.GetHashCode();
+            }
+            return hash;
+        }
 
-                    bf.Serialize(ms, image);
-                    var data = ms.ToArray();
-                    var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
-                    element.InnerXml = cdata.OuterXml;
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string elementName, Image image)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(elementName);
+
+                if (image != null)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        var bf = new BinaryFormatter();
+
+                        bf.Serialize(ms, image);
+                        var data = ms.ToArray();
+                        var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+                        element.InnerXml = cdata.OuterXml;
+                    }
                 }
+
+                parent.AppendChild(element);
             }
 
-            return element;
+            return image != null ? image.GetHashCode() : 0;
         }
 
         public static Image GetImageFromElement(XmlElement element)
         {
-            if (!element.IsEmpty)
+            if (element != null && !element.IsEmpty)
             {
                 var bf = new BinaryFormatter();
 
@@ -121,65 +135,119 @@ namespace LiveSplit.UI
 
         public static bool ParseBool(XmlElement boolElement, bool defaultBool = false)
         {
-            return boolElement != null ? Boolean.Parse(boolElement.InnerText) : defaultBool;
+            return boolElement != null
+                ? bool.Parse(boolElement.InnerText)
+                : defaultBool;
         }
 
         public static int ParseInt(XmlElement intElement, int defaultInt = 0)
         {
-            return intElement != null ? Int32.Parse(intElement.InnerText) : defaultInt;
+            return intElement != null
+                ? int.Parse(intElement.InnerText)
+                : defaultInt;
         }
 
         public static float ParseFloat(XmlElement floatElement, float defaultFloat = 0f)
         {
-            return floatElement != null ? Single.Parse(floatElement.InnerText.Replace(',', '.'), CultureInfo.InvariantCulture) : defaultFloat;
+            return floatElement != null
+                ? float.Parse(floatElement.InnerText.Replace(',', '.'), CultureInfo.InvariantCulture)
+                : defaultFloat;
         }
 
-        public static string ParseString(XmlElement stringElement, string defaultString = default(string))
+        public static double ParseDouble(XmlElement doubleElement, double defaultDouble = 0.0)
         {
-            return stringElement != null ? stringElement.InnerText : defaultString;
+            return doubleElement != null
+                ? double.Parse(doubleElement.InnerText, CultureInfo.InvariantCulture)
+                : defaultDouble;
+        }
+
+        public static string ParseString(XmlElement stringElement, string defaultString = null)
+        {
+            if (defaultString == null)
+                defaultString = string.Empty;
+
+            return stringElement != null
+                ? stringElement.InnerText
+                : defaultString;
         }
 
         public static TimeSpan ParseTimeSpan(XmlElement timeSpanElement, TimeSpan defaultTimeSpan = default(TimeSpan))
         {
-            return timeSpanElement != null ? TimeSpan.Parse(timeSpanElement.InnerText) : defaultTimeSpan;
-        }
-
-        public static XmlElement ToElement(XmlDocument document, Color color, string name)
-        {
-            var element = document.CreateElement(name);
-            element.InnerText = color.ToArgb().ToString("X8");
-            return element;
+            return timeSpanElement != null
+                ? TimeSpan.Parse(timeSpanElement.InnerText)
+                : defaultTimeSpan;
         }
 
         public static XmlElement ToElement<T>(XmlDocument document, string name, T value)
         {
             var element = document.CreateElement(name);
-            element.InnerText = value.ToString();
+            element.InnerText = value?.ToString();
             return element;
         }
 
-        public static XmlElement ToElement(XmlDocument document, string name, float value)
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string name, Color color)
         {
-            var element = document.CreateElement(name);
-            element.InnerText = value.ToString(CultureInfo.InvariantCulture);
-            return element;
+            if (document != null)
+            {
+                var element = document.CreateElement(name);
+                element.InnerText = color.ToArgb().ToString("X8");
+                parent.AppendChild(element);
+            }
+            return color.GetHashCode();
+        }
+
+        public static int CreateSetting<T>(XmlDocument document, XmlElement parent, string name, T value)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(name);
+                element.InnerText = value?.ToString();
+                parent.AppendChild(element);
+            }
+            return value != null ? value.GetHashCode() : 0;
+        }
+
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string name, float value)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(name);
+                element.InnerText = value.ToString(CultureInfo.InvariantCulture);
+                parent.AppendChild(element);
+            }
+            return value.GetHashCode();
+        }
+
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string name, double value)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(name);
+                element.InnerText = value.ToString(CultureInfo.InvariantCulture);
+                parent.AppendChild(element);
+            }
+            return value.GetHashCode();
         }
 
         public static XmlAttribute ToAttribute<T>(XmlDocument document, string name, T value)
         {
             var element = document.CreateAttribute(name);
-            element.Value = value.ToString();
+            element.Value = value?.ToString();
             return element;
         }
 
         public static T ParseEnum<T>(XmlElement element, T defaultEnum = default(T))
         {
-            return element != null ? (T)Enum.Parse(typeof(T), element.InnerText) : defaultEnum;
+            return element != null 
+                ? (T)Enum.Parse(typeof(T), element.InnerText) 
+                : defaultEnum;
         }
 
         public static Version ParseVersion(XmlElement element)
         {
-            return element != null ? Version.Parse(element.InnerText) : new Version(1, 0, 0, 0);
+            return element != null 
+                ? Version.Parse(element.InnerText) 
+                : new Version(1, 0, 0, 0);
         }
 
         public static Version ParseAttributeVersion(XmlElement element)

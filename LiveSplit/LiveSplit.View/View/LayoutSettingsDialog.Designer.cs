@@ -40,13 +40,22 @@
             // 
             resources.ApplyResources(this.btnCancel, "btnCancel");
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+<<<<<<< HEAD
+=======
+            this.btnCancel.Location = new System.Drawing.Point(412, 567);
+>>>>>>> refs/remotes/LiveSplit/master
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnOK
             // 
+<<<<<<< HEAD
             resources.ApplyResources(this.btnOK, "btnOK");
+=======
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOK.Location = new System.Drawing.Point(331, 567);
+>>>>>>> refs/remotes/LiveSplit/master
             this.btnOK.Name = "btnOK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -58,6 +67,14 @@
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.btnOK, 0, 1);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+<<<<<<< HEAD
+=======
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(490, 593);
+            this.tableLayoutPanel3.TabIndex = 41;
+>>>>>>> refs/remotes/LiveSplit/master
             // 
             // tabControl
             // 
@@ -65,13 +82,26 @@
             this.tableLayoutPanel3.SetColumnSpan(this.tabControl, 2);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
+<<<<<<< HEAD
+=======
+            this.tabControl.Size = new System.Drawing.Size(484, 558);
+            this.tabControl.TabIndex = 41;
+>>>>>>> refs/remotes/LiveSplit/master
             // 
             // LayoutSettingsDialog
             // 
             this.AcceptButton = this.btnOK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
             this.Controls.Add(this.tableLayoutPanel3);
+=======
+            this.ClientSize = new System.Drawing.Size(504, 607);
+            this.Controls.Add(this.tableLayoutPanel3);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximumSize = new System.Drawing.Size(520, 10000);
+            this.MinimumSize = new System.Drawing.Size(520, 645);
+>>>>>>> refs/remotes/LiveSplit/master
             this.Name = "LayoutSettingsDialog";
             this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);

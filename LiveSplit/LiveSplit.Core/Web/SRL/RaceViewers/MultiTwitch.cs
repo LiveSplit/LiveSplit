@@ -22,9 +22,6 @@ namespace LiveSplit.Web.SRL.RaceViewers
             Process.Start(builder.ToString());
         }
 
-        public string Name
-        {
-            get { return "MultiTwitch"; }
-        }
+        public string Name => "MultiTwitch";
     }
 }

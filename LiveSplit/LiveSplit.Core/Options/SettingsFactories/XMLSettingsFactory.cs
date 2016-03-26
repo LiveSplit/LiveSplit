@@ -2,21 +2,20 @@
 using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.Model.RunFactories;
-using LiveSplit.UI;
 using LiveSplit.Web.SRL;
 using System;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml;
+using static LiveSplit.UI.SettingsHelper;
 
 namespace LiveSplit.Options.SettingsFactories
 {
     public class XMLSettingsFactory : ISettingsFactory
     {
         public Stream Stream { get; set; }
- 
-        public XMLSettingsFactory (Stream stream)
+
+        public XMLSettingsFactory(Stream stream)
         {
             Stream = stream;
         }
@@ -28,7 +27,7 @@ namespace LiveSplit.Options.SettingsFactories
             var settings = new StandardSettingsFactory().Create();
 
             var parent = document["Settings"];
-            var version = SettingsHelper.ParseAttributeVersion(parent);
+            var version = ParseAttributeVersion(parent);
 
             var keyStart = parent["SplitKey"];
             if (!string.IsNullOrEmpty(keyStart.InnerText))
@@ -54,15 +53,14 @@ namespace LiveSplit.Options.SettingsFactories
             else
                 settings.UndoKey = null;
 
-            settings.GlobalHotkeysEnabled = SettingsHelper.ParseBool(parent["GlobalHotkeysEnabled"]);
-            settings.WarnOnReset = SettingsHelper.ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
-            settings.DoubleTapPrevention = SettingsHelper.ParseBool(parent["DoubleTapPrevention"], settings.DoubleTapPrevention);
-            settings.LastTimingMethod = SettingsHelper.ParseEnum<TimingMethod>(parent["LastTimingMethod"], settings.LastTimingMethod);
-            settings.SimpleSumOfBest = SettingsHelper.ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
-            settings.LastComparison = SettingsHelper.ParseString(parent["LastComparison"], settings.LastComparison);
-            settings.DeactivateHotkeysForOtherPrograms = SettingsHelper.ParseBool(parent["DeactivateHotkeysForOtherPrograms"], settings.DeactivateHotkeysForOtherPrograms);
-            settings.HotkeyDelay = SettingsHelper.ParseFloat(parent["HotkeyDelay"], settings.HotkeyDelay);
-            settings.AgreedToSRLRules = SettingsHelper.ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
+            settings.GlobalHotkeysEnabled = ParseBool(parent["GlobalHotkeysEnabled"]);
+            settings.WarnOnReset = ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
+            settings.DoubleTapPrevention = ParseBool(parent["DoubleTapPrevention"], settings.DoubleTapPrevention);
+            settings.SimpleSumOfBest = ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
+            settings.LastComparison = ParseString(parent["LastComparison"], settings.LastComparison);
+            settings.DeactivateHotkeysForOtherPrograms = ParseBool(parent["DeactivateHotkeysForOtherPrograms"], settings.DeactivateHotkeysForOtherPrograms);
+            settings.HotkeyDelay = ParseFloat(parent["HotkeyDelay"], settings.HotkeyDelay);
+            settings.AgreedToSRLRules = ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
 
             var recentLayouts = parent["RecentLayouts"];
             foreach (var layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))
@@ -117,7 +115,7 @@ namespace LiveSplit.Options.SettingsFactories
             {
                 foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes.OfType<XmlElement>())
                 {
-                    settings.ComparisonGeneratorStates[generatorNode.GetAttribute("name")] = Boolean.Parse(generatorNode.InnerText);
+                    settings.ComparisonGeneratorStates[generatorNode.GetAttribute("name")] = bool.Parse(generatorNode.InnerText);
                 }
 
                 foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsFile"))
@@ -125,9 +123,12 @@ namespace LiveSplit.Options.SettingsFactories
                     var splitElement = splitNode as XmlElement;
                     string gameName = splitElement.GetAttribute("gameName");
                     string categoryName = splitElement.GetAttribute("categoryName");
+                    var method = TimingMethod.RealTime;
+                    if (version >= new Version(1, 6, 1))
+                        method = (TimingMethod)Enum.Parse(typeof(TimingMethod), splitElement.GetAttribute("lastTimingMethod"));
                     var path = splitElement.InnerText;
 
-                    var recentSplitsFile = new RecentSplitsFile(path, gameName, categoryName);
+                    var recentSplitsFile = new RecentSplitsFile(path, method, gameName, categoryName);
                     settings.RecentSplits.Add(recentSplitsFile);
                 }
             }
@@ -149,7 +150,7 @@ namespace LiveSplit.Options.SettingsFactories
                             runFactory.Stream = stream;
                             var run = runFactory.Create(comparisonsFactory);
 
-                            var recentSplitsFile = new RecentSplitsFile(path, run.GameName, run.CategoryName);
+                            var recentSplitsFile = new RecentSplitsFile(path, run, TimingMethod.RealTime);
                             settings.RecentSplits.Add(recentSplitsFile);
                         }
                     }
@@ -157,7 +158,20 @@ namespace LiveSplit.Options.SettingsFactories
                 }
             }
 
+            LoadDrift(parent);
+
             return settings;
+        }
+
+        private static void LoadDrift(XmlElement parent)
+        {
+            var element = parent["TimerDrift"];
+            if (element != null)
+            {
+                var base64String = element.InnerText;
+                var data = Convert.FromBase64String(base64String);
+                TimeStamp.PersistentDrift = TimeStamp.NewDrift = BitConverter.ToDouble(data, 0);
+            }
         }
     }
 }

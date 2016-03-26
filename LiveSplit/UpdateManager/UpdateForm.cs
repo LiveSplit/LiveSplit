@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using System.Diagnostics;
@@ -14,9 +9,9 @@ namespace UpdateManager
     public partial class UpdateForm : Form
     {
         IEnumerable<IUpdateable> Updateables { get; set; }
-        String OtherProcess { get; set; }
+        string OtherProcess { get; set; }
 
-        public UpdateForm(IEnumerable<IUpdateable> updateables, String otherProcess = null)
+        public UpdateForm(IEnumerable<IUpdateable> updateables, string otherProcess = null)
         {
             InitializeComponent();
             foreach (IUpdateable updateable in updateables)

@@ -22,23 +22,18 @@ namespace LiveSplit.UI.Components
         protected SimpleLabel NameMeasureLabel { get; set; }
 
         public float PaddingTop { get; set; }
-        public float PaddingLeft { get { return 7f; } }
+        public float PaddingLeft => 7f;
         public float PaddingBottom { get; set; }
-        public float PaddingRight { get { return 7f; } }
+        public float PaddingRight => 7f;
 
         public bool DisplayTwoRows { get; set; }
 
         public float VerticalHeight { get; set; }
 
-        public float MinimumWidth
-        {
-            get { return 20; }
-        }
+        public float MinimumWidth => 20;
 
         public float HorizontalWidth
-        {
-            get { return Math.Max(NameMeasureLabel.ActualWidth, ValueLabel.ActualWidth) + 10; }
-        }
+            => Math.Max(NameMeasureLabel.ActualWidth, ValueLabel.ActualWidth) + 10;
 
         public float MinimumHeight { get; set; }
 
@@ -192,10 +187,7 @@ namespace LiveSplit.UI.Components
             get { throw new NotSupportedException(); }
         }
 
-        public IDictionary<string, Action> ContextMenuControls
-        {
-            get { return null; }
-        }
+        public IDictionary<string, Action> ContextMenuControls => null;
 
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
@@ -204,6 +196,7 @@ namespace LiveSplit.UI.Components
             Cache["ValueText"] = InformationValue;
             Cache["NameColor"] = NameLabel.ForeColor.ToArgb();
             Cache["ValueColor"] = ValueLabel.ForeColor.ToArgb();
+            Cache["DisplayTwoRows"] = DisplayTwoRows;
 
             if (invalidator != null && Cache.HasChanged)
             {

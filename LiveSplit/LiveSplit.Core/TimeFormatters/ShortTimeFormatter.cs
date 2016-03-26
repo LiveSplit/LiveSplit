@@ -7,12 +7,6 @@ namespace LiveSplit.TimeFormatters
     {
         public string Format(TimeSpan? time)
         {
-            //APRIL FOOLS
-            /*if (DateTime.Now.Date.Month == 4 && DateTime.Now.Date.Day == 1 && time.HasValue)
-            {
-                time = time.Value + TimeSpan.FromSeconds(Math.Sin(DateTime.Now.TimeOfDay.TotalSeconds));
-            }*/
-
             if (time.HasValue)
             {
                 string minusString = "";
@@ -34,12 +28,6 @@ namespace LiveSplit.TimeFormatters
 
         public string Format(TimeSpan? time, TimeFormat format)
         {
-            //APRIL FOOLS
-            /*if (DateTime.Now.Date.Month == 4 && DateTime.Now.Date.Day == 1 && time.HasValue)
-            {
-                time = time.Value + TimeSpan.FromSeconds(Math.Sin(DateTime.Now.TimeOfDay.TotalSeconds));
-            }*/
-
             if (time.HasValue)
             {
                 string minusString = "";
@@ -49,13 +37,25 @@ namespace LiveSplit.TimeFormatters
                     time = TimeSpan.Zero - time;
                 }
                 if (time.Value.TotalDays >= 1)
+                {
                     return minusString + (int)(time.Value.TotalHours) + time.Value.ToString(@"\:mm\:ss\.ff", CultureInfo.InvariantCulture);
+                }
+                else if (format == TimeFormat.TenHours)
+                {
+                    return minusString + time.Value.ToString(@"hh\:mm\:ss\.ff", CultureInfo.InvariantCulture);
+                }
                 else if (time.Value.TotalHours >= 1 || format == TimeFormat.Hours)
+                {
                     return minusString + time.Value.ToString(@"h\:mm\:ss\.ff", CultureInfo.InvariantCulture);
+                }
                 else if (format == TimeFormat.Minutes)
+                {
                     return minusString + time.Value.ToString(@"mm\:ss\.ff", CultureInfo.InvariantCulture);
+                }
                 else if (time.Value.Minutes >= 1)
+                {
                     return minusString + time.Value.ToString(@"m\:ss\.ff", CultureInfo.InvariantCulture);
+                }
                 return minusString + time.Value.ToString(@"s\.ff", CultureInfo.InvariantCulture);
             }
             return "0.00";

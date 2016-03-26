@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Options;
+using LiveSplit.Utils;
 using LiveSplit.Web.SRL;
 using System;
 using System.Drawing;
@@ -35,7 +36,7 @@ namespace LiveSplit.UI
                 try
                 {
                     var gameNames = SpeedRunsLiveAPI.Instance.GetGameNames().ToArray();
-                    Action invokation = () =>
+                    this.InvokeIfRequired(() =>
                     {
                         try
                         {
@@ -45,11 +46,7 @@ namespace LiveSplit.UI
                         {
                             Log.Error(ex);
                         }
-                    };
-                    if (InvokeRequired)
-                        Invoke(invokation);
-                    else
-                        invokation();
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -146,7 +143,8 @@ namespace LiveSplit.UI
 
                         categoryNames = new [] { "Any%", "Low%", "100%" };
                     }
-                    Action invokation = () =>
+
+                    this.InvokeIfRequired(() =>
                     {
                         try
                         {
@@ -157,11 +155,7 @@ namespace LiveSplit.UI
                         {
                             Log.Error(ex);
                         }
-                    };
-                    if (InvokeRequired)
-                        Invoke(invokation);
-                    else
-                        invokation();
+                    });
                 }
                 catch (Exception ex)
                 {

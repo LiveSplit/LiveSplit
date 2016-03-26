@@ -1,12 +1,11 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
+using LiveSplit.Utils;
 using LiveSplit.Web.Share;
 using System;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -56,7 +55,8 @@ namespace LiveSplit.View
 
                         categoryNames = new string[0];
                     }
-                    Action invokation = () =>
+
+                    this.InvokeIfRequired(() =>
                     {
                         try
                         {
@@ -68,11 +68,7 @@ namespace LiveSplit.View
                         {
                             Log.Error(ex);
                         }
-                    };
-                    if (InvokeRequired)
-                        Invoke(invokation);
-                    else
-                        invokation();
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -98,7 +94,8 @@ namespace LiveSplit.View
 
                         gameNames = new string[0];
                     }
-                    Action invokation = () =>
+
+                    this.InvokeIfRequired(() =>
                     {
                         try
                         {
@@ -112,11 +109,7 @@ namespace LiveSplit.View
                         {
                             Log.Error(ex);
                         }
-                    };
-                    if (InvokeRequired)
-                        Invoke(invokation);
-                    else
-                        invokation();
+                    });
                 }
                 catch (Exception ex)
                 {
@@ -133,12 +126,12 @@ namespace LiveSplit.View
         private void SubmitDialog_Load(object sender, EventArgs e)
         {
             cbxPlatform.Items.Add("Twitter");
-            cbxPlatform.Items.Add("Twitch");
 
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
             {
                 if (HasPersonalBest(Run))
                 {
+                    cbxPlatform.Items.Add("Speedrun.com");
                     if (Congratsio.Instance.CheckIfPersonalBestIsValid(Run))
                     {
                         cbxPlatform.Items.Add("Congratsio");
@@ -150,6 +143,7 @@ namespace LiveSplit.View
                 //cbxPlatform.Items.Add("Ge.tt");
             }
 
+            cbxPlatform.Items.Add("Twitch");
             cbxPlatform.Items.Add("Screenshot");
             cbxPlatform.Items.Add("Imgur");
             cbxPlatform.Items.Add("Excel");
@@ -187,6 +181,7 @@ namespace LiveSplit.View
                 case "Screenshot": CurrentPlatform = Screenshot.Instance; break;
                 case "Imgur": CurrentPlatform = Imgur.Instance; break;
                 case "Excel": CurrentPlatform = Excel.Instance; break;
+                case "Speedrun.com": CurrentPlatform = SpeedrunComRunUploadPlatform.Instance; break;
             }
 
             CurrentPlatform.Settings = Settings;
@@ -201,7 +196,7 @@ namespace LiveSplit.View
 
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
                 chkAttachSplits.Enabled = !(CurrentPlatform == Screenshot.Instance || CurrentPlatform == SplitsIO.Instance
-                    || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance);
+                    || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance || CurrentPlatform == SpeedrunComRunUploadPlatform.Instance);
             else
                 chkAttachSplits.Enabled = false;
 
@@ -235,26 +230,9 @@ namespace LiveSplit.View
             var deltaTimeFormatter = new DeltaTimeFormatter();
 
             var game = Run.GameName ?? "";
-            var category = Run.CategoryName ?? "";
+            var category = Run.GetExtendedCategoryName();
             var pb = timeFormatter.Format(Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod]) ?? "";
-
-            var titleBuilder = new StringBuilder();
-            var gameNameEmpty = string.IsNullOrEmpty(Run.GameName);
-            var categoryEmpty = string.IsNullOrEmpty(Run.CategoryName);
-
-            if (!gameNameEmpty || !categoryEmpty)
-            {
-                titleBuilder.Append(Run.GameName);
-
-                if (!categoryEmpty)
-                {
-                    if (!gameNameEmpty)
-                        titleBuilder.Append(" - ");
-                    titleBuilder.Append(Run.CategoryName);
-                }
-            }
-
-            var title = titleBuilder.ToString();
+            var title = Run.GetExtendedName();
 
             var splitName = "";
             var splitTime = "-";

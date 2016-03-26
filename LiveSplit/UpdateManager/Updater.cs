@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Net;
-using System.Threading;
 using System.IO;
 using System.Xml;
 using System.Diagnostics;
@@ -39,8 +37,8 @@ namespace UpdateManager
 
         internal class UpdaterInternal
         {
-            public String XMLURL { get; set; }
-            public String UpdateURL { get; set; }
+            public string XMLURL { get; set; }
+            public string UpdateURL { get; set; }
             public Version Version { get; set; }
 
             private IEnumerable<Update> _Updates { get; set; }
@@ -74,7 +72,7 @@ namespace UpdateManager
 
             public event UpdatePercentageRefreshedEventHandler UpdatePercentageRefreshed;
 
-            internal UpdaterInternal(String xmlUrl, String updateUrl, Version version)
+            internal UpdaterInternal(string xmlUrl, string updateUrl, Version version)
             {
                 XMLURL = xmlUrl;
                 UpdateURL = updateUrl;
@@ -96,7 +94,7 @@ namespace UpdateManager
                 return Updates.Max(x => x.Version);
             }
 
-            public IEnumerable<String> GetChangeLog()
+            public IEnumerable<string> GetChangeLog()
             {
                 return Updates.Where(x => x.Version > Version).SelectMany(x => x.ChangeLog);
             }
@@ -104,9 +102,9 @@ namespace UpdateManager
             public void PerformUpdate()
             {
                 IList<Update> updates = Updates.Where(x => x.Version > Version).ToList();
-                List<String> addedFiles = new List<string>();
-                List<String> changedFiles = new List<string>();
-                List<String> removedFiles = new List<string>();
+                List<string> addedFiles = new List<string>();
+                List<string> changedFiles = new List<string>();
+                List<string> removedFiles = new List<string>();
 
                 foreach (FileChange change in updates.SelectMany(x => x.FileChanges))
                 {
@@ -114,7 +112,7 @@ namespace UpdateManager
                     bool inChangedFiles = changedFiles.Contains(change.Path);
                     bool inRemovedFiles = removedFiles.Contains(change.Path);
 
-                    String path = change.Path;
+                    string path = change.Path;
 
                     switch (change.Status)
                     {
@@ -142,16 +140,16 @@ namespace UpdateManager
                 int fileChangesCount = addedFiles.Concat(changedFiles).Concat(removedFiles).Count();
                 double i = 0;
 
-                foreach (String path in addedFiles.Concat(changedFiles))
+                foreach (string path in addedFiles.Concat(changedFiles))
                 {
                     DownloadFile(UpdateURL + path, path.Replace('/', '\\'));
-                    UpdatePercentageRefreshed(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
+                    UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
 
-                foreach (String path in removedFiles)
+                foreach (string path in removedFiles)
                 {
                     File.Delete(path);
-                    UpdatePercentageRefreshed(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
+                    UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
             }
         }
@@ -160,32 +158,19 @@ namespace UpdateManager
 
         #region Static Methods
 
-        private static void DownloadFile(String url, String path)
+        private static void DownloadFile(string url, string path)
         {
-            WebRequest request = HttpWebRequest.Create(url);
-            Thread t = Thread.CurrentThread;
-            IAsyncResult result = request.BeginGetResponse(ar => t.Resume(), null);
-            t.Suspend();
-            WebResponse response = request.EndGetResponse(result);
-            String directory = Path.GetDirectoryName(Directory.GetCurrentDirectory() + '\\' + path);
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-            using (Stream webStream = response.GetResponseStream())
-            {
-                using (Stream fileStream = File.Open(path, FileMode.Create, FileAccess.Write))
-                {
-                    byte[] bytes = new BinaryReader(webStream).ReadBytes((int)response.ContentLength);
-                    new BinaryWriter(fileStream).Write(bytes);
-                }
-            }
+            string dir = Path.GetDirectoryName(Path.Combine(Directory.GetCurrentDirectory(), path));
+            if (!Directory.Exists(dir))
+                Directory.CreateDirectory(dir);
+
+            new WebClient().DownloadFile(url, path);
         }
 
-        public static void UpdateAll(IEnumerable<IUpdateable> updateables, String updateManagerDownloadURL)
+        public static void UpdateAll(IEnumerable<IUpdateable> updateables, string updateManagerDownloadURL)
         {
             DownloadFile(updateManagerDownloadURL, "UpdateManager.exe");
-            String arguments = updateables.Where(x => x.CheckForUpdate()).Aggregate("", (x, y) => x + "\"" + y.XMLURL + "\" \"" + y.UpdateURL + "\" " + y.Version + " ") + "\"" + Process.GetCurrentProcess().ProcessName + ".exe\"";
+            string arguments = updateables.Where(x => x.CheckForUpdate()).Aggregate("", (x, y) => x + "\"" + y.XMLURL + "\" \"" + y.UpdateURL + "\" " + y.Version + " ") + "\"" + Process.GetCurrentProcess().ProcessName + ".exe\"";
             Process.Start("UpdateManager.exe", arguments);
         }
 
@@ -195,7 +180,7 @@ namespace UpdateManager
                 GetUpdater(updateable).PerformUpdate();
         }
 
-        public static IEnumerable<String> GetChangeLogFromAll(IEnumerable<IUpdateable> updateables)
+        public static IEnumerable<string> GetChangeLogFromAll(IEnumerable<IUpdateable> updateables)
         {
             return updateables.Where(x => x.CheckForUpdate()).SelectMany(x => x.GetChangeLog());
         }
@@ -217,7 +202,7 @@ namespace UpdateManager
 
         #region Extensions
 
-        public static void PerformUpdate(this IUpdateable updateable, String updateManagerDownloadURL)
+        public static void PerformUpdate(this IUpdateable updateable, string updateManagerDownloadURL)
         {
             UpdateAll(Enumerable.Repeat(updateable, 1), updateManagerDownloadURL);
         }
@@ -232,7 +217,7 @@ namespace UpdateManager
             return GetUpdater(updateable).CheckForUpdate();
         }
 
-        public static IEnumerable<String> GetChangeLog(this IUpdateable updateable)
+        public static IEnumerable<string> GetChangeLog(this IUpdateable updateable)
         {
             return GetUpdater(updateable).GetChangeLog();
         }

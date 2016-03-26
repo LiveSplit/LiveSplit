@@ -127,7 +127,6 @@ namespace LiveSplit.Web.Share
         public bool SubmitRun(IRun run, string username, string password, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)
         {
             var titleBuilder = new StringBuilder();
-            //var descriptionBuilder = new StringBuilder(); 
 
             var gameNameEmpty = string.IsNullOrEmpty(run.GameName);
             var categoryEmpty = string.IsNullOrEmpty(run.CategoryName);
@@ -142,15 +141,6 @@ namespace LiveSplit.Web.Share
 
             if (attachSplits)
                 comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
-
-            /*var splitTimeFormatter = new ShortTimeFormatter();
-
-            foreach (var segment in run)
-            {
-                descriptionBuilder.Append(segment.Name);
-                descriptionBuilder.Append(" ");
-                descriptionBuilder.Append(segment.SplitTime);
-            }*/
 
             if (screenShotFunction != null)
             {

@@ -1,13 +1,15 @@
 ﻿using LiveSplit.Model.Comparisons;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
+using System.Text;
 
 namespace LiveSplit.Model
 {
-    public interface IRun : IList<ISegment>, ICloneable
+    public interface IRun : IList<ISegment>, ICloneable, INotifyPropertyChanged
     {
         Image GameIcon { get; set; }
         string GameName { get; set; }
@@ -23,6 +25,8 @@ namespace LiveSplit.Model
         IList<string> CustomComparisons { get; set; }
         IEnumerable<string> Comparisons { get; }
 
+        RunMetadata Metadata { get; }
+
         bool HasChanged { get; set; }
         string FilePath { get; set; }
     }
@@ -34,12 +38,35 @@ namespace LiveSplit.Model
             return run.AutoSplitter != null && run.AutoSplitter.IsActivated;
         }
 
-        public static void AddSegment(this IRun run, string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), IList<IIndexedTime> segmentHistory = null)
+        public static void AddSegment(this IRun run, string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), SegmentHistory segmentHistory = null)
         {
             var segment = new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime);
             if (segmentHistory != null)
                 segment.SegmentHistory = segmentHistory;
             run.Add(segment);
+        }
+
+        public static void ClearHistory(this IRun run)
+        {
+            run.AttemptHistory.Clear();
+            foreach (var segment in run)
+            {
+                segment.SegmentHistory.Clear();
+            }
+        }
+
+        public static void ClearTimes(this IRun run)
+        {
+            run.ClearHistory();
+            run.CustomComparisons.Clear();
+            run.CustomComparisons.Add(Model.Run.PersonalBestComparisonName);
+            foreach (var segment in run)
+            {
+                segment.Comparisons.Clear();
+                segment.BestSegmentTime = default(Time);
+            }
+            run.AttemptCount = 0;
+            run.Metadata.RunID = null;
         }
 
         public static void FixSplits(this IRun run)
@@ -58,23 +85,25 @@ namespace LiveSplit.Model
 
         private static void FixSegmentHistory(IRun run, TimingMethod method)
         {
+            var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             foreach (var curSplit in run)
             {
-                var x = 0;
-                while (x < curSplit.SegmentHistory.Count)
+                for (var runIndex = curSplit.SegmentHistory.GetMinIndex(); runIndex <= maxIndex; runIndex++)
                 {
-                    var history = new Time(curSplit.SegmentHistory[x].Time);
-                    if (curSplit.BestSegmentTime[method] != null && history[method] < curSplit.BestSegmentTime[method])
-                        history[method] = curSplit.BestSegmentTime[method];
-                    if (curSplit.BestSegmentTime[method] == null && history[method] != null)
-                        curSplit.SegmentHistory.RemoveAt(x);
-                    else
+                    Time historyTime;
+                    if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
                     {
-                        curSplit.SegmentHistory[x].Time = history;
-                        x++;
+                        //Make sure no times in the history are lower than the Best Segment
+                        if (curSplit.BestSegmentTime[method] != null && historyTime[method] < curSplit.BestSegmentTime[method])
+                            historyTime[method] = curSplit.BestSegmentTime[method];
+
+                        //If the Best Segment is gone, clear the history
+                        if (curSplit.BestSegmentTime[method] == null && historyTime[method] != null)
+                            curSplit.SegmentHistory.Remove(runIndex);
+                        else
+                            curSplit.SegmentHistory[runIndex] = historyTime;
                     }
                 }
-
             }
         }
 
@@ -87,16 +116,19 @@ namespace LiveSplit.Model
                 {
                     if (curSplit.Comparisons[comparison][method] != null)
                     {
+                        //Prevent comparison times from decreasing from one split to the next
                         if (curSplit.Comparisons[comparison][method] < previousTime)
                         {
-                            var newComparison = new Time(curSplit.Comparisons[comparison]);
+                            var newComparison = curSplit.Comparisons[comparison];
                             newComparison[method] = previousTime;
                             curSplit.Comparisons[comparison] = newComparison;
                         }
+
+                        //Fix Best Segment time if the PB segment is faster
                         var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
                         if (comparison == Run.PersonalBestComparisonName && (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment))
                         {
-                            var newTime = new Time(curSplit.BestSegmentTime);
+                            var newTime = curSplit.BestSegmentTime;
                             newTime[method] = currentSegment;
                             curSplit.BestSegmentTime = newTime;
                         }
@@ -109,17 +141,19 @@ namespace LiveSplit.Model
         private static void RemoveNullValues(IRun run, TimingMethod method)
         {
             var cache = new List<IIndexedTime>();
-            for (var runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= run.AttemptHistory.Count; runIndex++)
+            var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+            for (var runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
             {
                 for (var index = 0; index < run.Count; index++)
                 {
-                    var segmentHistoryElement = run[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                    if (segmentHistoryElement == null)
+                    Time segmentHistoryElement;
+                    if (!run[index].SegmentHistory.TryGetValue(runIndex, out segmentHistoryElement))
                     {
+                        //Remove null times in history that aren't followed by a non-null time
                         RemoveItemsFromCache(run, index, cache);
                     }
-                    else if (segmentHistoryElement.Time.RealTime == null && segmentHistoryElement.Time.GameTime == null)
-                        cache.Add(segmentHistoryElement);
+                    else if (segmentHistoryElement.RealTime == null && segmentHistoryElement.GameTime == null)
+                        cache.Add(new IndexedTime(segmentHistoryElement, runIndex));
                     else
                         cache.Clear();
                 }
@@ -130,21 +164,20 @@ namespace LiveSplit.Model
 
         private static void RemoveDuplicates(IRun run, TimingMethod method)
         {
-            for (var index = 0; index < run.Count; index++)
+            foreach (var segment in run)
             {
-                var history = run[index].SegmentHistory.Select(x => x.Time[method]).Where(x => x != null);
-                for (var runIndex = GetMinSegmentHistoryIndex(run); runIndex <= 0; runIndex++)
+                var history = segment.SegmentHistory.Select(x => x.Value[method]).Where(x => x != null).ToList();
+                for (var runIndex = segment.SegmentHistory.GetMinIndex(); runIndex <= 0; runIndex++)
                 {
-                    var element = run[index].SegmentHistory.FirstOrDefault(x => x.Index == runIndex);
-                    if (element != null && history.Where(x => x.Equals(element.Time[method])).Count() > 1)
+                    //Remove elements in the imported Segment History if they're duplicates of the real Segment History
+                    Time element;
+                    if (segment.SegmentHistory.TryGetValue(runIndex, out element) && history.Count(x => x.Equals(element[method])) > 1)
                     {
-                        var newTime = new Time(element.Time);
-                        newTime[method] = null;
-                        element.Time = newTime;
+                        segment.SegmentHistory.Remove(runIndex);
+                        history.Remove(element[method]);
                     }
                 }
             }
-
         }
 
         private static void RemoveItemsFromCache(IRun run, int index, IList<IIndexedTime> cache)
@@ -152,7 +185,7 @@ namespace LiveSplit.Model
             var ind = index - cache.Count;
             foreach (var item in cache)
             {
-                run[ind].SegmentHistory.Remove(item);
+                run[ind].SegmentHistory.Remove(item.Index);
                 ind++;
             }
             cache.Clear();
@@ -160,45 +193,26 @@ namespace LiveSplit.Model
 
         public static int GetMinSegmentHistoryIndex(this IRun run)
         {
-            var minIndex = 1;
-            foreach (var segment in run)
-            {
-                foreach (var history in segment.SegmentHistory)
-                {
-                    if (history.Index < minIndex)
-                        minIndex = history.Index;
-                }
-            }
-            return minIndex - 1;
+            return run.Min(segment => segment.SegmentHistory.GetMinIndex());
         }
 
         public static void ImportSegmentHistory(this IRun run)
         {
-            var prevTimeRTA = TimeSpan.Zero;
-            var prevTimeGameTime = TimeSpan.Zero;
-            var index = GetMinSegmentHistoryIndex(run);
-            var nullValue = false;
+            var minIndex = GetMinSegmentHistoryIndex(run);
+            run.ImportSegmentHistory(TimingMethod.RealTime, minIndex - 1);
+            run.ImportSegmentHistory(TimingMethod.GameTime, minIndex - 2);
+        }
+
+        private static void ImportSegmentHistory(this IRun run, TimingMethod method, int index)
+        {
+            var prevTime = TimeSpan.Zero;
 
             foreach (var segment in run)
             {
-                var newTime = new Time();
-                if (segment.PersonalBestSplitTime[TimingMethod.RealTime] == null || segment.PersonalBestSplitTime[TimingMethod.GameTime] == null || nullValue)
-                {
-                    newTime[TimingMethod.RealTime] = segment.PersonalBestSplitTime[TimingMethod.RealTime] - prevTimeRTA;
-                    newTime[TimingMethod.GameTime] = segment.PersonalBestSplitTime[TimingMethod.GameTime] - prevTimeGameTime;
-                    segment.SegmentHistory.Add(new IndexedTime(newTime, index));
-                    nullValue = false;
-                }
-
-                if (segment.PersonalBestSplitTime[TimingMethod.RealTime] != null)
-                    prevTimeRTA = segment.PersonalBestSplitTime[TimingMethod.RealTime].Value;
-                else
-                    nullValue = true;
-
-                if (segment.PersonalBestSplitTime[TimingMethod.GameTime] != null)
-                    prevTimeGameTime = segment.PersonalBestSplitTime[TimingMethod.GameTime].Value;
-                else
-                    nullValue = true;
+                //Import the PB splits into the history
+                segment.SegmentHistory.Add(index, new Time(method, segment.PersonalBestSplitTime[method] - prevTime));
+                if (segment.PersonalBestSplitTime[method].HasValue)
+                    prevTime = segment.PersonalBestSplitTime[method].Value;
             }
         }
 
@@ -206,13 +220,134 @@ namespace LiveSplit.Model
         public static void ImportBestSegment(this IRun run, int segmentIndex)
         {
             var segment = run[segmentIndex];
-            var newTime = new Time();
-            if (segment.BestSegmentTime[TimingMethod.RealTime] != null || segment.BestSegmentTime[TimingMethod.GameTime] != null)
+            if (segment.BestSegmentTime.RealTime.HasValue || segment.BestSegmentTime.GameTime.HasValue)
             {
-                newTime[TimingMethod.RealTime] = segment.BestSegmentTime[TimingMethod.RealTime];
-                newTime[TimingMethod.GameTime] = segment.BestSegmentTime[TimingMethod.GameTime];
-                segment.SegmentHistory.Add(new IndexedTime(newTime, GetMinSegmentHistoryIndex(run)));
+                segment.SegmentHistory.Add(GetMinSegmentHistoryIndex(run) - 1, segment.BestSegmentTime);
             }
+        }
+
+        public static string GetExtendedFileName(this IRun run, bool useExtendedCategoryName = true)
+        {
+            var extendedName = run.GetExtendedName(useExtendedCategoryName);
+
+            var stringBuilder = new StringBuilder();
+
+            foreach (var c in extendedName)
+            {
+                if (c != '\\' && c != '/' && c != ':' && c != '*' && c != '?' && c != '"' && c != '<' && c != '>' && c != '|')
+                    stringBuilder.Append(c);
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public static string GetExtendedName(this IRun run, bool useExtendedCategoryName = true)
+        {
+            var stringBuilder = new StringBuilder();
+
+            if (!string.IsNullOrWhiteSpace(run.GameName))
+            {
+                stringBuilder.Append(run.GameName);
+            }
+
+            var categoryName = run.CategoryName;
+
+            if (useExtendedCategoryName)
+            {
+                categoryName = run.GetExtendedCategoryName();
+            }
+
+            if (!string.IsNullOrWhiteSpace(categoryName))
+            {
+                if (stringBuilder.Length > 0)
+                {
+                    stringBuilder.Append(" - ");
+                }
+
+                stringBuilder.Append(categoryName);
+            }
+
+            return stringBuilder.ToString();
+        }
+
+        public static string GetExtendedCategoryName(this IRun run, bool showRegion = false, bool showPlatform = false, bool showVariables = true, bool waitForOnlineData = false)
+        {
+            var list = new List<string>();
+
+            var categoryName = run.CategoryName;
+            var afterParentheses = "";
+
+            if (string.IsNullOrEmpty(categoryName))
+                return string.Empty;
+
+            var indexStart = categoryName.IndexOf('(');
+            var indexEnd = categoryName.IndexOf(')', indexStart + 1);
+            if (indexStart >= 0 && indexEnd >= 0)
+            {
+                var inside = categoryName.Substring(indexStart + 1, indexEnd - indexStart - 1);
+                list.Add(inside);
+                afterParentheses = categoryName.Substring(indexEnd + 1).Trim();
+                categoryName = categoryName.Substring(0, indexStart).Trim();
+            }
+
+            if (showVariables)
+            {
+                var variables = run.Metadata.VariableValueNames.Where(x => !string.IsNullOrEmpty(x.Value)).OrderBy(x => x.Key);
+
+                foreach (var variable in variables)
+                {
+                    var name = variable.Key.TrimEnd('?');
+                    var value = variable.Value;
+                    var valueLower = value.ToLowerInvariant();
+
+                    if (valueLower == "yes")
+                    {
+                        list.Add(name);
+                    }
+                    else if (valueLower == "no")
+                    {
+                        list.Add($"No { name }");
+                    }
+                    else
+                    {
+                        list.Add(value);
+                    }
+                }
+            }
+
+            var doSimpleRegion = !run.Metadata.RegionAvailable && !waitForOnlineData;
+            if (showRegion && doSimpleRegion)
+            {
+                if (!string.IsNullOrEmpty(run.Metadata.RegionName))
+                    list.Add(run.Metadata.RegionName);
+            }
+            else if (showRegion && run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game != null && run.Metadata.Game.Regions.Count > 1)
+            {
+                list.Add(run.Metadata.Region.Abbreviation);
+            }
+
+            if (showPlatform)
+            {
+                var doSimplePlatform = !run.Metadata.PlatformAvailable && !waitForOnlineData;
+                if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || (run.Metadata.Game != null && run.Metadata.Game.Platforms.Count > 1)))
+                {
+                    if (run.Metadata.UsesEmulator)
+                        list.Add($"{ run.Metadata.PlatformName } Emulator");
+                    else
+                        list.Add(run.Metadata.PlatformName);
+                }
+                else if (run.Metadata.UsesEmulator)
+                {
+                    list.Add("Emulator");
+                }
+            }
+
+            if (list.Any())
+            {
+                categoryName = $"{ categoryName } ({ string.Join(", ", list) }) { afterParentheses }";
+            }
+
+            return categoryName.Trim();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Options;
+using LiveSplit.Utils;
 using System;
 using System.Windows.Forms;
 
@@ -99,7 +100,7 @@ namespace LiveSplit.UI
 
         private void MouseMoveHandler(object sender, MouseEventArgs e)
         {
-            Action x = () =>
+            Form.InvokeIfRequired(() =>
             {
                 try
                 {
@@ -145,12 +146,7 @@ namespace LiveSplit.UI
                 {
                     Log.Error(ex);
                 }
-            };
-
-            if (Form.InvokeRequired)
-                Form.Invoke(x);
-            else
-                x();
+            });
         }
     }
 }

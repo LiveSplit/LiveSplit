@@ -1,5 +1,4 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace LiveSplit.Web.SRL.RaceViewers
 {
@@ -8,13 +7,10 @@ namespace LiveSplit.Web.SRL.RaceViewers
         public void ShowRace(dynamic race)
         {
             var raceId = race.id;
-            var url = String.Format("http://speedrun.tv/race:{0}", raceId);
+            var url = string.Format("http://speedrun.tv/race:{0}", raceId);
             Process.Start(url);
         }
 
-        public string Name
-        {
-            get { return "Speedrun.tv"; }
-        }
+        public string Name => "Speedrun.tv";
     }
 }

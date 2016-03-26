@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using static System.Windows.Forms.TextRenderer;
 
 namespace LiveSplit.UI
 {
@@ -23,7 +24,6 @@ namespace LiveSplit.UI
 
         public bool HasShadow { get; set; }
         public bool IsMonospaced { get; set; }
-        //public bool HasGlassEffects { get; set; }
 
         private StringFormat Format { get; set; }
 
@@ -62,8 +62,7 @@ namespace LiveSplit.UI
             float width = float.MaxValue, float height = float.MaxValue,
             StringAlignment horizontalAlignment = StringAlignment.Near,
             StringAlignment verticalAlignment = StringAlignment.Near,
-            IEnumerable<string> alternateText = null
-            )
+            IEnumerable<string> alternateText = null)
         {
             Text = text;
             X = x;
@@ -85,7 +84,6 @@ namespace LiveSplit.UI
                 FormatFlags = StringFormatFlags.NoWrap,
                 Trimming = StringTrimming.EllipsisCharacter
             };
-            //HasGlassEffects = false;
         }
 
         public void Draw(Graphics g)
@@ -115,7 +113,7 @@ namespace LiveSplit.UI
                     LineAlignment = VerticalAlignment
                 };
 
-                var measurement = TextRenderer.MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+                var measurement = MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
                 var offset = Width;
                 var charIndex = 0;
                 SetActualWidth(g);
@@ -134,7 +132,7 @@ namespace LiveSplit.UI
                     if (char.IsDigit(curChar))
                         curOffset = measurement;
                     else
-                        curOffset = TextRenderer.MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+                        curOffset = MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
 
                     if (HasShadow)
                     {
@@ -150,26 +148,8 @@ namespace LiveSplit.UI
                     offset += curOffset;
                 }
             }
-            
-            /*if (HasGlassEffects)
-            {
-                var glassBrush = new LinearGradientBrush(
-                    new PointF(0.0f, 0.0f),
-                    new PointF(0.0f, Height),
-                    Color.Transparent,
-                    Color.Transparent);
-
-                var cb = new ColorBlend();
-                cb.Positions = new float[] { 0f, 0.5f, 0.55f, 1f };
-                var c1 = Color.FromArgb(150, Color.White);
-                var c2 = Color.FromArgb(100, Color.White);
-                cb.Colors = new Color[] { c1, c2, Color.FromArgb(255, Color.Black), Color.Transparent };
-
-                glassBrush.InterpolationColors = cb;
-
-                g.DrawString(cutOffText, Font, glassBrush, new RectangleF(X, Y, Width, Height), format);
-            }*/
         }
+
         public void SetActualWidth(Graphics g)
         {
             Format.Alignment = HorizontalAlignment;
@@ -203,7 +183,7 @@ namespace LiveSplit.UI
         private float MeasureActualWidth(string text, Graphics g)
         {
             var charIndex = 0;
-            var measurement = TextRenderer.MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+            var measurement = MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
             var offset = 0;
 
             while (charIndex < text.Length)
@@ -213,7 +193,7 @@ namespace LiveSplit.UI
                 if (char.IsDigit(curChar))
                     offset += measurement;
                 else
-                    offset += TextRenderer.MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+                    offset += MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
 
                 charIndex++;
             }

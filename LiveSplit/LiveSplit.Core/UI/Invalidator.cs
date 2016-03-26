@@ -21,8 +21,7 @@ namespace LiveSplit.UI
         {
             try
             {
-                if (Transform != null)
-                    Transform.Dispose();
+                Transform?.Dispose();
             }
             catch { }
 
@@ -31,11 +30,11 @@ namespace LiveSplit.UI
 
         public void Invalidate(float x, float y, float width, float height)
         {
-            var points = new PointF[]
-                {
+            var points = new[]
+            {
                 new PointF(x, y),
                 new PointF(x+width, y+height)
-                };
+            };
             Transform.TransformPoints(points);
             var roundedX = (int)Math.Ceiling(points[0].X - Offset);
             var roundedY = (int)Math.Ceiling(points[0].Y - Offset);

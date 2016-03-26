@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit</RootNamespace>
     <AssemblyName>LiveSplit.View</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
@@ -25,6 +25,7 @@
     <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Candidate|AnyCPU'">
     <OutputPath>..\bin\Release Candidate\</OutputPath>
@@ -42,6 +44,7 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -50,6 +53,10 @@
     <AssemblyOriginatorKeyFile>LiveSplit.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CustomFontDialog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\CustomFontDialog\CustomFontDialog.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.WindowsAPICodePack">
       <HintPath>..\Libs\Windows API Code Pack\Microsoft.WindowsAPICodePack.dll</HintPath>
     </Reference>
@@ -57,24 +64,15 @@
       <HintPath>..\Libs\Windows API Code Pack\Microsoft.WindowsAPICodePack.Shell.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Deployment" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
-    <Reference Include="WindowsFormsIntegration" />
-    <Reference Include="WinFormsColor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\WinForms Color Picker\WinFormsColor.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\RunFactories\StandardRunFactory.cs" />
@@ -102,8 +100,9 @@
     <Compile Include="UI\NewRaceInputBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UI\LayoutFactories\StandardLayoutSettingsFactory.cs" />
     <Compile Include="Updates\LiveSplitUpdateable.cs" />
+    <Compile Include="Utils\FormUtils.cs" />
+    <Compile Include="Utils\RichTextBoxExtensions.cs" />
     <Compile Include="View\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +132,12 @@
     </Compile>
     <Compile Include="View\LayoutEditorDialog.Designer.cs">
       <DependentUpon>LayoutEditorDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MetadataControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\MetadataControl.Designer.cs">
+      <DependentUpon>MetadataControl.cs</DependentUpon>
     </Compile>
     <Compile Include="View\LayoutSettingsControl.cs">
       <SubType>UserControl</SubType>
@@ -176,6 +181,12 @@
     <Compile Include="View\ShareRunDialog.Designer.cs">
       <DependentUpon>ShareRunDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SpeedrunComSubmitDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SpeedrunComSubmitDialog.Designer.cs">
+      <DependentUpon>SpeedrunComSubmitDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\SpeedRunsLiveForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,6 +205,13 @@
     <Compile Include="View\TimerForm.Designer.cs">
       <DependentUpon>TimerForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\SpeedrunComOAuthForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SpeedrunComOAuthForm.Designer.cs">
+      <DependentUpon>SpeedrunComOAuthForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Web\Share\SpeedrunComRunUploadPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="LiveSplit.pfx" />
@@ -265,6 +283,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\LayoutSettingsControl.ja-JP.resx">
       <DependentUpon>LayoutSettingsControl.cs</DependentUpon>
+    <EmbeddedResource Include="View\MetadataControl.resx">
+      <DependentUpon>MetadataControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\LayoutSettingsControl.resx">
       <DependentUpon>LayoutSettingsControl.cs</DependentUpon>
@@ -305,6 +325,8 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\SpeedRunsLiveForm.ja-JP.resx">
       <DependentUpon>SpeedRunsLiveForm.cs</DependentUpon>
+    <EmbeddedResource Include="View\SpeedrunComSubmitDialog.resx">
+      <DependentUpon>SpeedrunComSubmitDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\SpeedRunsLiveForm.resx">
       <DependentUpon>SpeedRunsLiveForm.cs</DependentUpon>
@@ -319,8 +341,15 @@
       <DependentUpon>TimerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\SpeedrunComOAuthForm.resx">
+      <DependentUpon>SpeedrunComOAuthForm.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj">
+      <Project>{924aaffe-5b89-49e2-99ad-ec9373cc838d}</Project>
+      <Name>SpeedrunComSharp</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj">
       <Project>{6de847db-20a3-4848-aeee-1b4364aecdfb}</Project>
       <Name>LiveSplit.Core</Name>
@@ -341,6 +370,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace LiveSplit.UI
+namespace LiveSplit.Options
 {
     public class LayoutSettings : ICloneable
     {
@@ -20,7 +20,11 @@ namespace LiveSplit.UI
         public Color PausedColor { get; set; }
         public Color ShadowsColor { get; set; }
 
-        public GradientType BackgroundGradient { get; set; }
+        public BackgroundType BackgroundType { get; set; }
+
+        public Image BackgroundImage { get; set; }
+        public float ImageOpacity { get; set; }
+        public float ImageBlur { get; set; }
 
         public Font TimerFont { get; set; }
         public Font TimesFont { get; set; }
@@ -54,6 +58,7 @@ namespace LiveSplit.UI
             BehindGainingTimeColor = settings.BehindGainingTimeColor;
             BehindLosingTimeColor = settings.BehindLosingTimeColor;
             BestSegmentColor = settings.BestSegmentColor;
+            UseRainbowColor = settings.UseRainbowColor;
             NotRunningColor = settings.NotRunningColor;
             PausedColor = settings.PausedColor;
             ShadowsColor = settings.ShadowsColor;
@@ -65,8 +70,10 @@ namespace LiveSplit.UI
             AntiAliasing = settings.AntiAliasing;
             DropShadows = settings.DropShadows;
             Opacity = settings.Opacity;
-            BackgroundGradient = settings.BackgroundGradient;
-            UseRainbowColor = settings.UseRainbowColor;
+            BackgroundType = settings.BackgroundType;
+            BackgroundImage = settings.BackgroundImage;
+            ImageOpacity = settings.ImageOpacity;
+            ImageBlur = settings.ImageBlur;
         }
     }
 }

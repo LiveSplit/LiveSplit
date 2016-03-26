@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using static System.Math;
 
 namespace LiveSplit.Model.Comparisons
 {
@@ -10,7 +11,7 @@ namespace LiveSplit.Model.Comparisons
         public IRun Run { get; set; }
         public const string ComparisonName = "Average Segments";
         public const string ShortComparisonName = "Average";
-        public string Name { get { return ComparisonName; } }
+        public string Name => ComparisonName;
         public const double Weight = 0.75;
 
         public AverageSegmentsComparisonGenerator(IRun run)
@@ -28,30 +29,27 @@ namespace LiveSplit.Model.Comparisons
             return TimeSpan.FromSeconds(averageTime);
         }
 
-        protected double GetWeight(int index, int count)
-        {
-            return Math.Pow(Weight, count - index - 1);
-        }
+        protected double GetWeight(int index, int count) => Pow(Weight, count - index - 1);
 
         public void Generate(TimingMethod method)
         {
             var allHistory = new List<List<TimeSpan>>();
             foreach (var segment in Run)
                 allHistory.Add(new List<TimeSpan>());
-            for (var ind = 1; ind <= Run.AttemptHistory.Count; ind++)
+            foreach (var attempt in Run.AttemptHistory)
             {
+                var ind = attempt.Index;
                 var ignoreNextHistory = false;
                 foreach (var segment in Run)
                 {
-                    IIndexedTime history;
-                    history = segment.SegmentHistory.FirstOrDefault(x => x.Index == ind);
-                    if (history != null)
+                    Time history;
+                    if (segment.SegmentHistory.TryGetValue(ind, out history))
                     {
-                        if (history.Time[method] == null)
+                        if (history[method] == null)
                             ignoreNextHistory = true;
                         else if (!ignoreNextHistory)
                         {
-                            allHistory[Run.IndexOf(segment)].Add(history.Time[method].Value);
+                            allHistory[Run.IndexOf(segment)].Add(history[method].Value);
                         }
                         else ignoreNextHistory = false;
                     }

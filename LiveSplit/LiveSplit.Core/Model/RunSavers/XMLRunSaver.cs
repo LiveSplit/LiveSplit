@@ -1,9 +1,7 @@
-﻿using LiveSplit.UI;
-using System;
-using System.Drawing;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml;
+using static LiveSplit.UI.SettingsHelper;
 
 namespace LiveSplit.Model.RunSavers
 {
@@ -17,14 +15,37 @@ namespace LiveSplit.Model.RunSavers
             document.AppendChild(docNode);
 
             var parent = document.CreateElement("Run");
-            parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.5.0"));
+            parent.Attributes.Append(ToAttribute(document, "version", "1.6.0"));
             document.AppendChild(parent);
 
-            parent.AppendChild(SettingsHelper.CreateImageElement(document, "GameIcon", run.GameIcon));
-            parent.AppendChild(SettingsHelper.ToElement(document, "GameName", run.GameName));
-            parent.AppendChild(SettingsHelper.ToElement(document, "CategoryName", run.CategoryName));
-            parent.AppendChild(SettingsHelper.ToElement(document, "Offset", run.Offset));
-            parent.AppendChild(SettingsHelper.ToElement(document, "AttemptCount", run.AttemptCount));
+            CreateSetting(document, parent, "GameIcon", run.GameIcon);
+            CreateSetting(document, parent, "GameName", run.GameName);
+            CreateSetting(document, parent, "CategoryName", run.CategoryName);
+
+            var metadata = document.CreateElement("Metadata");
+
+            var runElement = document.CreateElement("Run");
+            runElement.Attributes.Append(ToAttribute(document, "id", run.Metadata.RunID));
+            metadata.AppendChild(runElement);
+
+            var platform = ToElement(document, "Platform", run.Metadata.PlatformName);
+            platform.Attributes.Append(ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
+            metadata.AppendChild(platform);
+
+            CreateSetting(document, metadata, "Region", run.Metadata.RegionName);
+
+            var variables = document.CreateElement("Variables");
+            foreach (var variable in run.Metadata.VariableValueNames)
+            {
+                var variableElement = ToElement(document, "Variable", variable.Value);
+                variableElement.Attributes.Append(ToAttribute(document, "name", variable.Key));
+                variables.AppendChild(variableElement);
+            }
+            metadata.AppendChild(variables);
+            parent.AppendChild(metadata);
+
+            CreateSetting(document, parent, "Offset", run.Offset);
+            CreateSetting(document, parent, "AttemptCount", run.AttemptCount);
 
             var runHistory = document.CreateElement("AttemptHistory");
             foreach (var attempt in run.AttemptHistory)
@@ -43,14 +64,14 @@ namespace LiveSplit.Model.RunSavers
                 var splitElement = document.CreateElement("Segment");
                 segmentElement.AppendChild(splitElement);
 
-                splitElement.AppendChild(SettingsHelper.ToElement(document, "Name", segment.Name));
-                splitElement.AppendChild(SettingsHelper.CreateImageElement(document, "Icon", segment.Icon));
+                CreateSetting(document, splitElement, "Name", segment.Name);
+                CreateSetting(document, splitElement, "Icon", segment.Icon);
 
                 var splitTimes = document.CreateElement("SplitTimes");
                 foreach (var comparison in run.CustomComparisons)
                 {
                     var splitTime = segment.Comparisons[comparison].ToXml(document, "SplitTime");
-                    splitTime.Attributes.Append(SettingsHelper.ToAttribute(document, "name", comparison));
+                    splitTime.Attributes.Append(ToAttribute(document, "name", comparison));
                     splitTimes.AppendChild(splitTime);
                 }
                 splitElement.AppendChild(splitTimes);
@@ -60,7 +81,8 @@ namespace LiveSplit.Model.RunSavers
                 var history = document.CreateElement("SegmentHistory");
                 foreach (var historySegment in segment.SegmentHistory)
                 {
-                    history.AppendChild(historySegment.ToXml(document));
+                    var indexedTime = new IndexedTime(historySegment.Value, historySegment.Key);
+                    history.AppendChild(indexedTime.ToXml(document));
                 }
                 splitElement.AppendChild(history);
             }

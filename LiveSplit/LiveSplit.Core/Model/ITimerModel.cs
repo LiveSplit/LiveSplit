@@ -20,6 +20,7 @@ namespace LiveSplit.Model
         event EventHandler OnSwitchComparisonNext;
         
         void Start();
+        void InitializeGameTime();
         void Split();
         void SkipSplit();
         void UndoSplit();

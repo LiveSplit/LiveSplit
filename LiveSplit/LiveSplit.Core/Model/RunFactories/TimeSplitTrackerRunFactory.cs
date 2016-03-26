@@ -27,7 +27,7 @@ namespace LiveSplit.Model.RunFactories
 
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
-            string path = "";
+            string path = string.Empty;
             if (!string.IsNullOrEmpty(Path))
                 path = System.IO.Path.GetDirectoryName(Path);
 
@@ -110,9 +110,8 @@ namespace LiveSplit.Model.RunFactories
                 if (!string.IsNullOrEmpty(Path))
                 {
                     var path = System.IO.Path.Combine(
-                                System.IO.Path.GetDirectoryName(Path), 
-                                string.Format("{0}-RunLog.txt", 
-                                    System.IO.Path.GetFileNameWithoutExtension(Path)));
+                               System.IO.Path.GetDirectoryName(Path),
+                               $"{System.IO.Path.GetFileNameWithoutExtension(Path)}-RunLog.txt");
 
                     var lines = File.ReadLines(path);
                     var attemptId = 1;
@@ -126,14 +125,16 @@ namespace LiveSplit.Model.RunFactories
 
                         var started = DateTime.Parse(timeStampString, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
                         Time finalTime = default(Time);
-                        DateTime? ended = null;
+                        AtomicDateTime? ended = null;
                         if (completed)
                         {
                             finalTime.RealTime = splits.Last().Value;
-                            ended = started + finalTime.RealTime;
+                            var finalDate = started + finalTime.RealTime;
+                            if (finalDate.HasValue)
+                                ended = new AtomicDateTime(finalDate.Value, false);
                         }
 
-                        run.AttemptHistory.Add(new Attempt(attemptId, finalTime, started, ended));
+                        run.AttemptHistory.Add(new Attempt(attemptId, finalTime, new AtomicDateTime(started, false), ended));
 
                         var i = 0;
                         TimeSpan? lastSplit = TimeSpan.Zero;
@@ -150,7 +151,7 @@ namespace LiveSplit.Model.RunFactories
                                 lastSplit = currentSplit;
                             }
 
-                            segment.SegmentHistory.Add(new IndexedTime(segmentTime, attemptId));
+                            segment.SegmentHistory.Add(attemptId, segmentTime);
                             if (segmentTime.RealTime < segment.BestSegmentTime.RealTime)
                                 segment.BestSegmentTime = segmentTime;
                             i++;

@@ -104,7 +104,7 @@ namespace LiveSplit.Web
         public override object Deserialize(IDictionary<string, object> dictionary, Type type, JavaScriptSerializer serializer)
         {
             if (dictionary == null)
-                throw new ArgumentNullException("dictionary");
+                throw new ArgumentNullException(nameof(dictionary));
 
             return type == typeof(object) ? new DynamicJsonObject(dictionary) : null;
         }
@@ -133,7 +133,7 @@ namespace LiveSplit.Web
         public DynamicJsonObject(IDictionary<string, object> dictionary)
         {
             if (dictionary == null)
-                throw new ArgumentNullException("dictionary");
+                throw new ArgumentNullException(nameof(dictionary));
             _dictionary = dictionary;
         }
 

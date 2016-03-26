@@ -1,6 +1,5 @@
 ﻿using LiveSplit.Model.Comparisons;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace LiveSplit.Model
@@ -18,7 +17,7 @@ namespace LiveSplit.Model
         public IComparisons Comparisons { get; set; }
         public Time BestSegmentTime { get; set; }
         public Time SplitTime { get; set; }
-        public IList<IIndexedTime> SegmentHistory { get; set;}
+        public SegmentHistory SegmentHistory { get; set;}
         
         public Segment(
             string name, Time pbSplitTime = default(Time), 
@@ -31,23 +30,23 @@ namespace LiveSplit.Model
             BestSegmentTime = bestSegmentTime;
             SplitTime = splitTime;
             Icon = icon;
-            SegmentHistory = new List<IIndexedTime>();
+            SegmentHistory = new SegmentHistory();
         }
 
-        public object Clone()
+        public Segment Clone()
         {
-            var newSegmentHistory = new List<IIndexedTime>();
-            foreach (var element in SegmentHistory)
-                newSegmentHistory.Add(new IndexedTime(element.Time, element.Index));
+            var newSegmentHistory = SegmentHistory.Clone();
 
             return new Segment(Name)
             {
                 BestSegmentTime = BestSegmentTime,
                 SplitTime = SplitTime,
-                Icon = Icon, //TODO: Should be a clone //(this.Icon != null) ? this.Icon.Clone() as Image : null,
+                Icon = Icon,
                 SegmentHistory = newSegmentHistory,
                 Comparisons = (IComparisons)Comparisons.Clone()
             };
         }
+
+        object ICloneable.Clone() => Clone();
     }
 }

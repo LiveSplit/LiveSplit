@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Xml;
 
 namespace UpdateManager
 {
     public class FileChange
     {
-        public String Path { get; set; }
+        public string Path { get; set; }
         public ChangeStatus Status { get; set; }
 
-        public FileChange(String path, ChangeStatus status)
+        public FileChange(string path, ChangeStatus status)
         {
             Path = path;
             Status = status;

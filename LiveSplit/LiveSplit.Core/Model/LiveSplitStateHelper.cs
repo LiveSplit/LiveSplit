@@ -1,4 +1,5 @@
-﻿using LiveSplit.UI;
+﻿using LiveSplit.Model.Comparisons;
+using LiveSplit.UI;
 using System;
 using System.Drawing;
 
@@ -16,7 +17,7 @@ namespace LiveSplit.Model
         /// <returns>Returns the last non-live delta or null if there have been no deltas yet.</returns>
         public static TimeSpan? GetLastDelta(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
         {
-            for (int x = splitNumber; x >= 0; x--)
+            for (var x = splitNumber; x >= 0; x--)
             {
                 if (state.Run[x].Comparisons[comparison][method] != null && state.Run[x].SplitTime[method] != null)
                     return state.Run[x].SplitTime[method] - state.Run[x].Comparisons[comparison][method];
@@ -26,22 +27,26 @@ namespace LiveSplit.Model
 
         private static TimeSpan? GetSegmentTimeOrSegmentDelta(LiveSplitState state, int splitNumber, bool useCurrentTime, bool segmentTime, string comparison, TimingMethod method)
         {
-            if (!useCurrentTime && (state.Run[splitNumber].SplitTime[method] == null)) return null;
             TimeSpan? currentTime;
-            if (useCurrentTime == false)
-                currentTime = state.Run[splitNumber].SplitTime[method];
-            else
+            if (useCurrentTime)
                 currentTime = state.CurrentTime[method];
+            else
+                currentTime = state.Run[splitNumber].SplitTime[method];
+            if (currentTime == null)
+                return null;
+
             for (int x = splitNumber - 1; x >= 0; x--)
             {
-                if (state.Run[x].SplitTime[method] != null)
+                var splitTime = state.Run[x].SplitTime[method];
+                if (splitTime != null)
                 {
                     if (segmentTime)
-                        return currentTime - state.Run[x].SplitTime[method];
+                        return currentTime - splitTime;
                     else if (state.Run[x].Comparisons[comparison][method] != null)
-                        return (currentTime - state.Run[splitNumber].Comparisons[comparison][method]) - (state.Run[x].SplitTime[method] - state.Run[x].Comparisons[comparison][method]);
+                        return (currentTime - state.Run[splitNumber].Comparisons[comparison][method]) - (splitTime - state.Run[x].Comparisons[comparison][method]);
                 }
             }
+
             if (segmentTime)
                 return currentTime;
             else
@@ -53,12 +58,11 @@ namespace LiveSplit.Model
         /// </summary>
         /// <param name="state">The current state.</param>
         /// <param name="splitNumber">The index of the split that represents the end of the segment.</param>
-        /// <param name="comparison">The comparison that you are comparing with.</param>
         /// <param name="method">The timing method that you are using.</param>
         /// <returns>Returns the length of the segment leading up to splitNumber, returning null if the split is not completed yet.</returns>
-        public static TimeSpan? GetPreviousSegmentTime(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
+        public static TimeSpan? GetPreviousSegmentTime(LiveSplitState state, int splitNumber, TimingMethod method)
         {
-            return GetSegmentTimeOrSegmentDelta(state, splitNumber, false, true, comparison, method);
+            return GetSegmentTimeOrSegmentDelta(state, splitNumber, false, true, Run.PersonalBestComparisonName, method);
         }
 
         /// <summary>
@@ -66,12 +70,11 @@ namespace LiveSplit.Model
         /// </summary>
         /// <param name="state">The current state.</param>
         /// <param name="splitNumber">The index of the split that represents the end of the segment.</param>
-        /// <param name="comparison">The comparison that you are comparing with.</param>
         /// <param name="method">The timing method that you are using.</param>
         /// <returns>Returns the length of the segment leading up to splitNumber, returning the live segment time if the split is not completed yet.</returns>
-        public static TimeSpan? GetLiveSegmentTime(LiveSplitState state, int splitNumber, string comparison, TimingMethod method)
+        public static TimeSpan? GetLiveSegmentTime(LiveSplitState state, int splitNumber, TimingMethod method)
         {
-            return GetSegmentTimeOrSegmentDelta(state, splitNumber, true, true, comparison, method);
+            return GetSegmentTimeOrSegmentDelta(state, splitNumber, true, true, Run.PersonalBestComparisonName, method);
         }
 
         /// <summary>
@@ -110,25 +113,20 @@ namespace LiveSplit.Model
         /// <returns>Returns the current live delta.</returns>
         public static TimeSpan? CheckLiveDelta(LiveSplitState state, bool showWhenBehind, string comparison, TimingMethod method)
         {
-            var useBestSegment = state.LayoutSettings.ShowBestSegments;
             if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
             {
-                TimeSpan? curSeg = state.CurrentTime[method] - (state.CurrentSplitIndex > 0 ? state.Run[state.CurrentSplitIndex - 1].SplitTime[method] : TimeSpan.Zero);
-                var bestSegmentDifference = (-state.Run[state.CurrentSplitIndex].Comparisons[comparison][method]
-                    + ((state.CurrentSplitIndex - 1 >= 0) ? state.Run[state.CurrentSplitIndex - 1].Comparisons[comparison][method] : TimeSpan.Zero))
-                    + state.Run[state.CurrentSplitIndex].BestSegmentTime[method];
-                if (bestSegmentDifference == null || bestSegmentDifference > TimeSpan.Zero || !useBestSegment)
-                    bestSegmentDifference = TimeSpan.Zero;
+                var useBestSegment = state.LayoutSettings.ShowBestSegments;
+                var curSplit = state.Run[state.CurrentSplitIndex].Comparisons[comparison][method];
+                var currentTime = state.CurrentTime[method];
+                var curSegment = GetLiveSegmentTime(state, state.CurrentSplitIndex, method);
+                var bestSegment = state.Run[state.CurrentSplitIndex].BestSegmentTime[method];
+                var bestSegmentDelta = GetLiveSegmentDelta(state, state.CurrentSplitIndex, BestSegmentsComparisonGenerator.ComparisonName, method);
+                var personalBestDelta = GetLiveSegmentDelta(state, state.CurrentSplitIndex, Run.PersonalBestComparisonName, method);
 
-                var lastDelta = GetLastDelta(state, state.CurrentSplitIndex - 1, comparison, method);
-                if (lastDelta == null)
-                    lastDelta = TimeSpan.Zero;
-
-                if (state.Run[state.CurrentSplitIndex].Comparisons[comparison][method] != null &&
-                        ((state.CurrentTime[method] > state.Run[state.CurrentSplitIndex].Comparisons[comparison][method] + lastDelta + bestSegmentDifference) ||
-                        (useBestSegment && curSeg != null && curSeg > state.Run[state.CurrentSplitIndex].BestSegmentTime[method]) ||
-                        !showWhenBehind && state.CurrentTime[method] > state.Run[state.CurrentSplitIndex].Comparisons[comparison][method]))
-                    return state.CurrentTime[method] - state.Run[state.CurrentSplitIndex].Comparisons[comparison][method];
+                if (showWhenBehind && currentTime > curSplit 
+                    || useBestSegment && bestSegment != null && curSegment > bestSegment && bestSegmentDelta > TimeSpan.Zero
+                    || personalBestDelta > TimeSpan.Zero)
+                    return currentTime - curSplit;
             }
             return null;
         }
@@ -149,6 +147,7 @@ namespace LiveSplit.Model
             Color? splitColor = null;
             if (splitNumber < 0)
                 return splitColor;
+
             if (timeDifference != null)
             {
                 if (timeDifference < TimeSpan.Zero)
@@ -167,25 +166,39 @@ namespace LiveSplit.Model
                 }
             }
 
-            if (showBestSegments && state.LayoutSettings.ShowBestSegments)
+            if (showBestSegments && state.LayoutSettings.ShowBestSegments && CheckBestSegment(state, splitNumber, method))
             {
-                TimeSpan? curSegment;
-                curSegment = GetPreviousSegmentTime(state, splitNumber, comparison, method);
-                if (curSegment != null)
-                {
-                    if (state.Run[splitNumber].BestSegmentTime[method] == null || curSegment < state.Run[splitNumber].BestSegmentTime[method])
-                    {
-                        splitColor = GetBestSegmentColor(state);
-                    }
-                }
+                splitColor = GetBestSegmentColor(state);
             }
+
             return splitColor;
+        }
+
+        /// <summary>
+        /// Calculates whether or not the Split Times for the indicated split qualify as a Best Segment.
+        /// </summary>
+        /// <param name="state">The current state.</param>
+        /// <param name="splitNumber">The split to check.</param>
+        /// <param name="method">The timing method to use.</param>
+        /// <returns>Returns whether or not the indicated split is a Best Segment.</returns>
+        public static bool CheckBestSegment(LiveSplitState state, int splitNumber, TimingMethod method)
+        {
+            if (state.Run[splitNumber].SplitTime[method] == null)
+                return false;
+            var delta = GetPreviousSegmentDelta(state, splitNumber, BestSegmentsComparisonGenerator.ComparisonName, method);
+            var curSegment = GetPreviousSegmentTime(state, splitNumber, method);
+            var bestSegment = state.Run[splitNumber].BestSegmentTime[method];
+            return bestSegment == null || curSegment < bestSegment || delta < TimeSpan.Zero;
         }
 
         private static Color GetBestSegmentColor(LiveSplitState state)
         {
             if (state.LayoutSettings.UseRainbowColor)
-                return ColorExtensions.FromHSV((TripleDateTime.Now.QPCValue.TotalMilliseconds / 6) % 360, 1, 1);
+            {
+                var hue = (((int)DateTime.Now.TimeOfDay.TotalMilliseconds / 100) % 36) * 10;
+                var rainbowColor = ColorExtensions.FromHSV(hue, 1, 1);
+                return Color.FromArgb((rainbowColor.R*2 + 255*1) / 3, (rainbowColor.G*2 + 255*1) / 3, (rainbowColor.B*2 + 255*1) / 3);
+            }
 
             return state.LayoutSettings.BestSegmentColor;
         }

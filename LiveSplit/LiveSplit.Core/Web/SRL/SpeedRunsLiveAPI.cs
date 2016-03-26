@@ -1,5 +1,4 @@
-﻿using LiveSplit.Options;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -13,7 +12,7 @@ namespace LiveSplit.Web.SRL
     {
         protected static readonly SpeedRunsLiveAPI _Instance = new SpeedRunsLiveAPI();
 
-        public static SpeedRunsLiveAPI Instance { get { return _Instance; } }
+        public static SpeedRunsLiveAPI Instance => _Instance;
         public static readonly Uri BaseUri = new Uri("http://api.speedrunslive.com:81/");
 
         protected IEnumerable<dynamic> racesList;
@@ -26,7 +25,6 @@ namespace LiveSplit.Web.SRL
         protected SpeedRunsLiveAPI()
         {
             imageList = new Dictionary<string, Image>();
-            //new System.Timers.Timer(20 * 1000) { Enabled = true }.Elapsed += SpeedRunsLiveAPI_Elapsed;
         }
 
         protected Uri GetUri(string subUri)
@@ -101,7 +99,7 @@ namespace LiveSplit.Web.SRL
 
                     try
                     {
-                        var request = WebRequest.Create(string.Format("http://c15111072.r72.cf2.rackcdn.com/{0}.jpg", gameId));
+                        var request = WebRequest.Create($"http://c15111072.r72.cf2.rackcdn.com/{gameId}.jpg");
 
                         using (var response = request.GetResponse())
                         using (var stream = response.GetResponseStream())
@@ -135,8 +133,7 @@ namespace LiveSplit.Web.SRL
             try
             {
                 racesList = (IEnumerable<dynamic>)JSON.FromUri(GetUri("races")).races;
-                if (RacesRefreshed != null)
-                    RacesRefreshed(this, null);
+                RacesRefreshed?.Invoke(this, null);
             }
             catch { }
         }

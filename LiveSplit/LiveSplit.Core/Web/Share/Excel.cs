@@ -13,16 +13,11 @@ namespace LiveSplit.Web.Share
     {
         protected static Excel _Instance = new Excel();
 
-        public static Excel Instance { get { return _Instance; } }
+        public static Excel Instance => _Instance;
 
-        public string PlatformName
-        {
-            get
-            {
-                return "Excel";
-            }
-        }
+        public string PlatformName => "Excel";
 
+<<<<<<< HEAD
         public string Description
         {
             get
@@ -31,6 +26,11 @@ namespace LiveSplit.Web.Share
                     + "今まで試行してきた全履歴が保存されています。";
             }
         }
+=======
+        public string Description =>
+@"Export your splits as an Excel Sheet to analyze your splits. 
+This includes your whole history of all the runs you ever did.";
+>>>>>>> refs/remotes/LiveSplit/master
 
         public ISettings Settings { get; set; }
 

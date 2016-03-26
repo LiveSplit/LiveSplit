@@ -5,24 +5,22 @@ namespace LiveSplit.UI.Components
     public class SeparatorFactory : IComponentFactory
     {
         public string ComponentName
-        {
-            get { return "Separator"; }
-        }
+            => "Separator";
 
         public string Description
+<<<<<<< HEAD
         {
             get { return "部品ごとの区切り線を表示"; }
         }
+=======
+            => "Shows a line to separate components.";
+>>>>>>> refs/remotes/LiveSplit/master
 
         public ComponentCategory Category
-        {
-            get { return ComponentCategory.Other; }
-        }
+            => ComponentCategory.Other;
 
         public IComponent Create(Model.LiveSplitState state)
-        {
-            return new SeparatorComponent();
-        }
+            => new SeparatorComponent();
 
         public string UpdateName
         {

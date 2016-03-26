@@ -11,15 +11,13 @@ namespace LiveSplit.Web.Share
         public ISettings Settings { get; set; }
         protected static readonly Screenshot _Instance = new Screenshot();
 
-        public static Screenshot Instance { get { return _Instance; } }
+        public static Screenshot Instance => _Instance;
 
         protected Screenshot() { }
 
-        public string PlatformName
-        {
-            get { return "Screenshot"; }
-        }
+        public string PlatformName => "Screenshot";
 
+<<<<<<< HEAD
         public string Description
         {
             get 
@@ -27,6 +25,9 @@ namespace LiveSplit.Web.Share
                 return "LiveSplitのスクリーンショットを保存します。";
             }
         }
+=======
+        public string Description => "Sharing will save a screenshot of LiveSplit.";
+>>>>>>> refs/remotes/LiveSplit/master
 
         public IEnumerable<ASUP.IdPair> GetGameList()
         {

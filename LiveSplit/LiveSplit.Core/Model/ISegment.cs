@@ -1,6 +1,5 @@
 ﻿using LiveSplit.Model.Comparisons;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace LiveSplit.Model
@@ -13,6 +12,6 @@ namespace LiveSplit.Model
         IComparisons Comparisons { get; set; }
         Time BestSegmentTime { get; set; }
         Time SplitTime { get; set; }
-        IList<IIndexedTime> SegmentHistory { get; set; }
+        SegmentHistory SegmentHistory { get; set; }
     }
 }

@@ -72,12 +72,14 @@ namespace LiveSplit.UI.Components
         /// </summary>
         /// <returns>Returns in what way the dialog was closed.</returns>
         Control GetSettingsControl(LayoutMode mode);
+
         /// <summary>
         /// Returns the XML serialization of the component's settings.
         /// </summary>
         /// <param name="document">The XML document.</param>
         /// <returns> Returns the XML serialization of the component's settings.</returns>
         XmlNode GetSettings(XmlDocument document);
+
         /// <summary>
         /// Sets the settings of the component based on the serialized version of the settings.
         /// </summary>
@@ -93,5 +95,12 @@ namespace LiveSplit.UI.Components
         /// <param name="height">The height of the region that needs to be invalidated.</param>
         /// <param name="mode">The Layout Mode (Horizontal or Vertical)</param>
         void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode);
+
+        // This method is optional but recommended because it improves the performance of LiveSplit.
+        // <summary>
+        // Gets a Hash Code of the settings to determine if the component's settings have been modified.
+        // </summary>
+        // <returns> Returns a Hash Code of the component's settings.</returns>
+        // int GetSettingsHashCode()
     }
 }

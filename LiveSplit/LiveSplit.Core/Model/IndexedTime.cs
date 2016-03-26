@@ -1,9 +1,9 @@
 ﻿namespace LiveSplit.Model
 {
-    public class IndexedTime : IIndexedTime
+    public struct IndexedTime : IIndexedTime
     {
-        public Time Time { get; set; }
-        public int Index { get; set; }
+        public Time Time { get; }
+        public int Index { get; }
 
         public IndexedTime (Time time, int index)
         {

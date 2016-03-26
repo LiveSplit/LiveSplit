@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 
 namespace UpdateManager
 {
@@ -39,7 +35,7 @@ namespace UpdateManager
 
         public Version Version
         {
-            get { return Version.Parse("2.0"); }
+            get { return Version.Parse("2.0.1"); }
         }
     }
 }

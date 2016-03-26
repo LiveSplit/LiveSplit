@@ -5,32 +5,12 @@ namespace LiveSplit.Updates
 {
     public class LiveSplitUpdateable : IUpdateable
     {
-        public string UpdateName
-        {
-            get { return "LiveSplit"; }
-        }
+        public string UpdateName => "LiveSplit";
 
-        public string XMLURL
-        {
-#if RELEASE_CANDIDATE
-            get { return "http://livesplit.org/update_rc_sdhjdop/update.xml"; }
-#else
-            get { return "http://livesplit.org/update/update.xml"; }
-#endif
-        }
+        public string XMLURL => "http://livesplit.org/update/update.xml";
 
-        public string UpdateURL
-        {
-#if RELEASE_CANDIDATE
-            get { return "http://livesplit.org/update_rc_sdhjdop/"; }
-#else
-            get { return "http://livesplit.org/update/"; }
-#endif
-        }
+        public string UpdateURL => "http://livesplit.org/update/";
 
-        public Version Version
-        {
-            get { return UpdateHelper.Version; }
-        }
+        public Version Version => UpdateHelper.Version;
     }
 }

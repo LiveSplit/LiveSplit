@@ -1,5 +1,4 @@
 ﻿using LiveSplit.Web.Share;
-using LiveSplit.Web.SRL;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +9,7 @@ namespace LiveSplit.Web
     {
         protected static CompositeGameList _Instance = new CompositeGameList();
 
-        public static CompositeGameList Instance { get { return _Instance; } }
+        public static CompositeGameList Instance => _Instance;
 
         protected IList<string> gameNames;
 
@@ -26,7 +25,7 @@ namespace LiveSplit.Web
                     {
                         try
                         {
-                            return SpeedrunCom.Instance.GetGameNames();
+                            return SpeedrunCom.Client.Games.GetGameHeaders().Select(x => x.Name);
                         }
                         catch
                         {

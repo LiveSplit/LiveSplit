@@ -14,8 +14,7 @@ namespace LiveSplit.Web.Share
     public class Congratsio : IRunUploadPlatform
     {
         protected static Congratsio _Instance = new Congratsio();
-        public static Congratsio Instance { get { return _Instance; } }
-
+        public static Congratsio Instance => _Instance;
         public static readonly Uri BaseUri = new Uri("http://www.congratsio.com");
 
         protected Congratsio() { }
@@ -25,20 +24,12 @@ namespace LiveSplit.Web.Share
             return new Uri(BaseUri, subUri);
         }
 
-        public string PlatformName
-        {
-            get { return "Congratsio"; }
-        }
+        public string PlatformName => "Congratsio";
 
-        public string Description
-        {
-            get 
-            {
-                return "Congratsio is a platform that allows you to track "
-                     + "your Personal Bests with the bonus of a congratulatory "
-                     + "tweet whenever you get a new Personal Best.";
-            }
-        }
+        public string Description =>
+@"Congratsio is a platform that allows you to track 
+your Personal Bests with the bonus of a congratulatory 
+tweet whenever you get a new Personal Best.";
 
         public ISettings Settings { get; set; }
 
@@ -138,8 +129,8 @@ namespace LiveSplit.Web.Share
                 writer.Write(HttpUtility.UrlEncode(timeFormatter.Format(run.Last().PersonalBestSplitTime.RealTime)));
 
                 writer.Write("&date=");
-                var dateTime = run.AttemptHistory.First(x => x.Time.RealTime == run.Last().PersonalBestSplitTime.RealTime).Ended.Value;
-                writer.Write(HttpUtility.UrlEncode(String.Format("{0:00}/{1:00}/{2}", dateTime.Month, dateTime.Day, dateTime.Year)));
+                var dateTime = run.AttemptHistory.First(x => x.Time.RealTime == run.Last().PersonalBestSplitTime.RealTime).Ended.Value.Time;
+                writer.Write(HttpUtility.UrlEncode($"{dateTime.Month:00}/{dateTime.Day:00}/{dateTime.Year}"));
 
                 writer.Write("&video=");
                 writer.Write(HttpUtility.UrlEncode(video));

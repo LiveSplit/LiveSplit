@@ -2,6 +2,7 @@
 using LiveSplit.Options;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
+using LiveSplit.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,10 +24,11 @@ namespace LiveSplit.View
         public LiveSplitState CurrentState { get; set; }
 
         public List<UI.Components.IComponent> ComponentsToDispose { get; set; }
+        public List<Image> ImagesToDispose { get; set; }
 
         protected ILayout Layout { get; set; }
         protected BindingList<ILayoutComponent> BindingList { get; set; }
-        protected float OverallHeight { get { return BindingList.OfType<ILayoutComponent>().Aggregate(0.0f, (x, y) => x + y.Component.VerticalHeight); } }
+        protected float OverallHeight => BindingList.OfType<ILayoutComponent>().Aggregate(0.0f, (x, y) => x + y.Component.VerticalHeight);
         protected bool IsVertical
         {
             get { return Layout.Mode == LayoutMode.Vertical; }
@@ -46,6 +48,7 @@ namespace LiveSplit.View
             Layout = layout;
             BindingList = new BindingList<ILayoutComponent>(Layout.LayoutComponents);
             ComponentsToDispose = new List<UI.Components.IComponent>();
+            ImagesToDispose = new List<Image>();
             lbxComponents.DataSource = BindingList;
             lbxComponents.DisplayMember = "Component.ComponentName";
             LoadAllComponentsAvailable();
@@ -76,7 +79,8 @@ namespace LiveSplit.View
                 var component = componentFactory.Value == null
                     ? new LayoutComponent("", new SeparatorComponent())
                     : new LayoutComponent(componentFactory.Key, componentFactory.Value.Create(CurrentState));
-                Action y = () =>
+
+                Form.InvokeIfRequired(() =>
                 {
                     try
                     {
@@ -86,12 +90,8 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                };
+                });
 
-                if (Form.InvokeRequired)
-                    Form.Invoke(y);
-                else
-                    y();
                 Layout.HasChanged = true;
                 if (LayoutResized != null)
                     LayoutResized(this, null);
@@ -164,7 +164,7 @@ namespace LiveSplit.View
         {
             if (BindingList.Count > 1)
             {
-                Action x = () =>
+                Form.InvokeIfRequired(() =>
                 {
                     try
                     {
@@ -178,12 +178,8 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                };
+                });
 
-                if (Form.InvokeRequired)
-                    Form.Invoke(x);
-                else
-                    x();
                 Layout.HasChanged = true;
                 if (LayoutResized != null)
                     LayoutResized(this, null);
@@ -194,7 +190,7 @@ namespace LiveSplit.View
         {
             if (lbxComponents.SelectedIndex > 0)
             {
-                Action x = () =>
+                Form.InvokeIfRequired(() =>
                 {
                     try
                     {
@@ -206,12 +202,7 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                };
-
-                if (Form.InvokeRequired)
-                    Form.Invoke(x);
-                else
-                    x();
+                });
 
                 Layout.HasChanged = true;
             }
@@ -221,7 +212,7 @@ namespace LiveSplit.View
         {
             if (lbxComponents.SelectedIndex < BindingList.Count - 1)
             {
-                Action x = () =>
+                Form.InvokeIfRequired(() =>
                 {
                     try
                     {
@@ -232,12 +223,8 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                     }
-                };
+                });
 
-                if (Form.InvokeRequired)
-                    Form.Invoke(x);
-                else
-                    x();
                 lbxComponents.SelectedIndex += 1;
                 Layout.HasChanged = true;
             }
@@ -245,15 +232,21 @@ namespace LiveSplit.View
 
         private void ShowLayoutSettings(LiveSplit.UI.Components.IComponent tabControl = null)
         {
-            var oldSettings = (LiveSplit.UI.LayoutSettings)Layout.Settings.Clone();
+            var oldSettings = (Options.LayoutSettings)Layout.Settings.Clone();
             var settingsDialog = new LayoutSettingsDialog(Layout.Settings, Layout, tabControl);
             var result = settingsDialog.ShowDialog(this);
             if (result == DialogResult.OK)
             {
+                if (oldSettings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+                    ImagesToDispose.Add(oldSettings.BackgroundImage);
+
                 Layout.HasChanged = true;
             }
             else if (result == DialogResult.Cancel)
             {
+                if (Layout.Settings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+                    Layout.Settings.BackgroundImage.Dispose();
+
                 Layout.Settings.Assign(oldSettings);
                 LayoutSettingsAssigned(null, null);
             }

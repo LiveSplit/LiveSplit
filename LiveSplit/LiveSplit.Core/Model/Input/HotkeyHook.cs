@@ -18,10 +18,7 @@ namespace LiveSplit.Model.Input
         {
             _window.KeyPressed += delegate(object sender, KeyPressedEventArgs args)
             {
-                if (KeyPressed != null)
-                {
-                    KeyPressed(this, args);
-                }
+                KeyPressed?.Invoke(this, args);
             };
         }
 
@@ -52,10 +49,7 @@ namespace LiveSplit.Model.Input
                 {
                     Keys key = (Keys)((int)m.LParam >> 16 & 65535);
                     ModifierKeys modifier = (ModifierKeys)((int)m.LParam & 65535);
-                    if (KeyPressed != null)
-                    {
-                        KeyPressed(this, new KeyPressedEventArgs(modifier, key));
-                    }
+                    KeyPressed?.Invoke(this, new KeyPressedEventArgs(modifier, key));
                 }
             }
             public void Dispose()

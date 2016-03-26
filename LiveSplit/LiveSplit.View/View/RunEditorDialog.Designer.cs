@@ -35,21 +35,21 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.cbxGameName = new System.Windows.Forms.ComboBox();
+            this.cbxGameName = new LiveSplit.View.CustomAutoCompleteComboBox(this);
             this.cbxRunCategory = new System.Windows.Forms.ComboBox();
             this.tbxTimeOffset = new System.Windows.Forms.TextBox();
             this.picGameIcon = new System.Windows.Forms.PictureBox();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.RealTime = new System.Windows.Forms.TabPage();
             this.GameTime = new System.Windows.Forms.TabPage();
+            this.Metadata = new System.Windows.Forms.TabPage();
+            this.metadataControl = new LiveSplit.View.MetadataControl();
             this.tbxAttempts = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
-            this.btnActivate = new System.Windows.Forms.Button();
-            this.btnSettings = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
@@ -58,9 +58,14 @@
             this.btnAddComparison = new System.Windows.Forms.Button();
             this.btnImportComparison = new System.Windows.Forms.Button();
             this.btnOther = new System.Windows.Forms.Button();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnWebsite = new System.Windows.Forms.Button();
+            this.btnSettings = new System.Windows.Forms.Button();
+            this.btnActivate = new System.Windows.Forms.Button();
             this.RemoveIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.setIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.downloadBoxartToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.downloadIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFromURLMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ImportComparisonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -77,7 +82,9 @@
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
             this.tabControl.SuspendLayout();
+            this.Metadata.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
             this.RemoveIconMenu.SuspendLayout();
             this.ImportComparisonMenu.SuspendLayout();
             this.OtherMenu.SuspendLayout();
@@ -102,6 +109,11 @@
             this.runGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.tableLayoutPanel1.SetRowSpan(this.runGrid, 8);
             this.runGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+<<<<<<< HEAD
+=======
+            this.runGrid.Size = new System.Drawing.Size(530, 295);
+            this.runGrid.TabIndex = 0;
+>>>>>>> refs/remotes/LiveSplit/master
             this.runGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.runGrid_KeyDown);
             // 
             // tableLayoutPanel1
@@ -120,8 +132,6 @@
             this.tableLayoutPanel1.Controls.Add(this.label4, 5, 3);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 6, 14);
             this.tableLayoutPanel1.Controls.Add(this.lblDescription, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnActivate, 6, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnSettings, 7, 4);
             this.tableLayoutPanel1.Controls.Add(this.btnInsert, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnAdd, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.btnRemove, 0, 8);
@@ -130,7 +140,33 @@
             this.tableLayoutPanel1.Controls.Add(this.btnAddComparison, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.btnImportComparison, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.btnOther, 0, 13);
+<<<<<<< HEAD
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+=======
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 5, 4);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 15;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 36F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 511);
+            this.tableLayoutPanel1.TabIndex = 1;
+>>>>>>> refs/remotes/LiveSplit/master
             // 
             // label2
             // 
@@ -154,6 +190,12 @@
             // 
             resources.ApplyResources(this.cbxGameName, "cbxGameName");
             this.tableLayoutPanel1.SetColumnSpan(this.cbxGameName, 5);
+<<<<<<< HEAD
+=======
+            this.cbxGameName.GetAllItemsForText = null;
+            this.cbxGameName.Location = new System.Drawing.Point(246, 12);
+            this.cbxGameName.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
+>>>>>>> refs/remotes/LiveSplit/master
             this.cbxGameName.Name = "cbxGameName";
             this.cbxGameName.TextChanged += new System.EventHandler(this.cbxGameName_TextChanged);
             // 
@@ -186,6 +228,13 @@
             this.tableLayoutPanel1.SetColumnSpan(this.tabControl, 9);
             this.tabControl.Controls.Add(this.RealTime);
             this.tabControl.Controls.Add(this.GameTime);
+<<<<<<< HEAD
+=======
+            this.tabControl.Controls.Add(this.Metadata);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(144, 148);
+            this.tabControl.Margin = new System.Windows.Forms.Padding(4, 3, 10, 0);
+>>>>>>> refs/remotes/LiveSplit/master
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabSelected);
@@ -201,6 +250,26 @@
             resources.ApplyResources(this.GameTime, "GameTime");
             this.GameTime.Name = "GameTime";
             this.GameTime.UseVisualStyleBackColor = true;
+            // 
+            // Metadata
+            // 
+            this.Metadata.Controls.Add(this.metadataControl);
+            this.Metadata.Location = new System.Drawing.Point(4, 22);
+            this.Metadata.Name = "Metadata";
+            this.Metadata.Size = new System.Drawing.Size(522, 0);
+            this.Metadata.TabIndex = 2;
+            this.Metadata.Text = "Additional Info";
+            this.Metadata.UseVisualStyleBackColor = true;
+            // 
+            // metadataControl
+            // 
+            this.metadataControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metadataControl.Location = new System.Drawing.Point(0, 0);
+            this.metadataControl.Metadata = null;
+            this.metadataControl.Name = "metadataControl";
+            this.metadataControl.Padding = new System.Windows.Forms.Padding(7);
+            this.metadataControl.Size = new System.Drawing.Size(522, 0);
+            this.metadataControl.TabIndex = 0;
             // 
             // tbxAttempts
             // 
@@ -219,6 +288,11 @@
             this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 4);
             this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnOK, 0, 0);
+<<<<<<< HEAD
+=======
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(491, 475);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+>>>>>>> refs/remotes/LiveSplit/master
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             // 
             // btnCancel
@@ -238,6 +312,7 @@
             // 
             // lblDescription
             // 
+<<<<<<< HEAD
             resources.ApplyResources(this.lblDescription, "lblDescription");
             this.tableLayoutPanel1.SetColumnSpan(this.lblDescription, 5);
             this.lblDescription.Name = "lblDescription";
@@ -256,6 +331,18 @@
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
+=======
+            this.lblDescription.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDescription.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lblDescription, 4);
+            this.lblDescription.Location = new System.Drawing.Point(140, 121);
+            this.lblDescription.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(281, 13);
+            this.lblDescription.TabIndex = 13;
+            this.lblDescription.Text = "Description";
+            // 
+>>>>>>> refs/remotes/LiveSplit/master
             // btnInsert
             // 
             resources.ApplyResources(this.btnInsert, "btnInsert");
@@ -312,27 +399,93 @@
             this.btnOther.UseVisualStyleBackColor = true;
             this.btnOther.Click += new System.EventHandler(this.btnOther_Click);
             // 
+            // flowLayoutPanel1
+            // 
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 3);
+            this.flowLayoutPanel1.Controls.Add(this.btnWebsite);
+            this.flowLayoutPanel1.Controls.Add(this.btnSettings);
+            this.flowLayoutPanel1.Controls.Add(this.btnActivate);
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(429, 113);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(247, 29);
+            this.flowLayoutPanel1.TabIndex = 18;
+            // 
+            // btnWebsite
+            // 
+            this.btnWebsite.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnWebsite.Location = new System.Drawing.Point(169, 3);
+            this.btnWebsite.Name = "btnWebsite";
+            this.btnWebsite.Size = new System.Drawing.Size(75, 23);
+            this.btnWebsite.TabIndex = 7;
+            this.btnWebsite.Text = "Website";
+            this.btnWebsite.UseVisualStyleBackColor = true;
+            this.btnWebsite.Visible = false;
+            this.btnWebsite.Click += new System.EventHandler(this.btnWebsite_Click);
+            // 
+            // btnSettings
+            // 
+            this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSettings.Location = new System.Drawing.Point(88, 3);
+            this.btnSettings.Name = "btnSettings";
+            this.btnSettings.Size = new System.Drawing.Size(75, 23);
+            this.btnSettings.TabIndex = 6;
+            this.btnSettings.Text = "Settings";
+            this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
+            // 
+            // btnActivate
+            // 
+            this.btnActivate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnActivate.Location = new System.Drawing.Point(7, 3);
+            this.btnActivate.Name = "btnActivate";
+            this.btnActivate.Size = new System.Drawing.Size(75, 23);
+            this.btnActivate.TabIndex = 5;
+            this.btnActivate.Text = "Activate";
+            this.btnActivate.UseVisualStyleBackColor = true;
+            this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
+            // 
             // RemoveIconMenu
             // 
             resources.ApplyResources(this.RemoveIconMenu, "RemoveIconMenu");
             this.RemoveIconMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem1,
+            this.setIconToolStripMenuItem,
             this.downloadBoxartToolStripMenuItem,
+            this.downloadIconToolStripMenuItem,
             this.openFromURLMenuItem,
             this.removeIconToolStripMenuItem});
             this.RemoveIconMenu.Name = "RemoveIconMenu";
+<<<<<<< HEAD
+=======
+            this.RemoveIconMenu.Size = new System.Drawing.Size(170, 136);
+>>>>>>> refs/remotes/LiveSplit/master
             // 
-            // toolStripMenuItem1
+            // setIconToolStripMenuItem
             // 
+<<<<<<< HEAD
             resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+=======
+            this.setIconToolStripMenuItem.Name = "setIconToolStripMenuItem";
+            this.setIconToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.setIconToolStripMenuItem.Text = "Set Icon...";
+            this.setIconToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
+>>>>>>> refs/remotes/LiveSplit/master
             // 
             // downloadBoxartToolStripMenuItem
             // 
             resources.ApplyResources(this.downloadBoxartToolStripMenuItem, "downloadBoxartToolStripMenuItem");
             this.downloadBoxartToolStripMenuItem.Name = "downloadBoxartToolStripMenuItem";
             this.downloadBoxartToolStripMenuItem.Click += new System.EventHandler(this.downloadBoxartToolStripMenuItem_Click);
+            // 
+            // downloadIconToolStripMenuItem
+            // 
+            this.downloadIconToolStripMenuItem.Name = "downloadIconToolStripMenuItem";
+            this.downloadIconToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.downloadIconToolStripMenuItem.Text = "Download Icon";
+            this.downloadIconToolStripMenuItem.Click += new System.EventHandler(this.downloadIconToolStripMenuItem_Click);
             // 
             // openFromURLMenuItem
             // 
@@ -413,6 +566,10 @@
             this.AcceptButton = this.btnOK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+<<<<<<< HEAD
+=======
+            this.ClientSize = new System.Drawing.Size(684, 511);
+>>>>>>> refs/remotes/LiveSplit/master
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "RunEditorDialog";
             this.Load += new System.EventHandler(this.RunEditorDialog_Load);
@@ -421,7 +578,9 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).EndInit();
             this.tabControl.ResumeLayout(false);
+            this.Metadata.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
             this.RemoveIconMenu.ResumeLayout(false);
             this.ImportComparisonMenu.ResumeLayout(false);
             this.OtherMenu.ResumeLayout(false);
@@ -448,8 +607,8 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ContextMenuStrip RemoveIconMenu;
         private System.Windows.Forms.ToolStripMenuItem removeIconToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
-        private System.Windows.Forms.ComboBox cbxGameName;
+        private System.Windows.Forms.ToolStripMenuItem setIconToolStripMenuItem;
+        private CustomAutoCompleteComboBox cbxGameName;
         private System.Windows.Forms.ComboBox cbxRunCategory;
         private System.Windows.Forms.TextBox tbxTimeOffset;
         private System.Windows.Forms.TextBox tbxAttempts;
@@ -476,5 +635,10 @@
         private System.Windows.Forms.ToolStripMenuItem clearTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fromSpeedruncomToolStripMenuItem;
+        private System.Windows.Forms.TabPage Metadata;
+        private MetadataControl metadataControl;
+        private System.Windows.Forms.Button btnWebsite;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.ToolStripMenuItem downloadIconToolStripMenuItem;
     }
 }

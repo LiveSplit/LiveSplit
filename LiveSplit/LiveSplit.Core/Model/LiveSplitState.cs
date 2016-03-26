@@ -3,6 +3,7 @@ using LiveSplit.Options;
 using LiveSplit.UI;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using Forms = System.Windows.Forms;
 
 namespace LiveSplit.Model
@@ -15,16 +16,34 @@ namespace LiveSplit.Model
         public ISettings Settings { get; set; }
         public Forms.Form Form { get; set; }
 
-        public TripleDateTime AttemptStarted { get; set; }
-        public TripleDateTime AttemptEnded { get; set; }
+        public AtomicDateTime AttemptStarted { get; set; }
+        public AtomicDateTime AttemptEnded { get; set; }
 
-        public TripleDateTime StartTime { get; set; }
+        public TimeStamp StartTime { get; set; }
         public TimeSpan PauseTime { get; set; }
-        public TimeSpan GameTimePauseTime { get; set; }
+        public TimeSpan? GameTimePauseTime { get; set; }
         public TimerPhase CurrentPhase { get; set; }
         public string CurrentComparison { get; set; }
         public TimingMethod CurrentTimingMethod { get; set; }
-        public TimeSpan LoadingTimes { get; set; }
+
+        internal TimeSpan? loadingTimes;
+        public TimeSpan LoadingTimes { get { return loadingTimes ?? TimeSpan.Zero; } set { loadingTimes = value; } }
+        public bool IsGameTimeInitialized
+        {
+            get
+            {
+                return loadingTimes.HasValue;
+            }
+            set
+            {
+                if (value)
+                {
+                    loadingTimes = LoadingTimes;
+                }
+                else
+                    loadingTimes = null;
+            }
+        }
         private bool isGameTimePaused;
         public bool IsGameTimePaused
         {
@@ -32,17 +51,13 @@ namespace LiveSplit.Model
             set
             {
                 if (!value && isGameTimePaused)
-                    LoadingTimes = CurrentTime.RealTime.Value - CurrentTime.GameTime.Value;
+                    LoadingTimes = CurrentTime.RealTime.Value - (CurrentTime.GameTime ?? CurrentTime.RealTime.Value);
                 else if (value && !isGameTimePaused)
-                    GameTimePauseTime = CurrentTime.GameTime.Value;
+                    GameTimePauseTime = (CurrentTime.GameTime ?? CurrentTime.RealTime);
 
                 isGameTimePaused = value;
             }
         }
-
-        
-
-        //public ReaderWriterLockSlim DrawLock { get; set; }
 
         public event EventHandler OnSplit;
         public event EventHandler OnUndoSplit;
@@ -68,7 +83,7 @@ namespace LiveSplit.Model
                 if (CurrentPhase == TimerPhase.NotRunning)
                     curTime.RealTime = TimeSpan.Zero;
                 else if (CurrentPhase == TimerPhase.Running)
-                    curTime.RealTime = TripleDateTime.Now - StartTime;
+                    curTime.RealTime = TimeStamp.Now - StartTime;
                 else if (CurrentPhase == TimerPhase.Paused)
                     curTime.RealTime = PauseTime;
                 else
@@ -79,14 +94,14 @@ namespace LiveSplit.Model
                 else
                     curTime.GameTime = IsGameTimePaused 
                         ? GameTimePauseTime 
-                        : curTime.RealTime - LoadingTimes;
+                        : curTime.RealTime - (IsGameTimeInitialized ? (TimeSpan?)LoadingTimes : null);
 
                 return curTime;
             }
         }
 
         public int CurrentSplitIndex { get; set; }
-        public ISegment CurrentSplit { get { return (CurrentSplitIndex >= 0 && CurrentSplitIndex < Run.Count) ? Run[CurrentSplitIndex] : null; } }
+        public ISegment CurrentSplit => (CurrentSplitIndex >= 0 && CurrentSplitIndex < Run.Count) ? Run[CurrentSplitIndex] : null;
 
         private LiveSplitState() { }
 
@@ -97,7 +112,7 @@ namespace LiveSplit.Model
             Layout = layout;
             Settings = settings;
             LayoutSettings = layoutSettings;
-            StartTime = TripleDateTime.Now;
+            StartTime = TimeStamp.Now;
             CurrentPhase = TimerPhase.NotRunning;
             CurrentSplitIndex = -1;
             //DrawLock = new ReaderWriterLockSlim();
@@ -128,61 +143,17 @@ namespace LiveSplit.Model
 
         public void RegisterTimerModel(ITimerModel model)
         {
-            model.OnSplit += (s, e) =>
-            {
-                if (OnSplit != null)
-                    OnSplit(this, e);
-            };
-            model.OnSkipSplit += (s, e) =>
-            {
-                if (OnSkipSplit != null)
-                    OnSkipSplit(this, e);
-            };
-            model.OnUndoSplit += (s, e) =>
-            {
-                if (OnUndoSplit != null)
-                    OnUndoSplit(this, e);
-            };
-            model.OnStart += (s, e) =>
-            {
-                if (OnStart != null)
-                    OnStart(this, e);
-            };
-            model.OnReset += (s, e) =>
-            {
-                if (OnReset != null)
-                    OnReset(this, e);
-            };
-            model.OnPause += (s, e) =>
-            {
-                if (OnPause != null)
-                    OnPause(this, e);
-            };
-            model.OnResume += (s, e) =>
-            {
-                if (OnResume != null)
-                    OnResume(this, e);
-            };
-            model.OnScrollUp += (s, e) =>
-            {
-                if (OnScrollUp != null)
-                    OnScrollUp(this, e);
-            };
-            model.OnScrollDown += (s, e) =>
-            {
-                if (OnScrollDown != null)
-                    OnScrollDown(this, e);
-            };
-            model.OnSwitchComparisonPrevious += (s, e) =>
-            {
-                if (OnSwitchComparisonPrevious != null)
-                    OnSwitchComparisonPrevious(this, e);
-            };
-            model.OnSwitchComparisonNext += (s, e) =>
-            {
-                if (OnSwitchComparisonNext != null)
-                    OnSwitchComparisonNext(this, e);
-            };
+            model.OnSplit                    += (s, e) => OnSplit?.Invoke(this, e);
+            model.OnSkipSplit                += (s, e) => OnSkipSplit?.Invoke(this, e);
+            model.OnUndoSplit                += (s, e) => OnUndoSplit?.Invoke(this, e);
+            model.OnStart                    += (s, e) => OnStart?.Invoke(this, e);
+            model.OnReset                    += (s, e) => OnReset?.Invoke(this, e);
+            model.OnPause                    += (s, e) => OnPause?.Invoke(this, e);
+            model.OnResume                   += (s, e) => OnResume?.Invoke(this, e);
+            model.OnScrollUp                 += (s, e) => OnScrollUp?.Invoke(this, e);
+            model.OnScrollDown               += (s, e) => OnScrollDown?.Invoke(this, e);
+            model.OnSwitchComparisonPrevious += (s, e) => OnSwitchComparisonPrevious?.Invoke(this, e);
+            model.OnSwitchComparisonNext     += (s, e) => OnSwitchComparisonNext?.Invoke(this, e);
         }
 
         public void SetGameTime(TimeSpan? gameTime)
@@ -195,16 +166,24 @@ namespace LiveSplit.Model
             }
         }
 
-        public void CallRunManuallyModified()
+        public void FixTimingMethodFromRuleset()
         {
-            if (RunManuallyModified != null)
-                RunManuallyModified(this, null);
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    if (Run.Metadata.Game?.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTime)
+                        CurrentTimingMethod = TimingMethod.RealTime;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+            });
         }
 
-        public void CallComparisonRenamed(EventArgs e)
-        {
-            if (ComparisonRenamed != null)
-                ComparisonRenamed(this, e);
-        }
+        public void CallRunManuallyModified() => RunManuallyModified?.Invoke(this, null);
+
+        public void CallComparisonRenamed(EventArgs e) => ComparisonRenamed?.Invoke(this, e);
     }
 }

@@ -8,7 +8,7 @@ namespace LiveSplit.Model.Comparisons
     {
         public IRun Run { get; set; }
         public const string ComparisonName = "Best Split Times";
-        public string Name { get { return ComparisonName; } }
+        public string Name => ComparisonName;
 
         public BestSplitTimesComparisonGenerator(IRun run)
         {
@@ -17,16 +17,17 @@ namespace LiveSplit.Model.Comparisons
 
         public void Generate(TimingMethod method)
         {
-            for (var y = Run.GetMinSegmentHistoryIndex() + 1; y <= Run.AttemptHistory.Count; y++)
+            var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+            for (var y = Run.GetMinSegmentHistoryIndex(); y <= maxIndex; y++)
             {
                 var time = TimeSpan.Zero;
 
                 foreach (var segment in Run)
                 {
-                    var segmentHistoryElement = segment.SegmentHistory.FirstOrDefault(x => x.Index == y);
-                    if (segmentHistoryElement != null)
+                    Time segmentHistoryElement;
+                    if (segment.SegmentHistory.TryGetValue(y, out segmentHistoryElement))
                     {
-                        var segmentTime = segmentHistoryElement.Time[method];
+                        var segmentTime = segmentHistoryElement[method];
                         if (segmentTime != null)
                         {
                             time += segmentTime.Value;

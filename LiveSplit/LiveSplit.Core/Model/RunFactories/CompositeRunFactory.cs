@@ -24,11 +24,12 @@ namespace LiveSplit.Model.RunFactories
             {
                 try
                 {
-                    if (Stream != null)
-                        Stream.Seek(0, SeekOrigin.Begin);
+                    Stream?.Seek(0, SeekOrigin.Begin);
 
                     runFactory.Value(Stream, FilePath);
                     var run = runFactory.Key.Create(factory);
+                    if (run.Count < 1)
+                        throw new Exception("Run factory created a run without at least one segment");
                     return run;
                 }
                 catch (Exception e)
@@ -40,35 +41,17 @@ namespace LiveSplit.Model.RunFactories
             throw new ArgumentException();
         }
 
-        public void Add(IRunFactory key, Action<Stream, string> value)
-        {
-            RunFactories.Add(key, value);
-        }
+        public void Add(IRunFactory key, Action<Stream, string> value) => RunFactories.Add(key, value);
 
-        public bool ContainsKey(IRunFactory key)
-        {
-            return RunFactories.ContainsKey(key);
-        }
+        public bool ContainsKey(IRunFactory key) => RunFactories.ContainsKey(key);
 
-        public ICollection<IRunFactory> Keys
-        {
-            get { return RunFactories.Keys; }
-        }
+        public ICollection<IRunFactory> Keys => RunFactories.Keys;
 
-        public bool Remove(IRunFactory key)
-        {
-            return RunFactories.Remove(key);
-        }
+        public bool Remove(IRunFactory key) => RunFactories.Remove(key);
 
-        public bool TryGetValue(IRunFactory key, out Action<Stream, string> value)
-        {
-            return RunFactories.TryGetValue(key, out value);
-        }
+        public bool TryGetValue(IRunFactory key, out Action<Stream, string> value) => RunFactories.TryGetValue(key, out value);
 
-        public ICollection<Action<Stream, string>> Values
-        {
-            get { return RunFactories.Values; }
-        }
+        public ICollection<Action<Stream, string>> Values => RunFactories.Values;
 
         public Action<Stream, string> this[IRunFactory key]
         {
@@ -82,49 +65,22 @@ namespace LiveSplit.Model.RunFactories
             }
         }
 
-        public void Add(KeyValuePair<IRunFactory, Action<Stream, string>> item)
-        {
-            RunFactories.Add(item);
-        }
+        public void Add(KeyValuePair<IRunFactory, Action<Stream, string>> item) => RunFactories.Add(item);
 
-        public void Clear()
-        {
-            RunFactories.Clear();
-        }
+        public void Clear() => RunFactories.Clear();
 
-        public bool Contains(KeyValuePair<IRunFactory, Action<Stream, string>> item)
-        {
-            return RunFactories.Contains(item);
-        }
+        public bool Contains(KeyValuePair<IRunFactory, Action<Stream, string>> item) => RunFactories.Contains(item);
 
-        public void CopyTo(KeyValuePair<IRunFactory, Action<Stream, string>>[] array, int arrayIndex)
-        {
-            RunFactories.CopyTo(array, arrayIndex);
-        }
+        public void CopyTo(KeyValuePair<IRunFactory, Action<Stream, string>>[] array, int arrayIndex) => RunFactories.CopyTo(array, arrayIndex);
 
-        public int Count
-        {
-            get { return RunFactories.Count; }
-        }
+        public int Count => RunFactories.Count;
 
-        public bool IsReadOnly
-        {
-            get { return RunFactories.IsReadOnly; }
-        }
+        public bool IsReadOnly => RunFactories.IsReadOnly;
 
-        public bool Remove(KeyValuePair<IRunFactory, Action<Stream, string>> item)
-        {
-            return RunFactories.Remove(item);
-        }
+        public bool Remove(KeyValuePair<IRunFactory, Action<Stream, string>> item) => RunFactories.Remove(item);
 
-        public IEnumerator<KeyValuePair<IRunFactory, Action<Stream, string>>> GetEnumerator()
-        {
-            return RunFactories.GetEnumerator();
-        }
+        public IEnumerator<KeyValuePair<IRunFactory, Action<Stream, string>>> GetEnumerator() => RunFactories.GetEnumerator();
 
-        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

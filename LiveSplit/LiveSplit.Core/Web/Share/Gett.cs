@@ -17,7 +17,7 @@ namespace LiveSplit.Web.Share
     {
         protected static Gett _Instance = new Gett();
 
-        public static Gett Instance { get { return _Instance; } }
+        public static Gett Instance => _Instance;
 
         public static readonly Uri BaseUri = new Uri("http://open.ge.tt");
         public static IRunSaver RunSaver = new XMLRunSaver();
@@ -29,11 +29,9 @@ namespace LiveSplit.Web.Share
             return new Uri(BaseUri, subUri);
         }
 
-        public string PlatformName
-        {
-            get { return "Ge.tt"; }
-        }
+        public string PlatformName => "Ge.tt";
 
+<<<<<<< HEAD
         public string Description
         {
             get
@@ -43,6 +41,13 @@ namespace LiveSplit.Web.Share
                 + "\"URLから開く\"からGe.ttのリンクからインポートができます。";
             }
         }
+=======
+        public string Description =>
+@"Ge.tt is a useful platform for sharing files 
+with the world. You don't need an account. If you're not logged in, the splits 
+will be deleted after 30 days, though. 
+" + "You can also directly import Ge.tt links with \"Open from URL...\"";
+>>>>>>> refs/remotes/LiveSplit/master
 
         public ISettings Settings { get; set; }
 
@@ -92,13 +97,13 @@ namespace LiveSplit.Web.Share
 
         public dynamic CreateShare(string accessToken, string title = null)
         {
-            var uri = GetUri(string.Format("/1/shares/create?accesstoken={0}", accessToken));
+            var uri = GetUri($"/1/shares/create?accesstoken={accessToken}");
             return JSON.FromUriPost(uri, title != null ? new string[] { "title", title } : new string[0]);
         }
 
         public dynamic CreateFile(string accessToken, string shareName, string fileName)
         {
-            var uri = GetUri(string.Format("/1/files/{0}/create?accesstoken={1}", shareName, accessToken));
+            var uri = GetUri($"/1/files/{shareName}/create?accesstoken={accessToken}");
             return JSON.FromUriPost(uri, "filename", fileName);
         }
 

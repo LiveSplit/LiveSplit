@@ -52,13 +52,12 @@ namespace LiveSplit.Model
         }
 
         public static IEnumerable<string> OrderBySimilarityTo(this IEnumerable<string> list, string value)
-        {
-            return list.OrderBy(x => x.Similarity(value));
-        }
+            => list.OrderBy(x => x.Similarity(value));
 
         public static string FindMostSimilarValueTo(this IEnumerable<string> list, string value)
-        {
-            return list.OrderBySimilarityTo(value).FirstOrDefault();
-        }
+            => list.OrderBySimilarityTo(value).FirstOrDefault();
+        
+        public static string EscapeMenuItemText(this string text) 
+            => text.Replace("&", "&&");
     }
 }

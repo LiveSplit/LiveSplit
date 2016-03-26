@@ -9,7 +9,7 @@ namespace LiveSplit.Model.Comparisons
         public IRun Run { get; set; }
         public const string ComparisonName = "Worst Segments";
         public const string ShortComparisonName = "Worst";
-        public string Name { get { return ComparisonName; } }
+        public string Name => ComparisonName;
 
         public WorstSegmentsComparisonGenerator(IRun run)
         {
@@ -20,8 +20,8 @@ namespace LiveSplit.Model.Comparisons
         {
             var realTimePredictions = new TimeSpan?[Run.Count + 1];
             var gameTimePredictions = new TimeSpan?[Run.Count + 1];
-            SumOfWorst.CalculateSumOfWorst(Run, 0, Run.Count() - 1, realTimePredictions, settings.SimpleSumOfBest, TimingMethod.RealTime);
-            SumOfWorst.CalculateSumOfWorst(Run, 0, Run.Count() - 1, gameTimePredictions, settings.SimpleSumOfBest, TimingMethod.GameTime);
+            SumOfWorst.CalculateSumOfWorst(Run, 0, Run.Count - 1, realTimePredictions, false, TimingMethod.RealTime);
+            SumOfWorst.CalculateSumOfWorst(Run, 0, Run.Count - 1, gameTimePredictions, false, TimingMethod.GameTime);
             var index = 1;
             foreach (var segment in Run)
             {

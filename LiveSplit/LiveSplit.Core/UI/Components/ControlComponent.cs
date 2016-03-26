@@ -27,22 +27,10 @@ namespace LiveSplit.UI.Components
         public abstract float VerticalHeight { get; }
         public abstract float MinimumWidth { get; }
 
-        public float PaddingTop
-        {
-            get { return 0; }
-        }
-        public float PaddingBottom
-        {
-            get { return 0; }
-        }
-        public float PaddingLeft
-        {
-            get { return 0; }
-        }
-        public float PaddingRight
-        {
-            get { return 0; }
-        }
+        public float PaddingTop => 0;
+        public float PaddingBottom => 0;
+        public float PaddingLeft => 0;
+        public float PaddingRight => 0;
 
         public IDictionary<string, Action> ContextMenuControls { get; protected set; }
 
@@ -59,8 +47,7 @@ namespace LiveSplit.UI.Components
             }
             catch (Exception ex)
             {
-                if (errorCallback != null)
-                    errorCallback(ex);
+                errorCallback?.Invoke(ex);
                 throw;
             }
         }

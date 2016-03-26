@@ -22,6 +22,8 @@ namespace LiveSplit.UI.Components
 
             if (string.IsNullOrEmpty(path))
                 component = new SeparatorComponent();
+            else if (!ComponentFactories.ContainsKey(path))
+                return null;
             else
                 component = ComponentFactories[path].Create(state);
 

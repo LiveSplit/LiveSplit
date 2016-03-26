@@ -17,15 +17,16 @@ namespace LiveSplit.Model
     {
         public string Description { get; set; }
         public IEnumerable<string> Games { get; set; }
-        public bool IsActivated { get { return Component != null; } }
+        public bool IsActivated => Component != null;
         public List<string> URLs { get; set; }
-        public string LocalPath { get { return Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, FileName)); } }
-        public string FileName { get { return URLs.First().Substring(URLs.First().LastIndexOf('/') + 1); } }
+        public string LocalPath => Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, FileName));
+        public string FileName => URLs.First().Substring(URLs.First().LastIndexOf('/') + 1);
         public AutoSplitterType Type { get; set; }
         public bool ShowInLayoutEditor { get; set; }
         public IComponent Component { get; set; }
         public IComponentFactory Factory { get; set; }
-        public bool IsDownloaded { get { return File.Exists(LocalPath); } }
+        public bool IsDownloaded => File.Exists(LocalPath);
+        public string Website { get; set; }
 
         public void Activate(LiveSplitState state)
         {
@@ -61,15 +62,43 @@ namespace LiveSplit.Model
             foreach (var url in URLs)
             {
                 var fileName = url.Substring(url.LastIndexOf('/') + 1);
+                var tempFileName = fileName + "-temp";
                 var localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
+                var tempLocalPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, tempFileName));
 
                 try
                 {
-                    client.DownloadFile(new Uri(url), localPath);
+                    // Download to temp file so the original file is kept if it fails downloading
+                    client.DownloadFile(new Uri(url), tempLocalPath);
+                    File.Copy(tempLocalPath, localPath, true);
+
+                    if (url != URLs.First())
+                    {
+                        var factory = ComponentManager.LoadFactory(localPath);
+                        if (factory != null)
+                            ComponentManager.ComponentFactories.Add(fileName, factory);
+                    }
                 }
                 catch (WebException)
                 {
                     Log.Error(url + "からのダウンロードに失敗しました。");
+                }
+                catch (Exception ex)
+                {
+                    // Catch errors of File.Copy() if necessary
+                    Log.Error(ex);
+                }
+                finally
+                {
+                    try
+                    {
+                        // This is not required to run the AutoSplitter, but should still try to clean up
+                        File.Delete(tempLocalPath);
+                    }
+                    catch (Exception)
+                    {
+                        Log.Error($"Failed to delete temp file: {tempLocalPath}");
+                    }
                 }
             }
 
@@ -89,7 +118,7 @@ namespace LiveSplit.Model
             }
         }
 
-        public object Clone()
+        public AutoSplitter Clone()
         {
             return new AutoSplitter()
             {
@@ -102,5 +131,7 @@ namespace LiveSplit.Model
                 Factory = Factory
             };
         }
+
+        object ICloneable.Clone() => Clone();
     }
 }

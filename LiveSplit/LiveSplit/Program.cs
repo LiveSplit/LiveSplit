@@ -1,9 +1,9 @@
-﻿using LiveSplit.Options;
-using LiveSplit.View;
+﻿using LiveSplit.View;
 using LiveSplit.Web.Share;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using LiveSplit.Options;
 
 namespace LiveSplit
 {
@@ -43,7 +43,7 @@ namespace LiveSplit
             catch (Exception e)
             {
                 Log.Error(e);
-                MessageBox.Show("LiveSplit crashed due to an unknown cause.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(string.Format("LiveSplit has crashed due to the following reason:\n\n{0}", e.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 #endif
             finally

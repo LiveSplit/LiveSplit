@@ -9,10 +9,10 @@ namespace LiveSplit.UI.Components
 {
     public class SeparatorComponent : IComponent
     {
-        public float PaddingTop { get { return 0f; } }
-        public float PaddingLeft { get { return 0f; } }
-        public float PaddingBottom { get { return 0f; } }
-        public float PaddingRight { get { return 0f; } }
+        public float PaddingTop => 0;
+        public float PaddingLeft => 0;
+        public float PaddingBottom => 0;
+        public float PaddingRight => 0;
 
         public float DisplayedSize { get; set; }
         public bool UseSeparatorColor { get; set; }
@@ -22,25 +22,12 @@ namespace LiveSplit.UI.Components
 
         public GraphicsCache Cache { get; set; }
 
-        public float VerticalHeight
-        {
-            get { return 2f; }
-        }
+        public float VerticalHeight => 2f;
 
-        public float MinimumWidth
-        {
-            get { return 0; }
-        }
+        public float MinimumWidth => 0;
+        public float HorizontalWidth => 2f;
 
-        public float HorizontalWidth
-        {
-            get { return 2f; }
-        }
-
-        public float MinimumHeight
-        {
-            get { return 0; }
-        }
+        public float MinimumHeight => 0;
 
         public SeparatorComponent()
         {
@@ -100,19 +87,13 @@ namespace LiveSplit.UI.Components
         }
 
         public string ComponentName
-        {
-            get { return "----------------------------------------------------------------------------"; }
-        }
+            => "----------------------------------------------------------------------------";
 
-        public Control GetSettingsControl(LayoutMode mode)
-        {
-            return null;
-        }
+        public Control GetSettingsControl(LayoutMode mode) => null;
 
         public void SetSettings(System.Xml.XmlNode settings)
         {
         }
-
 
         public System.Xml.XmlNode GetSettings(System.Xml.XmlDocument document)
         {
@@ -139,10 +120,7 @@ namespace LiveSplit.UI.Components
             get { throw new NotSupportedException(); }
         }
 
-        public IDictionary<string, Action> ContextMenuControls
-        {
-            get { return null; }
-        }
+        public IDictionary<string, Action> ContextMenuControls => null;
 
         public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
         {
@@ -159,5 +137,7 @@ namespace LiveSplit.UI.Components
         {
             GC.SuppressFinalize(this);
         }
+
+        public int GetSettingsHashCode() => 1;
     }
 }

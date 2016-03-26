@@ -103,25 +103,18 @@ namespace LiveSplit.Model.Input
 
         void KeyboardHook_KeyPressed(object sender, KeyEventArgs e)
         {
-            if (KeyPressed != null)
-                KeyPressed(this, e);
-
-            if (KeyOrButtonPressed != null)
-                KeyOrButtonPressed(this, new KeyOrButton(e.KeyCode | e.Modifiers));
+            KeyPressed?.Invoke(this, e);
+            KeyOrButtonPressed?.Invoke(this, new KeyOrButton(e.KeyCode | e.Modifiers));
         }
 
         void GamepadHook_ButtonPressed(object sender, GamepadButton e)
         {
-            if (AnyGamepadButtonPressed != null)
-                AnyGamepadButtonPressed(this, e);
+            AnyGamepadButtonPressed?.Invoke(this, e);
 
             if (RegisteredButtons.Contains(e))
             {
-                if (ButtonPressed != null)
-                    ButtonPressed(this, e);
-
-                if (KeyOrButtonPressed != null)
-                    KeyOrButtonPressed(this, new KeyOrButton(e));
+                ButtonPressed?.Invoke(this, e);
+                KeyOrButtonPressed?.Invoke(this, new KeyOrButton(e));
             }
         }
 

@@ -2,12 +2,10 @@
 using LiveSplit.Model.RunFactories;
 using LiveSplit.Options;
 using LiveSplit.UI;
+using LiveSplit.Web.Share;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LiveSplit.Model.RunImporters
@@ -22,17 +20,20 @@ namespace LiveSplit.Model.RunImporters
                 var comparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
 
                 var uri = new Uri(url);
-                if (uri.Host.ToLowerInvariant() == "splits.io"
-                    && uri.LocalPath.Length > 0
-                    && !uri.LocalPath.Substring(1).Contains('/'))
+                var host = uri.Host.ToLowerInvariant();
+                if (host == "splits.io")
                 {
-                    uri = new Uri(string.Format("{0}/download/livesplit", url));
+                    return SplitsIO.Instance.DownloadRunByUri(uri, true);
                 }
-                if (uri.Host.ToLowerInvariant() == "ge.tt"
-                    && uri.LocalPath.Length > 0
-                    && !uri.LocalPath.Substring(1).Contains('/'))
+                if (host == "www.speedrun.com" || host == "speedrun.com")
                 {
-                    uri = new Uri(string.Format("http://ge.tt/api/1/files{0}/0/blob?download", uri.LocalPath));
+                    var speedrunComRun = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
+                    if (speedrunComRun != null && speedrunComRun.SplitsAvailable)
+                    {
+                        var run = speedrunComRun.GetRun();
+                        run.PatchRun(speedrunComRun);
+                        return run;
+                    }
                 }
 
                 var request = WebRequest.Create(uri);

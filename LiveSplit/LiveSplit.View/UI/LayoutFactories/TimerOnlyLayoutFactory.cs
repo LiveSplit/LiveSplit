@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Model;
+using LiveSplit.Options.SettingsFactories;
 using LiveSplit.UI.Components;
 
 namespace LiveSplit.UI.LayoutFactories
