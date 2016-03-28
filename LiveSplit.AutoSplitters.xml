@@ -1261,4 +1261,14 @@
     <Description>Auto Splitting is available. (By Bananeur)</Description>
     <Website>https://github.com/Bananeur/Autosplitters</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Clustertruck</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MM4005/Clustertruck-Auto-Splitter/master/Auto-Splitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic timer start, stop, and reset.</Description>
+  </AutoSplitter>
 </AutoSplitters>
