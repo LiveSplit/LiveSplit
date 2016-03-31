@@ -1275,6 +1275,8 @@
   	<Games>
   		<Game>Age of Empires</Game>
   		<Game>Age of Empires 1</Game>
+  		<Game>Age of Empires I</Game>
+  		<Game>AoEI</Game>
   		<Game>AoE1</Game>
   		<Game>AoE</Game>
   	</Games>
@@ -1282,6 +1284,6 @@
   		<URL>https://raw.githubusercontent.com/MhmdFVC/autosplitter/AoE/AoE-autosplitter.asl</URL>
   	</URLs>
   	<Type>Script</Type>
-  	<Description>Auto-splitting and auto-reset are available. Unticking auto-reset is recommended unless you are doing ILs. (by Mhmd_FVC)</Description>
+  	<Description>Auto-splitting and auto-reset are available. Does not work with vanilla v1.0a (yet). (by Mhmd_FVC)</Description>
   </AutoSplitter>
 </AutoSplitters>
