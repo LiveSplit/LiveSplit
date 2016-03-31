@@ -1271,4 +1271,19 @@
     <Type>Script</Type>
     <Description>Automatic timer start, stop, and reset.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
+  		<Game>Age of Empires</Game>
+  		<Game>Age of Empires 1</Game>
+  		<Game>Age of Empires I</Game>
+  		<Game>AoEI</Game>
+  		<Game>AoE1</Game>
+  		<Game>AoE</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/MhmdFVC/autosplitter/AoE/AoE-autosplitter.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Auto-splitting and auto-reset are available. Does not work with vanilla v1.0a (yet). (by Mhmd_FVC)</Description>
+  </AutoSplitter>
 </AutoSplitters>
