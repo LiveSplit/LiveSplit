@@ -2,28 +2,31 @@
 using System.Drawing;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.Drawing.Text;
 
 namespace CustomFontDialog
 {
     public partial class FontList : UserControl
     {
+		private static readonly Array AllFontStyles = Enum.GetValues(typeof(FontStyle));
 
-        public event EventHandler SelectedFontFamilyChanged;
+		public event EventHandler SelectedFontFamilyChanged;
         private int lastSelectedIndex = -1;
+		
 
         public FontList()
         {
             InitializeComponent();
 
-            foreach (FontFamily f in FontFamily.Families)
+            foreach (FontFamily f in new InstalledFontCollection().Families)
             {
                 try
                 {
                     if (!string.IsNullOrEmpty(f.Name))
                     {
                         FontStyle? firstAvailableStyle = null;
-                        foreach (FontStyle style in Enum.GetValues(typeof(FontStyle)))
-                        {
+                        foreach (FontStyle style in AllFontStyles)
+                        {							
                             if (f.IsStyleAvailable(style))
                             {
                                 firstAvailableStyle = style;
