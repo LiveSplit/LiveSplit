@@ -1289,7 +1289,7 @@
   </AutoSplitter>
   <AutoSplitter>
   	<Games><Game>Crysis 2</Game></Games>
-  	<URLs><URL>https://github.com/SuiMachine/LiveSplit.ASLScripts/blob/master/Crysis2/LiveSplit.Crysis2.asl</URL></URLs>
+  	<URLs><URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Crysis2/LiveSplit.Crysis2.asl</URL></URLs>
   	<Type>Script</Type>
   	<Description>Load Removal is available (by SuicideMachine)</Description>
   </AutoSplitter>
