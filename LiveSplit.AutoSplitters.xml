@@ -1030,6 +1030,7 @@
   <AutoSplitter>
     <Games>
       <Game>Max Payne 2: The Fall of Max Payne</Game>
+      <Game>Max Payne 2</Game>
     </Games>
     <URLs>
       <URL>https://gist.githubusercontent.com/TheKotti/081b77109beaee5c3bd3/raw/MaxPayne2.asl</URL>
@@ -1285,5 +1286,11 @@
   	</URLs>
   	<Type>Script</Type>
   	<Description>Auto-splitting and auto-reset are available. Does not work with vanilla v1.0a (yet). (by Mhmd_FVC)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+  	<Games><Game>Crysis 2</Game></Games>
+  	<URLs><URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Crysis2/LiveSplit.Crysis2.asl</URL></URLs>
+  	<Type>Script</Type>
+  	<Description>Load Removal is available (by SuicideMachine)</Description>
   </AutoSplitter>
 </AutoSplitters>
