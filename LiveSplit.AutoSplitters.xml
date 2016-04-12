@@ -907,6 +907,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Dark Souls III</Game>
+      <Game>Dark Souls 3</Game>
+    </Games>
+    <URLs>
+      <URL>http://speedsouls.com/jiiks/livesplit/ds3/update/Components/Ds3Igt.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time is available. (By Jiiks)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Rise of the Tomb Raider</Game>
       <Game>RotTR</Game>
     </Games>
