@@ -1326,4 +1326,15 @@
   	<Description>Auto Splitting is available. (By tduva)</Description>
   	<Website>https://github.com/tduva/LiveSplit-ASL/blob/master/DriverPL-README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
+  		<Game>Fable: The Lost Chapters</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/blastedt/asl/master/LiveSplit.Fable.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>[v1.0]Autosplitting and load removing is available.  Some splits are missing. No start/reset/last split. (by blastedt)</Description>
+  	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
+  </AutoSplitter>
 </AutoSplitters>
