@@ -452,6 +452,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Rot Gut</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/rotgut.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By DrTChops)</Description>
+    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Resident Evil 4</Game>
       <Game>Biohazard 4</Game>
       <Game>RE4</Game>
