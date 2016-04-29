@@ -1337,4 +1337,14 @@
   	<Description>[v1.0]Autosplitting and load removing is available.  Some splits are missing. No start/reset/last split. (by blastedt)</Description>
   	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
+  		<Game>SpeedRunners</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/ZombieWizzard/LiveSplit.Scripts/master/LiveSplit.SpeedRunners.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Load time removal and Autosplitter (by ZombieWizzard)</Description>
+  </AutoSplitter>
 </AutoSplitters>
