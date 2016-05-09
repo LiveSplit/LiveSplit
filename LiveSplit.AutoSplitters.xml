@@ -1347,4 +1347,16 @@
   	<Type>Script</Type>
   	<Description>Load time removal and Autosplitter (by ZombieWizzard)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
+  		<Game>Sin Episodes: Emergence</Game>
+  		<Game>Sin Episodes Emergence</Game>
+  		<Game>Sin Episodes</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Sin%20Episodes/SinEpisodes.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Load time removal and Autosplitter is available (by SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
