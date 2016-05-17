@@ -1,4 +1,4 @@
-﻿using LiveSplit.Model;
+using LiveSplit.Model;
 using LiveSplit.Model.RunImporters;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
@@ -353,11 +353,12 @@ namespace LiveSplit.View
             else
             {
                 btnRemove.Enabled = SegmentList.Count > 1;
-                var selectedCell = runGrid.SelectedCells.Cast<DataGridViewCell>().ToList().FirstOrDefault();
-                if (selectedCell != null)
+                List<DataGridViewCell> selectedCells = runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex).ToList();
+
+                if (selectedCells.FirstOrDefault() != null)
                 {
-                    btnMoveUp.Enabled = selectedCell.RowIndex > 0;
-                    btnMoveDown.Enabled = selectedCell.RowIndex < SegmentList.Count - 1;
+                    btnMoveUp.Enabled = selectedCells.First().RowIndex > 0;
+                    btnMoveDown.Enabled = selectedCells.Last().RowIndex < SegmentList.Count - 1;
                 }
                 else
                 {
@@ -1328,34 +1329,48 @@ namespace LiveSplit.View
 
         private void btnMoveUp_Click(object sender, EventArgs e)
         {
-            var selectedCell = runGrid.SelectedCells.Cast<DataGridViewCell>().ToList().FirstOrDefault();
-            if (selectedCell != null)
+            List<DataGridViewCell> selectedCells = runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex).ToList();
+
+            var selectedInd = selectedCells.First().RowIndex;
+            var prevIndex = runGrid.CurrentRow.Index;
+
+            if (selectedCells != null)
             {
-                var selectedInd = selectedCell.RowIndex;
-                if (selectedInd > 0)
+                foreach (DataGridViewCell selectedCell in selectedCells)
                 {
-                    var prevIndex = runGrid.CurrentRow.Index;
-                    SwitchSegments(selectedInd - 1);
-                    runGrid.CurrentCell = runGrid.Rows[prevIndex - 1].Cells[runGrid.CurrentCell.ColumnIndex];
-                    Fix();
+                    selectedInd = selectedCell.RowIndex;
+                    if (selectedInd > 0)
+                    {
+                        SwitchSegments(selectedInd - 1);
+                        runGrid.Rows[selectedInd - 1].Cells[runGrid.CurrentCell.ColumnIndex].Selected = true;
+                    }
                 }
             }
+
+            Fix();
         }
 
         private void btnMoveDown_Click(object sender, EventArgs e)
         {
-            var selectedCell = runGrid.SelectedCells.Cast<DataGridViewCell>().ToList().FirstOrDefault();
-            if (selectedCell != null)
+            List<DataGridViewCell> selectedCells = runGrid.SelectedCells.Cast<DataGridViewCell>().OrderByDescending(o => o.RowIndex).ToList();
+
+            var selectedInd = selectedCells.First().RowIndex;
+            var prevIndex = runGrid.CurrentRow.Index;
+
+            if (selectedCells != null)
             {
-                var selectedInd = selectedCell.RowIndex;
-                if (selectedInd < SegmentList.Count - 1)
+                foreach (DataGridViewCell selectedCell in selectedCells)
                 {
-                    var prevIndex = runGrid.CurrentRow.Index;
-                    SwitchSegments(selectedInd);
-                    runGrid.CurrentCell = runGrid.Rows[prevIndex + 1].Cells[runGrid.CurrentCell.ColumnIndex];
-                    Fix();
+                    selectedInd = selectedCell.RowIndex;
+                    if (selectedInd < SegmentList.Count - 1)
+                    {
+                        SwitchSegments(selectedInd);
+                        runGrid.Rows[selectedInd + 1].Cells[runGrid.CurrentCell.ColumnIndex].Selected = true;
+                    }
                 }
             }
+
+            Fix();
         }
 
         private void btnImportComparison_Click(object sender, EventArgs e)
