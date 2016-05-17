@@ -1332,7 +1332,7 @@ namespace LiveSplit.View
             List<DataGridViewCell> selectedCells = runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex).ToList();
 
             var selectedInd = selectedCells.First().RowIndex;
-            var prevIndex = runGrid.CurrentRow.Index;
+            bool currCell = false;
 
             if (selectedCells != null)
             {
@@ -1342,6 +1342,13 @@ namespace LiveSplit.View
                     if (selectedInd > 0)
                     {
                         SwitchSegments(selectedInd - 1);
+
+                        if (!currCell)
+                        {
+                            runGrid.CurrentCell = runGrid.Rows[selectedInd - 1].Cells[runGrid.CurrentCell.ColumnIndex];
+                            currCell = true;
+                        }
+
                         runGrid.Rows[selectedInd - 1].Cells[runGrid.CurrentCell.ColumnIndex].Selected = true;
                     }
                 }
@@ -1355,7 +1362,7 @@ namespace LiveSplit.View
             List<DataGridViewCell> selectedCells = runGrid.SelectedCells.Cast<DataGridViewCell>().OrderByDescending(o => o.RowIndex).ToList();
 
             var selectedInd = selectedCells.First().RowIndex;
-            var prevIndex = runGrid.CurrentRow.Index;
+            bool currCell = false;
 
             if (selectedCells != null)
             {
@@ -1365,6 +1372,13 @@ namespace LiveSplit.View
                     if (selectedInd < SegmentList.Count - 1)
                     {
                         SwitchSegments(selectedInd);
+
+                        if(!currCell)
+                        {
+                            runGrid.CurrentCell = runGrid.Rows[selectedInd + 1].Cells[runGrid.CurrentCell.ColumnIndex];
+                            currCell = true;
+                        }
+
                         runGrid.Rows[selectedInd + 1].Cells[runGrid.CurrentCell.ColumnIndex].Selected = true;
                     }
                 }
