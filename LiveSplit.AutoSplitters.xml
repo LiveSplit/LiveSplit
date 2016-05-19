@@ -463,6 +463,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Penumbra: Black Plague</Game>
+      <Game>Penumbra Black Plague</Game>
+      <Game>Black Plague</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/blackplague.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By DrTChops and Kotti)</Description>
+    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Resident Evil 4</Game>
       <Game>Biohazard 4</Game>
       <Game>RE4</Game>
