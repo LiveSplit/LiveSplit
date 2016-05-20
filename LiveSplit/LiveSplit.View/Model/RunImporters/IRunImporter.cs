@@ -1,4 +1,4 @@
-﻿using LiveSplit.UI;
+using LiveSplit.UI;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -20,10 +20,18 @@ namespace LiveSplit.Model.RunImporters
                 if (!name.StartsWith("[Race]"))
                 {
                     target.CustomComparisons.Add(name);
+                    int i = 0;
                     foreach (var segment in comparisonRun)
                     {
                         if (segment == comparisonRun.Last())
                             target.Last().Comparisons[name] = comparisonRun.Last().PersonalBestSplitTime;
+                        else if(comparisonRun.Count == target.Count)
+                        {
+                            var runSegment = target[i];
+                            if (runSegment != null)
+                                runSegment.Comparisons[name] = segment.PersonalBestSplitTime;
+                            i++;
+                        }
                         else
                         {
                             var runSegment = target.FirstOrDefault(x => x.Name.Trim().ToLower() == segment.Name.Trim().ToLower());
