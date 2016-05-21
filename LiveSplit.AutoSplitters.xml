@@ -1383,4 +1383,14 @@
   	<Type>Script</Type>
   	<Description>Load time removal and Autosplitter available(by TheFuncannon)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
+  		<Game>Need for Speed: Underground 2</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://gist.githubusercontent.com/Grim995/a5cae856d8fbf5cb189821cf9d6fa569/raw/854f6166a0e51941097883f60d0b7d7151a74092/nfsu2.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Load time removal is available (by Grim Maple)</Description>
+  </AutoSplitter>
 </AutoSplitters>
