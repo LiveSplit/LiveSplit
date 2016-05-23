@@ -1393,4 +1393,14 @@
   	<Type>Script</Type>
   	<Description>Load time removal is available (by Grim Maple)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
+  		<Game>You Are Empty</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/Tezur0/LiveSplitScripts/master/YouAreEmpty/YouAreEmpty.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Load time removal is available (by Tezur0)</Description>
+  </AutoSplitter>
 </AutoSplitters>
