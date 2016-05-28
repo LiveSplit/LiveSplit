@@ -38,7 +38,7 @@ namespace LiveSplit.Web.Share
             + "splits with the world and downloading them from there. "
             + "You can also browse Splits.io with \"Open Splits From Splits.io...\" "
             + "or import splits as a comparison with \"Import Comparison From Splits.io...\". "
-            + "Splits downloaded from Splits.io have not data loss, and the splits can be "
+            + "Splits downloaded from Splits.io have no data loss, and the splits can be "
             + "downloaded in the format for any timer.";
 
         public ISettings Settings { get; set; }
