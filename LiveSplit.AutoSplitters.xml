@@ -965,6 +965,8 @@
     <Games>
       <Game>Quake 2</Game>
       <Game>Quake II</Game>
+      <Game>Quake 2 (PC)</Game>
+      <Game>Quake II (PC)</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.Quake2/master/Components/LiveSplit.Quake2.dll</URL>
