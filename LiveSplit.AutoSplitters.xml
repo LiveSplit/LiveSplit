@@ -167,10 +167,10 @@
       <Game>Sonic Adventure 2 Battle</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.SonicAdventure2_Battle.asl</URL>
+      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.SA2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter is available (By ShiningFace).</Description>
+    <Description>Autosplitting/In Game Timer is available (By ShiningFace).</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
