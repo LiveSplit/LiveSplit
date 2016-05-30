@@ -347,13 +347,13 @@ settings.Add("mission1_part1", true, "First part of Mission 1", "mission1");
 
 The setting `mission1_part1` will only be enabled, when both `mission1` and `main_missions` are enabled.
 
-When the `parent` parameter is null or omitted, the setting will be added as top-level setting, unless `setting.CurrentDefaultParent` is set to something other than `null`:
+When the `parent` parameter is null or omitted, the setting will be added as top-level setting, unless `settings.CurrentDefaultParent` is set to something other than `null`:
 
 ```
 // Add top-level setting 'main_missions'
 settings.Add("main_missions");
 
-setting.CurrentDefaultParent = "main_missions";
+settings.CurrentDefaultParent = "main_missions";
 
 // Add setting 'mission1', with the parent 'main_missions'
 settings.Add("mission1");
