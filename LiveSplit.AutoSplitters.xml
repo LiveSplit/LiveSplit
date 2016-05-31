@@ -1404,4 +1404,14 @@
   	<Type>Script</Type>
   	<Description>Load time removal is available (by Tezur0)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+	<Games>
+		<Game>Undertale</Game>
+  	</Games>
+  	<URLs>
+		<URL>https://raw.githubusercontent.com/Anty-Lemon/ASL/master/undertale.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Automatic Timer Start and Auto Splitting are available. (By Anty-Lemon)</Description>
+  </AutoSplitter>
 </AutoSplitters>
