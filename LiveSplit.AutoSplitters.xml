@@ -1353,6 +1353,17 @@
   </AutoSplitter>
   <AutoSplitter>
   	<Games>
+  		<Game>Killer is Dead</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/blastedt/asl/master/KillerIsDead.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Load removing is available.  Don't trust it yet but seems to work. (by blastedt)</Description>
+  	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
   		<Game>SpeedRunners</Game>
   	</Games>
   	<URLs>
