@@ -1323,6 +1323,21 @@
   	<Type>Script</Type>
   	<Description>Auto-splitting and auto-reset are available. Does not work with vanilla v1.0a (yet). (by Mhmd_FVC)</Description>
   </AutoSplitter>
+  <AutoSplitter
+  	<Games>
+  		<Game>Age of Empires II</Game>
+  		<Game>Age of Empires 2</Game>
+  		<Game>Age of Empires II: The Conquerors</Game>
+  		<Game>Age of Empires 2: The Conquerors</Game>
+  		<Game>Age of Empires II: The Age of Kings</Game>
+  		<Game>Age of Empires 2: The Age of Kings</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/MhmdFVC/autosplitter/AoE/AoE2-autosplitter.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Autosplitter available. Works on The Conquerors 1.0c and HD Edition so far. (by Mhmd_FVC)</Description>
+  </AutoSplitter>
   <AutoSplitter>
   	<Games><Game>Crysis 2</Game></Games>
   	<URLs><URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Crysis2/LiveSplit.Crysis2.asl</URL></URLs>
