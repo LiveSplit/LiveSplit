@@ -1020,7 +1020,7 @@
       <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.TheSimpsonsHitAndRun.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removal is available. (By zoton2 and PessimisticMango)</Description>
+    <Description>Autosplitting and load removal are available. (By zoton2 and PessimisticMango)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
   <AutoSplitter>
