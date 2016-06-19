@@ -165,11 +165,11 @@ These actions are repeatedly triggered while LiveSplit is connected to the game 
 
 The name of this action is `update`. You can use this for generic updating. In each update iteration, this is run before the timer control actions, which e.g. means if you set a value in `vars` in `update` you can then access it in `start` on the same update cycle.
 
-Explicitly returning `false` will prevent the actions `start`, `reset`, `split`, `gameTime` and `isLoading` from being run. This can be useful if you want to entirely disable the script under some conditions (e.g. for incompatible game versions).
+Explicitly returning `false` will prevent the actions `isLoading`, `gameTime`, `reset`, `split`, and `start` from being run. This can be useful if you want to entirely disable the script under some conditions (e.g. for incompatible game versions). See [Order of Execution](#order-of-execution) for more information.
 
 ##### Automatic Timer Start
 
-The name of this action is `start`. Return `true` whenever you want the timer to start.
+The name of this action is `start`. Return `true` whenever you want the timer to start. Note that the `start` action will only be run if the timer is currently not running.
 
 ##### Automatic Splits
 
@@ -179,14 +179,24 @@ The name of this action is `split`. Return `true` whenever you want to trigger a
 
 The name of this action is `reset`. Return `true` whenever you want to reset the run.
 
+Explicitly returning `true` will prevent the `split` action from being run. This can be useful in some cases, but may also cause issues for some scripts. See [Order of Execution](#order-of-execution) for more information.
+
 ##### Load Time Removal
 
-The name of this action is `isLoading`. Return `true` whenever the game is loading. LiveSplit's Game Time Timer will be stopped as long as you return `true`.
+The name of this action is `isLoading`. Return `true` whenever the game is loading. LiveSplit's Game Time Timer will be paused as long as you return `true`.
 
 ##### Game Time
 
 The name of this action is `gameTime`. Return a [`TimeSpan`](https://msdn.microsoft.com/en-us/library/system.timespan(v=vs.110).aspx) object that contains the current time of the game. You can also combine this with `isLoading`. If `isLoading` returns false, nothing, or isn't implemented, LiveSplit's Game Time Timer is always running and syncs with the game's Game Time at a constant interval. Everything in between is therefore a Real Time approximation of the Game Time. If you want the Game Time to not run in between the synchronization interval and only ever return the actual Game Time of the game, make sure to implement `isLoading` with a constant return value of `true`.
 
+##### Order of Execution
+
+Understanding the order and conditions under which timer control actions are executed can help you avoid issues in your script where variables appear to be set improperly, actions appear to be skipped, and more. Every update iteration follows this process when running actions:
+
+1. `update` will always be run first. There are no conditions on the execution of this action.
+2. If `update` did not explicitly return `false` and the timer is currently either running or paused, then the `isLoading`, `gameTime`, and `reset` actions will be run.
+  - If `reset` does not explicitly return `true`, then the `split` action will be run.
+3. If `update` did not explicitly return `false` and the timer is currently not running (and not paused), then the `start` action will be run.
 
 #### Script Management
 
