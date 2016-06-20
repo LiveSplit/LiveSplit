@@ -205,7 +205,7 @@ namespace LiveSplit.ComponentUtil
                 || read != (SizeT)bytes.Length)
                 return false;
 
-            val = is64Bit ? (IntPtr)BitConverter.ToInt64(bytes, 0) : (IntPtr)BitConverter.ToInt32(bytes, 0);
+            val = is64Bit ? (IntPtr)BitConverter.ToInt64(bytes, 0) : (IntPtr)BitConverter.ToUInt32(bytes, 0);
 
             return true;
         }
