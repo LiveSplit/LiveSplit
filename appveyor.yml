@@ -56,9 +56,9 @@ after_build:
 
         # Download winscp
 
-        Invoke-WebRequest "http://iweb.dl.sourceforge.net/project/winscp/WinSCP/5.7.3/winscp573.zip" -OutFile "winscp573.zip"
+        Invoke-WebRequest "http://livesplit.org/winscp577.zip" -OutFile "winscp577.zip"
 
-        7z e -y winscp573.zip
+        7z e -y winscp577.zip
 
         # Upload to server
 
