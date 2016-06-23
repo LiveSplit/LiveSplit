@@ -1453,4 +1453,17 @@
     <Description>Load removal is available. (By zoton2 and Kotti)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Mirror's Edge: Catalyst</Game>
+      <Game>Mirror's Edge Catalyst</Game>
+      <Game>ME Catalyst</Game>
+      <Game>MEC</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Psp4804/catalyst-autosplitter/master/mec-autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Psp4804)</Description>
+  </AutoSplitter>
 </AutoSplitters>
