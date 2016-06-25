@@ -952,6 +952,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Daikatana</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.Daikatana/master/Components/LiveSplit.Daikatana.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load removal available. (By Sphere)</Description>
+    <Website>https://github.com/kugelrund/LiveSplit.Daikatana/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Quake</Game>
     </Games>
     <URLs>
