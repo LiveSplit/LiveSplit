@@ -1477,4 +1477,16 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Psp4804)</Description>
   </AutoSplitter>
+  <Autosplitter>
+    <Games>
+      <Game>The Talos Principle</Game>
+      <Game>Talos Principle</Game>
+      <Game>Talos</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/jbzdarkid/611993edbfc9a774e95234166be52f2a/raw</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter, Automatic start, Automatic reset are available. (By Darkid)</Description>
+  </Autosplitter>
 </AutoSplitters>
