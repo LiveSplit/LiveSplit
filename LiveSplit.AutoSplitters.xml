@@ -1489,4 +1489,19 @@
     <Type>Script</Type>
     <Description>Autosplitter, Automatic start, Automatic reset are available. (By Darkid)</Description>
   </Autosplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Family Guy: Back to the Multiverse</Game>
+      <Game>Family Guy Back to the Multiverse</Game>
+      <Game>Family Guy: BttM</Game>
+      <Game>Family Guy BttM</Game>
+      <Game>Family Guy</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.FamilyGuyBTTM.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal are available. (By zoton2)</Description>
+    <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
