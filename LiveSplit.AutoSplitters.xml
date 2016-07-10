@@ -1374,7 +1374,7 @@
   		<URL>https://raw.githubusercontent.com/blastedt/asl/master/LiveSplit.Fable.asl</URL>
   	</URLs>
   	<Type>Script</Type>
-  	<Description>[v1.0]Autosplitting and load removing is available.  Some splits are missing. No start/reset/last split. (by blastedt)</Description>
+  	<Description>[v1.1] Autosplitting, load removing, auto start, and autoreset available (by blastedt)</Description>
   	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -1385,7 +1385,7 @@
   		<URL>https://raw.githubusercontent.com/blastedt/asl/master/KillerIsDead.asl</URL>
   	</URLs>
   	<Type>Script</Type>
-  	<Description>Load removing is available.  Don't trust it yet but seems to work. (by blastedt)</Description>
+  	<Description>[v1.1] Load removing and autosplits for Ep 1-11 available (by blastedt)</Description>
   	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
