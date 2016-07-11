@@ -1504,4 +1504,15 @@
     <Description>Autosplitting and load removal are available. (By zoton2)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
+  <Autosplitter>
+    <Games>
+      <Game>Action Henk</Game>
+      <Game>Henk</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/henktools/autosplitters/master/LiveSplit.ActionHenk.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Any% Autosplitting. (By faultyserver)</Description>
+  </Autosplitter>
 </AutoSplitters>
