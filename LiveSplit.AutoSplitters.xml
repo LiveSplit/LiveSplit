@@ -1303,11 +1303,11 @@
       <Game>Grapple</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Bananeur/Autosplitters/master/Grapple.asl</URL>
+      <URL>https://raw.githubusercontent.com/Xarathoss/Autosplitters/master/Grapple.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Bananeur)</Description>
-    <Website>https://github.com/Bananeur/Autosplitters</Website>
+    <Description>Auto Splitting is available. (By Xarathoss)</Description>
+    <Website>https://github.com/Xarathoss/Autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
