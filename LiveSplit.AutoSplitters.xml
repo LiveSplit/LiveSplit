@@ -462,6 +462,22 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>The Elder Scrolls III: Morrowind</Game>
+      <Game>The Elder Scrolls III Morrowind</Game>
+      <Game>The Elder Scrolls 3: Morrowind</Game>
+      <Game>The Elder Scrolls 3 Morrowind</Game>
+      <Game>TES3: Morrowind</Game>
+      <Game>Morrowind</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/morrowind.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting is available. (By DrTChops)</Description>
+    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Penumbra: Black Plague</Game>
       <Game>Penumbra Black Plague</Game>
       <Game>Black Plague</Game>
