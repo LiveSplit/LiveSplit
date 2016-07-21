@@ -968,6 +968,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Tomb Raider 2013</Game>
+      <Game>Tomb Raider (2013)</Game>
+      <Game>TR2013</Game>
+      <Game>TR(2013)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/TombRaider.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dread)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Daikatana</Game>
     </Games>
     <URLs>
