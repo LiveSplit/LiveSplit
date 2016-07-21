@@ -163,6 +163,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Alice: Madness Returns</Game>
+      <Game>Alice Madness Returns</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.Alice.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available (By KinkyCadence).</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Sonic Adventure 2: Battle</Game>
       <Game>Sonic Adventure 2 Battle</Game>
     </Games>
