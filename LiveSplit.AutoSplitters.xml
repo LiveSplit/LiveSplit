@@ -1616,4 +1616,15 @@
     <Type>Script</Type>
     <Description>Load Removal and Any% Autosplitting. (By faultyserver)</Description>
   </Autosplitter>
+  <Autosplitter>
+    <Games>
+      <Game>A Story About My Uncle</Game>
+      <Game>ASAMU</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/ASAMU/ASAMU.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Autosplitting. (By 0Seren)</Description>
+  </Autosplitter>
 </AutoSplitters>
