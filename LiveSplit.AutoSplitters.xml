@@ -1627,4 +1627,16 @@
     <Type>Script</Type>
     <Description>Load Removal and Autosplitting. (By 0Seren)</Description>
   </Autosplitter>
+  <Autosplitter>
+    <Games>
+      <Game>RBDoom3BFG</Game>
+      <Game>Doom 3: BFG Edition</Game>
+      <Game>Doom 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/qckdth/Autosplitters/master/D3-6.txt</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal. (By qckdth)</Description>
+  </Autosplitter>
 </AutoSplitters>
