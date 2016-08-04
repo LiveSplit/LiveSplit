@@ -1634,10 +1634,10 @@
       <Game>Doom 3</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/qckdth/Autosplitters/master/D3-6.txt</URL>
+      <URL>https://raw.githubusercontent.com/TheLonerD/Doom3asl/master/Doom3.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal. (By qckdth)</Description>
+    <Description>Load Removal. (by TheLonerD)</Description>
   </Autosplitter>
   <Autosplitter>
   	<Games>
