@@ -1639,4 +1639,16 @@
     <Type>Script</Type>
     <Description>Load Removal. (By qckdth)</Description>
   </Autosplitter>
+  <Autosplitter>
+  	<Games>
+  		<Game>The Legend of Zelda: Link's Awakening DX</Game>
+  		<Game>The Legend of Zelda: Link's Awakening</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.LADX/master/Components/LiveSplit.LADX.dll</URL>
+  	</URLs>
+  	<Type>Component</Type>
+  	<Description>Autosplitting, automatic starting and automatic resetting. (by Spiraster)</Description>
+  	<Website>https://github.com/Spiraster/LiveSplit.LADX/blob/master/README.md</Website>
+  </Autosplitter>
 </AutoSplitters>
