@@ -1648,7 +1648,29 @@
   		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.LADX/master/Components/LiveSplit.LADX.dll</URL>
   	</URLs>
   	<Type>Component</Type>
-  	<Description>Autosplitting, automatic starting and automatic resetting. (by Spiraster)</Description>
+  	<Description>Automatic splitting, starting and resetting are available. (by Spiraster)</Description>
   	<Website>https://github.com/Spiraster/LiveSplit.LADX/blob/master/README.md</Website>
+  </Autosplitter>
+  <Autosplitter>
+  	<Games>
+  		<Game>The Legend of Zelda: Oracle of Ages</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.OoA/master/Components/LiveSplit.OoA.dll</URL>
+  	</URLs>
+  	<Type>Component</Type>
+  	<Description>Automatic splitting, starting and resetting are available. (by Spiraster)</Description>
+  	<Website>https://github.com/Spiraster/LiveSplit.OoA/blob/master/README.md</Website>
+  </Autosplitter>
+  <Autosplitter>
+  	<Games>
+  		<Game>The Legend of Zelda: Oracle of Seasons</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.OoS/master/Components/LiveSplit.OoS.dll</URL>
+  	</URLs>
+  	<Type>Component</Type>
+  	<Description>Automatic splitting, starting and resetting are available. (by Spiraster)</Description>
+  	<Website>https://github.com/Spiraster/LiveSplit.OoS/blob/master/README.md</Website>
   </Autosplitter>
 </AutoSplitters>
