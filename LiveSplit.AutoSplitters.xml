@@ -638,6 +638,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Game Time display (By SuicideMachine, based on idea by Shunpuk)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -648,6 +649,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Game Time display (By SuicideMachine, based on idea by Shunpuk)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1305,6 +1307,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available (by SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1455,6 +1458,7 @@
   	<URLs><URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Crysis2/LiveSplit.Crysis2.asl</URL></URLs>
   	<Type>Script</Type>
   	<Description>Load Removal is available (by SuicideMachine)</Description>
+  	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
   	<Games>
@@ -1510,6 +1514,7 @@
   	</URLs>
   	<Type>Script</Type>
   	<Description>Load time removal and Autosplitter is available (by SuicideMachine)</Description>
+  	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
   	<Games>
@@ -1673,4 +1678,11 @@
   	<Description>Automatic splitting, starting and resetting are available. (by Spiraster)</Description>
   	<Website>https://github.com/Spiraster/LiveSplit.OoS/blob/master/README.md</Website>
   </Autosplitter>
+  <AutoSplitter>
+  	<Games><Game>Crysis 3</Game></Games>
+  	<URLs><URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Crysis3/LiveSplit.Crysis3.asl</URL></URLs>
+  	<Type>Script</Type>
+  	<Description>Load Removal is available (by SuicideMachine)</Description>
+  	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
