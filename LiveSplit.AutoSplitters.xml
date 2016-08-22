@@ -1685,4 +1685,15 @@
   	<Description>Load Removal is available (by SuicideMachine)</Description>
   	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
+  <Autosplitter>
+  	<Games>
+  		<Game>Mandagon</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/StarOfDoom/LiveSplitScripts/master/MandagonAutoSplitter.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Auto-splitting, and removes load times(In Game Timer).(By StarOfDoom/Mew)</Description>
+  	<Website>https://github.com/StarOfDoom/LiveSplitScripts</Website>
+  </Autosplitter>
 </AutoSplitters>
