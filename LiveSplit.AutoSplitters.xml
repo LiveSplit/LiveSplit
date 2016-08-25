@@ -491,6 +491,20 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Deus Ex: Mankind Divided</Game>
+      <Game>Deus Ex Mankind Divided</Game>
+      <Game>DXMD</Game>
+      <Game>Mankind Divided</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/dxmd.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By DrTChops)</Description>
+    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Penumbra: Black Plague</Game>
       <Game>Penumbra Black Plague</Game>
       <Game>Black Plague</Game>
