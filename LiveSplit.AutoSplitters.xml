@@ -1712,4 +1712,15 @@
   	<Description>Auto Splitting and Load Removal are available. (By StarOfDoom/Mew)</Description>
   	<Website>https://github.com/StarOfDoom/LiveSplitScripts</Website>
   </Autosplitter>
+  <Autosplitter>
+  	<Games>
+  		<Game>Obduction</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/Znailxxor/ASL/master/Obduction.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>(Much needed) Load removal. (By Znailxxor)</Description>
+  	<Website>https://github.com/Znailxxor/ASL</Website>
+  </Autosplitter>
 </AutoSplitters>
