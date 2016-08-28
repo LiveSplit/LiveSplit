@@ -1538,10 +1538,10 @@
   		<Game>Doom (2016)</Game>
   	</Games>
   	<URLs>
-  		<URL>https://raw.githubusercontent.com/TheFuncannon/Autosplitter.Doom/master/Doom.asl</URL>
+  		<URL>https://raw.githubusercontent.com/drtchops/asl/master/doom2016.asl</URL>
   	</URLs>
   	<Type>Script</Type>
-  	<Description>Auto Splitting and Load Removal are available. (By TheFuncannon)</Description>
+  	<Description>Auto Splitting and Load Removal are available. (By DrTChops, TheFuncannon, loitho, and sychotixx)</Description>
   </AutoSplitter>
   <AutoSplitter>
   	<Games>
