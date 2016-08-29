@@ -1664,6 +1664,10 @@
   	<Games>
   		<Game>The Legend of Zelda: Link's Awakening DX</Game>
   		<Game>The Legend of Zelda: Link's Awakening</Game>
+  		<Game>TLoZ: Link's Awakening DX</Game>
+  		<Game>TLoZ: Link's Awakening</Game>
+  		<Game>Link's Awakening DX</Game>
+  		<Game>Link's Awakening</Game>
   	</Games>
   	<URLs>
   		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.LADX/master/Components/LiveSplit.LADX.dll</URL>
@@ -1675,6 +1679,8 @@
   <Autosplitter>
   	<Games>
   		<Game>The Legend of Zelda: Oracle of Ages</Game>
+  		<Game>TLoZ: Oracle of Ages</Game>
+  		<Game>Oracle of Ages</Game>
   	</Games>
   	<URLs>
   		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.OoA/master/Components/LiveSplit.OoA.dll</URL>
@@ -1686,6 +1692,8 @@
   <Autosplitter>
   	<Games>
   		<Game>The Legend of Zelda: Oracle of Seasons</Game>
+  		<Game>TLoZ: Oracle of Seasons</Game>
+  		<Game>Oracle of Seasons</Game>
   	</Games>
   	<URLs>
   		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.OoS/master/Components/LiveSplit.OoS.dll</URL>
