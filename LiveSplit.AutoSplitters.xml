@@ -1739,7 +1739,7 @@
   		<URL>https://raw.githubusercontent.com/CppAndre/LiveSplit.PreySplit/master/Components/LiveSplit.PreySplit.dll</URL>
   	</URLs>
   	<Type>Component</Type>
-  	<Description>Auto Splitting and Auto Start/Stop/Reset are available. Requires PreyRun. (by AMS)</Description>
+  	<Description>Game time, Auto Splitting and Auto Start/Stop/Reset are available. Requires PreyRun. (by AMS)</Description>
   	<Website>https://github.com/CppAndre</Website>
   </Autosplitter>
 </AutoSplitters>
