@@ -614,7 +614,7 @@
       <URL>http://vergeofapathy.com/LiveSplit/ASL/WindAndWater.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic Timer Start, Game Time and Auto Splitting is available. (By vergeofapathy)</Description>
+    <Description>Automatic Timer Start, Game Time, and Auto Splitting is available. (By vergeofapathy)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1739,7 +1739,7 @@
   		<URL>https://raw.githubusercontent.com/CppAndre/LiveSplit.PreySplit/master/Components/LiveSplit.PreySplit.dll</URL>
   	</URLs>
   	<Type>Component</Type>
-  	<Description>Auto Splitting and Auto Start/Stop/Reset are available. Requires PreyRun. (by AMS)</Description>
+  	<Description>Game Time, Auto Splitting, and Auto Start/Stop/Reset are available. Requires PreyRun. (by AMS)</Description>
   	<Website>https://github.com/CppAndre</Website>
   </Autosplitter>
 </AutoSplitters>
