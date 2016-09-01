@@ -1742,4 +1742,15 @@
   	<Description>Game Time, Auto Splitting, and Auto Start/Stop/Reset are available. Requires PreyRun. (by AMS)</Description>
   	<Website>https://github.com/CppAndre</Website>
   </Autosplitter>
+  <Autosplitter>
+  	<Games>
+  		<Game>Refunct</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/BatedUrGonnaDie/Autosplitters/master/Refunct/Refunct.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Auto splitting and auto start/reset available (By BatedUrGonnaDie)</Description>
+  	<Website>https://github.com/BatedUrGonnaDie/Autosplitters</Website>
+  </Autosplitter>
 </AutoSplitters>
