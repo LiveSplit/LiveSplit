@@ -55,6 +55,20 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Command & Conquer: Yuri's Revenge</Game>
+      <Game>Command & Conquer: Red Alert 2 - Yuri's Revenge</Game>
+      <Game>cncyr</Game>
+      <Game>cncra2yr</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/ROMaster2/696e0f7fb9c55b7dcc68f6becdd3968d/raw/812cd2cb9a794f18c15512e861b0c73d5f7af518/LiveSplit.CnCYR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal, Auto Splitting, and Auto Reset are available. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Dishonored</Game>
       <Game>Dishonored (PC)</Game>
     </Games>
