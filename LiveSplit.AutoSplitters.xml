@@ -1780,4 +1780,17 @@
   	<Description>Auto Splitting and Auto Start/Reset are available. (By BatedUrGonnaDie)</Description>
   	<Website>https://github.com/BatedUrGonnaDie/Autosplitters</Website>
   </Autosplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Mental Omega</Game>
+      <Game>Mental Omega APYR</Game>
+      <Game>Mental Omega Almost Perfect Yuri's Revenge</Game>
+      <Game>Command &amp; Conquer: Mental Omega</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.MentalOmega.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
+  </AutoSplitter>
 </AutoSplitters>
