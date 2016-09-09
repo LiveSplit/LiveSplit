@@ -55,6 +55,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Command &amp; Conquer: Red Alert 2</Game>
+      <Game>Red Alert 2</Game>
+      <Game>cncra2</Game>
+      <Game>ra2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCRA2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Command &amp; Conquer: Yuri's Revenge</Game>
       <Game>Command &amp; Conquer: Red Alert 2 - Yuri's Revenge</Game>
       <Game>cncyr</Game>
@@ -64,7 +77,7 @@
       <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCYR.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal, Auto Splitting, and Auto Reset are available. (By ROMaster2)</Description>
+    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
