@@ -299,13 +299,20 @@
       <Game>HP2PC</Game>
       <Game>Harry Potter and the Chamber of Secrets</Game>
       <Game>Harry Potter and the Chamber of Secrets (PC)</Game>
+      <Game>HP III</Game>
+      <Game>HP3</Game>
+      <Game>Harry Potter 3</Game>
+      <Game>Harry Potter and the Prisoner of Azkaban (PC)</Game>
+      <Game>Harry Potter PC 1-3 Trifecta</Game>
+      <Game>HP123</Game>
+      <Game>HPTrifecta</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.UnrealLoads/master/Components/LiveSplit.UnrealLoads.dll</URL>
+      <URL>https://github.com/FromDarkHell/LiveSplit.UnrealLoads/raw/master/LiveSplit.UnrealLoads.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By Dalet)</Description>
-    <Website>https://github.com/Dalet/LiveSplit.UnrealLoads/blob/master/README.md</Website>
+    <Website>https://github.com/FromDarkHell/LiveSplit.UnrealLoads/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
