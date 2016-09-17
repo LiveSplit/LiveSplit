@@ -299,6 +299,18 @@
       <Game>HP2PC</Game>
       <Game>Harry Potter and the Chamber of Secrets</Game>
       <Game>Harry Potter and the Chamber of Secrets (PC)</Game>
+      <Game>HP3</Game>
+      <Game>HP III</Game>
+      <Game>HP3PC</Game>
+      <Game>Harry Potter 3</Game>
+      <Game>Harry Potter III</Game>
+      <Game>Harry Potter and the Prisoner of Azkaban</Game>
+      <Game>Harry Potter and the Prisoner of Azkaban (PC)</Game>
+      <Game>Harry Potter PC 1-3 Trifecta</Game>
+      <Game>Harry Potter Trifecta</Game>
+      <Game>Harry Potter Trifecta (PC)</Game>
+      <Game>HP Trifecta</Game>
+      <Game>HP123</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.UnrealLoads/master/Components/LiveSplit.UnrealLoads.dll</URL>
