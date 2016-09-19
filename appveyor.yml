@@ -16,9 +16,8 @@ before_build:
 - git rev-parse --abbrev-ref HEAD > LiveSplit\LiveSplit.Core\Updates\GitInfo\branch.txt
 - git rev-parse HEAD > LiveSplit\LiveSplit.Core\Updates\GitInfo\revision.txt
 
-build:
-  project: LiveSplit\LiveSplit.sln
-  verbosity: minimal
+build_script:
+- msbuild LiveSplit\LiveSplit.sln /verbosity:minimal /p:NoWarn=1591 /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
 notifications:
 - provider: Email
