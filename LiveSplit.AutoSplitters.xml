@@ -1817,4 +1817,14 @@
     <Type>Script</Type>
     <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>140</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehGelly/140-autosplitter/master/140.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal, Auto Splitting, and Auto Reset are available. (By TehGelly et al.)</Description>
+  </AutoSplitter>
 </AutoSplitters>
