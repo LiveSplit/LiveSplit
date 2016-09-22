@@ -81,6 +81,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Command &amp; Conquer: Generals</Game>
+      <Game>cncg</Game>
+      <Game>cncgen</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCG.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Dishonored</Game>
       <Game>Dishonored (PC)</Game>
     </Games>
