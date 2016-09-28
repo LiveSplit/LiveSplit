@@ -1859,4 +1859,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available. (By Fog)</Description>
   </AutoSplitter>
+  <Autosplitter>
+    <Games>
+      <Game>Undead Rider Asylum</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/Undead%20Rider%20Asylum/UndeadRiderAsylum.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By 0Seren)</Description>
+  </Autosplitter>
 </AutoSplitters>
