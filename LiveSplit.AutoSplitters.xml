@@ -1869,4 +1869,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available. (By 0Seren)</Description>
   </Autosplitter>
+  <Autosplitter>
+    <Games>
+      <Game>Pipe</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Hyphen-ated/pipe-autosplitter/master/pipe.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Hyphen-ated)</Description>
+  </Autosplitter>
 </AutoSplitters>
