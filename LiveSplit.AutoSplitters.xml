@@ -1879,4 +1879,19 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available. (By Hyphen-ated)</Description>
   </Autosplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SM64: Last Impact</Game>
+      <Game>Super Mario 64: Last Impact</Game>
+      <Game>Super Mario: Last Impact</Game>
+      <Game>SM64 Last Impact</Game>
+      <Game>Super Mario 64 Last Impact</Game>
+      <Game>Super Mario Last Impact</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.SM64LI.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start and in-game time available for Project64 1.6 and 1.7. In beta. (by ROMaster2)</Description>
+  </AutoSplitter>
 </AutoSplitters>
