@@ -1731,6 +1731,7 @@
   		<Game>TLoZ: Link's Awakening</Game>
   		<Game>Link's Awakening DX</Game>
   		<Game>Link's Awakening</Game>
+  		<Game>LADX Memes</Game>
   	</Games>
   	<URLs>
   		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.LADX/master/Components/LiveSplit.LADX.dll</URL>
@@ -1894,4 +1895,15 @@
     <Type>Script</Type>
     <Description>Auto-start and in-game time available for Project64 1.6 and 1.7. In beta. (by ROMaster2)</Description>
   </AutoSplitter>
+  <Autosplitter>
+    <Games>
+      <Game>Fez</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.Fez/master/Components/LiveSplit.Fez.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/LiveSplit.Fez/blob/master/README.md</Website>
+  </Autosplitter>
 </AutoSplitters>
