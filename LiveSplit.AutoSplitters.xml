@@ -1916,4 +1916,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Brassmaster)</Description>
   </Autosplitter>
+  <Autosplitter>
+    <Games>
+      <Game>Valley</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/Valley/Valley.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By 0Seren)</Description>
+  </Autosplitter>
 </AutoSplitters>
