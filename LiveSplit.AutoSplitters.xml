@@ -1906,4 +1906,14 @@
     <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
     <Website>https://github.com/Spiraster/LiveSplit.Fez/blob/master/README.md</Website>
   </Autosplitter>
+  <Autosplitter>
+    <Games>
+      <Game>ReCore</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/ReCore/ReCore.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Brassmaster)</Description>
+  </Autosplitter>
 </AutoSplitters>
