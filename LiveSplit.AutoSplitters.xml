@@ -1926,4 +1926,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By 0Seren)</Description>
   </Autosplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dead Rising</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Souzooka/Dead-Rising-Loadless-Timer/master/DRLoadless.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Souzooka)</Description>
+  </AutoSplitter>
 </AutoSplitters>
