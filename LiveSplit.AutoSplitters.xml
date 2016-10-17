@@ -1936,4 +1936,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Souzooka)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>OpenJK-Speed</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/OpenJK-Speed/OpenJK-Speed.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Load Removal is available. (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
