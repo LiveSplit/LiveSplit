@@ -1259,6 +1259,14 @@ namespace LiveSplit.View
             btnSettings.Enabled = Run.IsAutoSplitterActive() && Run.AutoSplitter.Component.GetSettingsControl(LayoutMode.Vertical) != null;
             btnWebsite.Visible = Run.AutoSplitter != null && Run.AutoSplitter.Website != null;
 
+            //Show/Hide The AutoSplitter Comparison Warning.
+            bool showComparisonWarning = Run.IsAutoSplitterActive() && CurrentState.CurrentTimingMethod != TimingMethod.GameTime;
+            int autoSplitterComparisonWarningRow = tableLayoutPanel1.GetPositionFromControl(lblAutoSplitterCompareAgainstWarning).Row;
+            lblAutoSplitterCompareAgainstWarning.Visible = showComparisonWarning;
+            tableLayoutPanel1.RowStyles[autoSplitterComparisonWarningRow].Height = showComparisonWarning
+                ? lblAutoSplitterCompareAgainstWarning.PreferredHeight + 3
+                : 0;
+
             if (Run.AutoSplitter != null && Run.AutoSplitter.Website == null)
             {
                 tableLayoutPanel1.SetColumnSpan(lblDescription, 5);

@@ -964,6 +964,11 @@
         0imd0imd/hkpT57/D8KdWJUE3yYnAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="lblAutoSplitterCompareAgainstWarning.Text" xml:space="preserve">
+    <value>Warning: An Auto Splitter has been activated but LiveSplit is comparing to Real Time. Features such as Load Removal and IGT may not be shown. To switch comparison to Game Time, follow the steps below:
+
+Right Click on the main LiveSplit window &gt; Compare Against &gt; Game Time</value>
+  </data>
   <metadata name="RemoveIconMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>354, 17</value>
   </metadata>
