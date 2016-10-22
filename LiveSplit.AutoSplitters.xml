@@ -1957,4 +1957,14 @@
     <Type>Script</Type>
     <Description>Autosplitting and Load Removal is available. (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Aragami</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/Aragami/Aragami.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Load Removal is available. (By 0Seren)</Description>
+  </AutoSplitter>
 </AutoSplitters>
