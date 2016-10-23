@@ -1264,7 +1264,7 @@ namespace LiveSplit.View
             int autoSplitterComparisonWarningRow = tableLayoutPanel1.GetPositionFromControl(lblAutoSplitterCompareAgainstWarning).Row;
             lblAutoSplitterCompareAgainstWarning.Visible = showComparisonWarning;
             tableLayoutPanel1.RowStyles[autoSplitterComparisonWarningRow].Height = showComparisonWarning
-                ? lblAutoSplitterCompareAgainstWarning.PreferredHeight + 3
+                ? 60
                 : 0;
 
             if (Run.AutoSplitter != null && Run.AutoSplitter.Website == null)
