@@ -1671,7 +1671,7 @@
     <Description>Load Removal is available. (By zoton2 and Kotti)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
-    <AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Mirror's Edge: Catalyst</Game>
       <Game>Mirror's Edge Catalyst</Game>
@@ -1977,5 +1977,15 @@
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitting and Load Removal is available. (By 0Seren)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Call of Duty 4: Modern Warfare</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Jukspa/cod4loadless/master/cod4_steam.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available (Requires the Steam version). (By Jukspa)</Description>
   </AutoSplitter>
 </AutoSplitters>
