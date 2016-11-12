@@ -1597,7 +1597,7 @@
   		<URL>https://raw.githubusercontent.com/blastedt/asl/master/LiveSplit.Fable.asl</URL>
   	</URLs>
   	<Type>Script</Type>
-  	<Description>[v1.1] Auto Splitting, Load Removal, and Auto Start/Reset are available. (By blastedt)</Description>
+  	<Description>Auto Splitting, Load Removal, and Auto Start/Reset are available. (By blastedt)</Description>
   	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -1608,7 +1608,18 @@
   		<URL>https://raw.githubusercontent.com/blastedt/asl/master/KillerIsDead.asl</URL>
   	</URLs>
   	<Type>Script</Type>
-  	<Description>Auto Splitting and Load Removal are available for v1.1 Ep 1-11. (By blastedt)</Description>
+  	<Description>Auto Splitting at end of episode and Load Removal are available. (By blastedt)</Description>
+  	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
+  		<Game>Enter the Matrix</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/blastedt/asl/master/Matrix.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Auto Splitting and Load Removal are available (By blastedt)</Description>
   	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
