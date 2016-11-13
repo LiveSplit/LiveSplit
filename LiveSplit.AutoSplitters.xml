@@ -2016,4 +2016,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available (Requires the Steam version). (By Jukspa)</Description>
   </AutoSplitter>
+  <Autosplitter>
+    <Games>
+      <Game>The Binding of Isaac: Afterbirth</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Hyphen-ated/autosplitters/master/isaac/isaac-afterbirth.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. Can split by character or by floor. (By Hyphen-ated)</Description>
+  </Autosplitter>
 </AutoSplitters>
