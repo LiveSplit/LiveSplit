@@ -663,6 +663,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By 0Seren)</Description>
+    <Website>https://github.com/0Seren/AutoSplitters/tree/master/Magnetic%20By%20Nature</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1334,6 +1335,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By 0Seren and SuicideMachine)</Description>
+    <Website>https://github.com/0Seren/AutoSplitters/tree/master/Woolfe</Website>
   </AutoSplitter>
   <AutoSplitter>
 	<Games>
@@ -1760,6 +1762,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By 0Seren)</Description>
+    <Website>https://github.com/0Seren/AutoSplitters/tree/master/ASAMU</Website>
   </Autosplitter>
   <Autosplitter>
     <Games>
@@ -1919,6 +1922,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available. (By 0Seren)</Description>
+    <Website>https://github.com/0Seren/AutoSplitters/tree/master/Undead%20Rider%20Asylum</Website>
   </Autosplitter>
   <Autosplitter>
     <Games>
@@ -1965,6 +1969,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Brassmaster)</Description>
+    <Website>https://github.com/0Seren/AutoSplitters/tree/master/ReCore</Website>
   </Autosplitter>
   <Autosplitter>
     <Games>
@@ -1975,6 +1980,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By 0Seren)</Description>
+    <Website>https://github.com/0Seren/AutoSplitters/tree/master/Valley</Website>
   </Autosplitter>
   <AutoSplitter>
     <Games>
@@ -2005,6 +2011,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitting and Load Removal is available. (By 0Seren)</Description>
+    <Website>https://github.com/0Seren/AutoSplitters/tree/master/Aragami</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2025,5 +2032,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available. Can split by character or by floor. (By Hyphen-ated)</Description>
+  </Autosplitter>
+  <Autosplitter>
+    <Games>
+      <Game>Shade: Wrath of Angels</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/Shade/Shade.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By 0Seren)</Description>
+    <Website>https://github.com/0Seren/AutoSplitters/tree/master/Shade</Website>
   </Autosplitter>
 </AutoSplitters>
