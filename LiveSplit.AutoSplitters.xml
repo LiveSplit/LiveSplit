@@ -812,7 +812,7 @@
       <URL>https://raw.githubusercontent.com/cheeseandcereal/AutoSplitter/master/LiveSplit.ToyStory2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting/Start/Reset are available for emulator. (By cheeseandcereal)</Description>
+    <Description>Working for PJ64 1.7.0.50v23 and PC (No auto-reset on PC). (By cheeseandcereal)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
