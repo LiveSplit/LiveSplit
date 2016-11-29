@@ -1841,7 +1841,18 @@
   		<URL>https://raw.githubusercontent.com/StarOfDoom/LiveSplitScripts/master/MandagonAutoSplitter.asl</URL>
   	</URLs>
   	<Type>Script</Type>
-  	<Description>Auto Splitting and Load Removal are available. (By StarOfDoom/Mew)</Description>
+  	<Description>Auto Splitting and Load Removal are available. (By Messenger)</Description>
+  	<Website>https://github.com/StarOfDoom/LiveSplitScripts</Website>
+  </Autosplitter>
+  <Autosplitter>
+  	<Games>
+  		<Game>Titan Souls</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/StarOfDoom/LiveSplitScripts/master/TitanSoulsAutosplitter.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>AutoSplitting. (By Unknown)</Description>
   	<Website>https://github.com/StarOfDoom/LiveSplitScripts</Website>
   </Autosplitter>
   <Autosplitter>
