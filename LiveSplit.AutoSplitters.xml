@@ -2074,4 +2074,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By RedMage08)</Description>
   </Autosplitter>
+  <Autosplitter>
+   <Games>
+     <Game>Battlefield 3</Game>
+   </Games>
+   <URLs>
+     <URL>https://raw.githubusercontent.com/Chimpaneez/bf3/master/bf3</URL>
+   </URLs>
+   <Type>Script</Type>
+   <Description>Load Removal is available. (By Chimpaneez)</Description>
+ </Autosplitter>
 </AutoSplitters>
