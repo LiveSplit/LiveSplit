@@ -725,6 +725,7 @@
     <Type>Script</Type>
     <Description>Automatic Timer Start, Game Time, and Auto Splitting is available. (By vergeofapathy)</Description>
   </AutoSplitter>
+<!--
   <AutoSplitter>
     <Games>
       <Game>Robot Roller-Derby Disco Dodgeball</Game>
@@ -739,6 +740,7 @@
     <Type>Script</Type>
     <Description>Auto Splitting/Start is available. (By MM4005)</Description>
   </AutoSplitter>
+-->
   <AutoSplitter>
     <Games>
       <Game>Aliens vs. Predator (2010)</Game>
@@ -1540,6 +1542,7 @@
     <Description>Auto Splitting is available. (By Xarathoss)</Description>
     <Website>https://github.com/Xarathoss/Autosplitters</Website>
   </AutoSplitter>
+<!--
   <AutoSplitter>
     <Games>
       <Game>Clustertruck</Game>
@@ -1550,6 +1553,7 @@
     <Type>Script</Type>
     <Description>Auto Start/Stop/Reset are available. (By MM4005)</Description>
   </AutoSplitter>
+-->
   <AutoSplitter>
   	<Games>
   		<Game>Age of Empires</Game>
@@ -1665,6 +1669,7 @@
   	<Type>Script</Type>
   	<Description>Auto Splitting and Load Removal are available. (By DrTChops, TheFuncannon, loitho, sychotixx and Instagibz)</Description>
   </AutoSplitter>
+<!--
   <AutoSplitter>
   	<Games>
   		<Game>Need for Speed: Underground 2</Game>
@@ -1675,6 +1680,7 @@
   	<Type>Script</Type>
   	<Description>Load Removal is available. (By Grim Maple)</Description>
   </AutoSplitter>
+-->
   <AutoSplitter>
   	<Games>
   		<Game>You Are Empty</Game>
