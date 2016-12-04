@@ -86,7 +86,7 @@
       <Game>cncgen</Game>
     </Games>
     <URLs>
-      <URL></URL>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCG.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
