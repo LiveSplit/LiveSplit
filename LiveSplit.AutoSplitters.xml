@@ -2090,4 +2090,19 @@
    <Type>Script</Type>
    <Description>Load Removal is available. (By Chimpaneez)</Description>
  </AutoSplitter>
+<AutoSplitter>
+   <Games>
+     <Game>Sonic the Hedgehog</Game>
+     <Game>Sonic 1</Game>
+     <Game>Sonic the Hedgehog (Genesis)</Game>
+     <Game>Sonic the Hedgehog (Mega Drive)</Game>
+     <Game>Sonic the Hedgehog (Genesis / Mega Drive)</Game>
+   </Games>
+   <URLs>
+     <URL>https://raw.githubusercontent.com/tenebrae101/Sonic1AutoSplitter/master/Sonic1.asl</URL>
+   </URLs>
+   <Type>Script</Type>
+   <Description>Game Time and Auto Start/Split/Reset are available for Steam. (By Tenebrae)</Description>
+   <Website>https://github.com/tenebrae101/Sonic1AutoSplitter</Website>
+ </AutoSplitter>
 </AutoSplitters>
