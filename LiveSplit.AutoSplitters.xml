@@ -2105,4 +2105,18 @@
    <Description>Game Time and Auto Start/Split/Reset are available for Steam. (By Tenebrae)</Description>
    <Website>https://github.com/tenebrae101/Sonic1AutoSplitter</Website>
  </AutoSplitter>
+ <AutoSplitter>
+    <Games>
+      <Game>Watch_Dogs 2</Game>
+      <Game>Watch Dogs 2</Game>
+      <Game>WatchDogs 2</Game>
+      <Game>WatchDogs2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.WatchDogs2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By zoton2)</Description>
+    <Website>https://github.com/zoton2/LiveSplit.Scripts/blob/master/LiveSplit.WatchDogs2-README.md</Website>
+  </AutoSplitter>
 </AutoSplitters>
