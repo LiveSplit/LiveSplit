@@ -2119,4 +2119,16 @@
     <Description>Load Removal is available. (By zoton2)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts/blob/master/LiveSplit.WatchDogs2-README.md</Website>
   </AutoSplitter>
+ <AutoSplitter>
+    <Games>
+      <Game>La-Mulana Remake</Game>
+    </Games>
+    <URLs>
+      <URL>https://worsety.github.io/files/LiveSplit.LaMulanaRemake/Components/LiveSplit.LaMulanaRemake.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time and Automatic Start/Split are available. (By Worse than you)</Description>
+    <Website>https://github.com/worsety/LiveSplit.LaMulanaRemake/blob/master/README.md</Website>
+    <ShowInLayoutEditor />
+  </AutoSplitter>
 </AutoSplitters>
