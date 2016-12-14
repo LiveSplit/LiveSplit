@@ -2131,4 +2131,14 @@
     <Website>https://github.com/worsety/LiveSplit.LaMulanaRemake/blob/master/README.md</Website>
     <ShowInLayoutEditor />
   </AutoSplitter>
+  <AutoSplitter>
+     <Games>
+	<Game>N++</Game>
+     </Games>
+     <URLs>
+	<URL>https://raw.githubusercontent.com/MoleTrooper/NppAuto/master/NppAuto.asl</URL>
+     </URLs>
+     <Type>Script</Type>
+     <Description>Automatic Splitting is available. (By MoleTrooper)</Description>
+  </AutoSplitter>
 </AutoSplitters>
