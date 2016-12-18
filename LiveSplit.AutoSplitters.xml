@@ -2141,4 +2141,15 @@
      <Type>Script</Type>
      <Description>Automatic Splitting is available. (By MoleTrooper)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Pokémon Red/Blue</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NieDzejkob/LiveSplit.PokemonRB/master/Components/LiveSplit.PokemonRB.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Automatic Start/Split/Stop/Reset is available for NSC, RBA, 151 and glitchless on BGB 1.5.2. (By NieDzejkob)</Description>
+    <Website>https://github.com/NieDzejkob/LiveSplit.PokemonRB</Website>
+  </AutoSplitter>
 </AutoSplitters>
