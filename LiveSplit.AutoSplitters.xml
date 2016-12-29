@@ -638,19 +638,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Resident Evil 4</Game>
-      <Game>Biohazard 4</Game>
-      <Game>RE4</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/drtchops/asl/master/bio4.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto Splitting and Game Time are available. (By LetsGetPitted)</Description>
-    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Amnesia: The Dark Descent</Game>
       <Game>Amnesia: Justine</Game>
       <Game>Amnesia: TDD</Game>
@@ -2183,5 +2170,18 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Resident Evil 4</Game>
+      <Game>Biohazard 4</Game>
+      <Game>RE4</Game>
+    </Games>
+    <URLs>
+      <URL>http://www.re4central.com/autosplitters/RE4FullGame.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By RE4Central)</Description>
+    <Website>http://www.re4central.com/</Website>
   </AutoSplitter>
 </AutoSplitters>
