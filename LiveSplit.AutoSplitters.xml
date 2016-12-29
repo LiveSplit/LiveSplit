@@ -2164,4 +2164,24 @@
     <Description>Automatic Start/Split/Stop/Reset is available for NSC, RBA, 151 and glitchless on BGB 1.5.2. (By NieDzejkob)</Description>
     <Website>https://github.com/NieDzejkob/LiveSplit.PokemonRB</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tony Hawk's Pro Skater 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/RisingFog/LiveSplit-AutoSplitters/master/THPS3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Fog)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tony Hawk's Pro Skater 4</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/RisingFog/LiveSplit-AutoSplitters/master/THPS4.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
+  </AutoSplitter>
 </AutoSplitters>
