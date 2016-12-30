@@ -1728,6 +1728,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Downward</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Psp4804/downward-autosplitter/master/downward.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By Psp4804)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>The Talos Principle</Game>
       <Game>Talos Principle</Game>
       <Game>Talos</Game>
