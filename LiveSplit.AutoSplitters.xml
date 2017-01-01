@@ -938,10 +938,10 @@
       <Game>BioShock Infinite: Burial at Sea (DLCs)</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/dread2472/ASL/master/BioInf.asl</URL>
+      <URL>https://raw.githubusercontent.com/bladecoding/ASL/master/BioInf.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Dread)</Description>
+    <Description>Load Removal is available. (By blcd)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
