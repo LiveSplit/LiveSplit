@@ -2169,7 +2169,7 @@
       <URL>https://raw.githubusercontent.com/RisingFog/LiveSplit-AutoSplitters/master/THPS3.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Auto Start/Reset are available. (By Fog)</Description>
+    <Description>Auto Splitting, Load Removal, and Auto Start/Reset are available. (By Fog)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2193,5 +2193,15 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By RE4Central)</Description>
     <Website>http://www.re4central.com/</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tony Hawk's Pro Skater 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/RisingFog/LiveSplit-AutoSplitters/master/THPS2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
   </AutoSplitter>
 </AutoSplitters>
