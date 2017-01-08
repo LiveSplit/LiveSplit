@@ -1,4 +1,4 @@
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Model.RunImporters;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
@@ -103,7 +103,7 @@ namespace LiveSplit.View
             }
             set
             {
-                if (Regex.IsMatch(value, "[^0-9:.,-]"))
+                if (Regex.IsMatch(value, "[^0-9:.\\-−]"))
                     return;
 
                 try { Run.Offset = TimeSpanParser.Parse(value); Run.HasChanged = true; }
@@ -381,9 +381,9 @@ namespace LiveSplit.View
         {
             if (runGrid.CurrentCell.ColumnIndex == SPLITTIMEINDEX || runGrid.CurrentCell.ColumnIndex == BESTSEGMENTINDEX || runGrid.CurrentCell.ColumnIndex == SEGMENTTIMEINDEX || runGrid.CurrentCell.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
             {
-                if (Regex.IsMatch(eCtl.Text, "[^0-9:.,]"))
+                if (Regex.IsMatch(eCtl.Text, "[^0-9:.]"))
                 {
-                    eCtl.Text = Regex.Replace(eCtl.Text, "[^0-9:.,]", "");
+                    eCtl.Text = Regex.Replace(eCtl.Text, "[^0-9:.]", "");
                 }
             }
         }

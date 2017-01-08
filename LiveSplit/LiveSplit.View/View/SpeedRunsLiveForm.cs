@@ -395,24 +395,26 @@ namespace LiveSplit.View
             }
 
             SRLClient.RemoveRaceComparisons();
-            FormIsClosing = true;
 
-            if (SRLClient.IsConnected)
-            {
-                if (SRLClient.RaceState == RaceState.EnteredRace
+            if (SRLClient.IsConnected
+                && !FormIsClosing
+                && (SRLClient.RaceState == RaceState.EnteredRace
                     || SRLClient.RaceState == RaceState.EnteredRaceAndReady
-                    || SRLClient.RaceState == RaceState.RaceStarted)
-                {
-                    e.Cancel = true;
-                    SRLClient.MessageReceived += ExitMessageReceived;
-                    SRLClient.QuitRace();
-                }
-                else
-                    SRLClient.Disconnect();
+                    || SRLClient.RaceState == RaceState.RaceStarted))
+            {
+                e.Cancel = true;
+                FormIsClosing = true;
+                SRLClient.MessageReceived += ExitMessageReceived;
+                SRLClient.QuitRace();
             }
+        }
 
-            if (!e.Cancel)
-                SRLClient.Dispose();
+        private void SpeedRunsLiveForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            FormIsClosing = true;
+            if (SRLClient.IsConnected)
+                SRLClient.Disconnect();
+            SRLClient.Dispose();
         }
 
         private static string GetColorCodeFromRights(SRLIRCRights rights)

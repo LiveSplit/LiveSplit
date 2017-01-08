@@ -21,7 +21,16 @@ namespace LiveSplit.Tests
             var document = new XmlDocument();
             document.Load(xmlPath);
 
-            IDictionary<string, AutoSplitter> autoSplitters = document["AutoSplitters"].ChildNodes.OfType<XmlElement>().Where(element => element != null).Select(element =>
+            var autoSplitterElems = document["AutoSplitters"].ChildNodes.OfType<XmlElement>().Where(element => element != null);
+            Assert.IsTrue(autoSplitterElems.All(x => x.Name == "AutoSplitter"), "<AutoSplitters> must contain only <AutoSplitter> elements");
+
+            var gameElems = autoSplitterElems.SelectMany(x => x["Games"].ChildNodes.OfType<XmlElement>());
+            Assert.IsTrue(gameElems.All(x => x.Name == "Game"), "<Games> must contain only <Game> elements");
+
+            var urlElems = autoSplitterElems.SelectMany(x => x["URLs"].ChildNodes.OfType<XmlElement>());
+            Assert.IsTrue(urlElems.All(x => x.Name == "URL"), "<URLs> must contain only <URL> elements");
+
+            IDictionary<string, AutoSplitter> autoSplitters = autoSplitterElems.Select(element =>
                     new AutoSplitter()
                     {
                         Description = element["Description"].InnerText,
@@ -34,9 +43,9 @@ namespace LiveSplit.Tests
             Assert.IsTrue(!autoSplitters.Any(x => string.IsNullOrWhiteSpace(x.Key)), "Empty Game Names are not allowed");
             Assert.IsTrue(!autoSplitters.Values.Any(x => string.IsNullOrWhiteSpace(x.Description)), "Auto Splitters need a description");
             Assert.IsTrue(!autoSplitters.Values.Any(x => !x.URLs.Any()), "Auto Splitters need to have at least one URL");
-            Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".asl")) && x.Type == AutoSplitterType.Component), 
+            Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".asl")) && x.Type == AutoSplitterType.Component),
                 "ASL Script is downloaded even though Type \"Component\" is specified.");
-            Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".dll")) && x.Type == AutoSplitterType.Script), 
+            Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".dll")) && x.Type == AutoSplitterType.Script),
                 "Component is downloaded even though Type \"Script\" is specified.");
             Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => !Uri.IsWellFormedUriString(y, UriKind.Absolute))),
                 "Auto Splitters need to have valid URLs");

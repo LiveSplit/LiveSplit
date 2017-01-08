@@ -15,6 +15,8 @@ namespace LiveSplit.Model
 
         public static TimeSpan Parse(string timeString)
         {
+            timeString = timeString.Replace("−", "-");
+
             var factor = 1;
             if (timeString.StartsWith("-"))
             {
