@@ -1842,13 +1842,6 @@
   	<Website>https://github.com/Spiraster/LiveSplit.OoS/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
-  	<Games><Game>Crysis 3</Game></Games>
-  	<URLs><URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Crysis3/LiveSplit.Crysis3.asl</URL></URLs>
-  	<Type>Script</Type>
-  	<Description>Load Removal is available. (By SuicideMachine)</Description>
-  	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
-  </AutoSplitter>
-  <AutoSplitter>
   	<Games>
   		<Game>Mandagon</Game>
   	</Games>
@@ -2203,5 +2196,17 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Crysis 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/btbd/LiveSplit.Crysis3/raw/master/DLL/Debug/c3nl.dll</URL>
+      <URL>https://github.com/btbd/LiveSplit.Crysis3/raw/master/Injector/c3nl_loader.exe</URL>
+      <URL>https://github.com/btbd/LiveSplit.Crysis3/raw/master/LiveSplit.Crysis3/bin/LiveSplit.Crysis3.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available. (By btbd)</Description>
   </AutoSplitter>
 </AutoSplitters>
