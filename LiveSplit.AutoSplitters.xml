@@ -2202,9 +2202,9 @@
       <Game>Crysis 3</Game>
     </Games>
     <URLs>
+      <URL>https://github.com/btbd/LiveSplit.Crysis3/raw/master/LiveSplit.Crysis3/bin/LiveSplit.Crysis3.dll</URL>
       <URL>https://github.com/btbd/LiveSplit.Crysis3/raw/master/DLL/Debug/c3nl.dll</URL>
       <URL>https://github.com/btbd/LiveSplit.Crysis3/raw/master/Injector/c3nl_loader.exe</URL>
-      <URL>https://github.com/btbd/LiveSplit.Crysis3/raw/master/LiveSplit.Crysis3/bin/LiveSplit.Crysis3.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By btbd)</Description>
