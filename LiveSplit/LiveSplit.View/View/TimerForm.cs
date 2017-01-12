@@ -917,6 +917,10 @@ namespace LiveSplit.View
             {
                 Model.Start();
             }
+            else if (CurrentState.CurrentPhase == TimerPhase.Ended && InTimerOnlyMode)
+            {
+                Model.Reset();
+            }
         }
 
         void hook_KeyOrButtonPressed(object sender, KeyOrButton e)
