@@ -2209,4 +2209,14 @@
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By btbd)</Description>
   </AutoSplitter>
-</AutoSplitters>
+  <AutoSplitter>
+    <Games>
+      <Game>Grand Theft Auto: Vice City</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MhmdFVC/autosplitter/4a5eeae473fe1e7944c4e31a7a9fb3b538127eb8/autosplit2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal are available. (Autosplitter by zoton2 and pitpo, load removal by Mhmd_FVC)</Description>
+  </AutoSplitter>
+  </AutoSplitters>
