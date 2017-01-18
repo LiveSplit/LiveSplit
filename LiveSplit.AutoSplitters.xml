@@ -2219,4 +2219,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By zoton2 and pitpo, load removal by Mhmd_FVC)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Freedom Planet</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rodrigo-sssilva/FPAutosplitter/master/freedom_planet.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Tracks in-game time. Auto Start, Split and Reset are available. (By Anty-Lemon and Fladervy)</Description>
+  </AutoSplitter>
 </AutoSplitters>
