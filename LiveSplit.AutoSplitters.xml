@@ -1442,7 +1442,8 @@
       <Game>Medal of Honor: Airborne</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/Components/LiveSplit.MoHA.dll</URL>
+      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/LiveSplit.MoHA/Components/LiveSplit.MoHA.dll</URL>
+      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/LiveSplit.MoHA.UI/Components/LiveSplit.MoHA.UI.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By 7imekeeper)</Description>
