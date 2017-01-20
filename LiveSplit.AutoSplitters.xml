@@ -1442,7 +1442,8 @@
       <Game>Medal of Honor: Airborne</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/Components/LiveSplit.MoHA.dll</URL>
+      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/LiveSplit.MoHA/Components/LiveSplit.MoHA.dll</URL>
+      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/LiveSplit.MoHA.UI/Components/LiveSplit.MoHA.UI.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By 7imekeeper)</Description>
@@ -2218,5 +2219,27 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By zoton2 and pitpo, load removal by Mhmd_FVC)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Freedom Planet</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rodrigo-sssilva/FPAutosplitter/master/freedom_planet.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Tracks in-game time. Auto Start, Split and Reset are available. (By Anty-Lemon and Fladervy)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Pac-Man World 3</Game>
+      <Game>Pac Man World 3</Game>
+      <Game>PMW3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/wooferzfg/LiveSplit.AutoSplitters/master/LiveSplit.PMW3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start, Split and Reset are available. (By wooferzfg)</Description>
   </AutoSplitter>
 </AutoSplitters>
