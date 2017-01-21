@@ -2215,7 +2215,7 @@
       <Game>Grand Theft Auto: Vice City</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/MhmdFVC/autosplitter/autosplit/autosplit2.asl</URL>
+      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.GTAVC.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By zoton2 and pitpo, load removal by Mhmd_FVC)</Description>
