@@ -2242,4 +2242,16 @@
     <Type>Script</Type>
     <Description>Auto Start, Split and Reset are available. (By wooferzfg)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Homeworld: Deserts of Kharak</Game>
+      <Game>HW: DoK</Game>
+	  <Game>DoK</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PayDay1/HWDoKSplitter/master/HWDoKSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Only loading time removal is available for now. (By PayDay)</Description>
+  </AutoSplitter>
 </AutoSplitters>
