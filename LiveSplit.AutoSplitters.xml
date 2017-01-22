@@ -2254,4 +2254,14 @@
     <Type>Script</Type>
     <Description>Only loading time removal is available for now. (By PayDay)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Made Man: Confessions of the Family Blood</Game>
+    </Games>
+  	<URLs>
+  	  <URL>https://raw.githubusercontent.com/MightyBeaver/asl_scripts/master/mememan.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Auto splitting and load removal. Final split is manual. (by MightyCrab)</Description>
+  </AutoSplitter>
 </AutoSplitters>
