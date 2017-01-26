@@ -2264,4 +2264,17 @@
   	<Type>Script</Type>
   	<Description>Auto splitting and load removal. Final split is manual. (by MightyCrab)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+	<Game>Nikita: The Mystery of The Hidden Treasure</Game>
+	<Game>Nikita The Mystery of The Hidden Treasure</Game>
+	<Game>Nikita: Tajemnica Skarbu Piratów</Game>
+	<Game>Nikita Tajemnica Skarbu Piratów</Game>
+    </Games>
+  	<URLs>
+  	  <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Nikita/LiveSplit.NikitaMysteryIsland.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Load Removal is available. (by SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
