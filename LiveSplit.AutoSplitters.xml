@@ -2288,4 +2288,17 @@
   	<Type>Script</Type>
   	<Description>Load Removal is available. (by SuicideMachine)</Description>
   </AutoSplitter>
+ <AutoSplitter>
+    <Games>
+      <Game>Resident Evil 7</Game>
+      <Game>Biohazard 7</Game>
+      <Game>RESIDENT EVIL 7 biohazard / BIOHAZARD 7 resident evil</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/cursedtoast/re7/master/RE7.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast)</Description>
+    <Website>https://github.com/cursedtoast/re7/blob/master/README.md</Website>
+  </AutoSplitter>
 </AutoSplitters>
