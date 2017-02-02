@@ -1637,6 +1637,17 @@
   </AutoSplitter>
   <AutoSplitter>
   	<Games>
+  		<Game>Legacy of Kain: Defiance</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/blastedt/asl/master/LegacyOfKainDefiance.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Auto Splitting and Start/Reset are available (By TheDuriel + blastedt)</Description>
+  	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
   		<Game>SpeedRunners</Game>
   	</Games>
   	<URLs>
