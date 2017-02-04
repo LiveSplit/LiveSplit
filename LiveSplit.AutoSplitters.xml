@@ -2304,7 +2304,7 @@
     <Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast)</Description>
     <Website>https://github.com/cursedtoast/re7/blob/master/README.md</Website>
   </AutoSplitter>
-<AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Momodora: Reverie Under the Moonlight</Game>
     </Games>
