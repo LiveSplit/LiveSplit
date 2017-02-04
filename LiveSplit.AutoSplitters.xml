@@ -1442,7 +1442,8 @@
       <Game>Medal of Honor: Airborne</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/Components/LiveSplit.MoHA.dll</URL>
+      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/LiveSplit.MoHA/Components/LiveSplit.MoHA.dll</URL>
+      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.MoHA/master/LiveSplit.MoHA.UI/Components/LiveSplit.MoHA.UI.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and Load Removal are available. (By 7imekeeper)</Description>
@@ -1632,6 +1633,17 @@
   	</URLs>
   	<Type>Script</Type>
   	<Description>Auto Splitting and Load Removal are available (By blastedt)</Description>
+  	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
+  		<Game>Legacy of Kain : Defiance</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/blastedt/asl/master/LegacyOfKainDefiance.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Auto Splitting and Start/Reset are available (By TheDuriel + blastedt)</Description>
   	<Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -1840,13 +1852,6 @@
   	<Type>Component</Type>
   	<Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
   	<Website>https://github.com/Spiraster/LiveSplit.OoS/blob/master/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-  	<Games><Game>Crysis 3</Game></Games>
-  	<URLs><URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Crysis3/LiveSplit.Crysis3.asl</URL></URLs>
-  	<Type>Script</Type>
-  	<Description>Load Removal is available. (By SuicideMachine)</Description>
-  	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
   	<Games>
@@ -2203,5 +2208,100 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Crysis 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/btbd/LiveSplit.Crysis3/master/Components/LiveSplit.Crysis3.dll</URL>
+      <URL>https://raw.githubusercontent.com/btbd/LiveSplit.Crysis3/master/Components/c3nl.dll</URL>
+      <URL>https://raw.githubusercontent.com/btbd/LiveSplit.Crysis3/master/Components/c3nl_loader.exe</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available. (By btbd)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Grand Theft Auto: Vice City</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.GTAVC.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By zoton2 and pitpo, load removal by Mhmd_FVC)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Freedom Planet</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rodrigo-sssilva/FPAutosplitter/master/freedom_planet.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Tracks in-game time. Auto Start, Split and Reset are available. (By Anty-Lemon and Fladervy)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Pac-Man World 3</Game>
+      <Game>Pac Man World 3</Game>
+      <Game>PMW3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/wooferzfg/LiveSplit.AutoSplitters/master/LiveSplit.PMW3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By wooferzfg)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Homeworld: Deserts of Kharak</Game>
+      <Game>HW: DoK</Game>
+	  <Game>DoK</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PayDay1/HWDoKSplitter/master/HWDoKSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Only loading time removal is available for now. (By PayDay)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Made Man: Confessions of the Family Blood</Game>
+    </Games>
+  	<URLs>
+  	  <URL>https://raw.githubusercontent.com/MightyBeaver/asl_scripts/master/mememan.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Auto splitting and load removal. Final split is manual. (by MightyCrab)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+	<Game>Nikita: The Mystery of The Hidden Treasure</Game>
+	<Game>Nikita The Mystery of The Hidden Treasure</Game>
+	<Game>Nikita: Tajemnica Skarbu Piratów</Game>
+	<Game>Nikita Tajemnica Skarbu Piratów</Game>
+    </Games>
+  	<URLs>
+  	  <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Nikita/LiveSplit.NikitaMysteryIsland.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Load Removal is available. (by SuicideMachine)</Description>
+  </AutoSplitter>
+ <AutoSplitter>
+    <Games>
+      <Game>Resident Evil 7</Game>
+      <Game>Biohazard 7</Game>
+      <Game>RESIDENT EVIL 7 biohazard / BIOHAZARD 7 resident evil</Game>
+      <Game>Resident Evil 7: Biohazard</Game>
+      <Game>RE7</Game>
+      <Game>RE7: Biohazard</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/cursedtoast/re7/master/RE7.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast)</Description>
+    <Website>https://github.com/cursedtoast/re7/blob/master/README.md</Website>
   </AutoSplitter>
 </AutoSplitters>

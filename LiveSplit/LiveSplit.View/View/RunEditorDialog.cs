@@ -773,7 +773,7 @@ namespace LiveSplit.View
                 {
                     var selectedCell = selectedObject;
 
-                    if (Run.Count <= 1 || selectedCell.RowIndex >= Run.Count || selectedCell.RowIndex < 0)
+                    if (selectedCell.RowIndex >= Run.Count || selectedCell.RowIndex < 0)
                         continue;
 
                     if (selectedCell.ColumnIndex == SEGMENTNAMEINDEX)
