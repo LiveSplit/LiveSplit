@@ -862,14 +862,12 @@ namespace LiveSplit.View
                 var firstExists = firstSegment.SegmentHistory.TryGetValue(runIndex, out firstHistory);
                 var secondExists = secondSegment.SegmentHistory.TryGetValue(runIndex, out secondHistory);
 
-                if ((firstExists && firstHistory.RealTime == null
-                    || secondExists && secondHistory.RealTime == null)
-                    && !(firstHistory.RealTime == null && secondHistory.RealTime == null))
+                if (firstExists && secondExists
+                    && (firstHistory[TimingMethod.RealTime].HasValue != secondHistory[TimingMethod.RealTime].HasValue
+                    || firstHistory[TimingMethod.GameTime].HasValue != secondHistory[TimingMethod.GameTime].HasValue))
                 {
-                    if (firstExists)
-                        firstSegment.SegmentHistory.Remove(runIndex);
-                    if (secondExists)
-                        secondSegment.SegmentHistory.Remove(runIndex);
+                    firstSegment.SegmentHistory.Remove(runIndex);
+                    secondSegment.SegmentHistory.Remove(runIndex);
                 }
             }
 
