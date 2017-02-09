@@ -2316,6 +2316,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Serious Sam 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/lotsofs/livesplit-asl/master/serioussam2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By S.)</Description>
+    <Website>https://github.com/lotsofs/livesplit-asl/blob/master/README.md</Website>	  
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Hard Reset Redux</Game>
     </Games>
     <URLs>
