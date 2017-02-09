@@ -2316,17 +2316,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Serious Sam 2</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/lotsofs/livesplit-asl/master/serioussam2.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available. (By S.)</Description>
-    <Website>https://github.com/lotsofs/livesplit-asl/blob/master/README.md</Website>	  
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Hard Reset Redux</Game>
     </Games>
     <URLs>
@@ -2344,5 +2333,15 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. LiveSplit must be run as administrator. (By Souzooka)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>System Shock 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/IndelibleRaven/SystemShock2AS/blob/master/System%20Shock%202.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Start and Reset are available. Final split must be manual. LiveSplit must be run as administrator. (By Ellieceraptor)</Description>
   </AutoSplitter>
 </AutoSplitters>
