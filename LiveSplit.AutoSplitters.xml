@@ -2324,4 +2324,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>James Bond 007: Nightfire</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Souzooka/James-Bond-007-Nightfire-PC-Autosplitter/master/Nightfire.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By Souzooka)</Description>
+  </AutoSplitter>
 </AutoSplitters>
