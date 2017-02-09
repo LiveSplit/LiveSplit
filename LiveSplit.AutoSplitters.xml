@@ -2345,4 +2345,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. LiveSplit must be run as administrator. (By Souzooka)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>System Shock 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/IndelibleRaven/SystemShock2AS/master/System%20Shock%202.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Start and Reset are available. Final split must be manual. (By Ellieceraptor)</Description>
+  </AutoSplitter>
 </AutoSplitters>
