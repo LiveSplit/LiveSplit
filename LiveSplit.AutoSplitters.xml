@@ -2355,4 +2355,15 @@
     <Type>Script</Type>
     <Description>Auto Splitting, Start and Reset are available. Final split must be manual. (By Ellieceraptor)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+	<Game>The Saboteur</Game>
+	<Game>Saboteur</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Saboteur/LiveSplit.Saboteur.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load screen time removal is available. (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
