@@ -1753,12 +1753,14 @@
       <Game>The Talos Principle</Game>
       <Game>Talos Principle</Game>
       <Game>Talos</Game>
+      <Game>Road to Gehenna</Game>
+      <Game>Gehenna</Game>
     </Games>
     <URLs>
       <URL>https://gist.githubusercontent.com/jbzdarkid/611993edbfc9a774e95234166be52f2a/raw</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Auto Start/Reset are available. (By Darkid)</Description>
+    <Description>Auto splitting and Auto start/reset are available. (By Darkid)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2365,5 +2367,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load screen time removal is available. (By SuicideMachine)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Witness</Game>
+      <Game>Witness</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/jbzdarkid/0948c9318c6da6a7c459681f181c7ee9/raw</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting on panels and Auto start/reset are available. (By Darkid)</Description>
   </AutoSplitter>
 </AutoSplitters>
