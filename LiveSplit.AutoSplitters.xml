@@ -2075,6 +2075,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>The Binding of Isaac: Afterbirth+</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Hyphen-ated/autosplitters/master/isaac/isaac-afterbirthplus.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. Can split by character or by floor. (By Hyphen-ated)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Shade: Wrath of Angels</Game>
     </Games>
     <URLs>
