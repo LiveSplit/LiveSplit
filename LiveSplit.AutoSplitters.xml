@@ -203,6 +203,27 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sonic Adventure 2: Battle</Game>
+      <Game>Sonic Adventure 2 Battle</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.SA2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time and Auto Splitting are available. (By ShiningFace)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Magrunner: Dark Pulse</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.Magrunner.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By ShiningFace)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Alice: Madness Returns</Game>
       <Game>Alice Madness Returns</Game>
     </Games>
@@ -214,24 +235,13 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Sonic Adventure 2: Battle</Game>
-      <Game>Sonic Adventure 2 Battle</Game>
+      <Game>Left 4 Dead 2</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.SA2.asl</URL>
+      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.L4D2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Game Time are available. (By ShiningFace)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Magrunner: Dark Pulse</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.Magrunner.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available. (By ShiningFace)</Description>
+    <Description>Load Removal and Auto Splitting are available. (By bill_play3)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
