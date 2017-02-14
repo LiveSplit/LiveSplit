@@ -73,14 +73,14 @@ namespace LiveSplit.Model
         {
             FixWithMethod(run, TimingMethod.RealTime);
             FixWithMethod(run, TimingMethod.GameTime);
+            RemoveNullValues(run);
         }
 
         private static void FixWithMethod(IRun run, TimingMethod method)
         {
-            FixSegmentHistory(run, method);
             FixComparisonTimes(run, method);
+            FixSegmentHistory(run, method);
             RemoveDuplicates(run, method);
-            RemoveNullValues(run, method);
         }
 
         private static void FixSegmentHistory(IRun run, TimingMethod method)
@@ -109,6 +109,17 @@ namespace LiveSplit.Model
 
         private static void FixComparisonTimes(IRun run, TimingMethod method)
         {
+            //Remove negative Best Segment times
+            foreach (var curSplit in run)
+            {
+                if (curSplit.BestSegmentTime[method] < TimeSpan.Zero)
+                {
+                    var newTime = curSplit.BestSegmentTime;
+                    newTime[method] = null;
+                    curSplit.BestSegmentTime = newTime;
+                }
+            }
+
             foreach (var comparison in run.CustomComparisons)
             {
                 var previousTime = TimeSpan.Zero;
@@ -138,7 +149,7 @@ namespace LiveSplit.Model
             }
         }
 
-        private static void RemoveNullValues(IRun run, TimingMethod method)
+        private static void RemoveNullValues(IRun run)
         {
             var cache = new List<IIndexedTime>();
             var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
