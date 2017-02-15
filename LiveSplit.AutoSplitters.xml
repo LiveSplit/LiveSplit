@@ -2285,7 +2285,7 @@
       <URL>https://raw.githubusercontent.com/PayDay1/HWDoKSplitter/master/HWDoKSplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Only loading time removal is available for now. (By PayDay)</Description>
+    <Description>Auto-starting, auto-splitting and loading time removal is available. (By PayDay)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
