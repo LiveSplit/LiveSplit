@@ -1881,11 +1881,11 @@
   		<Game>Titan Souls</Game>
   	</Games>
   	<URLs>
-  		<URL>https://raw.githubusercontent.com/StarOfDoom/LiveSplitScripts/master/TitanSoulsAutosplitter.asl</URL>
+  		<URL>https://raw.githubusercontent.com/Starcrunsher/TitanSoulsAutoSplitter/master/TitanSoulsAutoSplitter.asl</URL>
   	</URLs>
   	<Type>Script</Type>
-  	<Description>AutoSplitting. (By Unknown)</Description>
-  	<Website>https://github.com/StarOfDoom/LiveSplitScripts</Website>
+  	<Description>Auto Splitting and Auto Start are available. (By Starcrunsher)</Description>
+  	<Website>https://github.com/Starcrunsher/TitanSoulsAutoSplitter</Website>
   </AutoSplitter>
   <AutoSplitter>
   	<Games>
