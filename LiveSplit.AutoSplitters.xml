@@ -2409,4 +2409,15 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By glasnonck)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>AAC</Game>
+      <Game>Assault Android Cactus</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/AACactus.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting on score screens and load removal are available. (By 0Seren)</Description>
+  </AutoSplitter>
 </AutoSplitters>
