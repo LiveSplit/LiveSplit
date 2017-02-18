@@ -2399,4 +2399,14 @@
     <Type>Script</Type>
     <Description>Auto splitting on panels and Auto start/reset are available. (By Darkid)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sanctum 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/Sanctum2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By glasnonck)</Description>
+  </AutoSplitter>
 </AutoSplitters>
