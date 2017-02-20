@@ -2420,4 +2420,15 @@
     <Type>Script</Type>
     <Description>Auto splitting on score screens and load removal are available. (By 0Seren)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Red Faction 2</Game>
+      <Game>Red Faction II</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Red%20Faction%202/RedFaction2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting and load removal are available. (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
