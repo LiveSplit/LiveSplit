@@ -196,10 +196,10 @@
       <Game>Borderlands: The Pre-Sequel</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Matt-Hurd/ASL/master/LiveSplit.BLTPS.asl</URL>
+      <URL>https://raw.githubusercontent.com/seanpr96/Autosplitters/master/LiveSplit.BLTPSIGT.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal and Auto Start/Reset are available. (By drMalcom)</Description>
+    <Description>Load Removal and Auto Start are available. (By drMalcom and seanpr)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
