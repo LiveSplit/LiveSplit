@@ -2431,4 +2431,14 @@
     <Type>Script</Type>
     <Description>Auto splitting and load removal are available. (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Shovel Knight</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Souzooka/Shovel-Knight-Autosplitter/master/ShovelKnight.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting is available. (By Souzooka)</Description>
+  </AutoSplitter>
 </AutoSplitters>
