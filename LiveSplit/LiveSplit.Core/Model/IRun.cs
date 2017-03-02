@@ -73,14 +73,14 @@ namespace LiveSplit.Model
         {
             FixWithMethod(run, TimingMethod.RealTime);
             FixWithMethod(run, TimingMethod.GameTime);
+            RemoveNullValues(run);
         }
 
         private static void FixWithMethod(IRun run, TimingMethod method)
         {
-            FixSegmentHistory(run, method);
             FixComparisonTimes(run, method);
+            FixSegmentHistory(run, method);
             RemoveDuplicates(run, method);
-            RemoveNullValues(run, method);
         }
 
         private static void FixSegmentHistory(IRun run, TimingMethod method)
@@ -109,6 +109,17 @@ namespace LiveSplit.Model
 
         private static void FixComparisonTimes(IRun run, TimingMethod method)
         {
+            //Remove negative Best Segment times
+            foreach (var curSplit in run)
+            {
+                if (curSplit.BestSegmentTime[method] < TimeSpan.Zero)
+                {
+                    var newTime = curSplit.BestSegmentTime;
+                    newTime[method] = null;
+                    curSplit.BestSegmentTime = newTime;
+                }
+            }
+
             foreach (var comparison in run.CustomComparisons)
             {
                 var previousTime = TimeSpan.Zero;
@@ -138,7 +149,7 @@ namespace LiveSplit.Model
             }
         }
 
-        private static void RemoveNullValues(IRun run, TimingMethod method)
+        private static void RemoveNullValues(IRun run)
         {
             var cache = new List<IIndexedTime>();
             var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
@@ -292,38 +303,46 @@ namespace LiveSplit.Model
 
             if (showVariables)
             {
-                var variables = run.Metadata.VariableValueNames.Where(x => !string.IsNullOrEmpty(x.Value)).OrderBy(x => x.Key);
+                IEnumerable<string> variables = run.Metadata.VariableValueNames.Keys;
+                if ((run.Metadata.GameAvailable || waitForOnlineData) && run.Metadata.Game != null)
+                    variables = run.Metadata.Game.FullGameVariables.Select(x => x.Name);
 
                 foreach (var variable in variables)
                 {
-                    var name = variable.Key.TrimEnd('?');
-                    var value = variable.Value;
-                    var valueLower = value.ToLowerInvariant();
+                    if (run.Metadata.VariableValueNames.ContainsKey(variable))
+                    {
+                        var name = variable.TrimEnd('?');
+                        var variableValue = run.Metadata.VariableValueNames[variable];
+                        var valueLower = variableValue.ToLowerInvariant();
 
-                    if (valueLower == "yes")
-                    {
-                        list.Add(name);
-                    }
-                    else if (valueLower == "no")
-                    {
-                        list.Add($"No { name }");
-                    }
-                    else
-                    {
-                        list.Add(value);
+                        if (valueLower == "yes")
+                        {
+                            list.Add(name);
+                        }
+                        else if (valueLower == "no")
+                        {
+                            list.Add($"No { name }");
+                        }
+                        else
+                        {
+                            list.Add(variableValue);
+                        }
                     }
                 }
             }
 
-            var doSimpleRegion = !run.Metadata.RegionAvailable && !waitForOnlineData;
-            if (showRegion && doSimpleRegion)
+            if (showRegion)
             {
-                if (!string.IsNullOrEmpty(run.Metadata.RegionName))
-                    list.Add(run.Metadata.RegionName);
-            }
-            else if (showRegion && run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game != null && run.Metadata.Game.Regions.Count > 1)
-            {
-                list.Add(run.Metadata.Region.Abbreviation);
+                var doSimpleRegion = !run.Metadata.RegionAvailable && !waitForOnlineData;
+                if (doSimpleRegion)
+                {
+                    if (!string.IsNullOrEmpty(run.Metadata.RegionName))
+                        list.Add(run.Metadata.RegionName);
+                }
+                else if (run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game != null && run.Metadata.Game.Regions.Count > 1)
+                {
+                    list.Add(run.Metadata.Region.Abbreviation);
+                }
             }
 
             if (showPlatform)

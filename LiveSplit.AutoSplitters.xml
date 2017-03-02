@@ -203,6 +203,27 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sonic Adventure 2: Battle</Game>
+      <Game>Sonic Adventure 2 Battle</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.SA2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time and Auto Splitting are available. (By ShiningFace)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Magrunner: Dark Pulse</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.Magrunner.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By ShiningFace)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Alice: Madness Returns</Game>
       <Game>Alice Madness Returns</Game>
     </Games>
@@ -214,24 +235,13 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Sonic Adventure 2: Battle</Game>
-      <Game>Sonic Adventure 2 Battle</Game>
+      <Game>Left 4 Dead 2</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.SA2.asl</URL>
+      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.L4D2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Game Time are available. (By ShiningFace)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Magrunner: Dark Pulse</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.Magrunner.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available. (By ShiningFace)</Description>
+    <Description>Load Removal and Auto Splitting are available. (By bill_play3)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1753,12 +1763,14 @@
       <Game>The Talos Principle</Game>
       <Game>Talos Principle</Game>
       <Game>Talos</Game>
+      <Game>Road to Gehenna</Game>
+      <Game>Gehenna</Game>
     </Games>
     <URLs>
       <URL>https://gist.githubusercontent.com/jbzdarkid/611993edbfc9a774e95234166be52f2a/raw</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Auto Start/Reset are available. (By Darkid)</Description>
+    <Description>Auto splitting and Auto start/reset are available. (By Darkid)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1869,11 +1881,11 @@
   		<Game>Titan Souls</Game>
   	</Games>
   	<URLs>
-  		<URL>https://raw.githubusercontent.com/StarOfDoom/LiveSplitScripts/master/TitanSoulsAutosplitter.asl</URL>
+  		<URL>https://raw.githubusercontent.com/Starcrunsher/TitanSoulsAutoSplitter/master/TitanSoulsAutoSplitter.asl</URL>
   	</URLs>
   	<Type>Script</Type>
-  	<Description>AutoSplitting. (By Unknown)</Description>
-  	<Website>https://github.com/StarOfDoom/LiveSplitScripts</Website>
+  	<Description>Auto Splitting and Auto Start are available. (By Starcrunsher)</Description>
+  	<Website>https://github.com/Starcrunsher/TitanSoulsAutoSplitter</Website>
   </AutoSplitter>
   <AutoSplitter>
   	<Games>
@@ -2073,6 +2085,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>The Binding of Isaac: Afterbirth+</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Hyphen-ated/autosplitters/master/isaac/isaac-afterbirthplus.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. Can split by character or by floor. (By Hyphen-ated)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Shade: Wrath of Angels</Game>
     </Games>
     <URLs>
@@ -2263,7 +2285,7 @@
       <URL>https://raw.githubusercontent.com/PayDay1/HWDoKSplitter/master/HWDoKSplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Only loading time removal is available for now. (By PayDay)</Description>
+    <Description>Auto-starting, auto-splitting and loading time removal is available. (By PayDay)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2316,6 +2338,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Serious Sam 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/lotsofs/livesplit-asl/master/serioussam2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By S.)</Description>
+    <Website>https://github.com/lotsofs/livesplit-asl/blob/master/README.md</Website>	  
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Hard Reset Redux</Game>
     </Games>
     <URLs>
@@ -2333,5 +2366,69 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. LiveSplit must be run as administrator. (By Souzooka)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>System Shock 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/IndelibleRaven/SystemShock2AS/master/System%20Shock%202.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Start and Reset are available. Final split must be manual. (By Ellieceraptor)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+	<Game>The Saboteur</Game>
+	<Game>Saboteur</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Saboteur/LiveSplit.Saboteur.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load screen time removal is available. (By SuicideMachine)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Witness</Game>
+      <Game>Witness</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/jbzdarkid/0948c9318c6da6a7c459681f181c7ee9/raw</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting on panels and Auto start/reset are available. (By Darkid)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sanctum 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/Sanctum2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By glasnonck)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>AAC</Game>
+      <Game>Assault Android Cactus</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/AACactus.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting on score screens and load removal are available. (By 0Seren)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Red Faction 2</Game>
+      <Game>Red Faction II</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Red%20Faction%202/RedFaction2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting and load removal are available. (By SuicideMachine)</Description>
   </AutoSplitter>
 </AutoSplitters>
