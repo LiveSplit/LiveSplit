@@ -2441,4 +2441,14 @@
     <Type>Script</Type>
     <Description>Auto splitting is available. (By Souzooka)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Commandos: Beyond the Call of Duty</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/xTin0x/Speedrunning/master/coman_mp.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Basic auto-splitter for ILs: starts the timer when the player assumes control of the game, splits when the mission is completed.</Description>
+  </AutoSplitter>
 </AutoSplitters>
