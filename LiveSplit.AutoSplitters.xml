@@ -2451,4 +2451,18 @@
     <Type>Script</Type>
     <Description>Basic auto-splitter for ILs: starts the timer when the player assumes control of the game, splits when the mission is completed.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Thief 3</Game>
+      <Game>Thief 3: Deadly Shadows</Game>
+      <Game>Thief: Deadly Shadows</Game>
+      <Game>Thief - Deadly Shadows</Game>
+      <Game>Thief Deadly Shadows</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.ThiefDS/raw/master/Components/LiveSplit.ThiefDS.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
