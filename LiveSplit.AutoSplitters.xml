@@ -248,10 +248,10 @@
       <Game>Super Meat Boy</Game>
     </Games>
     <URLs>
-      <URL>http://livesplit.org/update/Components/LiveSplit.SuperMeatBoy.dll</URL>
+      <URL>https://raw.githubusercontent.com/negative-seven/Livesplit_ASL/master/LiveSplit.SuperMeatBoy.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Auto Splitting is available. (By CryZe)</Description>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By -7)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
