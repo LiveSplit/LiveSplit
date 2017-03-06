@@ -54,6 +54,17 @@
     <Description>Load Removal and Auto Splitting are available. (By CryZe)</Description>
   </AutoSplitter>
   <AutoSplitter>
+      <Games>
+ 	<Game>Keep Talking and Nobody Explodes</Game>
+        <Game>KTaNE</Game>
+      </Games>
+      <URLs>
+	<URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.KTANE/master/Release/LiveSplit.KTANE.dll</URL>
+      </URLs>
+	  <Type>Component</Type>
+	  <Description>Auto Splitting is available. (By ShootMe)</Description>
+	</AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Command &amp; Conquer: Red Alert 2</Game>
       <Game>Red Alert 2</Game>
