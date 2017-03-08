@@ -2429,7 +2429,7 @@
       <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/AACactus.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto splitting on score screens and load removal are available. (By 0Seren)</Description>
+    <Description>Auto start, auto splitting on score screens, and load removal are available. (By glasnonck)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
