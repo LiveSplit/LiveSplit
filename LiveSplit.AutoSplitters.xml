@@ -2476,4 +2476,15 @@
     <Type>Component</Type>
     <Description>Load Removal is available (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Max Payne</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.MaxPayne.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By zoton2)</Description>
+    <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
