@@ -2012,14 +2012,13 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Fez</Game>
+      <Game>FEZ</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.Fez/master/Components/LiveSplit.Fez.dll</URL>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.FEZ.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
-    <Website>https://github.com/Spiraster/LiveSplit.Fez/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
