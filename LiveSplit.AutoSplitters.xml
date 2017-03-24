@@ -623,6 +623,38 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Wolfenstein: The New Order</Game>
+      <Game>Wolfenstein The New Order</Game>
+      <Game>Wolfenstein: TNO</Game>
+      <Game>Wolfenstein TNO</Game>
+      <Game>The New Order</Game>
+      <Game>TNO</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/wolf_new_order.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By DrTChops)</Description>
+    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Wolfenstein: The Old Blood</Game>
+      <Game>Wolfenstein The Old Blood</Game>
+      <Game>Wolfenstein: TOB</Game>
+      <Game>Wolfenstein TOB</Game>
+      <Game>The Old Blood</Game>
+      <Game>TOB</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/wolf_old_blood.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By DrTChops)</Description>
+    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Dishonored 2</Game>
     </Games>
     <URLs>
