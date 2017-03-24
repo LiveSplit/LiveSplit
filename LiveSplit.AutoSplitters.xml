@@ -1205,9 +1205,10 @@
     </Games>
     <URLs>
       <URL>http://speedsouls.com/jiiks/livesplit/ds3/update/Components/Ds3Igt.dll</URL>
+      <URL>https://dl.dropboxusercontent.com/s/2q44cwg2azedbpi/DarkSoulsIII_AutoSplitter1.0.asl</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Game Time is available. (By Jiiks)</Description>
+    <Description>Game Time and Auto Splitting are available. (By Jiiks and B3LYP)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
