@@ -2518,4 +2518,14 @@
     <Description>Load Removal is available. (By zoton2)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Call of Duty: Modern Warfare 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Jukspa/LoadRemoval/master/mw3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Jukspa)</Description>
+  </AutoSplitter>
 </AutoSplitters>
