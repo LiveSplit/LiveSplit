@@ -1866,47 +1866,47 @@
     <Description>Load Removal is available. (By TheLonerD)</Description>
   </AutoSplitter>
   <AutoSplitter>
-  	<Games>
-  		<Game>The Legend of Zelda: Link's Awakening DX</Game>
-  		<Game>The Legend of Zelda: Link's Awakening</Game>
-  		<Game>TLoZ: Link's Awakening DX</Game>
-  		<Game>TLoZ: Link's Awakening</Game>
-  		<Game>Link's Awakening DX</Game>
-  		<Game>Link's Awakening</Game>
-  		<Game>LADX Memes</Game>
-  	</Games>
-  	<URLs>
-  		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.LADX/master/Components/LiveSplit.LADX.dll</URL>
-  	</URLs>
-  	<Type>Component</Type>
-  	<Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
-  	<Website>https://github.com/Spiraster/LiveSplit.LADX/blob/master/README.md</Website>
+    <Games>
+      <Game>The Legend of Zelda: Link's Awakening DX</Game>
+      <Game>The Legend of Zelda: Link's Awakening</Game>
+      <Game>TLoZ: Link's Awakening DX</Game>
+      <Game>TLoZ: Link's Awakening</Game>
+      <Game>Link's Awakening DX</Game>
+      <Game>Link's Awakening</Game>
+      <Game>LADX Memes</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.LADX/LiveSplit.LADX.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.LADX</Website>
   </AutoSplitter>
   <AutoSplitter>
-  	<Games>
-  		<Game>The Legend of Zelda: Oracle of Ages</Game>
-  		<Game>TLoZ: Oracle of Ages</Game>
-  		<Game>Oracle of Ages</Game>
-  	</Games>
-  	<URLs>
-  		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.OoA/master/Components/LiveSplit.OoA.dll</URL>
-  	</URLs>
-  	<Type>Component</Type>
-  	<Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
-  	<Website>https://github.com/Spiraster/LiveSplit.OoA/blob/master/README.md</Website>
+    <Games>
+      <Game>The Legend of Zelda: Oracle of Ages</Game>
+      <Game>TLoZ: Oracle of Ages</Game>
+      <Game>Oracle of Ages</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/Oracles/LiveSplit.OoA.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/ASLScripts/tree/master/Oracles</Website>
   </AutoSplitter>
   <AutoSplitter>
-  	<Games>
-  		<Game>The Legend of Zelda: Oracle of Seasons</Game>
-  		<Game>TLoZ: Oracle of Seasons</Game>
-  		<Game>Oracle of Seasons</Game>
-  	</Games>
-  	<URLs>
-  		<URL>https://raw.githubusercontent.com/Spiraster/LiveSplit.OoS/master/Components/LiveSplit.OoS.dll</URL>
-  	</URLs>
-  	<Type>Component</Type>
-  	<Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
-  	<Website>https://github.com/Spiraster/LiveSplit.OoS/blob/master/README.md</Website>
+    <Games>
+      <Game>The Legend of Zelda: Oracle of Seasons</Game>
+      <Game>TLoZ: Oracle of Seasons</Game>
+      <Game>Oracle of Seasons</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/Oracles/LiveSplit.OoS.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/ASLScripts/tree/master/Oracles</Website>
   </AutoSplitter>
   <AutoSplitter>
   	<Games>
@@ -2047,10 +2047,11 @@
       <Game>FEZ</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.FEZ.asl</URL>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.FEZ/LiveSplit.FEZ.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
+    <Description>Auto Splitting, Auto Start/Reset, and Game Time are available. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.FEZ</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
