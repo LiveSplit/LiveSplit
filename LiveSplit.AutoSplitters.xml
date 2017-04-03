@@ -2529,4 +2529,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Jukspa)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>MisaMino</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Ekelbatzen/LiveSplit.Scripts/master/MisaMino.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto start/split/reset available. (By Ekelbatzen)</Description>
+  </AutoSplitter>
 </AutoSplitters>
