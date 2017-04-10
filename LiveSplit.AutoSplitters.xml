@@ -2325,7 +2325,7 @@
 	  <Game>DoK</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/PayDay1/HWDoKSplitter/master/HWDoKSplitter.asl</URL>
+      <URL>https://raw.githubusercontent.com/PayDay1/AutoSplitters/master/HWDoKSplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto-starting, auto-splitting and loading time removal is available. (By PayDay)</Description>
@@ -2538,5 +2538,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto start/split/reset available. (By Ekelbatzen)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Mass Effect 2</Game>
+      <Game>ME2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PayDay1/AutoSplitters/master/ME2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load time removal available. (By PayDay)</Description>
   </AutoSplitter>
 </AutoSplitters>
