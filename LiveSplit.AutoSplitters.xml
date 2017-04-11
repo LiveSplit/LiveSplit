@@ -2550,4 +2550,14 @@
     <Type>Script</Type>
     <Description>Load time removal available. (By PayDay)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>HackyZack</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Hyphen-ated/autosplitters/master/hackyzack/hackyzack.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Hyphen-ated)</Description>
+  </AutoSplitter>
 </AutoSplitters>
