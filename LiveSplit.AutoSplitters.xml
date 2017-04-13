@@ -2560,4 +2560,15 @@
     <Type>Script</Type>
     <Description>Auto Splitting is available. (By Hyphen-ated)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Yooka-Laylee</Game>
+      <Game>Yooka Laylee</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.YookaLaylee.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover. In Beta</Description>
+  </AutoSplitter>
 </AutoSplitters>
