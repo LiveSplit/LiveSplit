@@ -2583,4 +2583,14 @@
     <Type>Script</Type>
     <Description>Load remover. In Beta</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Snake Pass</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.SnakePass.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game timer. In Beta</Description>
+  </AutoSplitter>
 </AutoSplitters>
