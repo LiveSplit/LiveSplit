@@ -2593,4 +2593,15 @@
     <Type>Script</Type>
     <Description>In-game timer. In Beta</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Path of Exile</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/brandondong/POE-LiveSplit-Component/master/POELiveSplitComponent/dll/POELiveSplitComponent.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Time Removal and Auto Splitting are available. (By Brandon)</Description>
+    <Website>https://github.com/brandondong/POE-LiveSplit-Component/blob/master/README.md</Website>
+  </AutoSplitter>
 </AutoSplitters>
