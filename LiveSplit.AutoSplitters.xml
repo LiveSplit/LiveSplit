@@ -1793,6 +1793,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Outlast 2</Game>
+      <Game>OL2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Timbouton/LiveSplit/Master/Outlast2/OL2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Timbouton and StreamingFire)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Mirror's Edge: Catalyst</Game>
       <Game>Mirror's Edge Catalyst</Game>
       <Game>ME Catalyst</Game>
