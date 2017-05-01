@@ -2598,7 +2598,7 @@
       <Game>Path of Exile</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/brandondong/POE-LiveSplit-Component/master/POELiveSplitComponent/dll/POELiveSplitComponent.dll</URL>
+      <URL>https://raw.githubusercontent.com/brandondong/POE-LiveSplit-Component/master/POELiveSplitComponent/Update/Components/POELiveSplitComponent.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Time Removal and Auto Splitting are available. (By Brandon)</Description>
