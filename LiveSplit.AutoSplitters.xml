@@ -2616,4 +2616,14 @@
     <Description>Load Time Removal and Auto Splitting are available. (By Brandon)</Description>
     <Website>https://github.com/brandondong/POE-LiveSplit-Component/blob/master/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>INK</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.INK.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start, split, and reset. Works for all 75 levels. IGT soon. (By ROMaster2)</Description>
+  </AutoSplitter>
 </AutoSplitters>
