@@ -1,6 +1,11 @@
 ﻿using LiveSplit.Model.Input;
 using System;
 using System.Linq;
+using System.IO;
+using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace LiveSplit.Model
 {
@@ -18,6 +23,71 @@ namespace LiveSplit.Model
                 value?.RegisterTimerModel(this);
             }
         }
+        public Boolean firstSplit = true;
+        public void WriteCurrentSplitInfo()
+        {
+
+            String currentsplitdirectory = Application.StartupPath + @"\CurrentSplit";
+            if (!Directory.Exists(currentsplitdirectory))
+            {
+                Directory.CreateDirectory(currentsplitdirectory);
+            }
+            if (CurrentState.CurrentPhase == TimerPhase.Running)
+            {
+                String bestSegmentTime = CurrentState.CurrentSplit.BestSegmentTime.RealTime.ToString();
+                String pbSplitTime = CurrentState.CurrentSplit.PersonalBestSplitTime.ToString();
+                String pbSegmentTime = CurrentState.CurrentSplit.SegmentHistory.Last().Value.ToString();
+                if (bestSegmentTime.Substring(0, 3).CompareTo("00:") == 0)
+                {
+
+                    bestSegmentTime = bestSegmentTime.Remove(11);
+                    bestSegmentTime = bestSegmentTime.Remove(0, 3);
+
+                }
+                else
+                {
+                    bestSegmentTime = bestSegmentTime.Remove(11);
+                }
+                if (pbSplitTime.Substring(0, 3).CompareTo("00:") == 0)
+                {
+                    pbSplitTime = pbSplitTime.Remove(11);
+                    pbSplitTime = pbSplitTime.Remove(0, 3);
+
+                }
+                else
+                {
+                    pbSplitTime = pbSplitTime.Remove(11);
+                }
+                if (pbSegmentTime.Substring(0, 3).CompareTo("00:") == 0)
+                {
+                    pbSegmentTime = pbSegmentTime.Remove(11);
+                    pbSegmentTime = pbSegmentTime.Remove(0, 3);
+                }
+                else
+                {
+                    pbSegmentTime = pbSegmentTime.Remove(11);
+                }
+                if (firstSplit)
+                {
+                    DateTime startedAT = TimeZoneInfo.ConvertTime(CurrentState.AttemptStarted.Time, TimeZoneInfo.Utc, TimeZoneInfo.Local);
+                    File.WriteAllText(currentsplitdirectory + @"\AttemptStartedAt.txt", startedAT.TimeOfDay.ToString().Remove(8));
+                    firstSplit = false;
+
+                }
+                File.WriteAllText(currentsplitdirectory + @"\TimingMethod.txt", CurrentState.CurrentTimingMethod.ToString());
+                File.WriteAllText(currentsplitdirectory + @"\Name.txt", CurrentState.CurrentSplit.Name.ToString());
+                File.WriteAllText(currentsplitdirectory + @"\BestSegmentTime.txt", bestSegmentTime);
+                File.WriteAllText(currentsplitdirectory + @"\SplitTime.txt", pbSplitTime);
+                File.WriteAllText(currentsplitdirectory + @"\CurrentComparison.txt", CurrentState.CurrentComparison.ToString());
+                File.WriteAllText(currentsplitdirectory + @"\PbSegmentTime.txt", pbSegmentTime.ToString());
+            }
+            else
+            {
+
+                DateTime endedAT = TimeZoneInfo.ConvertTime(CurrentState.AttemptEnded.Time, TimeZoneInfo.Utc, TimeZoneInfo.Local);
+                File.WriteAllText(currentsplitdirectory + @"\AttemptEndedAt.txt", endedAT.TimeOfDay.ToString().Remove(8));
+            }
+        }
 
         private LiveSplitState _CurrentState;
 
@@ -32,7 +102,28 @@ namespace LiveSplit.Model
         public event EventHandler OnScrollDown;
         public event EventHandler OnSwitchComparisonPrevious;
         public event EventHandler OnSwitchComparisonNext;
+        public BackgroundWorker worker = new BackgroundWorker();
+        public void StartBackgroundWorker()
+        {
+            if (worker.IsBusy)
+            {
+                worker.CancelAsync();
+            }
+            //in case people spam too fast undo and the program can't handle it
+            if (!worker.IsBusy)
+            {
 
+
+                worker.DoWork += backgroundWorker1_DoWork;
+                worker.WorkerSupportsCancellation = true;
+                worker.RunWorkerAsync();
+            }
+
+        }
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            WriteCurrentSplitInfo();
+        }
         public void Start()
         {
             if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
@@ -45,8 +136,9 @@ namespace LiveSplit.Model
                 CurrentState.IsGameTimeInitialized = false;
                 CurrentState.Run.AttemptCount++;
                 CurrentState.Run.HasChanged = true;
+                OnStart?.Invoke(this, null);
+                StartBackgroundWorker();
 
-                OnStart?.Invoke(this,null);
             }
         }
 
@@ -62,10 +154,12 @@ namespace LiveSplit.Model
                 {
                     CurrentState.CurrentPhase = TimerPhase.Ended;
                     CurrentState.AttemptEnded = TimeStamp.CurrentDateTime;
+
                 }
                 CurrentState.Run.HasChanged = true;
 
                 OnSplit?.Invoke(this, null);
+                StartBackgroundWorker();
             }
         }
 
@@ -80,6 +174,7 @@ namespace LiveSplit.Model
                 CurrentState.Run.HasChanged = true;
 
                 OnSkipSplit?.Invoke(this, null);
+                StartBackgroundWorker();
             }
         }
 
@@ -95,6 +190,7 @@ namespace LiveSplit.Model
                 CurrentState.Run.HasChanged = true;
 
                 OnUndoSplit?.Invoke(this, null);
+                StartBackgroundWorker();
             }
         }
 
@@ -137,7 +233,10 @@ namespace LiveSplit.Model
             foreach (var split in CurrentState.Run)
             {
                 split.SplitTime = default(Time);
+
             }
+
+            firstSplit = true;
 
             OnReset?.Invoke(this, oldPhase);
         }
@@ -157,14 +256,14 @@ namespace LiveSplit.Model
                 OnResume?.Invoke(this, null);
             }
             else if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
-                 Start(); //fuck abahbob                
+                Start(); //fuck abahbob                
         }
 
         public void SwitchComparisonNext()
         {
             var comparisons = CurrentState.Run.Comparisons.ToList();
-            CurrentState.CurrentComparison = 
-                comparisons.ElementAt((comparisons.IndexOf(CurrentState.CurrentComparison) + 1) 
+            CurrentState.CurrentComparison =
+                comparisons.ElementAt((comparisons.IndexOf(CurrentState.CurrentComparison) + 1)
                 % (comparisons.Count));
             OnSwitchComparisonNext?.Invoke(null, null);
         }
@@ -172,7 +271,7 @@ namespace LiveSplit.Model
         public void SwitchComparisonPrevious()
         {
             var comparisons = CurrentState.Run.Comparisons.ToList();
-            CurrentState.CurrentComparison = 
+            CurrentState.CurrentComparison =
                 comparisons.ElementAt((comparisons.IndexOf(CurrentState.CurrentComparison) - 1 + comparisons.Count())
                 % (comparisons.Count));
             OnSwitchComparisonPrevious?.Invoke(null, null);
@@ -196,6 +295,7 @@ namespace LiveSplit.Model
             var newIndex = Math.Max(0, maxIndex + 1);
             var newAttempt = new Attempt(newIndex, time, CurrentState.AttemptStarted, CurrentState.AttemptEnded);
             CurrentState.Run.AttemptHistory.Add(newAttempt);
+            firstSplit = true;
         }
 
         public void UpdateBestSegments()
