@@ -2626,4 +2626,14 @@
     <Type>Script</Type>
     <Description>Auto-start, split, and reset. Works for all 75 levels. IGT soon. (By ROMaster2)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Prey (2017)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/derwangler/prey-loadremover/master/prey-loadremover.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By derwangler)</Description>
+  </AutoSplitter>
 </AutoSplitters>
