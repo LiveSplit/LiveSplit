@@ -2646,4 +2646,16 @@
     <Type>Script</Type>
     <Description>Load remover and auto splitting options are available. (By NeKz)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Legend of Zelda: A Link to the Past</Game>
+      <Game>A Link to the Past</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.ALttP/LiveSplit.ALttP.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.ALttP</Website>
+  </AutoSplitter>
 </AutoSplitters>
