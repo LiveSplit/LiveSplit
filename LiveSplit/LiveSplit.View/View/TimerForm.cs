@@ -55,6 +55,7 @@ namespace LiveSplit.View
             set { CurrentState.Layout = value; }
         }
         protected float OldSize { get; set; }
+        protected int RefreshesRemaining { get; set; }
         public ISettings Settings { get; set; }
         protected Invalidator Invalidator { get; set; }
         protected bool InTimerOnlyMode { get; set; }
@@ -510,7 +511,7 @@ namespace LiveSplit.View
         void TimerForm_SizeChanged(object sender, EventArgs e)
         {
             CreateBakedBackground();
-            if (OldSize > 0)
+            if (RefreshesRemaining <= 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
                 {
@@ -1048,7 +1049,7 @@ namespace LiveSplit.View
                         if (DontRedraw)
                             return;
 
-                        if (OldSize <= 0 || InvalidationRequired)
+                        if (RefreshesRemaining > 0 || InvalidationRequired)
                         {
                             InvalidateForm();
                             if (InvalidationRequired)
@@ -1100,7 +1101,7 @@ namespace LiveSplit.View
         private void FixSize()
         {
             var currentSize = ComponentRenderer.OverallSize;
-            if (OldSize > 0)
+            if (RefreshesRemaining <= 0)
             {
                 if (OldSize != currentSize)
                 {
@@ -1120,18 +1121,24 @@ namespace LiveSplit.View
 
         private void KeepLayoutSize()
         {
-            if (OldSize <= 0)
+            if (RefreshesRemaining > 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
                     Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
                 else
                     Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
 
-                if (OldSize == 0)
-                    OldSize = ComponentRenderer.OverallSize;
+                if (OldSize != ComponentRenderer.OverallSize)
+                    UpdateRefreshesRemaining();
                 else
-                    OldSize++;
+                    RefreshesRemaining--;
+                OldSize = ComponentRenderer.OverallSize;
             }
+        }
+
+        private void UpdateRefreshesRemaining()
+        {
+            RefreshesRemaining = 5;
         }
 
         protected void InvalidateForm()
@@ -1494,6 +1501,7 @@ namespace LiveSplit.View
             SwitchComparison(CurrentState.CurrentComparison);
             CreateAutoSplitter();
             CurrentState.FixTimingMethodFromRuleset();
+            UpdateRefreshesRemaining();
         }
 
         private void CreateAutoSplitter()
@@ -2035,7 +2043,7 @@ namespace LiveSplit.View
                 Layout = layout;
                 ComponentRenderer.VisibleComponents = Layout.Components;
                 CurrentState.LayoutSettings = layout.Settings;
-                OldSize = -5;
+                UpdateRefreshesRemaining();
                 MinimumSize = new Size(0, 0);
                 if (Layout.Mode == LayoutMode.Vertical)
                 {
