@@ -171,8 +171,8 @@ namespace LiveSplit.View
                     var lastSplitFile = Settings.RecentSplits.Last();
                     if (!string.IsNullOrEmpty(lastSplitFile.Path))
                     {
-                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod);
                         CurrentState.CurrentTimingMethod = lastSplitFile.LastTimingMethod;
+                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod);
                     }
                 }
             }
@@ -217,7 +217,6 @@ namespace LiveSplit.View
 
             CurrentState.LayoutSettings = Layout.Settings;
             CreateAutoSplitter();
-            CurrentState.FixTimingMethodFromRuleset();
 
             SwitchComparisonGenerators();
             SwitchComparison(Settings.LastComparison);

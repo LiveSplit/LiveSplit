@@ -166,22 +166,6 @@ namespace LiveSplit.Model
             }
         }
 
-        public void FixTimingMethodFromRuleset()
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    if (Run.Metadata.Game?.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTime)
-                        CurrentTimingMethod = TimingMethod.RealTime;
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                }
-            });
-        }
-
         public void CallRunManuallyModified() => RunManuallyModified?.Invoke(this, null);
 
         public void CallComparisonRenamed(EventArgs e) => ComparisonRenamed?.Invoke(this, e);
