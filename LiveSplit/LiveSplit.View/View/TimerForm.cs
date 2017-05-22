@@ -1500,7 +1500,6 @@ namespace LiveSplit.View
             RegenerateComparisons();
             SwitchComparison(CurrentState.CurrentComparison);
             CreateAutoSplitter();
-            CurrentState.FixTimingMethodFromRuleset();
             UpdateRefreshesRemaining();
         }
 
