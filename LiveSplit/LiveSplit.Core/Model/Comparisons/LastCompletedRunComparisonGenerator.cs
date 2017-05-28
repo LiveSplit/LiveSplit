@@ -8,7 +8,7 @@ namespace LiveSplit.Model.Comparisons
     {
         public IRun Run { get; set; }
         public const string ComparisonName = "Last Completed Run";
-        public const string ShortComparisonName = "Last Completed Run";
+        public const string ShortComparisonName = "Last Run";
         public string Name => ComparisonName;
 
         public LastCompletedRunComparisonGenerator(IRun run)
@@ -19,16 +19,15 @@ namespace LiveSplit.Model.Comparisons
         public void Generate(TimingMethod method)
         {
             Attempt? mostRecentCompleted = null;
-            foreach (var attempt in Run.AttemptHistory)
+            foreach (var attempt in Run.AttemptHistory.Reverse())
             {
-                if ( 
-                    attempt.Time[method] != null &&
-                    ( mostRecentCompleted == null || ( mostRecentCompleted.Value.Ended - attempt.Ended ).Value.Seconds < 0 )
-                    )
+                if (attempt.Time[method] != null)
                 {
                     mostRecentCompleted = attempt;
+                    break;
                 }
             }
+
             TimeSpan? totalTime = TimeSpan.Zero;
             for (var ind = 0; ind < Run.Count; ind++)
             {
@@ -51,7 +50,7 @@ namespace LiveSplit.Model.Comparisons
 
         public void Generate(ISettings settings)
         {
-             Generate(TimingMethod.RealTime);
+            Generate(TimingMethod.RealTime);
             Generate(TimingMethod.GameTime);
         }
     }
