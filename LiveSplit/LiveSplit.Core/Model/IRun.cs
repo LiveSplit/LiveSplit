@@ -78,8 +78,8 @@ namespace LiveSplit.Model
 
         private static void FixWithMethod(IRun run, TimingMethod method)
         {
-            FixComparisonTimes(run, method);
             FixSegmentHistory(run, method);
+            FixComparisonTimes(run, method);
             RemoveDuplicates(run, method);
         }
 

@@ -812,8 +812,8 @@ namespace LiveSplit.View
                             time[SelectedMethod] = null;
                             Run[selectedCell.RowIndex].Comparisons[selectedCell.OwningColumn.Name] = time;
                         }
-                        TimesModified();
                         Fix();
+                        TimesModified();
                     }
                 }
                 runGrid.Invalidate();
