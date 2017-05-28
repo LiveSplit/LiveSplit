@@ -31,11 +31,12 @@ namespace LiveSplit.Model.Comparisons
             TimeSpan? totalTime = TimeSpan.Zero;
             for (var ind = 0; ind < Run.Count; ind++)
             {
-                TimeSpan? segmentTime;
-                if (mostRecentFinished != null)
+                TimeSpan? segmentTime = null;
+                if (mostRecentFinished != null && Run[ind].SegmentHistory.ContainsKey(mostRecentFinished.Value.Index))
                     segmentTime = Run[ind].SegmentHistory[mostRecentFinished.Value.Index][method];
                 else
-                    segmentTime = null;
+                    totalTime = null;
+
                 var time = new Time(Run[ind].Comparisons[Name]);
                 if (totalTime != null && segmentTime != null)
                 {
@@ -44,6 +45,7 @@ namespace LiveSplit.Model.Comparisons
                 }
                 else
                     time[method] = null;
+
                 Run[ind].Comparisons[Name] = time;
             }
         }
