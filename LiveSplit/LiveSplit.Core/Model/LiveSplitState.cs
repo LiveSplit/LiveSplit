@@ -19,8 +19,9 @@ namespace LiveSplit.Model
         public AtomicDateTime AttemptStarted { get; set; }
         public AtomicDateTime AttemptEnded { get; set; }
 
+        public TimeStamp AdjustedStartTime { get; set; }
         public TimeStamp StartTime { get; set; }
-        public TimeSpan PauseTime { get; set; }
+        public TimeSpan TimePausedAt { get; set; }
         public TimeSpan? GameTimePauseTime { get; set; }
         public TimerPhase CurrentPhase { get; set; }
         public string CurrentComparison { get; set; }
@@ -83,9 +84,9 @@ namespace LiveSplit.Model
                 if (CurrentPhase == TimerPhase.NotRunning)
                     curTime.RealTime = TimeSpan.Zero;
                 else if (CurrentPhase == TimerPhase.Running)
-                    curTime.RealTime = TimeStamp.Now - StartTime;
+                    curTime.RealTime = TimeStamp.Now - AdjustedStartTime;
                 else if (CurrentPhase == TimerPhase.Paused)
-                    curTime.RealTime = PauseTime;
+                    curTime.RealTime = TimePausedAt;
                 else
                     curTime.RealTime = Run.Last().SplitTime.RealTime;
 
@@ -97,6 +98,16 @@ namespace LiveSplit.Model
                         : curTime.RealTime - (IsGameTimeInitialized ? (TimeSpan?)LoadingTimes : null);
 
                 return curTime;
+            }
+        }
+
+        public TimeSpan? PauseTime
+        {
+            get
+            {
+                if (CurrentPhase != TimerPhase.NotRunning && StartTime != AdjustedStartTime)
+                    return AdjustedStartTime - StartTime;
+                return null;
             }
         }
 
@@ -112,10 +123,9 @@ namespace LiveSplit.Model
             Layout = layout;
             Settings = settings;
             LayoutSettings = layoutSettings;
-            StartTime = TimeStamp.Now;
+            AdjustedStartTime = StartTime = TimeStamp.Now;
             CurrentPhase = TimerPhase.NotRunning;
             CurrentSplitIndex = -1;
-            //DrawLock = new ReaderWriterLockSlim();
         }
 
         public object Clone()
@@ -127,8 +137,9 @@ namespace LiveSplit.Model
                 Layout = Layout.Clone() as ILayout,
                 Settings = Settings.Clone() as ISettings,
                 LayoutSettings = LayoutSettings.Clone() as LayoutSettings,
+                AdjustedStartTime = AdjustedStartTime,
                 StartTime = StartTime,
-                PauseTime = PauseTime,
+                TimePausedAt = TimePausedAt,
                 GameTimePauseTime = GameTimePauseTime,
                 isGameTimePaused = isGameTimePaused,
                 LoadingTimes = LoadingTimes,

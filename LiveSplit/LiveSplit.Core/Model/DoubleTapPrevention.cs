@@ -65,9 +65,9 @@ namespace LiveSplit.Model
             if (!CurrentState.Settings.DoubleTapPrevention
                 || (CurrentState.CurrentPhase == TimerPhase.Running
                 && (lastSplit == null || TimeStamp.Now - CurrentState.StartTime > lastSplit + new TimeSpan(0, 0, 0, 0, 300))
-                && CurrentState.CurrentTime.RealTime > CurrentState.PauseTime + new TimeSpan(0, 0, 0, 0, 300))
+                && CurrentState.CurrentTime.RealTime > CurrentState.TimePausedAt + new TimeSpan(0, 0, 0, 0, 300))
                 || (CurrentState.CurrentPhase == TimerPhase.Paused
-                && TimeStamp.Now - CurrentState.StartTime > CurrentState.PauseTime + new TimeSpan(0, 0, 0, 0, 300))
+                && TimeStamp.Now - CurrentState.StartTime > CurrentState.TimePausedAt + new TimeSpan(0, 0, 0, 0, 300))
                 || (CurrentState.CurrentPhase == TimerPhase.Ended
                 && TimeStamp.Now - CurrentState.StartTime > CurrentState.CurrentTime.RealTime + new TimeSpan(0, 0, 0, 0, 300))
                 || (CurrentState.CurrentPhase == TimerPhase.NotRunning

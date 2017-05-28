@@ -40,8 +40,8 @@ namespace LiveSplit.Model
                 CurrentState.CurrentPhase = TimerPhase.Running;
                 CurrentState.CurrentSplitIndex = 0;
                 CurrentState.AttemptStarted = TimeStamp.CurrentDateTime;
-                CurrentState.StartTime = TimeStamp.Now - CurrentState.Run.Offset;
-                CurrentState.PauseTime = CurrentState.Run.Offset;
+                CurrentState.AdjustedStartTime = CurrentState.StartTime = TimeStamp.Now - CurrentState.Run.Offset;
+                CurrentState.TimePausedAt = CurrentState.Run.Offset;
                 CurrentState.IsGameTimeInitialized = false;
                 CurrentState.Run.AttemptCount++;
                 CurrentState.Run.HasChanged = true;
@@ -110,7 +110,6 @@ namespace LiveSplit.Model
                 if (CurrentState.CurrentPhase != TimerPhase.Ended)
                     CurrentState.AttemptEnded = TimeStamp.CurrentDateTime;
                 CurrentState.IsGameTimePaused = false;
-                CurrentState.StartTime = TimeStamp.Now;
                 CurrentState.LoadingTimes = TimeSpan.Zero;
 
                 if (updateSplits)
@@ -146,13 +145,13 @@ namespace LiveSplit.Model
         {
             if (CurrentState.CurrentPhase == TimerPhase.Running)
             {
-                CurrentState.PauseTime = CurrentState.CurrentTime.RealTime.Value;
+                CurrentState.TimePausedAt = CurrentState.CurrentTime.RealTime.Value;
                 CurrentState.CurrentPhase = TimerPhase.Paused;
                 OnPause?.Invoke(this, null);
             }
             else if (CurrentState.CurrentPhase == TimerPhase.Paused)
             {
-                CurrentState.StartTime = TimeStamp.Now - CurrentState.PauseTime;
+                CurrentState.AdjustedStartTime = TimeStamp.Now - CurrentState.TimePausedAt;
                 CurrentState.CurrentPhase = TimerPhase.Running;
                 OnResume?.Invoke(this, null);
             }
@@ -191,10 +190,15 @@ namespace LiveSplit.Model
         public void UpdateAttemptHistory()
         {
             Time time = new Time();
-            time = (CurrentState.CurrentPhase == TimerPhase.Ended) ? CurrentState.CurrentTime : default(Time);
+            TimeSpan? pauseTime = null;
+            if (CurrentState.CurrentPhase == TimerPhase.Ended)
+            {
+                time = CurrentState.CurrentTime;
+                pauseTime = CurrentState.PauseTime;
+            }
             var maxIndex = CurrentState.Run.AttemptHistory.DefaultIfEmpty().Max(x => x.Index);
             var newIndex = Math.Max(0, maxIndex + 1);
-            var newAttempt = new Attempt(newIndex, time, CurrentState.AttemptStarted, CurrentState.AttemptEnded);
+            var newAttempt = new Attempt(newIndex, time, CurrentState.AttemptStarted, CurrentState.AttemptEnded, pauseTime);
             CurrentState.Run.AttemptHistory.Add(newAttempt);
         }
 

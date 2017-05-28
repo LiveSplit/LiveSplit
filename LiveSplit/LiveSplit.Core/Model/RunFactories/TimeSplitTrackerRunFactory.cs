@@ -134,7 +134,7 @@ namespace LiveSplit.Model.RunFactories
                                 ended = new AtomicDateTime(finalDate.Value, false);
                         }
 
-                        run.AttemptHistory.Add(new Attempt(attemptId, finalTime, new AtomicDateTime(started, false), ended));
+                        run.AttemptHistory.Add(new Attempt(attemptId, finalTime, new AtomicDateTime(started, false), ended, null));
 
                         var i = 0;
                         TimeSpan? lastSplit = TimeSpan.Zero;

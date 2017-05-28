@@ -57,7 +57,7 @@ namespace LiveSplit.Model.RunFactories
                 var bestSplitTime = parseTime(segment.best_time as string);
                 if (bestSplitTime.RealTime != null)
                 {
-                    run.AttemptHistory.Add(new Attempt(attemptHistoryIndex, default(Time), null, null));
+                    run.AttemptHistory.Add(new Attempt(attemptHistoryIndex, default(Time), null, null, null));
 
                     //Insert a new run that skips to the current split
                     foreach (var alreadyInsertedSegment in run)

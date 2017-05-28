@@ -36,7 +36,7 @@ namespace LiveSplit.Model.RunFactories
                 foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
                 {
                     var indexedTime = ParseXml(runHistoryNode as XmlElement);
-                    var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null);
+                    var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null, null);
                     run.AttemptHistory.Add(attempt);
                 }
             }
@@ -46,7 +46,7 @@ namespace LiveSplit.Model.RunFactories
                 foreach (var runHistoryNode in runHistory.GetElementsByTagName("Time"))
                 {
                     var indexedTime = ParseXmlOld(runHistoryNode as XmlElement);
-                    var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null);
+                    var attempt = new Attempt(indexedTime.Index, indexedTime.Time, null, null, null);
                     run.AttemptHistory.Add(attempt);
                 }
             }

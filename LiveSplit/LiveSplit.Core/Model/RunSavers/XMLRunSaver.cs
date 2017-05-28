@@ -15,7 +15,7 @@ namespace LiveSplit.Model.RunSavers
             document.AppendChild(docNode);
 
             var parent = document.CreateElement("Run");
-            parent.Attributes.Append(ToAttribute(document, "version", "1.6.0"));
+            parent.Attributes.Append(ToAttribute(document, "version", "1.7.0"));
             document.AppendChild(parent);
 
             CreateSetting(document, parent, "GameIcon", run.GameIcon);
