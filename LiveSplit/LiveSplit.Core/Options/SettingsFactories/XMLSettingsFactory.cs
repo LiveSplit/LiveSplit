@@ -115,7 +115,9 @@ namespace LiveSplit.Options.SettingsFactories
             {
                 foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes.OfType<XmlElement>())
                 {
-                    settings.ComparisonGeneratorStates[generatorNode.GetAttribute("name")] = bool.Parse(generatorNode.InnerText);
+                    var comparisonName = generatorNode.GetAttribute("name");
+                    if (settings.ComparisonGeneratorStates.ContainsKey(comparisonName))
+                        settings.ComparisonGeneratorStates[comparisonName] = bool.Parse(generatorNode.InnerText);
                 }
 
                 foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsFile"))

@@ -2519,12 +2519,15 @@ namespace LiveSplit.View
         private void SwitchComparisonGenerators()
         {
             var allGenerators = new StandardComparisonGeneratorsFactory().GetAllGenerators(CurrentState.Run);
-            foreach (var generator in Settings.ComparisonGeneratorStates.Reverse())
+            foreach (var generator in allGenerators)
             {
-                if (CurrentState.Run.ComparisonGenerators.Any(x => x.Name == generator.Key))
-                    CurrentState.Run.ComparisonGenerators.Remove(CurrentState.Run.ComparisonGenerators.First(x => x.Name == generator.Key));
-                if (generator.Value == true)
-                    CurrentState.Run.ComparisonGenerators.Insert(0, allGenerators.First(x => x.Name == generator.Key));
+                var generatorInRun = CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == generator.Name);
+                if (generatorInRun != null)
+                    CurrentState.Run.ComparisonGenerators.Remove(generatorInRun);
+
+                if (Settings.ComparisonGeneratorStates[generator.Name])
+                    CurrentState.Run.ComparisonGenerators.Add(generator);
+
             }
             SwitchComparison(CurrentState.CurrentComparison);
             RegenerateComparisons();
