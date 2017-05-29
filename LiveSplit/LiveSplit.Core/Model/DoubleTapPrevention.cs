@@ -31,6 +31,8 @@ namespace LiveSplit.Model
 
         public event EventHandler OnPause { add { InternalModel.OnPause += value; } remove { InternalModel.OnPause -= value; } }
 
+        public event EventHandler OnUndoAllPauses { add { InternalModel.OnUndoAllPauses += value; } remove { InternalModel.OnUndoAllPauses -= value; } }
+
         public event EventHandler OnResume { add { InternalModel.OnResume += value; } remove { InternalModel.OnResume -= value; } }
 
         public event EventHandler OnScrollUp { add { InternalModel.OnScrollUp += value; } remove { InternalModel.OnScrollUp -= value; } }
@@ -112,6 +114,11 @@ namespace LiveSplit.Model
         {
             if (CheckDoubleTap())
                 InternalModel.Pause();
+        }
+
+        public void UndoAllPauses()
+        {
+            InternalModel.UndoAllPauses();
         }
 
         public void ScrollUp() => InternalModel.ScrollUp();

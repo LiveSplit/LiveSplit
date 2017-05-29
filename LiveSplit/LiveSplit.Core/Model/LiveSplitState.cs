@@ -66,6 +66,7 @@ namespace LiveSplit.Model
         public event EventHandler OnStart;
         public event EventHandlerT<TimerPhase> OnReset;
         public event EventHandler OnPause;
+        public event EventHandler OnUndoAllPauses;
         public event EventHandler OnResume;
         public event EventHandler OnScrollUp;
         public event EventHandler OnScrollDown;
@@ -160,6 +161,7 @@ namespace LiveSplit.Model
             model.OnStart                    += (s, e) => OnStart?.Invoke(this, e);
             model.OnReset                    += (s, e) => OnReset?.Invoke(this, e);
             model.OnPause                    += (s, e) => OnPause?.Invoke(this, e);
+            model.OnUndoAllPauses            += (s, e) => OnUndoAllPauses?.Invoke(this, e);
             model.OnResume                   += (s, e) => OnResume?.Invoke(this, e);
             model.OnScrollUp                 += (s, e) => OnScrollUp?.Invoke(this, e);
             model.OnScrollDown               += (s, e) => OnScrollDown?.Invoke(this, e);

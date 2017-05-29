@@ -228,6 +228,7 @@ namespace LiveSplit.View
             CurrentState.OnSkipSplit += CurrentState_OnSkipSplit;
             CurrentState.OnUndoSplit += CurrentState_OnUndoSplit;
             CurrentState.OnPause += CurrentState_OnPause;
+            CurrentState.OnUndoAllPauses += CurrentState_OnUndoAllPauses;
             CurrentState.OnResume += CurrentState_OnResume;
             CurrentState.OnSwitchComparisonPrevious += CurrentState_OnSwitchComparisonPrevious;
             CurrentState.OnSwitchComparisonNext += CurrentState_OnSwitchComparisonNext;
@@ -604,6 +605,7 @@ namespace LiveSplit.View
                 }
                 resetMenuItem.Enabled = false;
                 pauseMenuItem.Enabled = false;
+                undoPausesMenuItem.Enabled = false;
                 undoSplitMenuItem.Enabled = false;
                 skipSplitMenuItem.Enabled = false;
                 splitMenuItem.Enabled = true;
@@ -625,7 +627,16 @@ namespace LiveSplit.View
             this.InvokeIfRequired(() =>
             {
                 splitMenuItem.Text = "Resume";
+                undoPausesMenuItem.Enabled = true;
                 pauseMenuItem.Enabled = false;
+            });
+        }
+
+        private void CurrentState_OnUndoAllPauses(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() =>
+            {
+                undoPausesMenuItem.Enabled = false;
             });
         }
 
@@ -2412,6 +2423,11 @@ namespace LiveSplit.View
             Model.Pause();
         }
 
+        private void undoPausesMenuItem_Click(object sender, EventArgs e)
+        {
+            Model.UndoAllPauses();
+        }
+
         private void hotkeysMenuItem_Click(object sender, EventArgs e)
         {
             if (hotkeysMenuItem.Checked)
@@ -2562,7 +2578,8 @@ namespace LiveSplit.View
             resetMenuItem,
             undoSplitMenuItem,
             skipSplitMenuItem,
-            pauseMenuItem});
+            pauseMenuItem,
+            undoPausesMenuItem});
 
             controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
             controlMenuItem.DropDownItems.Add(hotkeysMenuItem);

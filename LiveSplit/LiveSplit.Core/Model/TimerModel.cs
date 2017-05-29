@@ -27,6 +27,7 @@ namespace LiveSplit.Model
         public event EventHandler OnStart;
         public event EventHandlerT<TimerPhase> OnReset;
         public event EventHandler OnPause;
+        public event EventHandler OnUndoAllPauses;
         public event EventHandler OnResume;
         public event EventHandler OnScrollUp;
         public event EventHandler OnScrollDown;
@@ -159,13 +160,23 @@ namespace LiveSplit.Model
                  Start(); //fuck abahbob                
         }
 
+        public void UndoAllPauses()
+        {
+            if (CurrentState.CurrentPhase == TimerPhase.Paused)
+                Pause();
+            if (CurrentState.CurrentPhase == TimerPhase.Ended)
+                CurrentState.Run.Last().SplitTime += new Time(CurrentState.PauseTime, CurrentState.PauseTime);
+            CurrentState.AdjustedStartTime = CurrentState.StartTime;    
+            OnUndoAllPauses?.Invoke(this, null);
+        }
+
         public void SwitchComparisonNext()
         {
             var comparisons = CurrentState.Run.Comparisons.ToList();
             CurrentState.CurrentComparison = 
                 comparisons.ElementAt((comparisons.IndexOf(CurrentState.CurrentComparison) + 1) 
                 % (comparisons.Count));
-            OnSwitchComparisonNext?.Invoke(null, null);
+            OnSwitchComparisonNext?.Invoke(this, null);
         }
 
         public void SwitchComparisonPrevious()
@@ -174,7 +185,7 @@ namespace LiveSplit.Model
             CurrentState.CurrentComparison = 
                 comparisons.ElementAt((comparisons.IndexOf(CurrentState.CurrentComparison) - 1 + comparisons.Count())
                 % (comparisons.Count));
-            OnSwitchComparisonPrevious?.Invoke(null, null);
+            OnSwitchComparisonPrevious?.Invoke(this, null);
         }
 
         public void ScrollUp()
