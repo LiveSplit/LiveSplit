@@ -2668,4 +2668,14 @@
     <Type>Script</Type>
     <Description>Load remover and auto splitting options are available. (By NeKz)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Vanquish</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/RisingFog/LiveSplit-AutoSplitters/master/Vanquish.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
+  </AutoSplitter>
 </AutoSplitters>
