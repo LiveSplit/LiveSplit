@@ -106,7 +106,7 @@
     <Compile Include="Model\Attempt.cs" />
     <Compile Include="Model\AutoSplitter.cs" />
     <Compile Include="Model\AutoSplitterFactory.cs" />
-    <Compile Include="Model\Comparisons\LastFinishedRunComparisonGenerator.cs" />
+    <Compile Include="Model\Comparisons\LatestRunComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\WorstSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\MedianSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\AverageSegmentsComparisonGenerator.cs" />

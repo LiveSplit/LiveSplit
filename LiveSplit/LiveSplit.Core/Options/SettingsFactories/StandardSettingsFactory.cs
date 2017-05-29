@@ -37,7 +37,7 @@ namespace LiveSplit.Options.SettingsFactories
                     { AverageSegmentsComparisonGenerator.ComparisonName, true },
                     { WorstSegmentsComparisonGenerator.ComparisonName, false},
                     { PercentileComparisonGenerator.ComparisonName, false },
-                    { LastFinishedRunComparisonGenerator.ComparisonName, false },
+                    { LatestRunComparisonGenerator.ComparisonName, false },
                     { NoneComparisonGenerator.ComparisonName, false }
                 }
             };

@@ -12,7 +12,7 @@ namespace LiveSplit.Model.Comparisons
             AddShortComparisonName(AverageSegmentsComparisonGenerator.ComparisonName, AverageSegmentsComparisonGenerator.ShortComparisonName);
             AddShortComparisonName(WorstSegmentsComparisonGenerator.ComparisonName, WorstSegmentsComparisonGenerator.ShortComparisonName);
             AddShortComparisonName(PercentileComparisonGenerator.ComparisonName, PercentileComparisonGenerator.ShortComparisonName);
-            AddShortComparisonName(LastFinishedRunComparisonGenerator.ComparisonName, LastFinishedRunComparisonGenerator.ShortComparisonName);
+            AddShortComparisonName(LatestRunComparisonGenerator.ComparisonName, LatestRunComparisonGenerator.ShortComparisonName);
         }
         public IEnumerable<IComparisonGenerator> Create(IRun run)
         {
@@ -27,7 +27,7 @@ namespace LiveSplit.Model.Comparisons
             yield return new AverageSegmentsComparisonGenerator(run);
             yield return new WorstSegmentsComparisonGenerator(run);
             yield return new PercentileComparisonGenerator(run);
-            yield return new LastFinishedRunComparisonGenerator(run);
+            yield return new LatestRunComparisonGenerator(run);
             yield return new NoneComparisonGenerator(run);
         }
     }
