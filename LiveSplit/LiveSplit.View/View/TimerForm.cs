@@ -7,6 +7,7 @@ using LiveSplit.Model.RunSavers;
 using LiveSplit.Options;
 using LiveSplit.Options.SettingsFactories;
 using LiveSplit.Options.SettingsSavers;
+using LiveSplit.Server;
 using LiveSplit.TimeFormatters;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
@@ -65,6 +66,8 @@ namespace LiveSplit.View
         private float previousBlur { get; set; }
         private Image blurredBackground { get; set; }
         private Image bakedBackground { get; set; }
+
+        public CommandServer Server { get; set; }
 
         protected GraphicsCache GlobalCache { get; set; }
 
@@ -271,6 +274,9 @@ namespace LiveSplit.View
             }
 
             TopMost = Layout.Settings.AlwaysOnTop;
+
+            Server = new CommandServer(CurrentState);
+            Server.Start();
         }
 
         void SetWindowTitle()
@@ -2244,6 +2250,7 @@ namespace LiveSplit.View
             foreach (var component in Layout.Components)
                 component.Dispose();
             DeactivateAutoSplitter();
+            Server.Stop();
         }
 
         private void settingsMenuItem_Click(object sender, EventArgs e)

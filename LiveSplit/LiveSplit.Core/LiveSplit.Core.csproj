@@ -158,6 +158,11 @@
     <Compile Include="Model\TimeStamp.cs" />
     <Compile Include="Options\Log.cs" />
     <Compile Include="Options\SettingsFactories\StandardLayoutSettingsFactory.cs" />
+    <Compile Include="Server\Connection.cs" />
+    <Compile Include="Server\CSharpScript.cs" />
+    <Compile Include="Server\IScript.cs" />
+    <Compile Include="Server\ScriptFactory.cs" />
+    <Compile Include="Server\CommandServer.cs" />
     <Compile Include="TimeFormatters\AutomaticPrecisionTimeFormatter.cs" />
     <Compile Include="TimeFormatters\PossibleTimeSaveFormatter.cs" />
     <Compile Include="TimeFormatters\TimeFormat.cs" />
