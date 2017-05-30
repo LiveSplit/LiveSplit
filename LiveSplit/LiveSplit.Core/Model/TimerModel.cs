@@ -164,8 +164,11 @@ namespace LiveSplit.Model
         {
             if (CurrentState.CurrentPhase == TimerPhase.Paused)
                 Pause();
+
+            var pauseTime = CurrentState.PauseTime ?? TimeSpan.Zero;
             if (CurrentState.CurrentPhase == TimerPhase.Ended)
-                CurrentState.Run.Last().SplitTime += new Time(CurrentState.PauseTime, CurrentState.PauseTime);
+                CurrentState.Run.Last().SplitTime += new Time(pauseTime, pauseTime);
+
             CurrentState.AdjustedStartTime = CurrentState.StartTime;    
             OnUndoAllPauses?.Invoke(this, null);
         }
