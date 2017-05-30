@@ -2679,3 +2679,13 @@
     <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
   </AutoSplitter>
 </AutoSplitters>
+<AutoSplitter>
+  <Games>
+    <Game>Little Nightmares</Game>
+  </Games>
+  <URLs>
+    <URL>https://raw.githubusercontent.com/StreamingFire/Livesplit/master/Little%20Nightmares/LittleNightmares.asl</URL>
+  </URLs>
+  <Type>Script</Type>
+  <Description>Load Removal is available. (By StreamingFire and Timbouton)</Description>
+</AutoSplitter>
