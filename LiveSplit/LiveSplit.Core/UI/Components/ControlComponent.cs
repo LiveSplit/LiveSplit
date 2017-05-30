@@ -20,6 +20,7 @@ namespace LiveSplit.UI.Components
         }
         protected bool activated;
 
+        protected bool AddedToForm;
         protected bool HasInvalidated = false;
 
         public abstract float HorizontalWidth { get; }
@@ -32,24 +33,17 @@ namespace LiveSplit.UI.Components
         public float PaddingLeft => 0;
         public float PaddingRight => 0;
 
+        public bool ErrorWithControl { get; set; }
+        private Action<Exception> ErrorCallback;
+
         public IDictionary<string, Action> ContextMenuControls { get; protected set; }
 
         protected ControlComponent(LiveSplitState state, Control control, Action<Exception> errorCallback = null)
         {
-            try
-            {
-                Form = state.Form;
-                Control = control;
-                activated = control.Visible;
-                Form.SuspendLayout();
-                Form.Controls.Add(control);
-                Form.ResumeLayout(false);
-            }
-            catch (Exception ex)
-            {
-                errorCallback?.Invoke(ex);
-                throw;
-            }
+            ErrorCallback = errorCallback;
+            Form = state.Form;
+            Control = control;
+            activated = control.Visible;
         }
 
         public void InvokeIfNeeded(Action x)
@@ -79,13 +73,34 @@ namespace LiveSplit.UI.Components
             });
         }
 
+        private void AddControlToForm()
+        {
+            if (!AddedToForm)
+            {
+                AddedToForm = true;
+                try
+                {
+                    Form.SuspendLayout();
+                    Form.Controls.Add(Control);
+                    Form.ResumeLayout(false);
+                }
+                catch (Exception ex)
+                {
+                    ErrorCallback?.Invoke(ex);
+                    ErrorWithControl = true;
+                }
+            }
+        }
+
         public virtual void DrawHorizontal(Graphics g, LiveSplitState state, float height, Region clipRegion)
         {
+            AddControlToForm();
             Reposition(HorizontalWidth, height, g);
         }
 
         public virtual void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
         {
+            AddControlToForm();
             Reposition(width, VerticalHeight, g);
         }
 
