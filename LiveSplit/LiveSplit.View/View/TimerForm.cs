@@ -1204,6 +1204,7 @@ namespace LiveSplit.View
                 : Width / Math.Max(ComponentRenderer.OverallSize, 1f);
 
             g.ResetTransform();
+            g.TranslateTransform(-0.5f, -0.5f);
             g.ScaleTransform(scaleFactor, scaleFactor);
             float transformedWidth = Width;
             float transformedHeight = Height;
