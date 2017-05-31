@@ -1880,12 +1880,13 @@ namespace LiveSplit.View
                         editor.ComponentsToDispose.Remove(component);
                     editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
 
-                    var enumerator = componentSettings.GetEnumerator();
-                    foreach (var component in layoutCopy.Components)
+                    using (var enumerator = componentSettings.GetEnumerator())
                     {
-                        enumerator.MoveNext();
-                        if (enumerator.Current != null)
-                            component.SetSettings(enumerator.Current);
+                        foreach (var component in layoutCopy.Components)
+                        {
+                            if (enumerator.MoveNext())
+                                component.SetSettings(enumerator.Current);
+                        }
                     }
                     SetLayout(layoutCopy);
                 }
