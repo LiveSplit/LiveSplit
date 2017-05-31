@@ -305,7 +305,12 @@ namespace LiveSplit.Model
             {
                 IEnumerable<string> variables = run.Metadata.VariableValueNames.Keys;
                 if ((run.Metadata.GameAvailable || waitForOnlineData) && run.Metadata.Game != null)
-                    variables = run.Metadata.Game.FullGameVariables.Select(x => x.Name);
+                {
+                    string categoryId = null;
+                    if ((run.Metadata.CategoryAvailable || waitForOnlineData) && run.Metadata.Category != null)
+                        categoryId = run.Metadata.Category.ID;
+                    variables = run.Metadata.Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).Select(x => x.Name);
+                }
 
                 foreach (var variable in variables)
                 {
@@ -333,7 +338,7 @@ namespace LiveSplit.Model
 
             if (showRegion)
             {
-                var doSimpleRegion = !run.Metadata.RegionAvailable && !waitForOnlineData;
+                var doSimpleRegion = !run.Metadata.GameAvailable && !waitForOnlineData;
                 if (doSimpleRegion)
                 {
                     if (!string.IsNullOrEmpty(run.Metadata.RegionName))
@@ -347,7 +352,7 @@ namespace LiveSplit.Model
 
             if (showPlatform)
             {
-                var doSimplePlatform = !run.Metadata.PlatformAvailable && !waitForOnlineData;
+                var doSimplePlatform = !run.Metadata.GameAvailable && !waitForOnlineData;
                 if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || (run.Metadata.Game != null && run.Metadata.Game.Platforms.Count > 1)))
                 {
                     if (run.Metadata.UsesEmulator)
