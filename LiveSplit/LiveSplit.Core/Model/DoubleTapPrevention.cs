@@ -17,6 +17,9 @@ namespace LiveSplit.Model
             }
         }
 
+        private TimeSpan Delay = new TimeSpan(0, 0, 0, 0, 300);
+        private TimeSpan LongDelay = new TimeSpan(0, 0, 0, 0, 600);
+
         public ITimerModel InternalModel { get; set; }
 
         public event EventHandler OnSplit { add { InternalModel.OnSplit += value; } remove { InternalModel.OnSplit -= value; } }
@@ -66,14 +69,14 @@ namespace LiveSplit.Model
             }
             if (!CurrentState.Settings.DoubleTapPrevention
                 || (CurrentState.CurrentPhase == TimerPhase.Running
-                && (lastSplit == null || TimeStamp.Now - CurrentState.StartTime > lastSplit + new TimeSpan(0, 0, 0, 0, 300))
-                && CurrentState.CurrentTime.RealTime > CurrentState.TimePausedAt + new TimeSpan(0, 0, 0, 0, 300))
+                && (lastSplit == null || TimeStamp.Now - CurrentState.StartTime > lastSplit + Delay)
+                && CurrentState.CurrentTime.RealTime > CurrentState.TimePausedAt + Delay)
                 || (CurrentState.CurrentPhase == TimerPhase.Paused
-                && TimeStamp.Now - CurrentState.StartTime > CurrentState.TimePausedAt + new TimeSpan(0, 0, 0, 0, 300))
+                && TimeStamp.Now - CurrentState.StartTime > CurrentState.TimePausedAt + Delay)
                 || (CurrentState.CurrentPhase == TimerPhase.Ended
-                && TimeStamp.Now - CurrentState.StartTime > CurrentState.CurrentTime.RealTime + new TimeSpan(0, 0, 0, 0, 300))
+                && TimeStamp.Now - CurrentState.StartTime > CurrentState.CurrentTime.RealTime + LongDelay)
                 || (CurrentState.CurrentPhase == TimerPhase.NotRunning
-                && TimeStamp.Now - CurrentState.StartTime > new TimeSpan(0, 0, 0, 0, 300)))
+                && TimeStamp.Now - CurrentState.StartTime > Delay))
                 return true;
             return false;
         }

@@ -935,7 +935,7 @@ namespace LiveSplit.View
             {
                 Model.Start();
             }
-            else if (CurrentState.CurrentPhase == TimerPhase.Ended && InTimerOnlyMode)
+            else if (CurrentState.CurrentPhase == TimerPhase.Ended)
             {
                 Model.Reset();
             }
