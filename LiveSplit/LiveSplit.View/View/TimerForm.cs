@@ -274,6 +274,7 @@ namespace LiveSplit.View
             }
 
             TopMost = Layout.Settings.AlwaysOnTop;
+            BackColor = Color.Black;
 
             Server = new CommandServer(CurrentState);
             Server.Start();
@@ -1214,9 +1215,8 @@ namespace LiveSplit.View
             else
                 transformedHeight /= scaleFactor;
 
-            BackColor = Color.Black;
-
             ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
+            ComponentRenderer.CalculateOverallSize(Layout.Mode);
 
             KeepLayoutSize();  
         }
