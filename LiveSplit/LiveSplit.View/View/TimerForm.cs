@@ -1055,8 +1055,6 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        FixSize();
-
                         if (Hook != null)
                             Hook.Poll();
 
@@ -1117,6 +1115,7 @@ namespace LiveSplit.View
 
         private void FixSize()
         {
+            ComponentRenderer.CalculateOverallSize(Layout.Mode);
             var currentSize = ComponentRenderer.OverallSize;
             if (RefreshesRemaining <= 0)
             {
@@ -1198,7 +1197,7 @@ namespace LiveSplit.View
             g.InterpolationMode = InterpolationMode.Bilinear;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            ComponentRenderer.CalculateOverallSize(Layout.Mode);
+            FixSize();
 
             var scaleFactor = Layout.Mode == LayoutMode.Vertical
                 ? Height / Math.Max(ComponentRenderer.OverallSize, 1f)
@@ -1216,9 +1215,9 @@ namespace LiveSplit.View
                 transformedHeight /= scaleFactor;
 
             ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
-            ComponentRenderer.CalculateOverallSize(Layout.Mode);
 
-            KeepLayoutSize();  
+            FixSize();
+            KeepLayoutSize();
         }
 
         private void TimerForm_Paint(object sender, PaintEventArgs e)
