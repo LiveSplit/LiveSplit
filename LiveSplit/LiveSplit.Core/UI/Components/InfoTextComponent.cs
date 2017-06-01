@@ -51,6 +51,7 @@ namespace LiveSplit.UI.Components
                 Text = informationValue
             };
             NameMeasureLabel = new SimpleLabel();
+            MinimumHeight = 25;
             VerticalHeight = 31;
             LongestString = "";
         }
