@@ -85,7 +85,9 @@ namespace LiveSplit.UI.Components
             {
                 VerticalHeight = 31;
                 NameLabel.ShadowColor = state.LayoutSettings.ShadowsColor;
+                NameLabel.OutlineColor = state.LayoutSettings.TextOutlineColor;
                 ValueLabel.ShadowColor = state.LayoutSettings.ShadowsColor;
+                ValueLabel.OutlineColor = state.LayoutSettings.TextOutlineColor;
 
                 var textHeight = 0.75f * Math.Max(g.MeasureString("A", ValueLabel.Font).Height, g.MeasureString("A", NameLabel.Font).Height);
                 PaddingTop = Math.Max(0, (VerticalHeight - textHeight) / 2f);
@@ -120,7 +122,9 @@ namespace LiveSplit.UI.Components
         protected void DrawTwoRows(Graphics g, LiveSplitState state, float width, float height)
         {
             NameLabel.ShadowColor = state.LayoutSettings.ShadowsColor;
+            NameLabel.OutlineColor = state.LayoutSettings.TextOutlineColor;
             ValueLabel.ShadowColor = state.LayoutSettings.ShadowsColor;
+            ValueLabel.OutlineColor = state.LayoutSettings.TextOutlineColor;
 
             if (InformationName != null && LongestString != null && InformationName.Length > LongestString.Length)
             {

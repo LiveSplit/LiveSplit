@@ -25,6 +25,7 @@ namespace LiveSplit.UI.LayoutSavers
             SettingsHelper.CreateSetting(document, element, "UseRainbowColor", settings.UseRainbowColor) ^
             SettingsHelper.CreateSetting(document, element, "NotRunningColor", settings.NotRunningColor) ^
             SettingsHelper.CreateSetting(document, element, "PausedColor", settings.PausedColor) ^
+            SettingsHelper.CreateSetting(document, element, "TextOutlineColor", settings.TextOutlineColor) ^
             SettingsHelper.CreateSetting(document, element, "ShadowsColor", settings.ShadowsColor) ^
             SettingsHelper.CreateSetting(document, element, "TimesFont", settings.TimesFont) ^
             SettingsHelper.CreateSetting(document, element, "TimerFont", settings.TimerFont) ^
