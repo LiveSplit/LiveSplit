@@ -138,21 +138,24 @@ namespace LiveSplit.UI
 
         private void DrawText(string text, Graphics g, float x, float y, float width, float height, StringFormat format)
         {
-            if (HasShadow)
+            if (text != null)
             {
-                using (var shadowBrush = new SolidBrush(ShadowColor))
+                if (HasShadow)
                 {
-                    g.DrawString(text, Font, shadowBrush, new RectangleF(x + 1.5f, y + 1.5f, width, height), format);
-                    g.DrawString(text, Font, shadowBrush, new RectangleF(x + 2.5f, y + 2.5f, width, height), format);
+                    using (var shadowBrush = new SolidBrush(ShadowColor))
+                    {
+                        g.DrawString(text, Font, shadowBrush, new RectangleF(x + 1.5f, y + 1.5f, width, height), format);
+                        g.DrawString(text, Font, shadowBrush, new RectangleF(x + 2.5f, y + 2.5f, width, height), format);
+                    }
                 }
-            }
-            var fontSize = GetFontSize(g);
-            using (GraphicsPath gp = new GraphicsPath())
-            using (Pen outline = new Pen(OutlineColor, fontSize * 0.15f) { LineJoin = LineJoin.Round })
-            {
-                gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x, y, width, height), format);
-                g.DrawPath(outline, gp);
-                g.FillPath(Brush, gp);
+                var fontSize = GetFontSize(g);
+                using (GraphicsPath gp = new GraphicsPath())
+                using (Pen outline = new Pen(OutlineColor, fontSize * 0.15f) { LineJoin = LineJoin.Round })
+                {
+                    gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x, y, width, height), format);
+                    g.DrawPath(outline, gp);
+                    g.FillPath(Brush, gp);
+                }
             }
         }
 
