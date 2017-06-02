@@ -2688,4 +2688,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By StreamingFire and Timbouton)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Turok 2: Seeds of Evil</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/DJorzik/ASL-Scripts/master/Turok2SeedsOfEvil.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start and Auto Splitting options are available. (By DJorzik)</Description>
+  </AutoSplitter>
 </AutoSplitters>
