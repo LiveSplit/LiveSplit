@@ -2698,4 +2698,24 @@
     <Type>Script</Type>
     <Description>Auto Start and Auto Splitting options are available. (By DJorzik)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>NieR: Automata</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/RisingFog/LiveSplit-AutoSplitters/master/NierAutomata.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Transformers: Devastation</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/RisingFog/LiveSplit-AutoSplitters/master/TransformersDevastation.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
+  </AutoSplitter>
 </AutoSplitters>
