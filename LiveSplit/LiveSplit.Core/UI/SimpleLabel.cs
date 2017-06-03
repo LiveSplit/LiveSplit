@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.TextRenderer;
@@ -140,23 +141,38 @@ namespace LiveSplit.UI
         {
             if (text != null)
             {
-                var fontSize = GetFontSize(g);
-                using (var shadowBrush = new SolidBrush(ShadowColor))
-                using (var gp = new GraphicsPath())
-                using (var outline = new Pen(OutlineColor, fontSize * 0.15f) { LineJoin = LineJoin.Round })
+                if (g.TextRenderingHint == TextRenderingHint.AntiAlias)
+                {
+                    var fontSize = GetFontSize(g);
+                    using (var shadowBrush = new SolidBrush(ShadowColor))
+                    using (var gp = new GraphicsPath())
+                    using (var outline = new Pen(OutlineColor, fontSize * 0.15f) { LineJoin = LineJoin.Round })
+                    {
+                        if (HasShadow)
+                        {
+                            gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 1f, y + 1f, width, height), format);
+                            g.FillPath(shadowBrush, gp);
+                            gp.Reset();
+                            gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 2f, y + 2f, width, height), format);
+                            g.FillPath(shadowBrush, gp);
+                            gp.Reset();
+                        }
+                        gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x, y, width, height), format);
+                        g.DrawPath(outline, gp);
+                        g.FillPath(Brush, gp);
+                    }
+                }
+                else
                 {
                     if (HasShadow)
                     {
-                        gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 1f, y + 1f, width, height), format);
-                        g.FillPath(shadowBrush, gp);
-                        gp.Reset();
-                        gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 2f, y + 2f, width, height), format);
-                        g.FillPath(shadowBrush, gp);
-                        gp.Reset();
+                        using (var shadowBrush = new SolidBrush(ShadowColor))
+                        {
+                            g.DrawString(text, Font, shadowBrush, new RectangleF(x + 1f, y + 1f, width, height), format);
+                            g.DrawString(text, Font, shadowBrush, new RectangleF(x + 2f, y + 2f, width, height), format);
+                        }
                     }
-                    gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x, y, width, height), format);
-                    g.DrawPath(outline, gp);
-                    g.FillPath(Brush, gp);
+                    g.DrawString(text, Font, Brush, new RectangleF(x, y, width, height), format);
                 }
             }
         }
