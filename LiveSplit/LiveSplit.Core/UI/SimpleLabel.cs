@@ -140,18 +140,20 @@ namespace LiveSplit.UI
         {
             if (text != null)
             {
-                if (HasShadow)
-                {
-                    using (var shadowBrush = new SolidBrush(ShadowColor))
-                    {
-                        g.DrawString(text, Font, shadowBrush, new RectangleF(x + 1.5f, y + 1.5f, width, height), format);
-                        g.DrawString(text, Font, shadowBrush, new RectangleF(x + 2.5f, y + 2.5f, width, height), format);
-                    }
-                }
                 var fontSize = GetFontSize(g);
-                using (GraphicsPath gp = new GraphicsPath())
-                using (Pen outline = new Pen(OutlineColor, fontSize * 0.15f) { LineJoin = LineJoin.Round })
+                using (var shadowBrush = new SolidBrush(ShadowColor))
+                using (var gp = new GraphicsPath())
+                using (var outline = new Pen(OutlineColor, fontSize * 0.15f) { LineJoin = LineJoin.Round })
                 {
+                    if (HasShadow)
+                    {
+                        gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 1f, y + 1f, width, height), format);
+                        g.FillPath(shadowBrush, gp);
+                        gp.Reset();
+                        gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 2f, y + 2f, width, height), format);
+                        g.FillPath(shadowBrush, gp);
+                        gp.Reset();
+                    }
                     gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x, y, width, height), format);
                     g.DrawPath(outline, gp);
                     g.FillPath(Brush, gp);
