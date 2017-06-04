@@ -2718,4 +2718,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>El Matador</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.ElMatador/raw/master/Components/LiveSplit.ElMatador.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load removal is available. (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
