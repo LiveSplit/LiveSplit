@@ -22,7 +22,7 @@ namespace LiveSplit.TimeFormatters
                 var totalString = "";
                 if (time.Value < TimeSpan.Zero)
                 {
-                    minusString = "−";
+                    minusString = TimeFormatConstants.MINUS;
                     time = TimeSpan.Zero-time;
                 }
                 if (time.Value.TotalDays >= 1)
@@ -40,7 +40,7 @@ namespace LiveSplit.TimeFormatters
                 return totalString;
             }
 
-            return "-";
+            return TimeFormatConstants.DASH;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace LiveSplit.TimeFormatters
         {
             var formatter = new ShortTimeFormatter();
             if (time == null)
-                return "-";
+                return TimeFormatConstants.DASH;
             else
             {
                 var timeString = formatter.Format(time);
