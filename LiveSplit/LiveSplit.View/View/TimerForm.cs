@@ -793,6 +793,7 @@ namespace LiveSplit.View
                         RemoveTimerOnly();
                     run.HasChanged = true;
                     SetRun(run);
+                    CurrentState.CallRunManuallyModified();
                 }
             }
             finally
@@ -918,6 +919,7 @@ namespace LiveSplit.View
                     RemoveTimerOnly();
                 run.HasChanged = true;
                 SetRun(run);
+                CurrentState.CallRunManuallyModified();
             }
         }
 
