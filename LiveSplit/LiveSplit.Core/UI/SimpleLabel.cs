@@ -146,7 +146,7 @@ namespace LiveSplit.UI
                     var fontSize = GetFontSize(g);
                     using (var shadowBrush = new SolidBrush(ShadowColor))
                     using (var gp = new GraphicsPath())
-                    using (var outline = new Pen(OutlineColor, fontSize * 0.15f) { LineJoin = LineJoin.Round })
+                    using (var outline = new Pen(OutlineColor, GetOutlineSize(fontSize)) { LineJoin = LineJoin.Round })
                     {
                         if (HasShadow)
                         {
@@ -175,6 +175,11 @@ namespace LiveSplit.UI
                     g.DrawString(text, Font, Brush, new RectangleF(x, y, width, height), format);
                 }
             }
+        }
+
+        private float GetOutlineSize(float fontSize)
+        {
+            return 2.1f + fontSize * 0.055f;
         }
 
         private float GetFontSize(Graphics g)
