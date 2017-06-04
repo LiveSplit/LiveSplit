@@ -88,3 +88,6 @@
 [submodule "LiveSplit/Components/LiveSplit.Counter"]
 	path = LiveSplit/Components/LiveSplit.Counter
 	url = https://github.com/LiveSplit/LiveSplit.Counter.git
+[submodule "LiveSplit/Components/LiveSplit.BlankSpace"]
+	path = LiveSplit/Components/LiveSplit.BlankSpace
+	url = https://github.com/LiveSplit/LiveSplit.BlankSpace.git
