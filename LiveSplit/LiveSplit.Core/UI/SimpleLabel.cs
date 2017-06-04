@@ -141,7 +141,7 @@ namespace LiveSplit.UI
         {
             if (text != null)
             {
-                if (g.TextRenderingHint == TextRenderingHint.AntiAlias)
+                if (g.TextRenderingHint == TextRenderingHint.AntiAlias && OutlineColor.A > 0)
                 {
                     var fontSize = GetFontSize(g);
                     using (var shadowBrush = new SolidBrush(ShadowColor))
