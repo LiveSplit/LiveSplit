@@ -1585,6 +1585,7 @@
     <Type>Script</Type>
     <Description>Load Removal is available. Requires patch 1.1. (By Jukspa)</Description>
   </AutoSplitter>
+<!--
   <AutoSplitter>
     <Games>
       <Game>Grapple</Game>
@@ -1596,7 +1597,6 @@
     <Description>Auto Splitting is available. (By Xarathoss)</Description>
     <Website>https://github.com/Xarathoss/Autosplitters</Website>
   </AutoSplitter>
-<!--
   <AutoSplitter>
     <Games>
       <Game>Clustertruck</Game>
