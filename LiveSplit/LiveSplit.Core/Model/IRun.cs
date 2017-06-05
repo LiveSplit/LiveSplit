@@ -78,36 +78,42 @@ namespace LiveSplit.Model
 
         private static void FixWithMethod(IRun run, TimingMethod method)
         {
-            FixSegmentHistory(run, method);
-            FixComparisonTimes(run, method);
+            FixComparisonTimesAndHistory(run, method);
             RemoveDuplicates(run, method);
         }
 
-        private static void FixSegmentHistory(IRun run, TimingMethod method)
+        private static void FixHistoryFromNullBestSegments(ISegment curSplit, TimingMethod method, int minIndex, int maxIndex)
         {
-            var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-            foreach (var curSplit in run)
+            for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
             {
-                for (var runIndex = curSplit.SegmentHistory.GetMinIndex(); runIndex <= maxIndex; runIndex++)
+                Time historyTime;
+                if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
                 {
-                    Time historyTime;
-                    if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
-                    {
-                        //Make sure no times in the history are lower than the Best Segment
-                        if (curSplit.BestSegmentTime[method] != null && historyTime[method] < curSplit.BestSegmentTime[method])
-                            historyTime[method] = curSplit.BestSegmentTime[method];
+                    //If the Best Segment is gone, clear the history
+                    if (curSplit.BestSegmentTime[method] == null && historyTime[method] != null)
+                        curSplit.SegmentHistory.Remove(runIndex);
+                }
+            }
+        }
 
-                        //If the Best Segment is gone, clear the history
-                        if (curSplit.BestSegmentTime[method] == null && historyTime[method] != null)
-                            curSplit.SegmentHistory.Remove(runIndex);
-                        else
-                            curSplit.SegmentHistory[runIndex] = historyTime;
+        private static void FixHistoryFromBestSegmentTimes(ISegment curSplit, TimingMethod method, int minIndex, int maxIndex)
+        {
+            for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
+            {
+                Time historyTime;
+                if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
+                {
+                    //Make sure no times in the history are lower than the Best Segment
+                    if (curSplit.BestSegmentTime[method] != null && historyTime[method] < curSplit.BestSegmentTime[method])
+                    {
+                        historyTime[method] = curSplit.BestSegmentTime[method];
+                        curSplit.SegmentHistory[runIndex] = historyTime;
                     }
                 }
             }
         }
 
-        private static void FixComparisonTimes(IRun run, TimingMethod method)
+        private static void FixComparisonTimesAndHistory(IRun run, TimingMethod method)
         {
             //Remove negative Best Segment times
             foreach (var curSplit in run)
@@ -119,6 +125,8 @@ namespace LiveSplit.Model
                     curSplit.BestSegmentTime = newTime;
                 }
             }
+
+            var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
 
             foreach (var comparison in run.CustomComparisons)
             {
@@ -137,11 +145,20 @@ namespace LiveSplit.Model
 
                         //Fix Best Segment time if the PB segment is faster
                         var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
-                        if (comparison == Run.PersonalBestComparisonName && (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment))
+                        if (comparison == Run.PersonalBestComparisonName)
                         {
-                            var newTime = curSplit.BestSegmentTime;
-                            newTime[method] = currentSegment;
-                            curSplit.BestSegmentTime = newTime;
+                            var minIndex = curSplit.SegmentHistory.GetMinIndex();
+
+                            FixHistoryFromNullBestSegments(curSplit, method, minIndex, maxIndex);
+
+                            if (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment)
+                            {
+                                var newTime = curSplit.BestSegmentTime;
+                                newTime[method] = currentSegment;
+                                curSplit.BestSegmentTime = newTime;
+                            }
+
+                            FixHistoryFromBestSegmentTimes(curSplit, method, minIndex, maxIndex);
                         }
                         previousTime = curSplit.Comparisons[comparison][method].Value;
                     }
