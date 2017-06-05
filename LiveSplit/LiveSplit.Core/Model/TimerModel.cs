@@ -41,7 +41,8 @@ namespace LiveSplit.Model
                 CurrentState.CurrentPhase = TimerPhase.Running;
                 CurrentState.CurrentSplitIndex = 0;
                 CurrentState.AttemptStarted = TimeStamp.CurrentDateTime;
-                CurrentState.AdjustedStartTime = CurrentState.StartTime = TimeStamp.Now - CurrentState.Run.Offset;
+                CurrentState.AdjustedStartTime = CurrentState.StartTimeWithOffset = TimeStamp.Now - CurrentState.Run.Offset;
+                CurrentState.StartTime = TimeStamp.Now;
                 CurrentState.TimePausedAt = CurrentState.Run.Offset;
                 CurrentState.IsGameTimeInitialized = false;
                 CurrentState.Run.AttemptCount++;
@@ -169,7 +170,7 @@ namespace LiveSplit.Model
             if (CurrentState.CurrentPhase == TimerPhase.Ended)
                 CurrentState.Run.Last().SplitTime += new Time(pauseTime, pauseTime);
 
-            CurrentState.AdjustedStartTime = CurrentState.StartTime;    
+            CurrentState.AdjustedStartTime = CurrentState.StartTimeWithOffset;    
             OnUndoAllPauses?.Invoke(this, null);
         }
 
@@ -204,15 +205,11 @@ namespace LiveSplit.Model
         public void UpdateAttemptHistory()
         {
             Time time = new Time();
-            TimeSpan? pauseTime = null;
             if (CurrentState.CurrentPhase == TimerPhase.Ended)
-            {
                 time = CurrentState.CurrentTime;
-                pauseTime = CurrentState.PauseTime;
-            }
             var maxIndex = CurrentState.Run.AttemptHistory.DefaultIfEmpty().Max(x => x.Index);
             var newIndex = Math.Max(0, maxIndex + 1);
-            var newAttempt = new Attempt(newIndex, time, CurrentState.AttemptStarted, CurrentState.AttemptEnded, pauseTime);
+            var newAttempt = new Attempt(newIndex, time, CurrentState.AttemptStarted, CurrentState.AttemptEnded, CurrentState.PauseTime);
             CurrentState.Run.AttemptHistory.Add(newAttempt);
         }
 

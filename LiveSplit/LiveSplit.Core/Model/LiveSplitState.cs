@@ -20,6 +20,7 @@ namespace LiveSplit.Model
         public AtomicDateTime AttemptEnded { get; set; }
 
         public TimeStamp AdjustedStartTime { get; set; }
+        public TimeStamp StartTimeWithOffset { get; set; }
         public TimeStamp StartTime { get; set; }
         public TimeSpan TimePausedAt { get; set; }
         public TimeSpan? GameTimePauseTime { get; set; }
@@ -106,9 +107,23 @@ namespace LiveSplit.Model
         {
             get
             {
-                if (CurrentPhase != TimerPhase.NotRunning && StartTime != AdjustedStartTime)
-                    return AdjustedStartTime - StartTime;
+                if (CurrentPhase == TimerPhase.Paused)
+                    return TimeStamp.Now - StartTimeWithOffset - TimePausedAt;
+                if (CurrentPhase != TimerPhase.NotRunning && StartTimeWithOffset != AdjustedStartTime)
+                    return AdjustedStartTime - StartTimeWithOffset;
                 return null;
+            }
+        }
+
+        public TimeSpan CurrentAttemptDuration
+        {
+            get
+            {
+                if (CurrentPhase == TimerPhase.Paused || CurrentPhase == TimerPhase.Running)
+                    return TimeStamp.Now - StartTime;
+                if (CurrentPhase == TimerPhase.Ended)
+                    return AttemptEnded - AttemptStarted;
+                return TimeSpan.Zero;
             }
         }
 
@@ -124,7 +139,7 @@ namespace LiveSplit.Model
             Layout = layout;
             Settings = settings;
             LayoutSettings = layoutSettings;
-            AdjustedStartTime = StartTime = TimeStamp.Now;
+            AdjustedStartTime = StartTimeWithOffset = StartTime = TimeStamp.Now;
             CurrentPhase = TimerPhase.NotRunning;
             CurrentSplitIndex = -1;
         }
@@ -139,6 +154,7 @@ namespace LiveSplit.Model
                 Settings = Settings.Clone() as ISettings,
                 LayoutSettings = LayoutSettings.Clone() as LayoutSettings,
                 AdjustedStartTime = AdjustedStartTime,
+                StartTimeWithOffset = StartTimeWithOffset,
                 StartTime = StartTime,
                 TimePausedAt = TimePausedAt,
                 GameTimePauseTime = GameTimePauseTime,
