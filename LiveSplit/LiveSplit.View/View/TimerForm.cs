@@ -1107,7 +1107,7 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                if (!(IsDisposed && ex is ObjectDisposedException))
+                if (!(ex is ObjectDisposedException && ((ObjectDisposedException)ex).ObjectName == "TimerForm"))
                 {
                     Log.Error(ex);
                     Invalidate();
