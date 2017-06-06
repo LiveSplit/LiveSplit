@@ -1220,6 +1220,7 @@ namespace LiveSplit.View
 
             FixSize();
             KeepLayoutSize();
+            MaintainMinimumSize();
         }
 
         private void TimerForm_Paint(object sender, PaintEventArgs e)
