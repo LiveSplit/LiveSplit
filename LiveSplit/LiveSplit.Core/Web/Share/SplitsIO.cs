@@ -173,12 +173,10 @@ namespace LiveSplit.Web.Share
             return JSON.FromUri(uri);
         }
 
-        private void PatchRun(IRun run, string splitsIORunId)
+        private void PatchRun(IRun run, string speedrunComId)
         {
             try
             {
-                var splitsIORun = GetV4RunById(splitsIORunId);
-                var speedrunComId = splitsIORun.srdc_id as string;
                 if (string.IsNullOrEmpty(speedrunComId))
                     return;
 
@@ -203,7 +201,9 @@ namespace LiveSplit.Web.Share
         public IRun DownloadRunByUri(Uri uri, bool patchRun)
         {
             var id = uri.LocalPath;
-            var downloadUri = GetSiteUri($"{id}/download/livesplit");
+            var splitsIORun = GetV4RunById(id);
+            var program = splitsIORun.run.program as string;
+            var downloadUri = GetSiteUri($"{id}/download/{program}");
 
             var request = WebRequest.Create(downloadUri);
 
@@ -215,14 +215,14 @@ namespace LiveSplit.Web.Share
                     stream.CopyTo(memoryStream);
                     memoryStream.Seek(0, SeekOrigin.Begin);
 
-                    var runFactory = new XMLRunFactory();
+                    var runFactory = new StandardFormatsRunFactory();
 
                     runFactory.Stream = memoryStream;
                     runFactory.FilePath = null;
 
                     var run = runFactory.Create(new StandardComparisonGeneratorsFactory());
                     if (patchRun)
-                        PatchRun(run, id);
+                        PatchRun(run, splitsIORun.run.srdc_id);
                     return run;
                 }
             }
