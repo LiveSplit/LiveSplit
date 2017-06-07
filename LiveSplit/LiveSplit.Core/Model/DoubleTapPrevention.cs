@@ -56,6 +56,9 @@ namespace LiveSplit.Model
 
         protected bool CheckDoubleTap()
         {
+            if (!CurrentState.Settings.DoubleTapPrevention)
+                return true;
+
             if (CurrentState.CurrentPhase == TimerPhase.Ended)
                 return TimeStamp.Now - LastEvent > LongDelay;
 
