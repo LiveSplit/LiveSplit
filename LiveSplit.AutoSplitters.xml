@@ -2696,7 +2696,8 @@
       <URL>https://raw.githubusercontent.com/DJorzik/ASL-Scripts/master/Turok2SeedsOfEvil.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Start [FULL/IL] / Auto Splitting / Auto Reset / LTR (By DJorzik)</Description>
+    <Description>Auto Start[FULL/IL]/Auto Splitting/Auto Reset/LTR (By DJorzik)</Description>
+    <Website>https://github.com/DJorzik/ASL-Scripts/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
