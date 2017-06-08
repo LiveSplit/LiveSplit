@@ -105,11 +105,12 @@ namespace LiveSplit.View
                 if (Regex.IsMatch(value, "[^0-9:.\\-−]"))
                     return;
 
-                try { Run.Offset = TimeSpanParser.Parse(value); Run.HasChanged = true; }
-                catch (Exception ex)
+                try
                 {
-                    Log.Error(ex);
+                    Run.Offset = TimeSpanParser.Parse(value);
+                    Run.HasChanged = true;
                 }
+                catch { }
             }
         }
         public int AttemptCount
@@ -426,10 +427,8 @@ namespace LiveSplit.View
                 {
                     TimeSpanParser.Parse(e.FormattedValue.ToString());
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Log.Error(ex);
-
                     e.Cancel = true;
                     runGrid.Rows[e.RowIndex].ErrorText = "Invalid Time";
                 }
@@ -796,7 +795,7 @@ namespace LiveSplit.View
 
                     if (selectedCell.ColumnIndex == SEGMENTNAMEINDEX)
                     {
-                        selectedCell.Value = "";
+                        Run[selectedCell.RowIndex].Name = "";
                         RaiseRunEdited();
                     }
                     else if (selectedCell.ColumnIndex == ICONINDEX)
@@ -846,7 +845,7 @@ namespace LiveSplit.View
                 IDataObject dataInClipboard = Clipboard.GetDataObject();
                 string stringInClipboard = (string)dataInClipboard.GetData(DataFormats.Text);
 
-                if (stringInClipboard != null)
+                if (stringInClipboard != null && runGrid.SelectedCells.Count > 0)
                 {
                     string[] rowsInClipboard = stringInClipboard.Split(rowSplitter, StringSplitOptions.RemoveEmptyEntries);
 
@@ -1016,10 +1015,7 @@ namespace LiveSplit.View
             if (IsInitialized)
             {
                 Run.HasChanged = true;
-                if (RunEdited != null)
-                {
-                    RunEdited(this, null);
-                }
+                RunEdited?.Invoke(this, null);
             }
         }
 
