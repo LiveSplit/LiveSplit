@@ -255,7 +255,19 @@ namespace LiveSplit.Web.SRL
                     PasswordIncorrect?.Invoke(this, null);
                 }
             }
-            
+
+            if (e.Message.Command == "NOTICE"
+                && e.Message.Source != null
+                && e.Message.Source.Name == "RaceBot"
+                && e.Message.Parameters.Count > 1)
+            {
+                var text = e.Message.Parameters[1];
+                if (text != null && !text.Contains("#srl"))
+                {
+                    MessageReceived?.Invoke(this, new Tuple<string, SRLIRCUser, string>(RaceChannelName, new SRLIRCUser("RaceBot", SRLIRCRights.Operator), text));
+                }
+            }
+
             RawMessageReceived?.Invoke(this, $"{e.Message.Command} - {e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)}");
         }
 
@@ -427,7 +439,6 @@ namespace LiveSplit.Web.SRL
         {
             if (e.Targets.Count > 0 && e.Targets[0] == RaceChannel)
             {
-                var realName = RaceChannel.Users.FirstOrDefault(x => x.User.NickName == e.Source.Name).User.RealName;
                 ProcessRaceChannelMessage(e.Source.Name, e.Text);
             }
             else if (e.Targets.Count > 0 && e.Targets[0] == LiveSplitChannel)
