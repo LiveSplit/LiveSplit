@@ -2729,4 +2729,24 @@
     <Type>Component</Type>
     <Description>Load removal is available. (By SuicideMachine)</Description>
   </AutoSplitter>
+	<AutoSplitter>
+  	<Games>
+  		<Game>Serious Sam: The First Encounter</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/Tezur0/LiveSplitScripts/master/SeriousSamNoHD/SamTFEnoHD.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Load Removal is available. (By Tezur0)</Description>
+  </AutoSplitter>
+	<AutoSplitter>
+  	<Games>
+  		<Game>Serious Sam: The Second Encounter</Game>
+  	</Games>
+  	<URLs>
+  		<URL>https://raw.githubusercontent.com/Tezur0/LiveSplitScripts/master/SeriousSamNoHD/SamTSEnoHD.asl</URL>
+  	</URLs>
+  	<Type>Script</Type>
+  	<Description>Load Removal is available. (By Tezur0)</Description>
+  </AutoSplitter>
 </AutoSplitters>
