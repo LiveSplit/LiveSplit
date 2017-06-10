@@ -11,18 +11,24 @@ namespace LiveSplit.Model.RunSavers
         public void Save(IRun run, Stream stream)
         {
             var workbook = new Workbook();
-            var splitTimesSheet = workbook.Sheets.AddSheet("Splits");
-            var attemptHistorySheet = workbook.Sheets.AddSheet("Attempt History");
-            var segmentHistorySheet = workbook.Sheets.AddSheet("Segment History");
+            var splitsRealTimeSheet = workbook.Sheets.AddSheet("Splits (Real Time)");
+            var attemptHistoryRealTimeSheet = workbook.Sheets.AddSheet("Attempt History (Real Time)");
+            var segmentHistoryRealTimeSheet = workbook.Sheets.AddSheet("Segment History (Real Time)");
+            var splitsGameTimeSheet = workbook.Sheets.AddSheet("Splits (Game Time)");
+            var attemptHistoryGameTimeSheet = workbook.Sheets.AddSheet("Attempt History (Game Time)");
+            var segmentHistoryGameTimeSheet = workbook.Sheets.AddSheet("Segment History (Game Time)");
 
-            FillSplitTimesSheet(splitTimesSheet, run);
-            FillAttemptHistorySheet(attemptHistorySheet, run);
-            FillSegmentHistorySheet(segmentHistorySheet, run);
+            FillSplitTimesSheet(splitsRealTimeSheet, run, TimingMethod.RealTime);
+            FillAttemptHistorySheet(attemptHistoryRealTimeSheet, run, TimingMethod.RealTime);
+            FillSegmentHistorySheet(segmentHistoryRealTimeSheet, run, TimingMethod.RealTime);
+            FillSplitTimesSheet(splitsGameTimeSheet, run, TimingMethod.GameTime);
+            FillAttemptHistorySheet(attemptHistoryGameTimeSheet, run, TimingMethod.GameTime);
+            FillSegmentHistorySheet(segmentHistoryGameTimeSheet, run, TimingMethod.GameTime);
 
             workbook.SaveToStream(stream, Codaxy.Xlio.IO.XlsxFileWriterOptions.AutoFit);
         }
 
-        private void FillAttemptHistorySheet(Sheet sheet, IRun run)
+        private void FillAttemptHistorySheet(Sheet sheet, IRun run, TimingMethod method)
         {
             var attemptIdColumn = 0;
             var startedColumn = 1;
@@ -106,7 +112,7 @@ namespace LiveSplit.Model.RunSavers
                     ? new Color(221, 221, 221)
                     : new Color(238, 238, 238));
 
-                var time = attempt.Time.RealTime;
+                var time = attempt.Time[method];
                 if (time.HasValue)
                 {
                     timeCell.Value = time.Value.TotalDays;
@@ -131,7 +137,7 @@ namespace LiveSplit.Model.RunSavers
             sheet.AutoFilter = sheet[0, 0, rowIndex - 1, 3];
         }
 
-        private static void FillSegmentHistorySheet(Sheet sheet, IRun run)
+        private static void FillSegmentHistorySheet(Sheet sheet, IRun run, TimingMethod method)
         {
             var header = sheet.Data.Rows[0];
 
@@ -176,7 +182,7 @@ namespace LiveSplit.Model.RunSavers
                     Time segmentHistoryElement;
                     if (segment.SegmentHistory.TryGetValue(attempt.Index, out segmentHistoryElement))
                     {
-                        var time = segmentHistoryElement.RealTime;
+                        var time = segmentHistoryElement[method];
                         if (time.HasValue)
                             cell.Value = time.Value.TotalDays;
                     }
@@ -199,7 +205,7 @@ namespace LiveSplit.Model.RunSavers
             sheet.AutoFilter = sheet[0, 0, rowIndex - 1, columnIndex - 1];
         }
 
-        private static void FillSplitTimesSheet(Sheet sheet, IRun run)
+        private static void FillSplitTimesSheet(Sheet sheet, IRun run, TimingMethod method)
         {
             var header = sheet.Data.Rows[0];
 
@@ -244,14 +250,14 @@ namespace LiveSplit.Model.RunSavers
                 foreach (var comparisonName in run.Comparisons.Where(x => x != NoneComparisonGenerator.ComparisonName))
                 {
                     var cell = row[columnIndex];
-                    var time = segment.Comparisons[comparisonName].RealTime;
+                    var time = segment.Comparisons[comparisonName][method];
                     if (time.HasValue)
                         cell.Value = time.Value.TotalDays;
 
                     cell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
                     cell.Style.Format = "[HH]:MM:SS.00";
                     cell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
-                    if (comparisonName == Run.PersonalBestComparisonName && time.HasValue && segment.BestSegmentTime.RealTime == (time.Value - lastTime))
+                    if (comparisonName == Run.PersonalBestComparisonName && time.HasValue && segment.BestSegmentTime[method] == (time.Value - lastTime))
                     {
                         cell.Style.Fill = CellFill.Solid(
                             ((rowIndex & 1) == 1)
