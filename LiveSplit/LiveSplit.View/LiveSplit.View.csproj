@@ -50,7 +50,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>LiveSplit.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CustomFontDialog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -214,7 +215,6 @@
     <Compile Include="Web\Share\SpeedrunComRunUploadPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="LiveSplit.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -225,7 +225,6 @@
     <None Include="Resources\Configure.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Icon.ico" />
     <Content Include="Resources\DefaultGameIcon.png" />
     <Content Include="Resources\Icon.ico" />
     <Content Include="Resources\DownArrow.png" />
