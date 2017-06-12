@@ -1130,10 +1130,11 @@ namespace LiveSplit.View
                         Width = (int)((currentSize / (double)OldSize) * Width + 0.5);
                     OldSize = currentSize;
                 }
+                var minSize = (int)(currentSize / 5 + 0.5f);
                 if (Layout.Mode == LayoutMode.Vertical)
-                    MinimumSize = new Size(100, (int)(currentSize / 3 + 0.5f));
+                    MinimumSize = new Size(25, Math.Max(minSize, 25));
                 else
-                    MinimumSize = new Size((int)(currentSize / 3 + 0.5f), 25);
+                    MinimumSize = new Size(Math.Max(minSize, 25), 25);
             }
         }
 
