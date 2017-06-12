@@ -263,46 +263,78 @@ namespace LiveSplit.Web.Share
                 image_url = (string)result.data.link;
             }
 
-            var request = (HttpWebRequest)WebRequest.Create(GetAPIUri("runs").AbsoluteUri);
+            var request = (HttpWebRequest)WebRequest.Create(GetAPIV4Uri("runs").AbsoluteUri);
             request.Method = "POST";
-            request.Host = "splits.io";
-            request.UserAgent = UpdateHelper.UserAgent;
+            request.ContentType = "multipart/form-data; boundary=AaB03x";
+
             using (var stream = request.GetRequestStream())
             {
-                request.ContentType = "multipart/form-data; boundary=AaB03x";
-                request.Referer = "http://splits.io/upload/fallback";
-                request.Headers.Add("Origin", "http://splits.io");
-
                 var writer = new StreamWriter(stream);
-
                 if (image_url != null)
                 {
-                    writer.WriteLine("--AaB03x");
-                    writer.WriteLine("Content-Disposition: form-data; name=\"image_url\"");
-                    writer.WriteLine();
-                    writer.WriteLine(image_url);
+                    WriteKeyAndValue(writer, "image_url", image_url);
                 }
-
-                writer.WriteLine("--AaB03x");
-                writer.WriteLine("Content-Disposition: form-data; name=\"file\"; filename=\"splits\"");
-                writer.WriteLine("Content-Type: application/octet-stream");
-                writer.WriteLine();
-                writer.Flush();
-
-                new XMLRunSaver().Save(run, stream);
-
-                writer.WriteLine();
                 writer.WriteLine("--AaB03x--");
                 writer.Flush();
             }
 
             dynamic json;
+            string claimUri;
+            string publicUri;
             using (var response = request.GetResponse())
             {
                 json = JSON.FromResponse(response);
+
+                claimUri = json.uris.claim_uri;
+                publicUri = json.uris.public_uri;
+                var presignedRequest = json.presigned_request;
+
+                request = (HttpWebRequest)WebRequest.Create(presignedRequest.uri);
+                request.Method = presignedRequest.method;
+
+                var fields = presignedRequest.fields;
+
+                using (var stream = request.GetRequestStream())
+                {
+                    request.ContentType = "multipart/form-data; boundary=AaB03x";
+
+                    var writer = new StreamWriter(stream);
+
+                    WriteKeyAndValue(writer, "key", fields.key);
+                    WriteKeyAndValue(writer, "policy", fields.policy);
+                    WriteKeyAndValue(writer, "x-amz-credential", fields["x-amz-credential"]);
+                    WriteKeyAndValue(writer, "x-amz-algorithm", fields["x-amz-algorithm"]);
+                    WriteKeyAndValue(writer, "x-amz-date", fields["x-amz-date"]);
+                    WriteKeyAndValue(writer, "x-amz-signature", fields["x-amz-signature"]);
+
+                    writer.WriteLine("--AaB03x");
+                    writer.WriteLine("Content-Disposition: form-data; name=\"file\"; filename=\"splits\"");
+                    writer.WriteLine("Content-Type: application/octet-stream");
+                    writer.WriteLine();
+                    writer.Flush();
+
+                    new XMLRunSaver().Save(run, stream);
+
+                    writer.WriteLine();
+                    writer.WriteLine("--AaB03x--");
+                    writer.Flush();
+                }
+
+                using (var response2 = request.GetResponse())
+                {
+                    json = JSON.FromResponse(response2);
+                }
             }
 
-            return claimTokenUri ? json.uris.claim_uri : json.uris.public_uri;
+            return claimTokenUri ? claimUri : publicUri;
+        }
+
+        private static void WriteKeyAndValue(TextWriter writer, string key, string value)
+        {
+            writer.WriteLine("--AaB03x");
+            writer.WriteLine("Content-Disposition: form-data; name=\"" + key + "\"");
+            writer.WriteLine();
+            writer.WriteLine(value);
         }
 
         public bool SubmitRun(IRun run, string username, string password, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)
