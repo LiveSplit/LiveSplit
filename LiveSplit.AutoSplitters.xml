@@ -67,44 +67,6 @@
 	</AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Command &amp; Conquer: Red Alert 2</Game>
-      <Game>Red Alert 2</Game>
-      <Game>cncra2</Game>
-      <Game>ra2</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCRA2.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Command &amp; Conquer: Yuri's Revenge</Game>
-      <Game>Command &amp; Conquer: Red Alert 2 - Yuri's Revenge</Game>
-      <Game>cncyr</Game>
-      <Game>cncra2yr</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCYR.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Command &amp; Conquer: Generals</Game>
-      <Game>cncg</Game>
-      <Game>cncgen</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCG.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Dishonored</Game>
       <Game>Dishonored (PC)</Game>
     </Games>
@@ -1989,19 +1951,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Mental Omega</Game>
-      <Game>Mental Omega APYR</Game>
-      <Game>Mental Omega Almost Perfect Yuri's Revenge</Game>
-      <Game>Command &amp; Conquer: Mental Omega</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.MentalOmega.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>140</Game>
     </Games>
     <URLs>
@@ -2050,21 +1999,6 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available. (By Hyphen-ated)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>SM64: Last Impact</Game>
-      <Game>Super Mario 64: Last Impact</Game>
-      <Game>Super Mario: Last Impact</Game>
-      <Game>SM64 Last Impact</Game>
-      <Game>Super Mario 64 Last Impact</Game>
-      <Game>Super Mario Last Impact</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.SM64LI.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto-start and in-game time available for Project64 1.6 and 1.7. In beta. (by ROMaster2)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2586,27 +2520,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Yooka-Laylee</Game>
-      <Game>Yooka Laylee</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.YookaLaylee.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load remover. In Beta</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Snake Pass</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.SnakePass.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>In-game timer. In Beta</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Path of Exile</Game>
     </Games>
     <URLs>
@@ -2615,16 +2528,6 @@
     <Type>Component</Type>
     <Description>Load Time Removal and Auto Splitting are available. (By Brandon)</Description>
     <Website>https://github.com/brandondong/POE-LiveSplit-Component/blob/master/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>INK</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.INK.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto-start, split, and reset. Works for all 75 levels. IGT soon. (By ROMaster2)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2748,5 +2651,112 @@
   	</URLs>
   	<Type>Script</Type>
   	<Description>Load Removal is available. (By Tezur0)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Command &amp; Conquer: Red Alert 2</Game>
+      <Game>Red Alert 2</Game>
+      <Game>cncra2</Game>
+      <Game>ra2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCRA2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Command &amp; Conquer: Yuri's Revenge</Game>
+      <Game>Command &amp; Conquer: Red Alert 2 - Yuri's Revenge</Game>
+      <Game>cncyr</Game>
+      <Game>cncra2yr</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCYR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Command &amp; Conquer: Generals</Game>
+      <Game>cncg</Game>
+      <Game>cncgen</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCG.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Mental Omega</Game>
+      <Game>Mental Omega APYR</Game>
+      <Game>Mental Omega Almost Perfect Yuri's Revenge</Game>
+      <Game>Command &amp; Conquer: Mental Omega</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.MentalOmega.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SM64: Last Impact</Game>
+      <Game>Super Mario 64: Last Impact</Game>
+      <Game>Super Mario: Last Impact</Game>
+      <Game>SM64 Last Impact</Game>
+      <Game>Super Mario 64 Last Impact</Game>
+      <Game>Super Mario Last Impact</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.SM64LI.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start and in-game time available for Project64 1.6 and 1.7. Forever in beta. (by ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Yooka-Laylee</Game>
+      <Game>Yooka Laylee</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.YookaLaylee.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover. STILL In Beta</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Snake Pass</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.SnakePass.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game timer. In Beta</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>INK</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.INK.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start, split, and reset. Works for all 75 levels. IGT soon. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Command &amp; Conquer: Renegade</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCRen.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game time. Currently only Origin version, more to come. (By ROMaster2)</Description>
   </AutoSplitter>
 </AutoSplitters>
