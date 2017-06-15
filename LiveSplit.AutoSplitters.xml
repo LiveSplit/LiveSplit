@@ -2759,4 +2759,22 @@
     <Type>Script</Type>
     <Description>In-game time. Currently only Origin version, more to come. (By ROMaster2)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Command &amp; Conquer: Generals - Zero Hour</Game>
+      <Game>Command &amp; Conquer: Generals: Zero Hour</Game>
+      <Game>Command &amp; Conquer: Generals Zero Hour</Game>
+      <Game>Command &amp; Conquer - Generals - Zero Hour</Game>
+      <Game>Command &amp; Conquer - Generals: Zero Hour</Game>
+      <Game>Command &amp; Conquer - Generals Zero Hour</Game>
+      <Game>Command &amp; Conquer Generals - Zero Hour</Game>
+      <Game>Command &amp; Conquer Generals: Zero Hour</Game>
+      <Game>Command &amp; Conquer Generals Zero Hour</Game><!--Gotta love games with two subtitles-->
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCGZH.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game time, auto-split and auto-start. (By ROMaster2)</Description>
+  </AutoSplitter>
 </AutoSplitters>
