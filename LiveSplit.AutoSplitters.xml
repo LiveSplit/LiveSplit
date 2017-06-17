@@ -2777,4 +2777,16 @@
     <Type>Script</Type>
     <Description>In-game time, auto-split and auto-start. (By ROMaster2)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Command &amp; Conquer: Tiberium Wars</Game>
+      <Game>Command &amp; Conquer - Tiberium Wars</Game>
+      <Game>Command &amp; Conquer Tiberium Wars</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCTW.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game time, auto-split and auto-start. (By ROMaster2)</Description>
+  </AutoSplitter>
 </AutoSplitters>
