@@ -2632,7 +2632,7 @@
     <Type>Component</Type>
     <Description>Load removal is available. (By SuicideMachine)</Description>
   </AutoSplitter>
-	<AutoSplitter>
+  <AutoSplitter>
   	<Games>
   		<Game>Serious Sam: The First Encounter</Game>
   	</Games>
@@ -2642,7 +2642,7 @@
   	<Type>Script</Type>
   	<Description>Load Removal is available. (By Tezur0)</Description>
   </AutoSplitter>
-	<AutoSplitter>
+  <AutoSplitter>
   	<Games>
   		<Game>Serious Sam: The Second Encounter</Game>
   	</Games>
@@ -2788,5 +2788,18 @@
     </URLs>
     <Type>Script</Type>
     <Description>In-game time, auto-split and auto-start. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>  
+	<Game>Prince of Persia The Forgotten Sands</Game>
+	<Game>Prince of Persia: The Forgotten Sands</Game>
+	<Game>POP:TFS</Game>
+	<Game>POP: The Forgotten Sands</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/POP-ForgottenSands/LiveSplit.POPForgottenSands.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available (by SuicideMachine)</Description>
   </AutoSplitter>
 </AutoSplitters>
