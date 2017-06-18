@@ -169,6 +169,11 @@ namespace LiveSplit.View
             label9.Enabled = btnGlod.Enabled = !chkRainbow.Checked;
         }
 
+        private void chkAntiAliasing_CheckedChanged(object sender, EventArgs e)
+        {
+            lblOutlines.Enabled = btnTextOutlineColor.Enabled = chkAntiAliasing.Checked;
+        }
+
         private void LayoutSettingsControl_Load(object sender, EventArgs e)
         {
             chkRainbow_CheckedChanged(this, null);
