@@ -2802,4 +2802,14 @@
     <Type>Script</Type>
     <Description>Load removal is available (by SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+	  <Games>
+      <Game>Densha De D: Lightning Stage</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/Lordmau5/0e6dbe9e4eb28b1baad78cfc22450bae/raw/90acac4d5d1700625892cba3a3f3910e7df7a24b/DDD_LS_AutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game time, auto-split, auto-start and load-removal. (by Lordmau5)</Description>
+  </AutoSplitter>
 </AutoSplitters>
