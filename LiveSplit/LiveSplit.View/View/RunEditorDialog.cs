@@ -886,7 +886,7 @@ namespace LiveSplit.View
                 if (Run.Count <= 1 || selectedIndex >= Run.Count || selectedIndex < 0)
                     continue;
                 FixAfterDeletion(selectedIndex);
-                if (selectedIndex == Run.Count - 1)
+                if (selectedIndex == Run.Count - 1 && selectedIndex == runGrid.CurrentRow.Index)
                 {
                     runGrid.ClearSelection();
                     runGrid.CurrentCell = runGrid.Rows[runGrid.CurrentRow.Index - 1].Cells[runGrid.CurrentCell.ColumnIndex];
