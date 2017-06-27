@@ -161,9 +161,12 @@ namespace CustomFontDialog
                 }
 
                 if (style.HasValue)
+                {
+                    if (size == 0) size = 1;
                     lblSampleText.Font = new Font(family, size, style.Value);
 
-                TriggerFontChanged();
+                    TriggerFontChanged();
+                }
             }
         }
 
