@@ -2835,4 +2835,14 @@
    <Type>Script</Type>
    <Description>Load Removal is available. (By Chimpaneez)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+   <Games>
+     <Game>Metro 2033</Game>
+   </Games>
+   <URLs>
+     <URL>https://raw.githubusercontent.com/Chimpaneez/metro2033/master/metro2033.asl</URL>
+   </URLs>
+   <Type>Script</Type>
+   <Description>Load Removal is available. (By Ekelbatzen)</Description>
+  </AutoSplitter>
 </AutoSplitters>
