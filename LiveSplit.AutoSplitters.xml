@@ -1209,6 +1209,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Kingpin</Game>
+      <Game>Kingpin: Life of Crime</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.Kingpin/master/Components/LiveSplit.Kingpin.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By Sphere)</Description>
+    <Website>https://github.com/kugelrund/LiveSplit.Kingpin/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Quake</Game>
     </Games>
     <URLs>
