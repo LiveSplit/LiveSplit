@@ -2845,4 +2845,14 @@
    <Type>Script</Type>
    <Description>Load Removal is available. (By Ekelbatzen)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+   <Games>
+     <Game>Return to Castle Wolfenstein</Game>
+   </Games>
+   <URLs>
+     <URL>https://raw.githubusercontent.com/mrhoyo33/rtcw_asl/master/rtcw.asl</URL>
+   </URLs>
+   <Type>Script</Type>
+   <Description>Auto-split, auto-start(By Hoyo). Load-removal(By MightyCrab)</Description>
+  </AutoSplitter>
 </AutoSplitters>
