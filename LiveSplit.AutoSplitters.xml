@@ -2864,5 +2864,15 @@
    </URLs>
    <Type>Script</Type>
    <Description>Load Removal is available. (By Chimpaneez)</Description>
+   </AutoSplitter>
+   <AutoSplitter>
+   <Games>
+     <Game>Need for Speed: Porsche Unleashed (PC)</Game>
+   </Games>
+   <URLs>
+     <URL>https://raw.githubusercontent.com/BIGV10/Livesplit_ASL/master/LiveSplit.PorscheUnleashed.asl</URL>
+   </URLs>
+   <Type>Script</Type>
+   <Description>Load-removal (By BIGV10)</Description>
   </AutoSplitter>
 </AutoSplitters>
