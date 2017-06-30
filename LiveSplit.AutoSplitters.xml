@@ -2857,6 +2857,16 @@
   </AutoSplitter>
   <AutoSplitter>
    <Games>
+     <Game>DmC: Devil May Cry</Game>
+   </Games>
+   <URLs>
+     <URL>https://raw.githubusercontent.com/Chimpaneez/DMC-DevilMayCry/master/DMC-DevilMayCry.asl</URL>
+   </URLs>
+   <Type>Script</Type>
+   <Description>Load Removal is available. (By Chimpaneez)</Description>
+   </AutoSplitter>
+   <AutoSplitter>
+   <Games>
      <Game>Need for Speed: Porsche Unleashed (PC)</Game>
    </Games>
    <URLs>
