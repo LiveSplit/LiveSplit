@@ -2878,4 +2878,14 @@
    <Type>Script</Type>
    <Description>Load-removal (By BIGV10)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+   <Games>
+     <Game>Superdimension Neptune Vs Sega Hard Girls</Game>
+   </Games>
+   <URLs>
+     <URL>https://raw.githubusercontent.com/Marenthyu/LiveSplitScripts/master/nep-seha.asl</URL>
+   </URLs>
+   <Type>Script</Type>
+   <Description>Auto-Split on mission accept/report/retire, TE kill and Tutorial Fights, auto-start on file load. (By Marenthyu)</Description>
+   </AutoSplitter>
 </AutoSplitters>
