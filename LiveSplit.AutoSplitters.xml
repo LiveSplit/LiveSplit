@@ -2805,6 +2805,18 @@
     <Description>In-game time, auto-split and auto-start. (By ROMaster2)</Description>
   </AutoSplitter>
   <AutoSplitter>
+    <Games>
+      <Game>Dune 2000</Game>
+      <Game>Dune 2000: Long Live the Fighters!</Game>
+      <Game>Dune 2000: Long Live the Fighters</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.Dune2000.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game time, auto-split, and auto-start for the Gruntmods Edition. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
     <Games>  
 	<Game>Prince of Persia The Forgotten Sands</Game>
 	<Game>Prince of Persia: The Forgotten Sands</Game>
