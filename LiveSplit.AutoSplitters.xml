@@ -2739,10 +2739,10 @@
       <Game>Yooka Laylee</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.YookaLaylee.asl</URL>
+      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/YookaLaylee/YookaLaylee.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load remover. STILL In Beta</Description>
+    <Description>Load Removal is available. (By 0Seren)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
