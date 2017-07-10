@@ -2919,8 +2919,8 @@
       <Game>Final Fantasy X</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/BitPatty/LiveSplit.FFX/blob/master/Components/LiveSplit.FFX.dll</URL>
-      <URL>https://github.com/BitPatty/LiveSplit.FFX/blob/master/LiveSplit.FFX.UI/Components/LiveSplit.FFX.UI.dll</URL>
+      <URL>https://raw.githubusercontent.com/BitPatty/LiveSplit.FFX/master/Components/LiveSplit.FFX.dll</URL>
+      <URL>https://raw.githubusercontent.com/BitPatty/LiveSplit.FFX/master/LiveSplit.FFX.UI/Components/LiveSplit.FFX.UI.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal, Auto Start/Reset and Encounter Count are available (PC). (By Psychonauter and Flobberworm4)</Description>
