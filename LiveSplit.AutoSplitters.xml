@@ -2926,4 +2926,14 @@
     <Description>Load Removal, Auto Start/Reset and Encounter Count are available (PC). (By Psychonauter and Flobberworm4)</Description>
     <Website>https://github.com/BitPatty/LiveSplit.FFX/blob/master/Readme.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Hellforces</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Hellforces/Hellforces.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and autosplitting is available. (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
