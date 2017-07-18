@@ -349,6 +349,7 @@ namespace LiveSplit.View
         void SegmentList_ListChanged(object sender, ListChangedEventArgs e)
         {
             TimesModified();
+            UpdateButtonsStatus();
         }
 
         private void UpdateButtonsStatus()
