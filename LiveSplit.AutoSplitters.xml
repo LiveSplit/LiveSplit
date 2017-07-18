@@ -2936,4 +2936,15 @@
     <Type>Script</Type>
     <Description>Load Removal and autosplitting is available. (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Völgarr The Viking</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Berumondo/Volgarr-autosplitter/master/Volgarr.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>auto starts / resets and splits at every screen.</Description>
+    <Website>https://github.com/Berumondo/Volgarr-autosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
