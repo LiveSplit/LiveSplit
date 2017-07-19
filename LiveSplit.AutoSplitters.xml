@@ -2969,4 +2969,88 @@
     <Description>Autosplitter for The End Is Nigh.</Description>
     <Website>https://github.com/Grimelios/LiveSplit.TheEndIsNigh</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Kalimba</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.Kalimba/raw/master/Components/LiveSplit.Kalimba.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time and Auto Splitting are available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Kalimba</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Ori and the Blind Forest Definitive Edition</Game>
+      <Game>Ori and the Blind Forest DE</Game>
+      <Game>Ori DE</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.OriDE/raw/master/Components/LiveSplit.OriDE.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.OriDE</Website>
+    <ShowInLayoutEditor />
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Hollow Knight</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.HollowKnight/raw/master/Components/LiveSplit.HollowKnight.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Configurable Load Remover / Auto Splitter. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.HollowKnight</Website>
+    <ShowInLayoutEditor />
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Epistory</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.Epistory/raw/master/Components/LiveSplit.Epistory.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Epistory</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Splasher</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.Splasher/raw/master/Components/LiveSplit.Splasher.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Splasher</Website>
+    <ShowInLayoutEditor />
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SteamWorld Dig</Game>
+      <Game>SteamWorldDig</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.SteamWorldDig/raw/master/Components/LiveSplit.SteamWorldDig.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.SteamWorldDig</Website>
+    <ShowInLayoutEditor />
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Defunct</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.Defunct/raw/master/Components/LiveSplit.Defunct.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Defunct</Website>
+  </AutoSplitter>
 </AutoSplitters>
