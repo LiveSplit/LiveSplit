@@ -84,30 +84,36 @@ namespace LiveSplit.Model
 
         private static void FixHistoryFromNullBestSegments(ISegment curSplit, TimingMethod method, int minIndex, int maxIndex)
         {
-            for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
+            if (curSplit.BestSegmentTime[method] == null)
             {
-                Time historyTime;
-                if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
+                for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
                 {
-                    //If the Best Segment is gone, clear the history
-                    if (curSplit.BestSegmentTime[method] == null && historyTime[method] != null)
-                        curSplit.SegmentHistory.Remove(runIndex);
+                    Time historyTime;
+                    if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
+                    {
+                        //If the Best Segment is gone, clear the history
+                        if (historyTime[method] != null)
+                            curSplit.SegmentHistory.Remove(runIndex);
+                    }
                 }
             }
         }
 
         private static void FixHistoryFromBestSegmentTimes(ISegment curSplit, TimingMethod method, int minIndex, int maxIndex)
         {
-            for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
+            if (curSplit.BestSegmentTime[method] != null)
             {
-                Time historyTime;
-                if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
+                for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
                 {
-                    //Make sure no times in the history are lower than the Best Segment
-                    if (curSplit.BestSegmentTime[method] != null && historyTime[method] < curSplit.BestSegmentTime[method])
+                    Time historyTime;
+                    if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
                     {
-                        historyTime[method] = curSplit.BestSegmentTime[method];
-                        curSplit.SegmentHistory[runIndex] = historyTime;
+                        //Make sure no times in the history are lower than the Best Segment
+                        if (historyTime[method] < curSplit.BestSegmentTime[method])
+                        {
+                            historyTime[method] = curSplit.BestSegmentTime[method];
+                            curSplit.SegmentHistory[runIndex] = historyTime;
+                        }
                     }
                 }
             }
@@ -168,7 +174,7 @@ namespace LiveSplit.Model
 
         private static void RemoveNullValues(IRun run)
         {
-            var cache = new List<IIndexedTime>();
+            var cache = new List<int>();
             var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             for (var runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
             {
@@ -181,12 +187,11 @@ namespace LiveSplit.Model
                         RemoveItemsFromCache(run, index, cache);
                     }
                     else if (segmentHistoryElement.RealTime == null && segmentHistoryElement.GameTime == null)
-                        cache.Add(new IndexedTime(segmentHistoryElement, runIndex));
+                        cache.Add(runIndex);
                     else
                         cache.Clear();
                 }
                 RemoveItemsFromCache(run, run.Count, cache);
-                cache.Clear();
             }
         }
 
@@ -208,12 +213,12 @@ namespace LiveSplit.Model
             }
         }
 
-        private static void RemoveItemsFromCache(IRun run, int index, IList<IIndexedTime> cache)
+        private static void RemoveItemsFromCache(IRun run, int index, IList<int> cache)
         {
             var ind = index - cache.Count;
             foreach (var item in cache)
             {
-                run[ind].SegmentHistory.Remove(item.Index);
+                run[ind].SegmentHistory.Remove(item);
                 ind++;
             }
             cache.Clear();
