@@ -2938,7 +2938,7 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Völgarr The Viking</Game>
+      <Game>Völgarr the Viking</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Berumondo/Volgarr-autosplitter/master/Volgarr.asl</URL>
@@ -2946,5 +2946,16 @@
     <Type>Script</Type>
     <Description>auto starts / resets and splits at every screen.</Description>
     <Website>https://github.com/Berumondo/Volgarr-autosplitter</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>1001 Spikes</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Berumondo/1001-Spikes-autosplitter/master/1001SpikesUkampaAny.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>auto starts / resets and splits on every level.</Description>
+    <Website>https://github.com/Berumondo/1001-Spikes-autosplitter</Website>
   </AutoSplitter>
 </AutoSplitters>
