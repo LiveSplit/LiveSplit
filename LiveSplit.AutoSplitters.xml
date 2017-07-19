@@ -2947,4 +2947,16 @@
     <Description>auto starts / resets and splits at every screen.</Description>
     <Website>https://github.com/Berumondo/Volgarr-autosplitter</Website>
   </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>The End Is Nigh</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Grimelios/LiveSplit.TheEndIsNigh/master/Release/LiveSplit.TheEndIsNigh.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitter for The End Is Nigh.</Description>
+    <Website>https://github.com/Grimelios/LiveSplit.TheEndIsNigh</Website>
+    <ShowInLayoutEditor />
+  </AutoSplitter>
 </AutoSplitters>
