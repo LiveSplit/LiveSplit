@@ -2968,6 +2968,7 @@
     <Type>Component</Type>
     <Description>Autosplitter for The End Is Nigh.</Description>
     <Website>https://github.com/Grimelios/LiveSplit.TheEndIsNigh</Website>
+    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
