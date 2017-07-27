@@ -3066,4 +3066,14 @@
     <Description>Autosplitting and load removal is available. (By SuicideMachine)</Description>
     <Website>https://github.com/SuiMachine/LiveSplit.Syndicate2012/</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Armed With Wings: Rearmed</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/RisingFog/LiveSplit-AutoSplitters/master/ArmedWithWingsRearmed.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting and auto-start is available (By Fog)</Description>
+  </AutoSplitter>
 </AutoSplitters>
