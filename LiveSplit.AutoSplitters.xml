@@ -2822,6 +2822,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Psycho Waluigi</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.PsychoWaluigi.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start and auto-split available. Does not split on final boss yet.</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Prince of Persia The Forgotten Sands</Game>
       <Game>Prince of Persia: The Forgotten Sands</Game>
       <Game>POP:TFS</Game>
