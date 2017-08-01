@@ -2845,6 +2845,31 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Warcraft III: Reign of Chaos</Game>
+      <Game>Warcraft III Reign of Chaos</Game>
+      <Game>Warcraft 3: Reign of Chaos</Game>
+      <Game>Warcraft 3 Reign of Chaos</Game>
+      <Game>Warcraft III</Game>
+      <Game>Warcraft 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.WarcraftIII.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game time, auto-start, and auto-split available. Final split not tested. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>StarCraft</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.StarCraft.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Partial in-game time, auto-start, and auto-split available. In Beta. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Prince of Persia The Forgotten Sands</Game>
       <Game>Prince of Persia: The Forgotten Sands</Game>
       <Game>POP:TFS</Game>
