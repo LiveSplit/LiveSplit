@@ -64,7 +64,7 @@ after_build:
         .\WinSCP.com /command `
             "option batch abort" `
             "option confirm off" `
-            "open ftp://livesplit:${env:BUILD_PASSWORD}@livesplit.org -hostkey=*" `
+            "open ftp://livesplit@livesplit.org:${env:BUILD_PASSWORD}@livesplit.org -hostkey=*" `
             "put $BUILD_NAME /" `
             "exit"
     }
