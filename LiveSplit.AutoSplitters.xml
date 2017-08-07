@@ -3124,4 +3124,15 @@
     <Type>Script</Type>
     <Description>Auto-splitting and auto-start is available (By Fog)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Marc Ecko's Getting Up: Contents Under Pressure</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/bilakispa/GettingUp-ASL/master/gettingup.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal Function only</Description>
+    <Website>https://github.com/bilakispa/GettingUp-ASL/</Website>
+  </AutoSplitter>
 </AutoSplitters>
