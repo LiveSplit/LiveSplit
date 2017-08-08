@@ -2139,7 +2139,7 @@
       <Game>Battlefield 3</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Chimpaneez/bf3/master/bf3</URL>
+      <URL>https://raw.githubusercontent.com/Chimpaneez/ASL/master/bf3.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Chimpaneez)</Description>
@@ -2897,7 +2897,7 @@
       <Game>Metro: Last Light Redux</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Chimpaneez/metroredux/master/metroredux.asl</URL>
+      <URL>https://raw.githubusercontent.com/Chimpaneez/ASL/master/metroredux.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Chimpaneez)</Description>
@@ -2907,10 +2907,10 @@
       <Game>Metro 2033</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Chimpaneez/metro2033/master/metro2033.asl</URL>
+      <URL>https://raw.githubusercontent.com/Chimpaneez/ASL/master/metro2033.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Ekelbatzen)</Description>
+    <Description>Load Removal and Autosplitting is available. (By Ekelbatzen)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2927,7 +2927,7 @@
       <Game>DmC: Devil May Cry</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Chimpaneez/DMC-DevilMayCry/master/DMC-DevilMayCry.asl</URL>
+      <URL>https://raw.githubusercontent.com/Chimpaneez/ASL/master/DMC-DevilMayCry.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Chimpaneez)</Description>
@@ -3134,5 +3134,15 @@
     <Type>Script</Type>
     <Description>Load Removal Function only</Description>
     <Website>https://github.com/bilakispa/GettingUp-ASL/</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Risen</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Chimpaneez/ASL/master/Risen.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Chimpaneez)</Description>
   </AutoSplitter>
 </AutoSplitters>
