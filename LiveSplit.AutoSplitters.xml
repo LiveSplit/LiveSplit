@@ -2879,7 +2879,7 @@
       <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.SML2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto-start and auto-split available. Final split not tested. (By ROMaster2)</Description>
+    <Description>Auto-start and auto-split available for BGB and Gambatte.(By ROMaster2)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
