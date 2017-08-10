@@ -359,10 +359,10 @@
       <Game>Dying Light</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Dalet/DyingLightIGT/master/Components/LiveSplit.DyingLightIGT.dll</URL>
+      <URL>https://raw.githubusercontent.com/TheFuncannon/DyingLightIGT/master/DyingLight.asl</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Auto Start/Reset and Game Time are available. (By Dalet)</Description>
+    <Description>Auto Start/Reset and Game Time are available. (By TheFuncannon)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
