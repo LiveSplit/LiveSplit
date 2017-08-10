@@ -361,7 +361,7 @@
     <URLs>
       <URL>https://raw.githubusercontent.com/TheFuncannon/DyingLightIGT/master/DyingLight.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Auto Start/Reset and Game Time are available. (By TheFuncannon)</Description>
   </AutoSplitter>
   <AutoSplitter>
