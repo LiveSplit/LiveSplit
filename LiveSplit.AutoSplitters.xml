@@ -3158,4 +3158,15 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Chimpaneez)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Mafia: The City of Lost Heaven</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Lembox/Mafia/master/LiveSplit.Mafia.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal is available. (By pitpo and Lembox)</Description>
+    <Website>https://github.com/Lembox/Mafia</Website>
+  </AutoSplitter>
 </AutoSplitters>
