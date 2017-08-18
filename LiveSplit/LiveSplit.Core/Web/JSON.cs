@@ -166,6 +166,7 @@ namespace LiveSplit.Web
                 }
                 else if (value is IDictionary<string, object>)
                 {
+                    sb.Append("\"" + HttpUtility.JavaScriptStringEncode(name) + "\": {\r\n");
                     new DynamicJsonObject((IDictionary<string, object>)value).ToString(sb, depth + 1);
                 }
                 else if (value is IEnumerable<object>)
