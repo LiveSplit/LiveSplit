@@ -3171,4 +3171,15 @@
     <Description>Autosplitting and load removal is available. (By pitpo and Lembox)</Description>
     <Website>https://github.com/Lembox/Mafia</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Super Lovely Planet</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/sigmasin/LiveSplit.SuperLovelyPlanet/master/Components/LiveSplit.SuperLovelyPlanet.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting and load removal is available. (By Sigmasin)</Description>
+    <Website>https://github.com/sigmasin/LiveSplit.SuperLovelyPlanet</Website>
+  </AutoSplitter>
 </AutoSplitters>
