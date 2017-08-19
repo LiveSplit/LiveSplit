@@ -3182,4 +3182,16 @@
     <Description>Autosplitting and load removal is available. (By Sigmasin)</Description>
     <Website>https://github.com/sigmasin/LiveSplit.SuperLovelyPlanet</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>D.I.R.T.: Origin of the Species</Game>
+      <Game>DIRT: Origin of the Species</Game>
+      <Game>Eva Cash - D.I.R.T. Project</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/DirtOriginOfSpecies/DirtOriginOfSpecies.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal is available. (by SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
