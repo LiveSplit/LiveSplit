@@ -3147,7 +3147,7 @@
       <URL>https://raw.githubusercontent.com/bilakispa/GettingUp-ASL/master/gettingup.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal Function only</Description>
+    <Description>Autosplitting and Load Removal is available</Description>
     <Website>https://github.com/bilakispa/GettingUp-ASL/</Website>
   </AutoSplitter>
   <AutoSplitter>
