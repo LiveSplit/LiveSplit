@@ -2862,29 +2862,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>StarCraft</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.StarCraft.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Partial in-game time, auto-start, and auto-split available. In Beta. (By ROMaster2)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Super Mario Land 2</Game>
-      <Game>Super Mario Land 2: 6 Golden Coins</Game>
-      <Game>Super Mario Land 2: Six Golden Coins</Game>
-      <Game>sml2</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.SML2.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto-start and auto-split available for BGB and Gambatte.(By ROMaster2)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Prince of Persia The Forgotten Sands</Game>
       <Game>Prince of Persia: The Forgotten Sands</Game>
       <Game>POP:TFS</Game>
