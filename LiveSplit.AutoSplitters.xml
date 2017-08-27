@@ -3171,4 +3171,14 @@
     <Type>Script</Type>
     <Description>Autosplitting and load removal is available. (by SuicideMachine)</Description>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Bayonetta</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Bigmanjapan/LivesplitASLscripts/master/Bayonetta%20v1.01/LiveSplit.Bayonetta_101.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Tracks in-game time. (by Bigmanjapan)</Description>
+  </AutoSplitter>
 </AutoSplitters>
