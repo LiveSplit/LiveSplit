@@ -3181,4 +3181,18 @@
     <Type>Script</Type>
     <Description>Tracks in-game time. (by Bigmanjapan)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Pet the Pup at the Party</Game>
+      <Game>Pet the Pup</Game>
+    </Games>
+    <URLs>
+      <URL>https://dl.dotstart.tv/livesplit/pet-the-pup/LiveSplit.dotStart.Common.dll</URL>
+      <URL>https://dl.dotstart.tv/livesplit/pet-the-pup/LiveSplit.dotStart.PetThePup.dll</URL>
+      <URL>https://dl.dotstart.tv/livesplit/pet-the-pup/LiveSplit.dotStart.PetThePup.UI.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By .start)</Description>
+    <Website>https://github.com/dotStart/LiveSplit-Components</Website>
+  </AutoSplitter>
 </AutoSplitters>
