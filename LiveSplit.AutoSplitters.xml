@@ -3187,9 +3187,9 @@
       <Game>Pet the Pup</Game>
     </Games>
     <URLs>
-      <URL>https://dl.dotstart.tv/livesplit/pet-the-pup/LiveSplit.dotStart.Common.dll</URL>
       <URL>https://dl.dotstart.tv/livesplit/pet-the-pup/LiveSplit.dotStart.PetThePup.dll</URL>
       <URL>https://dl.dotstart.tv/livesplit/pet-the-pup/LiveSplit.dotStart.PetThePup.UI.dll</URL>
+      <URL>https://dl.dotstart.tv/livesplit/pet-the-pup/LiveSplit.dotStart.Common.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Autosplitting is available. (By .start)</Description>
