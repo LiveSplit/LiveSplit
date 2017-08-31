@@ -3171,7 +3171,7 @@
     <Type>Script</Type>
     <Description>Autosplitting and load removal is available. (by SuicideMachine)</Description>
   </AutoSplitter>
-    <AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Bayonetta</Game>
     </Games>
@@ -3194,5 +3194,15 @@
     <Type>Component</Type>
     <Description>Autosplitting is available. (By .start)</Description>
     <Website>https://github.com/dotStart/LiveSplit-Components</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>White Day: A Labyrinth Named School</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Bigmanjapan/LivesplitASLscripts/master/White%20Day%20Remake/LiveSplit.WhiteDayRemake.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Tracks in-game time. (by Bigmanjapan)</Description>
   </AutoSplitter>
 </AutoSplitters>
