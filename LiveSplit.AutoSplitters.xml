@@ -2832,7 +2832,7 @@
       <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.PsychoWaluigi.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto-start and auto-split available. Does not split on final boss yet. (By ROMaster2)</Description>
+    <Description>Auto-start and auto-split available. (By ROMaster2)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2859,6 +2859,20 @@
     </URLs>
     <Type>Script</Type>
     <Description>In-game time, auto-start, and auto-split available. Final split not tested. (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Halo Wars</Game>
+      <Game>Halo Wars DE</Game>
+      <Game>Halo Wars: DE</Game>
+      <Game>Halo Wars Definitive Edition</Game>
+      <Game>Halo Wars: Definitive Edition</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.HaloWarsDE.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game time and auto-start available. Auto-split available soon. In Beta (By ROMaster2)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
