@@ -626,7 +626,7 @@ namespace LiveSplit.View
                         }
                         else
                         {
-                            foreach ( DataGridViewCell cell in runGrid.SelectedCells )
+                            foreach (DataGridViewCell cell in runGrid.SelectedCells)
                             {
                                 if (cell.ColumnIndex != ICONINDEX)
                                     continue;
@@ -635,7 +635,7 @@ namespace LiveSplit.View
                                 if (oldImage != null)
                                     ImagesToDispose.Add(oldImage);
 
-                                Run[cell.RowIndex].Icon = image;
+                                Run[cell.RowIndex].Icon = (Image)image.Clone();
                                 runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
                             }
                         }
