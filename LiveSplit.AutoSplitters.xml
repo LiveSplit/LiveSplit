@@ -3219,4 +3219,14 @@
     <Type>Script</Type>
     <Description>Tracks in-game time. (by Bigmanjapan)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Taco Bell: Tasty Temple Challenge</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Zemmiphobiac/Taco-Bell-Tasty-Temple-Challenge-Autosplitter/master/TacoBellTastyTempleChallengeAutosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting is available. Only works on initial game and not 'New Game'. (by Zemmiphobiac)</Description>
+  </AutoSplitter>
 </AutoSplitters>
