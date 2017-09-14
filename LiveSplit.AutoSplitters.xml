@@ -51,10 +51,10 @@
       <Game>AHiT</Game>
     </Games>
     <URLs>
-      <URL>http://livesplit.org/update/Components/LiveSplit.AHatInTime.dll</URL>
+      <URL>https://raw.githubusercontent.com/CryZe/AHatInTimeAutoSplitter/master/AHatInTime.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Load Removal and Auto Splitting are available. (By CryZe)</Description>
+    <Type>Script</Type>
+    <Description>Game Time and Auto Splitting are available. (By CryZe)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
