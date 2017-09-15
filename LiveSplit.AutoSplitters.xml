@@ -3229,4 +3229,16 @@
     <Type>Script</Type>
     <Description>Autosplitting is available. Only works on initial game and not 'New Game'. (by Zemmiphobiac)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Super Mario Bros. 3</Game>
+      <Game>Super Mario Brothers 3</Game>
+      <Game>SMB3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/narfman0/autosplitters/master/smb3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Auto Start is available (FCEUX 2.2.3). (by narfman0)</Description>
+  </AutoSplitter>
 </AutoSplitters>
