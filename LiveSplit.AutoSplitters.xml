@@ -633,6 +633,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Dishonored: Death of the Outsider</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Som1Lse/DotoAsl/master/doto.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Start is available. (By Som1Lse)</Description>
+    <Website>https://github.com/Som1Lse/DotoAsl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Penumbra: Black Plague</Game>
       <Game>Penumbra Black Plague</Game>
       <Game>Black Plague</Game>
