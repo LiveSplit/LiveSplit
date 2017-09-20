@@ -880,7 +880,7 @@ namespace LiveSplit.View
                     {
                         string[] valuesInRow = rowsInClipboard[iRow].Split(columnSplitter);
 
-                        for (int iCol = 0; iCol < valuesInRow.Length; iCol++)
+                        for (int iCol = valuesInRow.Length - 1; iCol >= 0; iCol--)
                         {
                             if (runGrid.ColumnCount - 1 >= c + iCol)
                             {
