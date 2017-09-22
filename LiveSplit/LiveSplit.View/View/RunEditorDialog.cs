@@ -861,7 +861,7 @@ namespace LiveSplit.View
 
             if (e.Control && e.KeyCode == Keys.V)
             {
-                char[] rowSplitter = { '\r', '\n' };
+                char[] rowSplitter = { '\n' };
                 char[] columnSplitter = { '\t' };
 
                 IDataObject dataInClipboard = Clipboard.GetDataObject();
@@ -869,7 +869,7 @@ namespace LiveSplit.View
 
                 if (stringInClipboard != null && runGrid.SelectedCells.Count > 0)
                 {
-                    string[] rowsInClipboard = stringInClipboard.Split(rowSplitter, StringSplitOptions.RemoveEmptyEntries);
+                    string[] rowsInClipboard = stringInClipboard.Replace("\r\n", "\n").Split(rowSplitter);
 
                     int r = runGrid.SelectedCells[0].RowIndex;
                     int c = runGrid.SelectedCells[0].ColumnIndex;
