@@ -1090,10 +1090,11 @@
       <Game>Super Mario World</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/rainjacket/0ccadd17f8f4f61b1372/raw/c31dc2c926399fba83cd65aa5a7080a7170a5513/LiveSplit.SMW.asl</URL>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.SMW/LiveSplit.SMW.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available for emulator on Snes9x v1.53. (By calmdowntime)</Description>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.SMW</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
