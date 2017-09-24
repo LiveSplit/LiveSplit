@@ -3263,4 +3263,19 @@
     <Type>Script</Type>
     <Description>Autosplitting and In-Game Time is available (PCSX2 1.4.0+). (by Souzooka)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SteamWorld Dig 2</Game>
+      <Game>SteamWorldDig2</Game>
+      <Game>SteamWorld Dig2</Game>
+      <Game>SWD2</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.SteamWorldDig2/raw/master/Components/LiveSplit.SteamWorldDig2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Configurable Auto Splitter (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.SteamWorldDig2</Website>
+    <ShowInLayoutEditor />
+  </AutoSplitter>
 </AutoSplitters>
