@@ -3253,4 +3253,14 @@
     <Type>Script</Type>
     <Description>Autosplitting and Auto Start is available (FCEUX 2.2.3). (by narfman0)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Disaster Report</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Souzooka/Disaster-Report-Autosplitter/edit/master/ZZT.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and In-Game Time is available (PCSX2 1.4.0+). (by Souzooka)</Description>
+  </AutoSplitter>
 </AutoSplitters>
