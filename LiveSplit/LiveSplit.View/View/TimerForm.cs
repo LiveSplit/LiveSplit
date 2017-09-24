@@ -7,6 +7,7 @@ using LiveSplit.Model.RunSavers;
 using LiveSplit.Options;
 using LiveSplit.Options.SettingsFactories;
 using LiveSplit.Options.SettingsSavers;
+using LiveSplit.Server;
 using LiveSplit.TimeFormatters;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
@@ -55,6 +56,7 @@ namespace LiveSplit.View
             set { CurrentState.Layout = value; }
         }
         protected float OldSize { get; set; }
+        protected int RefreshesRemaining { get; set; }
         public ISettings Settings { get; set; }
         protected Invalidator Invalidator { get; set; }
         protected bool InTimerOnlyMode { get; set; }
@@ -64,6 +66,8 @@ namespace LiveSplit.View
         private float previousBlur { get; set; }
         private Image blurredBackground { get; set; }
         private Image bakedBackground { get; set; }
+
+        public CommandServer Server { get; set; }
 
         protected GraphicsCache GlobalCache { get; set; }
 
@@ -170,8 +174,8 @@ namespace LiveSplit.View
                     var lastSplitFile = Settings.RecentSplits.Last();
                     if (!string.IsNullOrEmpty(lastSplitFile.Path))
                     {
-                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod);
                         CurrentState.CurrentTimingMethod = lastSplitFile.LastTimingMethod;
+                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod);
                     }
                 }
             }
@@ -216,7 +220,6 @@ namespace LiveSplit.View
 
             CurrentState.LayoutSettings = Layout.Settings;
             CreateAutoSplitter();
-            CurrentState.FixTimingMethodFromRuleset();
 
             SwitchComparisonGenerators();
             SwitchComparison(Settings.LastComparison);
@@ -228,6 +231,7 @@ namespace LiveSplit.View
             CurrentState.OnSkipSplit += CurrentState_OnSkipSplit;
             CurrentState.OnUndoSplit += CurrentState_OnUndoSplit;
             CurrentState.OnPause += CurrentState_OnPause;
+            CurrentState.OnUndoAllPauses += CurrentState_OnUndoAllPauses;
             CurrentState.OnResume += CurrentState_OnResume;
             CurrentState.OnSwitchComparisonPrevious += CurrentState_OnSwitchComparisonPrevious;
             CurrentState.OnSwitchComparisonNext += CurrentState_OnSwitchComparisonNext;
@@ -270,6 +274,10 @@ namespace LiveSplit.View
             }
 
             TopMost = Layout.Settings.AlwaysOnTop;
+            BackColor = Color.Black;
+
+            Server = new CommandServer(CurrentState);
+            Server.Start();
         }
 
         void SetWindowTitle()
@@ -510,7 +518,7 @@ namespace LiveSplit.View
         void TimerForm_SizeChanged(object sender, EventArgs e)
         {
             CreateBakedBackground();
-            if (OldSize > 0)
+            if (RefreshesRemaining <= 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
                 {
@@ -604,6 +612,7 @@ namespace LiveSplit.View
                 }
                 resetMenuItem.Enabled = false;
                 pauseMenuItem.Enabled = false;
+                undoPausesMenuItem.Enabled = false;
                 undoSplitMenuItem.Enabled = false;
                 skipSplitMenuItem.Enabled = false;
                 splitMenuItem.Enabled = true;
@@ -625,7 +634,16 @@ namespace LiveSplit.View
             this.InvokeIfRequired(() =>
             {
                 splitMenuItem.Text = "Resume";
+                undoPausesMenuItem.Enabled = true;
                 pauseMenuItem.Enabled = false;
+            });
+        }
+
+        private void CurrentState_OnUndoAllPauses(object sender, EventArgs e)
+        {
+            this.InvokeIfRequired(() =>
+            {
+                undoPausesMenuItem.Enabled = false;
             });
         }
 
@@ -775,6 +793,7 @@ namespace LiveSplit.View
                         RemoveTimerOnly();
                     run.HasChanged = true;
                     SetRun(run);
+                    CurrentState.CallRunManuallyModified();
                 }
             }
             finally
@@ -900,6 +919,7 @@ namespace LiveSplit.View
                     RemoveTimerOnly();
                 run.HasChanged = true;
                 SetRun(run);
+                CurrentState.CallRunManuallyModified();
             }
         }
 
@@ -917,7 +937,7 @@ namespace LiveSplit.View
             {
                 Model.Start();
             }
-            else if (CurrentState.CurrentPhase == TimerPhase.Ended && InTimerOnlyMode)
+            else if (CurrentState.CurrentPhase == TimerPhase.Ended)
             {
                 Model.Reset();
             }
@@ -1037,8 +1057,6 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        FixSize();
-
                         if (Hook != null)
                             Hook.Poll();
 
@@ -1048,7 +1066,7 @@ namespace LiveSplit.View
                         if (DontRedraw)
                             return;
 
-                        if (OldSize <= 0 || InvalidationRequired)
+                        if (RefreshesRemaining > 0 || InvalidationRequired)
                         {
                             InvalidateForm();
                             if (InvalidationRequired)
@@ -1089,7 +1107,7 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                if (!(IsDisposed && ex is ObjectDisposedException))
+                if (!(ex is ObjectDisposedException && ((ObjectDisposedException)ex).ObjectName == "TimerForm"))
                 {
                     Log.Error(ex);
                     Invalidate();
@@ -1099,8 +1117,9 @@ namespace LiveSplit.View
 
         private void FixSize()
         {
+            ComponentRenderer.CalculateOverallSize(Layout.Mode);
             var currentSize = ComponentRenderer.OverallSize;
-            if (OldSize > 0)
+            if (RefreshesRemaining <= 0)
             {
                 if (OldSize != currentSize)
                 {
@@ -1111,27 +1130,34 @@ namespace LiveSplit.View
                         Width = (int)((currentSize / (double)OldSize) * Width + 0.5);
                     OldSize = currentSize;
                 }
+                var minSize = (int)(currentSize / 5 + 0.5f);
                 if (Layout.Mode == LayoutMode.Vertical)
-                    MinimumSize = new Size(100, (int)(currentSize / 3 + 0.5f));
+                    MinimumSize = new Size(25, Math.Max(minSize, 25));
                 else
-                    MinimumSize = new Size((int)(currentSize / 3 + 0.5f), 25);
+                    MinimumSize = new Size(Math.Max(minSize, 25), 25);
             }
         }
 
         private void KeepLayoutSize()
         {
-            if (OldSize <= 0)
+            if (RefreshesRemaining > 0)
             {
                 if (Layout.Mode == LayoutMode.Vertical)
                     Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
                 else
                     Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
 
-                if (OldSize == 0)
-                    OldSize = ComponentRenderer.OverallSize;
+                if (OldSize != ComponentRenderer.OverallSize)
+                    UpdateRefreshesRemaining();
                 else
-                    OldSize++;
+                    RefreshesRemaining--;
+                OldSize = ComponentRenderer.OverallSize;
             }
+        }
+
+        private void UpdateRefreshesRemaining()
+        {
+            RefreshesRemaining = 5;
         }
 
         protected void InvalidateForm()
@@ -1174,13 +1200,14 @@ namespace LiveSplit.View
             g.InterpolationMode = InterpolationMode.Bilinear;
             g.SmoothingMode = SmoothingMode.AntiAlias;
 
-            ComponentRenderer.CalculateOverallSize(Layout.Mode);
+            FixSize();
 
             var scaleFactor = Layout.Mode == LayoutMode.Vertical
                 ? Height / Math.Max(ComponentRenderer.OverallSize, 1f)
                 : Width / Math.Max(ComponentRenderer.OverallSize, 1f);
 
             g.ResetTransform();
+            g.TranslateTransform(-0.5f, -0.5f);
             g.ScaleTransform(scaleFactor, scaleFactor);
             float transformedWidth = Width;
             float transformedHeight = Height;
@@ -1190,11 +1217,11 @@ namespace LiveSplit.View
             else
                 transformedHeight /= scaleFactor;
 
-            BackColor = Color.Black;
-
             ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
 
-            KeepLayoutSize();  
+            FixSize();
+            KeepLayoutSize();
+            MaintainMinimumSize();
         }
 
         private void TimerForm_Paint(object sender, PaintEventArgs e)
@@ -1493,7 +1520,7 @@ namespace LiveSplit.View
             RegenerateComparisons();
             SwitchComparison(CurrentState.CurrentComparison);
             CreateAutoSplitter();
-            CurrentState.FixTimingMethodFromRuleset();
+            UpdateRefreshesRemaining();
         }
 
         private void CreateAutoSplitter()
@@ -1857,12 +1884,13 @@ namespace LiveSplit.View
                         editor.ComponentsToDispose.Remove(component);
                     editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
 
-                    var enumerator = componentSettings.GetEnumerator();
-                    foreach (var component in layoutCopy.Components)
+                    using (var enumerator = componentSettings.GetEnumerator())
                     {
-                        enumerator.MoveNext();
-                        if (enumerator.Current != null)
-                            component.SetSettings(enumerator.Current);
+                        foreach (var component in layoutCopy.Components)
+                        {
+                            if (enumerator.MoveNext())
+                                component.SetSettings(enumerator.Current);
+                        }
                     }
                     SetLayout(layoutCopy);
                 }
@@ -2035,7 +2063,7 @@ namespace LiveSplit.View
                 Layout = layout;
                 ComponentRenderer.VisibleComponents = Layout.Components;
                 CurrentState.LayoutSettings = layout.Settings;
-                OldSize = -5;
+                UpdateRefreshesRemaining();
                 MinimumSize = new Size(0, 0);
                 if (Layout.Mode == LayoutMode.Vertical)
                 {
@@ -2227,6 +2255,7 @@ namespace LiveSplit.View
             foreach (var component in Layout.Components)
                 component.Dispose();
             DeactivateAutoSplitter();
+            Server.Stop();
         }
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
@@ -2406,6 +2435,11 @@ namespace LiveSplit.View
             Model.Pause();
         }
 
+        private void undoPausesMenuItem_Click(object sender, EventArgs e)
+        {
+            Model.UndoAllPauses();
+        }
+
         private void hotkeysMenuItem_Click(object sender, EventArgs e)
         {
             if (hotkeysMenuItem.Checked)
@@ -2513,12 +2547,15 @@ namespace LiveSplit.View
         private void SwitchComparisonGenerators()
         {
             var allGenerators = new StandardComparisonGeneratorsFactory().GetAllGenerators(CurrentState.Run);
-            foreach (var generator in Settings.ComparisonGeneratorStates.Reverse())
+            foreach (var generator in allGenerators)
             {
-                if (CurrentState.Run.ComparisonGenerators.Any(x => x.Name == generator.Key))
-                    CurrentState.Run.ComparisonGenerators.Remove(CurrentState.Run.ComparisonGenerators.First(x => x.Name == generator.Key));
-                if (generator.Value == true)
-                    CurrentState.Run.ComparisonGenerators.Insert(0, allGenerators.First(x => x.Name == generator.Key));
+                var generatorInRun = CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == generator.Name);
+                if (generatorInRun != null)
+                    CurrentState.Run.ComparisonGenerators.Remove(generatorInRun);
+
+                if (Settings.ComparisonGeneratorStates[generator.Name])
+                    CurrentState.Run.ComparisonGenerators.Add(generator);
+
             }
             SwitchComparison(CurrentState.CurrentComparison);
             RegenerateComparisons();
@@ -2553,7 +2590,8 @@ namespace LiveSplit.View
             resetMenuItem,
             undoSplitMenuItem,
             skipSplitMenuItem,
-            pauseMenuItem});
+            pauseMenuItem,
+            undoPausesMenuItem});
 
             controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
             controlMenuItem.DropDownItems.Add(hotkeysMenuItem);

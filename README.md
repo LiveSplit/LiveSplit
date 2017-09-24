@@ -6,7 +6,7 @@
 
 [![GitHub issues](https://img.shields.io/github/issues/LiveSplit/LiveSplit.svg?style=plastic)](https://github.com/LiveSplit/LiveSplit/issues)
 [![Stories in Ready](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=ready&title=Ready)](https://waffle.io/LiveSplit/LiveSplit)
-[![Stories in Progress](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=in progress&title=In Progress)](https://waffle.io/LiveSplit/LiveSplit)
+[![Stories in Progress](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=in%20progress&title=In%20Progress)](https://waffle.io/LiveSplit/LiveSplit)
 
 LiveSplit is a timer program for speedrunners that is both easy to use and full of features.
 <p align="center">

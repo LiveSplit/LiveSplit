@@ -75,7 +75,6 @@ namespace LiveSplit.View
                         metadataControl.RefreshInformation();
                     RefreshCategoryAutoCompleteList();
                     RaiseRunEdited();
-                    CurrentState.FixTimingMethodFromRuleset();
                     Run.Metadata.RunID = null;
                 }
             }
@@ -106,17 +105,30 @@ namespace LiveSplit.View
                 if (Regex.IsMatch(value, "[^0-9:.\\-−]"))
                     return;
 
-                try { Run.Offset = TimeSpanParser.Parse(value); Run.HasChanged = true; }
-                catch (Exception ex)
+                try
                 {
-                    Log.Error(ex);
+                    Run.Offset = TimeSpanParser.Parse(value);
+                    Run.HasChanged = true;
                 }
+                catch { }
             }
         }
         public int AttemptCount
         {
             get { return Run.AttemptCount; }
             set { Run.AttemptCount = Math.Max(0, value); RaiseRunEdited(); }
+        }
+
+        private class ParsingResults
+        {
+            public bool Parsed { get; set; }
+            public object Value { get; set; }
+            
+            public ParsingResults(bool parsed, object value)
+            {
+                Parsed = parsed;
+                Value = value;
+            }
         }
 
         public RunEditorDialog(LiveSplitState state)
@@ -337,6 +349,7 @@ namespace LiveSplit.View
         void SegmentList_ListChanged(object sender, ListChangedEventArgs e)
         {
             TimesModified();
+            UpdateButtonsStatus();
         }
 
         private void UpdateButtonsStatus()
@@ -415,10 +428,8 @@ namespace LiveSplit.View
                 {
                     TimeSpanParser.Parse(e.FormattedValue.ToString());
                 }
-                catch (Exception ex)
+                catch
                 {
-                    Log.Error(ex);
-
                     e.Cancel = true;
                     runGrid.Rows[e.RowIndex].ErrorText = "Invalid Time";
                 }
@@ -427,82 +438,89 @@ namespace LiveSplit.View
 
         void runGrid_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
         {
-            if (e.ColumnIndex == SEGMENTNAMEINDEX)
+            var parsingResults = ParseCell(e.Value, e.RowIndex, e.ColumnIndex);
+            if (parsingResults.Parsed)
             {
-                Run[e.RowIndex].Name = e.Value.ToString();
-                RaiseRunEdited();
+                e.ParsingApplied = true;
+                e.Value = parsingResults.Value;
             }
             else
+                e.ParsingApplied = false;
+        }
+
+        private ParsingResults ParseCell(object value, int rowIndex, int columnIndex)
+        {
+            if (columnIndex == SEGMENTNAMEINDEX)
             {
-                if (string.IsNullOrWhiteSpace(e.Value.ToString()))
-                {
-                    e.Value = null;
-                    if (e.ColumnIndex == SPLITTIMEINDEX)
-                    {
-                        var time = new Time(Run[e.RowIndex].PersonalBestSplitTime);
-                        time[SelectedMethod] = null;
-                        Run[e.RowIndex].PersonalBestSplitTime = time;
-                    }
-                    if (e.ColumnIndex == BESTSEGMENTINDEX)
-                    {
-                        var time = new Time(Run[e.RowIndex].BestSegmentTime);
-                        time[SelectedMethod] = null;
-                        Run[e.RowIndex].BestSegmentTime = time;
-                    }
-                    if (e.ColumnIndex == SEGMENTTIMEINDEX)
-                    {
-                        SegmentTimeList[e.RowIndex] = null;
-                        FixSplitsFromSegments();
-                    }
-                    if (e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
-                    {
-                        var time = new Time(Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name]);
-                        time[SelectedMethod] = null;
-                        Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name] = time;
-                    }
-                    Fix();
-                    TimesModified();
-                    e.ParsingApplied = true;
-                    return;
-                }
-
-                try
-                {
-                    e.Value = TimeSpanParser.Parse(e.Value.ToString());
-                    if (e.ColumnIndex == SEGMENTTIMEINDEX)
-                    {
-                        SegmentTimeList[e.RowIndex] = (TimeSpan)e.Value;
-                        FixSplitsFromSegments();
-                    }
-                    if (e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
-                    {
-                        var time = new Time(Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name]);
-                        time[SelectedMethod] = (TimeSpan)e.Value;
-                        Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name] = time;
-                    }
-                    if (e.ColumnIndex == SPLITTIMEINDEX)
-                    {
-                        var time = new Time(Run[e.RowIndex].PersonalBestSplitTime);
-                        time[SelectedMethod] = (TimeSpan)e.Value;
-                        Run[e.RowIndex].PersonalBestSplitTime = time;
-                    }
-                    if (e.ColumnIndex == BESTSEGMENTINDEX)
-                    {
-                        var time = new Time(Run[e.RowIndex].BestSegmentTime);
-                        time[SelectedMethod] = (TimeSpan)e.Value;
-                        Run[e.RowIndex].BestSegmentTime = time;
-                    }
-                    Fix();
-                    TimesModified();
-                    e.ParsingApplied = true;
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-
-                    e.ParsingApplied = false;
-                }
+                Run[rowIndex].Name = value.ToString();
+                RaiseRunEdited();
+                return new ParsingResults(true, value);
             }
+
+            if (string.IsNullOrWhiteSpace(value.ToString()))
+            {
+                value = null;
+                if (columnIndex == SPLITTIMEINDEX)
+                {
+                    var time = new Time(Run[rowIndex].PersonalBestSplitTime);
+                    time[SelectedMethod] = null;
+                    Run[rowIndex].PersonalBestSplitTime = time;
+                }
+                if (columnIndex == BESTSEGMENTINDEX)
+                {
+                    var time = new Time(Run[rowIndex].BestSegmentTime);
+                    time[SelectedMethod] = null;
+                    Run[rowIndex].BestSegmentTime = time;
+                }
+                if (columnIndex == SEGMENTTIMEINDEX)
+                {
+                    SegmentTimeList[rowIndex] = null;
+                    FixSplitsFromSegments();
+                }
+                if (columnIndex >= CUSTOMCOMPARISONSINDEX)
+                {
+                    var time = new Time(Run[rowIndex].Comparisons[runGrid.Columns[columnIndex].Name]);
+                    time[SelectedMethod] = null;
+                    Run[rowIndex].Comparisons[runGrid.Columns[columnIndex].Name] = time;
+                }
+                Fix();
+                TimesModified();
+                return new ParsingResults(true, value);
+            }
+
+            try
+            {
+                value = TimeSpanParser.Parse(value.ToString());
+                if (columnIndex == SEGMENTTIMEINDEX)
+                {
+                    SegmentTimeList[rowIndex] = (TimeSpan)value;
+                    FixSplitsFromSegments();
+                }
+                if (columnIndex >= CUSTOMCOMPARISONSINDEX)
+                {
+                    var time = new Time(Run[rowIndex].Comparisons[runGrid.Columns[columnIndex].Name]);
+                    time[SelectedMethod] = (TimeSpan)value;
+                    Run[rowIndex].Comparisons[runGrid.Columns[columnIndex].Name] = time;
+                }
+                if (columnIndex == SPLITTIMEINDEX)
+                {
+                    var time = new Time(Run[rowIndex].PersonalBestSplitTime);
+                    time[SelectedMethod] = (TimeSpan)value;
+                    Run[rowIndex].PersonalBestSplitTime = time;
+                }
+                if (columnIndex == BESTSEGMENTINDEX)
+                {
+                    var time = new Time(Run[rowIndex].BestSegmentTime);
+                    time[SelectedMethod] = (TimeSpan)value;
+                    Run[rowIndex].BestSegmentTime = time;
+                }
+                Fix();
+                TimesModified();
+                return new ParsingResults(true, value);
+            }
+            catch { }
+
+            return new ParsingResults(false, null);
         }
 
         void runGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -581,7 +599,8 @@ namespace LiveSplit.View
             {
                 var dialog = new OpenFileDialog();
                 dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
-                if (!string.IsNullOrEmpty(Run[e.RowIndex].Name))
+                var multiEdit = runGrid.SelectedCells.Count > 1;
+                if (!string.IsNullOrEmpty(Run[e.RowIndex].Name) && !multiEdit)
                 {
                     dialog.Title = "Set Icon for " + Run[e.RowIndex].Name + "...";
                 }
@@ -595,12 +614,32 @@ namespace LiveSplit.View
                     try
                     {
                         var image = Image.FromFile(dialog.FileName);
-                        var oldImage = (Image)runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value;
-                        if (oldImage != null)
-                            ImagesToDispose.Add(oldImage);
 
-                        Run[e.RowIndex].Icon = image;
-                        runGrid.NotifyCurrentCellDirty(true);
+                        if (!multiEdit)
+                        {
+                            var oldImage = (Image)runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value;
+                            if (oldImage != null)
+                                ImagesToDispose.Add(oldImage);
+
+                            Run[e.RowIndex].Icon = image;
+                            runGrid.NotifyCurrentCellDirty(true);
+                        }
+                        else
+                        {
+                            foreach (DataGridViewCell cell in runGrid.SelectedCells)
+                            {
+                                if (cell.ColumnIndex != ICONINDEX)
+                                    continue;
+
+                                var oldImage = (Image)cell.Value;
+                                if (oldImage != null)
+                                    ImagesToDispose.Add(oldImage);
+
+                                Run[cell.RowIndex].Icon = (Image)image.Clone();
+                                runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
+                            }
+                        }
+
                         RaiseRunEdited();
                     }
                     catch (Exception ex)
@@ -778,7 +817,7 @@ namespace LiveSplit.View
 
                     if (selectedCell.ColumnIndex == SEGMENTNAMEINDEX)
                     {
-                        selectedCell.Value = "";
+                        Run[selectedCell.RowIndex].Name = "";
                         RaiseRunEdited();
                     }
                     else if (selectedCell.ColumnIndex == ICONINDEX)
@@ -813,11 +852,49 @@ namespace LiveSplit.View
                             time[SelectedMethod] = null;
                             Run[selectedCell.RowIndex].Comparisons[selectedCell.OwningColumn.Name] = time;
                         }
-                        TimesModified();
                         Fix();
+                        TimesModified();
                     }
                 }
                 runGrid.Invalidate();
+            }
+
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                char[] rowSplitter = { '\n' };
+                char[] columnSplitter = { '\t' };
+
+                IDataObject dataInClipboard = Clipboard.GetDataObject();
+                string stringInClipboard = (string)dataInClipboard.GetData(DataFormats.Text);
+
+                if (stringInClipboard != null && runGrid.SelectedCells.Count > 0)
+                {
+                    string[] rowsInClipboard = stringInClipboard.Replace("\r\n", "\n").Split(rowSplitter);
+
+                    int r = runGrid.SelectedCells[0].RowIndex;
+                    int c = runGrid.SelectedCells[0].ColumnIndex;
+
+                    var maxRow = Math.Min(rowsInClipboard.Length, runGrid.RowCount - r);
+
+                    for (int iRow = 0; iRow < maxRow; iRow++)
+                    {
+                        string[] valuesInRow = rowsInClipboard[iRow].Split(columnSplitter);
+
+                        for (int iCol = valuesInRow.Length - 1; iCol >= 0; iCol--)
+                        {
+                            if (runGrid.ColumnCount - 1 >= c + iCol)
+                            {
+                                var cell = runGrid.Rows[r + iRow].Cells[c + iCol];
+                                var parsingResults = ParseCell(valuesInRow[iCol], r + iRow, c + iCol);
+                                if (parsingResults.Parsed)
+                                {
+                                    cell.Value = parsingResults.Value;
+                                    runGrid.InvalidateCell(cell);
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -831,7 +908,7 @@ namespace LiveSplit.View
                 if (Run.Count <= 1 || selectedIndex >= Run.Count || selectedIndex < 0)
                     continue;
                 FixAfterDeletion(selectedIndex);
-                if (selectedIndex == Run.Count - 1)
+                if (selectedIndex == Run.Count - 1 && selectedIndex == runGrid.CurrentRow.Index)
                 {
                     runGrid.ClearSelection();
                     runGrid.CurrentCell = runGrid.Rows[runGrid.CurrentRow.Index - 1].Cells[runGrid.CurrentCell.ColumnIndex];
@@ -960,10 +1037,7 @@ namespace LiveSplit.View
             if (IsInitialized)
             {
                 Run.HasChanged = true;
-                if (RunEdited != null)
-                {
-                    RunEdited(this, null);
-                }
+                RunEdited?.Invoke(this, null);
             }
         }
 

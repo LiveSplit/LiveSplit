@@ -204,7 +204,7 @@
             // 
             this.logoPictureBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.logoPictureBox.Image = global::LiveSplit.Properties.Resources.DefaultSplitIcon;
+            this.logoPictureBox.Image = global::LiveSplit.Properties.Resources.Logo;
             this.logoPictureBox.Location = new System.Drawing.Point(152, 23);
             this.logoPictureBox.Name = "logoPictureBox";
             this.tableLayoutPanel.SetRowSpan(this.logoPictureBox, 5);

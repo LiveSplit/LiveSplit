@@ -210,6 +210,7 @@ the first time that sharing to Twitch is used.";
         {
             var uri = GetUri(subUri);
             var request = (HttpWebRequest)WebRequest.Create(uri);
+            request.Headers.Add("Client-ID", ClientId);
             request.Method = method;
             request.Accept = "application/vnd.twitchtv.v3+json";
             if (!string.IsNullOrEmpty(AccessToken))

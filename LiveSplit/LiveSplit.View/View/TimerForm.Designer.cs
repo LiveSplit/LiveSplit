@@ -57,6 +57,7 @@
             this.undoSplitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skipSplitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.undoPausesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotkeysMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comparisonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RightClickMenu.SuspendLayout();
@@ -264,6 +265,14 @@
             this.pauseMenuItem.Text = "Pause";
             this.pauseMenuItem.Click += new System.EventHandler(this.pauseMenuItem_Click);
             // 
+            // undoPausesMenuItem
+            // 
+            this.undoPausesMenuItem.Enabled = false;
+            this.undoPausesMenuItem.Name = "undoPausesMenuItem";
+            this.undoPausesMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.undoPausesMenuItem.Text = "Undo All Pauses";
+            this.undoPausesMenuItem.Click += new System.EventHandler(this.undoPausesMenuItem_Click);
+            // 
             // hotkeysMenuItem
             // 
             this.hotkeysMenuItem.Enabled = true;
@@ -332,6 +341,7 @@
         private System.Windows.Forms.ToolStripMenuItem undoSplitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem skipSplitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pauseMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem undoPausesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hotkeysMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comparisonMenuItem;
 

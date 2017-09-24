@@ -417,6 +417,6 @@ If you implemented an Auto Splitter and want to add it to the Auto Splitters tha
 
 ## Additional Resources
 
-- [Speedrun Tool Development Discord](https://discord.gg/0nuoLLvyUPQQugdL)
+- [Speedrun Tool Development Discord](https://discord.gg/N6wv8pW)
 - [List of ASL Scripts](https://fatalis.pw/livesplit/asl-list/) to learn from, automatically created from the [Auto Splitters XML](../LiveSplit.AutoSplitters.xml) and filterable by different criteria
 - Example: [Simple Autosplitter with Settings](https://raw.githubusercontent.com/tduva/LiveSplit-ASL/master/AlanWake.asl)

@@ -31,14 +31,9 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbBackgroundType = new System.Windows.Forms.ComboBox();
-            this.lblBackground = new System.Windows.Forms.Label();
-            this.btnBackground = new System.Windows.Forms.Button();
-            this.btnBackground2 = new System.Windows.Forms.Button();
+            this.lblOutlines = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnGlod = new System.Windows.Forms.Button();
-            this.label14 = new System.Windows.Forms.Label();
-            this.btnShadowsColor = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -60,6 +55,9 @@
             this.btnPB = new System.Windows.Forms.Button();
             this.btnSeparators = new System.Windows.Forms.Button();
             this.btnPausedColor = new System.Windows.Forms.Button();
+            this.btnShadowsColor = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnTextOutlineColor = new System.Windows.Forms.Button();
             this.chkAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -79,10 +77,14 @@
             this.trkOpacity = new System.Windows.Forms.TrackBar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblImageOpacity = new System.Windows.Forms.Label();
-            this.trkImageOpacity = new System.Windows.Forms.TrackBar();
-            this.lblBlur = new System.Windows.Forms.Label();
             this.trkBlur = new System.Windows.Forms.TrackBar();
+            this.trkImageOpacity = new System.Windows.Forms.TrackBar();
+            this.cmbBackgroundType = new System.Windows.Forms.ComboBox();
+            this.lblBackground = new System.Windows.Forms.Label();
+            this.btnBackground2 = new System.Windows.Forms.Button();
+            this.btnBackground = new System.Windows.Forms.Button();
+            this.lblImageOpacity = new System.Windows.Forms.Label();
+            this.lblBlur = new System.Windows.Forms.Label();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -91,8 +93,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.trkOpacity)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkBlur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel5
@@ -140,10 +142,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 197F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel2.Controls.Add(this.lblOutlines, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.label9, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.btnGlod, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label14, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.btnShadowsColor, 2, 6);
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label6, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.label7, 0, 3);
@@ -165,6 +166,9 @@
             this.tableLayoutPanel2.Controls.Add(this.btnPB, 4, 2);
             this.tableLayoutPanel2.Controls.Add(this.btnSeparators, 4, 5);
             this.tableLayoutPanel2.Controls.Add(this.btnPausedColor, 4, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnShadowsColor, 4, 6);
+            this.tableLayoutPanel2.Controls.Add(this.label14, 3, 6);
+            this.tableLayoutPanel2.Controls.Add(this.btnTextOutlineColor, 2, 6);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -180,59 +184,15 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(450, 203);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
-            // cmbBackgroundType
+            // lblOutlines
             // 
-            this.cmbBackgroundType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel3.SetColumnSpan(this.cmbBackgroundType, 2);
-            this.cmbBackgroundType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbBackgroundType.FormattingEnabled = true;
-            this.cmbBackgroundType.Items.AddRange(new object[] {
-            "Solid Color",
-            "Vertical Gradient",
-            "Horizontal Gradient",
-            "Image"});
-            this.cmbBackgroundType.Location = new System.Drawing.Point(227, 4);
-            this.cmbBackgroundType.Name = "cmbBackgroundType";
-            this.cmbBackgroundType.Size = new System.Drawing.Size(220, 21);
-            this.cmbBackgroundType.TabIndex = 2;
-            this.cmbBackgroundType.SelectedIndexChanged += new System.EventHandler(this.cmbGradientType_SelectedIndexChanged);
-            // 
-            // lblBackground
-            // 
-            this.lblBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBackground.AutoSize = true;
-            this.lblBackground.Location = new System.Drawing.Point(3, 8);
-            this.lblBackground.Name = "lblBackground";
-            this.lblBackground.Size = new System.Drawing.Size(85, 13);
-            this.lblBackground.TabIndex = 19;
-            this.lblBackground.Text = "Color:";
-            // 
-            // btnBackground
-            // 
-            this.btnBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBackground.Location = new System.Drawing.Point(169, 3);
-            this.btnBackground.Name = "btnBackground";
-            this.btnBackground.Size = new System.Drawing.Size(23, 23);
-            this.btnBackground.TabIndex = 0;
-            this.btnBackground.UseVisualStyleBackColor = false;
-            this.btnBackground.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // btnBackground2
-            // 
-            this.btnBackground2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBackground2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnBackground2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnBackground2.Location = new System.Drawing.Point(198, 3);
-            this.btnBackground2.Name = "btnBackground2";
-            this.btnBackground2.Size = new System.Drawing.Size(23, 23);
-            this.btnBackground2.TabIndex = 1;
-            this.btnBackground2.UseVisualStyleBackColor = false;
-            this.btnBackground2.Click += new System.EventHandler(this.BackgroundColorButtonClick);
+            this.lblOutlines.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOutlines.AutoSize = true;
+            this.lblOutlines.Location = new System.Drawing.Point(3, 182);
+            this.lblOutlines.Name = "lblOutlines";
+            this.lblOutlines.Size = new System.Drawing.Size(160, 13);
+            this.lblOutlines.TabIndex = 46;
+            this.lblOutlines.Text = "Text Outlines:";
             // 
             // label9
             // 
@@ -253,32 +213,9 @@
             this.btnGlod.Location = new System.Drawing.Point(198, 3);
             this.btnGlod.Name = "btnGlod";
             this.btnGlod.Size = new System.Drawing.Size(23, 23);
-            this.btnGlod.TabIndex = 8;
+            this.btnGlod.TabIndex = 11;
             this.btnGlod.UseVisualStyleBackColor = false;
             this.btnGlod.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 182);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(160, 13);
-            this.label14.TabIndex = 44;
-            this.label14.Text = "Shadows:";
-            // 
-            // btnShadowsColor
-            // 
-            this.btnShadowsColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShadowsColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnShadowsColor.Location = new System.Drawing.Point(198, 177);
-            this.btnShadowsColor.Name = "btnShadowsColor";
-            this.btnShadowsColor.Size = new System.Drawing.Size(23, 23);
-            this.btnShadowsColor.TabIndex = 3;
-            this.btnShadowsColor.UseVisualStyleBackColor = false;
-            this.btnShadowsColor.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // label5
             // 
@@ -339,7 +276,7 @@
             this.btnAheadGaining.Location = new System.Drawing.Point(198, 32);
             this.btnAheadGaining.Name = "btnAheadGaining";
             this.btnAheadGaining.Size = new System.Drawing.Size(23, 23);
-            this.btnAheadGaining.TabIndex = 11;
+            this.btnAheadGaining.TabIndex = 13;
             this.btnAheadGaining.UseVisualStyleBackColor = false;
             this.btnAheadGaining.Click += new System.EventHandler(this.ColorButtonClick);
             // 
@@ -352,7 +289,7 @@
             this.btnAheadLosing.Location = new System.Drawing.Point(198, 61);
             this.btnAheadLosing.Name = "btnAheadLosing";
             this.btnAheadLosing.Size = new System.Drawing.Size(23, 23);
-            this.btnAheadLosing.TabIndex = 13;
+            this.btnAheadLosing.TabIndex = 15;
             this.btnAheadLosing.UseVisualStyleBackColor = false;
             this.btnAheadLosing.Click += new System.EventHandler(this.ColorButtonClick);
             // 
@@ -365,7 +302,7 @@
             this.btnBehindGaining.Location = new System.Drawing.Point(198, 90);
             this.btnBehindGaining.Name = "btnBehindGaining";
             this.btnBehindGaining.Size = new System.Drawing.Size(23, 23);
-            this.btnBehindGaining.TabIndex = 4;
+            this.btnBehindGaining.TabIndex = 17;
             this.btnBehindGaining.UseVisualStyleBackColor = false;
             this.btnBehindGaining.Click += new System.EventHandler(this.ColorButtonClick);
             // 
@@ -378,7 +315,7 @@
             this.btnTextColor.Location = new System.Drawing.Point(198, 148);
             this.btnTextColor.Name = "btnTextColor";
             this.btnTextColor.Size = new System.Drawing.Size(23, 23);
-            this.btnTextColor.TabIndex = 14;
+            this.btnTextColor.TabIndex = 21;
             this.btnTextColor.UseVisualStyleBackColor = false;
             this.btnTextColor.Click += new System.EventHandler(this.ColorButtonClick);
             // 
@@ -391,7 +328,7 @@
             this.btnBehindLosing.Location = new System.Drawing.Point(198, 119);
             this.btnBehindLosing.Name = "btnBehindLosing";
             this.btnBehindLosing.Size = new System.Drawing.Size(23, 23);
-            this.btnBehindLosing.TabIndex = 6;
+            this.btnBehindLosing.TabIndex = 19;
             this.btnBehindLosing.UseVisualStyleBackColor = false;
             this.btnBehindLosing.Click += new System.EventHandler(this.ColorButtonClick);
             // 
@@ -404,7 +341,7 @@
             this.chkRainbow.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkRainbow.Name = "chkRainbow";
             this.chkRainbow.Size = new System.Drawing.Size(216, 17);
-            this.chkRainbow.TabIndex = 45;
+            this.chkRainbow.TabIndex = 12;
             this.chkRainbow.Text = "Use Rainbow Best Segment Color";
             this.chkRainbow.UseVisualStyleBackColor = true;
             this.chkRainbow.CheckedChanged += new System.EventHandler(this.chkRainbow_CheckedChanged);
@@ -468,7 +405,7 @@
             this.btnNotRunning.Location = new System.Drawing.Point(424, 32);
             this.btnNotRunning.Name = "btnNotRunning";
             this.btnNotRunning.Size = new System.Drawing.Size(23, 23);
-            this.btnNotRunning.TabIndex = 10;
+            this.btnNotRunning.TabIndex = 14;
             this.btnNotRunning.UseVisualStyleBackColor = false;
             this.btnNotRunning.Click += new System.EventHandler(this.ColorButtonClick);
             // 
@@ -481,7 +418,7 @@
             this.btnThinSep.Location = new System.Drawing.Point(424, 119);
             this.btnThinSep.Name = "btnThinSep";
             this.btnThinSep.Size = new System.Drawing.Size(23, 23);
-            this.btnThinSep.TabIndex = 5;
+            this.btnThinSep.TabIndex = 20;
             this.btnThinSep.UseVisualStyleBackColor = false;
             this.btnThinSep.Click += new System.EventHandler(this.ColorButtonClick);
             // 
@@ -494,7 +431,7 @@
             this.btnPB.Location = new System.Drawing.Point(424, 61);
             this.btnPB.Name = "btnPB";
             this.btnPB.Size = new System.Drawing.Size(23, 23);
-            this.btnPB.TabIndex = 9;
+            this.btnPB.TabIndex = 16;
             this.btnPB.UseVisualStyleBackColor = false;
             this.btnPB.Click += new System.EventHandler(this.ColorButtonClick);
             // 
@@ -507,7 +444,7 @@
             this.btnSeparators.Location = new System.Drawing.Point(424, 148);
             this.btnSeparators.Name = "btnSeparators";
             this.btnSeparators.Size = new System.Drawing.Size(23, 23);
-            this.btnSeparators.TabIndex = 7;
+            this.btnSeparators.TabIndex = 22;
             this.btnSeparators.UseVisualStyleBackColor = false;
             this.btnSeparators.Click += new System.EventHandler(this.ColorButtonClick);
             // 
@@ -520,9 +457,45 @@
             this.btnPausedColor.Location = new System.Drawing.Point(424, 90);
             this.btnPausedColor.Name = "btnPausedColor";
             this.btnPausedColor.Size = new System.Drawing.Size(23, 23);
-            this.btnPausedColor.TabIndex = 12;
+            this.btnPausedColor.TabIndex = 18;
             this.btnPausedColor.UseVisualStyleBackColor = false;
             this.btnPausedColor.Click += new System.EventHandler(this.ColorButtonClick);
+            // 
+            // btnShadowsColor
+            // 
+            this.btnShadowsColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnShadowsColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnShadowsColor.Location = new System.Drawing.Point(424, 177);
+            this.btnShadowsColor.Name = "btnShadowsColor";
+            this.btnShadowsColor.Size = new System.Drawing.Size(23, 23);
+            this.btnShadowsColor.TabIndex = 24;
+            this.btnShadowsColor.UseVisualStyleBackColor = false;
+            this.btnShadowsColor.Click += new System.EventHandler(this.ColorButtonClick);
+            // 
+            // label14
+            // 
+            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(227, 182);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(191, 13);
+            this.label14.TabIndex = 44;
+            this.label14.Text = "Shadows:";
+            // 
+            // btnTextOutlineColor
+            // 
+            this.btnTextOutlineColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTextOutlineColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnTextOutlineColor.Location = new System.Drawing.Point(198, 177);
+            this.btnTextOutlineColor.Name = "btnTextOutlineColor";
+            this.btnTextOutlineColor.Size = new System.Drawing.Size(23, 23);
+            this.btnTextOutlineColor.TabIndex = 23;
+            this.btnTextOutlineColor.UseVisualStyleBackColor = false;
+            this.btnTextOutlineColor.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // chkAlwaysOnTop
             // 
@@ -534,7 +507,7 @@
             this.chkAlwaysOnTop.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkAlwaysOnTop.Name = "chkAlwaysOnTop";
             this.chkAlwaysOnTop.Size = new System.Drawing.Size(96, 23);
-            this.chkAlwaysOnTop.TabIndex = 14;
+            this.chkAlwaysOnTop.TabIndex = 25;
             this.chkAlwaysOnTop.Text = "Always on Top";
             this.chkAlwaysOnTop.UseVisualStyleBackColor = true;
             // 
@@ -588,9 +561,10 @@
             this.chkAntiAliasing.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkAntiAliasing.Name = "chkAntiAliasing";
             this.chkAntiAliasing.Size = new System.Drawing.Size(214, 17);
-            this.chkAntiAliasing.TabIndex = 26;
+            this.chkAntiAliasing.TabIndex = 9;
             this.chkAntiAliasing.Text = "Anti-Aliasing";
             this.chkAntiAliasing.UseVisualStyleBackColor = true;
+            this.chkAntiAliasing.CheckedChanged += new System.EventHandler(this.chkAntiAliasing_CheckedChanged);
             // 
             // label16
             // 
@@ -628,7 +602,7 @@
             this.btnTimer.Location = new System.Drawing.Point(372, 3);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Size = new System.Drawing.Size(75, 23);
-            this.btnTimer.TabIndex = 0;
+            this.btnTimer.TabIndex = 6;
             this.btnTimer.Text = "Choose...";
             this.btnTimer.UseVisualStyleBackColor = true;
             this.btnTimer.Click += new System.EventHandler(this.btnTimer_Click);
@@ -639,7 +613,7 @@
             this.btnTimes.Location = new System.Drawing.Point(372, 32);
             this.btnTimes.Name = "btnTimes";
             this.btnTimes.Size = new System.Drawing.Size(75, 23);
-            this.btnTimes.TabIndex = 1;
+            this.btnTimes.TabIndex = 7;
             this.btnTimes.Text = "Choose...";
             this.btnTimes.UseVisualStyleBackColor = true;
             this.btnTimes.Click += new System.EventHandler(this.btnTimes_Click);
@@ -650,7 +624,7 @@
             this.btnTextFont.Location = new System.Drawing.Point(372, 61);
             this.btnTextFont.Name = "btnTextFont";
             this.btnTextFont.Size = new System.Drawing.Size(75, 23);
-            this.btnTextFont.TabIndex = 2;
+            this.btnTextFont.TabIndex = 8;
             this.btnTextFont.Text = "Choose...";
             this.btnTextFont.UseVisualStyleBackColor = true;
             this.btnTextFont.Click += new System.EventHandler(this.btnTextFont_Click);
@@ -664,7 +638,7 @@
             this.chkDropShadows.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDropShadows.Name = "chkDropShadows";
             this.chkDropShadows.Size = new System.Drawing.Size(216, 17);
-            this.chkDropShadows.TabIndex = 27;
+            this.chkDropShadows.TabIndex = 10;
             this.chkDropShadows.Text = "Drop Shadows";
             this.chkDropShadows.UseVisualStyleBackColor = true;
             // 
@@ -710,7 +684,7 @@
             this.chkBestSegments.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkBestSegments.Name = "chkBestSegments";
             this.chkBestSegments.Size = new System.Drawing.Size(127, 23);
-            this.chkBestSegments.TabIndex = 15;
+            this.chkBestSegments.TabIndex = 26;
             this.chkBestSegments.Text = "Show Best Segments";
             this.chkBestSegments.UseVisualStyleBackColor = true;
             // 
@@ -733,7 +707,7 @@
             this.trkOpacity.Minimum = 5;
             this.trkOpacity.Name = "trkOpacity";
             this.trkOpacity.Size = new System.Drawing.Size(359, 23);
-            this.trkOpacity.TabIndex = 0;
+            this.trkOpacity.TabIndex = 5;
             this.trkOpacity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkOpacity.Value = 5;
             // 
@@ -775,15 +749,15 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(450, 59);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // lblImageOpacity
+            // trkBlur
             // 
-            this.lblImageOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblImageOpacity.AutoSize = true;
-            this.lblImageOpacity.Location = new System.Drawing.Point(3, 37);
-            this.lblImageOpacity.Name = "lblImageOpacity";
-            this.lblImageOpacity.Size = new System.Drawing.Size(85, 13);
-            this.lblImageOpacity.TabIndex = 20;
-            this.lblImageOpacity.Text = "Image Opacity:";
+            this.trkBlur.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trkBlur.Location = new System.Drawing.Point(320, 32);
+            this.trkBlur.Maximum = 100;
+            this.trkBlur.Name = "trkBlur";
+            this.trkBlur.Size = new System.Drawing.Size(127, 24);
+            this.trkBlur.TabIndex = 4;
+            this.trkBlur.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // trkImageOpacity
             // 
@@ -794,9 +768,73 @@
             this.trkImageOpacity.Minimum = 5;
             this.trkImageOpacity.Name = "trkImageOpacity";
             this.trkImageOpacity.Size = new System.Drawing.Size(127, 24);
-            this.trkImageOpacity.TabIndex = 21;
+            this.trkImageOpacity.TabIndex = 3;
             this.trkImageOpacity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkImageOpacity.Value = 5;
+            // 
+            // cmbBackgroundType
+            // 
+            this.cmbBackgroundType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel3.SetColumnSpan(this.cmbBackgroundType, 2);
+            this.cmbBackgroundType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbBackgroundType.FormattingEnabled = true;
+            this.cmbBackgroundType.Items.AddRange(new object[] {
+            "Solid Color",
+            "Vertical Gradient",
+            "Horizontal Gradient",
+            "Image"});
+            this.cmbBackgroundType.Location = new System.Drawing.Point(227, 4);
+            this.cmbBackgroundType.Name = "cmbBackgroundType";
+            this.cmbBackgroundType.Size = new System.Drawing.Size(220, 21);
+            this.cmbBackgroundType.TabIndex = 2;
+            this.cmbBackgroundType.SelectedIndexChanged += new System.EventHandler(this.cmbGradientType_SelectedIndexChanged);
+            // 
+            // lblBackground
+            // 
+            this.lblBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBackground.AutoSize = true;
+            this.lblBackground.Location = new System.Drawing.Point(3, 8);
+            this.lblBackground.Name = "lblBackground";
+            this.lblBackground.Size = new System.Drawing.Size(85, 13);
+            this.lblBackground.TabIndex = 19;
+            this.lblBackground.Text = "Color:";
+            // 
+            // btnBackground2
+            // 
+            this.btnBackground2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBackground2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBackground2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBackground2.Location = new System.Drawing.Point(198, 3);
+            this.btnBackground2.Name = "btnBackground2";
+            this.btnBackground2.Size = new System.Drawing.Size(23, 23);
+            this.btnBackground2.TabIndex = 1;
+            this.btnBackground2.UseVisualStyleBackColor = false;
+            this.btnBackground2.Click += new System.EventHandler(this.BackgroundColorButtonClick);
+            // 
+            // btnBackground
+            // 
+            this.btnBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBackground.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnBackground.Location = new System.Drawing.Point(169, 3);
+            this.btnBackground.Name = "btnBackground";
+            this.btnBackground.Size = new System.Drawing.Size(23, 23);
+            this.btnBackground.TabIndex = 0;
+            this.btnBackground.UseVisualStyleBackColor = false;
+            this.btnBackground.Click += new System.EventHandler(this.ColorButtonClick);
+            // 
+            // lblImageOpacity
+            // 
+            this.lblImageOpacity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblImageOpacity.AutoSize = true;
+            this.lblImageOpacity.Location = new System.Drawing.Point(3, 37);
+            this.lblImageOpacity.Name = "lblImageOpacity";
+            this.lblImageOpacity.Size = new System.Drawing.Size(85, 13);
+            this.lblImageOpacity.TabIndex = 20;
+            this.lblImageOpacity.Text = "Image Opacity:";
             // 
             // lblBlur
             // 
@@ -807,16 +845,6 @@
             this.lblBlur.Size = new System.Drawing.Size(87, 13);
             this.lblBlur.TabIndex = 22;
             this.lblBlur.Text = "Image Blur:";
-            // 
-            // trkBlur
-            // 
-            this.trkBlur.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trkBlur.Location = new System.Drawing.Point(320, 32);
-            this.trkBlur.Maximum = 100;
-            this.trkBlur.Name = "trkBlur";
-            this.trkBlur.Size = new System.Drawing.Size(127, 24);
-            this.trkBlur.TabIndex = 23;
-            this.trkBlur.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
             // LayoutSettingsControl
             // 
@@ -839,8 +867,8 @@
             this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkBlur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkImageOpacity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -902,6 +930,7 @@
         private System.Windows.Forms.Label lblImageOpacity;
         private System.Windows.Forms.TrackBar trkBlur;
         private System.Windows.Forms.Label lblBlur;
-
+        private System.Windows.Forms.Label lblOutlines;
+        private System.Windows.Forms.Button btnTextOutlineColor;
     }
 }

@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Text;
 using System.Linq;
 using System.Windows.Forms;
 using static System.Windows.Forms.TextRenderer;
@@ -21,6 +23,7 @@ namespace LiveSplit.UI
         public StringAlignment HorizontalAlignment { get; set; }
         public StringAlignment VerticalAlignment { get; set; }
         public Color ShadowColor { get; set; }
+        public Color OutlineColor { get; set; }
 
         public bool HasShadow { get; set; }
         public bool IsMonospaced { get; set; }
@@ -76,6 +79,7 @@ namespace LiveSplit.UI
             IsMonospaced = false;
             HasShadow = true;
             ShadowColor = Color.FromArgb(128, 0, 0, 0);
+            OutlineColor = Color.FromArgb(0, 0, 0, 0);
             ((List<string>)(AlternateText = new List<string>())).AddRange(alternateText ?? new string[0]);
             Format = new StringFormat
             {
@@ -94,16 +98,7 @@ namespace LiveSplit.UI
             if (!IsMonospaced)
             {
                 var actualText = CalculateAlternateText(g, Width);
-
-                if (HasShadow)
-                {
-                    using (var shadowBrush = new SolidBrush(ShadowColor))
-                    {
-                        g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 1, Y + 1, Width, Height), Format);
-                        g.DrawString(actualText, Font, shadowBrush, new RectangleF(X + 2, Y + 2, Width, Height), Format);
-                    }
-                }
-                g.DrawString(actualText, Font, Brush, new RectangleF(X, Y, Width, Height), Format);
+                DrawText(actualText, g, X, Y, Width, Height, Format);
             }
             else
             {
@@ -134,20 +129,64 @@ namespace LiveSplit.UI
                     else
                         curOffset = MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
 
-                    if (HasShadow)
-                    {
-                        using (var shadowBrush = new SolidBrush(ShadowColor))
-                        {
-                            g.DrawString(curChar.ToString(), Font, shadowBrush, new RectangleF(X + 1 + offset - curOffset * 2f, Y + 1, curOffset * 5f, Height), monoFormat);
-                            g.DrawString(curChar.ToString(), Font, shadowBrush, new RectangleF(X + 2 + offset - curOffset * 2f, Y + 2, curOffset * 5f, Height), monoFormat);
-                        }
-                    }
+                    DrawText(curChar.ToString(), g, X + offset - curOffset / 2f, Y, curOffset * 2f, Height, monoFormat);
 
-                    g.DrawString(cutOffText[charIndex].ToString(), Font, Brush, new RectangleF(X + offset - curOffset / 2f, Y, curOffset * 2f, Height), monoFormat);
                     charIndex++;
                     offset += curOffset;
                 }
             }
+        }
+
+        private void DrawText(string text, Graphics g, float x, float y, float width, float height, StringFormat format)
+        {
+            if (text != null)
+            {
+                if (g.TextRenderingHint == TextRenderingHint.AntiAlias && OutlineColor.A > 0)
+                {
+                    var fontSize = GetFontSize(g);
+                    using (var shadowBrush = new SolidBrush(ShadowColor))
+                    using (var gp = new GraphicsPath())
+                    using (var outline = new Pen(OutlineColor, GetOutlineSize(fontSize)) { LineJoin = LineJoin.Round })
+                    {
+                        if (HasShadow)
+                        {
+                            gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 1f, y + 1f, width, height), format);
+                            g.FillPath(shadowBrush, gp);
+                            gp.Reset();
+                            gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 2f, y + 2f, width, height), format);
+                            g.FillPath(shadowBrush, gp);
+                            gp.Reset();
+                        }
+                        gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x, y, width, height), format);
+                        g.DrawPath(outline, gp);
+                        g.FillPath(Brush, gp);
+                    }
+                }
+                else
+                {
+                    if (HasShadow)
+                    {
+                        using (var shadowBrush = new SolidBrush(ShadowColor))
+                        {
+                            g.DrawString(text, Font, shadowBrush, new RectangleF(x + 1f, y + 1f, width, height), format);
+                            g.DrawString(text, Font, shadowBrush, new RectangleF(x + 2f, y + 2f, width, height), format);
+                        }
+                    }
+                    g.DrawString(text, Font, Brush, new RectangleF(x, y, width, height), format);
+                }
+            }
+        }
+
+        private float GetOutlineSize(float fontSize)
+        {
+            return 2.1f + fontSize * 0.055f;
+        }
+
+        private float GetFontSize(Graphics g)
+        {
+            if (Font.Unit == GraphicsUnit.Point)
+                return Font.Size * g.DpiY / 72;
+            return Font.Size;
         }
 
         public void SetActualWidth(Graphics g)

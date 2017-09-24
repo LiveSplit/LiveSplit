@@ -58,7 +58,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>LiveSplit.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CustomFontDialog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -106,6 +107,7 @@
     <Compile Include="Model\Attempt.cs" />
     <Compile Include="Model\AutoSplitter.cs" />
     <Compile Include="Model\AutoSplitterFactory.cs" />
+    <Compile Include="Model\Comparisons\LatestRunComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\WorstSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\MedianSegmentsComparisonGenerator.cs" />
     <Compile Include="Model\Comparisons\AverageSegmentsComparisonGenerator.cs" />
@@ -157,6 +159,11 @@
     <Compile Include="Model\TimeStamp.cs" />
     <Compile Include="Options\Log.cs" />
     <Compile Include="Options\SettingsFactories\StandardLayoutSettingsFactory.cs" />
+    <Compile Include="Server\Connection.cs" />
+    <Compile Include="Server\CSharpScript.cs" />
+    <Compile Include="Server\IScript.cs" />
+    <Compile Include="Server\ScriptFactory.cs" />
+    <Compile Include="Server\CommandServer.cs" />
     <Compile Include="TimeFormatters\AutomaticPrecisionTimeFormatter.cs" />
     <Compile Include="TimeFormatters\PossibleTimeSaveFormatter.cs" />
     <Compile Include="TimeFormatters\TimeFormat.cs" />
@@ -354,7 +361,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="LiveSplit.pfx" />
     <None Include="Web\Share\ShareSettings.settings">
       <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>ShareSettings1.Designer.cs</LastGenOutput>

@@ -78,36 +78,48 @@ namespace LiveSplit.Model
 
         private static void FixWithMethod(IRun run, TimingMethod method)
         {
-            FixComparisonTimes(run, method);
-            FixSegmentHistory(run, method);
+            FixComparisonTimesAndHistory(run, method);
             RemoveDuplicates(run, method);
         }
 
-        private static void FixSegmentHistory(IRun run, TimingMethod method)
+        private static void FixHistoryFromNullBestSegments(ISegment curSplit, TimingMethod method, int minIndex, int maxIndex)
         {
-            var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-            foreach (var curSplit in run)
+            if (curSplit.BestSegmentTime[method] == null)
             {
-                for (var runIndex = curSplit.SegmentHistory.GetMinIndex(); runIndex <= maxIndex; runIndex++)
+                for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
                 {
                     Time historyTime;
                     if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
                     {
-                        //Make sure no times in the history are lower than the Best Segment
-                        if (curSplit.BestSegmentTime[method] != null && historyTime[method] < curSplit.BestSegmentTime[method])
-                            historyTime[method] = curSplit.BestSegmentTime[method];
-
                         //If the Best Segment is gone, clear the history
-                        if (curSplit.BestSegmentTime[method] == null && historyTime[method] != null)
+                        if (historyTime[method] != null)
                             curSplit.SegmentHistory.Remove(runIndex);
-                        else
-                            curSplit.SegmentHistory[runIndex] = historyTime;
                     }
                 }
             }
         }
 
-        private static void FixComparisonTimes(IRun run, TimingMethod method)
+        private static void FixHistoryFromBestSegmentTimes(ISegment curSplit, TimingMethod method, int minIndex, int maxIndex)
+        {
+            if (curSplit.BestSegmentTime[method] != null)
+            {
+                for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
+                {
+                    Time historyTime;
+                    if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
+                    {
+                        //Make sure no times in the history are lower than the Best Segment
+                        if (historyTime[method] < curSplit.BestSegmentTime[method])
+                        {
+                            historyTime[method] = curSplit.BestSegmentTime[method];
+                            curSplit.SegmentHistory[runIndex] = historyTime;
+                        }
+                    }
+                }
+            }
+        }
+
+        private static void FixComparisonTimesAndHistory(IRun run, TimingMethod method)
         {
             //Remove negative Best Segment times
             foreach (var curSplit in run)
@@ -119,6 +131,8 @@ namespace LiveSplit.Model
                     curSplit.BestSegmentTime = newTime;
                 }
             }
+
+            var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
 
             foreach (var comparison in run.CustomComparisons)
             {
@@ -137,11 +151,20 @@ namespace LiveSplit.Model
 
                         //Fix Best Segment time if the PB segment is faster
                         var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
-                        if (comparison == Run.PersonalBestComparisonName && (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment))
+                        if (comparison == Run.PersonalBestComparisonName)
                         {
-                            var newTime = curSplit.BestSegmentTime;
-                            newTime[method] = currentSegment;
-                            curSplit.BestSegmentTime = newTime;
+                            var minIndex = curSplit.SegmentHistory.GetMinIndex();
+
+                            FixHistoryFromNullBestSegments(curSplit, method, minIndex, maxIndex);
+
+                            if (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment)
+                            {
+                                var newTime = curSplit.BestSegmentTime;
+                                newTime[method] = currentSegment;
+                                curSplit.BestSegmentTime = newTime;
+                            }
+
+                            FixHistoryFromBestSegmentTimes(curSplit, method, minIndex, maxIndex);
                         }
                         previousTime = curSplit.Comparisons[comparison][method].Value;
                     }
@@ -151,7 +174,7 @@ namespace LiveSplit.Model
 
         private static void RemoveNullValues(IRun run)
         {
-            var cache = new List<IIndexedTime>();
+            var cache = new List<int>();
             var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
             for (var runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
             {
@@ -164,12 +187,11 @@ namespace LiveSplit.Model
                         RemoveItemsFromCache(run, index, cache);
                     }
                     else if (segmentHistoryElement.RealTime == null && segmentHistoryElement.GameTime == null)
-                        cache.Add(new IndexedTime(segmentHistoryElement, runIndex));
+                        cache.Add(runIndex);
                     else
                         cache.Clear();
                 }
                 RemoveItemsFromCache(run, run.Count, cache);
-                cache.Clear();
             }
         }
 
@@ -191,12 +213,12 @@ namespace LiveSplit.Model
             }
         }
 
-        private static void RemoveItemsFromCache(IRun run, int index, IList<IIndexedTime> cache)
+        private static void RemoveItemsFromCache(IRun run, int index, IList<int> cache)
         {
             var ind = index - cache.Count;
             foreach (var item in cache)
             {
-                run[ind].SegmentHistory.Remove(item.Index);
+                run[ind].SegmentHistory.Remove(item);
                 ind++;
             }
             cache.Clear();
@@ -305,7 +327,12 @@ namespace LiveSplit.Model
             {
                 IEnumerable<string> variables = run.Metadata.VariableValueNames.Keys;
                 if ((run.Metadata.GameAvailable || waitForOnlineData) && run.Metadata.Game != null)
-                    variables = run.Metadata.Game.FullGameVariables.Select(x => x.Name);
+                {
+                    string categoryId = null;
+                    if ((run.Metadata.CategoryAvailable || waitForOnlineData) && run.Metadata.Category != null)
+                        categoryId = run.Metadata.Category.ID;
+                    variables = run.Metadata.Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).Select(x => x.Name);
+                }
 
                 foreach (var variable in variables)
                 {
@@ -333,7 +360,7 @@ namespace LiveSplit.Model
 
             if (showRegion)
             {
-                var doSimpleRegion = !run.Metadata.RegionAvailable && !waitForOnlineData;
+                var doSimpleRegion = !run.Metadata.GameAvailable && !waitForOnlineData;
                 if (doSimpleRegion)
                 {
                     if (!string.IsNullOrEmpty(run.Metadata.RegionName))
@@ -347,7 +374,7 @@ namespace LiveSplit.Model
 
             if (showPlatform)
             {
-                var doSimplePlatform = !run.Metadata.PlatformAvailable && !waitForOnlineData;
+                var doSimplePlatform = !run.Metadata.GameAvailable && !waitForOnlineData;
                 if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || (run.Metadata.Game != null && run.Metadata.Game.Platforms.Count > 1)))
                 {
                     if (run.Metadata.UsesEmulator)

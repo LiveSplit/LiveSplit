@@ -18,6 +18,7 @@ namespace LiveSplit.Options
         public Color BestSegmentColor { get; set; }
         public Color NotRunningColor { get; set; }
         public Color PausedColor { get; set; }
+        public Color TextOutlineColor { get; set; }
         public Color ShadowsColor { get; set; }
 
         public BackgroundType BackgroundType { get; set; }
@@ -61,6 +62,7 @@ namespace LiveSplit.Options
             UseRainbowColor = settings.UseRainbowColor;
             NotRunningColor = settings.NotRunningColor;
             PausedColor = settings.PausedColor;
+            TextOutlineColor = settings.TextOutlineColor;
             ShadowsColor = settings.ShadowsColor;
             TimerFont = settings.TimerFont.Clone() as Font;
             TimesFont = settings.TimesFont.Clone() as Font;

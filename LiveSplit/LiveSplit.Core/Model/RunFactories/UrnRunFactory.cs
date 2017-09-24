@@ -36,7 +36,7 @@ namespace LiveSplit.Model.RunFactories
 
             run.CategoryName = json.title as string;
             run.AttemptCount = json.attempt_count;
-            run.Offset = TimeSpanParser.Parse(json.start_delay as string);
+            run.Offset = -TimeSpanParser.Parse(json.start_delay as string);
 
             //Best Split Times can be used for the Segment History
             //Every single best split time should be included as its own run, 
@@ -57,7 +57,7 @@ namespace LiveSplit.Model.RunFactories
                 var bestSplitTime = parseTime(segment.best_time as string);
                 if (bestSplitTime.RealTime != null)
                 {
-                    run.AttemptHistory.Add(new Attempt(attemptHistoryIndex, default(Time), null, null));
+                    run.AttemptHistory.Add(new Attempt(attemptHistoryIndex, default(Time), null, null, null));
 
                     //Insert a new run that skips to the current split
                     foreach (var alreadyInsertedSegment in run)

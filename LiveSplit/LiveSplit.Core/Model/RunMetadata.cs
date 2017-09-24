@@ -57,7 +57,6 @@ namespace LiveSplit.Model
             }
         }
 
-        public bool PlatformAvailable { get; private set; }
         public string PlatformName
         {
             get
@@ -74,7 +73,6 @@ namespace LiveSplit.Model
         }
         public Platform Platform => Game?.Platforms.FirstOrDefault(x => x.Name == PlatformName);
 
-        public bool RegionAvailable { get; private set; }
         public string RegionName
         {
             get
@@ -141,14 +139,7 @@ namespace LiveSplit.Model
             get
             {
                 Refresh();
-                var value = game.Value;
-                if (value != null)
-                {
-                    GameAvailable = true;
-                    RegionAvailable = true;
-                    PlatformAvailable = true;
-                }
-                return value;
+                return game.Value;
             }
         }
 
@@ -158,12 +149,7 @@ namespace LiveSplit.Model
             get
             {
                 Refresh();
-                var value = category.Value;
-                if (value != null)
-                {
-                    CategoryAvailable = true;
-                }
-                return value;
+                return category.Value;
             }
         }
 
@@ -184,8 +170,6 @@ namespace LiveSplit.Model
                 {
                     GameAvailable = false;
                     CategoryAvailable = false;
-                    RegionAvailable = false;
-                    PlatformAvailable = false;
 
                     oldGameName = LiveSplitRun.GameName;
                     if (!string.IsNullOrEmpty(LiveSplitRun.GameName))
@@ -196,6 +180,8 @@ namespace LiveSplit.Model
                             {
                                 var game = SpeedrunCom.Client.Games.SearchGameExact(oldGameName, new GameEmbeds(embedRegions: true, embedPlatforms: true));
                                 gameLoaded = true;
+                                if (game != null)
+                                    GameAvailable = true;
                                 return game;
                             }
                             catch
@@ -243,6 +229,8 @@ namespace LiveSplit.Model
                             {
                                 var category = SpeedrunCom.Client.Games.GetCategories(game.ID, embeds: new CategoryEmbeds(embedVariables: true))
                                     .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == oldCategoryName);
+                                if (category != null)
+                                    CategoryAvailable = true;
                                 return category;
                             }
                             catch
@@ -316,9 +304,7 @@ namespace LiveSplit.Model
                 usesEmulator = usesEmulator,
                 VariableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value),
                 CategoryAvailable = CategoryAvailable,
-                GameAvailable = GameAvailable,
-                RegionAvailable = RegionAvailable,
-                PlatformAvailable = PlatformAvailable
+                GameAvailable = GameAvailable
                 //TODO: set members instead later
                 //TODO: clone PropertyChanged
             };

@@ -170,7 +170,11 @@ namespace LiveSplit.UI.Components
                     if (crashedComponents.Count > 0)
                     {
                         var remainingComponents = VisibleComponents.ToList();
-                        crashedComponents.ForEach(x => remainingComponents.Remove(x));
+                        crashedComponents.ForEach(x =>
+                        {
+                            remainingComponents.Remove(x);
+                            state.Layout.LayoutComponents = state.Layout.LayoutComponents.Where(y => y.Component != x).ToList();
+                        });
                         VisibleComponents = remainingComponents;
                     }
                     g.Transform = transform;
