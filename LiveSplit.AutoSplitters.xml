@@ -3258,7 +3258,7 @@
       <Game>Disaster Report</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Souzooka/Disaster-Report-Autosplitter/edit/master/ZZT.asl</URL>
+      <URL>https://raw.githubusercontent.com/Souzooka/Disaster-Report-Autosplitter/master/ZZT.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitting and In-Game Time is available (PCSX2 1.4.0+). (by Souzooka)</Description>
