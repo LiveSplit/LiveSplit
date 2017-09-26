@@ -2211,14 +2211,14 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Pokémon Red/Blue</Game>
+      <Game>Pokémon Red</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/NieDzejkob/LiveSplit.PokemonRB/master/Components/LiveSplit.PokemonRB.dll</URL>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.PkmnRed/LiveSplit.PkmnRed.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Automatic Start/Split/Stop/Reset is available for NSC, RBA, 151 and glitchless on BGB 1.5.2. (By NieDzejkob)</Description>
-    <Website>https://github.com/NieDzejkob/LiveSplit.PokemonRB</Website>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.PkmnRed</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
