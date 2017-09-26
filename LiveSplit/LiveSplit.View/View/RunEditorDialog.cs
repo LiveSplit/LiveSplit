@@ -721,54 +721,29 @@ namespace LiveSplit.View
             SegmentTimeList.Clear();
             foreach (var curSeg in Run)
             {
-                if (curSeg == null)
-                    SegmentTimeList.Add(null);
-                else
-                {
-                    if (curSeg.PersonalBestSplitTime[SelectedMethod] == null)
-                        SegmentTimeList.Add(null);
-                    else
-                    {
-                        SegmentTimeList.Add(curSeg.PersonalBestSplitTime[SelectedMethod] - previousTime);
-                        previousTime = curSeg.PersonalBestSplitTime[SelectedMethod].Value;
-                    }
-                }
+                var splitTime = curSeg.PersonalBestSplitTime[SelectedMethod];
+
+                SegmentTimeList.Add(splitTime - previousTime);
+
+                if (splitTime != null)
+                    previousTime = splitTime.Value;
             }
         }
 
         private void FixSplitsFromSegments()
         {
             var previousTime = TimeSpan.Zero;
-            var index = 0;
-            var decrement = TimeSpan.Zero;
-            foreach (var curSeg in Run)
+            for (var index = 0; index < Run.Count; index++)
             {
-                if (curSeg != null)
-                {
-                    if (SegmentTimeList[index] != null)
-                    {
-                        if (curSeg.PersonalBestSplitTime[SelectedMethod] == null && index < SegmentTimeList.Count - 1)
-                            decrement = SegmentTimeList[index].Value;
-                        else
-                        {
-                            SegmentTimeList[index] -= decrement;
-                            decrement = TimeSpan.Zero;
-                        }
-                        var time = new Time(curSeg.PersonalBestSplitTime);
-                        time[SelectedMethod] = previousTime + SegmentTimeList[index].Value;
-                        curSeg.PersonalBestSplitTime = time;
-                        previousTime = curSeg.PersonalBestSplitTime[SelectedMethod].Value;
-                    }
-                    else
-                    {
-                        if (curSeg.PersonalBestSplitTime[SelectedMethod] != null)
-                            previousTime = curSeg.PersonalBestSplitTime[SelectedMethod].Value;
-                        var time = new Time(curSeg.PersonalBestSplitTime);
-                        time[SelectedMethod] = null;
-                        curSeg.PersonalBestSplitTime = time;
-                    }
-                }
-                index++;
+                var curSegment = Run[index];
+                var curSegTime = SegmentTimeList[index];
+
+                var time = new Time(curSegment.PersonalBestSplitTime);
+                time[SelectedMethod] = previousTime + curSegTime;
+                curSegment.PersonalBestSplitTime = time;
+
+                if (curSegTime != null)
+                    previousTime = curSegment.PersonalBestSplitTime[SelectedMethod].Value;
             }
         }
 
