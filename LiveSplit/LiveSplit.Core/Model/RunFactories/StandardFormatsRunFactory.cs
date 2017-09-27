@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Xml;
 using static LiveSplit.UI.SettingsHelper;
 
@@ -9,6 +10,51 @@ namespace LiveSplit.Model.RunFactories
 {
     public class StandardFormatsRunFactory : IRunFactory
     {
+        [DllImport("kernel32")]
+        private unsafe static extern void* LoadLibrary(string dllname);
+
+        [DllImport("kernel32")]
+        private unsafe static extern void FreeLibrary(void* handle);
+
+        private sealed unsafe class LibraryUnloader
+        {
+            internal LibraryUnloader(void* handle)
+            {
+                this.handle = handle;
+            }
+
+            ~LibraryUnloader()
+            {
+                if (handle != null)
+                    FreeLibrary(handle);
+            }
+
+            private void* handle;
+
+        } // LibraryUnloader
+
+        private static readonly LibraryUnloader unloader;
+
+        static StandardFormatsRunFactory()
+        {
+            string path;
+
+            if (IntPtr.Size == 4)
+                path = "x86/livesplit_core.dll";
+            else
+                path = "x64/livesplit_core.dll";
+
+            unsafe
+            {
+                void* handle = LoadLibrary(path);
+
+                if (handle == null)
+                    throw new DllNotFoundException("Unable to find the native livesplit-core library: " + path);
+
+                unloader = new LibraryUnloader(handle);
+            }
+        }
+
         public Stream Stream { get; set; }
         public string FilePath { get; set; }
 
@@ -68,7 +114,19 @@ namespace LiveSplit.Model.RunFactories
 
         public IRun Create(IComparisonGeneratorsFactory factory)
         {
-            var result = LiveSplitCore.Run.Parse(Stream, FilePath, !string.IsNullOrEmpty(FilePath));
+            LiveSplitCore.ParseRunResult result = null;
+            if (Stream is FileStream)
+            {
+                var handle = (Stream as FileStream).SafeFileHandle;
+                if (!handle.IsInvalid)
+                {
+                    result = LiveSplitCore.Run.ParseFileHandle((long)handle.DangerousGetHandle(), FilePath, !string.IsNullOrEmpty(FilePath));
+                }
+            }
+            if (result == null)
+            {
+                result = LiveSplitCore.Run.Parse(Stream, FilePath, !string.IsNullOrEmpty(FilePath));
+            }
 
             if (!result.ParsedSuccessfully())
                 throw new Exception();
