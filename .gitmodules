@@ -91,3 +91,6 @@
 [submodule "LiveSplit/Components/LiveSplit.BlankSpace"]
 	path = LiveSplit/Components/LiveSplit.BlankSpace
 	url = https://github.com/LiveSplit/LiveSplit.BlankSpace.git
+[submodule "LiveSplit/Libs/livesplit-core"]
+	path = LiveSplit/Libs/livesplit-core
+	url = https://github.com/CryZe/livesplit-core
