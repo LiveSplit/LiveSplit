@@ -271,10 +271,23 @@ namespace LiveSplit.Web.SRL
             RawMessageReceived?.Invoke(this, $"{e.Message.Command} - {e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)}");
         }
 
+        private int LastIndexWithTime(IRun run, string user, TimingMethod method)
+        {
+            var lastIndex = -1;
+            var comparisonName = "[Race] " + user;
+            for (int i = 0; i < run.Count; i++)
+            {
+                if (run[i].Comparisons[comparisonName][method] != null)
+                    lastIndex = i;
+            }
+            return lastIndex;
+        }
+
         protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)
         {
             var run = Model.CurrentState.Run;
-            var segment = run.FirstOrDefault(x => x.Name.Trim().ToLower() == segmentName.Trim().ToLower());
+            var startIndex = LastIndexWithTime(run, user, method) + 1;
+            var segment = run.Skip(startIndex).FirstOrDefault(x => x.Name.Trim().ToLower() == segmentName.Trim().ToLower());
             if (segment != null)
                 AddSplit(user, segment, time, method);
         }
