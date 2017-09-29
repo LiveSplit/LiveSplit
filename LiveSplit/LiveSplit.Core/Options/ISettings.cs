@@ -26,9 +26,9 @@ namespace LiveSplit.Options
 
         bool AgreedToSRLRules { get; set; }
 
-        void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod);
+        void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod, string lastHotkeySet);
         void AddToRecentLayouts(string path);
-        void RegisterHotkeys(CompositeHook hook);
+        void RegisterHotkeys(CompositeHook hook, string hotkeySetName);
         void UnregisterAllHotkeys(CompositeHook hook);
     }
 }

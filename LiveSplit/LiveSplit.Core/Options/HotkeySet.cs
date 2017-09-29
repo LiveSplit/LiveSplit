@@ -15,6 +15,8 @@ namespace LiveSplit.Options
         public KeyOrButton SwitchComparisonPrevious { get; set; }
         public KeyOrButton SwitchComparisonNext { get; set; }
 
+        public const string DefaultHotkeySetName = "Default";
+
         public static HotkeySet FromXml(XmlElement element, Version version)
         {
             var hotkeySet = new HotkeySet();

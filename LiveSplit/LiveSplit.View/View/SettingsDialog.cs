@@ -12,6 +12,7 @@ namespace LiveSplit.View
     {
         public ISettings Settings { get; set; }
         public CompositeHook Hook { get; set; }
+        public string SelectedHotkeySet { get; set; }
 
         public string SplitKey => FormatKey(Settings.SplitKey);
         public string ResetKey => FormatKey(Settings.ResetKey);

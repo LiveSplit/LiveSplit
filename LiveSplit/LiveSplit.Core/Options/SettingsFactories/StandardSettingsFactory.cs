@@ -15,7 +15,7 @@ namespace LiveSplit.Options.SettingsFactories
             {
                 HotkeySets = new Dictionary<string, HotkeySet>()
                 {
-                    {"Default", new HotkeySet()
+                    {HotkeySet.DefaultHotkeySetName, new HotkeySet()
                         {
                             SplitKey = new KeyOrButton(Keys.NumPad1),
                             ResetKey = new KeyOrButton(Keys.NumPad3),

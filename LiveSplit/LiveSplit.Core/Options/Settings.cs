@@ -179,13 +179,13 @@ namespace LiveSplit.Options
             }
         }
 
-        public void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod)
+        public void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod, string lastHotkeySet)
         {
             var foundRecentSplitsFile = RecentSplits.FirstOrDefault(x => x.Path == path);
             if (foundRecentSplitsFile.Path != null)
                 RecentSplits.Remove(foundRecentSplitsFile);
 
-            var recentSplitsFile = new RecentSplitsFile(path, run, lastTimingMethod);
+            var recentSplitsFile = new RecentSplitsFile(path, run, lastTimingMethod, lastHotkeySet);
 
             RecentSplits.Add(recentSplitsFile);
 

@@ -75,12 +75,18 @@ namespace LiveSplit.Options.SettingsFactories
                     var splitElement = splitNode as XmlElement;
                     string gameName = splitElement.GetAttribute("gameName");
                     string categoryName = splitElement.GetAttribute("categoryName");
+
                     var method = TimingMethod.RealTime;
                     if (version >= new Version(1, 6, 1))
                         method = (TimingMethod)Enum.Parse(typeof(TimingMethod), splitElement.GetAttribute("lastTimingMethod"));
+
+                    var hotkeySet = HotkeySet.DefaultHotkeySetName;
+                    if (version >= new Version(1, 8))
+                        hotkeySet = splitElement.GetAttribute("lastHotkeySet");
+
                     var path = splitElement.InnerText;
 
-                    var recentSplitsFile = new RecentSplitsFile(path, method, gameName, categoryName);
+                    var recentSplitsFile = new RecentSplitsFile(path, method, hotkeySet, gameName, categoryName);
                     settings.RecentSplits.Add(recentSplitsFile);
                 }
             }
@@ -102,7 +108,7 @@ namespace LiveSplit.Options.SettingsFactories
                             runFactory.Stream = stream;
                             var run = runFactory.Create(comparisonsFactory);
 
-                            var recentSplitsFile = new RecentSplitsFile(path, run, TimingMethod.RealTime);
+                            var recentSplitsFile = new RecentSplitsFile(path, run, TimingMethod.RealTime, HotkeySet.DefaultHotkeySetName);
                             settings.RecentSplits.Add(recentSplitsFile);
                         }
                     }
@@ -112,17 +118,17 @@ namespace LiveSplit.Options.SettingsFactories
 
             if (version >= new Version(1, 8))
             {
+                settings.HotkeySets.Clear();
                 foreach (var hotkeySetNode in parent["HotkeySets"].ChildNodes.OfType<XmlElement>())
                 {
                     var hotkeySetName = hotkeySetNode.GetAttribute("name");
-                    settings.HotkeySets.Remove(hotkeySetName);
                     settings.HotkeySets[hotkeySetName] = HotkeySet.FromXml(hotkeySetNode, version);
                 }
             }
             else
             {
                 var hotkeySet = HotkeySet.FromXml(parent, version);
-                settings.HotkeySets["Default"] = hotkeySet;
+                settings.HotkeySets[HotkeySet.DefaultHotkeySetName] = hotkeySet;
             }
 
             LoadDrift(parent);

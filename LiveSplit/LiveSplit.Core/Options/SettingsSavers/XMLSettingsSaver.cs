@@ -48,6 +48,7 @@ namespace LiveSplit.Options.SettingsSavers
                 splitsFileElement.SetAttribute("gameName", splitsFile.GameName);
                 splitsFileElement.SetAttribute("categoryName", splitsFile.CategoryName);
                 splitsFileElement.SetAttribute("lastTimingMethod", splitsFile.LastTimingMethod.ToString());
+                splitsFileElement.SetAttribute("lastHotkeySet", splitsFile.LastHotkeySet.ToString());
                 recentSplits.AppendChild(splitsFileElement);
             }
             parent.AppendChild(recentSplits);

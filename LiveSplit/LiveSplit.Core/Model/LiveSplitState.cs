@@ -27,6 +27,7 @@ namespace LiveSplit.Model
         public TimerPhase CurrentPhase { get; set; }
         public string CurrentComparison { get; set; }
         public TimingMethod CurrentTimingMethod { get; set; }
+        public string CurrentHotkeySet { get; set; }
 
         internal TimeSpan? loadingTimes;
         public TimeSpan LoadingTimes { get { return loadingTimes ?? TimeSpan.Zero; } set { loadingTimes = value; } }
@@ -163,6 +164,7 @@ namespace LiveSplit.Model
                 CurrentPhase = CurrentPhase,
                 CurrentSplitIndex = CurrentSplitIndex,
                 CurrentComparison = CurrentComparison,
+                CurrentHotkeySet = CurrentHotkeySet,
                 CurrentTimingMethod = CurrentTimingMethod,
                 AttemptStarted = AttemptStarted,
                 AttemptEnded = AttemptEnded
