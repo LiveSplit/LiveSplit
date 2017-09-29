@@ -13,14 +13,21 @@ namespace LiveSplit.Options.SettingsFactories
         {
             return new Settings()
             {
-                SplitKey = new KeyOrButton(Keys.NumPad1),
-                ResetKey = new KeyOrButton(Keys.NumPad3),
-                UndoKey = new KeyOrButton(Keys.NumPad8),
-                SkipKey = new KeyOrButton(Keys.NumPad2),
-                SwitchComparisonPrevious = new KeyOrButton(Keys.NumPad4),
-                SwitchComparisonNext = new KeyOrButton(Keys.NumPad6),
-                PauseKey = null,
-                ToggleGlobalHotkeys = null,
+                HotkeySets = new Dictionary<string, HotkeySet>()
+                {
+                    {"Default", new HotkeySet()
+                        {
+                            SplitKey = new KeyOrButton(Keys.NumPad1),
+                            ResetKey = new KeyOrButton(Keys.NumPad3),
+                            UndoKey = new KeyOrButton(Keys.NumPad8),
+                            SkipKey = new KeyOrButton(Keys.NumPad2),
+                            SwitchComparisonPrevious = new KeyOrButton(Keys.NumPad4),
+                            SwitchComparisonNext = new KeyOrButton(Keys.NumPad6),
+                            PauseKey = null,
+                            ToggleGlobalHotkeys = null
+                        }
+                    }
+                },
                 GlobalHotkeysEnabled = false,
                 DeactivateHotkeysForOtherPrograms = false,
                 WarnOnReset = true,
@@ -30,8 +37,8 @@ namespace LiveSplit.Options.SettingsFactories
                 RaceViewer = new SRLRaceViewer(),
                 AgreedToSRLRules = false,
                 SimpleSumOfBest = false,
-                ComparisonGeneratorStates = new Dictionary<string, bool>() 
-                { 
+                ComparisonGeneratorStates = new Dictionary<string, bool>()
+                {
                     { BestSegmentsComparisonGenerator.ComparisonName, true },
                     { BestSplitTimesComparisonGenerator.ComparisonName, false },
                     { AverageSegmentsComparisonGenerator.ComparisonName, true },

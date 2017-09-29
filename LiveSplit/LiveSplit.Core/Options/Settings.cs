@@ -10,16 +10,9 @@ namespace LiveSplit.Options
 {
     public class Settings : ISettings
     {
-        public KeyOrButton SplitKey { get; set; }
-        public KeyOrButton ResetKey { get; set; }
-        public KeyOrButton SkipKey { get; set; }
-        public KeyOrButton UndoKey { get; set; }
-        public KeyOrButton PauseKey { get; set; }
-        public KeyOrButton ToggleGlobalHotkeys { get; set; }
+        public IDictionary<string, HotkeySet> HotkeySets { get; set; }
         public KeyOrButton ScrollUp { get; set; }
         public KeyOrButton ScrollDown { get; set; }
-        public KeyOrButton SwitchComparisonPrevious { get; set; }
-        public KeyOrButton SwitchComparisonNext { get; set; }
         public IList<RecentSplitsFile> RecentSplits { get; set; }
         public IList<string> RecentLayouts { get; set; }
         public string LastComparison { get; set; }
@@ -45,16 +38,9 @@ namespace LiveSplit.Options
         {
             return new Settings()
             {
-                SplitKey = SplitKey,
-                ResetKey = ResetKey,
-                SkipKey = SkipKey,
-                UndoKey = UndoKey,
-                PauseKey = PauseKey,
+                HotkeySets = HotkeySets.ToDictionary(x => x.Key, x => (HotkeySet)(x.Value.Clone())),
                 ScrollUp = ScrollUp,
                 ScrollDown = ScrollDown,
-                SwitchComparisonPrevious = SwitchComparisonPrevious,
-                SwitchComparisonNext = SwitchComparisonNext,
-                ToggleGlobalHotkeys = ToggleGlobalHotkeys,
                 GlobalHotkeysEnabled = GlobalHotkeysEnabled,
                 DeactivateHotkeysForOtherPrograms = DeactivateHotkeysForOtherPrograms,
                 WarnOnReset = WarnOnReset,
@@ -81,7 +67,7 @@ namespace LiveSplit.Options
             hook.RegisterHotKey(ScrollDown);
         }
 
-        public void RegisterHotkeys(CompositeHook hook)
+        public void RegisterHotkeys(CompositeHook hook, string hotkeySetName)
         {
             try
             {
@@ -99,92 +85,96 @@ namespace LiveSplit.Options
             {
                 Log.Error(ex);
             }
-            if (SplitKey != null)
+            if (HotkeySets.ContainsKey(hotkeySetName))
             {
-                try
+                var hotkeySet = HotkeySets[hotkeySetName];
+                if (hotkeySet.SplitKey != null)
                 {
-                    RegisterHotkey(hook, SplitKey);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeySet.SplitKey);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+                if (hotkeySet.ResetKey != null)
                 {
-                    Log.Error(e);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeySet.ResetKey);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-            }
-            if (ResetKey != null)
-            {
-                try
+                if (hotkeySet.SkipKey != null)
                 {
-                    RegisterHotkey(hook, ResetKey);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeySet.SkipKey);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+                if (hotkeySet.UndoKey != null)
                 {
-                    Log.Error(e);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeySet.UndoKey);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-            }
-            if (SkipKey != null)
-            {
-                try
+                if (hotkeySet.PauseKey != null)
                 {
-                    RegisterHotkey(hook, SkipKey);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeySet.PauseKey);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+                if (hotkeySet.ToggleGlobalHotkeys != null)
                 {
-                    Log.Error(e);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeySet.ToggleGlobalHotkeys);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-            }
-            if (UndoKey != null)
-            {
-                try
+                if (hotkeySet.SwitchComparisonPrevious != null)
                 {
-                    RegisterHotkey(hook, UndoKey);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeySet.SwitchComparisonPrevious);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+                if (hotkeySet.SwitchComparisonNext != null)
                 {
-                    Log.Error(e);
-                }
-            }
-            if (PauseKey != null)
-            {
-                try
-                {
-                    RegisterHotkey(hook, PauseKey);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
-                }
-            }
-            if (ToggleGlobalHotkeys != null)
-            {
-                try
-                {
-                    RegisterHotkey(hook, ToggleGlobalHotkeys);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
-                }
-            }
-            if (SwitchComparisonPrevious != null)
-            {
-                try
-                {
-                    RegisterHotkey(hook, SwitchComparisonPrevious);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
-                }
-            }
-            if (SwitchComparisonNext != null)
-            {
-                try
-                {
-                    RegisterHotkey(hook, SwitchComparisonNext);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeySet.SwitchComparisonNext);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
         }
