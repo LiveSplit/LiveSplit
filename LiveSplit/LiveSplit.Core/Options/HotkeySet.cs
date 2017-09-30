@@ -78,7 +78,7 @@ namespace LiveSplit.Options
             return hotkeySet;
         }
 
-        public XmlElement ToXml(XmlDocument document, string name = "Hotkey Set")
+        public XmlElement ToXml(XmlDocument document, string name = "HotkeySet")
         {
             var parent = document.CreateElement(name);
 
