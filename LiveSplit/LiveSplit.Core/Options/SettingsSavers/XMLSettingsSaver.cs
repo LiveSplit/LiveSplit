@@ -20,16 +20,16 @@ namespace LiveSplit.Options.SettingsSavers
             parent.Attributes.Append(version);
             document.AppendChild(parent);
 
-            var hotkeySets = document.CreateElement("HotkeySets");
-            foreach (var hotkeySet in settings.HotkeySets)
+            var hotkeyProfiles = document.CreateElement("HotkeyProfiles");
+            foreach (var hotkeyProfile in settings.HotkeyProfiles)
             {
-                var hotkeySetElement = hotkeySet.Value.ToXml(document);
+                var hotkeyProfileElement = hotkeyProfile.Value.ToXml(document);
                 var name = document.CreateAttribute("name");
-                name.Value = hotkeySet.Key;
-                hotkeySetElement.Attributes.Append(name);
-                hotkeySets.AppendChild(hotkeySetElement);
+                name.Value = hotkeyProfile.Key;
+                hotkeyProfileElement.Attributes.Append(name);
+                hotkeyProfiles.AppendChild(hotkeyProfileElement);
             }
-            parent.AppendChild(hotkeySets);
+            parent.AppendChild(hotkeyProfiles);
 
             CreateSetting(document, parent, "GlobalHotkeysEnabled", settings.GlobalHotkeysEnabled);
             CreateSetting(document, parent, "DeactivateHotkeysForOtherPrograms", settings.DeactivateHotkeysForOtherPrograms);
@@ -48,7 +48,7 @@ namespace LiveSplit.Options.SettingsSavers
                 splitsFileElement.SetAttribute("gameName", splitsFile.GameName);
                 splitsFileElement.SetAttribute("categoryName", splitsFile.CategoryName);
                 splitsFileElement.SetAttribute("lastTimingMethod", splitsFile.LastTimingMethod.ToString());
-                splitsFileElement.SetAttribute("lastHotkeySet", splitsFile.LastHotkeySet.ToString());
+                splitsFileElement.SetAttribute("lastHotkeyProfile", splitsFile.LastHotkeyProfile.ToString());
                 recentSplits.AppendChild(splitsFileElement);
             }
             parent.AppendChild(recentSplits);

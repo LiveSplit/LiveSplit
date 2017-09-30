@@ -8,10 +8,10 @@ namespace LiveSplit.Options
         public string CategoryName;
         public string Path;
         public TimingMethod LastTimingMethod;
-        public string LastHotkeySet;
+        public string LastHotkeyProfile;
 
-        public RecentSplitsFile(string path, IRun run, TimingMethod method, string hotkeySet)
-            : this(path, method, hotkeySet)
+        public RecentSplitsFile(string path, IRun run, TimingMethod method, string hotkeyProfile)
+            : this(path, method, hotkeyProfile)
         {
             if (run != null)
             {
@@ -20,13 +20,13 @@ namespace LiveSplit.Options
             }
         }
 
-        public RecentSplitsFile(string path, TimingMethod method, string hotkeySet, string gameName = null, string categoryName = null)
+        public RecentSplitsFile(string path, TimingMethod method, string hotkeyProfile, string gameName = null, string categoryName = null)
         {
             GameName = gameName;
             CategoryName = categoryName;
             Path = path;
             LastTimingMethod = method;
-            LastHotkeySet = hotkeySet;
+            LastHotkeyProfile = hotkeyProfile;
         }
     }
 }

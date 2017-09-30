@@ -151,7 +151,7 @@
     <Compile Include="Model\TimeSpanParser.cs" />
     <Compile Include="Model\TimingMethod.cs" />
     <Compile Include="Model\TimeStamp.cs" />
-    <Compile Include="Options\HotkeySet.cs" />
+    <Compile Include="Options\HotkeyProfile.cs" />
     <Compile Include="Options\Log.cs" />
     <Compile Include="Options\RecentSplitsFile.cs" />
     <Compile Include="Options\SettingsFactories\StandardLayoutSettingsFactory.cs" />

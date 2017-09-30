@@ -4,7 +4,7 @@ using System.Xml;
 
 namespace LiveSplit.Options
 {
-    public class HotkeySet : ICloneable
+    public class HotkeyProfile : ICloneable
     {
         public KeyOrButton SplitKey { get; set; }
         public KeyOrButton ResetKey { get; set; }
@@ -15,70 +15,70 @@ namespace LiveSplit.Options
         public KeyOrButton SwitchComparisonPrevious { get; set; }
         public KeyOrButton SwitchComparisonNext { get; set; }
 
-        public const string DefaultHotkeySetName = "Default";
+        public const string DefaultHotkeyProfileName = "Default";
 
-        public static HotkeySet FromXml(XmlElement element, Version version)
+        public static HotkeyProfile FromXml(XmlElement element, Version version)
         {
-            var hotkeySet = new HotkeySet();
+            var hotkeyProfile = new HotkeyProfile();
 
             var keyStart = element["SplitKey"];
             if (!string.IsNullOrEmpty(keyStart.InnerText))
-                hotkeySet.SplitKey = new KeyOrButton(keyStart.InnerText);
+                hotkeyProfile.SplitKey = new KeyOrButton(keyStart.InnerText);
             else
-                hotkeySet.SplitKey = null;
+                hotkeyProfile.SplitKey = null;
 
             var keyReset = element["ResetKey"];
             if (!string.IsNullOrEmpty(keyReset.InnerText))
-                hotkeySet.ResetKey = new KeyOrButton(keyReset.InnerText);
+                hotkeyProfile.ResetKey = new KeyOrButton(keyReset.InnerText);
             else
-                hotkeySet.ResetKey = null;
+                hotkeyProfile.ResetKey = null;
 
             var keySkip = element["SkipKey"];
             if (!string.IsNullOrEmpty(keySkip.InnerText))
-                hotkeySet.SkipKey = new KeyOrButton(keySkip.InnerText);
+                hotkeyProfile.SkipKey = new KeyOrButton(keySkip.InnerText);
             else
-                hotkeySet.SkipKey = null;
+                hotkeyProfile.SkipKey = null;
 
             var keyUndo = element["UndoKey"];
             if (!string.IsNullOrEmpty(keyUndo.InnerText))
-                hotkeySet.UndoKey = new KeyOrButton(keyUndo.InnerText);
+                hotkeyProfile.UndoKey = new KeyOrButton(keyUndo.InnerText);
             else
-                hotkeySet.UndoKey = null;
+                hotkeyProfile.UndoKey = null;
 
             if (version >= new Version(1, 0))
             {
                 var keyPause = element["PauseKey"];
                 if (!string.IsNullOrEmpty(keyPause.InnerText))
-                    hotkeySet.PauseKey = new KeyOrButton(keyPause.InnerText);
+                    hotkeyProfile.PauseKey = new KeyOrButton(keyPause.InnerText);
                 else
-                    hotkeySet.PauseKey = null;
+                    hotkeyProfile.PauseKey = null;
 
                 var keyToggle = element["ToggleGlobalHotkeys"];
                 if (!string.IsNullOrEmpty(keyToggle.InnerText))
-                    hotkeySet.ToggleGlobalHotkeys = new KeyOrButton(keyToggle.InnerText);
+                    hotkeyProfile.ToggleGlobalHotkeys = new KeyOrButton(keyToggle.InnerText);
                 else
-                    hotkeySet.ToggleGlobalHotkeys = null;
+                    hotkeyProfile.ToggleGlobalHotkeys = null;
 
                 if (version >= new Version(1, 3))
                 {
                     var keySwitchPrevious = element["SwitchComparisonPrevious"];
                     if (!string.IsNullOrEmpty(keySwitchPrevious.InnerText))
-                        hotkeySet.SwitchComparisonPrevious = new KeyOrButton(keySwitchPrevious.InnerText);
+                        hotkeyProfile.SwitchComparisonPrevious = new KeyOrButton(keySwitchPrevious.InnerText);
                     else
-                        hotkeySet.SwitchComparisonPrevious = null;
+                        hotkeyProfile.SwitchComparisonPrevious = null;
 
                     var keySwitchNext = element["SwitchComparisonNext"];
                     if (!string.IsNullOrEmpty(keySwitchNext.InnerText))
-                        hotkeySet.SwitchComparisonNext = new KeyOrButton(keySwitchNext.InnerText);
+                        hotkeyProfile.SwitchComparisonNext = new KeyOrButton(keySwitchNext.InnerText);
                     else
-                        hotkeySet.SwitchComparisonNext = null;
+                        hotkeyProfile.SwitchComparisonNext = null;
                 }
             }
 
-            return hotkeySet;
+            return hotkeyProfile;
         }
 
-        public XmlElement ToXml(XmlDocument document, string name = "HotkeySet")
+        public XmlElement ToXml(XmlDocument document, string name = "HotkeyProfile")
         {
             var parent = document.CreateElement(name);
 
@@ -127,7 +127,7 @@ namespace LiveSplit.Options
 
         public object Clone()
         {
-            return new HotkeySet()
+            return new HotkeyProfile()
             {
                 SplitKey = SplitKey,
                 ResetKey = ResetKey,

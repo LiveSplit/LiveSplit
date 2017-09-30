@@ -8,7 +8,7 @@ namespace LiveSplit.Options
 {
     public interface ISettings : ICloneable
     {
-        IDictionary<string, HotkeySet> HotkeySets { get; set; }
+        IDictionary<string, HotkeyProfile> HotkeyProfiles { get; set; }
         KeyOrButton ScrollUp { get; set; }
         KeyOrButton ScrollDown { get; set; }
         IList<RecentSplitsFile> RecentSplits { get; set; }
@@ -26,9 +26,9 @@ namespace LiveSplit.Options
 
         bool AgreedToSRLRules { get; set; }
 
-        void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod, string lastHotkeySet);
+        void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod, string lastHotkeyProfile);
         void AddToRecentLayouts(string path);
-        void RegisterHotkeys(CompositeHook hook, string hotkeySetName);
+        void RegisterHotkeys(CompositeHook hook, string hotkeyProfileName);
         void UnregisterAllHotkeys(CompositeHook hook);
     }
 }

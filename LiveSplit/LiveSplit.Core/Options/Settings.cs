@@ -10,7 +10,7 @@ namespace LiveSplit.Options
 {
     public class Settings : ISettings
     {
-        public IDictionary<string, HotkeySet> HotkeySets { get; set; }
+        public IDictionary<string, HotkeyProfile> HotkeyProfiles { get; set; }
         public KeyOrButton ScrollUp { get; set; }
         public KeyOrButton ScrollDown { get; set; }
         public IList<RecentSplitsFile> RecentSplits { get; set; }
@@ -38,7 +38,7 @@ namespace LiveSplit.Options
         {
             return new Settings()
             {
-                HotkeySets = HotkeySets.ToDictionary(x => x.Key, x => (HotkeySet)(x.Value.Clone())),
+                HotkeyProfiles = HotkeyProfiles.ToDictionary(x => x.Key, x => (HotkeyProfile)(x.Value.Clone())),
                 ScrollUp = ScrollUp,
                 ScrollDown = ScrollDown,
                 GlobalHotkeysEnabled = GlobalHotkeysEnabled,
@@ -67,7 +67,7 @@ namespace LiveSplit.Options
             hook.RegisterHotKey(ScrollDown);
         }
 
-        public void RegisterHotkeys(CompositeHook hook, string hotkeySetName)
+        public void RegisterHotkeys(CompositeHook hook, string hotkeyProfileName)
         {
             try
             {
@@ -85,91 +85,91 @@ namespace LiveSplit.Options
             {
                 Log.Error(ex);
             }
-            if (HotkeySets.ContainsKey(hotkeySetName))
+            if (HotkeyProfiles.ContainsKey(hotkeyProfileName))
             {
-                var hotkeySet = HotkeySets[hotkeySetName];
-                if (hotkeySet.SplitKey != null)
+                var hotkeyProfile = HotkeyProfiles[hotkeyProfileName];
+                if (hotkeyProfile.SplitKey != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeySet.SplitKey);
+                        RegisterHotkey(hook, hotkeyProfile.SplitKey);
                     }
                     catch (Exception e)
                     {
                         Log.Error(e);
                     }
                 }
-                if (hotkeySet.ResetKey != null)
+                if (hotkeyProfile.ResetKey != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeySet.ResetKey);
+                        RegisterHotkey(hook, hotkeyProfile.ResetKey);
                     }
                     catch (Exception e)
                     {
                         Log.Error(e);
                     }
                 }
-                if (hotkeySet.SkipKey != null)
+                if (hotkeyProfile.SkipKey != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeySet.SkipKey);
+                        RegisterHotkey(hook, hotkeyProfile.SkipKey);
                     }
                     catch (Exception e)
                     {
                         Log.Error(e);
                     }
                 }
-                if (hotkeySet.UndoKey != null)
+                if (hotkeyProfile.UndoKey != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeySet.UndoKey);
+                        RegisterHotkey(hook, hotkeyProfile.UndoKey);
                     }
                     catch (Exception e)
                     {
                         Log.Error(e);
                     }
                 }
-                if (hotkeySet.PauseKey != null)
+                if (hotkeyProfile.PauseKey != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeySet.PauseKey);
+                        RegisterHotkey(hook, hotkeyProfile.PauseKey);
                     }
                     catch (Exception e)
                     {
                         Log.Error(e);
                     }
                 }
-                if (hotkeySet.ToggleGlobalHotkeys != null)
+                if (hotkeyProfile.ToggleGlobalHotkeys != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeySet.ToggleGlobalHotkeys);
+                        RegisterHotkey(hook, hotkeyProfile.ToggleGlobalHotkeys);
                     }
                     catch (Exception e)
                     {
                         Log.Error(e);
                     }
                 }
-                if (hotkeySet.SwitchComparisonPrevious != null)
+                if (hotkeyProfile.SwitchComparisonPrevious != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeySet.SwitchComparisonPrevious);
+                        RegisterHotkey(hook, hotkeyProfile.SwitchComparisonPrevious);
                     }
                     catch (Exception e)
                     {
                         Log.Error(e);
                     }
                 }
-                if (hotkeySet.SwitchComparisonNext != null)
+                if (hotkeyProfile.SwitchComparisonNext != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeySet.SwitchComparisonNext);
+                        RegisterHotkey(hook, hotkeyProfile.SwitchComparisonNext);
                     }
                     catch (Exception e)
                     {
@@ -179,13 +179,13 @@ namespace LiveSplit.Options
             }
         }
 
-        public void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod, string lastHotkeySet)
+        public void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod, string lastHotkeyProfile)
         {
             var foundRecentSplitsFile = RecentSplits.FirstOrDefault(x => x.Path == path);
             if (foundRecentSplitsFile.Path != null)
                 RecentSplits.Remove(foundRecentSplitsFile);
 
-            var recentSplitsFile = new RecentSplitsFile(path, run, lastTimingMethod, lastHotkeySet);
+            var recentSplitsFile = new RecentSplitsFile(path, run, lastTimingMethod, lastHotkeyProfile);
 
             RecentSplits.Add(recentSplitsFile);
 
