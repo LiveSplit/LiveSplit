@@ -31,14 +31,8 @@ namespace LiveSplit.Options.SettingsSavers
             }
             parent.AppendChild(hotkeyProfiles);
 
-            CreateSetting(document, parent, "GlobalHotkeysEnabled", settings.GlobalHotkeysEnabled);
-            CreateSetting(document, parent, "DeactivateHotkeysForOtherPrograms", settings.DeactivateHotkeysForOtherPrograms);
             CreateSetting(document, parent, "WarnOnReset", settings.WarnOnReset);
-            CreateSetting(document, parent, "DoubleTapPrevention", settings.DoubleTapPrevention);
-            CreateSetting(document, parent, "HotkeyDelay", settings.HotkeyDelay);
-
             CreateSetting(document, parent, "RaceViewer", settings.RaceViewer.Name);
-
             CreateSetting(document, parent, "AgreedToSRLRules", settings.AgreedToSRLRules);
 
             var recentSplits = document.CreateElement("RecentSplits");

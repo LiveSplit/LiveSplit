@@ -29,13 +29,9 @@ namespace LiveSplit.Options.SettingsFactories
             var parent = document["Settings"];
             var version = ParseAttributeVersion(parent);
 
-            settings.GlobalHotkeysEnabled = ParseBool(parent["GlobalHotkeysEnabled"]);
             settings.WarnOnReset = ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
-            settings.DoubleTapPrevention = ParseBool(parent["DoubleTapPrevention"], settings.DoubleTapPrevention);
             settings.SimpleSumOfBest = ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
             settings.LastComparison = ParseString(parent["LastComparison"], settings.LastComparison);
-            settings.DeactivateHotkeysForOtherPrograms = ParseBool(parent["DeactivateHotkeysForOtherPrograms"], settings.DeactivateHotkeysForOtherPrograms);
-            settings.HotkeyDelay = ParseFloat(parent["HotkeyDelay"], settings.HotkeyDelay);
             settings.AgreedToSRLRules = ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
 
             var recentLayouts = parent["RecentLayouts"];

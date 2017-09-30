@@ -961,72 +961,69 @@ namespace LiveSplit.View
         {
             Action action = () =>
             {
-                if (Settings.HotkeyProfiles.ContainsKey(CurrentState.CurrentHotkeyProfile))
+                var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+
+                if ((ActiveForm == this || hotkeyProfile.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
                 {
-                    var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
-
-                    if ((ActiveForm == this || Settings.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
+                    if (hotkeyProfile.SplitKey == e)
                     {
-                        if (hotkeyProfile.SplitKey == e)
+                        if (hotkeyProfile.HotkeyDelay > 0)
                         {
-                            if (Settings.HotkeyDelay > 0)
-                            {
-                                var splitTimer = new System.Timers.Timer(Settings.HotkeyDelay * 1000f);
-                                splitTimer.Enabled = true;
-                                splitTimer.Elapsed += splitTimer_Elapsed;
-                            }
-                            else
-                                StartOrSplit();
+                            var splitTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
+                            splitTimer.Enabled = true;
+                            splitTimer.Elapsed += splitTimer_Elapsed;
                         }
-
-                        else if (hotkeyProfile.UndoKey == e)
-                        {
-                            Model.UndoSplit();
-                        }
-
-                        else if (hotkeyProfile.SkipKey == e)
-                        {
-                            Model.SkipSplit();
-                        }
-
-                        else if (hotkeyProfile.ResetKey == e)
-                        {
-                            Reset();
-                        }
-
-                        else if (hotkeyProfile.PauseKey == e)
-                        {
-                            if (Settings.HotkeyDelay > 0)
-                            {
-                                var pauseTimer = new System.Timers.Timer(Settings.HotkeyDelay * 1000f);
-                                pauseTimer.Enabled = true;
-                                pauseTimer.Elapsed += pauseTimer_Elapsed;
-                            }
-                            else
-                                Model.Pause();
-                        }
-
-                        else if (hotkeyProfile.SwitchComparisonPrevious == e)
-                            Model.SwitchComparisonPrevious();
-
-                        else if (hotkeyProfile.SwitchComparisonNext == e)
-                            Model.SwitchComparisonNext();
+                        else
+                            StartOrSplit();
                     }
 
-                    if (ActiveForm == this && !ResetMessageShown && !IsInDialogMode)
+                    else if (hotkeyProfile.UndoKey == e)
                     {
-                        if (Settings.ScrollUp == e)
-                            Model.ScrollUp();
-
-                        else if (Settings.ScrollDown == e)
-                            Model.ScrollDown();
+                        Model.UndoSplit();
                     }
 
-                    if (hotkeyProfile.ToggleGlobalHotkeys == e)
+                    else if (hotkeyProfile.SkipKey == e)
                     {
-                        Settings.GlobalHotkeysEnabled = !Settings.GlobalHotkeysEnabled;
-                        SetProgressBar();
+                        Model.SkipSplit();
                     }
+
+                    else if (hotkeyProfile.ResetKey == e)
+                    {
+                        Reset();
+                    }
+
+                    else if (hotkeyProfile.PauseKey == e)
+                    {
+                        if (hotkeyProfile.HotkeyDelay > 0)
+                        {
+                            var pauseTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
+                            pauseTimer.Enabled = true;
+                            pauseTimer.Elapsed += pauseTimer_Elapsed;
+                        }
+                        else
+                            Model.Pause();
+                    }
+
+                    else if (hotkeyProfile.SwitchComparisonPrevious == e)
+                        Model.SwitchComparisonPrevious();
+
+                    else if (hotkeyProfile.SwitchComparisonNext == e)
+                        Model.SwitchComparisonNext();
+                }
+
+                if (ActiveForm == this && !ResetMessageShown && !IsInDialogMode)
+                {
+                    if (Settings.ScrollUp == e)
+                        Model.ScrollUp();
+
+                    else if (Settings.ScrollDown == e)
+                        Model.ScrollDown();
+                }
+
+                if (hotkeyProfile.ToggleGlobalHotkeys == e)
+                {
+                    hotkeyProfile.GlobalHotkeysEnabled = !hotkeyProfile.GlobalHotkeysEnabled;
+                    SetProgressBar();
                 }
             };
 
@@ -2463,10 +2460,13 @@ namespace LiveSplit.View
 
         private void hotkeysMenuItem_Click(object sender, EventArgs e)
         {
+            var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+
             if (hotkeysMenuItem.Checked)
-                hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled = false;
+                hotkeysMenuItem.Checked = hotkeyProfile.GlobalHotkeysEnabled = false;
             else
-                hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled = true;
+                hotkeysMenuItem.Checked = hotkeyProfile.GlobalHotkeysEnabled = true;
+
             SetProgressBar();
         }
 
@@ -2489,9 +2489,10 @@ namespace LiveSplit.View
         {
             try
             {
-                if (Settings.HotkeyProfiles.ContainsKey(CurrentState.CurrentHotkeyProfile) && Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].ToggleGlobalHotkeys != null)
+                var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+                if (hotkeyProfile.ToggleGlobalHotkeys != null)
                 {
-                    TaskbarManager.Instance.SetProgressState(Settings.GlobalHotkeysEnabled ? TaskbarProgressBarState.Normal : TaskbarProgressBarState.Error);
+                    TaskbarManager.Instance.SetProgressState(hotkeyProfile.GlobalHotkeysEnabled ? TaskbarProgressBarState.Normal : TaskbarProgressBarState.Error);
                     TaskbarManager.Instance.SetProgressValue(100, 100);
                 }
                 else
@@ -2617,7 +2618,7 @@ namespace LiveSplit.View
             controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
             controlMenuItem.DropDownItems.Add(hotkeysMenuItem);
 
-            hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled;
+            hotkeysMenuItem.Checked = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].GlobalHotkeysEnabled;
 
             var components = Layout.Components;
             if (CurrentState.Run.IsAutoSplitterActive())

@@ -16,11 +16,7 @@ namespace LiveSplit.Options
         public IList<RecentSplitsFile> RecentSplits { get; set; }
         public IList<string> RecentLayouts { get; set; }
         public string LastComparison { get; set; }
-        public float HotkeyDelay { get; set; }
-        public bool GlobalHotkeysEnabled { get; set; }
-        public bool DeactivateHotkeysForOtherPrograms { get; set; }
         public bool WarnOnReset { get; set; }
-        public bool DoubleTapPrevention { get; set; }
         public bool AgreedToSRLRules { get; set; }
         public bool SimpleSumOfBest { get; set; }
         public IRaceViewer RaceViewer { get; set; }
@@ -41,14 +37,10 @@ namespace LiveSplit.Options
                 HotkeyProfiles = HotkeyProfiles.ToDictionary(x => x.Key, x => (HotkeyProfile)(x.Value.Clone())),
                 ScrollUp = ScrollUp,
                 ScrollDown = ScrollDown,
-                GlobalHotkeysEnabled = GlobalHotkeysEnabled,
-                DeactivateHotkeysForOtherPrograms = DeactivateHotkeysForOtherPrograms,
                 WarnOnReset = WarnOnReset,
-                DoubleTapPrevention = DoubleTapPrevention,
                 RecentSplits = new List<RecentSplitsFile>(RecentSplits),
                 RecentLayouts = new List<string>(RecentLayouts),
                 LastComparison = LastComparison,
-                HotkeyDelay = HotkeyDelay,
                 RaceViewer = RaceViewer,
                 AgreedToSRLRules = AgreedToSRLRules,
                 SimpleSumOfBest = SimpleSumOfBest,
@@ -77,6 +69,7 @@ namespace LiveSplit.Options
             {
                 Log.Error(ex);
             }
+
             try
             {
                 RegisterScrolling(hook);
@@ -85,14 +78,16 @@ namespace LiveSplit.Options
             {
                 Log.Error(ex);
             }
+
             if (HotkeyProfiles.ContainsKey(hotkeyProfileName))
             {
                 var hotkeyProfile = HotkeyProfiles[hotkeyProfileName];
+                var deactivateForOtherPrograms = hotkeyProfile.GlobalHotkeysEnabled && hotkeyProfile.DeactivateHotkeysForOtherPrograms;
                 if (hotkeyProfile.SplitKey != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.SplitKey);
+                        RegisterHotkey(hook, hotkeyProfile.SplitKey, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
                     {
@@ -103,7 +98,7 @@ namespace LiveSplit.Options
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.ResetKey);
+                        RegisterHotkey(hook, hotkeyProfile.ResetKey, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
                     {
@@ -114,7 +109,7 @@ namespace LiveSplit.Options
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.SkipKey);
+                        RegisterHotkey(hook, hotkeyProfile.SkipKey, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
                     {
@@ -125,7 +120,7 @@ namespace LiveSplit.Options
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.UndoKey);
+                        RegisterHotkey(hook, hotkeyProfile.UndoKey, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
                     {
@@ -136,7 +131,7 @@ namespace LiveSplit.Options
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.PauseKey);
+                        RegisterHotkey(hook, hotkeyProfile.PauseKey, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
                     {
@@ -147,7 +142,7 @@ namespace LiveSplit.Options
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.ToggleGlobalHotkeys);
+                        RegisterHotkey(hook, hotkeyProfile.ToggleGlobalHotkeys, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
                     {
@@ -158,7 +153,7 @@ namespace LiveSplit.Options
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.SwitchComparisonPrevious);
+                        RegisterHotkey(hook, hotkeyProfile.SwitchComparisonPrevious, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
                     {
@@ -169,7 +164,7 @@ namespace LiveSplit.Options
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.SwitchComparisonNext);
+                        RegisterHotkey(hook, hotkeyProfile.SwitchComparisonNext, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
                     {
@@ -202,10 +197,10 @@ namespace LiveSplit.Options
                 RecentLayouts.RemoveAt(0);
         }
 
-        private void RegisterHotkey(CompositeHook hook, KeyOrButton key)
+        private void RegisterHotkey(CompositeHook hook, KeyOrButton key, bool deactivateForOtherPrograms)
         {
             hook.RegisterHotKey(key);
-            if (DeactivateHotkeysForOtherPrograms && key.IsKey && GlobalHotkeysEnabled)
+            if (deactivateForOtherPrograms && key.IsKey)
             {
                 var args = new System.Windows.Forms.KeyEventArgs(key.Key);
                 var modifiers = (args.Alt ? ModifierKeys.Alt : ModifierKeys.None)

@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model.Input;
 using System;
 using System.Xml;
+using static LiveSplit.UI.SettingsHelper;
 
 namespace LiveSplit.Options
 {
@@ -14,6 +15,11 @@ namespace LiveSplit.Options
         public KeyOrButton ToggleGlobalHotkeys { get; set; }
         public KeyOrButton SwitchComparisonPrevious { get; set; }
         public KeyOrButton SwitchComparisonNext { get; set; }
+
+        public float HotkeyDelay { get; set; }
+        public bool GlobalHotkeysEnabled { get; set; }
+        public bool DeactivateHotkeysForOtherPrograms { get; set; }
+        public bool DoubleTapPrevention { get; set; }
 
         public const string DefaultHotkeyProfileName = "Default";
 
@@ -75,6 +81,11 @@ namespace LiveSplit.Options
                 }
             }
 
+            hotkeyProfile.GlobalHotkeysEnabled = ParseBool(element["GlobalHotkeysEnabled"], false);
+            hotkeyProfile.DeactivateHotkeysForOtherPrograms = ParseBool(element["DeactivateHotkeysForOtherPrograms"], false);
+            hotkeyProfile.DoubleTapPrevention = ParseBool(element["DoubleTapPrevention"], true);
+            hotkeyProfile.HotkeyDelay = ParseFloat(element["HotkeyDelay"], 0f);
+
             return hotkeyProfile;
         }
 
@@ -122,6 +133,11 @@ namespace LiveSplit.Options
                 switchComparisonNext.InnerText = SwitchComparisonNext.ToString();
             parent.AppendChild(switchComparisonNext);
 
+            CreateSetting(document, parent, "GlobalHotkeysEnabled", GlobalHotkeysEnabled);
+            CreateSetting(document, parent, "DeactivateHotkeysForOtherPrograms", DeactivateHotkeysForOtherPrograms);
+            CreateSetting(document, parent, "DoubleTapPrevention", DoubleTapPrevention);
+            CreateSetting(document, parent, "HotkeyDelay", HotkeyDelay);
+
             return parent;
         }
 
@@ -136,7 +152,11 @@ namespace LiveSplit.Options
                 PauseKey = PauseKey,
                 ToggleGlobalHotkeys = ToggleGlobalHotkeys,
                 SwitchComparisonPrevious = SwitchComparisonPrevious,
-                SwitchComparisonNext = SwitchComparisonNext
+                SwitchComparisonNext = SwitchComparisonNext,
+                HotkeyDelay = HotkeyDelay,
+                GlobalHotkeysEnabled = GlobalHotkeysEnabled,
+                DeactivateHotkeysForOtherPrograms = DeactivateHotkeysForOtherPrograms,
+                DoubleTapPrevention = DoubleTapPrevention
             };
         }
     }

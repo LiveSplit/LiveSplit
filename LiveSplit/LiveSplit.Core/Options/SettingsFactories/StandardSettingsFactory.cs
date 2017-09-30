@@ -24,16 +24,16 @@ namespace LiveSplit.Options.SettingsFactories
                             SwitchComparisonPrevious = new KeyOrButton(Keys.NumPad4),
                             SwitchComparisonNext = new KeyOrButton(Keys.NumPad6),
                             PauseKey = null,
-                            ToggleGlobalHotkeys = null
+                            ToggleGlobalHotkeys = null,
+                            GlobalHotkeysEnabled = false,
+                            DeactivateHotkeysForOtherPrograms = false,
+                            DoubleTapPrevention = true,
+                            HotkeyDelay = 0f
                         }
                     }
                 },
-                GlobalHotkeysEnabled = false,
-                DeactivateHotkeysForOtherPrograms = false,
                 WarnOnReset = true,
-                DoubleTapPrevention = true,
                 LastComparison = Run.PersonalBestComparisonName,
-                HotkeyDelay = 0f,
                 RaceViewer = new SRLRaceViewer(),
                 AgreedToSRLRules = false,
                 SimpleSumOfBest = false,

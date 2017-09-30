@@ -14,91 +14,38 @@ namespace LiveSplit.View
         public CompositeHook Hook { get; set; }
         public string SelectedHotkeyProfile { get; set; }
 
-        public string SplitKey
+        public string SplitKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey);
+        public string ResetKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].ResetKey);
+        public string SkipKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SkipKey);
+        public string UndoKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].UndoKey);
+        public string PauseKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].PauseKey);
+        public string SwitchComparisonPrevious => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonPrevious);
+        public string SwitchComparisonNext => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonNext);
+        public string ToggleGlobalHotkeys => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleGlobalHotkeys);
+        public float HotkeyDelay
         {
-            get
-            {
-                KeyOrButton splitKey = null;
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    splitKey = Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey;
-                return FormatKey(splitKey);
-            }
+            get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].HotkeyDelay; }
+            set { Settings.HotkeyProfiles[SelectedHotkeyProfile].HotkeyDelay = Math.Max(value, 0); }
         }
-        public string ResetKey
+        public bool GlobalHotkeysEnabled
         {
-            get
-            {
-                KeyOrButton resetKey = null;
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    resetKey = Settings.HotkeyProfiles[SelectedHotkeyProfile].ResetKey;
-                return FormatKey(resetKey);
-            }
+            get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].GlobalHotkeysEnabled; }
+            set { Settings.HotkeyProfiles[SelectedHotkeyProfile].GlobalHotkeysEnabled = value; }
         }
-        public string SkipKey
+        public bool DoubleTapPrevention
         {
-            get
-            {
-                KeyOrButton skipKey = null;
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    skipKey = Settings.HotkeyProfiles[SelectedHotkeyProfile].SkipKey;
-                return FormatKey(skipKey);
-            }
+            get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].DoubleTapPrevention; }
+            set { Settings.HotkeyProfiles[SelectedHotkeyProfile].DoubleTapPrevention = value; }
         }
-        public string UndoKey
+        public bool DeactivateHotkeysForOtherPrograms
         {
-            get
-            {
-                KeyOrButton undoKey = null;
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    undoKey = Settings.HotkeyProfiles[SelectedHotkeyProfile].UndoKey;
-                return FormatKey(undoKey);
-            }
+            get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].DeactivateHotkeysForOtherPrograms; }
+            set { Settings.HotkeyProfiles[SelectedHotkeyProfile].DeactivateHotkeysForOtherPrograms = value; }
         }
-        public string PauseKey
-        {
-            get
-            {
-                KeyOrButton pauseKey = null;
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    pauseKey = Settings.HotkeyProfiles[SelectedHotkeyProfile].PauseKey;
-                return FormatKey(pauseKey);
-            }
-        }
-        public string SwitchComparisonPrevious
-        {
-            get
-            {
-                KeyOrButton switchPreviousKey = null;
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    switchPreviousKey = Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonPrevious;
-                return FormatKey(switchPreviousKey);
-            }
-        }
-        public string SwitchComparisonNext
-        {
-            get
-            {
-                KeyOrButton switchNextKey = null;
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    switchNextKey = Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonNext;
-                return FormatKey(switchNextKey);
-            }
-        }
-        public string ToggleGlobalHotkeys
-        {
-            get
-            {
-                KeyOrButton toggleKey = null;
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    toggleKey = Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleGlobalHotkeys;
-                return FormatKey(toggleKey);
-            }
-        }
-        public float HotkeyDelay { get { return Settings.HotkeyDelay; } set { Settings.HotkeyDelay = Math.Max(value, 0); } }
 
         public event EventHandler SumOfBestModeChanged;
 
-        public string RaceViewer { get { return Settings.RaceViewer.Name; } set { Settings.RaceViewer = LiveSplit.Web.SRL.RaceViewer.FromName(value); } }
+        public string RaceViewer { get { return Settings.RaceViewer.Name; } set { Settings.RaceViewer = Web.SRL.RaceViewer.FromName(value); } }
 
         public SettingsDialog(CompositeHook hook, ISettings settings)
         {
@@ -114,10 +61,10 @@ namespace LiveSplit.View
             txtToggle.DataBindings.Add("Text", this, "ToggleGlobalHotkeys");
             txtSwitchPrevious.DataBindings.Add("Text", this, "SwitchComparisonPrevious");
             txtSwitchNext.DataBindings.Add("Text", this, "SwitchComparisonNext");
-            chkGlobalHotkeys.DataBindings.Add("Checked", Settings, "GlobalHotkeysEnabled");
-            chkWarnOnReset.DataBindings.Add("Checked", Settings, "WarnOnReset");
-            chkDoubleTap.DataBindings.Add("Checked", Settings, "DoubleTapPrevention");
+            chkGlobalHotkeys.DataBindings.Add("Checked", this, "GlobalHotkeysEnabled");
+            chkDoubleTap.DataBindings.Add("Checked", this, "DoubleTapPrevention");
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
+            chkWarnOnReset.DataBindings.Add("Checked", Settings, "WarnOnReset");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
 
             SetClickEvents(this);
@@ -126,8 +73,7 @@ namespace LiveSplit.View
         void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
         {
             Settings.SimpleSumOfBest = chkSimpleSOB.Checked;
-            if (SumOfBestModeChanged != null)
-                SumOfBestModeChanged(this, null);
+            SumOfBestModeChanged?.Invoke(this, null);
         }
 
         void SettingsDialog_Load(object sender, EventArgs e)
@@ -142,7 +88,7 @@ namespace LiveSplit.View
             {
                 chkDeactivateForOtherPrograms.Enabled = true;
                 chkDeactivateForOtherPrograms.DataBindings.Clear();
-                chkDeactivateForOtherPrograms.DataBindings.Add("Checked", Settings, "DeactivateHotkeysForOtherPrograms");
+                chkDeactivateForOtherPrograms.DataBindings.Add("Checked", this, "DeactivateHotkeysForOtherPrograms");
             }
             else
             {
@@ -236,64 +182,56 @@ namespace LiveSplit.View
         {
             SetHotkeyHandlers((TextBox)sender, x =>
             {
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey = x;
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey = x;
             });
         }
         private void Reset_Set_Enter(object sender, EventArgs e)
         {
             SetHotkeyHandlers((TextBox)sender, x =>
             {
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    Settings.HotkeyProfiles[SelectedHotkeyProfile].ResetKey = x;
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].ResetKey = x;
             });
         }
         private void Skip_Set_Enter(object sender, EventArgs e)
         {
             SetHotkeyHandlers((TextBox)sender, x =>
             {
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    Settings.HotkeyProfiles[SelectedHotkeyProfile].SkipKey = x;
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].SkipKey = x;
             });
         }
         private void Undo_Set_Enter(object sender, EventArgs e)
         {
             SetHotkeyHandlers((TextBox)sender, x =>
             {
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    Settings.HotkeyProfiles[SelectedHotkeyProfile].UndoKey = x;
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].UndoKey = x;
             });
         }
         private void Pause_Set_Enter(object sender, EventArgs e)
         {
             SetHotkeyHandlers((TextBox)sender, x =>
             {
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    Settings.HotkeyProfiles[SelectedHotkeyProfile].PauseKey = x;
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].PauseKey = x;
             });
         }
         private void Toggle_Set_Enter(object sender, EventArgs e)
         {
             SetHotkeyHandlers((TextBox)sender, x =>
             {
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleGlobalHotkeys = x;
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleGlobalHotkeys = x;
             });
         }
         private void Switch_Previous_Set_Enter(object sender, EventArgs e)
         {
             SetHotkeyHandlers((TextBox)sender, x =>
             {
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonPrevious = x;
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonPrevious = x;
             });
         }
         private void Switch_Next_Set_Enter(object sender, EventArgs e)
         {
             SetHotkeyHandlers((TextBox)sender, x =>
             {
-                if (Settings.HotkeyProfiles.ContainsKey(SelectedHotkeyProfile))
-                    Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonNext = x;
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonNext = x;
             });
         }
 

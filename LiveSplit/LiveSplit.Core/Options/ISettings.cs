@@ -14,11 +14,8 @@ namespace LiveSplit.Options
         IList<RecentSplitsFile> RecentSplits { get; set; }
         IList<string> RecentLayouts { get; set; }
         string LastComparison { get; set; }
-        float HotkeyDelay { get; set; }
-        bool GlobalHotkeysEnabled { get; set; }
-        bool DeactivateHotkeysForOtherPrograms { get; set; }
+
         bool WarnOnReset { get; set; }
-        bool DoubleTapPrevention { get; set; }
         bool SimpleSumOfBest { get; set; }
         IRaceViewer RaceViewer { get; set; }
         IList<string> ActiveAutoSplitters { get; set; }
