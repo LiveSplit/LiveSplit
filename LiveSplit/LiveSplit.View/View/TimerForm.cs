@@ -156,6 +156,8 @@ namespace LiveSplit.View
             SettingsSaver = new XMLSettingsSaver();
             LoadSettings();
 
+            CurrentState.CurrentHotkeyProfile = Settings.HotkeyProfiles.First().Key;
+
             UpdateRecentSplits();
             UpdateRecentLayouts();
 
@@ -167,7 +169,7 @@ namespace LiveSplit.View
             {
                 if (!string.IsNullOrEmpty(splitsPath))
                 {
-                    run = LoadRunFromFile(splitsPath, TimingMethod.RealTime);
+                    run = LoadRunFromFile(splitsPath, TimingMethod.RealTime, CurrentState.CurrentHotkeyProfile);
                 }
                 else if (Settings.RecentSplits.Count > 0)
                 {
@@ -175,7 +177,10 @@ namespace LiveSplit.View
                     if (!string.IsNullOrEmpty(lastSplitFile.Path))
                     {
                         CurrentState.CurrentTimingMethod = lastSplitFile.LastTimingMethod;
-                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod);
+                        if (Settings.HotkeyProfiles.ContainsKey(lastSplitFile.LastHotkeyProfile))
+                            CurrentState.CurrentHotkeyProfile = lastSplitFile.LastHotkeyProfile;
+
+                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod, lastSplitFile.LastHotkeyProfile);
                     }
                 }
             }
@@ -248,7 +253,7 @@ namespace LiveSplit.View
 
             Hook = new CompositeHook();
             Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
-            Settings.RegisterHotkeys(Hook);
+            Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
 
             SizeChanged += TimerForm_SizeChanged;
 
@@ -647,9 +652,9 @@ namespace LiveSplit.View
             });
         }
 
-        private void AddSplitsFileToLRU(string filePath, IRun run, TimingMethod lastTimingMethod)
+        private void AddSplitsFileToLRU(string filePath, IRun run, TimingMethod lastTimingMethod, string lastHotkeyProfile)
         {
-            Settings.AddToRecentSplits(filePath, run, lastTimingMethod);
+            Settings.AddToRecentSplits(filePath, run, lastTimingMethod, lastHotkeyProfile);
             UpdateRecentSplits();
         }
 
@@ -692,7 +697,16 @@ namespace LiveSplit.View
                         {
                             var previousMethod = CurrentState.CurrentTimingMethod;
                             CurrentState.CurrentTimingMethod = splitsFile.LastTimingMethod;
-                            OpenRunFromFile(splitsFile.Path, previousMethod);
+
+                            var previousHotkeyProfile = CurrentState.CurrentHotkeyProfile;
+                            if (Settings.HotkeyProfiles.ContainsKey(splitsFile.LastHotkeyProfile))
+                            {
+                                CurrentState.CurrentHotkeyProfile = splitsFile.LastHotkeyProfile;
+                                Settings.UnregisterAllHotkeys(Hook);
+                                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+                            }
+
+                            OpenRunFromFile(splitsFile.Path, previousMethod, previousHotkeyProfile);
                         };
                         categoryMenuItem.DropDownItems.Add(menuItem);
                     }
@@ -947,13 +961,15 @@ namespace LiveSplit.View
         {
             Action action = () =>
             {
-                if ((ActiveForm == this || Settings.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
+                var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+
+                if ((ActiveForm == this || hotkeyProfile.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
                 {
-                    if (Settings.SplitKey == e)
+                    if (hotkeyProfile.SplitKey == e)
                     {
-                        if (Settings.HotkeyDelay > 0)
+                        if (hotkeyProfile.HotkeyDelay > 0)
                         {
-                            var splitTimer = new System.Timers.Timer(Settings.HotkeyDelay * 1000f);
+                            var splitTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
                             splitTimer.Enabled = true;
                             splitTimer.Elapsed += splitTimer_Elapsed;
                         }
@@ -961,26 +977,26 @@ namespace LiveSplit.View
                             StartOrSplit();
                     }
 
-                    else if (Settings.UndoKey == e)
+                    else if (hotkeyProfile.UndoKey == e)
                     {
                         Model.UndoSplit();
                     }
 
-                    else if (Settings.SkipKey == e)
+                    else if (hotkeyProfile.SkipKey == e)
                     {
                         Model.SkipSplit();
                     }
 
-                    else if (Settings.ResetKey == e)
+                    else if (hotkeyProfile.ResetKey == e)
                     {
                         Reset();
                     }
 
-                    else if (Settings.PauseKey == e)
+                    else if (hotkeyProfile.PauseKey == e)
                     {
-                        if (Settings.HotkeyDelay > 0)
+                        if (hotkeyProfile.HotkeyDelay > 0)
                         {
-                            var pauseTimer = new System.Timers.Timer(Settings.HotkeyDelay * 1000f);
+                            var pauseTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
                             pauseTimer.Enabled = true;
                             pauseTimer.Elapsed += pauseTimer_Elapsed;
                         }
@@ -988,10 +1004,10 @@ namespace LiveSplit.View
                             Model.Pause();
                     }
 
-                    else if (Settings.SwitchComparisonPrevious == e)
+                    else if (hotkeyProfile.SwitchComparisonPrevious == e)
                         Model.SwitchComparisonPrevious();
 
-                    else if (Settings.SwitchComparisonNext == e)
+                    else if (hotkeyProfile.SwitchComparisonNext == e)
                         Model.SwitchComparisonNext();
                 }
 
@@ -1004,9 +1020,9 @@ namespace LiveSplit.View
                         Model.ScrollDown();
                 }
 
-                if (Settings.ToggleGlobalHotkeys == e)
+                if (hotkeyProfile.ToggleGlobalHotkeys == e)
                 {
-                    Settings.GlobalHotkeysEnabled = !Settings.GlobalHotkeysEnabled;
+                    hotkeyProfile.GlobalHotkeysEnabled = !hotkeyProfile.GlobalHotkeysEnabled;
                     SetProgressBar();
                 }
             };
@@ -1543,13 +1559,13 @@ namespace LiveSplit.View
                 CurrentState.Run.AutoSplitter.Deactivate();
         }
 
-        private void AddCurrentSplitsToLRU(TimingMethod lastTimingMethod)
+        private void AddCurrentSplitsToLRU(TimingMethod lastTimingMethod, string lastHotkeyProfile)
         {
             if (CurrentState.Run != null && Settings.RecentSplits.Any(x => x.Path == CurrentState.Run.FilePath))
-                AddSplitsFileToLRU(CurrentState.Run.FilePath, CurrentState.Run, lastTimingMethod);
+                AddSplitsFileToLRU(CurrentState.Run.FilePath, CurrentState.Run, lastTimingMethod, lastHotkeyProfile);
         }
 
-        private IRun LoadRunFromFile(string filePath, TimingMethod previousTimingMethod)
+        private IRun LoadRunFromFile(string filePath, TimingMethod previousTimingMethod, string previousHotkeyProfile)
         {
             IRun run;
 
@@ -1561,8 +1577,8 @@ namespace LiveSplit.View
                 run = RunFactory.Create(ComparisonGeneratorsFactory);
             }
 
-            AddCurrentSplitsToLRU(previousTimingMethod);
-            AddSplitsFileToLRU(filePath, run, CurrentState.CurrentTimingMethod);
+            AddCurrentSplitsToLRU(previousTimingMethod, previousHotkeyProfile);
+            AddSplitsFileToLRU(filePath, run, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
             if (InTimerOnlyMode)
                 RemoveTimerOnly();
@@ -1580,7 +1596,7 @@ namespace LiveSplit.View
             }
         }
 
-        private void OpenRunFromFile(string filePath, TimingMethod previousTimingMethod)
+        private void OpenRunFromFile(string filePath, TimingMethod previousTimingMethod, string previousHotkeyProfile)
         {
             Cursor.Current = Cursors.WaitCursor;
             try
@@ -1588,7 +1604,7 @@ namespace LiveSplit.View
                 if (!WarnUserAboutSplitsSave())
                     return;
 
-                var run = LoadRunFromFile(filePath, previousTimingMethod);
+                var run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
                 SetRun(run);
                 CurrentState.CallRunManuallyModified();
             }
@@ -1614,7 +1630,7 @@ namespace LiveSplit.View
                     var result = splitDialog.ShowDialog(this);
                     if (result == DialogResult.OK)
                     {
-                        OpenRunFromFile(splitDialog.FileName, CurrentState.CurrentTimingMethod);
+                        OpenRunFromFile(splitDialog.FileName, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
                     }
                 }
                 finally
@@ -1709,7 +1725,7 @@ namespace LiveSplit.View
                     CurrentState.Run.HasChanged = false;
                 }
 
-                AddSplitsFileToLRU(savePath, stateCopy.Run, CurrentState.CurrentTimingMethod);
+                AddSplitsFileToLRU(savePath, stateCopy.Run, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
             }
             catch (Exception ex)
             {
@@ -2092,7 +2108,7 @@ namespace LiveSplit.View
             var run = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
             Model.Reset();
             SetRun(run);
-            Settings.AddToRecentSplits("", null, TimingMethod.RealTime);
+            Settings.AddToRecentSplits("", null, TimingMethod.RealTime, CurrentState.CurrentHotkeyProfile);
             InTimerOnlyMode = true;
             if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
             {
@@ -2227,7 +2243,7 @@ namespace LiveSplit.View
             }
 
             Settings.LastComparison = CurrentState.CurrentComparison;
-            AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod);
+            AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
             try
             {
@@ -2260,7 +2276,7 @@ namespace LiveSplit.View
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
-            var editor = new SettingsDialog(Hook, Settings);
+            var editor = new SettingsDialog(Hook, Settings, CurrentState.CurrentHotkeyProfile);
             editor.SumOfBestModeChanged += editor_SumOfBestModeChanged;
             try
             {
@@ -2276,8 +2292,11 @@ namespace LiveSplit.View
                         RegenerateComparisons();
                 }
                 else
+                {
                     SwitchComparisonGenerators();
-                Settings.RegisterHotkeys(Hook);
+                    CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
+                }
+                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
             }
             finally
             {
@@ -2364,7 +2383,7 @@ namespace LiveSplit.View
                     (LiveSplitState)(CurrentState.Clone()),
                     Settings,
                     () => MakeScreenShot(false)).ShowDialog(this);
-                Settings.RegisterHotkeys(Hook);
+                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
             }
             finally
             {
@@ -2442,10 +2461,13 @@ namespace LiveSplit.View
 
         private void hotkeysMenuItem_Click(object sender, EventArgs e)
         {
+            var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+
             if (hotkeysMenuItem.Checked)
-                hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled = false;
+                hotkeysMenuItem.Checked = hotkeyProfile.GlobalHotkeysEnabled = false;
             else
-                hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled = true;
+                hotkeysMenuItem.Checked = hotkeyProfile.GlobalHotkeysEnabled = true;
+
             SetProgressBar();
         }
 
@@ -2468,9 +2490,10 @@ namespace LiveSplit.View
         {
             try
             {
-                if (Settings.ToggleGlobalHotkeys != null)
+                var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+                if (hotkeyProfile.ToggleGlobalHotkeys != null)
                 {
-                    TaskbarManager.Instance.SetProgressState(Settings.GlobalHotkeysEnabled ? TaskbarProgressBarState.Normal : TaskbarProgressBarState.Error);
+                    TaskbarManager.Instance.SetProgressState(hotkeyProfile.GlobalHotkeysEnabled ? TaskbarProgressBarState.Normal : TaskbarProgressBarState.Error);
                     TaskbarManager.Instance.SetProgressValue(100, 100);
                 }
                 else
@@ -2596,7 +2619,7 @@ namespace LiveSplit.View
             controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
             controlMenuItem.DropDownItems.Add(hotkeysMenuItem);
 
-            hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled;
+            hotkeysMenuItem.Checked = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].GlobalHotkeysEnabled;
 
             var components = Layout.Components;
             if (CurrentState.Run.IsAutoSplitterActive())
