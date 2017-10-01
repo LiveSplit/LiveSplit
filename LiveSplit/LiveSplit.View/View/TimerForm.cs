@@ -2276,9 +2276,8 @@ namespace LiveSplit.View
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
-            var editor = new SettingsDialog(Hook, Settings);
+            var editor = new SettingsDialog(Hook, Settings, CurrentState.CurrentHotkeyProfile);
             editor.SumOfBestModeChanged += editor_SumOfBestModeChanged;
-            editor.SelectedHotkeyProfile = CurrentState.CurrentHotkeyProfile;
             try
             {
                 TopMost = false;

@@ -1,9 +1,11 @@
 ﻿using LiveSplit.Model.Input;
 using LiveSplit.Options;
+using LiveSplit.UI;
 using LiveSplit.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace LiveSplit.View
@@ -47,27 +49,53 @@ namespace LiveSplit.View
 
         public string RaceViewer { get { return Settings.RaceViewer.Name; } set { Settings.RaceViewer = Web.SRL.RaceViewer.FromName(value); } }
 
-        public SettingsDialog(CompositeHook hook, ISettings settings)
+        public SettingsDialog(CompositeHook hook, ISettings settings, string hotkeyProfile)
         {
             InitializeComponent();
             Settings = settings;
             Hook = hook;
 
-            txtStartSplit.DataBindings.Add("Text", this, "SplitKey");
-            txtReset.DataBindings.Add("Text", this, "ResetKey");
-            txtSkip.DataBindings.Add("Text", this, "SkipKey");
-            txtUndo.DataBindings.Add("Text", this, "UndoKey");
-            txtPause.DataBindings.Add("Text", this, "PauseKey");
-            txtToggle.DataBindings.Add("Text", this, "ToggleGlobalHotkeys");
-            txtSwitchPrevious.DataBindings.Add("Text", this, "SwitchComparisonPrevious");
-            txtSwitchNext.DataBindings.Add("Text", this, "SwitchComparisonNext");
+            InitializeHotkeyProfiles(hotkeyProfile);
+            SetClickEvents(this);
+
             chkGlobalHotkeys.DataBindings.Add("Checked", this, "GlobalHotkeysEnabled");
             chkDoubleTap.DataBindings.Add("Checked", this, "DoubleTapPrevention");
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
             chkWarnOnReset.DataBindings.Add("Checked", Settings, "WarnOnReset");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
 
-            SetClickEvents(this);
+            UpdateDisplayedHotkeyValues();
+            RefreshRemoveButton();
+        }
+
+        private void InitializeHotkeyProfiles(string hotkeyProfile)
+        {
+            cmbHotkeyProfiles.Items.AddRange(Settings.HotkeyProfiles.Keys.ToArray());
+            cmbHotkeyProfiles.SelectedItem = hotkeyProfile;
+        }
+
+        private void UpdateDisplayedHotkeyValues()
+        {
+            txtStartSplit.Text = SplitKey;
+            txtReset.Text = ResetKey;
+            txtSkip.Text = SkipKey;
+            txtUndo.Text = UndoKey;
+            txtPause.Text = PauseKey;
+            txtToggle.Text = ToggleGlobalHotkeys;
+            txtSwitchPrevious.Text = SwitchComparisonPrevious;
+            txtSwitchNext.Text = SwitchComparisonNext;
+
+            chkGlobalHotkeys.Checked = GlobalHotkeysEnabled;
+            chkDoubleTap.Checked = DoubleTapPrevention;
+            txtDelay.Text = HotkeyDelay.ToString();
+            chkDeactivateForOtherPrograms.Checked = DeactivateHotkeysForOtherPrograms;
+
+            chkGlobalHotkeys_CheckedChanged(null, null);
+        }
+
+        private void RefreshRemoveButton()
+        {
+            btnRemoveProfile.Enabled = Settings.HotkeyProfiles.Count > 1;
         }
 
         void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
@@ -292,9 +320,72 @@ namespace LiveSplit.View
         {
             var generatorStates = new Dictionary<string, bool>(Settings.ComparisonGeneratorStates);
             var result = (new ChooseComparisonsDialog() { ComparisonGeneratorStates = generatorStates }).ShowDialog(this);
-            if (result == System.Windows.Forms.DialogResult.OK)
+            if (result == DialogResult.OK)
                 Settings.ComparisonGeneratorStates = generatorStates;
         }
 
+        private void cmbHotkeyProfiles_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedHotkeyProfile = cmbHotkeyProfiles.SelectedItem.ToString();
+            UpdateDisplayedHotkeyValues();
+        }
+
+        private void btnRemoveProfile_Click(object sender, EventArgs e)
+        {
+            if (Settings.HotkeyProfiles.Count > 1)
+            {
+                Settings.HotkeyProfiles.Remove(SelectedHotkeyProfile);
+                cmbHotkeyProfiles.Items.Remove(SelectedHotkeyProfile);
+                cmbHotkeyProfiles.SelectedItem = Settings.HotkeyProfiles.Keys.Last();
+                RefreshRemoveButton();
+            }
+        }
+
+        private void btnRenameProfile_Click(object sender, EventArgs e)
+        {
+            var newName = SelectedHotkeyProfile;
+            var result = InputBox.Show("Rename Hotkey Profile", "Hotkey Profile Name:", ref newName);
+            if (result == DialogResult.OK)
+            {
+                if (!Settings.HotkeyProfiles.ContainsKey(newName))
+                {
+                    var curProfile = Settings.HotkeyProfiles[SelectedHotkeyProfile];
+                    Settings.HotkeyProfiles.Remove(SelectedHotkeyProfile);
+                    Settings.HotkeyProfiles[newName] = curProfile;
+                    cmbHotkeyProfiles.Items.Remove(SelectedHotkeyProfile);
+                    cmbHotkeyProfiles.Items.Add(newName);
+                    cmbHotkeyProfiles.SelectedItem = newName;
+                }
+                else if (newName != SelectedHotkeyProfile)
+                {
+                    result = MessageBox.Show(this, "A Hotkey Profile with this name already exists.", "Hotkey Profile Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    if (result == DialogResult.Retry)
+                        btnRenameProfile_Click(sender, e);
+                }
+            }
+        }
+
+        private void btnNewProfile_Click(object sender, EventArgs e)
+        {
+            var name = "";
+            var result = InputBox.Show("New Hotkey Profile", "Hotkey Profile Name:", ref name);
+            if (result == DialogResult.OK)
+            {
+                if (!Settings.HotkeyProfiles.ContainsKey(name))
+                {
+                    var newProfile = (HotkeyProfile)Settings.HotkeyProfiles[SelectedHotkeyProfile].Clone();
+                    Settings.HotkeyProfiles.Add(name, newProfile);
+                    cmbHotkeyProfiles.Items.Add(name);
+                    cmbHotkeyProfiles.SelectedItem = name;
+                    RefreshRemoveButton();
+                }
+                else
+                {
+                    result = MessageBox.Show(this, "A Hotkey Profile with this name already exists.", "Hotkey Profile Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    if (result == DialogResult.Retry)
+                        btnNewProfile_Click(sender, e);
+                }
+            }
+        }
     }
 }
