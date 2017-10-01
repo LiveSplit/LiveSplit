@@ -85,7 +85,7 @@
             this.btnBackground = new System.Windows.Forms.Button();
             this.lblImageOpacity = new System.Windows.Forms.Label();
             this.lblBlur = new System.Windows.Forms.Label();
-            this.chkMouseTransparentWhileRunning = new System.Windows.Forms.CheckBox();
+            this.chkMousePassThroughWhileRunning = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -104,7 +104,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.05206F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.86521F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.08273F));
-            this.tableLayoutPanel5.Controls.Add(this.chkMouseTransparentWhileRunning, 0, 5);
+            this.tableLayoutPanel5.Controls.Add(this.chkMousePassThroughWhileRunning, 0, 5);
             this.tableLayoutPanel5.Controls.Add(this.groupBox2, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.chkAlwaysOnTop, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.groupBox1, 0, 2);
@@ -849,19 +849,19 @@
             this.lblBlur.TabIndex = 22;
             this.lblBlur.Text = "Image Blur:";
             // 
-            // chkMouseTransparentWhileRunning
+            // chkMousePassThroughWhileRunning
             // 
-            this.chkMouseTransparentWhileRunning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chkMousePassThroughWhileRunning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkMouseTransparentWhileRunning.AutoSize = true;
-            this.tableLayoutPanel5.SetColumnSpan(this.chkMouseTransparentWhileRunning, 2);
-            this.chkMouseTransparentWhileRunning.Location = new System.Drawing.Point(7, 515);
-            this.chkMouseTransparentWhileRunning.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkMouseTransparentWhileRunning.Name = "chkMouseTransparentWhileRunning";
-            this.chkMouseTransparentWhileRunning.Size = new System.Drawing.Size(164, 23);
-            this.chkMouseTransparentWhileRunning.TabIndex = 27;
-            this.chkMouseTransparentWhileRunning.Text = "Ignore Mouse While Running";
-            this.chkMouseTransparentWhileRunning.UseVisualStyleBackColor = true;
+            this.chkMousePassThroughWhileRunning.AutoSize = true;
+            this.tableLayoutPanel5.SetColumnSpan(this.chkMousePassThroughWhileRunning, 2);
+            this.chkMousePassThroughWhileRunning.Location = new System.Drawing.Point(7, 515);
+            this.chkMousePassThroughWhileRunning.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkMousePassThroughWhileRunning.Name = "chkMousePassThroughWhileRunning";
+            this.chkMousePassThroughWhileRunning.Size = new System.Drawing.Size(164, 23);
+            this.chkMousePassThroughWhileRunning.TabIndex = 27;
+            this.chkMousePassThroughWhileRunning.Text = "Ignore Mouse While Running";
+            this.chkMousePassThroughWhileRunning.UseVisualStyleBackColor = true;
             // 
             // LayoutSettingsControl
             // 
@@ -949,6 +949,6 @@
         private System.Windows.Forms.Label lblBlur;
         private System.Windows.Forms.Label lblOutlines;
         private System.Windows.Forms.Button btnTextOutlineColor;
-        private System.Windows.Forms.CheckBox chkMouseTransparentWhileRunning;
+        private System.Windows.Forms.CheckBox chkMousePassThroughWhileRunning;
     }
 }

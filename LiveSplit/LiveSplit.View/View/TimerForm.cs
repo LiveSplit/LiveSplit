@@ -115,7 +115,7 @@ namespace LiveSplit.View
         public TimedBroadcasterPlugin XSplit { get; set; }
 #endif
 
-        public bool MouseTransparent
+        public bool MousePassThrough
         {
             set
             {
@@ -1225,8 +1225,8 @@ namespace LiveSplit.View
 
             Opacity = Layout.Settings.Opacity;
 
-            // Set MouseTransparent after setting Opacity, because setting Opacity can reset the Form's WS_EX_LAYERED flag.
-            MouseTransparent = Layout.Settings.MouseTransparentWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running;
+            // Set MousePassThrough after setting Opacity, because setting Opacity can reset the Form's WS_EX_LAYERED flag.
+            MousePassThrough = Layout.Settings.MousePassThroughWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running;
 
             if (Layout.Settings.AntiAliasing)
                 g.TextRenderingHint = TextRenderingHint.AntiAlias;
