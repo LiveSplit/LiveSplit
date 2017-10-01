@@ -3279,4 +3279,14 @@
     <Website>https://github.com/ShootMe/LiveSplit.SteamWorldDig2</Website>
     <ShowInLayoutEditor />
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Cuphead</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Brongle/asl/master/CupheadLoadRemover.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Brongle)</Description>
+  </AutoSplitter>
 </AutoSplitters>
