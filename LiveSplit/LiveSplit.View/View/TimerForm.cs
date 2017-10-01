@@ -115,11 +115,44 @@ namespace LiveSplit.View
         public TimedBroadcasterPlugin XSplit { get; set; }
 #endif
 
+        public bool MouseTransparent
+        {
+            set
+            {
+                const int GWL_EXSTYLE = -20;
+
+                const uint WS_EX_LAYERED = 0x00080000;
+                const uint WS_EX_TRANSPARENT = 0x00000020;
+
+                var prevWindowLong = GetWindowLong(Handle, GWL_EXSTYLE);
+
+                if (value)
+                {
+                    // Always add WS_EX_LAYERED, because WS_EX_TRANSPARENT won't work otherwise.
+                    prevWindowLong |= WS_EX_LAYERED;
+                    prevWindowLong |= WS_EX_TRANSPARENT;
+                    SetWindowLong(Handle, GWL_EXSTYLE, prevWindowLong);
+                }
+                else
+                {
+                    // Don't bother removing WS_EX_LAYERED, shouldn't really affect anything and setting Form.Opacity to 1 will remove it anyway:
+                    prevWindowLong &= ~WS_EX_TRANSPARENT;
+                    SetWindowLong(Handle, GWL_EXSTYLE, prevWindowLong);
+                }
+            }
+        }
+
         [DllImport("user32.dll")]
         static extern int GetUpdateRgn(IntPtr hWnd, IntPtr hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
 
         [DllImport("gdi32.dll")]
         static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
+
+        [DllImport("user32")]
+        private static extern uint SetWindowLong(IntPtr hwnd, int nIndex, uint dwNewLong);
+
+        [DllImport("user32")]
+        private static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
 
         public TimerForm(string splitsPath = null, string layoutPath = null, bool drawToBackBuffer = false, string basePath = "")
         {
@@ -1191,6 +1224,9 @@ namespace LiveSplit.View
             DrawBackground(g);
 
             Opacity = Layout.Settings.Opacity;
+
+            // Set MouseTransparent after setting Opacity, because setting Opacity can reset the Form's WS_EX_LAYERED flag.
+            MouseTransparent = Layout.Settings.MouseTransparentWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running;
 
             if (Layout.Settings.AntiAliasing)
                 g.TextRenderingHint = TextRenderingHint.AntiAlias;

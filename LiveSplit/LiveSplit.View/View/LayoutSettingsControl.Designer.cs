@@ -85,6 +85,7 @@
             this.btnBackground = new System.Windows.Forms.Button();
             this.lblImageOpacity = new System.Windows.Forms.Label();
             this.lblBlur = new System.Windows.Forms.Label();
+            this.chkMouseTransparentWhileRunning = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -100,9 +101,10 @@
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.99567F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.78788F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.94857F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.05206F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.86521F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.08273F));
+            this.tableLayoutPanel5.Controls.Add(this.chkMouseTransparentWhileRunning, 0, 5);
             this.tableLayoutPanel5.Controls.Add(this.groupBox2, 0, 3);
             this.tableLayoutPanel5.Controls.Add(this.chkAlwaysOnTop, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.groupBox1, 0, 2);
@@ -113,13 +115,14 @@
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 5;
+            this.tableLayoutPanel5.RowCount = 6;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 228F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 512);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 541);
             this.tableLayoutPanel5.TabIndex = 41;
             // 
             // groupBox2
@@ -846,6 +849,20 @@
             this.lblBlur.TabIndex = 22;
             this.lblBlur.Text = "Image Blur:";
             // 
+            // chkMouseTransparentWhileRunning
+            // 
+            this.chkMouseTransparentWhileRunning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkMouseTransparentWhileRunning.AutoSize = true;
+            this.tableLayoutPanel5.SetColumnSpan(this.chkMouseTransparentWhileRunning, 2);
+            this.chkMouseTransparentWhileRunning.Location = new System.Drawing.Point(7, 515);
+            this.chkMouseTransparentWhileRunning.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkMouseTransparentWhileRunning.Name = "chkMouseTransparentWhileRunning";
+            this.chkMouseTransparentWhileRunning.Size = new System.Drawing.Size(164, 23);
+            this.chkMouseTransparentWhileRunning.TabIndex = 27;
+            this.chkMouseTransparentWhileRunning.Text = "Ignore Mouse While Running";
+            this.chkMouseTransparentWhileRunning.UseVisualStyleBackColor = true;
+            // 
             // LayoutSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -853,7 +870,7 @@
             this.Controls.Add(this.tableLayoutPanel5);
             this.Name = "LayoutSettingsControl";
             this.Padding = new System.Windows.Forms.Padding(7);
-            this.Size = new System.Drawing.Size(476, 526);
+            this.Size = new System.Drawing.Size(476, 555);
             this.Load += new System.EventHandler(this.LayoutSettingsControl_Load);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -932,5 +949,6 @@
         private System.Windows.Forms.Label lblBlur;
         private System.Windows.Forms.Label lblOutlines;
         private System.Windows.Forms.Button btnTextOutlineColor;
+        private System.Windows.Forms.CheckBox chkMouseTransparentWhileRunning;
     }
 }
