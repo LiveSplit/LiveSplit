@@ -349,6 +349,17 @@ namespace LiveSplit.View
             {
                 if (!Settings.HotkeyProfiles.ContainsKey(newName))
                 {
+                    for (var i = 0; i < Settings.RecentSplits.Count; i++)
+                    {
+                        var file = Settings.RecentSplits[i];
+                        if (file.LastHotkeyProfile == SelectedHotkeyProfile)
+                        {
+                            var newFile = new RecentSplitsFile(file.Path, file.LastTimingMethod, newName, file.GameName, file.CategoryName);
+                            Settings.RecentSplits.RemoveAt(i);
+                            Settings.RecentSplits.Insert(i, newFile);
+                        }
+                    }
+
                     var curProfile = Settings.HotkeyProfiles[SelectedHotkeyProfile];
                     Settings.HotkeyProfiles.Remove(SelectedHotkeyProfile);
                     Settings.HotkeyProfiles[newName] = curProfile;

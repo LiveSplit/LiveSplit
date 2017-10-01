@@ -2292,8 +2292,10 @@ namespace LiveSplit.View
                         RegenerateComparisons();
                 }
                 else
+                {
                     SwitchComparisonGenerators();
-                CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
+                    CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
+                }
                 Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
             }
             finally
