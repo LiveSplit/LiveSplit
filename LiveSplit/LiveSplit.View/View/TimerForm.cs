@@ -115,7 +115,7 @@ namespace LiveSplit.View
         public TimedBroadcasterPlugin XSplit { get; set; }
 #endif
 
-        public bool MousePassThrough
+        private bool MousePassThrough
         {
             set
             {
@@ -124,23 +124,32 @@ namespace LiveSplit.View
                 const uint WS_EX_LAYERED = 0x00080000;
                 const uint WS_EX_TRANSPARENT = 0x00000020;
 
-                var prevWindowLong = GetWindowLong(Handle, GWL_EXSTYLE);
+                // If we're trying to set to false and it's already false, don't bother doing anything.
+                // We can't do this for setting to true because setting Opacity may have messed the GWL_EXSTYLE flags up.
+                if (!value && !MousePassThroughState)
+                    return;
+                MousePassThroughState = value;
 
+                var prevWindowLong = GetWindowLong(Handle, GWL_EXSTYLE);
                 if (value)
                 {
-                    // Always add WS_EX_LAYERED, because WS_EX_TRANSPARENT won't work otherwise.
-                    prevWindowLong |= WS_EX_LAYERED;
-                    prevWindowLong |= WS_EX_TRANSPARENT;
-                    SetWindowLong(Handle, GWL_EXSTYLE, prevWindowLong);
+                    if ((prevWindowLong & (WS_EX_LAYERED | WS_EX_TRANSPARENT)) != (WS_EX_LAYERED | WS_EX_TRANSPARENT))
+                    {
+                        // We have to add WS_EX_LAYERED, because WS_EX_TRANSPARENT won't work otherwise.
+                        prevWindowLong |= WS_EX_LAYERED | WS_EX_TRANSPARENT;
+                        SetWindowLong(Handle, GWL_EXSTYLE, prevWindowLong);
+                    }
                 }
                 else
                 {
-                    // Don't bother removing WS_EX_LAYERED, shouldn't really affect anything and setting Form.Opacity to 1 will remove it anyway:
+                    // Not removing WS_EX_LAYERED because it may still be needed if Opacity != 1.
+                    // It shouldn't really affect anything and setting Form.Opacity to 1 will remove it anyway:
                     prevWindowLong &= ~WS_EX_TRANSPARENT;
                     SetWindowLong(Handle, GWL_EXSTYLE, prevWindowLong);
                 }
             }
         }
+        private bool MousePassThroughState = false;
 
         [DllImport("user32.dll")]
         static extern int GetUpdateRgn(IntPtr hWnd, IntPtr hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
