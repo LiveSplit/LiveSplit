@@ -151,6 +151,14 @@ namespace LiveSplit.View
         }
         private bool MousePassThroughState = false;
 
+        private bool IsForegroundWindow
+        {
+            get
+            {
+                return GetForegroundWindow() == Handle;
+            }
+        }
+
         [DllImport("user32.dll")]
         static extern int GetUpdateRgn(IntPtr hWnd, IntPtr hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
 
@@ -162,6 +170,9 @@ namespace LiveSplit.View
 
         [DllImport("user32")]
         private static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
 
         public TimerForm(string splitsPath = null, string layoutPath = null, bool drawToBackBuffer = false, string basePath = "")
         {
@@ -1235,7 +1246,7 @@ namespace LiveSplit.View
             Opacity = Layout.Settings.Opacity;
 
             // Set MousePassThrough after setting Opacity, because setting Opacity can reset the Form's WS_EX_LAYERED flag.
-            MousePassThrough = Settings.MousePassThroughWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running;
+            MousePassThrough = Settings.MousePassThroughWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running && !IsForegroundWindow;
 
             if (Layout.Settings.AntiAliasing)
                 g.TextRenderingHint = TextRenderingHint.AntiAlias;
