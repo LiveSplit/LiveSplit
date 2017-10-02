@@ -54,6 +54,7 @@ namespace LiveSplit.Options.SettingsFactories
                 settings.UndoKey = null;
 
             settings.GlobalHotkeysEnabled = ParseBool(parent["GlobalHotkeysEnabled"]);
+            settings.MousePassThroughWhileRunning = ParseBool(parent["MousePassThroughWhileRunning"]);
             settings.WarnOnReset = ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
             settings.DoubleTapPrevention = ParseBool(parent["DoubleTapPrevention"], settings.DoubleTapPrevention);
             settings.SimpleSumOfBest = ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);

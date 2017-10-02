@@ -31,7 +31,6 @@
     <DropShadows>True</DropShadows>
     <BackgroundGradient>Plain</BackgroundGradient>
     <Opacity>1</Opacity>
-    <MousePassThroughWhileRunning>False</MousePassThroughWhileRunning>
   </Settings>
   <Components>
     <Component>

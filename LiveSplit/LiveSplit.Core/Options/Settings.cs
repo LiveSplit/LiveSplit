@@ -25,6 +25,7 @@ namespace LiveSplit.Options
         public string LastComparison { get; set; }
         public float HotkeyDelay { get; set; }
         public bool GlobalHotkeysEnabled { get; set; }
+        public bool MousePassThroughWhileRunning { get; set; }
         public bool DeactivateHotkeysForOtherPrograms { get; set; }
         public bool WarnOnReset { get; set; }
         public bool DoubleTapPrevention { get; set; }
@@ -56,6 +57,7 @@ namespace LiveSplit.Options
                 SwitchComparisonNext = SwitchComparisonNext,
                 ToggleGlobalHotkeys = ToggleGlobalHotkeys,
                 GlobalHotkeysEnabled = GlobalHotkeysEnabled,
+                MousePassThroughWhileRunning = MousePassThroughWhileRunning,
                 DeactivateHotkeysForOtherPrograms = DeactivateHotkeysForOtherPrograms,
                 WarnOnReset = WarnOnReset,
                 DoubleTapPrevention = DoubleTapPrevention,

@@ -49,6 +49,7 @@ namespace LiveSplit.Options
         string LastComparison { get; set; }
         float HotkeyDelay { get; set; }
         bool GlobalHotkeysEnabled { get; set; }
+        bool MousePassThroughWhileRunning { get; set; }
         bool DeactivateHotkeysForOtherPrograms { get; set; }
         bool WarnOnReset { get; set; }
         bool DoubleTapPrevention { get; set; }
