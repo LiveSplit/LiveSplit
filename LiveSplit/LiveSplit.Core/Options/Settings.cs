@@ -10,24 +10,13 @@ namespace LiveSplit.Options
 {
     public class Settings : ISettings
     {
-        public KeyOrButton SplitKey { get; set; }
-        public KeyOrButton ResetKey { get; set; }
-        public KeyOrButton SkipKey { get; set; }
-        public KeyOrButton UndoKey { get; set; }
-        public KeyOrButton PauseKey { get; set; }
-        public KeyOrButton ToggleGlobalHotkeys { get; set; }
+        public IDictionary<string, HotkeyProfile> HotkeyProfiles { get; set; }
         public KeyOrButton ScrollUp { get; set; }
         public KeyOrButton ScrollDown { get; set; }
-        public KeyOrButton SwitchComparisonPrevious { get; set; }
-        public KeyOrButton SwitchComparisonNext { get; set; }
         public IList<RecentSplitsFile> RecentSplits { get; set; }
         public IList<string> RecentLayouts { get; set; }
         public string LastComparison { get; set; }
-        public float HotkeyDelay { get; set; }
-        public bool GlobalHotkeysEnabled { get; set; }
-        public bool DeactivateHotkeysForOtherPrograms { get; set; }
         public bool WarnOnReset { get; set; }
-        public bool DoubleTapPrevention { get; set; }
         public bool AgreedToSRLRules { get; set; }
         public bool SimpleSumOfBest { get; set; }
         public IRaceViewer RaceViewer { get; set; }
@@ -45,24 +34,13 @@ namespace LiveSplit.Options
         {
             return new Settings()
             {
-                SplitKey = SplitKey,
-                ResetKey = ResetKey,
-                SkipKey = SkipKey,
-                UndoKey = UndoKey,
-                PauseKey = PauseKey,
+                HotkeyProfiles = HotkeyProfiles.ToDictionary(x => x.Key, x => (HotkeyProfile)(x.Value.Clone())),
                 ScrollUp = ScrollUp,
                 ScrollDown = ScrollDown,
-                SwitchComparisonPrevious = SwitchComparisonPrevious,
-                SwitchComparisonNext = SwitchComparisonNext,
-                ToggleGlobalHotkeys = ToggleGlobalHotkeys,
-                GlobalHotkeysEnabled = GlobalHotkeysEnabled,
-                DeactivateHotkeysForOtherPrograms = DeactivateHotkeysForOtherPrograms,
                 WarnOnReset = WarnOnReset,
-                DoubleTapPrevention = DoubleTapPrevention,
                 RecentSplits = new List<RecentSplitsFile>(RecentSplits),
                 RecentLayouts = new List<string>(RecentLayouts),
                 LastComparison = LastComparison,
-                HotkeyDelay = HotkeyDelay,
                 RaceViewer = RaceViewer,
                 AgreedToSRLRules = AgreedToSRLRules,
                 SimpleSumOfBest = SimpleSumOfBest,
@@ -81,7 +59,7 @@ namespace LiveSplit.Options
             hook.RegisterHotKey(ScrollDown);
         }
 
-        public void RegisterHotkeys(CompositeHook hook)
+        public void RegisterHotkeys(CompositeHook hook, string hotkeyProfileName)
         {
             try
             {
@@ -91,6 +69,7 @@ namespace LiveSplit.Options
             {
                 Log.Error(ex);
             }
+
             try
             {
                 RegisterScrolling(hook);
@@ -99,103 +78,109 @@ namespace LiveSplit.Options
             {
                 Log.Error(ex);
             }
-            if (SplitKey != null)
+
+            if (HotkeyProfiles.ContainsKey(hotkeyProfileName))
             {
-                try
+                var hotkeyProfile = HotkeyProfiles[hotkeyProfileName];
+                var deactivateForOtherPrograms = hotkeyProfile.GlobalHotkeysEnabled && hotkeyProfile.DeactivateHotkeysForOtherPrograms;
+                if (hotkeyProfile.SplitKey != null)
                 {
-                    RegisterHotkey(hook, SplitKey);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.SplitKey, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+                if (hotkeyProfile.ResetKey != null)
                 {
-                    Log.Error(e);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.ResetKey, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-            }
-            if (ResetKey != null)
-            {
-                try
+                if (hotkeyProfile.SkipKey != null)
                 {
-                    RegisterHotkey(hook, ResetKey);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.SkipKey, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+                if (hotkeyProfile.UndoKey != null)
                 {
-                    Log.Error(e);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.UndoKey, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-            }
-            if (SkipKey != null)
-            {
-                try
+                if (hotkeyProfile.PauseKey != null)
                 {
-                    RegisterHotkey(hook, SkipKey);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.PauseKey, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+                if (hotkeyProfile.ToggleGlobalHotkeys != null)
                 {
-                    Log.Error(e);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.ToggleGlobalHotkeys, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-            }
-            if (UndoKey != null)
-            {
-                try
+                if (hotkeyProfile.SwitchComparisonPrevious != null)
                 {
-                    RegisterHotkey(hook, UndoKey);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.SwitchComparisonPrevious, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
-                catch (Exception e)
+                if (hotkeyProfile.SwitchComparisonNext != null)
                 {
-                    Log.Error(e);
-                }
-            }
-            if (PauseKey != null)
-            {
-                try
-                {
-                    RegisterHotkey(hook, PauseKey);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
-                }
-            }
-            if (ToggleGlobalHotkeys != null)
-            {
-                try
-                {
-                    RegisterHotkey(hook, ToggleGlobalHotkeys);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
-                }
-            }
-            if (SwitchComparisonPrevious != null)
-            {
-                try
-                {
-                    RegisterHotkey(hook, SwitchComparisonPrevious);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
-                }
-            }
-            if (SwitchComparisonNext != null)
-            {
-                try
-                {
-                    RegisterHotkey(hook, SwitchComparisonNext);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e);
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.SwitchComparisonNext, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
                 }
             }
         }
 
-        public void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod)
+        public void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod, string lastHotkeyProfile)
         {
             var foundRecentSplitsFile = RecentSplits.FirstOrDefault(x => x.Path == path);
             if (foundRecentSplitsFile.Path != null)
                 RecentSplits.Remove(foundRecentSplitsFile);
 
-            var recentSplitsFile = new RecentSplitsFile(path, run, lastTimingMethod);
+            var recentSplitsFile = new RecentSplitsFile(path, run, lastTimingMethod, lastHotkeyProfile);
 
             RecentSplits.Add(recentSplitsFile);
 
@@ -212,10 +197,10 @@ namespace LiveSplit.Options
                 RecentLayouts.RemoveAt(0);
         }
 
-        private void RegisterHotkey(CompositeHook hook, KeyOrButton key)
+        private void RegisterHotkey(CompositeHook hook, KeyOrButton key, bool deactivateForOtherPrograms)
         {
             hook.RegisterHotKey(key);
-            if (DeactivateHotkeysForOtherPrograms && key.IsKey && GlobalHotkeysEnabled)
+            if (deactivateForOtherPrograms && key.IsKey)
             {
                 var args = new System.Windows.Forms.KeyEventArgs(key.Key);
                 var modifiers = (args.Alt ? ModifierKeys.Alt : ModifierKeys.None)

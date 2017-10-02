@@ -29,37 +29,9 @@ namespace LiveSplit.Options.SettingsFactories
             var parent = document["Settings"];
             var version = ParseAttributeVersion(parent);
 
-            var keyStart = parent["SplitKey"];
-            if (!string.IsNullOrEmpty(keyStart.InnerText))
-                settings.SplitKey = new KeyOrButton(keyStart.InnerText);
-            else
-                settings.SplitKey = null;
-
-            var keyReset = parent["ResetKey"];
-            if (!string.IsNullOrEmpty(keyReset.InnerText))
-                settings.ResetKey = new KeyOrButton(keyReset.InnerText);
-            else
-                settings.ResetKey = null;
-
-            var keySkip = parent["SkipKey"];
-            if (!string.IsNullOrEmpty(keySkip.InnerText))
-                settings.SkipKey = new KeyOrButton(keySkip.InnerText);
-            else
-                settings.SkipKey = null;
-
-            var keyUndo = parent["UndoKey"];
-            if (!string.IsNullOrEmpty(keyUndo.InnerText))
-                settings.UndoKey = new KeyOrButton(keyUndo.InnerText);
-            else
-                settings.UndoKey = null;
-
-            settings.GlobalHotkeysEnabled = ParseBool(parent["GlobalHotkeysEnabled"]);
             settings.WarnOnReset = ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
-            settings.DoubleTapPrevention = ParseBool(parent["DoubleTapPrevention"], settings.DoubleTapPrevention);
             settings.SimpleSumOfBest = ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
             settings.LastComparison = ParseString(parent["LastComparison"], settings.LastComparison);
-            settings.DeactivateHotkeysForOtherPrograms = ParseBool(parent["DeactivateHotkeysForOtherPrograms"], settings.DeactivateHotkeysForOtherPrograms);
-            settings.HotkeyDelay = ParseFloat(parent["HotkeyDelay"], settings.HotkeyDelay);
             settings.AgreedToSRLRules = ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
 
             var recentLayouts = parent["RecentLayouts"];
@@ -69,34 +41,8 @@ namespace LiveSplit.Options.SettingsFactories
                 settings.RecentLayouts.Add(layoutElement.InnerText);
             }
 
-            if (version > new Version(1, 0, 0, 0))
-            {
-                var keyPause = parent["PauseKey"];
-                if (!string.IsNullOrEmpty(keyPause.InnerText))
-                    settings.PauseKey = new KeyOrButton(keyPause.InnerText);
-                else
-                    settings.PauseKey = null;
-
-                var keyToggle = parent["ToggleGlobalHotkeys"];
-                if (!string.IsNullOrEmpty(keyToggle.InnerText))
-                    settings.ToggleGlobalHotkeys = new KeyOrButton(keyToggle.InnerText);
-                else
-                    settings.ToggleGlobalHotkeys = null;
-            }
-
             if (version >= new Version(1, 3))
             {
-                var switchComparisonPrevious = parent["SwitchComparisonPrevious"];
-                if (!string.IsNullOrEmpty(switchComparisonPrevious.InnerText))
-                    settings.SwitchComparisonPrevious = new KeyOrButton(switchComparisonPrevious.InnerText);
-                else
-                    settings.SwitchComparisonPrevious = null;
-                var switchComparisonNext = parent["SwitchComparisonNext"];
-                if (!string.IsNullOrEmpty(switchComparisonNext.InnerText))
-                    settings.SwitchComparisonNext = new KeyOrButton(switchComparisonNext.InnerText);
-                else
-                    settings.SwitchComparisonNext = null;
-
                 settings.RaceViewer = RaceViewer.FromName(parent["RaceViewer"].InnerText);
             }
 
@@ -125,12 +71,18 @@ namespace LiveSplit.Options.SettingsFactories
                     var splitElement = splitNode as XmlElement;
                     string gameName = splitElement.GetAttribute("gameName");
                     string categoryName = splitElement.GetAttribute("categoryName");
+
                     var method = TimingMethod.RealTime;
                     if (version >= new Version(1, 6, 1))
                         method = (TimingMethod)Enum.Parse(typeof(TimingMethod), splitElement.GetAttribute("lastTimingMethod"));
+
+                    var hotkeyProfile = HotkeyProfile.DefaultHotkeyProfileName;
+                    if (version >= new Version(1, 8))
+                        hotkeyProfile = splitElement.GetAttribute("lastHotkeyProfile");
+
                     var path = splitElement.InnerText;
 
-                    var recentSplitsFile = new RecentSplitsFile(path, method, gameName, categoryName);
+                    var recentSplitsFile = new RecentSplitsFile(path, method, hotkeyProfile, gameName, categoryName);
                     settings.RecentSplits.Add(recentSplitsFile);
                 }
             }
@@ -152,12 +104,27 @@ namespace LiveSplit.Options.SettingsFactories
                             runFactory.Stream = stream;
                             var run = runFactory.Create(comparisonsFactory);
 
-                            var recentSplitsFile = new RecentSplitsFile(path, run, TimingMethod.RealTime);
+                            var recentSplitsFile = new RecentSplitsFile(path, run, TimingMethod.RealTime, HotkeyProfile.DefaultHotkeyProfileName);
                             settings.RecentSplits.Add(recentSplitsFile);
                         }
                     }
                     catch { }
                 }
+            }
+
+            if (version >= new Version(1, 8))
+            {
+                settings.HotkeyProfiles.Clear();
+                foreach (var hotkeyProfileNode in parent["HotkeyProfiles"].ChildNodes.OfType<XmlElement>())
+                {
+                    var hotkeyProfileName = hotkeyProfileNode.GetAttribute("name");
+                    settings.HotkeyProfiles[hotkeyProfileName] = HotkeyProfile.FromXml(hotkeyProfileNode, version);
+                }
+            }
+            else
+            {
+                var hotkeyProfile = HotkeyProfile.FromXml(parent, version);
+                settings.HotkeyProfiles[HotkeyProfile.DefaultHotkeyProfileName] = hotkeyProfile;
             }
 
             LoadDrift(parent);
