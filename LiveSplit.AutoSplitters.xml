@@ -3284,10 +3284,12 @@
       <Game>Cuphead</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Brongle/asl/master/CupheadLoadRemover.asl</URL>
+      <URL>https://github.com/ShootMe/LiveSplit.Cuphead/raw/master/Components/LiveSplit.Cuphead.dll</URL>
     </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available. (By Brongle)</Description>
+    <Type>Component</Type>
+    <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Cuphead</Website>
+    <ShowInLayoutEditor />
   </AutoSplitter>
    <AutoSplitter>
     <Games>
