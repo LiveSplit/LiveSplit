@@ -36,6 +36,7 @@ namespace LiveSplit.UI.LayoutFactories
             settings.AntiAliasing = SettingsHelper.ParseBool(element["AntiAliasing"], true);
             settings.DropShadows = SettingsHelper.ParseBool(element["DropShadows"], true);
             settings.Opacity = SettingsHelper.ParseFloat(element["Opacity"], 1);
+            settings.MousePassThroughWhileRunning = SettingsHelper.ParseBool(element["MousePassThroughWhileRunning"]);
             settings.TextOutlineColor = SettingsHelper.ParseColor(element["TextOutlineColor"], Color.FromArgb(0, 0, 0, 0));
             settings.ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0));
             settings.ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]);

@@ -61,7 +61,6 @@ namespace LiveSplit.Options.SettingsSavers
             parent.AppendChild(switchComparisonNext);
 
             CreateSetting(document, parent, "GlobalHotkeysEnabled", settings.GlobalHotkeysEnabled);
-            CreateSetting(document, parent, "MousePassThroughWhileRunning", settings.MousePassThroughWhileRunning);
             CreateSetting(document, parent, "DeactivateHotkeysForOtherPrograms", settings.DeactivateHotkeysForOtherPrograms);
             CreateSetting(document, parent, "WarnOnReset", settings.WarnOnReset);
             CreateSetting(document, parent, "DoubleTapPrevention", settings.DoubleTapPrevention);

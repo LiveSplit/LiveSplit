@@ -22,7 +22,6 @@ namespace LiveSplit.Options.SettingsFactories
                 PauseKey = null,
                 ToggleGlobalHotkeys = null,
                 GlobalHotkeysEnabled = false,
-                MousePassThroughWhileRunning = false,
                 DeactivateHotkeysForOtherPrograms = false,
                 WarnOnReset = true,
                 DoubleTapPrevention = true,

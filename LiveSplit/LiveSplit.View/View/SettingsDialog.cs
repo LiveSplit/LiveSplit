@@ -42,7 +42,6 @@ namespace LiveSplit.View
             txtSwitchPrevious.DataBindings.Add("Text", this, "SwitchComparisonPrevious");
             txtSwitchNext.DataBindings.Add("Text", this, "SwitchComparisonNext");
             chkGlobalHotkeys.DataBindings.Add("Checked", Settings, "GlobalHotkeysEnabled");
-            chkMousePassThroughWhileRunning.DataBindings.Add("Checked", Settings, "MousePassThroughWhileRunning");
             chkWarnOnReset.DataBindings.Add("Checked", Settings, "WarnOnReset");
             chkDoubleTap.DataBindings.Add("Checked", Settings, "DoubleTapPrevention");
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
