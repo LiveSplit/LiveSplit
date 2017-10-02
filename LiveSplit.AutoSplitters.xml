@@ -3289,4 +3289,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Brongle)</Description>
   </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>Sonic Mania</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Daisukemara/SonicManiaAutosplitter/master/LiveSplits.Mania.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Daisukemara)</Description>
+  </AutoSplitter>
 </AutoSplitters>
