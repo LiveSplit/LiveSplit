@@ -856,8 +856,8 @@ namespace LiveSplit.View
                 {
                     if (!WarnUserAboutSplitsSave())
                         return;
-                    if (InTimerOnlyMode)
-                        RemoveTimerOnly();
+                    if (!WarnAndRemoveTimerOnly(true))
+                        return;
                     run.HasChanged = true;
                     SetRun(run);
                     CurrentState.CallRunManuallyModified();
@@ -982,8 +982,8 @@ namespace LiveSplit.View
             {
                 if (!WarnUserAboutSplitsSave())
                     return;
-                if (InTimerOnlyMode)
-                    RemoveTimerOnly();
+                if (!WarnAndRemoveTimerOnly(true))
+                    return;
                 run.HasChanged = true;
                 SetRun(run);
                 CurrentState.CallRunManuallyModified();
@@ -1636,8 +1636,6 @@ namespace LiveSplit.View
             AddCurrentSplitsToLRU(previousTimingMethod, previousHotkeyProfile);
             AddSplitsFileToLRU(filePath, run, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
-            if (InTimerOnlyMode)
-                RemoveTimerOnly();
             return run;
         }
 
@@ -1658,6 +1656,8 @@ namespace LiveSplit.View
             try
             {
                 if (!WarnUserAboutSplitsSave())
+                    return;
+                if (!WarnAndRemoveTimerOnly(true))
                     return;
 
                 var run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
@@ -1888,30 +1888,36 @@ namespace LiveSplit.View
         {
             RegenerateComparisons();
             CurrentState.CallRunManuallyModified();
-            if (InTimerOnlyMode)
-                RemoveTimerOnly();
+            WarnAndRemoveTimerOnly(false);
         }
 
-        protected void RemoveTimerOnly()
+        protected bool WarnAndRemoveTimerOnly(bool canCancel)
         {
-            InTimerOnlyMode = false;
-            ILayout layout;
-            try
+            if (InTimerOnlyMode)
             {
-                var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
-                if (lastLayoutPath != null)
-                    layout = LoadLayoutFromFile(lastLayoutPath);
-                else
+                if (!WarnUserAboutLayoutSave(canCancel))
+                    return false;
+
+                InTimerOnlyMode = false;
+                ILayout layout;
+                try
+                {
+                    var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
+                    if (lastLayoutPath != null)
+                        layout = LoadLayoutFromFile(lastLayoutPath);
+                    else
+                        layout = new StandardLayoutFactory().Create(CurrentState);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
                     layout = new StandardLayoutFactory().Create(CurrentState);
+                }
+                layout.X = Location.X;
+                layout.Y = Location.Y;
+                SetLayout(layout);
             }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                layout = new StandardLayoutFactory().Create(CurrentState);
-            }
-            layout.X = Location.X;
-            layout.Y = Location.Y;
-            SetLayout(layout);
+            return true;
         }
 
         private void EditLayout()
@@ -2086,7 +2092,7 @@ namespace LiveSplit.View
 
         private void OpenLayoutFromFile(string filePath)
         {
-            if (WarnUserAboutLayoutSave())
+            if (WarnUserAboutLayoutSave(true))
             {
                 Cursor.Current = Cursors.WaitCursor;
                 try
@@ -2107,7 +2113,7 @@ namespace LiveSplit.View
 
         private void LoadDefaultLayout()
         {
-            if (WarnUserAboutLayoutSave())
+            if (WarnUserAboutLayoutSave(true))
             {
                 var layout = new StandardLayoutFactory().Create(CurrentState);
                 layout.X = Location.X;
@@ -2157,16 +2163,20 @@ namespace LiveSplit.View
 
         private void CloseSplits()
         {
+            var needToChangeLayout = Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer";
+
             if (!WarnUserAboutSplitsSave())
                 return;
-            if (!WarnUserAboutLayoutSave())
+            if (needToChangeLayout && !WarnUserAboutLayoutSave(true))
                 return;
+
             var run = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
             Model.Reset();
             SetRun(run);
             Settings.AddToRecentSplits("", null, TimingMethod.RealTime, CurrentState.CurrentHotkeyProfile);
             InTimerOnlyMode = true;
-            if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
+
+            if (needToChangeLayout)
             {
                 var layout = new TimerOnlyLayoutFactory().Create(CurrentState);
                 layout.Settings = Layout.Settings;
@@ -2260,14 +2270,15 @@ namespace LiveSplit.View
             return true;
         }
 
-        private bool WarnUserAboutLayoutSave()
+        private bool WarnUserAboutLayoutSave(bool canCancel)
         {
             if (Layout.HasChanged)
             {
                 try
                 {
                     DontRedraw = true;
-                    var result = MessageBox.Show(this, "Your layout has been updated but not yet saved.\nDo you want to save your layout now?", "Save Layout?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    var buttons = canCancel ? MessageBoxButtons.YesNoCancel : MessageBoxButtons.YesNo;
+                    var result = MessageBox.Show(this, "Your layout has been updated but not yet saved.\nDo you want to save your layout now?", "Save Layout?", buttons, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         SaveLayout();
@@ -2292,7 +2303,7 @@ namespace LiveSplit.View
                 e.Cancel = true;
                 return;
             }
-            if (!WarnUserAboutLayoutSave())
+            if (!WarnUserAboutLayoutSave(true))
             {
                 e.Cancel = true;
                 return;
