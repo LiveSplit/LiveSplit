@@ -1499,7 +1499,7 @@ namespace LiveSplit.View
             if (m.Msg == WM_NCHITTEST || m.Msg == WM_MOUSEMOVE)
             {
                 Size formSize = Size;
-                Point screenPoint = new Point(m.LParam.ToInt32());
+                Point screenPoint = new Point((int)m.LParam.ToInt64());
                 Point clientPoint = PointToClient(screenPoint);
 
                 Dictionary<uint, Rectangle> boxes = new Dictionary<uint, Rectangle>() {
