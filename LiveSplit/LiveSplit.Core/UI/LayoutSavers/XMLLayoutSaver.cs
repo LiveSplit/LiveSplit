@@ -38,7 +38,8 @@ namespace LiveSplit.UI.LayoutSavers
             SettingsHelper.CreateSetting(document, element, "BackgroundImage", settings.BackgroundImage) ^
             SettingsHelper.CreateSetting(document, element, "ImageOpacity", settings.ImageOpacity) ^
             SettingsHelper.CreateSetting(document, element, "ImageBlur", settings.ImageBlur) ^
-            SettingsHelper.CreateSetting(document, element, "Opacity", settings.Opacity);
+            SettingsHelper.CreateSetting(document, element, "Opacity", settings.Opacity) ^
+            SettingsHelper.CreateSetting(document, element, "MousePassThroughWhileRunning", settings.MousePassThroughWhileRunning);
         }
 
         public int CreateLayoutNode(XmlDocument document, XmlElement parent, ILayout layout)

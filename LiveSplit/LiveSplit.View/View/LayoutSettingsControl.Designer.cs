@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.chkMousePassThroughWhileRunning = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblOutlines = new System.Windows.Forms.Label();
@@ -100,27 +101,43 @@
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.99567F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.78788F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.94857F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.05206F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.86521F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.08273F));
             this.tableLayoutPanel5.Controls.Add(this.groupBox2, 0, 3);
-            this.tableLayoutPanel5.Controls.Add(this.chkAlwaysOnTop, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.groupBox1, 0, 2);
-            this.tableLayoutPanel5.Controls.Add(this.chkBestSegments, 2, 4);
             this.tableLayoutPanel5.Controls.Add(this.label13, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.trkOpacity, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.groupBox3, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.chkBestSegments, 0, 4);
+            this.tableLayoutPanel5.Controls.Add(this.chkMousePassThroughWhileRunning, 0, 5);
+            this.tableLayoutPanel5.Controls.Add(this.chkAlwaysOnTop, 2, 4);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 5;
+            this.tableLayoutPanel5.RowCount = 6;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 228F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 512);
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 541);
             this.tableLayoutPanel5.TabIndex = 41;
+            // 
+            // chkMousePassThroughWhileRunning
+            // 
+            this.chkMousePassThroughWhileRunning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkMousePassThroughWhileRunning.AutoSize = true;
+            this.tableLayoutPanel5.SetColumnSpan(this.chkMousePassThroughWhileRunning, 3);
+            this.chkMousePassThroughWhileRunning.Location = new System.Drawing.Point(7, 515);
+            this.chkMousePassThroughWhileRunning.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkMousePassThroughWhileRunning.Name = "chkMousePassThroughWhileRunning";
+            this.chkMousePassThroughWhileRunning.Size = new System.Drawing.Size(249, 23);
+            this.chkMousePassThroughWhileRunning.TabIndex = 27;
+            this.chkMousePassThroughWhileRunning.Text = "Ignore Mouse While Running and Not In Focus";
+            this.chkMousePassThroughWhileRunning.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -502,8 +519,7 @@
             this.chkAlwaysOnTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkAlwaysOnTop.AutoSize = true;
-            this.tableLayoutPanel5.SetColumnSpan(this.chkAlwaysOnTop, 2);
-            this.chkAlwaysOnTop.Location = new System.Drawing.Point(7, 486);
+            this.chkAlwaysOnTop.Location = new System.Drawing.Point(237, 486);
             this.chkAlwaysOnTop.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkAlwaysOnTop.Name = "chkAlwaysOnTop";
             this.chkAlwaysOnTop.Size = new System.Drawing.Size(96, 23);
@@ -680,7 +696,8 @@
             this.chkBestSegments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkBestSegments.AutoSize = true;
-            this.chkBestSegments.Location = new System.Drawing.Point(237, 486);
+            this.tableLayoutPanel5.SetColumnSpan(this.chkBestSegments, 2);
+            this.chkBestSegments.Location = new System.Drawing.Point(7, 486);
             this.chkBestSegments.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkBestSegments.Name = "chkBestSegments";
             this.chkBestSegments.Size = new System.Drawing.Size(127, 23);
@@ -853,7 +870,7 @@
             this.Controls.Add(this.tableLayoutPanel5);
             this.Name = "LayoutSettingsControl";
             this.Padding = new System.Windows.Forms.Padding(7);
-            this.Size = new System.Drawing.Size(476, 526);
+            this.Size = new System.Drawing.Size(476, 555);
             this.Load += new System.EventHandler(this.LayoutSettingsControl_Load);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -932,5 +949,6 @@
         private System.Windows.Forms.Label lblBlur;
         private System.Windows.Forms.Label lblOutlines;
         private System.Windows.Forms.Button btnTextOutlineColor;
+        private System.Windows.Forms.CheckBox chkMousePassThroughWhileRunning;
     }
 }
