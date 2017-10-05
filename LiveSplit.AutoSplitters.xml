@@ -3301,4 +3301,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting is available. (By Daisukemara)</Description>
   </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>Quantum Conundrum</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/blairmadison11/QuantumConundrumAutosplitter/master/QuantumConundrum.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available. (by blairmadison11)</Description>
+  </AutoSplitter>
 </AutoSplitters>
