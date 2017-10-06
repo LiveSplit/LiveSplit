@@ -274,7 +274,7 @@ namespace LiveSplit.Web.SRL
         private int LastIndexWithTime(IRun run, string user, TimingMethod method)
         {
             var lastIndex = -1;
-            var comparisonName = "[Race] " + user;
+            var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(user);
             for (int i = 0; i < run.Count; i++)
             {
                 if (run[i].Comparisons[comparisonName][method] != null)
@@ -301,7 +301,7 @@ namespace LiveSplit.Web.SRL
 
         protected void AddSplit(string user, ISegment segment, TimeSpan? time, TimingMethod method)
         {
-            var comparisonName = "[Race] " + user;
+            var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(user);
             var newTime = new Time(segment.Comparisons[comparisonName]);
             newTime[method] = time;
             segment.Comparisons[comparisonName] = newTime;
@@ -323,16 +323,17 @@ namespace LiveSplit.Web.SRL
                 else if (message.Contains(" has been removed from the race."))
                 {
                     var userName = message.Substring(0, message.IndexOf(" "));
+                    var raceComparison = SRLComparisonGenerator.GetRaceComparisonName(userName);
 
-                    if (Model.CurrentState.CurrentComparison.Equals("[Race] " + userName))
+                    if (Model.CurrentState.CurrentComparison.Equals(raceComparison))
                         Model.CurrentState.CurrentComparison = Run.PersonalBestComparisonName;
                     
-                    var comparisonGenerator = Model.CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == ("[Race] " + userName));
+                    var comparisonGenerator = Model.CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == raceComparison);
                     if (comparisonGenerator != null)
                         Model.CurrentState.Run.ComparisonGenerators.Remove(comparisonGenerator);
                     
                     foreach (var segment in Model.CurrentState.Run)
-                        segment.Comparisons["[Race] " + userName] = default(Time);
+                        segment.Comparisons[raceComparison] = default(Time);
                 }
                 else if (message.StartsWith(Client.LocalUser.NickName + " enters the race!"))
                 {
@@ -375,7 +376,7 @@ namespace LiveSplit.Web.SRL
         protected void AddComparison(string userName)
         {
             var run = Model.CurrentState.Run;
-            var comparisonName = "[Race] " + userName;
+            var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(userName);
             if (run.ComparisonGenerators.All(x => x.Name != comparisonName))
             {
                 CompositeComparisons.AddShortComparisonName(comparisonName, userName);
@@ -385,11 +386,11 @@ namespace LiveSplit.Web.SRL
 
         public void RemoveRaceComparisons()
         {
-            if (Model.CurrentState.CurrentComparison.StartsWith("[Race] "))
+            if (SRLComparisonGenerator.IsRaceComparison(Model.CurrentState.CurrentComparison))
                 Model.CurrentState.CurrentComparison = Run.PersonalBestComparisonName;
             for (var ind = 0; ind < Model.CurrentState.Run.ComparisonGenerators.Count; ind++)
             {
-                if (Model.CurrentState.Run.ComparisonGenerators[ind].Name.StartsWith("[Race] "))
+                if (SRLComparisonGenerator.IsRaceComparison(Model.CurrentState.Run.ComparisonGenerators[ind].Name))
                 {
                     Model.CurrentState.Run.ComparisonGenerators.RemoveAt(ind);
                     ind--;
@@ -400,7 +401,7 @@ namespace LiveSplit.Web.SRL
                 for (var index = 0; index < segment.Comparisons.Count; index++)
                 {
                     var comparison = segment.Comparisons.ElementAt(index);
-                    if (comparison.Key.StartsWith("[Race] "))
+                    if (SRLComparisonGenerator.IsRaceComparison(comparison.Key))
                         segment.Comparisons[comparison.Key] = default(Time);
                 }
             }

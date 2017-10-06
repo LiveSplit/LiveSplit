@@ -18,6 +18,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Threading;
+using LiveSplit.Web.SRL;
 
 namespace LiveSplit.View
 {
@@ -1212,7 +1213,7 @@ namespace LiveSplit.View
             {
                 if (!Run.Comparisons.Contains(newName))
                 {
-                    if (!newName.StartsWith("[Race]"))
+                    if (!SRLComparisonGenerator.IsRaceComparison(newName))
                     {
                         column.Name = newName;
                         column.Width = Math.Max(100, column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.ColumnHeader, true));
@@ -1273,7 +1274,7 @@ namespace LiveSplit.View
             {
                 if (!Run.Comparisons.Contains(name))
                 {
-                    if (!name.StartsWith("[Race]"))
+                    if (!SRLComparisonGenerator.IsRaceComparison(name))
                     {
                         AddComparisonColumn(name);
                         Run.CustomComparisons.Add(name);

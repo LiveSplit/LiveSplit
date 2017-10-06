@@ -1,4 +1,5 @@
 ﻿using LiveSplit.UI;
+using LiveSplit.Web.SRL;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -28,7 +29,7 @@ namespace LiveSplit.Model.RunImporters
         {
             if (!target.Comparisons.Contains(name))
             {
-                if (!name.StartsWith("[Race]"))
+                if (!SRLComparisonGenerator.IsRaceComparison(name))
                 {
                     target.CustomComparisons.Add(name);
                     var maxMatched = -1;
