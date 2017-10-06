@@ -424,19 +424,29 @@ namespace LiveSplit.Web.SRL
             {
                 if (message.StartsWith("!time ") || message.StartsWith("!done "))
                 {
-                    var method = message.Substring("!time ".Length).StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
-                    var cutOff = message.Substring("!time RealTime ".Length);
-                    var index = cutOff.LastIndexOf("\"");
-                    var timeString = cutOff.Substring(index > -1 ? index + 2 : 0);
-                    var time = ParseTime(timeString);
-
-                    if (index > -1)
+                    try
                     {
-                        var splitName = Unescape(cutOff.Substring(1, index - 1));
-                        ProcessSplit(user, splitName, time, method);
+                        var method = message.Substring("!time ".Length).StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
+                        var finalSplit = message.StartsWith("!done ");
+                        var arguments = message.Substring("!time RealTime ".Length);
+
+                        if (finalSplit)
+                        {
+                            var time = ParseTime(arguments);
+                            ProcessFinalSplit(user, time, method);
+                        }
+                        else
+                        {
+                            var timeIndex = arguments.LastIndexOf("\"");
+                            var splitName = Unescape(arguments.Substring(1, timeIndex - 1));
+                            var time = ParseTime(arguments.Substring(timeIndex + 2));
+                            ProcessSplit(user, splitName, time, method);
+                        }
                     }
-                    else
-                        ProcessFinalSplit(user, time, method);
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                    }
                 }
             }
         }
