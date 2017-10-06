@@ -274,16 +274,21 @@ namespace LiveSplit.Web.SRL
         protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)
         {
             var run = Model.CurrentState.Run;
-            var segment = GetMatchingSegment(run, user, segmentName, method);
+            var segment = GetMatchingSegment(run, user, segmentName, method, time.HasValue);
             if (segment != null)
                 AddSplit(user, segment, time, method);
         }
 
-        private static ISegment GetMatchingSegment(IRun run, string user, string segmentName, TimingMethod method)
+        private static ISegment GetMatchingSegment(IRun run, string user, string segmentName, TimingMethod method, bool timeHasValue)
         {
             var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(user);
             var trimmedSegmentName = segmentName.Trim().ToLower();
-            return run.FirstOrDefault(x => x.Name.Trim().ToLower() == trimmedSegmentName && x.Comparisons[comparisonName][method] == null);
+
+            if (timeHasValue)
+            {
+                return run.FirstOrDefault(x => x.Name.Trim().ToLower() == trimmedSegmentName && x.Comparisons[comparisonName][method] == null);
+            }
+            return run.LastOrDefault(x => x.Name.Trim().ToLower() == trimmedSegmentName && x.Comparisons[comparisonName][method] != null);
         }
 
         protected void ProcessFinalSplit(string user, TimeSpan? time, TimingMethod method)
