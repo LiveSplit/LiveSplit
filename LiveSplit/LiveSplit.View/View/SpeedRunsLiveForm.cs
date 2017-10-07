@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.Utils;
+using LiveSplit.Web;
 using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 using System;
@@ -342,18 +343,18 @@ namespace LiveSplit.View
         {
             btnJoinQuit.Enabled = false;
             var authDialog = new AuthenticationDialog();
-            ShareSettings.Default.Reload();
-            authDialog.Username = ShareSettings.Default.SRLIRCUsername;
-            authDialog.Password = ShareSettings.Default.SRLIRCPassword;
-            authDialog.RememberPassword = authDialog.Password != "";
+
+            var credentials = WebCredentials.SpeedRunsLiveIRCCredentials;
+            authDialog.Username = credentials.Username ?? "";
+            authDialog.Password = credentials.Password ?? "";
+            authDialog.RememberPassword = !string.IsNullOrEmpty(authDialog.Password);
+
             if (authDialog.ShowDialog(this) == DialogResult.OK)
             {
                 var username = authDialog.Username;
                 var password = authDialog.Password;
 
-                ShareSettings.Default.SRLIRCUsername = username;
-                ShareSettings.Default.SRLIRCPassword = authDialog.RememberPassword ? password : "";
-                ShareSettings.Default.Save();
+                WebCredentials.SpeedRunsLiveIRCCredentials = new SRLCredentials(username, authDialog.RememberPassword ? password : "");
 
                 SRLClient.Connect(username, password);
             }

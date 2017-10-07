@@ -186,8 +186,7 @@ the first time that sharing to Twitch is used.";
 
         public bool VerifyLogin()
         {
-            ShareSettings.Default.Reload();
-            AccessToken = ShareSettings.Default.TwitchAccessToken;
+            AccessToken = WebCredentials.TwitchAccessToken;
 
             if (VerifyAccessToken())
             {

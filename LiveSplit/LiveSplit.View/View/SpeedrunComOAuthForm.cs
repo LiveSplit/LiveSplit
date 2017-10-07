@@ -31,8 +31,7 @@ namespace LiveSplit.Web.Share
                     accessToken = html.Substring(index, secondIndex - index);
                     try
                     {
-                        ShareSettings.Default.SpeedrunComAccessToken = accessToken;
-                        ShareSettings.Default.Save();
+                        WebCredentials.SpeedrunComAccessToken = accessToken;
                     }
                     catch (Exception ex)
                     {

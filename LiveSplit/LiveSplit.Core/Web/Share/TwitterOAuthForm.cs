@@ -67,9 +67,8 @@ namespace LiveSplit.Web.Share
                     //
                     try
                     {
-                        ShareSettings.Default.TwitterOAuthToken = auth.Credentials.OAuthToken;
-                        ShareSettings.Default.TwitterAccessToken = auth.Credentials.AccessToken;
-                        ShareSettings.Default.Save();
+                        WebCredentials.TwitterOAuthToken = auth.Credentials.OAuthToken;
+                        WebCredentials.TwitterAccessToken = auth.Credentials.AccessToken;
                     }
                     catch (Exception ex)
                     {

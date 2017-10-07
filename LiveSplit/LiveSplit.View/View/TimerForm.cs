@@ -15,6 +15,7 @@ using LiveSplit.UI.LayoutFactories;
 using LiveSplit.UI.LayoutSavers;
 using LiveSplit.Updates;
 using LiveSplit.Utils;
+using LiveSplit.Web;
 using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 using Microsoft.WindowsAPICodePack.Taskbar;
@@ -501,7 +502,7 @@ namespace LiveSplit.View
                 tsItem.Click += (s, ev) =>
                     {
                         ShareSettings.Default.Reload();
-                        var username = ShareSettings.Default.SRLIRCUsername;
+                        var username = WebCredentials.SpeedRunsLiveIRCCredentials.Username;
                         var racers = ((IEnumerable<string>)race.entrants.Properties.Keys).Select(x => x.ToLower());
                         if (!racers.Contains((username ?? "").ToLower()))
                             Settings.RaceViewer.ShowRace(race);

@@ -201,6 +201,7 @@
     <Compile Include="Web\JSON.cs" />
     <Compile Include="Web\Share\ASUPTimeFormatter.cs" />
     <Compile Include="Web\Share\Congratsio.cs" />
+    <Compile Include="Web\CredentialManager.cs" />
     <Compile Include="Web\Share\Excel.cs" />
     <Compile Include="Web\Share\Gett.cs" />
     <Compile Include="Web\Share\Imgur.cs" />
@@ -296,6 +297,7 @@
     </Compile>
     <Compile Include="Web\Share\SplitsIO.cs" />
     <Compile Include="Web\Share\Twitter.cs" />
+    <Compile Include="Web\WebCredentials.cs" />
     <Compile Include="Web\SRL\RaceState.cs" />
     <Compile Include="Web\SRL\RaceViewers\IRaceViewer.cs" />
     <Compile Include="Web\SRL\RaceViewers\Kadgar.cs" />
