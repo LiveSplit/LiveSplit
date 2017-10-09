@@ -106,10 +106,13 @@ namespace LiveSplit.Model.RunFactories
             var base64Data = dataUrl.Substring("data:;base64,".Length);
             var binData = Convert.FromBase64String(base64Data);
 
-            using (var stream = new MemoryStream(binData))
-            {
-                return new Bitmap(stream);
-            }
+            // Do not dispose this memory stream, as the Image internally
+            // borrows it for saving it out later on. This results in a
+            // generic GDI+ error.
+            // See https://github.com/LiveSplit/LiveSplit/issues/894
+            var stream = new MemoryStream(binData);
+
+            return Image.FromStream(stream);
         }
 
         public IRun Create(IComparisonGeneratorsFactory factory)
