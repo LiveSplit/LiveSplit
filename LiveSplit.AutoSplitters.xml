@@ -3311,4 +3311,14 @@
     <Type>Script</Type>
     <Description>Load removal is available. (by blairmadison11)</Description>
   </AutoSplitter>
+     <AutoSplitter>
+    <Games>
+      <Game>Marble Madness (NES)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/saturnin55/MarbleMadnessAutoSplitter/master/marblemadness.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting, Auto Start and Auto Reset are available (FCEUX 2.2.3). (by saturnin55)</Description>
+  </AutoSplitter>
 </AutoSplitters>
