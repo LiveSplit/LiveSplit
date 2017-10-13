@@ -1565,23 +1565,61 @@ namespace LiveSplit.View
 
         private bool WmSizingProc(ref Message m)
         {
+            const uint WMSZ_TOPLEFT = 4;
+            const uint WMSZ_TOPRIGHT = 5;
+            const uint WMSZ_BOTTOMLEFT = 7;
+            const uint WMSZ_BOTTOMRIGHT = 8;
+
             if (!ResizingInitialAspectRatio.HasValue)
                 return false;
 
             if (!ModifierKeys.HasFlag(Keys.Shift))
                 return false;
 
-            var rect = (Win32.RECT)Marshal.PtrToStructure(m.LParam, typeof(Win32.RECT));
+            bool anchorLeft;
+            bool anchorTop;
 
+            switch ((uint)m.WParam)
+            {
+                case WMSZ_TOPLEFT:
+                    anchorLeft = false;
+                    anchorTop = false;
+                    break;
+                case WMSZ_TOPRIGHT:
+                    anchorLeft = true;
+                    anchorTop = false;
+                    break;
+                case WMSZ_BOTTOMLEFT:
+                    anchorLeft = false;
+                    anchorTop = true;
+                    break;
+                case WMSZ_BOTTOMRIGHT:
+                    anchorLeft = true;
+                    anchorTop = true;
+                    break;
+
+                default:
+                    return false;
+            }
+
+            var rect = (Win32.RECT)Marshal.PtrToStructure(m.LParam, typeof(Win32.RECT));
             var currentAspectRatio = (float)rect.Width / rect.Height;
 
             if (currentAspectRatio >= ResizingInitialAspectRatio.Value)
             {
-                rect.Right = Left + (int)(rect.Height * ResizingInitialAspectRatio.Value);
+                var newWidth = (int)(rect.Height * ResizingInitialAspectRatio.Value);
+                if (anchorLeft)
+                    rect.Right = rect.Left + newWidth;
+                else
+                    rect.Left = rect.Right - newWidth;
             }
             else
             {
-                rect.Bottom = Top + (int)(rect.Width / ResizingInitialAspectRatio.Value);
+                var newHeight = (int)(rect.Width / ResizingInitialAspectRatio.Value);
+                if (anchorTop)
+                    rect.Bottom = rect.Top + newHeight;
+                else
+                    rect.Top = rect.Bottom - newHeight;
             }
 
             Marshal.StructureToPtr(rect, m.LParam, false);
