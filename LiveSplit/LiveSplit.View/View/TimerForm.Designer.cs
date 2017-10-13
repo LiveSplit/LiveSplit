@@ -38,6 +38,7 @@
             this.closeSplitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.controlMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comparisonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.shareMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.racingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +60,6 @@
             this.pauseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoPausesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotkeysMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comparisonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RightClickMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -88,7 +88,7 @@
             this.aboutMenuItem,
             this.exitMenuItem});
             this.RightClickMenu.Name = "RightClickMenu";
-            this.RightClickMenu.Size = new System.Drawing.Size(167, 408);
+            this.RightClickMenu.Size = new System.Drawing.Size(167, 386);
             this.RightClickMenu.Opening += new System.ComponentModel.CancelEventHandler(this.RightClickMenu_Opening);
             // 
             // editSplitsMenuItem
@@ -135,6 +135,12 @@
             this.controlMenuItem.Name = "controlMenuItem";
             this.controlMenuItem.Size = new System.Drawing.Size(166, 22);
             this.controlMenuItem.Text = "Control";
+            // 
+            // comparisonMenuItem
+            // 
+            this.comparisonMenuItem.Name = "comparisonMenuItem";
+            this.comparisonMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.comparisonMenuItem.Text = "Compare Against";
             // 
             // toolStripSeparator1
             // 
@@ -275,17 +281,10 @@
             // 
             // hotkeysMenuItem
             // 
-            this.hotkeysMenuItem.Enabled = true;
             this.hotkeysMenuItem.Name = "hotkeysMenuItem";
             this.hotkeysMenuItem.Size = new System.Drawing.Size(152, 22);
             this.hotkeysMenuItem.Text = "Global Hotkeys";
             this.hotkeysMenuItem.Click += new System.EventHandler(this.hotkeysMenuItem_Click);
-            // 
-            // comparisonMenuItem
-            // 
-            this.comparisonMenuItem.Name = "comparisonMenuItem";
-            this.comparisonMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.comparisonMenuItem.Text = "Compare Against";
             // 
             // TimerForm
             // 
@@ -303,6 +302,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimerForm_FormClosing);
             this.Load += new System.EventHandler(this.TimerForm_Load);
             this.Shown += new System.EventHandler(this.TimerForm_Shown);
+            this.ResizeBegin += new System.EventHandler(this.TimerForm_ResizeBegin);
+            this.ResizeEnd += new System.EventHandler(this.TimerForm_ResizeEnd);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.TimerForm_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TimerForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TimerForm_MouseMove);

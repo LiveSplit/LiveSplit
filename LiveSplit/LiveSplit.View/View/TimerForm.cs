@@ -159,6 +159,8 @@ namespace LiveSplit.View
             }
         }
 
+        private float? ResizingInitialAspectRatio { get; set; } = null;
+
         [DllImport("user32.dll")]
         static extern int GetUpdateRgn(IntPtr hWnd, IntPtr hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
 
@@ -1483,6 +1485,7 @@ namespace LiveSplit.View
             const uint WM_NCHITTEST = 0x0084;
             const uint WM_MOUSEMOVE = 0x0200;
             const uint WM_PAINT = 0x000F;
+            const uint WM_SIZING = 0x0214;
 
             const uint HTLEFT = 10;
             const uint HTRIGHT = 11;
@@ -1524,6 +1527,11 @@ namespace LiveSplit.View
                 }
             }
 
+            if (m.Msg == WM_SIZING)
+            {
+                handled = WmSizingProc(ref m);
+            }
+
             if (m.Msg == WM_PAINT)
             {
                 if (hRgn != IntPtr.Zero)
@@ -1553,6 +1561,32 @@ namespace LiveSplit.View
                     Log.Error(ex);
                 }
             }
+        }
+
+        private bool WmSizingProc(ref Message m)
+        {
+            if (!ResizingInitialAspectRatio.HasValue)
+                return false;
+
+            if (!ModifierKeys.HasFlag(Keys.Shift))
+                return false;
+
+            var rect = (Win32.RECT)Marshal.PtrToStructure(m.LParam, typeof(Win32.RECT));
+
+            var currentAspectRatio = (float)rect.Width / rect.Height;
+
+            if (currentAspectRatio >= ResizingInitialAspectRatio.Value)
+            {
+                rect.Right = Left + (int)(rect.Height * ResizingInitialAspectRatio.Value);
+            }
+            else
+            {
+                rect.Bottom = Top + (int)(rect.Width / ResizingInitialAspectRatio.Value);
+            }
+
+            Marshal.StructureToPtr(rect, m.LParam, false);
+
+            return true;
         }
 
         IntPtr hRgn = IntPtr.Zero;
@@ -2712,6 +2746,17 @@ namespace LiveSplit.View
         {
             RebuildControlMenu();
             RebuildComparisonsMenu();
+        }
+
+        private void TimerForm_ResizeBegin(object sender, EventArgs e)
+        {
+            if (Size.Height > 0)
+                ResizingInitialAspectRatio = (float)Size.Width / Size.Height;
+        }
+
+        private void TimerForm_ResizeEnd(object sender, EventArgs e)
+        {
+            ResizingInitialAspectRatio = null;
         }
     }
 }
