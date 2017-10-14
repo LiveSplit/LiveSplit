@@ -3321,4 +3321,15 @@
     <Type>Script</Type>
     <Description>Autosplitting, Auto Start and Auto Reset are available (FCEUX 2.2.3). (by saturnin55)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tinertia</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.Tinertia/raw/master/Components/LiveSplit.Tinertia.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Tinertia</Website>
+  </AutoSplitter>
 </AutoSplitters>
