@@ -3343,4 +3343,14 @@
     <Description>Autosplitting, Auto Start and Auto Reset are available. (By Albin)</Description>
     <Website>https://github.com/AlbinEriksson/WaveLand-ASL</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Project Lumoria</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/7imekeeper/LiveSplit.Lumoria/raw/master/LiveSplit.Lumoria/Components/LiveSplit.Lumoria.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting is available. (By 7imekeeper)</Description>
+  </AutoSplitter>
 </AutoSplitters>
