@@ -3353,4 +3353,14 @@
     <Type>Component</Type>
     <Description>Auto Splitting is available. (By 7imekeeper)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Shin Megami Tensei: Synchronicity Prologue</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/necomarkro/LiveSplit-Autosplitters/master/LiveSplit.SMTSP.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start is available. (By NMarkro)</Description>
+  </AutoSplitter>
 </AutoSplitters>
