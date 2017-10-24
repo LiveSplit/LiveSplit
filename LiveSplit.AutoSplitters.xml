@@ -910,6 +910,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>The Evil Within 2</Game>
+      <Game>Evil Within 2</Game>
+      <Game>EW2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/JMaynard24/ASL/master/TheEvilWithin2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Dread and Chops)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Star Wars Jedi Knight: Jedi Academy</Game>
       <Game>SWJKJA</Game>
       <Game>JKJA</Game>
