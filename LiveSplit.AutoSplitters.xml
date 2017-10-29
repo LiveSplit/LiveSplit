@@ -2585,10 +2585,13 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>TrackMania² Canyon</Game>
+      <Game>TrackMania² Lagoon</Game>
       <Game>TrackMania² Stadium</Game>
+      <Game>TrackMania² Valley</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/NeKzor/ASL-Scripts/master/ASL-Scripts/TrackMania2Stadium.asl</URL>
+      <URL>https://raw.githubusercontent.com/NeKzor/ASL-Scripts/master/TrackMania2.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load remover and auto splitting options are available. (By NeKz)</Description>
@@ -2610,7 +2613,7 @@
       <Game>TrackMania Turbo</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/NeKzor/ASL-Scripts/master/ASL-Scripts/TrackmaniaTurbo.asl</URL>
+      <URL>https://raw.githubusercontent.com/NeKzor/ASL-Scripts/master/TrackmaniaTurbo.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load remover and auto splitting options are available. (By NeKz)</Description>
