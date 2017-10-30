@@ -3378,4 +3378,15 @@
     <Type>Script</Type>
     <Description>Auto Start is available. (By NMarkro)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Final Fantasy XIII</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/roostalol/FFXIII_autosplitter/master/finalfantasyxiii.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start, Split, and Reset are available. Split points chosen by user. (By Roostalol)</Description>
+	<Website>https://github.com/roostalol/FFXIII_autosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
