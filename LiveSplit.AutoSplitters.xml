@@ -3389,4 +3389,39 @@
     <Description>Auto Start, Split, and Reset are available. Split points chosen by user. (By Roostalol)</Description>
 	<Website>https://github.com/roostalol/FFXIII_autosplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dead Space</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Dead-Space-1/Dead-Space-1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+	<Description>Load Removal is available (by mattmatt10111)</Description>
+	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dead Space 2</Game>
+      <Game>Dead Space II</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Dead-Space-2/Dead-Space-2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+	<Description>Load Removal is available (by mattmatt10111)</Description>
+	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dead Space 3</Game>
+      <Game>Dead Space III</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Dead-Space-3/Dead-Space-3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+	<Description>Load Removal is available (by mattmatt10111)</Description>
+	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
