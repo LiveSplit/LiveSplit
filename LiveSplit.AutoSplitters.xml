@@ -3437,4 +3437,15 @@
     <Website>https://gist.githubusercontent.com/jbzdarkid/4a97fa029a80d88560eeaa5096b8701f</Website>
     <Description>Auto splitting, Automatic start/reset, and in-game time (By Darkid)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>DYE</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/bhamrick/dye-autosplitter/master/LiveSplit.Dye.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/bhamrick/dye-autosplitter</Website>
+    <Description>Auto Splitting is available (by ExtraTricky)</Description>
+  </AutoSplitter>
 </AutoSplitters>
