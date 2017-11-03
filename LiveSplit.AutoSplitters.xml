@@ -1842,7 +1842,8 @@
       <URL>https://gist.githubusercontent.com/jbzdarkid/611993edbfc9a774e95234166be52f2a/raw</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto splitting and Auto start/reset are available. (By Darkid)</Description>
+    <Website>https://gist.github.com/jbzdarkid/611993edbfc9a774e95234166be52f2a</Website>
+    <Description>Auto splitting, Automatic start/reset, and load removal (By Darkid)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2442,7 +2443,8 @@
       <URL>https://gist.githubusercontent.com/jbzdarkid/0948c9318c6da6a7c459681f181c7ee9/raw</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto splitting on panels and Auto start/reset are available. (By Darkid)</Description>
+    <Website>https://gist.github.com/jbzdarkid/0948c9318c6da6a7c459681f181c7ee9</Website>
+    <Description>Auto splitting on panels and Automatic start/reset (By Darkid)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3423,5 +3425,16 @@
     <Type>Script</Type>
 	<Description>Load Removal is available (by mattmatt10111)</Description>
 	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Braid</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/jbzdarkid/4a97fa029a80d88560eeaa5096b8701f/raw</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://gist.githubusercontent.com/jbzdarkid/4a97fa029a80d88560eeaa5096b8701f</Website>
+    <Description>Auto splitting, Automatic start/reset, and in-game time (By Darkid)</Description>
   </AutoSplitter>
 </AutoSplitters>
