@@ -3458,5 +3458,15 @@
     <Type>Script</Type>
     <Website>https://gist.github.com/RobinBruckmann/ef7cf5415f71213e7567fc692f25ee58</Website>
     <Description>Auto splitting, Automatic start/reset, and in-game time (By Tairoon)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SUPERHOT VR</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/the-jay/autosplitters/master/LiveSplit.SuperHotVR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available (by Jay)</Description>
   </AutoSplitter>	
 </AutoSplitters>
