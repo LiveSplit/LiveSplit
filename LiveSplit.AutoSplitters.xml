@@ -3478,5 +3478,17 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting is available (by Jay)</Description>
-  </AutoSplitter>	
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Quest RPG: Brian's Journey</Game>
+      <Game>Quest: Brian's Journey</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.QuestGB/LiveSplit.QuestGB.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.QuestGB</Website>
+  </AutoSplitter>
 </AutoSplitters>
