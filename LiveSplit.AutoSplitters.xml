@@ -2493,10 +2493,12 @@
       <Game>Shovel Knight</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Souzooka/Shovel-Knight-Autosplitter/master/ShovelKnight.asl</URL>
+      <URL>https://github.com/ShootMe/LiveSplit.ShovelKnight/raw/master/Components/LiveSplit.ShovelKnight.dll</URL>
     </URLs>
-    <Type>Script</Type>
-    <Description>Auto splitting is available. (By Souzooka)</Description>
+    <Type>Component</Type>
+    <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.ShovelKnight</Website>
+    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
