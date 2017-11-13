@@ -3493,4 +3493,14 @@
     <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
     <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.QuestGB</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Nioh</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/pawREP/Nioh-LiveSplit-plugin-RTA-No-Load/master/NiohRTANoLoad.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By B3)</Description>
+  </AutoSplitter>
 </AutoSplitters>
