@@ -3503,4 +3503,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By B3)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+     <Games>
+       <Game>Wolfenstein II: The New Colossus</Game>
+     </Games>
+     <URLs>
+       <URL>https://gist.githubusercontent.com/itsjabo/cb8cba76b34de4ff1f8a2d19c4655072/raw/16c126af558a3e24d9d8301a12d3569a91f45053/gistfile1.txt</URL>
+     </URLs>
+     <Type>Script</Type>
+     <Description>Load Removal is available. (By itsjabo)</Description>
+   </AutoSplitter>
 </AutoSplitters>
