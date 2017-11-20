@@ -3513,4 +3513,16 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By ItsJabo)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Battle Block Theater</Game>
+      <Game>BattleBlockTheater</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/jbzdarkid/5f9c0fa8534e9047f375f2c1c99fe1fd/raw</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://gist.github.com/jbzdarkid/5f9c0fa8534e9047f375f2c1c99fe1fd</Website>
+    <Description>Auto splitting, Automatic start/reset (By Darkid)</Description>
+  </AutoSplitter>
 </AutoSplitters>
