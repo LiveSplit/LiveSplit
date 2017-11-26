@@ -675,7 +675,7 @@
       <Game>Amnesia</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Lucjari/LiveSplit.Amnesia/blob/master/Components/LiveSplit.Amnesia.dll?raw=true</URL>
+      <URL>https://raw.githubusercontent.com/Lucjari/LiveSplit.Amnesia/master/Components/LiveSplit.Amnesia.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal is available. (By JDev)</Description>
