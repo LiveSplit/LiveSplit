@@ -675,11 +675,11 @@
       <Game>Amnesia</Game>
     </Games>
     <URLs>
-      <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.Amnesia.dll</URL>
+      <URL>https://github.com/Lucjari/LiveSplit.Amnesia/blob/master/Components/LiveSplit.Amnesia.dll?raw=true</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Load Removal is available. (By Fatalis)</Description>
-    <Website>https://github.com/fatalis/LiveSplit.Amnesia/blob/master/README.md</Website>
+    <Description>Load Removal is available. (By JDev)</Description>
+    <Website>https://github.com/Lucjari/LiveSplit.Amnesia/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
