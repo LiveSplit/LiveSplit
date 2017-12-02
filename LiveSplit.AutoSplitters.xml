@@ -3524,4 +3524,14 @@
     <Website>https://gist.github.com/jbzdarkid/5f9c0fa8534e9047f375f2c1c99fe1fd</Website>
     <Description>Auto splitting, Automatic start/reset (By Darkid)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>INFRA</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/gurka/75e1c454ac0853aa29b5856ff83b9d9e/raw/56520b0233da712ef50b5c4f8e5fe2b80db315c7/infra.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Big_Jim)</Description>
+  </AutoSplitter>
 </AutoSplitters>
