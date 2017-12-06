@@ -322,8 +322,6 @@
       <Game>Splinter Cell Chaos Theory</Game>
       <Game>Tom Clancy's Splinter Cell: Chaos Theory</Game>
       <Game>Tom Clancy's Splinter Cell Chaos Theory</Game>
-      <Game>DeusEx</Game>
-      <Game>Deus Ex</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.UnrealLoads/master/Components/LiveSplit.UnrealLoads.dll</URL>
@@ -3533,5 +3531,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Big_Jim)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>DeusEx</Game>
+      <Game>Deus Ex</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/SuiMachine/LiveSplit.DXLoads/raw/master/Components/LiveSplit.DX.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and load removal is available. (By SuicideMachine, based on code of Dalet)</Description>
   </AutoSplitter>
 </AutoSplitters>
