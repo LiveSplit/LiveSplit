@@ -3543,4 +3543,15 @@
     <Type>Component</Type>
     <Description>Auto Splitting and load removal is available. (By SuicideMachine, based on code of Dalet)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Chronology</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.Chronology/raw/master/Components/LiveSplit.Chronology.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Chronology</Website>
+  </AutoSplitter>
 </AutoSplitters>
