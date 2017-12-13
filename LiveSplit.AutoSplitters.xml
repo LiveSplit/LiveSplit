@@ -3554,4 +3554,16 @@
     <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.Chronology</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>A Pixel Story</Game>
+      <Game>APixelStory</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.APixelStory/raw/master/Components/LiveSplit.APixelStory.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.APixelStory</Website>
+  </AutoSplitter>
 </AutoSplitters>
