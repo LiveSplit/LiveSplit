@@ -34,6 +34,7 @@ namespace LiveSplit.Model.RunSavers
             document.gameIcon = CreateImageElement(run.GameIcon);
             document.gameName = run.GameName;
             document.categoryName = run.CategoryName;
+            document.StopTime = run.StopTime;
             document.offset = run.Offset.ToString();
             document.attemptCount = run.AttemptCount.ToString();
 

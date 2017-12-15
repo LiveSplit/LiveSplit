@@ -61,6 +61,11 @@ namespace LiveSplit.Model
         }
 
         /// <summary>
+        /// Gets or sets the time where the timer was pasused at.
+        /// </summary>
+        public TimeSpan StopTime { get; set; }
+
+        /// <summary>
         /// Gets or sets the time where the timer starts at.
         /// <remarks>This can be both a negative time as well to simulate a countdown.</remarks>
         /// </summary>
@@ -164,6 +169,7 @@ namespace LiveSplit.Model
                 GameIcon = GameIcon,
                 GameName = GameName,
                 CategoryName = CategoryName,
+                StopTime = StopTime,
                 Offset = Offset,
                 AttemptCount = AttemptCount,
                 AttemptHistory = new List<Attempt>(AttemptHistory),

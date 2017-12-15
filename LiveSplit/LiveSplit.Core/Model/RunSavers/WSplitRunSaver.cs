@@ -29,6 +29,9 @@ namespace LiveSplit.Model.RunSavers
             writer.Write("Attempts=");
             writer.WriteLine(Escape(run.AttemptCount.ToString()));
 
+            writer.Write("StopTime=");
+            writer.WriteLine(Escape(run.StopTime.TotalSeconds.ToString()));
+
             writer.Write("Offset=");
             writer.WriteLine(Escape(run.Offset.TotalSeconds.ToString()));
 

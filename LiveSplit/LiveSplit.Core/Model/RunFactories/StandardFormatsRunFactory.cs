@@ -157,6 +157,7 @@ namespace LiveSplit.Model.RunFactories
                 run.GameIcon = ParseImage(lscRun.GameIcon());
                 run.GameName = lscRun.GameName();
                 run.CategoryName = lscRun.CategoryName();
+                run.StopTime = ParseTimeSpan(lscRun.StopTime());
                 run.Offset = ParseTimeSpan(lscRun.Offset());
                 run.AttemptCount = (int)lscRun.AttemptCount();
 

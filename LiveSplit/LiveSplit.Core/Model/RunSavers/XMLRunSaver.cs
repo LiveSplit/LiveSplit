@@ -44,6 +44,7 @@ namespace LiveSplit.Model.RunSavers
             metadata.AppendChild(variables);
             parent.AppendChild(metadata);
 
+            CreateSetting(document, parent, "StopTime", run.StopTime);
             CreateSetting(document, parent, "Offset", run.Offset);
             CreateSetting(document, parent, "AttemptCount", run.AttemptCount);
 

@@ -14,6 +14,7 @@ namespace LiveSplit.Model
         Image GameIcon { get; set; }
         string GameName { get; set; }
         string CategoryName { get; set; }
+        TimeSpan StopTime { get; set; }
         TimeSpan Offset { get; set; }
         int AttemptCount { get; set; }
         IList<Attempt> AttemptHistory { get; set; }
