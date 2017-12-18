@@ -18,7 +18,6 @@ namespace LiveSplit.Model
         TimeSpan Offset { get; set; }
         int AttemptCount { get; set; }
         IList<Attempt> AttemptHistory { get; set; }
-
         AutoSplitter AutoSplitter { get; set; }
         XmlElement AutoSplitterSettings { get; set; }
 

@@ -10,6 +10,7 @@ namespace LiveSplit.Model
 {
     public class LiveSplitState : ICloneable
     {
+        public bool resumedRun { get; set; }
         public IRun Run { get; set; }
         public ILayout Layout { get; set; }
         public LayoutSettings LayoutSettings { get; set; }
@@ -143,6 +144,7 @@ namespace LiveSplit.Model
             AdjustedStartTime = StartTimeWithOffset = StartTime = TimeStamp.Now;
             CurrentPhase = TimerPhase.NotRunning;
             CurrentSplitIndex = -1;
+            resumedRun = false;
         }
 
         public object Clone()
@@ -167,7 +169,8 @@ namespace LiveSplit.Model
                 CurrentHotkeyProfile = CurrentHotkeyProfile,
                 CurrentTimingMethod = CurrentTimingMethod,
                 AttemptStarted = AttemptStarted,
-                AttemptEnded = AttemptEnded
+                AttemptEnded = AttemptEnded,
+                resumedRun = resumedRun
             };
         }
 
@@ -200,5 +203,30 @@ namespace LiveSplit.Model
         public void CallRunManuallyModified() => RunManuallyModified?.Invoke(this, null);
 
         public void CallComparisonRenamed(EventArgs e) => ComparisonRenamed?.Invoke(this, e);
+
+        public void ResumeSplits(IRun run)
+        {
+            Time totalTime = Time.Zero;
+            Time segmentTime;
+
+            CurrentSplitIndex = 0;
+
+            for (var i = 0; i < run.Count; i++)
+            {
+                if (run[i].SegmentHistory.TryGetValue(run.AttemptCount, out segmentTime) && segmentTime[CurrentTimingMethod] != null)
+                {
+                    totalTime = totalTime + segmentTime;
+
+                    CurrentSplit.SplitTime = totalTime;
+                    CurrentSplitIndex++;
+                }
+                else
+                    break;
+            }
+
+            TimePausedAt = run.StopTime;
+            CurrentPhase = TimerPhase.Paused;
+            resumedRun = true;
+        }
     }
 }

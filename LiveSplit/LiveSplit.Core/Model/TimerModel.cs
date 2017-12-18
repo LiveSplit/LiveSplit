@@ -36,7 +36,7 @@ namespace LiveSplit.Model
 
         public void Start()
         {
-            if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
+            if (CurrentState.CurrentPhase == TimerPhase.NotRunning && CurrentState.resumedRun == false )
             {
                 CurrentState.CurrentPhase = TimerPhase.Running;
                 CurrentState.CurrentSplitIndex = 0;
@@ -48,8 +48,14 @@ namespace LiveSplit.Model
                 CurrentState.Run.AttemptCount++;
                 CurrentState.Run.HasChanged = true;
 
-                OnStart?.Invoke(this,null);
+                OnStart?.Invoke(this, null);
             }
+            else
+            {
+                CurrentState.AdjustedStartTime = CurrentState.StartTimeWithOffset = TimeStamp.Now - CurrentState.Run.StopTime;
+                Pause();
+            }
+                
         }
 
         public void InitializeGameTime() => CurrentState.IsGameTimeInitialized = true;
@@ -109,14 +115,15 @@ namespace LiveSplit.Model
         {
             if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
             {
-                if (CurrentState.CurrentPhase != TimerPhase.Ended)
+               if (CurrentState.CurrentPhase != TimerPhase.Ended)
                     CurrentState.AttemptEnded = TimeStamp.CurrentDateTime;
                 CurrentState.IsGameTimePaused = false;
                 CurrentState.LoadingTimes = TimeSpan.Zero;
 
                 if (updateSplits)
                 {
-                    UpdateAttemptHistory();
+                    if(!CurrentState.resumedRun)
+                        UpdateAttemptHistory();
                     UpdateBestSegments();
                     UpdatePBSplits();
                     UpdateSegmentHistory();
@@ -126,6 +133,7 @@ namespace LiveSplit.Model
 
                 CurrentState.Run.FixSplits();
             }
+            CurrentState.resumedRun = false;
         }
 
         private void ResetSplits()
@@ -148,12 +156,14 @@ namespace LiveSplit.Model
             if (CurrentState.CurrentPhase == TimerPhase.Running)
             {
                 CurrentState.TimePausedAt = CurrentState.CurrentTime.RealTime.Value;
+                CurrentState.Run.StopTime = CurrentState.TimePausedAt;
+                CurrentState.Run.HasChanged = true;
                 CurrentState.CurrentPhase = TimerPhase.Paused;
                 OnPause?.Invoke(this, null);
             }
             else if (CurrentState.CurrentPhase == TimerPhase.Paused)
             {
-                CurrentState.AdjustedStartTime = TimeStamp.Now - CurrentState.TimePausedAt;
+                CurrentState.AdjustedStartTime = TimeStamp.Now - CurrentState.Run.StopTime;
                 CurrentState.CurrentPhase = TimerPhase.Running;
                 OnResume?.Invoke(this, null);
             }
@@ -256,6 +266,10 @@ namespace LiveSplit.Model
                 var newTime = new Time();
                 newTime.RealTime = split.SplitTime.RealTime - splitTimeRTA;
                 newTime.GameTime = split.SplitTime.GameTime - splitTimeGameTime;
+                if (split.SegmentHistory.ContainsKey(CurrentState.Run.AttemptHistory.Last().Index))
+                {
+                    split.SegmentHistory.Remove(CurrentState.Run.AttemptHistory.Last().Index);
+                }
                 split.SegmentHistory.Add(CurrentState.Run.AttemptHistory.Last().Index, newTime);
                 if (split.SplitTime.RealTime.HasValue)
                     splitTimeRTA = split.SplitTime.RealTime;

@@ -36,6 +36,7 @@
             this.saveSplitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveSplitsAsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeSplitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.resumeRunMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.controlMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -71,6 +72,7 @@
             this.saveSplitsMenuItem,
             this.saveSplitsAsMenuItem,
             this.closeSplitsMenuItem,
+            this.resumeRunMenuItem,
             this.toolStripSeparator5,
             this.controlMenuItem,
             this.comparisonMenuItem,
@@ -124,6 +126,13 @@
             this.closeSplitsMenuItem.Size = new System.Drawing.Size(166, 22);
             this.closeSplitsMenuItem.Text = "Close Splits";
             this.closeSplitsMenuItem.Click += new System.EventHandler(this.closeSplitsMenuItem_Click);
+            //
+            // resumeRunMenuItem
+            //
+            this.resumeRunMenuItem.Name = "resumeRunMenuItem";
+            this.resumeRunMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.resumeRunMenuItem.Text = "Resume Run...";
+            this.resumeRunMenuItem.Click += new System.EventHandler(this.resumeRunMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
@@ -329,6 +338,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeSplitsMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem resumeRunMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveSplitsAsMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editLayoutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveLayoutMenuItem;

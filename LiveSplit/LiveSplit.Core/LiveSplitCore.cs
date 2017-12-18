@@ -2270,15 +2270,6 @@ namespace LiveSplitCore
             }
             LiveSplitCoreNative.RunEditor_set_category_name(this.ptr, category);
         }
-        public bool ParseAndSetStopTime(string StopTime)
-        {
-            if (this.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            var result = LiveSplitCoreNative.RunEditor_parse_and_set_StopTime(this.ptr, StopTime) != 0;
-            return result;
-        }
         public bool ParseAndSetOffset(string offset)
         {
             if (this.ptr == IntPtr.Zero)
@@ -5179,8 +5170,6 @@ namespace LiveSplitCore
         public static extern void RunEditor_set_game_name(IntPtr self, string game);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_set_category_name(IntPtr self, string category);
-        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte RunEditor_parse_and_set_StopTime(IntPtr self, string StopTime);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte RunEditor_parse_and_set_offset(IntPtr self, string offset);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]

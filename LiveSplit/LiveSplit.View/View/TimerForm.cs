@@ -1044,6 +1044,7 @@ namespace LiveSplit.View
 
                     else if (hotkeyProfile.ResetKey == e)
                     {
+                        CurrentState.resumedRun = false;
                         Reset();
                     }
 
@@ -1642,7 +1643,7 @@ namespace LiveSplit.View
             Close();
         }
 
-        private void SetRun(IRun run)
+        private void SetRun(IRun run, bool isFromResumeRun = false)
         {
             foreach (var icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
             {
@@ -1660,6 +1661,10 @@ namespace LiveSplit.View
             run.FixSplits();
             DeactivateAutoSplitter();
             CurrentState.Run = run;
+            if (isFromResumeRun)
+                CurrentState.ResumeSplits(run);
+            else
+                CurrentState.resumedRun = false;
             InvalidationRequired = true;
             RegenerateComparisons();
             SwitchComparison(CurrentState.CurrentComparison);
@@ -1746,6 +1751,25 @@ namespace LiveSplit.View
             Cursor.Current = Cursors.Arrow;
         }
 
+        private void ResumeRunFromFile(string filePath, TimingMethod previousTimingMethod, string previousHotkeyProfile)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            try
+            {
+                var run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
+                SetRun(run, true);
+                CurrentState.CallRunManuallyModified();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                DontRedraw = true;
+                MessageBox.Show(this, "Could not resume run from the selected file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DontRedraw = false;
+            }
+            Cursor.Current = Cursors.Arrow;
+        }
+
         private void OpenSplits()
         {
             using (var splitDialog = new OpenFileDialog())
@@ -1759,6 +1783,28 @@ namespace LiveSplit.View
                     if (result == DialogResult.OK)
                     {
                         OpenRunFromFile(splitDialog.FileName, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
+                    }
+                }
+                finally
+                {
+                    IsInDialogMode = false;
+                }
+            }
+        }
+
+        private void ResumeRun()
+        {
+            using (var splitDialog = new OpenFileDialog())
+            {
+                IsInDialogMode = true;
+                try
+                {
+                    if (Settings.RecentSplits.Any() && !string.IsNullOrEmpty(Settings.RecentSplits.Last().Path))
+                        splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last().Path);
+                    var result = splitDialog.ShowDialog(this);
+                    if (result == DialogResult.OK)
+                    {
+                        ResumeRunFromFile(splitDialog.FileName, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
                     }
                 }
                 finally
@@ -2290,6 +2336,11 @@ namespace LiveSplit.View
             OpenSplits();
         }
 
+        private void resumeRunMenuItem_Click(object sender, EventArgs e)
+        {
+            ResumeRun();
+        }
+
         private void openLayoutFromFileMenuItem_Click(object sender, EventArgs e)
         {
             OpenLayout();
@@ -2796,5 +2847,6 @@ namespace LiveSplit.View
         {
             ResizingInitialAspectRatio = null;
         }
+
     }
 }
