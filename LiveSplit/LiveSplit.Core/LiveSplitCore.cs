@@ -2027,7 +2027,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = new TimeSpanRef(LiveSplitCoreNative.Run_StopTime(this.ptr));
+            var result = new TimeSpanRef(LiveSplitCoreNative.Run_stop_time(this.ptr));
             return result;
         }
         public TimeSpanRef Offset()
@@ -5127,7 +5127,7 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Run_metadata(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr Run_StopTime(IntPtr self);
+        public static extern IntPtr Run_stop_time(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Run_offset(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]

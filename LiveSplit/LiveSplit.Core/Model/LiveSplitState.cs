@@ -211,18 +211,24 @@ namespace LiveSplit.Model
 
             CurrentSplitIndex = 0;
 
-            for (var i = 0; i < run.Count; i++)
+            // If we have all the splits for each segment, we can't resume the run
+            if (!run[run.Count - 1].SegmentHistory.TryGetValue(run.AttemptCount, out segmentTime) || segmentTime[CurrentTimingMethod] == null)
             {
-                if (run[i].SegmentHistory.TryGetValue(run.AttemptCount, out segmentTime) && segmentTime[CurrentTimingMethod] != null)
+                for (var i = 0; i < run.Count; i++)
                 {
-                    totalTime = totalTime + segmentTime;
+                    if (run[i].SegmentHistory.TryGetValue(run.AttemptCount, out segmentTime) && segmentTime[CurrentTimingMethod] != null)
+                    {
+                        totalTime = totalTime + segmentTime;
 
-                    CurrentSplit.SplitTime = totalTime;
-                    CurrentSplitIndex++;
+                        CurrentSplit.SplitTime = totalTime;
+                        CurrentSplitIndex++;
+                    }
+                    else
+                        break;
                 }
-                else
-                    break;
             }
+            else
+                throw new Exception("Unresumable run");
 
             TimePausedAt = run.StopTime;
             CurrentPhase = TimerPhase.Paused;
