@@ -3566,4 +3566,17 @@
     <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.APixelStory</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Yono and the Celestial Elephants</Game>
+      <Game>Yono</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.Yono/raw/master/Components/LiveSplit.Yono.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal / Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Yono</Website>
+    <ShowInLayoutEditor />
+  </AutoSplitter>
 </AutoSplitters>
