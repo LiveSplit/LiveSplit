@@ -56,7 +56,7 @@ namespace LiveSplit.Model
 
         protected bool CheckDoubleTap()
         {
-            if (!CurrentState.Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].DoubleTapPrevention)
+            if (!CurrentState.Settings.DoubleTapPrevention)
                 return true;
 
             if (CurrentState.CurrentPhase == TimerPhase.Ended)
