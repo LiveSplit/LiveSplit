@@ -2170,11 +2170,6 @@ namespace LiveSplitCore
             var result = new ParseRunResult(LiveSplitCoreNative.Run_parse(data, (UIntPtr)length, path, loadFiles));
             return result;
         }
-        public static ParseRunResult ParseFileHandle(long handle, string path, bool loadFiles)
-        {
-            var result = new ParseRunResult(LiveSplitCoreNative.Run_parse_file_handle(handle, path, loadFiles));
-            return result;
-        }
         public static ParseRunResult Parse(Stream stream, string path, bool loadFiles)
         {
             var data = new byte[stream.Length];
@@ -5095,8 +5090,6 @@ namespace LiveSplitCore
         public static extern IntPtr Run_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Run_parse(IntPtr data, UIntPtr length, string path, bool load_files);
-        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr Run_parse_file_handle(long handle, string path, bool load_files);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Run_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]

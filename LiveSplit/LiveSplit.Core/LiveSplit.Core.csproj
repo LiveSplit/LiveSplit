@@ -308,12 +308,6 @@
     <Compile Include="Web\SRL\SRLIRCUser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="x86\livesplit_core.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x64\livesplit_core.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\loader.jar" />
     <None Include="Updates\GitInfo\revision.txt" />
     <None Include="Updates\GitInfo\version.txt" />
