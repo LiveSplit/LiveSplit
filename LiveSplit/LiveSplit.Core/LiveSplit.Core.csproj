@@ -103,7 +103,6 @@
     <Compile Include="ComponentUtil\MemoryWatcher.cs" />
     <Compile Include="ComponentUtil\SignatureScanner.cs" />
     <Compile Include="ComponentUtil\WinAPI.cs" />
-    <Compile Include="LiveSplitCore.cs" />
     <Compile Include="Model\AtomicDateTime.cs" />
     <Compile Include="Model\Attempt.cs" />
     <Compile Include="Model\AutoSplitter.cs" />
@@ -134,9 +133,16 @@
     <Compile Include="Model\Input\XGamePad.cs" />
     <Compile Include="Model\Input\XInput.cs" />
     <Compile Include="Model\MetadataChangedEventArgs.cs" />
+    <Compile Include="Model\RunFactories\FaceSplitRunFactory.cs" />
     <Compile Include="ComponentUtil\ProcessExtensions.cs" />
-    <Compile Include="Model\RunFactories\StandardFormatsRunFactory.cs" />
     <Compile Include="Model\RunMetadata.cs" />
+    <Compile Include="Model\RunFactories\CompositeRunFactory.cs" />
+    <Compile Include="Model\RunFactories\Portal2LiveTimerRunFactory.cs" />
+    <Compile Include="Model\RunFactories\ShitSplitRunFactory.cs" />
+    <Compile Include="Model\RunFactories\SplittyRunFactory.cs" />
+    <Compile Include="Model\RunFactories\StandardFormatsRunFactory.cs" />
+    <Compile Include="Model\RunFactories\TimeSplitTrackerRunFactory.cs" />
+    <Compile Include="Model\RunFactories\UrnRunFactory.cs" />
     <Compile Include="Model\RunSavers\ExcelRunSaver.cs" />
     <Compile Include="Model\RunSavers\JSONRunSaver.cs" />
     <Compile Include="Model\RunSavers\WSplitRunSaver.cs" />
@@ -259,6 +265,7 @@
     <Compile Include="UI\LayoutFactories\ILayoutFactory.cs" />
     <Compile Include="UI\Components\LineComponent.cs" />
     <Compile Include="Model\LiveSplitStateHelper.cs" />
+    <Compile Include="Model\RunFactories\LlanfairRunFactory.cs" />
     <Compile Include="TimeFormatters\RegularTimeFormatter.cs" />
     <Compile Include="Resources\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -266,11 +273,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="UI\Components\SeparatorComponent.cs" />
+    <Compile Include="Model\RunFactories\DeserializeRunFactory.cs" />
     <Compile Include="TimeFormatters\ShortTimeFormatter.cs" />
     <Compile Include="UI\LayoutSavers\ILayoutSaver.cs" />
     <Compile Include="UI\LayoutSavers\XMLLayoutSaver.cs" />
     <Compile Include="UI\LayoutMode.cs" />
     <Compile Include="UI\SimpleLabel.cs" />
+    <Compile Include="Model\RunFactories\SplitterZRunFactory.cs" />
     <Compile Include="UI\Components\ThinSeparatorComponent.cs" />
     <Compile Include="Model\TimerModel.cs" />
     <Compile Include="Model\TimerPhase.cs" />
@@ -286,6 +295,8 @@
     <Compile Include="UI\Components\ComponentRenderer.cs" />
     <Compile Include="UI\Components\ComponentRendererComponent.cs" />
     <Compile Include="Model\RunSavers\SerializeRunSaver.cs" />
+    <Compile Include="Model\RunFactories\WSplitRunFactory.cs" />
+    <Compile Include="Model\RunFactories\XMLRunFactory.cs" />
     <Compile Include="Model\RunSavers\XMLRunSaver.cs" />
     <Compile Include="Updates\UpdateHelper.cs" />
     <Compile Include="Web\Share\ShareSettings.Designer.cs">
