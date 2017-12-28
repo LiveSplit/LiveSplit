@@ -36,8 +36,7 @@ namespace LiveSplit.Options.SettingsFactories
                 BackgroundImage = null,
                 ImageOpacity = 1f,
                 ImageBlur = 0f,
-                Opacity = 1,
-                MousePassThroughWhileRunning = false
+                Opacity = 1
             };
         }
     }
