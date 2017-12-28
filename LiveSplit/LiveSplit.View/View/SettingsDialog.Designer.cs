@@ -56,13 +56,6 @@
             this.txtSwitchNext = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.txtDelay = new System.Windows.Forms.TextBox();
-            this.grpHotkeyProfiles = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.lblProfile = new System.Windows.Forms.Label();
-            this.cmbHotkeyProfiles = new System.Windows.Forms.ComboBox();
-            this.btnRemoveProfile = new System.Windows.Forms.Button();
-            this.btnRenameProfile = new System.Windows.Forms.Button();
-            this.btnNewProfile = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbxRaceViewer = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -70,6 +63,13 @@
             this.btnChooseComparisons = new System.Windows.Forms.Button();
             this.chkSimpleSOB = new System.Windows.Forms.CheckBox();
             this.chkWarnOnReset = new System.Windows.Forms.CheckBox();
+            this.grpHotkeyProfiles = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblProfile = new System.Windows.Forms.Label();
+            this.cmbHotkeyProfiles = new System.Windows.Forms.ComboBox();
+            this.btnRemoveProfile = new System.Windows.Forms.Button();
+            this.btnRenameProfile = new System.Windows.Forms.Button();
+            this.btnNewProfile = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -115,7 +115,7 @@
             this.btnOK.Location = new System.Drawing.Point(221, 517);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 6;
+            this.btnOK.TabIndex = 4;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -137,7 +137,7 @@
             this.btnOBSInstall.Location = new System.Drawing.Point(187, 488);
             this.btnOBSInstall.Name = "btnOBSInstall";
             this.btnOBSInstall.Size = new System.Drawing.Size(190, 23);
-            this.btnOBSInstall.TabIndex = 5;
+            this.btnOBSInstall.TabIndex = 3;
             this.btnOBSInstall.Text = "Install...";
             this.btnOBSInstall.UseVisualStyleBackColor = true;
             this.btnOBSInstall.Click += new System.EventHandler(this.btnOBSInstall_Click);
@@ -150,7 +150,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(374, 392);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hotkeys";
             // 
@@ -210,7 +210,7 @@
             this.chkDeactivateForOtherPrograms.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDeactivateForOtherPrograms.Name = "chkDeactivateForOtherPrograms";
             this.chkDeactivateForOtherPrograms.Size = new System.Drawing.Size(172, 23);
-            this.chkDeactivateForOtherPrograms.TabIndex = 9;
+            this.chkDeactivateForOtherPrograms.TabIndex = 15;
             this.chkDeactivateForOtherPrograms.Text = "Deactivate For Other Programs";
             this.chkDeactivateForOtherPrograms.UseVisualStyleBackColor = true;
             // 
@@ -246,7 +246,7 @@
             this.chkDoubleTap.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDoubleTap.Name = "chkDoubleTap";
             this.chkDoubleTap.Size = new System.Drawing.Size(168, 17);
-            this.chkDoubleTap.TabIndex = 10;
+            this.chkDoubleTap.TabIndex = 1;
             this.chkDoubleTap.Text = "Double Tap Prevention";
             this.chkDoubleTap.UseVisualStyleBackColor = true;
             // 
@@ -424,8 +424,96 @@
             this.txtDelay.Location = new System.Drawing.Point(315, 265);
             this.txtDelay.Name = "txtDelay";
             this.txtDelay.Size = new System.Drawing.Size(50, 20);
-            this.txtDelay.TabIndex = 11;
+            this.txtDelay.TabIndex = 9;
             this.txtDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Location = new System.Drawing.Point(302, 517);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 5;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // cbxRaceViewer
+            // 
+            this.cbxRaceViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.cbxRaceViewer, 3);
+            this.cbxRaceViewer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxRaceViewer.FormattingEnabled = true;
+            this.cbxRaceViewer.Items.AddRange(new object[] {
+            "SpeedRunsLive",
+            "MultiTwitch",
+            "Kadgar",
+            "Speedrun.tv"});
+            this.cbxRaceViewer.Location = new System.Drawing.Point(187, 431);
+            this.cbxRaceViewer.Name = "cbxRaceViewer";
+            this.cbxRaceViewer.Size = new System.Drawing.Size(190, 21);
+            this.cbxRaceViewer.TabIndex = 2;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 435);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(178, 13);
+            this.label11.TabIndex = 15;
+            this.label11.Text = "Race Viewer:";
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 464);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(178, 13);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Active Comparisons:";
+            // 
+            // btnChooseComparisons
+            // 
+            this.btnChooseComparisons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.btnChooseComparisons, 3);
+            this.btnChooseComparisons.Location = new System.Drawing.Point(187, 459);
+            this.btnChooseComparisons.Name = "btnChooseComparisons";
+            this.btnChooseComparisons.Size = new System.Drawing.Size(190, 23);
+            this.btnChooseComparisons.TabIndex = 18;
+            this.btnChooseComparisons.Text = "Choose...";
+            this.btnChooseComparisons.UseVisualStyleBackColor = true;
+            this.btnChooseComparisons.Click += new System.EventHandler(this.btnChooseComparisons_Click);
+            // 
+            // chkSimpleSOB
+            // 
+            this.chkSimpleSOB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkSimpleSOB.AutoSize = true;
+            this.chkSimpleSOB.Location = new System.Drawing.Point(7, 404);
+            this.chkSimpleSOB.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkSimpleSOB.Name = "chkSimpleSOB";
+            this.chkSimpleSOB.Size = new System.Drawing.Size(174, 17);
+            this.chkSimpleSOB.TabIndex = 16;
+            this.chkSimpleSOB.Text = "Simple Sum of Best Calculation";
+            this.chkSimpleSOB.UseVisualStyleBackColor = true;
+            this.chkSimpleSOB.CheckedChanged += new System.EventHandler(this.chkSimpleSOB_CheckedChanged);
+            // 
+            // chkWarnOnReset
+            // 
+            this.chkWarnOnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkWarnOnReset.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.chkWarnOnReset, 3);
+            this.chkWarnOnReset.Location = new System.Drawing.Point(191, 404);
+            this.chkWarnOnReset.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkWarnOnReset.Name = "chkWarnOnReset";
+            this.chkWarnOnReset.Size = new System.Drawing.Size(186, 17);
+            this.chkWarnOnReset.TabIndex = 0;
+            this.chkWarnOnReset.Text = "Warn On Reset If Better Times";
+            this.chkWarnOnReset.UseVisualStyleBackColor = true;
             // 
             // grpHotkeyProfiles
             // 
@@ -435,7 +523,7 @@
             this.grpHotkeyProfiles.Location = new System.Drawing.Point(3, 293);
             this.grpHotkeyProfiles.Name = "grpHotkeyProfiles";
             this.grpHotkeyProfiles.Size = new System.Drawing.Size(362, 77);
-            this.grpHotkeyProfiles.TabIndex = 12;
+            this.grpHotkeyProfiles.TabIndex = 16;
             this.grpHotkeyProfiles.TabStop = false;
             this.grpHotkeyProfiles.Text = "Hotkey Profiles";
             // 
@@ -445,7 +533,7 @@
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.11917F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.88083F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
             this.tableLayoutPanel3.Controls.Add(this.lblProfile, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.cmbHotkeyProfiles, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnRemoveProfile, 3, 1);
@@ -479,7 +567,7 @@
             this.cmbHotkeyProfiles.Location = new System.Drawing.Point(175, 4);
             this.cmbHotkeyProfiles.Name = "cmbHotkeyProfiles";
             this.cmbHotkeyProfiles.Size = new System.Drawing.Size(178, 21);
-            this.cmbHotkeyProfiles.TabIndex = 0;
+            this.cmbHotkeyProfiles.TabIndex = 1;
             this.cmbHotkeyProfiles.SelectedIndexChanged += new System.EventHandler(this.cmbHotkeyProfiles_SelectedIndexChanged);
             // 
             // btnRemoveProfile
@@ -488,7 +576,7 @@
             this.btnRemoveProfile.Location = new System.Drawing.Point(278, 32);
             this.btnRemoveProfile.Name = "btnRemoveProfile";
             this.btnRemoveProfile.Size = new System.Drawing.Size(75, 23);
-            this.btnRemoveProfile.TabIndex = 3;
+            this.btnRemoveProfile.TabIndex = 2;
             this.btnRemoveProfile.Text = "Remove";
             this.btnRemoveProfile.UseVisualStyleBackColor = true;
             this.btnRemoveProfile.Click += new System.EventHandler(this.btnRemoveProfile_Click);
@@ -499,7 +587,7 @@
             this.btnRenameProfile.Location = new System.Drawing.Point(196, 32);
             this.btnRenameProfile.Name = "btnRenameProfile";
             this.btnRenameProfile.Size = new System.Drawing.Size(75, 23);
-            this.btnRenameProfile.TabIndex = 2;
+            this.btnRenameProfile.TabIndex = 3;
             this.btnRenameProfile.Text = "Rename";
             this.btnRenameProfile.UseVisualStyleBackColor = true;
             this.btnRenameProfile.Click += new System.EventHandler(this.btnRenameProfile_Click);
@@ -511,98 +599,10 @@
             this.btnNewProfile.Location = new System.Drawing.Point(115, 32);
             this.btnNewProfile.Name = "btnNewProfile";
             this.btnNewProfile.Size = new System.Drawing.Size(75, 23);
-            this.btnNewProfile.TabIndex = 1;
+            this.btnNewProfile.TabIndex = 4;
             this.btnNewProfile.Text = "New";
             this.btnNewProfile.UseVisualStyleBackColor = true;
             this.btnNewProfile.Click += new System.EventHandler(this.btnNewProfile_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(302, 517);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 7;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // cbxRaceViewer
-            // 
-            this.cbxRaceViewer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.cbxRaceViewer, 3);
-            this.cbxRaceViewer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxRaceViewer.FormattingEnabled = true;
-            this.cbxRaceViewer.Items.AddRange(new object[] {
-            "SpeedRunsLive",
-            "MultiTwitch",
-            "Kadgar",
-            "Speedrun.tv"});
-            this.cbxRaceViewer.Location = new System.Drawing.Point(187, 431);
-            this.cbxRaceViewer.Name = "cbxRaceViewer";
-            this.cbxRaceViewer.Size = new System.Drawing.Size(190, 21);
-            this.cbxRaceViewer.TabIndex = 3;
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 435);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(178, 13);
-            this.label11.TabIndex = 15;
-            this.label11.Text = "Race Viewer:";
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 464);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(178, 13);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Active Comparisons:";
-            // 
-            // btnChooseComparisons
-            // 
-            this.btnChooseComparisons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.btnChooseComparisons, 3);
-            this.btnChooseComparisons.Location = new System.Drawing.Point(187, 459);
-            this.btnChooseComparisons.Name = "btnChooseComparisons";
-            this.btnChooseComparisons.Size = new System.Drawing.Size(190, 23);
-            this.btnChooseComparisons.TabIndex = 4;
-            this.btnChooseComparisons.Text = "Choose...";
-            this.btnChooseComparisons.UseVisualStyleBackColor = true;
-            this.btnChooseComparisons.Click += new System.EventHandler(this.btnChooseComparisons_Click);
-            // 
-            // chkSimpleSOB
-            // 
-            this.chkSimpleSOB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkSimpleSOB.AutoSize = true;
-            this.chkSimpleSOB.Location = new System.Drawing.Point(7, 404);
-            this.chkSimpleSOB.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkSimpleSOB.Name = "chkSimpleSOB";
-            this.chkSimpleSOB.Size = new System.Drawing.Size(174, 17);
-            this.chkSimpleSOB.TabIndex = 1;
-            this.chkSimpleSOB.Text = "Simple Sum of Best Calculation";
-            this.chkSimpleSOB.UseVisualStyleBackColor = true;
-            this.chkSimpleSOB.CheckedChanged += new System.EventHandler(this.chkSimpleSOB_CheckedChanged);
-            // 
-            // chkWarnOnReset
-            // 
-            this.chkWarnOnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkWarnOnReset.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.chkWarnOnReset, 3);
-            this.chkWarnOnReset.Location = new System.Drawing.Point(191, 404);
-            this.chkWarnOnReset.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkWarnOnReset.Name = "chkWarnOnReset";
-            this.chkWarnOnReset.Size = new System.Drawing.Size(186, 17);
-            this.chkWarnOnReset.TabIndex = 2;
-            this.chkWarnOnReset.Text = "Warn On Reset If Better Times";
-            this.chkWarnOnReset.UseVisualStyleBackColor = true;
             // 
             // SettingsDialog
             // 
