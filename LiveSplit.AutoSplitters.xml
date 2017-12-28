@@ -3587,6 +3587,7 @@
       <URL>https://raw.githubusercontent.com/jkarkkainen/StatusInsaneASL/master/StatusInsane.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Intelligent auto-splitting and load time removal. (By: zment)\nSee: https://github.com/jkarkkainen/StatusInsaneASL for example splits and layouts.</Description>
+    <Description>Intelligent auto-splitting and load time removal. (By zment)</Description>
+    <Website>https://github.com/jkarkkainen/StatusInsaneASL</Website>
   </AutoSplitter>	
 </AutoSplitters>
