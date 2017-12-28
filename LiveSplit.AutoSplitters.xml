@@ -3587,6 +3587,6 @@
       <URL>https://raw.githubusercontent.com/jkarkkainen/StatusInsaneASL/master/StatusInsane.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Full-blown autosplitter for Status: Insane. Autostarts on new game, skips loading times, sets GameTime to default timing method on load, forces game-resets when in main menu, splits on level change, follows the progress of item collection for 100% runs. Prevents ending timer if not entering the game end level, and if entering the game end level in 100% but not having all items. TODO: Prevent timer reset in main menu if game end reached with less than 100% in 100% run. See: https://github.com/jkarkkainen/StatusInsaneASL for example splits and layouts.</Description>
+    <Description>Intelligent auto-splitting and load time removal. (By: zment)\nSee: https://github.com/jkarkkainen/StatusInsaneASL for example splits and layouts.</Description>
   </AutoSplitter>	
 </AutoSplitters>
