@@ -139,35 +139,34 @@ namespace LiveSplit.Model
                 var previousTime = TimeSpan.Zero;
                 foreach (var curSplit in run)
                 {
-                    if (curSplit.Comparisons[comparison][method] != null)
+                    //Prevent comparison times from decreasing from one split to the next
+                    if (curSplit.Comparisons[comparison][method] < previousTime)
                     {
-                        //Prevent comparison times from decreasing from one split to the next
-                        if (curSplit.Comparisons[comparison][method] < previousTime)
-                        {
-                            var newComparison = curSplit.Comparisons[comparison];
-                            newComparison[method] = previousTime;
-                            curSplit.Comparisons[comparison] = newComparison;
-                        }
-
-                        //Fix Best Segment time if the PB segment is faster
-                        var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
-                        if (comparison == Run.PersonalBestComparisonName)
-                        {
-                            var minIndex = curSplit.SegmentHistory.GetMinIndex();
-
-                            FixHistoryFromNullBestSegments(curSplit, method, minIndex, maxIndex);
-
-                            if (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment)
-                            {
-                                var newTime = curSplit.BestSegmentTime;
-                                newTime[method] = currentSegment;
-                                curSplit.BestSegmentTime = newTime;
-                            }
-
-                            FixHistoryFromBestSegmentTimes(curSplit, method, minIndex, maxIndex);
-                        }
-                        previousTime = curSplit.Comparisons[comparison][method].Value;
+                        var newComparison = curSplit.Comparisons[comparison];
+                        newComparison[method] = previousTime;
+                        curSplit.Comparisons[comparison] = newComparison;
                     }
+
+                    //Fix Best Segment time if the PB segment is faster
+                    var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
+                    if (comparison == Run.PersonalBestComparisonName)
+                    {
+                        var minIndex = curSplit.SegmentHistory.GetMinIndex();
+
+                        FixHistoryFromNullBestSegments(curSplit, method, minIndex, maxIndex);
+
+                        if (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment)
+                        {
+                            var newTime = curSplit.BestSegmentTime;
+                            newTime[method] = currentSegment;
+                            curSplit.BestSegmentTime = newTime;
+                        }
+
+                        FixHistoryFromBestSegmentTimes(curSplit, method, minIndex, maxIndex);
+                    }
+
+                    if (curSplit.Comparisons[comparison][method] != null)
+                        previousTime = curSplit.Comparisons[comparison][method].Value;
                 }
             }
         }
