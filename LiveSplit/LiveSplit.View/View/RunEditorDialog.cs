@@ -604,8 +604,7 @@ namespace LiveSplit.View
             {
                 var dialog = new OpenFileDialog();
                 dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
-                var multiEdit = runGrid.SelectedCells.Count > 1;
-                if (!string.IsNullOrEmpty(Run[e.RowIndex].Name) && !multiEdit)
+                if (!string.IsNullOrEmpty(Run[e.RowIndex].Name))
                 {
                     dialog.Title = "Set Icon for " + Run[e.RowIndex].Name + "...";
                 }
@@ -619,32 +618,12 @@ namespace LiveSplit.View
                     try
                     {
                         var image = Image.FromFile(dialog.FileName);
+                        var oldImage = (Image)runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value;
+                        if (oldImage != null)
+                            ImagesToDispose.Add(oldImage);
 
-                        if (!multiEdit)
-                        {
-                            var oldImage = (Image)runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value;
-                            if (oldImage != null)
-                                ImagesToDispose.Add(oldImage);
-
-                            Run[e.RowIndex].Icon = image;
-                            runGrid.NotifyCurrentCellDirty(true);
-                        }
-                        else
-                        {
-                            foreach (DataGridViewCell cell in runGrid.SelectedCells)
-                            {
-                                if (cell.ColumnIndex != ICONINDEX)
-                                    continue;
-
-                                var oldImage = (Image)cell.Value;
-                                if (oldImage != null)
-                                    ImagesToDispose.Add(oldImage);
-
-                                Run[cell.RowIndex].Icon = (Image)image.Clone();
-                                runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
-                            }
-                        }
-
+                        Run[e.RowIndex].Icon = image;
+                        runGrid.NotifyCurrentCellDirty(true);
                         RaiseRunEdited();
                     }
                     catch (Exception ex)
