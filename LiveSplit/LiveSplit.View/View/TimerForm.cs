@@ -159,8 +159,6 @@ namespace LiveSplit.View
             }
         }
 
-        private float? ResizingInitialAspectRatio { get; set; } = null;
-
         [DllImport("user32.dll")]
         static extern int GetUpdateRgn(IntPtr hWnd, IntPtr hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
 
@@ -1485,7 +1483,6 @@ namespace LiveSplit.View
             const uint WM_NCHITTEST = 0x0084;
             const uint WM_MOUSEMOVE = 0x0200;
             const uint WM_PAINT = 0x000F;
-            const uint WM_SIZING = 0x0214;
 
             const uint HTLEFT = 10;
             const uint HTRIGHT = 11;
@@ -1527,11 +1524,6 @@ namespace LiveSplit.View
                 }
             }
 
-            if (m.Msg == WM_SIZING)
-            {
-                handled = WmSizingProc(ref m);
-            }
-
             if (m.Msg == WM_PAINT)
             {
                 if (hRgn != IntPtr.Zero)
@@ -1561,70 +1553,6 @@ namespace LiveSplit.View
                     Log.Error(ex);
                 }
             }
-        }
-
-        private bool WmSizingProc(ref Message m)
-        {
-            const uint WMSZ_TOPLEFT = 4;
-            const uint WMSZ_TOPRIGHT = 5;
-            const uint WMSZ_BOTTOMLEFT = 7;
-            const uint WMSZ_BOTTOMRIGHT = 8;
-
-            if (!ResizingInitialAspectRatio.HasValue)
-                return false;
-
-            if (!ModifierKeys.HasFlag(Keys.Shift))
-                return false;
-
-            bool anchorLeft;
-            bool anchorTop;
-
-            switch ((uint)m.WParam)
-            {
-                case WMSZ_TOPLEFT:
-                    anchorLeft = false;
-                    anchorTop = false;
-                    break;
-                case WMSZ_TOPRIGHT:
-                    anchorLeft = true;
-                    anchorTop = false;
-                    break;
-                case WMSZ_BOTTOMLEFT:
-                    anchorLeft = false;
-                    anchorTop = true;
-                    break;
-                case WMSZ_BOTTOMRIGHT:
-                    anchorLeft = true;
-                    anchorTop = true;
-                    break;
-
-                default:
-                    return false;
-            }
-
-            var rect = (Win32.RECT)Marshal.PtrToStructure(m.LParam, typeof(Win32.RECT));
-            var currentAspectRatio = (float)rect.Width / rect.Height;
-
-            if (currentAspectRatio >= ResizingInitialAspectRatio.Value)
-            {
-                var newWidth = (int)(rect.Height * ResizingInitialAspectRatio.Value);
-                if (anchorLeft)
-                    rect.Right = rect.Left + newWidth;
-                else
-                    rect.Left = rect.Right - newWidth;
-            }
-            else
-            {
-                var newHeight = (int)(rect.Width / ResizingInitialAspectRatio.Value);
-                if (anchorTop)
-                    rect.Bottom = rect.Top + newHeight;
-                else
-                    rect.Top = rect.Bottom - newHeight;
-            }
-
-            Marshal.StructureToPtr(rect, m.LParam, false);
-
-            return true;
         }
 
         IntPtr hRgn = IntPtr.Zero;
@@ -2784,17 +2712,6 @@ namespace LiveSplit.View
         {
             RebuildControlMenu();
             RebuildComparisonsMenu();
-        }
-
-        private void TimerForm_ResizeBegin(object sender, EventArgs e)
-        {
-            if (Size.Height > 0)
-                ResizingInitialAspectRatio = (float)Size.Width / Size.Height;
-        }
-
-        private void TimerForm_ResizeEnd(object sender, EventArgs e)
-        {
-            ResizingInitialAspectRatio = null;
         }
     }
 }
