@@ -48,6 +48,19 @@ namespace LiveSplit.ComponentUtil
             return p.ModulesWow64Safe().First();
         }
 
+        private static bool IsModuleArrayValid(this Process p, ProcessModuleWow64Safe[] modules)
+        {
+            uint MODULE_INFO_SIZE = (uint)Marshal.SizeOf(typeof(WinAPI.MODULEINFO));
+            foreach (var module in modules)
+            {
+                if (!WinAPI.GetModuleInformation(p.Handle, module.BaseAddress, out var moduleInfo, MODULE_INFO_SIZE))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static ProcessModuleWow64Safe[] ModulesWow64Safe(this Process p)
         {
             if (ModuleCache.Count > 100)
@@ -66,8 +79,17 @@ namespace LiveSplit.ComponentUtil
             uint numMods = cbNeeded / (uint)IntPtr.Size;
 
             int hash = p.StartTime.GetHashCode() + p.Id + (int)numMods;
-            if (ModuleCache.ContainsKey(hash))
-                return ModuleCache[hash];
+            if (ModuleCache.TryGetValue(hash, out var cachedModules))
+            {
+                if (p.IsModuleArrayValid(cachedModules))
+                {
+                    return cachedModules;
+                }
+                else
+                {
+                    ModuleCache.Clear();
+                }
+            }
 
             var ret = new List<ProcessModuleWow64Safe>();
 
