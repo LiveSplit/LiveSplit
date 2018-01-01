@@ -51,9 +51,10 @@ namespace LiveSplit.ComponentUtil
         private static bool IsModuleArrayValid(this Process p, ProcessModuleWow64Safe[] modules)
         {
             uint MODULE_INFO_SIZE = (uint)Marshal.SizeOf(typeof(WinAPI.MODULEINFO));
+            WinAPI.MODULEINFO moduleInfo;
             foreach (var module in modules)
             {
-                if (!WinAPI.GetModuleInformation(p.Handle, module.BaseAddress, out var moduleInfo, MODULE_INFO_SIZE))
+                if (!WinAPI.GetModuleInformation(p.Handle, module.BaseAddress, out moduleInfo, MODULE_INFO_SIZE))
                 {
                     return false;
                 }
@@ -79,7 +80,8 @@ namespace LiveSplit.ComponentUtil
             uint numMods = cbNeeded / (uint)IntPtr.Size;
 
             int hash = p.StartTime.GetHashCode() + p.Id + (int)numMods;
-            if (ModuleCache.TryGetValue(hash, out var cachedModules))
+            ProcessModuleWow64Safe[] cachedModules;
+            if (ModuleCache.TryGetValue(hash, out cachedModules))
             {
                 if (p.IsModuleArrayValid(cachedModules))
                 {
