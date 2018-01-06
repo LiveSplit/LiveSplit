@@ -777,11 +777,11 @@
       <Game>AVP2010</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.AVP2010/master/Components/LiveSplit.AVP2010.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/AVP-2010/LiveSplit.AVP2010.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Load Removal is available. (By SuicideMachine)</Description>
-    <Website>https://github.com/SuiMachine/LiveSplit.AVP2010/blob/master/README.md</Website>
+    <Type>Script</Type>
+    <Description>Load Removal and autosplitting is available. (By SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
