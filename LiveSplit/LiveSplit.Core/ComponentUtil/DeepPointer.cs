@@ -17,6 +17,13 @@ namespace LiveSplit.ComponentUtil
         private List<OffsetT> _offsets;
         private OffsetT _base;
         private string _module;
+        private bool _baseIsAbsolute;
+        
+        public DeepPointer(OffsetT base_, bool baseIsAbsolute_, params OffsetT[] offsets)
+            : this(base_, offsets)
+        {
+            _baseIsAbsolute = baseIsAbsolute_;
+        }
 
         public DeepPointer(string module, OffsetT base_, params OffsetT[] offsets)
             : this(base_, offsets)
@@ -139,9 +146,13 @@ namespace LiveSplit.ComponentUtil
 
                 ptr = module.BaseAddress + _base;
             }
-            else
+            else if (!_baseIsAbsolute)
             {
                 ptr = process.MainModuleWow64Safe().BaseAddress + _base;
+            } 
+            else
+            {
+                ptr = (IntPtr) _base;
             }
 
 
