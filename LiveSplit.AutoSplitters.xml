@@ -3601,4 +3601,15 @@
     <Type>Script</Type>
     <Description>Load removal and auto-splitting are available. (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Defy Gravity</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/jkarkkainen/DefyGravityASL/master/DefyGravity.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting and load time removal. (By zment)</Description>
+    <Website>https://github.com/jkarkkainen/DefyGravityASL</Website>
+  </AutoSplitter>	
 </AutoSplitters>
