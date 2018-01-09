@@ -1108,6 +1108,7 @@
   <AutoSplitter>
     <Games>
       <Game>Super Mario World</Game>
+      <Game>Super Mario World Extra Categories</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.SMW/LiveSplit.SMW.asl</URL>
