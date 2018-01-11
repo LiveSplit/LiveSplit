@@ -3612,5 +3612,15 @@
     <Type>Script</Type>
     <Description>Auto-splitting and load time removal. (By zment)</Description>
     <Website>https://github.com/jkarkkainen/DefyGravityASL</Website>
-  </AutoSplitter>	
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Revolution</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Revolution/LiveSplit.Revolution.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load time removal is available. (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
