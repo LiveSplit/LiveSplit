@@ -3623,4 +3623,14 @@
     <Type>Script</Type>
     <Description>Load time removal is available. (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Toy Story</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Pixelquick/Livesplitters/master/ToyStory.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Start and auto-splitting supported for popular SNES emulators (By Pixelquick)</Description>
+  </AutoSplitter>
 </AutoSplitters>
