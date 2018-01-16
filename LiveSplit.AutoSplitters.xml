@@ -2,6 +2,16 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Persist</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AtmoEntity/PersistAutosplitter/master/PersistAutosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto starting, resetting and splitting. Doesn't split after completing game. (By Eggwink)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Source Engine</Game>
       <Game>Aperture Tag</Game>
       <Game>Aperture Tag: The Paint Gun Testing Initiative</Game>
