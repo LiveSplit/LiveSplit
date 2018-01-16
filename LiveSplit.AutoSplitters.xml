@@ -3633,4 +3633,14 @@
     <Type>Script</Type>
     <Description>Start and auto-splitting supported for popular SNES emulators (By Pixelquick)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+		<Games>
+			<Game>Hue</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Modiseus/Hue-Auto-Splitter/master/Hue.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Start and auto-splitting are available. (By Modiseus)</Description>
+	</AutoSplitter>
 </AutoSplitters>
