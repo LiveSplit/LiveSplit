@@ -3643,7 +3643,7 @@
     <Type>Script</Type>
     <Description>Start and auto-splitting supported for popular SNES emulators (By Pixelquick)</Description>
   </AutoSplitter>
-  </AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Enviro-Bear 2000</Game>
       <Game>Enviro Bear 2000</Game>
