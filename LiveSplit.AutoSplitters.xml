@@ -3643,6 +3643,17 @@
     <Type>Script</Type>
     <Description>Start and auto-splitting supported for popular SNES emulators (By Pixelquick)</Description>
   </AutoSplitter>
+  </AutoSplitter>
+    <Games>
+      <Game>Enviro-Bear 2000</Game>
+      <Game>Enviro Bear 2000</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/VisMajorSpeedruns/Enviro-Bear-2000-Autosplitter/master/EB2K.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Start and autosplitting is avaliable. (By VisMajor)</Description>
+  </AutoSplitter>
   <AutoSplitter>
 		<Games>
 			<Game>Hue</Game>
