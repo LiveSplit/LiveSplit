@@ -964,10 +964,10 @@
       <Game>RE5</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/JMaynard24/ASL/master/RE5.asl</URL>
+      <URL>https://raw.githubusercontent.com/Auddy07/ASL/master/RE5SteamFullGameIGT.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Load Removal are available. (By Dread)</Description>
+    <Description>Auto Splitting and Load Removal are available. (By Auddy)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
