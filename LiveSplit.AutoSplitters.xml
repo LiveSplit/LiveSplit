@@ -3668,4 +3668,14 @@
 		<Type>Script</Type>
 		<Description>Start and auto-splitting are available. (By Modiseus)</Description>
 	</AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Croc 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/hdc0/LiveSplit-asl/master/LiveSplit.Croc_2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto starting, splitting and load removal are available. (By hdc0)</Description>
+  </AutoSplitter>
 </AutoSplitters>
