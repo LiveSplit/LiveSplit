@@ -3698,4 +3698,15 @@
 	<Type>Script</Type>
 	<Description>Starting and auto-splitting are avialable. (By tcd11/gatchrat and Xerxes Asuras )</Description>
    </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Escape Goat 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.EscapeGoat2/raw/master/Components/LiveSplit.EscapeGoat2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.EscapeGoat2</Website>
+  </AutoSplitter>
 </AutoSplitters>
