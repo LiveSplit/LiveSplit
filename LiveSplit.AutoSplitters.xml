@@ -3667,7 +3667,7 @@
 		</URLs>
 		<Type>Script</Type>
 		<Description>Start and auto-splitting are available. (By Modiseus)</Description>
-	</AutoSplitter>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Croc 2</Game>
@@ -3677,5 +3677,25 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto starting, splitting and load removal are available. (By hdc0)</Description>
-  </AutoSplitter>
+   </AutoSplitter>
+   <AutoSplitter>
+	<Games>
+		<Game>Fotonica</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/gatchrat/AutoSplitters/master/Fotonica.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Starting,load-time removal and auto-splitting are avialable. (By tcd11/gatchrat and Xerxes Asuras )</Description>
+   </AutoSplitter>
+   <AutoSplitter>
+	<Games>
+		<Game>UBERMOSH Vol.3</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/gatchrat/AutoSplitters/master/UBERMOSH%20Vol.3.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Starting and auto-splitting are avialable. (By tcd11/gatchrat and Xerxes Asuras )</Description>
+   </AutoSplitter>
 </AutoSplitters>
