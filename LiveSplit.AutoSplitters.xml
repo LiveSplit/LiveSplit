@@ -3709,4 +3709,15 @@
     <Description>Autosplitting is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.EscapeGoat2</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Wario Land 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.WL3/LiveSplit.WL3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
+    <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.WL3</Website>
+  </AutoSplitter>
 </AutoSplitters>
