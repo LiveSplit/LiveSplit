@@ -1203,8 +1203,8 @@ namespace LiveSplit.View
             FixSize();
 
             var scaleFactor = Layout.Mode == LayoutMode.Vertical
-                ? Height / Math.Max(ComponentRenderer.OverallSize, 1f)
-                : Width / Math.Max(ComponentRenderer.OverallSize, 1f);
+                ? Height / ComponentRenderer.OverallSize
+                : Width / ComponentRenderer.OverallSize;
 
             g.ResetTransform();
             g.TranslateTransform(-0.5f, -0.5f);
