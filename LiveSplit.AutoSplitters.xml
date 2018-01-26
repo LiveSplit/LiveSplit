@@ -3720,4 +3720,15 @@
     <Description>Auto Splitting and Auto Start/Reset are available. (By Spiraster)</Description>
     <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.WL3</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Celeste</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/ShootMe/LiveSplit.Celeste/raw/master/Components/LiveSplit.Celeste.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Celeste</Website>
+  </AutoSplitter>
 </AutoSplitters>
