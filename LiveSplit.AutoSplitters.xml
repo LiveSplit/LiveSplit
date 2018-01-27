@@ -1447,10 +1447,10 @@
       <Game>SWTFU 2</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/PackSciences/SWTFU2-Autosplitter/master/SWTFU2.asl</URL>
+      <URL>https://gist.githubusercontent.com/Zuzurr/da2e16ed6eb561a7baca69a97d20a4fe/raw/043d98f72ee481a75be177050f76fdab7732f1e1/SWFTU2loads.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (Beta) (By PackSciences and SatsuiBird)</Description>
+    <Description>Load Removal is available. (By Zuzur)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
