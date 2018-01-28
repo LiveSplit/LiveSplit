@@ -2954,6 +2954,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Densha De D: Burning Stage</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Lordmau5/ASL/master/Densha_De_D/Burning_Stage.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game time, auto-split, auto-start and load-removal. (by Jugachi)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Metro 2033 Redux</Game>
       <Game>Metro: Last Light Redux</Game>
     </Games>
