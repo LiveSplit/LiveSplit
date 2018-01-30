@@ -3752,4 +3752,14 @@
     <Description>In-game time, auto-start, and auto-split available for Story Mode and Arcade Mode. (By Altafen)</Description>
     <Website>https://github.com/BR-/LiveSplit.Bleed2</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>RAGE</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Rage/Rage.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load time removal and basic autosplitting are available. (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
