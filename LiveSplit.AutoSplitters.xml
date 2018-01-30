@@ -2794,10 +2794,10 @@
       <Game>Yooka Laylee</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/YookaLaylee/YookaLaylee.asl</URL>
+      <URL>https://raw.githubusercontent.com/DerKO9/SpeedRunningStuff/master/YookaLaylee/YookaLaylee.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By 0Seren)</Description>
+    <Description>Load Removal and Auto Start is available. GoG version compatible (By 0Seren and DerKO)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
