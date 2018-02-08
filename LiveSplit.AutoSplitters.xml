@@ -3752,4 +3752,16 @@
     <Type>Script</Type>
     <Description>Load time removal and basic autosplitting are available. (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Super Mario Land</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/cv-eko/AutoSplitter.SuperMarioLand/blob/master/sml.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By eKo)</Description>
+    <Website>https://github.com/cv-eko/AutoSplitter.SuperMarioLand</Website>
+  </AutoSplitter>
 </AutoSplitters>
+
