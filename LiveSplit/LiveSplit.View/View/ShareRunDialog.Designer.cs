@@ -46,7 +46,6 @@
             this.txtNotes = new System.Windows.Forms.TextBox();
             this.txtVideoURL = new System.Windows.Forms.TextBox();
             this.cbxPlatform = new System.Windows.Forms.ComboBox();
-            this.btnShare = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -60,6 +59,7 @@
             this.btnInsertSplitTime = new System.Windows.Forms.Button();
             this.btnInsertStreamLink = new System.Windows.Forms.Button();
             this.chkAttachSplits = new System.Windows.Forms.CheckBox();
+            this.btnShare = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -264,7 +264,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtNotes, 5);
             this.txtNotes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtNotes.Location = new System.Drawing.Point(76, 266);
-            this.txtNotes.MaxLength = 140;
+            this.txtNotes.MaxLength = 280;
             this.txtNotes.Multiline = true;
             this.txtNotes.Name = "txtNotes";
             this.tableLayoutPanel1.SetRowSpan(this.txtNotes, 2);
@@ -294,18 +294,6 @@
             this.cbxPlatform.Size = new System.Drawing.Size(476, 21);
             this.cbxPlatform.TabIndex = 0;
             this.cbxPlatform.SelectionChangeCommitted += new System.EventHandler(this.cbxPlatform_SelectionChangeCommitted);
-            // 
-            // btnShare
-            // 
-            this.btnShare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.btnShare, 3);
-            this.btnShare.Location = new System.Drawing.Point(396, 414);
-            this.btnShare.Name = "btnShare";
-            this.btnShare.Size = new System.Drawing.Size(75, 23);
-            this.btnShare.TabIndex = 22;
-            this.btnShare.Text = "Share";
-            this.btnShare.UseVisualStyleBackColor = true;
-            this.btnShare.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // btnClose
             // 
@@ -446,6 +434,18 @@
             this.chkAttachSplits.TabIndex = 24;
             this.chkAttachSplits.Text = "Attach Splits";
             this.chkAttachSplits.UseVisualStyleBackColor = true;
+            // 
+            // btnShare
+            // 
+            this.btnShare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.btnShare, 3);
+            this.btnShare.Location = new System.Drawing.Point(396, 414);
+            this.btnShare.Name = "btnShare";
+            this.btnShare.Size = new System.Drawing.Size(75, 23);
+            this.btnShare.TabIndex = 22;
+            this.btnShare.Text = "Share";
+            this.btnShare.UseVisualStyleBackColor = true;
+            this.btnShare.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // ShareRunDialog
             // 
