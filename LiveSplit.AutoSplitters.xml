@@ -3768,7 +3768,7 @@
       <Game>Limbo</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ditmarvisser/Limbo-Autosplit/blob/master/LimboAutosplit.asl</URL>
+      <URL>https://raw.githubusercontent.com/ditmarvisser/Limbo-Autosplit/master/LimboAutosplit.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting for every chapter and Auto Start are available. Check the speedrun.com resources page for more info. (By DitmarVisser)</Description>
