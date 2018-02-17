@@ -1324,6 +1324,17 @@
     <Type>Component</Type>
     <Description>Load Removal is available. (By Sphere)</Description>
     <Website>https://github.com/kugelrund/LiveSplit.StEf2/blob/master/README.md</Website>
+  </AutoSplitter>	
+  <AutoSplitter>
+    <Games>
+      <Game>Soldier of Fortune</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.SoldierOfFortune/master/Components/LiveSplit.SoldierOfFortune.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By Sphere)</Description>
+    <Website>https://github.com/kugelrund/LiveSplit.SoldierOfFortune/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
