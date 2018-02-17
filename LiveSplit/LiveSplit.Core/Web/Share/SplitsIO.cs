@@ -215,10 +215,11 @@ namespace LiveSplit.Web.Share
                     stream.CopyTo(memoryStream);
                     memoryStream.Seek(0, SeekOrigin.Begin);
 
-                    var runFactory = new StandardFormatsRunFactory();
-
-                    runFactory.Stream = memoryStream;
-                    runFactory.FilePath = null;
+                    var runFactory = new StandardFormatsRunFactory
+                    {
+                        Stream = memoryStream,
+                        FilePath = null
+                    };
 
                     var run = runFactory.Create(new StandardComparisonGeneratorsFactory());
                     if (patchRun)

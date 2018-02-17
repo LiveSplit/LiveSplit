@@ -134,7 +134,7 @@ namespace LiveSplit.UI.Components
                 index++;
             }
 
-            OverallSize = totalSize;
+            OverallSize = Math.Max(totalSize, 1f);
         }
 
         public void Render(Graphics g, LiveSplitState state, float width, float height, LayoutMode mode, Region clipRegion)
@@ -147,7 +147,6 @@ namespace LiveSplit.UI.Components
                     var transform = g.Transform;
                     var crashedComponents = new List<IComponent>();
                     var index = 0;
-                    var totalSize = 0f;
                     foreach (var component in VisibleComponents)
                     {
                         try

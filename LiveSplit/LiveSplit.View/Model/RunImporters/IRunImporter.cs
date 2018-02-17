@@ -1,4 +1,5 @@
 ﻿using LiveSplit.UI;
+using LiveSplit.Web.SRL;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -12,23 +13,38 @@ namespace LiveSplit.Model.RunImporters
 
     public static class IRunImportRunExtensions
     {
+        private static int FindMatchingIndex(IRun target, ISegment segment, int startIndex)
+        {
+            for (int i = startIndex; i < target.Count; i++)
+            {
+                var targetSeg = target[i];
+                if (targetSeg.Name.Trim().ToLower() == segment.Name.Trim().ToLower())
+                    return i;
+            }
+            return -1;
+        }
+
         private static bool AddComparisonFromRun(this IRun target,
             IRun comparisonRun, string name, Form form = null)
         {
             if (!target.Comparisons.Contains(name))
             {
-                if (!name.StartsWith("[Race]"))
+                if (!SRLComparisonGenerator.IsRaceComparison(name))
                 {
                     target.CustomComparisons.Add(name);
+                    var maxMatched = -1;
                     foreach (var segment in comparisonRun)
                     {
                         if (segment == comparisonRun.Last())
                             target.Last().Comparisons[name] = comparisonRun.Last().PersonalBestSplitTime;
                         else
                         {
-                            var runSegment = target.FirstOrDefault(x => x.Name.Trim().ToLower() == segment.Name.Trim().ToLower());
-                            if (runSegment != null)
-                                runSegment.Comparisons[name] = segment.PersonalBestSplitTime;
+                            var matchingIndex = FindMatchingIndex(target, segment, maxMatched + 1);
+                            if (matchingIndex >= 0)
+                            {
+                                target[matchingIndex].Comparisons[name] = segment.PersonalBestSplitTime;
+                                maxMatched = matchingIndex;
+                            }
                         }
                     }
                     target.HasChanged = true;

@@ -134,6 +134,12 @@ namespace LiveSplit.Model
 
             var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
 
+            foreach (var curSplit in run)
+            {
+                var minIndex = curSplit.SegmentHistory.GetMinIndex();
+                FixHistoryFromNullBestSegments(curSplit, method, minIndex, maxIndex);
+            }
+
             foreach (var comparison in run.CustomComparisons)
             {
                 var previousTime = TimeSpan.Zero;
@@ -150,25 +156,26 @@ namespace LiveSplit.Model
                         }
 
                         //Fix Best Segment time if the PB segment is faster
-                        var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
                         if (comparison == Run.PersonalBestComparisonName)
                         {
-                            var minIndex = curSplit.SegmentHistory.GetMinIndex();
-
-                            FixHistoryFromNullBestSegments(curSplit, method, minIndex, maxIndex);
-
+                            var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
                             if (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment)
                             {
                                 var newTime = curSplit.BestSegmentTime;
                                 newTime[method] = currentSegment;
                                 curSplit.BestSegmentTime = newTime;
                             }
-
-                            FixHistoryFromBestSegmentTimes(curSplit, method, minIndex, maxIndex);
                         }
+
                         previousTime = curSplit.Comparisons[comparison][method].Value;
                     }
                 }
+            }
+
+            foreach (var curSplit in run)
+            {
+                var minIndex = curSplit.SegmentHistory.GetMinIndex();
+                FixHistoryFromBestSegmentTimes(curSplit, method, minIndex, maxIndex);
             }
         }
 
@@ -197,17 +204,46 @@ namespace LiveSplit.Model
 
         private static void RemoveDuplicates(IRun run, TimingMethod method)
         {
+            var rtaSet = new HashSet<TimeSpan>();
+            var igtSet = new HashSet<TimeSpan>();
             foreach (var segment in run)
             {
-                var history = segment.SegmentHistory.Select(x => x.Value[method]).Where(x => x != null).ToList();
+                rtaSet.Clear();
+                igtSet.Clear();
+
+                foreach (var attempt in run.AttemptHistory)
+                {
+                    var ind = attempt.Index;
+                    Time element;
+                    if (segment.SegmentHistory.TryGetValue(ind, out element))
+                    {
+                        if (element.RealTime != null)
+                            rtaSet.Add(element.RealTime.Value);
+                        if (element.GameTime != null)
+                            igtSet.Add(element.GameTime.Value);
+                    }
+                }
+
                 for (var runIndex = segment.SegmentHistory.GetMinIndex(); runIndex <= 0; runIndex++)
                 {
-                    //Remove elements in the imported Segment History if they're duplicates of the real Segment History
                     Time element;
-                    if (segment.SegmentHistory.TryGetValue(runIndex, out element) && history.Count(x => x.Equals(element[method])) > 1)
+                    if (segment.SegmentHistory.TryGetValue(runIndex, out element))
                     {
-                        segment.SegmentHistory.Remove(runIndex);
-                        history.Remove(element[method]);
+                        var isNull = true;
+                        var isUnique = false;
+                        if (element.RealTime != null)
+                        {
+                            isUnique |= rtaSet.Add(element.RealTime.Value);
+                            isNull = false;
+                        }
+                        if (element.GameTime != null)
+                        {
+                            isUnique |= igtSet.Add(element.GameTime.Value);
+                            isNull = false;
+                        }
+
+                        if (!isUnique && !isNull)
+                            segment.SegmentHistory.Remove(runIndex);
                     }
                 }
             }

@@ -303,6 +303,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimerForm_FormClosing);
             this.Load += new System.EventHandler(this.TimerForm_Load);
             this.Shown += new System.EventHandler(this.TimerForm_Shown);
+            this.ResizeBegin += new System.EventHandler(this.TimerForm_ResizeBegin);
+            this.ResizeEnd += new System.EventHandler(this.TimerForm_ResizeEnd);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.TimerForm_Paint);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TimerForm_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TimerForm_MouseMove);

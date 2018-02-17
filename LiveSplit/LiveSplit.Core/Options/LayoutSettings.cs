@@ -38,6 +38,7 @@ namespace LiveSplit.Options
         public bool UseRainbowColor { get; set; }
 
         public float Opacity { get; set; }
+        public bool MousePassThroughWhileRunning { get; set; }
 
         public object Clone()
         {
@@ -72,6 +73,7 @@ namespace LiveSplit.Options
             AntiAliasing = settings.AntiAliasing;
             DropShadows = settings.DropShadows;
             Opacity = settings.Opacity;
+            MousePassThroughWhileRunning = settings.MousePassThroughWhileRunning;
             BackgroundType = settings.BackgroundType;
             BackgroundImage = settings.BackgroundImage;
             ImageOpacity = settings.ImageOpacity;

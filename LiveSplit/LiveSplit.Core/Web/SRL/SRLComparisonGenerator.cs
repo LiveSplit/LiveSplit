@@ -17,5 +17,15 @@ namespace LiveSplit.Web.SRL
         public void Generate(ISettings settings)
         {
         }
+
+        public static string GetRaceComparisonName(string user)
+        {
+            return "[Race] " + user;
+        }
+
+        public static bool IsRaceComparison(string comparison)
+        {
+            return comparison.StartsWith("[Race] ");
+        }
     }
 }

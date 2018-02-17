@@ -274,9 +274,21 @@ namespace LiveSplit.Web.SRL
         protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)
         {
             var run = Model.CurrentState.Run;
-            var segment = run.FirstOrDefault(x => x.Name.Trim().ToLower() == segmentName.Trim().ToLower());
+            var segment = GetMatchingSegment(run, user, segmentName, method, time.HasValue);
             if (segment != null)
                 AddSplit(user, segment, time, method);
+        }
+
+        private static ISegment GetMatchingSegment(IRun run, string user, string segmentName, TimingMethod method, bool timeHasValue)
+        {
+            var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(user);
+            var trimmedSegmentName = segmentName.Trim().ToLower();
+
+            if (timeHasValue)
+            {
+                return run.FirstOrDefault(x => x.Name.Trim().ToLower() == trimmedSegmentName && x.Comparisons[comparisonName][method] == null);
+            }
+            return run.LastOrDefault(x => x.Name.Trim().ToLower() == trimmedSegmentName && x.Comparisons[comparisonName][method] != null);
         }
 
         protected void ProcessFinalSplit(string user, TimeSpan? time, TimingMethod method)
@@ -288,7 +300,7 @@ namespace LiveSplit.Web.SRL
 
         protected void AddSplit(string user, ISegment segment, TimeSpan? time, TimingMethod method)
         {
-            var comparisonName = "[Race] " + user;
+            var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(user);
             var newTime = new Time(segment.Comparisons[comparisonName]);
             newTime[method] = time;
             segment.Comparisons[comparisonName] = newTime;
@@ -310,16 +322,17 @@ namespace LiveSplit.Web.SRL
                 else if (message.Contains(" has been removed from the race."))
                 {
                     var userName = message.Substring(0, message.IndexOf(" "));
+                    var raceComparison = SRLComparisonGenerator.GetRaceComparisonName(userName);
 
-                    if (Model.CurrentState.CurrentComparison.Equals("[Race] " + userName))
+                    if (Model.CurrentState.CurrentComparison.Equals(raceComparison))
                         Model.CurrentState.CurrentComparison = Run.PersonalBestComparisonName;
                     
-                    var comparisonGenerator = Model.CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == ("[Race] " + userName));
+                    var comparisonGenerator = Model.CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == raceComparison);
                     if (comparisonGenerator != null)
                         Model.CurrentState.Run.ComparisonGenerators.Remove(comparisonGenerator);
                     
                     foreach (var segment in Model.CurrentState.Run)
-                        segment.Comparisons["[Race] " + userName] = default(Time);
+                        segment.Comparisons[raceComparison] = default(Time);
                 }
                 else if (message.StartsWith(Client.LocalUser.NickName + " enters the race!"))
                 {
@@ -362,7 +375,7 @@ namespace LiveSplit.Web.SRL
         protected void AddComparison(string userName)
         {
             var run = Model.CurrentState.Run;
-            var comparisonName = "[Race] " + userName;
+            var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(userName);
             if (run.ComparisonGenerators.All(x => x.Name != comparisonName))
             {
                 CompositeComparisons.AddShortComparisonName(comparisonName, userName);
@@ -372,11 +385,11 @@ namespace LiveSplit.Web.SRL
 
         public void RemoveRaceComparisons()
         {
-            if (Model.CurrentState.CurrentComparison.StartsWith("[Race] "))
+            if (SRLComparisonGenerator.IsRaceComparison(Model.CurrentState.CurrentComparison))
                 Model.CurrentState.CurrentComparison = Run.PersonalBestComparisonName;
             for (var ind = 0; ind < Model.CurrentState.Run.ComparisonGenerators.Count; ind++)
             {
-                if (Model.CurrentState.Run.ComparisonGenerators[ind].Name.StartsWith("[Race] "))
+                if (SRLComparisonGenerator.IsRaceComparison(Model.CurrentState.Run.ComparisonGenerators[ind].Name))
                 {
                     Model.CurrentState.Run.ComparisonGenerators.RemoveAt(ind);
                     ind--;
@@ -387,7 +400,7 @@ namespace LiveSplit.Web.SRL
                 for (var index = 0; index < segment.Comparisons.Count; index++)
                 {
                     var comparison = segment.Comparisons.ElementAt(index);
-                    if (comparison.Key.StartsWith("[Race] "))
+                    if (SRLComparisonGenerator.IsRaceComparison(comparison.Key))
                         segment.Comparisons[comparison.Key] = default(Time);
                 }
             }
@@ -411,19 +424,29 @@ namespace LiveSplit.Web.SRL
             {
                 if (message.StartsWith("!time ") || message.StartsWith("!done "))
                 {
-                    var method = message.Substring("!time ".Length).StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
-                    var cutOff = message.Substring("!time RealTime ".Length);
-                    var index = cutOff.LastIndexOf("\"");
-                    var timeString = cutOff.Substring(index > -1 ? index + 2 : 0);
-                    var time = ParseTime(timeString);
-
-                    if (index > -1)
+                    try
                     {
-                        var splitName = Unescape(cutOff.Substring(1, index - 1));
-                        ProcessSplit(user, splitName, time, method);
+                        var method = message.Substring("!time ".Length).StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
+                        var finalSplit = message.StartsWith("!done ");
+                        var arguments = message.Substring("!time RealTime ".Length);
+
+                        if (finalSplit)
+                        {
+                            var time = ParseTime(arguments);
+                            ProcessFinalSplit(user, time, method);
+                        }
+                        else
+                        {
+                            var timeIndex = arguments.LastIndexOf("\"");
+                            var splitName = Unescape(arguments.Substring(1, timeIndex - 1));
+                            var time = ParseTime(arguments.Substring(timeIndex + 2));
+                            ProcessSplit(user, splitName, time, method);
+                        }
                     }
-                    else
-                        ProcessFinalSplit(user, time, method);
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                    }
                 }
             }
         }

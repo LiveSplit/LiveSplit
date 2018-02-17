@@ -115,11 +115,66 @@ namespace LiveSplit.View
         public TimedBroadcasterPlugin XSplit { get; set; }
 #endif
 
+        private bool MousePassThrough
+        {
+            set
+            {
+                const int GWL_EXSTYLE = -20;
+
+                const uint WS_EX_LAYERED = 0x00080000;
+                const uint WS_EX_TRANSPARENT = 0x00000020;
+
+                // If we're trying to set to false and it's already false, don't bother doing anything.
+                // We can't do this for setting to true because setting Opacity may have messed the GWL_EXSTYLE flags up.
+                if (!value && !MousePassThroughState)
+                    return;
+                MousePassThroughState = value;
+
+                var prevWindowLong = GetWindowLong(Handle, GWL_EXSTYLE);
+                if (value)
+                {
+                    if ((prevWindowLong & (WS_EX_LAYERED | WS_EX_TRANSPARENT)) != (WS_EX_LAYERED | WS_EX_TRANSPARENT))
+                    {
+                        // We have to add WS_EX_LAYERED, because WS_EX_TRANSPARENT won't work otherwise.
+                        prevWindowLong |= WS_EX_LAYERED | WS_EX_TRANSPARENT;
+                        SetWindowLong(Handle, GWL_EXSTYLE, prevWindowLong);
+                    }
+                }
+                else
+                {
+                    // Not removing WS_EX_LAYERED because it may still be needed if Opacity != 1.
+                    // It shouldn't really affect anything and setting Form.Opacity to 1 will remove it anyway:
+                    prevWindowLong &= ~WS_EX_TRANSPARENT;
+                    SetWindowLong(Handle, GWL_EXSTYLE, prevWindowLong);
+                }
+            }
+        }
+        private bool MousePassThroughState = false;
+
+        private bool IsForegroundWindow
+        {
+            get
+            {
+                return GetForegroundWindow() == Handle;
+            }
+        }
+
+        private float? ResizingInitialAspectRatio { get; set; } = null;
+
         [DllImport("user32.dll")]
         static extern int GetUpdateRgn(IntPtr hWnd, IntPtr hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
 
         [DllImport("gdi32.dll")]
         static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
+
+        [DllImport("user32")]
+        private static extern uint SetWindowLong(IntPtr hwnd, int nIndex, uint dwNewLong);
+
+        [DllImport("user32")]
+        private static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        private static extern IntPtr GetForegroundWindow();
 
         public TimerForm(string splitsPath = null, string layoutPath = null, bool drawToBackBuffer = false, string basePath = "")
         {
@@ -156,6 +211,8 @@ namespace LiveSplit.View
             SettingsSaver = new XMLSettingsSaver();
             LoadSettings();
 
+            CurrentState.CurrentHotkeyProfile = Settings.HotkeyProfiles.First().Key;
+
             UpdateRecentSplits();
             UpdateRecentLayouts();
 
@@ -167,7 +224,7 @@ namespace LiveSplit.View
             {
                 if (!string.IsNullOrEmpty(splitsPath))
                 {
-                    run = LoadRunFromFile(splitsPath, TimingMethod.RealTime);
+                    run = LoadRunFromFile(splitsPath, TimingMethod.RealTime, CurrentState.CurrentHotkeyProfile);
                 }
                 else if (Settings.RecentSplits.Count > 0)
                 {
@@ -175,7 +232,10 @@ namespace LiveSplit.View
                     if (!string.IsNullOrEmpty(lastSplitFile.Path))
                     {
                         CurrentState.CurrentTimingMethod = lastSplitFile.LastTimingMethod;
-                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod);
+                        if (Settings.HotkeyProfiles.ContainsKey(lastSplitFile.LastHotkeyProfile))
+                            CurrentState.CurrentHotkeyProfile = lastSplitFile.LastHotkeyProfile;
+
+                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod, lastSplitFile.LastHotkeyProfile);
                     }
                 }
             }
@@ -248,7 +308,7 @@ namespace LiveSplit.View
 
             Hook = new CompositeHook();
             Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
-            Settings.RegisterHotkeys(Hook);
+            Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
 
             SizeChanged += TimerForm_SizeChanged;
 
@@ -647,9 +707,9 @@ namespace LiveSplit.View
             });
         }
 
-        private void AddSplitsFileToLRU(string filePath, IRun run, TimingMethod lastTimingMethod)
+        private void AddSplitsFileToLRU(string filePath, IRun run, TimingMethod lastTimingMethod, string lastHotkeyProfile)
         {
-            Settings.AddToRecentSplits(filePath, run, lastTimingMethod);
+            Settings.AddToRecentSplits(filePath, run, lastTimingMethod, lastHotkeyProfile);
             UpdateRecentSplits();
         }
 
@@ -692,7 +752,16 @@ namespace LiveSplit.View
                         {
                             var previousMethod = CurrentState.CurrentTimingMethod;
                             CurrentState.CurrentTimingMethod = splitsFile.LastTimingMethod;
-                            OpenRunFromFile(splitsFile.Path, previousMethod);
+
+                            var previousHotkeyProfile = CurrentState.CurrentHotkeyProfile;
+                            if (Settings.HotkeyProfiles.ContainsKey(splitsFile.LastHotkeyProfile))
+                            {
+                                CurrentState.CurrentHotkeyProfile = splitsFile.LastHotkeyProfile;
+                                Settings.UnregisterAllHotkeys(Hook);
+                                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+                            }
+
+                            OpenRunFromFile(splitsFile.Path, previousMethod, previousHotkeyProfile);
                         };
                         categoryMenuItem.DropDownItems.Add(menuItem);
                     }
@@ -789,8 +858,8 @@ namespace LiveSplit.View
                 {
                     if (!WarnUserAboutSplitsSave())
                         return;
-                    if (InTimerOnlyMode)
-                        RemoveTimerOnly();
+                    if (!WarnAndRemoveTimerOnly(true))
+                        return;
                     run.HasChanged = true;
                     SetRun(run);
                     CurrentState.CallRunManuallyModified();
@@ -915,8 +984,8 @@ namespace LiveSplit.View
             {
                 if (!WarnUserAboutSplitsSave())
                     return;
-                if (InTimerOnlyMode)
-                    RemoveTimerOnly();
+                if (!WarnAndRemoveTimerOnly(true))
+                    return;
                 run.HasChanged = true;
                 SetRun(run);
                 CurrentState.CallRunManuallyModified();
@@ -947,13 +1016,15 @@ namespace LiveSplit.View
         {
             Action action = () =>
             {
-                if ((ActiveForm == this || Settings.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
+                var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+
+                if ((ActiveForm == this || hotkeyProfile.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
                 {
-                    if (Settings.SplitKey == e)
+                    if (hotkeyProfile.SplitKey == e)
                     {
-                        if (Settings.HotkeyDelay > 0)
+                        if (hotkeyProfile.HotkeyDelay > 0)
                         {
-                            var splitTimer = new System.Timers.Timer(Settings.HotkeyDelay * 1000f);
+                            var splitTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
                             splitTimer.Enabled = true;
                             splitTimer.Elapsed += splitTimer_Elapsed;
                         }
@@ -961,26 +1032,26 @@ namespace LiveSplit.View
                             StartOrSplit();
                     }
 
-                    else if (Settings.UndoKey == e)
+                    else if (hotkeyProfile.UndoKey == e)
                     {
                         Model.UndoSplit();
                     }
 
-                    else if (Settings.SkipKey == e)
+                    else if (hotkeyProfile.SkipKey == e)
                     {
                         Model.SkipSplit();
                     }
 
-                    else if (Settings.ResetKey == e)
+                    else if (hotkeyProfile.ResetKey == e)
                     {
                         Reset();
                     }
 
-                    else if (Settings.PauseKey == e)
+                    else if (hotkeyProfile.PauseKey == e)
                     {
-                        if (Settings.HotkeyDelay > 0)
+                        if (hotkeyProfile.HotkeyDelay > 0)
                         {
-                            var pauseTimer = new System.Timers.Timer(Settings.HotkeyDelay * 1000f);
+                            var pauseTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
                             pauseTimer.Enabled = true;
                             pauseTimer.Elapsed += pauseTimer_Elapsed;
                         }
@@ -988,10 +1059,10 @@ namespace LiveSplit.View
                             Model.Pause();
                     }
 
-                    else if (Settings.SwitchComparisonPrevious == e)
+                    else if (hotkeyProfile.SwitchComparisonPrevious == e)
                         Model.SwitchComparisonPrevious();
 
-                    else if (Settings.SwitchComparisonNext == e)
+                    else if (hotkeyProfile.SwitchComparisonNext == e)
                         Model.SwitchComparisonNext();
                 }
 
@@ -1004,9 +1075,9 @@ namespace LiveSplit.View
                         Model.ScrollDown();
                 }
 
-                if (Settings.ToggleGlobalHotkeys == e)
+                if (hotkeyProfile.ToggleGlobalHotkeys == e)
                 {
-                    Settings.GlobalHotkeysEnabled = !Settings.GlobalHotkeysEnabled;
+                    hotkeyProfile.GlobalHotkeysEnabled = !hotkeyProfile.GlobalHotkeysEnabled;
                     SetProgressBar();
                 }
             };
@@ -1192,6 +1263,9 @@ namespace LiveSplit.View
 
             Opacity = Layout.Settings.Opacity;
 
+            // Set MousePassThrough after setting Opacity, because setting Opacity can reset the Form's WS_EX_LAYERED flag.
+            MousePassThrough = Layout.Settings.MousePassThroughWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running && !IsForegroundWindow;
+
             if (Layout.Settings.AntiAliasing)
                 g.TextRenderingHint = TextRenderingHint.AntiAlias;
             else
@@ -1203,8 +1277,8 @@ namespace LiveSplit.View
             FixSize();
 
             var scaleFactor = Layout.Mode == LayoutMode.Vertical
-                ? Height / Math.Max(ComponentRenderer.OverallSize, 1f)
-                : Width / Math.Max(ComponentRenderer.OverallSize, 1f);
+                ? Height / ComponentRenderer.OverallSize
+                : Width / ComponentRenderer.OverallSize;
 
             g.ResetTransform();
             g.TranslateTransform(-0.5f, -0.5f);
@@ -1411,6 +1485,7 @@ namespace LiveSplit.View
             const uint WM_NCHITTEST = 0x0084;
             const uint WM_MOUSEMOVE = 0x0200;
             const uint WM_PAINT = 0x000F;
+            const uint WM_SIZING = 0x0214;
 
             const uint HTLEFT = 10;
             const uint HTRIGHT = 11;
@@ -1452,6 +1527,11 @@ namespace LiveSplit.View
                 }
             }
 
+            if (m.Msg == WM_SIZING)
+            {
+                handled = WmSizingProc(ref m);
+            }
+
             if (m.Msg == WM_PAINT)
             {
                 if (hRgn != IntPtr.Zero)
@@ -1481,6 +1561,70 @@ namespace LiveSplit.View
                     Log.Error(ex);
                 }
             }
+        }
+
+        private bool WmSizingProc(ref Message m)
+        {
+            const uint WMSZ_TOPLEFT = 4;
+            const uint WMSZ_TOPRIGHT = 5;
+            const uint WMSZ_BOTTOMLEFT = 7;
+            const uint WMSZ_BOTTOMRIGHT = 8;
+
+            if (!ResizingInitialAspectRatio.HasValue)
+                return false;
+
+            if (!ModifierKeys.HasFlag(Keys.Shift))
+                return false;
+
+            bool anchorLeft;
+            bool anchorTop;
+
+            switch ((uint)m.WParam)
+            {
+                case WMSZ_TOPLEFT:
+                    anchorLeft = false;
+                    anchorTop = false;
+                    break;
+                case WMSZ_TOPRIGHT:
+                    anchorLeft = true;
+                    anchorTop = false;
+                    break;
+                case WMSZ_BOTTOMLEFT:
+                    anchorLeft = false;
+                    anchorTop = true;
+                    break;
+                case WMSZ_BOTTOMRIGHT:
+                    anchorLeft = true;
+                    anchorTop = true;
+                    break;
+
+                default:
+                    return false;
+            }
+
+            var rect = (Win32.RECT)Marshal.PtrToStructure(m.LParam, typeof(Win32.RECT));
+            var currentAspectRatio = (float)rect.Width / rect.Height;
+
+            if (currentAspectRatio >= ResizingInitialAspectRatio.Value)
+            {
+                var newWidth = (int)(rect.Height * ResizingInitialAspectRatio.Value);
+                if (anchorLeft)
+                    rect.Right = rect.Left + newWidth;
+                else
+                    rect.Left = rect.Right - newWidth;
+            }
+            else
+            {
+                var newHeight = (int)(rect.Width / ResizingInitialAspectRatio.Value);
+                if (anchorTop)
+                    rect.Bottom = rect.Top + newHeight;
+                else
+                    rect.Top = rect.Bottom - newHeight;
+            }
+
+            Marshal.StructureToPtr(rect, m.LParam, false);
+
+            return true;
         }
 
         IntPtr hRgn = IntPtr.Zero;
@@ -1543,13 +1687,13 @@ namespace LiveSplit.View
                 CurrentState.Run.AutoSplitter.Deactivate();
         }
 
-        private void AddCurrentSplitsToLRU(TimingMethod lastTimingMethod)
+        private void AddCurrentSplitsToLRU(TimingMethod lastTimingMethod, string lastHotkeyProfile)
         {
             if (CurrentState.Run != null && Settings.RecentSplits.Any(x => x.Path == CurrentState.Run.FilePath))
-                AddSplitsFileToLRU(CurrentState.Run.FilePath, CurrentState.Run, lastTimingMethod);
+                AddSplitsFileToLRU(CurrentState.Run.FilePath, CurrentState.Run, lastTimingMethod, lastHotkeyProfile);
         }
 
-        private IRun LoadRunFromFile(string filePath, TimingMethod previousTimingMethod)
+        private IRun LoadRunFromFile(string filePath, TimingMethod previousTimingMethod, string previousHotkeyProfile)
         {
             IRun run;
 
@@ -1561,11 +1705,9 @@ namespace LiveSplit.View
                 run = RunFactory.Create(ComparisonGeneratorsFactory);
             }
 
-            AddCurrentSplitsToLRU(previousTimingMethod);
-            AddSplitsFileToLRU(filePath, run, CurrentState.CurrentTimingMethod);
+            AddCurrentSplitsToLRU(previousTimingMethod, previousHotkeyProfile);
+            AddSplitsFileToLRU(filePath, run, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
-            if (InTimerOnlyMode)
-                RemoveTimerOnly();
             return run;
         }
 
@@ -1580,15 +1722,17 @@ namespace LiveSplit.View
             }
         }
 
-        private void OpenRunFromFile(string filePath, TimingMethod previousTimingMethod)
+        private void OpenRunFromFile(string filePath, TimingMethod previousTimingMethod, string previousHotkeyProfile)
         {
             Cursor.Current = Cursors.WaitCursor;
             try
             {
                 if (!WarnUserAboutSplitsSave())
                     return;
+                if (!WarnAndRemoveTimerOnly(true))
+                    return;
 
-                var run = LoadRunFromFile(filePath, previousTimingMethod);
+                var run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
                 SetRun(run);
                 CurrentState.CallRunManuallyModified();
             }
@@ -1614,7 +1758,7 @@ namespace LiveSplit.View
                     var result = splitDialog.ShowDialog(this);
                     if (result == DialogResult.OK)
                     {
-                        OpenRunFromFile(splitDialog.FileName, CurrentState.CurrentTimingMethod);
+                        OpenRunFromFile(splitDialog.FileName, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
                     }
                 }
                 finally
@@ -1709,7 +1853,7 @@ namespace LiveSplit.View
                     CurrentState.Run.HasChanged = false;
                 }
 
-                AddSplitsFileToLRU(savePath, stateCopy.Run, CurrentState.CurrentTimingMethod);
+                AddSplitsFileToLRU(savePath, stateCopy.Run, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
             }
             catch (Exception ex)
             {
@@ -1816,30 +1960,36 @@ namespace LiveSplit.View
         {
             RegenerateComparisons();
             CurrentState.CallRunManuallyModified();
-            if (InTimerOnlyMode)
-                RemoveTimerOnly();
+            WarnAndRemoveTimerOnly(false);
         }
 
-        protected void RemoveTimerOnly()
+        protected bool WarnAndRemoveTimerOnly(bool canCancel)
         {
-            InTimerOnlyMode = false;
-            ILayout layout;
-            try
+            if (InTimerOnlyMode)
             {
-                var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
-                if (lastLayoutPath != null)
-                    layout = LoadLayoutFromFile(lastLayoutPath);
-                else
+                if (!WarnUserAboutLayoutSave(canCancel))
+                    return false;
+
+                InTimerOnlyMode = false;
+                ILayout layout;
+                try
+                {
+                    var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
+                    if (lastLayoutPath != null)
+                        layout = LoadLayoutFromFile(lastLayoutPath);
+                    else
+                        layout = new StandardLayoutFactory().Create(CurrentState);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
                     layout = new StandardLayoutFactory().Create(CurrentState);
+                }
+                layout.X = Location.X;
+                layout.Y = Location.Y;
+                SetLayout(layout);
             }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                layout = new StandardLayoutFactory().Create(CurrentState);
-            }
-            layout.X = Location.X;
-            layout.Y = Location.Y;
-            SetLayout(layout);
+            return true;
         }
 
         private void EditLayout()
@@ -2014,7 +2164,7 @@ namespace LiveSplit.View
 
         private void OpenLayoutFromFile(string filePath)
         {
-            if (WarnUserAboutLayoutSave())
+            if (WarnUserAboutLayoutSave(true))
             {
                 Cursor.Current = Cursors.WaitCursor;
                 try
@@ -2035,7 +2185,7 @@ namespace LiveSplit.View
 
         private void LoadDefaultLayout()
         {
-            if (WarnUserAboutLayoutSave())
+            if (WarnUserAboutLayoutSave(true))
             {
                 var layout = new StandardLayoutFactory().Create(CurrentState);
                 layout.X = Location.X;
@@ -2085,16 +2235,20 @@ namespace LiveSplit.View
 
         private void CloseSplits()
         {
+            var needToChangeLayout = Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer";
+
             if (!WarnUserAboutSplitsSave())
                 return;
-            if (!WarnUserAboutLayoutSave())
+            if (needToChangeLayout && !WarnUserAboutLayoutSave(true))
                 return;
+
             var run = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
             Model.Reset();
             SetRun(run);
-            Settings.AddToRecentSplits("", null, TimingMethod.RealTime);
+            Settings.AddToRecentSplits("", null, TimingMethod.RealTime, CurrentState.CurrentHotkeyProfile);
             InTimerOnlyMode = true;
-            if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
+
+            if (needToChangeLayout)
             {
                 var layout = new TimerOnlyLayoutFactory().Create(CurrentState);
                 layout.Settings = Layout.Settings;
@@ -2188,14 +2342,15 @@ namespace LiveSplit.View
             return true;
         }
 
-        private bool WarnUserAboutLayoutSave()
+        private bool WarnUserAboutLayoutSave(bool canCancel)
         {
             if (Layout.HasChanged)
             {
                 try
                 {
                     DontRedraw = true;
-                    var result = MessageBox.Show(this, "Your layout has been updated but not yet saved.\nDo you want to save your layout now?", "Save Layout?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    var buttons = canCancel ? MessageBoxButtons.YesNoCancel : MessageBoxButtons.YesNo;
+                    var result = MessageBox.Show(this, "Your layout has been updated but not yet saved.\nDo you want to save your layout now?", "Save Layout?", buttons, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         SaveLayout();
@@ -2220,14 +2375,14 @@ namespace LiveSplit.View
                 e.Cancel = true;
                 return;
             }
-            if (!WarnUserAboutLayoutSave())
+            if (!WarnUserAboutLayoutSave(true))
             {
                 e.Cancel = true;
                 return;
             }
 
             Settings.LastComparison = CurrentState.CurrentComparison;
-            AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod);
+            AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
             try
             {
@@ -2260,7 +2415,7 @@ namespace LiveSplit.View
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
-            var editor = new SettingsDialog(Hook, Settings);
+            var editor = new SettingsDialog(Hook, Settings, CurrentState.CurrentHotkeyProfile);
             editor.SumOfBestModeChanged += editor_SumOfBestModeChanged;
             try
             {
@@ -2276,8 +2431,11 @@ namespace LiveSplit.View
                         RegenerateComparisons();
                 }
                 else
+                {
                     SwitchComparisonGenerators();
-                Settings.RegisterHotkeys(Hook);
+                    CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
+                }
+                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
             }
             finally
             {
@@ -2364,7 +2522,7 @@ namespace LiveSplit.View
                     (LiveSplitState)(CurrentState.Clone()),
                     Settings,
                     () => MakeScreenShot(false)).ShowDialog(this);
-                Settings.RegisterHotkeys(Hook);
+                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
             }
             finally
             {
@@ -2442,10 +2600,13 @@ namespace LiveSplit.View
 
         private void hotkeysMenuItem_Click(object sender, EventArgs e)
         {
+            var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+
             if (hotkeysMenuItem.Checked)
-                hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled = false;
+                hotkeysMenuItem.Checked = hotkeyProfile.GlobalHotkeysEnabled = false;
             else
-                hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled = true;
+                hotkeysMenuItem.Checked = hotkeyProfile.GlobalHotkeysEnabled = true;
+
             SetProgressBar();
         }
 
@@ -2468,9 +2629,10 @@ namespace LiveSplit.View
         {
             try
             {
-                if (Settings.ToggleGlobalHotkeys != null)
+                var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+                if (hotkeyProfile.ToggleGlobalHotkeys != null)
                 {
-                    TaskbarManager.Instance.SetProgressState(Settings.GlobalHotkeysEnabled ? TaskbarProgressBarState.Normal : TaskbarProgressBarState.Error);
+                    TaskbarManager.Instance.SetProgressState(hotkeyProfile.GlobalHotkeysEnabled ? TaskbarProgressBarState.Normal : TaskbarProgressBarState.Error);
                     TaskbarManager.Instance.SetProgressValue(100, 100);
                 }
                 else
@@ -2596,7 +2758,7 @@ namespace LiveSplit.View
             controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
             controlMenuItem.DropDownItems.Add(hotkeysMenuItem);
 
-            hotkeysMenuItem.Checked = Settings.GlobalHotkeysEnabled;
+            hotkeysMenuItem.Checked = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].GlobalHotkeysEnabled;
 
             var components = Layout.Components;
             if (CurrentState.Run.IsAutoSplitterActive())
@@ -2622,6 +2784,17 @@ namespace LiveSplit.View
         {
             RebuildControlMenu();
             RebuildComparisonsMenu();
+        }
+
+        private void TimerForm_ResizeBegin(object sender, EventArgs e)
+        {
+            if (Size.Height > 0)
+                ResizingInitialAspectRatio = (float)Size.Width / Size.Height;
+        }
+
+        private void TimerForm_ResizeEnd(object sender, EventArgs e)
+        {
+            ResizingInitialAspectRatio = null;
         }
     }
 }
