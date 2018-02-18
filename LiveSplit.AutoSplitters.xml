@@ -3796,5 +3796,25 @@
     <Description>Auto Splitting for every chapter and Auto Start are available. Check the speedrun.com resources page for more info. (By DitmarVisser)</Description>
     <Website>https://github.com/ditmarvisser/Limbo-Autosplit</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dead Rising 2: Off The Record</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Souzooka/Dead-Rising-2-Off-The-Record-AutoSplitter/blob/master/DR2OTRLoadless.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Souzooka)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dead Rising 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Souzooka/Dead-Rising-2-Loadless-Timer/master/DR2Loadless.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Souzooka)</Description>
+  </AutoSplitter>
 </AutoSplitters>
 
