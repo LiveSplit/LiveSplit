@@ -3045,6 +3045,16 @@
     <Type>Script</Type>
     <Description>Auto-Split on mission accept/report/retire, TE kill and Tutorial Fights, auto-start on file load. (By Marenthyu)</Description>
   </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Hyperdimension Neptunia Re;Birth2: Sisters Generation</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Marenthyu/LiveSplitScripts/master/rebirth2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-Split on Cutscenes and certain Events. (By Marenthyu & Dabomstew)</Description>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Star Wars Battlefront II</Game>
