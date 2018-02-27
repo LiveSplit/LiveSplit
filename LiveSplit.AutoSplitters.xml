@@ -3847,4 +3847,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Souzooka)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dragon Age: Inquisition</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Ekelbatzen/LiveSplit.Scripts/master/dai.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Ekelbatzen & LettersWords)</Description>
+  </AutoSplitter>
 </AutoSplitters>
