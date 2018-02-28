@@ -446,6 +446,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Fallout</Game>
+      <Game>Fallout 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/fallout12.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Crash Time Removal is available. (By DrTChops)</Description>
+    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Fallout 3</Game>
     </Games>
     <URLs>
