@@ -1009,10 +1009,10 @@
       <Game>BioShock Infinite (PC)</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/bladecoding/ASL/master/BioInf.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/BioInf.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By blcd)</Description>
+    <Description>Automatic Timer Start and Load Removal are available. (By Blade and PrototypeAlpha)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1023,7 +1023,7 @@
       <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/BioInfDLC.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic Timer Start and Load Removal are available. (By blcd and PrototypeAlpha)</Description>
+    <Description>Automatic Timer Start and Load Removal are available. (By Blade and PrototypeAlpha)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
