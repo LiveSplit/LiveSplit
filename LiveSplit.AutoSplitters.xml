@@ -3869,4 +3869,14 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Ekelbatzen and LettersWords)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Postal 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TheIntercom/Autosplitters/master/Postal2/LiveSplit-Postal2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal, Autosplitting, and Auto-reset are available. (By TheIntercom)</Description>
+  </AutoSplitter>
 </AutoSplitters>
