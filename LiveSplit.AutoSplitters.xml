@@ -3872,11 +3872,14 @@
   <AutoSplitter>
     <Games>
       <Game>Postal 2</Game>
+      <Game>Postal 2: Apocalypse Weekend</Game>
+      <Game>Postal 2: Paradise Lost</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/TheIntercom/Autosplitters/master/Postal2/LiveSplit-Postal2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal, Autosplitting, and Auto-reset are available. (By TheIntercom)</Description>
+    <Description>Load Removal, Auto-splitting, and Auto-reset are available. (By TheIntercom)</Description>
+	  <Website>https://github.com/TheIntercom/Autosplitters</Website>
   </AutoSplitter>
 </AutoSplitters>
