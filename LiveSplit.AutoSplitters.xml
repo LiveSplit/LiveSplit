@@ -1258,10 +1258,10 @@
       <Game>RotTR</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/JMaynard24/ASL/master/ROTTR.asl</URL>
+      <URL>https://raw.githubusercontent.com/Leemyy/ASL/master/RotTR.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Aphox and Dread)</Description>
+    <Description>Auto Splitting and Load Removal are available. (By Atorizil and Leemyy)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
