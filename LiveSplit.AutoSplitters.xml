@@ -2,6 +2,16 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Rayman 2: The Great Escape</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/RibShark/Rayman2AutoSplitter/master/LiveSplit.Rayman2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto starting, resetting and splitting. Starts after the opening cutscene, final split is performed once the final boss is defeated. (By RibShark)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Persist - A Tale of Redemption</Game>
     </Games>
     <URLs>
