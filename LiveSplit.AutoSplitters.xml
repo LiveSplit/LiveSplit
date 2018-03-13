@@ -2,6 +2,16 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Rayman 2: The Great Escape</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/RibShark/Rayman2AutoSplitter/master/LiveSplit.Rayman2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto starting, resetting and splitting. Starts after the opening cutscene, final split is performed once the final boss is defeated. (By RibShark)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Persist - A Tale of Redemption</Game>
     </Games>
     <URLs>
@@ -224,7 +234,17 @@
       <Game>Left 4 Dead 2</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.L4D2.asl</URL>
+      <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D2/L4D2v1.6.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Splitting are available. (By bill_play3)</Description>
+  </AutoSplitter>
+	<AutoSplitter>
+    <Games>
+      <Game>Left 4 Dead</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D1/L4Dv1.1.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal and Auto Splitting are available. (By bill_play3)</Description>
@@ -432,6 +452,18 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By DrTChops)</Description>
+    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Fallout</Game>
+      <Game>Fallout 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/drtchops/asl/master/fallout12.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Crash Time Removal is available. (By DrTChops)</Description>
     <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -999,10 +1031,10 @@
       <Game>BioShock Infinite (PC)</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/bladecoding/ASL/master/BioInf.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/BioInf.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By blcd)</Description>
+    <Description>Automatic Timer Start and Load Removal are available. (By Blade and PrototypeAlpha)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1013,7 +1045,7 @@
       <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/BioInfDLC.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic Timer Start and Load Removal are available. (By blcd and PrototypeAlpha)</Description>
+    <Description>Automatic Timer Start and Load Removal are available. (By Blade and PrototypeAlpha)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1236,10 +1268,10 @@
       <Game>RotTR</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/JMaynard24/ASL/master/ROTTR.asl</URL>
+      <URL>https://raw.githubusercontent.com/Leemyy/ASL/master/RotTR.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Aphox and Dread)</Description>
+    <Description>Auto Splitting and Load Removal are available. (By Atorizil and Leemyy)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1324,6 +1356,17 @@
     <Type>Component</Type>
     <Description>Load Removal is available. (By Sphere)</Description>
     <Website>https://github.com/kugelrund/LiveSplit.StEf2/blob/master/README.md</Website>
+  </AutoSplitter>	
+  <AutoSplitter>
+    <Games>
+      <Game>Soldier of Fortune</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.SoldierOfFortune/master/Components/LiveSplit.SoldierOfFortune.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal is available. (By Sphere)</Description>
+    <Website>https://github.com/kugelrund/LiveSplit.SoldierOfFortune/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2425,6 +2468,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Far Cry 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/lotsofs/livesplit-asl/master/farcry2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available for v1.00 (By S.)</Description>
+    <Website>https://github.com/lotsofs/livesplit-asl/blob/master/README.md</Website>
+  </AutoSplitter>	
+  <AutoSplitter>
+    <Games>
       <Game>Hard Reset Redux</Game>
     </Games>
     <URLs>
@@ -2513,7 +2567,7 @@
       <Game>Shovel Knight</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.ShovelKnight/raw/master/Components/LiveSplit.ShovelKnight.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.ShovelKnight/master/Components/LiveSplit.ShovelKnight.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
@@ -3024,6 +3078,16 @@
     <Type>Script</Type>
     <Description>Auto-Split on mission accept/report/retire, TE kill and Tutorial Fights, auto-start on file load. (By Marenthyu)</Description>
   </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Hyperdimension Neptunia Re;Birth2: Sisters Generation</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Marenthyu/LiveSplitScripts/master/rebirth2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-Split on Cutscenes and certain Events. (By Marenthyu and Dabomstew)</Description>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Star Wars Battlefront II</Game>
@@ -3095,7 +3159,7 @@
       <Game>Kalimba</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.Kalimba/raw/master/Components/LiveSplit.Kalimba.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Kalimba/master/Components/LiveSplit.Kalimba.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting are available. (By DevilSquirrel)</Description>
@@ -3108,7 +3172,7 @@
       <Game>Ori DE</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.OriDE/raw/master/Components/LiveSplit.OriDE.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.OriDE/master/Components/LiveSplit.OriDE.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
@@ -3120,7 +3184,7 @@
       <Game>Hollow Knight</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.HollowKnight/raw/master/Components/LiveSplit.HollowKnight.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.HollowKnight/master/Components/LiveSplit.HollowKnight.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Configurable Load Remover / Auto Splitter. (By DevilSquirrel)</Description>
@@ -3132,7 +3196,7 @@
       <Game>Epistory</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.Epistory/raw/master/Components/LiveSplit.Epistory.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Epistory/master/Components/LiveSplit.Epistory.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
@@ -3143,7 +3207,7 @@
       <Game>Splasher</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.Splasher/raw/master/Components/LiveSplit.Splasher.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Splasher/master/Components/LiveSplit.Splasher.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
@@ -3156,7 +3220,7 @@
       <Game>SteamWorldDig</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.SteamWorldDig/raw/master/Components/LiveSplit.SteamWorldDig.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.SteamWorldDig/master/Components/LiveSplit.SteamWorldDig.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
@@ -3168,7 +3232,7 @@
       <Game>Defunct</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.Defunct/raw/master/Components/LiveSplit.Defunct.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Defunct/master/Components/LiveSplit.Defunct.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting available. (By DevilSquirrel)</Description>
@@ -3325,7 +3389,7 @@
       <Game>SWD2</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.SteamWorldDig2/raw/master/Components/LiveSplit.SteamWorldDig2.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.SteamWorldDig2/master/Components/LiveSplit.SteamWorldDig2.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Configurable Auto Splitter (By DevilSquirrel)</Description>
@@ -3337,7 +3401,7 @@
       <Game>Cuphead</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.Cuphead/raw/master/Components/LiveSplit.Cuphead.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Cuphead/master/Components/LiveSplit.Cuphead.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
@@ -3379,7 +3443,7 @@
       <Game>Tinertia</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.Tinertia/raw/master/Components/LiveSplit.Tinertia.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Tinertia/master/Components/LiveSplit.Tinertia.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
@@ -3574,7 +3638,7 @@
       <Game>Chronology</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.Chronology/raw/master/Components/LiveSplit.Chronology.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Chronology/master/Components/LiveSplit.Chronology.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
@@ -3586,7 +3650,7 @@
       <Game>APixelStory</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.APixelStory/raw/master/Components/LiveSplit.APixelStory.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.APixelStory/master/Components/LiveSplit.APixelStory.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
@@ -3598,7 +3662,7 @@
       <Game>Yono</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.Yono/raw/master/Components/LiveSplit.Yono.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Yono/master/Components/LiveSplit.Yono.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal / Autosplitting is available. (By DevilSquirrel)</Description>
@@ -3714,7 +3778,7 @@
       <Game>Escape Goat 2</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.EscapeGoat2/raw/master/Components/LiveSplit.EscapeGoat2.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.EscapeGoat2/master/Components/LiveSplit.EscapeGoat2.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Autosplitting is available. (By DevilSquirrel)</Description>
@@ -3736,7 +3800,7 @@
       <Game>Celeste</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/ShootMe/LiveSplit.Celeste/raw/master/Components/LiveSplit.Celeste.dll</URL>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Celeste/master/Components/LiveSplit.Celeste.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Autosplitting is available. (By DevilSquirrel)</Description>
@@ -3750,7 +3814,7 @@
       <URL>https://raw.githubusercontent.com/BR-/LiveSplit.Bleed2/master/Bleed2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>In-game time, auto-start, and auto-split available for Story Mode and Arcade Mode. (By Altafen)</Description>
+    <Description>In-game time, auto-start, auto-split, and auto-reset available for Story, Arcade, and Endless Mode. (By Altafen)</Description>
     <Website>https://github.com/BR-/LiveSplit.Bleed2</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -3805,5 +3869,27 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By Souzooka)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dragon Age: Inquisition</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Ekelbatzen/LiveSplit.Scripts/master/dai.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Ekelbatzen and LettersWords)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Postal 2</Game>
+      <Game>Postal 2: Apocalypse Weekend</Game>
+      <Game>Postal 2: Paradise Lost</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TheIntercom/Autosplitters/master/Postal2/LiveSplit-Postal2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal, Auto-splitting, and Auto-reset are available. (By TheIntercom)</Description>
+	  <Website>https://github.com/TheIntercom/Autosplitters</Website>
+  </AutoSplitter>
 </AutoSplitters>
-
