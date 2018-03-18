@@ -3882,4 +3882,14 @@
     <Description>Load Removal, Auto-splitting, and Auto-reset are available. (By TheIntercom)</Description>
 	  <Website>https://github.com/TheIntercom/Autosplitters</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Secret of Mana (2018)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Nariom/asl/master/Secret_of_Mana.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available.</Description>
+  </AutoSplitter>
 </AutoSplitters>
