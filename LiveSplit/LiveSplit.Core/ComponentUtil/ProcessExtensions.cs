@@ -307,6 +307,19 @@ namespace LiveSplit.ComponentUtil
                 return default_;
             return str;
         }
+        
+        public static bool WriteValue<T>(this Process process, IntPtr addr, T obj) where T : struct
+        {
+            int size = Marshal.SizeOf(obj);
+            byte[] arr = new byte[size];
+
+            IntPtr ptr = Marshal.AllocHGlobal(size);
+            Marshal.StructureToPtr(obj, ptr, true);
+            Marshal.Copy(ptr, arr, 0, size);
+            Marshal.FreeHGlobal(ptr);
+
+            return process.WriteBytes(addr, arr);
+        }
 
         public static bool WriteBytes(this Process process, IntPtr addr, byte[] bytes)
         {
