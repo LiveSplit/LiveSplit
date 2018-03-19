@@ -3561,16 +3561,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>SUPERHOT VR</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/the-jay/autosplitters/master/LiveSplit.SuperHotVR.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto Splitting is available (by Jay)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Quest RPG: Brian's Journey</Game>
       <Game>Quest: Brian's Journey</Game>
     </Games>
