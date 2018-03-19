@@ -382,6 +382,13 @@ namespace LiveSplit.View
             RefreshComparisonItems();
         }
 
+        private string GetShortenedGameAndGoal(string goal)
+        {
+            if (goal.Length > 65)
+                return goal.Substring(0, 60) + "...";
+            return goal;
+        }
+
         void SRL_RacesRefreshed(object sender, EventArgs e)
         {
             Action<ToolStripItem> addItem = null;
@@ -416,11 +423,10 @@ namespace LiveSplit.View
                 if (race.state != 1)
                     continue;
 
-                var game = race.game.name;
-                var goal = race.goal;
+                var gameAndGoal = GetShortenedGameAndGoal(string.Format("{0} - {1}", race.game.name, race.goal));
                 var entrants = race.numentrants;
                 var plural = entrants == 1 ? "" : "s";
-                var title = string.Format("{0} - {1} ({2} Entrant{3})", game, goal, entrants, plural) as string;
+                var title = string.Format("{0} ({1} Entrant{2})", gameAndGoal, entrants, plural) as string;
                 var item = new ToolStripMenuItem();
                 item.Text = title.EscapeMenuItemText();
                 item.Tag = race.id;
@@ -438,8 +444,7 @@ namespace LiveSplit.View
                 if (race.state != 3)
                     continue;
 
-                var game = race.game.name;
-                var goal = race.goal;
+                var gameAndGoal = GetShortenedGameAndGoal(string.Format("{0} - {1}", race.game.name, race.goal));
                 var entrants = race.numentrants;
                 var startTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
                 startTime = startTime.AddSeconds(race.time);
@@ -478,7 +483,7 @@ namespace LiveSplit.View
                                 if (timeSpan < TimeSpan.Zero)
                                     timeSpan = TimeSpan.Zero;
                                 var time = new RegularTimeFormatter().Format(timeSpan);
-                                var title = string.Format("[{0}] {1} - {2} ({3} / {4} Finished)", time, game, goal, finishedCount, entrants - forfeitedCount) as string;
+                                var title = string.Format("[{0}] {1} ({2}/{3} Finished)", time, gameAndGoal, finishedCount, entrants - forfeitedCount) as string;
                                 tsItem.Text = title.EscapeMenuItemText();
                             }
                             catch { }
