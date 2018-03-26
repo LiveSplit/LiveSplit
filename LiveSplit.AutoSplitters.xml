@@ -3892,4 +3892,16 @@
     <Type>Script</Type>
     <Description>Load Removal is available.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Super Metroid</Game>
+      <Game>Super Metroid Category Extensions</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/UNHchabo/AutoSplitters/master/SuperMetroid/LiveSplit.SuperMetroid.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, In-Game Time, and Auto Start/Reset are available. (By UNHchabo)</Description>
+    <Website>https://github.com/UNHchabo/AutoSplitters/tree/master/SuperMetroid</Website>
+  </AutoSplitter>
 </AutoSplitters>
