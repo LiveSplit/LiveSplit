@@ -1910,13 +1910,48 @@
       <Game>Talos</Game>
       <Game>Road to Gehenna</Game>
       <Game>Gehenna</Game>
+      <Game>The Talos Principle Category Extensions</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/jbzdarkid/611993edbfc9a774e95234166be52f2a/raw</URL>
+      <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.TheTalosPrinciple.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Website>https://gist.github.com/jbzdarkid/611993edbfc9a774e95234166be52f2a</Website>
+    <Website>https://github.com/jbzdarkid/Autosplitters</Website>
     <Description>Auto splitting, Automatic start/reset, and load removal (By Darkid)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Witness</Game>
+      <Game>Witness</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.TheWitness2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/jbzdarkid/Autosplitters</Website>
+    <Description>Auto splitting and Automatic start/reset (By Darkid)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Braid</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.Braid.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/jbzdarkid/Autosplitters</Website>
+    <Description>Auto splitting, Automatic start/reset, and in-game time (By Darkid)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>BattleBlock Theater</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.BattleBlockTheater.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/jbzdarkid/Autosplitters</Website>
+    <Description>Auto splitting and Automatic start/reset (By Darkid)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2517,18 +2552,6 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load screen time removal is available. (By SuicideMachine)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>The Witness</Game>
-      <Game>Witness</Game>
-    </Games>
-    <URLs>
-      <URL>https://gist.githubusercontent.com/jbzdarkid/0948c9318c6da6a7c459681f181c7ee9/raw</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Website>https://gist.github.com/jbzdarkid/0948c9318c6da6a7c459681f181c7ee9</Website>
-    <Description>Auto splitting on panels and Automatic start/reset (By Darkid)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3528,17 +3551,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Braid</Game>
-    </Games>
-    <URLs>
-      <URL>https://gist.githubusercontent.com/jbzdarkid/4a97fa029a80d88560eeaa5096b8701f/raw</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Website>https://gist.githubusercontent.com/jbzdarkid/4a97fa029a80d88560eeaa5096b8701f</Website>
-    <Description>Auto splitting, Automatic start/reset, and in-game time (By Darkid)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>DYE</Game>
     </Games>
     <URLs>
@@ -3590,17 +3602,6 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By ItsJabo)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>BattleBlock Theater</Game>
-    </Games>
-    <URLs>
-      <URL>https://gist.githubusercontent.com/jbzdarkid/5f9c0fa8534e9047f375f2c1c99fe1fd/raw</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Website>https://gist.github.com/jbzdarkid/5f9c0fa8534e9047f375f2c1c99fe1fd</Website>
-    <Description>Auto splitting, Automatic start/reset (By Darkid)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
