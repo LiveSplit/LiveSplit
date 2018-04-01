@@ -1356,7 +1356,7 @@
     <Type>Component</Type>
     <Description>Load Removal is available. (By Sphere)</Description>
     <Website>https://github.com/kugelrund/LiveSplit.StEf2/blob/master/README.md</Website>
-  </AutoSplitter>	
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Soldier of Fortune</Game>
@@ -2511,7 +2511,7 @@
     <Type>Script</Type>
     <Description>Load Removal is available for v1.00 (By S.)</Description>
     <Website>https://github.com/lotsofs/livesplit-asl/blob/master/README.md</Website>
-  </AutoSplitter>	
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Hard Reset Redux</Game>
@@ -3904,5 +3904,15 @@
     <Type>Script</Type>
     <Description>Auto Splitting, In-Game Time, and Auto Start/Reset are available. (By UNHchabo)</Description>
     <Website>https://github.com/UNHchabo/AutoSplitters/tree/master/SuperMetroid</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>KHOLAT</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ItsTrigger/LiveSplit-Auto-Splitters/master/LiveSplit.KHOLAT.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load time removal is available. (By Trigger)</Description>
   </AutoSplitter>
 </AutoSplitters>
