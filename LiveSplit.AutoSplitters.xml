@@ -1512,7 +1512,7 @@
       <Game>Pure Faction</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.RedFaction/raw/master/Components/LiveSplit.RedFaction.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.RedFaction/master/Components/LiveSplit.RedFaction.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting is available for Pure Faction 3.0d. (By SuicideMachine)</Description>
@@ -2616,7 +2616,7 @@
       <Game>Thief Deadly Shadows</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.ThiefDS/raw/master/Components/LiveSplit.ThiefDS.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ThiefDS/master/Components/LiveSplit.ThiefDS.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Removal is available (By SuicideMachine)</Description>
@@ -2775,7 +2775,7 @@
       <Game>El Matador</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.ElMatador/raw/master/Components/LiveSplit.ElMatador.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ElMatador/master/Components/LiveSplit.ElMatador.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load removal is available. (By SuicideMachine)</Description>
@@ -3267,7 +3267,7 @@
       <Game>Syndicate 2012</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.Syndicate2012/raw/master/Components/LiveSplit.Syndicate2012.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.Syndicate2012/master/Components/LiveSplit.Syndicate2012.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Autosplitting and load removal is available. (By SuicideMachine)</Description>
@@ -3488,7 +3488,7 @@
       <Game>Project Lumoria</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/7imekeeper/LiveSplit.Lumoria/raw/master/LiveSplit.Lumoria/Components/LiveSplit.Lumoria.dll</URL>
+      <URL>https://raw.githubusercontent.com/7imekeeper/LiveSplit.Lumoria/master/LiveSplit.Lumoria/Components/LiveSplit.Lumoria.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting is available. (By 7imekeeper)</Description>
@@ -3619,7 +3619,7 @@
       <Game>Deus Ex</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/SuiMachine/LiveSplit.DXLoads/raw/master/Components/LiveSplit.DX.dll</URL>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.DXLoads/master/Components/LiveSplit.DX.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Auto Splitting and load removal is available. (By SuicideMachine, based on code of Dalet)</Description>
