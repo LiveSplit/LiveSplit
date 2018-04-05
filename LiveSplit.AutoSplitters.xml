@@ -3915,4 +3915,14 @@
     <Type>Script</Type>
     <Description>Load time removal is available. (By Trigger)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Slay the Spire</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Phxntxm/Slay-The-Spire-Autosplitter/master/StS%20autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitter/resetter/starter. (By Phantom)</Description>
+  </AutoSplitter>
 </AutoSplitters>
