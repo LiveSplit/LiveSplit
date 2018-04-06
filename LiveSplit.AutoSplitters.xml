@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<AutoSplitter>
+    <Games>
+      <Game>Kao the Kangaroo: Round 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/RibShark/429ad04b9827baa9ba684f4e7b8957eb/raw/25582cafc2683a06a276a0867ce341e16c200659/LiveSplit.Kao2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Only the Polish (fastest) version of the game is currently supported. Auto starting, resetting and splitting. Starts on selecting "Nowa gra", final split must be performed manually. (By RibShark)</Description>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Rayman 2: The Great Escape</Game>
