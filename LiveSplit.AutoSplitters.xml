@@ -3925,4 +3925,14 @@
     <Type>Script</Type>
     <Description>Auto splitter/resetter/starter. (By Phantom)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Death Giver 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/daem-on/83ff3355f54a004880a3ea25ffe7ea5d/raw/f163ff05cfba8fc10b9936fa46ce229eaaf92657/Death%2520Giver%25202.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start and splits, resets when quitting to the main menu.</Description>
+  </AutoSplitter>
 </AutoSplitters>
