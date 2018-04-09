@@ -3930,10 +3930,10 @@
       <Game>Slay the Spire</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Phxntxm/Slay-The-Spire-Autosplitter/master/StS%20autosplitter.asl</URL>
+      <URL>https://raw.githubusercontent.com/ClownFiesta/AutoSplitters/master/LiveSplit.SlayTheSpire.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto splitter/resetter/starter. (By Phantom)</Description>
+    <Description>Auto Splitting, Start and Reset currently supported (By FresherDenimAll)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
