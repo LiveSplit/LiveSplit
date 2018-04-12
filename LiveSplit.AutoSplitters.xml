@@ -2,6 +2,18 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Sphinx and the Cursed Mummy</Game>
+      <Game>Sphinx and the Cursed Mummy (PC)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Swyter/sphinx-speedruns/master/sphinx-livesplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game time, auto-split on Set defeat, auto-start and load-removal. (By Swyter)</Description>
+    <Website>https://discord.gg/3zh6v</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Kao the Kangaroo: Round 2</Game>
     </Games>
     <URLs>
