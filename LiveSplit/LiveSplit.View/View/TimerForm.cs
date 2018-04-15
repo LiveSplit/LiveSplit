@@ -2364,7 +2364,9 @@ namespace LiveSplit.View
                 graphics.FillRectangle(new SolidBrush(Layout.Settings.BackgroundColor), 0, 0, Width, Height);
             }
 
-            PaintForm(graphics, new Region(new Rectangle(0, 0, Width, Height)));
+            var drawRegion = new Region(new Rectangle(0, 0, Width, Height));
+            UpdateRegion = drawRegion;
+            PaintForm(graphics, drawRegion);
 
             return image;
         }
