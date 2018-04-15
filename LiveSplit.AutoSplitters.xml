@@ -1245,10 +1245,10 @@
       <Game>Dark Souls: Prepare to Die Edition</Game>
     </Games>
     <URLs>
-      <URL>http://speedsouls.com/jiiks/DsIgt.dll</URL>
+      <URL>http://api.speedsouls.com/LiveSplit.DarkSoulsIGT.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Game Time is available. (By Jiiks)</Description>
+    <Description>Game Time is available. (By Jiiks & CapitaineToinon)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
