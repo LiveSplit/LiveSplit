@@ -3717,16 +3717,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Revolution</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Revolution/LiveSplit.Revolution.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load time removal is available. (By SuicideMachine)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Toy Story</Game>
     </Games>
     <URLs>
