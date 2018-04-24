@@ -3946,5 +3946,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start and splits, resets when quitting to the main menu.</Description>
+  </AutoSplitter>	
+  <AutoSplitter>
+    <Games>
+      <Game>Minit</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/L-Mirannda/MinitAutoSplitter/master/Minit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start are available. (By L-Mirannda)</Description>
+    <Website>https://github.com/L-Mirannda/MinitAutoSplitter</Website>
   </AutoSplitter>
 </AutoSplitters>
