@@ -208,6 +208,18 @@
     <Type>Script</Type>
     <Description>Load Removal is available for 1.1 and 1.8.3. (By Abahbob)</Description>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Borderlands 1</Game>
+      <Game>Borderlands</Game>
+      <Game>BL1</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Borderlands%201/BL1IGT.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available for 1.0 and 1.5.0. (By TheFuncannon, FromDarkHell)</Description>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Borderlands: The Pre-Sequel!</Game>
