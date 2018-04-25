@@ -198,6 +198,7 @@
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Text = "Joining Channel...";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SpeedRunsLiveForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.SpeedRunsLiveForm_FormClosed);
             this.Load += new System.EventHandler(this.SpeedRunsLiveForm_Load);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);

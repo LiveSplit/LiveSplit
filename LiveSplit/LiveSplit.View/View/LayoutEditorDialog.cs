@@ -67,8 +67,7 @@ namespace LiveSplit.View
             Layout.HasChanged = true;
             IsVertical = rdoVertical.Checked;
             IsHorizontal = !rdoVertical.Checked;
-            if (OrientationSwitched != null)
-                OrientationSwitched(this, null);
+            OrientationSwitched?.Invoke(this, null);
         }
 
         private void AddComponent(IComponentFactory factory)
@@ -85,6 +84,7 @@ namespace LiveSplit.View
                     try
                     {
                         BindingList.Add(component);
+                        lbxComponents.SelectedItem = component;
                     }
                     catch (Exception ex)
                     {
@@ -93,8 +93,7 @@ namespace LiveSplit.View
                 });
 
                 Layout.HasChanged = true;
-                if (LayoutResized != null)
-                    LayoutResized(this, null);
+                LayoutResized?.Invoke(this, null);
             }
             catch (Exception e)
             {
@@ -106,12 +105,12 @@ namespace LiveSplit.View
         private void AddComponentFactory(IComponentFactory factory, ToolStripMenuItem menuItem)
         {
             var item = new ToolStripMenuItem(factory.ComponentName);
-                    item.Click += (s, e) =>
-                        {
-                            AddComponent(factory);
-                        };
-                    item.ToolTipText = factory.Description;
-                    menuItem.DropDownItems.Add(item);
+            item.Click += (s, e) =>
+                {
+                    AddComponent(factory);
+                };
+            item.ToolTipText = factory.Description;
+            menuItem.DropDownItems.Add(item);
         }
 
         private void AddGroup(ComponentCategory groupCategory, IEnumerable<IComponentFactory> factories)
@@ -181,8 +180,7 @@ namespace LiveSplit.View
                 });
 
                 Layout.HasChanged = true;
-                if (LayoutResized != null)
-                    LayoutResized(this, null);
+                LayoutResized?.Invoke(this, null);
             }
         }
 

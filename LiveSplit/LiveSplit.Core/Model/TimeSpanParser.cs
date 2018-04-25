@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Globalization;
+using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.Model
 {
@@ -15,6 +16,8 @@ namespace LiveSplit.Model
 
         public static TimeSpan Parse(string timeString)
         {
+            timeString = timeString.Replace(TimeFormatConstants.MINUS, "-");
+
             var factor = 1;
             if (timeString.StartsWith("-"))
             {

@@ -49,11 +49,13 @@ namespace LiveSplit.View
             btnBehindLosing.DataBindings.Add("BackColor", Settings, "BehindLosingTimeColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnNotRunning.DataBindings.Add("BackColor", Settings, "NotRunningColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnPausedColor.DataBindings.Add("BackColor", Settings, "PausedColor", false, DataSourceUpdateMode.OnPropertyChanged);
+            btnTextOutlineColor.DataBindings.Add("BackColor", Settings, "TextOutlineColor", false, DataSourceUpdateMode.OnPropertyChanged);
             btnShadowsColor.DataBindings.Add("BackColor", Settings, "ShadowsColor", false, DataSourceUpdateMode.OnPropertyChanged);
             lblTimer.DataBindings.Add("Text", this, "TimerFont", false, DataSourceUpdateMode.OnPropertyChanged);
             lblText.DataBindings.Add("Text", this, "SplitNamesFont", false, DataSourceUpdateMode.OnPropertyChanged);
             lblTimes.DataBindings.Add("Text", this, "MainFont", false, DataSourceUpdateMode.OnPropertyChanged);
             trkOpacity.DataBindings.Add("Value", this, "Opacity", false, DataSourceUpdateMode.OnPropertyChanged);
+            chkMousePassThroughWhileRunning.DataBindings.Add("Checked", Settings, "MousePassThroughWhileRunning", false, DataSourceUpdateMode.OnPropertyChanged);
             trkImageOpacity.DataBindings.Add("Value", this, "ImageOpacity", false, DataSourceUpdateMode.OnPropertyChanged);
             trkBlur.DataBindings.Add("Value", this, "ImageBlur", false, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -166,6 +168,11 @@ namespace LiveSplit.View
         private void chkRainbow_CheckedChanged(object sender, EventArgs e)
         {
             label9.Enabled = btnGlod.Enabled = !chkRainbow.Checked;
+        }
+
+        private void chkAntiAliasing_CheckedChanged(object sender, EventArgs e)
+        {
+            lblOutlines.Enabled = btnTextOutlineColor.Enabled = chkAntiAliasing.Checked;
         }
 
         private void LayoutSettingsControl_Load(object sender, EventArgs e)

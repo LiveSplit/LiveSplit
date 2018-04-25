@@ -17,6 +17,11 @@ namespace LiveSplit.Model
             }
         }
 
+        private TimeSpan Delay = new TimeSpan(0, 0, 0, 0, 300);
+        private TimeSpan LongDelay = new TimeSpan(0, 0, 0, 0, 600);
+
+        private TimeStamp LastEvent;
+
         public ITimerModel InternalModel { get; set; }
 
         public event EventHandler OnSplit { add { InternalModel.OnSplit += value; } remove { InternalModel.OnSplit -= value; } }
@@ -31,6 +36,8 @@ namespace LiveSplit.Model
 
         public event EventHandler OnPause { add { InternalModel.OnPause += value; } remove { InternalModel.OnPause -= value; } }
 
+        public event EventHandler OnUndoAllPauses { add { InternalModel.OnUndoAllPauses += value; } remove { InternalModel.OnUndoAllPauses -= value; } }
+
         public event EventHandler OnResume { add { InternalModel.OnResume += value; } remove { InternalModel.OnResume -= value; } }
 
         public event EventHandler OnScrollUp { add { InternalModel.OnScrollUp += value; } remove { InternalModel.OnScrollUp -= value; } }
@@ -44,48 +51,36 @@ namespace LiveSplit.Model
         public DoubleTapPrevention(ITimerModel model)
         {
             InternalModel = model;
+            LastEvent = TimeStamp.Now - LongDelay;
         }
 
         protected bool CheckDoubleTap()
         {
-            TimeSpan? lastSplit = null;
-            if (CurrentState.Settings.DoubleTapPrevention)
-            {
-                var index = CurrentState.CurrentSplitIndex - 1;
-                while (index >= 0)
-                {
-                    if (CurrentState.Run[index].SplitTime.RealTime != null)
-                    {
-                        lastSplit = CurrentState.Run[index].SplitTime.RealTime.Value;
-                        break;
-                    }
-                    index--;
-                }
-            }
-            if (!CurrentState.Settings.DoubleTapPrevention
-                || (CurrentState.CurrentPhase == TimerPhase.Running
-                && (lastSplit == null || TimeStamp.Now - CurrentState.StartTime > lastSplit + new TimeSpan(0, 0, 0, 0, 300))
-                && CurrentState.CurrentTime.RealTime > CurrentState.PauseTime + new TimeSpan(0, 0, 0, 0, 300))
-                || (CurrentState.CurrentPhase == TimerPhase.Paused
-                && TimeStamp.Now - CurrentState.StartTime > CurrentState.PauseTime + new TimeSpan(0, 0, 0, 0, 300))
-                || (CurrentState.CurrentPhase == TimerPhase.Ended
-                && TimeStamp.Now - CurrentState.StartTime > CurrentState.CurrentTime.RealTime + new TimeSpan(0, 0, 0, 0, 300))
-                || (CurrentState.CurrentPhase == TimerPhase.NotRunning
-                && TimeStamp.Now - CurrentState.StartTime > new TimeSpan(0, 0, 0, 0, 300)))
+            if (!CurrentState.Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].DoubleTapPrevention)
                 return true;
-            return false;
+
+            if (CurrentState.CurrentPhase == TimerPhase.Ended)
+                return TimeStamp.Now - LastEvent > LongDelay;
+
+            return TimeStamp.Now - LastEvent > Delay;
         }
 
         public void Start()
         {
             if (CheckDoubleTap())
+            {
                 InternalModel.Start();
+                LastEvent = TimeStamp.Now;
+            }
         }
 
         public void Split()
         {
             if (CheckDoubleTap())
+            {
                 InternalModel.Split();
+                LastEvent = TimeStamp.Now;
+            }
         }
 
         public void SkipSplit()
@@ -105,13 +100,24 @@ namespace LiveSplit.Model
         public void Reset(bool updateSplits = true)
         {
             if (CheckDoubleTap())
+            {
                 InternalModel.Reset(updateSplits);
+                LastEvent = TimeStamp.Now;
+            }
         }
 
         public void Pause()
         {
             if (CheckDoubleTap())
+            {
                 InternalModel.Pause();
+                LastEvent = TimeStamp.Now;
+            }
+        }
+
+        public void UndoAllPauses()
+        {
+            InternalModel.UndoAllPauses();
         }
 
         public void ScrollUp() => InternalModel.ScrollUp();

@@ -15,7 +15,7 @@ namespace LiveSplit.Web.Share
 
         void OAuthForm_Load(object sender, EventArgs e)
         {
-            OAuthWebBrowser.Navigate(new Uri("http://www.speedrun.com/api/auth"));
+            OAuthWebBrowser.Navigate(new Uri("https://www.speedrun.com/api/auth"));
         }
 
         private void OAuthWebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)

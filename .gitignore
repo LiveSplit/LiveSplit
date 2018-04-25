@@ -12,8 +12,8 @@
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
-x64/
-x86/
+# x64/
+# x86/
 build/
 bld/
 [Bb]in/
@@ -136,7 +136,7 @@ publish/
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
-# TODO: Comment the next line if you want to checkin your web deploy settings 
+# TODO: Comment the next line if you want to checkin your web deploy settings
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
 *.publishproj
@@ -245,3 +245,4 @@ $RECYCLE.BIN/
 LiveSplit/LiveSplit.Core/Updates/GitInfo/branch.txt
 LiveSplit/LiveSplit.Core/Updates/GitInfo/version.txt
 LiveSplit/LiveSplit.Core/Updates/GitInfo/revision.txt
+.vs

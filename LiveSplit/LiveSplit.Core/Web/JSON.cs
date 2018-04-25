@@ -155,7 +155,11 @@ namespace LiveSplit.Web
                 firstInDictionary = false;
                 var value = pair.Value;
                 var name = pair.Key;
-                if (value is string)
+                if (value == null)
+                {
+                    sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), "null");
+                }
+                else if (value is string)
                 {
                     sb.AppendFormat("\"{0}\": \"{1}\"", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode((string)value));
                 }
@@ -166,6 +170,7 @@ namespace LiveSplit.Web
                 }
                 else if (value is IDictionary<string, object>)
                 {
+                    sb.Append("\"" + HttpUtility.JavaScriptStringEncode(name) + "\": {\r\n");
                     new DynamicJsonObject((IDictionary<string, object>)value).ToString(sb, depth + 1);
                 }
                 else if (value is IEnumerable<object>)
@@ -197,6 +202,22 @@ namespace LiveSplit.Web
                     sb.Append('\t', depth);
                     sb.Append("]");
                 }
+                else if (value is bool)
+                {
+                    sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), (bool)value ? "true" : "false");
+                }
+                else if (IsLongType(value))
+                {
+                    sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode(Convert.ToInt64(value).ToString(CultureInfo.InvariantCulture)));
+                }
+                else if (IsULongType(value))
+                {
+                    sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode(Convert.ToUInt64(value).ToString(CultureInfo.InvariantCulture)));
+                }
+                else if (IsDoubleType(value))
+                {
+                    sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode(Convert.ToDouble(value).ToString(CultureInfo.InvariantCulture)));
+                }
                 else if (value is decimal)
                 {
                     sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode(((decimal)value).ToString(CultureInfo.InvariantCulture)));
@@ -209,6 +230,21 @@ namespace LiveSplit.Web
             sb.Append("\r\n");
             sb.Append('\t', depth - 1);
             sb.Append("}");
+        }
+
+        private static bool IsLongType(object value)
+        {
+            return value is sbyte || value is short || value is int || value is long;
+        }
+
+        private static bool IsULongType(object value)
+        {
+            return value is byte || value is ushort || value is uint || value is ulong;
+        }
+
+        private static bool IsDoubleType(object value)
+        {
+            return value is float || value is double;
         }
 
         public override bool TrySetMember(SetMemberBinder binder, object value)

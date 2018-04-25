@@ -134,7 +134,7 @@ namespace LiveSplit.UI.Components
                 index++;
             }
 
-            OverallSize = totalSize;
+            OverallSize = Math.Max(totalSize, 1f);
         }
 
         public void Render(Graphics g, LiveSplitState state, float width, float height, LayoutMode mode, Region clipRegion)
@@ -147,7 +147,6 @@ namespace LiveSplit.UI.Components
                     var transform = g.Transform;
                     var crashedComponents = new List<IComponent>();
                     var index = 0;
-                    var totalSize = 0f;
                     foreach (var component in VisibleComponents)
                     {
                         try
@@ -170,7 +169,11 @@ namespace LiveSplit.UI.Components
                     if (crashedComponents.Count > 0)
                     {
                         var remainingComponents = VisibleComponents.ToList();
-                        crashedComponents.ForEach(x => remainingComponents.Remove(x));
+                        crashedComponents.ForEach(x =>
+                        {
+                            remainingComponents.Remove(x);
+                            state.Layout.LayoutComponents = state.Layout.LayoutComponents.Where(y => y.Component != x).ToList();
+                        });
                         VisibleComponents = remainingComponents;
                     }
                     g.Transform = transform;

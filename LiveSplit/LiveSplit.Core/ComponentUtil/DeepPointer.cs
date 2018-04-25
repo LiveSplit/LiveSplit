@@ -17,6 +17,13 @@ namespace LiveSplit.ComponentUtil
         private List<OffsetT> _offsets;
         private OffsetT _base;
         private string _module;
+        private bool _baseIsAbsolute;
+        
+        public DeepPointer(OffsetT base_, bool baseIsAbsolute_, params OffsetT[] offsets)
+            : this(base_, offsets)
+        {
+            _baseIsAbsolute = baseIsAbsolute_;
+        }
 
         public DeepPointer(string module, OffsetT base_, params OffsetT[] offsets)
             : this(base_, offsets)
@@ -42,10 +49,9 @@ namespace LiveSplit.ComponentUtil
 
         public bool Deref<T>(Process process, out T value) where T : struct
         {
-            OffsetT offset = _offsets[_offsets.Count - 1];
             IntPtr ptr;
             if (!DerefOffsets(process, out ptr)
-                || !process.ReadValue(ptr + offset, out value))
+                || !process.ReadValue(ptr, out value))
             {
                 value = default(T);
                 return false;
@@ -64,10 +70,9 @@ namespace LiveSplit.ComponentUtil
 
         public bool DerefBytes(Process process, int count, out byte[] value)
         {
-            OffsetT offset = _offsets[_offsets.Count - 1];
             IntPtr ptr;
             if (!DerefOffsets(process, out ptr)
-                || !process.ReadBytes(ptr + offset, count, out value))
+                || !process.ReadBytes(ptr, count, out value))
             {
                 value = null;
                 return false;
@@ -116,17 +121,16 @@ namespace LiveSplit.ComponentUtil
 
         public bool DerefString(Process process, ReadStringType type, StringBuilder sb)
         {
-            OffsetT offset = _offsets[_offsets.Count - 1];
             IntPtr ptr;
             if (!DerefOffsets(process, out ptr)
-                || !process.ReadString(ptr + offset, type, sb))
+                || !process.ReadString(ptr, type, sb))
             {
                 return false;
             }
             return true;
         }
 
-        bool DerefOffsets(Process process, out IntPtr ptr)
+        public bool DerefOffsets(Process process, out IntPtr ptr)
         {
             bool is64Bit = process.Is64Bit();
 
@@ -142,9 +146,13 @@ namespace LiveSplit.ComponentUtil
 
                 ptr = module.BaseAddress + _base;
             }
-            else
+            else if (!_baseIsAbsolute)
             {
                 ptr = process.MainModuleWow64Safe().BaseAddress + _base;
+            } 
+            else
+            {
+                ptr = (IntPtr) _base;
             }
 
 
@@ -157,6 +165,7 @@ namespace LiveSplit.ComponentUtil
                 }
             }
 
+            ptr += _offsets[_offsets.Count - 1];
             return true;
         }
     }
