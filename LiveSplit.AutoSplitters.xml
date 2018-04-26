@@ -3970,4 +3970,16 @@
     <Description>Auto Splitting and Auto Start are available. (By L-Mirannda)</Description>
     <Website>https://github.com/L-Mirannda/MinitAutoSplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>LightFall</Game>
+      <Game>Light Fall</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.LightFall/master/Components/LiveSplit.LightFall.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.LightFall</Website>
+  </AutoSplitter>
 </AutoSplitters>
