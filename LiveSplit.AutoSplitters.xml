@@ -4015,4 +4015,15 @@
     <Description>For Kega Fusion. Real Time - Time Bonus. See Website link for usage.</Description>
     <Website>https://github.com/subenji/LiveSplitASL</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Oddworld: Abe's Exoddus</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Legnax/Exoddus-Autosplitter/master/LegnaXplitter%20Abe's%20Exoddus%201.1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Works for Spanish, English, French, German and GoG version. Check the options for more details.</Description>
+    <Website>https://github.com/Legnax/Exoddus-Autosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
