@@ -4026,4 +4026,14 @@
     <Description>Works for Spanish, English, French, German and GoG version. Check the options for more details.</Description>
     <Website>https://github.com/Legnax/Exoddus-Autosplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>VVVVVV</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/tzann/Autosplitters/master/LiveSplit.VVVVVV.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic Start/Reset, Autosplitting and Game Time for both v2.2 and v2.0 are available. (by tzann)</Description>
+    <Website>https://github.com/tzann/Autosplitters</Website> </AutoSplitter>
 </AutoSplitters>
