@@ -3043,6 +3043,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Command &amp; Conquer: Red Alert 3</Game>
+      <Game>Command &amp; Conquer - Red Alert 3</Game>
+      <Game>Command &amp; Conquer Red Alert 3</Game>
+      <Game>Red Alert 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCRA3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In Beta (By ROMaster2)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Prince of Persia The Forgotten Sands</Game>
       <Game>Prince of Persia: The Forgotten Sands</Game>
       <Game>POP:TFS</Game>
