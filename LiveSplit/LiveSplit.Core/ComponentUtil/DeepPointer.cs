@@ -10,7 +10,7 @@ using System.Text;
 
 namespace LiveSplit.ComponentUtil
 {
-    using OffsetT = Int32;
+    using OffsetT = Int64;
 
     public class DeepPointer
     {
@@ -144,11 +144,11 @@ namespace LiveSplit.ComponentUtil
                     return false;
                 }
 
-                ptr = module.BaseAddress + _base;
+                ptr = (IntPtr)(module.BaseAddress.ToInt64() + _base);
             }
             else if (!_baseIsAbsolute)
             {
-                ptr = process.MainModuleWow64Safe().BaseAddress + _base;
+                ptr = (IntPtr)(process.MainModuleWow64Safe().BaseAddress.ToInt64() + _base);
             } 
             else
             {
@@ -158,14 +158,14 @@ namespace LiveSplit.ComponentUtil
 
             for (int i = 0; i < _offsets.Count - 1; i++)
             {
-                if (!process.ReadPointer(ptr + _offsets[i], is64Bit, out ptr)
+                if (!process.ReadPointer((IntPtr)(ptr.ToInt64() + _offsets[i]), is64Bit, out ptr)
                     || ptr == IntPtr.Zero)
                 {
                     return false;
                 }
             }
 
-            ptr += _offsets[_offsets.Count - 1];
+            ptr = (IntPtr)(ptr.ToInt64() + _offsets[_offsets.Count - 1]);
             return true;
         }
     }
