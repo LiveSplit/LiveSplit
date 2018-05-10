@@ -3967,11 +3967,11 @@
       <Game>Death Giver 2</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/daem-on/83ff3355f54a004880a3ea25ffe7ea5d/raw/f163ff05cfba8fc10b9936fa46ce229eaaf92657/Death%2520Giver%25202.asl</URL>
+      <URL>https://gist.githubusercontent.com/daem-on/83ff3355f54a004880a3ea25ffe7ea5d/raw/8474917c9868896ad66538f192e1a35b1d762c13/Death%2520Giver%25202.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic start and splits, resets when quitting to the main menu.</Description>
-  </AutoSplitter>	
+    <Description>Automatic start and splits, resets when quitting to the main menu v2.0 (By Daemon)</Description>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Minit</Game>
