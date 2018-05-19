@@ -27,6 +27,8 @@ namespace LiveSplit.Model
 
         RunMetadata Metadata { get; }
 
+        Dictionary<string, string> CustomData { get; }
+
         bool HasChanged { get; set; }
         string FilePath { get; set; }
     }

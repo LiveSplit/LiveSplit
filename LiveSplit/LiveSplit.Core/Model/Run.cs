@@ -84,6 +84,8 @@ namespace LiveSplit.Model
 
         public RunMetadata Metadata { get; private set; }
 
+        public Dictionary<string, string> CustomData { get; private set; } = new Dictionary<string, string>();
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void TriggerPropertyChanged(string propertyName)

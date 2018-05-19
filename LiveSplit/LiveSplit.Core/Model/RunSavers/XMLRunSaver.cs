@@ -44,6 +44,20 @@ namespace LiveSplit.Model.RunSavers
             metadata.AppendChild(variables);
             parent.AppendChild(metadata);
 
+            var customData = document.CreateElement("CustomData");
+            foreach(var kv in run.CustomData)
+            {
+                var dataElement = document.CreateElement("Data");
+                var dataName = document.CreateElement("Name");
+                dataName.InnerText = kv.Key;
+                var dataData = document.CreateElement("Data");
+                dataData.InnerText = kv.Value;
+                dataElement.AppendChild(dataName);
+                dataElement.AppendChild(dataData);
+                customData.AppendChild(dataElement);
+            }
+            parent.AppendChild(customData);
+
             CreateSetting(document, parent, "Offset", run.Offset);
             CreateSetting(document, parent, "AttemptCount", run.AttemptCount);
 

@@ -74,6 +74,16 @@ namespace LiveSplit.Model.RunFactories
                 }
             }
 
+            var customData = parent["CustomData"];
+            if(customData != null)
+            {
+                var DataNodes = customData.SelectNodes("Data");
+                foreach(XmlElement node in DataNodes)
+                {
+                    run.CustomData[node["Name"].InnerText] = node["Data"].InnerText;
+                }
+            }
+
             run.GameIcon = GetImageFromElement(parent["GameIcon"]);
             run.GameName = ParseString(parent["GameName"]);
             run.CategoryName = ParseString(parent["CategoryName"]);
