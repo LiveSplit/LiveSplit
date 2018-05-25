@@ -1257,10 +1257,21 @@
       <Game>Dark Souls: Prepare to Die Edition</Game>
     </Games>
     <URLs>
-      <URL>http://api.speedsouls.com/LiveSplit.DarkSoulsIGT.dll</URL>
+      <URL>https://raw.githubusercontent.com/CapitaineToinon/LiveSplit.DarkSoulsIGT/master/LiveSplit.DarkSoulsIGT/Components/LiveSplit.DarkSoulsIGT.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Game Time is available. (By Jiiks and CapitaineToinon)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dark Souls Remastered</Game>
+      <Game>Dark Souls: Remastered</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/CapitaineToinon/LiveSplit.DarkSoulsRemasteredIGT/master/LiveSplit.DarkSoulsRemasteredIGT/Components/LiveSplit.DarkSoulsRemasteredIGT.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time is available. (By CapitaineToinon)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
