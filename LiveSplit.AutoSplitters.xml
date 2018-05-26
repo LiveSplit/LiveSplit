@@ -2129,11 +2129,11 @@
       <Game>Prey</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/CppAndre/LiveSplit.PreySplit/master/Components/LiveSplit.PreySplit.dll</URL>
+      <URL>https://raw.githubusercontent.com/AMS21/LiveSplit.PreySplit/master/Components/LiveSplit.PreySplit.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Game Time, Auto Splitting, and Auto Start/Stop/Reset are available. Requires PreyRun. (by AMS)</Description>
-    <Website>https://github.com/CppAndre</Website>
+    <Website>https://github.com/AMS21</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
