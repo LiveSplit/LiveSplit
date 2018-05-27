@@ -876,11 +876,11 @@
       <Game>Silent Hill 2 - Directors Cut</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Silent%20Hill%202/LiveSplit.SH2_Classic.asl</URL>
+      <URL>https://raw.githubusercontent.com/Bigmanjapan/LivesplitASLscripts/master/Silent%20Hill%202%20PC/LiveSplit.SilentHill2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Game Time display is available. (By SuicideMachine, based on idea by Shunpuk)</Description>
-    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+    <Description>Game Time display is available. (By Bigmanjapan / SuicideMachine, based on idea by Shunpuk)</Description>
+    <Website>https://github.com/Bigmanjapan/LivesplitASLscripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
