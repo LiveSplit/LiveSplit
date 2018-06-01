@@ -2,6 +2,17 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Disney's 102 Dalmatians: Puppies to the Rescue</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PorkySM/autosplitters/master/Dogs.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start, split, and stop for the PC version of Disney's 102 Dalmatians: Puppies to the Rescue.</Description>
+    <Website>https://github.com/PorkySM/autosplitters</Website> 
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Sphinx and the Cursed Mummy</Game>
       <Game>Sphinx and the Cursed Mummy (PC)</Game>
     </Games>
