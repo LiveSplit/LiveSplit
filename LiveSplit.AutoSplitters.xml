@@ -4071,4 +4071,15 @@
     <Type>Script</Type>
     <Description>Automatic Start/Reset, Autosplitting and Game Time for both v2.2 and v2.0 are available. (by tzann)</Description>
     <Website>https://github.com/tzann/Autosplitters</Website> </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Mega Man 2 (NES)</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Coltaho/Autosplitters/blob/master/MM2autosplit_v1.2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic Start and Autosplitting for Normal mode using Emulator FCEUX version 2.2.2+. Splits on boss kills.</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/</Website>
+  </AutoSplitter>
 </AutoSplitters>
