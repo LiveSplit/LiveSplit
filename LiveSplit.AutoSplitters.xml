@@ -3544,6 +3544,7 @@
   <AutoSplitter>
     <Games>
       <Game>WaveLand</Game>
+      <Game>WaveLand Custom Levels</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/AlbinEriksson/WaveLand-ASL/master/WaveLand.asl</URL>
