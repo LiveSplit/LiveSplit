@@ -3701,8 +3701,8 @@
     <URLs>
       <URL>https://raw.githubusercontent.com/TheFuncannon/WoLIGT/master/WoL.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Autosplitting and In-Game Time is available. (By TheFuncannon and Sillypears)</Description>
+    <Type>Script</Type>
+    <Description>Autosplitting and In-Game Time are available. (By TheFuncannon and Sillypears)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
