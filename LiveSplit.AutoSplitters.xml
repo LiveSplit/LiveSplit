@@ -1272,6 +1272,7 @@
     </URLs>
     <Type>Component</Type>
     <Description>Game Time is available. (By Jiiks and CapitaineToinon)</Description>
+    <Website>https://github.com/CapitaineToinon/LiveSplit.DarkSoulsIGT</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1283,6 +1284,7 @@
     </URLs>
     <Type>Component</Type>
     <Description>Game Time is available. (By CapitaineToinon)</Description>
+    <Website>https://github.com/CapitaineToinon/LiveSplit.DarkSoulsRemasteredIGT</Website>	  
   </AutoSplitter>
   <AutoSplitter>
     <Games>
