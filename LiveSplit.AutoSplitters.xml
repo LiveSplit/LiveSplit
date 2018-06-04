@@ -1369,6 +1369,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>World of Traps</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/andoalon/autosplitters/master/world_of_traps.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splits at each level. Splits available: https://raw.githubusercontent.com/andoalon/autosplitters/master/World%20of%20Traps%20-%20Any%20%25.lss</Description>
+    <Website>https://github.com/andoalon/autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Quake</Game>
     </Games>
     <URLs>
