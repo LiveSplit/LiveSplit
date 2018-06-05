@@ -29,8 +29,7 @@ namespace LiveSplit.View
             {
                 var model = new TimerModel();
                 model.CurrentState = State;
-                model.SetRunAsPB();
-                model.UpdateAttemptHistory();
+                model.ResetAndSetAttemptAsPB();
                 Run = State.Run;
             }
             ScreenShotFunction = screenShotFunction;
