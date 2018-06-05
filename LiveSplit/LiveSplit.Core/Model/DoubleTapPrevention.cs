@@ -129,5 +129,7 @@ namespace LiveSplit.Model
         public void SwitchComparisonNext() => InternalModel.SwitchComparisonNext();
 
         public void InitializeGameTime() => InternalModel.InitializeGameTime();
+
+        public void ResetAndSetAttemptAsPB() => InternalModel.ResetAndSetAttemptAsPB();
     }
 }
