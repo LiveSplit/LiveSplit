@@ -1808,9 +1808,6 @@ namespace LiveSplit.View
 
             CurrentState.Run.FixSplits();
 
-            var stateCopy = CurrentState.Clone() as LiveSplitState;
-            var modelCopy = new TimerModel();
-            modelCopy.CurrentState = stateCopy;
             var result = DialogResult.No;
 
             if (promptPBMessage && ((CurrentState.CurrentPhase == TimerPhase.Ended
@@ -1824,21 +1821,20 @@ namespace LiveSplit.View
                 DontRedraw = false;
                 if (result == DialogResult.Yes)
                 {
-                    Model.Reset();
-                    modelCopy.SetRunAsPB();
-                    modelCopy.UpdateAttemptHistory();
-                    modelCopy.UpdateBestSegments();
-                    modelCopy.UpdateSegmentHistory();
-                    SetRun(stateCopy.Run);
+                    Model.ResetAndSetAttemptAsPB();
                 }
                 else if (result == DialogResult.Cancel)
                     return;
             }
 
-            if (result == DialogResult.Yes)
-                modelCopy.Reset(false);
-            else
+            var stateCopy = CurrentState;
+            if (result == DialogResult.No)
+            {
+                var modelCopy = new TimerModel();
+                stateCopy = CurrentState.Clone() as LiveSplitState;
+                modelCopy.CurrentState = stateCopy;
                 modelCopy.Reset();
+            }
 
             try
             {
