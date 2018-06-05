@@ -1,8 +1,10 @@
 ﻿using LiveSplit.Model.Comparisons;
+using LiveSplit.UI;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using System.Xml;
 using static LiveSplit.UI.SettingsHelper;
 
@@ -154,7 +156,7 @@ namespace LiveSplit.Model.RunFactories
                     }
                 }
 
-                run.GameIcon = ParseImage(lscRun.GameIcon());
+                run.GameIcon = ParseImage(lscRun.GameIcon()).ScaleIcon();
                 run.GameName = lscRun.GameName();
                 run.CategoryName = lscRun.CategoryName();
                 run.Offset = ParseTimeSpan(lscRun.Offset());
@@ -209,6 +211,11 @@ namespace LiveSplit.Model.RunFactories
 
                     run.Add(split);
                 }
+
+                Parallel.ForEach(run, segment =>
+                {
+                    segment.Icon = segment.Icon.ScaleIcon();
+                });
 
                 var document = new XmlDocument();
                 document.LoadXml($"<AutoSplitterSettings>{lscRun.AutoSplitterSettings()}</AutoSplitterSettings>");
