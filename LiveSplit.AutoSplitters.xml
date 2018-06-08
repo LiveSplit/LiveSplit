@@ -3410,6 +3410,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mafia II</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/pudingus/LiveSplit.Mafia2/master/LiveSplit.Mafia2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal is available. (By pudingus and Jazz)</Description>
+    <Website>https://github.com/pudingus/LiveSplit.Mafia2</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Super Lovely Planet</Game>
     </Games>
     <URLs>
