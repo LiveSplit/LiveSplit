@@ -134,9 +134,6 @@ namespace LiveSplit.Web
         [DllImport("Advapi32.dll", EntryPoint = "CredWriteW", CharSet = CharSet.Unicode, SetLastError = true)]
         static extern bool CredWrite([In] ref CREDENTIAL userCredential, [In] UInt32 flags);
 
-        [DllImport("advapi32", SetLastError = true, CharSet = CharSet.Unicode)]
-        static extern bool CredEnumerate(string filter, int flag, out int count, out IntPtr pCredentials);
-
         [DllImport("Advapi32.dll", EntryPoint = "CredFree", SetLastError = true)]
         static extern bool CredFree([In] IntPtr cred);
 
