@@ -2,6 +2,7 @@
 using LiveSplit.Options;
 using LiveSplit.UI;
 using LiveSplit.Utils;
+using LiveSplit.Web;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -66,6 +67,7 @@ namespace LiveSplit.View
 
             UpdateDisplayedHotkeyValues();
             RefreshRemoveButton();
+            RefreshLogOutButton();
         }
 
         private void InitializeHotkeyProfiles(string hotkeyProfile)
@@ -96,6 +98,11 @@ namespace LiveSplit.View
         private void RefreshRemoveButton()
         {
             btnRemoveProfile.Enabled = Settings.HotkeyProfiles.Count > 1;
+        }
+
+        private void RefreshLogOutButton()
+        {
+            btnLogOut.Enabled = WebCredentials.AnyCredentialsExist();
         }
 
         void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
@@ -397,6 +404,12 @@ namespace LiveSplit.View
                         btnNewProfile_Click(sender, e);
                 }
             }
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            WebCredentials.DeleteAllCredentials();
+            RefreshLogOutButton();
         }
     }
 }

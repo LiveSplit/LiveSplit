@@ -31,8 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnOBSInstall = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.chkDeactivateForOtherPrograms = new System.Windows.Forms.CheckBox();
@@ -66,10 +64,12 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbxRaceViewer = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.btnChooseComparisons = new System.Windows.Forms.Button();
             this.chkSimpleSOB = new System.Windows.Forms.CheckBox();
             this.chkWarnOnReset = new System.Windows.Forms.CheckBox();
+            this.btnLogOut = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -86,7 +86,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.btnOBSInstall, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnLogOut, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.cbxRaceViewer, 1, 2);
@@ -119,28 +119,6 @@
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 493);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(178, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "OBS Plugin:";
-            // 
-            // btnOBSInstall
-            // 
-            this.btnOBSInstall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.btnOBSInstall, 3);
-            this.btnOBSInstall.Location = new System.Drawing.Point(187, 488);
-            this.btnOBSInstall.Name = "btnOBSInstall";
-            this.btnOBSInstall.Size = new System.Drawing.Size(190, 23);
-            this.btnOBSInstall.TabIndex = 5;
-            this.btnOBSInstall.Text = "Install...";
-            this.btnOBSInstall.UseVisualStyleBackColor = true;
-            this.btnOBSInstall.Click += new System.EventHandler(this.btnOBSInstall_Click);
             // 
             // groupBox1
             // 
@@ -556,16 +534,6 @@
             this.label11.TabIndex = 15;
             this.label11.Text = "Race Viewer:";
             // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 464);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(178, 13);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Active Comparisons:";
-            // 
             // btnChooseComparisons
             // 
             this.btnChooseComparisons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -574,7 +542,7 @@
             this.btnChooseComparisons.Name = "btnChooseComparisons";
             this.btnChooseComparisons.Size = new System.Drawing.Size(190, 23);
             this.btnChooseComparisons.TabIndex = 4;
-            this.btnChooseComparisons.Text = "Choose...";
+            this.btnChooseComparisons.Text = "Choose Active Comparisons...";
             this.btnChooseComparisons.UseVisualStyleBackColor = true;
             this.btnChooseComparisons.Click += new System.EventHandler(this.btnChooseComparisons_Click);
             // 
@@ -603,6 +571,38 @@
             this.chkWarnOnReset.TabIndex = 2;
             this.chkWarnOnReset.Text = "Warn On Reset If Better Times";
             this.chkWarnOnReset.UseVisualStyleBackColor = true;
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.btnLogOut, 3);
+            this.btnLogOut.Location = new System.Drawing.Point(187, 488);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(190, 23);
+            this.btnLogOut.TabIndex = 5;
+            this.btnLogOut.Text = "Log Out of All Accounts";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 493);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(178, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Saved Accounts:";
+            // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 464);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(178, 13);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Active Comparisons:";
             // 
             // SettingsDialog
             // 
@@ -641,8 +641,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.CheckBox chkGlobalHotkeys;
-        private System.Windows.Forms.Button btnOBSInstall;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPause;
         private System.Windows.Forms.CheckBox chkWarnOnReset;
@@ -661,7 +659,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox chkDeactivateForOtherPrograms;
         private System.Windows.Forms.CheckBox chkSimpleSOB;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnChooseComparisons;
         private System.Windows.Forms.GroupBox grpHotkeyProfiles;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -670,5 +667,8 @@
         private System.Windows.Forms.Button btnRemoveProfile;
         private System.Windows.Forms.Button btnRenameProfile;
         private System.Windows.Forms.Button btnNewProfile;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnLogOut;
+        private System.Windows.Forms.Label label12;
     }
 }

@@ -104,32 +104,32 @@ namespace LiveSplit.Web
             }
         }
 
-        public static IReadOnlyList<Credential> EnumerateCrendentials()
+        public static bool CredentialExists(string applicationName)
         {
-            List<Credential> result = new List<Credential>();
+            return ReadCredential(applicationName) != null;
+        }
 
-            int count;
-            IntPtr pCredentials;
-            bool ret = CredEnumerate(null, 0, out count, out pCredentials);
-            if (ret)
+        public static void DeleteCredential(string applicationName)
+        {
+            if (applicationName == null)
+                throw new ArgumentNullException(nameof(applicationName));
+
+            if (!CredentialExists(applicationName))
+                return;
+
+            var success = CredDelete(applicationName, CredentialType.Generic, 0);
+            if (!success)
             {
-                for (int n = 0; n < count; n++)
-                {
-                    IntPtr credential = Marshal.ReadIntPtr(pCredentials, n * Marshal.SizeOf(typeof(IntPtr)));
-                    result.Add(ReadCredential((CREDENTIAL)Marshal.PtrToStructure(credential, typeof(CREDENTIAL))));
-                }
-            }
-            else
-            {
-                int lastError = Marshal.GetLastWin32Error();
+                var lastError = Marshal.GetLastWin32Error();
                 throw new Win32Exception(lastError);
             }
-
-            return result;
         }
 
         [DllImport("Advapi32.dll", EntryPoint = "CredReadW", CharSet = CharSet.Unicode, SetLastError = true)]
         static extern bool CredRead(string target, CredentialType type, int reservedFlag, out IntPtr credentialPtr);
+
+        [DllImport("Advapi32.dll", EntryPoint = "CredDeleteW", CharSet = CharSet.Unicode, SetLastError = true)]
+        static extern bool CredDelete(string target, CredentialType type, int reservedFlag);
 
         [DllImport("Advapi32.dll", EntryPoint = "CredWriteW", CharSet = CharSet.Unicode, SetLastError = true)]
         static extern bool CredWrite([In] ref CREDENTIAL userCredential, [In] UInt32 flags);
