@@ -2,6 +2,28 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Touhou Kaeitzuka ~ Phantasmagoria of Flower View</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/pingval/AutoSplitters/raw/master/th09.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start and Split are available for all difficulties. Auto Reset is disabled for malfunction. (By pingval)</Description>
+    <Website>https://github.com/pingval/AutoSplitters</Website> 
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Touhou Bunkachou ~ Shoot the Bullet</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/pingval/AutoSplitters/raw/master/th095.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start and Split are available. (By pingval)</Description>
+    <Website>https://github.com/pingval/AutoSplitters</Website> 
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Bloodstained: Curse of the Moon</Game>
     </Games>
     <URLs>
