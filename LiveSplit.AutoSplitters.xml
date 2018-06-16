@@ -4161,4 +4161,15 @@
     <Description>Automatic Start and Autosplitting for Normal mode using Emulator FCEUX version 2.2.2+. Splits on boss kills.</Description>
     <Website>https://github.com/Coltaho/Autosplitters/</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Xeodrifter</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/BatedUrGonnaDie/Autosplitters/master/Xeodrifter/Xeodrifter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. (By BatedUrGonnaDie)</Description>
+    <Website>https://github.com/BatedUrGonnaDie/Autosplitters//</Website>
+  </AutoSplitter>
 </AutoSplitters>
