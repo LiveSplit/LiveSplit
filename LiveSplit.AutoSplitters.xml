@@ -4172,4 +4172,15 @@
     <Description>Auto Splitting and Auto Start/Reset are available. (By BatedUrGonnaDie)</Description>
     <Website>https://github.com/BatedUrGonnaDie/Autosplitters//</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Slime Rancher</Game>
+    </Games>
+    <URLs>
+      <URL>https://gitlab.com/supramayro/slime-rancher-autosplitter/raw/master/SlimeRancher.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto starts on new file and splits on credits.</Description>
+    <Website>https://gitlab.com/supramayro/slime-rancher-autosplitter/</Website>
+  </AutoSplitter>
 </AutoSplitters>
