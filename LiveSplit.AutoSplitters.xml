@@ -4183,4 +4183,15 @@
     <Description>Auto starts on new file and splits on credits.</Description>
     <Website>https://gitlab.com/supramayro/slime-rancher-autosplitter/</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tomb Raider II</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/FluxMonkii/Autosplitters/master/TombRaiderII.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Universal autosplitter for full-game runs - supports all known executables. Start, split and reset available. (by FluxMonkii)</Description>
+    <Website>https://github.com/FluxMonkii/Autosplitters</Website>
+  </AutoSplitter>
 </AutoSplitters>
