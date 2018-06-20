@@ -4194,4 +4194,15 @@
     <Description>Autostart, split and reset available for full-game runs - Supports all known executables. (by FluxMonkii)</Description>
     <Website>https://github.com/FluxMonkii/Autosplitters</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Chip 'N Dale: Rescue Rangers</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/saturnin55/ChipnDaleAutoSplitter/master/chipndale.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting, Auto Start and Auto Reset are available. (by saturnin55)</Description>
+    <Website>https://github.com/saturnin55/ChipnDaleAutoSplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
