@@ -4205,4 +4205,16 @@
     <Description>Autosplitting, Auto Start and Auto Reset are available. (by saturnin55)</Description>
     <Website>https://github.com/saturnin55/ChipnDaleAutoSplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Devil May Cry 2</Game>
+      <Game>DMC2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Auddy07/ASL/master/DMC2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By Auddy)</Description>
+  </AutoSplitter>
 </AutoSplitters>
+
