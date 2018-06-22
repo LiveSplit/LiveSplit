@@ -4227,5 +4227,16 @@
       <Description>Autosplitting, Auto Start and Auto Reset are available. (by saturnin55)</Description>
     <Website>https://github.com/saturnin55/DucktalesNESAutoSplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Inertia</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/fuhrmannb/LiveSplit.Inertia/master/inertia_autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+      <Description>Autostart, split, reset and IGT available for Classics category. (by fuhrmannb)</Description>
+    <Website>https://github.com/fuhrmannb/LiveSplit.Inertia</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
