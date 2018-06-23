@@ -4142,6 +4142,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mega Man 2</Game>
+      <Game>Megaman 2</Game>
+      <Game>MM2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaMan2/MM2autosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man 2 (NES) (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaMan2/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>VVVVVV</Game>
     </Games>
     <URLs>
