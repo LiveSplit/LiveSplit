@@ -4150,8 +4150,34 @@
       <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaMan2/MM2autosplit.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for Mega Man 2 (NES) (By Coltaho)</Description>
+    <Description>Autosplitter for Mega Man 2 (By Coltaho)</Description>
     <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaMan2/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Mega Man 6</Game>
+      <Game>Megaman 6</Game>
+      <Game>MM6</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaMan6/MM6autosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man 6 (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaMan6/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Mega Man X</Game>
+      <Game>Megaman X</Game>
+      <Game>MMX</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaManX/MMXautosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man X (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaManX/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4162,17 +4188,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Automatic Start/Reset, Autosplitting and Game Time for both v2.2 and v2.0 are available. (by tzann)</Description>
-    <Website>https://github.com/tzann/Autosplitters</Website> </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Mega Man 2 (NES)</Game>
-    </Games>
-    <URLs>
-      <URL>https://github.com/Coltaho/Autosplitters/blob/master/MM2autosplit_v1.2.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Automatic Start and Autosplitting for Normal mode using Emulator FCEUX version 2.2.2+. Splits on boss kills.</Description>
-    <Website>https://github.com/Coltaho/Autosplitters/</Website>
+    <Website>https://github.com/tzann/Autosplitters</Website> 
   </AutoSplitter>
   <AutoSplitter>
     <Games>
