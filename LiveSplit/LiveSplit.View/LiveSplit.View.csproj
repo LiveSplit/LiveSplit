@@ -93,8 +93,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Streaming\BroadcasterPlugin.cs" />
-    <Compile Include="Streaming\TimedBroadcasterPlugin.cs" />
     <Compile Include="UI\ListBoxItemDragger.cs" />
     <Compile Include="UI\LayoutFactories\StandardLayoutFactory.cs" />
     <Compile Include="UI\LayoutFactories\TimerOnlyLayoutFactory.cs" />

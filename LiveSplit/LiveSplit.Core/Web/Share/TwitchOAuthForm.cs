@@ -37,8 +37,7 @@ namespace LiveSplit.Web.Share
 
                     try
                     {
-                        ShareSettings.Default.TwitchAccessToken = AccessToken;
-                        ShareSettings.Default.Save();
+                        WebCredentials.TwitchAccessToken = AccessToken;
                     }
                     catch (Exception ex)
                     {

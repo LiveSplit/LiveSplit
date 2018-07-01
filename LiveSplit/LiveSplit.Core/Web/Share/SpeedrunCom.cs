@@ -16,8 +16,7 @@ namespace LiveSplit.Web.Share
 
         static SpeedrunCom()
         {
-            ShareSettings.Default.Reload();
-            Client = new SpeedrunComClient(Updates.UpdateHelper.UserAgent, ShareSettings.Default.SpeedrunComAccessToken);
+            Client = new SpeedrunComClient(Updates.UpdateHelper.UserAgent, WebCredentials.SpeedrunComAccessToken);
         }
 
         public static bool MakeSureUserIsAuthenticated()
