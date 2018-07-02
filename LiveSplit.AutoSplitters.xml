@@ -4181,6 +4181,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Before The Echo</Game>
+      <Game>Sequence</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/BeforeTheEcho/BeforeTheEchoautosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Before The Echo (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/tree/master/BeforeTheEcho/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>VVVVVV</Game>
     </Games>
     <URLs>
