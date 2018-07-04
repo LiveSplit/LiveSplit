@@ -3756,10 +3756,10 @@
       <Game>Wizard of Legend</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/TheFuncannon/WoLIGT/master/WoL.asl</URL>
+      <URL>https://raw.githubusercontent.com/Phxntxm/WoL-Autosplitter/master/WoL-Autosplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitting and In-Game Time are available. (By TheFuncannon and Sillypears)</Description>
+    <Description>Autosplitting and In-Game Time are available. (Original by TheFuncannon; updated by Phantom)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
