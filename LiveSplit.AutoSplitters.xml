@@ -2383,6 +2383,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Battlefield 4</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/WonderAlmond/asl/master/LiveSplit.Battlefield4.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By WonderAlmond)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Sonic the Hedgehog</Game>
       <Game>Sonic 1</Game>
       <Game>Sonic the Hedgehog (Genesis)</Game>
