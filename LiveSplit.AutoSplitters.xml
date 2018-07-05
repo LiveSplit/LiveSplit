@@ -4289,5 +4289,16 @@
       <Description>Autostart, split, reset and IGT available for Classics category. (by fuhrmannb)</Description>
     <Website>https://github.com/fuhrmannb/LiveSplit.Inertia</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Gorogoa</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Gorogoa/master/Components/LiveSplit.Gorogoa.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Gorogoa</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
