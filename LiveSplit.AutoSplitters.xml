@@ -4300,5 +4300,16 @@
     <Description>Autosplitting is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.Gorogoa</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Freddy Fazbear's Pizzeria Simulator</Game>
+    </Games>
+    <URLs>
+      <URL>https://gitlab.com/supramayro/ffps-autosplitter/raw/master/Pizzeria_Simulator.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Load Removal are available. (by Supra)</Description>
+    <Website>https://gitlab.com/supramayro/ffps-autosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
