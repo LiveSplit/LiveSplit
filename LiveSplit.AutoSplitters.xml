@@ -4313,6 +4313,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>FNaF World</Game>
+    </Games>
+    <URLs>
+      <URL>https://gitlab.com/supramayro/fnaf-world-autosplitter/raw/master/FNaF_World.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Split, Start, and Reset are available. (by Supra)</Description>
+    <Website>https://gitlab.com/supramayro/fnaf-world-autosplitter</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Master Spy</Game>
       <Game>MasterSpy</Game>
     </Games>
