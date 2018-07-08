@@ -4322,5 +4322,17 @@
     <Description>Load Removal and Auto Split, Start, and Reset are available. (by Supra)</Description>
     <Website>https://gitlab.com/supramayro/fnaf-world-autosplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Master Spy</Game>
+      <Game>MasterSpy</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.MasterSpy/master/Components/LiveSplit.MasterSpy.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.MasterSpy</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
