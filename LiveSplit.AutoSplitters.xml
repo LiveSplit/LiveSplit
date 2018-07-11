@@ -4335,5 +4335,17 @@
     <Description>Autosplitting is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.MasterSpy</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Bridge</Game>
+      <Game>TheBridge</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.TheBridge/master/Components/LiveSplit.TheBridge.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.TheBridge</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
