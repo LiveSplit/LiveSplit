@@ -2,6 +2,17 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Kuon</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Bigmanjapan/LivesplitASLscripts/master/Kuon%20PCSX2%201.4.0/LiveSplit.Kuon.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>PCSX2 1.4.0. IGT display, Auto Start and Auto Split are available (by Bigmanjapan)</Description>
+    <Website>https://github.com/Bigmanjapan/LivesplitASLscripts</Website> 
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Touhou Kaeitzuka ~ Phantasmagoria of Flower View</Game>
     </Games>
     <URLs>
