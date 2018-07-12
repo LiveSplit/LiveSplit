@@ -2,6 +2,16 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Q.U.B.E. 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/haxorsnake/QUBE2LoadRemoval/master/qube2loadremove.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal by (Haxorsnake)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Kuon</Game>
     </Games>
     <URLs>
