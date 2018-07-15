@@ -4368,5 +4368,16 @@
     <Description>Autosplitting is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.TheBridge</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Devil May Cry 3: Special Edition</Game>
+      <Game>DMCSE</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Auddy07/ASL/master/DMC3SE.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By Auddy)</Description>
+  </AutoSplitter>
 </AutoSplitters>
 
