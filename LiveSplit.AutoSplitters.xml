@@ -4311,5 +4311,16 @@
     <Description>Autosplitting and Load Removal are available. (by Supra)</Description>
     <Website>https://gitlab.com/supramayro/ffps-autosplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Fe</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Fe/Livesplit.Fe.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Fe</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
