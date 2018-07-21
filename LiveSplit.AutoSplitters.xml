@@ -2,6 +2,27 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Q.U.B.E. 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/haxorsnake/QUBE2LoadRemoval/master/qube2loadremove.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal by (Haxorsnake)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Kuon</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Bigmanjapan/LivesplitASLscripts/master/Kuon%20PCSX2%201.4.0/LiveSplit.Kuon.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>PCSX2 1.4.0. IGT display, Auto Start and Auto Split are available (by Bigmanjapan)</Description>
+    <Website>https://github.com/Bigmanjapan/LivesplitASLscripts</Website> 
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Touhou Kaeitzuka ~ Phantasmagoria of Flower View</Game>
     </Games>
     <URLs>
@@ -4313,7 +4334,54 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Fe</Game>
+      <Game>FNaF World</Game>
+      <Game>FNaF World Category Extensions</Game>
+    </Games>
+    <URLs>
+      <URL>https://gitlab.com/supramayro/fnaf-world-autosplitter/raw/master/FNaF_World.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Auto Split, Start, and Reset are available. (by Supra)</Description>
+    <Website>https://gitlab.com/supramayro/fnaf-world-autosplitter</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Master Spy</Game>
+      <Game>MasterSpy</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.MasterSpy/master/Components/LiveSplit.MasterSpy.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.MasterSpy</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Bridge</Game>
+      <Game>TheBridge</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.TheBridge/master/Components/LiveSplit.TheBridge.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.TheBridge</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Devil May Cry 3: Special Edition</Game>
+      <Game>DMCSE</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Auddy07/ASL/master/DMC3SE.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By Auddy)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+        <Game>Fe</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Fe/Livesplit.Fe.asl</URL>
