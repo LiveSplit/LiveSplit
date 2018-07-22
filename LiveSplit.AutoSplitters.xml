@@ -4379,5 +4379,16 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By Auddy)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+        <Game>Fe</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Fe/Livesplit.Fe.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Fe</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
