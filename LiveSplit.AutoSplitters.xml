@@ -4390,5 +4390,15 @@
     <Description>Auto Splitting is available. (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Fe</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Semblance</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Semblance/master/Components/LiveSplit.Semblance.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Semblance</Website>
+  </AutoSplitter>
 </AutoSplitters>
-
