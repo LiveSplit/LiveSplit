@@ -4401,4 +4401,14 @@
     <Description>Autosplitting is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.Semblance</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Impulsion</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Msushi/Livesplit-Autosplitters/master/Impulsion.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game time, auto split, start, and reset are available. (By Msushi and Spyman)</Description>
+  </AutoSplitter>
 </AutoSplitters>
