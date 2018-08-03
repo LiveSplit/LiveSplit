@@ -2,6 +2,17 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Styx: Shard of Darkness</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Acefrog/StyxSOD/blob/master/StyxSOD.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover & Autostart by Acefrog</Description>
+  </AutoSplitter>
+<AutoSplitters>
+  <AutoSplitter>
+    <Games>
       <Game>Q.U.B.E. 2</Game>
     </Games>
     <URLs>
