@@ -4413,6 +4413,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Hook (2015)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Spiraler/autosplitters/master/hookAutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Splitting available for each level, all optional. (By Spiraler)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Pony Island</Game>
     </Games>
     <URLs>
