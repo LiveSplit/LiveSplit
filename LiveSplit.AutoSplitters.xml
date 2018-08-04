@@ -4421,4 +4421,14 @@
     <Type>Script</Type>
     <Description>Splitting available for each level, all optional. (By Spiraler)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Pony Island</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Avasam/Pony-Island-AutoSplitter/master/PonyIsland.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Start, and Reset are available. (By Avasam)</Description>
+  </AutoSplitter>
 </AutoSplitters>
