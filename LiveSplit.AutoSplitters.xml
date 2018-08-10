@@ -4475,4 +4475,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting, Start, and Reset are available. (By Avasam)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Rifter</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/maximiliancsuk/livesplit-rifter/master/rifter_livesplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Start are available. (By Maximilian Csuk)</Description>
+  </AutoSplitter>
 </AutoSplitters>
