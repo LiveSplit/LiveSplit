@@ -4486,4 +4486,25 @@
     <Type>Script</Type>
     <Description>Loadd removal is available. (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+        <Game>Woten</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Woten/Livesplit.Woten.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Woten</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Rifter</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/maximiliancsuk/livesplit-rifter/master/rifter_livesplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Start are available. (By Maximilian Csuk)</Description>
+  </AutoSplitter>
 </AutoSplitters>
