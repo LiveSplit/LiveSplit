@@ -2,6 +2,27 @@
 <AutoSplitters>
   <AutoSplitter>
     <Games>
+      <Game>Bastion</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Synthian/LiveSplit.Bastion/master/Components/LiveSplit.Bastion.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting is available. (by IanSynth)</Description>
+    <Website>https://github.com/Synthian/LiveSplit.Bastion</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Styx: Shards of Darkness</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Acefrog/StyxSOD/blob/master/StyxSOD.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover and Autostart by Acefrog</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Q.U.B.E. 2</Game>
     </Games>
     <URLs>
@@ -3259,6 +3280,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Hyperdimension Neptunia Re;Birth1</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Dabomstew/AutoSplitters/master/rebirth1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-Split on Cutscenes and certain Events. (By Dabomstew and Marenthyu)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Star Wars Battlefront II</Game>
     </Games>
     <URLs>
@@ -4212,6 +4243,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mega Man X2</Game>
+      <Game>Megaman X2</Game>
+      <Game>MMX2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaManX2/MMX2autosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man X2 (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaManX2/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Before The Echo</Game>
       <Game>Sequence</Game>
     </Games>
@@ -4390,5 +4434,45 @@
     <Description>Auto Splitting is available. (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Fe</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Semblance</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Semblance/master/Components/LiveSplit.Semblance.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.Semblance</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Impulsion</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Msushi/Livesplit-Autosplitters/master/Impulsion.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game time, auto split, start, and reset are available. (By Msushi and Spyman)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Hook (2015)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Spiraler/autosplitters/master/hookAutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Splitting available for each level, all optional. (By Spiraler)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Pony Island</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Avasam/Pony-Island-AutoSplitter/master/PonyIsland.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Start, and Reset are available. (By Avasam)</Description>
+  </AutoSplitter>
 </AutoSplitters>
-
