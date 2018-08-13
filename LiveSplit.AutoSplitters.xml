@@ -4477,6 +4477,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Cryostasis</Game>
+      <Game>Cryostasis: Sleep of Reason</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Cryostasis/LiveSplit.Cryostasis.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Loadd removal is available. (By SuicideMachine)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
         <Game>Woten</Game>
     </Games>
     <URLs>
