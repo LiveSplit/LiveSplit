@@ -4507,4 +4507,15 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Start are available. (By Maximilian Csuk)</Description>
   </AutoSplitter>
+	<AutoSplitter>
+	<Games>
+	  <Game>Inverto</Game>
+	</Games>
+	<URLs>
+	  <URL>https://raw.githubusercontent.com/calnew8/Inverto-Autosplitter/master/Inverto.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Auto Splitting, Start and Reset are available. (By Calnew8)</Description>
+	<Website>https://github.com/calnew8/Inverto-Autosplitter</Website>
+  </Autosplitter>
 </AutoSplitters>
