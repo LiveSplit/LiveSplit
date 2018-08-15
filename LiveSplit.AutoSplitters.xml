@@ -3290,6 +3290,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Hyperdimension Neptunia Re;Birth3: V Generation</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Dabomstew/AutoSplitters/master/rebirth3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-Split on Cutscenes and certain Events. (By Dabomstew and Marenthyu)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Star Wars Battlefront II</Game>
     </Games>
     <URLs>
