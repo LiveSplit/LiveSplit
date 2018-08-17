@@ -4534,7 +4534,7 @@
       <Game>Midnight Club II</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/LRFLEW/LiveSplit.MC2/raw/master/Components/LiveSplit.MC2.dll</URL>
+      <URL>https://raw.githubusercontent.com/LRFLEW/LiveSplit.MC2/master/Components/LiveSplit.MC2.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Load Remover for Midnight Club 2 for PC</Description>
