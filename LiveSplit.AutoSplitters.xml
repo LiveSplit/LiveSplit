@@ -4528,4 +4528,16 @@
 	<Description>Auto Splitting, Start and Reset are available. (By Calnew8)</Description>
 	<Website>https://github.com/calnew8/Inverto-Autosplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Midnight Club 2</Game>
+      <Game>Midnight Club II</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/LRFLEW/LiveSplit.MC2/raw/master/Components/LiveSplit.MC2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Remover for Midnight Club 2 for PC</Description>
+    <Website>https://github.com/LRFLEW/LiveSplit.MC2</Website>
+  </AutoSplitter>
 </AutoSplitters>
