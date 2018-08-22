@@ -4540,4 +4540,18 @@
     <Description>Load Remover for Midnight Club 2 for PC</Description>
     <Website>https://github.com/LRFLEW/LiveSplit.MC2</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>FEAR</Game>
+      <Game>FEAR: First Encounter Assault Recon</Game>
+      <Game>F.E.A.R.</Game>
+      <Game>F.E.A.R.: First Encounter Assault Recon</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.FEAR/master/Components/LiveSplit.FEAR.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Load Removal and Autosplitting are available (by SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.FEAR</Website>
+  </AutoSplitter>
 </AutoSplitters>
