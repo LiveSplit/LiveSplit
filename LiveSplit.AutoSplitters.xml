@@ -4554,4 +4554,18 @@
     <Description>Load Removal and Autosplitting are available (by SuicideMachine)</Description>
     <Website>https://github.com/SuiMachine/LiveSplit.FEAR</Website>
   </AutoSplitter>
+	 <AutoSplitter>
+    <Games>
+      <Game>Prince of Persia: The Sands of Time</Game>
+      <Game>Prince of Persia: Sands of Time</Game>
+      <Game>Prince of Persia The Sands of Time</Game>
+      <Game>Prince of Persia Sands of Time</Game>
+      <Game>POP: Sands of Time</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/POPSandsOfTimeAnyZipless_v3.4.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting (with sub/category detection) is available. (By Samabam and Ynscription)</Description>
+  </AutoSplitter>
 </AutoSplitters>
