@@ -4605,4 +4605,15 @@
     <Description>Autosplitting, Auto Start and Load Removal are available. (By Albin)</Description>
     <Website>https://github.com/AlbinEriksson/TheKingsBird-ASL</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Prince of Persia: Warrior Within</Game>
+      <Game>Prince of Persia Warrior Within</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/POPWarriorWithin_v1.ASL</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting (with sub/category detection) is available. (By Samabam)</Description>
+  </AutoSplitter>
 </AutoSplitters>
