@@ -4594,4 +4594,15 @@
     <Type>Script</Type>
     <Description>Load Removing and Auto Splitting (By ChickenB0h)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The King's Bird</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AlbinEriksson/TheKingsBird-ASL/master/TheKingsBird.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting, Auto Start and Load Removal are available. (By Albin)</Description>
+    <Website>https://github.com/AlbinEriksson/TheKingsBird-ASL</Website>
+  </AutoSplitter>
 </AutoSplitters>
