@@ -4568,4 +4568,16 @@
     <Type>Script</Type>
     <Description>Auto Splitting (with sub/category detection) is available. (By Samabam and Ynscription)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Call of Cthulhu: Dark Corners of the Earth</Game>
+      <Game>CoC: Dark Corners of the Earth</Game>
+      <Game>Dark Corners of the Earth</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NaxHPL/DCOTE-Auto-Splitter/master/dcote.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover and Auto Splitter (by NaxHPL)</Description>
+  </AutoSplitter>
 </AutoSplitters>
