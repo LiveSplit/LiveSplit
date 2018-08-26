@@ -4580,4 +4580,18 @@
     <Type>Script</Type>
     <Description>Load Remover and Auto Splitter (by NaxHPL)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Far Cry 1</Game>
+      <Game>Far Cry</Game>
+      <Game>FarCry</Game>
+      <Game>FC1</Game>
+      <Game>FC</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Skiendys/FarCry-Autosplitter/master/auto%20split%20script.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removing and Auto Splitting (By ChickenB0h)</Description>
+  </AutoSplitter>
 </AutoSplitters>
