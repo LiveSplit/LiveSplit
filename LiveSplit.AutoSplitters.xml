@@ -2099,6 +2099,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>FEZ</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.FEZ.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/jbzdarkid/Autosplitters</Website>
+    <Description>Auto splitting, Automatic start/reset, and in-game time (By Darkid)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Family Guy: Back to the Multiverse</Game>
       <Game>Family Guy Back to the Multiverse</Game>
       <Game>Family Guy: BttM</Game>
@@ -2295,17 +2306,6 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available. (By Hyphen-ated)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>FEZ</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.FEZ/LiveSplit.FEZ.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto Splitting, Auto Start/Reset, and Game Time are available. (By Spiraster)</Description>
-    <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.FEZ</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
