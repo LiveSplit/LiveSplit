@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+   <AutoSplitter>
+    <Games>
+      <Game>LEGO Bionicle: The Legend of Mata Nui</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/OndrikB/Bionicle-TLoMN-Autosplitter/blob/master/bionicle_tlomn.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover, Autosplitting and Autostarting is available (by OndrikB)</Description>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Bastion</Game>
