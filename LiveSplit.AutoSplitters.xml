@@ -4637,4 +4637,17 @@
     <Description>Auto Splitting is available. (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.TheMessenger</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Prince of Persia: The Two Thrones</Game>
+      <Game>Prince of Persia The Two Thrones</Game>
+      <Game>Prince of Persia: Two Thrones</Game>
+      <Game>Prince of Persia Two Thrones</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/POPTwoThrones.ASL</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting (with sub/category detection) is available. (By Samabam)</Description>
+  </AutoSplitter>
 </AutoSplitters>
