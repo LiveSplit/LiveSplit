@@ -4626,4 +4626,15 @@
     <Type>Script</Type>
     <Description>Auto Splitting (with sub/category detection) is available. (By Samabam)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+        <Game>The Messenger</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.TheMessenger/Livesplit.TheMessenger.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.TheMessenger</Website>
+  </AutoSplitter>
 </AutoSplitters>
