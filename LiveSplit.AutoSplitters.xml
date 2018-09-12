@@ -4650,4 +4650,16 @@
     <Type>Script</Type>
     <Description>Auto Splitting (with sub/category detection) is available. (By Samabam)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Serious Sam 3</Game>
+      <Game>Serious Sam 3: BFE</Game>
+      <Game>Serious Sam 3 BFE</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/apple1417/Autosplitters/master/serious_sam_3_bfe.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start and Load Removal are available. (By apple1417)</Description>
+  </AutoSplitter>
 </AutoSplitters>
