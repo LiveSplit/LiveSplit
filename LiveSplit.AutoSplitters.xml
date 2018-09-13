@@ -4662,4 +4662,16 @@
     <Type>Script</Type>
     <Description>Auto Splitting, Auto Start and Load Removal are available. (By apple1417)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Aliens vs. Predator</Game>
+      <Game>Aliens versus Predator</Game>
+      <Game>Aliens vs Predator Classic 2000</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/AVP-2000-Classic/LiveSplit.AVP2000Classic.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Game Time display are available (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
