@@ -4674,4 +4674,15 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Game Time display are available (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Chronicles of Riddick: Assault on Dark Athena</Game>
+      <Game>The Chronicles of Riddick: Escape from Butcher Bay</Game>
+    </Games>
+    <URLs>
+      <URL>https://gitlab.com/Zilarrezko/riddick-autosplitter/raw/master/Riddick.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Remover (By JesseECoyle)</Description>
+  </AutoSplitter>
 </AutoSplitters>
