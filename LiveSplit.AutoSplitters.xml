@@ -4676,6 +4676,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>The Chronicles of Riddick: Assault on Dark Athena</Game>
+      <Game>The Chronicles of Riddick: Escape from Butcher Bay</Game>
+    </Games>
+    <URLs>
+      <URL>https://gitlab.com/Zilarrezko/riddick-autosplitter/raw/master/Riddick.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Remover (By JesseECoyle)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>World War 2 Sniper</Game>
       <Game>World War 2 Sniper: Call to Victory</Game>
       <Game>Rajd na Berlin: Oddziały specjalne</Game>
