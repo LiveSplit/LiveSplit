@@ -4685,4 +4685,17 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Load Remover (By JesseECoyle)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>World War 2 Sniper</Game>
+      <Game>World War 2 Sniper: Call to Victory</Game>
+      <Game>Rajd na Berlin: Oddziały specjalne</Game>
+      <Game>Rajd na Berlin - Oddziały specjalne</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/World-War-2-Sniper-Call-to-Victory/LiveSplit.WorldWar2Sniper.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available (By SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
