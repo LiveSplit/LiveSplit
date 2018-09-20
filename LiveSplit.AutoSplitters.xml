@@ -4698,4 +4698,14 @@
     <Type>Script</Type>
     <Description>Load removal is available (By SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Final Fantasy I (FCEUX)</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/drcatdoctor/ff1-livesplit-autosplitter/raw/master/ff1r.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplits and autostart for the FF1 NES ROM in FCEUX 2.2.3. (By catdoctor)</Description>
+  </AutoSplitter>
 </AutoSplitters>
