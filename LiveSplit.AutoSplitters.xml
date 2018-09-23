@@ -4708,4 +4708,15 @@
     <Type>Script</Type>
     <Description>Autosplits and autostart for the FF1 NES ROM in FCEUX 2.2.3. (By catdoctor)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Touhou Hifuu Nightmare Diary ~ Violet Detector</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/pingval/AutoSplitters/raw/master/th165.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Split/Reset and Clear/Death/DeathCancel Count are available. in-game Timer is incomplete. (By pingval)</Description>
+    <Website>https://github.com/pingval/AutoSplitters</Website> 
+  </AutoSplitter>
 </AutoSplitters>
