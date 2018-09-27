@@ -5,7 +5,7 @@
       <Game>LEGO Bionicle: The Legend of Mata Nui</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/OndrikB/Bionicle-TLoMN-Autosplitter/blob/master/bionicle_tlomn.asl</URL>
+      <URL>https://raw.githubusercontent.com/OndrikB/Bionicle-TLoMN-Autosplitter/master/bionicle_tlomn.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Remover, Autosplitting and Autostarting is available (by OndrikB)</Description>
@@ -26,7 +26,7 @@
       <Game>Styx: Shards of Darkness</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Acefrog/StyxSOD/blob/master/StyxSOD.asl</URL>
+      <URL>https://raw.githubusercontent.com/Acefrog/StyxSOD/master/StyxSOD.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Remover and Autostart by Acefrog</Description>
@@ -57,7 +57,7 @@
       <Game>Touhou Kaeitzuka ~ Phantasmagoria of Flower View</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/pingval/AutoSplitters/raw/master/th09.asl</URL>
+      <URL>https://raw.githubusercontent.com/pingval/AutoSplitters/master/th09.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Start and Split are available for all difficulties. Auto Reset is disabled for malfunction. (By pingval)</Description>
@@ -68,7 +68,7 @@
       <Game>Touhou Bunkachou ~ Shoot the Bullet</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/pingval/AutoSplitters/raw/master/th095.asl</URL>
+      <URL>https://raw.githubusercontent.com/pingval/AutoSplitters/master/th095.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Start and Split are available. (By pingval)</Description>
@@ -4032,7 +4032,7 @@
       <Game>Super Mario Land</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/cv-eko/AutoSplitter.SuperMarioLand/blob/master/sml.asl</URL>
+      <URL>https://raw.githubusercontent.com/cv-eko/AutoSplitter.SuperMarioLand/master/sml.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available. (By eKo)</Description>
@@ -4054,7 +4054,7 @@
       <Game>Dead Rising 2: Off The Record</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Souzooka/Dead-Rising-2-Off-The-Record-AutoSplitter/blob/master/DR2OTRLoadless.asl</URL>
+      <URL>https://raw.githubusercontent.com/Souzooka/Dead-Rising-2-Off-The-Record-AutoSplitter/master/DR2OTRLoadless.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Souzooka)</Description>
@@ -4703,7 +4703,7 @@
       <Game>Final Fantasy I (FCEUX)</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/drcatdoctor/ff1-livesplit-autosplitter/raw/master/ff1r.asl</URL>
+      <URL>https://raw.githubusercontent.com/drcatdoctor/ff1-livesplit-autosplitter/master/ff1r.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Autosplits and autostart for the FF1 NES ROM in FCEUX 2.2.3. (By catdoctor)</Description>
@@ -4713,7 +4713,7 @@
       <Game>Touhou Hifuu Nightmare Diary ~ Violet Detector</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/pingval/AutoSplitters/raw/master/th165.asl</URL>
+      <URL>https://raw.githubusercontent.com/pingval/AutoSplitters/master/th165.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Start/Split/Reset, Clear/Death/DeathCancel Count and in-game Timer are available. (By pingval)</Description>
