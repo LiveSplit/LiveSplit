@@ -48,7 +48,7 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Splits"]
 	path = LiveSplit/Components/LiveSplit.Splits
-	url = https://github.com/LiveSplit/LiveSplit.Splits.git
+	url = https://github.com/bgsamm/LiveSplit.Splits.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.SumOfBest"]
 	path = LiveSplit/Components/LiveSplit.SumOfBest
@@ -72,7 +72,7 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Subsplits"]
 	path = LiveSplit/Components/LiveSplit.Subsplits
-	url = https://github.com/LiveSplit/LiveSplit.Subsplits
+	url = https://github.com/bgsamm/LiveSplit.Subsplits
 [submodule "LiveSplit/Libs/xlio"]
 	path = LiveSplit/Libs/xlio
 	url = https://github.com/LiveSplit/xlio.git
