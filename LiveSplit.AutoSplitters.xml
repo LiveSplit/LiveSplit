@@ -2759,7 +2759,6 @@
     <Type>Component</Type>
     <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.ShovelKnight</Website>
-    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3397,7 +3396,6 @@
     <Type>Component</Type>
     <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.OriDE</Website>
-    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3409,7 +3407,6 @@
     <Type>Component</Type>
     <Description>Configurable Load Remover / Auto Splitter. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.HollowKnight</Website>
-    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3432,7 +3429,6 @@
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.Splasher</Website>
-    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3445,7 +3441,6 @@
     <Type>Component</Type>
     <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.SteamWorldDig</Website>
-    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3625,7 +3620,6 @@
     <Type>Component</Type>
     <Description>Configurable Auto Splitter (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.SteamWorldDig2</Website>
-    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3637,7 +3631,6 @@
     <Type>Component</Type>
     <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.Cuphead</Website>
-    <ShowInLayoutEditor />
   </AutoSplitter>
    <AutoSplitter>
     <Games>
@@ -3877,7 +3870,6 @@
     <Type>Component</Type>
     <Description>Load Removal / Autosplitting is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.Yono</Website>
-    <ShowInLayoutEditor />
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4729,5 +4721,16 @@
     <Type>Script</Type>
     <Description>Autosplit for all forced battles and autostart for NG/NG+ runs. For the PC port only. (By Dabomstew)</Description>
     <Website>https://github.com/Dabomstew/AutoSplitters</Website> 
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Night in the Woods</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.NightInTheWoods/master/Components/LiveSplit.NightInTheWoods.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitting / Load Remover is available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.NightInTheWoods</Website>
   </AutoSplitter>
 </AutoSplitters>
