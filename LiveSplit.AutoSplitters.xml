@@ -5,7 +5,7 @@
       <Game>Bit Blaster XL</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/bigmonmulgrew/bitBlasterXL_autosplitter/blob/master/BitBlasterXL.asl</URL>
+      <URL>https://raw.githubusercontent.com/bigmonmulgrew/bitBlasterXL_autosplitter/master/BitBlasterXL.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitting and Autostarting and auto reset (by BigMonD)</Description>
