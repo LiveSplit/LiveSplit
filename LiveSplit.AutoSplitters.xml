@@ -946,22 +946,6 @@
     <Type>Script</Type>
     <Description>Automatic Timer Start, Game Time, and Auto Splitting is available. (By vergeofapathy)</Description>
   </AutoSplitter>
-  <!--
-  <AutoSplitter>
-    <Games>
-      <Game>Robot Roller-Derby Disco Dodgeball</Game>
-      <Game>Disco Dodgeball</Game>
-      <Game>Robot Roller Derby Disco Dodgeball</Game>
-      <Game>Robot Rollerderby Disco Dodgeball</Game>
-      <Game>RRDDD</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/MM4005/Disco-Dodgeball-Auto-Splitter-Script/master/LiveSplit.DiscoDodgeball.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto Splitting/Start is available. (By MM4005)</Description>
-  </AutoSplitter>
--->
   <AutoSplitter>
     <Games>
       <Game>Aliens vs. Predator (2010)</Game>
@@ -1824,29 +1808,6 @@
     <Type>Script</Type>
     <Description>Load Removal is available. Requires patch 1.1. (By Jukspa)</Description>
   </AutoSplitter>
-  <!--
-  <AutoSplitter>
-    <Games>
-      <Game>Grapple</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/Xarathoss/Autosplitters/master/Grapple.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Xarathoss)</Description>
-    <Website>https://github.com/Xarathoss/Autosplitters</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Clustertruck</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/MM4005/Clustertruck-Auto-Splitter/master/Auto-Splitter.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto Start/Stop/Reset are available. (By MM4005)</Description>
-  </AutoSplitter>
--->
   <AutoSplitter>
     <Games>
       <Game>Age of Empires</Game>
@@ -1988,18 +1949,6 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By DrTChops, TheFuncannon, loitho, sychotixx and Instagibz)</Description>
   </AutoSplitter>
-  <!--
-  <AutoSplitter>
-  	<Games>
-  		<Game>Need for Speed: Underground 2</Game>
-  	</Games>
-  	<URLs>
-  		<URL>https://gist.githubusercontent.com/Grim995/a5cae856d8fbf5cb189821cf9d6fa569/raw/854f6166a0e51941097883f60d0b7d7151a74092/nfsu2.asl</URL>
-  	</URLs>
-  	<Type>Script</Type>
-  	<Description>Load Removal is available. (By Grim Maple)</Description>
-  </AutoSplitter>
--->
   <AutoSplitter>
     <Games>
       <Game>You Are Empty</Game>
@@ -3095,7 +3044,6 @@
       <Game>Command &amp; Conquer Generals - Zero Hour</Game>
       <Game>Command &amp; Conquer Generals: Zero Hour</Game>
       <Game>Command &amp; Conquer Generals Zero Hour</Game>
-      <!--Gotta love games with two subtitles-->
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.CnCGZH.asl</URL>
