@@ -5,6 +5,7 @@ using System.Xml;
 using System.Linq;
 using System.Collections.Generic;
 using LiveSplit.Model;
+using System.Text.RegularExpressions;
 
 namespace LiveSplit.Tests
 {
@@ -44,11 +45,13 @@ namespace LiveSplit.Tests
             Assert.IsTrue(!autoSplitters.Values.Any(x => string.IsNullOrWhiteSpace(x.Description)), "Auto Splitters need a description");
             Assert.IsTrue(!autoSplitters.Values.Any(x => !x.URLs.Any()), "Auto Splitters need to have at least one URL");
             Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".asl")) && x.Type == AutoSplitterType.Component),
-                "ASL Script is downloaded even though Type \"Component\" is specified.");
+                "ASL Script is downloaded even though Type \"Component\" is specified");
             Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".dll")) && x.Type == AutoSplitterType.Script),
-                "Component is downloaded even though Type \"Script\" is specified.");
+                "Component is downloaded even though Type \"Script\" is specified");
             Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => !Uri.IsWellFormedUriString(y, UriKind.Absolute))),
                 "Auto Splitters need to have valid URLs");
+            Assert.IsTrue(!autoSplitters.Values.Any(x => x.URLs.Any(y => Regex.IsMatch(y, "https://github.com/[^/]*/[^/]*/blob/"))),
+                "URLs leading to GitHub should use the raw file link");
         }
     }
 }
