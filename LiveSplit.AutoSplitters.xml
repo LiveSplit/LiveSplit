@@ -2507,7 +2507,11 @@
   <AutoSplitter>
     <Games>
       <Game>Pokémon Red</Game>
+      <Game>Pokémon Blue</Game>
       <Game>Pokémon Red/Blue</Game>
+      <Game>Pokemon Red</Game>
+      <Game>Pokemon Blue</Game>
+      <Game>Pokemon Red/Blue</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Spiraster/ASLScripts/master/LiveSplit.PkmnRed/LiveSplit.PkmnRed.asl</URL>
