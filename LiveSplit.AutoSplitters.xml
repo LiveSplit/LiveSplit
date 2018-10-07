@@ -4695,4 +4695,16 @@
     <Description>Autosplitting / Load Remover is available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.NightInTheWoods</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Condemned: Criminal Origins</Game>
+      <Game>Condemned Criminal Origins</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Condemned/LiveSplit.Condemned.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available. (By SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website> 
+  </AutoSplitter>
 </AutoSplitters>
