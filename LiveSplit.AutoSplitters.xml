@@ -9,7 +9,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitting and Autostarting and auto reset (by BigMonD)</Description>
-  </AutoSplitter>	
+  </AutoSplitter>
    <AutoSplitter>
     <Games>
       <Game>LEGO Bionicle: The Legend of Mata Nui</Game>
@@ -60,7 +60,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>PCSX2 1.4.0. IGT display, Auto Start and Auto Split are available (by Bigmanjapan)</Description>
-    <Website>https://github.com/Bigmanjapan/LivesplitASLscripts</Website> 
+    <Website>https://github.com/Bigmanjapan/LivesplitASLscripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -71,7 +71,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Start and Split are available for all difficulties. Auto Reset is disabled for malfunction. (By pingval)</Description>
-    <Website>https://github.com/pingval/AutoSplitters</Website> 
+    <Website>https://github.com/pingval/AutoSplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -82,7 +82,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Start and Split are available. (By pingval)</Description>
-    <Website>https://github.com/pingval/AutoSplitters</Website> 
+    <Website>https://github.com/pingval/AutoSplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -93,7 +93,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>PC-only In-Game Timer for all modes(except Boss Rush[RTA]). Auto-start/split/reset. Final split is on credits start. (By CptBrian)</Description>
-    <Website>https://www.speedrun.com/bscotm/thread/ej1rn</Website> 
+    <Website>https://www.speedrun.com/bscotm/thread/ej1rn</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -104,7 +104,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start, split, and stop for the PC version of Disney's 102 Dalmatians: Puppies to the Rescue.</Description>
-    <Website>https://github.com/PorkySM/autosplitters</Website> 
+    <Website>https://github.com/PorkySM/autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1363,7 +1363,7 @@
     </URLs>
     <Type>Component</Type>
     <Description>Game Time is available. (By CapitaineToinon)</Description>
-    <Website>https://github.com/CapitaineToinon/LiveSplit.DarkSoulsRemasteredIGT</Website>	  
+    <Website>https://github.com/CapitaineToinon/LiveSplit.DarkSoulsRemasteredIGT</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4142,7 +4142,7 @@
     <Type>Script</Type>
     <Description>RetroArch+GensPlusGX/Kega Fusion. Game Time.</Description>
     <Website>https://github.com/subenji/LiveSplitASL</Website>
-  </AutoSplitter>	
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Sonic 3 &amp; Knuckles</Game>
@@ -4262,7 +4262,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Automatic Start/Reset, Autosplitting and Game Time for both v2.2 and v2.0 are available. (by tzann)</Description>
-    <Website>https://github.com/tzann/Autosplitters</Website> 
+    <Website>https://github.com/tzann/Autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4684,7 +4684,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Start/Split/Reset, Clear/Death/DeathCancel Count and in-game Timer are available. (By pingval)</Description>
-    <Website>https://github.com/pingval/AutoSplitters</Website> 
+    <Website>https://github.com/pingval/AutoSplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4695,7 +4695,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Autosplit for all forced battles and autostart for NG/NG+ runs. For the PC port only. (By Dabomstew)</Description>
-    <Website>https://github.com/Dabomstew/AutoSplitters</Website> 
+    <Website>https://github.com/Dabomstew/AutoSplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4718,6 +4718,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load removal is available. (By SuicideMachine)</Description>
-    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website> 
+    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SOMA</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ItsTrigger/LiveSplit-Auto-Splitters/master/LiveSplit.SOMA.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting is available. Load time removal requires a helper mod found at https://www.speedrun.com/SOMA/resources (By Trigger)</Description>
   </AutoSplitter>
 </AutoSplitters>
