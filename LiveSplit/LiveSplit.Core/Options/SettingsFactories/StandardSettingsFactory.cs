@@ -37,6 +37,7 @@ namespace LiveSplit.Options.SettingsFactories
                 RaceViewer = new SRLRaceViewer(),
                 AgreedToSRLRules = false,
                 SimpleSumOfBest = false,
+                RefreshRate = 40,
                 ComparisonGeneratorStates = new Dictionary<string, bool>()
                 {
                     { BestSegmentsComparisonGenerator.ComparisonName, true },

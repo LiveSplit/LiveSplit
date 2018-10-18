@@ -17,6 +17,7 @@ namespace LiveSplit.Options
 
         bool WarnOnReset { get; set; }
         bool SimpleSumOfBest { get; set; }
+        int RefreshRate { get; set; }
         IRaceViewer RaceViewer { get; set; }
         IList<string> ActiveAutoSplitters { get; set; }
         IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
