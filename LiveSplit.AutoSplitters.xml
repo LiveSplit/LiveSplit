@@ -4255,6 +4255,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Teenage Mutant Ninja Turtles IV: Turtles in Time</Game>
+			<Game>TMNT IV: Turtles in Time</Game>
+			<Game>Turtles in Time</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/TMNT4/TurtlesInTimeautosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Turtles In Time (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/TMNT4/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Before The Echo</Game>
       <Game>Sequence</Game>
     </Games>
