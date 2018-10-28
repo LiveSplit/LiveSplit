@@ -4755,4 +4755,14 @@
     <Type>Script</Type>
     <Description>Auto-splitting is available. Load time removal requires a helper mod found at https://www.speedrun.com/SOMA/resources (By Trigger)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sonic Mania Plus</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ClarisRobyn/ManiaPlusAutosplitter/master/SonicManiaPlus.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>PC version, auto splitting/start/reset available. Splits at the very end of each act, optional split at the start of the CP2 boss. (By Claris)</Description>
+  </AutoSplitter>
 </AutoSplitters>
