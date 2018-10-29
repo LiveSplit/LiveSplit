@@ -4765,4 +4765,14 @@
     <Type>Script</Type>
     <Description>PC version, auto splitting/start/reset available. Splits at the very end of each act, optional split at the start of the CP2 boss. (By Claris)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Iji</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NighthawkSLO/Autosplitters/master/Iji.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Version 1.7, Auto Start/Split/Reset and in-game Timer are available. (By NighthawkSLO)</Description>
+  </AutoSplitter>
 </AutoSplitters>
