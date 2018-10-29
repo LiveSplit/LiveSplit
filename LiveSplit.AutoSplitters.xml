@@ -4775,4 +4775,14 @@
     <Type>Script</Type>
     <Description>Version 1.7, Auto Start/Split/Reset and in-game Timer are available. (By NighthawkSLO)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Hotline Miami</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NighthawkSLO/Autosplitters/master/Hotline.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Updated steam version, Auto Start/Split are available. (By NighthawkSLO)</Description>
+  </AutoSplitter>
 </AutoSplitters>
