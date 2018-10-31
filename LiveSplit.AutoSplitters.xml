@@ -4755,6 +4755,16 @@
     <Type>Script</Type>
     <Description>Auto-splitting is available. Load time removal requires a helper mod found at https://www.speedrun.com/SOMA/resources (By Trigger)</Description>
   </AutoSplitter>
+	<AutoSplitter>
+    <Games>
+      <Game>Ending</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Lyfeless/Ending-Autosplitter/master/splitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Simple Autosplitter for in-game. Auto-start not available. (By Lyfeless and Dinoz)</Description>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Sonic Mania Plus</Game>
