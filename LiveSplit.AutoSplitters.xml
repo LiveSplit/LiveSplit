@@ -4760,7 +4760,7 @@
       <Game>Ending</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Lyfeless/Ending-Autosplitter/blob/master/splitter.asl</URL>
+      <URL>https://raw.githubusercontent.com/Lyfeless/Ending-Autosplitter/master/splitter.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Simple Autosplitter for in-game. Auto-start not available. (By Lyfeless and Dinoz)</Description>
