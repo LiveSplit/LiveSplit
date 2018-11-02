@@ -4795,4 +4795,14 @@
     <Type>Script</Type>
     <Description>Updated steam version, Auto Start/Split are available. (By NighthawkSLO)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Stay Safe</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Lyliya/StaySafe-AutoSplitter/master/StaySafeAutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Split and Load removal (By Lyliya)</Description>
+  </AutoSplitter>
 </AutoSplitters>
