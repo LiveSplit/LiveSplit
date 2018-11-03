@@ -2871,11 +2871,11 @@
       <Game>Turok 2: Seeds of Evil</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/DJorzik/ASL-Scripts/master/Turok2SeedsOfEvil.asl</URL>
+      <URL>https://raw.githubusercontent.com/DJorzik/ASL-Scripts/master/T2-SoE/Turok2SeedsOfEvil.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Start[FULL/IL]/Auto Splitting/Auto Reset/LTR (By DJorzik)</Description>
-    <Website>https://github.com/DJorzik/ASL-Scripts/blob/master/README.md</Website>
+    <Description>Auto Start/Auto Splitting/Auto Reset/LTR (By DJorzik)</Description>
+    <Website>https://github.com/DJorzik/ASL-Scripts/blob/master/T2-SoE/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
