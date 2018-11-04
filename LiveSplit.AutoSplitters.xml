@@ -2,6 +2,26 @@
 <AutoSplitters>
 <AutoSplitter>
     <Games>
+      <Game>Bygg bilar med Mulle Meck</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/OCircles/ByggBilarAutosplitter/master/BilarSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Autostarting is available (by O_Circles)</Description>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Star Wars: Dark Forces</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/OCircles/DarkForcesAutosplitter/master/dfSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover, Autosplitting and Autostarting is available (by O_Circles)</Description>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
       <Game>Bit Blaster XL</Game>
     </Games>
     <URLs>
