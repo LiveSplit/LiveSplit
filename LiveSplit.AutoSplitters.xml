@@ -4821,4 +4821,14 @@
     <Type>Script</Type>
     <Description>Auto Start/Split and Load removal (By Lyliya)</Description>
   </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>S.T.A.L.K.E.R.: Shadow of Chernobyl</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MrBr00d/stalkerNOLOAD/master/StalkerSoC.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal (By Mr_Brood)</Description>
+  </AutoSplitter>
 </AutoSplitters>
