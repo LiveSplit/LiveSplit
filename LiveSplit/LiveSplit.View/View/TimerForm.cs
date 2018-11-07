@@ -1084,7 +1084,7 @@ namespace LiveSplit.View
         {
             while (true)
             {
-                Thread.Sleep(TimeSpan.FromTicks(10000000 / Settings.RefreshRate));
+                Thread.Sleep(1000 / Settings.RefreshRate);
                 try
                 {
                     TimerElapsed();
