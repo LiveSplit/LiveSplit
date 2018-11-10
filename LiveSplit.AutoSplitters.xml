@@ -3031,6 +3031,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Disney's Extremely Goofy Skateboarding</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/CVaranese/asl/master/LiveSplit.DEGS2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start, split, and load-remover. (By CVaranese)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Command &amp; Conquer: Renegade</Game>
     </Games>
     <URLs>
