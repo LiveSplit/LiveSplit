@@ -560,10 +560,10 @@
       <Game>Dying Light</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/TheFuncannon/DyingLightIGT/master/DyingLight.asl</URL>
+      <URL>https://raw.githubusercontent.com/MrBr00d/DyingLightLoadRemover/master/LoadRemover.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Start/Reset and Game Time are available. (By TheFuncannon)</Description>
+    <Description>Auto Start and Loadless are available. (By Mr_Brood)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
