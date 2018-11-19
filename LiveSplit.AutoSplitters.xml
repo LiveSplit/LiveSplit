@@ -560,10 +560,10 @@
       <Game>Dying Light</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/TheFuncannon/DyingLightIGT/master/DyingLight.asl</URL>
+      <URL>https://raw.githubusercontent.com/MrBr00d/DyingLightLoadRemover/master/DyingLight.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Start/Reset and Game Time are available. (By TheFuncannon)</Description>
+    <Description>Auto start and load removal are available. (By Mr_Brood)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4839,6 +4839,6 @@
       <URL>https://raw.githubusercontent.com/MrBr00d/stalkerNOLOAD/master/StalkerSoC.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removal (By Mr_Brood)</Description>
+    <Description>Load removal is available (By Mr_Brood)</Description>
   </AutoSplitter>
 </AutoSplitters>
