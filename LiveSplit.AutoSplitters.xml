@@ -4831,6 +4831,17 @@
     <Type>Script</Type>
     <Description>Auto Start/Split and Load removal (By Lyliya)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Legend of Heroes: Trails of Cold Steel 2</Game>
+      <Game>The Legend of Heroes: Trails of Cold Steel II</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AcridStingray3/CS2-Load-Remover/master/cs2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removing and timer auto start available. (By AcridStingray3)</Description>
+  </AutoSplitter>
 <AutoSplitter>
     <Games>
       <Game>S.T.A.L.K.E.R.: Shadow of Chernobyl</Game>
