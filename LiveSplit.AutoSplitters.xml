@@ -3143,10 +3143,10 @@
       <Game>Halo Wars: Definitive Edition</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/ROMaster2/LiveSplit.AutoSplitters/master/LiveSplit.HaloWarsDE.asl</URL>
+      <URL>https://raw.githubusercontent.com/Auddy07/ASL/master/HaloWars.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>In-game time and auto-start available. Auto-split available soon. In Beta (By ROMaster2)</Description>
+    <Description>Auto Splitting and Load Removal are available. (By Auddy)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
