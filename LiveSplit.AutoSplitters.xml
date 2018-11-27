@@ -2,6 +2,16 @@
 <AutoSplitters>
 <AutoSplitter>
     <Games>
+      <Game>RONIN</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/OCircles/RONINAutosplitter/master/RoninSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover, Autosplitting, Autostarting is available (by O_Circles)</Description>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
       <Game>Bygg bilar med Mulle Meck</Game>
     </Games>
     <URLs>
