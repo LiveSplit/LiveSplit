@@ -2,6 +2,16 @@
 <AutoSplitters>
 <AutoSplitter>
     <Games>
+      <Game>Tricky Towers</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rishubil/TrickyTowersSplitter/master/TrickyTowersSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start and Auto Split are available (by Nesswit)</Description>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
       <Game>RONIN</Game>
     </Games>
     <URLs>
