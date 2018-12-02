@@ -1447,7 +1447,7 @@
       <Game>SOTTR</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/Atorizil/ASL-SOTTR/blob/master/SOTTR.asl</URL>
+      <URL>https://raw.githubusercontent.com/Atorizil/ASL-SOTTR/master/SOTTR.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting is available. (By Atorizil)</Description>
