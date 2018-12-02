@@ -1442,6 +1442,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Shadow of the Tomb Raider</Game>
+      <Game>SOTTR</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Atorizil/ASL-SOTTR/master/SOTTR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Atorizil)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Rise of the Tomb Raider</Game>
       <Game>RotTR</Game>
     </Games>
