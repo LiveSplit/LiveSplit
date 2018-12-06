@@ -53,25 +53,22 @@ namespace LiveSplit.Model.Comparisons
             foreach (var attemptIndex in attemptIndices)
             {
                 //foreach (var mainSegment in mains)
-                for (int ind = 0; ind < mains.Count; ++ind)
+                for (int ind = 0; (ind < mains.Count) && (mains[ind].SegmentHistory.ContainsKey(attemptIndex)); ++ind)
                 {
                     var mainSegment = mains[ind];
-                    if (mainSegment.SegmentHistory.ContainsKey(attemptIndex))
+                    var mainTime = TimeSpan.Zero;
+                    foreach (var subsegment in subsegments[mainSegment])
                     {
-                        var mainTime = TimeSpan.Zero;
-                        foreach (var subsegment in subsegments[mainSegment])
-                        {
-                            mainTime += subsegment.SegmentHistory[attemptIndex][method] ?? TimeSpan.Zero;
-                        }
+                        mainTime += subsegment.SegmentHistory[attemptIndex][method] ?? TimeSpan.Zero;
+                    }
 
-                        TimeSpan? comparisonTime = Run[mainIndices[mainSegment]].Comparisons[Name][method];
-                        if (ind > 0)
-                            comparisonTime -= Run[mainIndices[mains[ind-1]]].Comparisons[Name][method];
+                    TimeSpan? comparisonTime = Run[mainIndices[mainSegment]].Comparisons[Name][method];
+                    if (ind > 0)
+                        comparisonTime -= Run[mainIndices[mains[ind-1]]].Comparisons[Name][method];
 
-                        if ((comparisonTime == null) || (mainTime < comparisonTime))
-                        {
+                    if ((comparisonTime == null) || (mainTime < comparisonTime))
+                    {
 
-                        }
                     }
                 }
             }
