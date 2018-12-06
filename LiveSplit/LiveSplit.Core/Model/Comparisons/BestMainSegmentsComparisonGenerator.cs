@@ -30,11 +30,14 @@ namespace LiveSplit.Model.Comparisons
             var mains = new List<ISegment>();
             var mainIndices = new Dictionary<ISegment, int>();
             var subsegments = new Dictionary<ISegment, IList<ISegment>>();
+            var subsegmentTimes = new Dictionary<ISegment, TimeSpan?>();
+            var bestMainTimes = new Dictionary<ISegment, TimeSpan?>();
 
             var subsegmentList = new List<ISegment>();
             for (int segmentIndex = 0; segmentIndex < Run.Count; ++segmentIndex)
             {
                 var segment = Run[segmentIndex];
+                subsegmentTimes.Add(segment, null);
                 subsegmentList.Add(segment);
 
                 if ((segment.Name.Length == 0) || (segment.Name[0] != '-'))
@@ -42,6 +45,8 @@ namespace LiveSplit.Model.Comparisons
                     mains.Add(segment);
                     mainIndices.Add(segment, segmentIndex);
                     subsegments.Add(segment, subsegmentList);
+                    bestMainTimes.Add(segment, TimeSpan.MaxValue);
+
                     subsegmentList = new List<ISegment>();
                 }
             }
@@ -52,28 +57,7 @@ namespace LiveSplit.Model.Comparisons
             // TODO: record all subsegments of the best main for the comparison
             foreach (var attemptIndex in attemptIndices)
             {
-                //foreach (var mainSegment in mains)
-                for (int ind = 0; ind < mains.Count; ++ind)
-                {
-                    var mainSegment = mains[ind];
-                    if (mainSegment.SegmentHistory.ContainsKey(attemptIndex))
-                    {
-                        var mainTime = TimeSpan.Zero;
-                        foreach (var subsegment in subsegments[mainSegment])
-                        {
-                            mainTime += subsegment.SegmentHistory[attemptIndex][method] ?? TimeSpan.Zero;
-                        }
-
-                        TimeSpan? comparisonTime = Run[mainIndices[mainSegment]].Comparisons[Name][method];
-                        if (ind > 0)
-                            comparisonTime -= Run[mainIndices[mains[ind-1]]].Comparisons[Name][method];
-
-                        if ((comparisonTime == null) || (mainTime < comparisonTime))
-                        {
-
-                        }
-                    }
-                }
+                
             }
         }
     }
