@@ -85,9 +85,13 @@ namespace LiveSplit.Model.Comparisons
             var totalTime = TimeSpan.Zero;
             foreach (var segment in Run)
             {
-                var time = new Time(segment.Comparisons[Name]);
-                time[method] = subsegmentTimes[segment];
-                segment.Comparisons[Name] = time;
+                if (subsegmentTimes[segment] != null)
+                {
+                    totalTime += (TimeSpan) subsegmentTimes[segment];
+                    var time = new Time(segment.Comparisons[Name]);
+                    time[method] = totalTime;
+                    segment.Comparisons[Name] = time;
+                }
             }
         }
     }
