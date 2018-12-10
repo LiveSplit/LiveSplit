@@ -45,7 +45,7 @@ namespace LiveSplit.Model.Comparisons
                     mains.Add(segment);
                     mainIndices.Add(segment, segmentIndex);
                     subsegments.Add(segment, subsegmentList);
-                    bestMainTimes.Add(segment, TimeSpan.MaxValue);
+                    bestMainTimes.Add(segment, null);
 
                     subsegmentList = new List<ISegment>();
                 }
@@ -54,10 +54,40 @@ namespace LiveSplit.Model.Comparisons
             var attemptIndices = from attempt in Run.AttemptHistory
                                  select attempt.Index;
 
-            // TODO: record all subsegments of the best main for the comparison
             foreach (var attemptIndex in attemptIndices)
             {
-                
+                for (int ind = 0; (ind < mains.Count) && (mains[ind].SegmentHistory.ContainsKey(attemptIndex)); ++ind)
+                {
+                    var mainSegment = mains[ind];
+                    if (mainSegment.SegmentHistory[attemptIndex][method] != null)
+                    {
+                        var currMainTime = TimeSpan.Zero;
+                        var currSubsegments = new Dictionary<ISegment, TimeSpan?>();
+                        foreach (var subsegment in subsegments[mainSegment])
+                        {
+                            var subsegmentTime = subsegment.SegmentHistory[attemptIndex][method];
+                            currSubsegments.Add(subsegment, subsegmentTime);
+                            currMainTime += subsegmentTime ?? TimeSpan.Zero;
+                        }
+
+                        if (currMainTime < (bestMainTimes[mainSegment] ?? TimeSpan.MaxValue))
+                        {
+                            bestMainTimes[mainSegment] = currMainTime;
+                            foreach (var subsegment in subsegments[mainSegment])
+                            {
+                                subsegmentTimes[subsegment] = currSubsegments[subsegment];
+                            }
+                        }
+                    }
+                }
+            }
+
+            var totalTime = TimeSpan.Zero;
+            foreach (var segment in Run)
+            {
+                var time = new Time(segment.Comparisons[Name]);
+                time[method] = subsegmentTimes[segment];
+                segment.Comparisons[Name] = time;
             }
         }
     }
