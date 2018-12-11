@@ -4890,12 +4890,12 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Astérix & Obélix XXL 2: Mission: Las Vegum Remastered</Game>
+      <Game>Astérix &amp; Obélix XXL 2: Mission: Las Vegum Remastered</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/NoTeefy/AAOXXL2HD-AutoSplit/master/aaormstr.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removing and timer auto start available. (By AcridStingray3)</Description>
+    <Description>Loadless timer available + automated splits/start (By NoTeefy)</Description>
   </AutoSplitter>
 </AutoSplitters>
