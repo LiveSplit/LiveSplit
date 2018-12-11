@@ -4878,7 +4878,7 @@
     <Type>Script</Type>
     <Description>Load removing and timer auto start available. (By AcridStingray3)</Description>
   </AutoSplitter>
-<AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>S.T.A.L.K.E.R.: Shadow of Chernobyl</Game>
     </Games>
@@ -4887,5 +4887,15 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load removal (By Mr_Brood)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Astérix & Obélix XXL 2: Mission: Las Vegum Remastered</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NoTeefy/AAOXXL2HD-AutoSplit/master/aaormstr.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removing and timer auto start available. (By AcridStingray3)</Description>
   </AutoSplitter>
 </AutoSplitters>
