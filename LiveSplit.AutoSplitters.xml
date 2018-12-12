@@ -4898,4 +4898,14 @@
     <Type>Script</Type>
     <Description>Loadless timer available + automated splits/start (By NoTeefy)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Little Nightmares</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/DNikko/littlenightmares-lr-as/master/littlenightmares.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter/Load Removal (By Nikko)</Description>
+  </AutoSplitter>
 </AutoSplitters>
