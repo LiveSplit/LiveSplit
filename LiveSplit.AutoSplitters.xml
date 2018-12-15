@@ -3414,6 +3414,7 @@
   <AutoSplitter>
     <Games>
       <Game>Hollow Knight</Game>
+      <Game>Hollow Knight Category Extensions</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.HollowKnight/master/Components/LiveSplit.HollowKnight.dll</URL>
