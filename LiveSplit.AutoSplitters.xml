@@ -4909,4 +4909,15 @@
     <Type>Script</Type>
     <Description>Autosplitter/Load Removal (By Nikko)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>GRIS</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.GRIS/Livesplit.GRIS.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.GRIS</Website>
+  </AutoSplitter>
 </AutoSplitters>
