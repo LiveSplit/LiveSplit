@@ -4716,6 +4716,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting, Auto Start and Load Removal are available. (By apple1417)</Description>
+    <Website>https://github.com/apple1417/Autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4919,5 +4920,16 @@
     <Type>Script</Type>
     <Description>Auto Splitting is available. (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.GRIS</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sigils of Elohim</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/apple1417/Autosplitters/master/sigils_of_elohim.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start and IGT are available. (By apple1417)</Description>
+    <Website>https://github.com/apple1417/Autosplitters</Website>
   </AutoSplitter>
 </AutoSplitters>
