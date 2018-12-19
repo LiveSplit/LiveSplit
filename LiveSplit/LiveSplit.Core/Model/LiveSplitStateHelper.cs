@@ -107,11 +107,11 @@ namespace LiveSplit.Model
         /// Checks whether the live segment should now be shown.
         /// </summary>
         /// <param name="state">The current state.</param>
-        /// <param name="showWhenBehind">Specifies whether or not to start showing the live segment once you are behind.</param>
+        /// <param name="splitDelta">Specifies whether to return a split delta rather than a segment delta and to start showing the live segment once you are behind.</param>
         /// <param name="comparison">The comparison that you are comparing with.</param>
         /// <param name="method">The timing method that you are using.</param>
         /// <returns>Returns the current live delta.</returns>
-        public static TimeSpan? CheckLiveDelta(LiveSplitState state, bool showWhenBehind, string comparison, TimingMethod method)
+        public static TimeSpan? CheckLiveDelta(LiveSplitState state, bool splitDelta, string comparison, TimingMethod method)
         {
             if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
             {
@@ -121,12 +121,16 @@ namespace LiveSplit.Model
                 var curSegment = GetLiveSegmentTime(state, state.CurrentSplitIndex, method);
                 var bestSegment = state.Run[state.CurrentSplitIndex].BestSegmentTime[method];
                 var bestSegmentDelta = GetLiveSegmentDelta(state, state.CurrentSplitIndex, BestSegmentsComparisonGenerator.ComparisonName, method);
-                var personalBestDelta = GetLiveSegmentDelta(state, state.CurrentSplitIndex, Run.PersonalBestComparisonName, method);
+                var comparisonDelta = GetLiveSegmentDelta(state, state.CurrentSplitIndex, comparison, method);
 
-                if (showWhenBehind && currentTime > curSplit 
+                if (splitDelta && currentTime > curSplit
                     || useBestSegment && bestSegment != null && curSegment > bestSegment && bestSegmentDelta > TimeSpan.Zero
-                    || personalBestDelta > TimeSpan.Zero)
-                    return currentTime - curSplit;
+                    || comparisonDelta > TimeSpan.Zero)
+                {
+                    if (splitDelta)
+                        return currentTime - curSplit;
+                    return comparisonDelta;
+                }
             }
             return null;
         }

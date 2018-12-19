@@ -12,6 +12,7 @@ namespace LiveSplit.Model
         public Time Time { get; set; }
         public AtomicDateTime? Started { get; set; }
         public AtomicDateTime? Ended { get; set; }
+        public TimeSpan? PauseTime { get; set; }
 
         /// <summary>
         /// Returns the Real Time Duration of the attempt.
@@ -31,13 +32,14 @@ namespace LiveSplit.Model
             }
         }
 
-        public Attempt(int index, Time time, AtomicDateTime? started, AtomicDateTime? ended)
+        public Attempt(int index, Time time, AtomicDateTime? started, AtomicDateTime? ended, TimeSpan? pauseTime)
             : this()
         {
             Index = index;
             Time = time;
             Started = started;
             Ended = ended;
+            PauseTime = pauseTime;
         }
 
         public XmlNode ToXml(XmlDocument document)
@@ -65,6 +67,13 @@ namespace LiveSplit.Model
                 ended.InnerText = Ended.Value.Time.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
                 attempt.Attributes.Append(ended);
                 attempt.Attributes.Append(SettingsHelper.ToAttribute(document, "isEndedSynced", Ended.Value.SyncedWithAtomicClock));
+            }
+
+            if (PauseTime.HasValue)
+            {
+                var pauseTime = document.CreateElement("PauseTime");
+                pauseTime.InnerText = PauseTime.ToString();
+                attempt.AppendChild(pauseTime);
             }
 
             return attempt;
@@ -95,7 +104,15 @@ namespace LiveSplit.Model
                 ended = new AtomicDateTime(endedTime, endedSynced);
             }
 
-            return new Attempt(index, newTime, started, ended);
+            TimeSpan? pauseTime = null;
+            if (node.GetElementsByTagName("PauseTime").Count > 0)
+            {
+                TimeSpan x;
+                if (TimeSpan.TryParse(node["PauseTime"].InnerText, out x))
+                    pauseTime = x;
+            }
+
+            return new Attempt(index, newTime, started, ended, pauseTime);
         }
 
         public DynamicJsonObject ToJson()
@@ -106,6 +123,7 @@ namespace LiveSplit.Model
             json.gameTime = Time.GameTime;
             json.started = Started;
             json.ended = Ended;
+            json.pauseTime = PauseTime;
             return json;
         }
     }

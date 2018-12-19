@@ -1,4 +1,4 @@
-<h1> <img src="https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit/Resources/Icon.png" alt="LiveSplit" height="42" width="45" align="top"/> LiveSplit</h1>
+﻿<h1> <img src="https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit/Resources/Icon.png" alt="LiveSplit" height="42" width="45" align="top"/> LiveSplit</h1>
 
 [![GitHub release](https://img.shields.io/github/release/LiveSplit/LiveSplit.svg)](https://github.com/LiveSplit/LiveSplit/releases/latest)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LICENSE)
@@ -6,7 +6,7 @@
 
 [![GitHub issues](https://img.shields.io/github/issues/LiveSplit/LiveSplit.svg?style=plastic)](https://github.com/LiveSplit/LiveSplit/issues)
 [![Stories in Ready](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=ready&title=Ready)](https://waffle.io/LiveSplit/LiveSplit)
-[![Stories in Progress](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=in progress&title=In Progress)](https://waffle.io/LiveSplit/LiveSplit)
+[![Stories in Progress](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=in%20progress&title=In%20Progress)](https://waffle.io/LiveSplit/LiveSplit)
 
 LiveSplit is a timer program for speedrunners that is both easy to use and full of features.
 <p align="center">
@@ -72,7 +72,7 @@ The documentation for how to develop, test, and submit an Auto Splitter can be f
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2016 Christopher Serr and Sergey Papushin
+Copyright (c) 2013-2017 Christopher Serr and Sergey Papushin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

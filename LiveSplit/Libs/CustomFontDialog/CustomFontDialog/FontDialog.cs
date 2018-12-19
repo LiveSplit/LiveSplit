@@ -161,9 +161,15 @@ namespace CustomFontDialog
                 }
 
                 if (style.HasValue)
+                {
+                    if (size < 1)
+                        size = 1;
+                    else if (size > float.MaxValue)
+                        size = float.MaxValue;
                     lblSampleText.Font = new Font(family, size, style.Value);
 
-                TriggerFontChanged();
+                    TriggerFontChanged();
+                }
             }
         }
 

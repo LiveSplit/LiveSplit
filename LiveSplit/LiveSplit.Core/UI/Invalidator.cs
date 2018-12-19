@@ -9,7 +9,7 @@ namespace LiveSplit.UI
     {
         public Form Form { get; protected set; }
         public Matrix Transform { get; set; }
-        protected const double Offset = 0.035;
+        protected const double Offset = 0.535;
 
         public Invalidator(Form form)
         {

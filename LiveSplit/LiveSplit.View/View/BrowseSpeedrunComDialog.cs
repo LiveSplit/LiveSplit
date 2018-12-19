@@ -108,6 +108,7 @@ namespace LiveSplit.View
                             var categories = game.FullGameCategories;
                             var timeFormatter = new AutomaticPrecisionTimeFormatter();
 
+                            var anySplitsAvailableForGame = false;
                             foreach (var category in categories)
                             {
                                 var categoryNode = new TreeNode(category.Name);
@@ -115,6 +116,7 @@ namespace LiveSplit.View
                                 var leaderboard = category.Leaderboard;
                                 var records = leaderboard.Records;
 
+                                var anySplitsAvailableForCategory = false;
                                 foreach (var record in records)
                                 {
                                     var place = record.Rank.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ".   ";
@@ -125,10 +127,20 @@ namespace LiveSplit.View
                                     runNode.Tag = record;
                                     if (!record.SplitsAvailable)
                                         runNode.ForeColor = Color.Gray;
+                                    else
+                                        anySplitsAvailableForCategory = true;
                                     categoryNode.Nodes.Add(runNode);
                                 }
+
+                                if (!anySplitsAvailableForCategory)
+                                    categoryNode.ForeColor = Color.Gray;
+                                else 
+                                    anySplitsAvailableForGame = true;
+
                                 gameNode.Nodes.Add(categoryNode);
                             }
+                            if (!anySplitsAvailableForGame)
+                                gameNode.ForeColor = Color.Gray;
                             splitsTreeView.Nodes.Add(gameNode);
                         }
                     }
@@ -146,6 +158,7 @@ namespace LiveSplit.View
                             var recordsGroupedByGames = SpeedrunCom.Client.Users.GetPersonalBests(user.ID, embeds: new RunEmbeds(embedGame: true, embedCategory: true))
                                 .GroupBy(x => x.Game.Name);
 
+                            var anySplitsAvailableForUser = false;
                             foreach (var recordsForGame in recordsGroupedByGames)
                             {
                                 var gameName = recordsForGame.Key;
@@ -154,6 +167,7 @@ namespace LiveSplit.View
                                 var timeFormatter = new AutomaticPrecisionTimeFormatter();
                                 gameNode.Tag = game.WebLink;
 
+                                var anySplitsAvailableForGame = false;
                                 foreach (var record in recordsForGame)
                                 {
                                     var categoryName = record.Category.Name;
@@ -166,10 +180,19 @@ namespace LiveSplit.View
                                     recordNode.Tag = record;
                                     if (!record.SplitsAvailable)
                                         recordNode.ForeColor = Color.Gray;
+                                    else
+                                        anySplitsAvailableForGame = true;
                                     gameNode.Nodes.Add(recordNode);
                                 }
+
+                                if (!anySplitsAvailableForGame)
+                                    gameNode.ForeColor = Color.Gray;
+                                else
+                                    anySplitsAvailableForUser = true;
                                 userNode.Nodes.Add(gameNode);
                             }
+                            if (!anySplitsAvailableForUser)
+                                userNode.ForeColor = Color.Gray;
                             splitsTreeView.Nodes.Add(userNode);
                         }
                     }

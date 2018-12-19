@@ -1,15 +1,13 @@
-version: 1.6.2-{build}-{branch}
+version: 1.7.6-{build}-{branch}
 os: Visual Studio 2015
 
 configuration: Release
 
-environment:
-  BUILD_PASSWORD:
-    secure: imgAD76elcfLPYX6Wf4y5g==
-
 before_build:
-- git config user.email "you@example.com"
-- git config user.name "user"
+- git config --global credential.helper store
+- ps: Add-Content "$HOME\.git-credentials" "https://$($env:GITHUB_TOKEN):x-oauth-basic@github.com`n"
+- git config --global user.email "appveyor@appveyor.com"
+- git config --global user.name "AppVeyor"
 - git submodule update --init --recursive
 - mkdir LiveSplit\LiveSplit.Core\Updates\GitInfo
 - git describe --dirty --always --long --tags > LiveSplit\LiveSplit.Core\Updates\GitInfo\version.txt
@@ -39,32 +37,23 @@ after_build:
         mkdir .\LiveSplit\bin\Release\Resources
 
         cp .\LiveSplit\Resources\SplitsFile.ico .\LiveSplit\bin\Release\Resources\
-
         cp .\LiveSplit\Resources\LayoutFile.ico .\LiveSplit\bin\Release\Resources\
 
         cd LiveSplit\bin\Release
 
         Get-ChildItem * -Include *.xml -Recurse | Remove-Item
-
         Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
 
         cd ..\..\..\
 
         7z a $BUILD_NAME .\LiveSplit\bin\Release\*
 
-
-        # Download winscp
-
-        Invoke-WebRequest "http://livesplit.org/winscp577.zip" -OutFile "winscp577.zip"
-
-        7z e -y winscp577.zip
-
-        # Upload to server
-
-        .\WinSCP.com /command `
-            "option batch abort" `
-            "option confirm off" `
-            "open ftp://livesplit:${env:BUILD_PASSWORD}@livesplit.org -hostkey=*" `
-            "put $BUILD_NAME /" `
-            "exit"
+        git clone -q "https://github.com/LiveSplit/LiveSplit.github.io.git"
+        cd LiveSplit.github.io
+        git checkout -q artifacts
+        mv ../$BUILD_NAME . -force
+        git add $BUILD_NAME
+        git commit --amend -m "Add Development Build"
+        git push --force -q origin artifacts
+        
     }

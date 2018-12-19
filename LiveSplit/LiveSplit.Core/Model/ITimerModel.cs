@@ -13,6 +13,7 @@ namespace LiveSplit.Model
         event EventHandler OnStart;
         event EventHandlerT<TimerPhase> OnReset;
         event EventHandler OnPause;
+        event EventHandler OnUndoAllPauses;
         event EventHandler OnResume;
         event EventHandler OnScrollUp;
         event EventHandler OnScrollDown;
@@ -26,7 +27,9 @@ namespace LiveSplit.Model
         void UndoSplit();
         void Reset();
         void Reset(bool updateSplits);
+        void ResetAndSetAttemptAsPB();
         void Pause();
+        void UndoAllPauses();
         void ScrollUp();
         void ScrollDown();
         void SwitchComparisonPrevious();
