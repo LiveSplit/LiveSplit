@@ -4188,6 +4188,10 @@
   <AutoSplitter>
     <Games>
       <Game>Sonic the Hedgehog (Genesis / Mega Drive)</Game>
+      <Game>Sonic the Hedgehog</Game>
+      <Game>Sonic 1</Game>
+      <Game>Sonic 1 (Genesis)</Game>
+      <Game>Sonic 1 (Mega Drive)</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplitASL/master/Sonic.asl</URL>
@@ -4199,6 +4203,10 @@
   <AutoSplitter>
     <Games>
       <Game>Sonic the Hedgehog 2 (Genesis / Mega Drive)</Game>
+      <Game>Sonic the Hedgehog 2</Game>
+      <Game>Sonic 2</Game>
+      <Game>Sonic 2 (Genesis)</Game>
+      <Game>Sonic 2 (Mega Drive)</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplitASL/master/Sonic2.asl</URL>
