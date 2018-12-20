@@ -4387,11 +4387,11 @@
       <Game>Slime Rancher</Game>
     </Games>
     <URLs>
-      <URL>https://gitlab.com/supramayro/slime-rancher-autosplitter/raw/master/SlimeRancher.asl</URL>
+      <URL>https://raw.githubusercontent.com/supra0/slime-rancher-autosplitter/master/SlimeRancher.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto starts on new file and splits on credits.</Description>
-    <Website>https://gitlab.com/supramayro/slime-rancher-autosplitter/</Website>
+    <Description>Autosplitting and Autostart available for commonly run game versions (By Supra)</Description>
+    <Website>https://github.com/supra0/slime-rancher-autosplitter</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
