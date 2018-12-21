@@ -4917,7 +4917,19 @@
       <URL>https://raw.githubusercontent.com/NoTeefy/AAOXXL2HD-AutoSplit/master/aaormstr.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Loadless timer available + automated splits/start (By NoTeefy)</Description>
+    <Description>Automated Splitting/Start/End + Loadless Timer (By NoTeefy)</Description>
+    <Website>https://noteefy.de/aao</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Astérix &amp; Obélix XXL 2: Mission: Las Vegum</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NoTeefy/AAOXXL2-AutoSplit/master/aaoxxl2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automated Splitting/Start/End + Loadless Timer (By NoTeefy)</Description>
+    <Website>https://noteefy.de/aao</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
