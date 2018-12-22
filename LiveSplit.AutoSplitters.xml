@@ -2,6 +2,16 @@
 <AutoSplitters>
 <AutoSplitter>
     <Games>
+      <Game>Turok: Dinosaur Hunter</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/QuarkEra/TurokEX_AutoSplitter/master/TurokEX_AutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start from title, Auto Split from The Hub to another Level, Auto Reset on return to title, Final split when Turok begins his escape (a manual split required at boss' death)</Description>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
       <Game>Tricky Towers</Game>
     </Games>
     <URLs>
