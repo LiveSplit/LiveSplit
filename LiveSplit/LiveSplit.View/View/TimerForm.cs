@@ -15,6 +15,7 @@ using LiveSplit.UI.LayoutFactories;
 using LiveSplit.UI.LayoutSavers;
 using LiveSplit.Updates;
 using LiveSplit.Utils;
+using LiveSplit.Web;
 using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 using Microsoft.WindowsAPICodePack.Taskbar;
@@ -35,9 +36,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using UpdateManager;
-#if WITH_XSPLIT
-using XSplit.Wpf;
-#endif
 
 namespace LiveSplit.View
 {
@@ -107,14 +105,6 @@ namespace LiveSplit.View
 
         public string BasePath { get; set; }
 
-        public Bitmap BackBuffer { get; set; }
-        public object BackBufferLock = new object();
-        public bool DrawToBackBuffer { get; set; }
-
-#if WITH_XSPLIT
-        public TimedBroadcasterPlugin XSplit { get; set; }
-#endif
-
         private bool MousePassThrough
         {
             set
@@ -176,12 +166,11 @@ namespace LiveSplit.View
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
-        public TimerForm(string splitsPath = null, string layoutPath = null, bool drawToBackBuffer = false, string basePath = "")
+        public TimerForm(string splitsPath = null, string layoutPath = null, string basePath = "")
         {
             BasePath = basePath;
             InitializeComponent();
             Init(splitsPath, layoutPath);
-            DrawToBackBuffer = drawToBackBuffer;
         }
 
         private void Init(string splitsPath = null, string layoutPath = null)
@@ -311,27 +300,6 @@ namespace LiveSplit.View
             Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
 
             SizeChanged += TimerForm_SizeChanged;
-
-            lock (BackBufferLock)
-            {
-                BackBuffer = new Bitmap(Width, Height);
-#if WITH_XSPLIT
-                /*try
-                {
-                    // Outputs a CosmoWright image every 50ms (20 FPS)
-                    XSplit = TimedBroadcasterPlugin.CreateInstance(
-                        "livesplit", BackBuffer, 50);
-
-                    if (this.XSplit != null)
-                    {
-                        // The correct version of XSplit was installed (unless they use OBS), so we can start our output.
-                        this.XSplit.StartTimer();
-                    }
-                }
-                catch
-                { }*/
-#endif
-            }
 
             TopMost = Layout.Settings.AlwaysOnTop;
             BackColor = Color.Black;
@@ -501,7 +469,7 @@ namespace LiveSplit.View
                 tsItem.Click += (s, ev) =>
                     {
                         ShareSettings.Default.Reload();
-                        var username = ShareSettings.Default.SRLIRCUsername;
+                        var username = WebCredentials.SpeedRunsLiveIRCCredentials.Username;
                         var racers = ((IEnumerable<string>)race.entrants.Properties.Keys).Select(x => x.ToLower());
                         if (!racers.Contains((username ?? "").ToLower()))
                             Settings.RaceViewer.ShowRace(race);
@@ -1307,33 +1275,9 @@ namespace LiveSplit.View
         {
             try
             {
-                if (DrawToBackBuffer)
-                {
-                    lock (BackBufferLock)
-                    {
-                        if (BackBuffer == null || BackBuffer.Size != Size)
-                            BackBuffer = new Bitmap(Width, Height);
-                        var graphics = Graphics.FromImage(BackBuffer);
-
-                        graphics.CompositingMode = CompositingMode.SourceCopy;
-                        graphics.FillRectangle(Brushes.Transparent, 0, 0, BackBuffer.Width, BackBuffer.Height);
-                        graphics.CompositingMode = CompositingMode.SourceOver;
-
-                        graphics.Clip = new Region();
-                        PaintForm(graphics, graphics.Clip);
-
-                        var graphicsForm = e.Graphics;
-                        graphicsForm.CompositingQuality = CompositingQuality.GammaCorrected;
-
-                        graphicsForm.DrawImage(BackBuffer, 0, 0);
-                    }
-                }
-                else
-                {
-                    var clip = e.Graphics.Clip;
-                    e.Graphics.Clip = new Region();
-                    PaintForm(e.Graphics, clip);
-                }
+                var clip = e.Graphics.Clip;
+                e.Graphics.Clip = new Region();
+                PaintForm(e.Graphics, clip);
             }
             catch (Exception ex)
             {
@@ -1808,9 +1752,6 @@ namespace LiveSplit.View
 
             CurrentState.Run.FixSplits();
 
-            var stateCopy = CurrentState.Clone() as LiveSplitState;
-            var modelCopy = new TimerModel();
-            modelCopy.CurrentState = stateCopy;
             var result = DialogResult.No;
 
             if (promptPBMessage && ((CurrentState.CurrentPhase == TimerPhase.Ended
@@ -1824,21 +1765,20 @@ namespace LiveSplit.View
                 DontRedraw = false;
                 if (result == DialogResult.Yes)
                 {
-                    Model.Reset();
-                    modelCopy.SetRunAsPB();
-                    modelCopy.UpdateAttemptHistory();
-                    modelCopy.UpdateBestSegments();
-                    modelCopy.UpdateSegmentHistory();
-                    SetRun(stateCopy.Run);
+                    Model.ResetAndSetAttemptAsPB();
                 }
                 else if (result == DialogResult.Cancel)
                     return;
             }
 
-            if (result == DialogResult.Yes)
-                modelCopy.Reset(false);
-            else
+            var stateCopy = CurrentState;
+            if (result == DialogResult.No)
+            {
+                var modelCopy = new TimerModel();
+                stateCopy = CurrentState.Clone() as LiveSplitState;
+                modelCopy.CurrentState = stateCopy;
                 modelCopy.Reset();
+            }
 
             try
             {
@@ -2202,40 +2142,37 @@ namespace LiveSplit.View
 
         private void SetLayout(ILayout layout)
         {
-            lock (BackBufferLock)
+            if (Layout != null && Layout != layout)
             {
-                if (Layout != null && Layout != layout)
-                {
-                    if (Layout.Settings.BackgroundImage != null && Layout.Settings.BackgroundImage != layout.Settings.BackgroundImage)
-                        Layout.Settings.BackgroundImage.Dispose();
+                if (Layout.Settings.BackgroundImage != null && Layout.Settings.BackgroundImage != layout.Settings.BackgroundImage)
+                    Layout.Settings.BackgroundImage.Dispose();
 
-                    foreach (var component in Layout.Components.Except(layout.Components))
-                        component.Dispose();
+                foreach (var component in Layout.Components.Except(layout.Components))
+                    component.Dispose();
 
-                    foreach (var component in layout.Components.Except(Layout.Components).OfType<IDeactivatableComponent>())
-                        component.Activated = true;
-                }
-                Layout = layout;
-                ComponentRenderer.VisibleComponents = Layout.Components;
-                CurrentState.LayoutSettings = layout.Settings;
-                UpdateRefreshesRemaining();
-                MinimumSize = new Size(0, 0);
-                if (Layout.Mode == LayoutMode.Vertical)
-                {
-                    if (Layout.VerticalWidth != UI.Layout.InvalidSize && Layout.VerticalHeight != UI.Layout.InvalidSize)
-                        Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
-                }
-                else
-                {
-                    if (Layout.HorizontalWidth != UI.Layout.InvalidSize && Layout.HorizontalHeight != UI.Layout.InvalidSize)
-                        Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
-                }
-                var x = Math.Max(SystemInformation.VirtualScreen.X, Math.Min(Layout.X, SystemInformation.VirtualScreen.X + SystemInformation.VirtualScreen.Width - Width));
-                var y = Math.Max(SystemInformation.VirtualScreen.Y, Math.Min(Layout.Y, SystemInformation.VirtualScreen.Y + SystemInformation.VirtualScreen.Height - Height));
-                Location = new Point(x, y);
-                TopMost = Layout.Settings.AlwaysOnTop;
-                SetInTimerOnlyMode();
+                foreach (var component in layout.Components.Except(Layout.Components).OfType<IDeactivatableComponent>())
+                    component.Activated = true;
             }
+            Layout = layout;
+            ComponentRenderer.VisibleComponents = Layout.Components;
+            CurrentState.LayoutSettings = layout.Settings;
+            UpdateRefreshesRemaining();
+            MinimumSize = new Size(0, 0);
+            if (Layout.Mode == LayoutMode.Vertical)
+            {
+                if (Layout.VerticalWidth != UI.Layout.InvalidSize && Layout.VerticalHeight != UI.Layout.InvalidSize)
+                    Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
+            }
+            else
+            {
+                if (Layout.HorizontalWidth != UI.Layout.InvalidSize && Layout.HorizontalHeight != UI.Layout.InvalidSize)
+                    Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
+            }
+            var x = Math.Max(SystemInformation.VirtualScreen.X, Math.Min(Layout.X, SystemInformation.VirtualScreen.X + SystemInformation.VirtualScreen.Width - Width));
+            var y = Math.Max(SystemInformation.VirtualScreen.Y, Math.Min(Layout.Y, SystemInformation.VirtualScreen.Y + SystemInformation.VirtualScreen.Height - Height));
+            Location = new Point(x, y);
+            TopMost = Layout.Settings.AlwaysOnTop;
+            SetInTimerOnlyMode();
         }
 
         private void CloseSplits()
@@ -2502,7 +2439,7 @@ namespace LiveSplit.View
             var graphics = Graphics.FromImage(image);
 
             graphics.CompositingMode = CompositingMode.SourceCopy;
-            graphics.FillRectangle(Brushes.Transparent, 0, 0, BackBuffer.Width, BackBuffer.Height);
+            graphics.FillRectangle(Brushes.Transparent, 0, 0, Width, Height);
             graphics.CompositingMode = CompositingMode.SourceOver;
 
             if (!transparent)

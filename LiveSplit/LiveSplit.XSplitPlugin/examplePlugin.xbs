@@ -1,4 +1,0 @@
-<configuration id="livesplit" name="LiveSplit">
-	<app imagename="C:\Users\Sergey\Documents\Dropbox\workspace\LiveSplit\bin\Debug\LiveSplit.exe" />
-	<event notloaded="notloaded.png" noconn="noconnection.png" nosignal="nosignal.png" nosignaltimeout="2000" />
-</configuration>

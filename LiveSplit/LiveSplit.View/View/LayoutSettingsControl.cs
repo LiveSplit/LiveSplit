@@ -177,7 +177,8 @@ namespace LiveSplit.View
 
         private void LayoutSettingsControl_Load(object sender, EventArgs e)
         {
-            chkRainbow_CheckedChanged(this, null);
+            chkRainbow_CheckedChanged(null, null);
+            chkAntiAliasing_CheckedChanged(null, null);
         }
     }
 }

@@ -2,6 +2,7 @@
 using LiveSplit.Options;
 using LiveSplit.UI;
 using LiveSplit.Utils;
+using LiveSplit.Web;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -66,6 +67,7 @@ namespace LiveSplit.View
 
             UpdateDisplayedHotkeyValues();
             RefreshRemoveButton();
+            RefreshLogOutButton();
         }
 
         private void InitializeHotkeyProfiles(string hotkeyProfile)
@@ -96,6 +98,11 @@ namespace LiveSplit.View
         private void RefreshRemoveButton()
         {
             btnRemoveProfile.Enabled = Settings.HotkeyProfiles.Count > 1;
+        }
+
+        private void RefreshLogOutButton()
+        {
+            btnLogOut.Enabled = WebCredentials.AnyCredentialsExist();
         }
 
         void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
@@ -292,30 +299,6 @@ namespace LiveSplit.View
             Close();
         }
 
-        private void btnOBSInstall_Click(object sender, EventArgs e)
-        {
-            var result = MessageBox.Show("The OBS Plugin is still in Beta. It might reduce the framerate of your stream. Also, your splits will close if you lose internet connection. These issues will be fixed in the future. The plugin will also not automatically update in this version, so you will need to reinstall the plugin when there is a new update.\n\nAre you sure you would like to install the OBS Plugin?", "OBS Plugin Installation Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                var psi = new ProcessStartInfo();
-                psi.Arguments = "obsplugin";
-                psi.FileName = "LiveSplit.Register.exe";
-                psi.Verb = "runas";
-
-                try
-                {
-                    var process = new Process();
-                    process.StartInfo = psi;
-                    process.Start();
-                    process.WaitForExit();
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                }
-            }
-        }
-
         private void btnChooseComparisons_Click(object sender, EventArgs e)
         {
             var generatorStates = new Dictionary<string, bool>(Settings.ComparisonGeneratorStates);
@@ -397,6 +380,12 @@ namespace LiveSplit.View
                         btnNewProfile_Click(sender, e);
                 }
             }
+        }
+
+        private void btnLogOut_Click(object sender, EventArgs e)
+        {
+            WebCredentials.DeleteAllCredentials();
+            RefreshLogOutButton();
         }
     }
 }

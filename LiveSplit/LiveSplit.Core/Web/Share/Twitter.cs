@@ -140,8 +140,8 @@ will automatically send the tweet.";
                 ITwitterAuthorizer auth;
 
                 ShareSettings.Default.Reload();
-                string accessToken = ShareSettings.Default.TwitterAccessToken;
-                string oauthToken = ShareSettings.Default.TwitterOAuthToken;
+                string accessToken = WebCredentials.TwitterAccessToken;
+                string oauthToken = WebCredentials.TwitterOAuthToken;
 
                 if (string.IsNullOrEmpty(accessToken) || string.IsNullOrEmpty(oauthToken))
                     auth = DoFormOAuth(out screenName);

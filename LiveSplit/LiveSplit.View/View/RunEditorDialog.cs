@@ -618,7 +618,7 @@ namespace LiveSplit.View
                 {
                     try
                     {
-                        var image = Image.FromFile(dialog.FileName);
+                        var image = Image.FromFile(dialog.FileName).ScaleIcon();
 
                         if (!multiEdit)
                         {
@@ -670,9 +670,9 @@ namespace LiveSplit.View
         private void SetGameIcon(Image icon)
         {
             ImagesToDispose.Add(GameIcon);
-            GameIcon = icon;
+            GameIcon = icon.ScaleIcon();
             picGameIcon.Image = GameIcon;
-            removeIconToolStripMenuItem.Enabled = icon != null;
+            removeIconToolStripMenuItem.Enabled = GameIcon != null;
         }
 
         private void picGameIcon_DoubleClick(object sender, EventArgs e)
