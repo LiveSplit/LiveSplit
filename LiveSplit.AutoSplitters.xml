@@ -4963,4 +4963,17 @@
     <Description>Auto Splitting, Auto Start and IGT are available. (By apple1417)</Description>
     <Website>https://github.com/apple1417/Autosplitters</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Vampire: The Masquerade - Bloodlines</Game>
+      <Game>VTMB</Game>
+      <Game>Vampire: Bloodlines</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Vampire%20The%20Masquerade%20-%20Bloodlines/vtmb.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By big_jim)</Description>
+    <Website>https://github.com/FromDarkHell/Livesplit.LoadRemovers/tree/master/Vampire%20The%20Masquerade%20-%20Bloodlines</Website>
+  </AutoSplitter>
 </AutoSplitters>
