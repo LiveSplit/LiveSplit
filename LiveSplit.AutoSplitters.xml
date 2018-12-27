@@ -4239,6 +4239,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sonic 3D Blast</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplitASL/master/Sonic3Db.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>RetroArch+GensPlusGX/Kega Fusion. See Website link for usage.</Description>
+    <Website>https://github.com/SonicSpeedrunning/LiveSplitASL</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Sonic Generations</Game>
     </Games>
     <URLs>
