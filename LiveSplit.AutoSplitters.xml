@@ -4997,4 +4997,15 @@
     <Description>Load Removal is available. (By big_jim)</Description>
     <Website>https://github.com/FromDarkHell/Livesplit.LoadRemovers/tree/master/Vampire%20The%20Masquerade%20-%20Bloodlines</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Just Cause 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/CallumMcW/JC3-Autosplitter/master/JC3-Autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By CalMcW)</Description>
+    <Website>https://www.speedrun.com/jc3</Website>
+  </AutoSplitter>
 </AutoSplitters>
