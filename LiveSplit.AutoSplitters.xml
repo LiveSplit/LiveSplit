@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
 <AutoSplitter>
     <Games>
@@ -4919,6 +4919,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load removing and timer auto start available. (By AcridStingray3)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Eroico</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AcridStingray3/Eroico-autosplitter/master/eroico.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting, resetting and timer auto start available. (By AcridStingray3)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
