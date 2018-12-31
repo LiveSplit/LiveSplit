@@ -5018,4 +5018,15 @@
     <Description>Load Removal is available. (By CalMcW)</Description>
     <Website>https://www.speedrun.com/jc3</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Grand Theft Auto III</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/LiveSplit.GTA3-NEW.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By zoton2 and iguana)</Description>
+    <Website>https://github.com/tduva/LiveSplit-ASL/blob/master/GTASA-README.md</Website>
+  </AutoSplitter>
 </AutoSplitters>
