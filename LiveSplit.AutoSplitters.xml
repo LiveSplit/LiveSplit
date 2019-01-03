@@ -5023,7 +5023,7 @@
       <Game>Grand Theft Auto III</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/LiveSplit.GTA3-NEW.asl</URL>
+      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.GTA3.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting is available. (By zoton2 and iguana)</Description>
