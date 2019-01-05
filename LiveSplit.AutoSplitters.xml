@@ -4199,66 +4199,30 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sega Genesis/Mega Drive and Master System Games (Sonic series, etc)</Game>
       <Game>Sonic the Hedgehog (Genesis / Mega Drive)</Game>
       <Game>Sonic the Hedgehog</Game>
       <Game>Sonic 1</Game>
       <Game>Sonic 1 (Genesis)</Game>
       <Game>Sonic 1 (Mega Drive)</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplitASL/master/Sonic.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>RetroArch+GensPlusGX/Kega Fusion. Game Time.</Description>
-    <Website>https://github.com/SonicSpeedrunning/LiveSplitASL</Website>
-  </AutoSplitter>	
-  <AutoSplitter>
-    <Games>
       <Game>Sonic the Hedgehog 2 (Genesis / Mega Drive)</Game>
       <Game>Sonic the Hedgehog 2</Game>
       <Game>Sonic 2</Game>
       <Game>Sonic 2 (Genesis)</Game>
       <Game>Sonic 2 (Mega Drive)</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplitASL/master/Sonic2.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>RetroArch+GensPlusGX/Kega Fusion. Game Time.</Description>
-    <Website>https://github.com/SonicSpeedrunning/LiveSplitASL</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Sonic 3 &amp; Knuckles</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplitASL/master/Sonic3k.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>RetroArch+GensPlusGX/Kega Fusion. Real Time - Time Bonus. See Website link for usage.</Description>
-    <Website>https://github.com/SonicSpeedrunning/LiveSplitASL</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Sonic the Hedgehog (Master System)</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplitASL/master/Sonic1SMS.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>RetroArch+GensPlusGX/Kega Fusion. Real Time - Time Bonus. See Website link for usage.</Description>
-    <Website>https://github.com/SonicSpeedrunning/LiveSplitASL</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
+      <Game>Sonic 3 Complete</Game>
       <Game>Sonic 3D Blast</Game>
+      <Game>Sonic Spinball (Genesis / Mega Drive)</Game>
+      <Game>Sonic the Hedgehog (Master System)</Game>
+      <Game>Sonic the Hedgehog 2 (Game Gear / Master System)</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplitASL/master/Sonic3Db.asl</URL>
+      <URL>https://raw.githubusercontent.com/SonicSpeedrunning/SEGAMasterSplitter/master/SEGAMasterSplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>RetroArch+GensPlusGX/Kega Fusion. See Website link for usage.</Description>
-    <Website>https://github.com/SonicSpeedrunning/LiveSplitASL</Website>
+    <Description>SEGA Master Splitter supported game, see website for details on emulators, timing etc. (By BenInSweden and others.)</Description>
+    <Website>https://github.com/SonicSpeedrunning/SEGAMasterSplitter</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
