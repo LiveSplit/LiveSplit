@@ -3651,6 +3651,7 @@
   <AutoSplitter>
     <Games>
       <Game>Cuphead</Game>
+      <Game>Cuphead Category Extensions</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Cuphead/master/Components/LiveSplit.Cuphead.dll</URL>
@@ -4017,6 +4018,8 @@
   <AutoSplitter>
     <Games>
       <Game>Celeste</Game>
+      <Game>Celeste Category Extensions</Game>
+      <Game>Celeste Custom Maps</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Celeste/master/Components/LiveSplit.Celeste.dll</URL>
