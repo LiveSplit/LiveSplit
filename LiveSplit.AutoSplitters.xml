@@ -4996,4 +4996,14 @@
     <Description>Auto Splitting is available. (By zoton2 and iguana)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>GORN</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MrMcGoats/GORN-Autosplitter/master/LiveSplit.GORN.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal and auto splitter available. (By Tendersteel)</Description>
+  </AutoSplitter>
 </AutoSplitters>
