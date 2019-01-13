@@ -8,7 +8,17 @@
       <URL>https://raw.githubusercontent.com/QuarkEra/TurokEX_AutoSplitter/master/TurokEX_AutoSplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Start from title, Auto Split from The Hub to another Level, Auto Reset on return to title, Final split when Turok begins his escape (a manual split required at boss' death)</Description>
+    <Description>Manual split required at Campaigner's death, Auto Start from title, Auto Split from The Hub to another Level, Auto Reset on return to title</Description>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Turok 2: Seeds of Evil Remaster</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/QuarkEra/Turok2EX_Autosplitter/master/t2asl.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Manual split required on Primagen's death for now, auto starts, splits on entering the Hub, resets when starting new run </Description>
   </AutoSplitter>
 <AutoSplitter>
     <Games>
