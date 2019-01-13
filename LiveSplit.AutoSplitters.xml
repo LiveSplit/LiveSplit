@@ -4999,4 +4999,16 @@
     <Description>Auto Splitting is available. (By zoton2 and iguana)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>BladedFury</Game>
+      <Game>Bladed Fury</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.BladedFury/master/Components/LiveSplit.BladedFury.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.BladedFury</Website>
+  </AutoSplitter>
 </AutoSplitters>
