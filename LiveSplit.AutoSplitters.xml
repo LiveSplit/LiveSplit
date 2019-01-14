@@ -5011,6 +5011,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>GORN</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MrMcGoats/GORN-Autosplitter/master/LiveSplit.GORN.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal and auto splitter available. (By Tendersteel)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>BladedFury</Game>
       <Game>Bladed Fury</Game>
     </Games>
