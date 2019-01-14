@@ -2591,10 +2591,11 @@
       <Game>Grand Theft Auto: Vice City</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.GTAVC.asl</URL>
+      <URL>https://raw.githubusercontent.com/KZFREW/KZ.Autosplitters/master/Releases/Vice%20City/LiveSplit.GTAVC.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Load Removal are available. (By zoton2 and pitpo, load removal by Mhmd_FVC)</Description>
+    <Description>Auto Splitting and Load Removal are available. (By KZ_Frew, load removal by Mhmd_FVC)</Description>
+    <Website>https://github.com/KZFREW/KZ.Autosplitters/tree/master/Releases/Vice%20City</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
