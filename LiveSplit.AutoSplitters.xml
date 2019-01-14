@@ -3651,6 +3651,7 @@
   <AutoSplitter>
     <Games>
       <Game>Cuphead</Game>
+      <Game>Cuphead Category Extensions</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Cuphead/master/Components/LiveSplit.Cuphead.dll</URL>
@@ -4017,6 +4018,8 @@
   <AutoSplitter>
     <Games>
       <Game>Celeste</Game>
+      <Game>Celeste Category Extensions</Game>
+      <Game>Celeste Custom Maps</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Celeste/master/Components/LiveSplit.Celeste.dll</URL>
@@ -4995,5 +4998,17 @@
     <Type>Script</Type>
     <Description>Auto Splitting is available. (By zoton2 and iguana)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>BladedFury</Game>
+      <Game>Bladed Fury</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.BladedFury/master/Components/LiveSplit.BladedFury.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.BladedFury</Website>
   </AutoSplitter>
 </AutoSplitters>
