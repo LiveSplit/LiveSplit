@@ -5039,7 +5039,7 @@
     <URLs>
       <URL>https://raw.githubusercontent.com/seanpr96/Autosplitters/master/LiveSplit.Iconoclasts.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Auto splitting available. (By seanpr)</Description>
   </AutoSplitter>
 </AutoSplitters>
