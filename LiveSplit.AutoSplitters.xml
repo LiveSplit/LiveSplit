@@ -5032,4 +5032,14 @@
     <Description>Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.BladedFury</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Iconoclasts</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/seanpr96/Autosplitters/master/LiveSplit.Iconoclasts.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting available. (By seanpr)</Description>
+  </AutoSplitter>
 </AutoSplitters>
