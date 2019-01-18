@@ -4247,7 +4247,7 @@
       <URL>https://raw.githubusercontent.com/RavenX8/livesplit-asl/master/SonicGenerations.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto start. Autosplitting all challanges, stages and bosses (final boss only splits after cutscene). Check options for more details. (By RavenX8)</Description>
+    <Description>Auto Start. Supports Any% and Single act Only categories. Autosplitting all challanges, stages and bosses. Check options for more details. (By RavenX8)</Description>
     <Website>https://github.com/RavenX8/livesplit-asl</Website>
   </AutoSplitter>
   <AutoSplitter>
