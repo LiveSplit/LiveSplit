@@ -18,7 +18,8 @@
       <URL>https://raw.githubusercontent.com/QuarkEra/Turok2EX_Autosplitter/master/t2asl.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Manual split required on Primagen's death for now, auto starts, splits on entering the Hub, resets when starting new run </Description>
+    <Description>Autostart, split, reset, for Any% and 100%. Split files are available from the website(by MathyWathy)</Description>
+    <Website>https://github.com/QuarkEra/Turok2EX_Autosplitter</Website>
   </AutoSplitter>
 <AutoSplitter>
     <Games>
