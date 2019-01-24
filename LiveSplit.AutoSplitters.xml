@@ -5043,4 +5043,14 @@
     <Type>Script</Type>
     <Description>Auto splitting available. (By seanpr)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>hhGregg's Quest for Coupons</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MisaRistolainen/HHGQFC-Autosplitter/master/HGQFC_AutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitter for tutorial-exit and every coupon. Beta (By Kainalo)</Description>
+  </AutoSplitter>
 </AutoSplitters>
