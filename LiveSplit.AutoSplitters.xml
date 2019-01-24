@@ -5053,4 +5053,14 @@
     <Type>Script</Type>
     <Description>Auto splitter for tutorial-exit and every coupon. Beta (By Kainalo)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Distance</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TntMatthew/distance.asl/master/distance.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto split/start/reset, load removal, and cutscene settings are available. (by Brionac, Californ1a, Seekr, and TntMatthew)</Description>
+  </AutoSplitter>
 </AutoSplitters>
