@@ -4564,16 +4564,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Pony Island</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/Avasam/Pony-Island-AutoSplitter/master/PonyIsland.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto Splitting, Start, and Reset are available. (By Avasam)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Cryostasis</Game>
       <Game>Cryostasis: Sleep of Reason</Game>
     </Games>
