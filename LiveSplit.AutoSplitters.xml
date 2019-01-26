@@ -2156,6 +2156,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Return of the Obra Dinn</Game>
+      <Game>Obra Dinn</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.ObraDinn.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/jbzdarkid/Autosplitters</Website>
+    <Description>Auto splitting, Automatic start (By Darkid)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Family Guy: Back to the Multiverse</Game>
       <Game>Family Guy Back to the Multiverse</Game>
       <Game>Family Guy: BttM</Game>
