@@ -5065,4 +5065,28 @@
     <Type>Script</Type>
     <Description>Auto split/start/reset, load removal, and cutscene settings are available. (by Brionac, Californ1a, Seekr, and TntMatthew)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sabrina: The Animated Series: Zapped</Game>
+      <Game>Sabrina: Zapped</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.SabrinaZapped/Livesplit.SabrinaZapped.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.SabrinaZapped</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sabrina: The Animated Series: Spooked</Game>
+      <Game>Sabrina: Spooked</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.SabrinaSpooked/Livesplit.SabrinaSpooked.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.SabrinaSpooked</Website>
+  </AutoSplitter>
 </AutoSplitters>
