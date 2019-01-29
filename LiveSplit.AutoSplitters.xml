@@ -2692,9 +2692,9 @@
 		<Game>RESIDENT EVIL 2 / BIOHAZARD RE:2</Game>
 		<Game>REmake 2</Game>
 	</Games>
-	<URLS>
+	<URLs>
 		<URL>https://raw.githubusercontent.com/cursedtoast/re2-remake-autosplitter/master/re2.asl</URL>
-	</URLS>
+	</URLs>
 	<Type>Script</Type>
 	<Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast)</Description>
   </AutoSplitter>
