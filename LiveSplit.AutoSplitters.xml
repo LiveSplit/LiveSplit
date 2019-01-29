@@ -2684,6 +2684,21 @@
     <Website>https://github.com/cursedtoast/re7/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
+	<Games>
+		<Game>RE2 Remake</Game>
+		<Game>Resident Evil 2 Remake</Game>
+		<Game>RE2 2019</Game>
+		<Game>Resident Evil 2 2019</Game>
+		<Game>RESIDENT EVIL 2 / BIOHAZARD RE:2</Game>
+		<Game>REmake 2</Game>
+	</Games>
+	<URLS>
+		<URL>https://raw.githubusercontent.com/cursedtoast/re2-remake-autosplitter/master/re2.asl</URL>
+	</URLS>
+	<Type>Script</Type>
+	<Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Momodora: Reverie Under the Moonlight</Game>
     </Games>
