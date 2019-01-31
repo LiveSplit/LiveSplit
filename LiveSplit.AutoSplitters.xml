@@ -2,6 +2,17 @@
 <AutoSplitters>
 <AutoSplitter>
     <Games>
+      <Game>Castlevania II: Simon's Quest</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/tonylukasavage/liveview-autosplitter-castlevania-2/master/cv2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autostart and configurable splits for Dracula parts, whips, and crystals. Documentation, code, and example split file available from the website (By BloodSweatAndCode)</Description>
+    <Website>https://github.com/tonylukasavage/liveview-autosplitter-castlevania-2</Website>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
       <Game>Turok: Dinosaur Hunter</Game>
     </Games>
     <URLs>
