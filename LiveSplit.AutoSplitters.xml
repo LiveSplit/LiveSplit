@@ -5119,4 +5119,15 @@
     <Description>Auto Splitting is available. (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.SabrinaSpooked</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tag: The Power of Paint</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/BR-/LiveSplit.TagPaint/master/Tag.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start, auto-split, and auto-reset available for v1.0 and v1.1. (By Altafen)</Description>
+    <Website>https://github.com/BR-/LiveSplit.TagPaint</Website>
+  </AutoSplitter>
 </AutoSplitters>
