@@ -4956,6 +4956,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Astérix &amp; Obélix XXL</Game>
+      <Game>Asterix &amp; Obelix XXL</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NoTeefy/AAOXXL1-AutoSplit/master/aaoxxl1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automated Splitting/Start/End/Reset + Loadless Timer (By NoTeefy)</Description>
+    <Website>https://noteefy.de/aao</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Astérix &amp; Obélix XXL 2: Mission: Las Vegum Remastered</Game>
     </Games>
     <URLs>
