@@ -5130,4 +5130,14 @@
     <Description>Auto-start, auto-split, and auto-reset available for v1.0 and v1.1. (By Altafen)</Description>
     <Website>https://github.com/BR-/LiveSplit.TagPaint</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>AER: Memories of Old</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/InvisibleUSA/AER-AutoSplit/master/aer.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal (Credit goes to NoTeefy)</Description>
+</AutoSplitter>
 </AutoSplitters>
