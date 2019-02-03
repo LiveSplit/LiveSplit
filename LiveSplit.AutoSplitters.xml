@@ -5139,5 +5139,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load removal (Credit goes to NoTeefy)</Description>
-</AutoSplitter>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Grand Theft Auto: The Ballad of Gay Tony</Game>
+      <Game>Grand Theft Auto: The Lost and Damned</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/jfoster/37f266491e3caacc807d8be9d144e38b/raw/224ed6eb9a17492b404f54a831e0a865dab28488/LiveSplit.GTAEFLC.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto split/start/reset and loadless timer is availible.</Description>
+  </AutoSplitter>
 </AutoSplitters>
