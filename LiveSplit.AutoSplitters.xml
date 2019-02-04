@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
 <AutoSplitter>
+	<Games>
+		<Game>Call of Duty: World at War</Game>
+	</Games>
+	<URLs>
+		<URL>https://gist.githubusercontent.com/HalfOfAKebab/e6197e3dd31a5a6a9de5405e4ba0dc29/raw/bc777cfdd3915b9bbda64438c7f49755564b5fda/CoDWaW.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>For Any% Solo. Doesn't remove loads yet, and doesn't stop the timer yet (so you still have to stop it yourself after planting the flag). Better than nothing, though.</Description>
+	<Website>https://discord.gg/u8hKNxz</Website>
+</AutoSplitter>
+<AutoSplitter>
     <Games>
       <Game>Castlevania II: Simon's Quest</Game>
     </Games>
