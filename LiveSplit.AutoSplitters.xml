@@ -4233,11 +4233,11 @@
       <Game>Minit</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/L-Mirannda/MinitAutoSplitter/master/Minit.asl</URL>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Minit/Livesplit.Minit.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Auto Start are available. (By L-Mirannda)</Description>
-    <Website>https://github.com/L-Mirannda/MinitAutoSplitter</Website>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Minit</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
