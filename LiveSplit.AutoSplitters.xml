@@ -5174,4 +5174,14 @@
     <Type>Script</Type>
     <Description>Auto split/start/reset and loadless timer is availible.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Ashen</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/AricHasting/55a0871a8ce93f38b282137dcf4c5e81/raw/4ba306fb71d56308888f1e65d8a041923477ecb8/ashen.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover is available, no auto start/split/reset.</Description>
+  </AutoSplitter>
 </AutoSplitters>
