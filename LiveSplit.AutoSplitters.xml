@@ -5184,4 +5184,15 @@
     <Type>Script</Type>
     <Description>Load remover is available, no auto start/split/reset.</Description>
   </AutoSplitter>
+<AutoSplitter>
+	<Games>
+		<Game>Far Cry 3</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/FC3.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>LoadRemover is available (by AlexYeahNot )</Description>
+	<Website>https://discord.gg/D7vJsC</Website>
+</AutoSplitter>
 </AutoSplitters>
