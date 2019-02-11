@@ -5206,4 +5206,15 @@
     <Description>LoadRemover is available (by AlexYeahNot )</Description>
     <Website>https://discord.gg/D7vJsC</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Lawn Mower</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.LawnMower/Livesplit.LawnMower.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.LawnMower</Website>
+  </AutoSplitter>
 </AutoSplitters>
