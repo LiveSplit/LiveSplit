@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
 <AutoSplitter>
+	<Games>
+		<Game>Call of Duty: World at War</Game>
+	</Games>
+	<URLs>
+		<URL>https://gist.githubusercontent.com/HalfOfAKebab/e6197e3dd31a5a6a9de5405e4ba0dc29/raw/bc777cfdd3915b9bbda64438c7f49755564b5fda/CoDWaW.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>For Any% Solo. Doesn't remove loads yet, and doesn't stop the timer yet (so you still have to stop it yourself after planting the flag). Better than nothing, though.</Description>
+	<Website>https://discord.gg/u8hKNxz</Website>
+</AutoSplitter>
+<AutoSplitter>
     <Games>
       <Game>Castlevania II: Simon's Quest</Game>
     </Games>
@@ -4222,11 +4233,11 @@
       <Game>Minit</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/L-Mirannda/MinitAutoSplitter/master/Minit.asl</URL>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Minit/Livesplit.Minit.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Auto Start are available. (By L-Mirannda)</Description>
-    <Website>https://github.com/L-Mirannda/MinitAutoSplitter</Website>
+    <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Minit</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4570,7 +4581,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Fe/Livesplit.Fe.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Fe</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -4623,7 +4634,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Woten/Livesplit.Woten.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Woten</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -4743,7 +4754,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.TheMessenger/Livesplit.TheMessenger.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting, Auto Start and Load Remover are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.TheMessenger</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -4956,6 +4967,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Astérix &amp; Obélix XXL</Game>
+      <Game>Asterix &amp; Obelix XXL</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NoTeefy/AAOXXL1-AutoSplit/master/aaoxxl1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automated Splitting/Start/End/Reset + Loadless Timer (By NoTeefy)</Description>
+    <Website>https://noteefy.de/aao</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Astérix &amp; Obélix XXL 2: Mission: Las Vegum Remastered</Game>
     </Games>
     <URLs>
@@ -4994,7 +5017,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.GRIS/Livesplit.GRIS.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.GRIS</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -5104,7 +5127,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.SabrinaZapped/Livesplit.SabrinaZapped.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.SabrinaZapped</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -5116,7 +5139,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.SabrinaSpooked/Livesplit.SabrinaSpooked.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.SabrinaSpooked</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -5139,5 +5162,71 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load removal (Credit goes to NoTeefy)</Description>
-</AutoSplitter>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Grand Theft Auto: The Ballad of Gay Tony</Game>
+      <Game>Grand Theft Auto: The Lost and Damned</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/jfoster/37f266491e3caacc807d8be9d144e38b/raw/224ed6eb9a17492b404f54a831e0a865dab28488/LiveSplit.GTAEFLC.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto split/start/reset and loadless timer is availible.</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Ashen</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/AricHasting/55a0871a8ce93f38b282137dcf4c5e81/raw/4ba306fb71d56308888f1e65d8a041923477ecb8/ashen.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover is available, no auto start/split/reset.</Description>
+  </AutoSplitter>
+	<AutoSplitter>
+    <Games>
+      <Game>Call of Duty 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/Cod2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>LoadRemover is available(by AlexYeahNot )</Description>
+    <Website>https://discord.gg/GHh8sJ6</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Far Cry 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/FC3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>LoadRemover is available (by AlexYeahNot )</Description>
+    <Website>https://discord.gg/D7vJsC</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Lawn Mower</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.LawnMower/Livesplit.LawnMower.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.LawnMower</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Neo Turf Masters / Big Tournament Golf</Game>
+      <Game>Neo Turf Masters</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.NeoTurfMasters/Livesplit.NeoTurfMasters.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.NeoTurfMasters</Website>
+  </AutoSplitter>
 </AutoSplitters>
