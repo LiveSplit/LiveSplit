@@ -5217,4 +5217,16 @@
     <Description>Auto Splitting is available. (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.LawnMower</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Neo Turf Masters / Big Tournament Golf</Game>
+      <Game>Neo Turf Masters</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.NeoTurfMasters/Livesplit.NeoTurfMasters.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.NeoTurfMasters</Website>
+  </AutoSplitter>
 </AutoSplitters>
