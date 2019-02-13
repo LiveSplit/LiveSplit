@@ -4236,7 +4236,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Minit/Livesplit.Minit.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Minit</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -4581,7 +4581,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Fe/Livesplit.Fe.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Fe</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -4634,7 +4634,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Woten/Livesplit.Woten.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Woten</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -4754,7 +4754,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.TheMessenger/Livesplit.TheMessenger.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting, Auto Start and Load Remover are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.TheMessenger</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -5017,7 +5017,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.GRIS/Livesplit.GRIS.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.GRIS</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -5127,7 +5127,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.SabrinaZapped/Livesplit.SabrinaZapped.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.SabrinaZapped</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -5139,7 +5139,7 @@
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.SabrinaSpooked/Livesplit.SabrinaSpooked.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By Voxelse)</Description>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.SabrinaSpooked</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -5184,7 +5184,51 @@
     <Type>Script</Type>
     <Description>Load remover is available, no auto start/split/reset.</Description>
   </AutoSplitter>
-<AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Call of Duty 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/Cod2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>LoadRemover is available(by AlexYeahNot )</Description>
+    <Website>https://discord.gg/GHh8sJ6</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Far Cry 3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/FC3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>LoadRemover is available (by AlexYeahNot )</Description>
+    <Website>https://discord.gg/D7vJsC</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Lawn Mower</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.LawnMower/Livesplit.LawnMower.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.LawnMower</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Neo Turf Masters / Big Tournament Golf</Game>
+      <Game>Neo Turf Masters</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.NeoTurfMasters/Livesplit.NeoTurfMasters.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.NeoTurfMasters</Website>
+  <AutoSplitter>
     <Games>
       <Game>Call of Duty Black Ops</Game>
     </Games>
