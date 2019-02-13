@@ -5184,4 +5184,14 @@
     <Type>Script</Type>
     <Description>Load remover is available, no auto start/split/reset.</Description>
   </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Call of Duty Black Ops</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/BlOps.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover is available (by AlexYeahNot)</Description>
+  </AutoSplitter>
 </AutoSplitters>
