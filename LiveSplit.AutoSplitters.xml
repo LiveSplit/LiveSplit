@@ -5228,6 +5228,7 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.NeoTurfMasters</Website>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Call of Duty Black Ops</Game>
