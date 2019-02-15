@@ -4980,6 +4980,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>S.T.A.L.K.E.R.: Clear Sky</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/xMeme/stalkerclearskynoload/master/stalkerclearskyloadremoval.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal (By X-Meme)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Astérix &amp; Obélix XXL</Game>
       <Game>Asterix &amp; Obelix XXL</Game>
     </Games>
