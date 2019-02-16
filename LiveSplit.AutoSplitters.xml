@@ -4970,6 +4970,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>DERU</Game>
+      <Game>DERU: The Art of Cooperation</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AcridStingray3/DERU-autosplitter/master/DERU.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting available. (By AcridStingray3)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>S.T.A.L.K.E.R.: Shadow of Chernobyl</Game>
     </Games>
     <URLs>
