@@ -5000,6 +5000,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>S.T.A.L.K.E.R. Trilogy</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/xMeme/stalkerclearskynoload/master/stalkertrilogyloadremoval.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal (By X-Meme)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Astérix &amp; Obélix XXL</Game>
       <Game>Asterix &amp; Obelix XXL</Game>
     </Games>
