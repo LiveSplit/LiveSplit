@@ -5317,4 +5317,15 @@
     <Description>Automatic start/split</Description>
     <Website>https://github.com/kclimb/asl-scripts/blob/master/SSHv1_1.asl</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Croc Mobile: Jungle Rumble!</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Thermospore/Autosplitters/master/LiveSplit.Croc_JR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting available. Only supports Java WTK. (by Thermospore)</Description>
+    <Website>https://discord.gg/eW2vY43</Website>
+  </AutoSplitter>
 </AutoSplitters>
