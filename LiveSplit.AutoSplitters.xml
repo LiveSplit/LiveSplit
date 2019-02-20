@@ -4343,6 +4343,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mega Man 3</Game>
+      <Game>Megaman 3</Game>
+      <Game>MM3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaMan3/MM3autosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man 3 (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaMan3/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Mega Man 6</Game>
       <Game>Megaman 6</Game>
       <Game>MM6</Game>
