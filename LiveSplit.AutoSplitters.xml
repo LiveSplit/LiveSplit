@@ -5317,4 +5317,14 @@
     <Description>Automatic start/split</Description>
     <Website>https://github.com/kclimb/asl-scripts/blob/master/SSHv1_1.asl</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Jazz Jackrabbit 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/BinaryBlob92/117d4b503323182125c39a0a622c622d/raw/fa09466dfe5cb94046ba1ac7877f28623f66f3f2/jazz2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split (by BinaryBlob)</Description>
+  </AutoSplitter>
 </AutoSplitters>
