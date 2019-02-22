@@ -5328,4 +5328,16 @@
     <Description>Autosplitting available. Only supports Java WTK. (by Thermospore)</Description>
     <Website>https://discord.gg/eW2vY43</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Kirby's Dream Land</Game>
+      <Game>KDL</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.KirbyDreamLand/Livesplit.KirbyDreamLand.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.KirbyDreamLand</Website>
+  </AutoSplitter>
 </AutoSplitters>
