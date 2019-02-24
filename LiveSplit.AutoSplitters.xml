@@ -5311,11 +5311,22 @@
       <Game>Nancy Drew: Secret of the Scarlet Hand</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/SSHv1_1.asl</URL>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/SSH.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split</Description>
-    <Website>https://github.com/kclimb/asl-scripts/blob/master/SSHv1_1.asl</Website>
+    <Website>https://github.com/kclimb/asl-scripts/blob/master/Splitters/SSH.asl</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Nancy Drew: Curse of Blackmoor Manor</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/CUR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://github.com/kclimb/asl-scripts/blob/master/Splitters/CUR.asl</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
