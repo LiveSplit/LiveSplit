@@ -5322,6 +5322,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Nancy Drew: Stay Tuned for Danger</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/STFD.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://github.com/kclimb/asl-scripts/blob/master/Splitters/STFD.asl</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Nancy Drew: Secret of the Scarlet Hand</Game>
     </Games>
     <URLs>
