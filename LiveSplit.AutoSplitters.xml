@@ -2,6 +2,17 @@
 <AutoSplitters>
 <AutoSplitter>
 	<Games>
+		<Game>Evergate Demo</Game>
+	</Games>
+	<URLs>
+		<URL>https://gist.githubusercontent.com/LiamChilcott/27b8e278094f7453fda8db73278e85c7/raw/0f779f25bd0c187b94ca4c095d7b3f8afe314f7f/EvergateAS.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Will automatically split on end level transitions and reset when the demo is restarted</Description>
+	<Website>https://discord.gg/xgVyq5S</Website>
+</AutoSplitter>
+<AutoSplitter>
+	<Games>
 		<Game>Call of Duty: World at War</Game>
 	</Games>
 	<URLs>
