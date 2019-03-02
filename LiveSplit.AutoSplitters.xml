@@ -936,11 +936,10 @@
       <Game>BioShock Anthology</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/drtchops/asl/master/bioshock_trilogy.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/bioshock_trilogy.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By MrWalrus, Glurmo, Dread, and DrTChops)</Description>
-    <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+    <Description>Load Removal is available. (By MrWalrus, Glurmo, Blade, and PrototypeAlpha)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
