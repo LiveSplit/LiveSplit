@@ -5408,4 +5408,16 @@
     <Description>Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.ApeOut</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>World War Zero</Game>
+      <Game>World War Zero: Iron Storm</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/World-War-Zero-Iron-Storm/LiveSplit.World-War-Zero-Iron-Storm.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available (By SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
