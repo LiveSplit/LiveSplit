@@ -5396,4 +5396,16 @@
     <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.KirbyDreamLand</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>ApeOut</Game>
+      <Game>Ape Out</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.ApeOut/master/Components/LiveSplit.ApeOut.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.ApeOut</Website>
+  </AutoSplitter>
 </AutoSplitters>
