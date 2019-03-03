@@ -4379,6 +4379,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mega Man 5</Game>
+      <Game>Megaman 5</Game>
+      <Game>MM5</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaMan5/MM5autosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man 5 (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaMan5/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Mega Man 6</Game>
       <Game>Megaman 6</Game>
       <Game>MM6</Game>
