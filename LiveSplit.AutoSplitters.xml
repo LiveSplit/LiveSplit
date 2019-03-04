@@ -5433,4 +5433,15 @@
     <Description>Auto Splitting and Auto Start/Reset are available (By SuicideMachine)</Description>
     <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tomb Raider: Legend</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/FluxMonkii/Autosplitters/master/TombRaiderLegend.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autostart and selectable splitting points available for full-game runs. (by FluxMonkii)</Description>
+    <Website>https://github.com/FluxMonkii/Autosplitters</Website>
+  </AutoSplitter>
 </AutoSplitters>
