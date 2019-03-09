@@ -1439,25 +1439,15 @@
       <Game>Dark Souls 1</Game>
       <Game>Dark Souls 1: Prepare to Die Edition</Game>
       <Game>Dark Souls: Prepare to Die Edition</Game>
+      <Game>Dark Souls Remastered</Game>
+      <Game>Dark Souls: Remastered</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/CapitaineToinon/LiveSplit.DarkSoulsIGT/master/LiveSplit.DarkSoulsIGT/Components/LiveSplit.DarkSoulsIGT.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Game Time is available. (By Jiiks and CapitaineToinon)</Description>
-    <Website>https://github.com/CapitaineToinon/LiveSplit.DarkSoulsIGT</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Dark Souls Remastered</Game>
-      <Game>Dark Souls: Remastered</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/CapitaineToinon/LiveSplit.DarkSoulsRemasteredIGT/master/LiveSplit.DarkSoulsRemasteredIGT/Components/LiveSplit.DarkSoulsRemasteredIGT.dll</URL>
-    </URLs>
-    <Type>Component</Type>
     <Description>Game Time is available. (By CapitaineToinon)</Description>
-    <Website>https://github.com/CapitaineToinon/LiveSplit.DarkSoulsRemasteredIGT</Website>
+    <Website>https://github.com/CapitaineToinon/LiveSplit.DarkSoulsIGT</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
