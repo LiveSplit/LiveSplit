@@ -5498,7 +5498,7 @@
       <URL>https://raw.githubusercontent.com/R30hedron/Into-the-Breach-Autosplitter/master/ItB.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Supports auto starts, splits, and resets; add'l option to disable island splits for multi-game runs (which disables auto resets).</Description>
+    <Description>Supports auto starts, splits, and resets. Check settings if running multi-game runs. (by R30hedron)</Description>
     <Website>https://github.com/R30hedron/Into-the-Breach-Autosplitter</Website>
   </AutoSplitter>
 </AutoSplitters>
