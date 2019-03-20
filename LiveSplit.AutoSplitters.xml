@@ -4421,6 +4421,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mega Man 7</Game>
+      <Game>Megaman 7</Game>
+      <Game>MM7</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaMan7/MM7autosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man 7 (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaMan7/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Mega Man 11</Game>
       <Game>Megaman 11</Game>
       <Game>MM11</Game>
