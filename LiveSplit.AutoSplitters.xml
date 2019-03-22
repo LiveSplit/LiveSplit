@@ -2,6 +2,16 @@
 <AutoSplitters>
 <AutoSplitter>
 	<Games>
+		<Game>Eradicator</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/OCircles/EradicatorAutosplitter/master/EradicatorSplitter.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>IGT, Autosplitting, Autostarting is available. Must go ingame once before autostart works (by O_Circles)</Description>
+</AutoSplitter>
+<AutoSplitter>
+	<Games>
 		<Game>Thief: Gold</Game>
 		<Game>Thief: The Dark Project</Game>
 	</Games>
