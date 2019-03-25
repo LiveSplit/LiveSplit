@@ -5532,4 +5532,15 @@
     <Description>Supports auto starts, splits, and resets. Check settings if running multi-game runs. (by R30hedron)</Description>
     <Website>https://github.com/R30hedron/Into-the-Breach-Autosplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Cat Quest</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/LWLeijten/Cat-Quest-Autosplitter/master/CatQuest.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for the CATegory any% (old patch). Choose which splits you want to use in the settings. (by Lighten95)</Description>
+    <Website>https://github.com/LWLeijten/Cat-Quest-Autosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
