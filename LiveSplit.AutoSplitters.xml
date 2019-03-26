@@ -5549,10 +5549,10 @@
       <Game>Sekiro: Shadows Die Twice</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Jiiks/LiveSplit.Sekiro/master/Components/LiveSplit.Sekiro.dll</URL>
+      <URL>https://gist.githubusercontent.com/pawREP/98c2828e7550caeb521d65c581f43a69/raw/ce8a119f12f1677cfe230cc80147ecfbb8b9ffc2/Sekiro.asl</URL>
     </URLs>
-    <Type>Component</Type>
-    <Description>Game Time is available. (By Jiiks)</Description>
-    <Website>https://github.com/Jiiks/LiveSplit.Sekiro</Website>
+    <Type>Script</Type>
+    <Description>Game time, auto-start and several QOL improvments.</Description>
+    <Website>https://gist.github.com/pawREP</Website>
   </AutoSplitter>
 </AutoSplitters>
