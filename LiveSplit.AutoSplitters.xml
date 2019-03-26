@@ -2,6 +2,17 @@
 <AutoSplitters>
 <AutoSplitter>
 	<Games>
+		<Game>Blood</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/Psych0sisA/Autosplitters/master/Blood2.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter and load remover for Blood with 0.73, 0.74 and 0.74-2 DOSBox. Allows for Episode 3 start or Episode 1 start by checkbox selection on "Scriptable Autosplitter" in Layout Settings. (by Psych0sis)</Description>
+	<Website>https://discord.gg/BQBFsfn</Website>
+</AutoSplitter>
+<AutoSplitter>
+	<Games>
 		<Game>Eradicator</Game>
 	</Games>
 	<URLs>
