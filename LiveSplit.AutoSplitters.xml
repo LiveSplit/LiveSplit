@@ -5543,16 +5543,4 @@
     <Description>Autosplitter for the CATegory any% (old patch). Choose which splits you want to use in the settings. (by Lighten95)</Description>
     <Website>https://github.com/LWLeijten/Cat-Quest-Autosplitter</Website>
   </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Sekiro</Game>
-      <Game>Sekiro: Shadows Die Twice</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/Jiiks/LiveSplit.Sekiro/master/Components/LiveSplit.Sekiro.dll</URL>
-    </URLs>
-    <Type>Component</Type>
-    <Description>Game Time is available. (By Jiiks)</Description>
-    <Website>https://github.com/Jiiks/LiveSplit.Sekiro</Website>
-  </AutoSplitter>
 </AutoSplitters>
