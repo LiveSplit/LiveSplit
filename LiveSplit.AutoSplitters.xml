@@ -5566,4 +5566,14 @@
     <Description>Game time, auto-start and several QOL improvments.</Description>
     <Website>https://gist.github.com/pawREP</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Oni</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Barnacle/OniAutosplitter/master/OniAutosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Start/Reset are available (By Barnacle)</Description>
+  </AutoSplitter>
 </AutoSplitters>
