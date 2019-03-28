@@ -5587,4 +5587,14 @@
     <Description>Load Removal is available (by SuicideMachine)</Description>
     <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Oni</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Barnacle/OniAutosplitter/master/OniAutosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Start/Reset are available (By Barnacle)</Description>
+  </AutoSplitter>
 </AutoSplitters>
