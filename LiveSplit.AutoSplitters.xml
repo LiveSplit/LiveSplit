@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<AutoSplitter>
+	<Games>
+		<Game>Project Warlock</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/JarrodDoyle/autosplitters/master/pw.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Basic autosplitter and load remover. (By Jayrude)</Description>
+	<Website>https://discord.gg/wUYXU4J</Website>
+</AutoSplitter>
 <AutoSplitter>
 	<Games>
 		<Game>Blood</Game>
