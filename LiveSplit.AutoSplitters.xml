@@ -5566,4 +5566,25 @@
     <Description>Game time, auto-start and several QOL improvments.</Description>
     <Website>https://gist.github.com/pawREP</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Painkiller</Game>
+      <Game>Painkiller Black Edition</Game>
+      <Game>Painkiller: Black Edition</Game>
+      <Game>Painkiller Battle out of Hell</Game>
+      <Game>Painkiller: Battle out of Hell</Game>
+      <Game>Painkiller Overdose</Game>
+      <Game>Painkiller: Overdose</Game>
+      <Game>Painkiller Resurrection</Game>
+      <Game>Painkiller: Resurrection</Game>
+      <Game>Painkiller Redemption</Game>
+      <Game>Painkiller: Redemption</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Painkiller/LiveSplit.Painkiller.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available (by SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
