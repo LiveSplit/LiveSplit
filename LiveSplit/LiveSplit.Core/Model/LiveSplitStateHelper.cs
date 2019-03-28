@@ -110,8 +110,9 @@ namespace LiveSplit.Model
         /// <param name="splitDelta">Specifies whether to return a split delta rather than a segment delta and to start showing the live segment once you are behind.</param>
         /// <param name="comparison">The comparison that you are comparing with.</param>
         /// <param name="method">The timing method that you are using.</param>
+        /// <param name="liveDelta">Force live delta to always be shown</param>
         /// <returns>Returns the current live delta.</returns>
-        public static TimeSpan? CheckLiveDelta(LiveSplitState state, bool splitDelta, string comparison, TimingMethod method)
+        public static TimeSpan? CheckLiveDelta(LiveSplitState state, bool splitDelta, string comparison, TimingMethod method, bool liveDelta)
         {
             if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
             {
@@ -123,7 +124,8 @@ namespace LiveSplit.Model
                 var bestSegmentDelta = GetLiveSegmentDelta(state, state.CurrentSplitIndex, BestSegmentsComparisonGenerator.ComparisonName, method);
                 var comparisonDelta = GetLiveSegmentDelta(state, state.CurrentSplitIndex, comparison, method);
 
-                if (splitDelta && currentTime > curSplit
+                if (liveDelta == true
+                    || splitDelta && currentTime > curSplit
                     || useBestSegment && bestSegment != null && curSegment > bestSegment && bestSegmentDelta > TimeSpan.Zero
                     || comparisonDelta > TimeSpan.Zero)
                 {
