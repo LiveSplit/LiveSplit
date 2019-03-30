@@ -5608,4 +5608,15 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Start/Reset are available (By Barnacle)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Vignettes</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Vignettes/Livesplit.Vignettes.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Vignettes</Website>
+  </AutoSplitter>
 </AutoSplitters>
