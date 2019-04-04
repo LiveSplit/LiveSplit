@@ -5623,4 +5623,15 @@
     <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Vignettes</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>TAD: That Alien Dude</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/serdrad0x/TAD-Autosplitter/master/tad-autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting and auto start/reset are available (By Serdrad0x and ZeDoc)</Description>
+    <Website>https://github.com/serdrad0x/TAD-Autosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
