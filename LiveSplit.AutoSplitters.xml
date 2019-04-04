@@ -3633,6 +3633,17 @@
       <Game>Mafia: The City of Lost Heaven</Game>
     </Games>
     <URLs>
+      <URL>https://raw.githubusercontent.com/TheShaltys/Mafia/master/MafiaFRE.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting FRE category is available. (By TheShalty)</Description>
+    <Website>https://github.com/TheShaltys/Mafia</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Mafia: The City of Lost Heaven</Game>
+    </Games>
+    <URLs>
       <URL>https://raw.githubusercontent.com/Lembox/Mafia/master/LiveSplit.Mafia.asl</URL>
     </URLs>
     <Type>Script</Type>
