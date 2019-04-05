@@ -5444,4 +5444,26 @@
     <Description>Autostart and selectable splitting points available for full-game runs. (by FluxMonkii)</Description>
     <Website>https://github.com/FluxMonkii/Autosplitters</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Harry Potter and the Deathly Hallows Part 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/bukazoltan/autosplitters/master/LiveSplit.HP7p2.Autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>It splits automatically between levels and at the end of the run. (by mczolly)</Description>
+    <Website>https://discord.me/mczolly</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Harry Potter: Quidditch World Cup</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/bukazoltan/autosplitters/master/LiveSplit.QWC.Autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>It splits when the snitch is caught and between tutorials. (by mczolly)</Description>
+    <Website>https://discord.me/mczolly</Website>
+  </AutoSplitter>
 </AutoSplitters>
