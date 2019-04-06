@@ -1577,6 +1577,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Axiom Verge</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Leemyy/ASL/master/AxiomVerge.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By VideoGameRoulette and Leemyy)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Daikatana</Game>
     </Games>
     <URLs>
