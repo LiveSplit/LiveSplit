@@ -5634,4 +5634,15 @@
     <Description>Auto splitting and auto start/reset are available (By Serdrad0x and ZeDoc)</Description>
     <Website>https://github.com/serdrad0x/TAD-Autosplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Infernal</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Infernal/LiveSplit.Infernal.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available (by SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
