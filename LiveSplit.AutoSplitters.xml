@@ -5452,7 +5452,18 @@
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split</Description>
-    <Website>https://github.com/kclimb/asl-scripts/blob/master/Splitters/STFD.asl</Website>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Nancy Drew: Message in a Haunted Mansion</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/MHM.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -5463,7 +5474,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split</Description>
-    <Website>https://github.com/kclimb/asl-scripts/blob/master/Splitters/SSH.asl</Website>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -5474,7 +5485,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split</Description>
-    <Website>https://github.com/kclimb/asl-scripts/blob/master/Splitters/CUR.asl</Website>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
