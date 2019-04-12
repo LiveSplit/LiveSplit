@@ -5689,3 +5689,15 @@
     <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
 </AutoSplitters>
+<AutoSplitters>
+	<AutoSplitter>
+	<Games>
+		<Game>Trine</Game>
+	</Games>
+	<URLs>
+		<URL>https://github.com/MaximumLeech/Autosplitters/blob/master/Trine1.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Load and cutscene remover (By Psych0sis and Maximum Leech)</Description>
+	<Website>https://discord.gg/9Y6RK3h</Website>
+</AutoSplitter>
