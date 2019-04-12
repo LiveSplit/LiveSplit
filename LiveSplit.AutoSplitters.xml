@@ -5693,7 +5693,7 @@
       <Game>Trine</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/MaximumLeech/Autosplitters/blob/master/Trine1.asl</URL>
+      <URL>https://raw.githubusercontent.com/MaximumLeech/Autosplitters/master/Trine1.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load and cutscene remover (By Psych0sis and Maximum Leech)</Description>
