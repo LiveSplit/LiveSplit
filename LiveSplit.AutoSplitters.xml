@@ -5,7 +5,7 @@
 		<Game>Tetris (NES)</Game>
 	</Games>
 	<URLs>
-		<URL>https://raw.githubusercontent.com/sdmx/tetrisplit/master/tetris100Lines.asl</URL>
+		<URL>https://raw.githubusercontent.com/sdmx/tetrisplit/master/tetrisplit.asl</URL>
 	</URLs>
 	<Type>Script</Type>
 	<Description>TetriSplit: AutoSplitter for Tetris for the Nintendo Entertainment System</Description>
