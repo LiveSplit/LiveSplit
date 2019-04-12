@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
 	<Games>
+		<Game>Tetris (NES)</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/sdmx/tetrisplit/master/tetris100Lines.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>TetriSplit: AutoSplitter for Tetris for the Nintendo Entertainment System</Description>
+	<Website>https://github.com/sdmx/tetrisplit</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+	<Games>
 		<Game>Project Warlock</Game>
 	</Games>
 	<URLs>
