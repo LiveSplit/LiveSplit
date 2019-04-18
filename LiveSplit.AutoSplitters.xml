@@ -5712,12 +5712,12 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Pat & Mat</Game>
+      <Game>Pat &amp; Mat</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/MisaRistolainen/PATAMAT-Autosplitter/master/PATAMAT_AutoSplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for Pat & Mat Car repair%. Beta (By Kainalo)</Description>
+    <Description>Autosplitter for Pat &amp; Mat Car repair&percnt;. Beta (By Kainalo)</Description>
   </AutoSplitter>
 </AutoSplitters>
