@@ -4170,10 +4170,10 @@
       <Game>RAGE</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Rage/Rage.asl</URL>
+      <URL>https://raw.githubusercontent.com/ttakkyon/RageSplit/master/Rage.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load time removal and basic autosplitting are available. (By SuicideMachine)</Description>
+    <Description>Load time removal, save time removal and basic autosplitting are available using the game timer. Check speedrun.com resources page for more info. (By Takyon)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
