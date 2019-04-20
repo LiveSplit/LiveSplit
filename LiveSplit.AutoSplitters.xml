@@ -5712,6 +5712,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Pat &amp; Mat</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MisaRistolainen/PATAMAT-Autosplitter/master/PATAMAT_AutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Car repair&#37;. Beta (By Kainalo)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Prince of Persia 2008</Game>
     </Games>
     <URLs>
