@@ -5741,4 +5741,15 @@
     <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.KatanaZERO</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Underworld Ascendant</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.UnderworldAscendant/master/Components/LiveSplit.UnderworldAscendant.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting and Load Removal are available. (By SuicideMachine)</Description>
+    <Website>https://github.com/SuiMachine/LiveSplit.UnderworldAscendant</Website>
+  </AutoSplitter>
 </AutoSplitters>
