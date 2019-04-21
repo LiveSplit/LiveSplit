@@ -5730,4 +5730,15 @@
     <Type>Script</Type>
     <Description>Any% Autosplit, Autostart, Autoreset</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Katana ZERO</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.KatanaZERO/Livesplit.KatanaZERO.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.KatanaZERO</Website>
+  </AutoSplitter>
 </AutoSplitters>
