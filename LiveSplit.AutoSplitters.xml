@@ -5752,4 +5752,15 @@
     <Description>Auto Splitting and Load Removal are available. (By SuicideMachine)</Description>
     <Website>https://github.com/SuiMachine/LiveSplit.UnderworldAscendant</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Donkey Kong Country 2: Diddy's Kong Quest</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/UNHchabo/AutoSplitters/master/DKC2/LiveSplit.DKC2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, In-Game Time, and Auto Start/Reset are available. (By UNHchabo)</Description>
+    <Website>https://github.com/UNHchabo/AutoSplitters/tree/master/DKC2</Website>
+  </AutoSplitter>
 </AutoSplitters>
