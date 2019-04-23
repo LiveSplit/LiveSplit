@@ -5763,4 +5763,26 @@
     <Description>Auto Splitting, In-Game Time, and Auto Start/Reset are available. (By UNHchabo)</Description>
     <Website>https://github.com/UNHchabo/AutoSplitters/tree/master/DKC2</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Nancy Drew: The White Wolf of Icicle Creek</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/evilclownattack/autosplitters/master/ICE.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://www.speedrun.com/nancy_drew</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Nancy Drew: Secrets Can Kill</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/evilclownattack/autosplitters/master/SCK.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://www.speedrun.com/nancy_drew</Website>
+  </AutoSplitter>
 </AutoSplitters>
