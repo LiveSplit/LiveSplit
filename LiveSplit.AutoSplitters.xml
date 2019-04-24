@@ -4893,6 +4893,7 @@
   <AutoSplitter>
     <Games>
         <Game>The Messenger</Game>
+        <Game>The Messenger Category Extensions</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.TheMessenger/Livesplit.TheMessenger.asl</URL>
