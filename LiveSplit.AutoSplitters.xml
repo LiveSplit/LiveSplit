@@ -5786,4 +5786,14 @@
     <Description>Automatic start/split</Description>
     <Website>https://www.speedrun.com/nancy_drew</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Winx Club</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/7eraser7/AutoSplitters/master/WinxClub.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter/Load Remover for Any% (by 7eraser7).</Description>
+  </AutoSplitter>
 </AutoSplitters>
