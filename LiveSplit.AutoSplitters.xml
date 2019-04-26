@@ -1848,10 +1848,10 @@
       <Game>Alien: Isolation</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/fatalis/ASL/master/alien_isolation.asl</URL>
+      <URL>https://raw.githubusercontent.com/Cliffs666/ASL/master/Alien_Isolation_Auto.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Fatalis)</Description>
+    <Description>Load Removal (By Fatalis) and Auto Splitter (By Cliffs) is available.</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
