@@ -5796,4 +5796,24 @@
     <Type>Script</Type>
     <Description>Autosplitter/Load Remover for Any% (by 7eraser7).</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Frog Hop</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehCupcakes/AutoSplitters/master/FrogHop.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start, auto-split, and game timer. Any% or 100%. (By TehCupcakes).</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Crystal Conduit</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehCupcakes/AutoSplitters/master/FrogHop.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start, auto-split, and game timer. Any% or 100%. (By TehCupcakes).</Description>
+  </AutoSplitter>
 </AutoSplitters>
