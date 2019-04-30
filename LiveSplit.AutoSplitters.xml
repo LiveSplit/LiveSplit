@@ -5816,4 +5816,14 @@
     <Type>Script</Type>
     <Description>Auto-start, auto-split, and game timer. Any% or 100%. (By TehCupcakes).</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Prince of Persia 3D</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/pop3d.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load/Crash Removal</Description>
+  </AutoSplitter>
 </AutoSplitters>
