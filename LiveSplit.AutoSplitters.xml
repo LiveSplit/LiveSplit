@@ -4487,14 +4487,14 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Rockman & Forte</Game>
+      <Game>Rockman &amp; Forte</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/Rockman&Forte/R&Fautosplit.asl</URL>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/RockmanForte/RMFautosplit.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for Rockman & Forte (By Coltaho)</Description>
-    <Website>https://github.com/Coltaho/Autosplitters/blob/master/Rockman&Forte/README.md</Website>
+    <Description>Autosplitter for Rockman &amp; Forte (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/RockmanForte/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
