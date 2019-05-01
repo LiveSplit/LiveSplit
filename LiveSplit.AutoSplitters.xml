@@ -4487,6 +4487,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Rockman & Forte</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/Rockman&Forte/R&Fautosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Rockman & Forte (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/Rockman&Forte/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Mega Man 11</Game>
       <Game>Megaman 11</Game>
       <Game>MM11</Game>
