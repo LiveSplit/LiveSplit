@@ -5847,4 +5847,15 @@
     <Type>Script</Type>
     <Description>Load removal. Automatic starting, splitting and resetting. Co-op and single-player.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Escape from Yavin 4: The Lost Maps</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/yourSolution/EscapeFromYavin4Splitter/master/EY4_v_01.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal. Automatic splitting.</Description>
+  </AutoSplitter>
 </AutoSplitters>
+
