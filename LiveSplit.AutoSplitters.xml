@@ -524,7 +524,7 @@
       <Game>Left 4 Dead 2 Category Extensions</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D2/L4D2v1.6.asl</URL>
+      <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D2/L4D2.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal and Auto Splitting are available. (By bill_play3)</Description>
@@ -534,7 +534,7 @@
       <Game>Left 4 Dead</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D1/L4Dv1.2.asl</URL>
+      <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D1/L4D.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal and Auto Splitting are available. (By bill_play3)</Description>
