@@ -5837,4 +5837,14 @@
     <Type>Script</Type>
     <Description>Load/Crash Removal</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Kane &amp; Lynch 2: Dog Days</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/mhgar/Autosplitters/master/kl2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal. Automatic starting, splitting and resetting. Co-op and single-player.</Description>
+  </AutoSplitter>
 </AutoSplitters>
