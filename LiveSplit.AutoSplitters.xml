@@ -544,10 +544,10 @@
       <Game>Super Meat Boy</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/negative-seven/Livesplit_ASL/master/LiveSplit.SuperMeatBoy.asl</URL>
+      <URL>https://raw.githubusercontent.com/negative-seven/Livesplit.SuperMeatBoy/master/LiveSplit.SuperMeatBoy.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting is available. (By -7)</Description>
+    <Description>Auto Splitting is available. (By -7 and Thermospore)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
