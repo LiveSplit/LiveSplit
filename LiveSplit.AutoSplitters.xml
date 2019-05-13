@@ -5866,6 +5866,6 @@
 	</URLs>
 	<Type>Script</Type>
 	<Description>IGT syncing, automatic starting, splitting and resetting. Works in all game modes. Shoutouts to Gelly.</Description>
-  <AutoSplitter>
+  </AutoSplitter>
 </AutoSplitters>
 
