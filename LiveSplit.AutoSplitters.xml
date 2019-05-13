@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
-	<AutoSplitter>
 	<Games>
 		<Game>Tetris (NES)</Game>
 	</Games>
@@ -5857,5 +5856,15 @@
     <Type>Script</Type>
     <Description> Load removal and auto splitting. By: Your Solution </Description>
   </AutoSplitter>
+  <AutoSplitter>
+	<Games>
+		<Game>Kuso</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/Zet237/autokuso/master/kusosplitter.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>IGT syncing, automatic starting, splitting and resetting. Works in all game modes. Shoutouts to Gelly.</Description>
+  <AutoSplitter>
 </AutoSplitters>
 
