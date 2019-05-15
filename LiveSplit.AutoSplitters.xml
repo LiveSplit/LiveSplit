@@ -5867,5 +5867,23 @@
 	<Type>Script</Type>
 	<Description>IGT syncing, automatic starting, splitting and resetting. Works in all game modes. Shoutouts to Gelly.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Grand Theft Auto</Game>
+      <Game>Grand Theft Auto 1</Game>
+      <Game>GTA1</Game>
+      <Game>Grand Theft Auto: London, 1969</Game>
+      <Game>Grand Theft Auto: London, 1961</Game>
+      <Game>Grand Theft Auto: London 1969</Game>
+      <Game>Grand Theft Auto: London 1961</Game>
+      <Game>GTA: London 1969</Game>
+      <Game>GTA: London 1961</Game>	    
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.GTA.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic timer start, automatic split and in-game timer. (By hoxi)</Description>
+  </Autosplitter> 	
 </AutoSplitters>
 
