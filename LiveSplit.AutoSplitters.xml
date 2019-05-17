@@ -5379,7 +5379,8 @@
       <URL>https://gist.githubusercontent.com/jfoster/37f266491e3caacc807d8be9d144e38b/raw/LiveSplit.GTAIV.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic start/split/reset and loadless timer is availible.</Description>
+    <Description>Automatic start/split/reset and loadless timer is available.</Description>
+	<Website>https://gist.github.com/jfoster/37f266491e3caacc807d8be9d144e38b#file-readme-md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -5389,7 +5390,8 @@
       <URL>https://gist.githubusercontent.com/jfoster/37f266491e3caacc807d8be9d144e38b/raw/LiveSplit.GTATLAD.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic start/split/reset and loadless timer is availible.</Description>
+    <Description>Automatic start/split/reset and loadless timer is available.</Description>
+	<Website>https://gist.github.com/jfoster/37f266491e3caacc807d8be9d144e38b#file-readme-md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -5399,7 +5401,8 @@
       <URL>https://gist.githubusercontent.com/jfoster/37f266491e3caacc807d8be9d144e38b/raw/LiveSplit.GTATBOGT.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic start/split/reset and loadless timer is availible.</Description>
+    <Description>Automatic start/split/reset and loadless timer is available.</Description>
+    <Website>https://gist.github.com/jfoster/37f266491e3caacc807d8be9d144e38b#file-readme-md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
