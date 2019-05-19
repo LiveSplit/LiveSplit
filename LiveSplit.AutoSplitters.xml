@@ -5893,7 +5893,7 @@
 		<Game>Micro Mages</Game>
 	</Games>
 	<URLs>
-		<URL>https://github.com/homar-mo/AutoSplitters/blob/master/MicroMages.asl</URL>
+		<URL>https://raw.githubusercontent.com/homar-mo/AutoSplitters/master/MicroMages.asl</URL>
 	</URLs>
 	<Type>Script</Type>
 	<Description> Autosplitter for Micro Mages for the NES</Description>
