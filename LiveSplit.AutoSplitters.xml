@@ -5887,6 +5887,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Automatic timer start, automatic split and in-game timer. (By hoxi)</Description>
-  </AutoSplitter> 	
+  </AutoSplitter>
+  <AutoSplitter>
+	<Games>
+		<Game>Micro Mages</Game>
+	</Games>
+	<URLs>
+		<URL>https://github.com/homar-mo/AutoSplitters/blob/master/MicroMages.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter for Micro Mages for the NES</Description>
+</AutoSplitter>
 </AutoSplitters>
 
