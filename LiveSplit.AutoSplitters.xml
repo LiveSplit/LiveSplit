@@ -4896,10 +4896,11 @@
       <Game>Prince of Persia Warrior Within</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Cred1Tor/Autosplitters/master/POPWarriorWithin_v2.ASL</URL>
+      <URL>https://raw.githubusercontent.com/Cred1Tor/Autosplitters/master/POPWarriorWithin_Pog.ASL</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto splitting, auto starting, auto resetting (with sub/category detection) are available. (By Creditor)</Description>
+    <Description>Auto splitting, auto starting, auto resetting are available. (By Creditor)</Description>
+	  <Website>https://github.com/Cred1Tor/Autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
