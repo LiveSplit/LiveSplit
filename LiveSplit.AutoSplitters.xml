@@ -5943,17 +5943,6 @@
     <Description>Auto Splitting, Load Removal and Auto Start/Reset is available (by Mr. Mary)</Description>
     <Website>https://github.com/marysiamzawka/ASL</Website>
   </AutoSplitter>
-			  <AutoSplitter>
-    <Games>
-      <Game>Call of Duty</Game>
-    </Games>
-    <URLs>
-      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.CoDSP.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto Splitting, Load Removal and Auto Start/Reset is available (by Mr. Mary)</Description>
-    <Website>https://github.com/marysiamzawka/ASL</Website>
-  </AutoSplitter>
 				  <AutoSplitter>
     <Games>
       <Game>Gensou SkyDrift</Game>
