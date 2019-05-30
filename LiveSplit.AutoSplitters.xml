@@ -5921,5 +5921,49 @@
 	<Type>Script</Type>
 	<Description> Autosplitter for Micro Mages for the NES</Description>
 </AutoSplitter>
+	  <AutoSplitter>
+    <Games>
+      <Game>Colin McRae Rally 2.0</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.CMR2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Total Race Time (as Game Time), Auto Start and Reset for Championship% categories is available (by Mr. Mary)</Description>
+    <Website>https://github.com/marysiamzawka/ASL</Website>
+  </AutoSplitter>
+		  <AutoSplitter>
+    <Games>
+      <Game>Call of Duty</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.CoDSP.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Load Removal and Auto Start/Reset is available (by Mr. Mary)</Description>
+    <Website>https://github.com/marysiamzawka/ASL</Website>
+  </AutoSplitter>
+				  <AutoSplitter>
+    <Games>
+      <Game>Gensou SkyDrift</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.SkyDrift.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter (new stages only) available (by Mr. Mary)</Description>
+    <Website>https://github.com/marysiamzawka/ASL</Website>
+  </AutoSplitter>
+				  <AutoSplitter>
+    <Games>
+      <Game>Super Driver</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.SuperDriver.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting, Auto-Start (only if starting from Super Formula) and Load Removal available (by Mr. Mary)</Description>
+    <Website>https://github.com/marysiamzawka/ASL</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
