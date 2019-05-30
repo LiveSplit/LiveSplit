@@ -5926,7 +5926,7 @@
       <Game>Colin McRae Rally 2.0</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/marysiamzawka/ASL/blob/master/LiveSplit.CMR2.asl</URL>
+      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.CMR2.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting, Total Race Time (as Game Time), Auto Start and Reset for Championship% categories is available (by Mr. Mary)</Description>
