@@ -5965,5 +5965,15 @@
     <Description>Autosplitting, Auto-Start (only if starting from Super Formula) and Load Removal available (by Mr. Mary)</Description>
     <Website>https://github.com/marysiamzawka/ASL</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Double Spoiler ~ Touhou Bunkachou</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/pingval/AutoSplitters/master/th125.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start and Split are available. (By pingval)</Description>
+    <Website>https://github.com/pingval/AutoSplitters</Website>
+  </AutoSplitter>
 </AutoSplitters>
-
