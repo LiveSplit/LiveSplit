@@ -5585,10 +5585,10 @@
       <Game>Jazz Jackrabbit 2</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/BinaryBlob92/117d4b503323182125c39a0a622c622d/raw/fa09466dfe5cb94046ba1ac7877f28623f66f3f2/jazz2.asl</URL>
+      <URL>https://raw.githubusercontent.com/BinaryBlob92/AutoSplitters/master/jazz2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic start/split (by BinaryBlob)</Description>
+    <Description>Load Removal and Auto Splitting are available. (by BinaryBlob)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
