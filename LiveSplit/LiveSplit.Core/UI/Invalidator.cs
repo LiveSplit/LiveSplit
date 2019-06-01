@@ -36,13 +36,13 @@ namespace LiveSplit.UI
                 new PointF(x+width, y+height)
             };
             Transform.TransformPoints(points);
-            var roundedX = (int)Math.Ceiling(points[0].X - Offset);
-            var roundedY = (int)Math.Ceiling(points[0].Y - Offset);
+            var offsetX = points[0].X - Offset;
+            var offsetY = points[0].Y - Offset;
             var rect = new Rectangle(
-                roundedX,
-                roundedY,
-                (int)Math.Ceiling(points[1].X - roundedX - Offset),
-                (int)Math.Ceiling(points[1].Y - roundedY - Offset));
+                (int)Math.Ceiling(offsetX),
+                (int)Math.Ceiling(offsetY),
+                (int)Math.Ceiling(points[1].X - offsetX - Offset),
+                (int)Math.Ceiling(points[1].Y - offsetY - Offset));
             Form.Invalidate(rect);
         }
     }
