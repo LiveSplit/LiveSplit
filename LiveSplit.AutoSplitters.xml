@@ -3929,6 +3929,39 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sonic Robo Blast 2: The Mystic Realm</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/autospliter_srb2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/R3FR4G/LiveSplit-ASL-Scripts</Website>
+    <Description>Automatic start/split/reset, and in-game time</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sonic Robo Blast 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/autospliter_srb2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/R3FR4G/LiveSplit-ASL-Scripts</Website>
+    <Description>Automatic start/split/reset, and in-game time</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sonic Robo Blast 2 Kart</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/autospliter_srb2kart.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/R3FR4G/LiveSplit-ASL-Scripts</Website>
+    <Description>Automatic start/split/reset, and in-game time</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Quest RPG: Brian's Journey</Game>
       <Game>Quest: Brian's Journey</Game>
     </Games>
