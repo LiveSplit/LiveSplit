@@ -1577,6 +1577,7 @@ namespace LiveSplit.View
                 DataGridView.HitTestInfo info = runGrid.HitTest(dgvPos.X, dgvPos.Y);
                 var imagePath = (e.Data.GetData(DataFormats.FileDrop) as string[])?[0];
                 ChangeImage(info.RowIndex, imagePath, false);
+                runGrid.Refresh();
             }
         }
 
@@ -1592,6 +1593,7 @@ namespace LiveSplit.View
             var imagePath = (e.Data.GetData(DataFormats.FileDrop) as string[])?[0];
 
             return e.Data.GetDataPresent(DataFormats.FileDrop)
+                   && info.ColumnIndex != -1
                    && runGrid.Columns[info.ColumnIndex] is DataGridViewImageColumn
                    && info.Type == DataGridViewHitTestType.Cell;
         }
