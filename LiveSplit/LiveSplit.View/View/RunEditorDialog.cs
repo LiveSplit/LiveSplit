@@ -1595,9 +1595,7 @@ namespace LiveSplit.View
 
             return e.Data.GetDataPresent(DataFormats.FileDrop)
                    && runGrid.Columns[info.ColumnIndex] is DataGridViewImageColumn
-                   && info.Type == DataGridViewHitTestType.Cell
-                   && VALID_PICTURE_EXTENSIONS.Contains(new System.IO.FileInfo(imagePath).Extension.ToUpper());
-            // The last validation will probably be deleted
+                   && info.Type == DataGridViewHitTestType.Cell;
         }
     }
 
