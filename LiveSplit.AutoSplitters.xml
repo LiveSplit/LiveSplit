@@ -6009,4 +6009,15 @@
     <Description>Auto Start and Split are available. (By pingval)</Description>
     <Website>https://github.com/pingval/AutoSplitters</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Legendary</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/blairmadison11/LegendaryAutosplitter/master/Legendary.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal (by blairmadison11)</Description>
+    <Website>https://github.com/blairmadison11/LegendaryAutosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
