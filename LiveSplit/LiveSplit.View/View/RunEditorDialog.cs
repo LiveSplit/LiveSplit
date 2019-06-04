@@ -1580,8 +1580,6 @@ namespace LiveSplit.View
             }
         }
 
-        private const string VALID_PICTURE_EXTENSIONS = "*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG";
-
         private void runGrid_DragOver(object sender, DragEventArgs e)
         {
             e.Effect = DragIsValid(e) ? DragDropEffects.Copy : DragDropEffects.None;
