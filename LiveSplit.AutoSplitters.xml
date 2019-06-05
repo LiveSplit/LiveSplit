@@ -6020,4 +6020,16 @@
     <Description>Autosplitting and load removal (by blairmadison11)</Description>
     <Website>https://github.com/blairmadison11/LegendaryAutosplitter</Website>
   </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Saints Row IV</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/marysiamzawka/ASL/raw/master/Livesplit.SR4.Release.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal and final split available for the Steam release (by Mr. Mary)</Description>
+    <Website>https://github.com/blairmadison11/LegendaryAutosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
+
