@@ -2622,10 +2622,10 @@
       <Game>N++</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/MoleTrooper/NppAuto/master/NppAuto.asl</URL>
+      <URL>https://raw.githubusercontent.com/JRoeseph/nppNewAuto/master/nppNewAuto.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic Splitting is available. (By MoleTrooper)</Description>
+    <Description>Automatic Splitting is available. (By MoleTrooper, JRoeseph, and XandoToaster)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
