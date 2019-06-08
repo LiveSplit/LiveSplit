@@ -5133,7 +5133,17 @@
       <URL>https://raw.githubusercontent.com/AcridStingray3/CS2-Load-Remover/master/cs2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removing and timer auto start available. (By AcridStingray3)</Description>
+    <Description>Load remover / autosplitter available. (By AcridStingray3)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Legend of Heroes: Trails of Cold Steel</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AcridStingray3/CS1-Load-Remover/master/cs1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover / autosplitter available. (By AcridStingray3)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
