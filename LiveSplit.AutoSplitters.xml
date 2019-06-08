@@ -1178,7 +1178,7 @@
       <Game>Toy Story 2: Buzz Lightyear to the Rescue!</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/cheeseandcereal/AutoSplitter/master/LiveSplit.ToyStory2.asl</URL>
+      <URL>https://raw.githubusercontent.com/cheeseandcereal/ToyStory2Resources/master/AutoSplitter/Livesplit.ToyStory2.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Working for PJ64 1.7.0.50v23 and PC (No auto-reset on PC). (By cheeseandcereal)</Description>
