@@ -2,26 +2,48 @@
 <AutoSplitters>
 	<AutoSplitter>
 	<Games>
-		<Game>Tetris (NES)</Game>
+		<Game>Jimmy Neutron: Boy Genius (PC)</Game>
 	</Games>
 	<URLs>
-		<URL>https://raw.githubusercontent.com/sdmx/tetrisplit/master/tetrisplit.asl</URL>
+		<URL>https://raw.githubusercontent.com/mentir4242/livesplitScripts/master/neutronAllReds.asl</URL>
 	</URLs>
 	<Type>Script</Type>
-	<Description>TetriSplit: AutoSplitter for Tetris for the Nintendo Entertainment System</Description>
-	<Website>https://github.com/sdmx/tetrisplit</Website>
+	<Description>Autosplitter for boy genius allRedNeutron% (66), splits after every red neutron collected (by mentir)</Description>
+	<Website>https://discord.gg/Q2cpyeM</Website>
 	</AutoSplitter>
 	<AutoSplitter>
-	<Games>
-		<Game>Project Warlock</Game>
-	</Games>
-	<URLs>
-		<URL>https://raw.githubusercontent.com/JarrodDoyle/autosplitters/master/pw.asl</URL>
-	</URLs>
-	<Type>Script</Type>
-	<Description>Basic autosplitter and load remover. (By Jayrude)</Description>
-	<Website>https://discord.gg/wUYXU4J</Website>
-</AutoSplitter>
+		<Games>
+			<Game>Jimmy Neutron: Boy Genius (PC)</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/mentir4242/livesplitScripts/master/neutron.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter for boy genius any%, splits the game into 11 parts (by mentir)</Description>
+		<Website>https://discord.gg/Q2cpyeM</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Tetris (NES)</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/sdmx/tetrisplit/master/tetrisplit.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>TetriSplit: AutoSplitter for Tetris for the Nintendo Entertainment System</Description>
+		<Website>https://github.com/sdmx/tetrisplit</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Project Warlock</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/JarrodDoyle/autosplitters/master/pw.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Basic autosplitter and load remover. (By Jayrude)</Description>
+		<Website>https://discord.gg/wUYXU4J</Website>
+	</AutoSplitter>
 <AutoSplitter>
 	<Games>
 		<Game>Blood</Game>
