@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
 	<Games>
+		<Game>Jimmy Neutron: Boy Genius (PC)</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/mentir4242/livesplitScripts/master/NeutronScript.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Autosplitter for the supreme Jimmy Neutron game, any% and allReds%</Description>
+	<Website>https://discord.gg/Q2cpyeM</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+	<Games>
 		<Game>Tetris (NES)</Game>
 	</Games>
 	<URLs>
