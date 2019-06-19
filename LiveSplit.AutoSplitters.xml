@@ -104,10 +104,11 @@
       <Game>Turok: Dinosaur Hunter</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/QuarkEra/TurokEX_AutoSplitter/master/TurokEX_AutoSplitter.asl</URL>
+      <URL>https://raw.githubusercontent.com/QuarkEra/TurokEX_AutoSplitter/master/LiveSplit.TurokEX.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Manual split required at Campaigner's death, Auto Start from title, Auto Split from The Hub to another Level, Auto Reset on return to title</Description>
+    <Description>Auto Start, Auto Split, Auto Reset on return to title.</Description>
+    <Website>https://github.com/QuarkEra/TurokEX_AutoSplitter</Website>
   </AutoSplitter>
 <AutoSplitter>
     <Games>
