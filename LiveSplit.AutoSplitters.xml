@@ -6064,5 +6064,16 @@
 	<Description>Automatic splitting and load removing for Vectronom on Steam (by badBlackShark)</Description>
 	<Website>https://discord.gg/G4GWJwD</Website>
 </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Jump King</Game>
+      <Game>JumpKing</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.JumpKing/master/Components/LiveSplit.JumpKing.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.JumpKing</Website>
+  </AutoSplitter>
 </AutoSplitters>
-
