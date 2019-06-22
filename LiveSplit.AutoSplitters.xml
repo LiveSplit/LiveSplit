@@ -6076,4 +6076,16 @@
     <Description>Game Time and Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.JumpKing</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Saints Row 2</Game>
+      <Game>SR2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.SR2.Release.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic splitting and load remover for the Steam and GOG versions available (by hoxi & Mr. Mary)</Description>
+    <Website>https://github.com/hoXyy/Livesplit.Autosplitters</Website>
+  </AutoSplitter>	
 </AutoSplitters>
