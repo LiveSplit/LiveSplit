@@ -6996,4 +6996,16 @@
     <Type>Script</Type>
     <Description>Auto-splitting, start, reset, and load removal are available.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Devil May Cry 5</Game>
+      <Game>DMC5</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/remote-mine/DMC5Autosplitter/master/dmc5.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autostart, autosplit and load removal (by remote_mine)</Description>
+    <Website>https://github.com/remote-mine/DMC5Autosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
