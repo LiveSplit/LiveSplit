@@ -2542,6 +2542,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>The Binding of Isaac: Rebirth</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Hyphen-ated/autosplitters/master/isaac/isaac-rebirth.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available. Can split by character or by floor. (By Hyphen-ated)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>The Binding of Isaac: Afterbirth</Game>
     </Games>
     <URLs>
