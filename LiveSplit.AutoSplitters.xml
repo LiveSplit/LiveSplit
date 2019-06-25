@@ -6109,4 +6109,17 @@
     <Description>Load removing, crash removing and automatic start</Description>
     <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Fly'n</Game>
+      <Game>Fly n</Game>
+      <Game>Flyn</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Flyn/Livesplit.Flyn.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Flyn</Website>
+  </AutoSplitter>
 </AutoSplitters>
