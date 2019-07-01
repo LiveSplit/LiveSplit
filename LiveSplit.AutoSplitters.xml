@@ -6133,4 +6133,15 @@
     <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Flyn</Website>
   </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Re-Volt</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/DVark09/ReVoltAutoSplitter/blob/master/Files/rvgl.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitter, load remover and time reset for every category.(Made By DVark09)</Description>
+    <Website>https://github.com/DVark09/ReVoltAutoSplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
