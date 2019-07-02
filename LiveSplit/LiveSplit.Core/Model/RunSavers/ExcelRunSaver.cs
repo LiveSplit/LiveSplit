@@ -92,7 +92,7 @@ namespace LiveSplit.Model.RunSavers
                 startedCell.Style.Format = "dd mmm yy hh:mm:ss";
                 startedCell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
                 if (attempt.Started.HasValue)
-                    startedCell.Value = attempt.Started.Value;
+                    startedCell.Value = attempt.Started.Value.Time;
 
                 var endedCell = row[endedColumn];
                 endedCell.Style.Fill = CellFill.Solid(
@@ -103,7 +103,7 @@ namespace LiveSplit.Model.RunSavers
                 endedCell.Style.Format = "dd mmm yy hh:mm:ss";
                 endedCell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
                 if (attempt.Ended.HasValue)
-                    endedCell.Value = attempt.Ended.Value;
+                    endedCell.Value = attempt.Ended.Value.Time;
 
                 var timeCell = row[timeColumn];
 
