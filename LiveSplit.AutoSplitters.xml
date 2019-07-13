@@ -6178,4 +6178,15 @@
     <Type>Script</Type>
     <Description>Automatic start, split, and reset are available, as well as an IL timer.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Operation: Matriarchy</Game>
+      <Game>Operation Matriarchy</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Operation_Matriarchy/Operation_Matriarchy.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal are available. (by SuicideMachine)</Description>
+  </AutoSplitter>
 </AutoSplitters>
