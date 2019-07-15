@@ -6189,4 +6189,14 @@
     <Type>Script</Type>
     <Description>Autosplitting and load removal are available. (by SuicideMachine)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tarzan</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/hdc0/LiveSplit-asl/master/Tarzan.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available. (By hdc0)</Description>
+  </AutoSplitter>
 </AutoSplitters>
