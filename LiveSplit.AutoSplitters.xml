@@ -1913,6 +1913,22 @@
     <Type>Script</Type>
     <Description>Game Time is available. (By CursedToast)</Description>
   </AutoSplitter>
+<AutoSplitter>
+    <Games>
+	<Game>RE4</Game>
+	<Game>Resident Evil 4 (Steam)</Game>
+	<Game>Resident Evil 4</Game>
+	<Game>Bio4</Game>
+	<Game>Biohazard 4</Game>
+	<Game>Resident Evil 4 Ultimate HD</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Wipefinger/development/master/RE4.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (By Pitted & Wipefinger)</Description>
+    <Website>https://github.com/Wipefinger/development/blob/master/README.md</Website>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>LA Noire</Game>
