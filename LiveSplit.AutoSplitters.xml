@@ -6119,7 +6119,7 @@
 		<Game>Vectronom</Game>
 	</Games>
 	<URLs>
-		<URL>https://raw.githubusercontent.com/badBlackShark/VectronomAutosplitter/master/LiveSplit.Vectronom.asl</URL>
+		<URL>https://raw.githubusercontent.com/badBlackShark/ASL-Scripts/master/LiveSplit.Vectronom.asl</URL>
 	</URLs>
 	<Type>Script</Type>
 	<Description>Automatic splitting and load removing for Vectronom on Steam (by badBlackShark)</Description>
