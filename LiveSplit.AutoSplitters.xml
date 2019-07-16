@@ -6119,11 +6119,11 @@
 		<Game>Vectronom</Game>
 	</Games>
 	<URLs>
-		<URL>https://raw.githubusercontent.com/badBlackShark/VectronomAutosplitter/master/LiveSplit.Vectronom.asl</URL>
+		<URL>https://raw.githubusercontent.com/badBlackShark/ASL-Scripts/master/LiveSplit.Vectronom.asl</URL>
 	</URLs>
 	<Type>Script</Type>
 	<Description>Automatic splitting and load removing for Vectronom on Steam (by badBlackShark)</Description>
-	<Website>https://discord.gg/G4GWJwD</Website>
+	<Website>https://discord.gg/ludopium</Website>
 </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -6225,4 +6225,16 @@
     <Type>Script</Type>
     <Description>Automatic starts, splits and resets, as well as load removal. (by poacher2k, all pointers by TheTedder)</Description>
   </AutoSplitter>
+   </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+     <Game>God's Trigger</Game>
+    </Games>
+    <URLs>
+     <URL>https://raw.githubusercontent.com/badBlackShark/ASL-Scripts/master/LiveSplit.GodsTrigger.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting, Load Removing and counters for remaining enemies and deaths. (by badBlackShark)</Description>
+    <Website>https://discord.gg/QyRZj8G</Website>
+   </AutoSplitter>
 </AutoSplitters>
