@@ -19,6 +19,14 @@ namespace LiveSplit.Model.RunImporters
                 var runFactory = new StandardFormatsRunFactory();
                 var comparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
 
+                // Supports opening from URLs such as https://one.livesplit.org/#/splits-io/46qh
+                int liveSplitOneSplitsIOIndex = url.IndexOf("#/splits-io/");
+                if (liveSplitOneSplitsIOIndex != -1)
+                {
+                    // 12 is the length of #/splits-io/
+                    url = "https://splits.io/" + url.Substring(liveSplitOneSplitsIOIndex + 12);
+                }
+
                 var uri = new Uri(url);
                 var host = uri.Host.ToLowerInvariant();
                 if (host == "splits.io")
