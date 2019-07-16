@@ -6215,4 +6215,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting is available. (By hdc0)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Operative: No One Lives Forever</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/poacher2k/4655b01681705d67b277de8046397cce/raw/cdc63f54a365a9a93e611a0e11e260ac5e95dc8c/nolf1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic starts, splits and resets, as well as load removal. (by poacher2k, all pointers by TheTedder)</Description>
+  </AutoSplitter>
 </AutoSplitters>
