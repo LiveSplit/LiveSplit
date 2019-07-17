@@ -5866,7 +5866,7 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Trine</Game>
+      <Game>Trine Enchanted Edition</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/MaximumLeech/Autosplitters/master/Trine1.asl</URL>
@@ -5884,6 +5884,17 @@
     </URLs>
     <Type>Script</Type>
     <Description>IGT Timer (by Maximum Leech)</Description>
+    <Website>https://github.com/MaximumLeech/Autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Trine 3: The Artifacts of Power</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MaximumLeech/Autosplitters/master/Trine3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover (by Maximum Leech)</Description>
     <Website>https://github.com/MaximumLeech/Autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
