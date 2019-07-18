@@ -6247,4 +6247,17 @@
     <Description>Autosplitting, Load Removing and counters for remaining enemies and deaths. (by badBlackShark)</Description>
     <Website>https://discord.gg/QyRZj8G</Website>
    </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>Soldier of Fortune 2</Game>
+      <Game>Soldier of Fortune II</Game>
+      <Game>Soldier of Fortune 2: Double Helix</Game>
+      <Game>Soldier of Fortune II: Double Helix</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Soldier-of-Fortune-2/SOF2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal are available. (by SuicideMachine)</Description>
+   </AutoSplitter>
 </AutoSplitters>
