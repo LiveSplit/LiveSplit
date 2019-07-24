@@ -6271,4 +6271,14 @@
     <Type>Script</Type>
     <Description>Autosplitting and load removal are available. (by SuicideMachine)</Description>
    </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+     <Game>Portal 3D</Game>
+    </Games>
+    <URLs>
+     <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.Portal3D.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting by rythin and Mr. Mary</Description>
+   </AutoSplitter>
 </AutoSplitters>
