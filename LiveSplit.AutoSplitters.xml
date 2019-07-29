@@ -6281,4 +6281,15 @@
     <Type>Script</Type>
     <Description>Autosplitting by rythin and Mr. Mary</Description>
    </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>Psi-Ops: The Mindgate Conspiracy</Game>
+      <Game>Psi-Ops The Mindgate Conspiracy</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/PsiOps/LiveSplit.PsiOps.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal are available. (by SuicideMachine)</Description>
+   </AutoSplitter>
 </AutoSplitters>
