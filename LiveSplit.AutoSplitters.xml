@@ -272,11 +272,10 @@
       <Game>Bloodstained: Ritual of the Night</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/BloodstainedRotN-Win64-Shipping.asl</URL>
+      <URL>https://raw.githubusercontent.com/DarkTechnomancer/Autosplitters/master/BloodstainedRotN-Win64-Shipping.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>PC-only Load Remover and eventually an Autosplitter (By CptBrian)</Description>
-    <Website>https://www.speedrun.com/bsrotn/thread/j84p9</Website>
+    <Description>PC-only Load Remover and eventually an Autosplitter (Originally by CptBrian)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
