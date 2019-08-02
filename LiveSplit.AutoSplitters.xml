@@ -366,6 +366,20 @@
     <Type>Script</Type>
     <Description>Load Removal is available for 1.0 and 1.5.0. (By TheFuncannon, FromDarkHell)</Description>
   </AutoSplitter>
+  </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Borderlands: Enhanced Edition</Game>
+      <Game>Borderlands Game of the Year Enhanced</Game>
+      <Game>BL1E</Game>
+      <Game>BL1GOTY</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Borderlands%201%20Enhanced%20Edition/BLGOTY.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available for 1.0 (By FromDarkHell)</Description>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Borderlands: The Pre-Sequel!</Game>
@@ -853,6 +867,18 @@
     <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
+    <Games>
+      <Game>Wolfenstein: Youngblood</Game>
+      <Game>Wolfenstein Youngblood</Game>
+      <Game>Youngblood</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Wolfenstein%20Youngblood/Youngblood.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By TheFuncannon and FromDarkHell)</Description>
+    <Website>https://discord.gg/SV39XC7</Website>
+  </AutoSplitter>
     <Games>
       <Game>Dishonored 2</Game>
     </Games>
