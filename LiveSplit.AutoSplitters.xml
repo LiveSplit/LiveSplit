@@ -2460,11 +2460,33 @@
       <Game>Obduction</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/TehGelly/obduction-autosplitter/master/Obduction.asl</URL>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/Obduction.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Gelly)</Description>
-    <Website>https://github.com/Gelly/obduction-autosplitter</Website>
+    <Website>https://github.com/Gelly/autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Quern - Undying Thoughts</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/Quern.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Gelly)</Description>
+    <Website>https://github.com/Gelly/autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Myst</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/realMystME.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and autosplitting is available for rM:ME. (By Gelly)</Description>
+    <Website>https://github.com/Gelly/autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
