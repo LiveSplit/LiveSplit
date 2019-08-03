@@ -6316,4 +6316,14 @@
     <Type>Script</Type>
     <Description>Autosplitting and load removal are available. (by SuicideMachine)</Description>
    </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>The Turing Test</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/TheTuringTest.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal and Automatic Start/Split/Reset are available. (by PrototypeAlpha and bill_play3)</Description>
+   </AutoSplitter>
 </AutoSplitters>
