@@ -6348,4 +6348,14 @@
     <Type>Script</Type>
     <Description>Load removal and Automatic Start/Split/Reset are available. (by PrototypeAlpha and bill_play3)</Description>
    </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>The Thing</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/The_Thing/The_Thing.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal are available. (by mattmatt10111 and Hekigan)</Description>
+   </AutoSplitter>
 </AutoSplitters>
