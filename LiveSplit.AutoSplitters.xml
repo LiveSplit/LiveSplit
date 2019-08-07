@@ -1912,6 +1912,16 @@
     <Description>Load Removal (By Fatalis) and Auto Splitter (By Cliffs) is available.</Description>
   </AutoSplitter>
   <AutoSplitter>
+		<Games>
+			<Game>The Solus Project</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Cliffs666/ASL/master/The_Solus_Project_Auto.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Load Removal and Auto Splitter (By Cliffs) is available.</Description>
+  </AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Alan Wake</Game>
     </Games>
