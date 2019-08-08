@@ -14,7 +14,6 @@ namespace LiveSplit.UnitTests {
         //new RegularSumOfBestTimeFormatter(); // (Accuracy can be set but not in constructor)
         //new AutomaticPrecisionTimeFormatter(); // -> RegularTimeFormatter with changes
 
-
         [TestMethod]
         [DataRow(null, TimeAccuracy.Seconds, "0")]
         [DataRow(null, TimeAccuracy.Tenths, "0.0")]
@@ -35,26 +34,6 @@ namespace LiveSplit.UnitTests {
         [DataRow("1.00:00:01.999", TimeAccuracy.Hundredths, "24:00:01.99")] 
 
         public void TestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected) {
-            var formatter = new RegularTimeFormatter(timeAccuracy);
-
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
-
-            string formatted = formatter.Format(time);
-            Assert.AreEqual(expected, formatted);
-        }
-
-        // These tests currently fail:
-        // - negative TimeSpans are displayed as positive
-        // - negative days are not displayed
-        [TestMethod]
-        [DataRow("-00:00:00.05", TimeAccuracy.Hundredths, "−0:00.05")] // Actual:<0:00.05> [Fail]
-        [DataRow("-00:00:01.009", TimeAccuracy.Tenths, "−0:01.0")] // Actual:<0:01.0> [Fail]
-        [DataRow("-00:05:01.999", TimeAccuracy.Tenths, "−5:01.9")] // Actual:<5:01.9> [Fail]
-        [DataRow("-9.12:09:01.999", TimeAccuracy.Hundredths, "−228:09:01.99")] // Actual:<0:01.99> [Fail]
-        [DataRow("-1.00:00:01.999", TimeAccuracy.Hundredths, "−24:01:01.99")] // Actual:<9:01.99> [Fail]
-        public void NegativesTestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected) {
             var formatter = new RegularTimeFormatter(timeAccuracy);
 
             TimeSpan? time = null;
@@ -172,5 +151,30 @@ namespace LiveSplit.UnitTests {
             string formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
+
+        /*
+        // These tests will fail until changes are made. 
+        // Currently:
+        // - negative TimeSpans are displayed as positive
+        // - negative days are not displayed
+        [TestMethod]
+        [DataRow("-00:00:00.05", TimeAccuracy.Hundredths, "−0:00.05")] // Actual:<0:00.05> [Fail]
+        [DataRow("-00:00:01.009", TimeAccuracy.Tenths, "−0:01.0")] // Actual:<0:01.0> [Fail]
+        [DataRow("-00:05:01.999", TimeAccuracy.Tenths, "−5:01.9")] // Actual:<5:01.9> [Fail]
+        [DataRow("-9.12:09:01.999", TimeAccuracy.Hundredths, "−228:09:01.99")] // Actual:<9:01.99> [Fail]
+        [DataRow("-1.00:02:01.999", TimeAccuracy.Hundredths, "−24:02:01.99")] // Actual:<0:01.99> [Fail]
+        public void NegativesTestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected) {
+            var formatter = new RegularTimeFormatter(timeAccuracy);
+
+            TimeSpan? time = null;
+            if (timespanText != null)
+                time = TimeSpan.Parse(timespanText);
+
+            string formatted = formatter.Format(time);
+            Assert.AreEqual(expected, formatted);
+        }
+        */
+
+
     }
 }

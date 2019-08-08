@@ -15,7 +15,7 @@ namespace LiveSplit.UnitTests {
 
         // PreciseDeltaFormatter differs only in that it that dropDecimals is always false.
 
-        // note dash (-) is used for null, and minus (−) for negatives
+        // note: dash (-) is used for null, and minus (−) for negatives
 
         [TestMethod]
         [DataRow(null, TimeAccuracy.Hundredths, false, "-")]
