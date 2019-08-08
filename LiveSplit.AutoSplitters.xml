@@ -261,20 +261,22 @@
       <Game>Bloodstained: Curse of the Moon</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/DarkTechnomancer/Autosplitters/master/COTM.asl</URL>
+      <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/COTM.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>PC-only In-Game Timer for all modes(except Boss Rush[RTA]). Auto-start/split/reset. Final split is on credits start. (By CptBrian)</Description>
+    <Description>PC-only Autosplitter by CptBrian</Description>
+    <Website>https://www.speedrun.com/bscotm/thread/jkh6x</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Bloodstained: Ritual of the Night</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/DarkTechnomancer/Autosplitters/master/BloodstainedRotN-Win64-Shipping.asl</URL>
+      <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/BloodstainedRotN-Win64-Shipping.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>PC-only Load Remover and eventually an Autosplitter (Originally by CptBrian)</Description>
+    <Description>PC-only Load Remover and Autosplitter primarily by CptBrian(with help)</Description>
+    <Website>https://www.speedrun.com/bsrotn/thread/jcq1j</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
