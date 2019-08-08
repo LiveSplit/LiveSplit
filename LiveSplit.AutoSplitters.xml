@@ -6370,4 +6370,15 @@
     <Type>Script</Type>
     <Description>Autosplitting and load removal are available. (by mattmatt10111 and Hekigan)</Description>
    </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>Never Give Up</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.NeverGiveUp/Livesplit.NeverGiveUp.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start and Game Time are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.NeverGiveUp</Website>
+  </AutoSplitter>
 </AutoSplitters>
