@@ -2,10 +2,12 @@
 using LiveSplit.TimeFormatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LiveSplit.UnitTests {
+namespace LiveSplit.Tests.TimeFormatterTests
+{
 
     [TestClass]
-    public class RegularTimeFormattersTests {
+    public class RegularTimeFormattersTests
+    {
 
         // These tests cover the following, which are/were all based on RegularTimeFormatter:
         //new RegularTimeFormatter(timeAccuracy);
@@ -33,7 +35,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, "227:01:01.99")]
         [DataRow("1.00:00:01.999", TimeAccuracy.Hundredths, "24:00:01.99")] 
 
-        public void TestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected) {
+        public void TestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        {
             var formatter = new RegularTimeFormatter(timeAccuracy);
 
             TimeSpan? time = null;
@@ -60,7 +63,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("01:05:01.999", TimeAccuracy.Tenths, "1:05:01.9")]
         [DataRow("00:00:00.05", TimeAccuracy.Hundredths, "0:00.05")]
         [DataRow("00:10:00.006", TimeAccuracy.Hundredths, "10:00.00")]
-        public void TestRegularSplitTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected) {
+        public void TestRegularSplitTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        {
             var formatter = new RegularSplitTimeFormatter(timeAccuracy);
 
             TimeSpan? time = null;
@@ -88,7 +92,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("01:05:01.999", TimeAccuracy.Tenths, "1:05:01.9")]
         [DataRow("00:00:00.05", TimeAccuracy.Hundredths, "0:00.05")]
         [DataRow("00:10:00.006", TimeAccuracy.Hundredths, "10:00.00")]
-        public void TestRunPredictionFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected) {
+        public void TestRunPredictionFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        {
             var formatter = new RunPredictionFormatter(timeAccuracy);
 
             TimeSpan? time = null;
@@ -115,7 +120,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("01:05:01.999", TimeAccuracy.Tenths, "1:05:01.9")]
         [DataRow("00:00:00.05", TimeAccuracy.Hundredths, "0:00.05")]
         [DataRow("00:10:00.006", TimeAccuracy.Hundredths, "10:00.00")]
-        public void TestRegularSumOfBestTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected) {
+        public void TestRegularSumOfBestTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        {
             var formatter = new RegularSumOfBestTimeFormatter();
             formatter.Accuracy = timeAccuracy;
 
@@ -141,7 +147,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("00:05:01.999", "5:01.99")]
         [DataRow("00:25:01.999", "25:01.99")]
         [DataRow("00:10:00.006", "10:00.00")]
-        public void TestAutomaticPrecisionTimeFormatter(string timespanText, string expected) {
+        public void TestAutomaticPrecisionTimeFormatter(string timespanText, string expected)
+        {
             var formatter = new AutomaticPrecisionTimeFormatter();
 
             TimeSpan? time = null;
@@ -163,7 +170,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("-00:05:01.999", TimeAccuracy.Tenths, "−5:01.9")] // Actual:<5:01.9> [Fail]
         [DataRow("-9.12:09:01.999", TimeAccuracy.Hundredths, "−228:09:01.99")] // Actual:<9:01.99> [Fail]
         [DataRow("-1.00:02:01.999", TimeAccuracy.Hundredths, "−24:02:01.99")] // Actual:<0:01.99> [Fail]
-        public void NegativesTestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected) {
+        public void NegativesTestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        {
             var formatter = new RegularTimeFormatter(timeAccuracy);
 
             TimeSpan? time = null;
@@ -174,7 +182,6 @@ namespace LiveSplit.UnitTests {
             Assert.AreEqual(expected, formatted);
         }
         */
-
 
     }
 }

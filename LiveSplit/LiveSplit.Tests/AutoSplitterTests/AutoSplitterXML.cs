@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using LiveSplit.Model;
 using System.Text.RegularExpressions;
 
-namespace LiveSplit.Tests
+namespace LiveSplit.Tests.AutoSplitterTests
 {
     [TestClass]
     public class AutoSplitterXML

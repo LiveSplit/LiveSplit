@@ -2,10 +2,12 @@
 using LiveSplit.TimeFormatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LiveSplit.UnitTests {
+namespace LiveSplit.Tests.TimeFormatterTests
+{
 
     [TestClass]
-    public class ShortTimeFormatterTests {
+    public class ShortTimeFormatterTests
+    {
 
         // These tests cover the following, which are/were all based on ShortTimeFormatter 
         // new ShortTimeFormatter(); // Format() accepts a TimeFormat
@@ -21,7 +23,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("07:05:01.03", "7:05:01.03")]
         [DataRow("1.07:05:01.03", "31:05:01.03")]
 
-        public void TestShortTimeFormatter(string timespanText, string expected) {
+        public void TestShortTimeFormatter(string timespanText, string expected)
+        {
             var formatter = new ShortTimeFormatter();
 
             TimeSpan? time = null;
@@ -72,7 +75,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("1.07:05:01.03", TimeFormat.Hours,    "31:05:01.03")]
         [DataRow("1.07:05:01.03", TimeFormat.TenHours, "31:05:01.03")]
 
-        public void TestShortTimeFormatterWithTimeFormat(string timespanText, TimeFormat format, string expected) {
+        public void TestShortTimeFormatterWithTimeFormat(string timespanText, TimeFormat format, string expected)
+        {
             var formatter = new ShortTimeFormatter();
 
             TimeSpan? time = null;
@@ -118,7 +122,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("1.07:05:01.9999", TimeAccuracy.Seconds, "31:05:01")]
         [DataRow("1.07:05:01.9999", TimeAccuracy.Tenths, "31:05:01.9")]
         [DataRow("1.07:05:01.9999", TimeAccuracy.Hundredths, "31:05:01.99")]
-        public void TestPossibleTimeSaveFormatter(string timespanText, TimeAccuracy accuracy, string expected) {
+        public void TestPossibleTimeSaveFormatter(string timespanText, TimeAccuracy accuracy, string expected)
+        {
             var formatter = new PossibleTimeSaveFormatter();
             formatter.Accuracy = accuracy;
 
@@ -165,7 +170,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("1.07:05:01.9999", TimeAccuracy.Seconds, "31:05:01")]
         [DataRow("1.07:05:01.9999", TimeAccuracy.Tenths, "31:05:01.9")]
         [DataRow("1.07:05:01.9999", TimeAccuracy.Hundredths, "31:05:01.99")]
-        public void TestSegmentTimesFormatter(string timespanText, TimeAccuracy accuracy, string expected) {
+        public void TestSegmentTimesFormatter(string timespanText, TimeAccuracy accuracy, string expected)
+        {
             var formatter = new SegmentTimesFormatter(accuracy);
 
             TimeSpan? time = null;

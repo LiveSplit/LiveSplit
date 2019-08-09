@@ -2,9 +2,11 @@
 using LiveSplit.TimeFormatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LiveSplit.UnitTests {
+namespace LiveSplit.Tests.TimeFormatterTests
+{
     [TestClass]
-    public class DeltaTimeFormattersTests {
+    public class DeltaTimeFormattersTests 
+    {
 
         // All these formatters (currently) give identical output:
 
@@ -32,7 +34,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, false, "+227:01:01.99")]
         [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, true, "+227:01:01")]
         [DataRow("-9.11:01:01.999", TimeAccuracy.Hundredths, false, "−227:01:01.99")]
-        public void TestDeltaTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expected) {
+        public void TestDeltaTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expected)
+        {
             var formatter = new DeltaTimeFormatter {
                 Accuracy = timeAccuracy,
                 DropDecimals = dropDecimals
@@ -61,7 +64,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, false, "+227:01:01.99")]
         [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, true, "+227:01:01")]
         [DataRow("-9.11:01:01.999", TimeAccuracy.Hundredths, false, "−227:01:01.99")]
-        public void TestDeltaComponentFormatter(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expected) {
+        public void TestDeltaComponentFormatter(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expected)
+        {
             var formatter = new DeltaComponentFormatter(timeAccuracy, dropDecimals: dropDecimals);
 
             TimeSpan? time = null;
@@ -87,7 +91,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, false, "+227:01:01.99")]
         [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, true, "+227:01:01")]
         [DataRow("-9.11:01:01.999", TimeAccuracy.Hundredths, false, "−227:01:01.99")]
-        public void TestDeltaSplitTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expected) {
+        public void TestDeltaSplitTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expected) 
+        {
             var formatter = new DeltaSplitTimeFormatter(timeAccuracy, dropDecimals: dropDecimals);
 
             TimeSpan? time = null;
@@ -113,7 +118,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("00:00:00.05", TimeAccuracy.Hundredths, "+0.05")]
         [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, "+227:01:01.99")]
         [DataRow("-9.11:01:01.999", TimeAccuracy.Hundredths, "−227:01:01.99")]
-        public void TestPreciseDeltaFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected) {
+        public void TestPreciseDeltaFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        {
             var formatter = new PreciseDeltaFormatter(timeAccuracy);
 
             TimeSpan? time = null;

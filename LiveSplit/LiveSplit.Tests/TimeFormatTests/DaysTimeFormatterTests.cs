@@ -2,10 +2,12 @@
 using LiveSplit.TimeFormatters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace LiveSplit.UnitTests {
+namespace LiveSplit.Tests.TimeFormatterTests 
+{
 
     [TestClass]
-    public class DaysTimeFormatterTests {
+    public class DaysTimeFormatterTests
+    {
 
         // These tests cover DaysTimeFormatter, which (is/was not) based on any other TimeFormatter implementation
 
@@ -18,7 +20,8 @@ namespace LiveSplit.UnitTests {
         [DataRow("1.07:05:01.03", "1d 7:05:01")]
         [DataRow("9.23:02:03.412", "9d 23:02:03")]
         [DataRow("272.13:04:05.612", "272d 13:04:05")]
-        public void TestDaysTimeFormatter(string timespanText, string expected) {
+        public void TestDaysTimeFormatter(string timespanText, string expected)
+        {
             var formatter = new DaysTimeFormatter();
 
             TimeSpan? time = null;
