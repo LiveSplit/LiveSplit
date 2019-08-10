@@ -43,6 +43,17 @@
 	<Type>Script</Type>
 	<Description>Basic autosplitter and load remover. (By Jayrude)</Description>
 	<Website>https://discord.gg/wUYXU4J</Website>
+		<AutoSplitters>
+<AutoSplitter>
+	<Games>
+		<Game>Call of Duty 4: Modern Warfare</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter and load remover for Call of Duty 4: Modern Warfare on Steam. Does a exit split after crosshair dissapears. (by KunoDemetries)</Description>
+	<Website>https://discord.gg/fQaYqvFF</Website>
 </AutoSplitter>
 <AutoSplitter>
 	<Games>
