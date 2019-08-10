@@ -6381,4 +6381,15 @@
     <Description>Auto Splitting, Auto Start and Game Time are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.NeverGiveUp</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Receiver</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/meanwhile0/receiversplitter/master/ReceiverSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autostart, autosplit and autoreset for Receiver. (by meanwhile_0)</Description>
+    <Website>https://github.com/meanwhile0/receiversplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
