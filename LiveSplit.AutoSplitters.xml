@@ -4193,7 +4193,7 @@
       <Game>Tomb Raider: The Angel of Darkness</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/rtrger/LiveSplit.ASL/master/LiveSplit.AoD.asl</URL>
+      <URL>https://raw.githubusercontent.com/rtrger/Components/master/TombRaiderTheAngelofDarkness.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load removal and auto-splitting are available. (By rtrger, original script by SuicideMachine)</Description>
