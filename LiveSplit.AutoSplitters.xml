@@ -2639,16 +2639,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Call of Duty 4: Modern Warfare</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/Jukspa/cod4loadless/master/cod4_steam.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available (Requires the Steam version). (By Jukspa)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>The Binding of Isaac: Rebirth</Game>
     </Games>
     <URLs>
