@@ -46,6 +46,17 @@
 </AutoSplitter>
 <AutoSplitter>
 	<Games>
+		<Game>Call of Duty 4: Modern Warfare</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter and load remover for Call of Duty 4: Modern Warfare on Steam. Does a exit split after crosshair dissapears. (by KunoDemetries)</Description>
+	<Website>https://discord.gg/fQaYqvFF</Website>
+</AutoSplitter>
+<AutoSplitter>
+	<Games>
 		<Game>Blood</Game>
 	</Games>
 	<URLs>
@@ -2625,16 +2636,6 @@
     <Type>Script</Type>
     <Description>Autosplitting and Load Removal is available. (By 0Seren)</Description>
     <Website>https://github.com/0Seren/AutoSplitters/tree/master/Aragami</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Call of Duty 4: Modern Warfare</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/Jukspa/cod4loadless/master/cod4_steam.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available (Requires the Steam version). (By Jukspa)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
