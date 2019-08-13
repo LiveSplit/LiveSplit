@@ -13,6 +13,7 @@ before_build:
 - git describe --dirty --always --long --tags > LiveSplit\LiveSplit.Core\Updates\GitInfo\version.txt
 - git rev-parse --abbrev-ref HEAD > LiveSplit\LiveSplit.Core\Updates\GitInfo\branch.txt
 - git rev-parse HEAD > LiveSplit\LiveSplit.Core\Updates\GitInfo\revision.txt
+- nuget restore
 
 build_script:
 - msbuild LiveSplit\LiveSplit.sln /verbosity:minimal /p:NoWarn=1591 /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
