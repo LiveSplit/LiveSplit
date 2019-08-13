@@ -261,20 +261,22 @@
       <Game>Bloodstained: Curse of the Moon</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/DarkTechnomancer/Autosplitters/master/COTM.asl</URL>
+      <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/COTM.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>PC-only In-Game Timer for all modes(except Boss Rush[RTA]). Auto-start/split/reset. Final split is on credits start. (By CptBrian)</Description>
+    <Description>PC-only Autosplitter by CptBrian</Description>
+    <Website>https://www.speedrun.com/bscotm/thread/jkh6x</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Bloodstained: Ritual of the Night</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/DarkTechnomancer/Autosplitters/master/BloodstainedRotN-Win64-Shipping.asl</URL>
+      <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/BloodstainedRotN-Win64-Shipping.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>PC-only Load Remover and eventually an Autosplitter (Originally by CptBrian)</Description>
+    <Description>PC-only Load Remover and Autosplitter primarily by CptBrian(with help)</Description>
+    <Website>https://www.speedrun.com/bsrotn/thread/jcq1j</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -495,7 +497,7 @@
     <Type>Script</Type>
     <Description>Load Removal is available for 1.1 and 1.8.3. (By Abahbob)</Description>
   </AutoSplitter>
-    <AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Borderlands 1</Game>
       <Game>Borderlands</Game>
@@ -506,6 +508,19 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available for 1.0 and 1.5.0. (By TheFuncannon, FromDarkHell)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Borderlands: Enhanced Edition</Game>
+      <Game>Borderlands Game of the Year Enhanced</Game>
+      <Game>BL1E</Game>
+      <Game>BL1GOTY</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Borderlands%201%20Enhanced%20Edition/BLGOTY.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available for 1.0 (by FromDarkHell)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -992,6 +1007,19 @@
     <Type>Script</Type>
     <Description>Load Removal is available. (By DrTChops)</Description>
     <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Wolfenstein: Youngblood</Game>
+      <Game>Wolfenstein Youngblood</Game>
+      <Game>Youngblood</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Wolfenstein%20Youngblood/Youngblood.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By TheFuncannon and FromDarkHell)</Description>
+    <Website>https://discord.gg/SV39XC7</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1886,6 +1914,16 @@
     <Description>Load Removal (By Fatalis) and Auto Splitter (By Cliffs) is available.</Description>
   </AutoSplitter>
   <AutoSplitter>
+		<Games>
+			<Game>The Solus Project</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Cliffs666/ASL/master/The_Solus_Project_Auto.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Load Removal and Auto Splitter (By Cliffs) is available.</Description>
+  </AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Alan Wake</Game>
     </Games>
@@ -2434,11 +2472,33 @@
       <Game>Obduction</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/TehGelly/obduction-autosplitter/master/Obduction.asl</URL>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/Obduction.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By Gelly)</Description>
-    <Website>https://github.com/Gelly/obduction-autosplitter</Website>
+    <Website>https://github.com/Gelly/autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Quern - Undying Thoughts</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/Quern.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available. (By Gelly)</Description>
+    <Website>https://github.com/Gelly/autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Myst</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/realMystME.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and autosplitting is available for rM:ME. (By Gelly)</Description>
+    <Website>https://github.com/Gelly/autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -4133,7 +4193,7 @@
       <Game>Tomb Raider: The Angel of Darkness</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/rtrger/LiveSplit.ASL/master/LiveSplit.AoD.asl</URL>
+      <URL>https://raw.githubusercontent.com/rtrger/Components/master/TombRaiderTheAngelofDarkness.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load removal and auto-splitting are available. (By rtrger, original script by SuicideMachine)</Description>
@@ -5198,7 +5258,7 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Stay Safe</Game>
+      <Game>Stay Safe / #RaceDieRun</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Lyliya/StaySafe-AutoSplitter/master/StaySafeAutoSplitter.asl</URL>
@@ -6290,4 +6350,46 @@
     <Type>Script</Type>
     <Description>Autosplitting and load removal are available. (by SuicideMachine)</Description>
    </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>The Turing Test</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/TheTuringTest.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal and Automatic Start/Split/Reset are available. (by PrototypeAlpha and bill_play3)</Description>
+   </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>The Thing</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/The_Thing/The_Thing.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load removal are available. (by mattmatt10111 and Hekigan)</Description>
+   </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>Never Give Up</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.NeverGiveUp/Livesplit.NeverGiveUp.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start and Game Time are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.NeverGiveUp</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Receiver</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/meanwhile0/receiversplitter/master/ReceiverSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autostart, autosplit and autoreset for Receiver. (by meanwhile_0)</Description>
+    <Website>https://github.com/meanwhile0/receiversplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>

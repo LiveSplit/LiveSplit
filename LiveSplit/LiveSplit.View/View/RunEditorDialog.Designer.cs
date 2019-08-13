@@ -94,6 +94,7 @@
             // 
             // runGrid
             // 
+            this.runGrid.AllowDrop = true;
             this.runGrid.AllowUserToAddRows = false;
             this.runGrid.AllowUserToResizeColumns = false;
             this.runGrid.AllowUserToResizeRows = false;
@@ -113,6 +114,8 @@
             this.runGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.runGrid.Size = new System.Drawing.Size(530, 295);
             this.runGrid.TabIndex = 0;
+            this.runGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.runGrid_DragDrop);
+            this.runGrid.DragOver += new System.Windows.Forms.DragEventHandler(this.runGrid_DragOver);
             this.runGrid.KeyDown += new System.Windows.Forms.KeyEventHandler(this.runGrid_KeyDown);
             // 
             // tableLayoutPanel1
