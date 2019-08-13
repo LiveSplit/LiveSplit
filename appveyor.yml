@@ -1,5 +1,5 @@
 version: 1.7.6-{build}-{branch}
-os: Visual Studio 2015
+os: Visual Studio 2017
 
 configuration: Release
 
