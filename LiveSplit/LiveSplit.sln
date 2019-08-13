@@ -113,8 +113,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.Counter", "Compon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.BlankSpace", "Components\LiveSplit.BlankSpace\LiveSplit.BlankSpace.csproj", "{825B6521-94B8-4C8A-9709-3CA2ABFE70D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveSplit.UnitTests", "UnitTests\LiveSplit.UnitTests.csproj", "{80866AD2-578B-439A-B744-62C05F13005A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
