@@ -2972,10 +2972,10 @@
       <Game>Saboteur</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Saboteur/LiveSplit.Saboteur.asl</URL>
+      <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/saboteur.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load screen time removal is available. (By SuicideMachine)</Description>
+    <Description>Auto Splitting and Load Removal is available. (By Mattmatt and SuicideMachine)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3994,10 +3994,10 @@
       <Game>Dead Space</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Dead-Space-1/Dead-Space-1.asl</URL>
+      <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/deadspace.asl</URL>
     </URLs>
     <Type>Script</Type>
-	<Description>Load Removal is available (by mattmatt10111)</Description>
+	<Description>Load Removal is available (by Mattmatt)</Description>
 	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -4006,10 +4006,10 @@
       <Game>Dead Space II</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Dead-Space-2/Dead-Space-2.asl</URL>
+      <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/deadspace2.asl</URL>
     </URLs>
     <Type>Script</Type>
-	<Description>Load Removal is available (by mattmatt10111)</Description>
+	<Description>Load Removal is available (by Mattmatt)</Description>
 	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -4018,10 +4018,10 @@
       <Game>Dead Space III</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Dead-Space-3/Dead-Space-3.asl</URL>
+      <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/deadspace3.asl</URL>
     </URLs>
     <Type>Script</Type>
-	<Description>Load Removal is available (by mattmatt10111)</Description>
+	<Description>Auto Splitting and Load Removal is available (by Mattmatt)</Description>
 	<Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -6366,10 +6366,10 @@
       <Game>The Thing</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/The_Thing/The_Thing.asl</URL>
+      <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/thething.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitting and load removal are available. (by mattmatt10111 and Hekigan)</Description>
+    <Description>Auto Splitting and Load Removal are available. (by Mattmatt and Hekigan)</Description>
    </AutoSplitter>
    <AutoSplitter>
     <Games>
