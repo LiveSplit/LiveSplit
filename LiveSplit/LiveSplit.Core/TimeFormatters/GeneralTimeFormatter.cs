@@ -105,7 +105,7 @@ namespace LiveSplit.TimeFormatters {
             if (time.TotalDays >= 1)
             {
                 if (ShowDays)
-                    formatted = minusString + time.ToString(@"d\d\ h\:mm\:ss" + decimalFormat, ic);
+                    formatted = minusString + time.ToString(@"d\d\ " + (DigitsFormat == DigitsFormat.DoubleDigitHours ? "hh" : "h") + @"\:mm\:ss" + decimalFormat, ic);
                 else
                     formatted = minusString + (int)time.TotalHours + time.ToString(@"\:mm\:ss" + decimalFormat, ic);
             }
