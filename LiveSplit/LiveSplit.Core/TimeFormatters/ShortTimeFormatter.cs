@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace LiveSplit.TimeFormatters
 {
-    public class ShortTimeFormatter : GeneralTimeFormatter // ITimeFormatter
+    public class ShortTimeFormatter : GeneralTimeFormatter
     {
 
         public ShortTimeFormatter() : base()

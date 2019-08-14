@@ -2,6 +2,6 @@
 {
     public enum TimeAccuracy
     {
-        Seconds, Tenths, Hundredths
+        Seconds, Tenths, Hundredths, Milliseconds
     }
 }

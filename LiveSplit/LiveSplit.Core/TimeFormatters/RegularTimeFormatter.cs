@@ -9,7 +9,7 @@ namespace LiveSplit.TimeFormatters
         {
             Accuracy = accuracy;
             NullFormat = NullFormat.ZeroWithAccuracy;
-            TimeFormat = TimeFormat.SingleMinutes;
+            DigitsFormat = DigitsFormat.SingleDigitMinutes;
         }
     }
 }

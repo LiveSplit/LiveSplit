@@ -52,7 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoSplitterTests\AutoSplitterXML.cs" />
+    <Compile Include="TimeFormatTests\DigitsFormatTests.cs" />
     <Compile Include="TimeFormatTests\DaysTimeFormatterTests.cs" />
+    <Compile Include="TimeFormatTests\TimeAccuracyTests.cs" />
     <Compile Include="TimeFormatTests\ShortTimeFormatterTests.cs" />
     <Compile Include="TimeFormatTests\RegularTimeFormattersTests.cs" />
     <Compile Include="TimeFormatTests\DeltaTimeFormattersTests.cs" />

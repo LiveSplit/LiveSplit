@@ -7,9 +7,10 @@ namespace LiveSplit.TimeFormatters {
 
         public TimeAccuracy Accuracy { get; set; }
 
-        //TODO: add enum: BigMinutes (for issue #1336)
-        //TODO: add enum: SingleMinutes (for RegularTimeFormatter, e.g. 0:12)
-        public TimeFormat TimeFormat { get; set; }
+        [Obsolete("Use DigitsFormat instead")]
+        public TimeFormat TimeFormat { set => DigitsFormat = value.ToDigitsFormat(); }
+
+        public DigitsFormat DigitsFormat { get; set; }
 
         /// <summary>
         /// How to display null times
@@ -38,7 +39,7 @@ namespace LiveSplit.TimeFormatters {
 
         public GeneralTimeFormatter()
         {
-            TimeFormat = TimeFormat.Seconds;
+            DigitsFormat = DigitsFormat.SingleDigitSeconds;
             NullFormat = NullFormat.Dash;
         }
 
@@ -74,17 +75,31 @@ namespace LiveSplit.TimeFormatters {
             }
 
             string decimalFormat = "";
-            if (DropDecimals && time.TotalMinutes >= 1) 
-                decimalFormat = "";
-            else if (Accuracy == TimeAccuracy.Seconds)
-                decimalFormat = "";
-            else if (Accuracy == TimeAccuracy.Tenths) 
-                decimalFormat = @"\.f";
-            else if (Accuracy == TimeAccuracy.Hundredths)
-                decimalFormat = @"\.ff";
-
             if (AutomaticPrecision)
-                decimalFormat.Replace('f', 'F');
+            {
+                var totalSeconds = time.TotalSeconds;
+                if (Accuracy == TimeAccuracy.Seconds || totalSeconds % 1 == 0)
+                    decimalFormat = "";
+                else if (Accuracy == TimeAccuracy.Tenths || (10 * totalSeconds) % 1 == 0)
+                    decimalFormat = @"\.f";
+                else if (Accuracy == TimeAccuracy.Hundredths || (100 * totalSeconds) % 1 == 0)
+                    decimalFormat = @"\.ff";
+                else
+                    decimalFormat = @"\.fff";
+            }
+            else
+            {
+                if (DropDecimals && time.TotalMinutes >= 1)
+                    decimalFormat = "";
+                else if (Accuracy == TimeAccuracy.Seconds)
+                    decimalFormat = "";
+                else if (Accuracy == TimeAccuracy.Tenths)
+                    decimalFormat = @"\.f";
+                else if (Accuracy == TimeAccuracy.Hundredths)
+                    decimalFormat = @"\.ff";
+                else if (Accuracy == TimeAccuracy.Milliseconds)
+                    decimalFormat = @"\.fff";
+            }
 
             string formatted;
             if (time.TotalDays >= 1)
@@ -94,21 +109,25 @@ namespace LiveSplit.TimeFormatters {
                 else
                     formatted = minusString + (int)time.TotalHours + time.ToString(@"\:mm\:ss" + decimalFormat, ic);
             }
-            else if (TimeFormat == TimeFormat.TenHours)
+            else if (DigitsFormat == DigitsFormat.DoubleDigitHours)
             {
                 formatted = minusString + time.ToString(@"hh\:mm\:ss" + decimalFormat, ic);
             }
-            else if (time.TotalHours >= 1 || TimeFormat == TimeFormat.Hours)
+            else if (time.TotalHours >= 1 || DigitsFormat == DigitsFormat.SingleDigitHours)
             {
                 formatted = minusString + time.ToString(@"h\:mm\:ss" + decimalFormat, ic);
             }
-            else if (TimeFormat == TimeFormat.Minutes)
+            else if (DigitsFormat == DigitsFormat.DoubleDigitMinutes)
             {
                 formatted = minusString + time.ToString(@"mm\:ss" + decimalFormat, ic);
             }
-            else if (time.TotalMinutes >= 1 || TimeFormat == TimeFormat.SingleMinutes)
+            else if (time.TotalMinutes >= 1 || DigitsFormat == DigitsFormat.SingleDigitMinutes)
             {
                 formatted = minusString + time.ToString(@"m\:ss" + decimalFormat, ic);
+            }
+            else if (DigitsFormat == DigitsFormat.DoubleDigitSeconds)
+            {
+                formatted = minusString + time.ToString(@"ss" + decimalFormat, ic);
             }
             else
             {
@@ -123,10 +142,12 @@ namespace LiveSplit.TimeFormatters {
 
         private string ZeroWithAccuracy()
         {
-            if (Accuracy == TimeAccuracy.Seconds)
+            if (AutomaticPrecision || Accuracy == TimeAccuracy.Seconds)
                 return "0";
             else if (Accuracy == TimeAccuracy.Tenths)
                 return "0.0";
+            else if (Accuracy == TimeAccuracy.Milliseconds)
+                return "0.000";
             else
                 return "0.00";
         }
