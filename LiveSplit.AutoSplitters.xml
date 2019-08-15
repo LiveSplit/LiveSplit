@@ -6393,4 +6393,14 @@
     <Description>Autostart, autosplit and autoreset for Receiver. (by meanwhile_0)</Description>
     <Website>https://github.com/meanwhile0/receiversplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Alone In The Dark (2008)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Degaussed/Livesplit-ASL-scripts/master/Alone%20in%20the%20Dark.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (by Hekigan)</Description>
+  </AutoSplitter>
 </AutoSplitters>
