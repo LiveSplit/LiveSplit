@@ -6393,4 +6393,24 @@
     <Description>Autostart, autosplit and autoreset for Receiver. (by meanwhile_0)</Description>
     <Website>https://github.com/meanwhile0/receiversplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Preflight Panic</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/makkebakke/Autosplitters/master/LiveSplit.PreflightPanic.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start and Auto Split are available (by Archmagus &amp; Makkebakke)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Brütal Legend</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/makkebakke/Autosplitters/master/LiveSplit.BrutalLegend.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting available (by Makkebakke)</Description>
+  </AutoSplitter>
 </AutoSplitters>
