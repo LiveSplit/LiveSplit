@@ -55,6 +55,17 @@
 	<Description> Autosplitter and load remover for Call of Duty 4: Modern Warfare on Steam. Does a exit split after crosshair dissapears. (by KunoDemetries)</Description>
 	<Website>https://discord.gg/fQaYqvFF</Website>
 </AutoSplitter>
+	<AutoSplitter>
+	<Games>
+		<Game>Call of Duty: Modern Warfare 2</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw2%20AutoSplitter.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter/LR for MW2. Does a exit split after knife thrown. (by KunoDemetries)</Description>
+	<Website>https://discord.gg/fQaYqvFF</Website>
+</AutoSplitter>
 <AutoSplitter>
 	<Games>
 		<Game>Blood</Game>
@@ -1788,16 +1799,6 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By zoton2 and PessimisticMango)</Description>
     <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Call of Duty: Modern Warfare 2</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/Jukspa/MW2LoadRemoval/master/mw2.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available. (By Jukspa)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
