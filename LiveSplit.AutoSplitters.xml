@@ -6435,4 +6435,24 @@
     <Type>Script</Type>
     <Description>Auto Splitting available (by Makkebakke)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Beyond: Two Souls</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/BeyondTwoSouls.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (by Mattmatt)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Evil Within</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/evilwithin.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (by Mattmatt)</Description>
+  </AutoSplitter>
 </AutoSplitters>
