@@ -770,10 +770,11 @@
       <Game>Dying Light</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/MrBr00d/DyingLightLoadRemover/master/LoadRemover.asl</URL>
+      <URL>https://raw.githubusercontent.com/shadow2hel/Autosplitters/master/DyingLight/autostartnloadless.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Start and Loadless are available. (By Mr_Brood)</Description>
+    <Description>Autosplit, Auto Start and Loadless are available. (By Shadow2hel &amp; Loadless thanks to Mr_Brood)</Description>
+    <Website>https://github.com/shadow2hel/Autosplitters/tree/master/DyingLight</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
