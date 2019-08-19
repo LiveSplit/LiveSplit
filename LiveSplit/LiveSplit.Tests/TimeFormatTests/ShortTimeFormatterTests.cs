@@ -8,7 +8,6 @@ namespace LiveSplit.Tests.TimeFormatterTests
     [TestClass]
     public class ShortTimeFormatterTests
     {
-
         // These tests cover the following, which are/were all based on ShortTimeFormatter 
         // new ShortTimeFormatter(); // Format() accepts a TimeFormat
         // new PossibleTimeSaveFormatter(); // ShortTimeFormatter with Accuracy
@@ -40,10 +39,10 @@ namespace LiveSplit.Tests.TimeFormatterTests
         }
 
         [TestMethod]
-        [DataRow(null, TimeFormat.Seconds,  "0.00")] //        0.00 ?
-        [DataRow(null, TimeFormat.Minutes,  "0.00")] //    00:00.00 ?
-        [DataRow(null, TimeFormat.Hours,    "0.00")] //  0:00:00:00 ?
-        [DataRow(null, TimeFormat.TenHours, "0.00")] // 00:00:00.00 ?
+        [DataRow(null, TimeFormat.Seconds,  "0.00")] 
+        [DataRow(null, TimeFormat.Minutes,  "0.00")]
+        [DataRow(null, TimeFormat.Hours,    "0.00")]
+        [DataRow(null, TimeFormat.TenHours, "0.00")]
 
         [DataRow("00:00:00", TimeFormat.Seconds,         "0.00")]
         [DataRow("00:00:00", TimeFormat.Minutes,     "00:00.00")]
@@ -74,7 +73,6 @@ namespace LiveSplit.Tests.TimeFormatterTests
         [DataRow("1.07:05:01.03", TimeFormat.Minutes,  "31:05:01.03")]
         [DataRow("1.07:05:01.03", TimeFormat.Hours,    "31:05:01.03")]
         [DataRow("1.07:05:01.03", TimeFormat.TenHours, "31:05:01.03")]
-
         public void TestShortTimeFormatterWithTimeFormat(string timespanText, TimeFormat format, string expected)
         {
             var formatter = new ShortTimeFormatter();
@@ -181,6 +179,5 @@ namespace LiveSplit.Tests.TimeFormatterTests
             string formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
-
     }
 }

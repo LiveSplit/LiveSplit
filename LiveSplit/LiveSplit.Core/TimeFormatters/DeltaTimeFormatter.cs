@@ -5,8 +5,7 @@ namespace LiveSplit.TimeFormatters
 {
     public class DeltaTimeFormatter : GeneralTimeFormatter
     {
-
-        public DeltaTimeFormatter() : base()
+        public DeltaTimeFormatter()
         {
             Accuracy = TimeAccuracy.Tenths;
             DropDecimals = true;

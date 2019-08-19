@@ -49,13 +49,10 @@ namespace LiveSplit.TimeFormatters {
             if (isNull) {
                 if (NullFormat == NullFormat.Dash) {
                     return TimeFormatConstants.DASH;
-
                 } else if (NullFormat == NullFormat.ZeroWithAccuracy) {
                     return ZeroWithAccuracy();
-
                 } else if (NullFormat == NullFormat.ZeroDotZeroZero) {
                     return "0.00";
-
                 } else if (NullFormat == NullFormat.ZeroValue || NullFormat == NullFormat.Dashes) {
                     timeNullable = TimeSpan.Zero;
                 }

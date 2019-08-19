@@ -4,7 +4,7 @@ namespace LiveSplit.TimeFormatters
 {
     public class PossibleTimeSaveFormatter : GeneralTimeFormatter
     {
-        public PossibleTimeSaveFormatter() : base()
+        public PossibleTimeSaveFormatter()
         {
             Accuracy = TimeAccuracy.Seconds;
             NullFormat = NullFormat.Dash;

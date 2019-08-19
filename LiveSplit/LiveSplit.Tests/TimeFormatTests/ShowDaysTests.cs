@@ -30,8 +30,6 @@ namespace LiveSplit.Tests.TimeFormatTests
 
         [DataRow("-5:01:15:45", "−5d 1:15:45", DigitsFormat.SingleDigitHours)]
         [DataRow("-6:02:56:51", "−6d 02:56:51", DigitsFormat.DoubleDigitHours)]
-
-
         public void TestShowDays(string timespanText, string expected, DigitsFormat format)
         {
             var formatter = new GeneralTimeFormatter();
@@ -46,6 +44,5 @@ namespace LiveSplit.Tests.TimeFormatTests
             string formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
-
     }
 }

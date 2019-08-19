@@ -8,7 +8,6 @@ namespace LiveSplit.Tests.TimeFormatterTests
     [TestClass]
     public class RegularTimeFormattersTests
     {
-
         // These tests cover the following, which are/were all based on RegularTimeFormatter:
         //new RegularTimeFormatter(timeAccuracy);
         //new RegularSplitTimeFormatter(timeAccuracy); // dash for null values
@@ -181,7 +180,5 @@ namespace LiveSplit.Tests.TimeFormatterTests
             string formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
-        
-
     }
 }

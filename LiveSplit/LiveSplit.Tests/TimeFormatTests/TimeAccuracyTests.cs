@@ -29,7 +29,6 @@ namespace LiveSplit.Tests.TimeFormatTests
             formatter.DigitsFormat = DigitsFormat.SingleDigitMinutes;
             formatter.Accuracy = accuracy;
 
-
             TimeSpan? time = null;
             if (timespanText != null)
                 time = TimeSpan.Parse(timespanText);
@@ -37,6 +36,5 @@ namespace LiveSplit.Tests.TimeFormatTests
             string formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
-
     }
 }

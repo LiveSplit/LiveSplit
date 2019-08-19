@@ -5,8 +5,7 @@ namespace LiveSplit.TimeFormatters
 {
     public class ShortTimeFormatter : GeneralTimeFormatter
     {
-
-        public ShortTimeFormatter() : base()
+        public ShortTimeFormatter()
         {
             Accuracy = TimeAccuracy.Hundredths;
             NullFormat = NullFormat.ZeroWithAccuracy;

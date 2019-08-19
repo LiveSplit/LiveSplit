@@ -7,7 +7,6 @@ namespace LiveSplit.Tests.TimeFormatTests
     [TestClass]
     public class DigitsFormatTests
     {
-
         [TestMethod]
         [DataRow("00:00:00", "0", DigitsFormat.SingleDigitSeconds)]
         [DataRow("00:00:00", "00", DigitsFormat.DoubleDigitSeconds)]
@@ -77,6 +76,5 @@ namespace LiveSplit.Tests.TimeFormatTests
             string formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
-
     }
 }
