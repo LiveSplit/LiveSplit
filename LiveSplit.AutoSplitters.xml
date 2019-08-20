@@ -6456,4 +6456,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (by Mattmatt)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Donald Duck: Goin' Quackers</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rtsonneveld/DonaldDuckAutoSplitter/master/LiveSplit.DonaldDuckQuackAttack.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Load Removal are available. (by Robin/Sobinist)</Description>
+  </AutoSplitter>
 </AutoSplitters>
