@@ -8,7 +8,6 @@ namespace LiveSplit.Tests.TimeFormatterTests
     [TestClass]
     public class DaysTimeFormatterTests
     {
-
         // These tests cover DaysTimeFormatter, which (is/was not) based on any other TimeFormatter implementation
 
         [TestMethod]

@@ -8,7 +8,6 @@ namespace LiveSplit.Tests.TimeFormatterTests
     [TestClass]
     public class RegularTimeFormattersTests
     {
-
         // These tests cover the following, which are/were all based on RegularTimeFormatter:
         //new RegularTimeFormatter(timeAccuracy);
         //new RegularSplitTimeFormatter(timeAccuracy); // dash for null values
@@ -137,11 +136,15 @@ namespace LiveSplit.Tests.TimeFormatterTests
         [DataRow(null, "0")]
         [DataRow("00:00:00", "0:00")]
         [DataRow("00:00:01", "0:01")]
+        [DataRow("00:00:02.0", "0:02")]
+        [DataRow("00:00:03.00", "0:03")]
         [DataRow("00:00:01.2", "0:01.2")]
+        [DataRow("00:00:01.20", "0:01.2")]
+        [DataRow("00:00:01.200", "0:01.2")]
         [DataRow("00:00:01.23", "0:01.23")]
         [DataRow("00:00:01.234", "0:01.23")]
         [DataRow("00:00:01.2345", "0:01.23")]
-        [DataRow("00:00:01.20", "0:01.2")]
+        [DataRow("00:00:01.2000", "0:01.2")]
         [DataRow("00:00:01.204", "0:01.20")]
         [DataRow("00:00:01.2005", "0:01.20")]
         [DataRow("00:05:01.999", "5:01.99")]
@@ -159,11 +162,7 @@ namespace LiveSplit.Tests.TimeFormatterTests
             Assert.AreEqual(expected, formatted);
         }
 
-        /*
-        // These tests will fail until changes are made. 
-        // Currently:
-        // - negative TimeSpans are displayed as positive
-        // - negative days are not displayed
+        
         [TestMethod]
         [DataRow("-00:00:00.05", TimeAccuracy.Hundredths, "−0:00.05")] // Actual:<0:00.05> [Fail]
         [DataRow("-00:00:01.009", TimeAccuracy.Tenths, "−0:01.0")] // Actual:<0:01.0> [Fail]
@@ -181,7 +180,5 @@ namespace LiveSplit.Tests.TimeFormatterTests
             string formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
-        */
-
     }
 }

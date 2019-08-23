@@ -7,15 +7,11 @@ namespace LiveSplit.Tests.TimeFormatterTests
     [TestClass]
     public class DeltaTimeFormattersTests 
     {
-
         // All these formatters (currently) give identical output:
-
-        //new DeltaTimeFormatter();
-        //new DeltaComponentFormatter(timeAccuracy, dropDecimals);
-        //new DeltaSplitTimeFormatter(timeAccuracy, dropDecimals);
-        //new PreciseDeltaFormatter(timeAccuracy); // no dropDecimals
-
-        // PreciseDeltaFormatter differs only in that it that dropDecimals is always false.
+        // - new DeltaTimeFormatter(timeAccuracy, dropDecimals);
+        // - new DeltaComponentFormatter(timeAccuracy, dropDecimals);
+        // - new DeltaSplitTimeFormatter(timeAccuracy, dropDecimals);
+        // - new PreciseDeltaFormatter(timeAccuracy); // dropDecimals is always false
 
         // note: dash (-) is used for null, and minus (−) for negatives
 
@@ -103,7 +99,6 @@ namespace LiveSplit.Tests.TimeFormatterTests
             Assert.AreEqual(expected, formatted);
         }
 
-
         [TestMethod]
         [DataRow(null, TimeAccuracy.Hundredths, "-")]
         [DataRow("00:00:00", TimeAccuracy.Seconds, "+0")]
@@ -129,6 +124,5 @@ namespace LiveSplit.Tests.TimeFormatterTests
             string formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
-
     }
 }

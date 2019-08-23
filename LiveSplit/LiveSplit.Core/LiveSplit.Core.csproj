@@ -161,6 +161,8 @@
     <Compile Include="Server\ScriptFactory.cs" />
     <Compile Include="Server\CommandServer.cs" />
     <Compile Include="TimeFormatters\AutomaticPrecisionTimeFormatter.cs" />
+    <Compile Include="TimeFormatters\NullFormat.cs" />
+    <Compile Include="TimeFormatters\GeneralTimeFormatter.cs" />
     <Compile Include="TimeFormatters\PossibleTimeSaveFormatter.cs" />
     <Compile Include="TimeFormatters\TimeFormat.cs" />
     <Compile Include="TimeFormatters\TimeAccuracy.cs" />
