@@ -2518,6 +2518,17 @@
       <Game>Myst</Game>
     </Games>
     <URLs>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/MystME.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting is available for M:ME. (By Gelly)</Description>
+    <Website>https://github.com/Gelly/autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>realMyst</Game>
+    </Games>
+    <URLs>
       <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/realMystME.asl</URL>
     </URLs>
     <Type>Script</Type>
