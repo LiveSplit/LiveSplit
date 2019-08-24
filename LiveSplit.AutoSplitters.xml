@@ -1,5 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<AutoSplitter>
+	<Games>
+		<Game>Sonic Adventure (DX)</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/Sora-yx/autosplitters/master/Sonic%20Adventure%20DX-%20Director-s%20Cut/LiveSplit.SADX.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter and IGT for SADX (by Turtlechuck, IDGeek121, Prahaha and Sora-yx)</Description>
+	<Website>https://discord.gg/NUCatnN</Website>
+</AutoSplitter>
 <AutoSplitter>
 	<Games>
 		<Game>Lufia II: Rise of the Sinistrals</Game>
