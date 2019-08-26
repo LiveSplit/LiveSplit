@@ -4727,6 +4727,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mega Man Zero</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaManZero/MMZautosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man Zero (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaManZero/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Mega Man Zero 2</Game>
     </Games>
     <URLs>
