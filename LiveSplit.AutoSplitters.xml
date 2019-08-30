@@ -6500,4 +6500,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (by Robin/Sobinist)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>King's Quest: Mask of Eternity</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rtrger/Components/master/KingsQuestMaskofEternity.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal and autosplitting are available. (by rtrger)</Description>
+  </AutoSplitter>
 </AutoSplitters>
