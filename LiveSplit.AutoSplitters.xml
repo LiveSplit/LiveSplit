@@ -6510,4 +6510,26 @@
     <Type>Script</Type>
     <Description>Load removal and autosplitting are available. (by rtrger)</Description>
   </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Myst III: Exile</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Exodustx0/LiveSplit-ASL/master/Myst3.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Automatic start/split/reset are available. (by Exodustx0)</Description>
+		<Website>https://discord.gg/pQzhkaT</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Myst IV: Revelation</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Exodustx0/LiveSplit-ASL/master/Myst4.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Automatic start/split/load-removal are available. (by Exodustx0)</Description>
+		<Website>https://discord.gg/pQzhkaT</Website>
+	</AutoSplitter>
 </AutoSplitters>
