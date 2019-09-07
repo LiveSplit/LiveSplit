@@ -6532,4 +6532,15 @@
 		<Description>Automatic start/split/load-removal are available. (by Exodustx0)</Description>
 		<Website>https://discord.gg/pQzhkaT</Website>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Mages of Mystralia</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.MagesOfMystralia/master/Components/LiveSplit.MagesOfMystralia.dll</URL>
+		</URLs>
+		<Type>Component</Type>
+		<Description>Load Removal is available. (By SuicideMachine)</Description>
+		<Website>https://github.com/SuiMachine/LiveSplit.MagesOfMystralia/blob/master/README.md</Website>
+	</AutoSplitter>
 </AutoSplitters>
