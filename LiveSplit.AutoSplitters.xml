@@ -6532,4 +6532,14 @@
 		<Description>Automatic start/split/load-removal are available. (by Exodustx0)</Description>
 		<Website>https://discord.gg/pQzhkaT</Website>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Control</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/derwangler/splitters/master/Control.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Load removal is available (by derwangler)</Description>
+	</AutoSplitter>
 </AutoSplitters>
