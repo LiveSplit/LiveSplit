@@ -5358,6 +5358,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Ibb and Obb</Game>
+      <Game>Ibb &amp; Obb</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AcridStingray3/IbbObb-autosplitter/master/IbbObb.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter available. (By @AcridStingray3#1637 , doesn't end the timer)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>S.T.A.L.K.E.R.: Shadow of Chernobyl</Game>
     </Games>
     <URLs>
@@ -6541,5 +6552,16 @@
 		</URLs>
 		<Type>Script</Type>
 		<Description>Load removal is available (by derwangler)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+			<Game>Mages of Mystralia</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.MagesOfMystralia/master/Components/LiveSplit.MagesOfMystralia.dll</URL>
+		</URLs>
+		<Type>Component</Type>
+		<Description>Load Removal is available. (By SuicideMachine)</Description>
+		<Website>https://github.com/SuiMachine/LiveSplit.MagesOfMystralia/blob/master/README.md</Website>
 	</AutoSplitter>
 </AutoSplitters>
