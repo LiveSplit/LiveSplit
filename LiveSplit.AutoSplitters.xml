@@ -6545,6 +6545,16 @@
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
+			<Game>Control</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/derwangler/splitters/master/Control.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Load removal is available (by derwangler)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
 			<Game>Mages of Mystralia</Game>
 		</Games>
 		<URLs>
