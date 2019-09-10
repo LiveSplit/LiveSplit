@@ -6545,6 +6545,17 @@
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
+			<Game>Beyond Good &amp; Evil</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/UnderscorePoY/BGE-Autosplitter/master/BGE.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Beyond Good &amp; Evil autosplitter. Automatic start/split/reset/load-removal are available. (by UnderscorePoY)</Description>
+		<Website>https://discord.gg/JX6AmJ9</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
 			<Game>Control</Game>
 		</Games>
 		<URLs>
