@@ -6564,8 +6564,8 @@
 		<Type>Script</Type>
 		<Description>Load removal is available (by derwangler)</Description>
   </AutoSplitter>
-  <AutoSplitter>
-    <Games>
+  	<AutoSplitter>
+    		<Games>
 			<Game>Mages of Mystralia</Game>
 		</Games>
 		<URLs>
@@ -6574,5 +6574,16 @@
 		<Type>Component</Type>
 		<Description>Load Removal is available. (By SuicideMachine)</Description>
 		<Website>https://github.com/SuiMachine/LiveSplit.MagesOfMystralia/blob/master/README.md</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Crysis Warhead</Game>
+			<Game>Crysis: Warhead</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Crysis_Warhead/LiveSplit.CrysisWarhead.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Load removal and autosplitting are available - requires 64-bit 1.1 Hotfix version (By SuicideMachine)</Description>
 	</AutoSplitter>
 </AutoSplitters>
