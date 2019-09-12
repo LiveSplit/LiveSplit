@@ -2,6 +2,16 @@
 <AutoSplitters>
 	<AutoSplitter>
 	<Games>
+		<Game>Super Gussun Oyoyo 2</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/Traviktox/Lufia_2_ACAutosplitter/master/Super_Gussun_Oyoyo_2_Autosplitter.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter for Super Gussun Oyoyo 2 (by Traviktox)</Description>
+</AutoSplitter>
+	<AutoSplitter>
+	<Games>
 		<Game>Sonic Adventure (DX)</Game>
 	</Games>
 	<URLs>
