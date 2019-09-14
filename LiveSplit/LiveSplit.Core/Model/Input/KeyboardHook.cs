@@ -53,8 +53,7 @@ namespace LiveSplit.Model.Input
                 }
 
                 var keyWithoutModifiers = key & ~modifiers;
-                var result = GetAsyncKeyState(keyWithoutModifiers);
-                var isPressed = ((result >> 15) & 1) == 1;
+                var isPressed = IsKeyDown(keyWithoutModifiers);
                 var wasPressedBefore = keyPair.Value;
                 RegisteredKeys[key] = isPressed;
 
