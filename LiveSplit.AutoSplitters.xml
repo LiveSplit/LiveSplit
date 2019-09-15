@@ -6596,4 +6596,16 @@
 		<Type>Script</Type>
 		<Description>Load removal and autosplitting are available - requires 64-bit 1.1 Hotfix version (By SuicideMachine)</Description>
 	</AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dicey Dungeons</Game>
+      <Game>DiceyDungeons</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.DiceyDungeons/master/Components/LiveSplit.DiceyDungeons.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.DiceyDungeons</Website>
+  </AutoSplitter>
 </AutoSplitters>
