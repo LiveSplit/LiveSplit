@@ -11,7 +11,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
@@ -630,14 +629,11 @@ namespace LiveSplit.View
 
                 if (!multiEdit)
                 {
-                    MemoryStream memoryStream = new MemoryStream();
                     var oldImage = (Image)runGrid.Rows[rowIndex].Cells[ICONINDEX].Value;
                     if (oldImage != null)
                         ImagesToDispose.Add(oldImage);
 
-                    image.Save(memoryStream, System.Drawing.Imaging.ImageFormat.Png);
-
-                    Run[rowIndex].Icon = Image.FromStream(memoryStream);
+                    Run[rowIndex].Icon = image;
                     runGrid.NotifyCurrentCellDirty(true);
                 }
                 else
