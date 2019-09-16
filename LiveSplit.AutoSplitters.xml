@@ -6608,4 +6608,17 @@
     <Description>Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.DiceyDungeons</Website>
   </AutoSplitter>
+	<AutoSplitter>
+   	<Games>
+			<Game>Serious Sam Revolution</Game>
+			<Game>Serious Sam Classics: Revolution</Game>
+			<Game>Serious Sam Classics Revolution</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/apple1417/Autosplitters/master/serious_sam_revolution.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Auto Splitting, Start, Reset and Load Removal are available. (By apple1417)</Description>
+		<Website>https://github.com/apple1417/Autosplitters</Website>
+	</AutoSplitter>
 </AutoSplitters>
