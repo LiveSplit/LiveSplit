@@ -625,30 +625,31 @@ namespace LiveSplit.View
         {
             try
             {
-                var image = Image.FromFile(fileName).ScaleIcon();
-
-                if (!multiEdit)
+                using (var image = new Bitmap(fileName).ScaleIcon())
                 {
-                    var oldImage = (Image)runGrid.Rows[rowIndex].Cells[ICONINDEX].Value;
-                    if (oldImage != null)
-                        ImagesToDispose.Add(oldImage);
-
-                    Run[rowIndex].Icon = image;
-                    runGrid.NotifyCurrentCellDirty(true);
-                }
-                else
-                {
-                    foreach (DataGridViewCell cell in runGrid.SelectedCells)
+                    if (!multiEdit)
                     {
-                        if (cell.ColumnIndex != ICONINDEX)
-                            continue;
-
-                        var oldImage = (Image)cell.Value;
+                        var oldImage = (Image) runGrid.Rows[rowIndex].Cells[ICONINDEX].Value;
                         if (oldImage != null)
                             ImagesToDispose.Add(oldImage);
 
-                        Run[cell.RowIndex].Icon = (Image)image.Clone();
-                        runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
+                        Run[rowIndex].Icon = new Bitmap(image);
+                        runGrid.NotifyCurrentCellDirty(true);
+                    }
+                    else
+                    {
+                        foreach (DataGridViewCell cell in runGrid.SelectedCells)
+                        {
+                            if (cell.ColumnIndex != ICONINDEX)
+                                continue;
+
+                            var oldImage = (Image) cell.Value;
+                            if (oldImage != null)
+                                ImagesToDispose.Add(oldImage);
+
+                            Run[cell.RowIndex].Icon = new Bitmap(image);
+                            runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
+                        }
                     }
                 }
 
