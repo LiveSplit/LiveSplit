@@ -6643,4 +6643,14 @@
 		<Type>Script</Type>
 		<Description>Auto-splitting, Start, Reset and Load Removal are available (by Dinopony)</Description>
 	</AutoSplitter>
+	<AutoSplitter>
+   		<Games>
+			<Game>Mortyr 2093-1944</Game>
+		</Games>
+		<URLs>
+			<URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.Mortyr1.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Auto-splitting, Start, Reset and Load Removal are available (by Mr. Mary)</Description>
+	</AutoSplitter>
 </AutoSplitters>
