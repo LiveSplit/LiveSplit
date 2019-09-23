@@ -6643,4 +6643,14 @@
 		<Type>Script</Type>
 		<Description>Auto-splitting, Start, Reset and Load Removal are available (by Dinopony)</Description>
 	</AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Blasphemous</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/seanpr96/Autosplitters/master/Blasphemous.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available. (by seanpr)</Description>
+  </AutoSplitter>
 </AutoSplitters>
