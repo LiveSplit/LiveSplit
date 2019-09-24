@@ -4781,6 +4781,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mega Man Zero 4</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaManZero4/MMZ4autosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man Zero 4 (By Coltaho)</Description>
+    <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaManZero4/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Timespinner</Game>
     </Games>
     <URLs>
