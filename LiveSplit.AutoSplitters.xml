@@ -2569,6 +2569,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>INSIDE</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/InsideAutosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Start and split are available. (By Gelly)</Description>
+    <Website>https://github.com/Gelly/autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Prey</Game>
     </Games>
     <URLs>
@@ -2598,7 +2609,7 @@
       <URL>https://raw.githubusercontent.com/TehGelly/140-autosplitter/master/140.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal, Auto Splitting, and Auto Reset are available. (By TehGelly et al.)</Description>
+    <Description>Load Removal, Auto Splitting, and Auto Reset are available. (By Gelly et al.)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
