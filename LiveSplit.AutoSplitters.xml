@@ -6685,4 +6685,14 @@
     <Type>Script</Type>
     <Description>Load removal is available. (by seanpr)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Earth Defense Force 5</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Souzooka/EDF5-ASL/master/EDF5.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal and auto-splitting are available. (by Souzooka)</Description>
+  </AutoSplitter>
 </AutoSplitters>
