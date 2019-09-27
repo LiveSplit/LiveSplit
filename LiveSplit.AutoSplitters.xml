@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
 	<AutoSplitter>
 	<Games>
@@ -586,6 +586,18 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal and Auto Start are available. (By drMalcom and seanpr)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Borderlands 3</Game>
+      <Game>BL3</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Borderlands%203/BL3IGT.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal is available for 1.0.0 (by FromDarkHell)</Description>
+    <Website>https://discord.gg/jF8eSnP</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
