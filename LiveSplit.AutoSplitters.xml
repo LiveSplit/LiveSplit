@@ -10,7 +10,7 @@
 	<Type>Script</Type>
 	<Description> Autosplitter for Super Gussun Oyoyo 2 (by Traviktox)</Description>
 </AutoSplitter>
-	<AutoSplitter>
+<AutoSplitter>
 	<Games>
 		<Game>Sonic Adventure (DX)</Game>
 	</Games>
@@ -6694,5 +6694,15 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load removal and auto-splitting are available. (by Souzooka)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Untitled Goose Game</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Dregu/LiveSplit-UntitledGooseGame/master/UntitledGooseGame.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Press HONK to start, splits for all goals, multiple reset and pause conditions available. (by Dregu, Ero)</Description>
   </AutoSplitter>
 </AutoSplitters>
