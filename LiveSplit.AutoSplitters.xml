@@ -4496,16 +4496,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>KHOLAT</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ItsTrigger/LiveSplit-Auto-Splitters/master/LiveSplit.KHOLAT.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load time removal is available. (By Trigger)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Slay the Spire</Game>
     </Games>
     <URLs>
@@ -6213,7 +6203,7 @@
       <Game>Grand Theft Auto: London 1969</Game>
       <Game>Grand Theft Auto: London 1961</Game>
       <Game>GTA: London 1969</Game>
-      <Game>GTA: London 1961</Game>	    
+      <Game>GTA: London 1961</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.GTA.asl</URL>
@@ -6342,7 +6332,7 @@
     <Type>Script</Type>
     <Description>Automatic splitting and load remover for the Steam and GOG versions available (by hoxi &amp; Mr. Mary)</Description>
     <Website>https://github.com/hoXyy/Livesplit.Autosplitters</Website>
-  </AutoSplitter>	
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Arx Fatalis</Game>
@@ -6716,5 +6706,15 @@
     </URLs>
     <Type>Script</Type>
     <Description>Press HONK to start, splits for all goals, multiple reset and pause conditions available. (by Dregu, Ero)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Burnout Paradise</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ItsTrigger/LiveSplit-Auto-Splitters/master/LiveSplit.BurnoutParadise.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting and load time removal are available. (By Trigger)</Description>
   </AutoSplitter>
 </AutoSplitters>
