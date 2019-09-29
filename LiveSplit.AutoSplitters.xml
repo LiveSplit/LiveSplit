@@ -6226,7 +6226,7 @@
       <Game>Colin McRae Rally 2.0</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.CMR2.asl</URL>
+      <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.CMR2.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting, Total Race Time (as Game Time), Auto Start and Reset for Championship% categories is available (by Mr. Mary)</Description>
@@ -6237,7 +6237,7 @@
       <Game>Call of Duty</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.CoDSP.asl</URL>
+      <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.CoDSP.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting, Load Removal and Auto Start/Reset is available (by Mr. Mary)</Description>
@@ -6248,7 +6248,7 @@
       <Game>Gensou SkyDrift</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.SkyDrift.asl</URL>
+      <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.SkyDrift.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitter (new stages only) available (by Mr. Mary)</Description>
@@ -6259,7 +6259,7 @@
       <Game>Super Driver</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.SuperDriver.asl</URL>
+      <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.SuperDriver.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitting, Auto-Start (only if starting from Super Formula) and Load Removal available (by Mr. Mary)</Description>
@@ -6292,7 +6292,7 @@
       <Game>Saints Row IV</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/marysiamzawka/ASL/raw/master/Livesplit.SR4.Release.asl</URL>
+      <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/Livesplit.SR4.Release.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load removal and final split available for the Steam release (by Mr. Mary)</Description>
@@ -6432,16 +6432,6 @@
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitting and load removal are available. (by SuicideMachine)</Description>
-   </AutoSplitter>
-   <AutoSplitter>
-    <Games>
-     <Game>Portal 3D</Game>
-    </Games>
-    <URLs>
-     <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.Portal3D.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Autosplitting by rythin and Mr. Mary</Description>
    </AutoSplitter>
    <AutoSplitter>
     <Games>
@@ -6672,7 +6662,7 @@
 			<Game>Mortyr 2093-1944</Game>
 		</Games>
 		<URLs>
-			<URL>https://github.com/marysiamzawka/ASL/raw/master/LiveSplit.Mortyr1.asl</URL>
+			<URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.Mortyr1.asl</URL>
 		</URLs>
 		<Type>Script</Type>
 		<Description>Auto-splitting, Start, Reset and Load Removal are available (by Mr. Mary)</Description>
