@@ -6707,4 +6707,14 @@
     <Type>Script</Type>
     <Description>Auto-splitting and load time removal are available. (By Trigger)</Description>
   </AutoSplitter>
+	<AutoSplitter>
+    <Games>
+      <Game>DUSK</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TwanJones/DuskSplitter/master/Dusk.ASL</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, Start, Reset and Load Removal are available. (By TwanJones)</Description>
+  </AutoSplitter>
 </AutoSplitters>
