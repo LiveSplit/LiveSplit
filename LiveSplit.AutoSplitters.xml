@@ -6717,4 +6717,14 @@
     <Type>Script</Type>
     <Description>Auto-splitting, Start, Reset and Load Removal are available. (By TwanJones)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Code Vein</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/elizagamedev/asl/master/codevein.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover only. (by Eliza)</Description>
+  </AutoSplitter>
 </AutoSplitters>
