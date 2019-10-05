@@ -3343,10 +3343,23 @@
       <Game>Yooka Laylee Category Extensions</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/DerKO9/SpeedRunningStuff/master/YookaLaylee/YookaLaylee.asl</URL>
+      <URL>https://raw.githubusercontent.com/DerKO9/AutoSplitters/master/YookaLaylee/YookaLaylee.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal and Auto Start is available. GoG version compatible (By 0Seren and DerKO)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Yooka-Laylee and the Impossible Lair</Game>
+      <Game>Yooka Laylee and the Impossible Lair</Game>
+      <Game>Yooka-Laylee: Impossible Lair</Game>
+      <Game>Yooka Laylee: Impossible Lair</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/DerKO9/AutoSplitters/master/YookaLaylee/YookaLayleeIL.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover is in progress! (By DerKO)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
