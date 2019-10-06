@@ -6738,6 +6738,6 @@
       <URL>https://raw.githubusercontent.com/elizagamedev/asl/master/codevein.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load remover only. (by Eliza)</Description>
+    <Description>Load remover and autostart. (by Eliza)</Description>
   </AutoSplitter>
 </AutoSplitters>
