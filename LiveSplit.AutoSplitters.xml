@@ -6740,4 +6740,16 @@
     <Type>Script</Type>
     <Description>Load remover and autostart. (by Eliza)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>GTA2</Game>
+      <Game>GTA 2</Game>
+      <Game>Grand Theft Auto 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/GTA2/gta2_autosplitterV2_vars.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, Start, Reset are available. (By Molotok, Hippocat)</Description>
+  </AutoSplitter>
 </AutoSplitters>
