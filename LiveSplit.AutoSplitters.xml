@@ -4079,8 +4079,19 @@
       <URL>https://raw.githubusercontent.com/roostalol/FFXIII_autosplitter/master/finalfantasyxiii.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Start, Split, and Reset are available. Split points chosen by user. (By Roostalol)</Description>
+    <Description>Auto Start, Split, and Reset are available. Split points chosen by user. (By Roosta)</Description>
 	<Website>https://github.com/roostalol/FFXIII_autosplitter</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Final Fantasy XIII-2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/blakehartley/FFXIII-2_autosplitter/master/finalfantasyxiii2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start and Split are available. Split points chosen by user. More may be added by request. (By Roosta)</Description>
+	<Website>https://github.com/roostalol/FFXIII-2_autosplitter</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -6749,5 +6760,17 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto-start, and auto-splitting on pre-rendered cutscenes and load zones are available (by darkid and ShikenNuggets)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>GTA2</Game>
+      <Game>GTA 2</Game>
+      <Game>Grand Theft Auto 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/GTA2/gta2_autosplitterV2_vars.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, Start, Reset are available. (By Molotok, Hippocat)</Description>
   </AutoSplitter>
 </AutoSplitters>
