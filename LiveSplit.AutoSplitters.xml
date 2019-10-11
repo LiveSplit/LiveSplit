@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
 	<Games>
+		<Game>Sonic Adventure (DX) - Category Extensions</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/Sora-yx/autosplitters/master/Sonic%20Adventure%20DX-%20Director-s%20Cut/LiveSplit.SADXIGT.ExT.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter and IGT for SADX Category Extensions (by Turtlechuck, IDGeek121, Prahaha and Sora)</Description>
+	<Website>https://discord.gg/NUCatnN</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+	<Games>
 		<Game>Super Gussun Oyoyo 2</Game>
 	</Games>
 	<URLs>
@@ -29,7 +40,7 @@
 		<URL>https://raw.githubusercontent.com/Sora-yx/autosplitters/master/Sonic%20Adventure%20DX-%20Director-s%20Cut/LiveSplit.SADX.asl</URL>
 	</URLs>
 	<Type>Script</Type>
-	<Description> Autosplitter and IGT for SADX (by Turtlechuck, IDGeek121, Prahaha and Sora-yx)</Description>
+	<Description> Autosplitter and IGT for SADX (by Turtlechuck, IDGeek121, Prahaha and Sora)</Description>
 	<Website>https://discord.gg/NUCatnN</Website>
 </AutoSplitter>
 <AutoSplitter>
