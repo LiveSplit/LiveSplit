@@ -6753,6 +6753,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Batman: Arkham City</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ACSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start, and auto-splitting on pre-rendered cutscenes and load zones are available (by darkid and ShikenNuggets)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>GTA2</Game>
       <Game>GTA 2</Game>
       <Game>Grand Theft Auto 2</Game>
