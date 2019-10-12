@@ -6784,8 +6784,7 @@
     <Type>Script</Type>
     <Description>Auto-splitting, Start, Reset are available. (By Molotok, Hippocat)</Description>
   </AutoSplitter>
-</AutoSplitters>
-<AutoSplitter>
+	<AutoSplitter>
 	<Games>
 		<Game>Shogo: Mobile Armor Division</Game>
 	</Games>
@@ -6795,3 +6794,5 @@
 	<Type>Script</Type>
 	<Description> Autosplitter for Shogo: Mobile Armor Division (by Archmagus)</Description>
 </AutoSplitter>
+</AutoSplitters>
+
