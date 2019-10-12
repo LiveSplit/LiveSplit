@@ -6795,4 +6795,15 @@
     <Type>Script</Type>
     <Description>Auto-splitting, Start, Reset are available. (By Molotok, Hippocat)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Touhou Eiyashou ~ Imperishable Night</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/pingval/AutoSplitters/master/th08.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Split/Reset and Spell Card/Death Count are available. Supported categories are Extra and All Last Words currently. (By pingval)</Description>
+    <Website>https://github.com/pingval/AutoSplitters</Website>
+  </AutoSplitter>
 </AutoSplitters>
