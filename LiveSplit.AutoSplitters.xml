@@ -6785,3 +6785,13 @@
     <Description>Auto-splitting, Start, Reset are available. (By Molotok, Hippocat)</Description>
   </AutoSplitter>
 </AutoSplitters>
+<AutoSplitter>
+	<Games>
+		<Game>Shogo: Mobile Armor Division</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/makkemagus/shogo-mad-livesplit/master/LiveSplit.ShogoMAD.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter for Shogo: Mobile Armor Division (by Archmagus)</Description>
+</AutoSplitter>
