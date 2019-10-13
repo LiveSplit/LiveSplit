@@ -6795,6 +6795,16 @@
     <Type>Script</Type>
     <Description>Auto-splitting, Start, Reset are available. (By Molotok, Hippocat)</Description>
   </AutoSplitter>
+	<AutoSplitter>
+	<Games>
+		<Game>Shogo: Mobile Armor Division</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/makkemagus/shogo-mad-livesplit/master/LiveSplit.ShogoMAD.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter for Shogo: Mobile Armor Division (by Archmagus)</Description>
+</AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Touhou Eiyashou ~ Imperishable Night</Game>
@@ -6807,3 +6817,4 @@
     <Website>https://github.com/pingval/AutoSplitters</Website>
   </AutoSplitter>
 </AutoSplitters>
+
