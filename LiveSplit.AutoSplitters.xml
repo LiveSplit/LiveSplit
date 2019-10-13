@@ -4022,7 +4022,7 @@
   </AutoSplitter>
    <AutoSplitter>
     <Games>
-      <Game>Sonic Mania</Game>
+      <Game>Sonic Mania (Pre-DLC)</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Daisukemara/SonicManiaAutosplitter/master/LiveSplits.Mania.asl</URL>
@@ -5367,7 +5367,7 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Sonic Mania Plus</Game>
+      <Game>Sonic Mania</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ClarisRobyn/ManiaPlusAutosplitter/master/SonicManiaPlus.asl</URL>
