@@ -6816,5 +6816,15 @@
     <Description>Auto Start/Split/Reset and Spell Card/Death Count are available. Supported categories are Extra and All Last Words currently. (By pingval)</Description>
     <Website>https://github.com/pingval/AutoSplitters</Website>
   </AutoSplitter>
+<AutoSplitter>
+	<Games>
+		<Game>Puyo Puyo SUN</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/Leminn/Puyo-Puyo-SUN-AutoSplitter/master/Puyo%20Puyo%20SUN.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Autosplitter for Puyo Puyo SUN (PC)</Description>
+</AutoSplitter>
 </AutoSplitters>
 
