@@ -2318,11 +2318,10 @@
       <Game>Outlast: Whistleblower</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.Outlast.asl</URL>
+      <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/Outlast.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By zoton2 and Kotti)</Description>
-    <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+    <Description>Auto Splitting and Load Removal are available. (by Mattmatt)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
