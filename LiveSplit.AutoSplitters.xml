@@ -6832,5 +6832,49 @@
 	<Type>Script</Type>
 	<Description>Autosplitter for Puyo Puyo SUN (PC)</Description>
 </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tron: Evolution</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Skhowl/AutoSplitters/master/LiveSplit.TronEvolution/LiveSplit.TronEvolution.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover, auto-start and auto-splitting after pre-rendered cutscenes (by Skhowl)</Description>
+    <Website>https://github.com/Skhowl/AutoSplitters/tree/master/LiveSplit.TronEvolution</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Little Mermaid</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Skhowl/AutoSplitters/master/LiveSplit.TheLittleMermaid/LiveSplit.TheLittleMermaid.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, Start, Reset are available. (by Skhowl)</Description>
+    <Website>https://github.com/Skhowl/AutoSplitters/tree/master/LiveSplit.TheLittleMermaid</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Wonder Boy (SMS/GG)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Skhowl/AutoSplitters/master/LiveSplit.WonderBoy/LiveSplit.WonderBoy.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, Start, Reset are available. (by Skhowl)</Description>
+    <Website>https://github.com/Skhowl/AutoSplitters/tree/master/LiveSplit.WonderBoy</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Altered Beast</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Skhowl/AutoSplitters/master/LiveSplit.AlteredBeast/LiveSplit.AlteredBeast.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, Start, Reset are available. (by Skhowl)</Description>
+    <Website>https://github.com/Skhowl/AutoSplitters/tree/master/LiveSplit.AlteredBeast</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
