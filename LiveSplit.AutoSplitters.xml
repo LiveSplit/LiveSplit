@@ -257,7 +257,17 @@
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitting and Autostarting and auto reset (by BigMonD)</Description>
-  </AutoSplitter>
+</AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Clustertruck</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Happyrobot33/Autosplitters/master/Clustertruck.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting by level aswell as by location(by Happyrobot33)</Description>
+</AutoSplitter>
    <AutoSplitter>
     <Games>
       <Game>LEGO Bionicle: The Legend of Mata Nui</Game>
