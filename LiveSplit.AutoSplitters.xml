@@ -6888,5 +6888,16 @@
     <Description>Auto-splitting, Start, Reset are available. (by Skhowl)</Description>
     <Website>https://github.com/Skhowl/AutoSplitters/tree/master/LiveSplit.AlteredBeast</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Beast Inside</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/LiveSplit.TheBeastInside.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load and crash remover (by Wafu)</Description>
+    <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
 
