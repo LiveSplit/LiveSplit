@@ -6899,5 +6899,15 @@
     <Description>Load and crash remover (by Wafu)</Description>
     <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Batman: Arkham Origins</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ArkhamOrigins.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting on pre-rendered cutscenes and load zones is available (by JohnStephenEvil)</Description>
+  </AutoSplitter>
 </AutoSplitters>
 
