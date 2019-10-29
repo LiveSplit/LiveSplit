@@ -33,6 +33,17 @@
     <Website>https://discord.gg/XRsRwRU</Website>
 </AutoSplitter>
 <AutoSplitter>
+    <Games>
+      <Game>Sonic &amp; All-Stars Racing Transformed</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Sonic%20%26%20All-Star%20Racing%20Transformed/S%26ASRT.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and In-Game Timer are available. Supports all speedrun.com categories (by Jujstme)</Description>
+    <Website>https://discord.gg/XRsRwRU</Website>
+</AutoSplitter>
+<AutoSplitter>
 	<Games>
 		<Game>Sonic Adventure (DX)</Game>
 	</Games>
