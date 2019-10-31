@@ -6920,5 +6920,15 @@
     <Type>Script</Type>
     <Description>Auto-splitting on pre-rendered cutscenes and load zones is available (by JohnStephenEvil)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Outer Worlds</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.github.com/hamhub7/a7c2633b58f5d2bed6c724427c1e2a7e</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal for both Epic Games Store and Windows Store/Xbox Gamepass versions</Description>
+  </AutoSplitter>
 </AutoSplitters>
 
