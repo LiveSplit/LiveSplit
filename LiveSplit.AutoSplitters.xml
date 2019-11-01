@@ -6930,5 +6930,15 @@
     <Type>Script</Type>
     <Description>Load removal for both Epic Games Store and Windows Store/Xbox Gamepass versions</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>ShadowFlare</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/BurrowBird/Splitters/master/SF_Auto_Splitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting and start is available. (by BurrowBird)</Description>
+  </AutoSplitter>
 </AutoSplitters>
 
