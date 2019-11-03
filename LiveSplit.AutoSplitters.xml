@@ -1182,11 +1182,13 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>BioShock Multi-Game Runs</Game>
       <Game>BioShock Trilogy</Game>
+      <Game>BioShock Trifecta</Game>
       <Game>BioShock Anthology</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/bioshock_trilogy.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/MultiASL/master/bioshock_multi.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal is available. (By MrWalrus, Glurmo, Blade, and PrototypeAlpha)</Description>
@@ -1489,7 +1491,7 @@
       <Game>BioShock Infinite (PC)</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/BioInf.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/BSI-ASL/master/BioInf.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Automatic Timer Start and Load Removal are available. (By Blade and PrototypeAlpha)</Description>
@@ -1500,7 +1502,7 @@
       <Game>BioShock Infinite: Burial at Sea</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/BioInfDLC.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/BSI-ASL/master/BioInfDLC.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Automatic Timer Start and Load Removal are available. (By Blade and PrototypeAlpha)</Description>
@@ -6524,7 +6526,7 @@
       <Game>The Turing Test</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/TheTuringTest.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/TheTuringTestASL/master/TheTuringTest.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load removal and Automatic Start/Split/Reset are available. (by PrototypeAlpha and bill_play3)</Description>
