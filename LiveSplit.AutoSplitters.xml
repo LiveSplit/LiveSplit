@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
 	<Games>
+		<Game>Gravitas</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/Gravitas.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter for Gravitas (by PrototypeAlpha)</Description>
+	<Website>https://discord.gg/nDkX3Hv</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+	<Games>
 		<Game>Sonic Adventure (DX) - Category Extensions</Game>
 	</Games>
 	<URLs>
