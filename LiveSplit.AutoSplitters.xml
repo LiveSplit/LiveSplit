@@ -5,10 +5,10 @@
 		<Game>Gravitas</Game>
 	</Games>
 	<URLs>
-		<URL>https://raw.githubusercontent.com/PrototypeAlpha/ASL/master/Gravitas.asl</URL>
+		<URL>https://raw.githubusercontent.com/PrototypeAlpha/GravitasASL/master/Gravitas.asl</URL>
 	</URLs>
 	<Type>Script</Type>
-	<Description> Autosplitter for Gravitas (by PrototypeAlpha)</Description>
+	<Description>Load removal and Automatic Timer Start are available for Windows 7. (by PrototypeAlpha)</Description>
 	<Website>https://discord.gg/nDkX3Hv</Website>
 	</AutoSplitter>
 	<AutoSplitter>
