@@ -6944,5 +6944,15 @@
     <Type>Script</Type>
     <Description>Auto-splitting and start is available. (by BurrowBird)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>911 Fire Rescue</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MisaRistolainen/911FR-Autosplitter/master/911FR_AutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter/starter with optional load removal (by Kainalo)</Description>
+  </AutoSplitter>
 </AutoSplitters>
 
