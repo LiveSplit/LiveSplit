@@ -96,10 +96,10 @@
       <Game>Q.U.B.E. 2</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/haxorsnake/QUBE2LoadRemoval/master/qube2loadremove.asl</URL>
+      <URL>https://github.com/CallumMcW/QUBE2-Autosplitter/blob/master/QUBE2asl.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal by (Haxorsnake)</Description>
+    <Description>Load Removal by (CalMc)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
