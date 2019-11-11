@@ -6922,7 +6922,7 @@
       <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ArkhamOrigins.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto-splitting on pre-rendered cutscenes and load zones is available (by JohnStephenEvil)</Description>
+    <Description>Auto-start, and Auto-splitting on pre-rendered cutscenes and load zones is available (by JohnStephenEvil and ShikenNuggets)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
