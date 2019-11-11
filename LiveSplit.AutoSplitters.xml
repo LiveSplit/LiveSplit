@@ -96,7 +96,7 @@
       <Game>Q.U.B.E. 2</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/CallumMcW/QUBE2-Autosplitter/blob/master/QUBE2asl.asl</URL>
+      <URL>https://raw.githubusercontent.com/CallumMcW/QUBE2-Autosplitter/master/QUBE2asl.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal by (CalMc)</Description>
