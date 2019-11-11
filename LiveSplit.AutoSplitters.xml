@@ -2584,6 +2584,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Manifold Garden</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/manifoldgarden.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Split, start, and reset available. (By Gelly)</Description>
+    <Website>https://github.com/Gelly/autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Obduction</Game>
     </Games>
     <URLs>
