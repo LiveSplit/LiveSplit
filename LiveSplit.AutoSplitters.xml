@@ -5897,6 +5897,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Nancy Drew: The Haunted Carousel</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/CAR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Nancy Drew: The Secret of Shadow Ranch</Game>
     </Games>
     <URLs>
