@@ -6991,7 +6991,7 @@
       <Game>Miami Vice (2004)</Game>
     </Games>
     <URLs>
-      <URL>https://github.com/KZFREW/KZ.Autosplitters/blob/master/Releases/Miami%20Vice/MiamiVice_Autosplitter.asl</URL>
+      <URL>https://raw.githubusercontent.com/KZFREW/KZ.Autosplitters/master/Releases/Miami%20Vice/MiamiVice_Autosplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto-splitting, start, reset, and load removal are available.</Description>
