@@ -6986,4 +6986,14 @@
     <Type>Script</Type>
     <Description>Autosplitter/starter with optional load removal (by Kainalo)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Miami Vice (2004)</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/KZFREW/KZ.Autosplitters/blob/master/Releases/Miami%20Vice/MiamiVice_Autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, start, reset, and load removal are available.</Description>
+  </AutoSplitter>
 </AutoSplitters>
