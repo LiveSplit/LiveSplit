@@ -4457,6 +4457,7 @@
   <AutoSplitter>
     <Games>
       <Game>Escape Goat 2</Game>
+      <Game>Escape Goat</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.EscapeGoat2/master/Components/LiveSplit.EscapeGoat2.dll</URL>
@@ -6986,4 +6987,3 @@
     <Description>Autosplitter/starter with optional load removal (by Kainalo)</Description>
   </AutoSplitter>
 </AutoSplitters>
-
