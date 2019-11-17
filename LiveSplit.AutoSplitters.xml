@@ -7008,4 +7008,14 @@
     <Description>Autostart, autosplit and load removal (by remote_mine)</Description>
     <Website>https://github.com/remote-mine/DMC5Autosplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Lone Echo</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NtsFranz/Autosplitters/master/loneecho_autsplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting for most save points. No load removal.</Description>
+  </AutoSplitter>
 </AutoSplitters>
