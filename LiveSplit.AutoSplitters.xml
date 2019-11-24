@@ -6981,6 +6981,17 @@
     <Type>Script</Type>
     <Description>Auto-splitting and start is available. (by BurrowBird)</Description>
   </AutoSplitter>
+	<AutoSplitter>
+    <Games>
+      <Game>Red Alliance</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/animeliodas/Red_alliance.asl/master/Red%20Alliance.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>load removal. (by AniMeliodas)</Description>
+    <Website>https://discordapp.com/invite/HPqq6gT</Website>
+</AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>911 Fire Rescue</Game>
