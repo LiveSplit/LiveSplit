@@ -5617,6 +5617,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Lost Ember</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/NoTeefy/LostEmber-AutoSplit/master/lostember.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automated Splitting/Start/End + Loadless Timer (By NoTeefy)</Description>
+    <Website>https://discord.gg/bfHd8fW</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Little Nightmares</Game>
     </Games>
     <URLs>
