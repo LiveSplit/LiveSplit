@@ -6977,10 +6977,10 @@
       <Game>The Outer Worlds</Game>
     </Games>
     <URLs>
-      <URL>https://gist.github.com/hamhub7/a7c2633b58f5d2bed6c724427c1e2a7e</URL>
+      <URL>https://raw.githubusercontent.com/alexa-y/Autosplitters/master/TheOuterWorlds.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removal for both Epic Games Store and Windows Store/Xbox Gamepass versions</Description>
+    <Description>Load removal for both Epic Games Store and Windows Store/Xbox Gamepass versions (by MissyLexie and Micrologist)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
