@@ -4284,10 +4284,10 @@
       <Game>Nioh</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/pawREP/Nioh-LiveSplit-plugin-RTA-No-Load/master/NiohRTANoLoad.asl</URL>
+      <URL>https://raw.githubusercontent.com/Santzo/NiohRTANoLoad/master/NiohRTANoLoad.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By B3)</Description>
+    <Description>Load Removal is available. (By B3, updated by Santzo)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
