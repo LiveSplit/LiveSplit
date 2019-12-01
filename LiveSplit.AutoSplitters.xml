@@ -7045,4 +7045,14 @@
     <Type>Script</Type>
     <Description>Auto-splitting for most save points. No load removal.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Batman: Arkham Knight</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ArkhamKnight.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting on progress change is available (by JohnStephenEvil and ShikenNuggets)</Description>
+  </AutoSplitter>
 </AutoSplitters>
