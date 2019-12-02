@@ -7055,4 +7055,14 @@
     <Type>Script</Type>
     <Description>Auto-splitting on progress change is available (by JohnStephenEvil and ShikenNuggets)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>RoboCop (2003)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/makkebakke/Autosplitters/master/LiveSplit.RoboCop2K3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, start, and load removal are available.</Description>
+  </AutoSplitter>
 </AutoSplitters>
