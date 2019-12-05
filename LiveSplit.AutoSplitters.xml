@@ -7065,4 +7065,14 @@
     <Type>Script</Type>
     <Description>Auto-splitting, start, and load removal are available.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>SUPERHOT VR</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/the-jay/autosplitters/master/LiveSplit.SuperHotVR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, start, and load removal are available.</Description>
+  </AutoSplitter>
 </AutoSplitters>
