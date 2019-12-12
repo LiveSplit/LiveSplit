@@ -7077,6 +7077,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>BONEWORKS</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/DerKO9/AutoSplitters/master/Boneworks/Boneworks.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover in progress. Help is welcome! (By DerKO).</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Starsky &amp; Hutch</Game>
     </Games>
     <URLs>
