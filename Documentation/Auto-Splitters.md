@@ -185,6 +185,8 @@ Explicitly returning `true` will prevent the `split` action from being run. This
 
 The name of this action is `isLoading`. Return `true` whenever the game is loading. LiveSplit's Game Time Timer will be paused as long as you return `true`.
 
+**NOTE**: Make sure the timer is set to "Game Time" in the layout! Failure to do so will cause the timer to keep running, as if `isLoading` had returned `false` or `isLoading` weren't triggered at all.
+
 ##### Game Time
 
 The name of this action is `gameTime`. Return a [`TimeSpan`](https://msdn.microsoft.com/en-us/library/system.timespan(v=vs.110).aspx) object that contains the current time of the game. You can also combine this with `isLoading`. If `isLoading` returns false, nothing, or isn't implemented, LiveSplit's Game Time Timer is always running and syncs with the game's Game Time at a constant interval. Everything in between is therefore a Real Time approximation of the Game Time. If you want the Game Time to not run in between the synchronization interval and only ever return the actual Game Time of the game, make sure to implement `isLoading` with a constant return value of `true`.
