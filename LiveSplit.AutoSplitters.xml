@@ -7096,4 +7096,14 @@
     <Description>Auto Splitting and Load Removal are available. (By Nytheris)</Description>
     <Website>https://github.com/Nytheris/Autosplitters</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Skullface</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Lyfeless/skullface-splitter/master/skullface_splitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>AutoSplitting for World and Full-Game Runs (By VeryLyfeless)</Description>
+  </AutoSplitter>
 </AutoSplitters>
