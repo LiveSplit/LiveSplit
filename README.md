@@ -36,7 +36,7 @@ LiveSplit is a timer program for speedrunners that is both easy to use and full 
 
 We need your help!
 
-You can browse the [Issues](https://waffle.io/LiveSplit/LiveSplit) to find good issues to get started with. Select one that is not already done or in progress, assign yourself, and drag it over to "In Progress".
+You can browse the [Issues](https://github.com/LiveSplit/LiveSplit/issues) to find good issues to get started with. Select one that is not already done or in progress, assign yourself, and drag it over to "In Progress".
 
  1. [Fork](https://github.com/LiveSplit/LiveSplit/fork) the project
  2. Clone your forked repo: `git clone https://github.com/YourUsername/LiveSplit.git`
