@@ -35,7 +35,7 @@ namespace UpdateManager
 
         public Version Version
         {
-            get { return Version.Parse("2.0.1"); }
+            get { return Version.Parse("2.0.2"); }
         }
     }
 }
