@@ -7106,4 +7106,14 @@
     <Type>Script</Type>
     <Description>AutoSplitting for World and Full-Game Runs (By VeryLyfeless)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Final Fantasy IX</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/fhelwanger/ff9-auto-splitter/master/ff9.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto start, auto split, load remover and encounter counter (by fhelwanger)</Description>
+  </AutoSplitter>
 </AutoSplitters>
