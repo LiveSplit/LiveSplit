@@ -7116,4 +7116,14 @@
     <Type>Script</Type>
     <Description>Auto start, auto split, load remover and encounter counter (by fhelwanger)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Youyou Kengeki Musou</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/SirGFM/ykm-auto-splitter/master/Kengeki.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto start, auto split and load remover for YKM v1.2. Supports all speedrun.com categories (by rythin, Mr_Brood and GFM)</Description>
+  </AutoSplitter>
 </AutoSplitters>
