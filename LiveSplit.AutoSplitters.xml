@@ -7118,6 +7118,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Frog Detective 2: The Case of the Invisible Wizard</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitter-Frog-Detective-2/master/FrogDetective2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter and load remover. Check settings to edit where to split. By Ero.</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Youyou Kengeki Musou</Game>
     </Games>
     <URLs>
