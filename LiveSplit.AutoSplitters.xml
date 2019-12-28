@@ -658,12 +658,14 @@
     <Games>
       <Game>Sonic Adventure 2: Battle</Game>
       <Game>Sonic Adventure 2 Battle</Game>
+      <Game>Sonic Adventure 2</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.SA2.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Game Time and Auto Splitting are available. (By ShiningFace)</Description>
+    <Website>http://discord.gg/XKdZFTS</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
