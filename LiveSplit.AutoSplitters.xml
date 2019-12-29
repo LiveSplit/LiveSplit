@@ -7113,10 +7113,11 @@
       <Game>Frog Detective 2: The Case of the Invisible Wizard</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitter-Frog-Detective-2/master/FrogDetective2.asl</URL>
+      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_Frog-Detective-2/master/FrogDetective2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter and load remover. Check settings to edit where to split. By Ero.</Description>
+    <Description>Autosplitter and load remover. Check settings to edit where to split. (created by Ero)</Description>
+    <Website>https://discordapp.gg/czC4PZW</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -7127,5 +7128,50 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto start, auto split and load remover for YKM v1.2. Supports all speedrun.com categories (by rythin, Mr_Brood and GFM)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>GNOG</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_GNOG/master/GNOG.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for GNOG. Starts the timer and splits whenever a level is completed. Does not do the final split. (created by Ero)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>A Short Hike</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_A-Short-Hike/master/AShortHike.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for A Short Hike. Starts the timer and splits whenever a golden feather is collected or when the end of the run is reached. (contact Ero#6117 is there are problems)</Description>
+    <Website>discordapp.gg/fN6r9w6</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Spectrum Retreat</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_The-Spectrum-Retreat/master/TheSpectrumRetreat.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for The Spectrum Retreat. Starts the timer and splits whenever a level is completed or the run is finished. Does not split after level 5_01. (created by Ero)</Description>
+    <Website> </Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Where is 2016?</Game>
+      <Game>Where is 2018?</Game>
+      <Game>Where is 2019?</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_Where-is-New-Year/master/WhereIsNewYear.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for multiple games in the Where is New Year? series. Works with '16, '18 and '19. Check 'Website' for more information on splits. (created by Ero)</Description>
+    <Website>https://github.com/just-ero/LS-Autosplit_Where-is-New-Year/blob/master/README.md</Website>
   </AutoSplitter>
 </AutoSplitters>
