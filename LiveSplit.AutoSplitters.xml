@@ -7174,4 +7174,15 @@
     <Description>Autosplitter for multiple games in the Where is New Year? series. Check 'Website' for information on compatibility. (created by Ero)</Description>
     <Website>https://github.com/just-ero/LS-Autosplit_Where-is-New-Year/blob/master/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Final Fantasy IX</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/fhelwanger/ff9-auto-splitter/master/FinalFantasy9.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto start, split, load remover and encounter counter for PC (by fhelwanger)</Description>
+    <Website>https://github.com/fhelwanger/ff9-auto-splitter/blob/master/README.md</Website>
+  </AutoSplitter>
 </AutoSplitters>
