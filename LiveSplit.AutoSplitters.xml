@@ -34,6 +34,16 @@
 </AutoSplitter>
 <AutoSplitter>
     <Games>
+      <Game>Golf It!</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/sflofty/autosplitters/master/golf_it/golf_it.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, start, and game timer are available.</Description>
+</AutoSplitter>
+<AutoSplitter>
+    <Games>
       <Game>Team Sonic Racing</Game>
     </Games>
     <URLs>
