@@ -7186,4 +7186,61 @@
     <Description>Auto start, split, load remover and encounter counter for PC (by fhelwanger)</Description>
     <Website>https://github.com/fhelwanger/ff9-auto-splitter/blob/master/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+        <Game>AxySnake</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/AxySnake.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description> Autosplitting available (by rythin) </Description>
+  </AutoSplitter> 
+  <AutoSplitter>
+    <Games>
+        <Game>Magiczna Kula Papatki</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/MagicznaKulaPapatki.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description> Autosplitting and Load Removal available (by rythin) </Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+        <Game>Octahedron</Game>
+	<Game>Octahedron: Transfixed Edition</Game>
+	<Game>Octahedron Transfixed Edition</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/OctahedronCurrentPatch.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description> Autosplitting and Game Time available for current patch (by rythin) </Description>
+  </AutoSplitter> 
+  <AutoSplitter>
+    <Games>
+        <Game>SAS: Secure Tomorrow</Game>
+	<Game>SAS Secure Tomorrow</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/SASSecureTomorrow.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description> Autosplitting and Load Removal available (by rythin) </Description>
+  </AutoSplitter> 
+  <AutoSplitter>
+    <Games>
+        <Game>Yo! Noid 2</Game>
+	<Game>Yo! Noid 2: Game of a Year Edition</Game>
+	<Game>Yo! Noid 2 Game of a Year Edition</Game>
+	<Game>Yo! Noid 2: Enter the Void</Game>
+	<Game>Yo! Noid 2 Enter the Void</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/YoNoid2GoaY.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description> Autosplitting available for Game of a Year Edition (w/ IGT Mod) (by rythin) </Description>
+  </AutoSplitter> 
 </AutoSplitters>
