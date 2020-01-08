@@ -851,7 +851,7 @@
       <URL>https://raw.githubusercontent.com/kevinjpetersen/Shrek2-LiveSplit/master/Components/Shrek2-LiveSplit.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Auto Splitting is available. (By KevinJPetersen & Dalet)</Description>
+    <Description>Auto Splitting is available. (By KevinJPetersen &amp; Dalet)</Description>
     <Website>https://github.com/kevinjpetersen/Shrek2-LiveSplit/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
