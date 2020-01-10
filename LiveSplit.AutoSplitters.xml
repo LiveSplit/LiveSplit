@@ -848,11 +848,11 @@
       <Game>Shrek 2 (PC)</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.Shrek2/master/Components/LiveSplit.Shrek2.dll</URL>
+      <URL>https://raw.githubusercontent.com/kevinjpetersen/Shrek2-LiveSplit/master/Components/Shrek2-LiveSplit.dll</URL>
     </URLs>
     <Type>Component</Type>
-    <Description>Auto Splitting is available. (By Dalet)</Description>
-    <Website>https://github.com/Dalet/LiveSplit.Shrek2/blob/master/README.md</Website>
+    <Description>Auto Splitting is available. (By KevinJPetersen &amp; Dalet)</Description>
+    <Website>https://github.com/kevinjpetersen/Shrek2-LiveSplit/blob/master/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
