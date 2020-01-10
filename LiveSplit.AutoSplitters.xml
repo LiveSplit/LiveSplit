@@ -7253,4 +7253,14 @@
     <Type>Script</Type>
     <Description> Autosplitting available for Game of a Year Edition (w/ IGT Mod) (by rythin) </Description>
   </AutoSplitter> 
+  <AutoSplitter>
+    <Games>
+        <Game>Colin McRae Rally</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.CMR1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description> In-game timer, auto-start, auto-reset and autosplitting for EU 1.5 available (by Mr. Mary) </Description>
+  </AutoSplitter>
 </AutoSplitters>
