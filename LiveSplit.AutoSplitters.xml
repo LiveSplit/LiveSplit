@@ -7253,4 +7253,16 @@
     <Type>Script</Type>
     <Description> Autosplitting available for Game of a Year Edition (w/ IGT Mod) (by rythin) </Description>
   </AutoSplitter> 
+  <AutoSplitter>
+    <Games>
+        <Game>Grand Theft Auto V</Game>
+	<Game>GTA V</Game>
+	<Game>GTA 5</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/TheStonedTurtle/GTAV-AutoSplitter/master/GTAV-Auto-Splitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description> Autosplitting and automatic timer start available for version 1.27 (by hoxi and TheStonedTurtle)</Description>
+  </AutoSplitter> 	
 </AutoSplitters>
