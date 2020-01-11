@@ -1922,18 +1922,13 @@
       <Game>Grand Theft Auto 5</Game>
       <Game>GTAV</Game>
       <Game>GTA5</Game>
-      <Game>Grand Theft Auto Online</Game>
-      <Game>Grand Theft Auto: Online</Game>
-      <Game>GTA Online</Game>
-      <Game>GTA: Online</Game>
-      <Game>GTAO</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.GTAV.asl</URL>
+      <URL>https://raw.githubusercontent.com/TheStonedTurtle/GTAV-AutoSplitter/master/GTAV-Auto-Splitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removal is available. (By zoton2 and tduva)</Description>
-    <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+    <Description>Automatic splitting and timer start is available for version 1.27 (by TheStonedTurtle and hoxi)</Description>
+    <Website>https://github.com/TheStonedTurtle/GTAV-AutoSplitter</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
