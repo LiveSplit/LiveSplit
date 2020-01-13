@@ -3635,10 +3635,10 @@
       <Game>POP: The Forgotten Sands</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/POP-ForgottenSands/LiveSplit.POPForgottenSands.asl</URL>
+      <URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/TFSsplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removal is available (by SuicideMachine)</Description>
+    <Description>Autostart/reset/split by Samabam and Load removal (by SuicideMachine)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
