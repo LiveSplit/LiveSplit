@@ -268,6 +268,14 @@ namespace LiveSplit.Model
             }
         }
 
+        public void UpdateTimes()
+        {
+            UpdateAttemptHistory();
+            UpdateBestSegments();
+            UpdatePBSplits();
+            UpdateSegmentHistory();
+        }
+
         public void ResetAndSetAttemptAsPB()
         {
             if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
