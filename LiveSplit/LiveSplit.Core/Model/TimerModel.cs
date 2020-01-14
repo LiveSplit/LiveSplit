@@ -123,10 +123,7 @@ namespace LiveSplit.Model
 
             if (updateTimes)
             {
-                UpdateAttemptHistory();
-                UpdateBestSegments();
-                UpdatePBSplits();
-                UpdateSegmentHistory();
+                UpdateTimes();
             }
         }
 
