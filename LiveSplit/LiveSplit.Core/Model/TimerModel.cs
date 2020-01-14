@@ -123,10 +123,7 @@ namespace LiveSplit.Model
 
             if (updateTimes)
             {
-                UpdateAttemptHistory();
-                UpdateBestSegments();
-                UpdatePBSplits();
-                UpdateSegmentHistory();
+                UpdateTimes();
             }
         }
 
@@ -266,6 +263,14 @@ namespace LiveSplit.Model
                 if (split.SplitTime.GameTime.HasValue)
                     splitTimeGameTime = split.SplitTime.GameTime;
             }
+        }
+
+        public void UpdateTimes()
+        {
+            UpdateAttemptHistory();
+            UpdateBestSegments();
+            UpdatePBSplits();
+            UpdateSegmentHistory();
         }
 
         public void ResetAndSetAttemptAsPB()
