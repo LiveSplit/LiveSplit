@@ -7258,4 +7258,18 @@
     <Type>Script</Type>
     <Description> In-game timer, auto-start, auto-reset and autosplitting for EU 1.5 available (by Mr. Mary) </Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+        <Game>Mortyr IV: Operation Thunderstorm</Game>
+	<Game>Mortyr 4: Operation Thunderstorm</Game>
+        <Game>Operation Thunderstorm</Game>
+        <Game>Mortyr IV: Operacja Sztorm</Game>
+        <Game>Mortyr 4: Operacja Sztorm</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/Mortyr4.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Removal and Autosplitting available. (by rythin, Mr_Mary and pitpo) </Description>
+  </AutoSplitter> 
 </AutoSplitters>
