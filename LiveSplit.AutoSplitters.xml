@@ -7001,6 +7001,17 @@
     <Description>load removal. (by AniMeliodas)</Description>
     <Website>https://discordapp.com/invite/HPqq6gT</Website>
 </AutoSplitter>
+	<AutoSplitter>
+    <Games>
+      <Game>Patriot:Demokratizatsiya</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/animeliodas/Patriot.asl/master/Patriot.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>AutoSplitter. (by AniMeliodas)</Description>
+    <Website>speedrun.com/patriotdemokratizatsiya</Website>
+</AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>911 Fire Rescue</Game>
