@@ -7273,5 +7273,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Removal and Autosplitting available. (by rythin, Mr_Mary and pitpo) </Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+        <Game>Tomb Raider: Underworld</Game>
+	<Game>Tomb Raider Underworld</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/Cadarev/ASL-Scripts/master/TRU_autosplitter_loadremover_1_0_0.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal, autosplitter, split settings, automatic start and reset are available. (by FluxMonkii and Cadarev)</Description>
   </AutoSplitter> 
 </AutoSplitters>
