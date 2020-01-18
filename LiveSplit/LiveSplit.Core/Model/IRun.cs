@@ -93,7 +93,7 @@ namespace LiveSplit.Model
             while ((unattached_id = run
                 .Select(seg => seg.SegmentHistory.Max().Key)
                 .Where(i => i > max_id).DefaultIfEmpty()
-                .Max()) != 0)
+                .Max()) > 0)
             {
                 var reassign_id = min_id - 1;
 
