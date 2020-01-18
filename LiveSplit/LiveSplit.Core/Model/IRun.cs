@@ -105,6 +105,7 @@ namespace LiveSplit.Model
                         segment.SegmentHistory.Remove(unattached_id);
                     }
                 }
+
                 min_id = reassign_id;
             }
         }
