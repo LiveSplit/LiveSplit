@@ -89,7 +89,7 @@ namespace LiveSplit.Model
             int min_id = run.GetMinSegmentHistoryIndex();
 
             int unattached_id;
-            //can't use `default` keyword because repo isn't on C# 7.1 yet so we use 0 instead
+            // can't use `default` keyword because repo isn't on C# 7.1 yet so we use 0 instead
             while ((unattached_id = run
                 .Select(seg => seg.SegmentHistory.Max().Key)
                 .Where(i => i > max_id).DefaultIfEmpty()
