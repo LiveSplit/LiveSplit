@@ -7296,4 +7296,15 @@
     <Type>Script</Type>
     <Description>Load removal, autosplitter, split settings, automatic start and reset are available. Also comes with some meme settings. (by Xelivous)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Lust for Darkness</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/LiveSplit.LustForDarkness.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load and crash remover (by Wafu)</Description>
+    <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
