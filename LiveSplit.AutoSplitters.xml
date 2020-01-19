@@ -7307,4 +7307,14 @@
     <Description>Load and crash remover (by Wafu)</Description>
     <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Ion Fury</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/IonFury.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting on level change is available (by ShikenNuggets)</Description>
+  </AutoSplitter>
 </AutoSplitters>
