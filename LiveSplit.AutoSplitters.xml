@@ -7285,4 +7285,15 @@
     <Type>Script</Type>
     <Description>Load removal, autosplitter, split settings, automatic start and reset are available. (by FluxMonkii and Cadarev)</Description>
   </AutoSplitter> 
+  <AutoSplitter>
+    <Games>
+        <Game>Distorted Travesty 3</Game>
+	<Game>Distorted Travesty 3: Saved Game</Game>
+    </Games>
+    <URLs>
+        <URL>https://gitlab.com/xelivous/dt3-autosplitter/raw/master/dt3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal, autosplitter, split settings, automatic start and reset are available. Also comes with some meme settings. (by Xelivous)</Description>
+  </AutoSplitter>
 </AutoSplitters>
