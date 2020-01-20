@@ -7123,7 +7123,7 @@
       <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_Frog-Detective-2/master/FrogDetective2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter and load remover. Check settings to edit where to split. (created by Ero)</Description>
+    <Description>Autosplitter and load remover. Check settings to edit where to split. (created by Ero#6117)</Description>
     <Website>https://discordapp.gg/czC4PZW</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -7144,7 +7144,7 @@
       <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_GNOG/master/GNOG.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for GNOG. Starts the timer and splits whenever a level is completed. Does not do the final split. (created by Ero)</Description>
+    <Description>Autosplitter for GNOG. Starts the timer and splits whenever a level is completed. Does not do the final split. (created by Ero#6117)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -7154,7 +7154,7 @@
       <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_A-Short-Hike/master/AShortHike.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for A Short Hike. Starts the timer and splits whenever a golden feather is collected or when the end of the run is reached. (contact Ero#6117 is there are problems)</Description>
+    <Description>Autosplitter for A Short Hike. Starts and ends the timer and splits when a golden feather is collected. Compare to Game Time. (created by Ero#6117)</Description>
     <Website>discordapp.gg/fN6r9w6</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -7165,8 +7165,7 @@
       <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_The-Spectrum-Retreat/master/TheSpectrumRetreat.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for The Spectrum Retreat. Starts the timer and splits whenever a level is completed or the run is finished. Does not split after level 5_01. (created by Ero)</Description>
-    <Website> </Website>
+    <Description>Autosplitter for The Spectrum Retreat. Starts the timer and splits whenever a level is completed or the run is finished. Does not split after level 5_01. (created by Ero#6117)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -7316,5 +7315,16 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto-splitting on level change is available (by ShikenNuggets)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Lightmatter</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_Lightmatter/master/Lightmatter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts and resets. Splits on every new level. Syncs to in-game time. (check 'Website', created by Ero#6117)</Description>
+    <Website>https://github.com/just-ero/LS-Autosplit_Lightmatter/blob/master/README.md</Website>
   </AutoSplitter>
 </AutoSplitters>
