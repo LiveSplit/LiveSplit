@@ -7349,4 +7349,15 @@
     <Type>Script</Type>
     <Description>Autosplitter for the 6 Sands Trilogy categories. Currently works only if played chrlonological order. (by Samabam, Smathlax and GMP)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Bubble Ghost</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.BubbleGhost/Livesplit.BubbleGhost.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.BubbleGhost</Website>
+  </AutoSplitter>
 </AutoSplitters>
