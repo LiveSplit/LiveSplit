@@ -5211,6 +5211,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Empathy: Path of Whispers</Game>
+      <Game>Empathy</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/LRFLEW/LiveSplit.Empathy/master/Components/LiveSplit.Empathy.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Autosplitter and Load Remover for Empathy: Path of Whispers</Description>
+    <Website>https://github.com/LRFLEW/LiveSplit.Empathy</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>FEAR</Game>
       <Game>FEAR: First Encounter Assault Recon</Game>
       <Game>F.E.A.R.</Game>
