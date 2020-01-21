@@ -7339,4 +7339,14 @@
     <Description>Starts and resets. Splits on every new level. Syncs to in-game time. (check 'Website', created by Ero#6117)</Description>
     <Website>https://github.com/just-ero/LS-Autosplit_Lightmatter/blob/master/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Multi-Prince of Persia-Runs</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/GMPranav/Multi-PoP-Autosplitter/master/MultiPoPSandsTrilogy.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for the 6 Sands Trilogy categories. Currently works only if played chrlonological order. (by Samabam, Smathlax and GMP)</Description>
+  </AutoSplitter>
 </AutoSplitters>
