@@ -5231,7 +5231,7 @@
     <URLs>
       <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/fear.asl</URL>
     </URLs>
-    <Type>Component</Type>
+    <Type>Script</Type>
     <Description>Load Removal and Autosplitting are available (by Kuno, Rythin)</Description>
     <Website>https://discordapp.com/invite/HvhUuHw</Website>
   </AutoSplitter>
