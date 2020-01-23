@@ -7131,11 +7131,11 @@
       <Game>Frog Detective 2: The Case of the Invisible Wizard</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_Frog-Detective-2/master/FrogDetective2.asl</URL>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Frog%20Detective%202/FrogDetective2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter and load remover. Check settings to edit where to split. (created by Ero#6117)</Description>
-    <Website>https://discordapp.gg/czC4PZW</Website>
+    <Description>Autosplitter and load remover. Check settings to edit where to split. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Frog%20Detective%202/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -7152,31 +7152,33 @@
       <Game>GNOG</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_GNOG/master/GNOG.asl</URL>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/GNOG/GNOG.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for GNOG. Starts the timer and splits whenever a level is completed. Does not do the final split. (created by Ero#6117)</Description>
+    <Description>Starts the timer and splits whenever a level is completed. Does not do the final split. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/GNOG/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>A Short Hike</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_A-Short-Hike/master/AShortHike.asl</URL>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/A%20Short%20Hike/AShortHike.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for A Short Hike. Starts and ends the timer and splits when a golden feather is collected. Compare to Game Time. (created by Ero#6117)</Description>
-    <Website>discordapp.gg/fN6r9w6</Website>
+    <Description>Starts the timer and splits upon every new golden feather and more (check 'Website'). (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/A%20Short%20Hike/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>The Spectrum Retreat</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_The-Spectrum-Retreat/master/TheSpectrumRetreat.asl</URL>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Spectrum%20Retreat/TheSpectrumRetreat.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for The Spectrum Retreat. Starts the timer and splits whenever a level is completed or the run is finished. Does not split after level 5_01. (created by Ero#6117)</Description>
+    <Description>Starts the timer and splits upon level completion and at the end of a run. Does not split after level 5_01. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Spectrum%20Retreat/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -7186,11 +7188,11 @@
       <Game>Where is 2020?</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_Where-is-New-Year/master/WhereIsNewYear.asl</URL>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Where%20is%20New%20Year%3F/WhereIsNewYear.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for multiple games in the Where is New Year? series. Check 'Website' for information on compatibility. (created by Ero)</Description>
-    <Website>https://github.com/just-ero/LS-Autosplit_Where-is-New-Year/blob/master/README.md</Website>
+    <Description>Check 'Website' for information on compatibility. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Where%20is%20New%20Year%3F/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -7332,11 +7334,11 @@
       <Game>Lightmatter</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LS-Autosplit_Lightmatter/master/Lightmatter.asl</URL>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Lightmatter/Lightmatter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Starts and resets. Splits on every new level. Syncs to in-game time. (check 'Website', created by Ero#6117)</Description>
-    <Website>https://github.com/just-ero/LS-Autosplit_Lightmatter/blob/master/README.md</Website>
+    <Description>Starts, resets and splits on every new level. IL support in settings. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Lightmatter/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
