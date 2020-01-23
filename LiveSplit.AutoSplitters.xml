@@ -5637,6 +5637,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+        <Game>Viscera Cleanup Detail</Game>
+        <Game>VCD</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/NoTeefy/VCD-AutoSplit/master/VCD.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Loadless Timer (By NoTeefy)</Description>
+    <Website>https://discord.gg/AdBKn5P</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Little Nightmares</Game>
     </Games>
     <URLs>
