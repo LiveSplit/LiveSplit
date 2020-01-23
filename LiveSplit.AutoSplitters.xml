@@ -7208,7 +7208,7 @@
         <Game>AxySnake</Game>
     </Games>
     <URLs>
-        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/AxySnake.asl</URL>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/AxySnake.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description> Autosplitting available (by rythin) </Description>
@@ -7218,7 +7218,7 @@
         <Game>Magiczna Kula Papatki</Game>
     </Games>
     <URLs>
-        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/MagicznaKulaPapatki.asl</URL>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/MagicznaKulaPapatki.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description> Autosplitting and Load Removal available (by rythin) </Description>
@@ -7230,7 +7230,7 @@
 	<Game>Octahedron Transfixed Edition</Game>
     </Games>
     <URLs>
-        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/OctahedronCurrentPatch.asl</URL>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/OctahedronCurrentPatch.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description> Autosplitting and Game Time available for current patch (by rythin) </Description>
@@ -7241,7 +7241,7 @@
 	<Game>SAS Secure Tomorrow</Game>
     </Games>
     <URLs>
-        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/SASSecureTomorrow.asl</URL>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/SASSecureTomorrow.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description> Autosplitting and Load Removal available (by rythin) </Description>
@@ -7255,7 +7255,7 @@
 	<Game>Yo! Noid 2 Enter the Void</Game>
     </Games>
     <URLs>
-        <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/YoNoid2GoaY.asl</URL>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/YoNoid2GoaY.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description> Autosplitting available for Game of a Year Edition (w/ IGT Mod) (by rythin) </Description>
