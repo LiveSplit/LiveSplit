@@ -7374,3 +7374,15 @@
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.BubbleGhost</Website>
   </AutoSplitter>
 </AutoSplitters>
+  <AutoSplitter>
+    <Games>
+      <Game>F-Zero</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/remigranotier/Autosplitters/blob/master/FZero.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Reset/Split on race's end or lap's end (by LeRemiii)</Description>
+    <Website>https://github.com/remigranotier/Autosplitters</Website>
+  </AutoSplitter>
+</AutoSplitters>
