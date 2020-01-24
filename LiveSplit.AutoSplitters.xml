@@ -7384,4 +7384,15 @@
     <Description>Auto Start/Split/Reset on each race/lap (by LeRemiii)</Description>
     <Website>https://github.com/remigranotier/Autosplitters</Website>
   </AutoSplitter>
+    <AutoSplitter>
+      <Games>
+        <Game>FEAR 2</Game>
+	<Game>F.E.A.R. 2</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/FEAR2.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description> Load Removal and Autosplitting available (by rythin)</Description>
+     </AutoSplitter> 
 </AutoSplitters>
