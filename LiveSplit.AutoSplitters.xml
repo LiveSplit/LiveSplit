@@ -7373,8 +7373,7 @@
     <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.BubbleGhost</Website>
   </AutoSplitter>
-</AutoSplitters>
- <AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>F-Zero</Game>
     </Games>
