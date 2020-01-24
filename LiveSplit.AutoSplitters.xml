@@ -7035,6 +7035,17 @@
     <Description>AutoSplitter. (by AniMeliodas)</Description>
     <Website>speedrun.com/patriotdemokratizatsiya</Website>
 </AutoSplitter>
+	<AutoSplitter>
+    <Games>
+      <Game>Collapse: The Rage</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/animeliodas/Collapse-The-Rage/master/CollapsRage.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal. (by AniMeliodas)</Description>
+    <Website>speedrun.com/collapse_the_rage</Website>
+</AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>911 Fire Rescue</Game>
