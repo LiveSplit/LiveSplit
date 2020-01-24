@@ -7373,4 +7373,15 @@
     <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.BubbleGhost</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>F-Zero</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/remigranotier/Autosplitters/master/FZero.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Split/Reset on each race/lap (by LeRemiii)</Description>
+    <Website>https://github.com/remigranotier/Autosplitters</Website>
+  </AutoSplitter>
 </AutoSplitters>
