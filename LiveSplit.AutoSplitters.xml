@@ -7417,4 +7417,16 @@
       <Type>Script</Type>
       <Description> Load Removal and Autosplitting available (by rythin)</Description>
      </AutoSplitter> 
+<AutoSplitter>
+      <Games>
+        <Game>You Have 10 Seconds</Game>
+	<Game>You Have 10 Seconds 2</Game>
+	<Game>You Have 10 Seconds 3</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/YH10S.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description> In-Game Time (YH10S1 and 2) and Autosplitting available (by rythin)</Description>
+     </AutoSplitter>
 </AutoSplitters>
