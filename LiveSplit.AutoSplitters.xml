@@ -7429,4 +7429,15 @@
       <Type>Script</Type>
       <Description> In-Game Time (YH10S1 and 2) and Autosplitting available (by rythin)</Description>
      </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Flinthook</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Flinthook/Livesplit.Flinthook.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Flinthook</Website>
+  </AutoSplitter>
 </AutoSplitters>
