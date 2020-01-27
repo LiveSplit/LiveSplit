@@ -371,7 +371,8 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>where git
+    <PreBuildEvent>mkdir $(ProjectDir)Updates\GitInfo\
+where git
 if %25ERRORLEVEL%25 == 0 (
 git describe --dirty --always --long --tags &gt; "$(ProjectDir)Updates\GitInfo\version.txt"
 git rev-parse --abbrev-ref HEAD &gt; "$(ProjectDir)Updates\GitInfo\branch.txt"
