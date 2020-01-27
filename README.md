@@ -47,7 +47,7 @@ You can browse the [Issues](https://github.com/LiveSplit/LiveSplit/issues) to fi
 
 ## Compiling
 
-LiveSplit is written in C# 6 with Visual Studio and uses .NET Framework 4.5. To compile LiveSplit, you need one of these versions of Visual Studio:
+LiveSplit is written in C# 6 with Visual Studio and uses .NET Framework 4.6.1. To compile LiveSplit, you need one of these versions of Visual Studio:
  - Visual Studio 2015 Community Edition
  - Visual Studio 2015
 
