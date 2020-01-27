@@ -7440,4 +7440,15 @@
     <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Flinthook</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Saints Row: The Third</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/Livesplit.SR3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start and Loadless Time available (by Mr. Mary and hoxi)</Description>
+    <Website>https://discord.gg/4Kz8vqZ</Website>
+  </AutoSplitter>
 </AutoSplitters>
