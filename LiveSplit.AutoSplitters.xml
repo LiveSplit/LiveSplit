@@ -7460,5 +7460,35 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto-splitting, start, and game timer are available.</Description>
-</AutoSplitter>
+</AutoSplitter> 
+     <AutoSplitter>
+      <Games>
+        <Game>Legend of Xenia</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/LegendofXenia.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitting available (by rythin)</Description>
+     </AutoSplitter>  
+     <AutoSplitter>
+      <Games>
+        <Game>Risk of Rain</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/RiskofRain.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitting available (by rythin)</Description>
+     </AutoSplitter>   
+     <AutoSplitter>
+      <Games>
+        <Game>Chalk</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Chalk.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitting and Load Removal available (by rythin)</Description>
+     </AutoSplitter> 
 </AutoSplitters>
