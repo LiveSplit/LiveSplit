@@ -7451,4 +7451,14 @@
     <Description>Auto Splitting, Auto Start and Loadless Time available (by Mr. Mary and hoxi)</Description>
     <Website>https://discord.gg/4Kz8vqZ</Website>
   </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Knockout Daddy</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Lobstermanman/LiveSplit/master/KnockoutDaddy.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting, start, and game timer are available.</Description>
+</AutoSplitter>
 </AutoSplitters>
