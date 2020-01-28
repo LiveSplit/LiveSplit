@@ -2908,6 +2908,20 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Pokémon TCG</Game>
+      <Game>Pokéon Trading Card Game</Game>
+      <Game>Pokemon TCG</Game>
+      <Game>Pokeon Trading Card Game</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnTCG/LiveSplit.PkmnTCG.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Hwangbro)</Description>
+    <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnTCG</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Pokémon Red</Game>
       <Game>Pokémon Blue</Game>
       <Game>Pokémon Red/Blue</Game>
