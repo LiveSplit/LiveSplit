@@ -2922,6 +2922,18 @@
     <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Spiraster)</Description>
     <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.PkmnRed</Website>
   </AutoSplitter>
+ <AutoSplitter>
+    <Games>
+      <Game>Pokémon Yellow</Game>
+      <Game>Pokemon Yellow</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnYellow/LiveSplit.PkmnYellow.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Hwangbro)</Description>
+    <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnYellow</Website>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Tony Hawk's Pro Skater 3</Game>
