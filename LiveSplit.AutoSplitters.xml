@@ -2909,9 +2909,9 @@
   <AutoSplitter>
     <Games>
       <Game>Pokémon TCG</Game>
-      <Game>Pokéon Trading Card Game</Game>
+      <Game>Pokémon Trading Card Game</Game>
       <Game>Pokemon TCG</Game>
-      <Game>Pokeon Trading Card Game</Game>
+      <Game>Pokemon Trading Card Game</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnTCG/LiveSplit.PkmnTCG.asl</URL>
