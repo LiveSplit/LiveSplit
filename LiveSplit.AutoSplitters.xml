@@ -2499,10 +2499,11 @@
       <Game>Henk</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/henktools/autosplitters/master/LiveSplit.ActionHenk.asl</URL>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.ActionHenk/Livesplit.ActionHenk.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting (Any%) and Load Removal are available. (By faultyserver)</Description>
+    <Description>Auto Splitting, Auto Start/Reset and Load Remover are available (By faultyserver, badBlackShark and Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.ActionHenk</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
