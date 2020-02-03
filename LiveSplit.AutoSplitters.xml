@@ -7518,4 +7518,15 @@
       <Type>Script</Type>
       <Description>Autosplitting and Load Removal available (by rythin)</Description>
      </AutoSplitter> 
+  <AutoSplitter>
+    <Games>
+      <Game>Eagle Island</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rjr5838/LiveSplit.EagleIsland/master/Components/LiveSplit.EagleIsland.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Configurable Auto Splitter for Eagle Island (by Rivid)</Description>
+    <Website>https://github.com/rjr5838/LiveSplit.EagleIsland</Website>
+  </AutoSplitter>
 </AutoSplitters>
