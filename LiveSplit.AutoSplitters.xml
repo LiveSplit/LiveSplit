@@ -7529,4 +7529,15 @@
     <Description>Configurable Auto Splitter for Eagle Island (by Rivid)</Description>
     <Website>https://github.com/rjr5838/LiveSplit.EagleIsland</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Pedestrian</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Pedestrian/ThePedestrian.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts the timer, splits at the end. Additional splits in 'Settings'. Does not reset. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Pedestrian/README.md</Website>
+  </AutoSplitter>
 </AutoSplitters>
