@@ -7553,4 +7553,14 @@
     <Description>Starts the timer, splits at the end. Additional splits in 'Settings'. Does not reset. (by Ero)</Description>
     <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Pedestrian/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>ELDERBORN</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/MisaRistolainen/ELDERBORN-Autosplitter/master/ELDERBORN_AutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover and autosplitter for ELDERBORN. (By Kainalo)</Description>
+  </AutoSplitter>
 </AutoSplitters>
