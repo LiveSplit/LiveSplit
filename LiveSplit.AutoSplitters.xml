@@ -7597,4 +7597,14 @@
     <Description>Auto Splitting, Auto Start and Load Remover are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Kunai</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Prince of Persia: The Fallen King</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/GMPranav/Multi-PoP-Autosplitter/master/TFK_Final.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>In-game timer is available (By NoTeefy and GMP)</Description>
+  </AutoSplitter>
 </AutoSplitters>
