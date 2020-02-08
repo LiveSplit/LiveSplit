@@ -7563,4 +7563,15 @@
     <Type>Script</Type>
     <Description>Load remover and autosplitter for ELDERBORN. (By Kainalo)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Apple Slash</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.AppleSlash/Livesplit.AppleSlash.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.AppleSlash</Website>
+  </AutoSplitter>
 </AutoSplitters>
