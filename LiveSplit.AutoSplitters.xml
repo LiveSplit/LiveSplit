@@ -7563,4 +7563,38 @@
     <Type>Script</Type>
     <Description>Load remover and autosplitter for ELDERBORN. (By Kainalo)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Apple Slash</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.AppleSlash/Livesplit.AppleSlash.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.AppleSlash</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>ScourgeBringer</Game>
+      <Game>Scourge Bringer</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.ScourgeBringer/Livesplit.ScourgeBringer.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.ScourgeBringer</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Kunai</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Kunai/Livesplit.Kunai.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start and Load Remover are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Kunai</Website>
+  </AutoSplitter>
 </AutoSplitters>
