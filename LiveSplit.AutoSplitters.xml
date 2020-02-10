@@ -7607,4 +7607,14 @@
     <Type>Script</Type>
     <Description>In-game timer is available (By NoTeefy and GMP)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sayonara Wild Hearts</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/boringcactus/b6590987e7e16cbb2e1b4a2fcd870241/raw/1ea10c516d096a01080118ddaffc44c7b22c0413/SayonaraWildHearts.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split/reset (by boringcactus)</Description>
+  </AutoSplitter>
 </AutoSplitters>
