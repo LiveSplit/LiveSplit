@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
 	<Games>
+		<Game>Kokomando</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/RobinZitt/KokomandoASL/master/Kokomando.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Auto-splitting, start and load removal are available.</Description>
+	<Website>https://github.com/RobinZitt/KokomandoASL/blob/master/README.md</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+	<Games>
 		<Game>Gravitas</Game>
 	</Games>
 	<URLs>
