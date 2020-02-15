@@ -7628,4 +7628,14 @@
     <Type>Script</Type>
     <Description>Automatic start/split/reset (by boringcactus)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+      <Games>
+        <Game>Legbreaker</Game>
+      </Games>
+      <URLs>
+        <URL>https://github.com/rythin-sr/ASL-Scripts/blob/master/Legbreaker.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitting available (by rythin)</Description>
+     </AutoSplitter> 
 </AutoSplitters>
