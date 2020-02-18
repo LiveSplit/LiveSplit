@@ -7629,6 +7629,16 @@
     <Description>Automatic start/split/reset (by boringcactus)</Description>
   </AutoSplitter> 
   <AutoSplitter>
+    <Games>
+      <Game>Daemon X Machina</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Fzzy2j/DaemonXMachinaLoadRemover/master/daemonxmachina.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover Available (by Fzzy2j)</Description>
+  </AutoSplitter> 
+  <AutoSplitter>
       <Games>
         <Game>Legbreaker</Game>
       </Games>
