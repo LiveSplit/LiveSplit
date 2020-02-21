@@ -10,19 +10,23 @@ using System.Text;
 
 namespace LiveSplit.ComponentUtil
 {
-    using OffsetT = Int64;
+    using OffsetT = Int32;
 
     public class DeepPointer
     {
-        private List<OffsetT> _offsets;
+        private IntPtr _absoluteBase;
+        private bool _usingAbsoluteBase;
+
         private OffsetT _base;
+        private List<OffsetT> _offsets;
         private string _module;
-        private bool _baseIsAbsolute;
         
-        public DeepPointer(OffsetT base_, bool baseIsAbsolute_, params OffsetT[] offsets)
-            : this(base_, offsets)
+        public DeepPointer(IntPtr absoluteBase, params OffsetT[] offsets)
         {
-            _baseIsAbsolute = baseIsAbsolute_;
+            _absoluteBase = absoluteBase;
+            _usingAbsoluteBase = true;
+
+            InitializeOffsets(offsets);
         }
 
         public DeepPointer(string module, OffsetT base_, params OffsetT[] offsets)
@@ -34,9 +38,7 @@ namespace LiveSplit.ComponentUtil
         public DeepPointer(OffsetT base_, params OffsetT[] offsets)
         {
             _base = base_;
-            _offsets = new List<OffsetT>();
-            _offsets.Add(0); // deref base first
-            _offsets.AddRange(offsets);
+            InitializeOffsets(offsets);
         }
 
         public T Deref<T>(Process process, T default_ = default(T)) where T : struct // all value types including structs
@@ -144,29 +146,35 @@ namespace LiveSplit.ComponentUtil
                     return false;
                 }
 
-                ptr = (IntPtr)(module.BaseAddress.ToInt64() + _base);
+                ptr = module.BaseAddress + _base;
             }
-            else if (!_baseIsAbsolute)
+            else if (_usingAbsoluteBase)
             {
-                ptr = (IntPtr)(process.MainModuleWow64Safe().BaseAddress.ToInt64() + _base);
-            } 
+                ptr = _absoluteBase;
+            }
             else
             {
-                ptr = (IntPtr) _base;
+                ptr = process.MainModuleWow64Safe().BaseAddress + _base;
             }
-
 
             for (int i = 0; i < _offsets.Count - 1; i++)
             {
-                if (!process.ReadPointer((IntPtr)(ptr.ToInt64() + _offsets[i]), is64Bit, out ptr)
+                if (!process.ReadPointer(ptr + _offsets[i], is64Bit, out ptr)
                     || ptr == IntPtr.Zero)
                 {
                     return false;
                 }
             }
 
-            ptr = (IntPtr)(ptr.ToInt64() + _offsets[_offsets.Count - 1]);
+            ptr = ptr + _offsets[_offsets.Count - 1];
             return true;
+        }
+
+        private void InitializeOffsets(params OffsetT[] offsets)
+        {
+            _offsets = new List<OffsetT>();
+            _offsets.Add(0); // deref base first
+            _offsets.AddRange(offsets);
         }
     }
 

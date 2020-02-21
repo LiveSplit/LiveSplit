@@ -3,10 +3,7 @@
 [![GitHub release](https://img.shields.io/github/release/LiveSplit/LiveSplit.svg)](https://github.com/LiveSplit/LiveSplit/releases/latest)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LICENSE)
 [![Build status](https://ci.appveyor.com/api/projects/status/o6kwuifjotbo6t5a/branch/master?svg=true)](https://ci.appveyor.com/project/CryZe/livesplit/branch/master)
-
 [![GitHub issues](https://img.shields.io/github/issues/LiveSplit/LiveSplit.svg?style=plastic)](https://github.com/LiveSplit/LiveSplit/issues)
-[![Stories in Ready](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=ready&title=Ready)](https://waffle.io/LiveSplit/LiveSplit)
-[![Stories in Progress](https://badge.waffle.io/LiveSplit/LiveSplit.png?label=in%20progress&title=In%20Progress)](https://waffle.io/LiveSplit/LiveSplit)
 
 LiveSplit is a timer program for speedrunners that is both easy to use and full of features.
 <p align="center">
@@ -39,7 +36,7 @@ LiveSplit is a timer program for speedrunners that is both easy to use and full 
 
 We need your help!
 
-You can browse the [Issues](https://waffle.io/LiveSplit/LiveSplit) to find good issues to get started with. Select one that is not already done or in progress, assign yourself, and drag it over to "In Progress".
+You can browse the [Issues](https://github.com/LiveSplit/LiveSplit/issues) to find good issues to get started with. Select one that is not already done or in progress, assign yourself, and drag it over to "In Progress".
 
  1. [Fork](https://github.com/LiveSplit/LiveSplit/fork) the project
  2. Clone your forked repo: `git clone https://github.com/YourUsername/LiveSplit.git`
@@ -50,7 +47,7 @@ You can browse the [Issues](https://waffle.io/LiveSplit/LiveSplit) to find good 
 
 ## Compiling
 
-LiveSplit is written in C# 6 with Visual Studio and uses .NET Framework 4.5. To compile LiveSplit, you need one of these versions of Visual Studio:
+LiveSplit is written in C# 6 with Visual Studio and uses .NET Framework 4.6.1. To compile LiveSplit, you need one of these versions of Visual Studio:
  - Visual Studio 2015 Community Edition
  - Visual Studio 2015
 

@@ -151,7 +151,7 @@ ACTION_NAME
 }
 ```
 
-You can think of Actions like functions that are automatically called by the ASL Component. These functions can only interact with eachother or LiveSplit via the [special variables](#action-variables) the environment provides.
+You can think of Actions like functions that are automatically called by the ASL Component. These functions can only interact with each other or LiveSplit via the [special variables](#action-variables) the environment provides.
 
 All of the actions are optional and are declared by their name `ACTION_NAME` followed by a code block `CODE`. You trigger the action by returning a value. Returning a value is optional though; if no value is returned, the action is not triggered. Some actions are only executed while LiveSplit is connected to the process.
 
@@ -184,6 +184,8 @@ Explicitly returning `true` will prevent the `split` action from being run. This
 ##### Load Time Removal
 
 The name of this action is `isLoading`. Return `true` whenever the game is loading. LiveSplit's Game Time Timer will be paused as long as you return `true`.
+
+**NOTE**: Make sure the timer is set to "Game Time" in the layout! Failure to do so will cause the timer to keep running, as if `isLoading` had returned `false` or `isLoading` weren't triggered at all.
 
 ##### Game Time
 
@@ -232,7 +234,7 @@ update { print(vars.test.ToString()); }
 You can also store variables like this in `current` and the value will be in `old` on the next update.
 
 ##### version
-When you set `version` in `init`, the corrosponding State Descriptor will be activated. When there is no State Descriptor corrosponding to the `version`, the default one will be activated.
+When you set `version` in `init`, the corresponding State Descriptor will be activated. When there is no State Descriptor corresponding to the `version`, the default one will be activated.
 
 The default is the first defined State Descriptor with no version specified, or the first State Descriptor in the file if there is none with no version specified.
 
@@ -374,7 +376,7 @@ settings.CurrentDefaultParent = null;
 settings.Add("side_missions");
 ```
 
-Using `settings.CurrentDefaultParent` can be useful when adding several settings with the same parent, without having to specify the parent everytime.
+Using `settings.CurrentDefaultParent` can be useful when adding several settings with the same parent, without having to specify the parent every time.
 
 ##### Tooltips
 

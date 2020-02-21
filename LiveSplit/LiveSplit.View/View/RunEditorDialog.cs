@@ -616,43 +616,49 @@ namespace LiveSplit.View
                 var result = dialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    try
-                    {
-                        var image = Image.FromFile(dialog.FileName).ScaleIcon();
+                    ChangeImage(e.RowIndex, dialog.FileName, multiEdit);
+                }
+            }
+        }
 
-                        if (!multiEdit)
+        private void ChangeImage(int rowIndex, string fileName, bool multiEdit)
+        {
+            try
+            {
+                using (var image = new Bitmap(fileName).ScaleIcon())
+                {
+                    if (!multiEdit)
+                    {
+                        var oldImage = (Image) runGrid.Rows[rowIndex].Cells[ICONINDEX].Value;
+                        if (oldImage != null)
+                            ImagesToDispose.Add(oldImage);
+
+                        Run[rowIndex].Icon = new Bitmap(image);
+                        runGrid.NotifyCurrentCellDirty(true);
+                    }
+                    else
+                    {
+                        foreach (DataGridViewCell cell in runGrid.SelectedCells)
                         {
-                            var oldImage = (Image)runGrid.Rows[e.RowIndex].Cells[ICONINDEX].Value;
+                            if (cell.ColumnIndex != ICONINDEX)
+                                continue;
+
+                            var oldImage = (Image) cell.Value;
                             if (oldImage != null)
                                 ImagesToDispose.Add(oldImage);
 
-                            Run[e.RowIndex].Icon = image;
-                            runGrid.NotifyCurrentCellDirty(true);
+                            Run[cell.RowIndex].Icon = new Bitmap(image);
+                            runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
                         }
-                        else
-                        {
-                            foreach (DataGridViewCell cell in runGrid.SelectedCells)
-                            {
-                                if (cell.ColumnIndex != ICONINDEX)
-                                    continue;
-
-                                var oldImage = (Image)cell.Value;
-                                if (oldImage != null)
-                                    ImagesToDispose.Add(oldImage);
-
-                                Run[cell.RowIndex].Icon = (Image)image.Clone();
-                                runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
-                            }
-                        }
-
-                        RaiseRunEdited();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-                        MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+
+                RaiseRunEdited();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1562,6 +1568,35 @@ namespace LiveSplit.View
                     SetClickEvents(childControl);
             }
             control.Click += ClickControl;
+        }
+
+        private void runGrid_DragDrop(object sender, DragEventArgs e)
+        {
+            if (DragIsValid(e))
+            {
+                Point dgvPos = runGrid.PointToClient(new Point(e.X, e.Y));
+                DataGridView.HitTestInfo info = runGrid.HitTest(dgvPos.X, dgvPos.Y);
+                var imagePath = (e.Data.GetData(DataFormats.FileDrop) as string[])?[0];
+                ChangeImage(info.RowIndex, imagePath, false);
+                runGrid.Refresh();
+            }
+        }
+
+        private void runGrid_DragOver(object sender, DragEventArgs e)
+        {
+            e.Effect = DragIsValid(e) ? DragDropEffects.Copy : DragDropEffects.None;
+        }
+
+        private bool DragIsValid(DragEventArgs e)
+        {
+            Point dgvPos = runGrid.PointToClient(new Point(e.X, e.Y));
+            DataGridView.HitTestInfo info = runGrid.HitTest(dgvPos.X, dgvPos.Y);
+            var imagePath = (e.Data.GetData(DataFormats.FileDrop) as string[])?[0];
+
+            return e.Data.GetDataPresent(DataFormats.FileDrop)
+                   && info.ColumnIndex != -1
+                   && runGrid.Columns[info.ColumnIndex] is DataGridViewImageColumn
+                   && info.Type == DataGridViewHitTestType.Cell;
         }
     }
 
