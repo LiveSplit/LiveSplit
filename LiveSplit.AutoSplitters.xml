@@ -7658,4 +7658,16 @@
     <Type>Script</Type>
     <Description>RTA Autosplit and Autostart (by Lyliya)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+        <Game>Ice Age: Scrat's Nutty Adventure</Game>
+        <Game>Ice Age Nutty</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.IceAgeNutty/Livesplit.IceAgeNutty.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start/Reset and Load Remover are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.IceAgeNutty</Website>
+  </AutoSplitter>
 </AutoSplitters>
