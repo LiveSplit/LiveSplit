@@ -7648,4 +7648,14 @@
       <Type>Script</Type>
       <Description>Autosplitting available (by rythin)</Description>
      </AutoSplitter> 
+  <AutoSplitter>
+    <Games>
+      <Game>Color Symphony 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Lyliya/ColorSymphony2-Autosplitter/master/colorsymphony2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>RTA Autosplit and Autostart (by Lyliya)</Description>
+  </AutoSplitter>
 </AutoSplitters>
