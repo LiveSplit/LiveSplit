@@ -7680,4 +7680,14 @@
     <Type>Script</Type>
     <Description>Speedrun mode In Game Time, Auto Start and Auto Split (by Lyliya)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Reksio i Czarodzieje</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/mysliwy112/Przygody-Reksia-speedrunning/master/Reksio_i_Czarodzieje.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplit and autostart (wait longer in intro)</Description>
+  </AutoSplitter>
 </AutoSplitters>
