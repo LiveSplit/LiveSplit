@@ -7670,4 +7670,14 @@
     <Description>Auto Splitting, Auto Start/Reset and Load Remover are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.IceAgeNutty</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Extricate</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Lyliya/Extricate-Autosplitter/master/extricate.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Speedrun mode In Game Time, Auto Start and Auto Split (by Lyliya)</Description>
+  </AutoSplitter>
 </AutoSplitters>
