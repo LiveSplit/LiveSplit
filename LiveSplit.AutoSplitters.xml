@@ -7701,4 +7701,15 @@
     <Type>Script</Type> 
     <Description>Autosplitter for Tomb Raider: Anniversary Any% - No Bug Jump with 23 autosplits, load removal and autoreset by NextLevelMemes</Description> 
   </AutoSplitter>
+
+  <AutoSplitter> 
+    <Games> 
+      <Game>else Heart.Break()</Game>
+    </Games>
+    <URLs> 
+      <URL>https://raw.githubusercontent.com/plokmijnuhby/EHB-Autosplitter/master/bin/Release/ElseHeartBreak-Splitter.dll</URL>
+    </URLs>
+    <Type>Component</Type> 
+    <Description>Autosplitter and autoreset for else Heart.Break(), all categories.</Description>
+  </AutoSplitter>
 </AutoSplitters>
