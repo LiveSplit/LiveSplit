@@ -7692,3 +7692,14 @@
     <Description>Autosplit and autostart (wait longer in intro)</Description>
   </AutoSplitter>
 </AutoSplitters>
+  <AutoSplitter> 
+    <Games> 
+      <Game>Tomb Raider: Anniversary</Game>
+    </Games>
+    <URLs> 
+      <URL>https://raw.githubusercontent.com/NextLevelMemes/Master/master/traautosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type> 
+    <Description>Autosplitter for Tomb Raider: Anniversary with 23 autosplits & autoreset (By NextLevelMemes)</Description> 
+    <Website>https://raw.githubusercontent.com/NextLevelMemes/Master/master/TRAAutosplitterREADME.md</Website> 
+  </AutoSplitter>
