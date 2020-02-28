@@ -7712,4 +7712,14 @@
     <Type>Component</Type> 
     <Description>Autosplitter and autoreset for else Heart.Break(), all categories.</Description>
   </AutoSplitter>
+  <AutoSplitter> 
+    <Games> 
+      <Game>Super Hipster Lumberjack</Game>
+    </Games>
+    <URLs> 
+      <URL>https://raw.githubusercontent.com/PessimisticMango/SuperHipsterLumberjack/master/shl.asl</URL>
+    </URLs>
+    <Type>Script</Type> 
+    <Description>Auto Splitting is available (by Pessimistic Mango)</Description> 
+  </AutoSplitter>	
 </AutoSplitters>
