@@ -7733,4 +7733,15 @@
     <Type>Script</Type> 
     <Description>Auto Splitting is available (by Pessimistic Mango)</Description> 
   </AutoSplitter>	
+  <AutoSplitter>
+    <Games>
+      <Game>Bloodroots</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Bloodroots/Livesplit.Bloodroots.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Bloodroots</Website>
+  </AutoSplitter>
 </AutoSplitters>
