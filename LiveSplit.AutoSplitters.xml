@@ -54,6 +54,17 @@
     <Description>Auto-splitting, start, and game timer are available.</Description>
 </AutoSplitter>
 <AutoSplitter>
+	<Games>
+		<Game>Hyper Light Drifter</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/bloxar/HLD-Autosplitter/master/HLD-autosplit.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Autosplitting and Load Removal is available.</Description>
+	<Website>https://discord.gg/7BYvWcV</Website>
+</AutoSplitter>
+<AutoSplitter>
     <Games>
       <Game>Team Sonic Racing</Game>
     </Games>
