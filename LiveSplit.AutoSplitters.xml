@@ -7744,4 +7744,14 @@
     <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Bloodroots</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Walking Dead: Saints &amp; Sinners</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/TWDSS.ASL</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autostart/split &amp; Load Remover by Samabam</Description>
+  </AutoSplitter>
 </AutoSplitters>
