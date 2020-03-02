@@ -1,5 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+  <AutoSplitter>
+    <Games>
+      <Game>Donut County</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Donut%20County/DonutCounty.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Donut County. Check settings to edit where to split. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Donut%20County/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Frog Detective 2: The Case of the Invisible Wizard</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Frog%20Detective%202/FrogDetective2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter and load remover. Check settings to edit where to split. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Frog%20Detective%202/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>GNOG</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/GNOG/GNOG.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts the timer and splits whenever a level is completed. Does not do the final split. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/GNOG/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>A Short Hike</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/A%20Short%20Hike/AShortHike.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts the timer and splits upon every new golden feather and more (check 'Website'). (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/A%20Short%20Hike/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Spectrum Retreat</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Spectrum%20Retreat/TheSpectrumRetreat.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts the timer and splits upon level completion and at the end of a run. Does not split after level 5_01. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Spectrum%20Retreat/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Where is 2016?</Game>
+      <Game>Where is 2018?</Game>
+      <Game>Where is 2019?</Game>
+      <Game>Where is 2020?</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Where%20is%20New%20Year%3F/WhereIsNewYear.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Check 'Website' for information on compatibility. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Where%20is%20New%20Year%3F/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Lightmatter</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Lightmatter/Lightmatter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts, resets and splits on every new level. IL support in settings. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Lightmatter/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Pedestrian</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Pedestrian/ThePedestrian.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts the timer, splits at the end. Additional splits in 'Settings'. Does not reset. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Pedestrian/README.md</Website>
+  </AutoSplitter>
 	<AutoSplitter>
 	<Games>
 		<Game>Kokomando</Game>
@@ -7227,17 +7318,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Frog Detective 2: The Case of the Invisible Wizard</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Frog%20Detective%202/FrogDetective2.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Autosplitter and load remover. Check settings to edit where to split. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Frog%20Detective%202/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Youyou Kengeki Musou</Game>
     </Games>
     <URLs>
@@ -7245,53 +7325,6 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto start, auto split and load remover for YKM v1.2. Supports all speedrun.com categories (by rythin, Mr_Brood and GFM)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>GNOG</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/GNOG/GNOG.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Starts the timer and splits whenever a level is completed. Does not do the final split. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/GNOG/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>A Short Hike</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/A%20Short%20Hike/AShortHike.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Starts the timer and splits upon every new golden feather and more (check 'Website'). (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/A%20Short%20Hike/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>The Spectrum Retreat</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Spectrum%20Retreat/TheSpectrumRetreat.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Starts the timer and splits upon level completion and at the end of a run. Does not split after level 5_01. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Spectrum%20Retreat/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Where is 2016?</Game>
-      <Game>Where is 2018?</Game>
-      <Game>Where is 2019?</Game>
-      <Game>Where is 2020?</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Where%20is%20New%20Year%3F/WhereIsNewYear.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Check 'Website' for information on compatibility. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Where%20is%20New%20Year%3F/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -7428,17 +7461,7 @@
     <Type>Script</Type>
     <Description>Auto-splitting on level change is available (by ShikenNuggets)</Description>
   </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Lightmatter</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Lightmatter/Lightmatter.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Starts, resets and splits on every new level. IL support in settings. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Lightmatter/README.md</Website>
-  </AutoSplitter>
+
   <AutoSplitter>
     <Games>
       <Game>Multi-Prince of Persia-Runs</Game>
@@ -7566,17 +7589,6 @@
     <Type>Component</Type>
     <Description>Configurable Auto Splitter for Eagle Island (by Rivid)</Description>
     <Website>https://github.com/rjr5838/LiveSplit.EagleIsland</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>The Pedestrian</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Pedestrian/ThePedestrian.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Starts the timer, splits at the end. Additional splits in 'Settings'. Does not reset. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Pedestrian/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
