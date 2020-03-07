@@ -496,7 +496,7 @@
       <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/COTM.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>PC-only Autosplitter by CptBrian</Description>
+    <Description>(PC) Auto-Start, Auto-Split and Auto-Reset (By CptBrian)</Description>
     <Website>https://www.speedrun.com/bscotm/thread/jkh6x</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -507,7 +507,7 @@
       <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/BloodstainedRotN-Win64-Shipping.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>PC-only Load Remover and Autosplitter primarily by CptBrian(with help)</Description>
+    <Description>(PC) Load Removal, Auto-Start, Auto-Split and Auto-Reset (By CptBrian, DarkTechnomancer and hitachihex)</Description>
     <Website>https://www.speedrun.com/bsrotn/thread/jcq1j</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -3599,7 +3599,8 @@
       <URL>https://raw.githubusercontent.com/DerKO9/AutoSplitters/master/YookaLaylee/YookaLaylee.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal and Auto Start is available. GoG version compatible (By 0Seren and DerKO)</Description>
+    <Description>(PC) Load Removal, Auto-Start and Auto-Splits (By 0Seren, DerKO and CptBrian)</Description>
+    <Website>https://www.speedrun.com/yl</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -3612,7 +3613,8 @@
       <URL>https://raw.githubusercontent.com/DerKO9/AutoSplitters/master/YookaLaylee/YookaLayleeIL.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removal and IL mode available. (By DerKO and CptBrian)</Description>
+    <Description>(PC) Load Removal, Auto-Start, Auto-Splits and IL Mode available. (By DerKO and CptBrian)</Description>
+    <Website>https://www.speedrun.com/ylil</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
