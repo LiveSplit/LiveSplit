@@ -1,3 +1,0 @@
-﻿#print and format are two built-in functions added to ExpressionEvaluator runtime.
-print ("Printing and formatting demo:")
-print(format("{0} * {1} = {2}", 3, 4, 3 * 4))

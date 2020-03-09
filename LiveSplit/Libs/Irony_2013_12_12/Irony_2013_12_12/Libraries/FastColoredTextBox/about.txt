@@ -1,5 +1,0 @@
-Fast Colored TextBox for Syntax Highlighting
-By Pavel Torgashov
-GNU Lesser General Public License v3
-
-http://www.codeproject.com/Articles/161871/Fast-Colored-TextBox-for-syntax-highlighting

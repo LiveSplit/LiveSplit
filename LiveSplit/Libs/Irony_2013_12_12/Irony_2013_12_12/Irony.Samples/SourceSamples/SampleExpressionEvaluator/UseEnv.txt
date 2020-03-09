@@ -1,2 +1,0 @@
-# simple operation involving properties and methods of System.Environment class
-report = "Machine: #{MachineName}, OS: #{OSVersion}, User: #{UserName}"

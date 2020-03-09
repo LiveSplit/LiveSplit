@@ -1,2 +1,0 @@
-# simple calculation using imported methods of System.Math class.
-abs(-1.0) + Log10(100.0) + sqrt(9) + floor(4.5) + sin(PI/2)     # = 11

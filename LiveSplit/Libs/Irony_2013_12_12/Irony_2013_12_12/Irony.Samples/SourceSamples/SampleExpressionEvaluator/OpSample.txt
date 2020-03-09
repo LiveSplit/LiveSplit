@@ -1,5 +1,0 @@
-#Simple calculation
-x = 1 + 2 * 3      # =7
-y = --x            # = 6
-z =  x * 1.5       # = 9
-z -= y             # = 3   
