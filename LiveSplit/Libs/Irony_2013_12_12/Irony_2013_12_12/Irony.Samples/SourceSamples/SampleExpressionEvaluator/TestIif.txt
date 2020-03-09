@@ -1,4 +1,0 @@
-﻿# Testing special form "IIF"
-# and equivalent "?" operator: '1 > 0 ? "true" : 1/0'
-# notice that if-false argument is not evaluated in both cases
-iif(1 > 0, "true", 1/0)  + ", " + (1 > 0 ? "true" : 1/0)   # expected: true, true

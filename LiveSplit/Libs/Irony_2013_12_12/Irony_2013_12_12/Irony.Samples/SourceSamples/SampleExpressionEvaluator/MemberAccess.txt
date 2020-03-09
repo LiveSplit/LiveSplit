@@ -1,3 +1,0 @@
-# Member access sample
-# For more samples see EvaluatorTests.cs file in unit tests project.  
-"0123".Substring(1) + "abcd".Length + "456"[1]    # expected '12345'

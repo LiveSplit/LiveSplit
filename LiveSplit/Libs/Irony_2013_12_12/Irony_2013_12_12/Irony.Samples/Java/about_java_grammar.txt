@@ -1,6 +1,0 @@
-﻿Disclaimer:
-This grammar was contributed by codeplex user JereJones - our thanks go to him.
-I might disagree with some minor design decisions he made here, but mostly this is the question of style 
-and personal preferences. Just to make sure you understand this is not coming from me (Irony coordinator),
-so please address your questions about this grammar to the author.  
-Roman Ivantsov

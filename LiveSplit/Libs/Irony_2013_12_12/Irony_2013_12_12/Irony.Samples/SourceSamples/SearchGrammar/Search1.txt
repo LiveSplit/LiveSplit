@@ -1,1 +1,0 @@
-﻿("aluminum" +crank) OR tire 
