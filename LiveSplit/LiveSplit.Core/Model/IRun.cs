@@ -74,12 +74,41 @@ namespace LiveSplit.Model
             FixWithMethod(run, TimingMethod.RealTime);
             FixWithMethod(run, TimingMethod.GameTime);
             RemoveNullValues(run);
+            ReattachUnattachedSegmentHistoryElements(run);
         }
 
         private static void FixWithMethod(IRun run, TimingMethod method)
         {
             FixComparisonTimesAndHistory(run, method);
             RemoveDuplicates(run, method);
+        }
+
+        private static void ReattachUnattachedSegmentHistoryElements(IRun run)
+        {
+            int max_id = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty().Max();
+            int min_id = run.GetMinSegmentHistoryIndex();
+
+            int unattached_id;
+            // can't use `default` keyword because repo isn't on C# 7.1 yet so we use 0 instead
+            while ((unattached_id = run
+                .Select(seg => seg.SegmentHistory.Max().Key)
+                .Where(i => i > max_id)
+                .DefaultIfEmpty()
+                .Max()) > 0)
+            {
+                var reassign_id = min_id - 1;
+
+                foreach (Segment segment in run)
+                {
+                    if (segment.SegmentHistory.TryGetValue(unattached_id, out Time time))
+                    {
+                        segment.SegmentHistory.Add(reassign_id, time);
+                        segment.SegmentHistory.Remove(unattached_id);
+                    }
+                }
+
+                min_id = reassign_id;
+            }
         }
 
         private static void FixHistoryFromNullBestSegments(ISegment curSplit, TimingMethod method, int minIndex, int maxIndex)
