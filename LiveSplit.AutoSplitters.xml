@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
   <AutoSplitter>
+	<Games>
+		<Game>Blood: Fresh Supply</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/Psych0sisA/Autosplitters/master/BloodEX8.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter for Blood: Fresh Supply. Also pauses the time during the saving function since the pause varies depending on cpu. (by Psych0sis)</Description>
+	<Website>https://discord.gg/jf7jJRu</Website>
+  </AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Donut County</Game>
     </Games>
