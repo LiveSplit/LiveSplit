@@ -46,6 +46,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Hello Neighbor</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Hello%20Neighbor/HelloNeighbor.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts the timer. Pauses when the game is loading. Compare against game time! (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Hello%20Neighbor/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>A Short Hike</Game>
     </Games>
     <URLs>
