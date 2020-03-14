@@ -7795,6 +7795,17 @@
       <URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/TWDSS.ASL</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autostart/split &amp; Load Remover by Samabam</Description>
+    <Description>Autostart/split/reset &amp; Load Remover by Samabam</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>DooM VFR</Game>
+      <Game>DooMVFR</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/DOOMVFR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autostart/split/reset &amp; Load Remover by Samabam</Description>
   </AutoSplitter>
 </AutoSplitters>
