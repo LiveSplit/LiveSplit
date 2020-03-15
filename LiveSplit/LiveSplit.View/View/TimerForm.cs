@@ -2740,5 +2740,22 @@ namespace LiveSplit.View
         {
             ResizingInitialAspectRatio = null;
         }
+
+        private void SetClickThrough(bool isClickThrough)
+        {
+            uint initialStyle = GetWindowLong(this.Handle, -20);
+            uint newStyle;
+            if (isClickThrough)
+                newStyle = initialStyle | 0x80000 | 0x20;
+            else
+            {
+                if ((initialStyle & 0x80000) > 0)
+                    initialStyle -= 0x80000;
+                if ((initialStyle & 0x20) > 0)
+                    initialStyle -= 0x20;
+                newStyle = initialStyle;
+            }
+            SetWindowLong(this.Handle, -20, newStyle);
+        }
     }
 }
