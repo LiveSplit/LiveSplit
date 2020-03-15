@@ -7819,4 +7819,15 @@
     <Type>Script</Type>
     <Description>Autostart/split/reset &amp; Load Remover by Samabam</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Ori and the Will of the Wisps</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.OriWotW/master/Components/LiveSplit.OriWotW.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.OriWotW</Website>
+  </AutoSplitter>
 </AutoSplitters>
