@@ -40,6 +40,11 @@ namespace LiveSplit.View
             get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].DoubleTapPrevention; }
             set { Settings.HotkeyProfiles[SelectedHotkeyProfile].DoubleTapPrevention = value; }
         }
+        public bool ClickThrough
+        {
+            get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].ClickThrough; }
+            set { Settings.HotkeyProfiles[SelectedHotkeyProfile].ClickThrough = value; }
+        }
         public bool DeactivateHotkeysForOtherPrograms
         {
             get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].DeactivateHotkeysForOtherPrograms; }
@@ -64,6 +69,7 @@ namespace LiveSplit.View
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
             chkWarnOnReset.DataBindings.Add("Checked", Settings, "WarnOnReset");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
+            chkClickThrough.DataBindings.Add("Checked", this, "ClickThrough");
 
             UpdateDisplayedHotkeyValues();
             RefreshRemoveButton();
@@ -89,6 +95,7 @@ namespace LiveSplit.View
 
             chkGlobalHotkeys.Checked = GlobalHotkeysEnabled;
             chkDoubleTap.Checked = DoubleTapPrevention;
+            chkClickThrough.Checked = ClickThrough;
             txtDelay.Text = HotkeyDelay.ToString();
             chkDeactivateForOtherPrograms.Checked = DeactivateHotkeysForOtherPrograms;
 

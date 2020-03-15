@@ -301,11 +301,29 @@ namespace LiveSplit.View
 
             SizeChanged += TimerForm_SizeChanged;
 
+            // Add event listener
+            Model.OnStart += Model_OnEvent;
+            Model.OnUndoSplit += Model_OnEvent;
+            Model.OnResume += Model_OnEvent;
+
             TopMost = Layout.Settings.AlwaysOnTop;
             BackColor = Color.Black;
 
             Server = new CommandServer(CurrentState);
             Server.Start();
+        }
+
+        private void Model_OnEvent(object sender, EventArgs e)
+        {
+            // If disabled
+            if (!Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].ClickThrough)
+            {
+                SetClickThrough(false);
+                return;
+            }
+
+            // Set state
+            SetClickThrough(Model.CurrentState.CurrentPhase == TimerPhase.Running);
         }
 
         void SetWindowTitle()

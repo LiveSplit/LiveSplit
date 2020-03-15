@@ -20,6 +20,7 @@ namespace LiveSplit.Options
         public bool GlobalHotkeysEnabled { get; set; }
         public bool DeactivateHotkeysForOtherPrograms { get; set; }
         public bool DoubleTapPrevention { get; set; }
+        public bool ClickThrough { get; set; }
 
         public const string DefaultHotkeyProfileName = "Default";
 
