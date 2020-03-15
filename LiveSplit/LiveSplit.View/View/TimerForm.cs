@@ -302,9 +302,14 @@ namespace LiveSplit.View
             SizeChanged += TimerForm_SizeChanged;
 
             // Add event listener
-            Model.OnStart += Model_OnEvent;
-            Model.OnUndoSplit += Model_OnEvent;
-            Model.OnResume += Model_OnEvent;
+            Model.OnStart += Model_OnStateChanged;
+            Model.OnSplit += Model_OnStateChanged;
+            Model.OnSkipSplit += Model_OnStateChanged;
+            Model.OnUndoSplit += Model_OnStateChanged;
+            Model.OnReset += Model_OnReset;
+            Model.OnPause += Model_OnStateChanged;
+            Model.OnResume += Model_OnStateChanged;
+            Model.OnUndoAllPauses += Model_OnStateChanged;
 
             TopMost = Layout.Settings.AlwaysOnTop;
             BackColor = Color.Black;
@@ -313,7 +318,12 @@ namespace LiveSplit.View
             Server.Start();
         }
 
-        private void Model_OnEvent(object sender, EventArgs e)
+        private void Model_OnReset(object sender, TimerPhase value)
+        {
+            Model_OnStateChanged(sender, null);
+        }
+
+        private void Model_OnStateChanged(object sender, EventArgs e)
         {
             // If disabled
             if (!Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].ClickThrough)

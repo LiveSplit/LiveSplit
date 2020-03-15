@@ -394,5 +394,17 @@ namespace LiveSplit.View
             WebCredentials.DeleteAllCredentials();
             RefreshLogOutButton();
         }
+
+        private bool lastGlobalValue = false;
+        private void chkClickThrough_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkClickThrough.Checked)
+            {
+                lastGlobalValue = chkGlobalHotkeys.Checked;
+                chkGlobalHotkeys.Checked = true;
+            }
+            else
+                chkGlobalHotkeys.Checked = lastGlobalValue;
+        }
     }
 }

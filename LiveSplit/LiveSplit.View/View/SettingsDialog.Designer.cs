@@ -611,13 +611,15 @@
             // 
             this.chkClickThrough.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkClickThrough.AutoSize = true;
+            this.tableLayoutPanel2.SetColumnSpan(this.chkClickThrough, 2);
             this.chkClickThrough.Location = new System.Drawing.Point(7, 296);
             this.chkClickThrough.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkClickThrough.Name = "chkClickThrough";
-            this.chkClickThrough.Size = new System.Drawing.Size(168, 17);
+            this.chkClickThrough.Size = new System.Drawing.Size(302, 17);
             this.chkClickThrough.TabIndex = 10;
-            this.chkClickThrough.Text = "Click Through On Run";
+            this.chkClickThrough.Text = "Click Through On Run (Require Global Hotkeys !)";
             this.chkClickThrough.UseVisualStyleBackColor = true;
+            this.chkClickThrough.CheckedChanged += new System.EventHandler(this.chkClickThrough_CheckedChanged);
             // 
             // SettingsDialog
             // 
