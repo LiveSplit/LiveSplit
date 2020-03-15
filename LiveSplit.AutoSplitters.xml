@@ -161,7 +161,7 @@
       <Game>Golf It!</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/esseivan/autosplitters/master/golf_it/golf_it.asl</URL>
+      <URL>https://raw.githubusercontent.com/sflofty/autosplitters/master/golf_it/golf_it.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto-splitting, start, and game timer are available (By sflofty, edited by EsseivaN)</Description>
