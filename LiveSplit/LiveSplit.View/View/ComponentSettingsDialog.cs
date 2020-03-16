@@ -1,6 +1,7 @@
 ﻿using LiveSplit.UI;
 using LiveSplit.UI.Components;
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -40,6 +41,7 @@ namespace LiveSplit.View
 
         protected void AddControl(string name, Control control)
         {
+            control.Location = new Point(0, 0);
             panel.Controls.Add(control);
             Name = name + " Settings";
         }
