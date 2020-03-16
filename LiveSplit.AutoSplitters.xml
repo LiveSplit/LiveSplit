@@ -7548,14 +7548,32 @@
 <AutoSplitter>
       <Games>
         <Game>You Have 10 Seconds</Game>
-	<Game>You Have 10 Seconds 2</Game>
-	<Game>You Have 10 Seconds 3</Game>
       </Games>
       <URLs>
         <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/YH10S.asl</URL>
       </URLs>
       <Type>Script</Type>
-      <Description> In-Game Time (YH10S1 and 2) and Autosplitting available (by rythin)</Description>
+      <Description> In-Game Time and Autosplitting available (by rythin)</Description>
+     </AutoSplitter>
+<AutoSplitter>
+      <Games>
+        <Game>You Have 10 Seconds 2</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/YH10S2.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description> In-Game Time and Autosplitting available (by rythin)</Description>
+     </AutoSplitter>
+<AutoSplitter>
+      <Games>
+        <Game>You Have 10 Seconds 3</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/YH10S3.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitting available (by rythin)</Description>
      </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -7830,4 +7848,19 @@
     <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.OriWotW</Website>
   </AutoSplitter>
+<AutoSplitter>
+      <Games>
+        <Game>Bakoma 3D Games</Game>
+	<Game>Bakuś 3D Games</Game>
+	<Game>Bakus 3D Games</Game>
+	<Game>Bakoma</Game>
+      	<Game>Bakuś</Game>
+      	<Game>Bakus</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Bakoma.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitting and Load Removal available (by rythin)</Description>
+     </AutoSplitter>
 </AutoSplitters>
