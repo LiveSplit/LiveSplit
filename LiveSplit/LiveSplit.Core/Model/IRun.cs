@@ -91,7 +91,7 @@ namespace LiveSplit.Model
             int unattached_id;
             // can't use `default` keyword because repo isn't on C# 7.1 yet so we use 0 instead
             while ((unattached_id = run
-                .Select(seg => seg.SegmentHistory.Max().Key)
+                .Select(seg => seg.SegmentHistory.Select(x => x.Key).DefaultIfEmpty().Max())
                 .Where(i => i > max_id)
                 .DefaultIfEmpty()
                 .Max()) > 0)
