@@ -7891,4 +7891,14 @@
       <Type>Script</Type>
       <Description>Autosplitting and Load Removal available (by rythin)</Description>
      </AutoSplitter>
+<AutoSplitter>
+      <Games>
+        <Game>Maluch Racer</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/Livesplit.Maluch.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitting, auto-start/reset and load removal available (by Mr. Mary)</Description>
+     </AutoSplitter>
 </AutoSplitters>
