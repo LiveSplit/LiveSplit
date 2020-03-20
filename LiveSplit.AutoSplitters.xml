@@ -7891,4 +7891,25 @@
       <Type>Script</Type>
       <Description>Autosplitting and Load Removal available (by rythin)</Description>
      </AutoSplitter>
+<AutoSplitter>
+      <Games>
+        <Game>Maluch Racer</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/Livesplit.Maluch.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitting, auto-start/reset and load removal available (by Mr. Mary)</Description>
+     </AutoSplitter>
+<AutoSplitter>
+      <Games>
+        <Game>Sammy Surykatka</Game>
+	<Game>Sammy Suricate in Lion Land</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.Sammy.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitting and auto-start available for the Polish version (by Mr. Mary). If split occurs on 0:00, please restart your game.</Description>
+     </AutoSplitter>
 </AutoSplitters>
