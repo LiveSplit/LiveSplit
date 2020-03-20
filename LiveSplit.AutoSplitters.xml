@@ -3083,7 +3083,7 @@
     <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Spiraster)</Description>
     <Website>https://github.com/Spiraster/ASLScripts/tree/master/LiveSplit.PkmnRed</Website>
   </AutoSplitter>
- <AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Pokémon Yellow</Game>
       <Game>Pokemon Yellow</Game>
@@ -3094,6 +3094,34 @@
     <Type>Script</Type>
     <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Hwangbro)</Description>
     <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnYellow</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Pokémon Gold</Game>
+      <Game>Pokémon Silver</Game>
+      <Game>Pokémon Gold/Silver</Game>
+      <Game>Pokemon Gold</Game>
+      <Game>Pokemon Silver</Game>
+      <Game>Pokemon Gold/Silver</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnGold/LiveSplit.PkmnGold.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available on GSR. (By Hwangbro)</Description>
+    <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnGold</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Pokémon Crystal</Game>
+      <Game>Pokemon Crystal</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnCrystal/LiveSplit.PkmnCrystal.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting is available on GSR. (By Hwangbro)</Description>
+    <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnCrystal</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
