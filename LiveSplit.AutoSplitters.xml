@@ -7876,6 +7876,18 @@
     <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.OriWotW</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Kula World</Game>
+      <Game>Roll Away</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/archieyates/Autosplitters/master/KulaWorld.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplit by level or world (by Reicha7)</Description>
+    <Website>http://archieyates.co.uk/</Website>
+  </AutoSplitter>
 <AutoSplitter>
       <Games>
         <Game>Bakoma 3D Games</Game>
