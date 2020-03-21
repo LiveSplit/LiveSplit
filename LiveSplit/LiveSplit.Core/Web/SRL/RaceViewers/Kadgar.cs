@@ -1,20 +1,17 @@
-﻿using System.Diagnostics;
+﻿using LiveSplit.Model;
+using System.Diagnostics;
 using System.Text;
 
 namespace LiveSplit.Web.SRL.RaceViewers
 {
     public class Kadgar : IRaceViewer
     {
-        public void ShowRace(dynamic race)
+        public void ShowRace(IRaceInfo race)
         {
             var builder = new StringBuilder();
             builder.Append("http://kadgar.net/live/");
-            foreach (var entrant in race.entrants.Properties.Values)
-            {
-                if (entrant.statetext == "Forfeit" || entrant.time >= 0)
-                    continue;
-
-                var stream = entrant.twitch;
+            foreach (var stream in race.LiveStreams)
+            {                
                 builder.Append(stream);
                 builder.Append(",");
             }

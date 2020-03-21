@@ -91,3 +91,7 @@
 [submodule "LiveSplit/Components/LiveSplit.BlankSpace"]
 	path = LiveSplit/Components/LiveSplit.BlankSpace
 	url = https://github.com/LiveSplit/LiveSplit.BlankSpace.git
+[submodule "LiveSplit/Components/LiveSplit.Racetime"]
+	path = LiveSplit/Components/LiveSplit.Racetime
+	url = https://github.com/steto-scope/LiveSplit.Racetime.git
+	branch = stable

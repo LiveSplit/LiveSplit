@@ -74,7 +74,7 @@ namespace LiveSplit.Model
 
                     if (url != URLs.First())
                     {
-                        var factory = ComponentManager.LoadFactory(localPath);
+                        var factory = ComponentManager.LoadFactory<IComponentFactory>(localPath);
                         if (factory != null)
                             ComponentManager.ComponentFactories.Add(fileName, factory);
                     }
@@ -104,7 +104,7 @@ namespace LiveSplit.Model
 
             if (Type == AutoSplitterType.Component)
             {
-                var factory = ComponentManager.LoadFactory(LocalPath);
+                var factory = ComponentManager.LoadFactory<IComponentFactory>(LocalPath);
                 ComponentManager.ComponentFactories.Add(Path.GetFileName(LocalPath), factory);
             }
         }

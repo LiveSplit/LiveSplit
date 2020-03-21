@@ -38,11 +38,10 @@
             this.closeSplitsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.controlMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.comparisonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.shareMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.racingMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newRaceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.endRaceSection = new System.Windows.Forms.ToolStripSeparator();
             this.editLayoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openLayoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveLayoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +58,6 @@
             this.pauseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoPausesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotkeysMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.comparisonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RightClickMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,8 +74,7 @@
             this.comparisonMenuItem,
             this.toolStripSeparator1,
             this.shareMenuItem,
-            this.racingMenuItem,
-            this.toolStripSeparator3,
+            this.endRaceSection,
             this.editLayoutMenuItem,
             this.openLayoutMenuItem,
             this.saveLayoutMenuItem,
@@ -139,35 +136,19 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(163, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // shareMenuItem
             // 
             this.shareMenuItem.Name = "shareMenuItem";
-            this.shareMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.shareMenuItem.Size = new System.Drawing.Size(180, 22);
             this.shareMenuItem.Text = "Share...";
             this.shareMenuItem.Click += new System.EventHandler(this.shareMenuItem_Click);
             // 
-            // racingMenuItem
+            // endRaceSection
             // 
-            this.racingMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newRaceToolStripMenuItem});
-            this.racingMenuItem.Name = "racingMenuItem";
-            this.racingMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.racingMenuItem.Text = "Races";
-            this.racingMenuItem.MouseLeave += new System.EventHandler(this.racingMenuItem_MouseLeave);
-            this.racingMenuItem.MouseHover += new System.EventHandler(this.racingMenuItem_MouseHover);
-            // 
-            // newRaceToolStripMenuItem
-            // 
-            this.newRaceToolStripMenuItem.Name = "newRaceToolStripMenuItem";
-            this.newRaceToolStripMenuItem.Size = new System.Drawing.Size(135, 22);
-            this.newRaceToolStripMenuItem.Text = "New Race...";
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(163, 6);
+            this.endRaceSection.Name = "endRaceSection";
+            this.endRaceSection.Size = new System.Drawing.Size(166, 6);
             // 
             // editLayoutMenuItem
             // 
@@ -334,9 +315,7 @@
         private System.Windows.Forms.ToolStripMenuItem editLayoutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveLayoutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem shareMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem racingMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newRaceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator endRaceSection;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem controlMenuItem;
         private System.Windows.Forms.ToolStripMenuItem splitMenuItem;
