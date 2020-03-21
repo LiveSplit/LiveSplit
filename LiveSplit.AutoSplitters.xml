@@ -7924,4 +7924,15 @@
       <Type>Script</Type>
       <Description>Autosplitting and auto-start available for the Polish version (by Mr. Mary). If split occurs on 0:00, please restart your game.</Description>
      </AutoSplitter>
+     <AutoSplitter>
+      <Games>
+        <Game>Salt &amp; Sanctuary</Game>
+        <Game>Salt and Sanctuary</Game>
+      </Games>
+      <URLs>
+        <URL>https://https://raw.githubusercontent.com/seanpr96/LiveSplit.Salt/master/Livesplit.Salt/Components/LiveSplit.Salt.dll</URL>
+      </URLs>
+      <Type>Component</Type>
+      <Description>Autosplitting and auto-start available (by seanpr)</Description>
+     </AutoSplitter>
 </AutoSplitters>
