@@ -5154,6 +5154,28 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Mega Man ZX Advent</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Ikkisoad/MegaManZxDreamTeam/blob/master/Autosplitters/MegaManZXAdvent.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man ZX Advent</Description>
+    <Website>https://github.com/Ikkisoad/MegaManZxDreamTeam/tree/master/Autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Rockman ZX Advent</Game>
+    </Games>
+    <URLs>
+      <URL>https://github.com/Ikkisoad/MegaManZxDreamTeam/blob/master/Autosplitters/RockmanZXAdvent.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Rockman ZX Advent</Description>
+    <Website>https://github.com/Ikkisoad/MegaManZxDreamTeam/tree/master/Autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Timespinner</Game>
     </Games>
     <URLs>
