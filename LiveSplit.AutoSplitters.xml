@@ -5151,13 +5151,35 @@
     <Type>Script</Type>
     <Description>Autosplitter for Mega Man Zero 4 (By Coltaho)</Description>
     <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaManZero4/README.md</Website>
+  </AutoSplitter>  
+  <AutoSplitter>
+    <Games>
+      <Game>Mega Man ZX</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Ikkisoad/MegaManZxDreamTeam/master/Autosplitters/MegaManZX.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Mega Man ZX</Description>
+    <Website>https://github.com/Ikkisoad/MegaManZxDreamTeam/blob/master/Autosplitters/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Rockman ZX</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Ikkisoad/MegaManZxDreamTeam/master/Autosplitters/RockmanZX.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Rockman ZX</Description>
+    <Website>https://github.com/Ikkisoad/MegaManZxDreamTeam/blob/master/Autosplitters/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Mega Man ZX Advent</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Ikkisoad/MegaManZxDreamTeam/master/Autosplitters/RockmanZXAdvent.asl</URL>
+      <URL>https://raw.githubusercontent.com/Ikkisoad/MegaManZxDreamTeam/master/Autosplitters/MegaManZXAdvent.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitter for Mega Man ZX Advent</Description>
