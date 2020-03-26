@@ -2570,6 +2570,8 @@
       <Game>Road to Gehenna</Game>
       <Game>Gehenna</Game>
       <Game>The Talos Principle Category Extensions</Game>
+      <Game>The Talos Principle Custom Maps</Game>
+      <Game>The Talos Principle VR</game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.TheTalosPrinciple.asl</URL>
@@ -2582,6 +2584,7 @@
     <Games>
       <Game>The Witness</Game>
       <Game>Witness</Game>
+      <Game>The Witness Category Extensions</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.TheWitness2.asl</URL>
