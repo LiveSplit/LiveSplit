@@ -1681,10 +1681,10 @@
       <Game>BioShock</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/MrWalrus3451/413423315910e1103149/raw/052ebaffde0d06cfd5f2599523ed1b812706e590/LiveSplit.Bioshock.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/BS1-ASL/master/Bioshock.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By MrWalrus)</Description>
+    <Description>Load Removal and Auto Start/Split are available. (By Glurmo, TheShalty, and PrototypeAlpha)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -2081,10 +2081,10 @@
       <Game>BioShock 2: Minerva's Den (DLC)</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Glurmo/LiveSplit.Scripts/master/LiveSplit.BioShock2.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/BS2-ASL/master/Bioshock2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Glurmo)</Description>
+    <Description>Load Removal and Auto Start/Split are available. (By Glurmo and PrototypeAlpha)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
