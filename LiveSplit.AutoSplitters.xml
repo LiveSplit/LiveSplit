@@ -7691,7 +7691,7 @@
         <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/RiskofRain.asl</URL>
       </URLs>
       <Type>Script</Type>
-      <Description>Autosplitting available (by rythin)</Description>
+      <Description>Autosplitting and Game Time available (by rythin)</Description>
      </AutoSplitter>   
      <AutoSplitter>
       <Games>
@@ -7973,4 +7973,28 @@
       <Type>Component</Type>
       <Description>Autosplitting and auto-start available (by seanpr)</Description>
      </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Pulstario</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Pulstario.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Game Time available (by rythin) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Crazy Machines: Inventors Training Camp</Game>
+			<Game>Crazy Machines Inventors Training Camp</Game>
+			<Game>Crazy Machines 1.5: Inventors Training Camp</Game>
+			<Game>Crazy Machines 1.5 Inventors Training Camp</Game>
+			<Game>Inventors Training Camp</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachinesInventorsTrainingCamp.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Game Time available (by rythin) </Description>
+	</AutoSplitter>
 </AutoSplitters>
