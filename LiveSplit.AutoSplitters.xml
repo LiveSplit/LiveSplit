@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
   <AutoSplitter>
+    <Games>
+      <Game>The Hobbit</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/GabrielVonSchneider/Livesplit-Autosplitters/master/hobbit-1.3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter by MD_Pi for version 1.3</Description>
+    <Website>https://github.com/GabrielVonSchneider/Livesplit-Autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
 	<Games>
 		<Game>Duke Nukem 3D</Game>
 	</Games>
