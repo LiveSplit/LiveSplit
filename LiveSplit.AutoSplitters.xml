@@ -14,12 +14,16 @@
   <AutoSplitter>
 	<Games>
 		<Game>Duke Nukem 3D</Game>
+		<Game>Duke it out in DC</Game>
+		<Game>Duke: Nuclear Winter</Game>
+		<Game>Duke Caribbean: Life's a Beach</Game>
+		<Game>Duke Nukem 3D: 20th Anniversary World Tour</Game>
 	</Games>
 	<URLs>
 		<URL>https://raw.githubusercontent.com/dauswectus/LiveSplit.Autosplitters/master/Livesplit.Duke3D.asl</URL>
 	</URLs>
 	<Type>Script</Type>
-	<Description> Autosplitter for pkDuke3D, Megaton Edition, Eduke32 and World Tour versions (by Dauswectus, NABN00B)</Description>
+	<Description> Autosplitter for EDuke32, Megaton Edition, pkDuke3D, and 20th Anniversary World Tour editions (by Dauswectus)</Description>
 	<Website>https://discord.gg/jf7jJRu</Website>
   </AutoSplitter>
   <AutoSplitter>
