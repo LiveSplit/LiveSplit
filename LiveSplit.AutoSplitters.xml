@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+   <AutoSplitter>
+	<Games>
+		<Game>Duke Nukem 3D</Game>
+	</Games>
+	<URLs>
+		<URL>https://github.com/dauswectus/LiveSplit.Autosplitters/blob/master/Livesplit.Duke3D.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter for pkDuke3D, Megaton Edition, Eduke32 and World Tour versions (by Dauswectus, NABN00B)</Description>
+	<Website>https://discord.gg/jf7jJRu</Website>
+  </AutoSplitter>
   <AutoSplitter>
 	<Games>
 		<Game>Blood: Fresh Supply</Game>
