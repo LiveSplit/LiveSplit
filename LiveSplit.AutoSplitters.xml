@@ -8008,4 +8008,24 @@
 		<Type>Script</Type>
 		<Description> Autosplitting and Game Time available (by rythin) </Description>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Featherfall</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Featherfall.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Game Time available (by rythin)</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Super Blue Boy Planet</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/SuperBlueBoyPlanet.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitting available (by rythin and eddiesaurus87) </Description>
+	</AutoSplitter>
 </AutoSplitters>
