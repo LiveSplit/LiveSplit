@@ -8043,4 +8043,14 @@
 		<Type>Script</Type>
 		<Description>Autosplitting available (by rythin and eddiesaurus87) </Description>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Half-Life: Alyx</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Lyfeless/Alyx-Autosplitter/master/splitter</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Load Removal Availible, Autosplitting WIP (by Lyfeless and DerKO)</Description>
+	</AutoSplitter>
 </AutoSplitters>
