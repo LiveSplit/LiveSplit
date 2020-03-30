@@ -624,13 +624,16 @@
       <Game>Dark Messiah of Might and Magic</Game>
       <Game>Dear Esther</Game>
       <Game>E.Y.E: Divine Cybermancy</Game>
+      <Game>Half-Life: Source</Game>
       <Game>Half-Life 2</Game>
+      <Game>Half-Life 2 Category Extensions</Game>
       <Game>Half-Life 2: Episode One</Game>
       <Game>Half-Life 2: Episode Two</Game>
       <Game>Half-Life 2: Lost Coast</Game>
       <Game>Half-Life 2: Sniper's Episode</Game>
       <Game>Half-Life 2: Ghosting Mod</Game>
       <Game>Half-Life 2 Mods</Game>
+      <Game>Half-Life 2 Done Portal</Game>
       <Game>Portal</Game>
       <Game>Portal: Prelude</Game>
       <Game>Portal Elevators</Game>
@@ -685,6 +688,7 @@
         <Game>Nightmare House 2</Game>
         <Game>The Forgotten Ones</Game>
         <Game>Grey</Game>
+ 	<Game>Hunt Down the Freeman</Game>
     </Games>
     <URLs>
       <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.SourceSplit.dll</URL>
@@ -2343,6 +2347,7 @@
 	  <Game>Crack-Life: Campaign Mode</Game>
 	  <Game>Crowbar of Time</Game>
 	  <Game>Five Zero – Stone Temple</Game>
+	  <Game>Half-Life Category Extensions</Game>
 	  <Game>Half-Life: Anti-Climax</Game>
 	  <Game>Half-Life: Before</Game>
 	  <Game>Half-Life: Residual Life</Game>
