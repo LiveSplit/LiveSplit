@@ -94,6 +94,3 @@
 [submodule "LiveSplit/Libs/livesplit-core"]
 	path = LiveSplit/Libs/livesplit-core
 	url = https://github.com/CryZe/livesplit-core
-[submodule "LiveSplit/Components/LiveSplit.PartialRunPrediction"]
-	path = LiveSplit/Components/LiveSplit.PartialRunPrediction
-	url = https://github.com/nathanesau/LiveSplit.PartialRunPrediction
