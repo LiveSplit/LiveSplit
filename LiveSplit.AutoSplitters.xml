@@ -8053,4 +8053,15 @@
 		<Type>Script</Type>
 		<Description>Load Removal Availible, Autosplitting WIP (by Lyfeless and DerKO)</Description>
 	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Quantum Break</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tvwolfsnake/quantum-break-autosplitter/master/quantumbreakautosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal, automatic timer start, automatic splitting (by tvwolfsnake)</Description>
+        <Website>https://github.com/tvwolfsnake/quantum-break-autosplitter</Website>
+    </AutoSplitter>
 </AutoSplitters>
