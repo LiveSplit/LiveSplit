@@ -6259,10 +6259,10 @@
       <Game>Call of Duty: Black Ops</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/BlOps.asl</URL>
+      <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/BLACKOPS.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load remover is available (by AlexYeahNot)</Description>
+    <Description>Autosplitter/loadremover (By KunoDemetires)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
