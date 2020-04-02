@@ -4558,6 +4558,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sonic R</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/IDGeek121/autosplitters/master/Sonic%20R/LiveSplit.SonicR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/IDGeek121/autosplitters/tree/master/Sonic%20R</Website>
+    <Description>Only supports the 2004 PC release. IGT and start/split/reset. (By IDGeek)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Sonic Robo Blast 2: The Mystic Realm</Game>
       <Game>Sonic Robo Blast 2: Shut Up and Get On It</Game>
       <Game>Sonic Robo Blast 2</Game>
