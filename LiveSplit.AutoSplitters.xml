@@ -3374,6 +3374,23 @@
 	<Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast)</Description>
   </AutoSplitter>
   <AutoSplitter>
+	<Games>
+		<Game>RE3 Remake</Game>
+		<Game>Resident Evil 3 Remake</Game>
+		<Game>RE3 2020</Game>
+		<Game>Resident Evil 3 2020</Game>
+		<Game>Resident Evil 3 (2020)</Game>
+		<Game>RESIDENT EVIL 3</Game>
+		<Game>REmake 3</Game>
+		<Game>R3make</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/cursedtoast/re3-remake-autosplitter/master/re3.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Auto Splitting and IGT available. Compare against Game Time. (By CursedToast)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>Momodora: Reverie Under the Moonlight</Game>
     </Games>
