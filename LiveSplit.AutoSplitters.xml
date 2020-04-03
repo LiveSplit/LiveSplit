@@ -8160,4 +8160,40 @@
         <Description>Load removal, automatic timer start, automatic splitting (by tvwolfsnake)</Description>
         <Website>https://github.com/tvwolfsnake/quantum-break-autosplitter</Website>
     </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Jurassic Park: Trespasser</Game>
+			<Game>Trespasser</Game>
+			<Game>Trespasser: Jurassic Park</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Trespasser.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Load Removal available (by rythin)</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Crazy Machines 3</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachines3.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitting and Load Removal available (by rythin)</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Crazy Machines: New From The Lab</Game>
+			<Game>Crazy Machines New From The Lab</Game>
+			<Game>Crazy Machines 1.5: New From The Lab</Game>
+			<Game>Crazy Machines 1.5 New From The Lab</Game>
+			<Game>New From The Lab</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachinesNewFromTheLab.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting available (by rythin) </Description>
+	</AutoSplitter>
 </AutoSplitters>
