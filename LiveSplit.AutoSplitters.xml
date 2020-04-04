@@ -37,6 +37,17 @@
 	<Description> Autosplitter for Blood: Fresh Supply. Also pauses the time during the saving function since the pause varies depending on cpu. (by Psych0sis)</Description>
 	<Website>https://discord.gg/jf7jJRu</Website>
   </AutoSplitter>
+<AutoSplitter>
+	<Games>
+		<Game>Open Season</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/OpenSeason.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter/load remover for PC (Beta) (by KunoDemetries)</Description>
+	<Website>https://discordapp.com/invite/jBjZ3XT</Website>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Donut County</Game>
