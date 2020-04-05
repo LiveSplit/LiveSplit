@@ -11,8 +11,6 @@ namespace LiveSplit.Options
     public class Settings : ISettings
     {
         public IDictionary<string, HotkeyProfile> HotkeyProfiles { get; set; }
-        public KeyOrButton ScrollUp { get; set; }
-        public KeyOrButton ScrollDown { get; set; }
         public IList<RecentSplitsFile> RecentSplits { get; set; }
         public IList<string> RecentLayouts { get; set; }
         public string LastComparison { get; set; }
@@ -35,8 +33,6 @@ namespace LiveSplit.Options
             return new Settings()
             {
                 HotkeyProfiles = HotkeyProfiles.ToDictionary(x => x.Key, x => (HotkeyProfile)(x.Value.Clone())),
-                ScrollUp = ScrollUp,
-                ScrollDown = ScrollDown,
                 WarnOnReset = WarnOnReset,
                 RecentSplits = new List<RecentSplitsFile>(RecentSplits),
                 RecentLayouts = new List<string>(RecentLayouts),
@@ -49,30 +45,11 @@ namespace LiveSplit.Options
             };
         }
 
-        private void RegisterScrolling(CompositeHook hook)
-        {
-            var mouse = hook.GetMouse();
-            var name = mouse.Information.InstanceName + " " + mouse.Information.InstanceGuid;
-            ScrollUp = new KeyOrButton(new GamepadButton(name, "Scroll_Up"));
-            ScrollDown = new KeyOrButton(new GamepadButton(name, "Scroll_Down"));
-            hook.RegisterHotKey(ScrollUp);
-            hook.RegisterHotKey(ScrollDown);
-        }
-
         public void RegisterHotkeys(CompositeHook hook, string hotkeyProfileName)
         {
             try
             {
                 UnregisterAllHotkeys(hook);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-
-            try
-            {
-                RegisterScrolling(hook);
             }
             catch (Exception ex)
             {

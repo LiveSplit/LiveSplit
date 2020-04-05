@@ -9,8 +9,6 @@ namespace LiveSplit.Options
     public interface ISettings : ICloneable
     {
         IDictionary<string, HotkeyProfile> HotkeyProfiles { get; set; }
-        KeyOrButton ScrollUp { get; set; }
-        KeyOrButton ScrollDown { get; set; }
         IList<RecentSplitsFile> RecentSplits { get; set; }
         IList<string> RecentLayouts { get; set; }
         string LastComparison { get; set; }

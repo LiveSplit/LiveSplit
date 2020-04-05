@@ -1039,15 +1039,6 @@ namespace LiveSplit.View
                         Model.SwitchComparisonNext();
                 }
 
-                if (ActiveForm == this && !ResetMessageShown && !IsInDialogMode)
-                {
-                    if (Settings.ScrollUp == e)
-                        Model.ScrollUp();
-
-                    else if (Settings.ScrollDown == e)
-                        Model.ScrollDown();
-                }
-
                 if (hotkeyProfile.ToggleGlobalHotkeys == e)
                 {
                     hotkeyProfile.GlobalHotkeysEnabled = !hotkeyProfile.GlobalHotkeysEnabled;
@@ -1410,6 +1401,17 @@ namespace LiveSplit.View
             {
                 RightClickMenu.Show(this, e.Location);
                 MouseIsDown = false;
+            }
+        }
+
+        private void TimerForm_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                Model.ScrollUp();
+            } else if (e.Delta < 0)
+            {
+                Model.ScrollDown();
             }
         }
 

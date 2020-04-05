@@ -1,7 +1,9 @@
-﻿using SharpDX.DirectInput;
+﻿using LiveSplit.Options;
+using SharpDX.DirectInput;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.Model.Input
@@ -90,15 +92,30 @@ namespace LiveSplit.Model.Input
         public CompositeHook()
         {
             KeyboardHook = new LowLevelKeyboardHook();
-            GamepadHook = new GamepadHook();
             RegisteredButtons = new List<GamepadButton>();
             KeyboardHook.KeyPressed += KeyboardHook_KeyPressed;
-            GamepadHook.ButtonPressed += GamepadHook_ButtonPressed;
+            InitializeGamepadHook();
         }
 
         public Joystick GetMouse()
         {
             return GamepadHook.GetMouse();
+        }
+
+        void InitializeGamepadHook()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    GamepadHook = new GamepadHook();
+                    GamepadHook.ButtonPressed += GamepadHook_ButtonPressed;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+            });
         }
 
         void KeyboardHook_KeyPressed(object sender, KeyEventArgs e)
@@ -143,7 +160,10 @@ namespace LiveSplit.Model.Input
 
         public void Poll()
         {
-            GamepadHook.Poll();
+            if (GamepadHook != null)
+            {
+                GamepadHook.Poll();
+            }
             KeyboardHook.Poll();
         }
 
