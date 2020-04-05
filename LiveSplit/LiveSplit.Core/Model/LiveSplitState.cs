@@ -30,7 +30,20 @@ namespace LiveSplit.Model
         public string CurrentHotkeyProfile { get; set; }
 
         internal TimeSpan? loadingTimes;
-        public TimeSpan LoadingTimes { get { return loadingTimes ?? TimeSpan.Zero; } set { loadingTimes = value; } }
+        public TimeSpan LoadingTimes {
+            get
+            {
+                return loadingTimes ?? TimeSpan.Zero;
+            }
+            set
+            {
+                loadingTimes = value;
+                if (IsGameTimePaused)
+                {
+                    GameTimePauseTime = CurrentTime.RealTime.Value - value;
+                }
+            }
+        }
         public bool IsGameTimeInitialized
         {
             get
@@ -192,8 +205,6 @@ namespace LiveSplit.Model
             if (CurrentTime.RealTime.HasValue && gameTime.HasValue)
             {
                 LoadingTimes = CurrentTime.RealTime.Value - gameTime.Value;
-                if (IsGameTimePaused)
-                    GameTimePauseTime = gameTime.Value;
             }
         }
 
