@@ -22,6 +22,7 @@ namespace LiveSplit.Model
         private string platformName;
         private string regionName;
         private bool usesEmulator;
+        private TimeSpan? worldRecordTime;
 
         public event EventHandler PropertyChanged;
 
@@ -132,6 +133,17 @@ namespace LiveSplit.Model
             }
         }
 
+        public TimeSpan? WorldRecordTime
+        {
+            get
+            {
+                return worldRecordTime;
+            }
+            set
+            {
+                worldRecordTime = value;
+            }
+        }
 
         public bool GameAvailable { get; private set; }
         public Game Game
@@ -302,6 +314,7 @@ namespace LiveSplit.Model
                 platformName = platformName,
                 regionName = regionName,
                 usesEmulator = usesEmulator,
+                worldRecordTime = worldRecordTime,
                 VariableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value),
                 CategoryAvailable = CategoryAvailable,
                 GameAvailable = GameAvailable
