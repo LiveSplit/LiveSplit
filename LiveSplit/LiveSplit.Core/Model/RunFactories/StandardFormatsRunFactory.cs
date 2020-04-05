@@ -101,6 +101,11 @@ namespace LiveSplit.Model.RunFactories
 
         static Image ParseImage(IntPtr imagePtr, long length)
         {
+            if (length == 0)
+            {
+                return null;
+            }
+
             byte[] buffer = new byte[length];
             Marshal.Copy(imagePtr, buffer, 0, buffer.Length);
 
