@@ -60,8 +60,15 @@ namespace LiveSplit.Model
 
                 //**UTC** time
                 var networkDateTime = (new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddMilliseconds(milliseconds);
+                var resultingTime = networkDateTime + delta;
 
-                return networkDateTime + delta;
+                var offsetFromLocal = (DateTime.UtcNow - resultingTime).Duration();
+                if (offsetFromLocal > TimeSpan.FromHours(1))
+                {
+                    throw new Exception("NTP time is too far off from local time");
+                }
+
+                return resultingTime;
             }
         }
 
