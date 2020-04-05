@@ -37,6 +37,17 @@
 	<Description> Autosplitter for Blood: Fresh Supply. Also pauses the time during the saving function since the pause varies depending on cpu. (by Psych0sis)</Description>
 	<Website>https://discord.gg/jf7jJRu</Website>
   </AutoSplitter>
+	 <AutoSplitter>
+	<Games>
+		<Game>Sniper Elite III</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/sniper%20elite%203.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter/load remover (by KunoDemetries)</Description>
+	<Website>https://www.speedrun.com/sniper_elite_iii</Website>
+  </AutoSplitter>
 <AutoSplitter>
 	<Games>
 		<Game>Open Season</Game>
