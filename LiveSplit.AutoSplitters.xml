@@ -8230,4 +8230,15 @@
     <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
     <Website>https://github.com/ShootMe/LiveSplit.CatQuest2</Website>
   </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>The Expendabros</Game>
+			<Game>Expendabros</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/DerKO9/AutoSplitters/master/Expendabros/Expendabros.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Load removal and split on loads (by DerKO) </Description>
+	</AutoSplitter>
 </AutoSplitters>
