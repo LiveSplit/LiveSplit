@@ -8241,4 +8241,15 @@
 		<Type>Script</Type>
 		<Description> Load removal and split on loads (by DerKO) </Description>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>World War 2: Sniper</Game>
+			<Game>Rajd na Berlin: Oddziały Specjalne</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.RnBOS.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Load removal and autosplitting available (by Mr. Mary)</Description>
+	</AutoSplitter>
 </AutoSplitters>
