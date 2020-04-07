@@ -8218,6 +8218,18 @@
 		<Type>Script</Type>
 		<Description> Autosplitting available (by rythin) </Description>
 	</AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Cat Quest II</Game>
+      <Game>Cat Quest 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.CatQuest2/master/Components/LiveSplit.CatQuest2.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Configurable Auto Splitting available. (By DevilSquirrel)</Description>
+    <Website>https://github.com/ShootMe/LiveSplit.CatQuest2</Website>
+  </AutoSplitter>
 	<AutoSplitter>
 		<Games>
 			<Game>The Expendabros</Game>
