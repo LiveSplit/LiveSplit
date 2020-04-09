@@ -8236,9 +8236,9 @@
 			<Game>Expendabros</Game>
 		</Games>
 		<URLs>
-			<URL>https://raw.githubusercontent.com/DerKO9/AutoSplitters/master/Expendabros/Expendabros.asl</URL>
+			<URL>https://raw.githubusercontent.com/lachszunge/Broforce-Autosplitter/master/Expendabros.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description> Load removal and split on loads (by DerKO) </Description>
+		<Description> Autospliting and load removal available (by lachszunge and DerKO) </Description>
 	</AutoSplitter>
 </AutoSplitters>
