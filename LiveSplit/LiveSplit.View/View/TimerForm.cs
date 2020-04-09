@@ -296,6 +296,7 @@ namespace LiveSplit.View
             InvalidationRequired = false;
 
             Hook = new CompositeHook();
+            Hook.GamepadHookInitialized += Hook_GamepadHookInitialized;
             Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
             Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
 
@@ -565,6 +566,11 @@ namespace LiveSplit.View
                 }
                 MaintainMinimumSize();
             }
+        }
+
+        private void Hook_GamepadHookInitialized(object sender, EventArgs e)
+        {
+            CheckForUpdates();
         }
 
         private void CheckForUpdates()
@@ -2417,11 +2423,6 @@ namespace LiveSplit.View
                 Log.Error(e);
                 Settings = new StandardSettingsFactory().Create();
             }
-        }
-
-        private void TimerForm_Load(object sender, EventArgs e)
-        {
-            CheckForUpdates();
         }
 
         private void closeSplitsMenuItem_Click(object sender, EventArgs e)

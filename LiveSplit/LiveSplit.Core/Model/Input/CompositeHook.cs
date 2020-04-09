@@ -82,12 +82,16 @@ namespace LiveSplit.Model.Input
         protected LowLevelKeyboardHook KeyboardHook { get; set; }
         protected GamepadHook GamepadHook { get; set; }
 
+        private bool hasPolledGamepadHook;
+
         protected List<GamepadButton> RegisteredButtons { get; set;}
 
         public event KeyEventHandler KeyPressed;
         public event EventHandlerT<GamepadButton> ButtonPressed;
         public event EventHandlerT<GamepadButton> AnyGamepadButtonPressed;
         public event EventHandlerT<KeyOrButton> KeyOrButtonPressed;
+
+        public event EventHandler GamepadHookInitialized;
 
         public CompositeHook()
         {
@@ -104,6 +108,7 @@ namespace LiveSplit.Model.Input
 
         void InitializeGamepadHook()
         {
+            hasPolledGamepadHook = false;
             Task.Factory.StartNew(() =>
             {
                 try
@@ -162,6 +167,11 @@ namespace LiveSplit.Model.Input
         {
             if (GamepadHook != null)
             {
+                if (!hasPolledGamepadHook)
+                {
+                    hasPolledGamepadHook = true;
+                    GamepadHookInitialized?.Invoke(this, null);
+                }
                 GamepadHook.Poll();
             }
             KeyboardHook.Poll();

@@ -301,7 +301,6 @@
             this.Text = "LiveSplit";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TimerForm_FormClosing);
-            this.Load += new System.EventHandler(this.TimerForm_Load);
             this.Shown += new System.EventHandler(this.TimerForm_Shown);
             this.ResizeBegin += new System.EventHandler(this.TimerForm_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.TimerForm_ResizeEnd);
