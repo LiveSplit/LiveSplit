@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnOK = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnLogOut = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.chkDeactivateForOtherPrograms = new System.Windows.Forms.CheckBox();
@@ -64,12 +66,10 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbxRaceViewer = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.btnChooseComparisons = new System.Windows.Forms.Button();
             this.chkSimpleSOB = new System.Windows.Forms.CheckBox();
             this.chkWarnOnReset = new System.Windows.Forms.CheckBox();
-            this.btnLogOut = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -115,10 +115,32 @@
             this.btnOK.Location = new System.Drawing.Point(221, 517);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 6;
+            this.btnOK.TabIndex = 0;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(3, 493);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(178, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Saved Accounts:";
+            // 
+            // btnLogOut
+            // 
+            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.btnLogOut, 3);
+            this.btnLogOut.Location = new System.Drawing.Point(187, 488);
+            this.btnLogOut.Name = "btnLogOut";
+            this.btnLogOut.Size = new System.Drawing.Size(190, 23);
+            this.btnLogOut.TabIndex = 7;
+            this.btnLogOut.Text = "Log Out of All Accounts";
+            this.btnLogOut.UseVisualStyleBackColor = true;
+            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
             // 
             // groupBox1
             // 
@@ -128,7 +150,7 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(374, 392);
-            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hotkeys";
             // 
@@ -188,7 +210,7 @@
             this.chkDeactivateForOtherPrograms.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDeactivateForOtherPrograms.Name = "chkDeactivateForOtherPrograms";
             this.chkDeactivateForOtherPrograms.Size = new System.Drawing.Size(172, 23);
-            this.chkDeactivateForOtherPrograms.TabIndex = 9;
+            this.chkDeactivateForOtherPrograms.TabIndex = 10;
             this.chkDeactivateForOtherPrograms.Text = "Deactivate For Other Programs";
             this.chkDeactivateForOtherPrograms.UseVisualStyleBackColor = true;
             // 
@@ -211,7 +233,7 @@
             this.chkGlobalHotkeys.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkGlobalHotkeys.Name = "chkGlobalHotkeys";
             this.chkGlobalHotkeys.Size = new System.Drawing.Size(98, 23);
-            this.chkGlobalHotkeys.TabIndex = 8;
+            this.chkGlobalHotkeys.TabIndex = 9;
             this.chkGlobalHotkeys.Text = "Global Hotkeys";
             this.chkGlobalHotkeys.UseVisualStyleBackColor = true;
             this.chkGlobalHotkeys.CheckedChanged += new System.EventHandler(this.chkGlobalHotkeys_CheckedChanged);
@@ -224,7 +246,7 @@
             this.chkDoubleTap.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDoubleTap.Name = "chkDoubleTap";
             this.chkDoubleTap.Size = new System.Drawing.Size(168, 17);
-            this.chkDoubleTap.TabIndex = 10;
+            this.chkDoubleTap.TabIndex = 11;
             this.chkDoubleTap.Text = "Double Tap Prevention";
             this.chkDoubleTap.UseVisualStyleBackColor = true;
             // 
@@ -236,7 +258,7 @@
             this.txtStartSplit.Name = "txtStartSplit";
             this.txtStartSplit.ReadOnly = true;
             this.txtStartSplit.Size = new System.Drawing.Size(184, 20);
-            this.txtStartSplit.TabIndex = 0;
+            this.txtStartSplit.TabIndex = 1;
             this.txtStartSplit.Enter += new System.EventHandler(this.Split_Set_Enter);
             // 
             // label2
@@ -267,7 +289,7 @@
             this.txtReset.Name = "txtReset";
             this.txtReset.ReadOnly = true;
             this.txtReset.Size = new System.Drawing.Size(184, 20);
-            this.txtReset.TabIndex = 1;
+            this.txtReset.TabIndex = 2;
             this.txtReset.Enter += new System.EventHandler(this.Reset_Set_Enter);
             // 
             // txtPause
@@ -278,7 +300,7 @@
             this.txtPause.Name = "txtPause";
             this.txtPause.ReadOnly = true;
             this.txtPause.Size = new System.Drawing.Size(184, 20);
-            this.txtPause.TabIndex = 4;
+            this.txtPause.TabIndex = 5;
             this.txtPause.Enter += new System.EventHandler(this.Pause_Set_Enter);
             // 
             // label3
@@ -309,7 +331,7 @@
             this.txtSkip.Name = "txtSkip";
             this.txtSkip.ReadOnly = true;
             this.txtSkip.Size = new System.Drawing.Size(184, 20);
-            this.txtSkip.TabIndex = 3;
+            this.txtSkip.TabIndex = 4;
             this.txtSkip.Enter += new System.EventHandler(this.Skip_Set_Enter);
             // 
             // txtUndo
@@ -320,7 +342,7 @@
             this.txtUndo.Name = "txtUndo";
             this.txtUndo.ReadOnly = true;
             this.txtUndo.Size = new System.Drawing.Size(184, 20);
-            this.txtUndo.TabIndex = 2;
+            this.txtUndo.TabIndex = 3;
             this.txtUndo.Enter += new System.EventHandler(this.Undo_Set_Enter);
             // 
             // label7
@@ -341,7 +363,7 @@
             this.txtToggle.Name = "txtToggle";
             this.txtToggle.ReadOnly = true;
             this.txtToggle.Size = new System.Drawing.Size(184, 20);
-            this.txtToggle.TabIndex = 7;
+            this.txtToggle.TabIndex = 8;
             this.txtToggle.Enter += new System.EventHandler(this.Toggle_Set_Enter);
             // 
             // label8
@@ -372,7 +394,7 @@
             this.txtSwitchPrevious.Name = "txtSwitchPrevious";
             this.txtSwitchPrevious.ReadOnly = true;
             this.txtSwitchPrevious.Size = new System.Drawing.Size(184, 20);
-            this.txtSwitchPrevious.TabIndex = 5;
+            this.txtSwitchPrevious.TabIndex = 6;
             this.txtSwitchPrevious.Enter += new System.EventHandler(this.Switch_Previous_Set_Enter);
             // 
             // txtSwitchNext
@@ -383,7 +405,7 @@
             this.txtSwitchNext.Name = "txtSwitchNext";
             this.txtSwitchNext.ReadOnly = true;
             this.txtSwitchNext.Size = new System.Drawing.Size(184, 20);
-            this.txtSwitchNext.TabIndex = 6;
+            this.txtSwitchNext.TabIndex = 7;
             this.txtSwitchNext.Enter += new System.EventHandler(this.Switch_Next_Set_Enter);
             // 
             // label10
@@ -402,7 +424,7 @@
             this.txtDelay.Location = new System.Drawing.Point(315, 265);
             this.txtDelay.Name = "txtDelay";
             this.txtDelay.Size = new System.Drawing.Size(50, 20);
-            this.txtDelay.TabIndex = 11;
+            this.txtDelay.TabIndex = 12;
             this.txtDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // grpHotkeyProfiles
@@ -413,7 +435,7 @@
             this.grpHotkeyProfiles.Location = new System.Drawing.Point(3, 293);
             this.grpHotkeyProfiles.Name = "grpHotkeyProfiles";
             this.grpHotkeyProfiles.Size = new System.Drawing.Size(362, 77);
-            this.grpHotkeyProfiles.TabIndex = 12;
+            this.grpHotkeyProfiles.TabIndex = 13;
             this.grpHotkeyProfiles.TabStop = false;
             this.grpHotkeyProfiles.Text = "Hotkey Profiles";
             // 
@@ -503,7 +525,7 @@
             this.btnCancel.Location = new System.Drawing.Point(302, 517);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 7;
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -522,7 +544,7 @@
             this.cbxRaceViewer.Location = new System.Drawing.Point(187, 431);
             this.cbxRaceViewer.Name = "cbxRaceViewer";
             this.cbxRaceViewer.Size = new System.Drawing.Size(190, 21);
-            this.cbxRaceViewer.TabIndex = 3;
+            this.cbxRaceViewer.TabIndex = 5;
             // 
             // label11
             // 
@@ -534,6 +556,16 @@
             this.label11.TabIndex = 15;
             this.label11.Text = "Race Viewer:";
             // 
+            // label12
+            // 
+            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(3, 464);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(178, 13);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Active Comparisons:";
+            // 
             // btnChooseComparisons
             // 
             this.btnChooseComparisons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -541,7 +573,7 @@
             this.btnChooseComparisons.Location = new System.Drawing.Point(187, 459);
             this.btnChooseComparisons.Name = "btnChooseComparisons";
             this.btnChooseComparisons.Size = new System.Drawing.Size(190, 23);
-            this.btnChooseComparisons.TabIndex = 4;
+            this.btnChooseComparisons.TabIndex = 6;
             this.btnChooseComparisons.Text = "Choose Active Comparisons...";
             this.btnChooseComparisons.UseVisualStyleBackColor = true;
             this.btnChooseComparisons.Click += new System.EventHandler(this.btnChooseComparisons_Click);
@@ -554,7 +586,7 @@
             this.chkSimpleSOB.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkSimpleSOB.Name = "chkSimpleSOB";
             this.chkSimpleSOB.Size = new System.Drawing.Size(174, 17);
-            this.chkSimpleSOB.TabIndex = 1;
+            this.chkSimpleSOB.TabIndex = 3;
             this.chkSimpleSOB.Text = "Simple Sum of Best Calculation";
             this.chkSimpleSOB.UseVisualStyleBackColor = true;
             this.chkSimpleSOB.CheckedChanged += new System.EventHandler(this.chkSimpleSOB_CheckedChanged);
@@ -568,41 +600,9 @@
             this.chkWarnOnReset.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkWarnOnReset.Name = "chkWarnOnReset";
             this.chkWarnOnReset.Size = new System.Drawing.Size(186, 17);
-            this.chkWarnOnReset.TabIndex = 2;
+            this.chkWarnOnReset.TabIndex = 4;
             this.chkWarnOnReset.Text = "Warn On Reset If Better Times";
             this.chkWarnOnReset.UseVisualStyleBackColor = true;
-            // 
-            // btnLogOut
-            // 
-            this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.btnLogOut, 3);
-            this.btnLogOut.Location = new System.Drawing.Point(187, 488);
-            this.btnLogOut.Name = "btnLogOut";
-            this.btnLogOut.Size = new System.Drawing.Size(190, 23);
-            this.btnLogOut.TabIndex = 5;
-            this.btnLogOut.Text = "Log Out of All Accounts";
-            this.btnLogOut.UseVisualStyleBackColor = true;
-            this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 493);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(178, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Saved Accounts:";
-            // 
-            // label12
-            // 
-            this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 464);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(178, 13);
-            this.label12.TabIndex = 17;
-            this.label12.Text = "Active Comparisons:";
             // 
             // SettingsDialog
             // 
