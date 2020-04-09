@@ -61,7 +61,7 @@ namespace LiveSplit.Model.RunFactories
         public Stream Stream { get; set; }
         public string FilePath { get; set; }
 
-        public StandardFormatsRunFactory(Stream stream = null, string filePath = null)
+        public StandardFormatsRunFactory(Stream stream = null, string filePath = "")
         {
             Stream = stream;
             FilePath = filePath;

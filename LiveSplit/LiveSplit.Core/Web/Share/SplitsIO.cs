@@ -218,7 +218,7 @@ namespace LiveSplit.Web.Share
                     var runFactory = new StandardFormatsRunFactory
                     {
                         Stream = memoryStream,
-                        FilePath = null
+                        FilePath = ""
                     };
 
                     var run = runFactory.Create(new StandardComparisonGeneratorsFactory());

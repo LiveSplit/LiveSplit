@@ -3527,7 +3527,7 @@ namespace LiveSplitCore
         /// </summary>
         public static ParseRunResult Parse(IntPtr data, long length, string path, bool loadFiles)
         {
-            var result = new ParseRunResult(LiveSplitCoreNative.Run_parse(data, (UIntPtr)length, path, loadFiles));
+            var result = new ParseRunResult(LiveSplitCoreNative.Run_parse(data, (UIntPtr)length, "", loadFiles));
             return result;
         }
         /// <summary>

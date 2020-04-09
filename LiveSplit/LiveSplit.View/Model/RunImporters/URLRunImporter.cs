@@ -54,7 +54,7 @@ namespace LiveSplit.Model.RunImporters
                     memoryStream.Seek(0, SeekOrigin.Begin);
 
                     runFactory.Stream = memoryStream;
-                    runFactory.FilePath = null;
+                    runFactory.FilePath = "";
 
                     try
                     {
