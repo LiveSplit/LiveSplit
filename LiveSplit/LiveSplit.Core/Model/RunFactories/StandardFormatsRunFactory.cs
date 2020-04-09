@@ -157,7 +157,7 @@ namespace LiveSplit.Model.RunFactories
                     }
                 }
 
-                run.GameIcon = ParseImage(lscRun.GameIconPtr(), lscRun.GameIconLen()).ScaleIcon();
+                run.GameIcon = ParseImage(lscRun.GameIconPtr(), lscRun.GameIconLen());
                 run.GameName = lscRun.GameName();
                 run.CategoryName = lscRun.CategoryName();
                 run.Offset = ParseTimeSpan(lscRun.Offset());
@@ -212,11 +212,6 @@ namespace LiveSplit.Model.RunFactories
 
                     run.Add(split);
                 }
-
-                Parallel.ForEach(run, segment =>
-                {
-                    segment.Icon = segment.Icon.ScaleIcon();
-                });
 
                 var document = new XmlDocument();
                 document.LoadXml($"<AutoSplitterSettings>{lscRun.AutoSplitterSettings()}</AutoSplitterSettings>");
