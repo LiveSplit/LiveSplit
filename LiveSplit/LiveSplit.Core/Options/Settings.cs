@@ -21,6 +21,56 @@ namespace LiveSplit.Options
         public IList<string> ActiveAutoSplitters { get; set; }
         public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
 
+        // Deprecated properties
+        public KeyOrButton SplitKey {
+            get { return HotkeyProfiles.First().Value.SplitKey; }
+            set { HotkeyProfiles.First().Value.SplitKey = value; }
+        }
+        public KeyOrButton ResetKey {
+            get { return HotkeyProfiles.First().Value.ResetKey; }
+            set { HotkeyProfiles.First().Value.ResetKey = value; }
+        }
+        public KeyOrButton SkipKey {
+            get { return HotkeyProfiles.First().Value.SkipKey; }
+            set { HotkeyProfiles.First().Value.SkipKey = value; }
+        }
+        public KeyOrButton UndoKey {
+            get { return HotkeyProfiles.First().Value.UndoKey; }
+            set { HotkeyProfiles.First().Value.UndoKey = value; }
+        }
+        public KeyOrButton PauseKey {
+            get { return HotkeyProfiles.First().Value.PauseKey; }
+            set { HotkeyProfiles.First().Value.PauseKey = value; }
+        }
+        public KeyOrButton ToggleGlobalHotkeys {
+            get { return HotkeyProfiles.First().Value.ToggleGlobalHotkeys; }
+            set { HotkeyProfiles.First().Value.ToggleGlobalHotkeys = value; }
+        }
+        public KeyOrButton SwitchComparisonPrevious {
+            get { return HotkeyProfiles.First().Value.SwitchComparisonPrevious; }
+            set { HotkeyProfiles.First().Value.SwitchComparisonPrevious = value; }
+        }
+        public KeyOrButton SwitchComparisonNext {
+            get { return HotkeyProfiles.First().Value.SwitchComparisonNext; }
+            set { HotkeyProfiles.First().Value.SwitchComparisonNext = value; }
+        }
+        public float HotkeyDelay {
+            get { return HotkeyProfiles.First().Value.HotkeyDelay; }
+            set { HotkeyProfiles.First().Value.HotkeyDelay = value; }
+        }
+        public bool GlobalHotkeysEnabled {
+            get { return HotkeyProfiles.First().Value.GlobalHotkeysEnabled; }
+            set { HotkeyProfiles.First().Value.GlobalHotkeysEnabled = value; }
+        }
+        public bool DeactivateHotkeysForOtherPrograms {
+            get { return HotkeyProfiles.First().Value.DeactivateHotkeysForOtherPrograms; }
+            set { HotkeyProfiles.First().Value.DeactivateHotkeysForOtherPrograms = value; }
+        }
+        public bool DoubleTapPrevention {
+            get { return HotkeyProfiles.First().Value.DoubleTapPrevention; }
+            set { HotkeyProfiles.First().Value.DoubleTapPrevention = value; }
+        }
+
         public Settings()
         {
             RecentSplits = new List<RecentSplitsFile>();
