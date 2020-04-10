@@ -155,6 +155,7 @@
             this.racingMenuItem.Name = "racingMenuItem";
             this.racingMenuItem.Size = new System.Drawing.Size(166, 22);
             this.racingMenuItem.Text = "Races";
+            this.racingMenuItem.MouseLeave += new System.EventHandler(this.racingMenuItem_MouseLeave);
             this.racingMenuItem.MouseHover += new System.EventHandler(this.racingMenuItem_MouseHover);
             // 
             // newRaceToolStripMenuItem

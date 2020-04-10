@@ -100,6 +100,9 @@ namespace LiveSplit.View
         protected bool MouseIsDown = false;
         protected Point MousePoint;
 
+        private List<Action> RacesToRefresh = new List<Action>();
+        private bool ShouldRefreshRaces = false;
+
         protected Task RefreshTask { get; set; }
         protected bool InvalidationRequired { get; set; }
 
@@ -307,6 +310,8 @@ namespace LiveSplit.View
 
             Server = new CommandServer(CurrentState);
             Server.Start();
+
+            new System.Timers.Timer(1000) { Enabled = true }.Elapsed += RaceRefreshTimer_Elapsed;
         }
 
         void SetWindowTitle()
@@ -358,6 +363,18 @@ namespace LiveSplit.View
             return goal;
         }
 
+        private void RaceRefreshTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            if (ShouldRefreshRaces)
+            {
+                for (var i = 0; i < RacesToRefresh.Count; i++)
+                {
+                    var updateTitleAction = RacesToRefresh[i];
+                    updateTitleAction();
+                }
+            }
+        }
+
         void SRL_RacesRefreshed(object sender, EventArgs e)
         {
             Action<ToolStripItem> addItem = null;
@@ -382,11 +399,13 @@ namespace LiveSplit.View
                 }
                 else
                 {
+                    RacesToRefresh.Clear();
                     racingMenuItem.DropDownItems.Clear();
                 }
             };
 
             clear();
+
             foreach (var race in SpeedRunsLiveAPI.Instance.GetRaces())
             {
                 if (race.state != 1)
@@ -396,6 +415,7 @@ namespace LiveSplit.View
                 var entrants = race.numentrants;
                 var plural = entrants == 1 ? "" : "s";
                 var title = string.Format("{0} ({1} Entrant{2})", gameAndGoal, entrants, plural) as string;
+
                 var item = new ToolStripMenuItem();
                 item.Text = title.EscapeMenuItemText();
                 item.Tag = race.id;
@@ -463,10 +483,8 @@ namespace LiveSplit.View
 
                 updateTitleAction();
 
-                new System.Timers.Timer(500) { Enabled = true }.Elapsed += (s, ev) =>
-                    {
-                        updateTitleAction();
-                    };
+                RacesToRefresh.Add(updateTitleAction);
+
                 tsItem.Click += (s, ev) =>
                     {
                         ShareSettings.Default.Reload();
@@ -480,6 +498,7 @@ namespace LiveSplit.View
                             Race_Click(tsItem, null);
                         }
                     };
+
                 addItem(tsItem);
             }
 
@@ -2538,6 +2557,12 @@ namespace LiveSplit.View
         private void racingMenuItem_MouseHover(object sender, EventArgs e)
         {
             SpeedRunsLiveAPI.Instance.RefreshRacesListAsync();
+            ShouldRefreshRaces = true;
+        }
+
+        private void racingMenuItem_MouseLeave(object sender, EventArgs e)
+        {
+            ShouldRefreshRaces = false;
         }
 
         private void resetMenuItem_Click(object sender, EventArgs e)
