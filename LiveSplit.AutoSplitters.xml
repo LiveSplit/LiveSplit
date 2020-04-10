@@ -7463,6 +7463,17 @@
     <Description>AutoSplitter. (by AniMeliodas,AlexYeahNot)</Description>
     <Website>speedrun.com/collapse_the_rage</Website>
 </AutoSplitter>
+	<AutoSplitter>
+    <Games>
+      <Game>The Stalin Subway: Red Veil</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/animeliodas/metro2.asl/master/metro25</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>AutoSplitter. (by AniMeliodas)</Description>
+    <Website>speedrun.com/the_stalin_subway_red_veil</Website>
+</AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>911 Fire Rescue</Game>
