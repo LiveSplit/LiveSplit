@@ -8241,4 +8241,14 @@
 		<Type>Script</Type>
 		<Description> Autospliting and load removal available (by lachszunge and DerKO) </Description>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Ginseng Hero</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/VisMajorSpeedruns/ginsengheroasl/master/ginsenghero.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autospliting and load removal available (by VisMajor)</Description>
+	</AutoSplitter>
 </AutoSplitters>
