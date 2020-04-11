@@ -625,31 +625,30 @@ namespace LiveSplit.View
         {
             try
             {
-                using (var image = new Bitmap(fileName).ScaleIcon())
+                var image = Image.FromFile(fileName);
+
+                if (!multiEdit)
                 {
-                    if (!multiEdit)
+                    var oldImage = (Image)runGrid.Rows[rowIndex].Cells[ICONINDEX].Value;
+                    if (oldImage != null)
+                        ImagesToDispose.Add(oldImage);
+
+                    Run[rowIndex].Icon = image;
+                    runGrid.NotifyCurrentCellDirty(true);
+                }
+                else
+                {
+                    foreach (DataGridViewCell cell in runGrid.SelectedCells)
                     {
-                        var oldImage = (Image) runGrid.Rows[rowIndex].Cells[ICONINDEX].Value;
+                        if (cell.ColumnIndex != ICONINDEX)
+                            continue;
+
+                        var oldImage = (Image)cell.Value;
                         if (oldImage != null)
                             ImagesToDispose.Add(oldImage);
 
-                        Run[rowIndex].Icon = new Bitmap(image);
-                        runGrid.NotifyCurrentCellDirty(true);
-                    }
-                    else
-                    {
-                        foreach (DataGridViewCell cell in runGrid.SelectedCells)
-                        {
-                            if (cell.ColumnIndex != ICONINDEX)
-                                continue;
-
-                            var oldImage = (Image) cell.Value;
-                            if (oldImage != null)
-                                ImagesToDispose.Add(oldImage);
-
-                            Run[cell.RowIndex].Icon = new Bitmap(image);
-                            runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
-                        }
+                        Run[cell.RowIndex].Icon = (Image)image.Clone();
+                        runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
                     }
                 }
 
@@ -676,7 +675,7 @@ namespace LiveSplit.View
         private void SetGameIcon(Image icon)
         {
             ImagesToDispose.Add(GameIcon);
-            GameIcon = icon.ScaleIcon();
+            GameIcon = icon;
             picGameIcon.Image = GameIcon;
             removeIconToolStripMenuItem.Enabled = GameIcon != null;
         }
