@@ -178,6 +178,8 @@ namespace LiveSplit.View
 
         private void Init(string splitsPath = null, string layoutPath = null)
         {
+            LiveSplitCoreFactory.LoadLiveSplitCore();
+
             SetWindowTitle();
 
             SpeedrunCom.Authenticator = new SpeedrunComOAuthForm();

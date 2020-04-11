@@ -104,6 +104,7 @@
     <Compile Include="ComponentUtil\SignatureScanner.cs" />
     <Compile Include="ComponentUtil\WinAPI.cs" />
     <Compile Include="LiveSplitCore.cs" />
+    <Compile Include="LiveSplitCoreFactory.cs" />
     <Compile Include="Model\AtomicDateTime.cs" />
     <Compile Include="Model\Attempt.cs" />
     <Compile Include="Model\AutoSplitter.cs" />
