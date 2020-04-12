@@ -478,8 +478,7 @@ namespace LiveSplit.View
                 SetGameImage(raceProvider, item, race);
             }
 
-            if (racingMenuItem.DropDownItems.Count > 0)
-                addItem(new ToolStripSeparator());
+            addItem(new ToolStripSeparator());
 
             foreach (var race in raceProvider.GetRaces())
             {

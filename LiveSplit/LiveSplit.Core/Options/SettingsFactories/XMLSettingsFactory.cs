@@ -129,7 +129,7 @@ namespace LiveSplit.Options.SettingsFactories
             }
 
             settings.RaceProvider.Clear();
-            if (version >= new Version(1, 8, 7))
+            if (version >= new Version(1, 8, 8))
             {                
                 foreach (var providerNode in parent["RaceProviderPlugins"].ChildNodes.OfType<XmlElement>())
                 {

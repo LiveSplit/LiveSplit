@@ -16,7 +16,7 @@ namespace LiveSplit.Options.SettingsSavers
 
             var parent = document.CreateElement("Settings");
             var version = document.CreateAttribute("version");
-            version.Value = "1.8.7";
+            version.Value = "1.8.8";
             parent.Attributes.Append(version);
             document.AppendChild(parent);
 
