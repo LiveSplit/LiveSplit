@@ -5776,16 +5776,19 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>World War 2 Sniper</Game>
-      <Game>World War 2 Sniper: Call to Victory</Game>
-      <Game>Rajd na Berlin: Oddziały specjalne</Game>
-      <Game>Rajd na Berlin - Oddziały specjalne</Game>
+     	<Game>World War 2 Sniper</Game>
+ 	<Game>World War 2 Sniper: Call to Victory</Game>
+	<Game>World War 2: Sniper - Call to Victory</Game>
+	<Game>World War II: Sniper - Call to Victory</Game>
+	<Game>Battlestrike: Call to Victory</Game>
+	<Game>Rajd na Berlin: Oddziały specjalne</Game>
+ 	<Game>Rajd na Berlin - Oddziały specjalne</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/World-War-2-Sniper-Call-to-Victory/LiveSplit.WorldWar2Sniper.asl</URL>
+      <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/WW2SniperCalltoVictory.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removal is available (By SuicideMachine)</Description>
+    <Description>Autosplitting and Load Removal available (By rythin, The_One and SuicideMachine)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -8272,5 +8275,49 @@
 		</URLs>
 		<Type>Script</Type>
 		<Description>Autospliting and load removal available (by VisMajor)</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Downwell</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Downwell.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting (no final split) and Game Time Available (by rythin and JPlay) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Nuclear Throne</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/NuclearThrone.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting available (by Gelly and rythin) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>St. Hazel's Horsepital</Game>
+			<Game>St Hazels Horsepital</Game>
+			<Game>Saint Hazel's Horsepital</Game>
+			<Game>Saint Hazels Horsepital</Game>
+			<Game>Horsepital</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/StHazelsHorsepital.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Load Removal available (by rythin) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Risk of Rain 2</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/RiskofRain2.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autospltting and Load Removal available (by rythin) </Description>
 	</AutoSplitter>
 </AutoSplitters>
