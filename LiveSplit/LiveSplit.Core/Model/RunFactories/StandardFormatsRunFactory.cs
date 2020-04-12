@@ -111,6 +111,17 @@ namespace LiveSplit.Model.RunFactories
                         run.Metadata.VariableValueNames.Add(variable.Name(), variable.Value());
                     }
                 }
+                using (var iter = metadata.CustomVariables())
+                {
+                    LiveSplitCore.RunMetadataCustomVariableRef variable;
+                    while ((variable = iter.Next()) != null)
+                    {
+                        if (variable.IsPermanent())
+                        {
+                            run.Metadata.CustomVariables.Add(variable.Name(), variable.Value());
+                        }
+                    }
+                }
 
                 run.GameIcon = ParseImage(lscRun.GameIconPtr(), lscRun.GameIconLen());
                 run.GameName = lscRun.GameName();

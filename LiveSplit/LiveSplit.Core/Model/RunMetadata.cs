@@ -117,6 +117,8 @@ namespace LiveSplit.Model
             }
         }
 
+        public IDictionary<string, string> CustomVariables { get; set; }
+
         public bool UsesEmulator
         {
             get
@@ -157,6 +159,7 @@ namespace LiveSplit.Model
         {
             LiveSplitRun = run;
             VariableValueNames = new Dictionary<string, string>();
+            CustomVariables = new Dictionary<string, string>();
             game = new Lazy<Game>(() => null);
             category = new Lazy<Category>(() => null);
             this.run = new Lazy<SpeedrunComSharp.Run>(() => null);
