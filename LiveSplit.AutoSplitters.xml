@@ -8320,4 +8320,15 @@
 		<Type>Script</Type>
 		<Description> Autospltting and Load Removal available (by rythin) </Description>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Superliminal</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/loriswit/asl/master/superliminal_v3.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Auto start/split/reset and load removal available. Requires Hot Coffee mod.</Description>
+		<Website>https://discord.gg/T6JbGSG</Website>
+	</AutoSplitter>
 </AutoSplitters>
