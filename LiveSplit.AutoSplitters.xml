@@ -6235,33 +6235,33 @@
       <Game>Grand Theft Auto IV</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/jfoster/37f266491e3caacc807d8be9d144e38b/raw/LiveSplit.GTAIV.asl</URL>
+      <URL>https://raw.githubusercontent.com/jfoster/LiveSplit.ASL/stable/GTAIV/LiveSplit.GTAIV.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split/reset and loadless timer is available.</Description>
-	<Website>https://gist.github.com/jfoster/37f266491e3caacc807d8be9d144e38b#file-readme-md</Website>
+	<Website>https://github.com/jfoster/LiveSplit.ASL/blob/stable/GTAIV/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Grand Theft Auto: The Lost and Damned</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/jfoster/37f266491e3caacc807d8be9d144e38b/raw/LiveSplit.GTATLAD.asl</URL>
+      <URL>https://raw.githubusercontent.com/jfoster/LiveSplit.ASL/stable/GTAIV/LiveSplit.GTATLAD.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split/reset and loadless timer is available.</Description>
-	<Website>https://gist.github.com/jfoster/37f266491e3caacc807d8be9d144e38b#file-readme-md</Website>
+	<Website>https://github.com/jfoster/LiveSplit.ASL/blob/stable/GTAIV/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Grand Theft Auto: The Ballad of Gay Tony</Game>
     </Games>
     <URLs>
-      <URL>https://gist.githubusercontent.com/jfoster/37f266491e3caacc807d8be9d144e38b/raw/LiveSplit.GTATBOGT.asl</URL>
+      <URL>https://raw.githubusercontent.com/jfoster/LiveSplit.ASL/stable/GTAIV/LiveSplit.GTATBOGT.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split/reset and loadless timer is available.</Description>
-    <Website>https://gist.github.com/jfoster/37f266491e3caacc807d8be9d144e38b#file-readme-md</Website>
+    <Website>https://github.com/jfoster/LiveSplit.ASL/blob/stable/GTAIV/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
