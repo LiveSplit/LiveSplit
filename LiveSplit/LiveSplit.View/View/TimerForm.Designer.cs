@@ -54,6 +54,8 @@
             this.exitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resetMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveRunMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadRunMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoSplitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.skipSplitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pauseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -241,6 +243,21 @@
             this.resetMenuItem.Size = new System.Drawing.Size(152, 22);
             this.resetMenuItem.Text = "Reset";
             this.resetMenuItem.Click += new System.EventHandler(this.resetMenuItem_Click);
+            //
+            // saveMenuItem
+            //
+            this.saveRunMenuItem.Enabled = false;
+            this.saveRunMenuItem.Name = "saveRunMenuItem";
+            this.saveRunMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveRunMenuItem.Text = "Save Run...";
+            this.saveRunMenuItem.Click += new System.EventHandler(this.saveRunMenuItem_Click);
+            //
+            // loadMenuItem
+            //
+            this.loadRunMenuItem.Name = "loadRunMenuItem";
+            this.loadRunMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadRunMenuItem.Text = "Load Run...";
+            this.loadRunMenuItem.Click += new System.EventHandler(this.loadRunMenuItem_Click);
             // 
             // undoSplitMenuItem
             // 
@@ -341,6 +358,8 @@
         private System.Windows.Forms.ToolStripMenuItem controlMenuItem;
         private System.Windows.Forms.ToolStripMenuItem splitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resetMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveRunMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadRunMenuItem;
         private System.Windows.Forms.ToolStripMenuItem undoSplitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem skipSplitMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pauseMenuItem;
