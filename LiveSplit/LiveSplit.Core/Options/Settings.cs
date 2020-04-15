@@ -132,11 +132,11 @@ namespace LiveSplit.Options
                         Log.Error(e);
                     }
                 }
-                if (hotkeyProfile.SaveRunKey != null)
+                if (hotkeyProfile.HibernateRunKey != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.SaveRunKey, deactivateForOtherPrograms);
+                        RegisterHotkey(hook, hotkeyProfile.HibernateRunKey, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
                     {

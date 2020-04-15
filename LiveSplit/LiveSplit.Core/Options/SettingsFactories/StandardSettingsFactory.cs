@@ -19,8 +19,8 @@ namespace LiveSplit.Options.SettingsFactories
                         {
                             SplitKey = new KeyOrButton(Keys.NumPad1),
                             ResetKey = new KeyOrButton(Keys.NumPad3),
-                            SaveRunKey = new KeyOrButton(Keys.NumPad5),
-                            LoadRunKey = new KeyOrButton(Keys.NumPad6),
+                            HibernateRunKey = null,
+                            LoadRunKey = null,
                             UndoKey = new KeyOrButton(Keys.NumPad8),
                             SkipKey = new KeyOrButton(Keys.NumPad2),
                             SwitchComparisonPrevious = new KeyOrButton(Keys.NumPad4),

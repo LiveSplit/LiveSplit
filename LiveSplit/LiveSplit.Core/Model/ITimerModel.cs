@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model.Input;
 using System;
+using System.Collections.Generic;
 
 namespace LiveSplit.Model
 {
@@ -27,7 +28,7 @@ namespace LiveSplit.Model
         void UndoSplit();
         void Reset();
         void Reset(bool updateSplits);
-        void LoadRun(IRun run);
+        void LoadRun(string gameName, string categoryName, Time time, List<ISegment> segments, RunMetadata metadata);
         void ResetAndSetAttemptAsPB();
         void Pause();
         void UndoAllPauses();

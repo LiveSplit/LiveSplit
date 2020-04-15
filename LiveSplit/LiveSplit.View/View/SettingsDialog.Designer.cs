@@ -43,9 +43,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.txtReset = new System.Windows.Forms.TextBox();
-            this.txtSaveRun = new System.Windows.Forms.TextBox();
+            this.txtHibernateRun = new System.Windows.Forms.TextBox();
             this.txtLoadRun = new System.Windows.Forms.TextBox();
-            this.labelSaveRun = new System.Windows.Forms.Label();
+            this.labelHibernateRun = new System.Windows.Forms.Label();
             this.labelLoadRun = new System.Windows.Forms.Label();
             this.txtPause = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -178,8 +178,8 @@
             this.tableLayoutPanel2.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label6, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.txtReset, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.txtSaveRun, 1, 2);
-            this.tableLayoutPanel2.Controls.Add(this.labelSaveRun, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.txtHibernateRun, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.labelHibernateRun, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.labelLoadRun, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.txtPause, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.label3, 0, 5);
@@ -315,17 +315,17 @@
             this.txtReset.TabIndex = 2;
             this.txtReset.Enter += new System.EventHandler(this.Reset_Set_Enter);
             // 
-            // txtSaveRun
+            // txtHibernateRun
             // 
-            this.txtSaveRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.SetColumnSpan(this.txtSaveRun, 2);
-            this.txtSaveRun.Location = new System.Drawing.Point(271, 99);
-            this.txtSaveRun.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtSaveRun.Name = "txtSaveRun";
-            this.txtSaveRun.ReadOnly = true;
-            this.txtSaveRun.Size = new System.Drawing.Size(280, 26);
-            this.txtSaveRun.TabIndex = 3;
-            this.txtSaveRun.Enter += new System.EventHandler(this.SaveRun_Set_Enter);
+            this.txtHibernateRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel2.SetColumnSpan(this.txtHibernateRun, 2);
+            this.txtHibernateRun.Location = new System.Drawing.Point(271, 99);
+            this.txtHibernateRun.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtHibernateRun.Name = "txtHibernateRun";
+            this.txtHibernateRun.ReadOnly = true;
+            this.txtHibernateRun.Size = new System.Drawing.Size(280, 26);
+            this.txtHibernateRun.TabIndex = 3;
+            this.txtHibernateRun.Enter += new System.EventHandler(this.HibernateRun_Set_Enter);
             // 
             // txtLoadRun
             // 
@@ -339,16 +339,16 @@
             this.txtLoadRun.TabIndex = 4;
             this.txtLoadRun.Enter += new System.EventHandler(this.LoadRun_Set_Enter);
             // 
-            // labelSaveRun
+            // labelHibernateRun
             // 
-            this.labelSaveRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelSaveRun.AutoSize = true;
-            this.labelSaveRun.Location = new System.Drawing.Point(4, 102);
-            this.labelSaveRun.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelSaveRun.Name = "labelSaveRun";
-            this.labelSaveRun.Size = new System.Drawing.Size(259, 20);
-            this.labelSaveRun.TabIndex = 3;
-            this.labelSaveRun.Text = "Save Run:";
+            this.labelHibernateRun.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelHibernateRun.AutoSize = true;
+            this.labelHibernateRun.Location = new System.Drawing.Point(4, 102);
+            this.labelHibernateRun.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelHibernateRun.Name = "labelHibernateRun";
+            this.labelHibernateRun.Size = new System.Drawing.Size(259, 20);
+            this.labelHibernateRun.TabIndex = 3;
+            this.labelHibernateRun.Text = "Hibernate Run:";
             // 
             // labelLoadRun
             // 
@@ -728,8 +728,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TextBox txtStartSplit;
         private System.Windows.Forms.TextBox txtReset;
-        private System.Windows.Forms.TextBox txtSaveRun;
-        private System.Windows.Forms.Label labelSaveRun;
+        private System.Windows.Forms.TextBox txtHibernateRun;
+        private System.Windows.Forms.Label labelHibernateRun;
         private System.Windows.Forms.TextBox txtLoadRun;
         private System.Windows.Forms.Label labelLoadRun;
         private System.Windows.Forms.TextBox txtSkip;

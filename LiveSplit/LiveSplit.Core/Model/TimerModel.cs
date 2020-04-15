@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model.Input;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LiveSplit.Model
@@ -144,7 +145,7 @@ namespace LiveSplit.Model
             CurrentState.Run.FixSplits();
         }
 
-        public void LoadRun(IRun run)
+        public void LoadRun(string gameName, string categoryName, Time time, List<ISegment> segments, RunMetadata metadata)
         {
 
         }
