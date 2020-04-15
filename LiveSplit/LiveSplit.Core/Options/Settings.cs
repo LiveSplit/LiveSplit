@@ -132,6 +132,28 @@ namespace LiveSplit.Options
                         Log.Error(e);
                     }
                 }
+                if (hotkeyProfile.SaveRunKey != null)
+                {
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.SaveRunKey, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
+                if (hotkeyProfile.LoadRunKey != null)
+                {
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.LoadRunKey, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
                 if (hotkeyProfile.SkipKey != null)
                 {
                     try

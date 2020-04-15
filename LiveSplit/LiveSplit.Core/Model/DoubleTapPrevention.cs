@@ -106,6 +106,11 @@ namespace LiveSplit.Model
             }
         }
 
+        public void LoadRun(IRun run)
+        {
+            InternalModel.LoadRun(run);
+        }
+
         public void Pause()
         {
             if (CheckDoubleTap())

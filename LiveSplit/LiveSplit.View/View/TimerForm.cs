@@ -27,6 +27,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -1057,6 +1058,16 @@ namespace LiveSplit.View
                     else if (hotkeyProfile.ResetKey == e)
                     {
                         Reset();
+                    }
+
+                    else if (hotkeyProfile.SaveRunKey == e)
+                    {
+                        SaveRun();
+                    }
+
+                    else if (hotkeyProfile.LoadRunKey == e)
+                    {
+                        LoadRun();
                     }
 
                     else if (hotkeyProfile.PauseKey == e)
@@ -2570,12 +2581,76 @@ namespace LiveSplit.View
 
         private void SaveRun()
         {
-            saveRunMenuItem.Text = saveRunMenuItem.Text.Equals("Foo") ? "Bar" : "Foo";
+            this.InvokeIfRequired(() =>
+            {
+                if (Model.CurrentState.CurrentPhase == TimerPhase.Paused)
+                {
+                    XmlDocument document = new XmlDocument();
+                    XmlNode docNode = document.CreateXmlDeclaration("1.0", "UTF-8", null);
+                    document.AppendChild(docNode);
+
+
+                    XmlElement parent = document.CreateElement("Save");
+                    XmlAttribute attributeId = document.CreateAttribute("id");
+                    attributeId.InnerText = Model.CurrentState.Run.AttemptCount.ToString();
+                    var startTime = Model.CurrentState.AttemptStarted;
+                    XmlAttribute attributeStarted = document.CreateAttribute("started");
+                    attributeStarted.InnerText = startTime.Time.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
+                    XmlAttribute attributeIsStartedSynced = document.CreateAttribute("isStartedSynced");
+                    attributeIsStartedSynced.InnerText = startTime.SyncedWithAtomicClock.ToString();
+                    parent.Attributes.Append(attributeId);
+                    parent.Attributes.Append(attributeStarted);
+                    parent.Attributes.Append(attributeIsStartedSynced);
+
+                    XmlElement elementGameName = document.CreateElement("GameName");
+                    elementGameName.InnerText = Model.CurrentState.Run.GameName;
+                    XmlElement elementCategoryName = document.CreateElement("CategoryName");
+                    elementCategoryName.InnerText = Model.CurrentState.Run.CategoryName;
+                    XmlElement elementRealTime = document.CreateElement("RealTime");
+                    elementRealTime.InnerText = Model.CurrentState.CurrentTime.RealTime.ToString();
+                    XmlElement elementGameTime = document.CreateElement("GameTime");
+                    elementGameTime.InnerText = Model.CurrentState.CurrentTime.GameTime.ToString();
+                    //TODO?: maybe set an element for the datetime when saved, then during load figure out the
+                    //time difference and add it onto the pause time, in essence counting the time saved as
+                    //pause time?
+                    XmlElement elementPauseTime = document.CreateElement("PauseTime");
+                    elementPauseTime.InnerText = Model.CurrentState.PauseTime.ToString();
+                    XmlElement elementSegments = document.CreateElement("Segments");
+                    foreach (ISegment segment in Model.CurrentState.Run)
+                    {
+                        XmlElement elementSegment = document.CreateElement("Segment");
+                        XmlAttribute attributeName = document.CreateAttribute("Name");
+                        attributeName.InnerText = segment.Name;
+                        XmlAttribute attributeRealTime = document.CreateAttribute("RealTime");
+                        attributeRealTime.InnerText = segment.SplitTime.RealTime.ToString();
+                        XmlAttribute attributeGameTime = document.CreateAttribute("GameTime");
+                        attributeGameTime.InnerText = segment.SplitTime.GameTime.ToString();
+                        elementSegment.Attributes.Append(attributeName);
+                        elementSegment.Attributes.Append(attributeRealTime);
+                        elementSegment.Attributes.Append(attributeGameTime);
+                        elementSegments.AppendChild(elementSegment);
+                    }
+                    parent.AppendChild(elementGameName);
+                    parent.AppendChild(elementCategoryName);
+                    parent.AppendChild(elementRealTime);
+                    parent.AppendChild(elementGameTime);
+                    parent.AppendChild(elementPauseTime);
+                    parent.AppendChild(elementSegments);
+                    document.AppendChild(parent);
+                    document.Save("foobarRun.lsr");
+
+
+                    saveRunMenuItem.Text = saveRunMenuItem.Text.Equals("Foo") ? "Bar" : "Foo";
+                }
+            });
         }
 
         private void LoadRun()
         {
-            loadRunMenuItem.Text = loadRunMenuItem.Text.Equals("good") ? "trailer" : "good";
+            this.InvokeIfRequired(() =>
+            {
+                loadRunMenuItem.Text = loadRunMenuItem.Text.Equals("good") ? "trailer" : "good";
+            });
         }
 
         private void racingMenuItem_MouseHover(object sender, EventArgs e)

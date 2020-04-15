@@ -144,6 +144,11 @@ namespace LiveSplit.Model
             CurrentState.Run.FixSplits();
         }
 
+        public void LoadRun(IRun run)
+        {
+
+        }
+
         public void Pause()
         {
             if (CurrentState.CurrentPhase == TimerPhase.Running)

@@ -27,6 +27,7 @@ namespace LiveSplit.Model
         void UndoSplit();
         void Reset();
         void Reset(bool updateSplits);
+        void LoadRun(IRun run);
         void ResetAndSetAttemptAsPB();
         void Pause();
         void UndoAllPauses();
