@@ -116,17 +116,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>A Short Hike</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/A%20Short%20Hike/AShortHike.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Starts the timer and splits upon every new golden feather and more (check 'Website'). (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/A%20Short%20Hike/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>The Spectrum Retreat</Game>
     </Games>
     <URLs>
