@@ -145,8 +145,13 @@ namespace LiveSplit.Model
             CurrentState.Run.FixSplits();
         }
 
-        public void LoadRun(string gameName, string categoryName, Time time, List<ISegment> segments, RunMetadata metadata)
+        public void LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, int id, AtomicDateTime started)
         {
+            string msg = "gameName: " + gameName + "\ncategoryName: " + categoryName + "\ntime: " + time.ToString() + "\nsegments: ";
+            foreach (var segment in segments)
+                msg += segment.Key + " " + segment.Value.ToString() + "\n";
+            msg += "\nid: " + id + "\nstarted: " + started.Time.ToString() + " | " + started.SyncedWithAtomicClock.ToString();
+            System.Diagnostics.Debug.WriteLine(msg);
 
         }
 

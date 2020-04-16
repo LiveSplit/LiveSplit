@@ -28,7 +28,7 @@ namespace LiveSplit.Model
         void UndoSplit();
         void Reset();
         void Reset(bool updateSplits);
-        void LoadRun(string gameName, string categoryName, Time time, List<ISegment> segments, RunMetadata metadata);
+        void LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, int id, AtomicDateTime started);
         void ResetAndSetAttemptAsPB();
         void Pause();
         void UndoAllPauses();

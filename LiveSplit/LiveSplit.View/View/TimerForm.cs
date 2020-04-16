@@ -2656,29 +2656,54 @@ namespace LiveSplit.View
 
         private void LoadRun()
         {
-            if (CurrentState.CurrentPhase != TimerPhase.Running && !CurrentState.Run.IsAutoSplitterActive())
-                using (var loadRunDialog = new OpenFileDialog())
+            if (CurrentState.CurrentPhase == TimerPhase.Running || CurrentState.Run.IsAutoSplitterActive())
+                return;
+
+            DialogResult result;
+            XmlDocument document = new XmlDocument();
+            using (var loadRunDialog = new OpenFileDialog())
+            {
+                loadRunDialog.Filter = "LiveSplit Run (*.lsr)|*.lsr|All Files (*.*)|*.*";
+                loadRunDialog.CheckFileExists = true;
+                IsInDialogMode = true;
+                try
                 {
-                    loadRunDialog.Filter = "LiveSplit Run (*.lsr)|*.lsr|All Files (*.*)|*.*";
-                    loadRunDialog.CheckFileExists = true;
-                    IsInDialogMode = true;
-                    try
-                    {
-                        var result = loadRunDialog.ShowDialog(this);
-                        if (result == DialogResult.OK)
-                        {
-                            XmlDocument document = new XmlDocument();
-                            document.Load(loadRunDialog.OpenFile());
-                            //Model.LoadRun(
-                            Debug.WriteLine(document.LastChild.FirstChild.InnerText);
-                        }
-                    }
-                    finally
-                    {
-                        IsInDialogMode = false;
-                    }
+                    result = loadRunDialog.ShowDialog(this);
+                    if (result == DialogResult.OK)
+                        document.Load(loadRunDialog.OpenFile());
                 }
-            loadRunMenuItem.Text = loadRunMenuItem.Text.Equals("good") ? "trailer" : "good";
+                finally { IsInDialogMode = false; }
+            }
+
+            if (result != DialogResult.OK)
+                return;
+
+            Dictionary<string, Time> segments = new Dictionary<string, Time>();
+            foreach (XmlElement segment in document.LastChild.LastChild.ChildNodes)
+            {
+                TimeSpan? realTime;
+                TimeSpan? gameTime;
+                try
+                {
+                    realTime = TimeSpan.Parse(segment.GetAttributeNode("RealTime").InnerText);
+                }
+                catch (FormatException) { realTime = null; }
+                catch (Exception) { return; }
+                try
+                {
+                    gameTime = TimeSpan.Parse(segment.GetAttributeNode("GameTime").InnerText);
+                }
+                catch (FormatException) { gameTime = null; }
+                catch (Exception) { return; }
+                segments.Add(segment.GetAttribute("Name").ToString(), new Time(realTime, gameTime));
+            }
+            Model.LoadRun(document.LastChild.FirstChild.InnerText,
+                document.LastChild.ChildNodes[1].InnerText,
+                new Time(TimeSpan.Parse(document.LastChild.ChildNodes[2].InnerText), TimeSpan.Parse(document.LastChild.ChildNodes[3].InnerText)),
+                segments,
+                int.Parse(document.LastChild.Attributes[0].InnerText),
+                new AtomicDateTime(DateTime.Parse(document.LastChild.Attributes[1].InnerText), bool.Parse(document.LastChild.Attributes[2].InnerText)));
+
         }
 
         private void racingMenuItem_MouseHover(object sender, EventArgs e)
