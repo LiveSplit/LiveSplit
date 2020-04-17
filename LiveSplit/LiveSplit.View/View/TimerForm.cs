@@ -197,9 +197,8 @@ namespace LiveSplit.View
 
             Model = new DoubleTapPrevention(new TimerModel());
 
-            ComponentManager.RaceProviderFactories = new Dictionary<string, IRaceProviderFactory>();
+            ComponentManager.RaceProviderFactories = ComponentManager.LoadAllFactories<IRaceProviderFactory>();
             ComponentManager.RaceProviderFactories["SRL"] = new SRLFactory();
-            ComponentManager.LoadAllFactories<IRaceProviderFactory>().ToList().ForEach(x => ComponentManager.RaceProviderFactories[x.Key] = x.Value);
             RunFactory = new StandardFormatsRunFactory();
             RunSaver = new XMLRunSaver();
             LayoutSaver = new XMLLayoutSaver();
@@ -337,7 +336,7 @@ namespace LiveSplit.View
             }
                        
             RaceProvider = ComponentManager.RaceProviderFactories.Select(x => x.Value.Create(Model, Settings.RaceProvider.FirstOrDefault(y => y.Name == x.Key)));           
-            foreach (var raceProvider in RaceProvider)
+            foreach (var raceProvider in RaceProvider.Reverse())
             {
                 if (Settings.RaceProvider.Any(x => x.DisplayName == raceProvider.ProviderName && !x.Enabled))
                     continue;

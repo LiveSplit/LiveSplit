@@ -123,7 +123,7 @@
             this.btnChooseRaceProvider.Name = "btnChooseRaceProvider";
             this.btnChooseRaceProvider.Size = new System.Drawing.Size(190, 23);
             this.btnChooseRaceProvider.TabIndex = 6;
-            this.btnChooseRaceProvider.Text = "Manage Plugins...";
+            this.btnChooseRaceProvider.Text = "Manage Racing Services...";
             this.btnChooseRaceProvider.UseVisualStyleBackColor = true;
             this.btnChooseRaceProvider.Click += new System.EventHandler(this.btnChooseRaceProvider_Click);
             // 
@@ -593,7 +593,7 @@
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(178, 13);
             this.label13.TabIndex = 18;
-            this.label13.Text = "Racing Service Integration:";
+            this.label13.Text = "Racing Services:";
             // 
             // btnChooseComparisons
             // 

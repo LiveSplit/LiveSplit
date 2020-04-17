@@ -24,8 +24,8 @@ namespace LiveSplit.Options
         {
             var control = new UserControl();
             control.Controls.Add(new Label() {
-                Text ="There are no options for this plugin available",
-                Dock =DockStyle.Fill,
+                Text = "There are no options available for this plugin.",
+                Dock = DockStyle.Fill,
                 TextAlign = System.Drawing.ContentAlignment.TopCenter
             });
             control.Dock = DockStyle.Fill;
