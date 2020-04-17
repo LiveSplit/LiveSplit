@@ -318,7 +318,7 @@
 		<Game>Call of Duty 4: Modern Warfare</Game>
 	</Games>
 	<URLs>
-		<URLhttps://raw.githubusercontent.com/KunoDemetries/cod4/master/mw.asl</URL>
+		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw.asl</URL>
 	</URLs>
 	<Type>Script</Type>
 	<Description> Autosplitter and load remover for Call of Duty 4: Modern Warfare on Steam. Does a exit split after crosshair dissapears. (by KunoDemetries)</Description>
