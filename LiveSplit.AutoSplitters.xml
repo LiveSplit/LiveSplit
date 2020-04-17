@@ -42,7 +42,7 @@
 		<Game>Call of Duty 2</Game>
 	</Games>
 	<URLs>
-		<URLhttps://raw.githubusercontent.com/KunoDemetries/cod4/master/COD2AS.asl</URL>
+		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/COD2AS.asl</URL>
 	</URLs>
 	<Type>Script</Type>
 	<Description> Autosplitter/load remover(by Kuno Demetries)</Description>
