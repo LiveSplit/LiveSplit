@@ -6319,6 +6319,39 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Danganronpa: Trigger Happy Havoc</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/DRTHHv1.3.1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal only. Does not autosplit.</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Danganronpa Another Episode: Ultra Despair Girls</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/DRAE.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal only. Does not autosplit.</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Zero Escape: The Nonary Games</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/ZETNG.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal and autosplitting for Nine Hours, Nine Persons, Nine Doors. No functionality for Virtue's Last Reward (yet).</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Nancy Drew: Secrets Can Kill</Game>
     </Games>
     <URLs>
@@ -6374,6 +6407,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Nancy Drew: Danger on Deception Island</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/DDI.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Nancy Drew: The Secret of Shadow Ranch</Game>
     </Games>
     <URLs>
@@ -6400,6 +6444,17 @@
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/CLK.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Nancy Drew: Last Train to Blue Moon Canyon</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/TRN.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split</Description>
