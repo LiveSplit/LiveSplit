@@ -37,6 +37,17 @@
 	<Description> Autosplitter for Blood: Fresh Supply. Also pauses the time during the saving function since the pause varies depending on cpu. (by Psych0sis)</Description>
 	<Website>https://discord.gg/jf7jJRu</Website>
   </AutoSplitter>
+	 <AutoSplitter>
+	<Games>
+		<Game>Call of Duty 2</Game>
+	</Games>
+	<URLs>
+		<URLhttps://raw.githubusercontent.com/KunoDemetries/cod4/master/COD2AS.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter/load remover(by Kuno Demetries)</Description>
+	<Website>https:https://discordapp.com/invite/Rb8bEUn</Website>
+  </AutoSplitter>
 	<AutoSplitter>
 	<Games>
 		<Game>Sniper Elite V2</Game>
