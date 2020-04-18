@@ -6962,10 +6962,10 @@
       <Game>SR2</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.SR2.Release.asl</URL>
+      <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.SR2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic splitting and load remover for the Steam and GOG versions available (by hoxi &amp; Mr. Mary)</Description>
+    <Description>Automatic splitting and load remover for the Steam and GOG versions available (by hoxi and Mr. Mary)</Description>
     <Website>https://github.com/hoXyy/Livesplit.Autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
