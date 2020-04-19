@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout commit
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
+    - name: Fetch history
+      run: git fetch --prune --unshallow
+
+    - name: Reattach HEAD to Head Ref
+      if: github.head_ref != ''
+      run: git checkout "$(echo ${{ github.head_ref }} | sed -E 's|refs/[a-zA-Z]+/||')"
+
+    - name: Setup .NET environment
+      uses: vrnobody/Setup-DotNetFrameworkEnv@v1
+
+    - name: Install NuGet packages
+      run: nuget restore LiveSplit\LiveSplit.sln
+
+    - name: Build LiveSplit
+      run: msbuild LiveSplit\LiveSplit.sln /verbosity:minimal /p:NoWarn=1591 /p:Configuration=Release
+
+    - name: Run tests
+      run: |
+        & "vstest.console.exe" "LiveSplit/LiveSplit.Tests/bin/Release/LiveSplit.Tests.dll"
+
+    - name: Clean up build folder
+      run: |
+        mkdir .\LiveSplit\bin\Release\Resources
+        cp .\LiveSplit\Resources\SplitsFile.ico .\LiveSplit\bin\Release\Resources\
+        cp .\LiveSplit\Resources\LayoutFile.ico .\LiveSplit\bin\Release\Resources\
+        cd LiveSplit\bin\Release
+        Get-ChildItem * -Include *.xml -Recurse | Remove-Item
+        Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
+
+    - name: Upload build as an artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: LiveSplit_Build
+        path: LiveSplit/bin/Release
+
+    - name: Upload build to LiveSplit.github.io
+      if: github.repository == 'LiveSplit/LiveSplit' && github.ref == 'refs/heads/master'
+      run: |
+        7z a LiveSplitDevBuild.zip .\LiveSplit\bin\Release\*
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        git clone -q --branch master --single-branch "https://github.com/LiveSplit/LiveSplit.github.io.git"
+        cd LiveSplit.github.io
+        git checkout -q --orphan artifacts-2
+        git reset
+        mv ../LiveSplitDevBuild.zip . -force
+        git add LiveSplitDevBuild.zip
+        git commit -m "Add Development Build"
+        git push -q --force https://action:${{ secrets.DEV_BUILD_UPLOAD }}@github.com/LiveSplit/LiveSplit.github.io.git
