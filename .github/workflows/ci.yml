@@ -17,13 +17,13 @@ jobs:
         submodules: recursive
 
     - name: Fetch history
-      run: git fetch --prune --unshallow
+      run: git fetch --prune --unshallow --recurse-submodules=no
 
     - name: Reattach HEAD to Head Ref
       if: github.head_ref != ''
       run: git checkout "$(echo ${{ github.head_ref }} | sed -E 's|refs/[a-zA-Z]+/||')"
 
-    - name: Setup .NET environment
+    - name: Set up .NET environment
       uses: vrnobody/Setup-DotNetFrameworkEnv@v1
 
     - name: Install NuGet packages
@@ -59,7 +59,7 @@ jobs:
         git config --global user.name "GitHub Action"
         git clone -q --branch master --single-branch "https://github.com/LiveSplit/LiveSplit.github.io.git"
         cd LiveSplit.github.io
-        git checkout -q --orphan artifacts-2
+        git checkout -q --orphan artifacts
         git reset
         mv ../LiveSplitDevBuild.zip . -force
         git add LiveSplitDevBuild.zip
