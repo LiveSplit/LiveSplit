@@ -318,7 +318,7 @@
 		<Game>Call of Duty 4: Modern Warfare</Game>
 	</Games>
 	<URLs>
-		<URL>https://raw.githubusercontent.com/KunoDemetries/Updated-cod4/master/mw.asl</URL>
+		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw.asl</URL>
 	</URLs>
 	<Type>Script</Type>
 	<Description> Autosplitter and load remover for Call of Duty 4: Modern Warfare on Steam. Does a exit split after crosshair dissapears. (by KunoDemetries)</Description>
@@ -3568,10 +3568,10 @@
       <Game>Call of Duty: Modern Warfare 3</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Jukspa/LoadRemoval/master/mw3.asl</URL>
+      <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw3.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By Jukspa)</Description>
+    <Description>Auto Splitter/ Load Remover. (By KunoDemetries)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -6267,10 +6267,10 @@
       <Game>Call of Duty 2</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/Cod2.asl</URL>
+      <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/COD2AS.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>LoadRemover is available(by AlexYeahNot )</Description>
+    <Description>Auto Splitter/ Load Remover (by KunoDemetries)</Description>
     <Website>https://discord.gg/GHh8sJ6</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -6316,6 +6316,39 @@
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitter/loadremover (By KunoDemetires)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Danganronpa: Trigger Happy Havoc</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/DRTHHv1.3.1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal only. Does not autosplit.</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Danganronpa Another Episode: Ultra Despair Girls</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/DRAE.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal only. Does not autosplit.</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Zero Escape: The Nonary Games</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/ZETNG.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal and autosplitting for Nine Hours, Nine Persons, Nine Doors. No functionality for Virtue's Last Reward (yet).</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -6374,6 +6407,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Nancy Drew: Danger on Deception Island</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/DDI.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Nancy Drew: The Secret of Shadow Ranch</Game>
     </Games>
     <URLs>
@@ -6400,6 +6444,17 @@
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/CLK.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split</Description>
+    <Website>https://github.com/kclimb/asl-scripts</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Nancy Drew: Last Train to Blue Moon Canyon</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/TRN.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split</Description>
@@ -6907,10 +6962,10 @@
       <Game>SR2</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.SR2.Release.asl</URL>
+      <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.SR2.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Automatic splitting and load remover for the Steam and GOG versions available (by hoxi &amp; Mr. Mary)</Description>
+    <Description>Automatic splitting and load remover for the Steam and GOG versions available (by hoxi and Mr. Mary)</Description>
     <Website>https://github.com/hoXyy/Livesplit.Autosplitters</Website>
   </AutoSplitter>
   <AutoSplitter>
