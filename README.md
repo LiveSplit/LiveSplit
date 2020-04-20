@@ -5,7 +5,7 @@
 [![Build Status](https://github.com/LiveSplit/LiveSplit/workflows/CI/badge.svg)](https://github.com/LiveSplit/LiveSplit/actions)
 [![GitHub issues](https://img.shields.io/github/issues/LiveSplit/LiveSplit.svg?style=plastic)](https://github.com/LiveSplit/LiveSplit/issues)
 
-LiveSplit is a timer program for speedrunners that is both easy to use and full of features.
+ok is a timer program for speedrunners that is both easy to use and full of features.
 <p align="center">
   <img src="https://raw.githubusercontent.com/LiveSplit/LiveSplit.github.io/master/images/livesplittimer.png" alt="LiveSplit"/>
 </p>
