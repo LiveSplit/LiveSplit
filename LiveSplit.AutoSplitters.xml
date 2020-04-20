@@ -50,6 +50,17 @@
   </AutoSplitter>
 	 <AutoSplitter>
 	<Games>
+		<Game>Isle of Ewe</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/Isle%20of%20Ewe.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description> Autosplitter/Load Remover (W/ Sheep Counter) (by KunoDemetries, Rythin, DerKO)</Description>
+	<Website>https://discord.gg/Nvbspv</Website>
+  </AutoSplitter>
+	 <AutoSplitter>
+	<Games>
 		<Game>FEAR Extraction Point</Game>
 	</Games>
 	<URLs>
