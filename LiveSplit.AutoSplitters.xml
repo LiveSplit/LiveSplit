@@ -8440,4 +8440,14 @@
 		<Type>Script</Type>
 		<Description> In-between levels splits. Start/Finish needs to be manual </Description>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>MindSeize</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/shockkolate/mindseize-autosplitter/master/mindseize.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Auto-splitting and auto-start are available (by Shockk)</Description>
+	</AutoSplitter>
 </AutoSplitters>
