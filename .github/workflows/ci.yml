@@ -19,9 +19,10 @@ jobs:
     - name: Fetch history
       run: git fetch --prune --unshallow --recurse-submodules=no
 
-    - name: Reattach HEAD to Head Ref
+    - name: Checkout Head Ref
       if: github.head_ref != ''
-      run: git checkout "$(echo ${{ github.head_ref }} | sed -E 's|refs/[a-zA-Z]+/||')"
+      run: |
+        git checkout -b ${{ github.head_ref }}
 
     - name: Set up .NET environment
       uses: vrnobody/Setup-DotNetFrameworkEnv@v1
