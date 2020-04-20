@@ -22,7 +22,7 @@ jobs:
     - name: Checkout Head Ref
       if: github.head_ref != ''
       run: |
-        git checkout -b ${{ github.head_ref }}
+        git checkout -b ${{ github.head_ref }} || git checkout ${{ github.head_ref }}
 
     - name: Set up .NET environment
       uses: vrnobody/Setup-DotNetFrameworkEnv@v1
