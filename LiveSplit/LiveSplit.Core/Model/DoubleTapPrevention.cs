@@ -106,8 +106,11 @@ namespace LiveSplit.Model
                 LastEvent = TimeStamp.Now;
             }
         }
-        
-        public void LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, int id, AtomicDateTime started) => InternalModel.LoadRun(gameName, categoryName, time, segments, id, started);
+
+        public bool LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, AtomicDateTime started, bool isGameTimeInitialized, TimeSpan pauseTime)
+        {
+            return InternalModel.LoadRun(gameName, categoryName, time, segments, started, isGameTimeInitialized, pauseTime);
+        }
 
         public void Pause()
         {

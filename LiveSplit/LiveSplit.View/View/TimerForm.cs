@@ -2597,32 +2597,29 @@ namespace LiveSplit.View
                             document.AppendChild(docNode);
 
                             XmlElement parent = document.CreateElement("Save");
-                            XmlAttribute attributeId = document.CreateAttribute("id");
-                            attributeId.InnerText = Model.CurrentState.Run.AttemptCount.ToString();
                             var startTime = Model.CurrentState.AttemptStarted;
                             XmlAttribute attributeStarted = document.CreateAttribute("started");
                             attributeStarted.InnerText = startTime.Time.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
                             XmlAttribute attributeIsStartedSynced = document.CreateAttribute("isStartedSynced");
                             attributeIsStartedSynced.InnerText = startTime.SyncedWithAtomicClock.ToString();
-                            parent.Attributes.Append(attributeId);
+                            XmlAttribute attributeIsGameTimeInitialized = document.CreateAttribute("isGameTimeInitialized");
+                            attributeIsGameTimeInitialized.InnerText = CurrentState.IsGameTimeInitialized.ToString();
                             parent.Attributes.Append(attributeStarted);
                             parent.Attributes.Append(attributeIsStartedSynced);
+                            parent.Attributes.Append(attributeIsGameTimeInitialized);
 
                             XmlElement elementGameName = document.CreateElement("GameName");
-                            elementGameName.InnerText = Model.CurrentState.Run.GameName;
+                            elementGameName.InnerText = CurrentState.Run.GameName;
                             XmlElement elementCategoryName = document.CreateElement("CategoryName");
-                            elementCategoryName.InnerText = Model.CurrentState.Run.CategoryName;
+                            elementCategoryName.InnerText = CurrentState.Run.CategoryName;
                             XmlElement elementRealTime = document.CreateElement("RealTime");
-                            elementRealTime.InnerText = Model.CurrentState.CurrentTime.RealTime.ToString();
+                            elementRealTime.InnerText = CurrentState.CurrentTime.RealTime.ToString();
                             XmlElement elementGameTime = document.CreateElement("GameTime");
-                            elementGameTime.InnerText = Model.CurrentState.CurrentTime.GameTime.ToString();
-                            //TODO?: maybe set an element for the datetime when saved, then during load figure out the
-                            //time difference and add it onto the pause time, in essence counting the time saved as
-                            //pause time?
+                            elementGameTime.InnerText = CurrentState.CurrentTime.GameTime.ToString();
                             XmlElement elementPauseTime = document.CreateElement("PauseTime");
-                            elementPauseTime.InnerText = Model.CurrentState.PauseTime.ToString();
+                            elementPauseTime.InnerText = (CurrentState.PauseTime ?? TimeSpan.Zero).ToString();
                             XmlElement elementSegments = document.CreateElement("Segments");
-                            foreach (ISegment segment in Model.CurrentState.Run)
+                            foreach (ISegment segment in CurrentState.Run)
                             {
                                 XmlElement elementSegment = document.CreateElement("Segment");
                                 XmlAttribute attributeName = document.CreateAttribute("Name");
@@ -2681,29 +2678,46 @@ namespace LiveSplit.View
             Dictionary<string, Time> segments = new Dictionary<string, Time>();
             foreach (XmlElement segment in document.LastChild.LastChild.ChildNodes)
             {
-                TimeSpan? realTime;
-                TimeSpan? gameTime;
+                TimeSpan? segmentRealTime;
+                TimeSpan? segmentGameTime;
                 try
                 {
-                    realTime = TimeSpan.Parse(segment.GetAttributeNode("RealTime").InnerText);
+                    segmentRealTime = TimeSpan.Parse(segment.GetAttributeNode("RealTime").InnerText);
                 }
-                catch (FormatException) { realTime = null; }
+                catch (FormatException) { segmentRealTime = null; }
                 catch (Exception) { return; }
                 try
                 {
-                    gameTime = TimeSpan.Parse(segment.GetAttributeNode("GameTime").InnerText);
+                    segmentGameTime = TimeSpan.Parse(segment.GetAttributeNode("GameTime").InnerText);
                 }
-                catch (FormatException) { gameTime = null; }
+                catch (FormatException) { segmentGameTime = null; }
                 catch (Exception) { return; }
-                segments.Add(segment.GetAttribute("Name").ToString(), new Time(realTime, gameTime));
+                segments.Add(segment.GetAttribute("Name").ToString(), new Time(segmentRealTime, segmentGameTime));
             }
-            Model.LoadRun(document.LastChild.FirstChild.InnerText,
-                document.LastChild.ChildNodes[1].InnerText,
-                new Time(TimeSpan.Parse(document.LastChild.ChildNodes[2].InnerText), TimeSpan.Parse(document.LastChild.ChildNodes[3].InnerText)),
-                segments,
-                int.Parse(document.LastChild.Attributes[0].InnerText),
-                new AtomicDateTime(DateTime.Parse(document.LastChild.Attributes[1].InnerText), bool.Parse(document.LastChild.Attributes[2].InnerText)));
 
+            TimeSpan? realTime;
+            TimeSpan? gameTime;
+            try
+            {
+                realTime = TimeSpan.Parse(document.LastChild.ChildNodes[2].InnerText);
+            }
+            catch (FormatException) { realTime = null; }
+            catch (Exception) { return; }
+            try
+            {
+                gameTime = TimeSpan.Parse(document.LastChild.ChildNodes[3].InnerText);
+            }
+            catch (FormatException) { gameTime = null; }
+            catch (Exception) { return; }
+
+            if (!Model.LoadRun(document.LastChild.FirstChild.InnerText,
+                    document.LastChild.ChildNodes[1].InnerText,
+                    new Time(realTime, gameTime),
+                    segments,
+                    new AtomicDateTime(DateTime.Parse(document.LastChild.Attributes[0].InnerText), bool.Parse(document.LastChild.Attributes[1].InnerText)),
+                    bool.Parse(document.LastChild.Attributes[2].InnerText),
+                    TimeSpan.Parse(document.LastChild.ChildNodes[4].InnerText)))
+                MessageBox.Show("The Livesplit Run (.lsr) file could not be parsed. Common causes are wrong game or wrong category, otherwise, the save file may be in the wrong format or missing information.", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void racingMenuItem_MouseHover(object sender, EventArgs e)
