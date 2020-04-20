@@ -2697,27 +2697,44 @@ namespace LiveSplit.View
 
             TimeSpan? realTime;
             TimeSpan? gameTime;
+
             try
             {
                 realTime = TimeSpan.Parse(document.LastChild.ChildNodes[2].InnerText);
             }
-            catch (FormatException) { realTime = null; }
-            catch (Exception) { return; }
+            catch (FormatException)
+            {
+                MessageBox.Show("The Livesplit Run (.lsr) file is invalid. (The hibernated time (RealTime) is either missing or invalid.)", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             try
             {
                 gameTime = TimeSpan.Parse(document.LastChild.ChildNodes[3].InnerText);
             }
             catch (FormatException) { gameTime = null; }
-            catch (Exception) { return; }
 
-            if (!Model.LoadRun(document.LastChild.FirstChild.InnerText,
-                    document.LastChild.ChildNodes[1].InnerText,
-                    new Time(realTime, gameTime),
-                    segments,
-                    new AtomicDateTime(DateTime.Parse(document.LastChild.Attributes[0].InnerText), bool.Parse(document.LastChild.Attributes[1].InnerText)),
-                    bool.Parse(document.LastChild.Attributes[2].InnerText),
-                    TimeSpan.Parse(document.LastChild.ChildNodes[4].InnerText)))
-                MessageBox.Show("The Livesplit Run (.lsr) file could not be parsed. Common causes are wrong game or wrong category, otherwise, the save file may be in the wrong format or missing information.", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            try
+            {
+                Model.LoadRun(document.LastChild.FirstChild.InnerText,
+                        document.LastChild.ChildNodes[1].InnerText,
+                        new Time(realTime, gameTime),
+                        segments,
+                        new AtomicDateTime(DateTime.Parse(document.LastChild.Attributes[0].InnerText), bool.Parse(document.LastChild.Attributes[1].InnerText)),
+                        bool.Parse(document.LastChild.Attributes[2].InnerText),
+                        TimeSpan.Parse(document.LastChild.ChildNodes[4].InnerText));
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("The Livesplit Run (.lsr) file is invalid. One or more values is formatted improperly.", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (MismatchedGameCategoryException)
+            {
+                MessageBox.Show("The Livesplit Run (.lsr) file is for a different game or run category.", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show("The Livesplit Run (.lsr) file has missing attributes.", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void racingMenuItem_MouseHover(object sender, EventArgs e)

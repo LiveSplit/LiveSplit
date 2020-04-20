@@ -107,9 +107,9 @@ namespace LiveSplit.Model
             }
         }
 
-        public bool LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, AtomicDateTime started, bool isGameTimeInitialized, TimeSpan pauseTime)
+        public void LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, AtomicDateTime started, bool isGameTimeInitialized, TimeSpan pauseTime)
         {
-            return InternalModel.LoadRun(gameName, categoryName, time, segments, started, isGameTimeInitialized, pauseTime);
+            InternalModel.LoadRun(gameName, categoryName, time, segments, started, isGameTimeInitialized, pauseTime);
         }
 
         public void Pause()

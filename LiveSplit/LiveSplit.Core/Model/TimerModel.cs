@@ -145,7 +145,7 @@ namespace LiveSplit.Model
             CurrentState.Run.FixSplits();
         }
 
-        public bool LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, AtomicDateTime started, bool isGameTimeInitialized, TimeSpan pauseTime)
+        public void LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, AtomicDateTime started, bool isGameTimeInitialized, TimeSpan pauseTime)
         {/*
             string msg = "gameName: " + gameName + "\ncategoryName: " + categoryName + "\ntime: " + time.ToString() + "\nsegments: ";
             foreach (var segment in segments)
@@ -154,9 +154,8 @@ namespace LiveSplit.Model
             System.Diagnostics.Debug.WriteLine(msg);*/
 
             if (gameName != CurrentState.Run.GameName
-                || categoryName != CurrentState.Run.CategoryName
-                || !time.RealTime.HasValue)
-                return false;
+                || categoryName != CurrentState.Run.CategoryName)
+                throw new MismatchedGameCategoryException();
 
             if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
             {
@@ -173,7 +172,7 @@ namespace LiveSplit.Model
                 {
                     foreach (var s in CurrentState.Run)
                         s.SplitTime = default(Time);
-                    return false;
+                    throw new MismatchedGameCategoryException();
                 }
                 if (segments[CurrentState.Run[i].Name].RealTime != null)
                     CurrentState.CurrentSplitIndex = i;
@@ -188,10 +187,9 @@ namespace LiveSplit.Model
             CurrentState.IsGameTimeInitialized = isGameTimeInitialized;
             CurrentState.Run.AttemptCount++;
             CurrentState.Run.HasChanged = true;
-            CurrentState.TimePausedAt = TimeStamp.Now - CurrentState.AdjustedStartTime;
+            CurrentState.TimePausedAt = TimeStamp.Now - CurrentState.StartTimeWithOffset;
             CurrentState.CurrentPhase = TimerPhase.Paused;
             OnPause?.Invoke(this, null);
-            return true;
         }
 
         public void Pause()
