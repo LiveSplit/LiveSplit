@@ -39,7 +39,7 @@
   </AutoSplitter>
 	 <AutoSplitter>
 	<Games>
-		<GameFEAR Extraction Point</Game>
+		<Game>FEAR Extraction Point</Game>
 	</Games>
 	<URLs>
 		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/Fear%20Extraction%20Point.asl</URL>
@@ -50,7 +50,7 @@
   </AutoSplitter>
 	 <AutoSplitter>
 	<Games>
-		<GameFEAR Perseus Mandate</Game>
+		<Game>FEAR Perseus Mandate</Game>
 	</Games>
 	<URLs>
 		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/Fear%20Perseus%20Mandate.asl</URL>
