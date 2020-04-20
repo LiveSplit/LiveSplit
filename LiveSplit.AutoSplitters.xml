@@ -8386,4 +8386,14 @@
 		<Description>For pvz original and Steam version.</Description>
 		<Website>https://discord.gg/ss5uTqE</Website>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Zed</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/DanfsAC/Autosplitters/master/zed.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> In-between levels splits. Start/Finish needs to be manual </Description>
+	</AutoSplitter>
 </AutoSplitters>
