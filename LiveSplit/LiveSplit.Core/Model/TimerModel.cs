@@ -165,7 +165,7 @@ namespace LiveSplit.Model
                 CurrentState.Run.FixSplits();
             }
 
-
+            CurrentState.CurrentSplitIndex = 0;
             for (int i = 0; i < CurrentState.Run.Count; i++)
             {
                 if (!segments.ContainsKey(CurrentState.Run[i].Name))
@@ -175,7 +175,7 @@ namespace LiveSplit.Model
                     throw new MismatchedGameCategoryException();
                 }
                 if (segments[CurrentState.Run[i].Name].RealTime != null)
-                    CurrentState.CurrentSplitIndex = i;
+                    CurrentState.CurrentSplitIndex = i + 1;
                 CurrentState.Run[i].SplitTime = segments[CurrentState.Run[i].Name];
             }
             CurrentState.AttemptStarted = started;
