@@ -2655,7 +2655,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto Splitting and Load Removal are available. (By Micrologist, Loitho)</Description>
-  </AutoSplitter>	
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>You Are Empty</Game>
@@ -3678,7 +3678,7 @@
       <Game>StarTrack² Canyon</Game>
       <Game>StarTrack² Lagoon</Game>
       <Game>StarTrack² Stadium</Game>
-      <Game>StarTrack² Valley</Game> 
+      <Game>StarTrack² Valley</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/RastaBobby/Trackmania2-Autosplitter/master/TM2-Autosplitter-LoadRemover-March2020</URL>
@@ -5342,10 +5342,10 @@
     <Type>Script</Type>
     <Description>Autosplitter for Mega Man Zero 4 (By Coltaho)</Description>
     <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaManZero4/README.md</Website>
-  </AutoSplitter>  
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Mega Man ZX</Game> 
+      <Game>Mega Man ZX</Game>
       <Game>Rockman ZX</Game>
     </Games>
     <URLs>
@@ -7367,6 +7367,7 @@
   <AutoSplitter>
     <Games>
       <Game>Burnout Paradise</Game>
+      <Game>Burnout Paradise Remastered</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/ItsTrigger/LiveSplit-Auto-Splitters/master/LiveSplit.BurnoutParadise.asl</URL>
@@ -7709,7 +7710,7 @@
     </URLs>
     <Type>Script</Type>
     <Description> Autosplitting available (by rythin) </Description>
-  </AutoSplitter> 
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
         <Game>Magiczna Kula Papatki</Game>
@@ -7731,7 +7732,7 @@
     </URLs>
     <Type>Script</Type>
     <Description> Autosplitting and Game Time available for current patch (by rythin) </Description>
-  </AutoSplitter> 
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
         <Game>SAS: Secure Tomorrow</Game>
@@ -7742,7 +7743,7 @@
     </URLs>
     <Type>Script</Type>
     <Description> Autosplitting and Load Removal available (by rythin) </Description>
-  </AutoSplitter> 
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
         <Game>Yo! Noid 2</Game>
@@ -7756,7 +7757,7 @@
     </URLs>
     <Type>Script</Type>
     <Description> Autosplitting available for Game of a Year Edition (w/ IGT Mod) (by rythin) </Description>
-  </AutoSplitter> 
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
         <Game>Colin McRae Rally</Game>
@@ -7791,7 +7792,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load removal, autosplitter, split settings, automatic start and reset are available. (by FluxMonkii and Cadarev)</Description>
-  </AutoSplitter> 
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
         <Game>Distorted Travesty 3</Game>
@@ -7867,7 +7868,7 @@
       </URLs>
       <Type>Script</Type>
       <Description> Load Removal and Autosplitting available (by rythin)</Description>
-     </AutoSplitter> 
+     </AutoSplitter>
 <AutoSplitter>
       <Games>
         <Game>You Have 10 Seconds</Game>
@@ -7929,7 +7930,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Auto-splitting, start, and game timer are available.</Description>
-</AutoSplitter> 
+</AutoSplitter>
      <AutoSplitter>
       <Games>
         <Game>Legend of Xenia</Game>
@@ -7939,7 +7940,7 @@
       </URLs>
       <Type>Script</Type>
       <Description>Autosplitting available (by rythin)</Description>
-     </AutoSplitter>  
+     </AutoSplitter>
      <AutoSplitter>
       <Games>
         <Game>Risk of Rain</Game>
@@ -7949,7 +7950,7 @@
       </URLs>
       <Type>Script</Type>
       <Description>Autosplitting and Game Time available (by rythin)</Description>
-     </AutoSplitter>   
+     </AutoSplitter>
      <AutoSplitter>
       <Games>
         <Game>Chalk</Game>
@@ -7959,7 +7960,7 @@
       </URLs>
       <Type>Script</Type>
       <Description>Autosplitting and Load Removal available (by rythin)</Description>
-     </AutoSplitter> 
+     </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Eagle Island</Game>
@@ -8034,7 +8035,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Automatic start/split/reset (by boringcactus)</Description>
-  </AutoSplitter> 
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Daemon X Machina</Game>
@@ -8044,7 +8045,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Load Remover Available (by Fzzy2j)</Description>
-  </AutoSplitter> 
+  </AutoSplitter>
   <AutoSplitter>
       <Games>
         <Game>Legbreaker</Game>
@@ -8054,7 +8055,7 @@
       </URLs>
       <Type>Script</Type>
       <Description>Autosplitting available (by rythin)</Description>
-     </AutoSplitter> 
+     </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Color Symphony 2</Game>
@@ -8097,37 +8098,37 @@
     <Type>Script</Type>
     <Description>Autosplit and autostart (wait longer in intro)</Description>
   </AutoSplitter>
-  <AutoSplitter> 
-    <Games> 
+  <AutoSplitter>
+    <Games>
       <Game>Tomb Raider: Anniversary</Game>
     </Games>
-    <URLs> 
+    <URLs>
       <URL>https://raw.githubusercontent.com/NextLevelMemes/Master/master/traautosplitter.asl</URL>
     </URLs>
-    <Type>Script</Type> 
-    <Description>Autosplitter for Tomb Raider: Anniversary Any% - No Bug Jump with 23 autosplits, load removal and autoreset by NextLevelMemes</Description> 
+    <Type>Script</Type>
+    <Description>Autosplitter for Tomb Raider: Anniversary Any% - No Bug Jump with 23 autosplits, load removal and autoreset by NextLevelMemes</Description>
   </AutoSplitter>
 
-  <AutoSplitter> 
-    <Games> 
+  <AutoSplitter>
+    <Games>
       <Game>else Heart.Break()</Game>
     </Games>
-    <URLs> 
+    <URLs>
       <URL>https://raw.githubusercontent.com/plokmijnuhby/EHB-Autosplitter/master/bin/Release/ElseHeartBreak-Splitter.dll</URL>
     </URLs>
-    <Type>Component</Type> 
+    <Type>Component</Type>
     <Description>Autosplitter and autoreset for else Heart.Break(), all categories.</Description>
   </AutoSplitter>
-  <AutoSplitter> 
-    <Games> 
+  <AutoSplitter>
+    <Games>
       <Game>Super Hipster Lumberjack</Game>
     </Games>
-    <URLs> 
+    <URLs>
       <URL>https://raw.githubusercontent.com/PessimisticMango/SuperHipsterLumberjack/master/shl.asl</URL>
     </URLs>
-    <Type>Script</Type> 
-    <Description>Auto Splitting is available (by Pessimistic Mango)</Description> 
-  </AutoSplitter>	
+    <Type>Script</Type>
+    <Description>Auto Splitting is available (by Pessimistic Mango)</Description>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Bloodroots</Game>
