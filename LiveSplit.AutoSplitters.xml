@@ -8462,4 +8462,14 @@
     <Type>Script</Type>
     <Description>Auto-splitting and auto-start are available (by Shockk)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Assassin's Creed Odyssey</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/pbebla/1bf378a86b814938d12e35fcc73aeec3/raw/943dc0b3e165f8b32eb16d6b2db3184de48daf4f/ACOdysseyLoadRemover.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover for AC Odyssey (by Cynaschism)</Description>
+  </AutoSplitter>
 </AutoSplitters>
