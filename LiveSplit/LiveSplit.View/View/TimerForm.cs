@@ -321,6 +321,12 @@ namespace LiveSplit.View
 
         void UpdateRaceProviderIntegration()
         {
+            if(RightClickMenu.InvokeRequired)
+            {
+                RightClickMenu.Invoke(new Action(UpdateRaceProviderIntegration), null);
+                return;
+            }
+
             int menuItemIndex = RightClickMenu.Items.IndexOf(shareMenuItem);
             int firstRaceProvider = menuItemIndex + 1;
             int lastRaceProvider = RightClickMenu.Items.IndexOfKey("endRaceSection")-1;
