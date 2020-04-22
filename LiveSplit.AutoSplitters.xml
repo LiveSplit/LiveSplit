@@ -2396,6 +2396,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Azure Striker Gunvolt</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Ajarmar/Autosplitters/master/AzureStrikerGunvolt/asg_v4-1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter/load remover for Speedrun Modes.</Description>
+    <Website>https://github.com/Ajarmar/Autosplitters/blob/master/AzureStrikerGunvolt/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Big Lolly</Game>
       <Game>Gunman Chronicles</Game>
       <Game>Half-Life</Game>
