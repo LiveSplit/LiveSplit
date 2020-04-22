@@ -1088,14 +1088,14 @@ namespace LiveSplit.View
 
         void pauseTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            Model.Pause();
             ((System.Timers.Timer)sender).Stop();
+            Model.Pause();
         }
 
         void splitTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            StartOrSplit();
             ((System.Timers.Timer)sender).Stop();
+            StartOrSplit();
         }
 
         void RefreshTimerWorker()
