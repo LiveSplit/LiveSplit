@@ -8472,4 +8472,15 @@
     <Type>Script</Type>
     <Description>Load Remover for AC Odyssey (by Cynaschism)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Flywrench</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ldmnt/flywrench-autosplitter/master/flywrench.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>in-game timer and auto-splitting for full game runs and time trials (by Hamb)</Description>
+    <Website>https://discord.gg/AMMTrTJ</Website>
+  </AutoSplitter>
 </AutoSplitters>
