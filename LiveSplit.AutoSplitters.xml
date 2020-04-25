@@ -450,11 +450,11 @@
       <Game>Turok: Dinosaur Hunter</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/QuarkEra/TurokEX_AutoSplitter/master/LiveSplit.TurokEX.asl</URL>
+      <URL>https://raw.githubusercontent.com/Glurmo/LiveSplit.ASL.Turok/master/turok.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Start, Auto Split, Auto Reset on return to title.</Description>
-    <Website>https://github.com/QuarkEra/TurokEX_AutoSplitter</Website>
+    <Description>Auto Start, Auto Reset, Configurable Auto Splitting (by glurmo).</Description>
+    <Website>https://github.com/Glurmo/LiveSplit.ASL.Turok</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
