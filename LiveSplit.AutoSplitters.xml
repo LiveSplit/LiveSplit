@@ -8484,4 +8484,15 @@
     <Description>in-game timer and auto-splitting for full game runs and time trials (by Hamb)</Description>
     <Website>https://discord.gg/AMMTrTJ</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Firewatch</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/dragonbane0/firewatch-autosplitter/master/FirewatchAutosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover and Auto Splitter for Firewatch (by dragonbane0)</Description>
+    <Website>https://discord.gg/0pomjPsKmY5hBdXV</Website>
+  </AutoSplitter>
 </AutoSplitters>
