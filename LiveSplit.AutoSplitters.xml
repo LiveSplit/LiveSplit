@@ -8455,6 +8455,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Ice Creamed</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/DanfsAC/Autosplitters/master/ice-creamed.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Start on first input, splitting between levels. (by Danfs)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>MindSeize</Game>
     </Games>
     <URLs>
