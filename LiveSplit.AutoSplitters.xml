@@ -8505,4 +8505,15 @@
     <Description>Load Remover and Auto Splitter for Firewatch (by dragonbane0)</Description>
     <Website>https://discord.gg/0pomjPsKmY5hBdXV</Website>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Commandos: Strike Force</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/davidwiki8/Livespli-Autosplitters/master/CSF-LoadRemoval.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load Remover for Commandos: Strike Force v1.1(by davidwiki8)</Description>
+    <Website>https://discord.gg/AHy7at4</Website>
+  </AutoSplitter>
 </AutoSplitters>
