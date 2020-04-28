@@ -53,6 +53,12 @@ namespace LiveSplit.ComponentUtil
     public static class WinAPI
     {
         [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern IntPtr OpenThread(ThreadAccess dwDesiredAccess, bool bInheritHandle, uint dwThreadId);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
+        public static extern bool CloseHandle(IntPtr hObject);
+
+        [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool ReadProcessMemory(IntPtr hProcess, IntPtr lpBaseAddress, [Out] byte[] lpBuffer,
             SizeT nSize, out SizeT lpNumberOfBytesRead);
@@ -108,9 +114,42 @@ namespace LiveSplit.ComponentUtil
         [DllImport("ntdll.dll", SetLastError = true)]
         public static extern IntPtr NtResumeProcess(IntPtr hProcess);
 
+        [DllImport("ntdll.dll", SetLastError = true)]
+        public static extern int NtQueryInformationThread(
+            IntPtr threadHandle,
+            ThreadInfoClass threadInformationClass,
+            out THREAD_BASIC_INFORMATION threadInformation,
+            int threadInformationLength,
+            out int returnLength);
+
         [DllImport("kernel32.dll", SetLastError = true)]
         public static extern IntPtr CreateRemoteThread(IntPtr hProcess, IntPtr lpThreadAttributes, SizeT dwStackSize,
             IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, out IntPtr lpThreadId);
+
+        public static THREAD_BASIC_INFORMATION GetTBI(uint threadId)
+        {
+            IntPtr hThread = OpenThread(ThreadAccess.QueryInformation, false, threadId);
+            if (hThread == IntPtr.Zero)
+                throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+
+            try
+            {
+                THREAD_BASIC_INFORMATION tbi = new THREAD_BASIC_INFORMATION();
+                int result = NtQueryInformationThread(hThread, ThreadInfoClass.ThreadBasicInformation,
+                    out tbi, Marshal.SizeOf(tbi), out int retSize);
+                if (result != 0)
+                    throw new System.ComponentModel.Win32Exception(Marshal.GetLastWin32Error());
+
+                System.Diagnostics.Debug.Assert(Marshal.SizeOf(tbi) == retSize,
+                    $"Expected size {Marshal.SizeOf(tbi)} got {retSize}");
+
+                return tbi;
+            }
+            finally
+            {
+                CloseHandle(hThread);
+            }
+        }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct MODULEINFO
@@ -118,6 +157,43 @@ namespace LiveSplit.ComponentUtil
             public IntPtr lpBaseOfDll;
             public uint SizeOfImage;
             public IntPtr EntryPoint;
+        }
+
+        [Flags]
+        public enum ThreadAccess : int
+        {
+            Terminate = 0x0001,
+            SuspendResume = 0x0002,
+            GetContext = 0x0008,
+            SetContext = 0x0010,
+            SetInformation = 0x0020,
+            QueryInformation = 0x0040,
+            SetThreadToken = 0x0080,
+            Impersonate = 0x0100,
+            DirectImpersonation = 0x0200
+        }
+        public enum ThreadInfoClass : int
+        {
+            ThreadBasicInformation = 0,
+            ThreadQuerySetWin32StartAddress = 9
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct THREAD_BASIC_INFORMATION
+        {
+            public int ExitStatus;        // NTSTATUS (LONG)
+            public IntPtr TebBaseAddress; // PVOID
+            public CLIENT_ID ClientId;
+            public UIntPtr AffinityMask;  // KAFFINITY (ULONG_PTR)
+            public uint Priority;         // KPRIORITY (ULONG)
+            public uint BasePriority;     // KPRIORITY (ULONG)
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct CLIENT_ID
+        {
+            public IntPtr UniqueProcess;  // PVOID
+            public IntPtr UniqueThread;   // PVOID
         }
     }
 }

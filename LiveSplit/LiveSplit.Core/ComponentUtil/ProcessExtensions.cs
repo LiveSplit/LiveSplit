@@ -424,47 +424,47 @@ namespace LiveSplit.ComponentUtil
             return gate;
         }
 
-        static object ResolveToType(byte[] bytes, Type type)
+        static object ResolveToType(byte[] bytes, Type type, int offset = 0)
         {
             object val;
 
             if (type == typeof(int))
             {
-                val = BitConverter.ToInt32(bytes, 0);
+                val = BitConverter.ToInt32(bytes, offset);
             }
             else if (type == typeof(uint))
             {
-                val = BitConverter.ToUInt32(bytes, 0);
+                val = BitConverter.ToUInt32(bytes, offset);
             }
             else if (type == typeof(float))
             {
-                val = BitConverter.ToSingle(bytes, 0);
+                val = BitConverter.ToSingle(bytes, offset);
             }
             else if (type == typeof(double))
             {
-                val = BitConverter.ToDouble(bytes, 0);
+                val = BitConverter.ToDouble(bytes, offset);
             }
             else if (type == typeof(byte))
             {
-                val = bytes[0];
+                val = bytes[offset];
             }
             else if (type == typeof(bool))
             {
                 if (bytes == null)
                     val = false;
                 else
-                    val = (bytes[0] != 0);
+                    val = (bytes[offset] != 0);
             }
             else if (type == typeof(short))
             {
-                val = BitConverter.ToInt16(bytes, 0);
+                val = BitConverter.ToInt16(bytes, offset);
             }
             else // probably a struct
             {
                 var handle = GCHandle.Alloc(bytes, GCHandleType.Pinned);
                 try
                 {
-                    val = Marshal.PtrToStructure(handle.AddrOfPinnedObject(), type);
+                    val = Marshal.PtrToStructure(handle.AddrOfPinnedObject() + offset, type);
                 }
                 finally
                 {
@@ -534,6 +534,55 @@ namespace LiveSplit.ComponentUtil
         public static bool BitEquals(this float f, float o)
         {
             return ToUInt32Bits(f) == ToUInt32Bits(o);
+        }
+
+        public static IntPtr FindLastAddress<T>(this Process process, IntPtr start_addr, int bytes_to_probe, Func<T, bool> f) where T : struct
+        {
+            int type_size = Marshal.SizeOf<T>();
+            if (start_addr.ToInt64() % type_size != 0)
+                throw new ArgumentException("address must be aligned");
+
+            byte[] bytes;
+            if (process.ReadBytes(start_addr, bytes_to_probe, out bytes))
+                for (int offset = bytes_to_probe - type_size; offset >= 0; offset -= type_size)
+                    if (f((T)ResolveToType(bytes, typeof(T), offset)))
+                        return start_addr + offset;
+
+            return IntPtr.Zero;
+        }
+
+        public static IntPtr GetThreadStack0(this Process process, int BytesToSample = 4096)
+        {
+            ProcessModuleWow64Safe module = process.ModulesWow64Safe()
+                .First(m => m.ModuleName.ToLower() == "kernel32.dll");
+            var kernel32_lo = (ulong)module.BaseAddress;
+            var kernel32_hi = (ulong)(module.BaseAddress + module.ModuleMemorySize);
+            var tbi = WinAPI.GetTBI((uint)process.Threads[0].Id);
+            // tbi.TebBaseAddress points to the following struct
+            //
+            // struct _TEB {
+            //     struct _NT_TIB {
+            //         PEXCEPTION_REGISTRATION_RECORD ExceptionList;
+            //         PVOID StackBase;
+            //         ...
+            if (process.Is64Bit())
+            {
+                var StackBase = process.ReadValue<IntPtr>(tbi.TebBaseAddress + 0 + 8);
+
+                return process.FindLastAddress<UInt64>(StackBase - BytesToSample, BytesToSample,
+                    addr => addr >= kernel32_lo && addr <= kernel32_hi);
+            }
+            else
+            {
+                // For WOW64 process we do not get TEB of the actual thread directly.
+                // Happily it is located at the static offset 
+                // https://redplait.blogspot.com/2012/12/teb32-of-wow64-process.html
+                int TEB32Offset = Environment.Is64BitProcess ? 0x2000 : 0;
+                var StackBase = new IntPtr(process.ReadValue<UInt32>(tbi.TebBaseAddress + TEB32Offset + 0 + 4));
+
+                return process.FindLastAddress<UInt32>(StackBase - BytesToSample, BytesToSample,
+                    addr => addr >= kernel32_lo && addr <= kernel32_hi);
+            }
         }
     }
 }

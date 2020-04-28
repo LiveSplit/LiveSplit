@@ -136,7 +136,11 @@ namespace LiveSplit.ComponentUtil
         {
             bool is64Bit = process.Is64Bit();
 
-            if (!string.IsNullOrEmpty(_module))
+            if (_module == "threadstack0")
+            {
+                ptr = process.GetThreadStack0() + _base;
+            }
+            else if (!string.IsNullOrEmpty(_module))
             {
                 ProcessModuleWow64Safe module = process.ModulesWow64Safe()
                     .FirstOrDefault(m => m.ModuleName.ToLower() == _module);
