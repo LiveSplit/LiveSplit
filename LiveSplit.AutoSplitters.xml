@@ -3271,6 +3271,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Pokémon Red++</Game>
+      <Game>Pokemon Red++</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnRed%2B%2B/LiveSplit.PkmnRed%2B%2B.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Hwangbro)</Description>
+    <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnRed%2B%2B</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Pokémon Yellow</Game>
       <Game>Pokemon Yellow</Game>
     </Games>
