@@ -8528,4 +8528,14 @@
     <Description>Load Remover for Commandos: Strike Force v1.1(by davidwiki8)</Description>
     <Website>https://discord.gg/AHy7at4</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Yakuza Kiwami 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/vojtas131/AutoSplits/master/Kiwami2/livesplit_kiwami2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter and load removal by vojtas131</Description>
+  </AutoSplitter>
 </AutoSplitters>
