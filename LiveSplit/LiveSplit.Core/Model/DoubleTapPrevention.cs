@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model.Input;
 using System;
+using System.Collections.Generic;
 
 namespace LiveSplit.Model
 {
@@ -104,6 +105,11 @@ namespace LiveSplit.Model
                 InternalModel.Reset(updateSplits);
                 LastEvent = TimeStamp.Now;
             }
+        }
+
+        public void LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, AtomicDateTime started, bool isGameTimeInitialized, TimeSpan pauseTime)
+        {
+            InternalModel.LoadRun(gameName, categoryName, time, segments, started, isGameTimeInitialized, pauseTime);
         }
 
         public void Pause()

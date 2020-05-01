@@ -9,6 +9,8 @@ namespace LiveSplit.Options
     {
         public KeyOrButton SplitKey { get; set; }
         public KeyOrButton ResetKey { get; set; }
+        public KeyOrButton HibernateRunKey { get; set; }
+        public KeyOrButton LoadRunKey { get; set; }
         public KeyOrButton SkipKey { get; set; }
         public KeyOrButton UndoKey { get; set; }
         public KeyOrButton PauseKey { get; set; }
@@ -38,6 +40,18 @@ namespace LiveSplit.Options
                 hotkeyProfile.ResetKey = new KeyOrButton(keyReset.InnerText);
             else
                 hotkeyProfile.ResetKey = null;
+
+            var keyHibernateRun = element["HibernateRunKey"];
+            if (!string.IsNullOrEmpty(keyHibernateRun.InnerText))
+                hotkeyProfile.HibernateRunKey = new KeyOrButton(keyHibernateRun.InnerText);
+            else
+                hotkeyProfile.HibernateRunKey = null;
+
+            var keyLoadRun = element["LoadRunKey"];
+            if (!string.IsNullOrEmpty(keyLoadRun.InnerText))
+                hotkeyProfile.LoadRunKey = new KeyOrButton(keyLoadRun.InnerText);
+            else
+                hotkeyProfile.LoadRunKey = null;
 
             var keySkip = element["SkipKey"];
             if (!string.IsNullOrEmpty(keySkip.InnerText))
@@ -103,6 +117,16 @@ namespace LiveSplit.Options
                 resetKey.InnerText = ResetKey.ToString();
             parent.AppendChild(resetKey);
 
+            var keyHibernateRun = document.CreateElement("HibernateRunKey");
+            if (keyHibernateRun != null)
+                keyHibernateRun.InnerText = HibernateRunKey.ToString();
+            parent.AppendChild(keyHibernateRun);
+
+            var loadRunKey = document.CreateElement("LoadRunKey");
+            if (loadRunKey != null)
+                loadRunKey.InnerText = LoadRunKey.ToString();
+            parent.AppendChild(loadRunKey);
+
             var skipKey = document.CreateElement("SkipKey");
             if (SkipKey != null)
                 skipKey.InnerText = SkipKey.ToString();
@@ -147,6 +171,8 @@ namespace LiveSplit.Options
             {
                 SplitKey = SplitKey,
                 ResetKey = ResetKey,
+                HibernateRunKey = HibernateRunKey,
+                LoadRunKey = LoadRunKey,
                 SkipKey = SkipKey,
                 UndoKey = UndoKey,
                 PauseKey = PauseKey,

@@ -27,6 +27,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Drawing.Text;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -612,6 +613,8 @@ namespace LiveSplit.View
             this.InvokeIfRequired(() =>
             {
                 pauseMenuItem.Enabled = true;
+                loadRunMenuItem.Enabled = false;
+                hibernateRunMenuItem.Enabled =  false;
                 splitMenuItem.Enabled = true;
                 if (CurrentState.CurrentSplitIndex == 0)
                     undoSplitMenuItem.Enabled = false;
@@ -638,6 +641,8 @@ namespace LiveSplit.View
                 {
                     pauseMenuItem.Enabled = false;
                     splitMenuItem.Enabled = false;
+                    hibernateRunMenuItem.Enabled = false;
+                    loadRunMenuItem.Enabled = (CurrentState.Run.IsAutoSplitterActive()) ? false : true;
                 }
                 if (CurrentState.CurrentSplitIndex >= CurrentState.Run.Count - 1)
                     skipSplitMenuItem.Enabled = false;
@@ -650,6 +655,8 @@ namespace LiveSplit.View
             this.InvokeIfRequired(() =>
             {
                 pauseMenuItem.Enabled = true;
+                hibernateRunMenuItem.Enabled = false;
+                loadRunMenuItem.Enabled = false;
                 resetMenuItem.Enabled = true;
                 undoSplitMenuItem.Enabled = false;
                 skipSplitMenuItem.Enabled = true;
@@ -672,6 +679,8 @@ namespace LiveSplit.View
                 }
                 resetMenuItem.Enabled = false;
                 pauseMenuItem.Enabled = false;
+                hibernateRunMenuItem.Enabled = false;
+                loadRunMenuItem.Enabled = (CurrentState.Run.IsAutoSplitterActive()) ? false : true;
                 undoPausesMenuItem.Enabled = false;
                 undoSplitMenuItem.Enabled = false;
                 skipSplitMenuItem.Enabled = false;
@@ -686,6 +695,8 @@ namespace LiveSplit.View
             {
                 splitMenuItem.Text = "Split";
                 pauseMenuItem.Enabled = true;
+                hibernateRunMenuItem.Enabled = false;
+                loadRunMenuItem.Enabled = false;
             });
         }
 
@@ -696,6 +707,8 @@ namespace LiveSplit.View
                 splitMenuItem.Text = "Resume";
                 undoPausesMenuItem.Enabled = true;
                 pauseMenuItem.Enabled = false;
+                hibernateRunMenuItem.Enabled = (CurrentState.Run.IsAutoSplitterActive()) ? false : true;
+                loadRunMenuItem.Enabled = (CurrentState.Run.IsAutoSplitterActive()) ? false : true;
             });
         }
 
@@ -1045,6 +1058,16 @@ namespace LiveSplit.View
                     else if (hotkeyProfile.ResetKey == e)
                     {
                         Reset();
+                    }
+
+                    else if (hotkeyProfile.HibernateRunKey == e)
+                    {
+                        HibernateRun();
+                    }
+
+                    else if (hotkeyProfile.LoadRunKey == e)
+                    {
+                        LoadRun();
                     }
 
                     else if (hotkeyProfile.PauseKey == e)
@@ -2556,6 +2579,164 @@ namespace LiveSplit.View
             }
         }
 
+        private void HibernateRun()
+        {
+            if (CurrentState.CurrentPhase == TimerPhase.Paused && !CurrentState.Run.IsAutoSplitterActive())
+                using (var hibernateDialog = new SaveFileDialog())
+                {
+                    hibernateDialog.FileName = CurrentState.Run.GetExtendedFileName();
+                    hibernateDialog.Filter = "LiveSplit Run (*.lsr)|*.lsr|All Files (*.*)|*.*";
+                    IsInDialogMode = true;
+                    try
+                    {
+                        var result = hibernateDialog.ShowDialog(this);
+                        if (result == DialogResult.OK)
+                        {
+                            XmlDocument document = new XmlDocument();
+                            XmlNode docNode = document.CreateXmlDeclaration("1.0", "UTF-8", null);
+                            document.AppendChild(docNode);
+
+                            XmlElement parent = document.CreateElement("Save");
+                            var startTime = Model.CurrentState.AttemptStarted;
+                            XmlAttribute attributeStarted = document.CreateAttribute("started");
+                            attributeStarted.InnerText = startTime.Time.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
+                            XmlAttribute attributeIsStartedSynced = document.CreateAttribute("isStartedSynced");
+                            attributeIsStartedSynced.InnerText = startTime.SyncedWithAtomicClock.ToString();
+                            XmlAttribute attributeIsGameTimeInitialized = document.CreateAttribute("isGameTimeInitialized");
+                            attributeIsGameTimeInitialized.InnerText = CurrentState.IsGameTimeInitialized.ToString();
+                            parent.Attributes.Append(attributeStarted);
+                            parent.Attributes.Append(attributeIsStartedSynced);
+                            parent.Attributes.Append(attributeIsGameTimeInitialized);
+
+                            XmlElement elementGameName = document.CreateElement("GameName");
+                            elementGameName.InnerText = CurrentState.Run.GameName;
+                            XmlElement elementCategoryName = document.CreateElement("CategoryName");
+                            elementCategoryName.InnerText = CurrentState.Run.CategoryName;
+                            XmlElement elementRealTime = document.CreateElement("RealTime");
+                            elementRealTime.InnerText = CurrentState.CurrentTime.RealTime.ToString();
+                            XmlElement elementGameTime = document.CreateElement("GameTime");
+                            elementGameTime.InnerText = CurrentState.CurrentTime.GameTime.ToString();
+                            XmlElement elementPauseTime = document.CreateElement("PauseTime");
+                            elementPauseTime.InnerText = (CurrentState.PauseTime ?? TimeSpan.Zero).ToString();
+                            XmlElement elementSegments = document.CreateElement("Segments");
+                            foreach (ISegment segment in CurrentState.Run)
+                            {
+                                XmlElement elementSegment = document.CreateElement("Segment");
+                                XmlAttribute attributeName = document.CreateAttribute("Name");
+                                attributeName.InnerText = segment.Name;
+                                XmlAttribute attributeRealTime = document.CreateAttribute("RealTime");
+                                attributeRealTime.InnerText = segment.SplitTime.RealTime.ToString();
+                                XmlAttribute attributeGameTime = document.CreateAttribute("GameTime");
+                                attributeGameTime.InnerText = segment.SplitTime.GameTime.ToString();
+                                elementSegment.Attributes.Append(attributeName);
+                                elementSegment.Attributes.Append(attributeRealTime);
+                                elementSegment.Attributes.Append(attributeGameTime);
+                                elementSegments.AppendChild(elementSegment);
+                            }
+                            parent.AppendChild(elementGameName);
+                            parent.AppendChild(elementCategoryName);
+                            parent.AppendChild(elementRealTime);
+                            parent.AppendChild(elementGameTime);
+                            parent.AppendChild(elementPauseTime);
+                            parent.AppendChild(elementSegments);
+                            document.AppendChild(parent);
+                            document.Save(hibernateDialog.FileName);
+                        }
+                    }
+                    finally
+                    {
+                        IsInDialogMode = false;
+                    }
+                }
+        }
+
+
+        private void LoadRun()
+        {
+            if (CurrentState.CurrentPhase == TimerPhase.Running || CurrentState.Run.IsAutoSplitterActive())
+                return;
+
+            DialogResult result;
+            XmlDocument document = new XmlDocument();
+            using (var loadRunDialog = new OpenFileDialog())
+            {
+                loadRunDialog.Filter = "LiveSplit Run (*.lsr)|*.lsr|All Files (*.*)|*.*";
+                loadRunDialog.CheckFileExists = true;
+                IsInDialogMode = true;
+                try
+                {
+                    result = loadRunDialog.ShowDialog(this);
+                    if (result == DialogResult.OK)
+                        document.Load(loadRunDialog.OpenFile());
+                }
+                finally { IsInDialogMode = false; }
+            }
+
+            if (result != DialogResult.OK)
+                return;
+
+            Dictionary<string, Time> segments = new Dictionary<string, Time>();
+            foreach (XmlElement segment in document.LastChild.LastChild.ChildNodes)
+            {
+                TimeSpan? segmentRealTime;
+                TimeSpan? segmentGameTime;
+                try
+                {
+                    segmentRealTime = TimeSpan.Parse(segment.GetAttributeNode("RealTime").InnerText);
+                }
+                catch (FormatException) { segmentRealTime = null; }
+                catch (Exception) { return; }
+                try
+                {
+                    segmentGameTime = TimeSpan.Parse(segment.GetAttributeNode("GameTime").InnerText);
+                }
+                catch (FormatException) { segmentGameTime = null; }
+                catch (Exception) { return; }
+                segments.Add(segment.GetAttribute("Name").ToString(), new Time(segmentRealTime, segmentGameTime));
+            }
+
+            TimeSpan? realTime;
+            TimeSpan? gameTime;
+
+            try
+            {
+                realTime = TimeSpan.Parse(document.LastChild.ChildNodes[2].InnerText);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("The Livesplit Run (.lsr) file is invalid. (The hibernated time (RealTime) is either missing or invalid.)", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            try
+            {
+                gameTime = TimeSpan.Parse(document.LastChild.ChildNodes[3].InnerText);
+            }
+            catch (FormatException) { gameTime = null; }
+
+            try
+            {
+                Model.LoadRun(document.LastChild.FirstChild.InnerText,
+                        document.LastChild.ChildNodes[1].InnerText,
+                        new Time(realTime, gameTime),
+                        segments,
+                        new AtomicDateTime(DateTime.Parse(document.LastChild.Attributes[0].InnerText), bool.Parse(document.LastChild.Attributes[1].InnerText)),
+                        bool.Parse(document.LastChild.Attributes[2].InnerText),
+                        TimeSpan.Parse(document.LastChild.ChildNodes[4].InnerText));
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("The Livesplit Run (.lsr) file is invalid. One or more values is formatted improperly.", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (MismatchedGameCategoryException)
+            {
+                MessageBox.Show("The Livesplit Run (.lsr) file is for a different game or run category.", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (IndexOutOfRangeException)
+            {
+                MessageBox.Show("The Livesplit Run (.lsr) file has missing attributes.", "Livesplit Run File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void racingMenuItem_MouseHover(object sender, EventArgs e)
         {
             SpeedRunsLiveAPI.Instance.RefreshRacesListAsync();
@@ -2570,6 +2751,16 @@ namespace LiveSplit.View
         private void resetMenuItem_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private void hibernateRunMenuItem_Click(object sender, EventArgs e)
+        {
+            HibernateRun();
+        }
+
+        private void loadRunMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadRun();
         }
 
         private void pauseMenuItem_Click(object sender, EventArgs e)
@@ -2734,20 +2925,38 @@ namespace LiveSplit.View
             controlMenuItem.DropDownItems.AddRange(new ToolStripItem[] {
             splitMenuItem,
             resetMenuItem,
+            hibernateRunMenuItem,
+            loadRunMenuItem,
             undoSplitMenuItem,
             skipSplitMenuItem,
             pauseMenuItem,
-            undoPausesMenuItem});
-
-            controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
-            controlMenuItem.DropDownItems.Add(hotkeysMenuItem);
+            undoPausesMenuItem,
+            new ToolStripSeparator(),
+            hotkeysMenuItem});
 
             hotkeysMenuItem.Checked = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].GlobalHotkeysEnabled;
 
             var components = Layout.Components;
             if (CurrentState.Run.IsAutoSplitterActive())
+            {
                 components = components.Concat(new[] { CurrentState.Run.AutoSplitter.Component });
-
+                hibernateRunMenuItem.Enabled = false;
+                loadRunMenuItem.Enabled = false;
+            }
+            //repetitive but needed for when autosplitter activated/deactivated after loading splits
+            else switch (CurrentState.CurrentPhase)
+            {
+                case TimerPhase.NotRunning:
+                    loadRunMenuItem.Enabled = true;
+                    break;
+                case TimerPhase.Ended:
+                    loadRunMenuItem.Enabled = true;
+                    break;
+                case TimerPhase.Paused:
+                    hibernateRunMenuItem.Enabled = true;
+                    loadRunMenuItem.Enabled = true;
+                    break;
+            }
             var componentControls =
                 components
                 .Select(x => x.ContextMenuControls)

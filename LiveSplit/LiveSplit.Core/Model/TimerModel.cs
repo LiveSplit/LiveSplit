@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model.Input;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LiveSplit.Model
@@ -142,6 +143,53 @@ namespace LiveSplit.Model
             OnReset?.Invoke(this, oldPhase);
 
             CurrentState.Run.FixSplits();
+        }
+
+        public void LoadRun(string gameName, string categoryName, Time time, Dictionary<string, Time> segments, AtomicDateTime started, bool isGameTimeInitialized, TimeSpan pauseTime)
+        {/*
+            string msg = "gameName: " + gameName + "\ncategoryName: " + categoryName + "\ntime: " + time.ToString() + "\nsegments: ";
+            foreach (var segment in segments)
+                msg += segment.Key + " " + segment.Value.ToString() + "\n";
+            msg += "\nid: " + id + "\nstarted: " + started.Time.ToString() + " | " + started.SyncedWithAtomicClock.ToString();
+            System.Diagnostics.Debug.WriteLine(msg);*/
+
+            if (gameName != CurrentState.Run.GameName
+                || categoryName != CurrentState.Run.CategoryName)
+                throw new MismatchedGameCategoryException();
+
+            if (CurrentState.CurrentPhase != TimerPhase.NotRunning)
+            {
+                if (CurrentState.CurrentPhase != TimerPhase.Ended)
+                    CurrentState.AttemptEnded = TimeStamp.CurrentDateTime;
+                UpdateTimes();
+                CurrentState.Run.FixSplits();
+            }
+
+            CurrentState.CurrentSplitIndex = 0;
+            for (int i = 0; i < CurrentState.Run.Count; i++)
+            {
+                if (!segments.ContainsKey(CurrentState.Run[i].Name))
+                {
+                    foreach (var s in CurrentState.Run)
+                        s.SplitTime = default(Time);
+                    throw new MismatchedGameCategoryException();
+                }
+                if (segments[CurrentState.Run[i].Name].RealTime != null)
+                    CurrentState.CurrentSplitIndex = i + 1;
+                CurrentState.Run[i].SplitTime = segments[CurrentState.Run[i].Name];
+            }
+            CurrentState.AttemptStarted = started;
+            CurrentState.StartTime = TimeStamp.Now - time.RealTime.Value;
+            CurrentState.StartTimeWithOffset = CurrentState.StartTime - CurrentState.Run.Offset;
+            CurrentState.LoadingTimes = time.RealTime.Value - (time.GameTime ?? time.RealTime.Value);
+            CurrentState.AdjustedStartTime = CurrentState.StartTimeWithOffset + pauseTime;
+            CurrentState.IsGameTimePaused = false;
+            CurrentState.IsGameTimeInitialized = isGameTimeInitialized;
+            CurrentState.Run.AttemptCount++;
+            CurrentState.Run.HasChanged = true;
+            CurrentState.TimePausedAt = TimeStamp.Now - CurrentState.StartTimeWithOffset;
+            CurrentState.CurrentPhase = TimerPhase.Paused;
+            OnPause?.Invoke(this, null);
         }
 
         public void Pause()

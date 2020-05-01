@@ -122,5 +122,8 @@ namespace LiveSplit.Model
 
         public static TimeStamp operator -(TimeStamp a, TimeSpan b)
             => new TimeStamp(a.value - b);
+
+        public static TimeStamp operator +(TimeStamp a, TimeSpan b)
+            => new TimeStamp(a.value + b);
     }
 }
