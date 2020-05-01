@@ -8549,4 +8549,15 @@
     <Type>Script</Type>
     <Description>Autosplitter and load removal by vojtas131</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Karlson</Game>
+      <Game>Karlson (Itch.io)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Micrologist/Livesplit.Karlson/master/Karlson3D.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time and Auto Splitting available. (By Micrologist)</Description>
+  </AutoSplitter>
 </AutoSplitters>
