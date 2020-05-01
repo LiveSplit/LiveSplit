@@ -6,7 +6,11 @@ namespace LiveSplit.Web.Share
 {
     public partial class TwitchOAuthForm : Form
     {
-        internal const string RedirectUrl = "http://livesplit.org/twitch/";
+		// ==EXTREMELY IMPORTANT NOTE==
+		// We still need to implement the code from https://www.codeproject.com/Articles/793687/Configuring-the-Emulation-Mode-of-an-Internet-Expl to add the "LiveSplit.exe" Registry key
+		// so that we can access Twitch.tv outside of Compatibility View! If we do not do this, users will not be able to access Twitch via LiveSplit at all!
+
+		internal const string RedirectUrl = "https://livesplit.org/twitch/";
 
         public string AccessToken { get; protected set; }
 
@@ -15,15 +19,15 @@ namespace LiveSplit.Web.Share
             InitializeComponent();
         }
 
-        void OAuthForm_Load(object sender, EventArgs e)
+		void OAuthForm_Load(object sender, EventArgs e)
         {
-            OAuthWebBrowser.Navigate(new Uri(
-                string.Format(
-                "https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id={0}&redirect_uri={1}&scope={2}",
-                Twitch.ClientId,
-                RedirectUrl,
-                "channel_editor+chat_login+channel_subscriptions"), UriKind.Absolute));
-        }
+			OAuthWebBrowser.Navigate(new Uri(string.Format(
+				"https://api.twitch.tv/kraken/oauth2/authorize?response_type=token&client_id={0}&redirect_uri={1}&scope={2}",
+				Twitch.ClientId,
+				RedirectUrl,
+				"channel_editor+chat_login+channel_subscriptions"
+			), UriKind.Absolute));
+		}
 
         private void OAuthWebBrowser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {

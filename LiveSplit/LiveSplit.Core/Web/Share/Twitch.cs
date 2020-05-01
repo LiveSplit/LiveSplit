@@ -189,20 +189,16 @@ the first time that sharing to Twitch is used.";
             AccessToken = WebCredentials.TwitchAccessToken;
 
             if (VerifyAccessToken())
-            {
                 return true;
-            }
-            else
-            {
-                var form = new TwitchOAuthForm();
-                form.ShowDialog();
 
-                AccessToken = form.AccessToken;
+            var form = new TwitchOAuthForm();
+            form.ShowDialog();
 
-                var verified = VerifyAccessToken();
+            AccessToken = form.AccessToken;
 
-                return verified;
-            }
+            var verified = VerifyAccessToken();
+
+            return verified;
         }
 
         protected dynamic curl(string subUri, string method = "GET", string data = "")
@@ -211,7 +207,7 @@ the first time that sharing to Twitch is used.";
             var request = (HttpWebRequest)WebRequest.Create(uri);
             request.Headers.Add("Client-ID", ClientId);
             request.Method = method;
-            request.Accept = "application/vnd.twitchtv.v3+json";
+            request.Accept = "application/vnd.twitchtv.v5+json";
             if (!string.IsNullOrEmpty(AccessToken))
                 request.Headers.Add($"Authorization: OAuth {AccessToken}");
             if (!string.IsNullOrEmpty(data))
