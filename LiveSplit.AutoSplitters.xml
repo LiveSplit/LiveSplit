@@ -931,10 +931,10 @@
       <Game>BL3</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Borderlands%203/BL3IGT.asl</URL>
+      <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Borderlands%203/Livesplit.Borderlands3/Components/Livesplit.Borderlands3.dll</URL>
     </URLs>
-    <Type>Script</Type>
-    <Description>Load Removal is available for 1.0.0 (by FromDarkHell)</Description>
+    <Type>Component</Type>
+    <Description>Load Removal is available for multiple patches (by FromDarkHell)</Description>
     <Website>https://discord.gg/jF8eSnP</Website>
   </AutoSplitter>
   <AutoSplitter>
