@@ -11,6 +11,17 @@
     <Description>Autosplitter by MD_Pi for version 1.3</Description>
     <Website>https://github.com/GabrielVonSchneider/Livesplit-Autosplitters</Website>
   </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Call of Duty: Modern Warfare 2 Remastered</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw2r.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+    <Website>https://discordapp.com/invite/fQaYqvF</Website>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Duke Nukem 3D</Game>
