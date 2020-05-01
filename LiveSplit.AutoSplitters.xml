@@ -1510,10 +1510,10 @@
       <Game>Amnesia</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/PrototypeAlpha/AmnesiaASL/master/Amnesia.asl</URL>
+      <URL>https://raw.githubusercontent.com/PrototypeAlpha/AmnesiaASL/master/AmnesiaTDD.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal and Automatic Start/Split/Reset are available. (By JDev, Sychotix, and PrototypeAlpha)</Description>
+    <Description>Load Removal and Automatic Start/Split/Reset are available. (By Sychotix and PrototypeAlpha)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -1524,7 +1524,7 @@
       <URL>https://raw.githubusercontent.com/PrototypeAlpha/AmnesiaASL/master/AmnesiaAMFP.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal and Automatic Start/Split are available. (By Sychotix and PrototypeAlpha)</Description>
+    <Description>Load Removal and Automatic Start/Split/Reset are available. (By Sychotix and PrototypeAlpha)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
