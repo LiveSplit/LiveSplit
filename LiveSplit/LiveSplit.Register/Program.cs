@@ -25,6 +25,16 @@ namespace LiveSplit.Register
             {
                 Log.Error(ex);
             }
+
+			try
+			{
+				if (!InternetExplorerBrowserEmulation.IsBrowserEmulationSet())
+					InternetExplorerBrowserEmulation.SetBrowserEmulationVersion();
+			}
+			catch (Exception ex)
+			{
+				Log.Error(ex);
+			}
         }
     }
 }
