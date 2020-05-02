@@ -370,13 +370,14 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-            }
+				//MessageBox.Show("The run could not be shared.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
             finally
             {
                 Cursor = Cursors.Default;
             }
 
-            MessageBox.Show("The run could not be shared.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //MessageBox.Show("The run could not be shared.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
