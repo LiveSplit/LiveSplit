@@ -10,7 +10,7 @@ namespace LiveSplit.Web.Share
 		// We still need to implement the code from https://www.codeproject.com/Articles/793687/Configuring-the-Emulation-Mode-of-an-Internet-Expl to add the "LiveSplit.exe" Registry key
 		// so that we can access Twitch.tv outside of Compatibility View! If we do not do this, users will not be able to access Twitch via LiveSplit at all!
 
-		internal const string RedirectUrl = "https://livesplit.org/twitch/";
+		internal const string RedirectUrl = "http://livesplit.org/twitch/";
 
         public string AccessToken { get; protected set; }
 
