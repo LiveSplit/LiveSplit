@@ -16,7 +16,7 @@ namespace LiveSplit.Options.SettingsSavers
 
             var parent = document.CreateElement("Settings");
             var version = document.CreateAttribute("version");
-            version.Value = "1.8";
+            version.Value = "1.8.8";
             parent.Attributes.Append(version);
             document.AppendChild(parent);
 
@@ -67,6 +67,14 @@ namespace LiveSplit.Options.SettingsSavers
                 generatorStates.AppendChild(generatorElement);
             }
             parent.AppendChild(generatorStates);
+
+            var raceProviderPlugins = document.CreateElement("RaceProviderPlugins");
+            foreach (var raceProvider in settings.RaceProvider)
+            {
+                var raceProviderElement = raceProvider.ToXml(document);               
+                raceProviderPlugins.AppendChild(raceProviderElement);
+            }
+            parent.AppendChild(raceProviderPlugins);
 
             var autoSplittersActive = document.CreateElement("ActiveAutoSplitters");
             foreach (var splitter in settings.ActiveAutoSplitters)

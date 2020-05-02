@@ -5,6 +5,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Windows.Input;
+using LiveSplit.UI.Components;
 
 namespace LiveSplit.Options
 {
@@ -18,6 +19,7 @@ namespace LiveSplit.Options
         public bool AgreedToSRLRules { get; set; }
         public bool SimpleSumOfBest { get; set; }
         public IRaceViewer RaceViewer { get; set; }
+        public IList<RaceProviderSettings> RaceProvider { get; set; }
         public IList<string> ActiveAutoSplitters { get; set; }
         public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
 
@@ -76,6 +78,7 @@ namespace LiveSplit.Options
             RecentSplits = new List<RecentSplitsFile>();
             RecentLayouts = new List<string>();
             ActiveAutoSplitters = new List<string>();
+            RaceProvider = new List<RaceProviderSettings>();
         }
 
         public object Clone()
@@ -88,6 +91,7 @@ namespace LiveSplit.Options
                 RecentLayouts = new List<string>(RecentLayouts),
                 LastComparison = LastComparison,
                 RaceViewer = RaceViewer,
+                RaceProvider = new List<RaceProviderSettings>(RaceProvider),
                 AgreedToSRLRules = AgreedToSRLRules,
                 SimpleSumOfBest = SimpleSumOfBest,
                 ActiveAutoSplitters = new List<string>(ActiveAutoSplitters),

@@ -2,6 +2,7 @@
 using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.Model.RunFactories;
+using LiveSplit.UI.Components;
 using LiveSplit.Web.SRL;
 using System;
 using System.IO;
@@ -125,6 +126,32 @@ namespace LiveSplit.Options.SettingsFactories
             {
                 var hotkeyProfile = HotkeyProfile.FromXml(parent, version);
                 settings.HotkeyProfiles[HotkeyProfile.DefaultHotkeyProfileName] = hotkeyProfile;
+            }
+
+            settings.RaceProvider.Clear();
+            if (version >= new Version(1, 8, 8))
+            {                
+                foreach (var providerNode in parent["RaceProviderPlugins"].ChildNodes.OfType<XmlElement>())
+                {
+                    var providerName = providerNode.GetAttribute("name");
+                    RaceProviderSettings raceProviderSettings = null;
+                    if (ComponentManager.RaceProviderFactories.ContainsKey(providerName))
+                    {
+                        var factory = ComponentManager.RaceProviderFactories[providerName];
+                        raceProviderSettings = factory.CreateSettings();
+                    }
+                    else
+                        raceProviderSettings = new UnloadedRaceProviderSettings();
+
+                    raceProviderSettings.FromXml(providerNode, version);
+                    settings.RaceProvider.Add(raceProviderSettings);
+                }                
+            }
+            foreach (var factory in ComponentManager.RaceProviderFactories.Values)
+            {
+                var raceProviderSettings = factory.CreateSettings();
+                if (!settings.RaceProvider.Any(x => x.GetType() == raceProviderSettings.GetType()))
+                    settings.RaceProvider.Add(raceProviderSettings);
             }
 
             LoadDrift(parent);

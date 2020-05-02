@@ -1,8 +1,10 @@
 ﻿using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.UI;
+using LiveSplit.UI.Components;
 using LiveSplit.Utils;
 using LiveSplit.Web;
+using LiveSplit.Web.SRL;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -386,6 +388,17 @@ namespace LiveSplit.View
         {
             WebCredentials.DeleteAllCredentials();
             RefreshLogOutButton();
+        }
+
+        private void btnChooseRaceProvider_Click(object sender, EventArgs e)
+        {
+            var newSettings = Settings.RaceProvider.Select(x => (RaceProviderSettings)x.Clone()).ToList();
+            var dialog = new RaceProviderManagingDialog(newSettings);
+            if (dialog.ShowDialog(this) == DialogResult.OK)
+            {               
+                Settings.RaceProvider = newSettings;                
+            }
+           
         }
     }
 }

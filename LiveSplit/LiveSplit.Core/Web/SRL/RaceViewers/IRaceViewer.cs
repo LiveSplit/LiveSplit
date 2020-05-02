@@ -1,4 +1,5 @@
-﻿using LiveSplit.Web.SRL.RaceViewers;
+﻿using LiveSplit.Model;
+using LiveSplit.Web.SRL.RaceViewers;
 using System;
 
 namespace LiveSplit.Web.SRL
@@ -6,7 +7,7 @@ namespace LiveSplit.Web.SRL
     public interface IRaceViewer
     {
         string Name { get; }
-        void ShowRace(dynamic race);
+        void ShowRace(IRaceInfo race);
     }
 
     public static class RaceViewer

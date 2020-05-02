@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.UI.Components;
+using LiveSplit.Web.Share;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -8,19 +11,17 @@ using System.Timers;
 
 namespace LiveSplit.Web.SRL
 {
-    public class SpeedRunsLiveAPI
+    public class SpeedRunsLiveAPI : RaceProviderAPI
     {
         protected static readonly SpeedRunsLiveAPI _Instance = new SpeedRunsLiveAPI();
 
         public static SpeedRunsLiveAPI Instance => _Instance;
         public static readonly Uri BaseUri = new Uri("http://api.speedrunslive.com:81/");
 
-        protected IEnumerable<dynamic> racesList;
+        protected IEnumerable<SRLRaceInfo> racesList;
         protected IEnumerable<dynamic> gameList;
         protected IList<string> gameNames;
         protected IDictionary<string, Image> imageList;
-
-        public event EventHandler RacesRefreshed;
 
         protected SpeedRunsLiveAPI()
         {
@@ -78,10 +79,10 @@ namespace LiveSplit.Web.SRL
         public dynamic GetRace(string raceID)
         {
             var races = GetRaces();
-            return races.First(x => x.id == raceID);
+            return races.First(x => x.Id == raceID);
         }
 
-        public IEnumerable<dynamic> GetRaces()
+        public override IEnumerable<IRaceInfo> GetRaces()
         {
             if (racesList == null)
                 RefreshRacesList();
@@ -89,7 +90,7 @@ namespace LiveSplit.Web.SRL
             return racesList;
         }
 
-        public Image GetGameImage(string gameId)
+        public override Image GetGameImage(string gameId)
         {
             lock (imageList)
             {
@@ -120,22 +121,42 @@ namespace LiveSplit.Web.SRL
 
         void SpeedRunsLiveAPI_Elapsed(object sender, ElapsedEventArgs e)
         {
-            RefreshRacesList();
+            try
+            {
+                RefreshRacesList();
+            }
+            catch { }
         }
 
-        public void RefreshRacesListAsync()
+        public override void RefreshRacesListAsync()
         {
-            Task.Factory.StartNew(() => RefreshRacesList());
+            Task.Factory.StartNew(() => RefreshRacesList())
+                .ContinueWith((raceItem) => { }, TaskContinuationOptions.OnlyOnFaulted);
         }
 
         public void RefreshRacesList()
         {
-            try
+            List<SRLRaceInfo> infoList = new List<SRLRaceInfo>();
+            int finishedCount, forfeitedCount;
+            foreach (var race in JSON.FromUri(GetUri("races")).races)
             {
-                racesList = (IEnumerable<dynamic>)JSON.FromUri(GetUri("races")).races;
-                RacesRefreshed?.Invoke(this, null);
+                infoList.Add(new SRLRaceInfo(race));
             }
-            catch { }
+
+            racesList = infoList;
+            RacesRefreshedCallback?.Invoke(this);
+        }
+
+        public override string ProviderName => "SRL";
+
+        public override string Username
+        {
+            get
+            {
+                ShareSettings.Default.Reload();
+                return WebCredentials.SpeedRunsLiveIRCCredentials.Username;
+            }
         }
     }
 }
+
