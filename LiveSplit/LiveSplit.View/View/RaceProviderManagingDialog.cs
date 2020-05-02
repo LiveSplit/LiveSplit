@@ -67,7 +67,6 @@ namespace LiveSplit.View
             settingsUIPanel.Controls[0].Visible = true;
             websiteTextLabel.Visible = !string.IsNullOrEmpty(Settings[providerListBox.SelectedIndex].WebsiteLink);
             rulesTextLabel.Visible = !string.IsNullOrEmpty(Settings[providerListBox.SelectedIndex].RulesLink);
-            
         }
     }
 }

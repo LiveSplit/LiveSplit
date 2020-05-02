@@ -125,10 +125,7 @@ namespace LiveSplit.Web.SRL
             {
                 RefreshRacesList();
             }
-            catch
-            {
-
-            }
+            catch { }
         }
 
         public override void RefreshRacesListAsync()

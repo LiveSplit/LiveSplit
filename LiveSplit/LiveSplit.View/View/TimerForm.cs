@@ -321,7 +321,7 @@ namespace LiveSplit.View
 
         void UpdateRaceProviderIntegration()
         {
-            if(RightClickMenu.InvokeRequired)
+            if (RightClickMenu.InvokeRequired)
             {
                 RightClickMenu.Invoke(new Action(UpdateRaceProviderIntegration), null);
                 return;
@@ -334,9 +334,9 @@ namespace LiveSplit.View
             {
                 for (int i = 0; i < (lastRaceProvider - firstRaceProvider) + 1; i++)
                 {
-					RightClickMenu.Items[firstRaceProvider].Tag = null;
-					RightClickMenu.Items[firstRaceProvider].MouseHover -= racingMenuItem_MouseHover;
-					RightClickMenu.Items[firstRaceProvider].MouseLeave -= racingMenuItem_MouseLeave;
+                    RightClickMenu.Items[firstRaceProvider].Tag = null;
+                    RightClickMenu.Items[firstRaceProvider].MouseHover -= racingMenuItem_MouseHover;
+                    RightClickMenu.Items[firstRaceProvider].MouseLeave -= racingMenuItem_MouseLeave;
                     RightClickMenu.Items.RemoveAt(firstRaceProvider);
                 }
             }
@@ -354,8 +354,8 @@ namespace LiveSplit.View
                     Text = $"{raceProvider.ProviderName} Races",
 					Tag = raceProvider
                 };
-				raceProviderItem.MouseHover += racingMenuItem_MouseHover;
-				raceProviderItem.MouseLeave += racingMenuItem_MouseLeave;
+                raceProviderItem.MouseHover += racingMenuItem_MouseHover;
+                raceProviderItem.MouseLeave += racingMenuItem_MouseLeave;
                 RightClickMenu.Items.Insert(menuItemIndex + 1, raceProviderItem);
                 raceProvider.RefreshRacesListAsync();
             }
@@ -2600,7 +2600,7 @@ namespace LiveSplit.View
 
         private void racingMenuItem_MouseHover(object sender, EventArgs e)
         {
-			RaceProviderAPI raceProvider = (RaceProviderAPI)(sender as ToolStripMenuItem)?.Tag;
+            RaceProviderAPI raceProvider = (RaceProviderAPI)(sender as ToolStripMenuItem)?.Tag;
             raceProvider?.RefreshRacesListAsync();
             ShouldRefreshRaces = true;
         }

@@ -17,14 +17,13 @@ namespace LiveSplit.Options
         public abstract string WebsiteLink { get; }
         public abstract string RulesLink { get; }
 
-
         public abstract object Clone();
 
         public virtual Control GetSettingsControl()
         {
             var control = new UserControl();
             control.Controls.Add(new Label() {
-                Text = "There are no options available for this plugin.",
+                Text = "There are no options available for this racing service.",
                 Dock = DockStyle.Fill,
                 TextAlign = System.Drawing.ContentAlignment.TopCenter
             });

@@ -22,6 +22,7 @@ namespace LiveSplit.Web.SRL
                     Forfeits++;
             }
         }
+
         public string Id => _data.id;
         public string GameName => _data.game.name;
         public int Finishes { get; set; } = 0;
