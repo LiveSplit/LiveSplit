@@ -262,7 +262,7 @@ the first time that sharing to Twitch is used.";
 
         public dynamic SearchGame(string name)
         {
-            return curl($"search/games?q={HttpUtility.UrlEncode(name)}&type=suggest");
+            return curl($"search/games?query={HttpUtility.UrlEncode(name)}");
         }
 
         public IEnumerable<string> FindGame(string name)
