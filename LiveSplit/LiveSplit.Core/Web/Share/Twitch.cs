@@ -24,6 +24,7 @@ namespace LiveSplit.Web.Share
 
         protected string AccessToken { get; set; }
         public string ChannelName { get; protected set; }
+        public string ChannelId { get; protected set; }
 
         internal List<string> _Subscribers;
         public IEnumerable<string> Subscribers
@@ -39,7 +40,7 @@ namespace LiveSplit.Web.Share
                         dynamic result = null;
                         do
                         {
-                            result = curl(string.Format("channels/{0}/subscriptions?limit=100&offset={1}", HttpUtility.UrlEncode(ChannelName), offset));
+                            result = curl(string.Format("channels/{0}/subscriptions?limit=100&offset={1}", HttpUtility.UrlEncode(ChannelId), offset));
                             var subscribers = (IEnumerable<dynamic>)result.subscriptions;
                             var subscriberNames = subscribers.Select(new Func<dynamic, string>(x => x.user.display_name));
                             _Subscribers.AddRange(subscriberNames);
@@ -114,7 +115,7 @@ namespace LiveSplit.Web.Share
 
         public bool IsAutoUpdating { get; set; }
 
-        public bool IsLoggedIn => !string.IsNullOrEmpty(ChannelName);
+        public bool IsLoggedIn => !string.IsNullOrEmpty(ChannelId);
 
         protected Twitch()
         {
@@ -163,7 +164,7 @@ the first time that sharing to Twitch is used.";
 
         public TwitchChat ConnectToChat(string channel = null)
         {
-            channel = (channel ?? ChannelName).ToLower();
+            channel = (channel ?? ChannelId).ToLower();
             if (ConnectedChats.ContainsKey(channel))
                 throw new ArgumentException("Already connected to channel");
             var chat = new TwitchChat(AccessToken, channel);
@@ -224,7 +225,6 @@ the first time that sharing to Twitch is used.";
             using (var reader = new StreamReader(stream))
             {
                 var json = reader.ReadToEnd();
-
                 return JSON.FromString(json);
             }
         }
@@ -232,7 +232,7 @@ the first time that sharing to Twitch is used.";
         public bool SetStreamTitleAndGame(string title, string game = null)
         {
             dynamic result = curl(
-                $"channels/{ChannelName}",
+                $"channels/{ChannelId}",
                 "PUT",
                 string.Format("{{" +
                     "\"channel\":{{" +
@@ -250,6 +250,7 @@ the first time that sharing to Twitch is used.";
             try
             {
                 ChannelName = verificationInfo.token.user_name;
+                ChannelId = verificationInfo.token.user_id;
                 return verificationInfo.token.valid;
             }
             catch (Exception ex)
