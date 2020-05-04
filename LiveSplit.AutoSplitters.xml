@@ -8560,4 +8560,14 @@
     <Type>Script</Type>
     <Description>Game Time and Auto Splitting available. (By Micrologist)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Geometry Dash</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/gd.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Removes Geometry Dash load times and automatically splits upon 100% completion of a level. (By ItsMaximum)</Description>
+  </AutoSplitter>
 </AutoSplitters>
