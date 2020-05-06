@@ -8580,4 +8580,15 @@
     <Type>Script</Type>
     <Description>Automatically starts timer upon first character movement and splits after level completion. (By ItsMaximum)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Resident Evil 6</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/JYNxYoshii/RE6_ASL/master/RE6_dist_IGT.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic starts, chapter pauses. Needs work and more efficient code, but it is functional. Use character selection in script settings! (By xlYoshii)</Description>
+    <Website>https://github.com/JYNxYoshii/RE6_ASL</Website>
+  </AutoSplitter>
 </AutoSplitters>
