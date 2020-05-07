@@ -224,7 +224,7 @@ namespace LiveSplit.Register
         /// <summary>
         /// Sets the browser emulation version for the application to the highest default mode for the version of Internet Explorer installed on the system
         /// </summary>
-        /// /// <param name="programName">The name of the program to add a Registry Key for.</param>
+        /// <param name="programName">The name of the program to add a Registry Key for.</param>
         /// <returns><c>true</c> the browser emulation version was updated, <c>false</c> otherwise.</returns>
         internal static bool SetBrowserEmulationVersion(string programName)
         {
