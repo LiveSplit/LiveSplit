@@ -3,7 +3,7 @@ using System.IO;
 using System.Security;
 using Microsoft.Win32;
 
-namespace LiveSplit
+namespace LiveSplit.Register
 {
     // All credit for the following code goes to Richard James Moss at codeproject.com
     // from this article: https://www.codeproject.com/Articles/793687/Configuring-the-Emulation-Mode-of-an-Internet-Expl
@@ -17,7 +17,7 @@ namespace LiveSplit
     /// <summary>
     /// Internet Explorer browser emulation versions
     /// </summary>
-    public enum BrowserEmulationVersion
+    internal enum BrowserEmulationVersion
     {
         /// <summary>
         /// Default
@@ -88,8 +88,9 @@ namespace LiveSplit
         /// <summary>
         /// Gets the browser emulation version for the application.
         /// </summary>
+        /// <param name="programName">The name of the program to check for a Registry Key.</param>
         /// <returns>The browser emulation version for the application.</returns>
-        public static BrowserEmulationVersion GetBrowserEmulationVersion()
+        private static BrowserEmulationVersion GetBrowserEmulationVersion(string programName)
         {
             BrowserEmulationVersion result;
 
@@ -104,12 +105,10 @@ namespace LiveSplit
                 {
                     object value;
                     
-                    value = key.GetValue("LiveSplit.exe", null);
+                    value = key.GetValue(programName, null);
 
                     if (value != null)
-                    {
                         result = (BrowserEmulationVersion)Convert.ToInt32(value);
-                    }
                 }
             }
             catch (SecurityException)
@@ -128,7 +127,7 @@ namespace LiveSplit
         /// Gets the major Internet Explorer version
         /// </summary>
         /// <returns>The major digit of the Internet Explorer version</returns>
-        public static int GetInternetExplorerMajorVersion()
+        private static int GetInternetExplorerMajorVersion()
         {
             int result;
 
@@ -154,9 +153,7 @@ namespace LiveSplit
                         version = value.ToString();
                         separator = version.IndexOf('.');
                         if (separator != -1)
-                        {
                             int.TryParse(version.Substring(0, separator), out result);
-                        }
                     }
                 }
             }
@@ -175,18 +172,20 @@ namespace LiveSplit
         /// <summary>
         /// Determines whether a browser emulation version is set for the application.
         /// </summary>
+        /// <param name="programName">The name of the program to check for a Registry Key.</param>
         /// <returns><c>true</c> if a specific browser emulation version has been set for the application; otherwise, <c>false</c>.</returns>
-        public static bool IsBrowserEmulationSet()
+        internal static bool IsBrowserEmulationSet(string programName)
         {
-            return GetBrowserEmulationVersion() != BrowserEmulationVersion.Default;
+            return GetBrowserEmulationVersion(programName) != BrowserEmulationVersion.Default;
         }
 
         /// <summary>
         /// Sets the browser emulation version for the application.
         /// </summary>
         /// <param name="browserEmulationVersion">The browser emulation version.</param>
+        /// <param name="programName">The name of the program to add a Registry Key for.</param>
         /// <returns><c>true</c> the browser emulation version was updated, <c>false</c> otherwise.</returns>
-        public static bool SetBrowserEmulationVersion(BrowserEmulationVersion browserEmulationVersion)
+        internal static bool SetBrowserEmulationVersion(BrowserEmulationVersion browserEmulationVersion, string programName)
         {
             bool result;
 
@@ -200,20 +199,12 @@ namespace LiveSplit
 
                 if (key != null)
                 {
-                    string programName;
-
-                    programName = "LiveSplit.exe";
-
                     if (browserEmulationVersion != BrowserEmulationVersion.Default)
-                    {
                         // if it's a valid value, update or create the value
                         key.SetValue(programName, (int)browserEmulationVersion, RegistryValueKind.DWord);
-                    }
                     else
-                    {
                         // otherwise, remove the existing value
                         key.DeleteValue(programName, false);
-                    }
 
                     result = true;
                 }
@@ -233,8 +224,9 @@ namespace LiveSplit
         /// <summary>
         /// Sets the browser emulation version for the application to the highest default mode for the version of Internet Explorer installed on the system
         /// </summary>
+        /// /// <param name="programName">The name of the program to add a Registry Key for.</param>
         /// <returns><c>true</c> the browser emulation version was updated, <c>false</c> otherwise.</returns>
-        public static bool SetBrowserEmulationVersion()
+        internal static bool SetBrowserEmulationVersion(string programName)
         {
             int ieVersion;
             BrowserEmulationVersion emulationCode;
@@ -264,7 +256,7 @@ namespace LiveSplit
                 }
             }
 
-            return SetBrowserEmulationVersion(emulationCode);
+            return SetBrowserEmulationVersion(emulationCode, programName);
         }
 
         #endregion
