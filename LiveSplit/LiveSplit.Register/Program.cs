@@ -26,10 +26,11 @@ namespace LiveSplit.Register
                 Log.Error(ex);
             }
 
+				// Add LiveSplit.exe to Registry if not already there, so that Emulated Browser can load Twitch properly (look up Emulated Browsers & Compatibility View if interested)
             try
             {
-                if (!InternetExplorerBrowserEmulation.IsBrowserEmulationSet())
-                    InternetExplorerBrowserEmulation.SetBrowserEmulationVersion();
+                if (!InternetExplorerBrowserEmulation.IsBrowserEmulationSet("LiveSplit.exe"))
+                    InternetExplorerBrowserEmulation.SetBrowserEmulationVersion("LiveSplit.exe");
             }
             catch (Exception ex)
             {
