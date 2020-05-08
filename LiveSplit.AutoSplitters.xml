@@ -8572,16 +8572,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Run 2</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/run2.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Automatically starts timer upon first character movement and splits after level completion. (By ItsMaximum)</Description>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Resident Evil 6</Game>
     </Games>
     <URLs>
