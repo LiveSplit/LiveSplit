@@ -8591,4 +8591,14 @@
     <Description>Automatic starts, chapter pauses. Needs work and more efficient code, but it is functional. Use character selection in script settings! (By xlYoshii)</Description>
     <Website>https://github.com/JYNxYoshii/RE6_ASL</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Carmageddon II: Carpocalypse Now</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/forkerer/ce5376fd4ae4c5868b42132411616569/raw/d8ee3204ce45132c4c93ec0ef57dfca62c2d8457/Carma2Missions.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Wokrs with CARMA2_HW.exe, Automatic timer start on first race beggining, timer restarts on game abort. Settings to decide which missions should split timer, also additional option to split on ped kills. (By forkerer)</Description>
+  </AutoSplitter>
 </AutoSplitters>
