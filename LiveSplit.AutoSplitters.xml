@@ -8601,4 +8601,14 @@
     <Type>Script</Type>
     <Description>Wokrs with CARMA2_HW.exe, Automatic timer start on first race beggining, timer restarts on game abort. Settings to decide which missions should split timer, also additional option to split on ped kills. (By forkerer)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Ghostrunner Demo</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Ghostrunner/master/GhostrunnerDemo.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time and Auto Splitting available. (By Micrologist)</Description>
+  </AutoSplitter>
 </AutoSplitters>
