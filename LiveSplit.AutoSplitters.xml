@@ -6862,7 +6862,17 @@
       <Game>Crystal Conduit</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/TehCupcakes/AutoSplitters/master/FrogHop.asl</URL>
+      <URL>https://raw.githubusercontent.com/TehCupcakes/AutoSplitters/master/CrystalConduit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-start, auto-split, and game timer. Any% or 100%. (By TehCupcakes).</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Ato</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehCupcakes/AutoSplitters/master/Ato.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto-start, auto-split, and game timer. Any% or 100%. (By TehCupcakes).</Description>
