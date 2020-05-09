@@ -8621,4 +8621,15 @@
     <Type>Script</Type>
     <Description>Game Time and Auto Splitting available. (By Micrologist)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Pro Pinball: Big Race USA</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/mbugert/livesplit-autosplitters/master/ProPinballBigRaceUsa.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splits cities/missions/roads and score milestones. Pauses timer during bonus count. Works with v1.00/v1.18/v1.20b. (By mbugert)</Description>
+    <Website>https://github.com/mbugert/livesplit-autosplitters</Website>
+  </AutoSplitter>
 </AutoSplitters>
