@@ -7491,7 +7491,17 @@
       <URL>https://raw.githubusercontent.com/Leminn/Puyo-Puyo-SUN-AutoSplitter/master/Puyo%20Puyo%20SUN.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for Puyo Puyo SUN (PC)</Description>
+    <Description>Autosplitter for Puyo Puyo SUN (PC) (by Lemin)</Description>
+  </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+      <Game>Puyo Pop Fever</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/Puyo%20Pop%20Fever/LiveSplit.PuyoFever.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic Start/Split/Reset available (by Refrag and Lemin)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
