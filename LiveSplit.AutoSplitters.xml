@@ -1996,6 +1996,18 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Demon's Souls</Game>
+      <Game>Demons Souls</Game>
+    </Games>
+    <URLs>
+      <URL>https://gist.githubusercontent.com/CapitaineToinon/22aef17d50612c3e4e04cb7b5bdc434e/raw/a6f2ae87621c57da427678888b96e04c802ad6aa/demonssouls.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time is available (RPCS3). (By CapitaineToinon)</Description>
+    <Website>https://gist.github.com/CapitaineToinon/22aef17d50612c3e4e04cb7b5bdc434e</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Dark Souls</Game>
       <Game>Dark Souls 1</Game>
       <Game>Dark Souls 1: Prepare to Die Edition</Game>
