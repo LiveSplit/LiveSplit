@@ -8632,4 +8632,15 @@
     <Description>Auto splits cities/missions/roads and score milestones. Pauses timer during bonus count. Works with v1.00/v1.18/v1.20b. (By mbugert)</Description>
     <Website>https://github.com/mbugert/livesplit-autosplitters</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Sven Co-op</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TheSmiley47/Sven-Coop-Autosplitter/master/svencoop.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter for Sven Co-op (by _Smiley and ScriptedSnark)</Description>
+    <Website>https://github.com/TheSmiley47/Sven-Coop-Autosplitter/blob/master/README.md</Website>
+  </AutoSplitter>
 </AutoSplitters>
