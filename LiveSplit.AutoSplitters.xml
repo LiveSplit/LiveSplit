@@ -4687,9 +4687,11 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sonic Robo Blast 2</Game>
       <Game>Sonic Robo Blast 2: The Mystic Realm</Game>
       <Game>Sonic Robo Blast 2: Shut Up and Get On It</Game>
-      <Game>Sonic Robo Blast 2</Game>
+      <Game>Sonic Robo Blast 2: Shut Up and Get On It 2</Game>
+      <Game>Sonic Robo Blast 2: Shut Up and Get On It 3</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/Sonic%20Robo%20Blast%202/autosplitter_srb2.asl</URL>
