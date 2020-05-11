@@ -8667,4 +8667,14 @@
     <Description>Autosplitter for Sven Co-op (by _Smiley and ScriptedSnark)</Description>
     <Website>https://github.com/TheSmiley47/Sven-Coop-Autosplitter/blob/master/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Tomb Raider: The Lost Artifact</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rtrger/Components/master/TombRaider3Gold/Component/TR3Gold.dll</URL>
+    </URLs>
+    <Type>Component</Type>
+    <Description>Game time, autostart, autoreset and autosplit for The Lost Artifact.</Description>
+  </AutoSplitter>
 </AutoSplitters>
