@@ -27,7 +27,7 @@
       <Game>Call of Duty: Modern Warfare Remastered</Game>
     </Games>
     <URLs>
-      <URLhttps://raw.githubusercontent.com/KunoDemetries/cod4/master/MWR.asl</URL>
+      <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/MWR.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
