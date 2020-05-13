@@ -22,6 +22,17 @@
     <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
     <Website>https://discordapp.com/invite/fQaYqvF</Website>
   </AutoSplitter>
+   <AutoSplitter>
+    <Games>
+      <Game>Call of Duty: Modern Warfare Remastered</Game>
+    </Games>
+    <URLs>
+      <URLhttps://raw.githubusercontent.com/KunoDemetries/cod4/master/MWR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+    <Website>https://discordapp.com/invite/fQaYqvF</Website>
+  </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>Duke Nukem 3D</Game>
