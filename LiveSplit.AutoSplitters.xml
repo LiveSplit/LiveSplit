@@ -8690,4 +8690,15 @@
     <Type>Component</Type>
     <Description>Game time, autostart, autoreset and autosplit for The Lost Artifact.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Oddworld: Abe's Oddysee</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Legnax/Oddysee-Autosplitter/master/Official%20Oddysee%20Autosplitter%201.1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Loadless time support. All langs. All categories. Check options.</Description>
+    <Website>https://github.com/Legnax/Oddysee-Autosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
