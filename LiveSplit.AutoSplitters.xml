@@ -2717,10 +2717,10 @@
       <Game>Undertale</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Anty-Lemon/ASL/master/undertale.asl</URL>
+      <URL>https://raw.githubusercontent.com/antimYT/Undertale-Autosplitter/master/ut_autosplitter_common_r6.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Auto Start are available. (By Anty-Lemon)</Description>
+    <Description>Auto Splitting and Starter are available. (1.001 by spaceglace, 1.05 & 1.08 by antimYT)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
