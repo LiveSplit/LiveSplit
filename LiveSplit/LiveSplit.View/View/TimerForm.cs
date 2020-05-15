@@ -205,7 +205,6 @@ namespace LiveSplit.View
             SettingsSaver = new XMLSettingsSaver();
             LoadSettings();
 
-            
             UpdateRaceProviderIntegration();
 
             CurrentState.CurrentHotkeyProfile = Settings.HotkeyProfiles.First().Key;
@@ -444,6 +443,10 @@ namespace LiveSplit.View
                 {
                     Invoke(addItem, x);
                 }
+                else if (RightClickMenu.InvokeRequired)
+                {
+                    RightClickMenu.Invoke(addItem, x);
+                }
                 else
                 {
                     racingMenuItem.DropDownItems.Add(x);
@@ -454,6 +457,10 @@ namespace LiveSplit.View
                 if (InvokeRequired)
                 {
                     Invoke(clear);
+                }
+                else if (RightClickMenu.InvokeRequired)
+                {
+                    RightClickMenu.Invoke(clear);
                 }
                 else
                 {
@@ -483,7 +490,8 @@ namespace LiveSplit.View
                 SetGameImage(raceProvider, item, race);
             }
 
-            addItem(new ToolStripSeparator());
+            if (racingMenuItem.DropDownItems.Count > 0)
+                addItem(new ToolStripSeparator());
 
             foreach (var race in raceProvider.GetRaces())
             {
