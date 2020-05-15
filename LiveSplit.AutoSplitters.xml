@@ -8690,4 +8690,14 @@
     <Type>Component</Type>
     <Description>Game time, autostart, autoreset and autosplit for The Lost Artifact.</Description>
   </AutoSplitter>
+  	<AutoSplitter>
+		<Games>
+			<Game>Crazy Machines</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachines.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting available (by rythin) </Description>
+	</AutoSplitter>
 </AutoSplitters>
