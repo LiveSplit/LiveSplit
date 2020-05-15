@@ -8690,6 +8690,17 @@
     <Type>Component</Type>
     <Description>Game time, autostart, autoreset and autosplit for The Lost Artifact.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Human: Fall Flat</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Permamiss/Human-Fall-Flat-Autosplitter/master/Human_Fall_Flat_Autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autostarter, Autosplitter, and Autoresetter for Human: Fall Flat Any% and Checkpoint%. Written by Permamiss.</Description>
+    <Website>https://discord.gg/e5VezWS</Website>
+  </AutoSplitter>
   	<AutoSplitter>
 		<Games>
 			<Game>Crazy Machines</Game>
