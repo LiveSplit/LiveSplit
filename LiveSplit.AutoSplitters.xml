@@ -138,6 +138,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>And All Would Cry Beware!</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/And%20All%20Would%20Cry%20Beware!/AAWCB.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Check the settings to edit where to split. Starts automatically and splits on credits. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/And%20All%20Would%20Cry%20Beware!/README.md</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Donut County</Game>
     </Games>
     <URLs>
