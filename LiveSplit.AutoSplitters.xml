@@ -8744,4 +8744,15 @@
     <Website>https://github.com/Smongo/FilamentAutosplitter</Website>
     <Description>Auto splitting (By Smongo)</Description>
   </AutoSplitter>
+		<AutoSplitter>
+		<Games>
+			<Game>Destiny 2</Game>
+			<Game>Destiny 2 Story</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Destiny2.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Load Removal available (CHECK SETTINGS) (by rythin)</Description>
+	</AutoSplitter>
 </AutoSplitters>
