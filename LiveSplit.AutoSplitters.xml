@@ -8733,4 +8733,15 @@
 		<Type>Script</Type>
 		<Description> Autosplitting available (by rythin) </Description>
 	</AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Filament</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Smongo/FilamentAutosplitter/master/filament.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/Smongo/FilamentAutosplitter</Website>
+    <Description>Auto splitting (By Smongo)</Description>
+  </AutoSplitter>
 </AutoSplitters>
