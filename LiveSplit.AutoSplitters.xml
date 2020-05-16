@@ -8755,4 +8755,15 @@
 		<Type>Script</Type>
 		<Description>Load Removal available (CHECK SETTINGS) (by rythin)</Description>
 	</AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Dead Cells</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/R30hedron/Dead-Cells-Autosplitter/master/DEAD_CELLS.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Supports auto starts, splits, and resets. Check github repo for supported versions. (by R30hedron)</Description>
+    <Website>https://github.com/R30hedron/Dead-Cells-Autosplitter</Website>
+  </AutoSplitter>
 </AutoSplitters>
