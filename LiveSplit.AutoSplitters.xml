@@ -8777,4 +8777,15 @@
     <Website>https://raw.githubusercontent.com/WinterThunderSpeedrun/Autosplitters</Website>
     <Description>Autospliter for Prince of Persia 1.4 on DOSBox 0.74-3 (In-game timer)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Diablo II: Lord of Destruction</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/LiveSplit.Diablo2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal (by Wafu)</Description>
+    <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
