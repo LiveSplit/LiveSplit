@@ -8766,4 +8766,15 @@
     <Description>Supports auto starts, splits, and resets. Check github repo for supported versions. (by R30hedron)</Description>
     <Website>https://github.com/R30hedron/Dead-Cells-Autosplitter</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Prince of Persia</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/WinterThunderSpeedrun/Autosplitters/master/PrinceOfPersia1.4.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://raw.githubusercontent.com/WinterThunderSpeedrun/Autosplitters</Website>
+    <Description>Autospliter for Prince of Persia 1.4 on DOSBox 0.74-3 (In-game timer)</Description>
+  </AutoSplitter>
 </AutoSplitters>
