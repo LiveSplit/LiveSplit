@@ -8788,4 +8788,14 @@
     <Description>Load removal (by Wafu)</Description>
     <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
   </AutoSplitter>
+		<AutoSplitter>
+		<Games>
+			<Game>Fran Bow</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/FranBow.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Load Removal available (by rythin) </Description>
+	</AutoSplitter>
 </AutoSplitters>
