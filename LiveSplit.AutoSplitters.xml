@@ -8788,14 +8788,40 @@
     <Description>Load removal (by Wafu)</Description>
     <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
   </AutoSplitter>
-		<AutoSplitter>
-		<Games>
-			<Game>Fran Bow</Game>
-		</Games>
-		<URLs>
-			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/FranBow.asl</URL>
-		</URLs>
-		<Type>Script</Type>
-		<Description> Load Removal available (by rythin) </Description>
-	</AutoSplitter>
+<AutoSplitter>
+ <Games>
+  <Game>Fran Bow</Game>
+ </Games>
+ <URLs>
+  <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/FranBow.asl</URL>
+ </URLs>
+ <Type>Script</Type>
+ <Description> Load Removal available (by rythin) </Description>
+</AutoSplitter>
+<AutoSplitter>
+ <Games>
+  <Game>Knights: Learn to Fly</Game>
+  <Game>Knights Learn to Fly</Game>
+  <Game>Kajko i Kokosz: Szkoła Latania</Game>
+  <Game>Kajko i Kokosz Szkoła Latania</Game>
+  <Game>Kajko i Kokosz: Szkola Latania</Game>
+  <Game>Kajko i Kokosz Szkola Latania</Game>	 
+ </Games>
+ <URLs>
+  <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/KnightsLearnToFly.asl</URL>
+ </URLs>
+ <Type>Script</Type>
+ <Description> Autosplitting and Load Removal available (by rythin) </Description>
+</AutoSplitter>
+<AutoSplitter>
+ <Games>
+  <Game>Pingwin Zenek w Opałach</Game>
+  <Game>Pingwin Zenek w Opalach</Game>	 
+ </Games>
+ <URLs>
+  <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/PingwinZenekwOpa%C5%82ach.asl</URL>
+ </URLs>
+ <Type>Script</Type>
+ <Description> Autosplitting and Load Removal available (by rythin) </Description>
+</AutoSplitter>
 </AutoSplitters>
