@@ -8826,4 +8826,15 @@
  <Type>Script</Type>
  <Description> Autosplitting and Load Removal available (by rythin) </Description>
 </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>A Short Hike</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ldmnt/ash-autosplitter/master/ASH_Autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>in-game timer and customizable auto-splitting (by Ero and Hamb)</Description>
+    <Website>https://discord.gg/UmVpeNB</Website>
+  </AutoSplitter>
 </AutoSplitters>
