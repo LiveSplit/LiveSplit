@@ -999,10 +999,11 @@
       <Game>Alice Madness Returns</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.Alice.asl</URL>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.AliceMadnessReturns/Livesplit.AliceMadnessReturns.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load Removal is available. (By KinkyCadence)</Description>
+    <Description>Auto Splitting, Auto Start/Reset and Load Remover are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.AliceMadnessReturns</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
