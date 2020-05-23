@@ -61,10 +61,7 @@ namespace LiveSplit.UI.Components
                         Invoke(null));
                 }
             }
-            catch (Exception e)
-            {
-                Log.Error(e);
-            }
+            catch { }
             return factory;
         }
     }
