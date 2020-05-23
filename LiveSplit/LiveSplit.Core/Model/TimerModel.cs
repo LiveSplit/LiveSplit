@@ -34,14 +34,21 @@ namespace LiveSplit.Model
         public event EventHandler OnSwitchComparisonPrevious;
         public event EventHandler OnSwitchComparisonNext;
 
-        public void Start()
+        public void Start(TimeSpan? startOffset = null)
         {
             if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
             {
                 CurrentState.CurrentPhase = TimerPhase.Running;
                 CurrentState.CurrentSplitIndex = 0;
                 CurrentState.AttemptStarted = TimeStamp.CurrentDateTime;
-                CurrentState.AdjustedStartTime = CurrentState.StartTimeWithOffset = TimeStamp.Now - CurrentState.Run.Offset;
+
+                TimeSpan actualStartOffset = CurrentState.Run.Offset;
+                if (startOffset.HasValue)
+                {
+                    actualStartOffset += startOffset.Value;
+                }
+
+                CurrentState.AdjustedStartTime = CurrentState.StartTimeWithOffset = TimeStamp.Now - actualStartOffset;
                 CurrentState.StartTime = TimeStamp.Now;
                 CurrentState.TimePausedAt = CurrentState.Run.Offset;
                 CurrentState.IsGameTimeInitialized = false;

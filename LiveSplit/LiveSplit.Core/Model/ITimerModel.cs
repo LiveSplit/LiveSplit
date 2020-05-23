@@ -20,7 +20,7 @@ namespace LiveSplit.Model
         event EventHandler OnSwitchComparisonPrevious;
         event EventHandler OnSwitchComparisonNext;
         
-        void Start();
+        void Start(TimeSpan? start = null);
         void InitializeGameTime();
         void Split();
         void SkipSplit();
