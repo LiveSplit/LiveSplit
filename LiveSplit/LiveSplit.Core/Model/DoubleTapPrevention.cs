@@ -65,11 +65,11 @@ namespace LiveSplit.Model
             return TimeStamp.Now - LastEvent > Delay;
         }
 
-        public void Start(TimeSpan? start = null)
+        public void Start(TimeSpan? startOffset = null)
         {
             if (CheckDoubleTap())
             {
-                InternalModel.Start(start);
+                InternalModel.Start(startOffset);
                 LastEvent = TimeStamp.Now;
             }
         }
