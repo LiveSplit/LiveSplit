@@ -3,6 +3,7 @@ using SharpDX.DirectInput;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -120,6 +121,28 @@ namespace LiveSplit.Model.Input
                 {
                     Log.Error(ex);
                 }
+
+                GamepadHookInitialized?.Invoke(this, null);
+
+                if (GamepadHook != null)
+                {
+                    while (true)
+                    {
+                        Thread.Sleep(25);
+                        try
+                        {
+                            try
+                            {
+                                GamepadHook.Poll();
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error(ex);
+                            }
+                        }
+                        catch { }
+                    }
+                }
             });
         }
 
@@ -165,15 +188,6 @@ namespace LiveSplit.Model.Input
 
         public void Poll()
         {
-            if (GamepadHook != null)
-            {
-                if (!hasPolledGamepadHook)
-                {
-                    hasPolledGamepadHook = true;
-                    GamepadHookInitialized?.Invoke(this, null);
-                }
-                GamepadHook.Poll();
-            }
             KeyboardHook.Poll();
         }
 
