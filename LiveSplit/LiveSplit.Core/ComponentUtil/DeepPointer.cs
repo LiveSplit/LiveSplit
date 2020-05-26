@@ -40,9 +40,8 @@ namespace LiveSplit.ComponentUtil
             : this(module, base_, DerefType.Auto, offsets) { }
 
         public DeepPointer(string module, OffsetT base_, DerefType derefType, params OffsetT[] offsets)
-            : this(base_, offsets)
+            : this(base_, derefType, offsets)
         {
-            _derefType = derefType;
             _module = module.ToLower();
         }
 
