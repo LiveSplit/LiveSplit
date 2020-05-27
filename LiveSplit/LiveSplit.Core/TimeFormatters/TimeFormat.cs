@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace LiveSplit.TimeFormatters
 {
@@ -8,7 +10,9 @@ namespace LiveSplit.TimeFormatters
         TenHours,
         Hours,
         Minutes,
-        Seconds
+        Seconds,
+        Days,
+        Years
     }
 
     public enum DigitsFormat
@@ -25,22 +29,44 @@ namespace LiveSplit.TimeFormatters
         SingleDigitHours,
         /// `00:00:01`
         DoubleDigitHours,
+        /// `1d 00:00:01`
+        DayDoubleDigitHours,
+        /// `100y100d 00`
+        YearDayHours,
     }
 
-    static class FormatUtils
+    public static class FormatUtils
     {
         public static DigitsFormat ToDigitsFormat(this TimeFormat timeFormat)
         {
-            if (timeFormat == TimeFormat.Seconds)
-                return DigitsFormat.SingleDigitSeconds;
-            else if (timeFormat == TimeFormat.Minutes)
-                return DigitsFormat.DoubleDigitMinutes;
-            else if (timeFormat == TimeFormat.Hours)
-                return DigitsFormat.SingleDigitHours;
-            else if (timeFormat == TimeFormat.TenHours)
-                return DigitsFormat.DoubleDigitHours;
-
-            return DigitsFormat.SingleDigitSeconds;
+            switch (timeFormat)
+            {
+                case TimeFormat.Seconds:
+                    return DigitsFormat.SingleDigitSeconds;
+                case TimeFormat.Minutes:
+                    return DigitsFormat.DoubleDigitMinutes;
+                case TimeFormat.Hours:
+                    return DigitsFormat.SingleDigitHours;
+                case TimeFormat.TenHours:
+                    return DigitsFormat.DoubleDigitHours;
+                case TimeFormat.Days:
+                    return DigitsFormat.DayDoubleDigitHours;
+                case TimeFormat.Years:
+                    return DigitsFormat.YearDayHours;
+                default:
+                    return DigitsFormat.SingleDigitSeconds;
+            }            
         }
+        /// <summary> 
+        /// Dictionary that contains the format strings used in the settings
+        /// </summary>
+        public static readonly Dictionary<DigitsFormat, string> StringsDict = new Dictionary<DigitsFormat, string> {
+            { DigitsFormat.SingleDigitSeconds , "1" },      { DigitsFormat.DoubleDigitSeconds ,"01" },
+            { DigitsFormat.SingleDigitMinutes ,"0:01" },    { DigitsFormat.DoubleDigitMinutes , "00:01" },
+            { DigitsFormat.SingleDigitHours ,"0:00:01"},     { DigitsFormat.DoubleDigitHours ,"00:00:01"},
+            { DigitsFormat.DayDoubleDigitHours ,  "1d 00:00:01" },
+            { DigitsFormat.YearDayHours ,"100y100d 00" },
+        };
+
     }
 }

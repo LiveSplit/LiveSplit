@@ -99,10 +99,20 @@ namespace LiveSplit.TimeFormatters {
             }
 
             string formatted;
-            if (time.TotalDays >= 1)
+            if (DigitsFormat == DigitsFormat.YearDayHours)
+            {
+                int years = (int)(time.TotalDays) / 365;
+                //timespan assumes all years are equal length
+                int days = (int)time.TotalDays %365;
+                formatted = minusString + time.ToString(("hh") , ic) + ".";
+                formatted = $"{years:D3}y{days:D3}d " + formatted;
+            }
+            else if (time.TotalDays >= 1)
             {
                 if (ShowDays)
                     formatted = minusString + time.ToString(@"d\d\ " + (DigitsFormat == DigitsFormat.DoubleDigitHours ? "hh" : "h") + @"\:mm\:ss" + decimalFormat, ic);
+                else if (DigitsFormat == DigitsFormat.DayDoubleDigitHours)
+                    formatted = minusString + time.ToString(@"d\d\ " + ( "hh" ) + @"\:mm\:ss" + decimalFormat, ic);
                 else
                     formatted = minusString + (int)time.TotalHours + time.ToString(@"\:mm\:ss" + decimalFormat, ic);
             }
