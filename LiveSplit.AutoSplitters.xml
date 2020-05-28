@@ -199,7 +199,7 @@
       <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Spectrum%20Retreat/TheSpectrumRetreat.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Starts the timer and splits upon level completion and at the end of a run. Does not split after level 5_01. (by Ero)</Description>
+    <Description>Splits can be chosen in the settings. Starts and resets automatically. (by Ero)</Description>
     <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Spectrum%20Retreat/README.md</Website>
   </AutoSplitter>
   <AutoSplitter>
@@ -8835,7 +8835,7 @@
       <URL>https://raw.githubusercontent.com/ldmnt/ash-autosplitter/master/ASH_Autosplitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>in-game timer and customizable auto-splitting (by Ero and Hamb)</Description>
+    <Description>Splits can be chosen in the settings. Starting, resetting and in-game time available. (by Ero and Hamb)</Description>
     <Website>https://discord.gg/UmVpeNB</Website>
   </AutoSplitter>
 </AutoSplitters>
