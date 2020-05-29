@@ -73,6 +73,12 @@ namespace LiveSplit.Tests.TimeFormatterTests
         [DataRow("1.07:05:01.03", TimeFormat.Minutes,  "31:05:01.03")]
         [DataRow("1.07:05:01.03", TimeFormat.Hours,    "31:05:01.03")]
         [DataRow("1.07:05:01.03", TimeFormat.TenHours, "31:05:01.03")]
+
+        [DataRow("00:00:00", TimeFormat.Years, "000y000d 00.")]
+        [DataRow("365:00:00", TimeFormat.Years, "001y000d 00.")]
+        [DataRow("9965:05:00", TimeFormat.Years, "027y110d 05.")]
+
+
         public void TestShortTimeFormatterWithTimeFormat(string timespanText, TimeFormat format, string expected)
         {
             var formatter = new ShortTimeFormatter();
