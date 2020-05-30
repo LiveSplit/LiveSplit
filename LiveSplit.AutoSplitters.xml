@@ -144,7 +144,7 @@
       <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/A%20Proof%20of%20Concept/AProofofConcept.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Check the settings to edit where to split. Starts and resets automatically. (by Ero)</Description>
+    <Description>Check the settings to edit where to split. Starts and resets automatically. Set timer offset to +6.667. (by Ero)</Description>
     <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/A%20Proof%20of%20Concept</Website>
   </AutoSplitter>
   <AutoSplitter>
