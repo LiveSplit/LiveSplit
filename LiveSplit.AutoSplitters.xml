@@ -138,6 +138,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>A Proof of Concept</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/A%20Proof%20of%20Concept/AProofofConcept.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Check the settings to edit where to split. Starts and resets automatically. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/A%20Proof%20of%20Concept</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>And All Would Cry Beware!</Game>
     </Games>
     <URLs>
@@ -145,7 +156,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Check the settings to edit where to split. Starts automatically and splits on credits. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/And%20All%20Would%20Cry%20Beware!/README.md</Website>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/And%20All%20Would%20Cry%20Beware!</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -156,7 +167,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitter for Donut County. Check settings to edit where to split. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Donut%20County/README.md</Website>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Donut%20County</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -167,7 +178,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitter and load remover. Check settings to edit where to split. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Frog%20Detective%202/README.md</Website>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Frog%20Detective%202</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -178,7 +189,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Starts the timer and splits whenever a level is completed. Does not do the final split. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/GNOG/README.md</Website>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/GNOG</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -189,7 +200,29 @@
     </URLs>
     <Type>Script</Type>
     <Description>Starts the timer. Pauses when the game is loading. Compare against game time! (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Hello%20Neighbor/README.md</Website>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Hello%20Neighbor</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Lightmatter</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Lightmatter/Lightmatter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts, resets and splits on every new level. IL support in settings. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Lightmatter</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Pedestrian</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Pedestrian/ThePedestrian.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Starts the timer, splits at the end. Additional splits in 'Settings'. Does not reset. (by Ero)</Description>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Pedestrian</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -200,7 +233,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Splits can be chosen in the settings. Starts and resets automatically. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Spectrum%20Retreat/README.md</Website>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Spectrum%20Retreat</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
@@ -214,29 +247,7 @@
     </URLs>
     <Type>Script</Type>
     <Description>Check 'Website' for information on compatibility. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Where%20is%20New%20Year%3F/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>Lightmatter</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Lightmatter/Lightmatter.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Starts, resets and splits on every new level. IL support in settings. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Lightmatter/README.md</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>The Pedestrian</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Pedestrian/ThePedestrian.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Starts the timer, splits at the end. Additional splits in 'Settings'. Does not reset. (by Ero)</Description>
-    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Pedestrian/README.md</Website>
+    <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Where%20is%20New%20Year%3F</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
