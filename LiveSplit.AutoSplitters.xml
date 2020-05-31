@@ -8849,4 +8849,35 @@
     <Description>Splits can be chosen in the settings. Starting, resetting and in-game time available. (by Ero and Hamb)</Description>
     <Website>https://discord.gg/UmVpeNB</Website>
   </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Minecraft Dungeons</Game>
+			<Game>Minecraft: Dungeons</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/MinecraftDungeons.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Load Removal available (by rythin) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Red Faction Guerrilla</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/RedFactionGuerrilla.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Load Removal available (by rythin) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Spongebob Squarepants: 3D Obstacle Odyssey</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Spongebob3DObstacleOdyssey.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting available (by rythin) </Description>
+	</AutoSplitter>	
 </AutoSplitters>
