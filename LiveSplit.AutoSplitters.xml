@@ -8858,7 +8858,7 @@
 			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/MinecraftDungeons.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description> Autosplitting and Load Removal available (by rythin) </Description>
+		<Description> Autosplitting and Load Removal available (by rythin &amp; KunoDemetries) </Description>
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
@@ -8880,4 +8880,25 @@
 		<Type>Script</Type>
 		<Description> Autosplitting available (by rythin) </Description>
 	</AutoSplitter>	
+	<AutoSplitter>
+		<Games>
+			<Game>Satan Loves Cake</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/SatanLovesCake.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Game Time available (by rythin) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Skylar &amp; Plux: Adventure on Clover Island</Game>
+			<Game>Skylar &amp; Plux</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Skylar.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> DESCRIPTION </Description>
+	</AutoSplitter>
 </AutoSplitters>
