@@ -50,8 +50,8 @@ namespace LiveSplit.ComponentUtil
 
         public DeepPointer(OffsetT base_, DerefType derefType, params OffsetT[] offsets)
         {
-            _derefType = derefType;
             _base = base_;
+            _derefType = derefType;
             InitializeOffsets(offsets);
         }
 
@@ -148,7 +148,11 @@ namespace LiveSplit.ComponentUtil
 
         public bool DerefOffsets(Process process, out IntPtr ptr)
         {
-            bool is64Bit = (_derefType == DerefType.Auto) ? process.Is64Bit() : ((_derefType == DerefType.Bit32) ? false : true);
+            bool is64Bit;
+            if (_derefType == DerefType.Auto)
+                is64Bit = process.Is64Bit();
+            else
+                is64Bit = _derefType == DerefType.Bit64;
 
             if (!string.IsNullOrEmpty(_module))
             {
