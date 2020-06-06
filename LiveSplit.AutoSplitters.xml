@@ -8912,4 +8912,15 @@
 		<Type>Script</Type>
 		<Description> DESCRIPTION </Description>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Stardew Valley</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Underscore76/SDV-AutoSplit/master/sdv-script.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Save/Load time remover for Stardew Valley</Description>
+		<Website>https://github.com/Underscore76/SDV-AutoSplit</Website>
+	</AutoSplitter>
 </AutoSplitters>
