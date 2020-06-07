@@ -8923,4 +8923,15 @@
 		<Description>Save/Load time remover for Stardew Valley</Description>
 		<Website>https://github.com/Underscore76/SDV-AutoSplit</Website>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Halo: The Master Chief Collection</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Burnt-o/MCC_autosplitter/master/MCC_autosplitter.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitting for Halo 1 and Halo 2 (by Burnt)</Description>
+		<Website>https://github.com/Burnt-o/MCC_autosplitter</Website>
+	</AutoSplitter>
 </AutoSplitters>
