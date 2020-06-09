@@ -3073,6 +3073,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Pac-Man and the Ghostly Adventures</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/pacmanga1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load removal is available (and eventually splitting and such). (By Gelly)</Description>
+    <Website>https://github.com/Gelly/autosplitters</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Prey</Game>
     </Games>
     <URLs>
