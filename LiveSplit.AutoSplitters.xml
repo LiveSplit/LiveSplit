@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<Autosplitter>
+	  <Games>
+		  <Game>Ys 1</Game>
+	  </Games>
+	  <URLs>
+		  <URL>https://raw.githubusercontent.com/Meta4ever/Livesplit-Autosplitters/master/ys1splitter.asl</URL>
+	  </URLs>
+	  <Type>Script</Type>
+	  <Description> Autosplitter by Metaforever for Chronicles+ (Steam version)</Description>
+	  <Website>https://github.com/Meta4ever/Livesplit-Autosplitters</Website> 
+	</Autosplitter>
   <AutoSplitter>
     <Games>
       <Game>The Hobbit</Game>
