@@ -8956,4 +8956,15 @@
 		<Description>Autosplitting for Halo 1 and Halo 2 (by Burnt)</Description>
 		<Website>https://github.com/Burnt-o/MCC_autosplitter</Website>
 	</AutoSplitter>
+	<AutoSplitter>
+	    <Games>
+	      <Game>Someday You'll Return</Game>
+	    </Games>
+	    <URLs>
+	      <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/LiveSplit.SomedayYoullReturn.asl</URL>
+	    </URLs>
+	    <Type>Script</Type>
+	    <Description>Load removing, autosplitting (by Wafu)</Description>
+	    <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
+	</AutoSplitter>
 </AutoSplitters>
