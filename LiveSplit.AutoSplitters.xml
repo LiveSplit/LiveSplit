@@ -8891,7 +8891,7 @@
 			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/MinecraftDungeons.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description> Autosplitting and Load Removal available (by rythin &amp; KunoDemetries) </Description>
+		<Description> Autosplitting and Load Removal available (by rythin, KunoDemetries) </Description>
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
@@ -8932,7 +8932,7 @@
 			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Skylar.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description> DESCRIPTION </Description>
+		<Description> Load Removal available (by rythin) </Description>
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
@@ -8966,5 +8966,46 @@
 	    <Type>Script</Type>
 	    <Description>Load removing, autosplitting (by Wafu)</Description>
 	    <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Best Friends</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/BestFriends.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Game Time available (by rythin) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>BoneExe</Game>
+			<Game>Bone.exe</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/BoneExe.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting available (by rythin) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Crazy Machines 2</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachines2.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting available (by rythin) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Dark SASI</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/DarkSASI.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Load Removal available (by rythin) </Description>
 	</AutoSplitter>
 </AutoSplitters>
