@@ -2891,6 +2891,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Parallax</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.Parallax.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Website>https://github.com/jbzdarkid/Autosplitters</Website>
+    <Description>Auto splitting, Automatic start/reset, and in-game time (By Darkid)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Family Guy: Back to the Multiverse</Game>
       <Game>Family Guy Back to the Multiverse</Game>
       <Game>Family Guy: BttM</Game>
