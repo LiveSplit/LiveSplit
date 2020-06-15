@@ -2769,6 +2769,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Undertale Category Extensions</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/antimYT/Undertale-Autosplitter/master/ut_autosplitter_common_cat_r2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Starter are available. (By antimyt)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Outlast</Game>
       <Game>Outlast Whistleblower</Game>
       <Game>Outlast: Whistleblower</Game>
