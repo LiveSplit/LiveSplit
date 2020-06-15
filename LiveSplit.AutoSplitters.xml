@@ -9021,6 +9021,20 @@
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
+			<Game>Kao the Kangaroo 3</Game>
+			<Game>Kao: Tajemnica Wulkanu</Game>
+			<Game>Kao: Mystery of the Volcano</Game>
+			<Game>Kao the Kangaroo Round 3: Mystery of the Volcano</Game>
+			<Game>Kao - Mystery of Volcano Island</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Kao3.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Autosplitting and Load Removal available (by rythin, Flower35) </Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 			<Game>Dark SASI</Game>
 		</Games>
 		<URLs>
