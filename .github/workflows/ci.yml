@@ -45,6 +45,7 @@ jobs:
         cd LiveSplit\bin\Release
         Get-ChildItem * -Include *.xml -Recurse | Remove-Item
         Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
+        Get-ChildItem * -Include *MSTest*.dll -Recurse | Remove-Item
 
     - name: Upload build as an artifact
       uses: actions/upload-artifact@v1
