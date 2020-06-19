@@ -9043,4 +9043,14 @@
 		<Type>Script</Type>
 		<Description> Autosplitting and Load Removal available (by rythin) </Description>
 	</AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Squidlit</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/andrewhuntsmith/SquidlitAuto/master/SquidlitAuto.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic Splitting is available. (By XandoToaster)</Description>
+  </AutoSplitter>
 </AutoSplitters>
