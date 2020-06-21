@@ -9063,4 +9063,14 @@
     <Type>Script</Type>
     <Description>Automatic Splitting is available. (By Shep)</Description>
   </AutoSplitter>
+        <AutoSplitter>
+                <Games>
+                        <Game>Epic Battle Fantasy 4</Game>
+                </Games>
+                <URLs>
+                        <URL>https://raw.githubusercontent.com/NighthawkSLO/Autosplitters/master/EBF4.asl</URL>
+                </URLs>
+                <Type>Script</Type>
+                <Description> Autosplitting and Game Time available (by NighthawkSLO) </Description>
+        </AutoSplitter>
 </AutoSplitters>
