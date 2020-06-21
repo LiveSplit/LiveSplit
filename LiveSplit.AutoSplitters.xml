@@ -9053,4 +9053,14 @@
     <Type>Script</Type>
     <Description>Automatic Splitting is available. (By XandoToaster)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Bunny Sword Master</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/zysim/BunnySwordmasterStoryAutosplitter/master/AutoSplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic Splitting is available. (By Shep)</Description>
+  </AutoSplitter>
 </AutoSplitters>
