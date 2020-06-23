@@ -9084,4 +9084,14 @@
                 <Type>Script</Type>
                 <Description> Autosplitting and Game Time available (by NighthawkSLO) </Description>
         </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Spongebob Squarepants: Battle for Bikini Bottom - Rehydrated</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rehydrated.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Currently just a load remover. Currently starts on any load. Still in active development. (By Square and ItsMaximum)</Description>
+  </AutoSplitter>
 </AutoSplitters>
