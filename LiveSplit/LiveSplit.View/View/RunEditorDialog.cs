@@ -1049,6 +1049,7 @@ namespace LiveSplit.View
             RebuildComparisonColumns();
             IsInitialized = true;
             UpdateButtonsStatus();
+            cbxGameName.UpdateUI();
         }
 
         private void picGameIcon_MouseUp(object sender, MouseEventArgs e)
@@ -1607,6 +1608,7 @@ namespace LiveSplit.View
         private Form form;
         private SemaphoreSlim refreshDropDown;
         private string currentText = "";
+        private string previousText = "";
         private bool taskCanceled = false;
 
         public IList<string> MyAutoCompleteSource
@@ -1622,7 +1624,6 @@ namespace LiveSplit.View
             form = controlForm;
             form.FormClosed += Form_FormClosed;
             refreshDropDown = new SemaphoreSlim(0, 1);
-            UpdateUI();
         }
 
         private void Form_FormClosed(object sender, FormClosedEventArgs e)
@@ -1631,8 +1632,10 @@ namespace LiveSplit.View
             TryReleaseRefreshDropDown();
         }
 
-        private void UpdateUI()
+        public void UpdateUI()
         {
+            previousText = currentText;
+
             Task.Factory.StartNew(() =>
                 {
                     while (true)
@@ -1644,7 +1647,7 @@ namespace LiveSplit.View
                         var text = currentText;
                         var legalStrings = GetAllItemsForText(text);
 
-                        if (currentText == text)
+                        if (currentText == text && previousText != text)
                         {
                             if (text != "" && legalStrings.Count() > 0 && text != legalStrings.First())
                             {
@@ -1655,6 +1658,7 @@ namespace LiveSplit.View
                                         _box.Items.Add(str);
                                     DroppedDown = false;
                                     _dropDown.Show(this, new Point(0, Height));
+                                    previousText = text;
                                 });
 
                             }
