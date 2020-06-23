@@ -8591,4 +8591,14 @@
     <Description>Automatic starts, chapter pauses. Needs work and more efficient code, but it is functional. Use character selection in script settings! (By xlYoshii)</Description>
     <Website>https://github.com/JYNxYoshii/RE6_ASL</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Spongebob Squarepants: Battle for Bikini Bottom - Rehydrated</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rehydrated.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Currently just a load remover. Still in active development. (By Square and ItsMaximum)</Description>
+  </AutoSplitter>
 </AutoSplitters>
