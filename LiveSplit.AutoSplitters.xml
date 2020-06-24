@@ -9092,6 +9092,6 @@
       <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rehydrated.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Able to start, remove loading times, and stop. Auto splitting has not been implemented yet. Still under active development. (By Square, ItsMaximum, and Micrologist)</Description>
+    <Description>Removes loads, starts, stops, and resets. There are two reset options in the settings. Under active development.</Description>
   </AutoSplitter>
 </AutoSplitters>
