@@ -9094,8 +9094,7 @@
     <Type>Script</Type>
     <Description>Removes loads, starts, stops, and resets. There are two reset options in the settings. Under active development.</Description>
   </AutoSplitter>
-</AutoSplitters>
-<AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>The Witcher 3: Wild Hunt</Game>
     </Games>
