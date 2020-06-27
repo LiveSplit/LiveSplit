@@ -9094,4 +9094,14 @@
     <Type>Script</Type>
     <Description>Removes loads, starts, stops, and resets. There are two reset options in the settings. Under active development.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>The Witcher 3: Wild Hunt</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Gaztin/asl-scripts/master/TW3LoadRemover.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Removes load times, including cutscenes. Tested on both GOG and Steam (Standard and GOTY) for versions 1.06 and 1.32.</Description>
+  </AutoSplitter>
 </AutoSplitters>
