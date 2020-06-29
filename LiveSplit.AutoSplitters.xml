@@ -9104,4 +9104,14 @@
     <Type>Script</Type>
     <Description>Removes load times, including cutscenes. Tested on both GOG and Steam (Standard and GOTY) for versions 1.06 and 1.32.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>My Friend Pedro</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/partoftheworlD/MyFriendPedro_autosplitter/master/steam/MyFriendPedro.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Removes load times, autosplits. Steam v1.03</Description>
+  </AutoSplitter>
 </AutoSplitters>
