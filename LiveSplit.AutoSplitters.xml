@@ -6513,17 +6513,6 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>Danganronpa: Trigger Happy Havoc</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/DRTHHv1.3.1.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Load removal only. Does not autosplit.</Description>
-    <Website>https://github.com/kclimb/asl-scripts</Website>
-  </AutoSplitter>
-  <AutoSplitter>
-    <Games>
       <Game>Danganronpa Another Episode: Ultra Despair Girls</Game>
     </Games>
     <URLs>
