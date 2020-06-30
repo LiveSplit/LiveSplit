@@ -9115,4 +9115,24 @@
     <Description>Automatic start/split/reset and in-game time are available (by InsaneJetman)</Description>
     <Website>https://github.com/InsaneJetman/autosplitters/blob/master/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Anno 1404</Game>
+    </Games>
+    <URLs>
+<URL>https://raw.githubusercontent.com/tocaloni1/Anno1404-load-remover/master/Anno1404.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover for Anno 1404 (works with original game as well as the history edition) by tocaloni1</Description>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>The Dark Eye: Memoria</Game>
+    </Games>
+    <URLs>
+<URL>https://raw.githubusercontent.com/tocaloni1/the-dark-eye-memoria-load-remover/master/memoria.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover for The Dark Eye: Memoria by tocaloni1</Description>
+  </AutoSplitter>
 </AutoSplitters>
