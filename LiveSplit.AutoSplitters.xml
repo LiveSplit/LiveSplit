@@ -9103,4 +9103,16 @@
     <Type>Script</Type>
     <Description>Removes load times, autosplits. Steam v1.03</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Jetpack</Game>
+      <Game>Jetpack Christmas Special!</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/InsaneJetman/autosplitters/master/Jetpack.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start/split/reset and in-game time are available (by InsaneJetman)</Description>
+    <Website>https://github.com/InsaneJetman/autosplitters/blob/master/README.md</Website>
+  </AutoSplitter>
 </AutoSplitters>
