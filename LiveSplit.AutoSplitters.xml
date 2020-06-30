@@ -9116,3 +9116,13 @@
     <Website>https://github.com/InsaneJetman/autosplitters/blob/master/README.md</Website>
   </AutoSplitter>
 </AutoSplitters>
+<AutoSplitter>
+    <Games>
+      <Game>The Dark Eye: Memoria</Game>
+    </Games>
+    <URLs>
+<URL>https://raw.githubusercontent.com/tocaloni1/the-dark-eye-memoria-load-remover/master/memoria.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Load remover for The Dark Eye: Memoria by tocaloni1</Description>
+  </AutoSplitter>
