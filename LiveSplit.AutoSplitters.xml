@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
 	  <Games>
+		  <Game>Drop Alive (Timeattack)</Game>
+	  </Games>
+	  <URLs>
+		  <URL>https://raw.githubusercontent.com/nukeurself/livesplit_drop_alive_autospliter/master/drop_alive.asl</URL>
+	  </URLs>
+	  <Type>Script</Type>
+	  <Description>Autosplitter for the steam game drop alive. Gamemode "Timeattack"</Description>
+	  <Website>http://nukeurself.de/</Website> 
+	</AutoSplitter>
+  <AutoSplitter>
+	  <Games>
 		  <Game>Ys I Chronicles/Complete/Eternal</Game>
 	  </Games>
 	  <URLs>
