@@ -8711,10 +8711,10 @@
       <Game>Resident Evil 6</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/JYNxYoshii/RE6_ASL/master/RE6_dist_IGT.asl</URL>
+      <URL>https://raw.githubusercontent.com/JYNxYoshii/RE6_ASL/master/RE6v2_dist_IGT.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autostart, optional chapter splits, works with all characters/campaigns. Tested 1.06. (By xlYoshii)</Description>
+    <Description>Autostart, chapter splits, sub-chapter splits, works with all characters/campaigns. Tested 1.06. Visit the Github page for more info. (By xlYoshii)</Description>
     <Website>https://github.com/JYNxYoshii/RE6_ASL</Website>
   </AutoSplitter>
   <AutoSplitter>
