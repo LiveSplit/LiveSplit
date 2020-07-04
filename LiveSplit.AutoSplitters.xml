@@ -2801,6 +2801,16 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>HorrorTale: Chapter One</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/antimYT/Undertale-Autosplitter/master/fan/horrortale_autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting and Starter are available. (for v1.04, by antimyt)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Outlast</Game>
       <Game>Outlast Whistleblower</Game>
       <Game>Outlast: Whistleblower</Game>
