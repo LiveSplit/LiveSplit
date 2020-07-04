@@ -9156,4 +9156,14 @@
     <Type>Script</Type>
     <Description>Load remover for The Dark Eye: Memoria by tocaloni1</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Rain World</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/henpemaz/Rain-World-Autosplitter/master/RWAutosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start, triggers for rooms, gates, achiemevemnts, encounters and more. By Henpemaz.</Description>
+  </AutoSplitter>
 </AutoSplitters>
