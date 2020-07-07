@@ -7222,10 +7222,10 @@
       <Game>Tomb Raider</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/LiveSplit.TR1.asl</URL>
+      <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Component/TR1996.dll</URL>
     </URLs>
-    <Type>Script</Type>
-    <Description>Automatic start, split, and reset are available, as well as an IL timer.</Description>
+    <Type>Component</Type>
+    <Description>Automatic start, split, and reset are available, as well as an IL timer and IGT display. (by Midge, rtrger, Lowosos, RiiFT)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
