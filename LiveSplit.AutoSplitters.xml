@@ -9166,4 +9166,14 @@
     <Type>Script</Type>
     <Description>Automatic start, triggers for rooms, gates, achiemevemnts, encounters and more. By Henpemaz.</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Bright Memory - Episode 1</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.BrightMemory/master/brightmemoryep1.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatic start and load removal available (by Micrologist)</Description>
+  </AutoSplitter>
 </AutoSplitters>
