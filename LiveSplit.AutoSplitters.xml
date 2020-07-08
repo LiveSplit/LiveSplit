@@ -9186,4 +9186,15 @@
     <Type>Script</Type>
     <Description>Autosplitting and autostart available (by JohnStephenEvil)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Trackmania</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Trackmania/Livesplit.Trackmania.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start and Game Time are available (By Voxelse)</Description>
+    <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Trackmania</Website>
+  </AutoSplitter>
 </AutoSplitters>
