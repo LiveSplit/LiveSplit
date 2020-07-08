@@ -9176,4 +9176,14 @@
     <Type>Script</Type>
     <Description>Autosplitting and load removal available (by Micrologist)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Batman: Arkham Asylum</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ArkhamAsylum.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and autostart available (by JohnStephenEvil)</Description>
+  </AutoSplitter>
 </AutoSplitters>
