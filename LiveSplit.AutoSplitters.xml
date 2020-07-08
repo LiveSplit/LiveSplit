@@ -9197,4 +9197,16 @@
     <Description>Auto Splitting, Auto Start and Game Time are available (By Voxelse)</Description>
     <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Trackmania</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+	<Game>Garfield: Lasagna World Tour</Game>
+	<Game>Garfield Lasagna World Tour</Game>
+	<Game>Lasagna World Tour</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/LasagnaWorldTour.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting available (by rythin)</Description>
+  </AutoSplitter>
 </AutoSplitters>
