@@ -9209,4 +9209,15 @@
     <Type>Script</Type>
     <Description>Autosplitting available (by rythin)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>PokeyPoke</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/AlbinEriksson/PokeyPoke-ASL/master/PokeyPoke.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Auto Start are available. (By Aetias)</Description>
+    <Website>https://github.com/AlbinEriksson/PokeyPoke-ASL</Website>
+  </AutoSplitter>
 </AutoSplitters>
