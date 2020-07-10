@@ -9094,15 +9094,15 @@
                 <Type>Script</Type>
                 <Description> Autosplitting and Game Time available (by NighthawkSLO) </Description>
         </AutoSplitter>
-<AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>SpongeBob SquarePants: Battle for Bikini Bottom – Rehydrated</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rehydrated.asl</URL>
+      <URL>https://raw.githubusercontent.com/SquareMan/LiveSplit.BfBBRehydrated/master/LiveSplit.BfBBRehydrated/Components/LiveSplit.BfBBRehydrated.dll</URL>
     </URLs>
-    <Type>Script</Type>
-    <Description>Removes loads, starts, stops, and resets. There are two reset options in the settings. Under active development.</Description>
+    <Type>Component</Type>
+    <Description>Configurable Autosplitting Is Available (By TheCoolSquare, Micrologist, and ItsMaximum)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
