@@ -3415,7 +3415,9 @@
   <AutoSplitter>
     <Games>
       <Game>Pokémon Red++</Game>
+      <Game>Pokémon Red ++</Game>    
       <Game>Pokemon Red++</Game>
+      <Game>Pokemon Red ++</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnRed%2B%2B/LiveSplit.PkmnRed%2B%2B.asl</URL>
