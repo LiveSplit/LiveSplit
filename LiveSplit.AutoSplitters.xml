@@ -6553,7 +6553,7 @@
       <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/ZETNG.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Load removal and autosplitting for Nine Hours, Nine Persons, Nine Doors. No functionality for Virtue's Last Reward (yet).</Description>
+    <Description>Load removal and autosplitting for 999. No functionality for VLR (yet).</Description>
     <Website>https://github.com/kclimb/asl-scripts</Website>
   </AutoSplitter>
   <AutoSplitter>
