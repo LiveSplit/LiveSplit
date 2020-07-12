@@ -7572,7 +7572,7 @@
       <Game>Batman: Arkham City</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ACSplitter.asl</URL>
+      <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ArkhamCity.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Auto-start, and auto-splitting on pre-rendered cutscenes and load zones are available (by darkid and ShikenNuggets)</Description>
