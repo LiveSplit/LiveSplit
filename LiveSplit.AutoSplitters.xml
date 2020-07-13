@@ -23,6 +23,17 @@
 	  <Website>https://github.com/Meta4ever/Livesplit-Autosplitters</Website> 
 	</AutoSplitter>
   <AutoSplitter>
+      <Games>
+	  <Game>Metal Slug 3</Game>
+      </Games>
+      <URLs>
+          <URL>https://raw.githubusercontent.com/G-e-n-e-v-e-n-s-i-S/Metal-Slug-3-AutoSplitter/master/Metal%20Slug%203%20-%20AutoSplitter.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>AutoSplitter by GenevensiS</Description>
+      <Website>https://discord.gg/0WkjWAEJuU5RtZ3E</Website>
+  </AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>The Hobbit</Game>
     </Games>
