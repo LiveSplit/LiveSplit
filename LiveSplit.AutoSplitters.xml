@@ -9223,4 +9223,15 @@
     <Description>Autosplitting and Auto Start are available. (By Aetias)</Description>
     <Website>https://github.com/AlbinEriksson/PokeyPoke-ASL</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Devolverland Expo</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Devolverland/master/devolverlandexpo.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting available (by Micrologist)</Description>
+    <Website>https://github.com/Micrologist/LiveSplit.Devolverland</Website>
+  </AutoSplitter>
 </AutoSplitters>
