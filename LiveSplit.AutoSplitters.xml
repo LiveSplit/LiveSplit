@@ -24,13 +24,57 @@
 	</AutoSplitter>
   <AutoSplitter>
       <Games>
+          <Game>Metal Slug</Game>
+      </Games>
+      <URLs>
+          <URL>https://raw.githubusercontent.com/G-e-n-e-v-e-n-s-i-S/Metal-Slug-1-AutoSplitter/master/Metal%20Slug%201%20-%20AutoSplitter.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>AutoSplitter for Steam and Kawaks by GenevensiS</Description>
+      <Website>https://discord.gg/0WkjWAEJuU5RtZ3E</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+      <Games>
+          <Game>Metal Slug 2</Game>
+      </Games>
+      <URLs>
+          <URL>https://raw.githubusercontent.com/G-e-n-e-v-e-n-s-i-S/Metal-Slug-2-AutoSplitter/master/Metal%20Slug%202%20-%20AutoSplitter.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>AutoSplitter for Steam and Kawaks by GenevensiS</Description>
+      <Website>https://discord.gg/0WkjWAEJuU5RtZ3E</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+      <Games>
           <Game>Metal Slug 3</Game>
       </Games>
       <URLs>
           <URL>https://raw.githubusercontent.com/G-e-n-e-v-e-n-s-i-S/Metal-Slug-3-AutoSplitter/master/Metal%20Slug%203%20-%20AutoSplitter.asl</URL>
       </URLs>
       <Type>Script</Type>
-      <Description>AutoSplitter by GenevensiS</Description>
+      <Description>AutoSplitter for Steam and Kawaks by GenevensiS</Description>
+      <Website>https://discord.gg/0WkjWAEJuU5RtZ3E</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+      <Games>
+          <Game>Metal Slug 4</Game>
+      </Games>
+      <URLs>
+          <URL>https://raw.githubusercontent.com/G-e-n-e-v-e-n-s-i-S/Metal-Slug-4-AutoSplitter/master/Metal%20Slug%204%20-%20AutoSplitter.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>AutoSplitter for Kawaks by GenevensiS</Description>
+      <Website>https://discord.gg/0WkjWAEJuU5RtZ3E</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+      <Games>
+          <Game>Metal Slug X</Game>
+      </Games>
+      <URLs>
+          <URL>https://raw.githubusercontent.com/G-e-n-e-v-e-n-s-i-S/Metal-Slug-X-AutoSplitter/master/Metal%20Slug%20X%20-%20AutoSplitter.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>AutoSplitter for Steam and Kawaks by GenevensiS</Description>
       <Website>https://discord.gg/0WkjWAEJuU5RtZ3E</Website>
   </AutoSplitter>
   <AutoSplitter>
