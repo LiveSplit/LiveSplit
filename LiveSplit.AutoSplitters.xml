@@ -9310,5 +9310,16 @@
     <Type>Script</Type>
     <Description>Game Time is available (By Jorkoh)</Description>
     <Website>https://github.com/Jorkoh/MinecraftIGT</Website>
-  </AutoSplitter>	
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Midtown Madness 2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Niloqui/Random_stuff/master/LiveSplit.MM2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and load time removal (by Niloquì)</Description>
+    <Website>https://github.com/Niloqui/Random_stuff</Website>
+  </AutoSplitter>
 </AutoSplitters>
