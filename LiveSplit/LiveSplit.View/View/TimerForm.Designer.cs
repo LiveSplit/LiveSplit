@@ -85,53 +85,59 @@
             this.aboutMenuItem,
             this.exitMenuItem});
             this.RightClickMenu.Name = "RightClickMenu";
-            this.RightClickMenu.Size = new System.Drawing.Size(167, 408);
+            this.RightClickMenu.Size = new System.Drawing.Size(181, 386);
             this.RightClickMenu.Opening += new System.ComponentModel.CancelEventHandler(this.RightClickMenu_Opening);
             // 
             // editSplitsMenuItem
             // 
             this.editSplitsMenuItem.Name = "editSplitsMenuItem";
-            this.editSplitsMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.editSplitsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editSplitsMenuItem.Text = "Edit Splits...";
             this.editSplitsMenuItem.Click += new System.EventHandler(this.editSplitsMenuItem_Click);
             // 
             // openSplitsMenuItem
             // 
             this.openSplitsMenuItem.Name = "openSplitsMenuItem";
-            this.openSplitsMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.openSplitsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openSplitsMenuItem.Text = "Open Splits";
             // 
             // saveSplitsMenuItem
             // 
             this.saveSplitsMenuItem.Name = "saveSplitsMenuItem";
-            this.saveSplitsMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.saveSplitsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveSplitsMenuItem.Text = "Save Splits";
             this.saveSplitsMenuItem.Click += new System.EventHandler(this.saveSplitsMenuItem_Click);
             // 
             // saveSplitsAsMenuItem
             // 
             this.saveSplitsAsMenuItem.Name = "saveSplitsAsMenuItem";
-            this.saveSplitsAsMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.saveSplitsAsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveSplitsAsMenuItem.Text = "Save Splits As...";
             this.saveSplitsAsMenuItem.Click += new System.EventHandler(this.saveAsMenuItem_Click);
             // 
             // closeSplitsMenuItem
             // 
             this.closeSplitsMenuItem.Name = "closeSplitsMenuItem";
-            this.closeSplitsMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.closeSplitsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeSplitsMenuItem.Text = "Close Splits";
             this.closeSplitsMenuItem.Click += new System.EventHandler(this.closeSplitsMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(163, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // controlMenuItem
             // 
             this.controlMenuItem.Name = "controlMenuItem";
-            this.controlMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.controlMenuItem.Size = new System.Drawing.Size(180, 22);
             this.controlMenuItem.Text = "Control";
+            // 
+            // comparisonMenuItem
+            // 
+            this.comparisonMenuItem.Name = "comparisonMenuItem";
+            this.comparisonMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.comparisonMenuItem.Text = "Compare Against";
             // 
             // toolStripSeparator1
             // 
@@ -148,63 +154,63 @@
             // endRaceSection
             // 
             this.endRaceSection.Name = "endRaceSection";
-            this.endRaceSection.Size = new System.Drawing.Size(166, 6);
+            this.endRaceSection.Size = new System.Drawing.Size(177, 6);
             // 
             // editLayoutMenuItem
             // 
             this.editLayoutMenuItem.Name = "editLayoutMenuItem";
-            this.editLayoutMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.editLayoutMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editLayoutMenuItem.Text = "Edit Layout...";
             this.editLayoutMenuItem.Click += new System.EventHandler(this.editLayoutMenuItem_Click);
             // 
             // openLayoutMenuItem
             // 
             this.openLayoutMenuItem.Name = "openLayoutMenuItem";
-            this.openLayoutMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.openLayoutMenuItem.Size = new System.Drawing.Size(180, 22);
             this.openLayoutMenuItem.Text = "Open Layout";
             // 
             // saveLayoutMenuItem
             // 
             this.saveLayoutMenuItem.Name = "saveLayoutMenuItem";
-            this.saveLayoutMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.saveLayoutMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveLayoutMenuItem.Text = "Save Layout";
             this.saveLayoutMenuItem.Click += new System.EventHandler(this.saveLayoutMenuItem_Click);
             // 
             // saveLayoutAsMenuItem
             // 
             this.saveLayoutAsMenuItem.Name = "saveLayoutAsMenuItem";
-            this.saveLayoutAsMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.saveLayoutAsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveLayoutAsMenuItem.Text = "Save Layout As...";
             this.saveLayoutAsMenuItem.Click += new System.EventHandler(this.saveLayoutAsMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(163, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(177, 6);
             // 
             // settingsMenuItem
             // 
             this.settingsMenuItem.Name = "settingsMenuItem";
-            this.settingsMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.settingsMenuItem.Size = new System.Drawing.Size(180, 22);
             this.settingsMenuItem.Text = "Settings";
             this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(163, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(177, 6);
             // 
             // aboutMenuItem
             // 
             this.aboutMenuItem.Name = "aboutMenuItem";
-            this.aboutMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.aboutMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutMenuItem.Text = "About";
             this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(180, 22);
             this.exitMenuItem.Text = "Exit";
             this.exitMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -257,17 +263,10 @@
             // 
             // hotkeysMenuItem
             // 
-            this.hotkeysMenuItem.Enabled = true;
             this.hotkeysMenuItem.Name = "hotkeysMenuItem";
             this.hotkeysMenuItem.Size = new System.Drawing.Size(152, 22);
             this.hotkeysMenuItem.Text = "Global Hotkeys";
             this.hotkeysMenuItem.Click += new System.EventHandler(this.hotkeysMenuItem_Click);
-            // 
-            // comparisonMenuItem
-            // 
-            this.comparisonMenuItem.Name = "comparisonMenuItem";
-            this.comparisonMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.comparisonMenuItem.Text = "Compare Against";
             // 
             // TimerForm
             // 

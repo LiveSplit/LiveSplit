@@ -19,7 +19,8 @@ namespace LiveSplit.Options.SettingsFactories
                 {
                     {HotkeyProfile.DefaultHotkeyProfileName, new HotkeyProfile()
                         {
-                            SplitKey = new KeyOrButton(Keys.NumPad1),
+                            StartKey = new KeyOrButton(Keys.NumPad0),
+                            StartSplitKey = new KeyOrButton(Keys.NumPad1),
                             ResetKey = new KeyOrButton(Keys.NumPad3),
                             UndoKey = new KeyOrButton(Keys.NumPad8),
                             SkipKey = new KeyOrButton(Keys.NumPad2),
