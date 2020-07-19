@@ -9300,4 +9300,15 @@
     <Description>Autosplitting available (by Micrologist)</Description>
     <Website>https://github.com/Micrologist/LiveSplit.Devolverland</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Minecraft: Java Edition</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Jorkoh/MinecraftIGT/master/MinecraftIGT.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Game Time is available (By Jorkoh)</Description>
+    <Website>https://github.com/Jorkoh/MinecraftIGT</Website>
+  </AutoSplitter>	
 </AutoSplitters>
