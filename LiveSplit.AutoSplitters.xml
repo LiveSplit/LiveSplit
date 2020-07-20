@@ -9322,4 +9322,15 @@
     <Description>Autosplitting and load time removal (by Niloquì)</Description>
     <Website>https://github.com/Niloqui/Random_stuff</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>In the Raven Shadow</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/LiveSplit.InTheRavenShadow.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto-splitting</Description>
+    <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
+  </AutoSplitter>
 </AutoSplitters>
