@@ -9344,4 +9344,14 @@
     <Type>Script</Type>
     <Description>Auto Splitting, Auto Start and Game Time are available for PCSX2 and RCPS3. (By Kapdap)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>RITE</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/m-ender/livesplit-autosplitters/master/RITE/rite.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting, starting, resetting. (by Menderbug)</Description>
+  </AutoSplitter>
 </AutoSplitters>
