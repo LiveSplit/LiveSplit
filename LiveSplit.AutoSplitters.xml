@@ -9333,7 +9333,7 @@
     <Description>Auto-splitting (by Wafu)</Description>
     <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
   </AutoSplitter>
-<AutoSplitter>
+  <AutoSplitter>
     <Games>
       <Game>DMC4SE</Game>
       <Game>Devil May Cry 4: Special Edition (Steam)</Game>
@@ -9347,3 +9347,25 @@
     <Description>Autosplitter with LRT by Mysterion_06_</Description>
     <Website>https://github.com/Mysterion06/DMC4SE-Autosplitter/blob/master/README.md</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Resident Evil: Code: Veronica X</Game>
+      <Game>Biohazard Code: Veronica Kanzenban</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/kapdap/re-cvx-autosplitter/master/recvx.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Splitting, Auto Start and Game Time are available for PCSX2 and RCPS3. (By Kapdap)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>RITE</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/m-ender/livesplit-autosplitters/master/RITE/rite.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto splitting, starting, resetting. (by Menderbug)</Description>
+  </AutoSplitter>
+</AutoSplitters>
