@@ -9355,7 +9355,8 @@
       <URL>https://raw.githubusercontent.com/kapdap/re-cvx-autosplitter/master/recvx.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting, Auto Start and Game Time are available for PCSX2 and RCPS3. (By Kapdap)</Description>
+    <Description>Auto Splitting, Auto Start and Game Time are available for PCSX2 and RPCS3. (By Kapdap)</Description>
+    <Website>https://github.com/kapdap/re-cvx-autosplitter</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
