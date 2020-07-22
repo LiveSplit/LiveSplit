@@ -405,6 +405,10 @@ namespace LiveSplit.Model
                     {
                         var name = variable.TrimEnd('?');
                         var variableValue = run.Metadata.VariableValueNames[variable];
+                        if (string.IsNullOrWhiteSpace(variableValue))
+                        {
+                            continue; //Ignore blank/unset variables
+                        }
                         var valueLower = variableValue.ToLowerInvariant();
 
                         if (valueLower == "yes")
