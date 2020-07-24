@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+       <AutoSplitter>
+           <Games>
+           <Game>Dream</Game>
+           </Games>
+           <URLs>
+      		<URL>https://raw.githubusercontent.com/TheUnChosenOne/Dream/master/Dream.asl</URL>
+           </URLs>
+           <Type>Script</Type>
+           <Description>DreamSplit: LoadRemover / reducer for Dream for the PC</Description>
+    	   <Website>https://github.com/TheUnChosenOne/Dream</Website>
+  	</AutoSplitter>
 	<AutoSplitter>
     	  <Games>
       		 <Game>Ether One</Game>
