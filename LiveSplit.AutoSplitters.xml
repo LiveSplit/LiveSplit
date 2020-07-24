@@ -90,6 +90,17 @@
   </AutoSplitter>
   <AutoSplitter>
       <Games>
+          <Game>Metal Slug 5</Game>
+      </Games>
+      <URLs>
+          <URL>https://raw.githubusercontent.com/G-e-n-e-v-e-n-s-i-S/Metal-Slug-5-AutoSplitter/master/Metal%20Slug%205%20-%20AutoSplitter.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>AutoSplitter for Kawaks by GenevensiS</Description>
+      <Website>https://discord.gg/0WkjWAEJuU5RtZ3E</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+      <Games>
           <Game>Metal Slug X</Game>
       </Games>
       <URLs>
