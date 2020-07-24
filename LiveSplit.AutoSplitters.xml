@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
 	<AutoSplitter>
+    	  <Games>
+      		 <Game>Ether One</Game>
+    	  </Games>
+    	  <URLs>
+      		 <URL>https://raw.githubusercontent.com/TheUnChosenOne/EtherOneSplit/master/Ether_One_Load_Remover.asl</URL>
+    	  </URLs>
+    	  <Type>Script</Type>
+    	  <Description>EtherOneSplit: LoadRemover / reducer for Ether One for the PC</Description>
+    	  <Website>https://github.com/TheUnChosenOne/EtherOneSplit</Website>
+       	  </AutoSplitter>
+	  <AutoSplitter>
 	  <Games>
 		  <Game>Drop Alive (Timeattack)</Game>
 	  </Games>
