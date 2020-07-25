@@ -458,6 +458,17 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Sonic &amp; Sega All-Stars Racing</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Sonic%20%26%20SEGA%20All-Stars%20Racing/SSASR.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and In-Game Timer are available. Supports all speedrun.com categories (by Jujstme)</Description>
+    <Website>https://discord.gg/XRsRwRU</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Sonic &amp; All-Stars Racing Transformed</Game>
     </Games>
     <URLs>
