@@ -34,7 +34,7 @@ namespace LiveSplit.View
                 set
                 {
                     var choice = Variable.Values.FirstOrDefault(x => x.Value == value);
-                    string variableValue = string.Empty;
+                    string variableValue = null;
                     if (choice == null)
                     {
                         if (Variable.IsUserDefined)
@@ -45,12 +45,16 @@ namespace LiveSplit.View
                         variableValue = choice.Value;
                     }
                     if (Metadata.VariableValueNames.ContainsKey(Variable.Name))
-                        Metadata.VariableValueNames[Variable.Name] = variableValue;
-                    else
+                    {
+                        if (variableValue == null)
+                            Metadata.VariableValueNames.Remove(Variable.Name);
+                        else
+                            Metadata.VariableValueNames[Variable.Name] = variableValue;
+                    }
+                    else if (variableValue != null)
                         Metadata.VariableValueNames.Add(Variable.Name, variableValue);
 
-                    if (VariableChanged != null)
-                        VariableChanged(this, new MetadataChangedEventArgs(true));
+                    VariableChanged?.Invoke(this, new MetadataChangedEventArgs(true));
                 }
             }
         }
