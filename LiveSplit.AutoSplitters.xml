@@ -9349,11 +9349,12 @@
       <Game>Minecraft: Java Edition</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Jorkoh/MinecraftIGT/master/MinecraftIGT.asl</URL>
+      <URL>https://raw.githubusercontent.com/Jorkoh/LiveSplit.Minecraft/master/Components/LiveSplit.Minecraft.dll</URL>
+      <URL>https://raw.githubusercontent.com/Jorkoh/LiveSplit.Minecraft/master/Components/fNbt.dll</URL>
     </URLs>
-    <Type>Script</Type>
+    <Type>Component</Type>
     <Description>Game Time is available (By Jorkoh)</Description>
-    <Website>https://github.com/Jorkoh/MinecraftIGT</Website>
+    <Website>https://github.com/Jorkoh/LiveSplit.Minecraft</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
