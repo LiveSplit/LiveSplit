@@ -7,7 +7,8 @@ namespace LiveSplit.Options
 {
     public class HotkeyProfile : ICloneable
     {
-        public KeyOrButton SplitKey { get; set; }
+        public KeyOrButton StartKey { get; set; }
+        public KeyOrButton StartSplitKey { get; set; }
         public KeyOrButton ResetKey { get; set; }
         public KeyOrButton SkipKey { get; set; }
         public KeyOrButton UndoKey { get; set; }
@@ -27,11 +28,17 @@ namespace LiveSplit.Options
         {
             var hotkeyProfile = new HotkeyProfile();
 
-            var keyStart = element["SplitKey"];
+            var keyStart = element["StartKey"];
             if (!string.IsNullOrEmpty(keyStart.InnerText))
-                hotkeyProfile.SplitKey = new KeyOrButton(keyStart.InnerText);
+                hotkeyProfile.StartKey = new KeyOrButton(keyStart.InnerText);
             else
-                hotkeyProfile.SplitKey = null;
+                hotkeyProfile.StartKey = null;
+
+            var keyStartSplit = element["StartSplitKey"];
+            if (!string.IsNullOrEmpty(keyStartSplit.InnerText))
+                hotkeyProfile.StartSplitKey = new KeyOrButton(keyStartSplit.InnerText);
+            else
+                hotkeyProfile.StartSplitKey = null;
 
             var keyReset = element["ResetKey"];
             if (!string.IsNullOrEmpty(keyReset.InnerText))
@@ -93,10 +100,15 @@ namespace LiveSplit.Options
         {
             var parent = document.CreateElement(name);
 
-            var splitKey = document.CreateElement("SplitKey");
-            if (SplitKey != null)
-                splitKey.InnerText = SplitKey.ToString();
-            parent.AppendChild(splitKey);
+            var startKey = document.CreateElement("StartKey");
+            if (StartKey != null)
+                startKey.InnerText = StartKey.ToString();
+            parent.AppendChild(startKey);
+
+            var startSplitKey = document.CreateElement("StartSplitKey");
+            if (StartSplitKey != null)
+                startSplitKey.InnerText = StartSplitKey.ToString();
+            parent.AppendChild(startSplitKey);
 
             var resetKey = document.CreateElement("ResetKey");
             if (ResetKey != null)
@@ -145,7 +157,8 @@ namespace LiveSplit.Options
         {
             return new HotkeyProfile()
             {
-                SplitKey = SplitKey,
+                StartKey = StartKey,
+                StartSplitKey = StartSplitKey,
                 ResetKey = ResetKey,
                 SkipKey = SkipKey,
                 UndoKey = UndoKey,

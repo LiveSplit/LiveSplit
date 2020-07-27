@@ -19,7 +19,8 @@ namespace LiveSplit.View
         public CompositeHook Hook { get; set; }
         public string SelectedHotkeyProfile { get; set; }
 
-        public string SplitKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey);
+        public string StartKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].StartKey);
+        public string StartSplitKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].StartSplitKey);
         public string ResetKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].ResetKey);
         public string SkipKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SkipKey);
         public string UndoKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].UndoKey);
@@ -80,7 +81,8 @@ namespace LiveSplit.View
 
         private void UpdateDisplayedHotkeyValues()
         {
-            txtStartSplit.Text = SplitKey;
+            txtStart.Text = StartKey;
+            txtStartSplit.Text = StartSplitKey;
             txtReset.Text = ResetKey;
             txtSkip.Text = SkipKey;
             txtUndo.Text = UndoKey;
@@ -215,11 +217,20 @@ namespace LiveSplit.View
             txtBox.Leave += leaveHandler;
             Hook.AnyGamepadButtonPressed += gamepadButtonPressed;
         }
-        private void Split_Set_Enter(object sender, EventArgs e)
+
+        private void Start_Set_Enter(object sender, EventArgs e)
         {
             SetHotkeyHandlers((TextBox)sender, x =>
             {
-                Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey = x;
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].StartKey = x;
+            });
+        }
+
+        private void StartSplit_Set_Enter(object sender, EventArgs e)
+        {
+            SetHotkeyHandlers((TextBox)sender, x =>
+            {
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].StartSplitKey = x;
             });
         }
         private void Reset_Set_Enter(object sender, EventArgs e)

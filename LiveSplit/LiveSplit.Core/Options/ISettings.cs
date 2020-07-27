@@ -30,7 +30,8 @@ namespace LiveSplit.Options
         void UnregisterAllHotkeys(CompositeHook hook);
 
         // Deprecated properties
-        KeyOrButton SplitKey { get; set; }
+        KeyOrButton StartKey { get; set; }
+        KeyOrButton StartSplitKey { get; set; }
         KeyOrButton ResetKey { get; set; }
         KeyOrButton SkipKey { get; set; }
         KeyOrButton UndoKey { get; set; }

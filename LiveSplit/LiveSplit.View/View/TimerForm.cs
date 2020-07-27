@@ -1061,6 +1061,18 @@ namespace LiveSplit.View
             }
         }
 
+        private void Start()
+        {
+            if(CurrentState.CurrentPhase == TimerPhase.Paused)
+            {
+                Model.Pause();
+            }
+            else if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
+            {
+                Model.Start();
+            }
+        }
+
         void hook_KeyOrButtonPressed(object sender, KeyOrButton e)
         {
             Action action = () =>
@@ -1069,16 +1081,27 @@ namespace LiveSplit.View
 
                 if ((ActiveForm == this || hotkeyProfile.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
                 {
-                    if (hotkeyProfile.SplitKey == e)
+                    if (hotkeyProfile.StartSplitKey == e)
                     {
                         if (hotkeyProfile.HotkeyDelay > 0)
                         {
-                            var splitTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
-                            splitTimer.Enabled = true;
-                            splitTimer.Elapsed += splitTimer_Elapsed;
+                            var startSplitTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
+                            startSplitTimer.Enabled = true;
+                            startSplitTimer.Elapsed += startSplitTimer_Elapsed;
                         }
                         else
                             StartOrSplit();
+                    }
+                    else if (hotkeyProfile.StartKey == e)
+                    {
+                        if (hotkeyProfile.HotkeyDelay > 0)
+                        {
+                            var startTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
+                            startTimer.Enabled = true;
+                            startTimer.Elapsed += startTimer_Elapsed;
+                        }
+                        else
+                            Start();
                     }
 
                     else if (hotkeyProfile.UndoKey == e)
@@ -1141,7 +1164,13 @@ namespace LiveSplit.View
             Model.Pause();
         }
 
-        void splitTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        void startTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            ((System.Timers.Timer)sender).Stop();
+            Start();
+        }
+
+        void startSplitTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
             ((System.Timers.Timer)sender).Stop();
             StartOrSplit();

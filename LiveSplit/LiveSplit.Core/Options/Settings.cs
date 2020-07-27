@@ -24,9 +24,14 @@ namespace LiveSplit.Options
         public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
 
         // Deprecated properties
-        public KeyOrButton SplitKey {
-            get { return HotkeyProfiles.First().Value.SplitKey; }
-            set { HotkeyProfiles.First().Value.SplitKey = value; }
+        public KeyOrButton StartKey
+        {
+            get { return HotkeyProfiles.First().Value.StartKey; }
+            set { HotkeyProfiles.First().Value.StartKey = value; }
+        }
+        public KeyOrButton StartSplitKey {
+            get { return HotkeyProfiles.First().Value.StartSplitKey; }
+            set { HotkeyProfiles.First().Value.StartSplitKey = value; }
         }
         public KeyOrButton ResetKey {
             get { return HotkeyProfiles.First().Value.ResetKey; }
@@ -114,13 +119,24 @@ namespace LiveSplit.Options
             {
                 var hotkeyProfile = HotkeyProfiles[hotkeyProfileName];
                 var deactivateForOtherPrograms = hotkeyProfile.GlobalHotkeysEnabled && hotkeyProfile.DeactivateHotkeysForOtherPrograms;
-                if (hotkeyProfile.SplitKey != null)
+                if (hotkeyProfile.StartSplitKey != null)
                 {
                     try
                     {
-                        RegisterHotkey(hook, hotkeyProfile.SplitKey, deactivateForOtherPrograms);
+                        RegisterHotkey(hook, hotkeyProfile.StartSplitKey, deactivateForOtherPrograms);
                     }
                     catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
+                if(hotkeyProfile.StartKey != null)
+                {
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.StartKey, deactivateForOtherPrograms);
+                    }
+                    catch(Exception e)
                     {
                         Log.Error(e);
                     }
