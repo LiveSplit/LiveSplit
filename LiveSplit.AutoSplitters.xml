@@ -9428,4 +9428,15 @@
     <Type>Script</Type>
     <Description>Auto splitting, starting, resetting. (by Menderbug)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Maddening Euphoria</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/skyweiss/Autosplitters/master/MaddeningEuphoria.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting, Auto Start, and Game Time. (by skyweiss)</Description>
+    <Website>https://github.com/skyweiss/Autosplitters</Website>
+  </AutoSplitter>
 </AutoSplitters>
