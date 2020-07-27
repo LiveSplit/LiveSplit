@@ -5854,10 +5854,10 @@
       <Game>DMCSE</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/Auddy07/ASL/master/DMC3SE.asl</URL>
+      <URL>https://raw.githubusercontent.com/Mysterion06/DMC3Splitter/master/DMC3Splitter.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Auto Splitting and Load Removal are available. (By Auddy)</Description>
+    <Description>Auto Splitting and Load Removal (By Auddy, Mysterion_06_ &amp; Hies)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
