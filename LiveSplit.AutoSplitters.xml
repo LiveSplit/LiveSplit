@@ -803,6 +803,8 @@
   <AutoSplitter>
     <Games>
       <Game>Bloodstained: Curse of the Moon</Game>
+      <Game>BSCOTM</Game>
+      <Game>BSCOTM1</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/COTM.asl</URL>
@@ -813,7 +815,20 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
+      <Game>Bloodstained: Curse of the Moon 2</Game>
+      <Game>BSCOTM2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/COTM2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>(PC) Auto-Start, Auto-Split and Auto-Reset (By CptBrian)</Description>
+    <Website>https://www.speedrun.com/bscotm2/thread/vz8ch</Website>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
       <Game>Bloodstained: Ritual of the Night</Game>
+      <Game>BSROTN</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/BloodstainedRotN-Win64-Shipping.asl</URL>
