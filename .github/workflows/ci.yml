@@ -5,79 +5,81 @@ on:
   push:
     branches:
       - 'master'
+    tags:
+      - '*'
 
 jobs:
   build:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout commit
-      uses: actions/checkout@v2
-      with:
-        submodules: recursive
+      - name: Checkout commit
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
-    - name: Fetch history
-      run: git fetch --prune --unshallow --recurse-submodules=no
+      - name: Fetch history
+        run: git fetch --prune --unshallow --recurse-submodules=no
 
-    - name: Checkout Head Ref
-      if: github.head_ref != ''
-      run: |
-        git checkout -b ${{ github.head_ref }} || git checkout ${{ github.head_ref }}
+      - name: Checkout Head Ref
+        if: github.head_ref != ''
+        run: |
+          git checkout -b ${{ github.head_ref }} || git checkout ${{ github.head_ref }}
 
-    - name: Set up .NET environment
-      uses: vrnobody/Setup-DotNetFrameworkEnv@v1
+      - name: Set up .NET environment
+        uses: vrnobody/Setup-DotNetFrameworkEnv@v1
 
-    - name: Install NuGet packages
-      run: nuget restore LiveSplit\LiveSplit.sln
+      - name: Install NuGet packages
+        run: nuget restore LiveSplit\LiveSplit.sln
 
-    - name: Build LiveSplit
-      run: msbuild LiveSplit\LiveSplit.sln /verbosity:minimal /p:NoWarn=1591 /p:Configuration=Release
+      - name: Build LiveSplit
+        run: msbuild LiveSplit\LiveSplit.sln /verbosity:minimal /p:NoWarn=1591 /p:Configuration=Release
 
-    - name: Run tests
-      run: |
-        & "vstest.console.exe" "LiveSplit/LiveSplit.Tests/bin/Release/LiveSplit.Tests.dll"
+      - name: Run tests
+        run: |
+          & "vstest.console.exe" "LiveSplit/LiveSplit.Tests/bin/Release/LiveSplit.Tests.dll"
 
-    - name: Upload the Server component as an artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: LiveSplit.Server.dll
-        path: LiveSplit/bin/Release/Components/LiveSplit.Server.dll
+      - name: Upload the Server component as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: LiveSplit.Server.dll
+          path: LiveSplit/bin/Release/Components/LiveSplit.Server.dll
 
-    - name: Upload the Counter component as an artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: LiveSplit.Counter.dll
-        path: LiveSplit/bin/Release/Components/LiveSplit.Counter.dll
+      - name: Upload the Counter component as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: LiveSplit.Counter.dll
+          path: LiveSplit/bin/Release/Components/LiveSplit.Counter.dll
 
-    - name: Clean up build folder
-      run: |
-        mkdir .\LiveSplit\bin\Release\Resources
-        cp .\LiveSplit\Resources\SplitsFile.ico .\LiveSplit\bin\Release\Resources\
-        cp .\LiveSplit\Resources\LayoutFile.ico .\LiveSplit\bin\Release\Resources\
-        cd LiveSplit\bin\Release
-        Get-ChildItem * -Include *.xml -Recurse | Remove-Item
-        Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
-        Get-ChildItem * -Include *MSTest*.dll -Recurse | Remove-Item
-        Get-ChildItem * -Include *LiveSplit.Server.dll -Recurse | Remove-Item
-        Get-ChildItem * -Include *LiveSplit.Counter.dll -Recurse | Remove-Item
+      - name: Clean up build folder
+        run: |
+          mkdir .\LiveSplit\bin\Release\Resources
+          cp .\LiveSplit\Resources\SplitsFile.ico .\LiveSplit\bin\Release\Resources\
+          cp .\LiveSplit\Resources\LayoutFile.ico .\LiveSplit\bin\Release\Resources\
+          cd LiveSplit\bin\Release
+          Get-ChildItem * -Include *.xml -Recurse | Remove-Item
+          Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
+          Get-ChildItem * -Include *MSTest*.dll -Recurse | Remove-Item
+          Get-ChildItem * -Include *LiveSplit.Server.dll -Recurse | Remove-Item
+          Get-ChildItem * -Include *LiveSplit.Counter.dll -Recurse | Remove-Item
 
-    - name: Upload build as an artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: LiveSplit_Build
-        path: LiveSplit/bin/Release
+      - name: Upload build as an artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: LiveSplit_Build
+          path: LiveSplit/bin/Release
 
-    - name: Upload build to LiveSplit.github.io
-      if: github.repository == 'LiveSplit/LiveSplit' && github.ref == 'refs/heads/master'
-      run: |
-        7z a LiveSplitDevBuild.zip .\LiveSplit\bin\Release\*
-        git config --global user.email "action@github.com"
-        git config --global user.name "GitHub Action"
-        git clone -q --branch master --single-branch "https://github.com/LiveSplit/LiveSplit.github.io.git"
-        cd LiveSplit.github.io
-        git checkout -q --orphan artifacts
-        git reset
-        mv ../LiveSplitDevBuild.zip . -force
-        git add LiveSplitDevBuild.zip
-        git commit -m "Add Development Build"
-        git push -q --force https://action:${{ secrets.DEV_BUILD_UPLOAD }}@github.com/LiveSplit/LiveSplit.github.io.git
+      - name: Upload build to LiveSplit.github.io
+        if: github.repository == 'LiveSplit/LiveSplit' && github.ref == 'refs/heads/master'
+        run: |
+          7z a LiveSplitDevBuild.zip .\LiveSplit\bin\Release\*
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git clone -q --branch master --single-branch "https://github.com/LiveSplit/LiveSplit.github.io.git"
+          cd LiveSplit.github.io
+          git checkout -q --orphan artifacts
+          git reset
+          mv ../LiveSplitDevBuild.zip . -force
+          git add LiveSplitDevBuild.zip
+          git commit -m "Add Development Build"
+          git push -q --force https://action:${{ secrets.DEV_BUILD_UPLOAD }}@github.com/LiveSplit/LiveSplit.github.io.git
