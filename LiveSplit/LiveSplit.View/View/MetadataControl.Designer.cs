@@ -81,6 +81,7 @@
             this.cmbPlatform.Name = "cmbPlatform";
             this.cmbPlatform.Size = new System.Drawing.Size(141, 21);
             this.cmbPlatform.TabIndex = 3;
+            this.cmbPlatform.SelectedIndexChanged += new System.EventHandler(this.cmbPlatform_SelectedIndexChanged);
             // 
             // lblRegion
             // 
@@ -111,6 +112,7 @@
             this.cmbRegion.Name = "cmbRegion";
             this.cmbRegion.Size = new System.Drawing.Size(141, 21);
             this.cmbRegion.TabIndex = 2;
+            this.cmbRegion.SelectedIndexChanged += new System.EventHandler(this.cmbRegion_SelectedIndexChanged);
             // 
             // lblRules
             // 
