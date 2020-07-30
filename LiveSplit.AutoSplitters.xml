@@ -9463,4 +9463,14 @@
     <Type>Script</Type>
     <Description>Autosplitting and Load Removal available (by rythin)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+	<Game>Gravity Ghost</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/ditmarvisser/Gravity-Ghost-Autosplit/master/GravityGhostAutosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting, starting, and resetting available (by Ditmar Visser)</Description>
+  </AutoSplitter>
 </AutoSplitters>
