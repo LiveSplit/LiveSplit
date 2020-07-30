@@ -143,6 +143,17 @@
     <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
     <Website>https://discordapp.com/invite/fQaYqvF</Website>
   </AutoSplitter>
+	 <AutoSplitter>
+    <Games>
+      <Game>The Spiderwick Chronicles</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/spiderwick.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+    <Website>https://www.speedrun.com/the_spiderwick_chronicles</Website>
+  </AutoSplitter>
 		 <AutoSplitter>
     <Games>
       <Game>Call of Duty: Ghosts</Game>
