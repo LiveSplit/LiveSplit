@@ -9439,4 +9439,17 @@
     <Description>Autosplitting, Auto Start, and Game Time. (by skyweiss)</Description>
     <Website>https://github.com/skyweiss/Autosplitters</Website>
   </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+	<Game>Flyonoid</Game>
+	<Game>Muchtrix</Game>
+	<Game>Bracia Muchowsk'y</Game>
+	<Game>Muchtrix: Bracia Muchowsk'y</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Flyonoid.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Load Removal available (by rythin)</Description>
+  </AutoSplitter>
 </AutoSplitters>
