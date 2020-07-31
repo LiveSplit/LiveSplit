@@ -20,6 +20,7 @@ namespace LiveSplit.Options
         public bool GlobalHotkeysEnabled { get; set; }
         public bool DeactivateHotkeysForOtherPrograms { get; set; }
         public bool DoubleTapPrevention { get; set; }
+        public bool AllowGamepadsAsHotkeys { get; set; }
 
         public const string DefaultHotkeyProfileName = "Default";
 
@@ -85,6 +86,7 @@ namespace LiveSplit.Options
             hotkeyProfile.DeactivateHotkeysForOtherPrograms = ParseBool(element["DeactivateHotkeysForOtherPrograms"], false);
             hotkeyProfile.DoubleTapPrevention = ParseBool(element["DoubleTapPrevention"], true);
             hotkeyProfile.HotkeyDelay = ParseFloat(element["HotkeyDelay"], 0f);
+            hotkeyProfile.AllowGamepadsAsHotkeys = ParseBool(element["AllowGamepadsAsHotkeys"], true);
 
             return hotkeyProfile;
         }
@@ -137,6 +139,7 @@ namespace LiveSplit.Options
             CreateSetting(document, parent, "DeactivateHotkeysForOtherPrograms", DeactivateHotkeysForOtherPrograms);
             CreateSetting(document, parent, "DoubleTapPrevention", DoubleTapPrevention);
             CreateSetting(document, parent, "HotkeyDelay", HotkeyDelay);
+            CreateSetting(document, parent, "AllowGamepadsAsHotkeys", AllowGamepadsAsHotkeys);
 
             return parent;
         }

@@ -302,7 +302,7 @@ namespace LiveSplit.View
 
             InvalidationRequired = false;
 
-            Hook = new CompositeHook();
+            Hook = new CompositeHook(false);
             Hook.GamepadHookInitialized += Hook_GamepadHookInitialized;
             Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
             Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);

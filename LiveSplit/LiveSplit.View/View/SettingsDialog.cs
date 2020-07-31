@@ -47,6 +47,11 @@ namespace LiveSplit.View
             get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].DeactivateHotkeysForOtherPrograms; }
             set { Settings.HotkeyProfiles[SelectedHotkeyProfile].DeactivateHotkeysForOtherPrograms = value; }
         }
+        public bool AllowGamepadsAsHotkeys
+        {
+            get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].AllowGamepadsAsHotkeys; }
+            set { Settings.HotkeyProfiles[SelectedHotkeyProfile].AllowGamepadsAsHotkeys = value; }
+        }
 
         public event EventHandler SumOfBestModeChanged;
 
@@ -66,6 +71,7 @@ namespace LiveSplit.View
             txtDelay.DataBindings.Add("Text", this, "HotkeyDelay");
             chkWarnOnReset.DataBindings.Add("Checked", Settings, "WarnOnReset");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
+            chkAllowGamepads.DataBindings.Add("Checked", this, "AllowGamepadsAsHotkeys");
 
             UpdateDisplayedHotkeyValues();
             RefreshRemoveButton();
@@ -93,6 +99,7 @@ namespace LiveSplit.View
             chkDoubleTap.Checked = DoubleTapPrevention;
             txtDelay.Text = HotkeyDelay.ToString();
             chkDeactivateForOtherPrograms.Checked = DeactivateHotkeysForOtherPrograms;
+            chkAllowGamepads.Checked = AllowGamepadsAsHotkeys;
 
             chkGlobalHotkeys_CheckedChanged(null, null);
         }
