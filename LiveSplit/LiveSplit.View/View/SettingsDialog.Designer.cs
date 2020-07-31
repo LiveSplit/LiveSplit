@@ -72,6 +72,7 @@
             this.btnChooseComparisons = new System.Windows.Forms.Button();
             this.chkSimpleSOB = new System.Windows.Forms.CheckBox();
             this.chkWarnOnReset = new System.Windows.Forms.CheckBox();
+            this.chkAllowGamepads = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -112,14 +113,14 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 572);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 601);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnChooseRaceProvider
             // 
             this.btnChooseRaceProvider.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnChooseRaceProvider, 3);
-            this.btnChooseRaceProvider.Location = new System.Drawing.Point(187, 459);
+            this.btnChooseRaceProvider.Location = new System.Drawing.Point(187, 488);
             this.btnChooseRaceProvider.Name = "btnChooseRaceProvider";
             this.btnChooseRaceProvider.Size = new System.Drawing.Size(190, 23);
             this.btnChooseRaceProvider.TabIndex = 6;
@@ -131,7 +132,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnOK, 2);
-            this.btnOK.Location = new System.Drawing.Point(221, 546);
+            this.btnOK.Location = new System.Drawing.Point(221, 575);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -143,7 +144,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 522);
+            this.label5.Location = new System.Drawing.Point(3, 551);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(178, 13);
             this.label5.TabIndex = 10;
@@ -153,7 +154,7 @@
             // 
             this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnLogOut, 3);
-            this.btnLogOut.Location = new System.Drawing.Point(187, 517);
+            this.btnLogOut.Location = new System.Drawing.Point(187, 546);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(190, 23);
             this.btnLogOut.TabIndex = 8;
@@ -168,7 +169,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(374, 392);
+            this.groupBox1.Size = new System.Drawing.Size(374, 421);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Hotkeys";
@@ -200,11 +201,13 @@
             this.tableLayoutPanel2.Controls.Add(this.txtSwitchNext, 1, 6);
             this.tableLayoutPanel2.Controls.Add(this.label10, 1, 9);
             this.tableLayoutPanel2.Controls.Add(this.txtDelay, 2, 9);
-            this.tableLayoutPanel2.Controls.Add(this.grpHotkeyProfiles, 0, 10);
+            this.tableLayoutPanel2.Controls.Add(this.grpHotkeyProfiles, 0, 11);
+            this.tableLayoutPanel2.Controls.Add(this.chkAllowGamepads, 0, 10);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 11;
+            this.tableLayoutPanel2.RowCount = 12;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
@@ -216,7 +219,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 83F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(368, 373);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(368, 402);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // chkDeactivateForOtherPrograms
@@ -451,7 +455,7 @@
             this.tableLayoutPanel2.SetColumnSpan(this.grpHotkeyProfiles, 3);
             this.grpHotkeyProfiles.Controls.Add(this.tableLayoutPanel3);
             this.grpHotkeyProfiles.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpHotkeyProfiles.Location = new System.Drawing.Point(3, 293);
+            this.grpHotkeyProfiles.Location = new System.Drawing.Point(3, 322);
             this.grpHotkeyProfiles.Name = "grpHotkeyProfiles";
             this.grpHotkeyProfiles.Size = new System.Drawing.Size(362, 77);
             this.grpHotkeyProfiles.TabIndex = 13;
@@ -541,7 +545,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(302, 546);
+            this.btnCancel.Location = new System.Drawing.Point(302, 575);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -560,7 +564,7 @@
             "MultiTwitch",
             "Kadgar",
             "Speedrun.tv"});
-            this.cbxRaceViewer.Location = new System.Drawing.Point(187, 431);
+            this.cbxRaceViewer.Location = new System.Drawing.Point(187, 460);
             this.cbxRaceViewer.Name = "cbxRaceViewer";
             this.cbxRaceViewer.Size = new System.Drawing.Size(190, 21);
             this.cbxRaceViewer.TabIndex = 5;
@@ -569,7 +573,7 @@
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 435);
+            this.label11.Location = new System.Drawing.Point(3, 464);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(178, 13);
             this.label11.TabIndex = 15;
@@ -579,7 +583,7 @@
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 493);
+            this.label12.Location = new System.Drawing.Point(3, 522);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(178, 13);
             this.label12.TabIndex = 17;
@@ -589,7 +593,7 @@
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 464);
+            this.label13.Location = new System.Drawing.Point(3, 493);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(178, 13);
             this.label13.TabIndex = 18;
@@ -599,7 +603,7 @@
             // 
             this.btnChooseComparisons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnChooseComparisons, 3);
-            this.btnChooseComparisons.Location = new System.Drawing.Point(187, 488);
+            this.btnChooseComparisons.Location = new System.Drawing.Point(187, 517);
             this.btnChooseComparisons.Name = "btnChooseComparisons";
             this.btnChooseComparisons.Size = new System.Drawing.Size(190, 23);
             this.btnChooseComparisons.TabIndex = 7;
@@ -611,7 +615,7 @@
             // 
             this.chkSimpleSOB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkSimpleSOB.AutoSize = true;
-            this.chkSimpleSOB.Location = new System.Drawing.Point(7, 404);
+            this.chkSimpleSOB.Location = new System.Drawing.Point(7, 433);
             this.chkSimpleSOB.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkSimpleSOB.Name = "chkSimpleSOB";
             this.chkSimpleSOB.Size = new System.Drawing.Size(174, 17);
@@ -625,7 +629,7 @@
             this.chkWarnOnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkWarnOnReset.AutoSize = true;
             this.tableLayoutPanel1.SetColumnSpan(this.chkWarnOnReset, 3);
-            this.chkWarnOnReset.Location = new System.Drawing.Point(191, 404);
+            this.chkWarnOnReset.Location = new System.Drawing.Point(191, 433);
             this.chkWarnOnReset.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkWarnOnReset.Name = "chkWarnOnReset";
             this.chkWarnOnReset.Size = new System.Drawing.Size(186, 17);
@@ -633,11 +637,23 @@
             this.chkWarnOnReset.Text = "Warn On Reset If Better Times";
             this.chkWarnOnReset.UseVisualStyleBackColor = true;
             // 
+            // chkAllowGamepads
+            // 
+            this.chkAllowGamepads.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkAllowGamepads.AutoSize = true;
+            this.chkAllowGamepads.Location = new System.Drawing.Point(7, 296);
+            this.chkAllowGamepads.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkAllowGamepads.Name = "chkAllowGamepads";
+            this.chkAllowGamepads.Size = new System.Drawing.Size(168, 17);
+            this.chkAllowGamepads.TabIndex = 15;
+            this.chkAllowGamepads.Text = "Allow Gamepads as Hotkeys";
+            this.chkAllowGamepads.UseVisualStyleBackColor = true;
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 586);
+            this.ClientSize = new System.Drawing.Size(394, 615);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -701,5 +717,6 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Button btnChooseRaceProvider;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox chkAllowGamepads;
     }
 }

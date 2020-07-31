@@ -202,6 +202,8 @@ namespace LiveSplit.Options
                         Log.Error(e);
                     }
                 }
+
+                hook.AllowGamepads = hotkeyProfile.AllowGamepadsAsHotkeys;
             }
         }
 

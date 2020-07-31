@@ -83,9 +83,26 @@ namespace LiveSplit.Model.Input
         protected LowLevelKeyboardHook KeyboardHook { get; set; }
         protected GamepadHook GamepadHook { get; set; }
 
-        private bool hasPolledGamepadHook;
+        private bool allowGamepads;
+        public bool AllowGamepads
+        {
+            get
+            {
+                return allowGamepads;
+            }
+            set
+            {
+                allowGamepads = value;
+                if (allowGamepads)
+                    InitializeGamepadHook();
+                else
+                    CallInitializeEvent();
+            }
+        }
+        private bool gamepadHookInitialized;
+        private bool initializeEventCalled;
 
-        protected List<GamepadButton> RegisteredButtons { get; set;}
+        protected List<GamepadButton> RegisteredButtons { get; set; }
 
         public event KeyEventHandler KeyPressed;
         public event EventHandlerT<GamepadButton> ButtonPressed;
@@ -94,12 +111,17 @@ namespace LiveSplit.Model.Input
 
         public event EventHandler GamepadHookInitialized;
 
-        public CompositeHook()
+        public CompositeHook() : this(true) { }
+
+        public CompositeHook(bool allowGamepads)
         {
             KeyboardHook = new LowLevelKeyboardHook();
             RegisteredButtons = new List<GamepadButton>();
             KeyboardHook.KeyPressed += KeyboardHook_KeyPressed;
-            InitializeGamepadHook();
+
+            gamepadHookInitialized = false;
+            initializeEventCalled = false;
+            AllowGamepads = allowGamepads;
         }
 
         public Joystick GetMouse()
@@ -109,7 +131,11 @@ namespace LiveSplit.Model.Input
 
         void InitializeGamepadHook()
         {
-            hasPolledGamepadHook = false;
+            if (gamepadHookInitialized)
+                return;
+
+            gamepadHookInitialized = true;
+
             Task.Factory.StartNew(() =>
             {
                 try
@@ -122,7 +148,7 @@ namespace LiveSplit.Model.Input
                     Log.Error(ex);
                 }
 
-                GamepadHookInitialized?.Invoke(this, null);
+                CallInitializeEvent();
 
                 if (GamepadHook != null)
                 {
@@ -133,7 +159,8 @@ namespace LiveSplit.Model.Input
                         {
                             try
                             {
-                                GamepadHook.Poll();
+                                if (AllowGamepads)
+                                    GamepadHook.Poll();
                             }
                             catch (Exception ex)
                             {
@@ -144,6 +171,15 @@ namespace LiveSplit.Model.Input
                     }
                 }
             });
+        }
+
+        void CallInitializeEvent()
+        {
+            if (!initializeEventCalled && GamepadHookInitialized != null)
+            {
+                GamepadHookInitialized.Invoke(this, null);
+                initializeEventCalled = true;
+            }
         }
 
         void KeyboardHook_KeyPressed(object sender, KeyEventArgs e)
