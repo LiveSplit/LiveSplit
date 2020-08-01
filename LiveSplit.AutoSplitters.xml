@@ -9485,3 +9485,17 @@
     <Description>Autosplitting, starting, and resetting available (by Ditmar Visser)</Description>
   </AutoSplitter>
 </AutoSplitters>
+  <AutoSplitter>
+    <Games>
+      <Game>DMC1</Game>
+      <Game>Devil May Cry 1(HDC)</Game>
+      <Game>Devil May Cry 1</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Mysterion06/DMC1-Splitter/master/DMC1Autosplitter.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter by Mysterion_06_</Description>
+    <Website>https://github.com/Mysterion06/DMC1-Splitter/blob/master/README.md</Website>
+  </AutoSplitter>
+
