@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	 <AutoSplitter>
+           <Games>
+           <Game>UE3 Puzzle Exploration Gauntlet</Game>     
+           </Games>
+           <URLs>
+      		<URL>https://raw.githubusercontent.com/TheUnChosenOne/DepressionTrifectaLoadRemover/master/DepressionTrifecta.asl</URL>
+           </URLs>
+           <Type>Script</Type>
+           <Description>DepressionTrifectaSplit: LoadRemover / reducer for Dream for the PC</Description>
+    	   <Website>https://github.com/TheUnChosenOne/DepressionTrifectaLoadRemover</Website>
+  	</AutoSplitter>
        <AutoSplitter>
            <Games>
            <Game>Dream (PC)</Game>     
