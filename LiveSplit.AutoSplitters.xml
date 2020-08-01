@@ -9484,7 +9484,7 @@
     <Type>Script</Type>
     <Description>Autosplitting, starting, and resetting available (by Ditmar Visser)</Description>
   </AutoSplitter>
-<AutoSplitters>
+<AutoSplitter>
     <Games>
       <Game>DMC1</Game>
       <Game>Devil May Cry 1(HDC)</Game>
