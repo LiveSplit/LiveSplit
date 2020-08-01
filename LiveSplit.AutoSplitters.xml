@@ -9484,6 +9484,7 @@
     <Type>Script</Type>
     <Description>Autosplitting, starting, and resetting available (by Ditmar Visser)</Description>
   </AutoSplitter>
+<AutoSplitters>
 <AutoSplitter>
     <Games>
       <Game>DMC1</Game>
@@ -9497,4 +9498,5 @@
     <Description>Autosplitter by Mysterion_06_</Description>
     <Website>https://github.com/Mysterion06/DMC1-Splitter/blob/master/README.md</Website>
   </AutoSplitter>
+</AutoSplitters>
 
