@@ -9486,9 +9486,8 @@
   </AutoSplitter>
   <AutoSplitter>
     <Games>
-      <Game>DMC1</Game>
-      <Game>Devil May Cry 1 (HDC)</Game>
-      <Game>Devil May Cry 1</Game>
+      <Game>DMC</Game>
+      <Game>Devil May Cry</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/Mysterion06/DMC1-Splitter/master/DMC1Autosplitter.asl</URL>
