@@ -175,6 +175,7 @@ namespace LiveSplit.View
             BasePath = basePath;
             InitializeComponent();
             Init(splitsPath, layoutPath);
+            InitDragAndDrop();
         }
 
         private void Init(string splitsPath = null, string layoutPath = null)
@@ -316,6 +317,13 @@ namespace LiveSplit.View
             Server.Start();
 
             new System.Timers.Timer(1000) { Enabled = true }.Elapsed += RaceRefreshTimer_Elapsed;
+        }
+
+        private void InitDragAndDrop()
+        {
+            AllowDrop = true;
+            DragDrop += TimerForm_DragDrop;
+            DragEnter += TimerForm_DragEnter;
         }
 
         void UpdateRaceProviderIntegration()
@@ -2830,6 +2838,46 @@ namespace LiveSplit.View
         private void TimerForm_ResizeEnd(object sender, EventArgs e)
         {
             ResizingInitialAspectRatio = null;
+        }
+
+        private void TimerForm_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetData(DataFormats.FileDrop, false) is string[] fileList)
+            {
+                bool lssOpened = false;
+                bool lslOpened = false;
+
+                foreach (string fileToOpen in fileList)
+                {
+                    if (File.Exists(fileToOpen))
+                    {
+                        string extension = Path.GetExtension(fileToOpen).ToLower();
+
+                        if (!lssOpened && extension == ".lss")
+                        {
+                            lssOpened = true;
+                            OpenRunFromFile(fileToOpen, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
+                        }
+                        else if (!lslOpened && extension == ".lsl")
+                        {
+                            lslOpened = true;
+                            OpenLayoutFromFile(fileToOpen);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void TimerForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
     }
 }
