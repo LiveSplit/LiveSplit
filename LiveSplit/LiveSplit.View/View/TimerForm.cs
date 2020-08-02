@@ -220,18 +220,18 @@ namespace LiveSplit.View
             {
                 if (!string.IsNullOrEmpty(splitsPath))
                 {
-                    run = LoadRunFromFile(splitsPath, TimingMethod.RealTime, CurrentState.CurrentHotkeyProfile);
+                    UpdateStateFromSplitsPath(splitsPath);
+
+                    run = LoadRunFromFile(splitsPath);
                 }
                 else if (Settings.RecentSplits.Count > 0)
                 {
                     var lastSplitFile = Settings.RecentSplits.Last();
                     if (!string.IsNullOrEmpty(lastSplitFile.Path))
                     {
-                        CurrentState.CurrentTimingMethod = lastSplitFile.LastTimingMethod;
-                        if (Settings.HotkeyProfiles.ContainsKey(lastSplitFile.LastHotkeyProfile))
-                            CurrentState.CurrentHotkeyProfile = lastSplitFile.LastHotkeyProfile;
+                        UpdateStateFromSplitsPath(lastSplitFile.Path);
 
-                        run = LoadRunFromFile(lastSplitFile.Path, lastSplitFile.LastTimingMethod, lastSplitFile.LastHotkeyProfile);
+                        run = LoadRunFromFile(lastSplitFile.Path);
                     }
                 }
             }
@@ -808,18 +808,7 @@ namespace LiveSplit.View
                         menuItem.Tag = "FileName";
                         menuItem.Click += (x, y) =>
                         {
-                            var previousMethod = CurrentState.CurrentTimingMethod;
-                            CurrentState.CurrentTimingMethod = splitsFile.LastTimingMethod;
-
-                            var previousHotkeyProfile = CurrentState.CurrentHotkeyProfile;
-                            if (Settings.HotkeyProfiles.ContainsKey(splitsFile.LastHotkeyProfile))
-                            {
-                                CurrentState.CurrentHotkeyProfile = splitsFile.LastHotkeyProfile;
-                                Settings.UnregisterAllHotkeys(Hook);
-                                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
-                            }
-
-                            OpenRunFromFile(splitsFile.Path, previousMethod, previousHotkeyProfile);
+                            OpenRunFromFile(splitsFile.Path);
                         };
                         categoryMenuItem.DropDownItems.Add(menuItem);
                     }
@@ -1729,7 +1718,7 @@ namespace LiveSplit.View
                 AddSplitsFileToLRU(CurrentState.Run.FilePath, CurrentState.Run, lastTimingMethod, lastHotkeyProfile);
         }
 
-        private IRun LoadRunFromFile(string filePath, TimingMethod previousTimingMethod, string previousHotkeyProfile)
+        private IRun LoadRunFromFile(string filePath, TimingMethod? previousTimingMethod = null, string previousHotkeyProfile = null)
         {
             IRun run;
 
@@ -1741,7 +1730,9 @@ namespace LiveSplit.View
                 run = RunFactory.Create(ComparisonGeneratorsFactory);
             }
 
-            AddCurrentSplitsToLRU(previousTimingMethod, previousHotkeyProfile);
+            if (previousTimingMethod.HasValue && previousHotkeyProfile != null)
+                AddCurrentSplitsToLRU(previousTimingMethod.Value, previousHotkeyProfile);
+
             AddSplitsFileToLRU(filePath, run, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
             return run;
@@ -1758,7 +1749,7 @@ namespace LiveSplit.View
             }
         }
 
-        private void OpenRunFromFile(string filePath, TimingMethod previousTimingMethod, string previousHotkeyProfile)
+        private void OpenRunFromFile(string filePath)
         {
             Cursor.Current = Cursors.WaitCursor;
             try
@@ -1767,6 +1758,11 @@ namespace LiveSplit.View
                     return;
                 if (!WarnAndRemoveTimerOnly(true))
                     return;
+
+                var previousTimingMethod = CurrentState.CurrentTimingMethod;
+                var previousHotkeyProfile = CurrentState.CurrentHotkeyProfile;
+
+                UpdateStateFromSplitsPath(filePath);
 
                 var run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
                 SetRun(run);
@@ -1782,6 +1778,24 @@ namespace LiveSplit.View
             Cursor.Current = Cursors.Arrow;
         }
 
+        private void UpdateStateFromSplitsPath(string filePath)
+        {
+            var recentSplitsFile = Settings.RecentSplits.LastOrDefault(splitsFile => splitsFile.Path == filePath);
+            if (recentSplitsFile.Path != null)
+            {
+                CurrentState.CurrentTimingMethod = recentSplitsFile.LastTimingMethod;
+                if (Settings.HotkeyProfiles.ContainsKey(recentSplitsFile.LastHotkeyProfile))
+                {
+                    CurrentState.CurrentHotkeyProfile = recentSplitsFile.LastHotkeyProfile;
+                    if (Hook != null)
+                    {
+                        Settings.UnregisterAllHotkeys(Hook);
+                        Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+                    }
+                }
+            }
+        }
+
         private void OpenSplits()
         {
             using (var splitDialog = new OpenFileDialog())
@@ -1794,7 +1808,7 @@ namespace LiveSplit.View
                     var result = splitDialog.ShowDialog(this);
                     if (result == DialogResult.OK)
                     {
-                        OpenRunFromFile(splitDialog.FileName, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
+                        OpenRunFromFile(splitDialog.FileName);
                     }
                 }
                 finally
@@ -2275,6 +2289,8 @@ namespace LiveSplit.View
                 return;
             if (needToChangeLayout && !WarnUserAboutLayoutSave(true))
                 return;
+
+            AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
             var run = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
             Model.Reset();
@@ -2862,7 +2878,7 @@ namespace LiveSplit.View
                         else if (!lssOpened)
                         {
                             lssOpened = true;
-                            OpenRunFromFile(fileToOpen, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
+                            OpenRunFromFile(fileToOpen);
                         }
                     }
                 }
