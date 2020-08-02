@@ -159,7 +159,8 @@ namespace LiveSplit.Options
                 HotkeyDelay = HotkeyDelay,
                 GlobalHotkeysEnabled = GlobalHotkeysEnabled,
                 DeactivateHotkeysForOtherPrograms = DeactivateHotkeysForOtherPrograms,
-                DoubleTapPrevention = DoubleTapPrevention
+                DoubleTapPrevention = DoubleTapPrevention,
+                AllowGamepadsAsHotkeys = AllowGamepadsAsHotkeys
             };
         }
     }
