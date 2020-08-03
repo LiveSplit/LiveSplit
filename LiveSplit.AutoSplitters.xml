@@ -9269,12 +9269,14 @@
   <AutoSplitter>
     <Games>
       <Game>SpongeBob SquarePants: Battle for Bikini Bottom – Rehydrated</Game>
+      <Game>SpongeBob SquarePants: Battle for Bikini Bottom – Rehydrated Category Extensions</Game>
     </Games>
     <URLs>
       <URL>https://raw.githubusercontent.com/SquareMan/LiveSplit.BfBBRehydrated/master/LiveSplit.BfBBRehydrated/Components/LiveSplit.BfBBRehydrated.dll</URL>
     </URLs>
     <Type>Component</Type>
     <Description>Configurable Autosplitting Is Available (By TheCoolSquare, Micrologist, and ItsMaximum)</Description>
+    <Website>https://github.com/SquareMan/LiveSplit.BfBBRehydrated</Website>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
