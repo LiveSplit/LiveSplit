@@ -156,6 +156,17 @@
   </AutoSplitter>
 	 <AutoSplitter>
     <Games>
+      <Game>Overt the Hedge</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/overthehedge.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitter/Load Remover (PC) (by KunoDemetries)</Description>
+    <Website>https://discord.gg/TeUkkf8</Website>
+  </AutoSplitter>
+	 <AutoSplitter>
+    <Games>
       <Game>Call of Duty: Black Ops III</Game>
     </Games>
     <URLs>
