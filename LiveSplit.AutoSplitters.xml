@@ -9630,5 +9630,16 @@
            <Description>Supports autosplitting, starting, and resetting. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
     	   <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
   	</AutoSplitter>
+	<AutoSplitter>
+    	   <Games>
+      	   <Game>Prince of Persia 2: The Shadow and the Flame</Game>
+	   <Game>Prince of Persia 2</Game>
+    	   </Games>
+    	   <URLs>
+      	   	<URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/pop2.asl</URL>
+    	   </URLs>
+    	   <Type>Script</Type>
+    	   <Description>Autospliter for Prince of Persia 2.1 on DOSBox 0.74-3 (In-game timer)</Description>
+  	   </AutoSplitter>
 </AutoSplitters>
 
