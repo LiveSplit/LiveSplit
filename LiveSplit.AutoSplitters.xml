@@ -9653,4 +9653,15 @@
     	   <Description>Autospliter for Prince of Persia 2.1 on DOSBox 0.74-3 (In-game timer)</Description>
   	   </AutoSplitter>
 </AutoSplitters>
-
+ <AutoSplitter>         
+<Games>         
+<Game>Slender: The Eight Pages</Game>              
+</Games>         
+<URLs>   		
+<URL>https://raw.githubusercontent.com/UgurhaN53/Slender-The-Eight-Pages-Autosplitter/master/Slender.asl</URL>          
+</URLs>        
+<Type>Script</Type>         
+<Description>Autosplitter for Slender the Eight Pages (9.1 & 9.7)</Website>
+<Website>https://discord.gg/wxdp4BB</Website>
+</AutoSplitter>
+   
