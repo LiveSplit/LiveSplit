@@ -9652,5 +9652,15 @@
     	   <Type>Script</Type>
     	   <Description>Autospliter for Prince of Persia 2.1 on DOSBox 0.74-3 (In-game timer)</Description>
   	   </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+		<Game>Ratchet & Clank: Size Matters</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/MichaelRelaxen/sm_asl/master/sm_ppsspp.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter for Ratchet & Clank: Size Matters on PPSSPP. (by MichaelRelaxen)
+	</AutoSplitter>
 </AutoSplitters>
 
