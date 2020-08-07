@@ -22,6 +22,17 @@
            <Description>DreamSplit: LoadRemover / reducer for Dream for the PC</Description>
     	   <Website>https://github.com/TheUnChosenOne/Dream</Website>
   	</AutoSplitter>
+	 <AutoSplitter>
+           <Games>
+           <Game>Disney's Meet The Robinsons</Game>     
+           </Games>
+           <URLs>
+      		<URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/meet%20the%20robinsons.asll</URL>
+           </URLs>
+           <Type>Script</Type>
+           <Description>AutoSplitter/ Load Remvover by KunoDemetries</Description>
+    	   <Website>https://discord.gg/ecpCAnJm</Website>
+  	</AutoSplitter>
 	<AutoSplitter>
     	  <Games>
       		 <Game>Ether One</Game>
