@@ -8197,7 +8197,7 @@
       <URL>https://raw.githubusercontent.com/GMPranav/Multi-PoP-Autosplitter/master/MultiPoPSandsTrilogy.asl</URL>
     </URLs>
     <Type>Script</Type>
-    <Description>Autosplitter for the 6 Sands Trilogy categories. Currently works only if played chrlonological order. (by Samabam, Smathlax and GMP)</Description>
+    <Description>Autosplitter for the 7 major categories. Sands Trilogy categories currently work only if played chrlonological order. For anthology, load remover for 3D and TFS available (by GMP, Samabam, Smathlax and Karlgamer)</Description>
   </AutoSplitter>
   <AutoSplitter>
     <Games>
