@@ -1,0 +1,26 @@
+name: Auto Splitters XML
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout commit
+        uses: actions/checkout@v2
+        with:
+          ref: master
+
+      - name: Download Auto Splitters XML
+        run: curl https://raw.githubusercontent.com/LiveSplit/LiveSplit.AutoSplitters/master/LiveSplit.AutoSplitters.xml -o LiveSplit.AutoSplitters.xml
+
+      - name: Commit Auto Splitters XML
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git add .
+          git commit -m "Update LiveSplit.AutoSplitters.xml" || true
+          git push https://action:${{ secrets.GITHUB_TOKEN }}@github.com/LiveSplit/LiveSplit.git
