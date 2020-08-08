@@ -72,8 +72,7 @@ namespace LiveSplit.Model
             var autoSplitters = new XmlDocument();
             try
             {
-                //autoSplitters.Load("https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit.AutoSplitters.DevBuild.xml");
-                autoSplitters.Load("https://raw.githubusercontent.com/LiveSplit/LiveSplit/master/LiveSplit.AutoSplitters.xml");
+                autoSplitters.Load("https://raw.githubusercontent.com/LiveSplit/LiveSplit.AutoSplitters/master/LiveSplit.AutoSplitters.xml");
                 autoSplitters.Save("LiveSplit.AutoSplitters.xml");
             }
             catch (Exception ex)
