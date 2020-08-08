@@ -63,7 +63,7 @@ Simply open the project with Visual Studio and it should be able to compile and 
 
 The documentation for how to develop, test, and submit an Auto Splitter can be found here:
 
-[Auto Splitters Documentation](Documentation/Auto-Splitters.md)
+[Auto Splitters Documentation](https://github.com/LiveSplit/LiveSplit.AutoSplitters/blob/master/README.md)
 
 ## License
 
