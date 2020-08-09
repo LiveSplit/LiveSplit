@@ -9385,9 +9385,10 @@
     <AutoSplitter>
         <Games>
             <Game>Trackmania</Game>
+            <Game>Trackmania Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/RastaTM/Trackmania/master/Trackmania.asl</URL>
+            <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Trackmania/Livesplit.Trackmania.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting, Auto Start and Game Time are available (By Voxelse)</Description>
