@@ -4035,10 +4035,10 @@
             <Game>Prey (2017)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/derwangler/prey-loadremover/master/prey-loadremover.asl</URL>
+            <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.Prey.ASL</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By derwangler)</Description>
+        <Description>Load Removal is available. (By ShiningFace)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
