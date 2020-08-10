@@ -397,7 +397,7 @@
             <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Hello%20Neighbor/HelloNeighbor.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts the timer. Pauses when the game is loading. Compare against game time! (by Ero)</Description>
+        <Description>Starts the timer. Pauses when the game is loading. Compare against Game Time! (by Ero)</Description>
         <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Hello%20Neighbor</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -408,7 +408,7 @@
             <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Lightmatter/Lightmatter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts, resets and splits on every new level. IL support in settings. (by Ero)</Description>
+        <Description>Starts and resets, and splits on every new level. IL support in settings. (by Ero)</Description>
         <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/Lightmatter</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -419,9 +419,20 @@
             <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/The%20Pedestrian/ThePedestrian.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts the timer, splits at the end. Additional splits in 'Settings'. Does not reset. (by Ero)</Description>
+        <Description>Starts the timer, splits at the end. Additional splits in settings. Does not reset. (by Ero)</Description>
         <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Pedestrian</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Post Void</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Post%20Void/PostVoid.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts and resets the timer. Choose splits in settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/Post%20Void</Website>
+    </AutoSplitter>    
     <AutoSplitter>
         <Games>
             <Game>The Spectrum Retreat</Game>
@@ -9385,9 +9396,10 @@
     <AutoSplitter>
         <Games>
             <Game>Trackmania</Game>
+            <Game>Trackmania Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/RastaTM/Trackmania/master/Trackmania.asl</URL>
+            <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Trackmania/Livesplit.Trackmania.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting, Auto Start and Game Time are available (By Voxelse)</Description>
