@@ -4035,10 +4035,10 @@
             <Game>Prey (2017)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/derwangler/prey-loadremover/master/prey-loadremover.asl</URL>
+            <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.Prey.ASL</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By derwangler)</Description>
+        <Description>Load Removal and Auto Splitting are available. (By ShiningFace)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9674,5 +9674,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autospliter for Prince of Persia 2.1 on DOSBox 0.74-3 (In-game timer)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>EDGE</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/RoboLP/EDGE-Autosplitter/master/EDGE.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for EDGE on PC. Click "Website" for more information. (By RoboLP)</Description>
+        <Website>https://github.com/RoboLP/EDGE-Autosplitter</Website>
     </AutoSplitter>
 </AutoSplitters>
