@@ -1974,11 +1974,11 @@
             <Game>Rayman Legends</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/cooopercrisp/Cooopercrisp-Autosplitters/master/Rayman-Legends/Rayman%20Legends%20Autosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/TitaniumBlue1/Autosplitters/master/RaymanLegends.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Auto Start/Reset are available. (By cooopercrisp)</Description>
-        <Website>https://github.com/cooopercrisp/Cooopercrisp-Autosplitters/blob/master/Rayman-Legends/README.md</Website>
+        <Description>Load Removal and Auto Start/Reset/Split are available. (By Tenit)</Description>
+        <Website>https://github.com/TitaniumBlue1/Autosplitters/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
