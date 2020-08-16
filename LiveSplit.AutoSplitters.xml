@@ -9686,4 +9686,15 @@
         <Description>Autosplitter for EDGE on PC. Click "Website" for more information. (By RoboLP)</Description>
         <Website>https://github.com/RoboLP/EDGE-Autosplitter</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Xuan-Yuan Sword 3 Beyond the Clouds and Mountains</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/WeiZhouHong/Swd3_AutoSplitters/master/swd3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for SWD3 1.02. (By master_fiora)</Description>
+        <Website>https://www.speedrun.com/swd3/resources</Website>
+    </AutoSplitter>
 </AutoSplitters>
