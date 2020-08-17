@@ -446,6 +446,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Transformers: The Game</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Transformers%3A%20The%20Game/Transformers2007.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Splits can be chosen in the settings. Starts automatically. Final split must be manual. (by Ero)</Description>
+        <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/Transformers:%20The%20Game</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Where is 2016?</Game>
             <Game>Where is 2018?</Game>
             <Game>Where is 2019?</Game>
@@ -9673,7 +9684,7 @@
             <URL>https://raw.githubusercontent.com/samabam/Sands-of-Time-Autosplitter/master/pop2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autospliter for Prince of Persia 2.1 on DOSBox 0.74-3 (In-game timer)</Description>
+        <Description>Autospliter for Prince of Persia 2IR on DOSBox 0.74-3 (In-game timer)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
