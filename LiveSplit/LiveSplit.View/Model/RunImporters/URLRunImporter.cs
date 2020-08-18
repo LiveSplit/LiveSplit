@@ -112,13 +112,6 @@ namespace LiveSplit.Model.RunImporters
                 }
             }
 
-            if (response == null)
-            {
-                Log.Error("The splits file couldn't be downloaded from URL");
-                MessageBox.Show(form, "The splits file couldn't be downloaded from URL", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
-            }
-
             //setting stream to responseStream might create an exception
             using (var stream = response.GetResponseStream())
             using (var memoryStream = new MemoryStream())
