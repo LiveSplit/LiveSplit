@@ -14,11 +14,26 @@ namespace LiveSplit.Model.RunImporters
     {
         private static IRun LoadRunFromURL(string url, Form form = null)
         {
+            var runFactory = new StandardFormatsRunFactory();
+            var comparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
+
+            //var uri = new Uri(url);
+            Uri uri = null;
             try
             {
-                var runFactory = new StandardFormatsRunFactory();
-                var comparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
+                uri = new Uri(url);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                MessageBox.Show(form, "Not an URL", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
 
+            var host = uri.Host.ToLowerInvariant();
+
+            try
+            {
                 // Supports opening from URLs such as https://one.livesplit.org/#/splits-io/46qh
                 int liveSplitOneSplitsIOIndex = url.IndexOf("#/splits-io/");
                 if (liveSplitOneSplitsIOIndex != -1)
@@ -27,8 +42,6 @@ namespace LiveSplit.Model.RunImporters
                     url = "https://splits.io/" + url.Substring(liveSplitOneSplitsIOIndex + 12);
                 }
 
-                var uri = new Uri(url);
-                var host = uri.Host.ToLowerInvariant();
                 if (host == "splits.io")
                 {
                     return SplitsIO.Instance.DownloadRunByUri(uri, true);
@@ -43,36 +56,91 @@ namespace LiveSplit.Model.RunImporters
                         return run;
                     }
                 }
-
-                var request = WebRequest.Create(uri);
-
-                using (var response = request.GetResponse())
-                using (var stream = response.GetResponseStream())
-                using (var memoryStream = new MemoryStream())
-                {
-                    stream.CopyTo(memoryStream);
-                    memoryStream.Seek(0, SeekOrigin.Begin);
-
-                    runFactory.Stream = memoryStream;
-                    runFactory.FilePath = "";
-
-                    try
-                    {
-                        return runFactory.Create(comparisonGeneratorsFactory);
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-                        MessageBox.Show(form, "The selected file was not recognized as a splits file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show(form, "The splits file couldn't be downloaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(form, "The splits file couldn't be downloaded from spilts.io or speedrun.com", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
             }
-            return null;
+
+            WebResponse response = null;
+
+            try
+            {
+                var request = WebRequest.Create(uri);
+                response = request.GetResponse();
+            }
+            catch (WebException webException)
+            {
+                Log.Info("WebEx is caught");
+                var errorResponse = webException.Response as HttpWebResponse;
+
+                if (errorResponse == null)
+                {
+                    Log.Error("errorResponse not of type HttpWebResponse");
+                    return null;
+                }
+
+                if (errorResponse.Headers["WWW-Authenticate"].IndexOf("Basic") != -1)
+                {
+                    Log.Info("WebEx is tested for 401 on basic auth");
+                    var requestAuth = WebRequest.Create(uri);
+
+                    String uname = "";
+                    String pw = "";
+                    Log.Info("basic auth credentials are required");
+
+                    if (DialogResult.OK != BasicAuthInputBox.Show(form, "Get Auth credentials", "Username:", "Password:", ref uname, ref pw))
+                    {
+                        return null;
+                    }
+
+                    requestAuth.UseDefaultCredentials = false;
+                    requestAuth.Credentials = new NetworkCredential(uname, pw);
+                    requestAuth.PreAuthenticate = true;
+                    try
+                    {
+                        response = requestAuth.GetResponse();
+                    }
+                    catch (WebException webEx)
+                    {
+                        Log.Error(webEx);
+                        MessageBox.Show(form, "Authentication failed.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                }
+            }
+
+            if (response == null)
+            {
+                Log.Error("The splits file couldn't be downloaded from URL");
+                MessageBox.Show(form, "The splits file couldn't be downloaded from URL", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return null;
+            }
+
+            //setting stream to responseStream might create an exception
+            using (var stream = response.GetResponseStream())
+            using (var memoryStream = new MemoryStream())
+            {
+                stream.CopyTo(memoryStream);
+                memoryStream.Seek(0, SeekOrigin.Begin);
+
+                runFactory.Stream = memoryStream;
+                runFactory.FilePath = "";
+
+                try
+                {
+                    return runFactory.Create(comparisonGeneratorsFactory);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                    MessageBox.Show(form, "The selected file was not recognized as a splits file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                return null;
+            }
         }
 
         public IRun Import(Form form = null)
