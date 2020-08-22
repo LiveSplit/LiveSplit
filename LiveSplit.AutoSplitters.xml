@@ -9719,4 +9719,17 @@
         <Description>Autosplitter for PAL2 1.05. (By master_fiora)</Description>
         <Website>https://www.speedrun.com/the_legend_of_sword_and_fairy_2/resources</Website>
     </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>Remnant: From The Ashes</Game>
+            <Game>Remnant From The Ashes</Game>
+            <Game>Remnant FTA</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Remnant%20From%20The%20Ashes/RemnantFTA.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal is available. (By FromDarkHell/Ramnerock)</Description>
+        <Website>https://discord.gg/hMfQ2MA</Website>
+    </AutoSplitter>
 </AutoSplitters>
