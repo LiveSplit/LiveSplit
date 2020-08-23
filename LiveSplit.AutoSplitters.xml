@@ -9732,4 +9732,15 @@
         <Description>Load Removal is available. (By FromDarkHell/Ramnerock)</Description>
         <Website>https://discord.gg/hMfQ2MA</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Super Mario Bros.</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/g2ffi/SMBAutoSplitter/master/SuperMarioBros.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter for Nestopia v1.40 (By Giffi)</Description>
+        <Website>https://github.com/g2ffi/SMBAutoSplitter/</Website>
+    </AutoSplitter>
 </AutoSplitters>
