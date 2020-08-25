@@ -9743,4 +9743,48 @@
         <Description>AutoSplitter for Nestopia v1.40 (By Giffi)</Description>
         <Website>https://github.com/g2ffi/SMBAutoSplitter/</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Metal Gear Solid 2: Substance</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/bmn/livesplit_asl_mgs2/master/MetalGearSolid2Substance.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time + Splits (per room, all modes). Splits at Website. Basic version: type "(Lite)" after game. (By bmn)</Description>
+        <Website>https://github.com/bmn/livesplit_asl_mgs2/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Metal Gear Solid 2: Substance (Lite)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/bmn/livesplit_asl_mgs2/master/MetalGearSolid2Substance-Lite.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time and Splits (major splits, main game only). Splits available at Website. (By bmn)</Description>
+        <Website>https://github.com/bmn/livesplit_asl_mgs2/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Metal Gear Solid</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/bmn/livesplit_asl_mgsi/master/MetalGearSolidIntegral.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time + Splits (customisable). Splits available at Website. Basic version: type "(Lite)" after game. (By bmn)</Description>
+        <Website>https://github.com/bmn/livesplit_asl_mgsi/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Metal Gear Solid (Lite)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/bmn/livesplit_asl_mgsi/master/MetalGearSolidIntegral-Lite.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time and Splits (major splits only). Splits available at Website. (By bmn)</Description>
+        <Website>https://github.com/bmn/livesplit_asl_mgsi/</Website>
+    </AutoSplitter>
 </AutoSplitters>
