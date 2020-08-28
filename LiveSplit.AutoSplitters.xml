@@ -413,6 +413,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Lone Land</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Lone%20Land/LoneLand.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts and resets. Splits on large pillar and flag crystals (more in settings). Does not split when entering the train. (by Ero)</Description>
+        <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/Lone%20Land</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Pedestrian</Game>
         </Games>
         <URLs>
