@@ -9798,4 +9798,15 @@
         <Description>Game Time and Splits (major splits only). Splits available at Website. (By bmn)</Description>
         <Website>https://github.com/bmn/livesplit_asl_mgsi/</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sensorium</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KaDiWa4/LiveSplit.KaDiWa/master/Sensorium.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatic starting, splitting, resetting (outside of intro area) and load removal.</Description>
+        <Website>https://discord.gg/XCg3KE7</Website>
+    </AutoSplitter>
 </AutoSplitters>
