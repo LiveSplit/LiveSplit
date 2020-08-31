@@ -3405,6 +3405,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>SYNTHETIK: Legion Rising</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/HUECTRUM/Synthetik_asl/master/synthetik.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, split and reset are available.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Tony Hawk's Underground</Game>
         </Games>
         <URLs>
@@ -4573,6 +4583,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal and autosplitting is available. (By SuicideMachine)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Supreme Commander 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/HUECTRUM/SC2_autosplitter/master/sc2_splitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, split and load removal available.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
