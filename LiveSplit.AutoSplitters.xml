@@ -2606,7 +2606,7 @@
             <Game>Spelunky</Game>
         </Games>
         <URLs>
-            <URL>http://sashavol.com/frozlunky/autosplitter/Components/LiveSplit.Spelunky.dll</URL>
+            <URL>https://github.com/saturnin55/SpelunkyLiveSplit/raw/master/LiveSplit.Spelunky.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Auto Splitting is available. (By sashavol)</Description>
