@@ -8641,13 +8641,14 @@
     <AutoSplitter>
         <Games>
             <Game>Sammy Surykatka</Game>
+            <Game>Sammy Suricate</Game>
             <Game>Sammy Suricate in Lion Land</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.Sammy.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting and auto-start available for the Polish version (by Mr. Mary). If split occurs on 0:00, please restart your game.</Description>
+        <Description>Autosplitting and auto-start available (by Mr. Mary &amp; rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9290,7 +9291,7 @@
     <AutoSplitter>
         <Games>
             <Game>Kao the Kangaroo 3</Game>
-            <Game>Kao: Tajemnica Wulkanu</Game>
+            <Game>Kangurek Kao: Tajemnica Wulkanu</Game>
             <Game>Kao: Mystery of the Volcano</Game>
             <Game>Kao the Kangaroo Round 3: Mystery of the Volcano</Game>
             <Game>Kao - Mystery of Volcano Island</Game>
@@ -9828,5 +9829,16 @@
         <Type>Script</Type>
         <Description>Automatic starting, splitting, resetting (outside of intro area) and load removal.</Description>
         <Website>https://discord.gg/XCg3KE7</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Red Dead Redemption 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/definitelynotcrab/rdr2_asl/master/RDR2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatic starting, splitting and load removal.</Description>
+        <Website>https://github.com/definitelynotcrab/rdr2_asl</Website>
     </AutoSplitter>
 </AutoSplitters>
