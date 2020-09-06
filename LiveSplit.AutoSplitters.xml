@@ -1793,6 +1793,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>BioShock: The Collection</Game>
+            <Game>BioShock The Collection</Game>
+            <Game>BioShock Remastered</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/PrototypeAlpha/BSR-ASL/master/BioshockRemastered.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Auto Start/Split are available. (By PrototypeAlpha)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>BioShock Multi-Game Runs</Game>
             <Game>BioShock Trilogy</Game>
             <Game>BioShock Trifecta</Game>
@@ -9600,111 +9612,21 @@
     <AutoSplitter>
         <Games>
             <Game>Red Ball</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rb1.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
-        <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Red Ball 2</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rb2.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
-        <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Red Ball 3</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rb3.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
-        <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Red Ball 4 Vol.1</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rb4v1.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
-        <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Red Ball 4 Vol.2</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rb4v2.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
-        <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Red Ball 4 Vol.3</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rb4v3.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
-        <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Red Ball 5</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rb5.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
-        <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Red and Blue Balls</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rabb.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
-        <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Red and Blue Balls 2</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rabb2.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
-        <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Red and Blue Balls 3</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/rabb3.asl</URL>
+            <URL>https://raw.githubusercontent.com/ItsMaximum/autosplitters/master/RedBallGames.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Splits, starts, and resets. Click "Website" for the necessary game version and README. (By ItsMaximum)</Description>
+        <Description>Splits, starts, and resets. Click "Website" for the right game version and the README. (By ItsMaximum, Ero)</Description>
         <Website>https://drive.google.com/file/d/1dvM7VoIdnX9sEo7OB6J7ybNcZG_ZrCpp/view?usp=sharing</Website>
     </AutoSplitter>
     <AutoSplitter>
