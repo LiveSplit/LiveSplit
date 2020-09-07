@@ -9763,4 +9763,27 @@
         <Description>Automatic starting, splitting and load removal.</Description>
         <Website>https://github.com/definitelynotcrab/rdr2_asl</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+          <Game>Ratatouille (Asobo)</Game>
+        </Games>
+        <URLs>
+          <URL>https://raw.githubusercontent.com/ThePhotoshopMaster/Ratatouille-Asobo-Load-Remover/master/RatatouilleLoadRemover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Biohazard</Game>
+            <Game>Resident Evil</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/xSHiiDOx/BiohazardAutoSplitter/master/Biohazard%20Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>New/Updated autosplitter (by SHiiDO). Autostart, Reset and Sections added. Use new splits or update your own splits to work (explained in readme).</Description>
+        <Website>https://www.speedrun.com/re1/resources</Website>
+    </AutoSplitter>
+    
 </AutoSplitters>
