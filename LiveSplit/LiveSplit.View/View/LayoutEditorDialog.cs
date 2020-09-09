@@ -2,6 +2,7 @@
 using LiveSplit.Options;
 using LiveSplit.UI;
 using LiveSplit.UI.Components;
+using LiveSplit.UI.Components.SplitAt;
 using LiveSplit.Utils;
 using System;
 using System.Collections.Generic;
@@ -74,11 +75,19 @@ namespace LiveSplit.View
         {
             try
             {
-                var componentFactory = ComponentManager.ComponentFactories.FirstOrDefault(x => x.Value.ComponentName == factory.ComponentName);
-                var component = componentFactory.Value == null
-                    ? new LayoutComponent("", new SeparatorComponent())
-                    : new LayoutComponent(componentFactory.Key, componentFactory.Value.Create(CurrentState));
-
+                ILayoutComponent component;
+                if (factory is SplitAtComponentFactory)
+                {
+                    // Special component that is added to the menu similiar to SeparatorComponent
+                    component = new LayoutComponent("", new SplitAtComponent());
+                }
+                else
+                {
+                    var componentFactory = ComponentManager.ComponentFactories.FirstOrDefault(x => x.Value.ComponentName == factory.ComponentName);
+                    component = componentFactory.Value == null
+                        ? new LayoutComponent("", new SeparatorComponent())
+                        : new LayoutComponent(componentFactory.Key, componentFactory.Value.Create(CurrentState));
+                }
                 Form.InvokeIfRequired(() =>
                 {
                     try
@@ -134,10 +143,14 @@ namespace LiveSplit.View
                 var category = group.Key;
                 var componentFactories = (IEnumerable<IComponentFactory>)group;
                 if (category == ComponentCategory.Other)
-                    componentFactories = new[] { new SeparatorFactory() }.Concat(componentFactories).OrderBy(x => x.ComponentName);
+                {
+                    componentFactories = new IComponentFactory[] {
+                        new SeparatorFactory(), new SplitAtComponentFactory()
+                    }.Concat(componentFactories).OrderBy(x => x.ComponentName);
+                }
+
                 AddGroup(category, componentFactories);
             }
-
             menuAddComponents.Items.Add(new ToolStripSeparator());
             var downloadMore = new ToolStripMenuItem("Download More...");
             downloadMore.Click += (s, e) =>

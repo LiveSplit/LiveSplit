@@ -2260,6 +2260,7 @@ namespace LiveSplit.View
                     component.Activated = true;
             }
             Layout = layout;
+            ComponentRenderer.SplitAtEnabled = true;
             ComponentRenderer.VisibleComponents = Layout.Components;
             CurrentState.LayoutSettings = layout.Settings;
             UpdateRefreshesRemaining();

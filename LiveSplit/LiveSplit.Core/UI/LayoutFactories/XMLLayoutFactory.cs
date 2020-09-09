@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.UI.Components;
+using LiveSplit.UI.Components.SplitAt;
 using System;
 using System.Drawing;
 using System.IO;
@@ -108,7 +109,17 @@ namespace LiveSplit.UI.LayoutFactories
                 var componentElement = componentNode as XmlElement;
                 var path = componentElement["Path"];
                 var settings = componentElement["Settings"];
-                var layoutComponent = ComponentManager.LoadLayoutComponent(path.InnerText, state);
+                ILayoutComponent layoutComponent;
+                // Since this is a "special" component, it's stored with an empty path
+                // (falls back to SeparatorComponent on older versions or if the setting wasn't found)
+                if (string.IsNullOrEmpty(path.InnerText) && settings["Type"]?.InnerText == "SplitAt")
+                {
+                    layoutComponent = new LayoutComponent("", new SplitAtComponent());
+                }
+                else
+                {
+                    layoutComponent = ComponentManager.LoadLayoutComponent(path.InnerText, state);
+                }
                 if (layoutComponent != null)
                 {
                     try
