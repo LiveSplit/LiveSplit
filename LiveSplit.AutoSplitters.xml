@@ -9798,5 +9798,16 @@
         <Description>New/Updated autosplitter (by SHiiDO). Autostart, Reset and Sections added. Use new splits or update your own splits to work (explained in readme).</Description>
         <Website>https://www.speedrun.com/re1/resources</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Re-Volt: Custom Levels</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/DVark09/ReVoltAutoSplitter/master/Files/rvgl_custom.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto splitting, reset and load removal for every category. (Made by DVark09)</Description>
+        <Website>https://github.com/DVark09/ReVoltAutoSplitter</Website>
+    </AutoSplitter>
     
 </AutoSplitters>
