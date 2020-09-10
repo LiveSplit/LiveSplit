@@ -5718,6 +5718,19 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Mega Man X5</Game>
+            <Game>Megaman X5</Game>
+            <Game>MMX5</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/MegaManX5/MMX5autosplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Mega Man X5 (By Coltaho and JohnnyGo)</Description>
+        <Website>https://github.com/Coltaho/Autosplitters/blob/master/MegaManX5/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Mega Man X6</Game>
             <Game>Megaman X6</Game>
             <Game>MMX6</Game>
