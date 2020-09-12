@@ -27,7 +27,7 @@
             <Game>Disney's Meet The Robinsons</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/meet%20the%20robinsons.asll</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/meet%20the%20robinsons.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>AutoSplitter/ Load Remvover by KunoDemetries</Description>
@@ -1448,10 +1448,10 @@
             <Game>Canis Canem Edit</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.Bully/master/Components/LiveSplit.Bully.dll</URL>
+            <URL>https://raw.githubusercontent.com/LohaTronsRS/BullyAS/master/BullyAS.asl</URL>
         </URLs>
-        <Type>Component</Type>
-        <Description>Load Removal is available. (By Dalet)</Description>
+        <Type>Script</Type>
+        <Description>AutoSplitter and IGT is available. (By LohaTronsRS)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7973,7 +7973,7 @@
             <URL>https://raw.githubusercontent.com/alexa-y/Autosplitters/master/TheOuterWorlds.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load removal for both Epic Games Store and Windows Store/Xbox Gamepass versions (by MissyLexie and Micrologist)</Description>
+        <Description>Load Removal and Auto Splitting available (by MissyLexie and Micrologist)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9798,5 +9798,37 @@
         <Description>New/Updated autosplitter (by SHiiDO). Autostart, Reset and Sections added. Use new splits or update your own splits to work (explained in readme).</Description>
         <Website>https://www.speedrun.com/re1/resources</Website>
     </AutoSplitter>
-    
+    <AutoSplitter>
+        <Games>
+            <Game>ShootMania Storm</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Urinstein/SM-Obstacle-Autosplitter/master/SplitMania.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for ShootMania Storm Obstacle Mode</Description>
+        <Website>https://www.speedrun.com/shootmania/thread/l760a</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Re-Volt: Custom Levels</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/DVark09/ReVoltAutoSplitter/master/Files/rvgl_custom.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto splitting, reset and load removal for every category. (Made by DVark09)</Description>
+        <Website>https://github.com/DVark09/ReVoltAutoSplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Rabi-Ribi</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/AzureHakua/RabiRibi-AutoSplitter/master/LiveSplit.RabiRibi.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto-Splitter for Rabi-Ribi. Check our Discord or Speedrun.com page for more information.</Description>
+        <Website>https://discord.com/invite/0nh9xqOk8ZO1CAQH</Website>
+    </AutoSplitter>
 </AutoSplitters>
