@@ -9831,4 +9831,15 @@
         <Description>Auto-Splitter for Rabi-Ribi. Check our Discord or Speedrun.com page for more information.</Description>
         <Website>https://discord.com/invite/0nh9xqOk8ZO1CAQH</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Fast Food</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/WinterThunderSpeedrun/Autosplitters/master/FastFood.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Website>https://github.com/WinterThunderSpeedrun/Autosplitters</Website>
+        <Description>Autospliter for Fast Food (Dizzy series) on DOSBox 0.74-3</Description>
+    </AutoSplitter>
 </AutoSplitters>
