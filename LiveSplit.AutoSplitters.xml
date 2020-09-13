@@ -9762,7 +9762,7 @@
             <URL>https://raw.githubusercontent.com/KaDiWa4/LiveSplit.KaDiWa/master/Sensorium.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automatic starting, splitting, resetting (outside of intro area) and load removal.</Description>
+        <Description>Automatic starting, splitting, resetting and load removal.</Description>
         <Website>https://discord.gg/XCg3KE7</Website>
     </AutoSplitter>
     <AutoSplitter>
