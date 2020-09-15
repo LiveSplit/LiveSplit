@@ -4104,6 +4104,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>TrackMania Nations Forever</Game>
+            <Game>TrackMania United Forever</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/donadigo/AutoSplitters/master/Trackmania%20Forever.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Simple script that implements game time for TMNF and TMUF (By donadigo)</Description>
+    </AutoSplitter>    
+    <AutoSplitter>
+        <Games>
             <Game>The Legend of Zelda: A Link to the Past</Game>
             <Game>A Link to the Past</Game>
         </Games>
