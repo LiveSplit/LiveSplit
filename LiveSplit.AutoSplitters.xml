@@ -9842,4 +9842,17 @@
         <Description>Auto-Splitter for Rabi-Ribi. Check our Discord or Speedrun.com page for more information.</Description>
         <Website>https://discord.com/invite/0nh9xqOk8ZO1CAQH</Website>
     </AutoSplitter>
-</AutoSplitters>
+    <AutoSplitter>
+        <Games>
+            <Game>SJBTT</Game>
+            <Game>Samurai Jack: Battle Through Time</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mysterion06/SJGame/master/SJGame.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Mysterion_06_</Description>
+        <Website>https://github.com/Mysterion06/SJGame/blob/master/README.md</Website>
+    </AutoSplitter>
+</AutoSplitter>
+
