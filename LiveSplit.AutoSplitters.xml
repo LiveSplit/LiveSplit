@@ -424,6 +424,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>MO: Astray</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/MO%3AAstray/MOAstray.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Configured for Speed Mode. Splits on area end (additional in settings). Starts and resets. (by Ero)</Description>
+        <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/MO:Astray</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Pedestrian</Game>
         </Games>
         <URLs>
@@ -9842,4 +9853,18 @@
         <Description>Auto-Splitter for Rabi-Ribi. Check our Discord or Speedrun.com page for more information.</Description>
         <Website>https://discord.com/invite/0nh9xqOk8ZO1CAQH</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>SJBTT</Game>
+            <Game>Samurai Jack: Battle Through Time</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mysterion06/SJGame/master/SJGame.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Mysterion_06_</Description>
+        <Website>https://github.com/Mysterion06/SJGame/blob/master/README.md</Website>
+    </AutoSplitter>
 </AutoSplitters>
+
+
