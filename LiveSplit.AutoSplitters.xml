@@ -165,9 +165,20 @@
         <Description>Autosplitter/Load Remover (t) (by KunoDemetries)</Description>
         <Website>https://discordapp.com/invite/fQaYqvF</Website>
     </AutoSplitter>
+      <AutoSplitter>
+        <Games>
+            <Game>Call of Duty: Infinite Warfare</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/IW.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+        <Website>https://discordapp.com/invite/fQaYqvF</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Overt the Hedge</Game>
+            <Game>Over the Hedge</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/overthehedge.asl</URL>
@@ -9852,6 +9863,17 @@
         <Type>Script</Type>
         <Description>Auto-Splitter for Rabi-Ribi. Check our Discord or Speedrun.com page for more information.</Description>
         <Website>https://discord.com/invite/0nh9xqOk8ZO1CAQH</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hotshot Racing</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Hot%20Shot%20Racing/HotShotRacing.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and In-Game Timer are available (by Jujstme)</Description>
+        <Website>https://github.com/Jujstme/Autosplitters/tree/master/Hot%20Shot%20Racing</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
