@@ -984,12 +984,28 @@
     <AutoSplitter>
         <Games>
             <Game>Kao the Kangaroo: Round 2</Game>
+            <Game>Kao the Kangaroo Round 2</Game>
+            <Game>Kangurek Kao: Runda 2</Game>
+            <Game>Kangurek Kao Runda 2</Game>
+            <Game>Kangurek Kao: Runda 2-ga</Game>
+            <Game>Kangurek Kao Runda 2-ga</Game>
         </Games>
         <URLs>
-            <URL>https://gist.githubusercontent.com/RibShark/429ad04b9827baa9ba684f4e7b8957eb/raw/25582cafc2683a06a276a0867ce341e16c200659/LiveSplit.Kao2.asl</URL>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Kao2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Only the Polish (fastest) version of the game is currently supported. Auto starting, resetting and splitting. Starts on selecting "Nowa gra", final split must be performed manually. (By RibShark)</Description>
+        <Description>Autosplitting and Load Removal available. (By RibShark, rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Kao the Kangaroo</Game>
+            <Game>Kangurek Kao</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Kao.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available. (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
