@@ -4795,6 +4795,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>BPM: Bullets Per Minute</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/HUECTRUM/bpm_asl/master/bpm.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, split and reset on main menu implemented. Tracks igt.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Marc Ecko's Getting Up: Contents Under Pressure</Game>
         </Games>
         <URLs>
