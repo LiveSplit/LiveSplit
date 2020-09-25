@@ -6220,10 +6220,10 @@
             <Game>FC</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Skiendys/Autosplitters/master/FarCry.asl</URL>
+            <URL>https://raw.githubusercontent.com/Skiendys/FarCry-Autosplitter/master/auto%20split%20script.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load time removing and auto splitting by ChickenBoh</Description>
+        <Description>Load Removing and Auto Splitting (By ChickenB0h)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9922,16 +9922,6 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available (by rythin)</Description>
-    </AutoSplitter>    
-    <AutoSplitter>
-        <Games>
-            <Game>Crysis Remastered</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Skiendys/Autosplitters/master/CrysisRemastered.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Load time removing by ChickenBoh</Description>
     </AutoSplitter>
 </AutoSplitters>
 
