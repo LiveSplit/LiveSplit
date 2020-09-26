@@ -11,6 +11,39 @@
         <Description>DepressionTrifectaSplit: LoadRemover / reducer for Dream for the PC</Description>
         <Website>https://github.com/TheUnChosenOne/DepressionTrifectaLoadRemover</Website>
     </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Call of Cthulhu: The Official Video Game</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/COC.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover Only by Kuno Demetries</Description>
+        <Website>https://discord.com/invite/dus6aVP</Website>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Call of Duty: WWII</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/WW2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover/Auto Spliiter by Kuno Demetries</Description>
+        <Website>https://discord.com/invite/Rb8bEUn</Website>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Mass Effect 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/masseffect3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>LoadRemover Only  By Kuno Demetries</Description>
+        <Website>https://discord.com/invite/dpmUneH</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Dream (PC)</Game>
@@ -4582,6 +4615,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto-Split on mission accept/report/retire, TE kill and Tutorial Fights, auto-start on file load. (By Marenthyu)</Description>
+        <Website>https://discord.gg/JPJKHFH</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4592,6 +4626,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto-Split on Cutscenes and certain Events. (By Marenthyu and Dabomstew)</Description>
+        <Website>https://discord.gg/JPJKHFH</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4602,6 +4637,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto-Split on Cutscenes and certain Events. (By Dabomstew and Marenthyu)</Description>
+        <Website>https://discord.gg/JPJKHFH</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4612,6 +4648,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto-Split on Cutscenes and certain Events. (By Dabomstew and Marenthyu)</Description>
+        <Website>https://discord.gg/JPJKHFH</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6220,10 +6257,20 @@
             <Game>FC</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Skiendys/FarCry-Autosplitter/master/auto%20split%20script.asl</URL>
+            <URL>https://raw.githubusercontent.com/Skiendys/Autosplitters/master/FarCry.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removing and Auto Splitting (By ChickenB0h)</Description>
+        <Description>Load time removing and auto splitting by ChickenBoh</Description>
+    </AutoSplitter>    
+    <AutoSplitter>
+        <Games>
+            <Game>Crysis Remastered</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Skiendys/Autosplitters/master/CrysisRemastered.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load time removing by ChickenBoh</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7076,14 +7123,25 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Harry Potter and the Deathly Hallows Part 1</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/bukazoltan/autosplitters/master/LiveSplit.HP7p1.LoadRemoval.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal. (by flo203 &amp; marczeslaw)</Description>
+        <Website>https://github.com/bukazoltan/autosplitters/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Harry Potter and the Deathly Hallows Part 2</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/bukazoltan/autosplitters/master/LiveSplit.HP7p2.Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>It splits automatically between levels and at the end of the run. (by mczolly)</Description>
-        <Website>https://discord.me/mczolly</Website>
+        <Description>Load Removal and autosplitter that splits automatically between levels and at the end of the run. (by mczolly &amp; flo203)</Description>
+        <Website>https://github.com/bukazoltan/autosplitters/</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7094,7 +7152,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>It splits when the snitch is caught and between tutorials. (by mczolly)</Description>
-        <Website>https://discord.me/mczolly</Website>
+        <Website>https://github.com/bukazoltan/autosplitters/</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9924,5 +9982,3 @@
         <Description>Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
 </AutoSplitters>
-
-
