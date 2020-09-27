@@ -9981,4 +9981,15 @@
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mafia: Definitive Edition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/LiveSplit.MafiaDefinitiveEdition.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal (by Wafu)</Description>
+        <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
+    </AutoSplitter>
 </AutoSplitters>
