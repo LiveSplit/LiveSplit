@@ -2,6 +2,17 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Earth 2150: Escape from the Blue Planet</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/lnsideEarth2150/SpeedRun/master/ASL/Earth%202150%20Escape%20from%20the%20Blue%20Planet.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for the PC Game: Earth 2150: Escape from the Blue Planet (By Animal)</Description>
+        <Website>InsideEarth - https://discord.gg/yxtzdUZ</Website>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
             <Game>UE3 Puzzle Exploration Gauntlet</Game>
         </Games>
         <URLs>
@@ -19,8 +30,19 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/COC.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover Only by Kuno Demetries</Description>
+        <Description>Load Remover Only (by Kuno Demetries)</Description>
         <Website>https://discord.com/invite/dus6aVP</Website>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Die Hard: Nakatomi Plaza</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/diehard.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Splitter/Load Remover (by Kuno Demetries)</Description>
+        <Website>https://www.speedrun.com/die_hard_nakatomi_plaza</Website>
     </AutoSplitter>
      <AutoSplitter>
         <Games>
@@ -30,7 +52,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/WW2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover/Auto Spliiter by Kuno Demetries</Description>
+        <Description>Load Remover/Auto Spliiter (by Kuno Demetries)</Description>
         <Website>https://discord.com/invite/Rb8bEUn</Website>
     </AutoSplitter>
      <AutoSplitter>
@@ -41,7 +63,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/masseffect3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>LoadRemover Only  By Kuno Demetries</Description>
+        <Description>LoadRemover Only  (By Kuno Demetries)</Description>
         <Website>https://discord.com/invite/dpmUneH</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -63,7 +85,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/meet%20the%20robinsons.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>AutoSplitter/ Load Remvover by KunoDemetries</Description>
+        <Description>AutoSplitter/ Load Remvover (by KunoDemetries)</Description>
         <Website>https://discord.gg/ecpCAnJm</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -2160,10 +2182,10 @@
             <Game>Jedi Knight 3 Jedi Academy</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/JMaynard24/ASL/master/JKJA.asl</URL>
+            <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.JediAcademy/master/JKJA.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (By Dread and Zefie)</Description>
+        <Description>Auto Splitting and Load Removal are available. (By Dread, Zefie and Sphere)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9989,7 +10011,7 @@
             <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/LiveSplit.MafiaDefinitiveEdition.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load removal (by Wafu)</Description>
+        <Description>Load removal, auto-splitting (by Wafu)</Description>
         <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
     </AutoSplitter>
 </AutoSplitters>
