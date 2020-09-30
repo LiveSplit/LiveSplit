@@ -27,7 +27,7 @@
             <Game>Call of Cthulhu: The Official Video Game</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/COC.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CallOfCthulhu2018.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Remover Only (by Kuno Demetries)</Description>
@@ -38,7 +38,7 @@
             <Game>Die Hard: Nakatomi Plaza</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/diehard.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/DieHard.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Splitter/Load Remover (by Kuno Demetries)</Description>
@@ -49,7 +49,7 @@
             <Game>Call of Duty: WWII</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/WW2.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODWW2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Remover/Auto Spliiter (by Kuno Demetries)</Description>
@@ -60,7 +60,7 @@
             <Game>Mass Effect 3</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/masseffect3.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/MassEffect3.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>LoadRemover Only  (By Kuno Demetries)</Description>
@@ -82,7 +82,7 @@
             <Game>Disney's Meet The Robinsons</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/meet%20the%20robinsons.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/MeetTheRobinsons.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>AutoSplitter/ Load Remvover (by KunoDemetries)</Description>
@@ -203,7 +203,7 @@
             <Game>Call of Duty: Modern Warfare 2 Remastered</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw2r.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODModernWarfare2Remastered.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
@@ -214,7 +214,7 @@
             <Game>Call of Duty: Black Ops II</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/BLACKOPS2.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODBlackOps2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (t) (by KunoDemetries)</Description>
@@ -225,7 +225,7 @@
             <Game>Call of Duty: Infinite Warfare</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/IW.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODInfiniteWarfare.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
@@ -236,7 +236,7 @@
             <Game>Over the Hedge</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/overthehedge.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/OverTheHedge.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (PC) (by KunoDemetries)</Description>
@@ -247,7 +247,7 @@
             <Game>Call of Duty: Black Ops III</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/blackops3.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODBlackOps3</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (t) (by KunoDemetries)</Description>
@@ -258,7 +258,7 @@
             <Game>Call of Duty: Modern Warfare (2019)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw2019.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODModernWarfare2019.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
@@ -269,7 +269,7 @@
             <Game>The Spiderwick Chronicles</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/spiderwick.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/TheSpiderwickChronicles.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
@@ -280,7 +280,7 @@
             <Game>Call of Duty: Ghosts</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/codghosts.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODGhosts.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
@@ -291,7 +291,7 @@
             <Game>Call of Duty: Modern Warfare Remastered</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/MWR.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODModernWarfareRemastered.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
@@ -328,7 +328,7 @@
             <Game>Sniper Elite 4</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/SE4.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SniperElite4.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Autosplitter/Load Remover (by KunoDemetries)</Description>
@@ -339,7 +339,7 @@
             <Game>Isle of Ewe</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/Isle%20of%20Ewe.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/IsleofEwe.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Autosplitter/Load Remover (W/ Sheep Counter) (by KunoDemetries, Rythin, DerKO)</Description>
@@ -350,7 +350,7 @@
             <Game>F.E.A.R. Extraction Point</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/Fear%20Extraction%20Point.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/FearExtractionPoint.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Auto Splitter/ Load Remover(by KunoDemetries)</Description>
@@ -361,7 +361,7 @@
             <Game>F.E.A.R. Perseus Mandate</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/Fear%20Perseus%20Mandate.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/FearPerseusMandate.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Auto Splitter/ Load Remover(by KunoDemetries)</Description>
@@ -372,7 +372,7 @@
             <Game>Sniper Elite V2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/sniper%20elite%20v2.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SniperElite2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Autosplitter (No Load Remover) (by KunoDemetries)</Description>
@@ -383,7 +383,7 @@
             <Game>Sniper Elite III</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/sniper%20elite%203.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SniperElite3.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Autosplitter/load remover (by KunoDemetries)</Description>
@@ -394,7 +394,7 @@
             <Game>Open Season</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/OpenSeason.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/OpenSeason.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Autosplitter/load remover for PC (Beta) (by KunoDemetries)</Description>
@@ -725,10 +725,10 @@
             <Game>Call of Duty 4: Modern Warfare</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/COD4.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitter and load remover for Call of Duty 4: Modern Warfare on Steam. Does a exit split after crosshair dissapears. (by KunoDemetries)</Description>
+        <Description> Autosplitter/Load Remover (by KunoDemetries, rythin)</Description>
         <Website>https://discord.gg/fQaYqvFF</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -736,7 +736,7 @@
             <Game>Call of Duty: Modern Warfare 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw2%20AutoSplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODModernWarfare2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Autosplitter/LR for MW2. Does a exit split after knife thrown. (by KunoDemetries)</Description>
@@ -802,7 +802,7 @@
             <Game>Call of Duty: World at War</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/WAW.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODWorldAtWar.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Auto Splitter/ Load Remover (cofigurable levels) (By KunoDemetries).</Description>
@@ -2737,7 +2737,7 @@
             <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.RedFaction/master/Components/LiveSplit.RedFaction.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Auto Splitting is available for Pure Faction 3.0d. (By SuicideMachine)</Description>
+        <Description>Auto Splitting is available for Red Faction. (By SuicideMachine)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3103,10 +3103,10 @@
             <Game>You Are Empty</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Tezur0/LiveSplitScripts/master/YouAreEmpty/YouAreEmpty.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/YouAreEmpty.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Tezur0)</Description>
+        <Description>Auto Splitter/Load Remover. (By Kuno Demetries, Tezur0)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4120,7 +4120,7 @@
             <Game>Call of Duty: Modern Warfare 3</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/mw3.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODModernWarfare3.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitter/ Load Remover. (By KunoDemetries)</Description>
@@ -6882,10 +6882,10 @@
             <Game>Call of Duty 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/COD2AS.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/COD2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitter/ Load Remover (by KunoDemetries)</Description>
+        <Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discord.gg/GHh8sJ6</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6927,10 +6927,10 @@
             <Game>Call of Duty: Black Ops</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/cod4/master/BLACKOPS.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODBlackOps.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/loadremover (By KunoDemetires)</Description>
+        <Description>Autosplitter/loadremover (By Kuno Demetires)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
