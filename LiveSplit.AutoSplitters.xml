@@ -11,6 +11,17 @@
         <Description>Autosplitter for the PC Game: Earth 2150: Escape from the Blue Planet (By Animal)</Description>
         <Website>InsideEarth - https://discord.gg/yxtzdUZ</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Clive Barker's Jericho</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CliveBarkersJericho.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover (By Kuno Demetries)</Description>
+        <Website>https://www.speedrun.com/cbj</Website>
+    </AutoSplitter>
      <AutoSplitter>
         <Games>
             <Game>UE3 Puzzle Exploration Gauntlet</Game>
@@ -10013,5 +10024,16 @@
         <Type>Script</Type>
         <Description>Load removal, auto-splitting (by Wafu)</Description>
         <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>Serious Sam 4</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/apple1417/Autosplitters/master/serious_sam_4.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting, Auto Start and Load Removal are available. (By apple1417)</Description>
+        <Website>https://github.com/apple1417/Autosplitters</Website>
     </AutoSplitter>
 </AutoSplitters>
