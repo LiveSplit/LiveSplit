@@ -8433,10 +8433,10 @@
             <Game>Multi-Prince of Persia-Runs</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/GMPranav/Multi-PoP-Autosplitter/master/MultiPoPSandsTrilogy.asl</URL>
+            <URL>https://raw.githubusercontent.com/samabam/Multi-PoP-Autosplitter/master/MultiPoPSandsTrilogy.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for the 7 major categories. Sands Trilogy categories currently work only if played chrlonological order. For anthology, load remover for 3D and TFS available (by GMP, Samabam, Smathlax and Karlgamer)</Description>
+        <Description>Autosplitter and IGT/Load-remover for the 7 major categories. (by Samabam, Smathlax, GMP, Karlgamer, ThePedMeister, WinterThunder, Ynscription and SuicideMachine)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8625,7 +8625,7 @@
             <Game>Prince of Persia: The Fallen King</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/GMPranav/Multi-PoP-Autosplitter/master/TFK_Final.asl</URL>
+            <URL>https://raw.githubusercontent.com/samabam/Multi-PoP-Autosplitter/master/TFK_Final.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and in-game timer are available (By NoTeefy, GMP and Smathlax)</Description>
@@ -10035,5 +10035,16 @@
         <Type>Script</Type>
         <Description>Auto Splitting, Auto Start and Load Removal are available. (By apple1417)</Description>
         <Website>https://github.com/apple1417/Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Fast Food</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/WinterThunderSpeedrun/Autosplitters/master/FastFood.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Website>https://github.com/WinterThunderSpeedrun/Autosplitters</Website>
+        <Description>Autospliter for Fast Food (Dizzy series) on DOSBox 0.74-3</Description>
     </AutoSplitter>
 </AutoSplitters>
