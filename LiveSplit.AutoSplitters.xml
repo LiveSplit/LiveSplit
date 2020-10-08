@@ -1170,6 +1170,14 @@
             <Game>Nightmare House 2</Game>
             <Game>The Forgotten Ones</Game>
             <Game>Grey</Game>
+            <Game>Black Mesa: Hazard Course</Game>
+            <Game>Clone Machine</Game>
+            <Game>Da Baby</Game>
+            <Game>DayHard</Game>
+            <Game>Jolly's Hardcore Mod</Game>
+            <Game>Logistique Act. 1</Game>
+            <Game>The Citizen Series</Game>
+            <Game>The PTSD Mod</Game>
             <Game>Hunt Down the Freeman</Game>
         </Games>
         <URLs>
@@ -2873,11 +2881,14 @@
             <Game>Half-Life: Uplink</Game>
             <Game>Half-Life: Visitors</Game>
             <Game>Half-Life: Zombie Edition</Game>
+            <Game>Half-Quake</Game>
             <Game>Hazardous Course 2</Game>
             <Game>Hopelessness: The Afterlife</Game>
             <Game>Hunt The Cunt</Game>
             <Game>Minimicus</Game>
             <Game>My Black Mesa</Game>
+            <Game>Operation: Nova</Game>
+            <Game>PARANOIA</Game>
             <Game>The Gloom</Game>
             <Game>The Plague</Game>
             <Game>The Xeno Project</Game>
@@ -9200,7 +9211,7 @@
             <URL>https://raw.githubusercontent.com/TheSmiley47/Sven-Coop-Autosplitter/master/svencoop.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Sven Co-op Autosplitter (for 15th April 2017 version)</Description>
+        <Description>Sven Co-op autosplitter. Works only with 2017 version. (by _Smiley, ScriptedSnark, Chillu)</Description>
         <Website>https://github.com/TheSmiley47/Sven-Coop-Autosplitter/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
