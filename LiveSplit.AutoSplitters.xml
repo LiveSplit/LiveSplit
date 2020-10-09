@@ -10058,4 +10058,15 @@
         <Website>https://github.com/WinterThunderSpeedrun/Autosplitters</Website>
         <Description>Autospliter for Fast Food (Dizzy series) on DOSBox 0.74-3</Description>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Genshin Impact</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KhanSimeoni/GenshinImpactAutosplit/main/GenshinImpactLoadRemover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Website>https://github.com/KhanSimeoni/GenshinImpactAutosplit</Website>
+        <Description>Load time remover for Genshin Impact</Description>
+    </AutoSplitter>
 </AutoSplitters>
