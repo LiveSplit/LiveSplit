@@ -10069,4 +10069,14 @@
         <Website>https://github.com/KhanSimeoni/GenshinImpactAutosplit</Website>
         <Description>Load time remover for Genshin Impact</Description>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Thief (2014)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mysterion06/Thi4fSplitter/main/Thi4fSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter with Loadremover for 1.0 32/64bit and 1.6 64bit by Mysterion_06_</Description>
+    </AutoSplitter>
 </AutoSplitters>
