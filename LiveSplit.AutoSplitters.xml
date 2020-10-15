@@ -8790,14 +8790,13 @@
     <AutoSplitter>
         <Games>
             <Game>Kula World</Game>
-            <Game>Roll Away</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/archieyates/Autosplitters/master/KulaWorld.asl</URL>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Kula%20World%20-%20Roll%20Away/RollAway.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplit by level or world (by Reicha7)</Description>
-        <Website>http://archieyates.co.uk/</Website>
+        <Description>Automatic splitting and in-game timer</Description>
+        <Website>https://github.com/Jujstme/Autosplitters/tree/master/Kula%20World%20-%20Roll%20Away</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
