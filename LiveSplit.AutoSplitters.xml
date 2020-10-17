@@ -6544,6 +6544,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>The Legend of Heroes: Trails of Cold Steel III</Game>
+            <Game>The Legend of Heroes: Trails of Cold Steel 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/AcridStingray3/Livesplit.CS3/master/Livesplit.CS3/Components/Livesplit.CS3.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Splitting / Load Removing available. (By @AcridStingray3#1637)</Description>
+        <Website>https://github.com/AcridStingray3/Livesplit.CS3</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Legend of Heroes: Trails of Cold Steel</Game>
         </Games>
         <URLs>
@@ -10077,5 +10089,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter with Loadremover for 1.0 32/64bit and 1.6 64bit by Mysterion_06_</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Last Campfire</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.TheLastCampfire/main/Components/LiveSplit.TheLastCampfire.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Start/Split/Reset and Load Remover (By Voxelse)</Description>
+        <Website>https://github.com/Voxelse/LiveSplit.TheLastCampfire</Website>
     </AutoSplitter>
 </AutoSplitters>
