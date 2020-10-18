@@ -73,7 +73,7 @@ namespace LiveSplit.Tests.TimeFormatTests
 
             var time = TimeSpan.Parse(timespanText);
 
-            string formatted = formatter.Format(time);
+            var formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
     }
