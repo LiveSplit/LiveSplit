@@ -63,7 +63,7 @@ namespace LiveSplit.Tests.TimeFormatTests
         [DataRow("1:15:24:23", "39:24:23", DigitsFormat.DoubleDigitMinutes)]
         [DataRow("1:21:15:45", "45:15:45", DigitsFormat.SingleDigitHours)]
         [DataRow("1:22:56:51", "46:56:51", DigitsFormat.DoubleDigitHours)]
-        public void TestDigitsFormat(string timespanText, string expected, DigitsFormat format)
+        public void ConvertToExpectedValue_WhenAValidTimespanTextIsFormatted(string timespanText, string expected, DigitsFormat format)
         {
             var formatter = new GeneralTimeFormatter
             {
