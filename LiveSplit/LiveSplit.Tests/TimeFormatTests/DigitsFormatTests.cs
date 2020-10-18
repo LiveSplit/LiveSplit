@@ -69,9 +69,7 @@ namespace LiveSplit.Tests.TimeFormatTests
             formatter.DigitsFormat = format;
             formatter.Accuracy = TimeAccuracy.Seconds;
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
+            var time = TimeSpan.Parse(timespanText);
 
             string formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
