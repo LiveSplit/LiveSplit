@@ -76,5 +76,48 @@ namespace LiveSplit.Tests.TimeFormatTests
             var formatted = formatter.Format(time);
             Assert.AreEqual(expected, formatted);
         }
+
+        [TestMethod]
+        public void ReturnDash_WhenFormattingNullTime()
+        {
+            var formatter = new GeneralTimeFormatter();
+
+            var formatted = formatter.Format(null);
+            Assert.AreEqual(TimeFormatConstants.DASH, formatted);
+        }
+
+        [TestMethod]
+        [DataRow(NullFormat.ZeroDotZeroZero, "0.00")]
+        [DataRow(NullFormat.ZeroValue, "0")]
+        [DataRow(NullFormat.Dashes, "-")]
+        public void ReturnExpectedValues_WhenFormattingNullTimeAndDeterminedNullFormatsAreExpected(
+            NullFormat nullFormat, string expectedConversion)
+        {
+            var formatter = new GeneralTimeFormatter
+            {
+                NullFormat = nullFormat
+            };
+
+            var formatted = formatter.Format(null);
+            Assert.AreEqual(expectedConversion, formatted);
+        }
+
+        [TestMethod]
+        [DataRow(NullFormat.ZeroWithAccuracy, TimeAccuracy.Seconds, "0")]
+        [DataRow(NullFormat.ZeroWithAccuracy, TimeAccuracy.Tenths, "0.0")]
+        [DataRow(NullFormat.ZeroWithAccuracy, TimeAccuracy.Hundredths, "0.00")]
+        [DataRow(NullFormat.ZeroWithAccuracy, TimeAccuracy.Milliseconds, "0.000")]
+        public void ReturnZeroWithCorrectAmountOfDecimals_WhenZeroWithAccuracyIsExpected(
+            NullFormat nullFormat, TimeAccuracy accuracy, string expectedConversion)
+        {
+            var formatter = new GeneralTimeFormatter
+            {
+                NullFormat = nullFormat,
+                Accuracy = accuracy
+            };
+
+            var formatted = formatter.Format(null);
+            Assert.AreEqual(expectedConversion, formatted);
+        }
     }
 }
