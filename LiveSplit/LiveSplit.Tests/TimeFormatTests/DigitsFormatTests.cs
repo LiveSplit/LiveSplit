@@ -65,9 +65,11 @@ namespace LiveSplit.Tests.TimeFormatTests
         [DataRow("1:22:56:51", "46:56:51", DigitsFormat.DoubleDigitHours)]
         public void TestDigitsFormat(string timespanText, string expected, DigitsFormat format)
         {
-            var formatter = new GeneralTimeFormatter();
-            formatter.DigitsFormat = format;
-            formatter.Accuracy = TimeAccuracy.Seconds;
+            var formatter = new GeneralTimeFormatter
+            {
+                DigitsFormat = format,
+                Accuracy = TimeAccuracy.Seconds
+            };
 
             var time = TimeSpan.Parse(timespanText);
 
