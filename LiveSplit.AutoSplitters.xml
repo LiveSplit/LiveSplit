@@ -10101,4 +10101,14 @@
         <Description>Auto Start/Split/Reset and Load Remover (By Voxelse)</Description>
         <Website>https://github.com/Voxelse/LiveSplit.TheLastCampfire</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Streets of Rage 4</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/cccarl/SOR4-Auto-Splitter/main/Livesplit.SOR4.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time, Auto Start and Auto Reset available (By SunglassesEmoji)</Description>
+    </AutoSplitter>
 </AutoSplitters>
