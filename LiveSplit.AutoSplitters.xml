@@ -10111,4 +10111,14 @@
         <Type>Script</Type>
         <Description>Game Time, Auto Start and Auto Reset available (By SunglassesEmoji)</Description>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ghostrunner</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Ghostrunner/master/ghostrunner.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time and Auto Splitting available. (By Micrologist)</Description>
+    </AutoSplitter>
 </AutoSplitters>
