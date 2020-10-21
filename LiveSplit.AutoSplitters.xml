@@ -8371,17 +8371,26 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Yo! Noid 2</Game>
             <Game>Yo! Noid 2: Game of a Year Edition</Game>
             <Game>Yo! Noid 2 Game of a Year Edition</Game>
-            <Game>Yo! Noid 2: Enter the Void</Game>
-            <Game>Yo! Noid 2 Enter the Void</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/YoNoid2GoaY.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Autosplitting available for Game of a Year Edition (w/ IGT Mod) (by rythin) </Description>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Yo! Noid 2</Game>
+            <Game>Yo! Noid 2: Enter the Void</Game>
+            <Game>Yo! Noid 2 Enter the Void</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/YoNoid2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description> Autosplitting available (by rythin) </Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10110,5 +10119,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Game Time, Auto Start and Auto Reset available (By SunglassesEmoji)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ghostrunner</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Ghostrunner/master/ghostrunner.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time and Auto Splitting available. (By Micrologist)</Description>
     </AutoSplitter>
 </AutoSplitters>
