@@ -63,18 +63,61 @@ namespace LiveSplit.Tests.TimeFormatTests
         [DataRow("1:15:24:23", "39:24:23", DigitsFormat.DoubleDigitMinutes)]
         [DataRow("1:21:15:45", "45:15:45", DigitsFormat.SingleDigitHours)]
         [DataRow("1:22:56:51", "46:56:51", DigitsFormat.DoubleDigitHours)]
-        public void TestDigitsFormat(string timespanText, string expected, DigitsFormat format)
+        public void ConvertToExpectedValue_WhenAValidTimespanTextIsFormatted(string timespanText, string expected, DigitsFormat format)
+        {
+            var formatter = new GeneralTimeFormatter
+            {
+                DigitsFormat = format,
+                Accuracy = TimeAccuracy.Seconds
+            };
+
+            var time = TimeSpan.Parse(timespanText);
+
+            var formatted = formatter.Format(time);
+            Assert.AreEqual(expected, formatted);
+        }
+
+        [TestMethod]
+        public void ReturnDash_WhenFormattingNullTime()
         {
             var formatter = new GeneralTimeFormatter();
-            formatter.DigitsFormat = format;
-            formatter.Accuracy = TimeAccuracy.Seconds;
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
+            var formatted = formatter.Format(null);
+            Assert.AreEqual(TimeFormatConstants.DASH, formatted);
+        }
 
-            string formatted = formatter.Format(time);
-            Assert.AreEqual(expected, formatted);
+        [TestMethod]
+        [DataRow(NullFormat.ZeroDotZeroZero, "0.00")]
+        [DataRow(NullFormat.ZeroValue, "0")]
+        [DataRow(NullFormat.Dashes, "-")]
+        public void ReturnExpectedValues_WhenFormattingNullTimeAndDeterminedNullFormatsAreExpected(
+            NullFormat nullFormat, string expectedConversion)
+        {
+            var formatter = new GeneralTimeFormatter
+            {
+                NullFormat = nullFormat
+            };
+
+            var formatted = formatter.Format(null);
+            Assert.AreEqual(expectedConversion, formatted);
+        }
+
+        [TestMethod]
+        [DataRow(NullFormat.ZeroWithAccuracy, TimeAccuracy.Seconds, "0")]
+        [DataRow(NullFormat.ZeroWithAccuracy, TimeAccuracy.Tenths, "0.0")]
+        [DataRow(NullFormat.ZeroWithAccuracy, TimeAccuracy.Hundredths, "0.00")]
+        [DataRow(NullFormat.ZeroWithAccuracy, TimeAccuracy.Milliseconds, "0.000")]
+        public void ReturnZeroWithCorrectAmountOfDecimals_WhenZeroWithAccuracyIsExpected(
+            NullFormat nullFormat, TimeAccuracy accuracy, string expectedConversion)
+        {
+            var formatter = new GeneralTimeFormatter
+            {
+                NullFormat = nullFormat,
+                Accuracy = accuracy
+            };
+
+            var formatted = formatter.Format(null);
+            Assert.AreEqual(expectedConversion, formatted);
         }
     }
 }
