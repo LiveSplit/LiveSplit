@@ -5,7 +5,7 @@
             <Game>Earth 2150: Escape from the Blue Planet</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/lnsideEarth2150/SpeedRun/master/ASL/Earth%202150%20Escape%20from%20the%20Blue%20Planet.asl</URL>
+            <URL>https://raw.githubusercontent.com/lnsideEarth2150/Earth2150-SpeedRun/main/E2150-EftBP-ASL/Earth_2150_Escape_from_the_Blue_Planet.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for the PC Game: Earth 2150: Escape from the Blue Planet (By Animal)</Description>
@@ -10129,5 +10129,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Game Time and Auto Splitting available. (By Micrologist)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Pitfall: The Lost Expedition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Avasam/PITFALL-The-Lost-Expedition-AutoSplitter/main/Pitfall-TLE.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>PC Autosplitter and Load Remover (By Avasam)</Description>
     </AutoSplitter>
 </AutoSplitters>
