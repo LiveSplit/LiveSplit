@@ -1954,6 +1954,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Amnesia: Rebirth</Game>
+            <Game>Amnesia Rebirth</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/PrototypeAlpha/AmnesiaASL/master/AmnesiaRebirth.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Automatic Start/Split/Reset are available. (By Sychotix and PrototypeAlpha)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Psychonauts</Game>
         </Games>
         <URLs>
@@ -10139,5 +10150,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>PC Autosplitter and Load Remover (By Avasam)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Inkball</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Inkball.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting available (by rythin)</Description>
+        <Website>https://www.speedrun.com/inkball</Website>
     </AutoSplitter>
 </AutoSplitters>
