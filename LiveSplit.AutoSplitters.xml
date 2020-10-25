@@ -435,6 +435,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Devil Daggers</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Devil%20Daggers/DevilDaggers.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>New wave indicator for Devil Daggers. Splits when the next enemy appears. Up to 64 splits possible. (by Ero)</Description>
+        <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/Devil%20Daggers</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Donut County</Game>
         </Games>
         <URLs>
@@ -520,6 +531,17 @@
         <Type>Script</Type>
         <Description>Starts the timer, splits at the end. Additional splits in settings. Does not reset. (by Ero)</Description>
         <Website>https://github.com/just-ero/LiveSplit-Autosplitters/blob/master/The%20Pedestrian</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Phasmophobia</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Phasmophobia/Phasmophobia.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts when players are loaded in. Splits when closing the truck, requirements must be met. Resets when they're not. (by Ero)</Description>
+        <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/Phasmophobia</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1196,6 +1218,7 @@
             <Game>A Hat in Time (Beta Build)</Game>
             <Game>A Hat in Time Beta Build</Game>
             <Game>AHiT</Game>
+            <Game>A Hat in Time Workshop</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/CryZe/AHatInTimeAutoSplitter/master/AHatInTime.asl</URL>
@@ -10129,7 +10152,7 @@
             <URL>https://raw.githubusercontent.com/cccarl/SOR4-Auto-Splitter/main/Livesplit.SOR4.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Game Time, Auto Start and Auto Reset available (By SunglassesEmoji)</Description>
+        <Description>Auto Splitter with Game Time available. (By SunglassesEmoji)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
