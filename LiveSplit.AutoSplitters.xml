@@ -3152,7 +3152,7 @@
             <URL>https://raw.githubusercontent.com/loitho/doom-eternal/master/doometernal.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (By Micrologist, Loitho)</Description>
+        <Description>Auto Splitting and Load Removal are available. (By bowsr, Micrologist and Loitho)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9778,7 +9778,7 @@
             <URL>https://raw.githubusercontent.com/kapdap/re-cvx-autosplitter/master/recvx.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start and Game Time are available for PCSX2 and RPCS3. (By Kapdap)</Description>
+        <Description>Auto Splitting, Auto Start and Game Time are available for PCSX2, RPCS3 and Dolphin emulators. (By Kapdap)</Description>
         <Website>https://github.com/kapdap/re-cvx-autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
