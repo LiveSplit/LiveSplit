@@ -1827,11 +1827,11 @@
             <Game>Titanfall 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Fzzy2j/Titanfall-2-Autosplitter/master/titanfall2.asl</URL>
+            <URL>https://raw.githubusercontent.com/Fzzy2j/FzzySplitter/master/LiveSplit.Titanfall.dll</URL>
         </URLs>
-        <Type>Script</Type>
+        <Type>Component</Type>
         <Description>Autosplitter is available. (By Fzzy2j)</Description>
-        <Website>https://github.com/Fzzy2j/Titanfall-2-Autosplitter/blob/master/README.md</Website>
+        <Website>https://github.com/Fzzy2j/FzzySplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3545,14 +3545,15 @@
     <AutoSplitter>
         <Games>
             <Game>Refunct</Game>
+            <Game>Refunct Randomizer</Game>
             <Game>Refunct Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/BatedUrGonnaDie/Autosplitters/master/Refunct/Refunct.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start/Reset are available. (By BatedUrGonnaDie)</Description>
-        <Website>https://github.com/BatedUrGonnaDie/Autosplitters</Website>
+        <Description>Game Time and Auto Start/Split/Reset are available. (By Refunct Community)</Description>
+        <Website>https://discord.gg/refunct</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10184,5 +10185,16 @@
         <Type>Script</Type>
         <Description>Autosplitting available (by rythin)</Description>
         <Website>https://www.speedrun.com/inkball</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Super Mario Pandemonium</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jean20B/SMP-Autosplitter/main/smp.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter with level title detection, and auto reset in main menu (by Jean20B)</Description>
+        <Website>https://www.speedrun.com/smp</Website>
     </AutoSplitter>
 </AutoSplitters>
