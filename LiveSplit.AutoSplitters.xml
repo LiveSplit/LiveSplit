@@ -10197,4 +10197,15 @@
         <Description>Autosplitter with level title detection, and auto reset in main menu (by Jean20B)</Description>
         <Website>https://www.speedrun.com/smp</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Disc Room</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/nmussy/LiveSplit-ASL/main/DiscRoom/discroom.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter with map coordinate detection and IGT support (by nmussy)</Description>
+        <Website>https://www.speedrun.com/disc_room</Website>
+    </AutoSplitter>
 </AutoSplitters>
