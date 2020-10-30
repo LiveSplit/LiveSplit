@@ -540,7 +540,7 @@
             <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Phasmophobia/Phasmophobia.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts when players are loaded in. Splits when closing the truck, requirements must be met. Resets when they're not. (by Ero)</Description>
+        <Description>Starts when players are loaded in. Splits/resets when closing the truck, check settings for conditions. (by Ero)</Description>
         <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/Phasmophobia</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -3147,6 +3147,7 @@
         <Games>
             <Game>DoomEternal</Game>
             <Game>Doom Eternal</Game>
+            <Game>DOOM Eternal: The Ancient Gods - Part One</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/loitho/doom-eternal/master/doometernal.asl</URL>
@@ -10207,5 +10208,16 @@
         <Type>Script</Type>
         <Description>Autosplitter with map coordinate detection and IGT support (by nmussy)</Description>
         <Website>https://www.speedrun.com/disc_room</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Carto</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.Carto/main/Components/LiveSplit.Carto.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Start/Split/Reset and Load Remover (By Voxelse)</Description>
+        <Website>https://github.com/Voxelse/LiveSplit.Carto</Website>
     </AutoSplitter>
 </AutoSplitters>
