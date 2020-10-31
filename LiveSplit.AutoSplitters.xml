@@ -10164,7 +10164,7 @@
             <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Ghostrunner/master/ghostrunner.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Game Time and Auto Splitting available. (By Micrologist)</Description>
+        <Description>Auto Splitting and Load Removal available. (By Micrologist)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10219,5 +10219,16 @@
         <Type>Component</Type>
         <Description>Auto Start/Split/Reset and Load Remover (By Voxelse)</Description>
         <Website>https://github.com/Voxelse/LiveSplit.Carto</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ugh!</Game>
+        </Games>
+        <URLs>
+            <URL>https://gitlab.com/0xC0DECAFE/livesplit-auto-splitters/-/raw/master/Ugh!.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset by 0xC0DECAFE</Description>
+        <Website>https://www.speedrun.com/ugh</Website>
     </AutoSplitter>
 </AutoSplitters>
