@@ -1219,6 +1219,7 @@
             <Game>A Hat in Time Beta Build</Game>
             <Game>AHiT</Game>
             <Game>A Hat in Time Workshop</Game>
+            <Game>A Hat in Time Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/CryZe/AHatInTimeAutoSplitter/master/AHatInTime.asl</URL>
@@ -10230,5 +10231,15 @@
         <Type>Script</Type>
         <Description>Auto Start/Split/Reset by 0xC0DECAFE</Description>
         <Website>https://www.speedrun.com/ugh</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hades</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mysterion06/Hades/main/HadesAutoSplitterFinal.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Mysterion_06_</Description>
     </AutoSplitter>
 </AutoSplitters>
