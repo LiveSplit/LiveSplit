@@ -10190,6 +10190,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Timelie</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Cadarev/ASL-Scripts/master/Timelie.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal and autosplitting available, Hell Loop DLC not yet supported (by Cadarev)</Description>
+        <Website>https://www.speedrun.com/timelie/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Super Mario Pandemonium</Game>
         </Games>
         <URLs>
@@ -10262,5 +10273,17 @@
         <Type>Script</Type>
         <Description>Autosplitter for Valkyria Chronicles that supports load removal and final boss hit splits (by Reicha7)</Description>
         <Website>https://github.com/archieyates/Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Terraria</Game>
+            <Game>Terraria Category Extensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.Terraria/main/Components/LiveSplit.Terraria.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Start and Split (By Voxelse)</Description>
+        <Website>https://github.com/Voxelse/LiveSplit.Terraria</Website>
     </AutoSplitter>
 </AutoSplitters>
