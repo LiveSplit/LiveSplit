@@ -1417,7 +1417,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.AliceMadnessReturns/Livesplit.AliceMadnessReturns.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start/Reset and Load Remover are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.AliceMadnessReturns</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -3353,7 +3353,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.ActionHenk/Livesplit.ActionHenk.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start/Reset and Load Remover are available (By faultyserver, badBlackShark and Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Load Remover (by faultyserver, badBlackShark and Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.ActionHenk</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -5643,7 +5643,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Minit/Livesplit.Minit.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Game Time (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Minit</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6188,7 +6188,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Fe/Livesplit.Fe.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
+        <Description>Auto Start/Split (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Fe</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6241,7 +6241,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Woten/Livesplit.Woten.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
+        <Description>Auto Start/Split (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Woten</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6385,7 +6385,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.TheMessenger/Livesplit.TheMessenger.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start and Load Remover are available (By Voxelse)</Description>
+        <Description>Auto Start/Split and Load Remover (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.TheMessenger</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6759,7 +6759,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.GRIS/Livesplit.GRIS.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
+        <Description>Auto Start/Split (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.GRIS</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6869,7 +6869,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.SabrinaZapped/Livesplit.SabrinaZapped.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
+        <Description>Auto Start/Split (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.SabrinaZapped</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6881,7 +6881,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.SabrinaSpooked/Livesplit.SabrinaSpooked.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
+        <Description>Auto Start/Split (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.SabrinaSpooked</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6978,7 +6978,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.LawnMower/Livesplit.LawnMower.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.LawnMower</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6990,7 +6990,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.NeoTurfMasters/Livesplit.NeoTurfMasters.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.NeoTurfMasters</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -7176,7 +7176,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.KirbyDreamLand/Livesplit.KirbyDreamLand.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.KirbyDreamLand</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -7255,7 +7255,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.BabaIsYou/Livesplit.BabaIsYou.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
+        <Description>Auto Start/Split (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.BabaIsYou</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -7333,7 +7333,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Vignettes/Livesplit.Vignettes.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Vignettes</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -7419,7 +7419,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.KatanaZERO/Livesplit.KatanaZERO.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.KatanaZERO</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -7685,7 +7685,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Flyn/Livesplit.Flyn.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Game Time (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Flyn</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -7803,7 +7803,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.NeverGiveUp/Livesplit.NeverGiveUp.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start and Game Time are available (By Voxelse)</Description>
+        <Description>Auto Start/Split and Game Time (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.NeverGiveUp</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8515,7 +8515,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.BubbleGhost/Livesplit.BubbleGhost.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start/Reset are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.BubbleGhost</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8580,7 +8580,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Flinthook/Livesplit.Flinthook.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Game Time (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Flinthook</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8663,7 +8663,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.AppleSlash/Livesplit.AppleSlash.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Auto Start are available (By Voxelse)</Description>
+        <Description>Auto Start/Split (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.AppleSlash</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8675,7 +8675,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.ScourgeBringer/Livesplit.ScourgeBringer.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Game Time (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.ScourgeBringer</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8686,7 +8686,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Kunai/Livesplit.Kunai.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start and Load Remover are available (By Voxelse)</Description>
+        <Description>Auto Start/Split and Load Remover (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Kunai</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8748,7 +8748,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.IceAgeNutty/Livesplit.IceAgeNutty.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start/Reset and Load Remover are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.IceAgeNutty</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8810,7 +8810,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Bloodroots/Livesplit.Bloodroots.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start/Reset and Game Time are available (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Game Time (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Bloodroots</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -9688,7 +9688,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Trackmania/Livesplit.Trackmania.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Auto Start and Game Time are available (By Voxelse)</Description>
+        <Description>Auto Start/Split and Game Time (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Trackmania</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -10144,7 +10144,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.TheLastCampfire/main/Components/LiveSplit.TheLastCampfire.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Auto Start/Split/Reset and Load Remover (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/LiveSplit.TheLastCampfire</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -10229,7 +10229,7 @@
             <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.Carto/main/Components/LiveSplit.Carto.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Auto Start/Split/Reset and Load Remover (By Voxelse)</Description>
+        <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/LiveSplit.Carto</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -10283,7 +10283,29 @@
             <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.Terraria/main/Components/LiveSplit.Terraria.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Auto Start and Split (By Voxelse)</Description>
+        <Description>Auto Start/Split (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/LiveSplit.Terraria</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>New Super Lucky's Tale</Game>
+            <Game>New Super Lucky's Tale Category Extensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.NewSuperLuckysTale/main/Components/LiveSplit.NewSuperLuckysTale.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Start/Split and Load Remover (by Voxelse)</Description>
+        <Website>https://github.com/Voxelse/LiveSplit.NewSuperLuckysTale</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Teardown</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Teardown/main/teardown.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal available. (By Micrologist)</Description>
     </AutoSplitter>
 </AutoSplitters>
