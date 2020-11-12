@@ -9090,7 +9090,7 @@
             <URL>https://raw.githubusercontent.com/loriswit/asl/master/superliminal_v3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto start/split/reset and load removal available. Requires Hot Coffee mod.</Description>
+        <Description>Auto start/split/reset and load removal available.</Description>
         <Website>https://discord.gg/T6JbGSG</Website>
     </AutoSplitter>
     <AutoSplitter>
