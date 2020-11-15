@@ -140,11 +140,33 @@ namespace LiveSplit.UI
                 : defaultBool;
         }
 
+        public static bool TryParseBool(XmlElement boolElement, out bool result, bool defaultBool = false)
+        {
+            if (boolElement != null && bool.TryParse(boolElement.InnerText, out result))
+            {
+                return true;
+            }
+
+            result = defaultBool;
+            return false;
+        }
+
         public static int ParseInt(XmlElement intElement, int defaultInt = 0)
         {
             return intElement != null
                 ? int.Parse(intElement.InnerText)
                 : defaultInt;
+        }
+
+        public static bool TryParseInt(XmlElement intElement, out int result, int defaultInt = 0)
+        {
+            if (intElement != null && int.TryParse(intElement.InnerText, out result))
+            {
+                return true;
+            }
+
+            result = defaultInt;
+            return false;
         }
 
         public static float ParseFloat(XmlElement floatElement, float defaultFloat = 0f)
@@ -154,11 +176,33 @@ namespace LiveSplit.UI
                 : defaultFloat;
         }
 
+        public static bool TryParseFloat(XmlElement floatElement, out float result, float defaultFloat = 0f)
+        {
+            if (floatElement != null && float.TryParse(floatElement.InnerText, out result))
+            {
+                return true;
+            }
+
+            result = defaultFloat;
+            return false;
+        }
+
         public static double ParseDouble(XmlElement doubleElement, double defaultDouble = 0.0)
         {
             return doubleElement != null
                 ? double.Parse(doubleElement.InnerText, CultureInfo.InvariantCulture)
                 : defaultDouble;
+        }
+
+        public static bool TryParseDouble(XmlElement doubleElement, out double result, double defaultDouble = 0.0)
+        {
+            if (doubleElement != null && double.TryParse(doubleElement.InnerText, out result))
+            {
+                return true;
+            }
+
+            result = defaultDouble;
+            return false;
         }
 
         public static string ParseString(XmlElement stringElement, string defaultString = null)
@@ -176,6 +220,18 @@ namespace LiveSplit.UI
             return timeSpanElement != null
                 ? TimeSpan.Parse(timeSpanElement.InnerText)
                 : defaultTimeSpan;
+        }
+
+        public static bool TryParseTimeSpan(XmlElement timeSpanElement, out TimeSpan result,
+            TimeSpan defaultTimeSpan = default(TimeSpan))
+        {
+            if (timeSpanElement != null && TimeSpan.TryParse(timeSpanElement.InnerText, out result))
+            {
+                return true;
+            }
+
+            result = defaultTimeSpan;
+            return false;
         }
 
         public static XmlElement ToElement<T>(XmlDocument document, string name, T value)
@@ -243,6 +299,17 @@ namespace LiveSplit.UI
                 : defaultEnum;
         }
 
+        public static bool TryParseEnum<T>(XmlElement element, out T result, T defaultEnum = default(T)) where T : struct
+        {
+            if (element != null && Enum.TryParse(element.InnerText, out result))
+            {
+                return true;
+            }
+            
+            result = defaultEnum;
+            return false;
+        }
+
         public static Version ParseVersion(XmlElement element)
         {
             return element != null 
@@ -250,11 +317,34 @@ namespace LiveSplit.UI
                 : new Version(1, 0, 0, 0);
         }
 
+        public static bool TryParseVersion(XmlElement element, out Version result)
+        {
+            if (element != null && Version.TryParse(element.InnerText, out result))
+            {
+                return true;
+            }
+
+            result = new Version(1, 0, 0, 0);
+            return false;
+        }
+
         public static Version ParseAttributeVersion(XmlElement element)
         {
             return element.HasAttribute("version")
                 ? Version.Parse(element.GetAttribute("version"))
                 : new Version(1, 0, 0, 0);
+        }
+
+        public static bool TryParseAttributeVersion(XmlElement element, out Version result)
+        {
+            if (element != null && element.HasAttribute("version")
+                && Version.TryParse(element.GetAttribute("version"), out result))
+            {
+                return true;
+            }
+
+            result = new Version(1, 0, 0, 0);
+            return false;
         }
     }
 }
