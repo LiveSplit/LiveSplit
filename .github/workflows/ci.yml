@@ -27,7 +27,7 @@ jobs:
           git checkout -b ${{ github.head_ref }} || git checkout ${{ github.head_ref }}
 
       - name: Set up .NET environment
-        uses: vrnobody/Setup-DotNetFrameworkEnv@v1
+        uses: vrnobody/Setup-DotNetFrameworkEnv@v1.2.6
 
       - name: Install NuGet packages
         run: nuget restore LiveSplit\LiveSplit.sln
