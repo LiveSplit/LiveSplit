@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+     <AutoSplitter>
+        <Games>
+            <Game>ActRaiser 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Traviktox/Lufia_2_ACAutosplitter/master/auto_actraiser_2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for ActRaiser 2 (By Traviktox)</Description>
+        <Website>https://discord.com/invite/rJcdTZc</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Earth 2150: Escape from the Blue Planet</Game>
