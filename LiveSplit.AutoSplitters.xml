@@ -2269,10 +2269,10 @@
             <Game>RE5</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Auddy07/ASL/master/RE5FullGameIGT.asl</URL>
+            <URL>https://raw.githubusercontent.com/Mysterion06/Resident-Evil-5/main/Splitter</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (By Auddy)</Description>
+        <Description>Auto Splitting and Load Removal are available. (By Auddy and Mysterion_06_)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
