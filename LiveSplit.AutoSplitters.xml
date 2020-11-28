@@ -11,6 +11,17 @@
         <Description>Autosplitter for ActRaiser 2 (By Traviktox)</Description>
         <Website>https://discord.com/invite/rJcdTZc</Website>
     </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Duck Life 1</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Caarda/dl1/main/dl1autosplitterv1.6.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Duck Life 1 (By Caarda) - Only works on flash player v32.0.0.114</Description>
+        <Website>https://www.speedrun.com/dl1</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Earth 2150: Escape from the Blue Planet</Game>
