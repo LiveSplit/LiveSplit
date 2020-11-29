@@ -33,6 +33,17 @@
         <Description>Autosplitter for the PC Game: Earth 2150: Escape from the Blue Planet (By Animal)</Description>
         <Website>https://www.speedrun.com/earth_2150_escape_from_the_blue_planet</Website>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Call of Duty: Black Ops Cold War Zombies</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/ColdWarZombies.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (By Kuno Demetries)</Description>
+        <Website>https://discord.com/invite/PWh24GjmTJ</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Clive Barker's Jericho</Game>
@@ -512,6 +523,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Gunfire Reborn</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Gunfire%20Reborn/GunfireReborn.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, splits (see settings), and resets upon entering main menu. Pauses when dying. (by Ero)</Description>
+        <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/Gunfire%20Reborn</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Hello Neighbor</Game>
         </Games>
         <URLs>
@@ -884,6 +906,18 @@
         <Type>Script</Type>
         <Description>Autostart and configurable splits for Dracula parts, whips, and crystals. Documentation, code, and example split file available from the website (By BloodSweatAndCode)</Description>
         <Website>https://github.com/tonylukasavage/liveview-autosplitter-castlevania-2</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Bug Fables: The Everlasting Sapling</Game>
+            <Game>Bug Fables</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aldelaro5/LiveSplit.BugFables/main/Components/LiveSplit.BugFables.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Autosplitter for Bug Fables: The Everlasting Sapling (By Aldelaro5)</Description>
+        <Website>https://github.com/aldelaro5/LiveSplit.BugFables/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
