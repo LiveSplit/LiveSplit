@@ -523,17 +523,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Gunfire Reborn</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Gunfire%20Reborn/GunfireReborn.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, splits (see settings), and resets upon entering main menu. Pauses when dying. (by Ero)</Description>
-        <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/Gunfire%20Reborn</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Hello Neighbor</Game>
         </Games>
         <URLs>
