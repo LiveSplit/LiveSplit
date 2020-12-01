@@ -523,6 +523,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Gunfire Reborn</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Gunfire%20Reborn/GunfireReborn.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, splits (see settings), and resets upon entering main menu. Pauses when dying. (by Ero)</Description>
+        <Website>https://github.com/just-ero/LiveSplit-Autosplitters/tree/master/Gunfire%20Reborn</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Hello Neighbor</Game>
         </Games>
         <URLs>
@@ -10418,4 +10429,24 @@
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal available. (By Micrologist)</Description>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>LEGO Star Wars: The Video Game</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/LSW1-Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available. (By Melody)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>LEGO Star Wars: The Complete Saga (PC/Console)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/TCS-Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available. (By Melody)</Description>
+    </AutoSplitter>	
 </AutoSplitters>
