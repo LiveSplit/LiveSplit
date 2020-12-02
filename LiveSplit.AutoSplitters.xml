@@ -10448,5 +10448,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting is available. (By Melody)</Description>
-    </AutoSplitter>	
+    </AutoSplitter>
+	  <AutoSplitter>
+          <Games>
+          <Game>Bad Rats: The Rats' Revenge</Game>
+        </Games>
+        <URLs>
+            <URL>https://gist.githubusercontent.com/klemmy1/8086cbee3834751f0449e73b0b98d6a2/raw/4d532ff2b227719ddedbec2a64be46e06b130d8a/badrats.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal available. Auto-splits at start of every load screen (By Klemmy1)</Description>
+    </AutoSplitter>
 </AutoSplitters>
