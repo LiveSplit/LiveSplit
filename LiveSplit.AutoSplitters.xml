@@ -10459,4 +10459,14 @@
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal available. Auto-splits at start of every load screen (By Klemmy1)</Description>
     </AutoSplitter>
+	<AutoSplitter>
+    	<Games>
+        <Game>Yakuza: Like a Dragon</Game>
+    	</Games>
+    	<URLs>
+        <URL>https://raw.githubusercontent.com/vojtas131/AutoSplits/master/lad/livesplit_lad.asl</URL>
+    	</URLs>
+    	<Type>Script</Type>
+    	<Description>Load removal by vojtas131</Description>
+	</AutoSplitter>
 </AutoSplitters>
