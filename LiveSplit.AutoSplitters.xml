@@ -512,6 +512,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Give Up, Robot</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Give%20Up%2C%20Robot/GiveUpRobot1.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts automatically. Resets when closing flash or reloading the game. Splits after every level. (by Ero)</Description>
+        <Website>https://raw.githubusercontent.com/just-ero/LiveSplit-Autosplitters/master/Give%20Up%2C%20Robot</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>GNOG</Game>
         </Games>
         <URLs>
@@ -5745,6 +5756,7 @@
             <Game>Sonic 1</Game>
             <Game>Sonic 1 (Genesis)</Game>
             <Game>Sonic 1 (Mega Drive)</Game>
+            <Game>Knuckles the Echidna in Sonic the Hedgehog</Game>
             <Game>Sonic the Hedgehog 2 (Genesis / Mega Drive)</Game>
             <Game>Sonic the Hedgehog 2</Game>
             <Game>Sonic 2</Game>
@@ -10469,4 +10481,15 @@
     	<Type>Script</Type>
     	<Description>Load removal by vojtas131</Description>
 	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+	    <Game>Rez (2004)</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/LiveSplit.Rez.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Auto-splitting (by Wafu)</Description>
+	<Website>https://github.com/KawaiiWafu/ASLScripts</Website>
+    </AutoSplitter>
 </AutoSplitters>
