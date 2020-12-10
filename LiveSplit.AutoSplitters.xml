@@ -10502,4 +10502,14 @@
     	<Type>Script</Type>
     	<Description>Autosplitting and Load Removal is available. Auto-splits on every load screen. (by Melody)</Description>
 	</AutoSplitter>
+	<AutoSplitter>
+    	<Games>
+        <Game>Middle-Earth: Shadow of War</Game>
+    	</Games>
+    	<URLs>
+        <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/ShadowOfWar.asl</URL>
+    	</URLs>
+    	<Type>Script</Type>
+    	<Description>Load Removal is available (by rythin)</Description>
+	</AutoSplitter>
 </AutoSplitters>
