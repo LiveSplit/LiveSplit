@@ -9347,7 +9347,7 @@
             <URL>https://raw.githubusercontent.com/SmileyAG/Sven-Coop-Autosplitter/master/svencoop.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Sven Co-op autosplitter. Works only with 2017 version. (by _Smiley, ScriptedSnark, Chillu)</Description>
+        <Description>Sven Co-op autosplitter. Works with any version.</Description>
         <Website>https://github.com/SmileyAG/Sven-Coop-Autosplitter/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
