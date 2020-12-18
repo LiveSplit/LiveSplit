@@ -489,6 +489,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Assemble with Care</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Assemble%20with%20Care/AssembleWithCare.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Resets and starts the timer hen progress is reset. Splits after every level and at the end. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Assemble%20with%20Care</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Devil Daggers</Game>
         </Games>
         <URLs>
