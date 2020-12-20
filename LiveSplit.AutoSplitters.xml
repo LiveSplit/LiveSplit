@@ -517,7 +517,7 @@
             <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Donut%20County/DonutCounty.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for Donut County. Check settings to edit where to split. (by Ero)</Description>
+        <Description>Load remover and autosplitter. Splits at the end of the run, additional in settings. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/Donut%20County</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -10533,4 +10533,15 @@
     	<Type>Script</Type>
     	<Description>Load Removal is available (by rythin)</Description>
 	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Super Mario: Mushroom Chaos</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jean20B/SMP-Autosplitter/main/smmc.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter with auto-start, auto-split at each level, and auto-reset on restart (by Jean20B)</Description>
+        <Website>https://www.speedrun.com/smmc</Website>
+    </AutoSplitter>
 </AutoSplitters>
