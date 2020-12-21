@@ -2028,6 +2028,19 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Penumbra: Overture</Game>
+            <Game>Penumbra Overture</Game>
+            <Game>Overture</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Astropilot/PenumbraOvertureAutoSplitter/main/Penumbra_Overture.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is availaible.</Description>
+        <Website>https://github.com/Astropilot/PenumbraOvertureAutoSplitter/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>BioShock: The Collection</Game>
             <Game>BioShock The Collection</Game>
             <Game>BioShock Remastered</Game>
