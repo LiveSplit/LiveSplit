@@ -10,6 +10,28 @@
      	<Type>Script</Type>
      	<Description>Load Removal is available (by Radioactiv)</Description>
      </AutoSplitter>
+		<AutoSplitter>
+     	<Games>
+            <Game>Nevermind</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/Nevermind.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Load Remover (by Kuno Demetries)</Description>
+        <Website>https://discord.com/invite/Mt5V7U4</Website>
+     </AutoSplitter>
+		<AutoSplitter>
+     	<Games>
+            <Game>Wanted: Weapons of Fate</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/WantedWeaponsofFate.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
+	<Website>https://www.speedrun.com/wwof</Website>
+     </AutoSplitter>
      <AutoSplitter>
         <Games>
             <Game>ActRaiser 2</Game>
@@ -5367,6 +5389,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Firewing 64</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/Firewing%2064/autosplitter_firewing64.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Website>https://github.com/R3FR4G/LiveSplit-ASL-Scripts/tree/master/Firewing%2064</Website>
+        <Description>Automatic start/split/reset (By Refrag)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Sonic Robo Blast 2</Game>
             <Game>Sonic Robo Blast 2: The Mystic Realm</Game>
             <Game>Sonic Robo Blast 2: Shut Up and Get On It</Game>
@@ -10301,6 +10334,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>PC Autosplitter and Load Remover (By Avasam)</Description>
+    	<Website>https://discord.com/invite/NEVJPZk</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10556,5 +10590,16 @@
         <Type>Script</Type>
         <Description>Autosplitter with auto-start, auto-split at each level, and auto-reset on restart (by Jean20B)</Description>
         <Website>https://www.speedrun.com/smmc</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>RiME</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Avasam/RiME-AutoSplitter/main/RiME.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (By Avasam). Click Website for the README</Description>
+        <Website>https://github.com/Avasam/RiME-AutoSplitter/blob/main/README.md</Website>
     </AutoSplitter>
 </AutoSplitters>
