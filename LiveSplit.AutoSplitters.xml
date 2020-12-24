@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
      	<Games>
+            <Game>MudRunner</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/LeoBound/MudRunnerAutoSplit/main/mudrunner.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Autostart/stop/pause for MudRunner</Description>
+	<Website>https://discord.gg/Pv3tGVE</Website>
+     </AutoSplitter>
+	<AutoSplitter>
+     	<Games>
             <Game>Cyberpunk 2077</Game>
      	</Games>
      	<URLs>
