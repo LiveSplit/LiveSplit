@@ -673,7 +673,18 @@
         <Type>Script</Type>
         <Description>Starts and resets the timer. Choose splits in settings. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Post%20Void</Website>
-    </AutoSplitter>    
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ruff Night at the Gallery</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Ruff%20Night%20at%20the%20Gallery/RuffNightAtTheGallery.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts on first movement, resets when quitting to menu. Check settings for splits. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Ruff%20Night%20at%20the%20Gallery</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>The Spectrum Retreat</Game>
