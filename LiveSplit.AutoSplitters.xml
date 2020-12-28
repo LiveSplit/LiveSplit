@@ -10624,4 +10624,26 @@
         <Description>Autosplitter (By Avasam). Click Website for the README</Description>
         <Website>https://github.com/Avasam/RiME-AutoSplitter/blob/main/README.md</Website>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Total War: Warhammer II</Game>
+	    <Game>Total War: Warhammer 2</Game>
+	    <Game>Total War : Warhammer II</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Warhammer2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal available. (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Live for Speed</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mayuso/LFSAutoSplitter/master/LFSAutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load and Menu times removed. Works for all categories. (by mayuso)</Description>
+    </AutoSplitter>
 </AutoSplitters>
