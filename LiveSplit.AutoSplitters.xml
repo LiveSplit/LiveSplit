@@ -10646,4 +10646,15 @@
         <Type>Script</Type>
         <Description>Load and Menu times removed. Works for all categories. (by mayuso)</Description>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Red Faction Armageddon</Game>
+	    <Game>Red Faction: Armageddon</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/RedFactionArmageddon.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available (by rythin)</Description>
+    </AutoSplitter>
 </AutoSplitters>
