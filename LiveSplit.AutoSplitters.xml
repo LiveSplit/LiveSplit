@@ -7130,9 +7130,22 @@
     <AutoSplitter>
         <Games>
             <Game>Far Cry 3</Game>
+	    <Game>FC3</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/FC3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/LoadRemover is available (by AlexYeahNot )</Description>
+        <Website>https://discord.gg/D7vJsC</Website>
+    </AutoSplitter>
+	    <AutoSplitter>
+        <Games>
+            <Game>Far Cry 3: Blood Dragon</Game>
+	    <Game>FC3BD</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/Blood%20Dragon.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>LoadRemover is available (by AlexYeahNot )</Description>
