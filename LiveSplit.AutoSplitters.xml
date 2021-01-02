@@ -10670,4 +10670,14 @@
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Slowdrive</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Slowdrive.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting available (by rythin)</Description>
+    </AutoSplitter>
 </AutoSplitters>
