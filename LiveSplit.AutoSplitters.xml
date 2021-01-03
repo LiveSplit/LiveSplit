@@ -10680,4 +10680,15 @@
         <Type>Script</Type>
         <Description>Autosplitting available (by rythin)</Description>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Tales of Berseria</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samehhamadeh/AutoSplitters/main/tob.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting available (by LurkingSR)</Description>
+	<Website>https://github.com/samehhamadeh/AutoSplitters</Website>
+    </AutoSplitter>
 </AutoSplitters>
