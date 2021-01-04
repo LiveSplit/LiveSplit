@@ -15,6 +15,7 @@ namespace LiveSplit.Options.SettingsFactories
                 ThinSeparatorsColor = FromArgb(9, 255, 255, 255),
                 SeparatorsColor = FromArgb(38, 255, 255, 255),
                 PersonalBestColor = FromArgb(22, 166, 255),
+                NotPersonalBestColor = FromArgb(204, 55, 41),
                 AheadGainingTimeColor = FromArgb(41, 204, 84),
                 AheadLosingTimeColor = FromArgb(112, 204, 137),
                 BehindGainingTimeColor = FromArgb(204, 120, 112),

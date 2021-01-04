@@ -60,6 +60,8 @@
             this.label14 = new System.Windows.Forms.Label();
             this.btnTextOutlineColor = new System.Windows.Forms.Button();
             this.chkAlwaysOnTop = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnNotPB = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.chkAntiAliasing = new System.Windows.Forms.CheckBox();
@@ -119,10 +121,10 @@
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 228F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 257F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 541);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 570);
             this.tableLayoutPanel5.TabIndex = 41;
             // 
             // chkMousePassThroughWhileRunning
@@ -146,7 +148,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 258);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(456, 222);
+            this.groupBox2.Size = new System.Drawing.Size(456, 251);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Colors";
@@ -174,22 +176,24 @@
             this.tableLayoutPanel2.Controls.Add(this.btnBehindLosing, 2, 4);
             this.tableLayoutPanel2.Controls.Add(this.chkRainbow, 3, 0);
             this.tableLayoutPanel2.Controls.Add(this.label10, 3, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label2, 3, 4);
-            this.tableLayoutPanel2.Controls.Add(this.label4, 3, 2);
-            this.tableLayoutPanel2.Controls.Add(this.label3, 3, 5);
-            this.tableLayoutPanel2.Controls.Add(this.label12, 3, 3);
+            this.tableLayoutPanel2.Controls.Add(this.label2, 3, 5);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 3, 6);
             this.tableLayoutPanel2.Controls.Add(this.btnNotRunning, 4, 1);
-            this.tableLayoutPanel2.Controls.Add(this.btnThinSep, 4, 4);
-            this.tableLayoutPanel2.Controls.Add(this.btnPB, 4, 2);
-            this.tableLayoutPanel2.Controls.Add(this.btnSeparators, 4, 5);
-            this.tableLayoutPanel2.Controls.Add(this.btnPausedColor, 4, 3);
-            this.tableLayoutPanel2.Controls.Add(this.btnShadowsColor, 4, 6);
-            this.tableLayoutPanel2.Controls.Add(this.label14, 3, 6);
             this.tableLayoutPanel2.Controls.Add(this.btnTextOutlineColor, 2, 6);
+            this.tableLayoutPanel2.Controls.Add(this.btnSeparators, 4, 6);
+            this.tableLayoutPanel2.Controls.Add(this.btnThinSep, 4, 5);
+            this.tableLayoutPanel2.Controls.Add(this.label14, 0, 7);
+            this.tableLayoutPanel2.Controls.Add(this.btnShadowsColor, 2, 7);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 3, 4);
+            this.tableLayoutPanel2.Controls.Add(this.label12, 3, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label4, 3, 3);
+            this.tableLayoutPanel2.Controls.Add(this.btnNotPB, 4, 4);
+            this.tableLayoutPanel2.Controls.Add(this.btnPausedColor, 4, 2);
+            this.tableLayoutPanel2.Controls.Add(this.btnPB, 4, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 7;
+            this.tableLayoutPanel2.RowCount = 8;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
@@ -197,8 +201,8 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(450, 203);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(450, 232);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // lblOutlines
@@ -377,7 +381,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(227, 124);
+            this.label2.Location = new System.Drawing.Point(227, 153);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(191, 13);
             this.label2.TabIndex = 20;
@@ -387,7 +391,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(227, 66);
+            this.label4.Location = new System.Drawing.Point(227, 95);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(191, 13);
             this.label4.TabIndex = 22;
@@ -397,7 +401,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(227, 153);
+            this.label3.Location = new System.Drawing.Point(227, 182);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(191, 13);
             this.label3.TabIndex = 21;
@@ -407,7 +411,7 @@
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(227, 95);
+            this.label12.Location = new System.Drawing.Point(227, 66);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(191, 13);
             this.label12.TabIndex = 41;
@@ -445,7 +449,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPB.Location = new System.Drawing.Point(424, 61);
+            this.btnPB.Location = new System.Drawing.Point(424, 90);
             this.btnPB.Name = "btnPB";
             this.btnPB.Size = new System.Drawing.Size(23, 23);
             this.btnPB.TabIndex = 16;
@@ -458,7 +462,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSeparators.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnSeparators.Location = new System.Drawing.Point(424, 148);
+            this.btnSeparators.Location = new System.Drawing.Point(424, 177);
             this.btnSeparators.Name = "btnSeparators";
             this.btnSeparators.Size = new System.Drawing.Size(23, 23);
             this.btnSeparators.TabIndex = 22;
@@ -471,61 +475,35 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPausedColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnPausedColor.Location = new System.Drawing.Point(424, 90);
+            this.btnPausedColor.Location = new System.Drawing.Point(424, 61);
             this.btnPausedColor.Name = "btnPausedColor";
             this.btnPausedColor.Size = new System.Drawing.Size(23, 23);
             this.btnPausedColor.TabIndex = 18;
             this.btnPausedColor.UseVisualStyleBackColor = false;
             this.btnPausedColor.Click += new System.EventHandler(this.ColorButtonClick);
             // 
-            // btnShadowsColor
+            // label1
             // 
-            this.btnShadowsColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(227, 124);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(191, 13);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Not Personal Best:";
+            // 
+            // btnNotPB
+            // 
+            this.btnNotPB.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnShadowsColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnShadowsColor.Location = new System.Drawing.Point(424, 177);
-            this.btnShadowsColor.Name = "btnShadowsColor";
-            this.btnShadowsColor.Size = new System.Drawing.Size(23, 23);
-            this.btnShadowsColor.TabIndex = 24;
-            this.btnShadowsColor.UseVisualStyleBackColor = false;
-            this.btnShadowsColor.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(227, 182);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(191, 13);
-            this.label14.TabIndex = 44;
-            this.label14.Text = "Shadows:";
-            // 
-            // btnTextOutlineColor
-            // 
-            this.btnTextOutlineColor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnTextOutlineColor.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.btnTextOutlineColor.Location = new System.Drawing.Point(198, 177);
-            this.btnTextOutlineColor.Name = "btnTextOutlineColor";
-            this.btnTextOutlineColor.Size = new System.Drawing.Size(23, 23);
-            this.btnTextOutlineColor.TabIndex = 23;
-            this.btnTextOutlineColor.UseVisualStyleBackColor = false;
-            this.btnTextOutlineColor.Click += new System.EventHandler(this.ColorButtonClick);
-            // 
-            // chkAlwaysOnTop
-            // 
-            this.chkAlwaysOnTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkAlwaysOnTop.AutoSize = true;
-            this.chkAlwaysOnTop.Location = new System.Drawing.Point(237, 486);
-            this.chkAlwaysOnTop.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkAlwaysOnTop.Name = "chkAlwaysOnTop";
-            this.chkAlwaysOnTop.Size = new System.Drawing.Size(96, 23);
-            this.chkAlwaysOnTop.TabIndex = 25;
-            this.chkAlwaysOnTop.Text = "Always on Top";
-            this.chkAlwaysOnTop.UseVisualStyleBackColor = true;
+            this.btnNotPB.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnNotPB.Location = new System.Drawing.Point(424, 119);
+            this.btnNotPB.Name = "btnNotPB";
+            this.btnNotPB.Size = new System.Drawing.Size(23, 23);
+            this.btnNotPB.TabIndex = 48;
+            this.btnNotPB.UseVisualStyleBackColor = false;
+            this.btnNotPB.Click += new System.EventHandler(this.ColorButtonClick);
             // 
             // groupBox1
             // 
@@ -870,7 +848,7 @@
             this.Controls.Add(this.tableLayoutPanel5);
             this.Name = "LayoutSettingsControl";
             this.Padding = new System.Windows.Forms.Padding(7);
-            this.Size = new System.Drawing.Size(476, 555);
+            this.Size = new System.Drawing.Size(476, 584);
             this.Load += new System.EventHandler(this.LayoutSettingsControl_Load);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -950,5 +928,7 @@
         private System.Windows.Forms.Label lblOutlines;
         private System.Windows.Forms.Button btnTextOutlineColor;
         private System.Windows.Forms.CheckBox chkMousePassThroughWhileRunning;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnNotPB;
     }
 }

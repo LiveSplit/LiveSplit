@@ -25,6 +25,7 @@ namespace LiveSplit.UI.LayoutFactories
             settings.ThinSeparatorsColor = SettingsHelper.ParseColor(element["ThinSeparatorsColor"]);
             settings.SeparatorsColor = SettingsHelper.ParseColor(element["SeparatorsColor"]);
             settings.PersonalBestColor = SettingsHelper.ParseColor(element["PersonalBestColor"]);
+            settings.NotPersonalBestColor = SettingsHelper.ParseColor(element["NotPersonalBestColor"], Color.FromArgb(204, 55, 41));
             settings.AheadGainingTimeColor = SettingsHelper.ParseColor(element["AheadGainingTimeColor"]);
             settings.AheadLosingTimeColor = SettingsHelper.ParseColor(element["AheadLosingTimeColor"]);
             settings.BehindGainingTimeColor = SettingsHelper.ParseColor(element["BehindGainingTimeColor"]);
