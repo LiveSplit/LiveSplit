@@ -511,6 +511,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Alba: A Wildlife Adventure</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Alba%3A%20A%20Wildlife%20Adventure/Alba_AWildlifeAdventure.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets, syncs to game time. Splits in the settings. Includes completion tracker. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Alba:%20A%20Wildlife%20Adventure</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>And All Would Cry Beware!</Game>
         </Games>
         <URLs>
@@ -9268,7 +9279,7 @@
             <Game>Superliminal</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/loriswit/asl/master/superliminal_v3.asl</URL>
+            <URL>https://raw.githubusercontent.com/loriswit/asl/main/superliminal.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split/reset and load removal available.</Description>
@@ -10442,10 +10453,10 @@
             <Game>Hades</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Mysterion06/Hades/main/HadesAutoSplitterFinal.asl</URL>
+            <URL>https://raw.githubusercontent.com/SystematicSkid/Livesplit-Autosplitters/main/hades.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter by Mysterion_06_</Description>
+        <Description>Autosplitter and Reset (SystematicSkid)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
