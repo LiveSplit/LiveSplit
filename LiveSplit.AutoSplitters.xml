@@ -1507,6 +1507,7 @@
         <Games>
             <Game>Borderlands: Enhanced Edition</Game>
             <Game>Borderlands Game of the Year Enhanced</Game>
+            <Game>Borderlands: Game of the Year Enhanced</Game>
             <Game>BL1E</Game>
             <Game>BL1GOTY</Game>
         </Games>
@@ -7157,6 +7158,32 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/Blood%20Dragon.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>LoadRemover is available (by AlexYeahNot )</Description>
+        <Website>https://discord.gg/D7vJsC</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Far Cry 5</Game>
+	    <Game>FC5</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/FC5LR.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>LoadRemover is available (by AlexYeahNot )</Description>
+        <Website>https://discord.gg/D7vJsC</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Far Cry New Dawn</Game>
+	    <Game>FCND</Game>
+	    <Game>Far Cry: New Dawn</Game>
+	    <Game>FC:ND</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/FCNDLR.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>LoadRemover is available (by AlexYeahNot )</Description>
