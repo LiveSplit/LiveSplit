@@ -3980,6 +3980,22 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Pokémon Red - Custom Starter</Game>
+            <Game>Pokémon Blue - Custom Starter</Game>
+            <Game>Pokémon Red/Blue - Custom Starter</Game>
+            <Game>Pokemon Red - Custom Starter</Game>
+            <Game>Pokemon Blue - Custom Starter</Game>
+            <Game>Pokemon Red/Blue - Custom Starter</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hwangbro/ASLScripts/master/LiveSplit.PkmnRed/LiveSplit.PkmnRedCustomStarter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Hwangbro)</Description>
+        <Website>https://github.com/hwangbro/ASLScripts/tree/master/LiveSplit.PkmnRed</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Pokémon Red++</Game>
             <Game>Pokémon Red ++</Game>
             <Game>Pokemon Red++</Game>
