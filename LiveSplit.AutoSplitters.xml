@@ -6221,6 +6221,19 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Haydee2</Game>
+            <Game>Haydee 2</Game>
+            <Game>Haydee 2.0</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/EnthusiastNT/haydee2/main/haydee2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Configurable Load Remover / Auto Splitter (by Enthusiast)</Description>
+        <Website>https://github.com/EnthusiastNT/haydee2</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>VVVVVV</Game>
         </Games>
         <URLs>
@@ -7533,7 +7546,7 @@
             <Game>Sekiro: Shadows Die Twice</Game>
         </Games>
         <URLs>
-            <URL>https://gist.githubusercontent.com/pawREP/98c2828e7550caeb521d65c581f43a69/raw/bc21b517cf28fa6edbb679a19ea87f9d1b527dc2/Sekiro.asl</URL>
+            <URL>https://gist.githubusercontent.com/RefinedHornet/70453f953d536229d093a7f86b4559cd/raw/82934d59ef2be7a55aa9637de86fd7a2be995212/Sekiro.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Game time, auto-start and several QOL improvments.</Description>
