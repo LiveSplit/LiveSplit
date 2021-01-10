@@ -1,6 +1,6 @@
 ﻿using System;
-using LiveSplit.TimeFormatters;
 using Xunit;
+using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.Tests.TimeFormatTests
 {
@@ -21,17 +21,17 @@ namespace LiveSplit.Tests.TimeFormatTests
         [InlineData("00:00:09.8888888", TimeAccuracy.Tenths, "0:09.8")]
         [InlineData("00:00:10.8888888", TimeAccuracy.Hundredths, "0:10.88")]
         [InlineData("00:00:11.8888888", TimeAccuracy.Milliseconds, "0:11.888")]
-        public void FormatsTimespanCorrectly_WhenDeterminedAccuracyIsGiven(string timespanText, TimeAccuracy accuracy, string expected)
+        public void FormatsTimeCorrectly_WhenDeterminedAccuracyIsSupplied(string timespanText, TimeAccuracy accuracy, string expectedTime)
         {
-            var formatter = new GeneralTimeFormatter
+            var sut = new GeneralTimeFormatter
             {
                 DigitsFormat = DigitsFormat.SingleDigitMinutes,
                 Accuracy = accuracy
             };
             var time = TimeSpan.Parse(timespanText);
-            var formatted = formatter.Format(time);
+            var formattedTime = sut.Format(time);
 
-            Assert.Equal(expected, formatted);
+            Assert.Equal(expectedTime, formattedTime);
         }
     }
 }

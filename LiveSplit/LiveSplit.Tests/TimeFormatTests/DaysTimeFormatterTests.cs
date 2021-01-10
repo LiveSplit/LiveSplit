@@ -7,9 +7,16 @@ namespace LiveSplit.Tests.TimeFormatterTests
     public class DaysTimeFormatterTests
     {
         // These tests cover DaysTimeFormatter, which (is/was not) based on any other TimeFormatter implementation
+        [Fact]
+        public void FormatsTimeAsZero_WhenTimeIsNull()
+        {
+            var sut = new DaysTimeFormatter();
+
+            var formattedTime = sut.Format(null);
+            Assert.Equal("0", formattedTime);
+        }
 
         [Theory]
-        [InlineData(null, "0")]
         [InlineData("00:00:00", "0:00")]
         [InlineData("00:00:01.03", "0:01")]
         [InlineData("00:05:01.03", "5:01")]
@@ -17,16 +24,13 @@ namespace LiveSplit.Tests.TimeFormatterTests
         [InlineData("1.07:05:01.03", "1d 7:05:01")]
         [InlineData("9.23:02:03.412", "9d 23:02:03")]
         [InlineData("272.13:04:05.612", "272d 13:04:05")]
-        public void TestDaysTimeFormatter(string timespanText, string expected)
+        public void TestDaysTimeFormatter(string timespanText, string expectedTime)
         {
-            var formatter = new DaysTimeFormatter();
+            var sut = new DaysTimeFormatter();
+            var time = TimeSpan.Parse(timespanText);
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
-
-            string formatted = formatter.Format(time);
-            Assert.Equal(expected, formatted);
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedTime, formattedTime);
         }
 
         /*

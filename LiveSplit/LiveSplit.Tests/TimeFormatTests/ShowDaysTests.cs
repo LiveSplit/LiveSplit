@@ -1,6 +1,6 @@
 ﻿using System;
-using LiveSplit.TimeFormatters;
 using Xunit;
+using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.Tests.TimeFormatTests
 {
@@ -29,9 +29,9 @@ namespace LiveSplit.Tests.TimeFormatTests
 
         [InlineData("-5:01:15:45", DigitsFormat.SingleDigitHours, "−5d 1:15:45")]
         [InlineData("-6:02:56:51", DigitsFormat.DoubleDigitHours, "−6d 02:56:51")]
-        public void FormatsTimespamCorrectly_WhenShowDaysIsTrue(string timespanText, DigitsFormat format, string expected)
+        public void FormatsTimCorrectly_WhenShowDaysIsTrue(string timespanText, DigitsFormat format, string expectedTime)
         {
-            var formatter = new GeneralTimeFormatter
+            var sut = new GeneralTimeFormatter
             {
                 DigitsFormat = format,
                 ShowDays = true,
@@ -39,9 +39,9 @@ namespace LiveSplit.Tests.TimeFormatTests
             };
 
             var time = TimeSpan.Parse(timespanText);
-            var formatted = formatter.Format(time);
+            var formattedTime = sut.Format(time);
 
-            Assert.Equal(expected, formatted);
+            Assert.Equal(expectedTime, formattedTime);
         }
     }
 }

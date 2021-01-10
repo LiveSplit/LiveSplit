@@ -14,9 +14,18 @@ namespace LiveSplit.Tests.TimeFormatterTests
         //new AutomaticPrecisionTimeFormatter(); // -> RegularTimeFormatter with changes
 
         [Theory]
-        [InlineData(null, TimeAccuracy.Seconds, "0")]
-        [InlineData(null, TimeAccuracy.Tenths, "0.0")]
-        [InlineData(null, TimeAccuracy.Hundredths, "0.00")]
+        [InlineData(TimeAccuracy.Seconds, "0")]
+        [InlineData(TimeAccuracy.Tenths, "0.0")]
+        [InlineData(TimeAccuracy.Hundredths, "0.00")]
+        public void RegularTimeFormatterFormatsTimeCorrectlyInGivenAccuracy_WhenTimeIsNull(TimeAccuracy timeAccuracy, string expectedTime)
+        {
+            var sut = new RegularTimeFormatter(timeAccuracy);
+
+            var formattedTime = sut.Format(null);
+            Assert.Equal(expectedTime, formattedTime);
+        }
+        
+        [Theory]
         [InlineData("00:00:00", TimeAccuracy.Seconds, "0:00")]
         [InlineData("00:00:00", TimeAccuracy.Tenths, "0:00.0")]
         [InlineData("00:00:00", TimeAccuracy.Hundredths, "0:00.00")]
@@ -31,23 +40,28 @@ namespace LiveSplit.Tests.TimeFormatterTests
         [InlineData("00:10:00.006", TimeAccuracy.Hundredths, "10:00.00")]
         [InlineData("9.11:01:01.999", TimeAccuracy.Hundredths, "227:01:01.99")]
         [InlineData("1.00:00:01.999", TimeAccuracy.Hundredths, "24:00:01.99")] 
-
-        public void TestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        public void RegularTimeFormatterFormatsTimeCorrectlyInGivenAccuracy_WhenTimeIsValid(string timespanText, TimeAccuracy timeAccuracy, string expectedTime)
         {
-            var formatter = new RegularTimeFormatter(timeAccuracy);
+            var sut = new RegularTimeFormatter(timeAccuracy);
+            var time = TimeSpan.Parse(timespanText);
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
-
-            string formatted = formatter.Format(time);
-            Assert.Equal(expected, formatted);
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedTime, formattedTime);
         }
 
         [Theory]
-        [InlineData(null, TimeAccuracy.Seconds, "-")]
-        [InlineData(null, TimeAccuracy.Tenths, "-")]
-        [InlineData(null, TimeAccuracy.Hundredths, "-")]
+        [InlineData(TimeAccuracy.Seconds)]
+        [InlineData(TimeAccuracy.Tenths)]
+        [InlineData(TimeAccuracy.Hundredths)]
+        public void RegularSplitTimeFormatterFormatsTimeAsDash_WhenTimeIsNullRegardlessOfAccuracy(TimeAccuracy timeAccuracy)
+        {
+            var sut = new RegularSplitTimeFormatter(timeAccuracy);
+
+            var formattedTime = sut.Format(null);
+            Assert.Equal(TimeFormatConstants.DASH, formattedTime);
+        }
+
+        [Theory]
         [InlineData("00:00:00", TimeAccuracy.Seconds, "0:00")]
         [InlineData("00:00:00", TimeAccuracy.Tenths, "0:00.0")]
         [InlineData("00:00:00", TimeAccuracy.Hundredths, "0:00.00")]
@@ -60,23 +74,28 @@ namespace LiveSplit.Tests.TimeFormatterTests
         [InlineData("01:05:01.999", TimeAccuracy.Tenths, "1:05:01.9")]
         [InlineData("00:00:00.05", TimeAccuracy.Hundredths, "0:00.05")]
         [InlineData("00:10:00.006", TimeAccuracy.Hundredths, "10:00.00")]
-        public void TestRegularSplitTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        public void RegularSplitTimeFormatterFormatsTimeCorrectly_WhenTimeIsValid(string timespanText, TimeAccuracy timeAccuracy, string expectedTime)
         {
-            var formatter = new RegularSplitTimeFormatter(timeAccuracy);
-
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
-
-            string formatted = formatter.Format(time);
-            Assert.Equal(expected, formatted);
+            var sut = new RegularSplitTimeFormatter(timeAccuracy);
+            var time = TimeSpan.Parse(timespanText);
+            
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedTime, formattedTime);
         }
 
+        [Theory]
+        [InlineData(TimeAccuracy.Seconds)]
+        [InlineData(TimeAccuracy.Tenths)]
+        [InlineData(TimeAccuracy.Hundredths)]
+        public void RunPredictionFormatterFormatsTimeAsDash_WhenTimeIsNullRegardlessOfAccuracy(TimeAccuracy timeAccuracy)
+        {
+            var sut = new RunPredictionFormatter(timeAccuracy);
+
+            var formattedTime = sut.Format(null);
+            Assert.Equal(TimeFormatConstants.DASH, formattedTime);
+        }
 
         [Theory]
-        [InlineData(null, TimeAccuracy.Seconds, "-")]
-        [InlineData(null, TimeAccuracy.Tenths, "-")]
-        [InlineData(null, TimeAccuracy.Hundredths, "-")]
         [InlineData("00:00:00", TimeAccuracy.Seconds, "0:00")]
         [InlineData("00:00:00", TimeAccuracy.Tenths, "0:00.0")]
         [InlineData("00:00:00", TimeAccuracy.Hundredths, "0:00.00")]
@@ -89,22 +108,32 @@ namespace LiveSplit.Tests.TimeFormatterTests
         [InlineData("01:05:01.999", TimeAccuracy.Tenths, "1:05:01.9")]
         [InlineData("00:00:00.05", TimeAccuracy.Hundredths, "0:00.05")]
         [InlineData("00:10:00.006", TimeAccuracy.Hundredths, "10:00.00")]
-        public void TestRunPredictionFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        public void RunPredictionFormatterFormatsTimeCorrectly_WhenTimeIsValid(string timespanText, TimeAccuracy timeAccuracy, string expectedTime)
         {
-            var formatter = new RunPredictionFormatter(timeAccuracy);
+            var sut = new RunPredictionFormatter(timeAccuracy);
+            var time = TimeSpan.Parse(timespanText);
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
-
-            string formatted = formatter.Format(time);
-            Assert.Equal(expected, formatted);
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedTime, formattedTime);
         }
 
         [Theory]
-        [InlineData(null, TimeAccuracy.Seconds, "-")]
-        [InlineData(null, TimeAccuracy.Tenths, "-")]
-        [InlineData(null, TimeAccuracy.Hundredths, "-")]
+        [InlineData(TimeAccuracy.Seconds)]
+        [InlineData(TimeAccuracy.Tenths)]
+        [InlineData(TimeAccuracy.Hundredths)]
+        public void RegularSumOfBestTimeFormatterFormatsTimeAsDash_WhenTimeIsNullRegardlessOfAccuracy(TimeAccuracy timeAccuracy)
+        {
+            var sut = new RegularSumOfBestTimeFormatter
+            {
+                Accuracy = timeAccuracy
+            };
+
+            var formattedTime = sut.Format(null);
+            Assert.Equal(TimeFormatConstants.DASH, formattedTime);
+
+        }
+
+        [Theory]
         [InlineData("00:00:00", TimeAccuracy.Seconds, "0:00")]
         [InlineData("00:00:00", TimeAccuracy.Tenths, "0:00.0")]
         [InlineData("00:00:00", TimeAccuracy.Hundredths, "0:00.00")]
@@ -117,21 +146,29 @@ namespace LiveSplit.Tests.TimeFormatterTests
         [InlineData("01:05:01.999", TimeAccuracy.Tenths, "1:05:01.9")]
         [InlineData("00:00:00.05", TimeAccuracy.Hundredths, "0:00.05")]
         [InlineData("00:10:00.006", TimeAccuracy.Hundredths, "10:00.00")]
-        public void TestRegularSumOfBestTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        public void RegularSumOfBestTimeFormatterFormatsTimeCorrectly_WhenTimeIsValid(string timespanText, TimeAccuracy timeAccuracy, string expectedTime)
         {
-            var formatter = new RegularSumOfBestTimeFormatter();
-            formatter.Accuracy = timeAccuracy;
+            var sut = new RegularSumOfBestTimeFormatter
+            {
+                Accuracy = timeAccuracy
+            };
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
+            var time = TimeSpan.Parse(timespanText);
 
-            string formatted = formatter.Format(time);
-            Assert.Equal(expected, formatted);
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedTime, formattedTime);
+        }
+
+        [Fact]
+        public void AutomaticPrecisionTimeFormatterFormatsTimeAsZero_WhenTimeIsNull()
+        {
+            var sut = new AutomaticPrecisionTimeFormatter();
+
+            var formattedTime = sut.Format(null);
+            Assert.Equal("0", formattedTime);
         }
 
         [Theory]
-        [InlineData(null, "0")]
         [InlineData("00:00:00", "0:00")]
         [InlineData("00:00:01", "0:01")]
         [InlineData("00:00:02.0", "0:02")]
@@ -148,35 +185,28 @@ namespace LiveSplit.Tests.TimeFormatterTests
         [InlineData("00:05:01.999", "5:01.99")]
         [InlineData("00:25:01.999", "25:01.99")]
         [InlineData("00:10:00.006", "10:00.00")]
-        public void TestAutomaticPrecisionTimeFormatter(string timespanText, string expected)
+        public void AutomaticPrecisionTimeFormatterFormatsTimeCorrectly_WhenTimeIsValid(string timespanText, string expectedTime)
         {
-            var formatter = new AutomaticPrecisionTimeFormatter();
+            var sut = new AutomaticPrecisionTimeFormatter();
+            var time = TimeSpan.Parse(timespanText);
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
-
-            string formatted = formatter.Format(time);
-            Assert.Equal(expected, formatted);
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedTime, formattedTime);
         }
 
-        
         [Theory]
         [InlineData("-00:00:00.05", TimeAccuracy.Hundredths, "−0:00.05")] // Actual:<0:00.05> [Fail]
         [InlineData("-00:00:01.009", TimeAccuracy.Tenths, "−0:01.0")] // Actual:<0:01.0> [Fail]
         [InlineData("-00:05:01.999", TimeAccuracy.Tenths, "−5:01.9")] // Actual:<5:01.9> [Fail]
         [InlineData("-9.12:09:01.999", TimeAccuracy.Hundredths, "−228:09:01.99")] // Actual:<9:01.99> [Fail]
         [InlineData("-1.00:02:01.999", TimeAccuracy.Hundredths, "−24:02:01.99")] // Actual:<0:01.99> [Fail]
-        public void NegativesTestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        public void NegativesTestRegularTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, string expectedTime)
         {
             var formatter = new RegularTimeFormatter(timeAccuracy);
+            var time = TimeSpan.Parse(timespanText);
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
-
-            string formatted = formatter.Format(time);
-            Assert.Equal(expected, formatted);
+            var formattedTime = formatter.Format(time);
+            Assert.Equal(expectedTime, formattedTime);
         }
     }
 }
