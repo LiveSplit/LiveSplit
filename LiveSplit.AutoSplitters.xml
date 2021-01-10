@@ -10770,4 +10770,15 @@
         <Description>Autosplitting available (by LurkingSR)</Description>
 	<Website>https://github.com/samehhamadeh/AutoSplitters</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lorera</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/DerKO9/AutoSplitters/master/Lorera/Lorera.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting available (by DerKO)</Description>
+	<Website>https://github.com/DerKO9/AutoSplitters/blob/master/Lorera/Lorera.asl</Website>
+    </AutoSplitter>
 </AutoSplitters>
