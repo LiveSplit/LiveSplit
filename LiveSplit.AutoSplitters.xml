@@ -10770,6 +10770,28 @@
         <Description>Autosplitting available (by LurkingSR)</Description>
 	<Website>https://github.com/samehhamadeh/AutoSplitters</Website>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>The Lion King (SNES)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/kannadan/autosplitter/master/autosplit_lion_king_snes.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start and split for snes9x v1.60 and higan v110(by kannadan)</Description>
+	<Website>https://www.speedrun.com/lionkingsnes</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>The Lion King (Genesis/MegaDrive)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/kannadan/autosplitter/master/autosplit_lion_king_Gen.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start and split for Fusion and retroarch 1.9 genesis plus gx core (by kannadan)</Description>
+	<Website>https://www.speedrun.com/the_lion_king_genesismegadrive</Website>
+  </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Lorera</Game>
