@@ -10803,4 +10803,15 @@
         <Description>Autosplitting available (by DerKO)</Description>
 	<Website>https://github.com/DerKO9/AutoSplitters/blob/master/Lorera/Lorera.asl</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Super Meat Boy Forever</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ldmnt/smbf-autosplitter/master/smbf.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starting, resetting and in-game time available. Customize splits in the settings. (by Lev and Hamb)</Description>
+        <Website>https://discord.gg/SFq6UcMZ3y</Website>
+    </AutoSplitter>
 </AutoSplitters>
