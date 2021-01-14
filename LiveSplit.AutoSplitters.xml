@@ -5020,6 +5020,7 @@
             <Game>HollowKnight</Game>
             <Game>Hollow Knight</Game>
             <Game>Hollow Knight Category Extensions</Game>
+            <Game>Hollow Knight Mods</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.HollowKnight/master/Components/LiveSplit.HollowKnight.dll</URL>
@@ -10813,5 +10814,26 @@
         <Type>Script</Type>
         <Description>Starting, resetting and in-game time available. Customize splits in the settings. (by Lev and Hamb)</Description>
         <Website>https://discord.gg/SFq6UcMZ3y</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>ToeJam &amp; Earl: Back in the Groove!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/ToeJamAndEarl.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Shady Part of Me</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/alorimier/Shady-Part-of-Me-AutoSplitter/main/spom.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Simple autosplitter for SPOM (by Na'Guul)</Description>
+        <Website>https://www.speedrun.com/user/NaGuul</Website>
     </AutoSplitter>
 </AutoSplitters>
