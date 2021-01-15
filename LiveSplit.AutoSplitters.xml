@@ -11,6 +11,16 @@
      	<Description>Autostart/stop/pause for MudRunner</Description>
 	<Website>https://discord.gg/Pv3tGVE</Website>
      </AutoSplitter>
+<AutoSplitter>
+    <Games>
+        <Game>Dude Simulator 3</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/CamEnright/DudeSim3AutoSplit/main/DudeSim3.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Contains functionality Auto Start, Auto Splitting, and Load Removal. (By Meta, Radioactiv, and Micrologist)</Description>
+</AutoSplitter>
 	<AutoSplitter>
      	<Games>
             <Game>Cyberpunk 2077</Game>
