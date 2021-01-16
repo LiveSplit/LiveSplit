@@ -10846,4 +10846,14 @@
         <Description>Simple autosplitter for SPOM (by Na'Guul)</Description>
         <Website>https://www.speedrun.com/user/NaGuul</Website>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Resident Evil 5: Category Extensions </Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mysterion06/Resident-Evil-5/main/Splitter</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal are available. (By Auddy and Mysterion_06_)</Description>
+    </AutoSplitter>
 </AutoSplitters>
