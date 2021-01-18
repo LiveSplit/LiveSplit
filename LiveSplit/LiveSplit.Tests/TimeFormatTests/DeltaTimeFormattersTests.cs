@@ -1,10 +1,9 @@
 ﻿using System;
 using LiveSplit.TimeFormatters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace LiveSplit.Tests.TimeFormatterTests
 {
-    [TestClass]
     public class DeltaTimeFormattersTests 
     {
         // All these formatters (currently) give identical output:
@@ -15,114 +14,140 @@ namespace LiveSplit.Tests.TimeFormatterTests
 
         // note: dash (-) is used for null, and minus (−) for negatives
 
-        [TestMethod]
-        [DataRow(null, TimeAccuracy.Hundredths, false, "-")]
-        [DataRow("00:00:00", TimeAccuracy.Seconds, false, "+0")]
-        [DataRow("00:00:01", TimeAccuracy.Seconds, false, "+1")]
-        [DataRow("00:00:00.5", TimeAccuracy.Tenths, false, "+0.5")]
-        [DataRow("00:00:01.001", TimeAccuracy.Tenths, false, "+1.0")]
-        [DataRow("00:00:01.009", TimeAccuracy.Tenths, false, "+1.0")]
-        [DataRow("-00:00:01.009", TimeAccuracy.Tenths, false, "−1.0")]
-        [DataRow("-00:05:01.999", TimeAccuracy.Tenths, false, "−5:01.9")]
-        [DataRow("00:05:01.999", TimeAccuracy.Tenths, false, "+5:01.9")]
-        [DataRow("01:05:01.999", TimeAccuracy.Tenths, false, "+1:05:01.9")]
-        [DataRow("00:00:00.05", TimeAccuracy.Hundredths, false, "+0.05")]
-        [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, false, "+227:01:01.99")]
-        [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, true, "+227:01:01")]
-        [DataRow("-9.11:01:01.999", TimeAccuracy.Hundredths, false, "−227:01:01.99")]
-        public void TestDeltaTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expected)
+        [Fact]
+        public void DeltaTimeFormatterFormatsTimeAsDash_WhenTimeIsNullAndAccuracyIsInHundredths()
         {
-            var formatter = new DeltaTimeFormatter {
+            var sut = new DeltaTimeFormatter
+            {
+                Accuracy = TimeAccuracy.Hundredths,
+                DropDecimals = false
+            };
+
+            var formattedTime = sut.Format(null);
+            Assert.Equal(TimeFormatConstants.DASH, formattedTime);
+        }
+        
+        [Theory]
+        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "+0")]
+        [InlineData("00:00:01", TimeAccuracy.Seconds, false, "+1")]
+        [InlineData("00:00:00.5", TimeAccuracy.Tenths, false, "+0.5")]
+        [InlineData("00:00:01.001", TimeAccuracy.Tenths, false, "+1.0")]
+        [InlineData("00:00:01.009", TimeAccuracy.Tenths, false, "+1.0")]
+        [InlineData("-00:00:01.009", TimeAccuracy.Tenths, false, "−1.0")]
+        [InlineData("-00:05:01.999", TimeAccuracy.Tenths, false, "−5:01.9")]
+        [InlineData("00:05:01.999", TimeAccuracy.Tenths, false, "+5:01.9")]
+        [InlineData("01:05:01.999", TimeAccuracy.Tenths, false, "+1:05:01.9")]
+        [InlineData("00:00:00.05", TimeAccuracy.Hundredths, false, "+0.05")]
+        [InlineData("9.11:01:01.999", TimeAccuracy.Hundredths, false, "+227:01:01.99")]
+        [InlineData("9.11:01:01.999", TimeAccuracy.Hundredths, true, "+227:01:01")]
+        [InlineData("-9.11:01:01.999", TimeAccuracy.Hundredths, false, "−227:01:01.99")]
+        public void DeltaTimeFormatterFormatsTimeInGivenAccuracy_WhenTimeIsValid(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expectedDelta)
+        {
+            var sut = new DeltaTimeFormatter
+            {
                 Accuracy = timeAccuracy,
                 DropDecimals = dropDecimals
             };
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
+            var time = TimeSpan.Parse(timespanText);
 
-            string formatted = formatter.Format(time);
-            Assert.AreEqual(expected, formatted);
+            var formattedDelta = sut.Format(time);
+            Assert.Equal(expectedDelta, formattedDelta);
         }
 
-        [TestMethod]
-        [DataRow(null, TimeAccuracy.Hundredths, false, "-")]
-        [DataRow("00:00:00", TimeAccuracy.Seconds, false, "+0")]
-        [DataRow("00:00:01", TimeAccuracy.Seconds, false, "+1")]
-        [DataRow("00:00:00.5", TimeAccuracy.Tenths, false, "+0.5")]
-        [DataRow("00:00:01.001", TimeAccuracy.Tenths, false, "+1.0")]
-        [DataRow("00:00:01.009", TimeAccuracy.Tenths, false, "+1.0")]
-        [DataRow("-00:00:01.009", TimeAccuracy.Tenths, false, "−1.0")]
-        [DataRow("-00:05:01.999", TimeAccuracy.Tenths, false, "−5:01.9")]
-        [DataRow("00:05:01.999", TimeAccuracy.Tenths, false, "+5:01.9")]
-        [DataRow("01:05:01.999", TimeAccuracy.Tenths, false, "+1:05:01.9")]
-        [DataRow("00:00:00.05", TimeAccuracy.Hundredths, false, "+0.05")]
-        [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, false, "+227:01:01.99")]
-        [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, true, "+227:01:01")]
-        [DataRow("-9.11:01:01.999", TimeAccuracy.Hundredths, false, "−227:01:01.99")]
-        public void TestDeltaComponentFormatter(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expected)
+        [Fact]
+        public void DeltaComponentFormatterFormatsTimeAsDash_WhenTimeIsNullAndAccuracyIsInHundredths()
         {
-            var formatter = new DeltaComponentFormatter(timeAccuracy, dropDecimals: dropDecimals);
+            var sut = new DeltaComponentFormatter(TimeAccuracy.Hundredths, false);
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
-
-            string formatted = formatter.Format(time);
-            Assert.AreEqual(expected, formatted);
+            var formattedTime = sut.Format(null);
+            Assert.Equal(TimeFormatConstants.DASH, formattedTime);
         }
 
-        [TestMethod]
-        [DataRow(null, TimeAccuracy.Hundredths, false, "-")]
-        [DataRow("00:00:00", TimeAccuracy.Seconds, false, "+0")]
-        [DataRow("00:00:01", TimeAccuracy.Seconds, false, "+1")]
-        [DataRow("00:00:00.5", TimeAccuracy.Tenths, false, "+0.5")]
-        [DataRow("00:00:01.001", TimeAccuracy.Tenths, false, "+1.0")]
-        [DataRow("00:00:01.009", TimeAccuracy.Tenths, false, "+1.0")]
-        [DataRow("-00:00:01.009", TimeAccuracy.Tenths, false, "−1.0")]
-        [DataRow("-00:05:01.999", TimeAccuracy.Tenths, false, "−5:01.9")]
-        [DataRow("00:05:01.999", TimeAccuracy.Tenths, false, "+5:01.9")]
-        [DataRow("01:05:01.999", TimeAccuracy.Tenths, false, "+1:05:01.9")]
-        [DataRow("00:00:00.05", TimeAccuracy.Hundredths, false, "+0.05")]
-        [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, false, "+227:01:01.99")]
-        [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, true, "+227:01:01")]
-        [DataRow("-9.11:01:01.999", TimeAccuracy.Hundredths, false, "−227:01:01.99")]
-        public void TestDeltaSplitTimeFormatter(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expected) 
+        [Theory]
+        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "+0")]
+        [InlineData("00:00:01", TimeAccuracy.Seconds, false, "+1")]
+        [InlineData("00:00:00.5", TimeAccuracy.Tenths, false, "+0.5")]
+        [InlineData("00:00:01.001", TimeAccuracy.Tenths, false, "+1.0")]
+        [InlineData("00:00:01.009", TimeAccuracy.Tenths, false, "+1.0")]
+        [InlineData("-00:00:01.009", TimeAccuracy.Tenths, false, "−1.0")]
+        [InlineData("-00:05:01.999", TimeAccuracy.Tenths, false, "−5:01.9")]
+        [InlineData("00:05:01.999", TimeAccuracy.Tenths, false, "+5:01.9")]
+        [InlineData("01:05:01.999", TimeAccuracy.Tenths, false, "+1:05:01.9")]
+        [InlineData("00:00:00.05", TimeAccuracy.Hundredths, false, "+0.05")]
+        [InlineData("9.11:01:01.999", TimeAccuracy.Hundredths, false, "+227:01:01.99")]
+        [InlineData("9.11:01:01.999", TimeAccuracy.Hundredths, true, "+227:01:01")]
+        [InlineData("-9.11:01:01.999", TimeAccuracy.Hundredths, false, "−227:01:01.99")]
+        public void DeltaComponentFormatterFormatsTimeCorrectly_WhenTimeIsValid(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expectedDelta)
         {
-            var formatter = new DeltaSplitTimeFormatter(timeAccuracy, dropDecimals: dropDecimals);
+            var sut = new DeltaComponentFormatter(timeAccuracy, dropDecimals: dropDecimals);
+            var time = TimeSpan.Parse(timespanText);
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
-
-            string formatted = formatter.Format(time);
-            Assert.AreEqual(expected, formatted);
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedDelta, formattedTime);
         }
 
-        [TestMethod]
-        [DataRow(null, TimeAccuracy.Hundredths, "-")]
-        [DataRow("00:00:00", TimeAccuracy.Seconds, "+0")]
-        [DataRow("00:00:01", TimeAccuracy.Seconds, "+1")]
-        [DataRow("00:00:00.5", TimeAccuracy.Tenths, "+0.5")]
-        [DataRow("00:00:01.001", TimeAccuracy.Tenths, "+1.0")]
-        [DataRow("00:00:01.009", TimeAccuracy.Tenths, "+1.0")]
-        [DataRow("-00:00:01.009", TimeAccuracy.Tenths, "−1.0")]
-        [DataRow("-00:05:01.999", TimeAccuracy.Tenths, "−5:01.9")]
-        [DataRow("00:05:01.999", TimeAccuracy.Tenths, "+5:01.9")]
-        [DataRow("01:05:01.999", TimeAccuracy.Tenths, "+1:05:01.9")]
-        [DataRow("00:00:00.05", TimeAccuracy.Hundredths, "+0.05")]
-        [DataRow("9.11:01:01.999", TimeAccuracy.Hundredths, "+227:01:01.99")]
-        [DataRow("-9.11:01:01.999", TimeAccuracy.Hundredths, "−227:01:01.99")]
-        public void TestPreciseDeltaFormatter(string timespanText, TimeAccuracy timeAccuracy, string expected)
+        [Fact]
+        public void DeltaSplitTimeFormatterFormatsTimeAsDash_WhenTimeIsNull()
         {
-            var formatter = new PreciseDeltaFormatter(timeAccuracy);
+            var sut = new DeltaSplitTimeFormatter(TimeAccuracy.Hundredths, dropDecimals: false);
 
-            TimeSpan? time = null;
-            if (timespanText != null)
-                time = TimeSpan.Parse(timespanText);
+            var formattedTime = sut.Format(null);
+            Assert.Equal(TimeFormatConstants.DASH, formattedTime);
+        }
+        
+        [Theory]
+        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "+0")]
+        [InlineData("00:00:01", TimeAccuracy.Seconds, false, "+1")]
+        [InlineData("00:00:00.5", TimeAccuracy.Tenths, false, "+0.5")]
+        [InlineData("00:00:01.001", TimeAccuracy.Tenths, false, "+1.0")]
+        [InlineData("00:00:01.009", TimeAccuracy.Tenths, false, "+1.0")]
+        [InlineData("-00:00:01.009", TimeAccuracy.Tenths, false, "−1.0")]
+        [InlineData("-00:05:01.999", TimeAccuracy.Tenths, false, "−5:01.9")]
+        [InlineData("00:05:01.999", TimeAccuracy.Tenths, false, "+5:01.9")]
+        [InlineData("01:05:01.999", TimeAccuracy.Tenths, false, "+1:05:01.9")]
+        [InlineData("00:00:00.05", TimeAccuracy.Hundredths, false, "+0.05")]
+        [InlineData("9.11:01:01.999", TimeAccuracy.Hundredths, false, "+227:01:01.99")]
+        [InlineData("9.11:01:01.999", TimeAccuracy.Hundredths, true, "+227:01:01")]
+        [InlineData("-9.11:01:01.999", TimeAccuracy.Hundredths, false, "−227:01:01.99")]
+        public void DeltaSplitTimeFormatterFormatsTimeCorrectly_WhenTimeIsValid(string timespanText, TimeAccuracy timeAccuracy, bool dropDecimals, string expectedDelta) 
+        {
+            var sut = new DeltaSplitTimeFormatter(timeAccuracy, dropDecimals: dropDecimals);
+            var time = TimeSpan.Parse(timespanText);
 
-            string formatted = formatter.Format(time);
-            Assert.AreEqual(expected, formatted);
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedDelta, formattedTime);
+        }
+
+        [Fact]
+        public void PreciseDeltaFormatterFormatTimeAsDash_WhenTimeIsNull()
+        {
+            var sut = new PreciseDeltaFormatter(TimeAccuracy.Hundredths);
+
+            var formattedTime = sut.Format(null);
+            Assert.Equal(TimeFormatConstants.DASH, formattedTime);
+        }
+        
+        [Theory]
+        [InlineData("00:00:00", TimeAccuracy.Seconds, "+0")]
+        [InlineData("00:00:01", TimeAccuracy.Seconds, "+1")]
+        [InlineData("00:00:00.5", TimeAccuracy.Tenths, "+0.5")]
+        [InlineData("00:00:01.001", TimeAccuracy.Tenths, "+1.0")]
+        [InlineData("00:00:01.009", TimeAccuracy.Tenths, "+1.0")]
+        [InlineData("-00:00:01.009", TimeAccuracy.Tenths, "−1.0")]
+        [InlineData("-00:05:01.999", TimeAccuracy.Tenths, "−5:01.9")]
+        [InlineData("00:05:01.999", TimeAccuracy.Tenths, "+5:01.9")]
+        [InlineData("01:05:01.999", TimeAccuracy.Tenths, "+1:05:01.9")]
+        [InlineData("00:00:00.05", TimeAccuracy.Hundredths, "+0.05")]
+        [InlineData("9.11:01:01.999", TimeAccuracy.Hundredths, "+227:01:01.99")]
+        [InlineData("-9.11:01:01.999", TimeAccuracy.Hundredths, "−227:01:01.99")]
+        public void PreciseDeltaFormatterFormatsTimeCorrectly_WhenTimeIsValid(string timespanText, TimeAccuracy timeAccuracy, string expectedDelta)
+        {
+            var sut = new PreciseDeltaFormatter(timeAccuracy);
+            var time = TimeSpan.Parse(timespanText);
+
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedDelta, formattedTime);
         }
     }
 }
