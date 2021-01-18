@@ -53,6 +53,28 @@
      	<Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
 	<Website>https://www.speedrun.com/wwof</Website>
      </AutoSplitter>
+		<AutoSplitter>
+     	<Games>
+            <Game>Call of Duty: Advanced Warfare</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODAdvancedWarfare.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
+	<Website>https://www.speedrun.com/codaw</Website>
+     </AutoSplitter>
+		<AutoSplitter>
+     	<Games>
+            <Game>Siren Head: The Siren's Forest</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SirenHeadTheSirensForest.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
+	<Website>https://www.speedrun.com/siren_head_the_sirens_forest</Website>
+     </AutoSplitter>
      <AutoSplitter>
         <Games>
             <Game>ActRaiser 2</Game>
@@ -3744,6 +3766,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal, Auto Splitting, and Auto Reset are available. (By Gelly et al.)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Aporia: Beyond The Valley</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/aporia.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Auto Start are available (By Gelly)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
