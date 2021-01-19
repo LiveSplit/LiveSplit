@@ -6543,6 +6543,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Perfect Park</Game>
+            <Game>tjern's Perfect Park</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LRFLEW/LiveSplit.PerfectPark/main/Components/LiveSplit.PerfectPark.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Autosplitter tjern's perfect park (tjern.itch.io/perfect-park)</Description>
+        <Website>https://github.com/LRFLEW/LiveSplit.PerfectPark</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>FEAR</Game>
             <Game>FEAR: First Encounter Assault Recon</Game>
             <Game>F.E.A.R.</Game>
@@ -10887,5 +10899,27 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal are available. (By Auddy and Mysterion_06_)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Watch Dogs: Legion</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/claabs/LiveSplit.Scripts/master/LiveSplit.WatchDogsLegion.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover for Watch Dogs: Legion</Description>
+        <Website>https://github.com/claabs/LiveSplit.Scripts</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>River City Girls</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Barnacle/RCGAutosplitter/main/RCGautosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto splitting and auto start are available (by Barnacle)</Description>
+        <Website>https://github.com/Barnacle/RCGAutosplitter</Website>
     </AutoSplitter>
 </AutoSplitters>
