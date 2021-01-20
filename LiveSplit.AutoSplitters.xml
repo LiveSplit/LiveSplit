@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+   <AutoSplitter>
+     	<Games>
+            <Game>Children of Morta</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/dmediger/AutoSplitter/main/children-of-morta.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Auto Splitter for both Any% and IL runs of Children of Morta</Description>
+	<Website>https://discord.gg/wmySfwd</Website>
+   </AutoSplitter>
 	<AutoSplitter>
      	<Games>
             <Game>MudRunner</Game>
