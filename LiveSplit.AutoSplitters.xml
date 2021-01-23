@@ -7487,7 +7487,7 @@
             <Game>Croc Mobile: Jungle Rumble!</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Thermospore/Autosplitters/master/LiveSplit.Croc_JR.asl</URL>
+            <URL>https://raw.githubusercontent.com/Thermospore/LiveSplit.Croc_JR/master/LiveSplit.Croc_JR.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting available. Only supports Java WTK. (by Thermospore)</Description>
