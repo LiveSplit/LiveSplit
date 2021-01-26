@@ -10979,4 +10979,14 @@
      	<Type>Script</Type>
      	<Description>Autosplitting, Autoreset, Autostart, In-Game Time is available. (By FromDarkHell)</Description>
    </AutoSplitter>
+   <AutoSplitter>
+        <Games>
+            <Game>OneShot</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/cccarl/OneShot-ASL/main/Livesplit.OneShot.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover available. (By SunglassesEmoji and doesthisusername)</Description>
+    </AutoSplitter>
 </AutoSplitters>
