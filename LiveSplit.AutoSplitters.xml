@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<AutoSplitter>
+		<Games>
+			<Game>Monkey Island™ 2 Special Edition: LeChuck’s Revenge™</Game>
+   		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/ffyte/LA-adventure-remake-autosplitters/main/lar-splitters.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Enables In Game Time for Monkey Island 2 Special Edition and other Lucasarts remakes</Description>
+		<Website>https://discord.gg/s3Z6g8J69Q</Website>
+   </AutoSplitter>
    <AutoSplitter>
      	<Games>
             <Game>Children of Morta</Game>
@@ -10988,5 +10999,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load remover available. (By SunglassesEmoji and doesthisusername)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+      	    <Game>Floppy Minecraft (Bad Minecraft)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/matthewpugs/Floppy-Minecraft-Autosplitter/main/Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for floppy minecraft. Auto starts timer, and auto ends on some categories.</Description>
+        <Website>https://www.speedrun.com/fmc</Website>
     </AutoSplitter>
 </AutoSplitters>
