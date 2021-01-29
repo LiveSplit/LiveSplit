@@ -3436,10 +3436,10 @@
             <Game>Outlast: Whistleblower</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/Outlast.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/Outlast.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (by Mattmatt)</Description>
+        <Description>Autosplitter/Load Remover (by AlexisDR, KunoDemetires, Mattmatt)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9261,21 +9261,7 @@
         </URLs>
         <Type>Script</Type>
         <Description> Autosplitting and Game Time available (by rythin) </Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Crazy Machines: Inventors Training Camp</Game>
-            <Game>Crazy Machines Inventors Training Camp</Game>
-            <Game>Crazy Machines 1.5: Inventors Training Camp</Game>
-            <Game>Crazy Machines 1.5 Inventors Training Camp</Game>
-            <Game>Inventors Training Camp</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachinesInventorsTrainingCamp.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description> Autosplitting and Game Time available (by rythin) </Description>
-    </AutoSplitter>
+	</AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Featherfall</Game>
@@ -9338,20 +9324,6 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available (by rythin)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Crazy Machines: New From The Lab</Game>
-            <Game>Crazy Machines New From The Lab</Game>
-            <Game>Crazy Machines 1.5: New From The Lab</Game>
-            <Game>Crazy Machines 1.5 New From The Lab</Game>
-            <Game>New From The Lab</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachinesNewFromTheLab.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description> Autosplitting available (by rythin) </Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9654,7 +9626,10 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Crazy Machines</Game>
+		<Game>Crazy Machines</Game>
+		<Game>Crazy Machines 1.5</Game>
+		<Game>Crazy Machines: New From the Lab</Game>
+		<Game>Crazy Machines: Inventors Training Camp</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachines.asl</URL>
@@ -10901,16 +10876,6 @@
         <Type>Script</Type>
         <Description>Starting, resetting and in-game time available. Customize splits in the settings. (by Lev and Hamb)</Description>
         <Website>https://discord.gg/SFq6UcMZ3y</Website>
-    </AutoSplitter>
-	<AutoSplitter>
-        <Games>
-            <Game>ToeJam &amp; Earl: Back in the Groove!</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/ToeJamAndEarl.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
