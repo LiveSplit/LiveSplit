@@ -10976,4 +10976,26 @@
         <Description>Autosplitter for floppy minecraft. Auto starts timer, and auto ends on some categories.</Description>
         <Website>https://www.speedrun.com/fmc</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+      	    <Game>Peggle Deluxe</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Janiczek/PeggleDeluxeAutosplitter/master/Peggle%20Deluxe%20-%20Adventure%20Mode.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Peggle Deluxe - Adventure Mode, for 55 splits.</Description>
+        <Website>https://www.speedrun.com/peggle_deluxe</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Resident Evil 5: Lost In Nightmares</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Resident-Evil-5-LIN/main/Resident%20Evil%205%20Lost%20In%20Nightmares.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>RE5 LiN Autosplitter by TheDementedSalad</Description>
+        <Website>https://www.speedrun.com/re5lin</Website>
+    </AutoSplitter>  
 </AutoSplitters>
