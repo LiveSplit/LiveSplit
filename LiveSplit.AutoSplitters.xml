@@ -141,6 +141,17 @@
         <Description>Autosplitter (By Kuno Demetries)</Description>
         <Website>https://discord.com/invite/PWh24GjmTJ</Website>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>A Series of Unfortunate Events</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/ASeriesOfUnfortunateEvents.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remvoer (By Kuno Demetries)</Description>
+        <Website>https://www.speedrun.com/asoue_pc</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Clive Barker's Jericho</Game>
@@ -171,7 +182,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CallOfCthulhu2018.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover Only (by Kuno Demetries)</Description>
+        <Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discord.com/invite/dus6aVP</Website>
     </AutoSplitter>
 	        <AutoSplitter>
@@ -193,7 +204,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/DieHard.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Splitter/Load Remover (by Kuno Demetries)</Description>
+        <Description>Auto Splitter/Load Remover (by Kuno Demetries)</Description>
         <Website>https://www.speedrun.com/die_hard_nakatomi_plaza</Website>
     </AutoSplitter>
      <AutoSplitter>
@@ -204,7 +215,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODWW2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover/Auto Spliiter (by Kuno Demetries)</Description>
+        <Description>Auto Splitter/ Load Remover(by Kuno Demetries)</Description>
         <Website>https://discord.com/invite/Rb8bEUn</Website>
     </AutoSplitter>
      <AutoSplitter>
@@ -215,7 +226,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/MassEffect3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>LoadRemover Only  (By Kuno Demetries)</Description>
+        <Description>Load Remover Only  (By Kuno Demetries)</Description>
         <Website>https://discord.com/invite/dpmUneH</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -237,7 +248,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/MeetTheRobinsons.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>AutoSplitter/ Load Remvover (by KunoDemetries)</Description>
+        <Description>Auto Splitter/ Load Remvover (by KunoDemetries)</Description>
         <Website>https://discord.gg/ecpCAnJm</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -358,7 +369,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODModernWarfare2Remastered.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+        <Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/fQaYqvF</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -369,7 +380,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODBlackOps2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (t) (by KunoDemetries)</Description>
+        <Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/fQaYqvF</Website>
     </AutoSplitter>
       <AutoSplitter>
@@ -380,7 +391,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODInfiniteWarfare.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+        <Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/fQaYqvF</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -391,7 +402,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/OverTheHedge.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (PC) (by KunoDemetries)</Description>
+        <Description>Auto Splitter/Load Remover (PC) (by Kuno Demetries)</Description>
         <Website>https://discord.gg/TeUkkf8</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -402,7 +413,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODBlackOps3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (t) (by KunoDemetries)</Description>
+        <Description>Auto Splitter /Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/fQaYqvF</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -413,7 +424,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODModernWarfare2019.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+        <Description>Auto Splitter /Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/fQaYqvF</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -424,7 +435,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/TheSpiderwickChronicles.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+        <Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://www.speedrun.com/the_spiderwick_chronicles</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -435,7 +446,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODGhosts.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+        <Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/fQaYqvF</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -446,7 +457,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CODModernWarfareRemastered.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (by KunoDemetries)</Description>
+        <Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/fQaYqvF</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -483,7 +494,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SniperElite4.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitter/Load Remover (by KunoDemetries)</Description>
+        <Description> Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/RvJ82gf</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -494,7 +505,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/IsleofEwe.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitter/Load Remover (W/ Sheep Counter) (by KunoDemetries, Rythin, DerKO)</Description>
+        <Description> Auto Splitter/ Load Remover (W/ Sheep Counter) (by Kuno Demetries, Rythin, DerKO)</Description>
         <Website>https://discord.gg/Nvbspv</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -505,7 +516,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/FearExtractionPoint.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Auto Splitter/ Load Remover(by KunoDemetries)</Description>
+        <Description> Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/HvhUuHw</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -516,7 +527,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/FearPerseusMandate.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Auto Splitter/ Load Remover(by KunoDemetries)</Description>
+        <Description> Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/HvhUuHw</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -527,7 +538,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SniperElite2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitter (No Load Remover) (by KunoDemetries)</Description>
+        <Description> Autosplitter (No Load Remover) (by Kuno Demetries)</Description>
         <Website>https://www.speedrun.com/sev2</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -538,7 +549,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SniperElite3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitter/load remover (by KunoDemetries)</Description>
+        <Description> Auto Splitter/ load remover (by Kuno Demetries)</Description>
         <Website>https://www.speedrun.com/sniper_elite_iii</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -549,7 +560,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/OpenSeason.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitter/load remover for PC (Beta) (by KunoDemetries)</Description>
+        <Description> Auto Splitter/ load remover for PC (Beta) (by Kuno Demetries)</Description>
         <Website>https://discordapp.com/invite/jBjZ3XT</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -3439,7 +3450,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/Outlast.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (by AlexisDR, KunoDemetires, Mattmatt)</Description>
+        <Description>Autosplitter/Load Remover (by AlexisDR, KunoDemetries, Mattmatt)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5840,6 +5851,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal is available. (By Souzooka)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Velvet Assassin</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ToxicTT/Autosplitters/main/VA_Autosplitter_LoadRemover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Autosplitter are available (By ToxicTT)</Description>
+        <Website>https://www.speedrun.com/va</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
