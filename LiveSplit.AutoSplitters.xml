@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
 		<Games>
+			<Game>I Am Alive</Game>
+   		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Modiseus/IAmAlive-AutoSplitter/master/IAmAlive.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Tracks ingame time for I Am Alive</Description>
+		<Website>https://discord.gg/vwXDB5T</Website>
+  	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 			<Game>Monkey Island™ 2 Special Edition: LeChuck’s Revenge™</Game>
    		</Games>
 		<URLs>
