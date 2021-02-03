@@ -11031,4 +11031,37 @@
         <Description>RE5 LiN Autosplitter by TheDementedSalad</Description>
         <Website>https://www.speedrun.com/re5lin</Website>
     </AutoSplitter>  
+    <AutoSplitter>
+        <Games>
+	    <Game>Life Is Strange</Game>
+        </Games>
+        <URLs>
+	    <URL>https://raw.githubusercontent.com/Firefox0/Life-Is-Strange/master/lis.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Life Is Strange.</Description>
+        <Website>https://www.speedrun.com/life_is_strange</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+        <Game>Battle For Dream Island Again 5b</Game>
+        </Games>
+        <URLs>
+        <URL>https://raw.githubusercontent.com/Futurama39/my-own-code-stuff-dont-touch-please/5b/5bsplitter/splitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>BFDIA 5b Autosplitter - Splits every level, started manually.</Description>
+        <Website>https://discord.gg/qtePFSH</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Cyber Shadow</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.CyberShadow/main/Components/LiveSplit.CyberShadow.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Start/Split/Reset and GameTime (by Voxelse)</Description>
+        <Website>https://github.com/Voxelse/LiveSplit.CyberShadow</Website>
+    </AutoSplitter>
 </AutoSplitters>
