@@ -11064,17 +11064,17 @@
         <Description>Auto Start/Split/Reset and GameTime (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/LiveSplit.CyberShadow</Website>
     </AutoSplitter>
-	<AutoSplitter>
-    	<Games>
-			<Game>Akiba's Trip:Undead &amp; Undressed</Game>
-		</Games>
-		<URLs>
-			<URL>https://raw.githubusercontent.com/C0Y0TL/asl/main/Akiba's%20Trip%20Undead%20%26%20Undressed/atuu.asl</URL>
-		</URLs>
-		<Type>Script</Type>
-		<Description>Auto Splitter for Akiba's Trip: Undead &amp; Undressed (By C0Y0TL)</Description>
-		<Website>https://github.com/C0Y0TL/asl/blob/main/Akiba's%20Trip%20Undead%20%26%20Undressed/README.md</Website>
-	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Akiba's Trip: Undead &amp; Undressed</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/C0Y0TL/asl/main/Akiba's%20Trip%20Undead%20%26%20Undressed/atuu.asl</URL>
+        </URLs>
+	<Type>Script</Type>
+        <Description>Auto Splitter for Akiba's Trip: Undead &amp; Undressed (By C0Y0TL)</Description>
+        <Website>https://github.com/C0Y0TL/asl/blob/main/Akiba's%20Trip%20Undead%20%26%20Undressed/README.md</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>HuniePop</Game>
