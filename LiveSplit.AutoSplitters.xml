@@ -642,6 +642,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Door Kickers: Action Squad</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Door%20Kickers%3A%20Action%20Squad/DoorKickers_ActionSquad.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts timer, splits on level completion and logs times to a file. See settings for more options. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Door%20Kickers:%20Action%20Squad</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Frog Detective 2: The Case of the Invisible Wizard</Game>
         </Games>
         <URLs>
@@ -3469,10 +3480,10 @@
             <Game>OL2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Timbouton/LiveSplit/Master/Outlast2/OL2.asl</URL>
+            <URL>https://raw.githubusercontent.com/Al3xisDR/Autosplitter/main/Outlast2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Timbouton and StreamingFire)</Description>
+        <Description>AutoSplitter/Load Remover (By AlexisDR, KunoDemetries, Timbouton, and StreamingFire)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9679,7 +9690,18 @@
         </URLs>
         <Type>Script</Type>
         <Website>https://github.com/Smongo/FilamentAutosplitter</Website>
-        <Description>Auto splitting (By Smongo)</Description>
+        <Description>Auto splitting and load removal (By Smongo)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>SOLAS 128</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Smongo/SolasAutosplitter/master/solas.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Website>https://github.com/Smongo/SolasAutosplitter</Website>
+        <Description>Auto start and splitting (By Smongo)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9700,7 +9722,18 @@
             <URL>https://raw.githubusercontent.com/R30hedron/Dead-Cells-Autosplitter/master/DEAD_CELLS.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Supports auto starts, splits, and resets. Check github repo for supported versions. (by R30hedron)</Description>
+        <Description>Supports auto starts, splits, and resets. (by R30hedron)</Description>
+        <Website>https://github.com/R30hedron/Dead-Cells-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Dead Cells Category Extension</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/R30hedron/Dead-Cells-Autosplitter/master/DEAD_CELLS.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports auto starts, splits, and resets. Check settings and disable resets if running multi-game runs. (by R30hedron)</Description>
         <Website>https://github.com/R30hedron/Dead-Cells-Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -11059,6 +11092,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.CyberShadow/main/Components/LiveSplit.CyberShadow.dll</URL>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.RuntimeText/main/Components/LiveSplit.RuntimeText.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Auto Start/Split/Reset and GameTime (by Voxelse)</Description>
