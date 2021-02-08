@@ -11128,17 +11128,28 @@
             <URL>https://raw.githubusercontent.com/Marioalexsan/SoG-AutoSplit/main/SoG-AutoSplit.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Supports Autosplit, Autostart, Autoreset, Load Removal, and Cutscene Removal for both Story Mode and Arcade Mode.</Description>
+        <Description>Supports Load and Cutscene Removal, and can Auto Start, Split and Reset for both Story and Arcade.</Description>
         <Website>https://discord.gg/secretsofgrindea</Website>
     </AutoSplitter>
     <AutoSplitter>
-    <Games>
-        <Game>Karlson 2D</Game>
-    </Games>
-    <URLs>
-        <URL>https://raw.githubusercontent.com/brododragon/Karlson-2D-Autosplitter/main/karlson2dfullrelease.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto starts, splits, stops, and will not time loads if set to Game Time. (by brododragon)</Description>
-</AutoSplitter>
+        <Games>
+	        <Game>Karlson 2D</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/brododragon/Karlson-2D-Autosplitter/main/karlson2dfullrelease.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto starts, splits, stops, and will not time loads if set to Game Time. (by brododragon)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Dandara</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/marcelopio/Dandara-Autosplitter/main/dandara.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports Autosplit, Autostart, Autoreset, Load Removal, can split on every room or saved camp</Description>
+        <Website>https://discord.gg/8t4WrMmpXs</Website>
+    </AutoSplitter>	
 </AutoSplitters>
