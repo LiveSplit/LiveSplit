@@ -14,12 +14,13 @@
 	<AutoSplitter>
 		<Games>
 			<Game>Monkey Island™ 2 Special Edition: LeChuck’s Revenge™</Game>
+			<Game>Day of the Tentacle Remastered</Game>
    		</Games>
 		<URLs>
 			<URL>https://raw.githubusercontent.com/ffyte/LA-adventure-remake-autosplitters/main/lar-splitters.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description>Enables In Game Time for Monkey Island 2 Special Edition and other Lucasarts remakes</Description>
+		<Description>Enables In Game Time for Monkey Island 2 Special Edition, DoTT Remastered and MI1 SE</Description>
 		<Website>https://discord.gg/s3Z6g8J69Q</Website>
    </AutoSplitter>
    <AutoSplitter>
