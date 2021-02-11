@@ -14,12 +14,13 @@
 	<AutoSplitter>
 		<Games>
 			<Game>Monkey Island™ 2 Special Edition: LeChuck’s Revenge™</Game>
+			<Game>Day of the Tentacle Remastered</Game>
    		</Games>
 		<URLs>
 			<URL>https://raw.githubusercontent.com/ffyte/LA-adventure-remake-autosplitters/main/lar-splitters.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description>Enables In Game Time for Monkey Island 2 Special Edition and other Lucasarts remakes</Description>
+		<Description>Enables In Game Time for Monkey Island 1 and 2 Special Edition and Day of the Tentacle Remastered.</Description>
 		<Website>https://discord.gg/s3Z6g8J69Q</Website>
    </AutoSplitter>
    <AutoSplitter>
@@ -32,6 +33,17 @@
      	<Type>Script</Type>
      	<Description>Auto Splitter for both Any% and IL runs of Children of Morta</Description>
 	<Website>https://discord.gg/wmySfwd</Website>
+   </AutoSplitter>
+	<AutoSplitter>
+     	<Games>
+            <Game>Fix It Felix Jr</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/FixitFelixJr.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Auto Splitter (By xZeko) </Description>
+	<Website>https://www.speedrun.com/fix_it_felix_jr</Website>
    </AutoSplitter>
 	<AutoSplitter>
      	<Games>
@@ -1563,10 +1575,10 @@
             <Game>Darksiders</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Incalex/LiveSplit.AutoSplitters/master/LiveSplit.Darksiders.asl</URL>
+            <URL>https://raw.githubusercontent.com/henyK/autosplitters/master/Darksiders/Darksiders.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automatic Timer Start and Game Time is available. (By Incalex)</Description>
+        <Description>Load Removal, Automatic Timer Start and Auto Splitting is available. (By heny and whatisaphone)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
