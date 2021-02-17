@@ -2586,21 +2586,24 @@ namespace LiveSplit.View
 
         private void shareMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                TopMost = false;
-                IsInDialogMode = true;
-                Settings.UnregisterAllHotkeys(Hook);
-                new ShareRunDialog(
-                    (LiveSplitState)(CurrentState.Clone()),
+            using (var dialog = new ShareRunDialog(
+                    (LiveSplitState)CurrentState.Clone(),
                     Settings,
-                    () => MakeScreenShot(false)).ShowDialog(this);
-                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
-            }
-            finally
+                    () => MakeScreenShot(false)))
             {
-                TopMost = Layout.Settings.AlwaysOnTop;
-                IsInDialogMode = false;
+                try
+                {
+                    TopMost = false;
+                    IsInDialogMode = true;
+                    Settings.UnregisterAllHotkeys(Hook);
+                    dialog.ShowDialog(this);
+                    Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+                }
+                finally
+                {
+                    TopMost = Layout.Settings.AlwaysOnTop;
+                    IsInDialogMode = false;
+                }
             }
         }
 
