@@ -4087,11 +4087,11 @@
             <Game>Pokemon Trading Card Game</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnTCG/LiveSplit.PkmnTCG.asl</URL>
+            <URL>https://raw.githubusercontent.com/hwangbro/ASLScripts/master/LiveSplit.PkmnTCG/LiveSplit.PkmnTCG.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Hwangbro)</Description>
-        <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnTCG</Website>
+        <Website>https://github.com/hwangbro/ASLScripts/tree/master/LiveSplit.PkmnTCG</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4133,11 +4133,11 @@
             <Game>Pokemon Red ++</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnRed%2B%2B/LiveSplit.PkmnRed%2B%2B.asl</URL>
+            <URL>https://raw.githubusercontent.com/hwangbro/ASLScripts/master/LiveSplit.PkmnRed%2B%2B/LiveSplit.PkmnRed%2B%2B.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Hwangbro)</Description>
-        <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnRed%2B%2B</Website>
+        <Website>https://github.com/hwangbro/ASLScripts/tree/master/LiveSplit.PkmnRed%2B%2B</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4145,11 +4145,11 @@
             <Game>Pokemon Yellow</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnYellow/LiveSplit.PkmnYellow.asl</URL>
+            <URL>https://raw.githubusercontent.com/hwangbro/ASLScripts/master/LiveSplit.PkmnYellow/LiveSplit.PkmnYellow.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Hwangbro)</Description>
-        <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnYellow</Website>
+        <Website>https://github.com/hwangbro/ASLScripts/tree/master/LiveSplit.PkmnYellow</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4161,11 +4161,11 @@
             <Game>Pokemon Gold/Silver</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnGold/LiveSplit.PkmnGold.asl</URL>
+            <URL>https://raw.githubusercontent.com/hwangbro/ASLScripts/master/LiveSplit.PkmnGold/LiveSplit.PkmnGold.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting is available on GSR. (By Hwangbro)</Description>
-        <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnGold</Website>
+        <Website>https://github.com/hwangbro/ASLScripts/tree/master/LiveSplit.PkmnGold</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4173,11 +4173,11 @@
             <Game>Pokemon Crystal</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/nhwangbo/ASLScripts/master/LiveSplit.PkmnCrystal/LiveSplit.PkmnCrystal.asl</URL>
+            <URL>https://raw.githubusercontent.com/hwangbro/ASLScripts/master/LiveSplit.PkmnCrystal/LiveSplit.PkmnCrystal.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting is available on GSR. (By Hwangbro)</Description>
-        <Website>https://github.com/nhwangbo/ASLScripts/tree/master/LiveSplit.PkmnCrystal</Website>
+        <Website>https://github.com/hwangbro/ASLScripts/tree/master/LiveSplit.PkmnCrystal</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
