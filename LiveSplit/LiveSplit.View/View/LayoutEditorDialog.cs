@@ -261,12 +261,14 @@ namespace LiveSplit.View
 
         private void btnSetSize_Click(object sender, EventArgs e)
         {
-            var setSizeDialog = new SetSizeForm(CurrentState.Form);
-            var oldSize = CurrentState.Form.Size;
-            var result = setSizeDialog.ShowDialog();
+            using (var setSizeDialog = new SetSizeForm(CurrentState.Form))
+            {
+                var oldSize = CurrentState.Form.Size;
+                var result = setSizeDialog.ShowDialog();
 
-            if (result == DialogResult.Cancel)
-                CurrentState.Form.Size = oldSize;
+                if (result == DialogResult.Cancel)
+                    CurrentState.Form.Size = oldSize;
+            }   
         }
 
         private void lbxComponents_DoubleClick(object sender, EventArgs e)
