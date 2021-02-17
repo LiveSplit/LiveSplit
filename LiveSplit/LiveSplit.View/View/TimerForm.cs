@@ -1970,34 +1970,40 @@ namespace LiveSplit.View
         {
             var runCopy = CurrentState.Run.Clone() as IRun;
             var activeAutoSplitters = new List<string>(CurrentState.Settings.ActiveAutoSplitters);
-            var editor = new RunEditorDialog(CurrentState);
-            editor.RunEdited += editor_RunEdited;
-            editor.ComparisonRenamed += editor_ComparisonRenamed;
-            editor.SegmentRemovedOrAdded += editor_SegmentRemovedOrAdded;
-            try
+            using (RunEditorDialog editor = new RunEditorDialog(CurrentState))
             {
-                TopMost = false;
-                IsInDialogMode = true;
-                if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
-                    editor.AllowChangingSegments = true;
-                var result = editor.ShowDialog(this);
-                if (result == DialogResult.Cancel)
+                editor.RunEdited += editor_RunEdited;
+                editor.ComparisonRenamed += editor_ComparisonRenamed;
+                editor.SegmentRemovedOrAdded += editor_SegmentRemovedOrAdded;
+                try
                 {
-                    foreach (var image in runCopy.Select(x => x.Icon))
-                        editor.ImagesToDispose.Remove(image);
-                    editor.ImagesToDispose.Remove(runCopy.GameIcon);
+                    TopMost = false;
+                    IsInDialogMode = true;
+                    if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
+                        editor.AllowChangingSegments = true;
+                    var result = editor.ShowDialog(this);
+                    if (result == DialogResult.Cancel)
+                    {
+                        foreach (var image in runCopy.Select(x => x.Icon))
+                            editor.ImagesToDispose.Remove(image);
+                        editor.ImagesToDispose.Remove(runCopy.GameIcon);
 
-                    CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
-                    SetRun(runCopy);
-                    CurrentState.CallRunManuallyModified();
+                        CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
+                        SetRun(runCopy);
+                        CurrentState.CallRunManuallyModified();
+                    }
+                    foreach (var image in editor.ImagesToDispose)
+                        image.Dispose();
                 }
-                foreach (var image in editor.ImagesToDispose)
-                    image.Dispose();
-            }
-            finally
-            {
-                TopMost = Layout.Settings.AlwaysOnTop;
-                IsInDialogMode = false;
+                finally
+                {
+                    TopMost = Layout.Settings.AlwaysOnTop;
+                    IsInDialogMode = false;
+
+                    editor.RunEdited -= editor_RunEdited;
+                    editor.ComparisonRenamed -= editor_ComparisonRenamed;
+                    editor.SegmentRemovedOrAdded -= editor_SegmentRemovedOrAdded;
+                }
             }
         }
 
