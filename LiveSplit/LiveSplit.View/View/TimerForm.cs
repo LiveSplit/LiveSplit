@@ -2487,33 +2487,36 @@ namespace LiveSplit.View
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
-            var editor = new SettingsDialog(Hook, Settings, CurrentState.CurrentHotkeyProfile);
-            editor.SumOfBestModeChanged += editor_SumOfBestModeChanged;
-            try
+            using (var editor = new SettingsDialog(Hook, Settings, CurrentState.CurrentHotkeyProfile))
             {
-                TopMost = false;
-                var oldSettings = (ISettings)Settings.Clone();
-                Settings.UnregisterAllHotkeys(Hook);
-                var result = editor.ShowDialog(this);
-                if (result == DialogResult.Cancel)
+                editor.SumOfBestModeChanged += editor_SumOfBestModeChanged;
+                try
                 {
-                    var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
-                    CurrentState.Settings = Settings = oldSettings;
-                    if (regenerate)
-                        RegenerateComparisons();
+                    TopMost = false;
+                    var oldSettings = (ISettings)Settings.Clone();
+                    Settings.UnregisterAllHotkeys(Hook);
+                    var result = editor.ShowDialog(this);
+                    if (result == DialogResult.Cancel)
+                    {
+                        var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
+                        CurrentState.Settings = Settings = oldSettings;
+                        if (regenerate)
+                            RegenerateComparisons();
+                    }
+                    else
+                    {
+                        SwitchComparisonGenerators();
+                        CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
+                    }
+                    Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+                    UpdateRaceProviderIntegration();
                 }
-                else
+                finally
                 {
-                    SwitchComparisonGenerators();
-                    CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
+                    editor.SumOfBestModeChanged -= editor_SumOfBestModeChanged;
+                    SetProgressBar();
+                    TopMost = Layout.Settings.AlwaysOnTop;
                 }
-                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
-                UpdateRaceProviderIntegration();
-            }
-            finally
-            {
-                SetProgressBar();
-                TopMost = Layout.Settings.AlwaysOnTop;
             }
         }
 
