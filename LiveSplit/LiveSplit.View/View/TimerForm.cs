@@ -2055,64 +2055,69 @@ namespace LiveSplit.View
 
         private void EditLayout()
         {
-            var editor = new LayoutEditorDialog(Layout, CurrentState, this);
-            editor.OrientationSwitched += editor_OrientationSwitched;
-            editor.LayoutResized += editor_LayoutResized;
-            editor.LayoutSettingsAssigned += editor_LayoutSettingsAssigned;
-            Layout.X = Location.X;
-            Layout.Y = Location.Y;
-            if (Layout.Mode == LayoutMode.Vertical)
+            using (var editor = new LayoutEditorDialog(Layout, CurrentState, this))
             {
-                Layout.VerticalWidth = Size.Width;
-                Layout.VerticalHeight = Size.Height;
-            }
-            else
-            {
-                Layout.HorizontalWidth = Size.Width;
-                Layout.HorizontalHeight = Size.Height;
-            }
-            var layoutCopy = (ILayout)Layout.Clone();
-            var document = new XmlDocument();
-            var componentSettings = Layout.Components.Select(x =>
+                editor.OrientationSwitched += editor_OrientationSwitched;
+                editor.LayoutResized += editor_LayoutResized;
+                editor.LayoutSettingsAssigned += editor_LayoutSettingsAssigned;
+                Layout.X = Location.X;
+                Layout.Y = Location.Y;
+                if (Layout.Mode == LayoutMode.Vertical)
                 {
-                    try
-                    {
-                        return x.GetSettings(document);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(e);
-                        return null;
-                    }
-                }).ToList();
-            try
-            {
-                TopMost = false;
-                editor.ShowDialog(this);
-                if (editor.DialogResult == DialogResult.Cancel)
+                    Layout.VerticalWidth = Size.Width;
+                    Layout.VerticalHeight = Size.Height;
+                }
+                else
                 {
-                    foreach (var component in layoutCopy.Components)
-                        editor.ComponentsToDispose.Remove(component);
-                    editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
-
-                    using (var enumerator = componentSettings.GetEnumerator())
+                    Layout.HorizontalWidth = Size.Width;
+                    Layout.HorizontalHeight = Size.Height;
+                }
+                var layoutCopy = (ILayout)Layout.Clone();
+                var document = new XmlDocument();
+                var componentSettings = Layout.Components.Select(x =>
+                    {
+                        try
+                        {
+                            return x.GetSettings(document);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(e);
+                            return null;
+                        }
+                    }).ToList();
+                try
+                {
+                    TopMost = false;
+                    editor.ShowDialog(this);
+                    if (editor.DialogResult == DialogResult.Cancel)
                     {
                         foreach (var component in layoutCopy.Components)
+                            editor.ComponentsToDispose.Remove(component);
+                        editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
+
+                        using (var enumerator = componentSettings.GetEnumerator())
                         {
-                            if (enumerator.MoveNext())
-                                component.SetSettings(enumerator.Current);
+                            foreach (var component in layoutCopy.Components)
+                            {
+                                if (enumerator.MoveNext())
+                                    component.SetSettings(enumerator.Current);
+                            }
                         }
+                        SetLayout(layoutCopy);
                     }
-                    SetLayout(layoutCopy);
+                    foreach (var component in editor.ComponentsToDispose)
+                        component.Dispose();
+                    foreach (var image in editor.ImagesToDispose)
+                        image.Dispose();
                 }
-                foreach (var component in editor.ComponentsToDispose)
-                    component.Dispose();
-                foreach (var image in editor.ImagesToDispose)
-                    image.Dispose();
-            }
-            finally
-            {
-                TopMost = Layout.Settings.AlwaysOnTop;
+                finally
+                {
+                    TopMost = Layout.Settings.AlwaysOnTop;
+                    editor.OrientationSwitched -= editor_OrientationSwitched;
+                    editor.LayoutResized -= editor_LayoutResized;
+                    editor.LayoutSettingsAssigned -= editor_LayoutSettingsAssigned;
+                }
             }
         }
 
