@@ -921,9 +921,12 @@ namespace LiveSplit.View
 
         void editSplitHistoryMenuItem_Click(object sender, EventArgs e)
         {
-            var editHistoryDialog = new EditHistoryDialog(Settings.RecentSplits.Select(x => x.Path));
-            if (editHistoryDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.Cancel)
-                Settings.RecentSplits = new List<RecentSplitsFile>(Settings.RecentSplits.Where(x => editHistoryDialog.History.Contains(x.Path)));
+            using (var editHistoryDialog = new EditHistoryDialog(Settings.RecentSplits.Select(x => x.Path)))
+            {
+                if (editHistoryDialog.ShowDialog(this) != DialogResult.Cancel)
+                    Settings.RecentSplits = new List<RecentSplitsFile>(Settings.RecentSplits.Where(x => editHistoryDialog.History.Contains(x.Path)));
+            }
+
             UpdateRecentSplits();
         }
 
@@ -956,9 +959,12 @@ namespace LiveSplit.View
 
         void editLayoutHistoryMenuItem_Click(object sender, EventArgs e)
         {
-            var editHistoryDialog = new EditHistoryDialog(Settings.RecentLayouts);
-            if (editHistoryDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.Cancel)
-                Settings.RecentLayouts = editHistoryDialog.History;
+            using (var editHistoryDialog = new EditHistoryDialog(Settings.RecentLayouts))
+            {
+
+                if (editHistoryDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.Cancel)
+                    Settings.RecentLayouts = editHistoryDialog.History;
+            }
             UpdateRecentLayouts();
         }
 
