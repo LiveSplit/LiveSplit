@@ -6379,6 +6379,7 @@
     <AutoSplitter>
         <Games>
             <Game>VVVVVV</Game>
+            <Game>VVVVVV Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/tzann/Autosplitters/master/LiveSplit.VVVVVV.asl</URL>
@@ -10597,10 +10598,10 @@
             <Game>Pitfall: The Lost Expedition</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Avasam/PITFALL-The-Lost-Expedition-AutoSplitter/main/Pitfall-TLE.asl</URL>
+            <URL>https://raw.githubusercontent.com/Avasam/Avasam.AutoSplitters/main/Pitfall%20The%20Lost%20Expedition/Pitfall-TLE.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>PC Autosplitter and Load Remover (By Avasam)</Description>
+        <Description>PC AutoSplitter and Load Remover (By Avasam)</Description>
     	<Website>https://discord.com/invite/NEVJPZk</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -10863,11 +10864,11 @@
             <Game>RiME</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Avasam/RiME-AutoSplitter/main/RiME.asl</URL>
+            <URL>https://raw.githubusercontent.com/Avasam/Avasam.AutoSplitters/main/RiME/RiME.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter (By Avasam). Click Website for the README</Description>
-        <Website>https://github.com/Avasam/RiME-AutoSplitter/blob/main/README.md</Website>
+        <Description>AutoSplitter (By Avasam). Click Website for the README</Description>
+        <Website>https://github.com/Avasam/Avasam.AutoSplitters/blob/main/RiME/README.md</Website>
     </AutoSplitter>
 	<AutoSplitter>
         <Games>
@@ -11196,4 +11197,39 @@
 		<Type>Script</Type>
 		<Description>Autosplitter with LRT by Mysterion_06_</Description>
 	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>WitchWay</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Avasam/Avasam.AutoSplitters/main/WitchWay/WitchWay.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter (By Avasam). Start Timer at 0.85</Description>
+    	<Website>https://www.speedrun.com/witchway</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mappy-Land</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Avasam/Avasam.AutoSplitters/main/Mappy-Land/MappyLand.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter for Mesen, FCEUX 2.2.3 and Nestopia (By Avasam).</Description>
+    	<Website>https://www.speedrun.com/mappy_land</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Harry Potter and the Goblet of Fire (PC)</Game>
+	    <Game>Harry Potter and the Goblet of Fire</Game>
+	    <Game>Harry Potter 4</Game>
+	    <Game>HP4</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/marczeslaw11/LoadRemovers/master/HP4_AutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter and Load Remover by Flo203 and Marczeslaw</Description>
+    </AutoSplitter>
 </AutoSplitters>
