@@ -2790,10 +2790,10 @@
             <Game>Dark Souls II - SotFS</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/JMaynard24/ASL/master/DarkSouls2.asl</URL>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/DarkSoulsII.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Dread)</Description>
+        <Description>Autosplitting and Load Removal is available. (By Dread, rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11231,5 +11231,26 @@
         </URLs>
         <Type>Script</Type>
         <Description>AutoSplitter and Load Remover by Flo203 and Marczeslaw</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>HROT</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/thekovic/HROT-AutoSplitter/main/HROTAutoSplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplit, AutoStart and AutoReset (by the_kovic and 2838)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Outer Wilds</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/sseneca42/Outer-Wilds-Autosplitter/main/OW_Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover &amp; AutoSplitter (by Nepo)</Description>
+	<Website>https://github.com/sseneca42/Outer-Wilds-Autosplitter/blob/main/README.md</Website>
     </AutoSplitter>
 </AutoSplitters>
