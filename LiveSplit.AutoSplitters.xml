@@ -11253,4 +11253,15 @@
         <Description>Load Remover &amp; AutoSplitter (by Nepo)</Description>
 	<Website>https://github.com/sseneca42/Outer-Wilds-Autosplitter/blob/main/README.md</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Oddworld: Munch's Oddysee</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/wjb1114/MunchAutosplitter/main/Munch.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplit, AutoStart, AutoReset. Full Game and IL Support. (by wjb1114)</Description>
+	<Website>https://github.com/wjb1114/MunchAutosplitter/blob/main/README.md</Website>
+    </AutoSplitter>
 </AutoSplitters>
