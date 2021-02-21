@@ -921,9 +921,12 @@ namespace LiveSplit.View
 
         void editSplitHistoryMenuItem_Click(object sender, EventArgs e)
         {
-            var editHistoryDialog = new EditHistoryDialog(Settings.RecentSplits.Select(x => x.Path));
-            if (editHistoryDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.Cancel)
-                Settings.RecentSplits = new List<RecentSplitsFile>(Settings.RecentSplits.Where(x => editHistoryDialog.History.Contains(x.Path)));
+            using (var editHistoryDialog = new EditHistoryDialog(Settings.RecentSplits.Select(x => x.Path)))
+            {
+                if (editHistoryDialog.ShowDialog(this) != DialogResult.Cancel)
+                    Settings.RecentSplits = new List<RecentSplitsFile>(Settings.RecentSplits.Where(x => editHistoryDialog.History.Contains(x.Path)));
+            }
+
             UpdateRecentSplits();
         }
 
@@ -956,9 +959,12 @@ namespace LiveSplit.View
 
         void editLayoutHistoryMenuItem_Click(object sender, EventArgs e)
         {
-            var editHistoryDialog = new EditHistoryDialog(Settings.RecentLayouts);
-            if (editHistoryDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.Cancel)
-                Settings.RecentLayouts = editHistoryDialog.History;
+            using (var editHistoryDialog = new EditHistoryDialog(Settings.RecentLayouts))
+            {
+
+                if (editHistoryDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.Cancel)
+                    Settings.RecentLayouts = editHistoryDialog.History;
+            }
             UpdateRecentLayouts();
         }
 
@@ -1964,34 +1970,40 @@ namespace LiveSplit.View
         {
             var runCopy = CurrentState.Run.Clone() as IRun;
             var activeAutoSplitters = new List<string>(CurrentState.Settings.ActiveAutoSplitters);
-            var editor = new RunEditorDialog(CurrentState);
-            editor.RunEdited += editor_RunEdited;
-            editor.ComparisonRenamed += editor_ComparisonRenamed;
-            editor.SegmentRemovedOrAdded += editor_SegmentRemovedOrAdded;
-            try
+            using (RunEditorDialog editor = new RunEditorDialog(CurrentState))
             {
-                TopMost = false;
-                IsInDialogMode = true;
-                if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
-                    editor.AllowChangingSegments = true;
-                var result = editor.ShowDialog(this);
-                if (result == DialogResult.Cancel)
+                editor.RunEdited += editor_RunEdited;
+                editor.ComparisonRenamed += editor_ComparisonRenamed;
+                editor.SegmentRemovedOrAdded += editor_SegmentRemovedOrAdded;
+                try
                 {
-                    foreach (var image in runCopy.Select(x => x.Icon))
-                        editor.ImagesToDispose.Remove(image);
-                    editor.ImagesToDispose.Remove(runCopy.GameIcon);
+                    TopMost = false;
+                    IsInDialogMode = true;
+                    if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
+                        editor.AllowChangingSegments = true;
+                    var result = editor.ShowDialog(this);
+                    if (result == DialogResult.Cancel)
+                    {
+                        foreach (var image in runCopy.Select(x => x.Icon))
+                            editor.ImagesToDispose.Remove(image);
+                        editor.ImagesToDispose.Remove(runCopy.GameIcon);
 
-                    CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
-                    SetRun(runCopy);
-                    CurrentState.CallRunManuallyModified();
+                        CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
+                        SetRun(runCopy);
+                        CurrentState.CallRunManuallyModified();
+                    }
+                    foreach (var image in editor.ImagesToDispose)
+                        image.Dispose();
                 }
-                foreach (var image in editor.ImagesToDispose)
-                    image.Dispose();
-            }
-            finally
-            {
-                TopMost = Layout.Settings.AlwaysOnTop;
-                IsInDialogMode = false;
+                finally
+                {
+                    TopMost = Layout.Settings.AlwaysOnTop;
+                    IsInDialogMode = false;
+
+                    editor.RunEdited -= editor_RunEdited;
+                    editor.ComparisonRenamed -= editor_ComparisonRenamed;
+                    editor.SegmentRemovedOrAdded -= editor_SegmentRemovedOrAdded;
+                }
             }
         }
 
@@ -2043,64 +2055,69 @@ namespace LiveSplit.View
 
         private void EditLayout()
         {
-            var editor = new LayoutEditorDialog(Layout, CurrentState, this);
-            editor.OrientationSwitched += editor_OrientationSwitched;
-            editor.LayoutResized += editor_LayoutResized;
-            editor.LayoutSettingsAssigned += editor_LayoutSettingsAssigned;
-            Layout.X = Location.X;
-            Layout.Y = Location.Y;
-            if (Layout.Mode == LayoutMode.Vertical)
+            using (var editor = new LayoutEditorDialog(Layout, CurrentState, this))
             {
-                Layout.VerticalWidth = Size.Width;
-                Layout.VerticalHeight = Size.Height;
-            }
-            else
-            {
-                Layout.HorizontalWidth = Size.Width;
-                Layout.HorizontalHeight = Size.Height;
-            }
-            var layoutCopy = (ILayout)Layout.Clone();
-            var document = new XmlDocument();
-            var componentSettings = Layout.Components.Select(x =>
+                editor.OrientationSwitched += editor_OrientationSwitched;
+                editor.LayoutResized += editor_LayoutResized;
+                editor.LayoutSettingsAssigned += editor_LayoutSettingsAssigned;
+                Layout.X = Location.X;
+                Layout.Y = Location.Y;
+                if (Layout.Mode == LayoutMode.Vertical)
                 {
-                    try
-                    {
-                        return x.GetSettings(document);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(e);
-                        return null;
-                    }
-                }).ToList();
-            try
-            {
-                TopMost = false;
-                editor.ShowDialog(this);
-                if (editor.DialogResult == DialogResult.Cancel)
+                    Layout.VerticalWidth = Size.Width;
+                    Layout.VerticalHeight = Size.Height;
+                }
+                else
                 {
-                    foreach (var component in layoutCopy.Components)
-                        editor.ComponentsToDispose.Remove(component);
-                    editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
-
-                    using (var enumerator = componentSettings.GetEnumerator())
+                    Layout.HorizontalWidth = Size.Width;
+                    Layout.HorizontalHeight = Size.Height;
+                }
+                var layoutCopy = (ILayout)Layout.Clone();
+                var document = new XmlDocument();
+                var componentSettings = Layout.Components.Select(x =>
+                    {
+                        try
+                        {
+                            return x.GetSettings(document);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(e);
+                            return null;
+                        }
+                    }).ToList();
+                try
+                {
+                    TopMost = false;
+                    editor.ShowDialog(this);
+                    if (editor.DialogResult == DialogResult.Cancel)
                     {
                         foreach (var component in layoutCopy.Components)
+                            editor.ComponentsToDispose.Remove(component);
+                        editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
+
+                        using (var enumerator = componentSettings.GetEnumerator())
                         {
-                            if (enumerator.MoveNext())
-                                component.SetSettings(enumerator.Current);
+                            foreach (var component in layoutCopy.Components)
+                            {
+                                if (enumerator.MoveNext())
+                                    component.SetSettings(enumerator.Current);
+                            }
                         }
+                        SetLayout(layoutCopy);
                     }
-                    SetLayout(layoutCopy);
+                    foreach (var component in editor.ComponentsToDispose)
+                        component.Dispose();
+                    foreach (var image in editor.ImagesToDispose)
+                        image.Dispose();
                 }
-                foreach (var component in editor.ComponentsToDispose)
-                    component.Dispose();
-                foreach (var image in editor.ImagesToDispose)
-                    image.Dispose();
-            }
-            finally
-            {
-                TopMost = Layout.Settings.AlwaysOnTop;
+                finally
+                {
+                    TopMost = Layout.Settings.AlwaysOnTop;
+                    editor.OrientationSwitched -= editor_OrientationSwitched;
+                    editor.LayoutResized -= editor_LayoutResized;
+                    editor.LayoutSettingsAssigned -= editor_LayoutSettingsAssigned;
+                }
             }
         }
 
@@ -2470,33 +2487,36 @@ namespace LiveSplit.View
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
         {
-            var editor = new SettingsDialog(Hook, Settings, CurrentState.CurrentHotkeyProfile);
-            editor.SumOfBestModeChanged += editor_SumOfBestModeChanged;
-            try
+            using (var editor = new SettingsDialog(Hook, Settings, CurrentState.CurrentHotkeyProfile))
             {
-                TopMost = false;
-                var oldSettings = (ISettings)Settings.Clone();
-                Settings.UnregisterAllHotkeys(Hook);
-                var result = editor.ShowDialog(this);
-                if (result == DialogResult.Cancel)
+                editor.SumOfBestModeChanged += editor_SumOfBestModeChanged;
+                try
                 {
-                    var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
-                    CurrentState.Settings = Settings = oldSettings;
-                    if (regenerate)
-                        RegenerateComparisons();
+                    TopMost = false;
+                    var oldSettings = (ISettings)Settings.Clone();
+                    Settings.UnregisterAllHotkeys(Hook);
+                    var result = editor.ShowDialog(this);
+                    if (result == DialogResult.Cancel)
+                    {
+                        var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
+                        CurrentState.Settings = Settings = oldSettings;
+                        if (regenerate)
+                            RegenerateComparisons();
+                    }
+                    else
+                    {
+                        SwitchComparisonGenerators();
+                        CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
+                    }
+                    Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+                    UpdateRaceProviderIntegration();
                 }
-                else
+                finally
                 {
-                    SwitchComparisonGenerators();
-                    CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
+                    editor.SumOfBestModeChanged -= editor_SumOfBestModeChanged;
+                    SetProgressBar();
+                    TopMost = Layout.Settings.AlwaysOnTop;
                 }
-                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
-                UpdateRaceProviderIntegration();
-            }
-            finally
-            {
-                SetProgressBar();
-                TopMost = Layout.Settings.AlwaysOnTop;
             }
         }
 
@@ -2566,21 +2586,24 @@ namespace LiveSplit.View
 
         private void shareMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                TopMost = false;
-                IsInDialogMode = true;
-                Settings.UnregisterAllHotkeys(Hook);
-                new ShareRunDialog(
-                    (LiveSplitState)(CurrentState.Clone()),
+            using (var dialog = new ShareRunDialog(
+                    (LiveSplitState)CurrentState.Clone(),
                     Settings,
-                    () => MakeScreenShot(false)).ShowDialog(this);
-                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
-            }
-            finally
+                    () => MakeScreenShot(false)))
             {
-                TopMost = Layout.Settings.AlwaysOnTop;
-                IsInDialogMode = false;
+                try
+                {
+                    TopMost = false;
+                    IsInDialogMode = true;
+                    Settings.UnregisterAllHotkeys(Hook);
+                    dialog.ShowDialog(this);
+                    Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+                }
+                finally
+                {
+                    TopMost = Layout.Settings.AlwaysOnTop;
+                    IsInDialogMode = false;
+                }
             }
         }
 

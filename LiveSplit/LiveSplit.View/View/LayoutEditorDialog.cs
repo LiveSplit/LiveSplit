@@ -228,26 +228,29 @@ namespace LiveSplit.View
             }
         }
 
-        private void ShowLayoutSettings(LiveSplit.UI.Components.IComponent tabControl = null)
+        private void ShowLayoutSettings(UI.Components.IComponent tabControl = null)
         {
             var oldSettings = (Options.LayoutSettings)Layout.Settings.Clone();
-            var settingsDialog = new LayoutSettingsDialog(Layout.Settings, Layout, tabControl);
-            var result = settingsDialog.ShowDialog(this);
-            if (result == DialogResult.OK)
+            using (var settingsDialog = new LayoutSettingsDialog(Layout.Settings, Layout, tabControl))
             {
-                if (oldSettings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
-                    ImagesToDispose.Add(oldSettings.BackgroundImage);
+                var result = settingsDialog.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    if (oldSettings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+                        ImagesToDispose.Add(oldSettings.BackgroundImage);
 
-                Layout.HasChanged = true;
-            }
-            else if (result == DialogResult.Cancel)
-            {
-                if (Layout.Settings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
-                    Layout.Settings.BackgroundImage.Dispose();
+                    Layout.HasChanged = true;
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    if (Layout.Settings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+                        Layout.Settings.BackgroundImage.Dispose();
 
-                Layout.Settings.Assign(oldSettings);
-                LayoutSettingsAssigned(null, null);
+                    Layout.Settings.Assign(oldSettings);
+                    LayoutSettingsAssigned(null, null);
+                }
             }
+            
             BindingList.ResetBindings();
         }
 
@@ -258,12 +261,14 @@ namespace LiveSplit.View
 
         private void btnSetSize_Click(object sender, EventArgs e)
         {
-            var setSizeDialog = new SetSizeForm(CurrentState.Form);
-            var oldSize = CurrentState.Form.Size;
-            var result = setSizeDialog.ShowDialog();
+            using (var setSizeDialog = new SetSizeForm(CurrentState.Form))
+            {
+                var oldSize = CurrentState.Form.Size;
+                var result = setSizeDialog.ShowDialog();
 
-            if (result == DialogResult.Cancel)
-                CurrentState.Form.Size = oldSize;
+                if (result == DialogResult.Cancel)
+                    CurrentState.Form.Size = oldSize;
+            }   
         }
 
         private void lbxComponents_DoubleClick(object sender, EventArgs e)
