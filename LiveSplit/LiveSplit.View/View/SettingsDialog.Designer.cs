@@ -64,6 +64,7 @@
             this.btnRemoveProfile = new System.Windows.Forms.Button();
             this.btnRenameProfile = new System.Windows.Forms.Button();
             this.btnNewProfile = new System.Windows.Forms.Button();
+            this.chkAllowGamepads = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.cbxRaceViewer = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -72,12 +73,15 @@
             this.btnChooseComparisons = new System.Windows.Forms.Button();
             this.chkSimpleSOB = new System.Windows.Forms.CheckBox();
             this.chkWarnOnReset = new System.Windows.Forms.CheckBox();
-            this.chkAllowGamepads = new System.Windows.Forms.CheckBox();
+            this.panelRefreshRate = new System.Windows.Forms.Panel();
+            this.txtRefreshRate = new System.Windows.Forms.TextBox();
+            this.labelRefreshRate = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.grpHotkeyProfiles.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panelRefreshRate.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -88,11 +92,11 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel1.Controls.Add(this.btnChooseRaceProvider, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.btnLogOut, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 6);
+            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 7);
             this.tableLayoutPanel1.Controls.Add(this.cbxRaceViewer, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label12, 0, 4);
@@ -100,20 +104,20 @@
             this.tableLayoutPanel1.Controls.Add(this.btnChooseComparisons, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.chkSimpleSOB, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.chkWarnOnReset, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panelRefreshRate, 0, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
+            this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 601);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 630);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnChooseRaceProvider
@@ -132,7 +136,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnOK, 2);
-            this.btnOK.Location = new System.Drawing.Point(221, 575);
+            this.btnOK.Location = new System.Drawing.Point(221, 604);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -539,13 +543,25 @@
             this.btnNewProfile.UseVisualStyleBackColor = true;
             this.btnNewProfile.Click += new System.EventHandler(this.btnNewProfile_Click);
             // 
+            // chkAllowGamepads
+            // 
+            this.chkAllowGamepads.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkAllowGamepads.AutoSize = true;
+            this.chkAllowGamepads.Location = new System.Drawing.Point(7, 296);
+            this.chkAllowGamepads.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkAllowGamepads.Name = "chkAllowGamepads";
+            this.chkAllowGamepads.Size = new System.Drawing.Size(168, 17);
+            this.chkAllowGamepads.TabIndex = 15;
+            this.chkAllowGamepads.Text = "Allow Gamepads as Hotkeys";
+            this.chkAllowGamepads.UseVisualStyleBackColor = true;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(302, 575);
+            this.btnCancel.Location = new System.Drawing.Point(302, 604);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -637,23 +653,41 @@
             this.chkWarnOnReset.Text = "Warn On Reset If Better Times";
             this.chkWarnOnReset.UseVisualStyleBackColor = true;
             // 
-            // chkAllowGamepads
+            // panelRefreshRate
             // 
-            this.chkAllowGamepads.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkAllowGamepads.AutoSize = true;
-            this.chkAllowGamepads.Location = new System.Drawing.Point(7, 296);
-            this.chkAllowGamepads.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkAllowGamepads.Name = "chkAllowGamepads";
-            this.chkAllowGamepads.Size = new System.Drawing.Size(168, 17);
-            this.chkAllowGamepads.TabIndex = 15;
-            this.chkAllowGamepads.Text = "Allow Gamepads as Hotkeys";
-            this.chkAllowGamepads.UseVisualStyleBackColor = true;
+            this.panelRefreshRate.Controls.Add(this.txtRefreshRate);
+            this.panelRefreshRate.Controls.Add(this.labelRefreshRate);
+            this.panelRefreshRate.Location = new System.Drawing.Point(0, 572);
+            this.panelRefreshRate.Margin = new System.Windows.Forms.Padding(0);
+            this.panelRefreshRate.Name = "panelRefreshRate";
+            this.panelRefreshRate.Size = new System.Drawing.Size(184, 29);
+            this.panelRefreshRate.TabIndex = 19;
+            // 
+            // txtRefreshRate
+            // 
+            this.txtRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtRefreshRate.Location = new System.Drawing.Point(128, 6);
+            this.txtRefreshRate.Name = "txtRefreshRate";
+            this.txtRefreshRate.Size = new System.Drawing.Size(51, 20);
+            this.txtRefreshRate.TabIndex = 15;
+            this.txtRefreshRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // labelRefreshRate
+            // 
+            this.labelRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelRefreshRate.AutoSize = true;
+            this.labelRefreshRate.Location = new System.Drawing.Point(3, 8);
+            this.labelRefreshRate.Name = "labelRefreshRate";
+            this.labelRefreshRate.Size = new System.Drawing.Size(93, 13);
+            this.labelRefreshRate.TabIndex = 19;
+            this.labelRefreshRate.Text = "Refresh Rate (Hz):";
             // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 615);
+            this.ClientSize = new System.Drawing.Size(394, 644);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -669,6 +703,8 @@
             this.grpHotkeyProfiles.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.panelRefreshRate.ResumeLayout(false);
+            this.panelRefreshRate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -718,5 +754,8 @@
         private System.Windows.Forms.Button btnChooseRaceProvider;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox chkAllowGamepads;
+        private System.Windows.Forms.Label labelRefreshRate;
+        private System.Windows.Forms.Panel panelRefreshRate;
+        private System.Windows.Forms.TextBox txtRefreshRate;
     }
 }
