@@ -764,6 +764,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>MX Simulator</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/MX%20Simulator/MXSimulator.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts and resets. Splits on each checkpoint. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/MX%20Simulator</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Pedestrian</Game>
         </Games>
         <URLs>
