@@ -231,24 +231,23 @@ namespace LiveSplit.View
         private void ShowLayoutSettings(UI.Components.IComponent tabControl = null)
         {
             var oldSettings = (Options.LayoutSettings)Layout.Settings.Clone();
-            using (var settingsDialog = new LayoutSettingsDialog(Layout.Settings, Layout, tabControl))
+            var settingsDialog = new LayoutSettingsDialog(Layout.Settings, Layout, tabControl);
+            var result = settingsDialog.ShowDialog(this);
+            //settingsDialog.Dispose();
+            if (result == DialogResult.OK)
             {
-                var result = settingsDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
-                {
-                    if (oldSettings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
-                        ImagesToDispose.Add(oldSettings.BackgroundImage);
+                if (oldSettings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+                    ImagesToDispose.Add(oldSettings.BackgroundImage);
 
-                    Layout.HasChanged = true;
-                }
-                else if (result == DialogResult.Cancel)
-                {
-                    if (Layout.Settings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
-                        Layout.Settings.BackgroundImage.Dispose();
+                Layout.HasChanged = true;
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                if (Layout.Settings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+                    Layout.Settings.BackgroundImage.Dispose();
 
-                    Layout.Settings.Assign(oldSettings);
-                    LayoutSettingsAssigned(null, null);
-                }
+                Layout.Settings.Assign(oldSettings);
+                LayoutSettingsAssigned(null, null);
             }
             
             BindingList.ResetBindings();
