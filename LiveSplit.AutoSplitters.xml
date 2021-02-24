@@ -2,19 +2,6 @@
 <AutoSplitters>
 	<AutoSplitter>
 		<Games>
-			<Game>Sonic The Hedgehog (2006)</Game>
-			<Game>Sonic The Hedgehog (2006) Category Extensions</Game>
-		</Games>
-		<URLs>
-			<URL>https://gist.githubusercontent.com/Labreezy/7bd45d3f36c07a86b6d68262497efd3c/raw/12846889d9731d5161a79484c0c4133e0203f58a/sonic06.asl</URL>
-		</URLs>
-		<Type>Script</Type>
-		<Description>Emulator In-Game Timer (by Labryz)</Description>
-		<Website>https://discord.gg/JYTy3f64Uh</Website>
-	</AutoSplitter>
-	<AutoSplitter>
-		
-		<Games>
 			<Game>FlatOut</Game>
 		</Games>
 		<URLs>
@@ -11298,5 +11285,16 @@
 	<Type>Script</Type>
 	<Description>Autosplitter for the PC version (by GMP) </Description>
 	<Website>https://github.com/GMPranav/ASLs/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+		<Game>Disney's Brother Bear</Game>
+		<Game>Brother Bear</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/marczeslaw11/LoadRemovers/master/bb%20load%20remover.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Load Remover by marczeslaw</Description>
     </AutoSplitter>
 </AutoSplitters>
