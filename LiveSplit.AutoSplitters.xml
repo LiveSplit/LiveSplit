@@ -2,6 +2,18 @@
 <AutoSplitters>
 	<AutoSplitter>
 		<Games>
+			<Game>Sonic The Hedgehog (2006)</Game>
+			<Game>Sonic The Hedgehog (2006) Category Extensions</Game>
+		</Games>
+		<URLs>
+			<URL>https://gist.githubusercontent.com/Labreezy/7bd45d3f36c07a86b6d68262497efd3c/raw/12846889d9731d5161a79484c0c4133e0203f58a/sonic06.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Emulator In-Game Timer (by Labryz)</Description>
+		<Website>https://discord.gg/JYTy3f64Uh</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 			<Game>FlatOut</Game>
 		</Games>
 		<URLs>
@@ -47,7 +59,7 @@
    </AutoSplitter>
 	<AutoSplitter>
      	<Games>
-            <Game>Fix It Felix Jr</Game>
+            <Game>Fix It Felix Jr.</Game>
      	</Games>
      	<URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/FixitFelixJr.asl</URL>
@@ -728,6 +740,17 @@
         <Type>Script</Type>
         <Description>Starts the timer. Pauses when the game is loading. Compare against Game Time! (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/Hello%20Neighbor</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Just Shake It</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Just%20Shake%20It/JustShakeIt.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts the timer upon crossing the start, splits on each checkpoint and resets upon restarting. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Just%20Shake%20It</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
