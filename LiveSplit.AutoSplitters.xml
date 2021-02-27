@@ -5948,10 +5948,10 @@
             <Game>Dragon Age: Inquisition</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Ekelbatzen/LiveSplit.Scripts/master/dai.asl</URL>
+            <URL>https://raw.githubusercontent.com/Lemuura/Livesplit-Scripts/main/dai.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Ekelbatzen and LettersWords)</Description>
+        <Description>Load Removal is available. (By Ekelbatzen, LettersWords and Lemuura)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11340,5 +11340,26 @@
 	</URLs>
 	<Type>Script</Type>
 	<Description>Autosplitting and Load Removal (by Micrologist#2351)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Little Nightmares II</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/DNikko/littlenightmares-lr-as/master/littlenightmares2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal (By Nikko)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Marble It Up!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TalentedPlatinum/AutoSplitters/main/MarbleItUp.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>A Marble it up auto splitter (By TalentedPlatinum)</Description>
+        <Website>https://github.com/TalentedPlatinum/AutoSplitters/blob/main/README.md</Website>
     </AutoSplitter>
 </AutoSplitters>
