@@ -11362,4 +11362,14 @@
         <Description>A Marble it up auto splitter (By TalentedPlatinum)</Description>
         <Website>https://github.com/TalentedPlatinum/AutoSplitters/blob/main/README.md</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Maquette</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Maquette/main/maquette.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal (by Micrologist#2351)</Description>
+    </AutoSplitter>
 </AutoSplitters>
