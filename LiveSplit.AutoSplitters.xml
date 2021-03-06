@@ -10445,6 +10445,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>InnerSpace</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KaDiWa4/LiveSplit.KaDiWa/master/InnerSpace.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatic starting, splitting, resetting and load removal.</Description>
+        <Website>https://discord.gg/qc4NrmZ</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Red Dead Redemption 2</Game>
         </Games>
         <URLs>
@@ -11122,7 +11133,7 @@
         <Type>Script</Type>
         <Description>RE5 LiN Autosplitter by TheDementedSalad</Description>
         <Website>https://www.speedrun.com/re5lin</Website>
-    </AutoSplitter>  
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
 	    <Game>Life Is Strange</Game>
@@ -11221,7 +11232,7 @@
         <Type>Script</Type>
         <Description>Supports Autosplit, Autostart, Autoreset, Load Removal, can split on every room or saved camp</Description>
         <Website>https://discord.gg/8t4WrMmpXs</Website>
-    </AutoSplitter>	
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Heads Run</Game>
