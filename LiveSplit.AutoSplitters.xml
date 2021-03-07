@@ -2,6 +2,18 @@
 <AutoSplitters>
 	<AutoSplitter>
 		<Games>
+			<Game>Sonic The Hedgehog (2006)</Game>
+			<Game>Sonic The Hedgehog (2006) Category Extensions</Game>
+		</Games>
+		<URLs>
+			<URL>https://gist.githubusercontent.com/Labreezy/7bd45d3f36c07a86b6d68262497efd3c/raw/0f9c6362c9e0c44b6e574ecbd3a5dedeac97573e/sonic06.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Emulator In-Game Timer (by Labryz)</Description>
+		<Website>https://discord.gg/JYTy3f64Uh</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 			<Game>FlatOut</Game>
 		</Games>
 		<URLs>
@@ -47,7 +59,7 @@
    </AutoSplitter>
 	<AutoSplitter>
      	<Games>
-            <Game>Fix It Felix Jr</Game>
+            <Game>Fix It Felix Jr.</Game>
      	</Games>
      	<URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/FixitFelixJr.asl</URL>
@@ -731,6 +743,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Just Shake It</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Just%20Shake%20It/JustShakeIt.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts the timer upon crossing the start, splits on each checkpoint and resets upon restarting. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Just%20Shake%20It</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Lightmatter</Game>
         </Games>
         <URLs>
@@ -1223,13 +1246,13 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>LEGO Bionicle: The Legend of Mata Nui</Game>
+            <Game>Bionicle: The Legend of Mata Nui</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/OndrikB/Bionicle-TLoMN-Autosplitter/master/bionicle_tlomn.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover, Autosplitting and Autostarting is available (by OndrikB)</Description>
+        <Description>In-Game Timer, Autosplitting and Autostarting is available (by OndrikB)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5925,10 +5948,10 @@
             <Game>Dragon Age: Inquisition</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Ekelbatzen/LiveSplit.Scripts/master/dai.asl</URL>
+            <URL>https://raw.githubusercontent.com/Lemuura/Livesplit-Scripts/main/dai.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Ekelbatzen and LettersWords)</Description>
+        <Description>Load Removal is available. (By Ekelbatzen, LettersWords and Lemuura)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7714,7 +7737,7 @@
             <Game>Sekiro: Shadows Die Twice</Game>
         </Games>
         <URLs>
-            <URL>https://gist.githubusercontent.com/RefinedHornet/70453f953d536229d093a7f86b4559cd/raw/56e800bd30cb223892aecc13900413f04c3748a4/Sekiro.asl</URL>
+            <URL>https://gist.githubusercontent.com/RefinedHornet/70453f953d536229d093a7f86b4559cd/raw/7d059366a408de5d862ef2dc7c6643b358f1eb4b/Sekiro.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Game time, auto-start and several QOL improvments.</Description>
@@ -10422,6 +10445,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>InnerSpace</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KaDiWa4/LiveSplit.KaDiWa/master/InnerSpace.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatic starting, splitting, resetting and load removal.</Description>
+        <Website>https://discord.gg/qc4NrmZ</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Red Dead Redemption 2</Game>
         </Games>
         <URLs>
@@ -11099,7 +11133,7 @@
         <Type>Script</Type>
         <Description>RE5 LiN Autosplitter by TheDementedSalad</Description>
         <Website>https://www.speedrun.com/re5lin</Website>
-    </AutoSplitter>  
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
 	    <Game>Life Is Strange</Game>
@@ -11158,6 +11192,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>HuniePop 2: Double Date</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Buurazu/HuniePopAutoSplitter/main/huniepop%202.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto-start/reset. Splits on every date/bonus round by default</Description>
+        <Website>https://discord.gg/hHMyUjDmzu</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Secrets of Grindea</Game>
         </Games>
         <URLs>
@@ -11187,7 +11232,7 @@
         <Type>Script</Type>
         <Description>Supports Autosplit, Autostart, Autoreset, Load Removal, can split on every room or saved camp</Description>
         <Website>https://discord.gg/8t4WrMmpXs</Website>
-    </AutoSplitter>	
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Heads Run</Game>
@@ -11285,5 +11330,81 @@
 	<Type>Script</Type>
 	<Description>Autosplitter for the PC version (by GMP) </Description>
 	<Website>https://github.com/GMPranav/ASLs/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+		<Game>Disney's Brother Bear</Game>
+		<Game>Brother Bear</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/marczeslaw11/LoadRemovers/master/BrotherBear_AutoSplitter.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Load Remover and AutoSplitter by marczeslaw</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+		<Game>Venineth</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Venineth/main/venineth.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Autosplitting and Load Removal (by Micrologist#2351)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Little Nightmares II</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/DNikko/littlenightmares-lr-as/master/littlenightmares2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal (By Nikko)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Marble It Up!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TalentedPlatinum/AutoSplitters/main/MarbleItUp.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>A Marble it up auto splitter (By TalentedPlatinum)</Description>
+        <Website>https://github.com/TalentedPlatinum/AutoSplitters/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Maquette</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Maquette/main/maquette.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal (by Micrologist#2351)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Harry Potter and the Order of the Phoenix (PC)</Game>
+            <Game>Harry Potter and the Order of the Phoenix</Game>
+            <Game>Harry Potter 5</Game>
+            <Game>HP5</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/marczeslaw11/LoadRemovers/master/hp5_autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter by marczeslaw</Description>
+        <Website>https://www.speedrun.com/hp5/resources</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Super Cable Boy</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Doublevil/scbspeedrun/main/SuperCableBoy.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>A game time autosplitter for SCB, by Doublevil</Description>
     </AutoSplitter>
 </AutoSplitters>
