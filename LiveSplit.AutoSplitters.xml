@@ -1246,13 +1246,13 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>LEGO Bionicle: The Legend of Mata Nui</Game>
+            <Game>Bionicle: The Legend of Mata Nui</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/OndrikB/Bionicle-TLoMN-Autosplitter/master/bionicle_tlomn.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover, Autosplitting and Autostarting is available (by OndrikB)</Description>
+        <Description>In-Game Timer, Autosplitting and Autostarting is available (by OndrikB)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11382,5 +11382,29 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal (by Micrologist#2351)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Harry Potter and the Order of the Phoenix (PC)</Game>
+            <Game>Harry Potter and the Order of the Phoenix</Game>
+            <Game>Harry Potter 5</Game>
+            <Game>HP5</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/marczeslaw11/LoadRemovers/master/hp5_autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter by marczeslaw</Description>
+        <Website>https://www.speedrun.com/hp5/resources</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Super Cable Boy</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Doublevil/scbspeedrun/main/SuperCableBoy.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>A game time autosplitter for SCB, by Doublevil</Description>
     </AutoSplitter>
 </AutoSplitters>
