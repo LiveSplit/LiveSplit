@@ -1257,6 +1257,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Clustertruck Category Extensions</Game>
+        </Games>
+        <URLs>
+	    <URL>https://raw.githubusercontent.com/Happyrobot33/Autosplitters/master/Clustertruck.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>OpenSource Autosplitting by level aswell as by location (by Happyrobot33)</Description>
+        <Website>https://github.com/Happyrobot33/Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Bionicle: The Legend of Mata Nui</Game>
         </Games>
         <URLs>
@@ -9871,8 +9882,8 @@
             <URL>https://raw.githubusercontent.com/ldmnt/ash-autosplitter/master/ASH_Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Splits can be chosen in the settings. Starting, resetting and in-game time available. (by Ero and Hamb)</Description>
-        <Website>https://discord.gg/UmVpeNB</Website>
+        <Description>Starts, resets, splits (check settings), syncs to IGT. Click 'Website' to look up locations. (by Ero and Hamb)</Description>
+        <Website>https://voxelse.github.io/aShortHike/interactiveMap</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11436,5 +11447,25 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting is available for CXBX (By Auddy)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Bionicle Heroes</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/marczeslaw11/LoadRemovers/master/BionicleHeroes_Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter aviable (by marczeslaw)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+        <Game>Exit Path 2</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/brododragon/Exit-Path-2-Autosplitter/main/ExitPath2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Automatically starts, splits, and resets. Removes loads as well. (by brododragon)</Description>
     </AutoSplitter>
 </AutoSplitters>
