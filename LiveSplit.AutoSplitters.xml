@@ -9819,12 +9819,13 @@
     <AutoSplitter>
         <Games>
             <Game>Prince of Persia</Game>
+	    <Game>Prince of Persia (Mods)</Game>	
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/WinterThunderSpeedrun/Autosplitters/master/PrinceOfPersia1.4.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Website>https://raw.githubusercontent.com/WinterThunderSpeedrun/Autosplitters</Website>
+        <Website>https://github.com/WinterThunderSpeedrun/Autosplitters</Website>
         <Description>Autospliter for Prince of Persia 1.4 on DOSBox 0.74-3 (In-game timer)</Description>
     </AutoSplitter>
     <AutoSplitter>
@@ -11488,5 +11489,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Automatically starts, splits, and resets</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lotus III: The Ultimate Challenge</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/WinterThunderSpeedrun/Autosplitters/master/Lotus3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Website>https://github.com/WinterThunderSpeedrun/Autosplitters</Website>
+        <Description>Autospliter with IGT for Lotus III on DOSBox 0.74-3 (manual start and reset required)</Description>
     </AutoSplitter>
 </AutoSplitters>
