@@ -8,6 +8,7 @@ namespace LiveSplit.Options
     public class HotkeyProfile : ICloneable
     {
         public KeyOrButton SplitKey { get; set; }
+        public KeyOrButton SecondarySplitKey { get; set; }
         public KeyOrButton ResetKey { get; set; }
         public KeyOrButton SkipKey { get; set; }
         public KeyOrButton UndoKey { get; set; }
@@ -33,6 +34,12 @@ namespace LiveSplit.Options
                 hotkeyProfile.SplitKey = new KeyOrButton(keyStart.InnerText);
             else
                 hotkeyProfile.SplitKey = null;
+
+            var secondaryKeyStart = element["SecondarySplitKey"];
+            if (!string.IsNullOrEmpty(secondaryKeyStart.InnerText))
+                hotkeyProfile.SecondarySplitKey = new KeyOrButton(secondaryKeyStart.InnerText);
+            else
+                hotkeyProfile.SecondarySplitKey = null;
 
             var keyReset = element["ResetKey"];
             if (!string.IsNullOrEmpty(keyReset.InnerText))
@@ -100,6 +107,11 @@ namespace LiveSplit.Options
                 splitKey.InnerText = SplitKey.ToString();
             parent.AppendChild(splitKey);
 
+            var secondarySplitKey = document.CreateElement("SecondarySplitKey");
+            if (SecondarySplitKey != null)
+                secondarySplitKey.InnerText = SecondarySplitKey.ToString();
+            parent.AppendChild(secondarySplitKey);
+
             var resetKey = document.CreateElement("ResetKey");
             if (ResetKey != null)
                 resetKey.InnerText = ResetKey.ToString();
@@ -149,6 +161,7 @@ namespace LiveSplit.Options
             return new HotkeyProfile()
             {
                 SplitKey = SplitKey,
+                SecondarySplitKey = SecondarySplitKey,
                 ResetKey = ResetKey,
                 SkipKey = SkipKey,
                 UndoKey = UndoKey,

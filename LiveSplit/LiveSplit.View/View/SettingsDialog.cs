@@ -20,6 +20,7 @@ namespace LiveSplit.View
         public string SelectedHotkeyProfile { get; set; }
 
         public string SplitKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey);
+        public string SecondarySplitKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SecondarySplitKey);
         public string ResetKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].ResetKey);
         public string SkipKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SkipKey);
         public string UndoKey => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].UndoKey);
@@ -87,6 +88,7 @@ namespace LiveSplit.View
         private void UpdateDisplayedHotkeyValues()
         {
             txtStartSplit.Text = SplitKey;
+            txtSecondarySplit.Text = SecondarySplitKey;
             txtReset.Text = ResetKey;
             txtSkip.Text = SkipKey;
             txtUndo.Text = UndoKey;
@@ -227,6 +229,13 @@ namespace LiveSplit.View
             SetHotkeyHandlers((TextBox)sender, x =>
             {
                 Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey = x;
+            });
+        }
+        private void Secondary_Split_Set_Enter(object sender, EventArgs e)
+        {
+            SetHotkeyHandlers((TextBox)sender, x =>
+            {
+                Settings.HotkeyProfiles[SelectedHotkeyProfile].SecondarySplitKey = x;
             });
         }
         private void Reset_Set_Enter(object sender, EventArgs e)

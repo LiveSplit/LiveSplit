@@ -1073,7 +1073,7 @@ namespace LiveSplit.View
 
                 if ((ActiveForm == this || hotkeyProfile.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
                 {
-                    if (hotkeyProfile.SplitKey == e)
+                    if (hotkeyProfile.SplitKey == e || hotkeyProfile.SecondarySplitKey == e)
                     {
                         if (hotkeyProfile.HotkeyDelay > 0)
                         {
