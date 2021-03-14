@@ -20,7 +20,7 @@
 			<URL>https://raw.githubusercontent.com/b5414/LiveSplit_ASL/white/files/GForce.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description>G-Force AutoSplitter</Description>
+		<Description>G-Force AutoSplitter (by b5414)</Description>
 		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
 	</AutoSplitter>
 	<AutoSplitter>
@@ -31,7 +31,18 @@
 			<URL>https://raw.githubusercontent.com/b5414/LiveSplit_ASL/white/files/FlatOut.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description>FlatOut 1 AutoSplitter</Description>
+		<Description>FlatOut 1 AutoSplitter (by b5414)</Description>
+		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>UAZ 4X4 Racing</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/b5414/LiveSplit_ASL/white/files/4x4Racing.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Uaz AutoSplitter (By b5414)</Description>
 		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
 	</AutoSplitter>
 	<AutoSplitter>
@@ -11501,4 +11512,14 @@
         <Website>https://github.com/WinterThunderSpeedrun/Autosplitters</Website>
         <Description>Autospliter with IGT for Lotus III on DOSBox 0.74-3 (manual start and reset required)</Description>
     </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Remothered: Broken Porcelain</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Mysterion06/Remothered-Broken-Porcelain/main/RemotheredBP.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description> Loadremover by Mysterion06</Description>
+	</AutoSplitter>
 </AutoSplitters>
