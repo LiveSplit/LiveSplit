@@ -79,6 +79,17 @@
      	<Description>Auto Splitter for both Any% and IL runs of Children of Morta</Description>
 	<Website>https://discord.gg/wmySfwd</Website>
    </AutoSplitter>
+	 <AutoSplitter>
+     	<Games>
+            <Game>Wallace And Gromit In Project Zoo</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/WallaceAndGromitInProjectZoo.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Auto Splitter and Load Remover (By Kuno Demetries, xZeko)</Description>
+	<Website>https://discord.com/invite/fdkmX37</Website>
+   </AutoSplitter>
 	<AutoSplitter>
      	<Games>
             <Game>Fix It Felix Jr.</Game>
@@ -134,6 +145,17 @@
      </AutoSplitter>
 		<AutoSplitter>
      	<Games>
+            <Game>The Hell In Vietnam</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/TheHellInVietnam.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Auto Splitter, Load Remover (by Kuno Demetries, xZeko)</Description>
+        <Website>https://discord.gg/s3KBdU8uB9</Website>
+     </AutoSplitter>
+		<AutoSplitter>
+     	<Games>
             <Game>Wanted: Weapons of Fate</Game>
      	</Games>
      	<URLs>
@@ -141,7 +163,18 @@
      	</URLs>
      	<Type>Script</Type>
      	<Description>Auto Splitter/ Load Remover (by Kuno Demetries)</Description>
-	<Website>https://www.speedrun.com/wwof</Website>
+	<Website>https://discord.gg/s3KBdU8uB9</Website>
+     </AutoSplitter>
+		<AutoSplitter>
+     	<Games>
+            <Game>Super Monkey Ball Banana Blitz HD</Game>
+     	</Games>
+     	<URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SuperMonkeyBallBananaBlitzHD.asl</URL>
+     	</URLs>
+     	<Type>Script</Type>
+     	<Description>Auto Splitter / Load Remover (by Kuno Demetries, Ellie, xZeko)</Description>
+	<Website>https://discord.com/invite/Gy7QJwB</Website>
      </AutoSplitter>
 		<AutoSplitter>
      	<Games>
