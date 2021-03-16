@@ -6128,6 +6128,7 @@
             <Game>Sonic and Knuckles</Game>
             <Game>Sonic 3 Complete</Game>
             <Game>Sonic 3: Angel Island Revisited</Game>
+	    <Game>Sonic the Hedgehog 3</Game>
             <Game>Sonic 3D Blast</Game>
             <Game>Sonic Spinball (Genesis / Mega Drive)</Game>
             <Game>Sonic Spinball</Game>
@@ -11250,7 +11251,7 @@
             <Game>HuniePop</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Buurazu/HuniePopAutoSplitter/main/huniepop.asl</URL>
+            <URL>https://raw.githubusercontent.com/Buurazu/AutoSplitters/main/HuniePop.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto-start/reset. Splits on every date/bonus round, and meeting Venus. Works for all categories except 100%</Description>
@@ -11262,7 +11263,7 @@
             <Game>HuniePop 2: Double Date</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Buurazu/HuniePopAutoSplitter/main/huniepop%202.asl</URL>
+            <URL>https://raw.githubusercontent.com/Buurazu/AutoSplitters/main/HuniePop%202.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto-start/reset. Splits on every date/bonus round by default</Description>
@@ -11273,10 +11274,23 @@
             <Game>NOT A HERO</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Buurazu/NOTAHEROAutosplitter/main/NOT%20A%20HERO.asl</URL>
+            <URL>https://raw.githubusercontent.com/Buurazu/AutoSplitters/main/NOT%20A%20HERO.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto-start/split. Game Time = IL time. Resets on level start if you have only 1 split</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Colossal Caverns</Game>
+			<Game>Pikmin 2 Colossal Caverns</Game>
+			<Game>Pikmin 2 ROM Hacks</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Buurazu/AutoSplitters/main/Pikmin%202%20Colossal%20Caverns.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto-start/split/reset/IGT for Colossal Caverns. Split names beginning with a number = treasure milestones</Description>
+		<Website>https://discord.gg/WHSaSS5</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
