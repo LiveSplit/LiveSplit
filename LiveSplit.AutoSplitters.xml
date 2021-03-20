@@ -36,6 +36,17 @@
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
+			<Game>FlatOut 2</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/b5414/LiveSplit_ASL/white/files/FlatOut2.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>FlatOut 2 AutoSplitter (by b5414)</Description>
+		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 			<Game>UAZ 4X4 Racing</Game>
 		</Games>
 		<URLs>
@@ -9934,7 +9945,7 @@
     <AutoSplitter>
         <Games>
             <Game>Minecraft Dungeons</Game>
-            <Game>Minecraft: Dungeons</Game>
+	    <Game>Minecraft Dungeons Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/MinecraftDungeons.asl</URL>
