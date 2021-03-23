@@ -9720,17 +9720,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Resident Evil 6</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/JYNxYoshii/RE6_ASL/master/RE6v3_dist_IGT.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Autostart, chapter splits, sub-chapter splits, works with all characters/campaigns. Tested 1.06. Visit the Github Repo for more options and info. NEED TESTERS FOR EVERYTHING BUT LEON! (By xlYoshii)</Description>
-        <Website>https://github.com/JYNxYoshii/RE6_ASL</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Carmageddon II: Carpocalypse Now</Game>
         </Games>
         <URLs>
@@ -11591,4 +11580,14 @@
         <Description>Autosplitter and Game Time for Dolphin. (by bmn)</Description>
         <Website>https://github.com/bmn/livesplit_asl_misc/tree/mgstts</Website>
     </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Oddworld: Stranger's Wrath</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Fxyzzz/Oddworld-Stranger-s-Wrath-HD-Autosplitter/main/Oddworld_Strangers_Wrath_HD_AUTOSPLITTER_2.2.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter and IGT for Steam and GOG versions of the game</Description>
+	</AutoSplitter>
 </AutoSplitters>
