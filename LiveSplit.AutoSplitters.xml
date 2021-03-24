@@ -4450,6 +4450,26 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Momodora 1</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Ladnok/Momo-1-Autosplitter/master/Momo1.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available. (By Ladnok)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Momodora 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Ladnok/Momo-2-Autosplitter/main/Momo2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available. (By Ladnok)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Momodora: Reverie Under the Moonlight</Game>
         </Games>
         <URLs>
@@ -11585,9 +11605,9 @@
 			<Game>Oddworld: Stranger's Wrath</Game>
 		</Games>
 		<URLs>
-			<URL>https://raw.githubusercontent.com/Fxyzzz/Oddworld-Stranger-s-Wrath-HD-Autosplitter/main/Oddworld_Strangers_Wrath_HD_AUTOSPLITTER_2.2.asl</URL>
+			<URL>https://raw.githubusercontent.com/Fxyzzz/Oddworld-Stranger-s-Wrath-HD-Autosplitter/main/Oddworld_Strangers_Wrath_HD_AUTOSPLITTER.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description>Autosplitter and IGT for Steam and GOG versions of the game</Description>
+		<Description>Autosplitter and IGT for Steam and GOG versions of the game (by Fxyz)</Description>
 	</AutoSplitter>
 </AutoSplitters>
