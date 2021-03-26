@@ -14,6 +14,17 @@
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
+			<Game>Helltaker</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/b5414/LiveSplit_ASL/white/files/Helltaker.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Helltaker AutoSplitter (by b5414)</Description>
+		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 			<Game>G-Force</Game>
 		</Games>
 		<URLs>
@@ -11609,5 +11620,15 @@
 		</URLs>
 		<Type>Script</Type>
 		<Description>Autosplitter and IGT for Steam and GOG versions of the game (by Fxyz)</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>ULTRAKILL</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Mysterion06/Ultrakill/main/Ultrakillautosplitter.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter with IGT by Mysterion_06_</Description>
 	</AutoSplitter>
 </AutoSplitters>
