@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
 		<Games>
+			<Game>Brave Fencer Musashi</Game>
+		</Games>
+		<URLs>
+			<URL>https://gist.github.com/amm4108/f9cc6e8c8fba5a2457762f4fab8679c7</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Brave Fencer Musashi Autosplitter by Aalaizah</Description>
+		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 			<Game>Sonic The Hedgehog (2006)</Game>
 			<Game>Sonic The Hedgehog (2006) Category Extensions</Game>
 		</Games>
@@ -6055,10 +6066,10 @@
             <Game>Dragon Age: Inquisition</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Lemuura/Livesplit-Scripts/main/dai.asl</URL>
+            <URL>https://raw.githubusercontent.com/Lemuura/Livesplit-Autosplitters/main/dai.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Ekelbatzen, LettersWords and Lemuura)</Description>
+        <Description>Autosplitter is available. (By Lemuura)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10036,6 +10047,17 @@
         <Description>Autosplitting for MCC PC (by Burnt)</Description>
         <Website>https://github.com/Burnt-o/MCC_autosplitter</Website>
     </AutoSplitter>
+	    <AutoSplitter>
+        <Games>
+            <Game>Stubbs the Zombie</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Burnt-o/Stubbs_autosplitter/main/stubbsplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting for Stubbs the Zombie (both ports, by Burnt)</Description>
+        <Website>https://github.com/Burnt-o/Stubbs_autosplitter</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Someday You'll Return</Game>
@@ -11630,5 +11652,15 @@
 		</URLs>
 		<Type>Script</Type>
 		<Description>Autosplitter with IGT by Mysterion_06_</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>The Adventures of Elena Temple</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/EricSimonetti/ElenaTempleAutoSplitter/master/ElenaTemple.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter with IGT, auto-start, and auto-restart by RiccTheThicc</Description>
 	</AutoSplitter>
 </AutoSplitters>
