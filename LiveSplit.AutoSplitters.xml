@@ -5,7 +5,7 @@
 			<Game>Brave Fencer Musashi</Game>
 		</Games>
 		<URLs>
-			<URL>https://gist.github.com/amm4108/f9cc6e8c8fba5a2457762f4fab8679c7</URL>
+			<URL>https://gist.githubusercontent.com/amm4108/f9cc6e8c8fba5a2457762f4fab8679c7/raw/ec102b70c5995fb33015821ad89a29b41cc65b63/BraveFencerMusashi.asl</URL>
 		</URLs>
 		<Type>Script</Type>
 		<Description>Brave Fencer Musashi Autosplitter by Aalaizah</Description>
@@ -4472,7 +4472,7 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Momodora 1</Game>
+            <Game>Momodora</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Ladnok/Momo-1-Autosplitter/master/Momo1.asl</URL>
@@ -4486,6 +4486,16 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Ladnok/Momo-2-Autosplitter/main/Momo2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available. (By Ladnok)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Momodora 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Ladnok/Momo-3-Autosplitter/main/Momo3.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting is available. (By Ladnok)</Description>
@@ -11663,4 +11673,15 @@
 		<Type>Script</Type>
 		<Description>Autosplitter with IGT, auto-start, and auto-restart by RiccTheThicc</Description>
 	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Kaze and the Wild Masks</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.KazeAndTheWildMasks/main/Components/LiveSplit.KazeAndTheWildMasks.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
+        <Website>https://github.com/Voxelse/LiveSplit.KazeAndTheWildMasks</Website>
+  </AutoSplitter>
 </AutoSplitters>
