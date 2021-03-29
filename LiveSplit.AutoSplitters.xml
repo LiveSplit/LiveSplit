@@ -5,10 +5,10 @@
 			<Game>Brave Fencer Musashi</Game>
 		</Games>
 		<URLs>
-			<URL>https://gist.githubusercontent.com/amm4108/f9cc6e8c8fba5a2457762f4fab8679c7/raw/ec102b70c5995fb33015821ad89a29b41cc65b63/BraveFencerMusashi.asl</URL>
+			<URL>https://gist.githubusercontent.com/amm4108/f9cc6e8c8fba5a2457762f4fab8679c7/raw/5e2107d272ecec154dbbdb0f886152f9a9d013be/BraveFencerMusashi.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description>Brave Fencer Musashi Autosplitter by Aalaizah</Description>
+		<Description>Brave Fencer Musashi Autosplitter (by Aalaizah)</Description>
 		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
 	</AutoSplitter>
 	<AutoSplitter>
@@ -11683,5 +11683,36 @@
         <Type>Component</Type>
         <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/LiveSplit.KazeAndTheWildMasks</Website>
+  </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Witch &amp; The 66 Mushrooms</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NighthawkSLO/Autosplitters/master/TheWitchAndThe66Mushrooms.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset are available. (By NighthawkSLO)</Description>
+    </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+      <Game>Granny (PC)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/sychotixdev/GrannyPC-Autosplitter/main/Granny.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Split/Reset are available. (By sychotixx)</Description>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
+      <Game>Dragon Quest XI S: Echoes of an Elusive Age</Game>
+      <Game>Dragon Quest XI S</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/DragonQuestXIS.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Autosplitting and Load Removal available. (by rythin)</Description>
   </AutoSplitter>
 </AutoSplitters>
