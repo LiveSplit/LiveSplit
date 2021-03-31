@@ -5,11 +5,11 @@
 			<Game>Brave Fencer Musashi</Game>
 		</Games>
 		<URLs>
-			<URL>https://gist.githubusercontent.com/amm4108/f9cc6e8c8fba5a2457762f4fab8679c7/raw/5e2107d272ecec154dbbdb0f886152f9a9d013be/BraveFencerMusashi.asl</URL>
+			<URL>https://gist.githubusercontent.com/Aalaizah/f9cc6e8c8fba5a2457762f4fab8679c7/raw/bbf537abec80745ff529ec2a1ada76a932bd9fd4/BraveFencerMusashi.asl</URL>
 		</URLs>
 		<Type>Script</Type>
 		<Description>Brave Fencer Musashi Autosplitter (by Aalaizah)</Description>
-		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
+		<Website>https://gist.githubusercontent.com/Aalaizah/f9cc6e8c8fba5a2457762f4fab8679c7/raw/bbf537abec80745ff529ec2a1ada76a932bd9fd4/Readme</Website>
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
@@ -11715,6 +11715,17 @@
     <Type>Script</Type>
     <Description>Autosplitting and Load Removal available. (by rythin)</Description>
   </AutoSplitter>
+  <AutoSplitter>
+  	<Games>
+  	 <Game>Yakuza 6: The Song of Life</Game>
+       <Game>Yakuza 6</Game>
+      </Games>
+      <URLs>
+      	<URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.Yakuza6.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Load remover available for Steam and Microsoft Store/Game Pass version. (by hoxi and Vojtas131)</Description>
+   </AutoSplitter>
 	<AutoSplitter>
 		<Games>
 			<Game>Bio Miracle Bokutte Upa</Game>
