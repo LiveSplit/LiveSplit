@@ -11736,5 +11736,15 @@
 		<Type>Script</Type>
 		<Description>Auto Start/Split/Reset by HyperFluxQc and Avasam</Description>
 	</AutoSplitter>
+	<AutoSplitter>
+	  <Games>
+	    <Game>Resident Evil 6</Game>
+	  </Games>
+	  <URLs>
+	    <URL>https://raw.githubusercontent.com/JYNxYoshii/RE6_ASL/master/RE6_Revised_RC1.asl</URL>
+	  </URLs>
+	  <Type>Script</Type>
+	  <Description>Autosplitter for RE6. IGT-primary, supports chapter and sub-chapter splitting, even a Loadless implementation for the memes. (JYNxYoshii/xlYoshii)</Description>
+	</AutoSplitter>
 </AutoSplitters>
 
