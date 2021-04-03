@@ -952,6 +952,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Voidigo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Voidigo/Voidigo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts and resets automatically. Splits can be chosen in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Voidigo</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Where is 2016?</Game>
             <Game>Where is 2018?</Game>
             <Game>Where is 2019?</Game>
