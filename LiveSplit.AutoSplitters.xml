@@ -11759,6 +11759,16 @@
 	</AutoSplitter>
 	<AutoSplitter>
 	  <Games>
+            <Game>Lord of the Rings: Return of the King</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NextLevelMemes/Master/master/RotK.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover and autosplitter by NextLevelMemes</Description>
+		</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 	    <Game>Resident Evil 6</Game>
 	  </Games>
 	  <URLs>
