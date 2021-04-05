@@ -2,6 +2,16 @@
 <AutoSplitters>
 	<AutoSplitter>
 		<Games>
+        		<Game>Need for Speed: Most Wanted (2005)</Game>
+    		</Games>
+    		<URLs>
+        		<URL>https://raw.githubusercontent.com/tdog20/NFS-AutoSplitter/main/Livesplit.MW05.asl</URL>
+    		</URLs>
+    		<Type>Script</Type>
+    		<Description>Loadless timer made by TDOG20</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 			<Game>Brave Fencer Musashi</Game>
 		</Games>
 		<URLs>
