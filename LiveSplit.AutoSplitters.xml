@@ -6062,6 +6062,17 @@
         <Website>https://github.com/ditmarvisser/Limbo-Autosplit</Website>
     </AutoSplitter>
     <AutoSplitter>
+	<Games>
+        	<Game>Super Mario Land 2: 6 Golden Coins</Game>
+    	</Games>
+    	<URLs>
+        	<URL>https://raw.githubusercontent.com/hwangbro/ASLScripts/master/LiveSplit.SML2/LiveSplit.SML2.asl</URL>
+    	</URLs>
+    	<Type>Script</Type>
+        <Description>Auto Splitting and Auto Start/Reset are available on GSR. (By Hwangbro)</Description>
+        <Website>https://github.com/hwangbro/ASLScripts/tree/master/LiveSplit.SML2</Website>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Dead Rising 2: Off The Record</Game>
         </Games>
