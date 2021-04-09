@@ -940,6 +940,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sizeable</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Sizeable/Sizeable.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Splits when completing a level, resets when returning to options. Includes load remover. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Sizeable</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Spectrum Retreat</Game>
         </Games>
         <URLs>
@@ -3137,8 +3148,8 @@
             <URL>https://raw.githubusercontent.com/hoXyy/GTAV-AutoSplitter/master/GTAV-Auto-Splitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automatic splitting and timer start is available for version 1.27 (by TheStonedTurtle and hoxi)</Description>
-        <Website>https://github.com/TheStonedTurtle/GTAV-AutoSplitter</Website>
+        <Description>Automatic splitting and timer start is available for version 1.27</Description>
+        <Website>https://github.com/hoXyy/GTAV-AutoSplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
