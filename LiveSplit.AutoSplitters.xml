@@ -57,6 +57,17 @@
 	</AutoSplitter>
 	<AutoSplitter>
 		<Games>
+			<Game>Ford Street Racing</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/b5414/LiveSplit_ASL/white/files/FordStreetRacing.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>FordStreetRacing AutoSplitter (by b5414)</Description>
+		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
 			<Game>FlatOut</Game>
 		</Games>
 		<URLs>
