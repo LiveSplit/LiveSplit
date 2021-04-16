@@ -2,6 +2,16 @@
 <AutoSplitters>
 	<AutoSplitter>
 		<Games>
+        		<Game>Watch_Dogs</Game>
+    		</Games>
+    		<URLs>
+        		<URL>https://raw.githubusercontent.com/Random-Machine/Autosplitters/main/WD1MainMissionAutoSplitter.asl</URL>
+    		</URLs>
+    		<Type>Script</Type>
+    		<Description>Autosplitter for any% in v.1.04.497 of Watch_Dogs</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
         		<Game>Need for Speed: Most Wanted (2005)</Game>
     		</Games>
     		<URLs>
@@ -53,6 +63,28 @@
 		</URLs>
 		<Type>Script</Type>
 		<Description>G-Force AutoSplitter (by b5414)</Description>
+		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Ford Racing 2</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/b5414/LiveSplit_ASL/white/files/FordRacing2.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Ford Racing 2 AutoSplitter (by b5414)</Description>
+		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Ford Racing 3</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/b5414/LiveSplit_ASL/white/files/FordRacing3.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Ford Racing 3 AutoSplitter (by b5414)</Description>
 		<Website>https://github.com/b5414/LiveSplit_ASL</Website>
 	</AutoSplitter>
 	<AutoSplitter>
