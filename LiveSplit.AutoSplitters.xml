@@ -11873,5 +11873,15 @@
 	  <Type>Script</Type>
 	  <Description>Autosplitting is available. (By Melody)</Description>
 	</AutoSplitter>
+	<AutoSplitter>
+	  <Games>
+	    <Game>LEGO DC Super-Villains</Game>
+	  </Games>
+	  <URLs>
+	    <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/DCSV-Autosplitter%2BLoadRemover.asl</URL>
+	  </URLs>
+	  <Type>Script</Type>
+	  <Description>Autosplitting and Load Removal is available. (By Melody)</Description>
+	</AutoSplitter>
 </AutoSplitters>
 
