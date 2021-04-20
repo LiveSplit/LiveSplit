@@ -10360,6 +10360,7 @@
         <Games>
             <Game>Trackmania</Game>
             <Game>Trackmania Category Extensions</Game>
+	    <Game>Trackmania Club Campaigns</Game>	
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Trackmania/Livesplit.Trackmania.asl</URL>
