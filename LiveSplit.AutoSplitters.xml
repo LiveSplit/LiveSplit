@@ -4585,7 +4585,7 @@
             <URL>https://raw.githubusercontent.com/Ladnok/Momo-3-Autosplitter/main/Momo3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting is available. (By Ladnok)</Description>
+        <Description>Auto Splitting is available. (By Konato_K and Ladnok)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4596,6 +4596,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting is available. (By Souzooka)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Minoria</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Ladnok/Minoria-Autosplitter/main/Minoria.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and load remover. (By Ladnok)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10360,6 +10370,7 @@
         <Games>
             <Game>Trackmania</Game>
             <Game>Trackmania Category Extensions</Game>
+            <Game>Trackmania Club Campaigns</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Trackmania/Livesplit.Trackmania.asl</URL>
