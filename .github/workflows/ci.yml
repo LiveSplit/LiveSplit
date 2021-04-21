@@ -67,24 +67,25 @@ jobs:
           Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
           Get-ChildItem * -Include *MSTest*.dll -Recurse | Remove-Item
           Get-ChildItem * -Include *LiveSplit.Counter.dll -Recurse | Remove-Item
-          Remove-Item .\locales
-          Remove-Item .\swiftshader
-          Remove-Item .\cef.pak
-          Remove-Item .\cef_100_percent.pak
-          Remove-Item .\cef_200_percent.pak
-          Remove-Item .\cef_extensions.pak
-          Remove-Item .\CefSharp.BrowserSubprocess.Core.dll
-          Remove-Item .\CefSharp.BrowserSubprocess.exe
-          Remove-Item .\CefSharp.Core.Runtime.dll
-          Remove-Item .\chrome_elf.dll
-          Remove-Item .\d3dcompiler_47.dll
-          Remove-Item .\devtools_resources.pak
-          Remove-Item .\icudtl.dat
-          Remove-Item .\libcef.dll
-          Remove-Item .\libEGL.dll
-          Remove-Item .\libGLESv2.dll
-          Remove-Item .\snapshot_blob.bin
-          Remove-Item .\v8_context_snapshot.bin
+          Get-ChildItem
+          Remove-Item cef.pak
+          Remove-Item cef_100_percent.pak
+          Remove-Item cef_200_percent.pak
+          Remove-Item cef_extensions.pak
+          Remove-Item CefSharp.BrowserSubprocess.Core.dll
+          Remove-Item CefSharp.BrowserSubprocess.exe
+          Remove-Item CefSharp.Core.Runtime.dll
+          Remove-Item chrome_elf.dll
+          Remove-Item d3dcompiler_47.dll
+          Remove-Item devtools_resources.pak
+          Remove-Item icudtl.dat
+          Remove-Item libcef.dll
+          Remove-Item libEGL.dll
+          Remove-Item libGLESv2.dll
+          Remove-Item snapshot_blob.bin
+          Remove-Item v8_context_snapshot.bin
+          Remove-Item locales
+          Remove-Item swiftshader
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v2
