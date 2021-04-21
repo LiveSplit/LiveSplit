@@ -67,24 +67,9 @@ jobs:
           Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
           Get-ChildItem * -Include *MSTest*.dll -Recurse | Remove-Item
           Get-ChildItem * -Include *LiveSplit.Counter.dll -Recurse | Remove-Item
-          Remove-Item cef.pak
-          Remove-Item cef_100_percent.pak
-          Remove-Item cef_200_percent.pak
-          Remove-Item cef_extensions.pak
-          Remove-Item CefSharp.BrowserSubprocess.Core.dll
-          Remove-Item CefSharp.BrowserSubprocess.exe
-          Remove-Item CefSharp.Core.Runtime.dll
-          Remove-Item chrome_elf.dll
-          Remove-Item d3dcompiler_47.dll
-          Remove-Item devtools_resources.pak
-          Remove-Item icudtl.dat
-          Remove-Item libcef.dll
-          Remove-Item libEGL.dll
-          Remove-Item libGLESv2.dll
-          Remove-Item snapshot_blob.bin
-          Remove-Item v8_context_snapshot.bin
-          Remove-Item locales -Recurse
-          Remove-Item swiftshader -Recurse
+          Get-ChildItem * -Include cef.pak,cef_100_percent.pak,cef_200_percent.pak,cef_extensions.pak,CefSharp.BrowserSubprocess.Core.dll,CefSharp.BrowserSubprocess.exe,CefSharp.Core.Runtime.dll,chrome_elf.dll,d3dcompiler_47.dll,devtools_resources.pak,icudtl.dat,libcef.dll,libEGL.dll,libGLESv2.dll,snapshot_blob.bin,v8_context_snapshot.bin | Remove-Item
+          Get-ChildItem * -Include locales,swiftshader -Recurse | Remove-Item
+          Get-ChildItem
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v2
