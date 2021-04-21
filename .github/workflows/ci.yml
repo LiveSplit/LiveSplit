@@ -67,6 +67,7 @@ jobs:
           Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
           Get-ChildItem * -Include *MSTest*.dll -Recurse | Remove-Item
           Get-ChildItem * -Include *LiveSplit.Counter.dll -Recurse | Remove-Item
+          Remove-Item .\locales, .\swiftshader, .\cef.pak, .\cef_100_percent.pak, .\cef_200_percent.pak, .\cef_extensions.pak, .\CefSharp.BrowserSubprocess.Core.dll, .\CefSharp.BrowserSubprocess.exe, .\CefSharp.Core.Runtime.dll, .\chrome_elf.dll, .\d3dcompiler_47.dll, .\devtools_resources.pak, .\icudtl.dat, .\libcef.dll, .\libEGL.dll, .\libGLESv2.dll, .\snapshot_blob.bin, .\v8_context_snapshot.bin -ErrorAction SilentlyContinue
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v2
