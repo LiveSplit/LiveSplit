@@ -67,25 +67,24 @@ jobs:
           Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
           Get-ChildItem * -Include *MSTest*.dll -Recurse | Remove-Item
           Get-ChildItem * -Include *LiveSplit.Counter.dll -Recurse | Remove-Item
-          Get-ChildItem * -Include cef.pak | Remove-Item
-          Get-ChildItem * -Include cef_100_percent.pak | Remove-Item
-          Get-ChildItem * -Include cef_200_percent.pak | Remove-Item
-          Get-ChildItem * -Include cef_extensions.pak | Remove-Item
-          Get-ChildItem * -Include CefSharp.BrowserSubprocess.Core.dll | Remove-Item
-          Get-ChildItem * -Include CefSharp.BrowserSubprocess.exe | Remove-Item
-          Get-ChildItem * -Include CefSharp.Core.Runtime.dll | Remove-Item
-          Get-ChildItem * -Include chrome_elf.dll | Remove-Item
-          Get-ChildItem * -Include d3dcompiler_47.dll | Remove-Item
-          Get-ChildItem * -Include devtools_resources.pak | Remove-Item
-          Get-ChildItem * -Include icudtl.dat | Remove-Item
-          Get-ChildItem * -Include libcef.dll | Remove-Item
-          Get-ChildItem * -Include libEGL.dll | Remove-Item
-          Get-ChildItem * -Include libGLESv2.dll | Remove-Item
-          Get-ChildItem * -Include snapshot_blob.bin | Remove-Item
-          Get-ChildItem * -Include v8_context_snapshot.bin | Remove-Item
-          Get-ChildItem * -Include locales | Remove-Item
-          Get-ChildItem * -Include swiftshader | Remove-Item
-          Get-ChildItem
+          Remove-Item cef.pak
+          Remove-Item cef_100_percent.pak
+          Remove-Item cef_200_percent.pak
+          Remove-Item cef_extensions.pak
+          Remove-Item CefSharp.BrowserSubprocess.Core.dll
+          Remove-Item CefSharp.BrowserSubprocess.exe
+          Remove-Item CefSharp.Core.Runtime.dll
+          Remove-Item chrome_elf.dll
+          Remove-Item d3dcompiler_47.dll
+          Remove-Item devtools_resources.pak
+          Remove-Item icudtl.dat
+          Remove-Item libcef.dll
+          Remove-Item libEGL.dll
+          Remove-Item libGLESv2.dll
+          Remove-Item snapshot_blob.bin
+          Remove-Item v8_context_snapshot.bin
+          Remove-Item locales -Recurse
+          Remove-Item swiftshader -Recurse
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v2
