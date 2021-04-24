@@ -2,6 +2,16 @@
 <AutoSplitters>
 	<AutoSplitter>
 		<Games>
+        		<Game>Clive Barker's Undying</Game>
+    		</Games>
+    		<URLs>
+        		<URL>https://gist.githubusercontent.com/l0m-dev/0ed7559b7732b2854643080785e22d6f/raw/43c12a8a75e6d9deaf84b0b1f6c3ac355ccbec9e/undying.asl</URL>
+    		</URLs>
+    		<Type>Script</Type>
+    		<Description>Clive Barker's Undying Autosplitter (by l0m#2546, Kuno#6969 and The_One#9436)</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
         		<Game>Watch_Dogs</Game>
     		</Games>
     		<URLs>
