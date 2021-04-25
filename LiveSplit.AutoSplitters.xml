@@ -777,300 +777,255 @@
             <Game>A Proof of Concept</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/A%20Proof%20of%20Concept/AProofofConcept.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/A%20Proof%20of%20Concept/AProofOfConcept.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Check the settings to edit where to split. Starts and resets automatically. Set timer offset to +6.667. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/A%20Proof%20of%20Concept</Website>
+        <Description>Starts, resets automatically. Splits available in the settings. Set timer offset to +6.667. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/A%20Proof%20of%20Concept</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Alba: A Wildlife Adventure</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Alba%3A%20A%20Wildlife%20Adventure/Alba_AWildlifeAdventure.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Alba%20%E2%80%93%20A%20Wildlife%20Adventure/Alba.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts, resets, syncs to game time. Splits in the settings. Includes completion tracker. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Alba:%20A%20Wildlife%20Adventure</Website>
+        <Description>Starts, resets automatically. Splits available in the settings. Syncs to game time. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Alba%20%E2%80%93%20A%20Wildlife%20Adventure</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>And All Would Cry Beware!</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/And%20All%20Would%20Cry%20Beware!/AAWCB.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/And%20All%20Would%20Cry%20Beware!/AAWCB.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Check the settings to edit where to split. Starts automatically and splits on credits. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/And%20All%20Would%20Cry%20Beware!</Website>
+        <Description>Starts automatically. Splits available in the settings, default split on credits. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/And%20All%20Would%20Cry%20Beware!</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Assemble with Care</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Assemble%20with%20Care/AssembleWithCare.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Assemble%20with%20Care/AssembleWithCare.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Resets and starts the timer hen progress is reset. Splits after every level and at the end. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Assemble%20with%20Care</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Devil Daggers</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Devil%20Daggers/DevilDaggers.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>New wave indicator for Devil Daggers. Splits when the next enemy appears. Up to 64 splits possible. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Devil%20Daggers</Website>
+        <Description>Starts, resets when progress is reset. Splits after every level and at the end. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Assemble%20with%20Care</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Donut County</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Donut%20County/DonutCounty.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Donut%20County/DonutCounty.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover and autosplitter. Splits at the end of the run, additional in settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/Donut%20County</Website>
+        <Description>Starts automatically. Splits available in the settings, default split when finishing. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Donut%20County</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Door Kickers: Action Squad</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Door%20Kickers%3A%20Action%20Squad/DoorKickers_ActionSquad.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Door%20Kickers%20%E2%80%93%20Action%20Squad/DKAS.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts timer, splits on level completion and logs times to a file. See settings for more options. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Door%20Kickers:%20Action%20Squad</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Frog Detective 2: The Case of the Invisible Wizard</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Frog%20Detective%202/FrogDetective2.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitter and load remover. Check settings to edit where to split. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/Frog%20Detective%202</Website>
+        <Description>Starts automatically. Splits on level completion. Logs IL times to a file. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Door%20Kickers%20%E2%80%93%20Action%20Squad</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Give Up, Robot</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Give%20Up%2C%20Robot/GiveUpRobot1.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Give%20Up%2C%20Robot/GiveUpRobot1.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts automatically. Resets when closing flash or reloading the game. Splits after every level. (by Ero)</Description>
-        <Website>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Give%20Up%2C%20Robot</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>GNOG</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/GNOG/GNOG.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts the timer and splits whenever a level is completed. Does not do the final split. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/GNOG</Website>
+        <Description>Starts, resets automatically. Splits after every level. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Give%20Up%2C%20Robot</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Gunfire Reborn</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Gunfire%20Reborn/GunfireReborn.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Gunfire%20Reborn/GunfireReborn.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts, splits (see settings), and resets upon entering main menu. Pauses when dying. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Gunfire%20Reborn</Website>
+        <Description>Starts, resets automatically. Splits available in the settings. Pauses when dying. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Gunfire%20Reborn</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Hello Neighbor</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Hello%20Neighbor/HelloNeighbor.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Hello%20Neighbor/HelloNeighbor.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts the timer. Pauses when the game is loading. Compare against Game Time! (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/Hello%20Neighbor</Website>
+        <Description>Starts automatically. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Hello%20Neighbor</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Just Shake It</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Just%20Shake%20It/JustShakeIt.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Just%20Shake%20It/JustShakeIt.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts the timer upon crossing the start, splits on each checkpoint and resets upon restarting. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Just%20Shake%20It</Website>
+        <Description>Starts, resets when crossing the start line. Splits on each checkpoint. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Just%20Shake%20It</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Lightmatter</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Lightmatter/Lightmatter.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Lightmatter/Lightmatter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts and resets, and splits on every new level. IL support in settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/Lightmatter</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Lone Land</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Lone%20Land/LoneLand.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts and resets. Splits on large pillar and flag crystals (more in settings). Does not split when entering the train. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Lone%20Land</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>MO: Astray</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/MO%3AAstray/MOAstray.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Configured for Speed Mode. Splits on area end (additional in settings). Starts and resets. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/MO:Astray</Website>
+        <Description>Starts, resets automatically. Splits when finishing a level. IL support in settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Lightmatter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>MX Simulator</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/MX%20Simulator/MXSimulator.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/MX%20Simulator/MXSimulator.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts and resets. Splits on each checkpoint. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/MX%20Simulator</Website>
+        <Description>Starts, resets on a new lap. Splits on each checkpoint. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/MX%20Simulator</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Maid of Sker</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Maid%20of%20Sker/MaidOfSker.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts when picking up the first note. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Maid%20of%20Sker</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>The Pedestrian</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/The%20Pedestrian/ThePedestrian.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/The%20Pedestrian/ThePedestrian.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts the timer, splits at the end. Additional splits in settings. Does not reset. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/The%20Pedestrian</Website>
+        <Description>Starts automatically. Splits available in the settings, default split when entering the boat. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/The%20Pedestrian</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Phasmophobia</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Phasmophobia/Phasmophobia.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Phasmophobia/Phasmophobia.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts when players are loaded in. Splits/resets when closing the truck, check settings for conditions. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Phasmophobia</Website>
+        <Description>Starts when players are loaded in. Check settings to splits/resets when closing the truck. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Phasmophobia</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Post Void</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/LAutoSplitterScripts/master/Post%20Void/PostVoid.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Post%20Void/PostVoid.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts and resets the timer. Choose splits in settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Post%20Void</Website>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Post%20Void</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Ruff Night at the Gallery</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Ruff%20Night%20at%20the%20Gallery/RuffNightAtTheGallery.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Ruff%20Night%20at%20the%20Gallery/RuffNightAtTheGallery.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts on first movement, resets when quitting to menu. Check settings for splits. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Ruff%20Night%20at%20the%20Gallery</Website>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Ruff%20Night%20at%20the%20Gallery</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Sizeable</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Sizeable/Sizeable.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Sizeable/Sizeable.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Splits when completing a level, resets when returning to options. Includes load remover. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Sizeable</Website>
+        <Description>Starts, resets automatically. Splits when completing a level. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Sizeable</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>The Spectrum Retreat</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/The%20Spectrum%20Retreat/TheSpectrumRetreat.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/The%20Spectrum%20Retreat/TheSpectrumRetreat.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Splits can be chosen in the settings. Starts and resets automatically. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/The%20Spectrum%20Retreat</Website>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/The%20Spectrum%20Retreat</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Transformers: The Game</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Transformers%3A%20The%20Game/Transformers2007.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Transformers%20%E2%80%93%20The%20Game/Transformers2007.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Splits can be chosen in the settings. Starts automatically. Final split must be manual. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Transformers:%20The%20Game</Website>
+        <Description>Starts automatically. Splits available in the settings. Final split must be manual. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Transformers%20%E2%80%93%20The%20Game</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Voidigo</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Voidigo/Voidigo.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Voidigo/Voidigo.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts and resets automatically. Splits can be chosen in the settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/Voidigo</Website>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Voidigo</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Where is 2016?</Game>
             <Game>Where is 2018?</Game>
             <Game>Where is 2019?</Game>
             <Game>Where is 2020?</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/Where%20is%20New%20Year%3F/WhereIsNewYear.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Where%20is%20New%20Year/WhereIsNewYear.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Check 'Website' for information on compatibility. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/blob/master/Where%20is%20New%20Year%3F</Website>
+        <Description>Starts automatically. Splits when transitioning screens. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Where%20is%20New%20Year</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>YAPP: Yet Another Puzzle Platformer</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitterScripts/master/YAPP%3A%20Yet%20Another%20Puzzle%20Platformer/YAPP.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/YAPP%20%E2%80%93%20Yet%20Another%20Puzzle%20Platformer/YAPP.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Splits after completing a level (adjustable in settings). Resets when save file is erased. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitterScripts/tree/master/YAPP:%20Yet%20Another%20Puzzle%20Platformer</Website>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/YAPP%20%E2%80%93%20Yet%20Another%20Puzzle%20Platformer</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
