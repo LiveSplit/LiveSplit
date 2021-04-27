@@ -912,7 +912,7 @@
             <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Maid%20of%20Sker/MaidOfSker.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts when picking up the first note. Splits available in the settings. (by Ero)</Description>
+        <Description>Starts, resets automatically. Splits available in the settings. Does not split at the end. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Maid%20of%20Sker</Website>
     </AutoSplitter>
     <AutoSplitter>
