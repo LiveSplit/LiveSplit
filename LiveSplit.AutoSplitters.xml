@@ -10381,18 +10381,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Minecraft: Java Edition</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Jorkoh/LiveSplit.Minecraft/master/Components/LiveSplit.Minecraft.dll</URL>
-            <URL>https://raw.githubusercontent.com/Jorkoh/LiveSplit.Minecraft/master/Components/fNbt.dll</URL>
-        </URLs>
-        <Type>Component</Type>
-        <Description>IGT is available (by Kohru)</Description>
-        <Website>https://github.com/Jorkoh/LiveSplit.Minecraft</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Midtown Madness 2</Game>
         </Games>
         <URLs>
@@ -11871,6 +11859,49 @@
 	  </URLs>
 	  <Type>Script</Type>
 	  <Description>Autosplitting and Load Removal is available. (By Melody)</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+      <Game>Curse of the Dead Gods</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/Laofr/COTDG_autosplit.asl/main/COTDG_autosplit.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Curse of the dead gods autosplitter with IGT tracker (by Lao)</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+    <Games>
+			<Game>The Ninja Warriors</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/phroggster/AutoSplits/master/NinjaWarriors/NinjaWarriors.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>phroggie's The Ninja Warriors Autosplitter</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Pepsiman</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/MrMonsh/Auto-Splitters/main/Pepsiman/Pepsiman_Auto-Splitter.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Pepsiman Auto-Splitter and Load Remover (by MrMonsh)</Description>
+		<Website>https://github.com/MrMonsh/Auto-Splitters/tree/main/Pepsiman</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Minecraft: Java Edition</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/LiveSplit/LiveSplit.Minecraft/master/Components/LiveSplit.Minecraft.dll</URL>
+			<URL>https://raw.githubusercontent.com/LiveSplit/LiveSplit.Minecraft/master/Components/fNbt.dll</URL>
+		</URLs>
+		<Type>Component</Type>
+		<Description>IGT is available.</Description>
+		<Website>https://github.com/LiveSplit/LiveSplit.Minecraft</Website>
 	</AutoSplitter>
 </AutoSplitters>
 
