@@ -4239,7 +4239,7 @@
             <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.WatchDogs2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By zoton2)</Description>
+        <Description>Auto Splitting and Load Removal are available. (By zoton2 and Random_Machine)</Description>
         <Website>https://github.com/zoton2/LiveSplit.Scripts/blob/master/LiveSplit.WatchDogs2-README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -11821,11 +11821,20 @@
 <AutoSplitter>
     <Games>
       <Game>Pokémon Emerald</Game>
+	    </Games>
+	  <URLs>
+	    <URL>https://raw.githubusercontent.com/NextLevelMemes/Master/master/PokemonEmerald.asl</URL>
+	  </URLs>
+	  <Type>Script</Type>
+	  <Description>Autosplitter by NextLevelMemes</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+	  <Games>
       <Game>Pokémon Ruby/Sapphire</Game>
       <Game>Pokémon Ruby/Sapphire Category Extensions</Game>
     </Games>
     <URLs>
-      <URL>https://raw.githubusercontent.com/NextLevelMemes/Master/master/PokemonRSE.asl</URL>
+      <URL>https://raw.githubusercontent.com/NextLevelMemes/Master/master/PokemonRubySapphire.asl</URL>
     </URLs>
     <Type>Script</Type>
     <Description>Autosplitter by NextLevelMemes</Description>
@@ -11902,6 +11911,39 @@
 		<Type>Component</Type>
 		<Description>IGT is available.</Description>
 		<Website>https://github.com/LiveSplit/LiveSplit.Minecraft</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>DEADBOLT</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/PhoenixStroh/deadbolt-autosplitter/stable-main/Deadbolt_Any%25.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Full Autosplitting by GameKwng</Description>
+		<Website>https://github.com/PhoenixStroh/deadbolt-autosplitter/tree/stable-main</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>NieR Replicant ver.1.22474487139...</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rodg/drakenier-splitters/main/nier_rep_load_removal.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal (by JeffTheBigLizard)</Description>
+        <Website>https://github.com/rodg/drakenier-splitters</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+        		<Game>Evoland</Game>
+    		</Games>
+    		<URLs>
+        		<URL>https://raw.githubusercontent.com/Zatura24/LiveSplit.Autosplitters/main/Evoland%201%20-%20Legendary%20Edition/evoland-1.asl</URL>
+    		</URLs>
+    		<Type>Script</Type>
+    		<Description>Evoland 1 (Legendary Edition) Autosplitter (by Zatura24)</Description>
+		<Website>https://github.com/Zatura24/LiveSplit.Autosplitters/tree/main/Evoland%201%20-%20Legendary%20Edition</Website>
 	</AutoSplitter>
 </AutoSplitters>
 
