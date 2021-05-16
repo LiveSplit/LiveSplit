@@ -48,7 +48,7 @@
 			<Game>Sonic The Hedgehog (2006) Category Extensions</Game>
 		</Games>
 		<URLs>
-			<URL>https://gist.github.com/Labreezy/7bd45d3f36c07a86b6d68262497efd3c/raw/20cf4aa68f2e8b2e20b8798d070abfec1f9bea66/sonic06.asl</URL>
+			<URL>https://gist.github.com/Labreezy/7bd45d3f36c07a86b6d68262497efd3c/raw/8c2f6b17da6c48c617fb165d0f112d7468c3952e/sonic06.asl</URL>
 		</URLs>
 		<Type>Script</Type>
 		<Description>Emulator In-Game Timer (by Labryz)</Description>
@@ -11945,5 +11945,26 @@
     		<Description>Evoland 1 (Legendary Edition) Autosplitter (by Zatura24)</Description>
 		<Website>https://github.com/Zatura24/LiveSplit.Autosplitters/tree/main/Evoland%201%20-%20Legendary%20Edition</Website>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>King's Quest VI: Heir Today, Gone Tomorrow</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/dglynch/kq6-autosplitter/master/kq6.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Configurable autosplitter for Any%, 100%, and Long Path categories. Requires DOSBox ECE.</Description>
+		<Website>https://github.com/dglynch/kq6-autosplitter</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Fragments of Euclid</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.FragmentsOfEuclid/main/euclid.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter by Micrologist#2351</Description>
+		<Website>https://github.com/Micrologist/LiveSplit.FragmentsOfEuclid</Website>
+	</AutoSplitter>
 </AutoSplitters>
-
