@@ -1709,6 +1709,17 @@
         <Type>Component</Type>
         <Description>Load Removal and Auto Splitting are available. (By Fatalis)</Description>
     </AutoSplitter>
+		<AutoSplitter>
+        <Games>
+            <Game>Dishonored Category Extensions </Game>
+            <Game>Dishonored (PC)</Game>
+        </Games>
+        <URLs>
+            <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.Dishonored.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Load Removal and Auto Splitting are available. (By Fatalis)</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Lara Croft and the Guardian of Light</Game>
@@ -9990,7 +10001,7 @@
     <AutoSplitter>
         <Games>
             <Game>Prince of Persia</Game>
-	    <Game>Prince of Persia (Mods)</Game>	
+	    <Game>Prince of Persia (Mods)</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/WinterThunderSpeedrun/Autosplitters/master/PrinceOfPersia1.4.asl</URL>
