@@ -12039,4 +12039,15 @@
 		<Type>Script</Type>
 		<Description>Loadremover by Mysterion_06_</Description>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Monster Hunter World: Iceborne (PC)</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/MoonBunnie/Monster-Hunter-World-Iceborne-AutoSplitter/main/MHWI.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Monster Hunter World: Iceborne - Autosplitter (by MoonBunnie & JalBagel)</Description>
+		<Website>https://github.com/MoonBunnie/Monster-Hunter-World-Iceborne-AutoSplitter</Website>
+	</AutoSplitter>
 </AutoSplitters>
