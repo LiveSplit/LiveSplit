@@ -48,7 +48,7 @@
 			<Game>Sonic The Hedgehog (2006) Category Extensions</Game>
 		</Games>
 		<URLs>
-			<URL>https://gist.github.com/Labreezy/7bd45d3f36c07a86b6d68262497efd3c/raw/8c2f6b17da6c48c617fb165d0f112d7468c3952e/sonic06.asl</URL>
+			<URL>https://gist.github.com/Labreezy/7bd45d3f36c07a86b6d68262497efd3c/raw/e3b3f0bc91c02992058c7c782aaa4784c697309d/sonic06.asl</URL>
 		</URLs>
 		<Type>Script</Type>
 		<Description>Emulator In-Game Timer (by Labryz)</Description>
@@ -980,6 +980,17 @@
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitTools/tree/master/The%20Spectrum%20Retreat</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>There Is No Game</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/There%20is%20no%20Game%20(Jam%20Edition%202015)/ThereIsNoGame_Jam2015.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/There%20is%20no%20Game%20(Jam%20Edition%202015)</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4492,6 +4503,20 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Resident Evil Village</Game>
+            <Game>RE8</Game>
+            <Game>RE Village</Game>
+            <Game>Resident Evil: Village</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/cursedtoast/re8/main/re8.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal available. Auto Splits coming soon. Compare against Game Time.(By CursedToast)</Description>
+        <Website>https://github.com/cursedtoast/re8/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>RE2 Remake</Game>
             <Game>Resident Evil 2 Remake</Game>
             <Game>RE2 2019</Game>
@@ -6049,9 +6074,13 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Celeste</Game>
-            <Game>Celeste Category Extensions</Game>
-            <Game>Celeste Custom Maps</Game>
+          <Game>Celeste</Game>
+          <Game>Quickie Mountain 2</Game>
+          <Game>Celeste Category Extensions</Game>
+          <Game>Modded Celeste</Game>
+          <Game>D-Sides</Game>
+          <Game>2020 Spring Collab</Game>
+          <Game>Glyph Pack</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Celeste/master/Components/LiveSplit.Celeste.dll</URL>
@@ -6293,6 +6322,17 @@
         <Type>Script</Type>
         <Description>SEGA Master Splitter supported game, see website for details on emulators, timing etc. (By BenInSweden and others.)</Description>
         <Website>https://github.com/SonicSpeedrunning/SEGAMasterSplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic 3D in 2D</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/Sonic3Din2DSplitter/main/Sonic3d2dAutosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Requires Sonic 3D in 2D 1.26 or higher</Description>
+        <Website>https://github.com/SonicSpeedrunning/Sonic3Din2DSplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11966,5 +12006,37 @@
 		<Type>Script</Type>
 		<Description>Autosplitter by Micrologist#2351</Description>
 		<Website>https://github.com/Micrologist/LiveSplit.FragmentsOfEuclid</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+        		<Game>Super Mario 64 FPS</Game>
+    		</Games>
+    		<URLs>
+        		<URL>https://raw.githubusercontent.com/Zatura24/LiveSplit.Autosplitters/main/Super%20Mario%2064%20FPS%20v2/super-mario-64-fps.asl</URL>
+    		</URLs>
+    		<Type>Script</Type>
+    		<Description>Super Mario 64 FPS (v2.0) Autosplitter (by Zatura24)</Description>
+		<Website>https://github.com/Zatura24/LiveSplit.Autosplitters/tree/main/Super%20Mario%2064%20FPS%20v2</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+        		<Game>Jelly Drift</Game>
+    		</Games>
+    		<URLs>
+        		<URL>https://raw.githubusercontent.com/brododragon/Jelly-Drift-Autosplitter/main/JellyDrift.asl</URL>
+    		</URLs>
+    		<Type>Script</Type>
+    		<Description>IGT, as well as auto start/stop/reset. (by brododragon)</Description>
+		<Website>https://github.com/brododragon/Jelly-Drift-Autosplitter/blob/main/JellyDrift.asl</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Final Fantasy XV</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Mysterion06/FF15LRT/main/FF15UpdatedLRT.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Loadremover by Mysterion_06_</Description>
 	</AutoSplitter>
 </AutoSplitters>
