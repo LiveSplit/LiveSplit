@@ -3748,10 +3748,10 @@
             <Game>MEC</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Psp4804/catalyst-autosplitter/master/mec-autosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/bentokend/catalyst-autosplitter/master/mec-autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (By Psp4804)</Description>
+        <Description>Auto Splitting and Load Removal are available. (By Psp4804 &amp; ValiantFalcon)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8399,10 +8399,10 @@
             <Game>Arx Fatalis</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/arx.asl</URL>
+            <URL>https://raw.githubusercontent.com/KawaiiWafu/ASLScripts/master/LiveSplit.ArxFatalis.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load removing, crash removing</Description>
+        <Description>Load removal, auto-splitting (by Wafu)</Description>
         <Website>https://github.com/KawaiiWafu/ASLScripts</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -9961,6 +9961,17 @@
         <Type>Script</Type>
         <Description>Sven Co-op autosplitter. Works with any version.</Description>
         <Website>https://github.com/SmileyAG/Sven-Coop-Autosplitter/blob/master/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Synergy</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ScriptedSnark/Synergy-Autosplitter/main/synergy.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Synergy autosplitter. Works with any version.</Description>
+        <Website>https://github.com/ScriptedSnark/Synergy-Autosplitter/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11899,10 +11910,10 @@
 	    <Game>Resident Evil 6</Game>
 	  </Games>
 	  <URLs>
-	    <URL>https://raw.githubusercontent.com/TheDementedSalad/RE6-Autosplitter/main/Resident%20Evil%206%20Autosplitter.asl</URL>
+	    <URL>https://raw.githubusercontent.com/JYNxYoshii/ASL_Storage/master/RE6_Revised_RC1.asl</URL>
 	  </URLs>
 	  <Type>Script</Type>
-	  <Description>RE6 Autosplitter - IGT Timed - Full/Sub Chapter splitting - Made by TheDementedSalad and xlYoshii</Description>
+	  <Description>Autosplitter for RE6, works on 1.06 and 1.1.0. Supports chapter and sub-chapter splits, automatic starts, and automatic resets. (JYNxYoshii/xlYoshii)</Description>
 	</AutoSplitter>
 	<AutoSplitter>
 	  <Games>
@@ -12156,5 +12167,38 @@
       </URLs>
       <Type>Script</Type>
       <Description>Outlaws Autosplitter - RTA Timed - Full Game/Marshal Training Splits - Made by TheDementedSalad</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+      <Games>
+        <Game>Hellevator</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/jboardman367/HellevatorSplitter/main/asl.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Autosplitter/load remover for Hellevator (By luminousLamp367)</Description>
+      <Website>https://github.com/jboardman367/HellevatorSplitter/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+      <Games>
+        <Game>Destroy All Humans! (2020)</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/SquareMan/autosplitters/main/DestroyAllHumans.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Load Remover and Autosplitter for Destroy All Humans! (2020) (By TheCoolSquare)</Description>
+      <Website>https://github.com/SquareMan/autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+      <Games>
+        <Game>The Wild at Heart</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.TheWildAtHeart/main/Components/LiveSplit.TheWildAtHeart.dll</URL>
+      </URLs>
+      <Type>Component</Type>
+      <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
+      <Website>https://github.com/Voxelse/LiveSplit.TheWildAtHeart</Website>
     </AutoSplitter>
 </AutoSplitters>
