@@ -3243,6 +3243,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Max Payne 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/gunlinux/LiveSplit.MaxPayne3/main/LiveSplit.MaxPayne3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and IGN for NYM is available. (By CJACOBS, gunlinux)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>SAW: The Game</Game>
             <Game>SAW The Game</Game>
             <Game>SAW</Game>
