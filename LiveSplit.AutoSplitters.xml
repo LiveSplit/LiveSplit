@@ -12201,4 +12201,14 @@
       <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
       <Website>https://github.com/Voxelse/LiveSplit.TheWildAtHeart</Website>
     </AutoSplitter>
+<AutoSplitter>
+	<Games>
+		<Game>Resident Evil 2</Game>
+	</Games>
+	<URLs>
+		<URL>https://raw.githubusercontent.com/CarcinogenSDA/re2-classic-autosplitter/main/re2_autosplitter_all_doors.asl</URL>
+	</URLs>
+	<Description>All Doors Splitter for v1.10 (Usable with Sourcenext and Classic REbirth) by CarcinogenSDA. Delete numbers if you don't want door splits!</Description>
+	<Website>https://www.speedrun.com/re2/resources</Website>
+</AutoSplitter>
 </AutoSplitters>
