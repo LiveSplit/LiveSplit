@@ -3243,6 +3243,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Max Payne 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/gunlinux/LiveSplit.MaxPayne3/main/LiveSplit.MaxPayne3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and IGT for NYM is available. (By CJACOBS, gunlinux)</Description>
+    </AutoSplitter>	
+    <AutoSplitter>
+        <Games>
             <Game>SAW: The Game</Game>
             <Game>SAW The Game</Game>
             <Game>SAW</Game>
@@ -5263,10 +5273,10 @@
             <Game>Return to Castle Wolfenstein</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/mrhoyo33/rtcw_asl/master/rtcw.asl</URL>
+            <URL>https://raw.githubusercontent.com/Heros5k/rtcwASL/main/rtcw.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-split, auto-start(By Hoyo). Load-removal(By MightyCrab)</Description>
+        <Description>Auto-split, auto-start (By Hoyo &amp; KoRrNiK). Load-removal (by Hoyo)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6394,6 +6404,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Astalon: Tears of the Earth</Game>
+            <Game>Astalon</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/Astalon/Astalonautosplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Astalon (By Coltaho)</Description>
+        <Website>https://github.com/Coltaho/Autosplitters/blob/master/Astalon/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Mega Man</Game>
             <Game>Megaman</Game>
             <Game>MM1</Game>
@@ -7061,11 +7083,12 @@
             <Game>The Messenger Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.TheMessenger/Livesplit.TheMessenger.asl</URL>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.TheMessenger/main/Components/LiveSplit.TheMessenger.dll</URL>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.RuntimeText/main/Components/LiveSplit.RuntimeText.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Auto Start/Split and Load Remover (by Voxelse)</Description>
-        <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.TheMessenger</Website>
+        <Type>Component</Type>
+        <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
+        <Website>https://github.com/Voxelse/LiveSplit.TheMessenger</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7874,6 +7897,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Automatic start/split</Description>
+        <Website>https://www.speedrun.com/nancy_drew</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: Secrets Can Kill REMASTERED</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/evilclownattack/autosplitters/master/SCK2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatic start/split/reset</Description>
         <Website>https://www.speedrun.com/nancy_drew</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -11514,6 +11548,16 @@
         <Description>Auto-start/split/reset/IGT for Colossal Caverns. Split names beginning with a number = treasure milestones</Description>
 		<Website>https://discord.gg/WHSaSS5</Website>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Moomin's Tale</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Buurazu/AutoSplitters/main/Moomin's%20Tale.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto-start/split/reset. Supports BGB and BizHawk</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Secrets of Grindea</Game>
@@ -12200,5 +12244,60 @@
       <Type>Component</Type>
       <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
       <Website>https://github.com/Voxelse/LiveSplit.TheWildAtHeart</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+      <Games>
+        <Game>SpongeGlock SquarePants</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/Loomeh/SGSPAutosplitter/main/spongeglock.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Auto Start / Split script and Load Remover (by Loomeh)</Description>
+      <Website>https://github.com/Loomeh/SGSPAutosplitter</Website>
+    </AutoSplitter>	
+    <AutoSplitter>
+      <Games>
+        <Game>Biomutant</Game>        
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/JulianTexo/biolr/master/Biomutant.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Load Remover (by Julian Texo; Steam version)</Description>
+      <Website>https://github.com/JulianTexo/biolr</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+		<Games>
+        		<Game>MarisaLand Legacy</Game>
+    		</Games>
+    		<URLs>
+        		<URL>https://raw.githubusercontent.com/TouhouEnjoyer/marilega-autosplitter/main/MariLegatest.asl</URL>
+    		</URLs>
+    		<Type>Script</Type>
+    		<Description>MarisaLand Legacy Autosplitter (by TouhouEnjoyer)</Description>
+		<Website>https://github.com/TouhouEnjoyer/marilega-autosplitter</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Resident Evil 2</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/CarcinogenSDA/re2-classic-autosplitter/main/re2_autosplitter_all_doors.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>All Doors Autosplitter for use with Sourcenext 1.10 and RE2 Classic REbirth (by CarcinogenSDA)</Description>
+		<Website>https://github.com/CarcinogenSDA/re2-classic-autosplitter</Website>
+	</AutoSplitter>
+    <AutoSplitter>
+      <Games>
+        <Game>Ynglet</Game>        
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/badBlackShark/ASL-Scripts/master/LiveSplit.Ynglet.asl</URL>
+      </URLs>
+      <Type>Script</Type>
+      <Description>Auto-Splitting and Load Removal (by badBlackShark)</Description>
+      <Website>https://github.com/badBlackShark/ASL-Scripts</Website>
     </AutoSplitter>
 </AutoSplitters>
