@@ -11663,7 +11663,7 @@
             <URL>https://raw.githubusercontent.com/sseneca42/Outer-Wilds-Autosplitter/main/OW_Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover &amp; AutoSplitter (by Nepo)</Description>
+        <Description>Load Remover and AutoSplitter (by Nepo)</Description>
 	<Website>https://github.com/sseneca42/Outer-Wilds-Autosplitter/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -12299,5 +12299,16 @@
       <Type>Script</Type>
       <Description>Auto-Splitting and Load Removal (by badBlackShark)</Description>
       <Website>https://github.com/badBlackShark/ASL-Scripts</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sunblaze</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/sseneca42/Sunblaze-Autosplitter/main/Sunblaze_Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter (by Nepo)</Description>
+	<Website>https://github.com/sseneca42/Sunblaze-Autosplitter</Website>
     </AutoSplitter>
 </AutoSplitters>
