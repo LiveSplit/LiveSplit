@@ -4924,10 +4924,11 @@
             <Game>NieR: Automata</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/RisingFog/LiveSplit-AutoSplitters/master/NierAutomata.asl</URL>
+            <URL>https://raw.githubusercontent.com/rodg/drakenier-splitters/main/nier_automata_autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting and Auto Start are available. (By Fog)</Description>
+        <Website>https://github.com/rodg/drakenier-splitters</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
