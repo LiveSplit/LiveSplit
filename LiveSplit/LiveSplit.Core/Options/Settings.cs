@@ -125,6 +125,17 @@ namespace LiveSplit.Options
                         Log.Error(e);
                     }
                 }
+                if (hotkeyProfile.SecondarySplitKey != null)
+                {
+                    try
+                    {
+                        RegisterHotkey(hook, hotkeyProfile.SecondarySplitKey, deactivateForOtherPrograms);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                    }
+                }
                 if (hotkeyProfile.ResetKey != null)
                 {
                     try
