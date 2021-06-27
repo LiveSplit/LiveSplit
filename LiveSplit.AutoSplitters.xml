@@ -829,6 +829,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>City of Beats</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/City%20of%20Beats/CityOfBeats.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits after finishing a node and when defeating a boss. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/City%20of%20Beats</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Donut County</Game>
         </Games>
         <URLs>
@@ -906,6 +917,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Maid of Sker</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Maid%20of%20Sker/MaidOfSker.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. Does not split at the end. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Maid%20of%20Sker</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>MX Simulator</Game>
         </Games>
         <URLs>
@@ -917,14 +939,14 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Maid of Sker</Game>
+            <Game>Muck</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Maid%20of%20Sker/MaidOfSker.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Muck/Muck.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. Does not split at the end. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Maid%20of%20Sker</Website>
+        <Description>Starts, resets automatically. Splits when defeating any boss. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Muck</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2540,6 +2562,42 @@
         <Type>Component</Type>
         <Description>Auto Splitting and Load Removal are available. (By SuicideMachine)</Description>
         <Website>https://github.com/SuiMachine/LiveSplit.HitmanAbsolution/blob/Master/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hitman: Contracts</Game>
+            <Game>Hitman Contracts</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kennert007/Hitman-Contracts-AutoSplitter/master/HContracts.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split are available. (By Kennert007)</Description>
+        <Website>https://github.com/Kennert007/Hitman-Contracts-AutoSplitter/blob/master/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hitman 2: Silent Assassin</Game>
+            <Game>Hitman 2 Silent Assassin</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kennert007/Hitman-2-SA-AutoSplitter/master/Hitman2SA.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split are available. (By Kennert007)</Description>
+        <Website>https://github.com/Kennert007/Hitman-2-SA-AutoSplitter/blob/master/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hitman: Codename 47</Game>
+            <Game>Hitman Codename 47</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kennert007/Hitman-C-47-AutoSplitter/master/HitmanC47.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split are available. (By Kennert007)</Description>
+        <Website>https://github.com/Kennert007/Hitman-C-47-AutoSplitter/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5253,10 +5311,10 @@
             <Game>Metro: Last Light Redux</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Chimpaneez/ASL/master/metroredux.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/Metro2033Redux.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Chimpaneez)</Description>
+        <Description>Load Removal/ Auto Splitter. (By Kuno Demetries, Chimpaneez)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5806,7 +5864,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal is available (by Mattmatt)</Description>
-        <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+        <Website>https://discord.com/invite/BP8TrJ6</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5814,11 +5872,11 @@
             <Game>Dead Space II</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/deadspace2.asl</URL>
+            <URL>https://raw.githubusercontent.com/Al3xisDR/Autosplitter/main/DS2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal is available (by Mattmatt and Cliffs)</Description>
-        <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+        <Description>Auto Splitting and Load Removal is available (by AlexisDR, Mattmatt and Cliffs)</Description>
+        <Website>https://discord.com/invite/BP8TrJ6</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6127,6 +6185,7 @@
           <Game>D-Sides</Game>
           <Game>2020 Spring Collab</Game>
           <Game>Glyph Pack</Game>
+	  <Game>Into The Jungle</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Celeste/master/Components/LiveSplit.Celeste.dll</URL>
@@ -7557,10 +7616,10 @@
             <Game>Distance</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/TntMatthew/distance.asl/master/distance.asl</URL>
+            <URL>https://raw.githubusercontent.com/Tiyenti/distance.asl/master/distance.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto split/start/reset, load removal, and cutscene settings are available. (by Brionac, Californ1a, Seekr, and TntMatthew)</Description>
+        <Description>Auto split/start/reset, load removal, and cutscene settings are available. (by Brionac, Californ1a, Seekr, and Tiyenti)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8814,6 +8873,7 @@
     <AutoSplitter>
         <Games>
             <Game>Batman: Arkham City</Game>
+            <Game>Batman: Arkham City Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ArkhamCity.asl</URL>
@@ -12310,5 +12370,39 @@
         <Type>Script</Type>
         <Description>AutoSplitter (by Nepo)</Description>
 	<Website>https://github.com/sseneca42/Sunblaze-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Deepest Sword</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/dcom365/DeepestSwordASL/main/Deepest_Sword.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter for Deepest Sword (Go into settings if you are running 10x) (by Nurufu)</Description>
+	<Website>https://github.com/dcom365/DeepestSwordASL</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+      <Games>
+        <Game>Super Magbot</Game>
+      </Games>
+      <URLs>
+        <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.SuperMagbot/main/Components/LiveSplit.SuperMagbot.dll</URL>
+      </URLs>
+      <Type>Component</Type>
+      <Description>Auto Start/Split and Game Time (by Voxelse)</Description>
+      <Website>https://github.com/Voxelse/LiveSplit.SuperMagbot</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Zanzarah</Game>
+            <Game>ZanZarah: The Hidden Portal</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Helco/ZZSpeeds/release/ZZAutosplitter.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Zanzarah load remover, autosplitter and autostarter (by Helco)</Description>
+        <Website>https://github.com/Helco/ZZSpeeds</Website>
     </AutoSplitter>
 </AutoSplitters>
