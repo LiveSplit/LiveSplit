@@ -96,6 +96,7 @@ namespace LiveSplit.Model
 
         public bool HasChanged { get; set; }
         public string FilePath { get; set; }
+        public string LayoutPath { get; set; }
 
         public Run(IComparisonGeneratorsFactory factory)
         {
@@ -172,7 +173,8 @@ namespace LiveSplit.Model
                 CustomComparisons = new List<string>(CustomComparisons),
                 ComparisonGenerators = new List<IComparisonGenerator>(ComparisonGenerators),
                 AutoSplitter = AutoSplitter != null ? AutoSplitter.Clone() : null,
-                AutoSplitterSettings = AutoSplitterSettings
+                AutoSplitterSettings = AutoSplitterSettings,
+                LayoutPath = LayoutPath
             };
             return newRun;
         }

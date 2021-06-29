@@ -1696,6 +1696,10 @@ namespace LiveSplit.View
             SwitchComparison(CurrentState.CurrentComparison);
             CreateAutoSplitter();
             UpdateRefreshesRemaining();
+            if (!String.IsNullOrEmpty(run.LayoutPath) && CurrentState.Layout.FilePath != run.LayoutPath)
+            {
+                OpenLayoutFromFile(run.LayoutPath);
+            }
         }
 
         private void CreateAutoSplitter()
@@ -2230,7 +2234,7 @@ namespace LiveSplit.View
             }
         }
 
-        private void OpenLayoutFromFile(string filePath)
+        public void OpenLayoutFromFile(string filePath)
         {
             if (WarnUserAboutLayoutSave(true))
             {

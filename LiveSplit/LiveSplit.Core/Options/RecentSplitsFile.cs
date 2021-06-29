@@ -9,6 +9,7 @@ namespace LiveSplit.Options
         public string Path;
         public TimingMethod LastTimingMethod;
         public string LastHotkeyProfile;
+        public string LayoutPath;
 
         public RecentSplitsFile(string path, IRun run, TimingMethod method, string hotkeyProfile)
             : this(path, method, hotkeyProfile)
@@ -20,13 +21,14 @@ namespace LiveSplit.Options
             }
         }
 
-        public RecentSplitsFile(string path, TimingMethod method, string hotkeyProfile, string gameName = null, string categoryName = null)
+        public RecentSplitsFile(string path, TimingMethod method, string hotkeyProfile, string gameName = null, string categoryName = null, string layoutPath = null)
         {
             GameName = gameName;
             CategoryName = categoryName;
             Path = path;
             LastTimingMethod = method;
             LastHotkeyProfile = hotkeyProfile;
+            LayoutPath = layoutPath;
         }
     }
 }
