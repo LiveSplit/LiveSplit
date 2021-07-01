@@ -791,7 +791,7 @@ namespace LiveSplit.View
             }
             catch (Exception exc)
             {
-                Console.WriteLine(exc.StackTrace);
+                Log.Error(exc);
             }
         }
 
