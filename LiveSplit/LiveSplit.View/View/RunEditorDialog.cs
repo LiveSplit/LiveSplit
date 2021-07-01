@@ -709,6 +709,7 @@ namespace LiveSplit.View
                 }
             }
         }
+
         private void btnBrowseLayout_Click(object sender, EventArgs e)
         {
             string initialPath = Path.GetDirectoryName(Run.LayoutPath);
