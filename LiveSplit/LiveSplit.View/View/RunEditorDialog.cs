@@ -796,7 +796,6 @@ namespace LiveSplit.View
             }
         }
 
-
         private void cbxLayoutToUse_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (cbxLayoutToUse.SelectedItem == null)

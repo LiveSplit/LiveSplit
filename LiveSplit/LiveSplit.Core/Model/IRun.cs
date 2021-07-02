@@ -30,8 +30,6 @@ namespace LiveSplit.Model
         bool HasChanged { get; set; }
         string FilePath { get; set; }
         string LayoutPath { get; set; }
-
-
     }
 
     public static class RunExtensions
