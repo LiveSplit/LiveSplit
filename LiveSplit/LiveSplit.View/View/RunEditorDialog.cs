@@ -773,7 +773,7 @@ namespace LiveSplit.View
         {
             cbxLayoutToUse.DisplayMember = "Item1";
             FillCbxLayoutToUseItems();
-            if (Run.LayoutPath == null || Run.LayoutPath == String.Empty)
+            if (String.IsNullOrEmpty(Run.LayoutPath))
             {
                 chkbxUseLayout.Checked = false;
                 flpnlLayoutSelect.Enabled = false;
