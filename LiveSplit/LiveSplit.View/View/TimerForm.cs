@@ -2234,8 +2234,9 @@ namespace LiveSplit.View
             }
         }
 
-        public void OpenLayoutFromFile(string filePath)
+        public bool OpenLayoutFromFile(string filePath)
         {
+            bool success = false;
             if (WarnUserAboutLayoutSave(true))
             {
                 Cursor.Current = Cursors.WaitCursor;
@@ -2243,6 +2244,7 @@ namespace LiveSplit.View
                 {
                     var layout = LoadLayoutFromFile(filePath);
                     SetLayout(layout);
+                    success = true;
                 }
                 catch (Exception e)
                 {
@@ -2253,6 +2255,7 @@ namespace LiveSplit.View
                 }
                 Cursor.Current = Cursors.Arrow;
             }
+            return success;
         }
 
         private void LoadDefaultLayout()

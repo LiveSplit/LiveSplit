@@ -730,8 +730,10 @@ namespace LiveSplit.View
                 {
                     return;
                 }
-                ApplyLayoutPathToCbx(openFileDialog.FileName);
-                SaveAndApplyLayoutPath(openFileDialog.FileName);
+                if (SaveAndApplyLayoutPath(openFileDialog.FileName))
+                {
+                    ApplyLayoutPathToCbx(openFileDialog.FileName);
+                }
             }
         }
 
@@ -783,17 +785,22 @@ namespace LiveSplit.View
             chkbxUseLayout.Checked = true;
         }
 
-        private void SaveAndApplyLayoutPath(string layoutPath)
+        private bool SaveAndApplyLayoutPath(string layoutPath)
         {
-            Run.LayoutPath = layoutPath;
+            bool success = false;
             try
             {
-                Application.OpenForms.OfType<TimerForm>().First().OpenLayoutFromFile(layoutPath);
+                success = Application.OpenForms.OfType<TimerForm>().First().OpenLayoutFromFile(layoutPath);
             }
             catch (Exception exc)
             {
                 Log.Error(exc);
             }
+            if (success)
+            {
+                Run.LayoutPath = layoutPath;
+            }
+            return success;
         }
 
         private void cbxLayoutToUse_SelectionChangeCommitted(object sender, EventArgs e)
