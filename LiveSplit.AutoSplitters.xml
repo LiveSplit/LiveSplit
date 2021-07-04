@@ -438,6 +438,17 @@
         <Description>Auto Splitter/ Load Remover(by Kuno Demetries)</Description>
         <Website>https://discord.com/invite/Rb8bEUn</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mass Effect: Legendary Edition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Mass%20Effect%20Legendary%20Edition/MassEffectLegendary.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover (By Jujstme)</Description>
+        <Website>https://github.com/Jujstme/Autosplitters/tree/master/Mass%20Effect%20Legendary%20Edition</Website>
+    </AutoSplitter>
      <AutoSplitter>
         <Games>
             <Game>Mass Effect 3</Game>
@@ -4132,6 +4143,17 @@
         <Type>Component</Type>
         <Description>Game Time, Auto Splitting, and Auto Start/Stop/Reset are available. Requires PreyRun. (by AMS)</Description>
         <Website>https://github.com/AMS21</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>NEAVE</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LukeSaward1/AutoSplitters/main/Neave/Neave_Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time and Auto Start/Split/Reset are available. (By MiP and LukeSaward)</Description>
+        <Website>https://github.com/LukeSaward1</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12404,5 +12426,16 @@
         <Type>Component</Type>
         <Description>Zanzarah load remover, autosplitter and autostarter (by Helco)</Description>
         <Website>https://github.com/Helco/ZZSpeeds</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>ENDER LILIES: Quietus of the Knights</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Trexounay/EnderLilies.AutoSplitter/main/EnderLiliesAutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Ender Lilies load remover, autoreset and autostarter (by Trex)</Description>
+        <Website>https://discord.gg/wWQUzB36dx</Website>
     </AutoSplitter>
 </AutoSplitters>
