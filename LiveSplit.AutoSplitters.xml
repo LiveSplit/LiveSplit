@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
 		<Games>
+        		<Game>Necromunda: Hired Gun</Game>
+    		</Games>
+    		<URLs>
+        		<URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.NecromundaHiredGun/main/NecromundaHiredGun.asl</URL>
+    		</URLs>
+    		<Type>Script</Type>
+    		<Description>Necromunda Hired Gun load remover and autosplitter (by Meta)</Description>
+		<Website>https://discord.gg/qSdq9ZZMeK</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
         		<Game>Days Gone</Game>
     		</Games>
     		<URLs>
@@ -1027,6 +1038,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sphere Complex</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Sphere%20Complex/SphereComplex.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets when starting the first level of any difficulty. Splits when finishing a level. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Sphere%20Complex</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>There Is No Game</Game>
         </Games>
         <URLs>
@@ -1898,10 +1920,10 @@
             <Game>BL3</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Borderlands%203/Livesplit.Borderlands3/Components/Livesplit.Borderlands3.dll</URL>
+            <URL>https://raw.githubusercontent.com/apple1417/Autosplitters/master/borderlands3.asl</URL>
         </URLs>
-        <Type>Component</Type>
-        <Description>Load Removal is available for multiple patches (by FromDarkHell)</Description>
+        <Type>Script</Type>
+        <Description>Auto Splitting, Auto Start and Load Removal are available. (By apple1417)</Description>
         <Website>https://discord.gg/jF8eSnP</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6818,6 +6840,7 @@
     <AutoSplitter>
         <Games>
             <Game>Slime Rancher</Game>
+            <Game>Slime Rancher Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/supra0/slime-rancher-autosplitter/master/SlimeRancher.asl</URL>
@@ -8877,10 +8900,10 @@
             <Game>DUSK</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/TwanJones/DuskSplitter/master/Dusk.ASL</URL>
+            <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.DuskIGT.ASL</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-splitting, Start, Reset and Load Removal are available. (By TwanJones)</Description>
+        <Description>Game Time and Auto Splitting are available. (By ShiningFace)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11991,6 +12014,16 @@
   </AutoSplitter>
 <AutoSplitter>
     <Games>
+      <Game>Granny: Chapter Two (PC)</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/sychotixdev/GrannyPC-Autosplitter/main/GrannyCh2.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto Start/Reset are available. (By sychotixx)</Description>
+  </AutoSplitter>
+<AutoSplitter>
+    <Games>
       <Game>Dragon Quest XI S: Echoes of an Elusive Age</Game>
       <Game>Dragon Quest XI S</Game>
     </Games>
@@ -12437,5 +12470,26 @@
         <Type>Script</Type>
         <Description>Ender Lilies load remover, autoreset and autostarter (by Trex)</Description>
         <Website>https://discord.gg/wWQUzB36dx</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Phantom Abyss</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/henyK/autosplitters/master/Phantom%20Abyss/PhantomAbyss.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal, Automatic Timer Start and Auto Splitting is available. (By heny)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Emperor's New Groove</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/UltraStars3000/kuzcoASL/main/KuzcoASL.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for the PC version of [The Emperor's New Groove]. (by UltraStars3000)</Description>
+        <Website>https://discord.gg/Mknzj3RfxG</Website>
     </AutoSplitter>
 </AutoSplitters>
