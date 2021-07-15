@@ -746,17 +746,17 @@ namespace LiveSplit.View
                 {
                     var key = Path.GetFileNameWithoutExtension(value).EscapeMenuItemText();
                     return Tuple.Create(key, value);
-                })
-                .ToArray();
-            cbxLayoutToUse.Items.AddRange(range);
+                }).ToList();
+            range.Insert(0, Tuple.Create("Default Layout", "?default"));
+            cbxLayoutToUse.Items.AddRange(range.ToArray());
         }
 
-        private void ApplyLayoutPathToCbx(string layoutToUse)
+        private void ApplyLayoutPathToCbx(string layoutPath)
         {
             Tuple<string, string> selected = null;
             foreach (Tuple<string, string> item in cbxLayoutToUse.Items)
             {
-                if (item.Item2 == layoutToUse)
+                if (item.Item2 == layoutPath)
                 {
                     selected = item;
                     break;
@@ -764,9 +764,9 @@ namespace LiveSplit.View
             }
             if (selected == null)
             {
-                var key = Path.GetFileNameWithoutExtension(layoutToUse).EscapeMenuItemText();
-                selected = Tuple.Create(key, layoutToUse);
-                cbxLayoutToUse.Items.Insert(0, selected);
+                var fileName = Path.GetFileNameWithoutExtension(layoutPath).EscapeMenuItemText();
+                selected = Tuple.Create(fileName, layoutPath);
+                cbxLayoutToUse.Items.Insert(1, selected);
             }
             cbxLayoutToUse.SelectedItem = selected;
         }
@@ -785,20 +785,43 @@ namespace LiveSplit.View
             chkbxUseLayout.Checked = true;
         }
 
+        private void SaveLayoutPath(string layoutPath)
+        {
+            if (Run.LayoutPath == layoutPath)
+            {
+                return;
+            }
+            Run.LayoutPath = layoutPath;
+            RaiseRunEdited();
+        }
+
         private bool SaveAndApplyLayoutPath(string layoutPath)
         {
-            bool success = false;
+            TimerForm timerForm;
             try
             {
-                success = Application.OpenForms.OfType<TimerForm>().First().OpenLayoutFromFile(layoutPath);
+                timerForm = Application.OpenForms.OfType<TimerForm>().First();
             }
-            catch (Exception exc)
+            catch (Exception e)
             {
-                Log.Error(exc);
+                Log.Error(e);
+                return false;
             }
+
+            bool success = false;
+            if (layoutPath == "?default")
+            {
+                timerForm.LoadDefaultLayout();
+                success = true;
+            }
+            else
+            {
+                success = timerForm.OpenLayoutFromFile(layoutPath);
+            }
+
             if (success)
             {
-                Run.LayoutPath = layoutPath;
+                SaveLayoutPath(layoutPath);
             }
             return success;
         }
@@ -820,8 +843,8 @@ namespace LiveSplit.View
         private void chkbxUseLayout_CheckedChanged(object sender, EventArgs e)
         {
             flpnlLayoutSelect.Enabled = chkbxUseLayout.Checked;
-            Run.LayoutPath = chkbxUseLayout.Checked && cbxLayoutToUse.SelectedItem != null ?
-                ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2 : null;
+            SaveLayoutPath(chkbxUseLayout.Checked && cbxLayoutToUse.SelectedItem != null ?
+                ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2 : null);
         }
 
         private void btnOK_Click(object sender, EventArgs e)

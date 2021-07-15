@@ -3673,7 +3673,7 @@ namespace LiveSplitCore
             return result;
         }
         /// <summary>
-        /// Layout, the run is using.
+        /// Path to the layout associated with the run.
         /// </summary>
         public string LayoutPath()
         {
@@ -3746,7 +3746,7 @@ namespace LiveSplitCore
             LiveSplitCoreNative.Run_mark_as_modified(this.ptr);
         }
         /// <summary>
-        /// Sets the layout, the run is using.
+        /// Sets the path to the layout associated with the run.
         /// </summary>
         public void SetLayoutPath(string layoutPath)
         {
