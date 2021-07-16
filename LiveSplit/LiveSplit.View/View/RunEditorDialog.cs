@@ -739,6 +739,7 @@ namespace LiveSplit.View
 
         private void FillCbxLayoutToUseItems()
         {
+            cbxLayoutToUse.Items.Add(Tuple.Create("Default Layout", "?default"));
             var range = CurrentState.Settings.RecentLayouts
                 .Reverse()
                 .Where(e => !String.IsNullOrEmpty(e))
@@ -747,7 +748,6 @@ namespace LiveSplit.View
                     var key = Path.GetFileNameWithoutExtension(value).EscapeMenuItemText();
                     return Tuple.Create(key, value);
                 }).ToList();
-            range.Insert(0, Tuple.Create("Default Layout", "?default"));
             cbxLayoutToUse.Items.AddRange(range.ToArray());
         }
 
@@ -787,16 +787,16 @@ namespace LiveSplit.View
 
         private void SaveLayoutPath(string layoutPath)
         {
-            if (Run.LayoutPath == layoutPath)
-            {
-                return;
-            }
             Run.LayoutPath = layoutPath;
             RaiseRunEdited();
         }
 
         private bool SaveAndApplyLayoutPath(string layoutPath)
         {
+            if (Run.LayoutPath == layoutPath)
+            {
+                return true;
+            }
             TimerForm timerForm;
             try
             {
@@ -843,8 +843,13 @@ namespace LiveSplit.View
         private void chkbxUseLayout_CheckedChanged(object sender, EventArgs e)
         {
             flpnlLayoutSelect.Enabled = chkbxUseLayout.Checked;
-            SaveLayoutPath(chkbxUseLayout.Checked && cbxLayoutToUse.SelectedItem != null ?
-                ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2 : null);
+            var layoutPath = chkbxUseLayout.Checked && cbxLayoutToUse.SelectedItem != null ?
+                ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2 : null;
+            if (Run.LayoutPath == layoutPath)
+            {
+                return;
+            }
+            SaveLayoutPath(layoutPath);
         }
 
         private void btnOK_Click(object sender, EventArgs e)
