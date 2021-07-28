@@ -1,11 +1,13 @@
 ﻿using Fetze.WinFormsColor;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace LiveSplit.UI
 {
@@ -116,6 +118,35 @@ namespace LiveSplit.UI
             return image != null ? image.GetHashCode() : 0;
         }
 
+        public static int CreateSetting(XmlDocument document, XmlElement parent, string elementName, List<Image> images)
+        {
+            if (document != null)
+            {
+                var element = document.CreateElement(elementName);
+                if (images != null)
+                {
+                    string imagesString = "";
+                    for (int i = 0; i < images.Count; i++)
+                    {
+                        using (var ms = new MemoryStream())
+                        {
+                            var bf = new BinaryFormatter();
+
+                            bf.Serialize(ms, images[i]);
+                            var data = ms.ToArray();
+                            imagesString += "|Seperator|" + Convert.ToBase64String(data);
+                        }
+                    }
+                    var cdata = document.CreateCDataSection(imagesString);
+                    element.InnerXml = cdata.OuterXml;
+                }
+
+                parent.AppendChild(element);
+            }
+
+            return images != null ? images.GetHashCode() : 0;
+        }
+
         public static Image GetImageFromElement(XmlElement element)
         {
             if (element != null && !element.IsEmpty)
@@ -131,6 +162,25 @@ namespace LiveSplit.UI
                 }
             }
             return null;
+        }
+
+        public static List<Image> GetImagesFromElement(XmlElement element)
+        {
+            List<Image> images = new List<Image>();
+            if (element != null && !element.IsEmpty)
+            {  
+                string[] imageStrings = element.InnerText.Split(new string[] { "|Seperator|" }, StringSplitOptions.RemoveEmptyEntries);
+                var bf = new BinaryFormatter();
+                foreach (string imageString in imageStrings)
+                {                   
+                    var data = Convert.FromBase64String(imageString);
+                    using (var ms = new MemoryStream(data))
+                    {
+                        images.Add((Image)bf.Deserialize(ms));
+                    }
+                }
+            }
+            return images;
         }
 
         public static bool ParseBool(XmlElement boolElement, bool defaultBool = false)

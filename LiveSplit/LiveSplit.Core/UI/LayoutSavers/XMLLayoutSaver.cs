@@ -36,6 +36,7 @@ namespace LiveSplit.UI.LayoutSavers
             SettingsHelper.CreateSetting(document, element, "DropShadows", settings.DropShadows) ^
             SettingsHelper.CreateSetting(document, element, "BackgroundType", settings.BackgroundType) ^
             SettingsHelper.CreateSetting(document, element, "BackgroundImage", settings.BackgroundImage) ^
+            SettingsHelper.CreateSetting(document, element, "BackgroundImages", settings.BackgroundImages) ^
             SettingsHelper.CreateSetting(document, element, "ImageOpacity", settings.ImageOpacity) ^
             SettingsHelper.CreateSetting(document, element, "ImageBlur", settings.ImageBlur) ^
             SettingsHelper.CreateSetting(document, element, "Opacity", settings.Opacity) ^

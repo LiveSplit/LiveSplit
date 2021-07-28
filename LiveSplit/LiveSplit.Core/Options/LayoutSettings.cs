@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 namespace LiveSplit.Options
@@ -24,6 +25,7 @@ namespace LiveSplit.Options
         public BackgroundType BackgroundType { get; set; }
 
         public Image BackgroundImage { get; set; }
+        public List<Image> BackgroundImages { get; set; }
         public float ImageOpacity { get; set; }
         public float ImageBlur { get; set; }
 
@@ -76,6 +78,7 @@ namespace LiveSplit.Options
             MousePassThroughWhileRunning = settings.MousePassThroughWhileRunning;
             BackgroundType = settings.BackgroundType;
             BackgroundImage = settings.BackgroundImage;
+            BackgroundImages = settings.BackgroundImages;
             ImageOpacity = settings.ImageOpacity;
             ImageBlur = settings.ImageBlur;
         }
