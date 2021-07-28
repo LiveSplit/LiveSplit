@@ -12629,4 +12629,15 @@
         <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/LiveSplit.DeathsDoor</Website>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Cranked Up</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.CrankedUp/master/Components/LiveSplit.CrankedUp.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Autosplitting is available. (By DevilSquirrel)</Description>
+        <Website>https://github.com/ShootMe/LiveSplit.CrankedUp</Website>
+    </AutoSplitter>
 </AutoSplitters>
