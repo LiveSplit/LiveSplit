@@ -1991,7 +1991,7 @@
             <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.SA2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Game Time and Auto Splitting are available. (By ShiningFace)</Description>
+        <Description>Loadless and Auto Splitting are available. (By ShiningFace)</Description>
         <Website>http://discord.gg/XKdZFTS</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6414,6 +6414,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Secret of Evermore</Game>
+            <Game>SoE</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/r-bin/snes-scripts/master/LiveSplit%20Auto%20Splitters/LiveSplit.SecretOfEvermore.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Either Auto Start or Auto Reset is required. In-Game Time is not legal for leaderboard submissions. (By r.bin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Super Metroid</Game>
             <Game>Super Metroid Category Extensions</Game>
         </Games>
@@ -8988,13 +8999,15 @@
     <AutoSplitter>
         <Games>
             <Game>Batman: Arkham City</Game>
+            <Game>Batman Arkham City</Game>
+            <Game>Arkham City</Game>
             <Game>Batman: Arkham City Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ArkhamCity.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-start, and auto-splitting on pre-rendered cutscenes and load zones are available (by darkid and ShikenNuggets)</Description>
+        <Description>Auto-start, and auto-splitting at various points in the story are available (by ShikenNuggets and JohnStephenEvil)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12589,7 +12602,18 @@
             <Game>Q.U.B.E.</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/geerky42/QUBEv1-AutoSplitter/main/QUBEv1.asl</URL>
+            <URL>https://raw.githubusercontent.com/geerky42/QUBE-AutoSplitters/main/QUBEv1.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter (By geerky42)</Description>
+        <Website>https://discord.gg/PXkMsdr4nd</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Q.U.B.E Director's Cut</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/geerky42/QUBE-AutoSplitters/main/QUBEDC.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>AutoSplitter (By geerky42)</Description>
@@ -12628,5 +12652,38 @@
         <Type>Component</Type>
         <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
         <Website>https://github.com/Voxelse/LiveSplit.DeathsDoor</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Crash Team Racing</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mateusfavarin/CTR-ASL/main/src/CrashTeamRacing.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports automatic splitting, resetting and load removal. You must use IL splits in order to use the auto splitting functionality.</Description>
+        <Website>https://github.com/mateusfavarin/CTR-ASL</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Cranked Up</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.CrankedUp/master/Components/LiveSplit.CrankedUp.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Splitting available. (By DevilSquirrel)</Description>
+        <Website>https://github.com/ShootMe/LiveSplit.CrankedUp</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Omno</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Istador/ASL-Omno/public/Omno.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start/Split/Pause/Reset with some custom settings.</Description>
+        <Website>https://github.com/Istador/ASL-Omno</Website>
     </AutoSplitter>
 </AutoSplitters>
