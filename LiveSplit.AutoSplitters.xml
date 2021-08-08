@@ -2,13 +2,24 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Facility 47</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/jamesread/facility-47-speedrun/main/facility47.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Facility47 ASL written by xconspirisist / James Read. Functionality for start, and splitting on key scenes.</Description>
+	<Website>https://www.speedrun.com/facility_47</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>A Plague Tale: Innocence</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.APlagueTaleInnocence/main/APlagueTaleInnocence.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>A Plague Tale ASL written by Meta, functionality for load removal and autostart</Description>
+        <Description>A Plague Tale ASL with functionality for load removal and autostart by Meta</Description>
         <Website>https://discord.gg/ANz4Ue4</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -968,6 +979,18 @@
         <Type>Script</Type>
         <Description>Starts automatically. Removes loads. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Hello%20Neighbor</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Here Comes Niko!</Game>
+            <Game>Here Comes Niko</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Here%20Comes%20Niko/HereComesNiko.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Here%20Comes%20Niko</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8165,6 +8188,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Harry Potter and the Half Blood Prince</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/xLink/hp6-autosplitter/main/hp6_autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports autosplitter that splits automatically between levels and at the end of the run.</Description>
+        <Website>https://github.com/xLink/hp6-autosplitter/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Harry Potter and the Deathly Hallows Part 1</Game>
         </Games>
         <URLs>
@@ -8468,7 +8502,7 @@
             <Game>Kuso</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Zet237/autokuso/master/kusosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/kuso/kuso_livesplit.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>IGT syncing, automatic starting, splitting and resetting. Works in all game modes. Shoutouts to Gelly.</Description>
@@ -8874,10 +8908,10 @@
             <Game>Control</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/derwangler/splitters/master/Control.asl</URL>
+            <URL>https://raw.githubusercontent.com/MrLette/ControlAutoSplitter/main/Control.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load removal is available (by derwangler)</Description>
+        <Description>Auto start/split/end and load removal (by MrLette and derwangler)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12686,4 +12720,47 @@
         <Description>Start/Split/Pause/Reset with some custom settings.</Description>
         <Website>https://github.com/Istador/ASL-Omno</Website>
     </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>The Forgotten City</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/TheForgottenCity.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Zombies Ate My Neighbors</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ConzorKingKong/Livesplit.ZombiesAteMyNeighbors/master/ZombiesAteMyNeighbors.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and Autosplit. Made for 100% run to sync with -22.16 countdown timer</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Unbound: Worlds Apart</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/slaurent22/unbound-autosplitter/main/unbound.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover (by slaurent)</Description>
+        <Website>https://github.com/slaurent22/unbound-autosplitter</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>RollerCoaster Tycoon 1</Game>
+			<Game>RollerCoaster Tycoon 2</Game>
+		</Games>
+		<URLs>
+			<URL>https://git.sr.ht/~jkcclemens/openrct2-autosplitter/blob/main/OpenRCT2.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>AutoSplitter for OpenRCT2 categories</Description>
+		<Website>https://git.sr.ht/~jkcclemens/openrct2-autosplitter</Website>
+	</AutoSplitter>
 </AutoSplitters>
