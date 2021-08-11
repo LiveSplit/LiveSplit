@@ -1868,11 +1868,40 @@ namespace LiveSplit.View
                 || CurrentState.CurrentPhase == TimerPhase.Paused))
             {
                 DontRedraw = true;
-                result = MessageBox.Show(this, "This run did not beat your current splits. Would you like to save this run as a Personal Best?", "Save as Personal Best?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                string name = "";
+                result = InputBox.Show("New Comparison", "Comparison Name: (leave blank to replace Personal Best)", ref name);
                 DontRedraw = false;
-                if (result == DialogResult.Yes)
+                if (result == DialogResult.OK)
                 {
-                    Model.ResetAndSetAttemptAsPB();
+                    if (name.Length <= 0)
+                        Model.ResetAndSetAttemptAsPB();
+                    else
+                    {
+                        if (CurrentState.Run.CustomComparisons.Contains(name))
+                        {
+                            result = MessageBox.Show("This Comparison already exists. Would you like to overwrite it?", "Overwrite " + name + "?", MessageBoxButtons.YesNoCancel);
+                            if (result == DialogResult.Yes)
+                            {
+                                foreach (var current in CurrentState.Run)
+                                    current.Comparisons[name] = current.SplitTime;
+                            }
+                            else if (result == DialogResult.Cancel)
+                                return false;
+                        }
+                        else if (CurrentState.Run.Comparisons.Contains(name))
+                        {
+                            result = MessageBox.Show("This Comparison already exists and is not a custom comparison.", "The change will be ignored.", MessageBoxButtons.OKCancel);
+                            if (result == DialogResult.Cancel)
+                                return false;
+                        }
+                        else
+                        {
+                            CurrentState.Run.CustomComparisons.Add(name);
+                            foreach (var current in CurrentState.Run)
+                                current.Comparisons[name] = current.SplitTime;
+                        }
+                        Model.Reset();
+                    }
                 }
                 else if (result == DialogResult.Cancel)
                     return false;
