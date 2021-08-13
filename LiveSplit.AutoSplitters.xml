@@ -8098,6 +8098,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Nancy Drew: Danger By Design</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/kclimb/asl-scripts/master/Splitters/DAN.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatic start/split</Description>
+        <Website>https://github.com/kclimb/asl-scripts</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Nancy Drew: The White Wolf of Icicle Creek</Game>
         </Games>
         <URLs>
