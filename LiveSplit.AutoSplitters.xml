@@ -301,7 +301,7 @@
             <Game>Dude Simulator 3</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/CamEnright/DudeSim3AutoSplit/main/DudeSim3.asl</URL>
+            <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.DudeSimulator3/main/dudesim3.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Contains functionality Auto Start, Auto Splitting, and Load Removal. (By Meta, Radioactiv, and Micrologist)</Description>
@@ -957,6 +957,21 @@
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits after every level. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Give%20Up%2C%20Robot</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Grapple!</Game>
+            <Game>Barji’s Grappler</Game>
+            <Game>Barji’s Grappler!</Game>
+            <Game>Barji's Grappler</Game>
+            <Game>Barji's Grappler!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Grapple!/Grapple.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits after every level. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Grapple!</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4257,6 +4272,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Ursa</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LukeSaward1/AutoSplitters/main/Ursa/Ursa_Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time and Auto Start/Split/Reset are available. (By LukeSaward)</Description>
+        <Website>https://github.com/LukeSaward1</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Refunct</Game>
             <Game>Refunct Randomizer</Game>
             <Game>Refunct Category Extensions</Game>
@@ -5049,6 +5075,7 @@
         <Games>
             <Game>TrackMania Nations Forever</Game>
             <Game>TrackMania United Forever</Game>
+            <Game>TMX Community Campaign</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/donadigo/AutoSplitters/master/Trackmania%20Forever.asl</URL>
@@ -12763,4 +12790,15 @@
 		<Description>AutoSplitter for OpenRCT2 categories</Description>
 		<Website>https://git.sr.ht/~jkcclemens/openrct2-autosplitter</Website>
 	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Dodgeball Academia</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.DodgeballAcademia/main/Components/LiveSplit.DodgeballAcademia.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Start/Split/Reset and Load Remover (by Voxelse)</Description>
+        <Website>https://github.com/Voxelse/LiveSplit.DodgeballAcademia</Website>
+    </AutoSplitter>
 </AutoSplitters>
