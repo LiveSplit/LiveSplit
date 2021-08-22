@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+<AutoSplitter>
+        <Games>
+            <Game>Sunset Overdrive</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.SunsetOverdrive/main/SunsetOverdrive.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal are available (by Meta)</Description>
+	<Website>https://discord.gg/8uxPgeZkmg</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Eversleep: Lunistice Gaiden</Game>
