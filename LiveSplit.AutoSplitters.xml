@@ -2,6 +2,17 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Zébulon</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Tenebrosful/Zebulon-Livesplit.Autosplitter/main/Zebulon.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start (need to set ~ -1.3 to timer start), Split and Reset. Created by Tenebrosful</Description>
+	<Website>https://github.com/Tenebrosful/Zebulon-Livesplit.Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Eversleep: Lunistice Gaiden</Game>
             <Game>Eversleep: Lunistice Gaiden Demo</Game>
         </Games>
@@ -23,6 +34,17 @@
         <Description>Facility47 ASL written by xconspirisist / James Read. Functionality for start, and splitting on key scenes.</Description>
 	<Website>https://www.speedrun.com/facility_47</Website>
     </AutoSplitter>
+	    <AutoSplitter>
+        <Games>
+            <Game>RICO</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/RICO.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter/ Load Remover (by xZeko, Kuno Demetries)</Description>
+	<Website>https://discord.gg/s3KBdU8uB9</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>A Plague Tale: Innocence</Game>
@@ -31,7 +53,7 @@
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.APlagueTaleInnocence/main/APlagueTaleInnocence.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>A Plague Tale ASL with functionality for load removal and autostart by Meta</Description>
+        <Description>A Plague Tale ASL with functionality for load removal and autostart (by Meta, Kuno Demetries)</Description>
         <Website>https://discord.gg/ANz4Ue4</Website>
     </AutoSplitter>
  <AutoSplitter>
@@ -3850,14 +3872,13 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Legacy of Kain : Defiance</Game>
+            <Game>Legacy of Kain: Defiance</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/blastedt/asl/master/LegacyOfKainDefiance.asl</URL>
+            <URL>https://raw.githubusercontent.com/thekovic/LoK-Defiance-Autosplitter/main/defiance6.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting and Start/Reset are available (By TheDuriel + blastedt)</Description>
-        <Website>https://github.com/blastedt/asl/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12856,5 +12877,48 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Super Smash Bros.</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/smash64-dev/autosplitters/main/smash_brothers.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatic Start/Reset/Split are available. (by CEnnis91)</Description>
+        <Website>https://github.com/smash64-dev/autosplitters/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Whitetail Incident</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/diggitydingdong/whitetail_asl/main/whitetail.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting is available. Created by diggity and Ero.</Description>
+          <Website>https://speedrun.com/whitetail</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Late Work</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/diggitydingdong/latework_asl/main/latework.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatic start/stop is available. Created by diggity.</Description>
+        <Website>https://www.speedrun.com/late_work</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Spelunky Classic</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/spelunky-fyi/LiveSplit-Spelunky-Classic/main/LiveSplit-Spelunky-Classic.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>In Game Time for Spelunky Classic</Description>
     </AutoSplitter>
 </AutoSplitters>
