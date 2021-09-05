@@ -972,6 +972,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Devil Daggers</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Devil%20Daggers/DevilDaggers.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits whenever a new set of enemies spawns. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Devil%20Daggers</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Donut County</Game>
         </Games>
         <URLs>
@@ -1349,6 +1360,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and In-Game Timer are available. Supports all speedrun.com categories (by Jujstme)</Description>
+        <Website>https://discord.gg/XRsRwRU</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic Colors: Ultimate</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Sonic%20Colors%20Ultimate/SonicColorsUltimate.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and In-Game Timer are available (by Jujstme)</Description>
         <Website>https://discord.gg/XRsRwRU</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -12920,5 +12942,49 @@
         </URLs>
         <Type>Script</Type>
         <Description>In Game Time for Spelunky Classic</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Jermas Big Adventure</Game>
+            <Game>Jerma's Big Adventure</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.JermasBigAdventure.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and In-Game Time are available, v1.1 and above (by zoton2 and Ero)</Description>
+        <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Cave Story</Game>
+            <Game>Cave Story+</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/periwinkle9/cave-story-autosplitters/main/cave-story-combined.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Cave Story(+) (all PC versions). Configurable split locations. (by periwinkle)</Description>
+        <Website>https://github.com/periwinkle9/cave-story-autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Psychonauts 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Grimdonuts/psychonauts2loadremoval/main/LiveSplit.Psychonauts2_IGT.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal for Psychonauts 2 by Grimdonuts and Aryk</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>ENDO</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/ENDO.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
 </AutoSplitters>
