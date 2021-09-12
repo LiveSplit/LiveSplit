@@ -2,6 +2,17 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Blue Fire</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Luukie13/bluefireAutosplitter/main/BlueFire.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>syncs the livesplit timer to the ingame timer setting. Created by Luukie13 and R30hedron</Description>
+	<Website>https://github.com/Luukie13/bluefireAutosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Zébulon</Game>
         </Games>
         <URLs>
@@ -2146,12 +2157,23 @@
     <AutoSplitter>
         <Games>
             <Game>Left 4 Dead</Game>
+            <Game>Left 4 Dead Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D1/L4D.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal and Auto Splitting are available. (By bill_play3)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Left 4 Dead: Survivors</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ImAciidz/L4D2-Autosplitter/main/L4D2Survivors.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Auto Splitting are available. (By Aciidz and bill_play3)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2988,10 +3010,10 @@
             <Game>EW2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/JMaynard24/ASL/master/TheEvilWithin2.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/TheEvilWithin2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Dread)</Description>
+        <Description>Auto Splitter/Load Removal is available. (By Kuno, Demetries, Dread)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4524,6 +4546,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting and Auto Start/Reset are available. Can split by character or by floor. (By Hyphen-ated)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Binding of Isaac: Repentance</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Krakenos/autosplitters/master/isaac/isaac-repentance.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time, Auto Splitting and Auto Start/Reset are available. Can split by character or by floor. (By Krakenos and Hyphen-ated)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12908,7 +12940,18 @@
             <URL>https://raw.githubusercontent.com/smash64-dev/autosplitters/main/smash_brothers.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automatic Start/Reset/Split are available. (by CEnnis91)</Description>
+        <Description>Automatic Start/Reset/Split and Bonus Practice (by CEnnis91)</Description>
+        <Website>https://github.com/smash64-dev/autosplitters/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Smash Remix</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/smash64-dev/autosplitters/main/smash_remix.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatic Start/Reset/Split, Bonus Practice, and Remix Modes (by CEnnis91</Description>
         <Website>https://github.com/smash64-dev/autosplitters/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -12987,4 +13030,24 @@
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Final Fantasy X-2</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/risal91/FF10-2-Autosplitter/main/FFX2ASL.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter and Loadremover by Risal07 and Mysterion_06_</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Pirates of the Caribbean: At World's End</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Monstruos/PotC-AWE-Autosplitter/main/SCRIPT.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter and Loadremover for Any% category. [CAUTION] Splitter based on load screens appearing only, so it can run a timer at any activity besides starting the new game</Description>
+	</AutoSplitter>
 </AutoSplitters>
