@@ -2,6 +2,70 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Quake Remastered</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Chris-Greaves/LiveSplit.QuakeRemastered/main/QuakeRemastered.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, Split, Full Runs and Episode Runs (By Chris-Greaves)</Description>
+        <Website>https://github.com/Chris-Greaves/LiveSplit.QuakeRemastered</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mineralph</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/OCircles/Livesplit.Autosplitters/main/Mineralph/Mineralph.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, split, reset and IGT (By O_Circles)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hexen: Beyond Heretic</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/OCircles/Livesplit.Autosplitters/main/Hexen/Hexen.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>For Crispy Hexen 5.5, click website for info</Description>
+	<Website>https://github.com/OCircles/Livesplit.Autosplitters/tree/main/Hexen</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ley Lines (Steam)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/OCircles/Livesplit.Autosplitters/main/Leylines/Leylines.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, split and reset (By O_Circles)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>speedJUMP</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/diniamo/speedjump-autosplitter/master/speedJUMP.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>A very basic AutoSpitter, gonna do game time syncing if the dev wants to. Created diniamo.</Description>
+		<Website>https://github.com/diniamo/speedjump-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Tormented Souls</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/miraclewhips/tormented-souls-autosplitter/main/tormented-souls-autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter and Load Removal. Created by miraclewhips.</Description>
+	<Website>https://github.com/miraclewhips/tormented-souls-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Blue Fire</Game>
         </Games>
         <URLs>
@@ -191,7 +255,7 @@
             <Game>Sonic The Hedgehog (2006) Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://gist.github.com/Labreezy/7bd45d3f36c07a86b6d68262497efd3c/raw/e3b3f0bc91c02992058c7c782aaa4784c697309d/sonic06.asl</URL>
+            <URL>https://gist.github.com/Labreezy/7bd45d3f36c07a86b6d68262497efd3c/raw/eda7167eaedb2ea3d6983e7df93d1e68c06beeae/sonic06.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Emulator In-Game Timer (by Labryz)</Description>
@@ -578,7 +642,7 @@
             <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Mass%20Effect%20Legendary%20Edition/MassEffectLegendary.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover (By Jujstme)</Description>
+        <Description>Autosplitter and Load remover (By Jujstme)</Description>
         <Website>https://github.com/Jujstme/Autosplitters/tree/master/Mass%20Effect%20Legendary%20Edition</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -1175,6 +1239,20 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Project Warlock II</Game>
+            <Game>Project Warlock 2</Game>
+            <Game>Project Warlock II Demo</Game>
+            <Game>Project Warlock 2 Demo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Project%20Warlock%20II/ProjectWarlockII.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits at the end and optionally on each key. Syncs to in-game time. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Project%20Warlock%20II</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Ruff Night at the Gallery</Game>
         </Games>
         <URLs>
@@ -1376,11 +1454,12 @@
     <AutoSplitter>
         <Games>
             <Game>Sonic Colors: Ultimate</Game>
+            <Game>Sonic Colours: Ultimate</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Sonic%20Colors%20Ultimate/SonicColorsUltimate.asl</URL>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Sonic%20Colors%20Ultimate/Components/LiveSplit.SonicColors.dll</URL>
         </URLs>
-        <Type>Script</Type>
+        <Type>Component</Type>
         <Description>Autosplitting and In-Game Timer are available (by Jujstme)</Description>
         <Website>https://discord.gg/XRsRwRU</Website>
     </AutoSplitter>
@@ -1488,7 +1567,7 @@
             <Game>Eradicator</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/OCircles/EradicatorAutosplitter/master/EradicatorSplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/OCircles/Livesplit.Autosplitters/main/Eradicator/Eradicator.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>IGT, Autosplitting, Autostarting is available. Must go ingame once before autostart works (by O_Circles)</Description>
@@ -1598,7 +1677,7 @@
             <Game>RONIN</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/OCircles/RONINAutosplitter/master/RoninSplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/OCircles/Livesplit.Autosplitters/main/Ronin/Ronin.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Remover, Autosplitting, Autostarting is available (by O_Circles)</Description>
@@ -1608,7 +1687,7 @@
             <Game>Bygg bilar med Mulle Meck</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/OCircles/ByggBilarAutosplitter/master/BilarSplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/OCircles/Livesplit.Autosplitters/main/ByggBilarMedMulleMeck/ByggBilarMedMulleMeck.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and Autostarting is available (by O_Circles)</Description>
@@ -1618,7 +1697,7 @@
             <Game>Star Wars: Dark Forces</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/OCircles/DarkForcesAutosplitter/master/dfSplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/OCircles/Livesplit.Autosplitters/main/StarWarsDarkForces/StarWarsDarkForces.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Remover, Autosplitting and Autostarting is available (by O_Circles)</Description>
@@ -2291,6 +2370,11 @@
             <Game>Star Trek: Klingon Honor Guard</Game>
             <Game>Star Trek Klingon Honor Guard</Game>
             <Game>Klingon Honor Guard</Game>
+            <Game>The Heat Of War</Game>
+            <Game>WWII Combat - Iwo Jima</Game>
+            <Game>WWII Combat: Iwo Jima</Game>
+            <Game>Iwo Jima</Game>
+            <Game>WWII Combat</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Dalet/LiveSplit.UnrealLoads/master/Components/LiveSplit.UnrealLoads.dll</URL>
@@ -5921,10 +6005,10 @@
             <Game>Bayonetta</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Bigmanjapan/LivesplitASLscripts/master/Bayonetta%20v1.01/LiveSplit.Bayonetta_101.asl</URL>
+            <URL>https://raw.githubusercontent.com/Mysterion06/Bayonetta/main/Bayonetta.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Tracks in-game time. (by Bigmanjapan)</Description>
+        <Description>Autosplitter with Loadremover by Mysterion_06_</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13048,6 +13132,6 @@
 			<URL>https://raw.githubusercontent.com/Monstruos/PotC-AWE-Autosplitter/main/SCRIPT.asl</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description>Autosplitter and Loadremover for Any% category. [CAUTION] Splitter based on load screens appearing only, so it can run a timer at any activity besides starting the new game</Description>
+		<Description>Autosplitter and Loadremover for Any% category by Monstruos. [CAUTION] Splitter triggers on "continue" story.</Description>
 	</AutoSplitter>
 </AutoSplitters>
