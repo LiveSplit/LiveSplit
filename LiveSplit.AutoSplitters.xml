@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<AutoSplitter>
+        <Games>
+            <Game>Inside | Out</Game>
+            <Game>Inside|Out</Game>
+            <Game>InsideOut</Game>
+			<Game>Inside Out</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/diniamo/inside-out-autosplitter/master/InsideOut.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, split on season changes. (probably going to add splitting on items and auto reset later on)</Description>
+		<Website>https://github.com/diniamo/inside-out-autosplitter</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Quake Remastered</Game>
@@ -2169,10 +2183,11 @@
             <Game>Borderlands: The Pre-Sequel</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/seresharp/Autosplitters/master/LiveSplit.BLTPSIGT.asl</URL>
+            <URL>https://raw.githubusercontent.com/apple1417/Autosplitters/master/borderlands_tps.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Auto Start are available. (By drMalcom and SerenaM)</Description>
+        <Description>Auto Splitting, Auto Start and Load Removal are available. (By apple1417)</Description>
+        <Website>https://discord.gg/jF8eSnP</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9802,6 +9817,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Saints Row: The Third Remastered</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/betelopson/ASL/main/Livesplit.SR3R.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting, Auto Start and Loadless Time available (by Mr. Mary and hoxi and mossfis)</Description>
+        <Website>https://discord.gg/4Kz8vqZ</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Knockout Daddy</Game>
         </Games>
         <URLs>
@@ -13134,4 +13160,14 @@
 		<Type>Script</Type>
 		<Description>Autosplitter and Loadremover for Any% category by Monstruos. [CAUTION] Splitter triggers on "continue" story.</Description>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+		    <Game>DEATHLOOP</Game>
+		</Games>
+		<URLs>
+		    <URL>https://raw.githubusercontent.com/Micrologist/Livesplit.Deathloop/main/deathloop.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Auto Splitting and Load Removal available. (By Micrologist#2351)</Description>
+    	</AutoSplitter>
 </AutoSplitters>
