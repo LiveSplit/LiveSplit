@@ -1388,6 +1388,7 @@ namespace LiveSplit.View
                 autoSplitterSettings.InnerXml = Run.AutoSplitter.Component.GetSettings(document).InnerXml;
                 autoSplitterSettings.Attributes.Append(SettingsHelper.ToAttribute(document, "gameName", Run.GameName));
                 Run.AutoSplitterSettings = autoSplitterSettings;
+                Run.HasChanged = true;
             }
         }
 
