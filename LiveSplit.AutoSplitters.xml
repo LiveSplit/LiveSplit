@@ -1187,6 +1187,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>lil gator game</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/lil%20gator%20game/lilgatorgame.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/lil%20gator%20game</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Maid of Sker</Game>
         </Games>
         <URLs>
@@ -1250,6 +1261,17 @@
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Post%20Void</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Postbird In Provence</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Postbird%20In%20Provence/PostbirdInProvence.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Postbird%20In%20Provence</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1459,9 +1481,9 @@
             <Game>Sonic &amp; All-Stars Racing Transformed - Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Sonic%20%26%20All-Star%20Racing%20Transformed/S%26ASRT.asl</URL>
+            <URL>https://raw.githubusercontent.com/Jujstme/LiveSplit.SonicASRT/master/Components/LiveSplit.SonicASRT.dll</URL>
         </URLs>
-        <Type>Script</Type>
+        <Type>Component</Type>
         <Description>Autosplitting and In-Game Timer are available. Supports all speedrun.com categories (by Jujstme)</Description>
         <Website>https://discord.gg/XRsRwRU</Website>
     </AutoSplitter>
@@ -4178,6 +4200,7 @@
             <Game>The Witness</Game>
             <Game>Witness</Game>
             <Game>The Witness Category Extensions</Game>
+            <Game>The Witness Randomizer</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/jbzdarkid/Autosplitters/master/LiveSplit.TheWitness2.asl</URL>
@@ -13165,9 +13188,10 @@
 		    <Game>DEATHLOOP</Game>
 		</Games>
 		<URLs>
-		    <URL>https://raw.githubusercontent.com/Micrologist/Livesplit.Deathloop/main/deathloop.asl</URL>
+		    <URL>https://raw.githubusercontent.com/Jujstme/Livesplit.Deathloop/local/Components/LiveSplit.Deathloop.dll</URL>
 		</URLs>
-		<Type>Script</Type>
-		<Description>Auto Splitting and Load Removal available. (By Micrologist#2351)</Description>
+		<Type>Component</Type>
+		<Description>Auto Splitting and Load Removal available. (By Micrologist#2351 and Jujstme)</Description>
+	        <Website>https://github.com/Jujstme/LiveSplit.Deathloop</Website>
     	</AutoSplitter>
 </AutoSplitters>
