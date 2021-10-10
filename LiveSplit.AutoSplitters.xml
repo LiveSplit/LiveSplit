@@ -2,6 +2,26 @@
 <AutoSplitters>
 	<AutoSplitter>
         <Games>
+            <Game>Need for Speed: Undercover</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tdog20/NFS-AutoSplitter/main/Livesplit.NFSUC.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Loadless timer made by TDOG20 and Failracer</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Need for Speed: Carbon</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tdog20/NFS-AutoSplitter/main/Livesplit.NFSC.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Loadless timer made by TDOG20</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
             <Game>Inside | Out</Game>
             <Game>Inside|Out</Game>
             <Game>InsideOut</Game>
@@ -13,6 +33,17 @@
         <Type>Script</Type>
         <Description>Start, split on season changes. (probably going to add splitting on items and auto reset later on)</Description>
 		<Website>https://github.com/diniamo/inside-out-autosplitter</Website>
+    </AutoSplitter>
+<AutoSplitter>
+	<Games>            
+		<Game>Severed Steel</Game>
+	</Games>        
+	<URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.SeveredSteel/main/SeveredSteel.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts and reads In-Game time. (By Meta)</Description>
+		<Website>https://discord.gg/QaJJ9WBxGA</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6309,10 +6340,10 @@
             <Game>Firewing 64</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/Firewing%2064/autosplitter_firewing64.asl</URL>
+            <URL>https://raw.githubusercontent.com/Refragg/LiveSplit-ASL-Scripts/master/Firewing%2064/autosplitter_firewing64.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Website>https://github.com/R3FR4G/LiveSplit-ASL-Scripts/tree/master/Firewing%2064</Website>
+        <Website>https://github.com/Refragg/LiveSplit-ASL-Scripts/tree/master/Firewing%2064</Website>
         <Description>Automatic start/split/reset (By Refrag)</Description>
     </AutoSplitter>
     <AutoSplitter>
@@ -6325,10 +6356,10 @@
             <Game>Sonic Robo Blast 2: The Cyberdime Realm</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/Sonic%20Robo%20Blast%202/autosplitter_srb2.asl</URL>
+            <URL>https://raw.githubusercontent.com/Refragg/LiveSplit-ASL-Scripts/master/Sonic%20Robo%20Blast%202/autosplitter_srb2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Website>https://github.com/R3FR4G/LiveSplit-ASL-Scripts/tree/master/Sonic%20Robo%20Blast%202</Website>
+        <Website>https://github.com/Refragg/LiveSplit-ASL-Scripts/tree/master/Sonic%20Robo%20Blast%202</Website>
         <Description>Automatic start/split/reset, and in-game time (By Refrag)</Description>
     </AutoSplitter>
     <AutoSplitter>
@@ -6336,10 +6367,10 @@
             <Game>Sonic Robo Blast 2 Kart</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/Sonic%20Robo%20Blast%202%20Kart/autosplitter_srb2kart.asl</URL>
+            <URL>https://raw.githubusercontent.com/Refragg/LiveSplit-ASL-Scripts/master/Sonic%20Robo%20Blast%202%20Kart/autosplitter_srb2kart.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Website>https://github.com/R3FR4G/LiveSplit-ASL-Scripts/tree/master/Sonic%20Robo%20Blast%202%20Kart</Website>
+        <Website>https://github.com/Refragg/LiveSplit-ASL-Scripts/tree/master/Sonic%20Robo%20Blast%202%20Kart</Website>
         <Description>Automatic start/split/reset, and in-game time (By Refrag)</Description>
     </AutoSplitter>
     <AutoSplitter>
@@ -9350,7 +9381,7 @@
             <Game>Puyo Pop Fever</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/R3FR4G/LiveSplit-ASL-Scripts/master/Puyo%20Pop%20Fever/LiveSplit.PuyoFever.asl</URL>
+            <URL>https://raw.githubusercontent.com/Refragg/LiveSplit-ASL-Scripts/master/Puyo%20Pop%20Fever/LiveSplit.PuyoFever.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Automatic Start/Split/Reset available (by Refrag and Lemin)</Description>
@@ -9843,7 +9874,7 @@
             <Game>Saints Row: The Third Remastered</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/betelopson/ASL/main/Livesplit.SR3R.asl</URL>
+            <URL>https://raw.githubusercontent.com/betelopson/ASL/main/Livesplit.SRTTR.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting, Auto Start and Loadless Time available (by Mr. Mary and hoxi and mossfis)</Description>
@@ -13193,5 +13224,62 @@
 		<Type>Component</Type>
 		<Description>Auto Splitting and Load Removal available. (By Micrologist#2351 and Jujstme)</Description>
 	        <Website>https://github.com/Jujstme/LiveSplit.Deathloop</Website>
+    	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Daikoukai Jidai IV</Game>
+            <Game>Uncharted Waters IV with Power-Up Kit - HD Version</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/pingval/AutoSplitters/master/dk4hd.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>for HD version (all languages). Auto Start/Reset/Stop are not implemented yet. (By pingval)</Description>
+        <Website>https://github.com/pingval/AutoSplitters</Website>
+    </AutoSplitter>
+	  <AutoSplitter>
+        <Games>
+            <Game>WALL-E (PC/PS2/PSP)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/luis-trueba/wallepc_autosplitter/main/wall-e_autosplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting (with or without mid-level subsplits) and Load Removal available for PC version only. Consult the leaderboard rules for load removal legality. (By RoboticRocketeer)</Description>
+        <Website>https://github.com/luis-trueba/wallepc_autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>TOEM</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/CielDeVille/LiveSplit.TOEM/master/Components/LiveSplit.TOEM.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>AutoSplitter measuring game time, load times and auto-resets (by Ciel DeVille and AnqiX)</Description>
+        <Website>https://github.com/cieldeville/LiveSplit.TOEM</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Diablo II: Resurrected</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/WafuRuns/ASLScripts/master/LiveSplit.Diablo2Resurrected.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal (by Wafu)</Description>
+        <Website>https://github.com/WafuRuns/ASLScripts</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+		    <Game>Ace Combat 7</Game>
+		    <Game>Ace Combat 7: Skies Unknown</Game>
+		</Games>
+		<URLs>
+		    <URL>https://raw.githubusercontent.com/CptPie/AC7_Autosplit/main/ac7.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Auto Splitting (with or without mid-level subsplits) as well as the ability to detect S-Ranks and split on S-Ranks only.</Description>
+	        <Website>https://github.com/CptPie/AC7_Autosplit</Website>
     	</AutoSplitter>
 </AutoSplitters>
