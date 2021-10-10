@@ -211,36 +211,6 @@ namespace LiveSplit.View
 
             cbxGameName.GetAllItemsForText = x => new string[0];
 
-            Task.Factory.StartNew(() =>
-                {
-                    try
-                    {
-                        gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
-                        abbreviations = gameNames
-                        .Select(x => x.GetAbbreviations()
-                            .Select(y => new KeyValuePair<string, string>(x, y)))
-                        .SelectMany(x => x)
-                        .GroupBy(x => x.Value, x => x.Key);
-                        cbxGameName.GetAllItemsForText = x => SearchForGameName(x);
-                        this.InvokeIfRequired(() =>
-                        {
-                            try
-                            {
-                                cbxGameName.Items.AddRange(gameNames);
-                            }
-                            catch (Exception ex)
-                            {
-                                Log.Error(ex);
-                            }
-                        });
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-                    }
-                });
-
-
             cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
             cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
@@ -303,6 +273,39 @@ namespace LiveSplit.View
         {
             if (Run.IsAutoSplitterActive())
                 Run.AutoSplitter.Deactivate();
+        }
+
+        private void FillCbxGameName()
+        {
+            Task.Factory.StartNew(() =>
+            {
+                try
+                {
+                    gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
+                    abbreviations = gameNames
+                    .Select(x => x.GetAbbreviations()
+                        .Select(y => new KeyValuePair<string, string>(x, y)))
+                    .SelectMany(x => x)
+                    .GroupBy(x => x.Value, x => x.Key);
+                    cbxGameName.GetAllItemsForText = x => SearchForGameName(x);
+                    this.InvokeIfRequired(() =>
+                    {
+                        Application.DoEvents();
+                        try
+                        {
+                            cbxGameName.Items.AddRange(gameNames);
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex);
+                        }
+                    });
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+            });
         }
 
         void RefreshCategoryAutoCompleteList()
@@ -1049,6 +1052,7 @@ namespace LiveSplit.View
             RebuildComparisonColumns();
             IsInitialized = true;
             UpdateButtonsStatus();
+            FillCbxGameName();
             cbxGameName.UpdateUI();
         }
 
@@ -1384,6 +1388,7 @@ namespace LiveSplit.View
                 autoSplitterSettings.InnerXml = Run.AutoSplitter.Component.GetSettings(document).InnerXml;
                 autoSplitterSettings.Attributes.Append(SettingsHelper.ToAttribute(document, "gameName", Run.GameName));
                 Run.AutoSplitterSettings = autoSplitterSettings;
+                Run.HasChanged = true;
             }
         }
 
