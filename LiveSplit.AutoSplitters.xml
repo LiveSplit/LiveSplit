@@ -18,7 +18,7 @@
             <URL>https://raw.githubusercontent.com/tdog20/NFS-AutoSplitter/main/Livesplit.NFSC.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and Loadless timer made by TDOG20</Description>
+        <Description>Autosplitter and Loadless timer made by TDOG20 and Mr. Mary</Description>
     </AutoSplitter>
 	<AutoSplitter>
         <Games>
@@ -2067,6 +2067,11 @@
             <Game>The Citizen Series</Game>
             <Game>The PTSD Mod</Game>
             <Game>Hunt Down the Freeman</Game>
+            <Game>Precursor</Game>
+            <Game>Hangover</Game>
+            <Game>Gnome</Game>
+            <Game>Half-Life 2: Genry's Great Escape From City 13</Game>
+            <Game>Half-Life 2: Offshore</Game>
         </Games>
         <URLs>
             <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.SourceSplit.dll</URL>
@@ -4091,13 +4096,14 @@
             <Game>Sin Episodes: Emergence</Game>
             <Game>Sin Episodes Emergence</Game>
             <Game>Sin Episodes</Game>
+            <Game>Synergy</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Sin%20Episodes/SinEpisodes.asl</URL>
+            <URL>https://github.com/thisis2838/SourceSplit/releases/download/2838-fork/LiveSplit.SourceSplit.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (By SuicideMachine)</Description>
-        <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+        <Type>Component</Type>
+        <Description>Game Time and Auto Splitting are available. (By Fatalis and 2838)</Description>
+        <Website>https://github.com/thisis2838/SourceSplit/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4532,6 +4538,17 @@
         <Type>Script</Type>
         <Description>Game Time and Auto Start/Split/Reset are available. (By LukeSaward)</Description>
         <Website>https://github.com/LukeSaward1</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Do It For Me</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LukeSaward1/AutoSplitters/main/DiFM/DoItForMe.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time and Auto Start/Split/Reset are available. DiFM Speedrun Mod v1.0.2 or above is required. (By LukeSaward)</Description>
+        <Website>https://github.com/LukeSaward1/DiFM-Speedrun-Mod/releases/tag/v1.0.2</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10519,17 +10536,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Synergy</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ScriptedSnark/Synergy-Autosplitter/main/synergy.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Synergy autosplitter. Works with any version.</Description>
-        <Website>https://github.com/ScriptedSnark/Synergy-Autosplitter/blob/main/README.md</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Tomb Raider: The Lost Artifact</Game>
         </Games>
         <URLs>
@@ -10756,11 +10762,11 @@
             <Game>Stardew Valley</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Underscore76/SDV-AutoSplit/master/sdv-script.asl</URL>
+            <URL>https://raw.githubusercontent.com/Underscore76/LiveSplit.StardewValley/master/Components/LiveSplit.StardewValley.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Save/Load time remover for Stardew Valley</Description>
-        <Website>https://github.com/Underscore76/SDV-AutoSplit</Website>
+        <Type>Component</Type>
+        <Description>Load Remover for Stardew Valley (By Underscore76 and BlueCheetah001)</Description>
+        <Website>https://github.com/Underscore76/LiveSplit.StardewValley</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13282,4 +13288,15 @@
 		<Description>Auto Splitting (with or without mid-level subsplits) as well as the ability to detect S-Ranks and split on S-Ranks only.</Description>
 	        <Website>https://github.com/CptPie/AC7_Autosplit</Website>
     	</AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Teeter Hero</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/dcom365/TeeterHeroASL/main/Teeter_Hero.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter for Teeter Hero (by Nurufu)</Description>
+        <Website>https://github.com/dcom365/TeeterHeroASL</Website>
+    </AutoSplitter>
 </AutoSplitters>
