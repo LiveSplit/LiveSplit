@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+    <AutoSplitter>
+        <Games>
+            <Game>Top Gear</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/pedro-walter/topgear-autosplitter/main/topgear.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatically splits when crossing each finish line. Works for single-player only.</Description>
+    </AutoSplitter>	
 	<AutoSplitter>
         <Games>
             <Game>Need for Speed: Undercover</Game>
