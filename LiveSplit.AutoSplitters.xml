@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
-	<AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Top Gear</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/pedro-walter/topgear-autosplitter/main/topgear.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatically splits when crossing each finish line. Works for single-player only.</Description>
+    </AutoSplitter>		
+    <AutoSplitter>
         <Games>
             <Game>Need for Speed: Undercover</Game>
         </Games>
@@ -13307,7 +13317,18 @@
             <URL>https://raw.githubusercontent.com/LuccaMorosiniGioia/IndyAutoSplitter/main/IndyAutoSplit.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Start and Auto Splitter (with optional splits for All Treasures category) for Indy3D (by LuccaGioia and the_kovic)</Description>
+        <Description>Autostart and Autosplit (with optional splits for All Treasures) by LuccaGioia and the_kovic</Description>
         <Website>https://github.com/LuccaMorosiniGioia/IndyAutoSplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sly Cooper and the Thievius Raccoonus</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Snugggles/Sly1EmulatorAutosplitter/main/SlyCooperAutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and Autosplit for Emulator runs, currently for Any%. Made by Snugggles</Description>
+        <Website>https://github.com/Snugggles/Sly1EmulatorAutosplitter</Website>
     </AutoSplitter>
 </AutoSplitters>
