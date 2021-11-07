@@ -2,6 +2,17 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>UNSIGHTED</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/callist03/unsighted-autosplitter/main/unsighted-autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal script made by callist03</Description>
+        <Website>https://github.com/callist03/unsighted-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Top Gear</Game>
         </Games>
         <URLs>
@@ -589,6 +600,17 @@
         <Type>Script</Type>
         <Description>Autosplitter for Duck Life 1 (By Caarda) - Only works on flash player v32.0.0.114</Description>
         <Website>https://www.speedrun.com/dl1</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Learn to Fly 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Caarda/l2f2/main/l2f2autosplitterv1.2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Learn to Fly 2 (By Caarda) - Only works on flash player v32.0.0.114</Description>
+        <Website>https://www.speedrun.com/l2f2</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2988,7 +3010,7 @@
             <URL>https://raw.githubusercontent.com/Kennert007/Hitman-C-47-AutoSplitter/master/HitmanC47.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Start/Split are available. (By Kennert007)</Description>
+        <Description>Auto Start/Split are available. (By Kennert007), Load Removal is available. (By gunlinux)</Description>
         <Website>https://github.com/Kennert007/Hitman-C-47-AutoSplitter/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -5389,10 +5411,10 @@
             <Game>TrackMania Turbo</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/NeKzor/ASL-Scripts/master/TrackmaniaTurbo.asl</URL>
+            <URL>https://raw.githubusercontent.com/Voyager006/Autosplitters/master/TrackmaniaTurbo/TrackmaniaTurbo.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover and auto splitting options are available. (By NeKz)</Description>
+        <Description>In-game time + auto start/reset/split options are available. (By Voyager006 and donadigo)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7274,7 +7296,7 @@
             <Game>Classic Tomb Raider Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Component/TR2.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Components/TR2.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Automatic start, split and reset for FG, IL, and deathruns of leaderboard-approved versions - by Midge &amp; rtrger</Description>
@@ -9004,7 +9026,7 @@
             <Game>Tomb Raider</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Component/TR1996.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TR1996.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Automatic start, split, and reset are available, as well as an IL timer and IGT display. (by Midge, rtrger, Lowosos, RiiFT)</Description>
@@ -10162,11 +10184,11 @@
             <Game>Kula World</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Kula%20World%20-%20Roll%20Away/RollAway.asl</URL>
+            <URL>https://raw.githubusercontent.com/Jujstme/LiveSplit.KulaWorld/master/Components/LiveSplit.KulaWorld.dll</URL>
         </URLs>
-        <Type>Script</Type>
+        <Type>Component</Type>
         <Description>Automatic splitting and in-game timer</Description>
-        <Website>https://github.com/Jujstme/Autosplitters/tree/master/Kula%20World%20-%20Roll%20Away</Website>
+        <Website>https://github.com/Jujstme/LiveSplit.KulaWorld</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13330,5 +13352,66 @@
         <Type>Script</Type>
         <Description>Autostart and Autosplit for Emulator runs, currently for Any%. Made by Snugggles</Description>
         <Website>https://github.com/Snugggles/Sly1EmulatorAutosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Jet Set Radio Future Category Extension</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Auddy07/ASL/master/JSRFCE.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available for CXBX (By Auddy)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Happenlance</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/pmttavara/HappenlanceAutoSplitter/main/HappenlanceAutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Happenlance Developer AutoSplitter</Description>
+        <Website>https://github.com/pmttavara/HappenlanceAutoSplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Inscryption</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Andersama/LiveSplitters/main/Inscryption.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Inscryption AutoSplitter by Andersama</Description>
+    </AutoSplitter>
+    	<AutoSplitter>
+		<Games>
+			<Game>Dethkarz</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/thisis2838/ASL-projects/main/Dethkarz/dethkarz.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Auto Start and Split by 2838</Description>
+	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>MDK2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/cccarl/mdk2-auto-splitter/master/Livesplit.MDK2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover / Auto Splitter available (By SunglassesEmoji)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Poppy Playtime</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TitomakaniJr/AutoSplits/main/Poppy%20Playtime/PoppyPlaytime.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Poppy Playtime Chapter 1 Autosplitter and Load Remover. (By Poots N Doots)</Description>
     </AutoSplitter>
 </AutoSplitters>
