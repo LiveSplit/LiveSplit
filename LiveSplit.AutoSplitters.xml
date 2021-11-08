@@ -9555,6 +9555,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Going Nowhere: The Dream</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/animeliodas/GoingN2.asl/main/GoingN2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal. (by AniMeliodas)</Description>
+        <Website>https://discord.com/invite/GSw2JTZ</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Stalin Subway: Red Veil</Game>
         </Games>
         <URLs>
