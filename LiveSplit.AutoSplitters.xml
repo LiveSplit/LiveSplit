@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<AutoSplitter>
+        <Games>
+            <Game>Need for Speed: Payback</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tdog20/NFS-AutoSplitter/main/Livesplit.Payback.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Loadless timer made by TDOG20</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>UNSIGHTED</Game>
@@ -1520,9 +1530,9 @@
             <Game>Team Sonic Racing</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Team%20Sonic%20Racing/Team%20Sonic%20Racing.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.TeamSonicRacing/master/Components/LiveSplit.TeamSonicRacing.dll</URL>
         </URLs>
-        <Type>Script</Type>
+        <Type>Component</Type>
         <Description>Autosplitting and In-Game Timer are available. Supports all speedrun.com categories (by Jujstme)</Description>
         <Website>https://discord.gg/XRsRwRU</Website>
     </AutoSplitter>
@@ -13413,5 +13423,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Poppy Playtime Chapter 1 Autosplitter and Load Remover. (By Poots N Doots)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Prince of Persia (Apple ][)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/GMPranav/ASLs/main/PrinceOfPersiaApple%5D%5B.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and IGT for the Apple ][ version of Prince of Persia on AppleWin 1.30.3</Description>
     </AutoSplitter>
 </AutoSplitters>
