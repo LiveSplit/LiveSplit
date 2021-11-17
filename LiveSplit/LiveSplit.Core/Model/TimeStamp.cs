@@ -89,8 +89,13 @@ namespace LiveSplit.Model
                         var ntpDelta = lastNTPTime - firstNTPTime;
 
                         var newDrift = qpcDelta.TotalMilliseconds / ntpDelta.TotalMilliseconds;
-                        var weight = Math.Pow(0.95, ntpDelta.TotalHours);
-                        NewDrift = Math.Pow(newDrift, 1 - weight) * Math.Pow(PersistentDrift, weight);
+
+                        // Ignore any drift that is too far from 1
+                        if (Math.Abs(newDrift - 1) < 0.01)
+                        {
+                            var weight = Math.Pow(0.95, ntpDelta.TotalHours);
+                            NewDrift = Math.Pow(newDrift, 1 - weight) * Math.Pow(PersistentDrift, weight);
+                        }
 
                         Wait(TimeSpan.FromHours(0.5));
                     }
