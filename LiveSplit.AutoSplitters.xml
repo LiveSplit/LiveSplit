@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+<AutoSplitter>
+        <Games>
+            <Game>Bright Memory: Infinite</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.BrightMemoryInfinite/main/BrightMemoryInfinite.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Bright Memory: Infinite (By Meta)</Description>
+        <Website>https://discord.com/invite/xZW9ZpZ</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Tetris Effect: Connected</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Adventium-underscore/TEC-Autosplitter/main/TEC%20Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Tetris Effect that times IGT by reading the game's timer</Description>
+        <Website>https://github.com/Adventium-underscore/TEC-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>EarthX</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Octonath/EarthX-ASL/main/EarthX.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automatically start and split the timer. Can adjust to both types of speedruns. (By Octonath)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Nuclear Blaze</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/cmmm976/NuclearBlazeAutoSplitter/main/Nuclear%20Blaze%20Autosplitter.asl</URL>
+        </URLs>
+	<Type>Script</Type>
+	<Description>Nuclear Blaze autosplitter made by Evian</Description>
+    </AutoSplitter>
 	<AutoSplitter>
         <Games>
             <Game>Need for Speed: Payback</Game>
@@ -1164,6 +1206,17 @@
         <Type>Script</Type>
         <Description>Starts automatically. Splits on level completion. Logs IL times to a file. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Door%20Kickers%20%E2%80%93%20Action%20Squad</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Exo One</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Exo%20One/EXO_ONE.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts automatically. Splits when warping. Syncs to level-completion time upon warping. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Exo%20One</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3861,13 +3914,13 @@
             <Game>Resident Evil 4</Game>
             <Game>Bio4</Game>
             <Game>Biohazard 4</Game>
-            <Game>Resident Evil 4 Ultimate HD</Game>
+            <Game>Resident Evil 4 Ultimate HD Edition</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Wipefinger/development/master/RE4.asl</URL>
+            <URL>https://raw.githubusercontent.com/Mysterion06/Re4Splitter/main/RE4Splitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (By Pitted &amp; Wipefinger)</Description>
+        <Description>Auto Splitting and Load Removal by Wipefinger, Mysterion_06_, Yuushi)</Description>
         <Website>https://github.com/Wipefinger/development/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -4163,6 +4216,7 @@
             <Game>DoomEternal</Game>
             <Game>Doom Eternal</Game>
             <Game>DOOM Eternal: The Ancient Gods - Part One</Game>
+            <Game>DOOM Eternal: The Ancient Gods - Part Two</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/loitho/doom-eternal/master/doometernal.asl</URL>
@@ -5103,6 +5157,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Jubilee</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/cursedtoast/Jubilee-Autosplitter/main/jubilee.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting on shrines and auto-starting timer. By CursedToast</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13433,5 +13497,26 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and IGT for the Apple ][ version of Prince of Persia on AppleWin 1.30.3</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Super Sami Roll</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Zibangarang/SSRAutosplitter/main/SuperSamiRoll.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Super Sami Roll, auto start/reset/split. Made by Zibang. </Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Touhou Youyoumu ~ Perfect Cherry Blossom</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/pingval/AutoSplitters/master/th07.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset are available. currently Supported categories: Extra/Phantasm (By pingval)</Description>
+        <Website>https://github.com/pingval/AutoSplitters</Website>
     </AutoSplitter>
 </AutoSplitters>
