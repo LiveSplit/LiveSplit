@@ -768,11 +768,11 @@
             <Game>Mass Effect: Legendary Edition</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Mass%20Effect%20Legendary%20Edition/MassEffectLegendary.asl</URL>
+            <URL>https://raw.githubusercontent.com/Jujstme/LiveSplit.MassEffectLE/master/Components/LiveSplit.MassEffectLE.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitter and Load remover (By Jujstme)</Description>
-        <Website>https://github.com/Jujstme/Autosplitters/tree/master/Mass%20Effect%20Legendary%20Edition</Website>
+        <Type>Component</Type>
+        <Description>Autosplitter and Load remover. Full support for all 3 games of the trilogy (By Jujstme)</Description>
+        <Website>https://github.com/Jujstme/LiveSplit.MassEffectLE</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5220,10 +5220,10 @@
             <Game>Momodora: Reverie Under the Moonlight</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Souzooka/Momo-4-Autosplitter/master/Momo4.asl</URL>
+            <URL>https://raw.githubusercontent.com/axelkarlsson/Momo-4-Autosplitter/master/Momo4.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting is available. (By Souzooka)</Description>
+        <Description>Auto Splitting is available. (By Souzooka, DreamFox and Ladnok)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6996,6 +6996,17 @@
         <Type>Script</Type>
         <Description>Supports both 32bit and 64bit</Description>
         <Website>https://github.com/SonicSpeedrunning/SonicForeverAutoSplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic 2 Absolute</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic2Absolute/master/Components/LiveSplit.Sonic2Absolute.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Supports autostart, autoreset and autosplitting. Settings available (by Jujstme)</Description>
+        <Website>https://discord.gg/NpVGzcRBJ3</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12844,7 +12855,7 @@
             <URL>https://raw.githubusercontent.com/TheDementedSalad/RE-Rev-1-Autosplitter/main/Resident%20Evil%20Revelations%201.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>RE Rev 1 Autosplitter - IGT Timed - Sub Chapter splitting, Times Raid Mode - Made by TheDementedSalad</Description>
+        <Description>RE Rev 1 Autosplitter - IGT Timed - Sub Chapter splitting - (by TheDementedSalad)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12854,7 +12865,7 @@
             <URL>https://raw.githubusercontent.com/TheDementedSalad/Outlaws-Autosplitter/main/Outlaws.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Outlaws Autosplitter - RTA Timed - Full Game/Marshal Training Splits - Made by TheDementedSalad</Description>
+        <Description>Outlaws Autosplitter - RTA Timed - Full Game/Marshal Training Splits - (by TheDementedSalad)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13518,5 +13529,55 @@
         <Type>Script</Type>
         <Description>Auto Start/Split/Reset are available. currently Supported categories: Extra/Phantasm (By pingval)</Description>
         <Website>https://github.com/pingval/AutoSplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Grand Theft Auto III: Remastered</Game>
+            <Game>Grand Theft Auto III: The Definitive Edition</Game>
+            <Game>Grand Theft Auto III: Definitive Edition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.GTA3.Definitive.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available for the Definitive Edition. (By hoxi)</Description>
+        <Website>https://github.com/hoXyy/Livesplit.Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Grand Theft Auto: Vice City Remastered</Game>
+            <Game>Grand Theft Auto: Vice City - The Definitive Edition</Game>
+            <Game>Grand Theft Auto: Vice City - Definitive Edition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.GTAVC.Definitive.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available for the Definitive Edition. (By hoxi)</Description>
+        <Website>https://github.com/hoXyy/Livesplit.Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Grand Theft Auto: San Andreas Remastered</Game>
+            <Game>Grand Theft Auto: San Andreas - The Definitive Edition</Game>
+            <Game>Grand Theft Auto: San Andreas - Definitive Edition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.GTASA.Definitive.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available for the Definitive Edition. (By hoxi)</Description>
+        <Website>https://github.com/hoXyy/Livesplit.Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Spectrolite</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Rexicon226/Spectrolite-Autosplitter/main/SpectrolitePortal.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Spectrolite by Rexicon226</Description>
+        <Website>https://github.com/Rexicon226/Spectrolite-Autosplitter</Website>
     </AutoSplitter>
 </AutoSplitters>
