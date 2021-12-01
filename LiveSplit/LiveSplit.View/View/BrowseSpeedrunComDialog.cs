@@ -5,6 +5,7 @@ using LiveSplit.UI;
 using LiveSplit.Web.Share;
 using SpeedrunComSharp;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
@@ -19,11 +20,17 @@ namespace LiveSplit.View
         public string RunName { get; protected set; }
         private bool isImporting;
 
+        private readonly BackgroundWorker searchWorker = new BackgroundWorker
+        {
+            WorkerSupportsCancellation = true,
+        };
+
         public BrowseSpeedrunComDialog(bool isImporting = false, string gameName = null, string categoryName = null)
         {
             InitializeComponent();
             this.isImporting = isImporting;
             chkIncludeTimes.Visible = chkDownloadEmpty.Visible = !isImporting;
+            searchWorker.DoWork += new DoWorkEventHandler(btnSearchWorkerTask);
 
             if (!string.IsNullOrEmpty(gameName))
             {
@@ -91,6 +98,23 @@ namespace LiveSplit.View
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            if (searchWorker.CancellationPending)
+            {
+                return;
+            }
+            if (searchWorker.IsBusy)
+            {
+                searchWorker.CancelAsync();
+                while (searchWorker.CancellationPending)
+                {
+                    Application.DoEvents();
+                }
+            }
+            searchWorker.RunWorkerAsync();
+        }
+
+
+        private void btnSearchWorkerTask(object sender, EventArgs e) {
             splitsTreeView.Nodes.Clear();
             try
             {
@@ -103,6 +127,10 @@ namespace LiveSplit.View
 
                         foreach (var game in games)
                         {
+                            if (searchWorker.CancellationPending)
+                            {
+                                return;
+                            }
                             var gameNode = new TreeNode(game.Name);
                             gameNode.Tag = game.WebLink;
                             var categories = game.FullGameCategories;
@@ -111,6 +139,10 @@ namespace LiveSplit.View
                             var anySplitsAvailableForGame = false;
                             foreach (var category in categories)
                             {
+                                if (searchWorker.CancellationPending)
+                                {
+                                    return;
+                                }
                                 var categoryNode = new TreeNode(category.Name);
                                 categoryNode.Tag = category.WebLink;
                                 var leaderboard = category.Leaderboard;
@@ -119,6 +151,10 @@ namespace LiveSplit.View
                                 var anySplitsAvailableForCategory = false;
                                 foreach (var record in records)
                                 {
+                                    if (searchWorker.CancellationPending)
+                                    {
+                                        return;
+                                    }
                                     var place = record.Rank.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ".   ";
                                     var runners = string.Join(" & ", record.Players.Select(x => x.Name));
                                     var time = record.Times.Primary;
@@ -141,7 +177,9 @@ namespace LiveSplit.View
                             }
                             if (!anySplitsAvailableForGame)
                                 gameNode.ForeColor = Color.Gray;
-                            splitsTreeView.Nodes.Add(gameNode);
+                            splitsTreeView.Invoke((MethodInvoker)delegate {
+                                splitsTreeView.Nodes.Add(gameNode);
+                            });
                         }
                     }
                     catch { }
@@ -153,6 +191,10 @@ namespace LiveSplit.View
 
                         foreach (var user in users)
                         {
+                            if (searchWorker.CancellationPending)
+                            {
+                                return;
+                            }
                             var userNode = new TreeNode("@" + user.Name);
                             userNode.Tag = user.WebLink;
                             var recordsGroupedByGames = SpeedrunCom.Client.Users.GetPersonalBests(user.ID, embeds: new RunEmbeds(embedGame: true, embedCategory: true))
@@ -161,6 +203,10 @@ namespace LiveSplit.View
                             var anySplitsAvailableForUser = false;
                             foreach (var recordsForGame in recordsGroupedByGames)
                             {
+                                if (searchWorker.CancellationPending)
+                                {
+                                    return;
+                                }
                                 var gameName = recordsForGame.Key;
                                 var gameNode = new TreeNode(gameName);
                                 var game = recordsForGame.First().Game;
@@ -170,6 +216,10 @@ namespace LiveSplit.View
                                 var anySplitsAvailableForGame = false;
                                 foreach (var record in recordsForGame)
                                 {
+                                    if (searchWorker.CancellationPending)
+                                    {
+                                        return;
+                                    }
                                     var categoryName = record.Category.Name;
 
                                     var place = formatPlace(record.Rank);
@@ -193,7 +243,9 @@ namespace LiveSplit.View
                             }
                             if (!anySplitsAvailableForUser)
                                 userNode.ForeColor = Color.Gray;
-                            splitsTreeView.Nodes.Add(userNode);
+                            splitsTreeView.Invoke((MethodInvoker)delegate {
+                                splitsTreeView.Nodes.Add(userNode);
+                            });
                         }
                     }
                     catch { }
