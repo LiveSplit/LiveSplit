@@ -166,7 +166,13 @@ namespace LiveSplit.Options.SettingsFactories
             {
                 var base64String = element.InnerText;
                 var data = Convert.FromBase64String(base64String);
-                TimeStamp.PersistentDrift = TimeStamp.NewDrift = BitConverter.ToDouble(data, 0);
+                var loadedDrift = BitConverter.ToDouble(data, 0);
+
+                // Reset drift to 1 if it is too far off
+                if (Math.Abs(loadedDrift - 1) > 0.01)
+                    loadedDrift = 1;
+
+                TimeStamp.PersistentDrift = TimeStamp.NewDrift = loadedDrift;
             }
         }
     }
