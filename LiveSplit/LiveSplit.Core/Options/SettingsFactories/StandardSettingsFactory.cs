@@ -30,7 +30,7 @@ namespace LiveSplit.Options.SettingsFactories
                             GlobalHotkeysEnabled = false,
                             DeactivateHotkeysForOtherPrograms = false,
                             DoubleTapPrevention = true,
-                            AllowGamepadsAsHotkeys = false,
+                            AllowGamepadsAsHotkeys = true,
                             HotkeyDelay = 0f
                         }
                     }

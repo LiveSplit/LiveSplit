@@ -86,12 +86,7 @@ namespace LiveSplit.Options
             hotkeyProfile.DeactivateHotkeysForOtherPrograms = ParseBool(element["DeactivateHotkeysForOtherPrograms"], false);
             hotkeyProfile.DoubleTapPrevention = ParseBool(element["DoubleTapPrevention"], true);
             hotkeyProfile.HotkeyDelay = ParseFloat(element["HotkeyDelay"], 0f);
-
-            hotkeyProfile.AllowGamepadsAsHotkeys = ParseBool(element["AllowGamepadsAsHotkeys"], false);
-            if (version < new Version(1, 8, 17) && !hotkeyProfile.AnyGamepadKeys())
-            {
-                hotkeyProfile.AllowGamepadsAsHotkeys = false;
-            }
+            hotkeyProfile.AllowGamepadsAsHotkeys = ParseBool(element["AllowGamepadsAsHotkeys"], true);
 
             return hotkeyProfile;
         }
@@ -167,18 +162,6 @@ namespace LiveSplit.Options
                 DoubleTapPrevention = DoubleTapPrevention,
                 AllowGamepadsAsHotkeys = AllowGamepadsAsHotkeys
             };
-        }
-
-        private bool AnyGamepadKeys()
-        {
-            return SplitKey.IsButton
-                || ResetKey.IsButton
-                || SkipKey.IsButton
-                || UndoKey.IsButton
-                || PauseKey.IsButton
-                || ToggleGlobalHotkeys.IsButton
-                || SwitchComparisonPrevious.IsButton
-                || SwitchComparisonNext.IsButton;
         }
     }
 }
