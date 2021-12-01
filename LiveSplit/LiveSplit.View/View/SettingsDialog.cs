@@ -53,6 +53,12 @@ namespace LiveSplit.View
             set { Settings.HotkeyProfiles[SelectedHotkeyProfile].AllowGamepadsAsHotkeys = value; }
         }
 
+        public int RefreshRate
+        {
+            get { return Settings.RefreshRate; }
+            set { Settings.RefreshRate = Math.Min(Math.Max(value, 20), 300); }
+        }
+
         public event EventHandler SumOfBestModeChanged;
 
         public string RaceViewer { get { return Settings.RaceViewer.Name; } set { Settings.RaceViewer = Web.SRL.RaceViewer.FromName(value); } }
@@ -72,6 +78,8 @@ namespace LiveSplit.View
             chkWarnOnReset.DataBindings.Add("Checked", Settings, "WarnOnReset");
             cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
             chkAllowGamepads.DataBindings.Add("Checked", this, "AllowGamepadsAsHotkeys");
+
+            txtRefreshRate.DataBindings.Add("Text", this, "RefreshRate");
 
             UpdateDisplayedHotkeyValues();
             RefreshRemoveButton();

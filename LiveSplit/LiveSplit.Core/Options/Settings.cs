@@ -18,6 +18,7 @@ namespace LiveSplit.Options
         public bool WarnOnReset { get; set; }
         public bool AgreedToSRLRules { get; set; }
         public bool SimpleSumOfBest { get; set; }
+        public int RefreshRate { get; set; }
         public IRaceViewer RaceViewer { get; set; }
         public IList<RaceProviderSettings> RaceProvider { get; set; }
         public IList<string> ActiveAutoSplitters { get; set; }
@@ -94,6 +95,7 @@ namespace LiveSplit.Options
                 RaceProvider = new List<RaceProviderSettings>(RaceProvider),
                 AgreedToSRLRules = AgreedToSRLRules,
                 SimpleSumOfBest = SimpleSumOfBest,
+                RefreshRate = RefreshRate,
                 ActiveAutoSplitters = new List<string>(ActiveAutoSplitters),
                 ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates)
             };

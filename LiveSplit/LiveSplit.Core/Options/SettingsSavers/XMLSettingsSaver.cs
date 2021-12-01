@@ -55,6 +55,7 @@ namespace LiveSplit.Options.SettingsSavers
 
             CreateSetting(document, parent, "LastComparison", settings.LastComparison);
             CreateSetting(document, parent, "SimpleSumOfBest", settings.SimpleSumOfBest);
+            CreateSetting(document, parent, "RefreshRate", settings.RefreshRate);
 
             var generatorStates = document.CreateElement("ComparisonGeneratorStates");
             foreach (var generator in settings.ComparisonGeneratorStates)
