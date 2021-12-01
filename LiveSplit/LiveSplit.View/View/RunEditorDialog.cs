@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Threading;
 using LiveSplit.Web.SRL;
+using System.IO;
 
 namespace LiveSplit.View
 {
@@ -124,7 +125,7 @@ namespace LiveSplit.View
         {
             public bool Parsed { get; set; }
             public object Value { get; set; }
-            
+
             public ParsingResults(bool parsed, object value)
             {
                 Parsed = parsed;
@@ -712,6 +713,148 @@ namespace LiveSplit.View
             }
         }
 
+        private void btnBrowseLayout_Click(object sender, EventArgs e)
+        {
+            string initialPath = Path.GetDirectoryName(Run.LayoutPath);
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                if (initialPath == null)
+                {
+                    initialPath = Path.GetDirectoryName(CurrentState.Layout.FilePath);
+                }
+                if (initialPath != null)
+                {
+                    openFileDialog.InitialDirectory = initialPath;
+                }
+                openFileDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All files (*.*)|*.*";
+                if (openFileDialog.ShowDialog() != DialogResult.OK ||
+                    Path.GetExtension(openFileDialog.FileName) != ".lsl" ||
+                    !File.Exists(openFileDialog.FileName))
+                {
+                    return;
+                }
+                if (SaveAndApplyLayoutPath(openFileDialog.FileName))
+                {
+                    ApplyLayoutPathToCbx(openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void FillCbxLayoutToUseItems()
+        {
+            cbxLayoutToUse.Items.Add(Tuple.Create("Default Layout", "?default"));
+            var range = CurrentState.Settings.RecentLayouts
+                .Reverse()
+                .Where(e => !String.IsNullOrEmpty(e))
+                .Select(value =>
+                {
+                    var key = Path.GetFileNameWithoutExtension(value).EscapeMenuItemText();
+                    return Tuple.Create(key, value);
+                }).ToList();
+            cbxLayoutToUse.Items.AddRange(range.ToArray());
+        }
+
+        private void ApplyLayoutPathToCbx(string layoutPath)
+        {
+            Tuple<string, string> selected = null;
+            foreach (Tuple<string, string> item in cbxLayoutToUse.Items)
+            {
+                if (item.Item2 == layoutPath)
+                {
+                    selected = item;
+                    break;
+                }
+            }
+            if (selected == null)
+            {
+                var fileName = Path.GetFileNameWithoutExtension(layoutPath).EscapeMenuItemText();
+                selected = Tuple.Create(fileName, layoutPath);
+                cbxLayoutToUse.Items.Insert(1, selected);
+            }
+            cbxLayoutToUse.SelectedItem = selected;
+        }
+
+        private void InitializeUseLayoutUI()
+        {
+            cbxLayoutToUse.DisplayMember = "Item1";
+            FillCbxLayoutToUseItems();
+            if (String.IsNullOrEmpty(Run.LayoutPath))
+            {
+                chkbxUseLayout.Checked = false;
+                flpnlLayoutSelect.Enabled = false;
+                return;
+            }
+            ApplyLayoutPathToCbx(Run.LayoutPath);
+            chkbxUseLayout.Checked = true;
+        }
+
+        private void SaveLayoutPath(string layoutPath)
+        {
+            Run.LayoutPath = layoutPath;
+            RaiseRunEdited();
+        }
+
+        private bool SaveAndApplyLayoutPath(string layoutPath)
+        {
+            if (Run.LayoutPath == layoutPath)
+            {
+                return true;
+            }
+            TimerForm timerForm;
+            try
+            {
+                timerForm = Application.OpenForms.OfType<TimerForm>().First();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                return false;
+            }
+
+            bool success = false;
+            if (layoutPath == "?default")
+            {
+                timerForm.LoadDefaultLayout();
+                success = true;
+            }
+            else
+            {
+                success = timerForm.OpenLayoutFromFile(layoutPath);
+            }
+
+            if (success)
+            {
+                SaveLayoutPath(layoutPath);
+            }
+            return success;
+        }
+
+        private void cbxLayoutToUse_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cbxLayoutToUse.SelectedItem == null)
+            {
+                return;
+            }
+            var selected = ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2;
+            if (String.IsNullOrEmpty(selected))
+            {
+                return;
+            }
+            SaveAndApplyLayoutPath(selected);
+        }
+
+        private void chkbxUseLayout_CheckedChanged(object sender, EventArgs e)
+        {
+            flpnlLayoutSelect.Enabled = chkbxUseLayout.Checked;
+            var layoutPath = chkbxUseLayout.Checked && cbxLayoutToUse.SelectedItem != null ?
+                ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2 : null;
+            if (Run.LayoutPath == layoutPath)
+            {
+                return;
+            }
+            SaveLayoutPath(layoutPath);
+        }
+
         private void btnOK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
@@ -1054,6 +1197,7 @@ namespace LiveSplit.View
             UpdateButtonsStatus();
             FillCbxGameName();
             cbxGameName.UpdateUI();
+            InitializeUseLayoutUI();
         }
 
         private void picGameIcon_MouseUp(object sender, MouseEventArgs e)
@@ -1454,7 +1598,7 @@ namespace LiveSplit.View
                     {
                         SwitchSegments(selectedInd);
 
-                        if(!currCell)
+                        if (!currCell)
                         {
                             runGrid.CurrentCell = runGrid.Rows[selectedInd + 1].Cells[runGrid.CurrentCell.ColumnIndex];
                             currCell = true;

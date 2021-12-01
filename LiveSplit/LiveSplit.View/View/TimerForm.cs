@@ -337,8 +337,8 @@ namespace LiveSplit.View
 
             int menuItemIndex = RightClickMenu.Items.IndexOf(shareMenuItem);
             int firstRaceProvider = menuItemIndex + 1;
-            int lastRaceProvider = RightClickMenu.Items.IndexOfKey("endRaceSection")-1;
-            if (lastRaceProvider-firstRaceProvider >= 0)
+            int lastRaceProvider = RightClickMenu.Items.IndexOfKey("endRaceSection") - 1;
+            if (lastRaceProvider - firstRaceProvider >= 0)
             {
                 for (int i = 0; i < (lastRaceProvider - firstRaceProvider) + 1; i++)
                 {
@@ -348,19 +348,19 @@ namespace LiveSplit.View
                     RightClickMenu.Items.RemoveAt(firstRaceProvider);
                 }
             }
-                       
-            RaceProvider = ComponentManager.RaceProviderFactories.Select(x => x.Value.Create(Model, Settings.RaceProvider.FirstOrDefault(y => y.Name == x.Key)));           
+
+            RaceProvider = ComponentManager.RaceProviderFactories.Select(x => x.Value.Create(Model, Settings.RaceProvider.FirstOrDefault(y => y.Name == x.Key)));
             foreach (var raceProvider in RaceProvider.Reverse())
             {
                 if (Settings.RaceProvider.Any(x => x.DisplayName == raceProvider.ProviderName && !x.Enabled))
                     continue;
-               
+
                 raceProvider.RacesRefreshedCallback = RacesRefreshed;
                 ToolStripMenuItem raceProviderItem = new ToolStripMenuItem()
                 {
                     Name = $"{raceProvider.ProviderName}racesMenuItem",
                     Text = $"{raceProvider.ProviderName} Races",
-					Tag = raceProvider
+                    Tag = raceProvider
                 };
                 raceProviderItem.MouseHover += racingMenuItem_MouseHover;
                 raceProviderItem.MouseLeave += racingMenuItem_MouseLeave;
@@ -373,7 +373,7 @@ namespace LiveSplit.View
                 srlRaceProvider.JoinRace = SRL_JoinRace;
                 srlRaceProvider.CreateRace = SRL_NewRace;
             }
-            
+
         }
 
         void SetWindowTitle()
@@ -1489,7 +1489,8 @@ namespace LiveSplit.View
             if (e.Delta > 0)
             {
                 Model.ScrollUp();
-            } else if (e.Delta < 0)
+            }
+            else if (e.Delta < 0)
             {
                 Model.ScrollDown();
             }
@@ -1696,6 +1697,17 @@ namespace LiveSplit.View
             SwitchComparison(CurrentState.CurrentComparison);
             CreateAutoSplitter();
             UpdateRefreshesRemaining();
+            if (!String.IsNullOrEmpty(run.LayoutPath))
+            {
+                if (run.LayoutPath == "?default")
+                {
+                    LoadDefaultLayout();
+                }
+                else if (CurrentState.Layout.FilePath != run.LayoutPath)
+                {
+                    OpenLayoutFromFile(run.LayoutPath);
+                }
+            }
         }
 
         private void CreateAutoSplitter()
@@ -2230,8 +2242,9 @@ namespace LiveSplit.View
             }
         }
 
-        private void OpenLayoutFromFile(string filePath)
+        public bool OpenLayoutFromFile(string filePath)
         {
+            bool success = false;
             if (WarnUserAboutLayoutSave(true))
             {
                 Cursor.Current = Cursors.WaitCursor;
@@ -2239,6 +2252,7 @@ namespace LiveSplit.View
                 {
                     var layout = LoadLayoutFromFile(filePath);
                     SetLayout(layout);
+                    success = true;
                 }
                 catch (Exception e)
                 {
@@ -2249,9 +2263,10 @@ namespace LiveSplit.View
                 }
                 Cursor.Current = Cursors.Arrow;
             }
+            return success;
         }
 
-        private void LoadDefaultLayout()
+        public void LoadDefaultLayout()
         {
             if (WarnUserAboutLayoutSave(true))
             {

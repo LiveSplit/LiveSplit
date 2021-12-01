@@ -21,6 +21,7 @@ namespace LiveSplit.Model.RunSavers
             CreateSetting(document, parent, "GameIcon", run.GameIcon);
             CreateSetting(document, parent, "GameName", run.GameName);
             CreateSetting(document, parent, "CategoryName", run.CategoryName);
+            CreateSetting(document, parent, "LayoutPath", run.LayoutPath);
 
             var metadata = document.CreateElement("Metadata");
 
