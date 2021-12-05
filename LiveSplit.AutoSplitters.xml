@@ -2,6 +2,17 @@
 <AutoSplitters>
 <AutoSplitter>
         <Games>
+            <Game>REVISITOR</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.REVISITOR/main/REVISITOR.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for REVISITOR (By Meta)</Description>
+        <Website>https://www.speedrun.com/revisitor</Website>
+    </AutoSplitter>
+<AutoSplitter>
+        <Games>
             <Game>Bright Memory: Infinite</Game>
         </Games>
         <URLs>
@@ -1619,7 +1630,7 @@
             <Game>Sonic Colours: Ultimate</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Sonic%20Colors%20Ultimate/Components/LiveSplit.SonicColors.dll</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicColors/master/Components/LiveSplit.SonicColors.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Autosplitting and In-Game Timer are available (by Jujstme)</Description>
@@ -2079,9 +2090,6 @@
     <AutoSplitter>
         <Games>
             <Game>Source Engine</Game>
-            <Game>Aperture Tag</Game>
-            <Game>Aperture Tag: The Paint Gun Testing Initiative</Game>
-            <Game>Aperture Tag (Portal 2 Mod)</Game>
             <Game>Black Mesa: Source</Game>
             <Game>Black Mesa</Game>
             <Game>Black Mesa (MOD Version)</Game>
@@ -2108,8 +2116,6 @@
             <Game>Portal Category Extensions</Game>
             <Game>Portal Mods</Game>
             <Game>Rexaura</Game>
-            <Game>Portal 2</Game>
-            <Game>Portal Stories: Mel</Game>
             <Game>Source Mods</Game>
             <Game>1187: Episode One</Game>
             <Game>Estranged: Act I</Game>
@@ -2175,6 +2181,20 @@
         <Description>Game Time and Auto Splitting are available. (By Fatalis)</Description>
         <Website>https://github.com/fatalis/sourcesplit/blob/master/README.md</Website>
         <ShowInLayoutEditor />
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Aperture Tag</Game>
+            <Game>Portal 2</Game>
+            <Game>Portal Reloaded</Game>
+            <Game>Portal Stories: Mel</Game>
+            <Game>Thinking with Time Machine</Game>
+        </Games>
+        <URLs>
+            <URL>https://s.portal2.sr/asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Game Time and Auto Splitting are available. (By NeKz and mlugg)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11550,11 +11570,11 @@
             <Game>Genshin Impact</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KhanSimeoni/GenshinImpactAutosplit/main/GenshinImpactLoadRemover.asl</URL>
+            <URL>https://raw.githubusercontent.com/saiamphora/GenshinImpact-LTR/main/GenshinImpactLTR.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Website>https://github.com/KhanSimeoni/GenshinImpactAutosplit</Website>
-        <Description>Load time remover for Genshin Impact</Description>
+        <Website>https://github.com/saiamphora/GenshinImpact-LTR</Website>
+        <Description>Load time remover for Genshin Impact.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13579,5 +13599,26 @@
         <Type>Script</Type>
         <Description>Autosplitter for Spectrolite by Rexicon226</Description>
         <Website>https://github.com/Rexicon226/Spectrolite-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>CELESTE Classic</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/cominixo/ClassicAutosplitter/main/celeste_autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting requires PICO-8 and special cart. By probablypablito</Description>
+        <Website>https://github.com/cominixo/ClassicAutosplitter/</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Remothered: Tormented Fathers</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Remothered.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal is available (by rythin)</Description>
     </AutoSplitter>
 </AutoSplitters>
