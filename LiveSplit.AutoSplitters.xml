@@ -13621,4 +13621,14 @@
         <Type>Script</Type>
         <Description>Load Removal is available (by rythin)</Description>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>LOVE 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/LOVE3/LOVE3_livesplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>IGT syncing, automatic starting, splitting and resetting. Works in all game modes. Splitter by majoneesi.</Description>
+    </AutoSplitter>
 </AutoSplitters>
