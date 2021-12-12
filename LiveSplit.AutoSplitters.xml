@@ -369,6 +369,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sonic 4: Episode II</Game>
+            <Game>Sonic 4: Episode Metal</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic4Episode2/master/Components/LiveSplit.Sonic4Episode2.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Autosplitting by Jujstme</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Brave Fencer Musashi</Game>
         </Games>
         <URLs>
@@ -2305,14 +2316,46 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Love</Game>
-            <Game>Love+</Game>
+            <Game>LOVE</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/LOVE/LOVE_livesplit.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automatic Timer Start and Auto Splitting is available. Splitter by majoneesi.</Description>
+        <Description>Works in all game modes after you enter Speedrun mode. Auto start, split, reset. IGT syncing. SleepMargin settings to fix low in-game FPS.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>LOVE 2: kuso</Game>
+            <Game>kuso</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/kuso/kuso_livesplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start, split, reset. Game Time syncing. SleepMargin settings to fix low in-game FPS.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Halo Infinite</Game>
+            <Game>Halo Infinite Category Extensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Halo%20Infinite/HaloInfinite.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover by Jujstme</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>LOVE 3</Game>
+            <Game>LOVE3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/LOVE3/LOVE3_livesplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start, split, reset. Game Time syncing. Script works in Time Attack mode only (including Level Select).</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2660,22 +2703,22 @@
             <Game>Fallout 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/drtchops/asl/master/fallout12.asl</URL>
+            <URL>https://raw.githubusercontent.com/Radioactiv03/fallout-loadremovers/main/fallout-1-2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Crash Time Removal is available. (By DrTChops)</Description>
-        <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+        <Website>https://github.com/Radioactiv03/fallout-loadremovers/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Fallout 3</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/drtchops/asl/master/fallout3.asl</URL>
+            <URL>https://raw.githubusercontent.com/Radioactiv03/fallout-loadremovers/main/fallout3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By DrTChops)</Description>
-        <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+        <Description>Load Removal is available. (By Radioactiv)</Description>
+        <Website>https://github.com/Radioactiv03/fallout-loadremovers/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2686,11 +2729,11 @@
             <Game>FONV</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/drtchops/asl/master/newvegas.asl</URL>
+            <URL>https://raw.githubusercontent.com/Radioactiv03/fallout-loadremovers/main/falloutnv.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal is available. (By DrTChops)</Description>
-        <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+        <Website>https://github.com/Radioactiv03/fallout-loadremovers/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2698,11 +2741,11 @@
             <Game>Fallout: Anthology</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/drtchops/asl/master/fallout_anthology.asl</URL>
+            <URL>https://raw.githubusercontent.com/Radioactiv03/fallout-loadremovers/main/falloutanthology.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal is available. (By DrTChops)</Description>
-        <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+        <Website>https://github.com/Radioactiv03/fallout-loadremovers/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7011,9 +7054,9 @@
             <Game>Sonic Forever</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/SonicForeverAutoSplitter/main/S1ForeverAutosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic1Forever/master/Components/LiveSplit.Sonic1Forever.dll</URL>
         </URLs>
-        <Type>Script</Type>
+        <Type>Component</Type>
         <Description>Supports both 32bit and 64bit</Description>
         <Website>https://github.com/SonicSpeedrunning/SonicForeverAutoSplitter</Website>
     </AutoSplitter>
@@ -8939,17 +8982,6 @@
         </URLs>
         <Type>Script</Type>
         <Description> Load removal and auto splitting. By: Your Solution </Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Kuso</Game>
-	    <Game>LOVE 2: kuso</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/kuso/kuso_livesplit.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>IGT syncing, automatic starting, splitting and resetting. Works in all game modes. Splitter by majoneesi.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13620,5 +13652,35 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal is available (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Solar Ash</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.SolarAsh/main/solarash.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal (by Micrologist#2351)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Lost in Random</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Mysterion06/LostInRandom-Splitter/main/LostInRandomScript.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Loadremover and start by Mysterion_06_</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Prototype</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/partoftheworlD/Prototype_autosplitter/main/prototype_igt.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Loadremover for Prototype by partoftheworlD</Description>
     </AutoSplitter>
 </AutoSplitters>
