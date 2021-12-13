@@ -76,6 +76,7 @@
             this.panelRefreshRate = new System.Windows.Forms.Panel();
             this.txtRefreshRate = new System.Windows.Forms.TextBox();
             this.labelRefreshRate = new System.Windows.Forms.Label();
+            this.chkCheckForUpdates = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -92,11 +93,11 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel1.Controls.Add(this.btnChooseRaceProvider, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.btnLogOut, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 8);
             this.tableLayoutPanel1.Controls.Add(this.cbxRaceViewer, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label12, 0, 4);
@@ -105,10 +106,11 @@
             this.tableLayoutPanel1.Controls.Add(this.chkSimpleSOB, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.chkWarnOnReset, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.panelRefreshRate, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.chkCheckForUpdates, 0, 7);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
@@ -117,7 +119,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 630);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 659);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnChooseRaceProvider
@@ -136,7 +139,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnOK, 2);
-            this.btnOK.Location = new System.Drawing.Point(221, 604);
+            this.btnOK.Location = new System.Drawing.Point(221, 633);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -561,7 +564,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(302, 604);
+            this.btnCancel.Location = new System.Drawing.Point(302, 633);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -683,11 +686,23 @@
             this.labelRefreshRate.TabIndex = 19;
             this.labelRefreshRate.Text = "Refresh Rate (Hz):";
             // 
+            // labelRefreshRate
+            // 
+            this.chkCheckForUpdates.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkCheckForUpdates.AutoSize = true;
+            this.chkCheckForUpdates.Location = new System.Drawing.Point(7, 601);
+            this.chkCheckForUpdates.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkCheckForUpdates.Name = "chkCheckForUpdates";
+            this.chkCheckForUpdates.Size = new System.Drawing.Size(186, 17);
+            this.chkCheckForUpdates.TabIndex = 20;
+            this.chkCheckForUpdates.Text = "Check For Updates";
+            this.chkCheckForUpdates.UseVisualStyleBackColor = true;
+            // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 644);
+            this.ClientSize = new System.Drawing.Size(394, 673);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -757,5 +772,6 @@
         private System.Windows.Forms.Label labelRefreshRate;
         private System.Windows.Forms.Panel panelRefreshRate;
         private System.Windows.Forms.TextBox txtRefreshRate;
+        private System.Windows.Forms.CheckBox chkCheckForUpdates;
     }
 }
