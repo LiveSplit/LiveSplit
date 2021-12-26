@@ -99,7 +99,7 @@ namespace LiveSplit.ComponentUtil
                 });
             }
 
-            ModuleCache.Add(hash, ret.ToArray());
+            ModuleCache[hash] = ret.ToArray();
 
             return ret.ToArray();
         }
