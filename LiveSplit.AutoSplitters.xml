@@ -2124,89 +2124,20 @@
     <AutoSplitter>
         <Games>
             <Game>Source Engine</Game>
-            <Game>Black Mesa: Source</Game>
-            <Game>Black Mesa</Game>
-            <Game>Black Mesa (MOD Version)</Game>
-            <Game>Blue Portals</Game>
             <Game>Dark Messiah of Might and Magic</Game>
-            <Game>Dear Esther</Game>
             <Game>E.Y.E: Divine Cybermancy</Game>
-            <Game>Half-Life: Source</Game>
             <Game>Half-Life 2</Game>
             <Game>Half-Life 2 Category Extensions</Game>
             <Game>Half-Life 2: Episode One</Game>
             <Game>Half-Life 2: Episode Two</Game>
-            <Game>Half-Life 2: Lost Coast</Game>
-            <Game>Half-Life 2: Sniper's Episode</Game>
             <Game>Half-Life 2: Ghosting Mod</Game>
-            <Game>Half-Life 2 Mods</Game>
             <Game>Half-Life 2 Done Portal</Game>
             <Game>Portal</Game>
             <Game>Portal: Prelude</Game>
-            <Game>Portal Elevators</Game>
-            <Game>Portal: Elevators</Game>
-            <Game>Portal: Canonical Base of RxRxR</Game>
-            <Game>Portal: CBoRRR</Game>
             <Game>Portal Category Extensions</Game>
             <Game>Portal Mods</Game>
-            <Game>Rexaura</Game>
-            <Game>Source Mods</Game>
-            <Game>1187: Episode One</Game>
-            <Game>Estranged: Act I</Game>
             <Game>Blamod Reborn</Game>
-            <Game>CombinationVille</Game>
-            <Game>Companion Piece</Game>
-            <Game>Dank Memes</Game>
-            <Game>Dark Intervention</Game>
-            <Game>Dear Esther(mod version)</Game>
-            <Game>Entropy : Zero</Game>
-            <Game>Episode One</Game>
-            <Game>EXIT 2</Game>
-            <Game>Experimental Fuel</Game>
             <Game>FakeFactory's Cinematic Mod</Game>
-            <Game>Gordon Freakman</Game>
-            <Game>Gordon Freakman 2: Kleiner-Life</Game>
-            <Game>Half-Life 2: Deep Down</Game>
-            <Game>Half-Life 2: DownFall</Game>
-            <Game>Half-Life 2: Reject</Game>
-            <Game>Half-Life 2: Uncertainty Principle</Game>
-            <Game>Half-Life 2: Year Long Alarm</Game>
-            <Game>Half-Life: Abridged</Game>
-            <Game>Hells Mines</Game>
-            <Game>ICE</Game>
-            <Game>Kill the Monk</Game>
-            <Game>PhaseVille</Game>
-            <Game>Prospekt</Game>
-            <Game>RunThinkShootLiveVille</Game>
-            <Game>School Adventures</Game>
-            <Game>The 72-Second Experiment</Game>
-            <Game>The Lost City</Game>
-            <Game>Think Tank</Game>
-            <Game>Tinje</Game>
-            <Game>Too Many Crates!</Game>
-            <Game>Transmissions: Element 120</Game>
-            <Game>TrapVille</Game>
-            <Game>Upmine Struggle</Game>
-            <Game>Very Hard Mod</Game>
-            <Game>Watching Paint Dry: The Game</Game>
-            <Game>Get a Life</Game>
-            <Game>Nightmare House 2</Game>
-            <Game>The Forgotten Ones</Game>
-            <Game>Grey</Game>
-            <Game>Black Mesa: Hazard Course</Game>
-            <Game>Clone Machine</Game>
-            <Game>Da Baby</Game>
-            <Game>DayHard</Game>
-            <Game>Jolly's Hardcore Mod</Game>
-            <Game>Logistique Act. 1</Game>
-            <Game>The Citizen Series</Game>
-            <Game>The PTSD Mod</Game>
-            <Game>Hunt Down the Freeman</Game>
-            <Game>Precursor</Game>
-            <Game>Hangover</Game>
-            <Game>Gnome</Game>
-            <Game>Half-Life 2: Genry's Great Escape From City 13</Game>
-            <Game>Half-Life 2: Offshore</Game>
         </Games>
         <URLs>
             <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.SourceSplit.dll</URL>
@@ -2485,7 +2416,7 @@
             <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D2/L4D2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Auto Splitting are available. (By bill_play3)</Description>
+        <Description>Load Removal and Auto Splitting are available. (By bill_play3, 2838, and Aciidz)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2496,7 +2427,7 @@
             <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D1/L4D.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Auto Splitting are available. (By bill_play3)</Description>
+        <Description>Load Removal and Auto Splitting are available. (By bill_play3 and Aciidz)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2729,7 +2660,7 @@
             <URL>https://raw.githubusercontent.com/Radioactiv03/fallout-loadremovers/main/fallout-1-2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Crash Time Removal is available. (By DrTChops)</Description>
+        <Description>Crash Time Removal is available. (By Radioactiv)</Description>
         <Website>https://github.com/Radioactiv03/fallout-loadremovers/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -2755,7 +2686,7 @@
             <URL>https://raw.githubusercontent.com/Radioactiv03/fallout-loadremovers/main/falloutnv.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By DrTChops)</Description>
+        <Description>Load Removal is available. (By Radioactiv)</Description>
         <Website>https://github.com/Radioactiv03/fallout-loadremovers/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -2767,7 +2698,7 @@
             <URL>https://raw.githubusercontent.com/Radioactiv03/fallout-loadremovers/main/falloutanthology.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By DrTChops)</Description>
+        <Description>Load Removal is available. (By Radioactiv)</Description>
         <Website>https://github.com/Radioactiv03/fallout-loadremovers/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -3995,19 +3926,19 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>RE4</Game>
-            <Game>Resident Evil 4 (Steam)</Game>
             <Game>Resident Evil 4</Game>
-            <Game>Bio4</Game>
+            <Game>Resident Evil 4 (Steam)</Game>
+            <Game>Resident Evil 4 Ultimate HD</Game>
+            <Game>RE4</Game>
             <Game>Biohazard 4</Game>
-            <Game>Resident Evil 4 Ultimate HD Edition</Game>
+            <Game>Bio4</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Mysterion06/Re4Splitter/main/RE4Splitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal by Wipefinger, Mysterion_06_, Yuushi)</Description>
-        <Website>https://github.com/Wipefinger/development/blob/master/README.md</Website>
+        <Description>Auto Splitting and Load Removal are available. (By Wipefinger, Mysterion_06_, Yuushi)</Description>
+        <Website>https://github.com/Mysterion06/Re4Splitter/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4278,11 +4209,81 @@
             <Game>Sin Episodes Emergence</Game>
             <Game>Sin Episodes</Game>
             <Game>Synergy</Game>
+            <Game>Black Mesa: Source</Game>
+            <Game>Black Mesa</Game>
+            <Game>Black Mesa (MOD Version)</Game>
+            <Game>Blue Portals</Game>
+            <Game>Dear Esther</Game>
+            <Game>Half-Life: Source</Game>
+            <Game>Half-Life 2: Lost Coast</Game>
+            <Game>Half-Life 2: Sniper's Episode</Game>
+            <Game>Half-Life 2 Mods</Game>
+            <Game>Portal: Canonical Base of RxRxR</Game>
+            <Game>Portal: CBoRRR</Game>
+            <Game>Rexaura</Game>
+            <Game>1187: Episode One</Game>
+            <Game>Estranged: Act I</Game>
+            <Game>CombinationVille</Game>
+            <Game>Source Mods</Game>
+            <Game>Companion Piece</Game>
+            <Game>Dank Memes</Game>
+            <Game>Dark Intervention</Game>
+            <Game>Dear Esther(mod version)</Game>
+            <Game>Entropy : Zero</Game>
+            <Game>Episode One</Game>
+            <Game>EXIT 2</Game>
+            <Game>Experimental Fuel</Game>
+            <Game>Gordon Freakman</Game>
+            <Game>Gordon Freakman 2: Kleiner-Life</Game>
+            <Game>Half-Life 2: Deep Down</Game>
+            <Game>Half-Life 2: DownFall</Game>
+            <Game>Half-Life 2: Reject</Game>
+            <Game>Half-Life 2: Uncertainty Principle</Game>
+            <Game>Half-Life 2: Year Long Alarm</Game>
+            <Game>Half-Life: Abridged</Game>
+            <Game>Hells Mines</Game>
+            <Game>ICE</Game>
+            <Game>Kill the Monk</Game>
+            <Game>PhaseVille</Game>
+            <Game>Prospekt</Game>
+            <Game>RunThinkShootLiveVille</Game>
+            <Game>School Adventures</Game>
+            <Game>The 72-Second Experiment</Game>
+            <Game>The Lost City</Game>
+            <Game>Think Tank</Game>
+            <Game>Tinje</Game>
+            <Game>Too Many Crates!</Game>
+            <Game>Transmissions: Element 120</Game>
+            <Game>TrapVille</Game>
+            <Game>Upmine Struggle</Game>
+            <Game>Very Hard Mod</Game>
+            <Game>Watching Paint Dry: The Game</Game>
+            <Game>Get a Life</Game>
+            <Game>Nightmare House 2</Game>
+            <Game>The Forgotten Ones</Game>
+            <Game>Grey</Game>
+            <Game>Black Mesa: Hazard Course</Game>
+            <Game>Clone Machine</Game>
+            <Game>Da Baby</Game>
+            <Game>DayHard</Game>
+            <Game>Jolly's Hardcore Mod</Game>
+            <Game>Logistique Act. 1</Game>
+            <Game>The Citizen Series</Game>
+            <Game>The PTSD Mod</Game>
+            <Game>Hunt Down the Freeman</Game>
+            <Game>Precursor</Game>
+            <Game>Hangover</Game>
+            <Game>Gnome</Game>
+            <Game>Half-Life 2: Genry's Great Escape From City 13</Game>
+            <Game>Half-Life 2: Offshore</Game>
+            <Game>Portal Elevators</Game>
+            <Game>Portal: Elevators</Game>
         </Games>
         <URLs>
-            <URL>https://github.com/thisis2838/SourceSplit/releases/download/2838-fork/LiveSplit.SourceSplit.dll</URL>
+            <URL>https://github.com/thisis2838/SourceSplit/raw/master/update/LiveSplit.SourceSplit.dll</URL>
         </URLs>
         <Type>Component</Type>
+        <ShowInLayoutEditor />
         <Description>Game Time and Auto Splitting are available. (By Fatalis and 2838)</Description>
         <Website>https://github.com/thisis2838/SourceSplit/blob/master/README.md</Website>
     </AutoSplitter>
@@ -12533,7 +12534,7 @@
             <URL>https://raw.githubusercontent.com/Auddy07/ASL/master/JSRF.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting is available for CXBX (By Auddy)</Description>
+        <Description>Auto Splitting is available for Xbox and CXBX (By Auddy)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13736,5 +13737,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Loadremover for Prototype by partoftheworlD</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Buzz Lightyear of Star Command (PC)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hdc0/LiveSplit-asl/master/Buzz%20Lightyear%20of%20Star%20Command.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto starting, splitting and load removal. (By hdc0)</Description>
     </AutoSplitter>
 </AutoSplitters>
