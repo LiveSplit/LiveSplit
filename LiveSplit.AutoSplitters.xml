@@ -1306,6 +1306,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Gunfire%20Reborn/GunfireReborn.asl</URL>
+	    <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/master/mono/mono_il2cpp_2019_x64.xml</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. Pauses when dying. (by Ero)</Description>
@@ -2298,7 +2299,8 @@
             <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Halo%20Infinite/HaloInfinite.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover by Jujstme</Description>
+        <Description>Configurable autosplitting and load remover (by Jujstme)</Description>
+        <Website>https://github.com/Jujstme/Autosplitters/tree/master/Halo%20Infinite</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4280,7 +4282,7 @@
             <Game>Portal: Elevators</Game>
         </Games>
         <URLs>
-            <URL>https://github.com/thisis2838/SourceSplit/raw/master/update/LiveSplit.SourceSplit.dll</URL>
+            <URL>https://raw.githubusercontent.com/thisis2838/SourceSplit/master/update/Components/LiveSplit.SourceSplit.dll</URL>
         </URLs>
         <Type>Component</Type>
         <ShowInLayoutEditor />
@@ -12521,10 +12523,20 @@
             <Game>Patapon</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/kaseyawolf2/Patapon-Autosplits/main/Patapon-1-PPSSPP-AutoSplit.asl</URL>
+            <URL>https://raw.githubusercontent.com/Maltaran/patapon-autosplittes/main/Patapon.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>AutoSplitter For Patapon on PPSSPP By Kaseyawolf2 </Description>
+        <Description>AutoSplitter for Patapon on PPSSPP by Maltaran</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Patapon 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Maltaran/patapon-autosplittes/main/Patapon2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter for Patapon 2 on PPSSPP by Maltaran</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13747,5 +13759,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto starting, splitting and load removal. (By hdc0)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Pingwinek Kelvin</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/PingwinekKelvin.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available (by rythin, Flower35)</Description>
     </AutoSplitter>
 </AutoSplitters>
