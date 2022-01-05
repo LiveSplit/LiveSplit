@@ -228,5 +228,44 @@ namespace LiveSplit.Tests.TimeFormatterTests
             var formattedTime = sut.Format(time);
             Assert.Equal(expectedTime, formattedTime);
         }
+
+        [Theory]
+        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "0")]
+        [InlineData("00:00:00", TimeAccuracy.Tenths, false, "0.0")]
+        [InlineData("00:00:00", TimeAccuracy.Hundredths, false, "0.00")]
+
+        [InlineData("00:00:00", TimeAccuracy.Seconds, true, "0")]
+        [InlineData("00:00:00", TimeAccuracy.Tenths, true, "0.0")]
+        [InlineData("00:00:00", TimeAccuracy.Hundredths, true, "0.00")]
+
+        [InlineData("00:01:30.00", TimeAccuracy.Seconds, false, "1:30")]
+        [InlineData("00:01:30.00", TimeAccuracy.Tenths, false, "1:30.0")]
+        [InlineData("00:01:30.00", TimeAccuracy.Hundredths, false, "1:30.00")]
+
+        [InlineData("00:01:30.00", TimeAccuracy.Seconds, true, "1:30")]
+        [InlineData("00:01:30.00", TimeAccuracy.Tenths, true, "1:30")]
+        [InlineData("00:01:30.00", TimeAccuracy.Hundredths, true, "1:30")]
+
+        [InlineData("07:05:01.29", TimeAccuracy.Seconds, false, "7:05:01")]
+        [InlineData("07:05:01.29", TimeAccuracy.Tenths, false, "7:05:01.2")]
+        [InlineData("07:05:01.29", TimeAccuracy.Hundredths, false, "7:05:01.29")]
+
+        [InlineData("07:05:01.29", TimeAccuracy.Seconds, true, "7:05:01")]
+        [InlineData("07:05:01.29", TimeAccuracy.Tenths, true, "7:05:01")]
+        [InlineData("07:05:01.29", TimeAccuracy.Hundredths, true, "7:05:01")]
+        public void FormatTimeCorrectly_WhenDecimalsDropped(string timespanText, TimeAccuracy accuracy,
+            bool dropDecimals, string expectedTime)
+        {
+            var sut = new PossibleTimeSaveFormatter
+            {
+                DropDecimals = dropDecimals,
+                Accuracy = accuracy
+            };
+
+            var time = TimeSpan.Parse(timespanText);
+
+            var formattedTime = sut.Format(time);
+            Assert.Equal(expectedTime, formattedTime);
+        }
     }
 }
