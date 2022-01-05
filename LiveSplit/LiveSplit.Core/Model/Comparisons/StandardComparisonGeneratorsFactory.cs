@@ -10,6 +10,7 @@ namespace LiveSplit.Model.Comparisons
             AddShortComparisonName(BestSegmentsComparisonGenerator.ComparisonName, BestSegmentsComparisonGenerator.ShortComparisonName);
             AddShortComparisonName(Run.PersonalBestComparisonName, "PB");
             AddShortComparisonName(AverageSegmentsComparisonGenerator.ComparisonName, AverageSegmentsComparisonGenerator.ShortComparisonName);
+            AddShortComparisonName(MedianSegmentsComparisonGenerator.ComparisonName, MedianSegmentsComparisonGenerator.ShortComparisonName);
             AddShortComparisonName(WorstSegmentsComparisonGenerator.ComparisonName, WorstSegmentsComparisonGenerator.ShortComparisonName);
             AddShortComparisonName(PercentileComparisonGenerator.ComparisonName, PercentileComparisonGenerator.ShortComparisonName);
             AddShortComparisonName(LatestRunComparisonGenerator.ComparisonName, LatestRunComparisonGenerator.ShortComparisonName);
