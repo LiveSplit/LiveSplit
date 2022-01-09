@@ -1403,6 +1403,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>PAW Patrol: Mighty Pups save Adventure Bay</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/PAW%20Patrol%20%E2%80%93%20Mighty%20Pups%20save%20Adventure%20Bay/PP_MPsAB.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/master/mono/mono_v2_x64.xml</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/PAW%20Patrol%20%E2%80%93%20Mighty%20Pups%20save%20Adventure%20Bay</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Pedestrian</Game>
         </Games>
         <URLs>
@@ -3102,10 +3114,11 @@
             <Game>KotOR</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/KotOR.asl</URL>
+            <URL>https://raw.githubusercontent.com/x-e-r-o/KotOR-Autosplitter/master/K1splitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By glasnonck)</Description>
+        <Description>Auto Splitter is available by Xero. Includes Load Removal by glasnonck.</Description>
+	    <Website>https://github.com/x-e-r-o/KotOR-Autosplitter/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7080,21 +7093,21 @@
             <Game>Sonic Forever</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic1Forever/master/Components/LiveSplit.Sonic1Forever.dll</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.TeamForeverSplitter/main/LiveSplit.TeamForeverSplitter.asl</URL>
         </URLs>
-        <Type>Component</Type>
-        <Description>Supports both 32bit and 64bit</Description>
-        <Website>https://github.com/SonicSpeedrunning/SonicForeverAutoSplitter</Website>
+        <Type>Script</Type>
+        <Description>Team Forever Splitter (by Jujstme and BenInSweden)</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.TeamForeverSplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Sonic 2 Absolute</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic2Absolute/master/Components/LiveSplit.Sonic2Absolute.dll</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.TeamForeverSplitter/main/LiveSplit.TeamForeverSplitter.asl</URL>
         </URLs>
-        <Type>Component</Type>
-        <Description>Supports autostart, autoreset and autosplitting. Settings available (by Jujstme)</Description>
+        <Type>Script</Type>
+        <Description>Team Forever Splitter (by Jujstme and BenInSweden)</Description>
         <Website>https://discord.gg/NpVGzcRBJ3</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -7118,6 +7131,17 @@
         <Type>Script</Type>
         <Description>Works for Spanish, English, French, German and GoG version. Check the options for more details.</Description>
         <Website>https://github.com/Legnax/Exoddus-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Chrono Cross</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Coltaho/Autosplitters/master/ChronoCross/ChronoCrossautosplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Chrono Cross (By Coltaho)</Description>
+        <Website>https://github.com/Coltaho/Autosplitters/blob/master/ChronoCross/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12152,10 +12176,10 @@
 	        <Game>TR3</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/LiveSplit.TR3.asl</URL>
+	        <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIII/Components/TR3.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Automatic start, split, reset, and IGT display are available. (by apel, Danza, Midge, rr-)</Description>
+        <Type>Component</Type>
+        <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. By apel, Danza, Midge, rr-, rtrger</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13769,5 +13793,31 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available (by rythin, Flower35)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Aldo's Adventure</Game>
+            <Game>Aldo's Adventure v1.0</Game>
+            <Game>Aldo's Adventure v1.1</Game>
+            <Game>Aldo Again</Game>
+            <Game>Aldo's Assault</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/sonneveld/aldo-livesplit/master/aldo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for the Aldo series on DOSBox. Split at the end of each level.</Description>
+        <Website>https://github.com/sonneveld/aldo-livesplit</Website>
+    </AutoSplitter>
+<AutoSplitter>
+        <Games>
+            <Game>Vlak (Train)</Game>
+          </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Marek2810/Vlak/main/vlak.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for the Vlak on DOSBox 0.72. Split at the end of each level.</Description>
+        <Website>https://github.com/Marek2810/Vlak</Website>
     </AutoSplitter>
 </AutoSplitters>
