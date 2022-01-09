@@ -27,7 +27,6 @@ namespace LiveSplit.View
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Component.SetSettings(ComponentSettings);
             DialogResult = DialogResult.Cancel;
             Close();
         }
