@@ -82,13 +82,15 @@ namespace LiveSplit.View
             RefreshInformation();
             if (Metadata != null)
                 Metadata.PropertyChanged += Metadata_Changed;
+     
+            tbxAPIKey.Text = Metadata.ApiKey;
         }
 
         void Metadata_Changed(object sender, EventArgs e)
         {
             var metadataChanged = MetadataChanged;
             if (metadataChanged != null)
-                metadataChanged(this, e);
+                metadataChanged(this, e);               
         }
 
         private int getDynamicControlRowIndex(int controlIndex)
@@ -381,5 +383,11 @@ namespace LiveSplit.View
             var variableBinding = (VariableBinding)variableComboBox.DataBindings[0].DataSource;
             variableBinding.Value = variableComboBox.SelectedItem.ToString();
         }
+
+        private void tbxAPIKey_ApiChanged(object sender, EventArgs e)
+        {    
+            Metadata.ApiKey = this.tbxAPIKey.Text.ToString();
+        }
+
     }
 }

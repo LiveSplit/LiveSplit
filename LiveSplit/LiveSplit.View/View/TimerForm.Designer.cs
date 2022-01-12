@@ -40,6 +40,7 @@
             this.controlMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comparisonMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.submitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.shareMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.endRaceSection = new System.Windows.Forms.ToolStripSeparator();
             this.editLayoutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,6 +74,7 @@
             this.controlMenuItem,
             this.comparisonMenuItem,
             this.toolStripSeparator1,
+            this.submitMenuItem,
             this.shareMenuItem,
             this.endRaceSection,
             this.editLayoutMenuItem,
@@ -137,6 +139,13 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            // 
+            // submitMenuItem
+            // 
+            this.submitMenuItem.Name = "submitMenuItem";
+            this.submitMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.submitMenuItem.Text = "Submit to SR.com";
+            this.submitMenuItem.Click += new System.EventHandler(this.submitMenuItem_Click);
             // 
             // shareMenuItem
             // 
@@ -315,6 +324,7 @@
         private System.Windows.Forms.ToolStripMenuItem editLayoutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveLayoutMenuItem;
         private System.Windows.Forms.ToolStripMenuItem shareMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem submitMenuItem;
         private System.Windows.Forms.ToolStripSeparator endRaceSection;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem controlMenuItem;

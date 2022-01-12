@@ -125,6 +125,7 @@ namespace LiveSplit.Web
         private readonly IDictionary<string, object> _dictionary;
 
         //public IDictionary<string, object> Properties { get { return _dictionary; } }
+        public IDictionary<string, object> Dictionary { get { return _dictionary; } }
 
         public DynamicJsonObject()
             : this(new Dictionary<string, object>()) 
