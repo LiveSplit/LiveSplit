@@ -2,14 +2,21 @@
 using LiveSplit.Options;
 using SpeedrunComSharp;
 using System;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
+using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share
 {
     public static class SpeedrunCom
     {
+        private static string BASE_URL = "https://www.speedrun.com/api/v1/";
+        private static string API_KEY;
+
         public static SpeedrunComClient Client { get; private set; }
 
         public static ISpeedrunComAuthenticator Authenticator { private get; set; }
@@ -191,7 +198,7 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        public static bool SubmitRun(IRun run, out string reasonForRejection, 
+        public static bool ShareRun(IRun run, out string reasonForRejection, 
             string comment = null, Uri videoUri = null, DateTime? date = null,
             TimeSpan? withoutLoads = null,
             bool submitToSplitsIO = true)
@@ -324,5 +331,169 @@ namespace LiveSplit.Web.Share
                 return false;
             }
         }
+
+
+
+
+        public static void SubmitRun(LiveSplitState currentState, Form context)
+        {
+            API_KEY = currentState.Settings.APIKey;
+
+            if (currentState.AttemptEnded.Time == DateTime.MinValue)
+            {
+                MessageBox.Show(context, "Run must be completed to be submitted...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (currentState.Settings.APIKey == null || ((String)currentState.Settings.APIKey).Length <= 0)
+            {
+                MessageBox.Show(context, "You didn't set an API key. To do that select \"Edit splits\" and then \"Additional info\"...", "API Key not set", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                var httpRequest = (HttpWebRequest)WebRequest.Create(BASE_URL + "run");
+                httpRequest.Headers.Add("X-API-Key", currentState.Settings.APIKey);
+                httpRequest.Method = "POST";
+                httpRequest.Accept = "application/json";
+                httpRequest.ContentType = "application/json";
+
+                var realtime = currentState.CurrentAttemptDuration.TotalSeconds;
+                var realtime_noloads = currentState.CurrentAttemptDuration.TotalSeconds - currentState.LoadingTimes.TotalSeconds;
+                var ingame = realtime_noloads;
+
+                var data = $@"{{
+                ""run"": 
+                    {{
+                        {(string.IsNullOrEmpty(currentState.Run.Metadata.Category.ID) ? "" : "\"category\": \"" + currentState.Run.Metadata.Category.ID + "\",")} 
+                        ""date"": ""{currentState.AttemptEnded.Time.ToString("yyyy-MM-dd")}"",
+                        {(string.IsNullOrEmpty(currentState.Run.Metadata.RegionName) ? "" : "\"category\": " + getSRcomID("regions", currentState.Run.Metadata.RegionName) + ",")} 
+                        {(string.IsNullOrEmpty(currentState.Run.Metadata.Platform.ID) ? "" : "\"platform\": \"" + currentState.Run.Metadata.Platform.ID + "\",")} 
+                        ""verified"": false,
+                        ""times"": {{
+                                        ""realtime"": {realtime},
+                                        ""realtime_noloads"": {realtime_noloads},
+                                        ""ingame"": {ingame}
+                        }},
+                        ""comment"": ""Automatically submitted by LiveSplit, video might be temporary."",
+                        ""video"": ""https://youtube.com/watch?v=mumblefoo""
+                        VARIABLES_PLACEHOLDER
+                    }}
+                }}";
+
+
+                if (currentState.Run.Metadata.VariableValueNames != null && currentState.Run.Metadata.VariableValueNames.Count > 0)
+                {
+                    string buffer = ",\"variables\": {";
+                    foreach (var i in currentState.Run.Metadata.VariableValueNames)
+                    {
+                        if (buffer.Length > 15)
+                            buffer += ",";
+                        var ID = getSRcomID("categories/" + currentState.Run.Metadata.Category.ID + "/variables", i.Key);
+                        string choiceID = null;
+
+                        foreach (var j in getSRcomChoices("variables/" + ID.Replace("\"", ""), i.Key).Dictionary)
+                        {
+                            if (j.Value == i.Value)
+                            {
+                                choiceID = j.Key;
+                                break;
+                            }
+                        }
+                        buffer += $"{ID}: {{\"type\":\"pre-defined\",\"value\": \"{choiceID}\"}}";
+                    }
+                    buffer += "}";
+                    data = data.Replace("VARIABLES_PLACEHOLDER", buffer);
+                }
+                else
+                {
+                    data.Replace("VARIABLES_PLACEHOLDER", "");
+                }
+
+
+                using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
+                {
+                    streamWriter.Write(data);
+                }
+
+                HttpWebResponse httpResponse = null;
+                try
+                {
+                    httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+                    string weblink = null;
+                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                    {
+                        var result = JSON.FromString(streamReader.ReadToEnd());
+                        weblink = result.data.weblink;
+                    }
+                    Process.Start(weblink);
+                    MessageBox.Show(context, "Run was successfully submitted...\nPlease update the VOD url in it asap: \n\n" + weblink, "RUN SUBMITTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                catch (WebException ex)
+                {
+                    using (var stream = ex.Response.GetResponseStream())
+                    using (var reader = new StreamReader(stream))
+                    {
+                        var errors = JSON.FromString(reader.ReadToEnd()).errors;
+                        string errorString = "";
+                        foreach (var err in errors)
+                        {
+                            errorString += "   - " + err + "\n";
+                        }
+                        MessageBox.Show(context, "Run could not be submitted for the following reason(s): \n\n" + errorString, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(context, "Could not submit run to Speedrun.com", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
+
+        private static string getSRcomID(string ofWhat, string name)
+        {
+            var url = BASE_URL + ofWhat + "?name=" + HttpUtility.UrlEncode(name);
+
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpRequest.Headers.Add("X-API-Key", API_KEY);
+            httpRequest.Method = "GET";
+            httpRequest.Accept = "application/json";
+            httpRequest.ContentType = "application/json";
+
+            HttpWebResponse httpResponse = null;
+
+            httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = JSON.FromString(streamReader.ReadToEnd());
+                return "\"" + result.data[0].id + "\"";
+            }
+
+        }
+
+        private static dynamic getSRcomChoices(string ofWhat, string name)
+        {
+            var url = BASE_URL + ofWhat + "?name=" + HttpUtility.UrlEncode(name);
+
+            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
+            httpRequest.Headers.Add("X-API-Key", API_KEY);
+            httpRequest.Method = "GET";
+            httpRequest.Accept = "application/json";
+            httpRequest.ContentType = "application/json";
+
+            HttpWebResponse httpResponse = null;
+
+            httpResponse = (HttpWebResponse)httpRequest.GetResponse();
+
+            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            {
+                var result = JSON.FromString(streamReader.ReadToEnd());
+                return result.data.values.choices;
+            }
+
+        }
+
     }
 }

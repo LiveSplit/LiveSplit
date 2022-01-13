@@ -187,12 +187,6 @@
     <Compile Include="View\ShareRunDialog.Designer.cs">
       <DependentUpon>ShareRunDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SpeedrunComSubmitDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\SpeedrunComSubmitDialog.Designer.cs">
-      <DependentUpon>SpeedrunComSubmitDialog.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\SpeedRunsLiveForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -211,13 +205,6 @@
     <Compile Include="View\TimerForm.Designer.cs">
       <DependentUpon>TimerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SpeedrunComOAuthForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\SpeedrunComOAuthForm.Designer.cs">
-      <DependentUpon>SpeedrunComOAuthForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Web\Share\SpeedrunComRunUploadPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Settings.settings">
@@ -293,9 +280,6 @@
     <EmbeddedResource Include="View\ShareRunDialog.resx">
       <DependentUpon>ShareRunDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\SpeedrunComSubmitDialog.resx">
-      <DependentUpon>SpeedrunComSubmitDialog.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="View\SpeedRunsLiveForm.resx">
       <DependentUpon>SpeedRunsLiveForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -305,9 +289,6 @@
     <EmbeddedResource Include="View\TimerForm.resx">
       <DependentUpon>TimerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\SpeedrunComOAuthForm.resx">
-      <DependentUpon>SpeedrunComOAuthForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

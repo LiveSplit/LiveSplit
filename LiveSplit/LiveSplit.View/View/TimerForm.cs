@@ -184,8 +184,6 @@ namespace LiveSplit.View
 
             SetWindowTitle();
 
-            SpeedrunCom.Authenticator = new SpeedrunComOAuthForm();
-
             GlobalCache = new GraphicsCache();
             Invalidator = new Invalidator(this);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -394,6 +392,11 @@ namespace LiveSplit.View
         void CurrentState_OnSwitchComparisonNext(object sender, EventArgs e)
         {
             RefreshComparisonItems();
+        }
+
+        private void submitSRCOMMenuItem_Click(object sender, EventArgs e)
+        {
+            SpeedrunCom.SubmitRun(CurrentState, this);
         }
 
         void RefreshComparisonItems()
@@ -2622,171 +2625,6 @@ namespace LiveSplit.View
                 }
             }
         }
-
-        private void submitMenuItem_Click(object sender, EventArgs e)
-        {
-
-            if(CurrentState.AttemptEnded.Time == DateTime.MinValue) 
-            {
-                MessageBox.Show(this, "Run must be completed to be submitted...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if(CurrentState.Settings.APIKey == null || ((String)CurrentState.Settings.APIKey).Length <=0)
-            {
-                MessageBox.Show(this, "You didn't set an API key. To do that select \"Edit splits\" and then \"Additional info\"...", "API Key not set", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-
-                var url = "https://www.speedrun.com/api/v1/runs";
-
-                var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-                httpRequest.Headers.Add("X-API-Key", CurrentState.Settings.APIKey);
-                httpRequest.Method = "POST";
-                httpRequest.Accept = "application/json";
-                httpRequest.ContentType = "application/json";
-
-
-                //TODO I'm not really sure about the difference between realtime_noloads and ingame... If someone could double check these I would appreciate tyvm <3
-                var realtime = CurrentState.CurrentAttemptDuration.TotalSeconds;
-                var realtime_noloads = CurrentState.CurrentAttemptDuration.TotalSeconds - CurrentState.LoadingTimes.TotalSeconds;
-                var ingame = realtime_noloads;
-
-                var data = $@"{{
-                ""run"": 
-                    {{
-                        {(string.IsNullOrEmpty(CurrentState.Run.Metadata.Category.ID) ? "" : "\"category\": \"" + CurrentState.Run.Metadata.Category.ID + "\",")} 
-                        ""date"": ""{CurrentState.AttemptEnded.Time.ToString("yyyy-MM-dd")}"",
-                        {(string.IsNullOrEmpty(CurrentState.Run.Metadata.RegionName) ? "" : "\"category\": " + getSRcomID("regions", CurrentState.Run.Metadata.RegionName) + ",")} 
-                        {(string.IsNullOrEmpty(CurrentState.Run.Metadata.Platform.ID) ? "" : "\"platform\": \"" + CurrentState.Run.Metadata.Platform.ID + "\",")} 
-                        ""verified"": false,
-                        ""times"": {{
-                                        ""realtime"": {realtime},
-                                        ""realtime_noloads"": {realtime_noloads},
-                                        ""ingame"": {ingame}
-                        }},
-                        ""comment"": ""Automatically submitted by LiveSplit, video might be temporary."",
-                        ""video"": ""https://youtube.com/watch?v=mumblefoo""
-                        VARIABLES_PLACEHOLDER
-                    }}
-                }}";
-
-
-                if (CurrentState.Run.Metadata.VariableValueNames != null && CurrentState.Run.Metadata.VariableValueNames.Count > 0)
-                {
-                    string buffer = ",\"variables\": {";
-                    foreach(var i in CurrentState.Run.Metadata.VariableValueNames)
-                    {
-                        if (buffer.Length > 15)
-                            buffer += ",";
-                        var ID = getSRcomID("categories/" + CurrentState.Run.Metadata.Category.ID + "/variables", i.Key);
-                        string choiceID = null;
-
-                        foreach (var j in getSRcomChoices("variables/" + ID.Replace("\"", ""), i.Key).Dictionary)
-                        {
-                            if (j.Value == i.Value)
-                            {
-                                choiceID = j.Key;
-                                break;
-                            }
-                        }
-                        buffer += $"{ID}: {{\"type\":\"pre-defined\",\"value\": \"{choiceID}\"}}";
-                    }
-                    buffer += "}";
-                    data = data.Replace("VARIABLES_PLACEHOLDER", buffer);
-                }
-                else
-                {
-                    data.Replace("VARIABLES_PLACEHOLDER", "");
-                }
-               
-
-                using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-                {
-                    streamWriter.Write(data);
-                }
-
-                HttpWebResponse httpResponse = null;
-                try
-                {
-                    httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-                    string weblink = null;
-                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-                    {
-                        var result = JSON.FromString(streamReader.ReadToEnd());
-                        weblink = result.data.weblink;
-                    }
-                    Process.Start(weblink);
-                    MessageBox.Show(this, "Run was successfully submitted...\nPlease update the VOD url in it asap: \n\n" + weblink, "RUN SUBMITTED", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                }
-                catch (WebException ex)
-                {
-                    using (var stream = ex.Response.GetResponseStream())
-                    using (var reader = new StreamReader(stream))
-                    {
-                        var errors = JSON.FromString(reader.ReadToEnd()).errors;
-                        string errorString = "";
-                        foreach(var err in errors) 
-                        {
-                            errorString += "   - " + err + "\n";
-                        }
-                        MessageBox.Show(this, "Run could not be submitted for the following reason(s): \n\n" + errorString, "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(this, "Could not submit run to Speedrun.com", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            
-        }
-
-        private string getSRcomID(string ofWhat, string name)
-        {
-            var url = "https://www.speedrun.com/api/v1/" + ofWhat + "?name=" + HttpUtility.UrlEncode(name);
-
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpRequest.Headers.Add("X-API-Key", CurrentState.Settings.APIKey);
-            httpRequest.Method = "GET";
-            httpRequest.Accept = "application/json";
-            httpRequest.ContentType = "application/json";
-
-            HttpWebResponse httpResponse = null;
-
-            httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-     
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = JSON.FromString(streamReader.ReadToEnd());
-                return "\"" + result.data[0].id + "\"";
-            }
-        
-        }
-
-        private dynamic getSRcomChoices(string ofWhat, string name)
-        {
-            var url = "https://www.speedrun.com/api/v1/" + ofWhat + "?name=" + HttpUtility.UrlEncode(name);
-
-            var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpRequest.Headers.Add("X-API-Key", CurrentState.Settings.APIKey);
-            httpRequest.Method = "GET";
-            httpRequest.Accept = "application/json";
-            httpRequest.ContentType = "application/json";
-
-            HttpWebResponse httpResponse = null;
-
-            httpResponse = (HttpWebResponse)httpRequest.GetResponse();
-     
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = JSON.FromString(streamReader.ReadToEnd());
-                return result.data.values.choices;
-            }
-        
-        }
-
         private DialogResult WarnAboutResetting()
         {
             var warnUser = false;

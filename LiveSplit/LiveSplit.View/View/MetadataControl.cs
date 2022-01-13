@@ -210,7 +210,6 @@ namespace LiveSplit.View
             cmbRegion.Enabled = cmbRegion.Items.Count > 1;
             cmbPlatform.Enabled = cmbPlatform.Items.Count > 1;
 
-            RefreshAssociateButton();
         }
 
         private void refreshRules()
@@ -266,75 +265,6 @@ namespace LiveSplit.View
             }
         }
 
-        public void RefreshAssociateButton()
-        {
-            if (InvokeRequired)
-            {
-                Invoke(new Action(RefreshAssociateButton));
-                return;
-            }
-            
-            if (string.IsNullOrEmpty(Metadata.RunID))
-            {
-                btnSubmit.Enabled = true;
-                btnAssociate.Text = "Associate with Speedrun.com...";
-            }
-            else
-            {
-                btnSubmit.Enabled = false;
-                btnAssociate.Text = "Show on Speedrun.com...";
-            }
-        }
-
-        private void associateRun()
-        {
-            var url = "";
-            var result = InputBox.Show("Enter Speedrun.com URL", "Speedrun.com Run URL:", ref url);
-
-            if (result == DialogResult.OK)
-            {
-                try
-                {
-                    var run = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
-                    if (run != null)
-                    {
-                        Metadata.LiveSplitRun.PatchRun(run);
-                        RefreshInformation();
-                    }
-                    else
-                    {
-                        MessageBox.Show(this, "The URL provided is not a valid speedrun.com Run URL.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                    MessageBox.Show(this, "The run could not be associated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void showRunOnSpeedrunCom()
-        {
-            try
-            {
-                Process.Start(Metadata.Run.WebLink.AbsoluteUri);
-            }
-            catch { }
-        }
-
-        private void btnAssociate_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(Metadata.RunID))
-            {
-                associateRun();
-            }
-            else
-            {
-                showRunOnSpeedrunCom();
-            }
-        }
-
         private void tbxRules_LinkClicked(object sender, LinkClickedEventArgs e)
         {
             try
@@ -342,27 +272,6 @@ namespace LiveSplit.View
                 Process.Start(e.LinkText);
             }
             catch { }
-        }
-
-        private void btnSubmit_Click(object sender, EventArgs e)
-        {
-            string reason;
-            var isValid = SpeedrunCom.ValidateRun(Metadata.LiveSplitRun, out reason);
-
-            if (!isValid)
-            {
-                MessageBox.Show(this, reason, "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            using (var submitDialog = new SpeedrunComSubmitDialog(Metadata))
-            {
-                var result = submitDialog.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    RefreshAssociateButton();
-                }
-            }
         }
 
         private void cmbRegion_SelectedIndexChanged(object sender, EventArgs e)

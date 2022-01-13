@@ -249,7 +249,6 @@ namespace LiveSplit.View
             if (args.ClearRunID)
             {
                 Run.Metadata.RunID = null;
-                metadataControl.RefreshAssociateButton();
             }
             RaiseRunEdited();
         }

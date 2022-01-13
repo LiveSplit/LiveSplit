@@ -34,9 +34,7 @@
             this.lblPlatform = new System.Windows.Forms.Label();
             this.cmbRegion = new System.Windows.Forms.ComboBox();
             this.lblRules = new System.Windows.Forms.Label();
-            this.btnAssociate = new System.Windows.Forms.Button();
             this.tbxRules = new System.Windows.Forms.RichTextBox();
-            this.btnSubmit = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -53,13 +51,11 @@
             this.tableLayoutPanel1.Controls.Add(this.lblPlatform, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.cmbRegion, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblRules, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnAssociate, 3, 8);
             this.tableLayoutPanel1.Controls.Add(this.tbxRules, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnSubmit, 0, 8);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
+            this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
@@ -125,21 +121,6 @@
             this.lblRules.TabIndex = 4;
             this.lblRules.Text = "Rules:";
             // 
-            // btnAssociate
-            // 
-            this.btnAssociate.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAssociate.AutoSize = true;
-            this.btnAssociate.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.SetColumnSpan(this.btnAssociate, 2);
-            this.btnAssociate.Location = new System.Drawing.Point(361, 344);
-            this.btnAssociate.Margin = new System.Windows.Forms.Padding(3, 3, 2, 3);
-            this.btnAssociate.Name = "btnAssociate";
-            this.btnAssociate.Size = new System.Drawing.Size(166, 23);
-            this.btnAssociate.TabIndex = 6;
-            this.btnAssociate.Text = "Associate with Speedrun.com...";
-            this.btnAssociate.UseVisualStyleBackColor = true;
-            this.btnAssociate.Click += new System.EventHandler(this.btnAssociate_Click);
-            // 
             // tbxRules
             // 
             this.tbxRules.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -154,18 +135,6 @@
             this.tbxRules.TabIndex = 7;
             this.tbxRules.Text = "";
             this.tbxRules.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.tbxRules_LinkClicked);
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSubmit.AutoSize = true;
-            this.btnSubmit.Location = new System.Drawing.Point(3, 373);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(81, 23);
-            this.btnSubmit.TabIndex = 8;
-            this.btnSubmit.Text = "Submit Run...";
-            this.btnSubmit.UseVisualStyleBackColor = true;
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // MetadataControl
             // 
@@ -190,8 +159,6 @@
         private System.Windows.Forms.Label lblPlatform;
         private System.Windows.Forms.ComboBox cmbRegion;
         private System.Windows.Forms.Label lblRules;
-        private System.Windows.Forms.Button btnAssociate;
         private System.Windows.Forms.RichTextBox tbxRules;
-        private System.Windows.Forms.Button btnSubmit;
     }
 }

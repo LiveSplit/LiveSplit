@@ -180,7 +180,6 @@ namespace LiveSplit.View
                 case "Screenshot": CurrentPlatform = Screenshot.Instance; break;
                 case "Imgur": CurrentPlatform = Imgur.Instance; break;
                 case "Excel": CurrentPlatform = Excel.Instance; break;
-                case "Speedrun.com": CurrentPlatform = SpeedrunComRunUploadPlatform.Instance; break;
             }
 
             CurrentPlatform.Settings = Settings;
@@ -195,7 +194,7 @@ namespace LiveSplit.View
 
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
                 chkAttachSplits.Enabled = !(CurrentPlatform == Screenshot.Instance || CurrentPlatform == SplitsIO.Instance
-                    || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance || CurrentPlatform == SpeedrunComRunUploadPlatform.Instance);
+                    || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance);
             else
                 chkAttachSplits.Enabled = false;
 
