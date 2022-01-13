@@ -89,35 +89,6 @@ namespace LiveSplit.Model.RunFactories
                 result = LiveSplitCore.Run.Parse(Stream, FilePath, !string.IsNullOrEmpty(FilePath));
             }
 
-
-            String apiKey = null;
-            var doc = new XmlDocument();
-            doc.Load(XmlReader.Create(FilePath));
-            foreach(var i in doc.ChildNodes)
-            {
-                if(((XmlNode)i).Name == "Run")
-                {
-                    foreach (var j in ((XmlNode)i).ChildNodes)
-                    {
-                        if (((XmlNode)j).Name == "Metadata")
-                        {
-                            foreach (var k in ((XmlNode)j).ChildNodes)
-                            {
-                                if (((XmlNode)k).Name == "SRcom" && ((XmlElement)k).HasAttributes)
-                                {
-                                    apiKey = ((XmlNode)k).Attributes[0].Value;
-                                    break;
-                                }
-                            }
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-
-            
-
             if (!result.ParsedSuccessfully())
                 throw new Exception();
 
@@ -132,8 +103,6 @@ namespace LiveSplit.Model.RunFactories
                 run.Metadata.PlatformName = metadata.PlatformName();
                 run.Metadata.UsesEmulator = metadata.UsesEmulator();
                 run.Metadata.RegionName = metadata.RegionName();
-                if(apiKey != null)
-                    run.Metadata.ApiKey = apiKey;
                 using (var iter = metadata.SpeedrunComVariables())
                 {
                     LiveSplitCore.RunMetadataSpeedrunComVariableRef variable;

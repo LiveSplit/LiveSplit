@@ -76,6 +76,10 @@
             this.panelRefreshRate = new System.Windows.Forms.Panel();
             this.txtRefreshRate = new System.Windows.Forms.TextBox();
             this.labelRefreshRate = new System.Windows.Forms.Label();
+            this.lblAPIKey = new System.Windows.Forms.LinkLabel();
+            this.tbxAPIKey = new System.Windows.Forms.TextBox();
+            this.tooltip = new System.Windows.Forms.ToolTip();
+
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -92,23 +96,25 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel1.Controls.Add(this.btnChooseRaceProvider, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.btnLogOut, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.btnLogOut, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 8);
             this.tableLayoutPanel1.Controls.Add(this.cbxRaceViewer, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label13, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnChooseComparisons, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.btnChooseComparisons, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.chkSimpleSOB, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.chkWarnOnReset, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panelRefreshRate, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.panelRefreshRate, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.lblAPIKey, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.tbxAPIKey, 0, 4);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
@@ -117,7 +123,9 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 630);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 664);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnChooseRaceProvider
@@ -136,7 +144,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnOK, 2);
-            this.btnOK.Location = new System.Drawing.Point(221, 604);
+            this.btnOK.Location = new System.Drawing.Point(221, 638);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -148,7 +156,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 551);
+            this.label5.Location = new System.Drawing.Point(3, 580);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(178, 13);
             this.label5.TabIndex = 10;
@@ -158,10 +166,10 @@
             // 
             this.btnLogOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnLogOut, 3);
-            this.btnLogOut.Location = new System.Drawing.Point(187, 546);
+            this.btnLogOut.Location = new System.Drawing.Point(187, 575);
             this.btnLogOut.Name = "btnLogOut";
             this.btnLogOut.Size = new System.Drawing.Size(190, 23);
-            this.btnLogOut.TabIndex = 8;
+            this.btnLogOut.TabIndex = 9;
             this.btnLogOut.Text = "Log Out of All Accounts";
             this.btnLogOut.UseVisualStyleBackColor = true;
             this.btnLogOut.Click += new System.EventHandler(this.btnLogOut_Click);
@@ -237,7 +245,7 @@
             this.chkDeactivateForOtherPrograms.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDeactivateForOtherPrograms.Name = "chkDeactivateForOtherPrograms";
             this.chkDeactivateForOtherPrograms.Size = new System.Drawing.Size(172, 23);
-            this.chkDeactivateForOtherPrograms.TabIndex = 10;
+            this.chkDeactivateForOtherPrograms.TabIndex = 11;
             this.chkDeactivateForOtherPrograms.Text = "Deactivate For Other Programs";
             this.chkDeactivateForOtherPrograms.UseVisualStyleBackColor = true;
             // 
@@ -260,7 +268,7 @@
             this.chkGlobalHotkeys.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkGlobalHotkeys.Name = "chkGlobalHotkeys";
             this.chkGlobalHotkeys.Size = new System.Drawing.Size(98, 23);
-            this.chkGlobalHotkeys.TabIndex = 9;
+            this.chkGlobalHotkeys.TabIndex = 10;
             this.chkGlobalHotkeys.Text = "Global Hotkeys";
             this.chkGlobalHotkeys.UseVisualStyleBackColor = true;
             this.chkGlobalHotkeys.CheckedChanged += new System.EventHandler(this.chkGlobalHotkeys_CheckedChanged);
@@ -273,7 +281,7 @@
             this.chkDoubleTap.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkDoubleTap.Name = "chkDoubleTap";
             this.chkDoubleTap.Size = new System.Drawing.Size(168, 17);
-            this.chkDoubleTap.TabIndex = 11;
+            this.chkDoubleTap.TabIndex = 12;
             this.chkDoubleTap.Text = "Double Tap Prevention";
             this.chkDoubleTap.UseVisualStyleBackColor = true;
             // 
@@ -305,7 +313,7 @@
             this.label6.Location = new System.Drawing.Point(3, 124);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(172, 13);
-            this.label6.TabIndex = 8;
+            this.label6.TabIndex = 9;
             this.label6.Text = "Pause:";
             // 
             // txtReset
@@ -347,7 +355,7 @@
             this.label4.Location = new System.Drawing.Point(3, 66);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(172, 13);
-            this.label4.TabIndex = 7;
+            this.label4.TabIndex = 8;
             this.label4.Text = "Undo Split:";
             // 
             // txtSkip
@@ -379,7 +387,7 @@
             this.label7.Location = new System.Drawing.Point(3, 211);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(172, 13);
-            this.label7.TabIndex = 9;
+            this.label7.TabIndex = 10;
             this.label7.Text = "Toggle Global Hotkeys:";
             // 
             // txtToggle
@@ -390,7 +398,7 @@
             this.txtToggle.Name = "txtToggle";
             this.txtToggle.ReadOnly = true;
             this.txtToggle.Size = new System.Drawing.Size(184, 20);
-            this.txtToggle.TabIndex = 8;
+            this.txtToggle.TabIndex = 9;
             this.txtToggle.Enter += new System.EventHandler(this.Toggle_Set_Enter);
             // 
             // label8
@@ -400,7 +408,7 @@
             this.label8.Location = new System.Drawing.Point(3, 153);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(172, 13);
-            this.label8.TabIndex = 10;
+            this.label8.TabIndex = 11;
             this.label8.Text = "Switch Comparison (Previous):";
             // 
             // label9
@@ -410,7 +418,7 @@
             this.label9.Location = new System.Drawing.Point(3, 182);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(172, 13);
-            this.label9.TabIndex = 12;
+            this.label9.TabIndex = 13;
             this.label9.Text = "Switch Comparison (Next):";
             // 
             // txtSwitchPrevious
@@ -432,7 +440,7 @@
             this.txtSwitchNext.Name = "txtSwitchNext";
             this.txtSwitchNext.ReadOnly = true;
             this.txtSwitchNext.Size = new System.Drawing.Size(184, 20);
-            this.txtSwitchNext.TabIndex = 7;
+            this.txtSwitchNext.TabIndex = 8;
             this.txtSwitchNext.Enter += new System.EventHandler(this.Switch_Next_Set_Enter);
             // 
             // label10
@@ -442,7 +450,7 @@
             this.label10.Location = new System.Drawing.Point(181, 269);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(128, 13);
-            this.label10.TabIndex = 14;
+            this.label10.TabIndex = 15;
             this.label10.Text = "Hotkey Delay (Seconds):";
             // 
             // txtDelay
@@ -451,7 +459,7 @@
             this.txtDelay.Location = new System.Drawing.Point(315, 265);
             this.txtDelay.Name = "txtDelay";
             this.txtDelay.Size = new System.Drawing.Size(50, 20);
-            this.txtDelay.TabIndex = 12;
+            this.txtDelay.TabIndex = 13;
             this.txtDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // grpHotkeyProfiles
@@ -462,7 +470,7 @@
             this.grpHotkeyProfiles.Location = new System.Drawing.Point(3, 322);
             this.grpHotkeyProfiles.Name = "grpHotkeyProfiles";
             this.grpHotkeyProfiles.Size = new System.Drawing.Size(362, 77);
-            this.grpHotkeyProfiles.TabIndex = 13;
+            this.grpHotkeyProfiles.TabIndex = 14;
             this.grpHotkeyProfiles.TabStop = false;
             this.grpHotkeyProfiles.Text = "Hotkey Profiles";
             // 
@@ -551,7 +559,7 @@
             this.chkAllowGamepads.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
             this.chkAllowGamepads.Name = "chkAllowGamepads";
             this.chkAllowGamepads.Size = new System.Drawing.Size(168, 17);
-            this.chkAllowGamepads.TabIndex = 15;
+            this.chkAllowGamepads.TabIndex = 16;
             this.chkAllowGamepads.Text = "Allow Gamepads as Hotkeys";
             this.chkAllowGamepads.UseVisualStyleBackColor = true;
             // 
@@ -561,7 +569,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(302, 604);
+            this.btnCancel.Location = new System.Drawing.Point(302, 638);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -592,17 +600,17 @@
             this.label11.Location = new System.Drawing.Point(3, 464);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(178, 13);
-            this.label11.TabIndex = 15;
+            this.label11.TabIndex = 16;
             this.label11.Text = "Race Viewer:";
             // 
             // label12
             // 
             this.label12.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(3, 522);
+            this.label12.Location = new System.Drawing.Point(3, 551);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(178, 13);
-            this.label12.TabIndex = 17;
+            this.label12.TabIndex = 18;
             this.label12.Text = "Active Comparisons:";
             // 
             // label13
@@ -612,14 +620,14 @@
             this.label13.Location = new System.Drawing.Point(3, 493);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(178, 13);
-            this.label13.TabIndex = 18;
+            this.label13.TabIndex = 19;
             this.label13.Text = "Racing Services:";
             // 
             // btnChooseComparisons
             // 
             this.btnChooseComparisons.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnChooseComparisons, 3);
-            this.btnChooseComparisons.Location = new System.Drawing.Point(187, 517);
+            this.btnChooseComparisons.Location = new System.Drawing.Point(187, 546);
             this.btnChooseComparisons.Name = "btnChooseComparisons";
             this.btnChooseComparisons.Size = new System.Drawing.Size(190, 23);
             this.btnChooseComparisons.TabIndex = 7;
@@ -657,11 +665,11 @@
             // 
             this.panelRefreshRate.Controls.Add(this.txtRefreshRate);
             this.panelRefreshRate.Controls.Add(this.labelRefreshRate);
-            this.panelRefreshRate.Location = new System.Drawing.Point(0, 572);
+            this.panelRefreshRate.Location = new System.Drawing.Point(0, 601);
             this.panelRefreshRate.Margin = new System.Windows.Forms.Padding(0);
             this.panelRefreshRate.Name = "panelRefreshRate";
             this.panelRefreshRate.Size = new System.Drawing.Size(184, 29);
-            this.panelRefreshRate.TabIndex = 19;
+            this.panelRefreshRate.TabIndex = 20;
             // 
             // txtRefreshRate
             // 
@@ -670,7 +678,7 @@
             this.txtRefreshRate.Location = new System.Drawing.Point(128, 6);
             this.txtRefreshRate.Name = "txtRefreshRate";
             this.txtRefreshRate.Size = new System.Drawing.Size(51, 20);
-            this.txtRefreshRate.TabIndex = 15;
+            this.txtRefreshRate.TabIndex = 16;
             this.txtRefreshRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // labelRefreshRate
@@ -679,15 +687,39 @@
             this.labelRefreshRate.AutoSize = true;
             this.labelRefreshRate.Location = new System.Drawing.Point(3, 8);
             this.labelRefreshRate.Name = "labelRefreshRate";
-            this.labelRefreshRate.Size = new System.Drawing.Size(93, 13);
-            this.labelRefreshRate.TabIndex = 19;
+            this.labelRefreshRate.Size = new System.Drawing.Size(95, 13);
+            this.labelRefreshRate.TabIndex = 20;
             this.labelRefreshRate.Text = "Refresh Rate (Hz):";
+            // 
+            // lblAPIKey
+            // 
+            this.lblAPIKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAPIKey.AutoSize = true;
+            this.lblAPIKey.Location = new System.Drawing.Point(3, 522);
+            this.lblAPIKey.Name = "lblAPIKey";
+            this.lblAPIKey.Size = new System.Drawing.Size(178, 13);
+            this.lblAPIKey.TabIndex = 20;
+            this.lblAPIKey.Text = "Speedrun.com API Key";
+            this.lblAPIKey.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblAPIKey_Clicked);
+            this.tooltip.SetToolTip(this.lblAPIKey, "Click here and\nthen API key");
+            // 
+            // tbxAPIKey
+            // 
+            this.tbxAPIKey.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.tbxAPIKey, 3);
+            this.tbxAPIKey.Location = new System.Drawing.Point(187, 518);
+            this.tbxAPIKey.Name = "tbxAPIKey";
+            this.tbxAPIKey.Size = new System.Drawing.Size(190, 20);
+            this.tbxAPIKey.TabIndex = 7;
+            this.tbxAPIKey.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxAPIKey_ApiChanged);
+            this.tbxAPIKey.Multiline = false;
+            this.tbxAPIKey.PasswordChar = '*';
             // 
             // SettingsDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 644);
+            this.ClientSize = new System.Drawing.Size(394, 678);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -757,5 +789,8 @@
         private System.Windows.Forms.Label labelRefreshRate;
         private System.Windows.Forms.Panel panelRefreshRate;
         private System.Windows.Forms.TextBox txtRefreshRate;
+        private System.Windows.Forms.LinkLabel lblAPIKey;
+        private System.Windows.Forms.TextBox tbxAPIKey;
+        private System.Windows.Forms.ToolTip tooltip;
     }
 }

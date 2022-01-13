@@ -30,6 +30,8 @@ namespace LiveSplit.Options.SettingsFactories
             var parent = document["Settings"];
             var version = ParseAttributeVersion(parent);
 
+
+            settings.APIKey = parent["SpeedrunDotCom"].GetAttribute("APIKey");
             settings.WarnOnReset = ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
             settings.SimpleSumOfBest = ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
             settings.RefreshRate = ParseInt(parent["RefreshRate"], settings.RefreshRate);

@@ -37,8 +37,6 @@
             this.btnAssociate = new System.Windows.Forms.Button();
             this.tbxRules = new System.Windows.Forms.RichTextBox();
             this.btnSubmit = new System.Windows.Forms.Button();
-            this.lblAPIKey = new System.Windows.Forms.Label();
-            this.tbxAPIKey = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,11 +53,9 @@
             this.tableLayoutPanel1.Controls.Add(this.lblPlatform, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.cmbRegion, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.lblRules, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnAssociate, 3, 9);
+            this.tableLayoutPanel1.Controls.Add(this.btnAssociate, 3, 8);
             this.tableLayoutPanel1.Controls.Add(this.tbxRules, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnSubmit, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.lblAPIKey, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.tbxAPIKey, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.btnSubmit, 0, 8);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -171,24 +167,6 @@
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
-            // lblAPIKey
-            // 
-            this.lblAPIKey.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblAPIKey.AutoSize = true;
-            this.lblAPIKey.Location = new System.Drawing.Point(3, 349);
-            this.lblAPIKey.Name = "lblAPIKey";
-            this.lblAPIKey.Size = new System.Drawing.Size(85, 13);
-            this.lblAPIKey.TabIndex = 9;
-            this.lblAPIKey.Text = "SR.com API key";
-            // 
-            // tbxAPIKey
-            // 
-            this.tbxAPIKey.Location = new System.Drawing.Point(106, 344);
-            this.tbxAPIKey.Name = "tbxAPIKey";
-            this.tbxAPIKey.Size = new System.Drawing.Size(141, 20);
-            this.tbxAPIKey.TabIndex = 10;
-            this.tbxAPIKey.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbxAPIKey_ApiChanged);
-            // 
             // MetadataControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,7 +193,5 @@
         private System.Windows.Forms.Button btnAssociate;
         private System.Windows.Forms.RichTextBox tbxRules;
         private System.Windows.Forms.Button btnSubmit;
-        private System.Windows.Forms.Label lblAPIKey;
-        private System.Windows.Forms.TextBox tbxAPIKey;
     }
 }

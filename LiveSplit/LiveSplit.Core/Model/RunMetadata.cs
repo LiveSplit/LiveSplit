@@ -23,8 +23,6 @@ namespace LiveSplit.Model
         private string regionName;
         private bool usesEmulator;
 
-        private string apiKey;
-
         public event EventHandler PropertyChanged;
 
         public string RunID
@@ -131,21 +129,6 @@ namespace LiveSplit.Model
                     TriggerPropertyChanged(true);
 
                 usesEmulator = value;
-            }
-        }
-
-        public string ApiKey
-        {
-            get
-            {
-                return apiKey;
-            }
-            set
-            {
-                if (apiKey != value)
-                    TriggerPropertyChanged(true);
-
-                apiKey = value;
             }
         }
 
@@ -318,7 +301,6 @@ namespace LiveSplit.Model
                 platformName = platformName,
                 regionName = regionName,
                 usesEmulator = usesEmulator,
-                apiKey = apiKey,
                 VariableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value),
                 CategoryAvailable = CategoryAvailable,
                 GameAvailable = GameAvailable

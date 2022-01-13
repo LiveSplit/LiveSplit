@@ -29,10 +29,6 @@ namespace LiveSplit.Model.RunSavers
             runElement.Attributes.Append(ToAttribute(document, "id", run.Metadata.RunID));
             metadata.AppendChild(runElement);
 
-            var apiKeyElement = document.CreateElement("SRcom");
-            apiKeyElement.Attributes.Append(ToAttribute(document, "apiKey", run.Metadata.ApiKey));
-            metadata.AppendChild(apiKeyElement);
-
             var platform = ToElement(document, "Platform", run.Metadata.PlatformName);
             platform.Attributes.Append(ToAttribute(document, "usesEmulator", run.Metadata.UsesEmulator));
             metadata.AppendChild(platform);

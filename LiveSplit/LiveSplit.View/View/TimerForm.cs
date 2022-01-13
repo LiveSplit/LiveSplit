@@ -2630,7 +2630,7 @@ namespace LiveSplit.View
             {
                 MessageBox.Show(this, "Run must be completed to be submitted...", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else if(CurrentState.Run.Metadata.ApiKey == null || ((String)CurrentState.Run.Metadata.ApiKey).Length <=0)
+            else if(CurrentState.Settings.APIKey == null || ((String)CurrentState.Settings.APIKey).Length <=0)
             {
                 MessageBox.Show(this, "You didn't set an API key. To do that select \"Edit splits\" and then \"Additional info\"...", "API Key not set", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -2640,7 +2640,7 @@ namespace LiveSplit.View
                 var url = "https://www.speedrun.com/api/v1/runs";
 
                 var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-                httpRequest.Headers.Add("X-API-Key", CurrentState.Run.Metadata.ApiKey);
+                httpRequest.Headers.Add("X-API-Key", CurrentState.Settings.APIKey);
                 httpRequest.Method = "POST";
                 httpRequest.Accept = "application/json";
                 httpRequest.ContentType = "application/json";
@@ -2748,7 +2748,7 @@ namespace LiveSplit.View
             var url = "https://www.speedrun.com/api/v1/" + ofWhat + "?name=" + HttpUtility.UrlEncode(name);
 
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpRequest.Headers.Add("X-API-Key", CurrentState.Run.Metadata.ApiKey);
+            httpRequest.Headers.Add("X-API-Key", CurrentState.Settings.APIKey);
             httpRequest.Method = "GET";
             httpRequest.Accept = "application/json";
             httpRequest.ContentType = "application/json";
@@ -2770,7 +2770,7 @@ namespace LiveSplit.View
             var url = "https://www.speedrun.com/api/v1/" + ofWhat + "?name=" + HttpUtility.UrlEncode(name);
 
             var httpRequest = (HttpWebRequest)WebRequest.Create(url);
-            httpRequest.Headers.Add("X-API-Key", CurrentState.Run.Metadata.ApiKey);
+            httpRequest.Headers.Add("X-API-Key", CurrentState.Settings.APIKey);
             httpRequest.Method = "GET";
             httpRequest.Accept = "application/json";
             httpRequest.ContentType = "application/json";

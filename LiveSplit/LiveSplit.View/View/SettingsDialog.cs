@@ -81,6 +81,9 @@ namespace LiveSplit.View
 
             txtRefreshRate.DataBindings.Add("Text", this, "RefreshRate");
 
+            if (Settings.APIKey != null)
+                tbxAPIKey.Text = Settings.APIKey;
+
             UpdateDisplayedHotkeyValues();
             RefreshRemoveButton();
             RefreshLogOutButton();
@@ -414,6 +417,15 @@ namespace LiveSplit.View
                 Settings.RaceProvider = newSettings;                
             }
            
+        }
+
+        private void lblAPIKey_Clicked(object sender, EventArgs e)
+        {
+            Process.Start("https://www.speedrun.com/settings");
+        }
+        private void tbxAPIKey_ApiChanged(object sender, EventArgs e)
+        {    
+            Settings.APIKey = this.tbxAPIKey.Text.ToString();
         }
     }
 }
