@@ -33,6 +33,11 @@ namespace LiveSplit.TimeFormatters {
         public bool DropDecimals { get; set; }
 
         /// <summary>
+        /// If true, don't display decimals if absolute time is 1 minute or more
+        /// </summary>
+        public bool DropDecimalsPossibleTimeSave { get; set; }
+
+        /// <summary>
         /// If true, don't display trailing zero demical places
         /// </summary>
         public bool AutomaticPrecision { get; set; } = false;
@@ -86,7 +91,7 @@ namespace LiveSplit.TimeFormatters {
             }
             else
             {
-                if (DropDecimals && time.TotalMinutes >= 1)
+                if ((DropDecimalsPossibleTimeSave || DropDecimals) && time.TotalMinutes >= 1)
                     decimalFormat = "";
                 else if (Accuracy == TimeAccuracy.Seconds)
                     decimalFormat = "";
