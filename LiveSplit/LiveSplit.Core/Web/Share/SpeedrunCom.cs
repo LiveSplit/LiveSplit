@@ -10,9 +10,9 @@ namespace LiveSplit.Web.Share
 {
     public static class SpeedrunCom
     {
-        public static SpeedrunComClient Client { get; private set; }
 
-        public static ISpeedrunComAuthenticator Authenticator { private get; set; }
+        public static string accessToken { get; set; }
+        public static SpeedrunComClient Client { get; private set; }
 
         static SpeedrunCom()
         {
@@ -24,7 +24,6 @@ namespace LiveSplit.Web.Share
             if (Client.IsAccessTokenValid)
                 return true;
 
-            var accessToken = Authenticator?.GetAccessToken();
             if (string.IsNullOrEmpty(accessToken))
                 return false;
 

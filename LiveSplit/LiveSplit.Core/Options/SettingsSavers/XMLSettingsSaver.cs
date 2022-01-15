@@ -84,6 +84,12 @@ namespace LiveSplit.Options.SettingsSavers
             }
             parent.AppendChild(autoSplittersActive);
 
+            var speedrunDotCom = document.CreateElement("SpeedrunDotCom");
+            var apiKey = document.CreateAttribute("APIKey");
+            apiKey.Value = settings.APIKey;
+            speedrunDotCom.Attributes.Append(apiKey);
+            parent.AppendChild(speedrunDotCom);
+
             AddDriftToSettings(document, parent);
 
             document.Save(stream);

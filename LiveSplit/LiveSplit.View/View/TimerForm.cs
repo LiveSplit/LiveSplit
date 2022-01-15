@@ -183,8 +183,6 @@ namespace LiveSplit.View
 
             SetWindowTitle();
 
-            SpeedrunCom.Authenticator = new SpeedrunComOAuthForm();
-
             GlobalCache = new GraphicsCache();
             Invalidator = new Invalidator(this);
             SetStyle(ControlStyles.SupportsTransparentBackColor, true);
@@ -2547,6 +2545,10 @@ namespace LiveSplit.View
                 using (var stream = File.OpenRead(Path.Combine(BasePath, SETTINGS_PATH)))
                 {
                     Settings = new XMLSettingsFactory(stream).Create();
+                    if(!string.IsNullOrEmpty(Settings.APIKey))
+                    {
+                        SpeedrunCom.accessToken = Settings.APIKey;
+                    }
                 }
             }
             catch (Exception e)

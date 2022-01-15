@@ -210,12 +210,6 @@
     <Compile Include="View\TimerForm.Designer.cs">
       <DependentUpon>TimerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\SpeedrunComOAuthForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\SpeedrunComOAuthForm.Designer.cs">
-      <DependentUpon>SpeedrunComOAuthForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Web\Share\SpeedrunComRunUploadPlatform.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -304,9 +298,6 @@
     <EmbeddedResource Include="View\TimerForm.resx">
       <DependentUpon>TimerForm.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\SpeedrunComOAuthForm.resx">
-      <DependentUpon>SpeedrunComOAuthForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

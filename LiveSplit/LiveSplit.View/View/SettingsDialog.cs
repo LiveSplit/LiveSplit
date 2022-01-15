@@ -4,6 +4,7 @@ using LiveSplit.UI;
 using LiveSplit.UI.Components;
 using LiveSplit.Utils;
 using LiveSplit.Web;
+using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 using System;
 using System.Collections.Generic;
@@ -80,6 +81,9 @@ namespace LiveSplit.View
             chkAllowGamepads.DataBindings.Add("Checked", this, "AllowGamepadsAsHotkeys");
 
             txtRefreshRate.DataBindings.Add("Text", this, "RefreshRate");
+
+            if (Settings.APIKey != null)
+                tbxAPIKey.Text = Settings.APIKey;
 
             UpdateDisplayedHotkeyValues();
             RefreshRemoveButton();
@@ -414,6 +418,16 @@ namespace LiveSplit.View
                 Settings.RaceProvider = newSettings;                
             }
            
+        }
+
+        private void lblAPIKey_Clicked(object sender, EventArgs e)
+        {
+            Process.Start("https://www.speedrun.com/settings");
+        }
+        private void tbxAPIKey_ApiChanged(object sender, EventArgs e)
+        {    
+            Settings.APIKey = this.tbxAPIKey.Text.ToString();
+            SpeedrunCom.accessToken = Settings.APIKey;
         }
     }
 }

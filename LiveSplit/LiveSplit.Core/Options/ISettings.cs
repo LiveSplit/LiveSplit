@@ -20,6 +20,8 @@ namespace LiveSplit.Options
         IRaceViewer RaceViewer { get; set; }
         IList<RaceProviderSettings> RaceProvider { get; set; }
         
+        string APIKey { get; set; }
+
         IList<string> ActiveAutoSplitters { get; set; }
         IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
 

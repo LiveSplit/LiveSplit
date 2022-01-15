@@ -21,6 +21,7 @@ namespace LiveSplit.Options
         public int RefreshRate { get; set; }
         public IRaceViewer RaceViewer { get; set; }
         public IList<RaceProviderSettings> RaceProvider { get; set; }
+        public string APIKey { get; set; }
         public IList<string> ActiveAutoSplitters { get; set; }
         public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
 
@@ -93,6 +94,7 @@ namespace LiveSplit.Options
                 LastComparison = LastComparison,
                 RaceViewer = RaceViewer,
                 RaceProvider = new List<RaceProviderSettings>(RaceProvider),
+                APIKey = APIKey+"",
                 AgreedToSRLRules = AgreedToSRLRules,
                 SimpleSumOfBest = SimpleSumOfBest,
                 RefreshRate = RefreshRate,
