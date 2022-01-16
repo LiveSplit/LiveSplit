@@ -396,9 +396,9 @@
             <Game>Sonic 4: Episode Metal</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic4Episode2/master/Components/LiveSplit.Sonic4Episode2.dll</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic4Episode2/master/LiveSplit.Sonic4Episode2.asl</URL>
         </URLs>
-        <Type>Component</Type>
+        <Type>Script</Type>
         <Description>Autosplitting by Jujstme</Description>
     </AutoSplitter>
     <AutoSplitter>
@@ -10946,6 +10946,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ldmnt/ash-autosplitter/master/ASH_Autosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/master/mono/mono_v2_x86.xml</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets, splits (check settings), syncs to IGT. Click 'Website' to look up locations. (by Ero and Hamb)</Description>
@@ -13820,4 +13821,51 @@
         <Description>Autosplitter for the Vlak on DOSBox 0.72. Split at the end of each level.</Description>
         <Website>https://github.com/Marek2810/Vlak</Website>
     </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Gazillionaire</Game>
+			<Game>Gazillionaire!</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/SabulineHorizon/Autosplitters/main/Gazillionaire.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Auto start/split/reset, splits at start of week on every million or every victory. (By SabulineHorizon)</Description>
+		<Website>https://github.com/SabulineHorizon/Autosplitters</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+    <Games>
+      <Game>Dead Island Riptide:DE</Game>
+      <Game>Dead Island Riptide - Definitive Edition</Game>
+      <Game>DIRDE</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/LTR-JT/AutoSplitters/main/DIRDE-Splits.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto start/split, splits are at start of every chapter (LTR-JT)</Description>
+    <Website>https://www.speedrun.com/dead_island_riptide</Website>
+  </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>FINAL FANTASY VII REMAKE</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Mysterion06/FF7RSplitter/main/FF7R.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter with LRT by Mysterion_06_</Description>
+		<Website>https://github.com/Mysterion06/FF7RSplitter/blob/main/README.md</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Sonic's Schoolhouse</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/SpectralPlatypus/AutoSplitters/master/SonicSH.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter for Sonic's Schoolhouse (by SpectralPlatypus)</Description>
+		<Website>https://www.speedrun.com/sonics_schoolhouse</Website>
+	</AutoSplitter>
 </AutoSplitters>
