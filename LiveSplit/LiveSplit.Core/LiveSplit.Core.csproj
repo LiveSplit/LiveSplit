@@ -217,6 +217,7 @@
     <Compile Include="Web\Share\SpeedrunCom.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Web\Share\SpeedrunComApiKeyPrompt.cs" />
     <Compile Include="Web\Share\Twitch.cs" />
     <Compile Include="Web\Share\TwitchEmoteResolver.cs" />
     <Compile Include="Web\Share\TwitchGameResolveDialog.cs">

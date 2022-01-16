@@ -183,7 +183,7 @@ namespace LiveSplit.View
 
             SetWindowTitle();
 
-            SpeedrunCom.Authenticator = new SpeedrunComOAuthForm();
+            SpeedrunCom.Authenticator = new SpeedrunComApiKeyPrompt();
 
             GlobalCache = new GraphicsCache();
             Invalidator = new Invalidator(this);
