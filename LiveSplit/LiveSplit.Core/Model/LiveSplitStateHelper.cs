@@ -195,7 +195,11 @@ namespace LiveSplit.Model
             return bestSegment == null || curSegment < bestSegment || delta < TimeSpan.Zero;
         }
 
-        private static Color GetBestSegmentColor(LiveSplitState state)
+        /// <summary>
+        /// Returns the current Best Segment color, including if the Rainbow Color is being used.
+        /// </summary>
+        /// <param name="state">The current state.</param>
+        public static Color GetBestSegmentColor(LiveSplitState state)
         {
             if (state.LayoutSettings.UseRainbowColor)
             {
