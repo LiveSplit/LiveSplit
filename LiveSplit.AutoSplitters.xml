@@ -2,6 +2,17 @@
 <AutoSplitters>
 	<AutoSplitter>
         <Games>
+            <Game>The Two of Us</Game>
+	    <Game>ttou</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Radioactiv03/Other-Load-Removers/main/ttou.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (By Radioactiv)</Description>
+  </AutoSplitter>
+	<AutoSplitter>
+        <Games>
             <Game>Call Of Juarez: Gunslinger</Game>
 	    <Game>CoJ: Gunslinger</Game>
 	    <Game>CoJ:G</Game>
@@ -1306,7 +1317,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Gunfire%20Reborn/GunfireReborn.asl</URL>
-	    <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/master/mono/mono_il2cpp_2019_x64.xml</URL>
+	    <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/master/mono/il2cpp_x64.xml</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. Pauses when dying. (by Ero)</Description>
@@ -1514,6 +1525,19 @@
         <Type>Script</Type>
         <Description>Starts, resets when starting the first level of any difficulty. Splits when finishing a level. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Sphere%20Complex</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Strobophagia</Game>
+            <Game>Strobophagia | Rave Horror</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Strobophagia%20%E2%80%93%20Rave%20Horror/Strobophagia.asl</URL>
+	    <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/master/mono/il2cpp_master_x64.xml</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Strobophagia%20%E2%80%93%20Rave%20Horror</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3131,10 +3155,11 @@
             <Game>KotOR 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/glasnonck/LiveSplit.ASL/master/KotOR2.asl</URL>
+            <URL>https://raw.githubusercontent.com/x-e-r-o/KotOR-Autosplitter/master/K2splitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By glasnonck)</Description>
+        <Description>Auto Splitter is available by Xero. Includes Load Removal by glasnonck.</Description>
+	    <Website>https://github.com/x-e-r-o/KotOR-Autosplitter/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7047,6 +7072,7 @@
             <Game>Sonic and Knuckles</Game>
             <Game>Sonic 3 Complete</Game>
             <Game>Sonic 3: Angel Island Revisited</Game>
+            <Game>S3AIR - D.A. Garden Edition</Game>
             <Game>Sonic the Hedgehog 3</Game>
             <Game>Sonic 3D Blast</Game>
             <Game>Sonic Spinball (Genesis / Mega Drive)</Game>
@@ -9398,10 +9424,10 @@
             <Game>The Evil Within</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/evilwithin.asl</URL>
+            <URL>https://raw.githubusercontent.com/Mysterion06/TEWSplitter/main/EvilWithinIGT.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (by Mattmatt)</Description>
+        <Description>Autosplitter and IGT by Mattmatt and Mysterion_06_</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13867,5 +13893,41 @@
 		<Type>Script</Type>
 		<Description>Autosplitter for Sonic's Schoolhouse (by SpectralPlatypus)</Description>
 		<Website>https://www.speedrun.com/sonics_schoolhouse</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>OpenTTD</Game>
+			<Game>OpenTTD 1.11.2</Game>
+			<Game>OpenTTD 1.12.1</Game>
+			<Game>OpenTTD 12.1</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/yaram/openttd-autosplitter/master/OpenTTD.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitting, Autostart, Auto Reset for OpenTTD (by Yaram)</Description>
+		<Website>https://github.com/yaram/openttd-autosplitter</Website>
+	</AutoSplitter>
+    <AutoSplitter>
+        <Games>
+	    <Game>Everhood</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/DeamonHunter/Autosplitters/main/Everhood/EverhoodAutosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, Autosplitting and Load Removal for Everhood (by DeamonHunter)</Description>
+        <Website>https://github.com/DeamonHunter/Autosplitters/blob/main/Everhood/Readme.md</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>FINAL FANTASY TYPE-0</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Mysterion06/FFType0Splitter/main/FFType0_Splitter_Current.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitter with LRT by Mysterion_06_</Description>
+		<Website>https://github.com/Mysterion06/FFType0Splitter/blob/main/README.md</Website>
 	</AutoSplitter>
 </AutoSplitters>
