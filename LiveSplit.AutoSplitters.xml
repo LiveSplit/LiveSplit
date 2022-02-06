@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+<AutoSplitter>
+        <Games>
+            <Game>Far Cry 6</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.FarCry6/main/FarCry6.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover (By AlexYeahNot, Binslev, and Meta)</Description>
+  </AutoSplitter>
 	<AutoSplitter>
         <Games>
             <Game>The Two of Us</Game>
@@ -96,6 +106,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Loadless timer made by TDOG20</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Webbed</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/GiraudoSR/Autosplitters/master/Webbed/Webbed%20Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Webbed by Giraudo</Description>
+	<Website>https://github.com/GiraudoSR/Autosplitters/blob/master/Webbed/Webbed%20Autosplitter.asl</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2488,10 +2509,10 @@
             <Game>Left 4 Dead: Survivors</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/ImAciidz/L4D2-Autosplitter/main/L4D2Survivors.asl</URL>
+            <URL>https://raw.githubusercontent.com/Suprnova/L4DAC-Autosplitter/main/L4DSurvivors.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Auto Splitting are available. (By Aciidz and bill_play3)</Description>
+        <Description>Game Time and Auto Splitting are available. (By Aciidz, bill_play3, and Suprnova)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8386,6 +8407,8 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Tiyenti/distance.asl/master/distance.asl</URL>
+	    <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/mono/mono.cs</URL>
+	    <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/mono/mono_helpers.cs</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto split/start/reset, load removal, and cutscene settings are available. (by Brionac, Californ1a, Seekr, and Tiyenti)</Description>
@@ -12823,10 +12846,10 @@
             <Game>Resident Evil 6</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/JYNxYoshii/ASL_Storage/master/RE6_Revised_RC1.asl</URL>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/RE6-Autosplitter/main/Resident%20Evil%206%20Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for RE6, works on 1.06 and 1.1.0. Supports chapter and sub-chapter splits, automatic starts, and automatic resets. (JYNxYoshii/xlYoshii)</Description>
+        <Description>Resident Evil 6 Autosplitter. Works on V1.0.6 and V1.1.0, Timed via IGT, Sub Chapter and Full Chapter splits - (by TheDementedSalad)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13174,11 +13197,11 @@
             <Game>Sunblaze</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/sseneca42/Sunblaze-Autosplitter/main/Sunblaze_Autosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/sseneca42/Autosplitters/main/Sunblaze/Sunblaze_Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>AutoSplitter (by Nepo)</Description>
-        <Website>https://github.com/sseneca42/Sunblaze-Autosplitter</Website>
+        <Website>https://github.com/sseneca42/Autosplitters/tree/main/Sunblaze</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13971,9 +13994,11 @@
 		</Games>
 		<URLs>
 			<URL>https://raw.githubusercontent.com/ultimate-vegan/receiver-2-anyperc-autosplitter/main/receiver-2.asl</URL>
+			<URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/mono/mono.cs</URL>
+			<URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/mono/mono_helpers.cs</URL>
 		</URLs>
 		<Type>Script</Type>
-		<Description>Autosplitter and in-game timer for Receiver 2, final split on pausing in last level (by vegan)</Description>
+		<Description>Autosplitter and in-game timer for Receiver 2, final split on pausing in last level (by vegan, Ero)</Description>
 		<Website>https://github.com/ultimate-vegan/receiver-2-anyperc-autosplitter</Website>
     </AutoSplitter>
 	<AutoSplitter>
@@ -14010,4 +14035,48 @@
 		<Description>Autosplitter by Mysterion_06_</Description>
 		<Website>https://github.com/Mysterion06/GunSplitter/blob/main/README.md</Website>
 	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Tytus Romek i A'Tomek</Game>
+			<Game>Monkey's Adventures</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Tytus.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Autosplitting and Load Removal available (by rythin)</Description>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Simmiland</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/Consoletation/LiveSplit.AutoSplitters/main/Simmiland.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Auto start/reset, in-game timer.</Description>
+		<Website>https://www.speedrun.com/simmiland/</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+		<Games>
+			<Game>Muumit Ja Taikurin hattu</Game>
+		</Games>
+		<URLs>
+			<URL>https://raw.githubusercontent.com/SioNisti/SioNisti.github.io/master/mum3.asl</URL>
+		</URLs>
+		<Type>Script</Type>
+		<Description>Automatically starts, resets, splits after every ruby piece and splits for the end.  tested to work on versions 6.0.2.32 and 6.5.0.0.  (by SioN)</Description>
+		<Website>https://www.speedrun.com/mjth</Website>
+	</AutoSplitter>
+	<AutoSplitter>
+        	<Games>
+            		<Game>Cave Crawler</Game>
+        	</Games>
+        	<URLs>
+            		<URL>https://raw.githubusercontent.com/sseneca42/Autosplitters/main/Cave%20Crawler/CaveCrawler_Autosplitter.asl</URL>
+        	</URLs>
+        	<Type>Script</Type>
+        	<Description>AutoSplitter (by Nepo)</Description>
+        	<Website>https://github.com/sseneca42/Autosplitters/tree/main/Cave%20Crawler</Website>
+    	</AutoSplitter>
 </AutoSplitters>
