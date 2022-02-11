@@ -11,7 +11,7 @@ namespace LiveSplit.Model
 {
     public enum AutoSplitterType
     {
-        Component, Script
+        Component, Script, ScriptExtended
     }
     public class AutoSplitter : ICloneable
     {
@@ -34,7 +34,7 @@ namespace LiveSplit.Model
             {
                 try
                 {
-                    if (!IsDownloaded || Type == AutoSplitterType.Script)
+                    if (!IsDownloaded || Type == AutoSplitterType.Script || Type == AutoSplitterType.ScriptExtended)
                         DownloadFiles();
                     if (Type == AutoSplitterType.Component)
                     {
@@ -72,7 +72,7 @@ namespace LiveSplit.Model
                     client.DownloadFile(new Uri(url), tempLocalPath);
                     File.Copy(tempLocalPath, localPath, true);
 
-                    if (url != URLs.First())
+                    if (Type != AutoSplitterType.ScriptExtended && url != URLs.First())
                     {
                         var factory = ComponentManager.LoadFactory<IComponentFactory>(localPath);
                         if (factory != null)
