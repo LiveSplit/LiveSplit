@@ -72,7 +72,7 @@ namespace LiveSplit.Model
                     client.DownloadFile(new Uri(url), tempLocalPath);
                     File.Copy(tempLocalPath, localPath, true);
 
-                    if (url != URLs.First())
+                    if (url != URLs.First() && localPath.EndsWith(".dll"))
                     {
                         var factory = ComponentManager.LoadFactory<IComponentFactory>(localPath);
                         if (factory != null)
