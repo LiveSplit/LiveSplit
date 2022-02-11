@@ -45,10 +45,10 @@ namespace LiveSplit.Tests.AutoSplitterTests
             Assert.True(!autoSplitters.Values.Any(x => !x.URLs.Any()), "Auto Splitters need to have at least one URL");
             Assert.True(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".asl")) && x.Type == AutoSplitterType.Component),
                 "ASL Script is downloaded even though Type \"Component\" is specified");
-            Assert.True(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".dll")) && x.Type == AutoSplitterType.Script),
+            Assert.True(!autoSplitters.Values.Any(x => x.URLs.First().EndsWith(".dll") && x.Type == AutoSplitterType.Script),
                 "Component is downloaded even though Type \"Script\" is specified");
             Assert.True(!autoSplitters.Values.Any(x => x.URLs.First().EndsWith(".dll") && x.Type == AutoSplitterType.ScriptExtended),
-                "Component was first file even though Type \"ScriptExtended\" is specified");
+                "Component is first file even though Type \"ScriptExtended\" is specified");
             Assert.True(!autoSplitters.Values.Any(x => x.URLs.Any(y => !Uri.IsWellFormedUriString(y, UriKind.Absolute))),
                 "Auto Splitters need to have valid URLs");
             Assert.True(!autoSplitters.Values.Any(x => x.URLs.Any(y => Regex.IsMatch(y, "https://github.com/[^/]*/[^/]*/blob/"))),
