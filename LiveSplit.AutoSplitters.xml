@@ -14122,4 +14122,14 @@
         <Description>Autosplitter with options for different categories.  (by SioN)</Description>
         <Website>https://speed.siontea.com/game/mefb/</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Eye of the Temple</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/runevision/EyeOfTheTempleAutoSplitter/main/EyeOfTheTemple.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Loadless timer based on in-game time. (By runevision)</Description>
+    </AutoSplitter>
 </AutoSplitters>
