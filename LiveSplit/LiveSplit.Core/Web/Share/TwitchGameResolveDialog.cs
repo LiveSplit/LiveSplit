@@ -7,7 +7,7 @@ namespace LiveSplit.Web.Share
 {
     public partial class TwitchGameResolveDialog : Form
     {
-        public string GameName { get; protected set; }
+        public Twitch.TwitchGame Game { get; protected set; }
 
         public TwitchGameResolveDialog(string oldGame)
         {
@@ -33,7 +33,7 @@ namespace LiveSplit.Web.Share
         private void btnOK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            GameName = cbxGames.Text;
+            Game = cbxGames.SelectedItem as Twitch.TwitchGame;
         }
 
         private void cbxGames_TextUpdate(object sender, EventArgs e)
@@ -43,7 +43,7 @@ namespace LiveSplit.Web.Share
         private void btnNoGame_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            GameName = null;
+            Game = null;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

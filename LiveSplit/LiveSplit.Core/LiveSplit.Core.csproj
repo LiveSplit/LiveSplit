@@ -219,19 +219,12 @@
     </Compile>
     <Compile Include="Web\Share\SpeedrunComApiKeyPrompt.cs" />
     <Compile Include="Web\Share\Twitch.cs" />
-    <Compile Include="Web\Share\TwitchEmoteResolver.cs" />
+    <Compile Include="Web\Share\TwitchAccessTokenPrompt.cs" />
     <Compile Include="Web\Share\TwitchGameResolveDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Web\Share\TwitchGameResolveDialog.Designer.cs">
       <DependentUpon>TwitchGameResolveDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Web\Share\TwitchChat.cs" />
-    <Compile Include="Web\Share\TwitchOAuthForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Web\Share\TwitchOAuthForm.Designer.cs">
-      <DependentUpon>TwitchOAuthForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Web\Share\TwitterOAuthForm.cs">
       <SubType>Form</SubType>
@@ -347,9 +340,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Web\Share\TwitchGameResolveDialog.resx">
       <DependentUpon>TwitchGameResolveDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Web\Share\TwitchOAuthForm.resx">
-      <DependentUpon>TwitchOAuthForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Web\Share\TwitterOAuthForm.resx">
       <DependentUpon>TwitterOAuthForm.cs</DependentUpon>

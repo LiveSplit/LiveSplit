@@ -17,7 +17,7 @@ namespace LiveSplit.Web.Share
     {
         internal const string ClientId = "lkz3x9qaxaeujde1tvq21r8d7cdr40x";
 
-        public static readonly Uri BaseUri = new Uri("https://api.twitch.tv/kraken/");
+        public static readonly Uri BaseUri = new Uri("https://api.twitch.tv/helix/");
 
         protected static readonly Twitch _Instance = new Twitch();
         public static Twitch Instance => _Instance;
@@ -26,101 +26,26 @@ namespace LiveSplit.Web.Share
         public string ChannelName { get; protected set; }
         public string ChannelId { get; protected set; }
 
-        internal List<string> _Subscribers;
-        public IEnumerable<string> Subscribers
-        {
-            get
-            {
-                if (_Subscribers == null)
-                {
-                    try
-                    {
-                        _Subscribers = new List<string>();
-                        int offset = 0;
-                        dynamic result = null;
-                        do
-                        {
-                            result = curl(string.Format("channels/{0}/subscriptions?limit=100&offset={1}", HttpUtility.UrlEncode(ChannelId), offset));
-                            var subscribers = (IEnumerable<dynamic>)result.subscriptions;
-                            var subscriberNames = subscribers.Select(new Func<dynamic, string>(x => x.user.display_name));
-                            _Subscribers.AddRange(subscriberNames);
-                        } while ((offset += 100) < result._total);
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-                    }
-                }
-
-                return _Subscribers;
-            }
-        }
-
-        public TwitchChat Chat => ConnectedChats.Values.First();
-        public IDictionary<string, TwitchChat> ConnectedChats { get; protected set; }
-
-        public ITimerModel _AutoUpdateModel;
-        public ITimerModel AutoUpdateModel
-        {
-            get
-            {
-                return _AutoUpdateModel;
-            }
-            set
-            {
-                _AutoUpdateModel = value;
-                value.OnSplit += UpdateTwitch;
-                value.OnReset += (s, e) => UpdateTwitch(s, null);
-                value.OnStart += UpdateTwitch;
-                value.OnSkipSplit += UpdateTwitch;
-                value.OnUndoSplit += UpdateTwitch;
-            }
-        }
-
-        void UpdateTwitch(object sender, EventArgs e)
-        {
-            new Thread(() =>
-                {
-                    try
-                    {
-                        if (IsLoggedIn)
-                        {
-                            var state = AutoUpdateModel.CurrentState;
-                            var phase = state.CurrentPhase;
-                            var run = state.Run;
-
-                            var deltaFormatter = new DeltaTimeFormatter();
-                            var title = $"{run.GameName} - {run.CategoryName} Speedrun";
-
-                            if (phase == TimerPhase.Running)
-                            {
-                                if (state.CurrentSplitIndex > 0)
-                                {
-                                    var lastSplit = run[state.CurrentSplitIndex - 1];
-                                    var delta = deltaFormatter.Format(lastSplit.SplitTime[state.CurrentTimingMethod] - lastSplit.PersonalBestSplitTime[state.CurrentTimingMethod]);
-                                    var splitname = lastSplit.Name;
-                                    title = $"{title} ({delta} on {splitname})";
-                                }
-                            }
-
-                            SetStreamTitleAndGame(title);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-                    }
-                }).Start();
-        }
-
-        public bool IsAutoUpdating { get; set; }
-
         public bool IsLoggedIn => !string.IsNullOrEmpty(ChannelId);
 
-        protected Twitch()
+        public class TwitchGame
         {
-            ConnectedChats = new Dictionary<string, TwitchChat>();
+            public string Name;
+            public string Id;
+
+            public TwitchGame(string name, string id)
+            {
+                Name = name;
+                Id = id;
+            }
+
+            public override string ToString()
+            {
+                return Name;
+            }
         }
+
+        protected Twitch() { }
 
         protected Uri GetUri(string subUri)
         {
@@ -162,24 +87,6 @@ the first time that sharing to Twitch is used.";
             return string.Empty;
         }
 
-        public TwitchChat ConnectToChat(string channel = null)
-        {
-            channel = (channel ?? ChannelId).ToLower();
-            if (ConnectedChats.ContainsKey(channel))
-                throw new ArgumentException("Already connected to channel");
-            var chat = new TwitchChat(AccessToken, channel);
-            ConnectedChats.Add(channel, chat);
-            return chat;
-        }
-
-        public void CloseAllChatConnections()
-        {
-            foreach (var chat in ConnectedChats.Values)
-                chat.Dispose();
-
-            ConnectedChats.Clear();
-        }
-
         bool IRunUploadPlatform.VerifyLogin(string username, string password)
         {
             return VerifyLogin();
@@ -192,25 +99,24 @@ the first time that sharing to Twitch is used.";
             if (VerifyAccessToken())
                 return true;
 
-            var form = new TwitchOAuthForm();
-            form.ShowDialog();
-
-            AccessToken = form.AccessToken;
+            AccessToken = TwitchAccessTokenPrompt.GetAccessToken();
 
             var verified = VerifyAccessToken();
+
+            if (verified)
+                WebCredentials.TwitchAccessToken = AccessToken;
 
             return verified;
         }
 
-        protected dynamic curl(string subUri, string method = "GET", string data = "")
+        protected dynamic curlAbsolute(Uri uri, string method = "GET", string data = "")
         {
-            var uri = GetUri(subUri);
             var request = (HttpWebRequest)WebRequest.Create(uri);
             request.Headers.Add("Client-ID", ClientId);
             request.Method = method;
-            request.Accept = "application/vnd.twitchtv.v5+json";
+            request.Accept = "application/json";
             if (!string.IsNullOrEmpty(AccessToken))
-                request.Headers.Add($"Authorization: OAuth {AccessToken}");
+                request.Headers.Add($"Authorization: Bearer {AccessToken}");
             if (!string.IsNullOrEmpty(data))
             {
                 request.ContentType = "application/json; charset=utf-8";
@@ -229,29 +135,32 @@ the first time that sharing to Twitch is used.";
             }
         }
 
-        public bool SetStreamTitleAndGame(string title, string game = null)
+        protected dynamic curl(string subUri, string method = "GET", string data = "")
         {
-            dynamic result = curl(
-                $"channels/{ChannelId}",
-                "PUT",
-                string.Format("{{" +
-                    "\"channel\":{{" +
-                    "\"status\":\"{0}\"" +
-                    (game == null ? "" : ",\"game\":\"{1}\"") +
-                    "}}" +
-                "}}", title, game));
+            var uri = GetUri(subUri);
+            return curlAbsolute(uri, method, data);
+        }
 
-            return false;
+        public void SetStreamTitleAndGame(string title, TwitchGame game = null)
+        {
+            curl(
+                $"channels?broadcaster_id={HttpUtility.UrlEncode(ChannelId)}",
+                "PATCH",
+                string.Format("{{" +
+                    "\"title\":\"{0}\"" +
+                    (game == null ? "" : ",\"game_id\":\"{1}\"") +
+                "}}", title, game?.Id)
+            );
         }
 
         public bool VerifyAccessToken()
         {
-            dynamic verificationInfo = GetVerificationInfo();
             try
             {
-                ChannelName = verificationInfo.token.user_name;
-                ChannelId = verificationInfo.token.user_id;
-                return verificationInfo.token.valid;
+                dynamic verificationInfo = curlAbsolute(new Uri("https://id.twitch.tv/oauth2/validate"));
+                ChannelName = verificationInfo.login;
+                ChannelId = verificationInfo.user_id;
+                return true;
             }
             catch (Exception ex)
             {
@@ -263,15 +172,15 @@ the first time that sharing to Twitch is used.";
 
         public dynamic SearchGame(string name)
         {
-            return curl($"search/games?query={HttpUtility.UrlEncode(name)}");
+            return curl($"search/categories?query={HttpUtility.UrlEncode(name)}");
         }
 
-        public IEnumerable<string> FindGame(string name)
+        public IEnumerable<TwitchGame> FindGame(string name)
         {
             var result = SearchGame(name);
-            var games = (IEnumerable<dynamic>)result.games;
+            var games = (IEnumerable<dynamic>)result.data;
 
-            Func<dynamic, string> func = x => x.name;
+            Func<dynamic, TwitchGame> func = x => new TwitchGame(x.name, x.id);
             return games.Select(func);
         }
 
@@ -282,7 +191,7 @@ the first time that sharing to Twitch is used.";
 
         public Image GetGameBoxArt(string gameName)
         {
-            var url = ((IEnumerable<dynamic>)(SearchGame(gameName).games)).First().box.large;
+            var url = ((IEnumerable<dynamic>)(SearchGame(gameName).games)).First().box_art_url;
             var request = WebRequest.Create(url);
 
             using (var response = request.GetResponse())
@@ -308,15 +217,13 @@ the first time that sharing to Twitch is used.";
                     return false;
             }
 
-            string game = "";
+            TwitchGame game = null;
 
             try
             {
                 var gameList = FindGame(run.GameName);
-                if (gameList.Contains(run.GameName))
-                    game = run.GameName;
-                else
-                    game = gameList.First();
+
+                game = gameList.First(twitchGame => twitchGame.Name == run.GameName);
             }
             catch (Exception ex)
             {
@@ -333,13 +240,9 @@ the first time that sharing to Twitch is used.";
                         {
                             return false;
                         }
-                        else if (dialog.GameName != null)
+                        else if (dialog.Game != null)
                         {
-                            var gameList = FindGame(dialog.GameName);
-                            if (gameList.Contains(dialog.GameName))
-                                game = dialog.GameName;
-                            else
-                                game = gameList.First();
+                            game = dialog.Game;
                         }
                         resolved = true;
                     }

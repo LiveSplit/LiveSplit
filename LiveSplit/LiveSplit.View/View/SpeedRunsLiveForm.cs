@@ -25,7 +25,6 @@ namespace LiveSplit.View
 
         public SpeedRunsLiveForm(LiveSplitState state, ITimerModel model, string raceId)
         {
-            DownloadAllEmotes();
             RaceId = raceId;
             GameCategory = null;
             var raceChannel = string.Format("#srl-{0}", raceId);
@@ -111,7 +110,6 @@ namespace LiveSplit.View
 
         public SpeedRunsLiveForm(LiveSplitState state, ITimerModel model, string gameName, string gameID, string gameCategory)
         {
-            DownloadAllEmotes();
             GameId = gameID;
             GameCategory = gameCategory;
             SRLClient = new SpeedRunsLiveIRC(state, model, new[] { "#speedrunslive" });
@@ -130,21 +128,6 @@ namespace LiveSplit.View
             SRLClient_StateChanged(null, RaceState.NotInRace);
             btnJoinQuit.Enabled = false;
             FormIsClosing = false;
-        }
-
-        protected void DownloadAllEmotes()
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    this.InvokeIfRequired(TwitchEmoteResolver.DownloadTwitchEmotesList);
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                }
-            });
         }
 
         void SRLClient_GoalChanged(object sender, EventArgs e)
@@ -494,23 +477,7 @@ namespace LiveSplit.View
                     bool isFirst = true;
                     foreach (var word in replacedText.Split(' '))
                     {
-                        if (TwitchEmoteResolver.IsEmote(word))
-                        {
-                            chatBox.AppendText((isFirst ? "" : " "));
-                            var image = TwitchEmoteResolver.Resolve(word);
-                            var whiteImage = new Bitmap(image.Width, image.Height);
-                            var g = Graphics.FromImage(whiteImage);
-                            g.FillRectangle(Brushes.White, 0, 0, image.Width, image.Height);
-                            g.DrawImage(image, 0, 0, image.Width, image.Height);
-                            Clipboard.SetDataObject(whiteImage);
-                            chatBox.ReadOnly = false;
-                            chatBox.Paste();
-                            chatBox.ReadOnly = true;
-                        }
-                        else
-                        {
-                            chatBox.AppendText((isFirst ? "" : " ") + word);
-                        }
+                        chatBox.AppendText((isFirst ? "" : " ") + word);
                         isFirst = false;
                     }
                     colorlessMessage += useSplit;
