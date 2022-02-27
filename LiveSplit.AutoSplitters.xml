@@ -22,7 +22,7 @@
     </AutoSplitter>
      <AutoSplitter>
         <Games>
-            <Game>Ghostbusters The Video Game Remastered</Game>
+            <Game>GHOSTBUSTERS: THE VIDEO GAME REMASTERED</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/GhostbustersTheVideoGameRemastered.asl</URL>
@@ -39,17 +39,6 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitter/Load Remover (By KunoDemetries)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>The Two of Us</Game>
-            <Game>ttou</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Radioactiv03/Other-Load-Removers/main/ttou.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitter (By Radioactiv)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1624,6 +1613,19 @@
         <Type>Script</Type>
         <Description>Starts automatically. Splits available in the settings. Final split must be manual. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Transformers%20%E2%80%93%20The%20Game</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Two Of Us</Game>
+            <Game>ttou</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/The%20Two%20of%20Us/TheTwoOfUs.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits when either player touches the trophy. (by Ero)</Description>
+        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/The%20Two%20of%20Us</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3396,7 +3398,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/TheEvilWithin2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitter/Load Removal is available. (By Kuno, Demetries, Dread)</Description>
+        <Description>Auto Splitter/Load Removal is available. (By Mysterion_06_, Kuno Demetries, Dread)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4472,10 +4474,10 @@
             <Game>Outlast: Whistleblower</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/Outlast.asl</URL>
+            <URL>https://raw.githubusercontent.com/Anti-Steak/Outlast-New/main/Outlast-New.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter/Load Remover (by AlexisDR, KunoDemetries, Mattmatt)</Description>
+        <Description>Auto Splittting and Load Removal are available (by AlexisDR, KunoDemetries, Mattmatt, anti)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11199,6 +11201,9 @@
             <Game>Kangurek Kao: Tajemnica Wulkanu</Game>
             <Game>Kao: Mystery of the Volcano</Game>
             <Game>Kao the Kangaroo: Mystery of the Volcano</Game>
+	    <Game>Kao the Kangaroo Mystery of the Volcano</Game>
+	    <Game>Kao the Kangaroo: Mystery of the Volcano Category Extensions</Game>
+	    <Game>Kao the Kangaroo Mystery of the Volcano Category Extensions</Game>
             <Game>Kao the Kangaroo Round 3: Mystery of the Volcano</Game>
             <Game>Kao - Mystery of Volcano Island</Game>
         </Games>
@@ -14200,5 +14205,49 @@
         <Type>Script</Type>
         <Description>Auto start/split/reset supported (By CaptainRektbeard)</Description>
         <Website>https://github.com/samjones246/most-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Drift86</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/SioNisti/autosplit/raw/main/Drift86%20V3.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+		<Description>Autosplitter for fullgame categories plus an option for lap splits.  (by SioN)</Description>
+		<Website>http://www.drift86speed.ga/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Satisfactory</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Epiphane/AutoSplitHelper/master/Splitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Satisfactory</Description>
+        <Website>https://github.com/Epiphane/AutoSplitHelper#readme</Website>
+    </AutoSplitter>
+	 <AutoSplitter>
+        <Games>
+            <Game>Resident Evil: Revelations 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Resident-Evil-2-Revelations-Splitter/main/Resident%20Evil%20Revelations%202%20Autosplitter%202.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>RE Rev 2 Autosplitter - LRT Timed - Sub Chapter, DLC and Full Campaign Splitting - (by TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Elden Ring</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/dwonisch/LiveSplit.EldenRing/master/Components/LiveSplit.EldenRing.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>GameTime for Elden Ring</Description>
+        <Website>https://github.com/dwonisch/LiveSplit.EldenRing</Website>
     </AutoSplitter>
 </AutoSplitters>
