@@ -1,5 +1,7 @@
 ﻿using LiveSplit.Model.Input;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml;
 using static LiveSplit.UI.SettingsHelper;
 
@@ -171,14 +173,18 @@ namespace LiveSplit.Options
 
         private bool AnyGamepadKeys()
         {
-            return SplitKey.IsButton
-                || ResetKey.IsButton
-                || SkipKey.IsButton
-                || UndoKey.IsButton
-                || PauseKey.IsButton
-                || ToggleGlobalHotkeys.IsButton
-                || SwitchComparisonPrevious.IsButton
-                || SwitchComparisonNext.IsButton;
+            var buttons = new List<KeyOrButton> {
+                SplitKey,
+                ResetKey,
+                SkipKey,
+                UndoKey,
+                PauseKey,
+                ToggleGlobalHotkeys,
+                SwitchComparisonPrevious,
+                SwitchComparisonNext
+            };
+
+            return buttons.Any(button => button?.IsButton ?? false);
         }
     }
 }
