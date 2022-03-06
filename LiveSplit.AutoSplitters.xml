@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<AutoSplitter>
+        <Games>
+            <Game>Need for Speed: Underground 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tdog20/NFS-AutoSplitter/main/Livesplit.NFSUG2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Loadless timer made by TDOG20</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>DYSMANTLE</Game>
@@ -26,6 +36,17 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/GhostbustersTheVideoGameRemastered.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter/Load Remover (By KunoDemetries)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Bloons Tower Defense 5</Game>
+		<Game>BTD5</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/BloonsTowerDefense5.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitter/Load Remover (By KunoDemetries)</Description>
@@ -1303,17 +1324,6 @@
         <Type>Script</Type>
         <Description>Starts automatically. Splits on level completion. Logs IL times to a file. (by Ero)</Description>
         <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Door%20Kickers%20%E2%80%93%20Action%20Squad</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Exo One</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Exo%20One/EXO_ONE.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts automatically. Splits when warping. Syncs to level-completion time upon warping. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Exo%20One</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3080,6 +3090,19 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Penumbra: Requiem</Game>
+            <Game>Penumbra Requiem</Game>
+            <Game>Requiem</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheMagicAlicorn/asl/master/Penumbra%20Requiem.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is availaible.</Description>
+        <Website>https://github.com/TheMagicAlicorn/asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>BioShock: The Collection</Game>
             <Game>BioShock The Collection</Game>
             <Game>BioShock Remastered</Game>
@@ -4474,10 +4497,10 @@
             <Game>Outlast: Whistleblower</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Anti-Steak/Outlast-New/main/Outlast-New.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/Outlast.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splittting and Load Removal are available (by AlexisDR, KunoDemetries, Mattmatt, anti)</Description>
+        <Description>Auto Splittting and Load Removal are available (by Anti, AlexisDR, KunoDemetries, Mattmatt)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7607,17 +7630,6 @@
             <Game>Tomb Raider 2</Game>
             <Game>TRII</Game>
             <Game>TR2</Game>
-            <Game>Classic Tomb Raider Category Extensions</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Components/TR2.dll</URL>
-        </URLs>
-        <Type>Component</Type>
-        <Description>Automatic start, split and reset for FG, IL, and deathruns of leaderboard-approved versions - by Midge and rtrger</Description>
-        <Website>https://github.com/TombRunners/Autosplitters</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Tomb Raider II Gold</Game>
             <Game>Tomb Raider 2 Gold</Game>
             <Game>Tomb Raider II: Golden Mask</Game>
@@ -7628,10 +7640,11 @@
             <Game>TR2: Golden Mask</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIIGold/Components/TR2Gold.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Components/TR2.dll</URL>
+		    <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Automatic start, split and reset for FG, IL, and deathruns of leaderboard-approved versions - by Midge and rtrger</Description>
+        <Description>Automatic start, split and reset for FG, IL, and deathruns of leaderboard-approved versions for TR2 and TR2 Gold - by Midge and rtrger</Description>
         <Website>https://github.com/TombRunners/Autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -9356,6 +9369,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TR1996.dll</URL>
+		    <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Automatic start, split, and reset are available, as well as an IL timer and IGT display. (by Midge, rtrger, Lowosos, RiiFT)</Description>
@@ -12298,6 +12312,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIII/Components/TR3.dll</URL>
+			<URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIII/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. By apel, Danza, Midge, rr-, rtrger</Description>
@@ -13729,10 +13744,11 @@
             <Game>Inscryption</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Andersama/LiveSplitters/main/Inscryption.asl</URL>
+            <URL>https://github.com/just-ero/LiveSplitters/raw/main/Inscryption.asl</URL>
+            <URL>https://github.com/just-ero/AutoSplitHelp/raw/main/libraries/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Inscryption AutoSplitter by Andersama</Description>
+        <Description>Starts the timer automatically. Splits available in the settings. Removes loads. (by Ero, Andersama)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14249,5 +14265,37 @@
         <Type>Component</Type>
         <Description>GameTime for Elden Ring</Description>
         <Website>https://github.com/dwonisch/LiveSplit.EldenRing</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Suffering</Game>
+	    <Game>The Suffering: Prison is Hell</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/OwlLukas/Components/main/The%20Suffering%20Prison%20is%20Hell%20Autosplitter/TheSufferingPrisonIsHell.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Full RTA Autosplitting is available. (by Owllukas)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Neon White</Game>
+            <Game>Neon White Demo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/crashb/neon-white-autosplitter/main/neonwhite.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Neon White</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Catwoman</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SioNisti/autosplit/main/CATWOMAN.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for a bad game. (by SioN)</Description>
     </AutoSplitter>
 </AutoSplitters>
