@@ -1818,6 +1818,7 @@ namespace LiveSplit.View
         {
             using (var splitDialog = new OpenFileDialog())
             {
+                splitDialog.Filter = "LiveSplit Splits (*.lss)|*.lss|All files (*.*)|*.*";
                 IsInDialogMode = true;
                 try
                 {
