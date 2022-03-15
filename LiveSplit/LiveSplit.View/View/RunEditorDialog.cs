@@ -727,9 +727,7 @@ namespace LiveSplit.View
                     openFileDialog.InitialDirectory = initialPath;
                 }
                 openFileDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All files (*.*)|*.*";
-                if (openFileDialog.ShowDialog() != DialogResult.OK ||
-                    Path.GetExtension(openFileDialog.FileName) != ".lsl" ||
-                    !File.Exists(openFileDialog.FileName))
+                if (openFileDialog.ShowDialog() != DialogResult.OK)
                 {
                     return;
                 }
