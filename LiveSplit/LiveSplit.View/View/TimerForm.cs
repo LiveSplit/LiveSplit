@@ -33,7 +33,6 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
-using System.Timers;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -79,8 +78,6 @@ namespace LiveSplit.View
         protected float TotalPosition { get; set; }
 
         private bool DontRedraw = false;
-
-        private StringBuilder sb = new StringBuilder();
 
         protected Region UpdateRegion { get; set; }
 
@@ -1179,9 +1176,6 @@ namespace LiveSplit.View
 
         void TimerElapsed()
         {
-            //((System.Timers.Timer)source).Interval = 10;
-            //int logCount = 0;
-            decimal updateStartTime = DateTime.Now.Ticks;
             try
             {
                 this.InvokeIfRequired(() =>
@@ -1242,8 +1236,6 @@ namespace LiveSplit.View
                     Invalidate();
                 }
             }
-            decimal updateEndTime = DateTime.Now.Ticks;
-            sb.AppendLine(String.Format("Frametime: {0} \n", updateEndTime));
         }
 
         private void FixSize()
