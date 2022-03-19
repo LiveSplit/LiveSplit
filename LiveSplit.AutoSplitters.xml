@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
-	<AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Shadow Warrior 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.ShadowWarrior3/main/ShadowWarrior3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Remover made by Meta</Description>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Need for Speed: Underground 2</Game>
         </Games>
@@ -30,7 +40,7 @@
         <Type>Script</Type>
         <Description>Load Remover (By AlexYeahNot, Binslev, and Meta)</Description>
     </AutoSplitter>
-     <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>GHOSTBUSTERS: THE VIDEO GAME REMASTERED</Game>
         </Games>
@@ -40,10 +50,10 @@
         <Type>Script</Type>
         <Description>Auto Splitter/Load Remover (By KunoDemetries)</Description>
     </AutoSplitter>
-	<AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Bloons Tower Defense 5</Game>
-		<Game>BTD5</Game>
+            <Game>BTD5</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/BloonsTowerDefense5.asl</URL>
@@ -51,7 +61,7 @@
         <Type>Script</Type>
         <Description>Auto Splitter/Load Remover (By KunoDemetries)</Description>
     </AutoSplitter>
-      <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>God of War (2018)</Game>
         </Games>
@@ -398,17 +408,6 @@
         <Type>Script</Type>
         <Description>Oh Jeez, Oh No, My Rabbits Are Gone!!! Autosplitter by duncathan_salt</Description>
         <Website>https://discord.gg/5uBNXjG</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Boomerang X</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Sanders68/BoomerangXSplit/master/BOOMERANGX.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Boomerang X Autosplitter (by ero)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1239,441 +1238,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>A Proof of Concept</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/A%20Proof%20of%20Concept/AProofOfConcept.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. Set timer offset to +6.667. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/A%20Proof%20of%20Concept</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Alba: A Wildlife Adventure</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Alba%20%E2%80%93%20A%20Wildlife%20Adventure/Alba.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. Syncs to game time. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Alba%20%E2%80%93%20A%20Wildlife%20Adventure</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>And All Would Cry Beware!</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/And%20All%20Would%20Cry%20Beware!/AAWCB.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts automatically. Splits available in the settings, default split on credits. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/And%20All%20Would%20Cry%20Beware!</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Assemble with Care</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Assemble%20with%20Care/AssembleWithCare.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets when progress is reset. Splits after every level and at the end. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Assemble%20with%20Care</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>City of Beats</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/City%20of%20Beats/CityOfBeats.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits after finishing a node and when defeating a boss. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/City%20of%20Beats</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Devil Daggers</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Devil%20Daggers/DevilDaggers.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits whenever a new set of enemies spawns. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Devil%20Daggers</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Donut County</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Donut%20County/DonutCounty.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts automatically. Splits available in the settings, default split when finishing. Removes loads. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Donut%20County</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Door Kickers: Action Squad</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Door%20Kickers%20%E2%80%93%20Action%20Squad/DKAS.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts automatically. Splits on level completion. Logs IL times to a file. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Door%20Kickers%20%E2%80%93%20Action%20Squad</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>The Final Station</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/The%20Final%20Station/TheFinalStation.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts and resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/The%20Final%20Station</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Give Up, Robot</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Give%20Up%2C%20Robot/GiveUpRobot1.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits after every level. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Give%20Up%2C%20Robot</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Grapple!</Game>
-            <Game>Barji’s Grappler</Game>
-            <Game>Barji’s Grappler!</Game>
-            <Game>Barji's Grappler</Game>
-            <Game>Barji's Grappler!</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Grapple!/Grapple.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits after every level. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Grapple!</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Gunfire Reborn</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Gunfire%20Reborn/GunfireReborn.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. Pauses when dying. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Gunfire%20Reborn</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Hello Neighbor</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Hello%20Neighbor/HelloNeighbor.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts automatically. Removes loads. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Hello%20Neighbor</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Here Comes Niko!</Game>
-            <Game>Here Comes Niko</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Here%20Comes%20Niko/HereComesNiko.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Here%20Comes%20Niko</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>How Fish Is Made</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/How%20Fish%20is%20Made/HowFishIsMade.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits when the end dialog begins. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/How%20Fish%20is%20Made</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Just Shake It</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Just%20Shake%20It/JustShakeIt.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets when crossing the start line. Splits on each checkpoint. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Just%20Shake%20It</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Lightmatter</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Lightmatter/Lightmatter.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits when finishing a level. IL support in settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Lightmatter</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>lil gator game</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/lil%20gator%20game/lilgatorgame.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/lil%20gator%20game</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Maid of Sker</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Maid%20of%20Sker/MaidOfSker.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. Does not split at the end. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Maid%20of%20Sker</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>MX Simulator</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/MX%20Simulator/MXSimulator.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets on a new lap. Splits on each checkpoint. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/MX%20Simulator</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Muck</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Muck/Muck.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits when defeating any boss. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Muck</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>PAW Patrol: Mighty Pups save Adventure Bay</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/PAW%20Patrol%20%E2%80%93%20Mighty%20Pups%20save%20Adventure%20Bay/PP_MPsAB.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Removes loads. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/PAW%20Patrol%20%E2%80%93%20Mighty%20Pups%20save%20Adventure%20Bay</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>The Pedestrian</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/The%20Pedestrian/ThePedestrian.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts automatically. Splits available in the settings, default split when entering the boat. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/The%20Pedestrian</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Phasmophobia</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Phasmophobia/Phasmophobia.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts when players are loaded in. Check settings to splits/resets when closing the truck. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Phasmophobia</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Post Void</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Post%20Void/PostVoid.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Post%20Void</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Postbird In Provence</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Postbird%20In%20Provence/PostbirdInProvence.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Postbird%20In%20Provence</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Project Warlock II</Game>
-            <Game>Project Warlock 2</Game>
-            <Game>Project Warlock II Demo</Game>
-            <Game>Project Warlock 2 Demo</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Project%20Warlock%20II/ProjectWarlockII.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits at the end and optionally on each key. Syncs to in-game time. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Project%20Warlock%20II</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Ruff Night at the Gallery</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Ruff%20Night%20at%20the%20Gallery/RuffNightAtTheGallery.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Ruff%20Night%20at%20the%20Gallery</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Sizeable</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Sizeable/Sizeable.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits when completing a level. Removes loads. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Sizeable</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>The Spectrum Retreat</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/The%20Spectrum%20Retreat/TheSpectrumRetreat.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/The%20Spectrum%20Retreat</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Sphere Complex</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Sphere%20Complex/SphereComplex.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets when starting the first level of any difficulty. Splits when finishing a level. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Sphere%20Complex</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Strobophagia</Game>
-            <Game>Strobophagia | Rave Horror</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Strobophagia%20%E2%80%93%20Rave%20Horror/Strobophagia.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Strobophagia%20%E2%80%93%20Rave%20Horror</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>There Is No Game</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/There%20is%20no%20Game%20(Jam%20Edition%202015)/ThereIsNoGame_Jam2015.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/There%20is%20no%20Game%20(Jam%20Edition%202015)</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Transformers: The Game</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Transformers%20%E2%80%93%20The%20Game/Transformers2007.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts automatically. Splits available in the settings. Final split must be manual. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Transformers%20%E2%80%93%20The%20Game</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>The Two Of Us</Game>
-            <Game>ttou</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/The%20Two%20of%20Us/TheTwoOfUs.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits when either player touches the trophy. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/The%20Two%20of%20Us</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Voidigo</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Voidigo/Voidigo.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Voidigo</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Where is 2018?</Game>
-            <Game>Where is 2019?</Game>
-            <Game>Where is 2020?</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/Where%20is%20New%20Year/WhereIsNewYear.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts automatically. Splits when transitioning screens. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/Where%20is%20New%20Year</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>YAPP: Yet Another Puzzle Platformer</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitTools/master/YAPP%20%E2%80%93%20Yet%20Another%20Puzzle%20Platformer/YAPP.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
-        <Website>https://github.com/just-ero/AutoSplitTools/tree/master/YAPP%20%E2%80%93%20Yet%20Another%20Puzzle%20Platformer</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Kokomando</Game>
         </Games>
         <URLs>
@@ -2192,6 +1756,8 @@
         <Games>
             <Game>Kao the Kangaroo: Round 2</Game>
             <Game>Kao the Kangaroo Round 2</Game>
+            <Game>Kao the Kangaroo: Round 2 Category Extensions</Game>
+            <Game>Kao the Kangaroo Round 2 Category Extensions</Game>
             <Game>Kangurek Kao: Runda 2</Game>
             <Game>Kangurek Kao Runda 2</Game>
             <Game>Kangurek Kao: Runda 2-ga</Game>
@@ -7156,11 +6722,11 @@
             <Game>Sonic CD 2011</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplitASL/master/Sonic%20CD.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicCD2011/main/LiveSplit.SonicCD2011.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>For CD 2011 on Steam. Game Time - Mins and Secs, with ms added on final level.</Description>
-        <Website>https://github.com/SonicSpeedrunning/LiveSplitASL</Website>
+        <Description>Supports both Steam release and decompilation versions of Sonic CD (2011). Settings available.</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicCD2011</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7641,7 +7207,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Components/TR2.dll</URL>
-		    <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Components/TRUtil.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Automatic start, split and reset for FG, IL, and deathruns of leaderboard-approved versions for TR2 and TR2 Gold - by Midge and rtrger</Description>
@@ -8449,7 +8015,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Tiyenti/distance.asl/master/distance.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto split/start/reset, load removal, and cutscene settings are available. (by Brionac, Californ1a, Seekr, and Tiyenti)</Description>
@@ -9369,7 +8935,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TR1996.dll</URL>
-		    <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TRUtil.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Automatic start, split, and reset are available, as well as an IL timer and IGT display. (by Midge, rtrger, Lowosos, RiiFT)</Description>
@@ -9669,17 +9235,6 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load removal and auto-splitting are available. (by Souzooka)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Untitled Goose Game</Game>
-            <Game>Untitled Goose Game Category Extensions</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Dregu/LiveSplit-UntitledGooseGame/master/UntitledGooseGame.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Press HONK to start, splits for all goals, multiple reset and pause conditions available. (by Dregu, Ero)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10727,6 +10282,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/RiskofRain2.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Autospltting and Load Removal available (by rythin) </Description>
@@ -10835,18 +10391,6 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and load removal by vojtas131</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Karlson</Game>
-            <Game>Karlson (Itch.io)</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Micrologist/Livesplit.Karlson/master/Karlson3D.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Game Time and Auto Splitting available. (By Micrologist)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11072,18 +10616,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>A Short Hike</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ldmnt/ash-autosplitter/master/ASH_Autosplitter.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts, resets, splits (check settings), syncs to IGT. Click 'Website' to look up locations. (by Ero and Hamb)</Description>
-        <Website>https://voxelse.github.io/aShortHike/interactiveMap</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Minecraft Dungeons</Game>
             <Game>Minecraft Dungeons Category Extensions</Game>
         </Games>
@@ -11215,9 +10747,9 @@
             <Game>Kangurek Kao: Tajemnica Wulkanu</Game>
             <Game>Kao: Mystery of the Volcano</Game>
             <Game>Kao the Kangaroo: Mystery of the Volcano</Game>
-	    <Game>Kao the Kangaroo Mystery of the Volcano</Game>
-	    <Game>Kao the Kangaroo: Mystery of the Volcano Category Extensions</Game>
-	    <Game>Kao the Kangaroo Mystery of the Volcano Category Extensions</Game>
+            <Game>Kao the Kangaroo Mystery of the Volcano</Game>
+            <Game>Kao the Kangaroo: Mystery of the Volcano Category Extensions</Game>
+            <Game>Kao the Kangaroo Mystery of the Volcano Category Extensions</Game>
             <Game>Kao the Kangaroo Round 3: Mystery of the Volcano</Game>
             <Game>Kao - Mystery of Volcano Island</Game>
         </Games>
@@ -12312,7 +11844,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIII/Components/TR3.dll</URL>
-			<URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIII/Components/TRUtil.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIII/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. By apel, Danza, Midge, rr-, rtrger</Description>
@@ -12632,18 +12164,6 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal (By Nikko)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Marble It Up!</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/TalentedPlatinum/AutoSplitters/main/MarbleItUp.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/ULibrary.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts the timer automatically on Learning To Roll. Splits available in the settings. (by TalentedPlatinum, Ero)</Description>
-        <Website>https://github.com/TalentedPlatinum/AutoSplitters/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13741,17 +13261,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Inscryption</Game>
-        </Games>
-        <URLs>
-            <URL>https://github.com/just-ero/LiveSplitters/raw/main/Inscryption.asl</URL>
-            <URL>https://github.com/just-ero/AutoSplitHelp/raw/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Starts the timer automatically. Splits available in the settings. Removes loads. (by Ero, Andersama)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Dethkarz</Game>
         </Games>
         <URLs>
@@ -13955,7 +13464,7 @@
             <URL>https://raw.githubusercontent.com/Marek2810/Vlak/main/vlak.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for the Vlak on DOSBox 0.72. Split at the end of each level.</Description>
+        <Description>Autosplitter for the Vlak on DOSBox. Split at the end of each level.</Description>
         <Website>https://github.com/Marek2810/Vlak</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -14025,23 +13534,11 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/DeamonHunter/Autosplitters/main/Everhood/EverhoodAutosplitter.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autostart, Autosplitting and Load Removal for Everhood (By DeamonHunter, Ero)</Description>
         <Website>https://github.com/DeamonHunter/Autosplitters/blob/main/Everhood/Readme.md</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Receiver 2</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/ultimate-vegan/receiver-2-anyperc-autosplitter/main/receiver-2.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitter and in-game timer for Receiver 2, final split on pausing in last level (by vegan, Ero)</Description>
-        <Website>https://github.com/ultimate-vegan/receiver-2-anyperc-autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14171,7 +13668,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/runevision/EyeOfTheTempleAutoSplitter/main/EyeOfTheTemple.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Loadless timer based on in-game time. (By runevision)</Description>
@@ -14187,7 +13684,7 @@
         <Description>(PC) Check settings for Auto-Starts and Auto-Splits. (By Slask and CptBrian)</Description>
         <Website>https://www.speedrun.com/grappledog</Website>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Castlevania: Symphony of the Night</Game>
             <Game>Symphony of the Night</Game>
@@ -14228,11 +13725,11 @@
         </Games>
         <URLs>
             <URL>https://github.com/SioNisti/autosplit/raw/main/Drift86%20V3.asl</URL>
-            <URL>https://raw.githubusercontent.com/just-ero/AutoSplitHelp/main/libraries/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
-		<Description>Autosplitter for fullgame categories plus an option for lap splits.  (by SioN)</Description>
-		<Website>http://www.drift86speed.ga/</Website>
+        <Description>Autosplitter for fullgame categories plus an option for lap splits.  (by SioN)</Description>
+        <Website>http://www.drift86speed.ga/</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14245,7 +13742,7 @@
         <Description>Autosplitter for Satisfactory</Description>
         <Website>https://github.com/Epiphane/AutoSplitHelper#readme</Website>
     </AutoSplitter>
-	 <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Resident Evil: Revelations 2</Game>
         </Games>
@@ -14269,7 +13766,7 @@
     <AutoSplitter>
         <Games>
             <Game>The Suffering</Game>
-	    <Game>The Suffering: Prison is Hell</Game>
+            <Game>The Suffering: Prison is Hell</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/OwlLukas/Components/main/The%20Suffering%20Prison%20is%20Hell%20Autosplitter/TheSufferingPrisonIsHell.asl</URL>
@@ -14297,5 +13794,522 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for a bad game. (by SioN)</Description>
+    </AutoSplitter>
+
+    <!-- Auto splitters managed by Ero -->
+    <AutoSplitter>
+        <Games>
+            <Game>A Short Hike</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/ldmnt/ash-autosplitter/raw/master/ASH_Autosplitter.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets, splits (check settings), syncs to IGT. Click 'Website' to look up locations. (by Ero and Hamb)</Description>
+        <Website>https://voxelse.github.io/aShortHike/interactiveMap</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Boomerang X</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Sanders68/BoomerangXSplit/raw/master/BOOMERANGX.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. Syncs to game time. (by Ero)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Inscryption</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/LiveSplitters/raw/main/Inscryption.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts automatically. Splits available in the settings. Removes loads. (by Ero, Andersama)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Karlson</Game>
+            <Game>Karlson (Itch.io)</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Micrologist/Livesplit.Karlson/raw/master/Karlson3D.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits when completing a level. Syncs to game time. (by Micrologist, Ero)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Marble It Up!</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/TalentedPlatinum/AutoSplitters/raw/main/MarbleItUp.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/ULibrary.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts the timer automatically on Learning To Roll. Splits available in the settings. (by TalentedPlatinum, Ero)</Description>
+        <Website>https://github.com/TalentedPlatinum/AutoSplitters/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Receiver 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/ultimate-vegan/receiver-2-anyperc-autosplitter/raw/main/receiver-2.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits after each elvel. Syncs to game time. (by vegan, Ero)</Description>
+        <Website>https://github.com/ultimate-vegan/receiver-2-anyperc-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Untitled Goose Game</Game>
+            <Game>Untitled Goose Game Category Extensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Dregu/LiveSplit-UntitledGooseGame/raw/master/UntitledGooseGame.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Press HONK to start, splits for all goals, multiple reset and pause conditions available. (by Dregu, Ero)</Description>
+    </AutoSplitter>
+
+    <!-- Auto splitters by Ero -->
+    <AutoSplitter>
+        <Games>
+            <Game>A Proof of Concept</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/A%20Proof%20of%20Concept/AProofOfConcept.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/A%20Proof%20of%20Concept</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Alba: A Wildlife Adventure</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Alba%20%E2%80%93%20A%20Wildlife%20Adventure/Alba.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. Syncs to game time. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Alba%20%E2%80%93%20A%20Wildlife%20Adventure</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>And All Would Cry Beware!</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/And%20All%20Would%20Cry%20Beware!/AAWCB.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts automatically. Splits available in the settings, default split on credits. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/And%20All%20Would%20Cry%20Beware!</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Assemble with Care</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Assemble%20with%20Care/AssembleWithCare.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets when progress is reset. Splits after every level and at the end. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Assemble%20with%20Care</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Devil Daggers</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Devil%20Daggers/DevilDaggers.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits whenever a new set of enemies spawns. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Devil%20Daggers</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Donut County</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Donut%20County/DonutCounty.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts automatically. Splits available in the settings, default split when finishing. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Donut%20County</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Door Kickers: Action Squad</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Door%20Kickers%20%E2%80%93%20Action%20Squad/DKAS.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts automatically. Splits on level completion. Logs IL times to a file. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Door%20Kickers%20%E2%80%93%20Action%20Squad</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Final Station</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/The%20Final%20Station/TheFinalStation.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts and resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/The%20Final%20Station</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Give Up, Robot</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Give%20Up%2C%20Robot/GiveUpRobot1.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits after every level. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Give%20Up%2C%20Robot</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Grapple!</Game>
+            <Game>Barji’s Grappler</Game>
+            <Game>Barji’s Grappler!</Game>
+            <Game>Barji's Grappler</Game>
+            <Game>Barji's Grappler!</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Grapple!/Grapple.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits after every level. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Grapple!</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Gunfire Reborn</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Gunfire%20Reborn/GunfireReborn.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. Pauses when dying. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Gunfire%20Reborn</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hello Neighbor</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Hello%20Neighbor/HelloNeighbor.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts automatically. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Hello%20Neighbor</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Here Comes Niko!</Game>
+            <Game>Here Comes Niko</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Here%20Comes%20Niko/HereComesNiko.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Here%20Comes%20Niko</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>How Fish Is Made</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/How%20Fish%20is%20Made/HowFishIsMade.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits when the end dialog begins. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/How%20Fish%20is%20Made</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Just Shake It</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Just%20Shake%20It/JustShakeIt.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets when crossing the start line. Splits on each checkpoint. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Just%20Shake%20It</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lightmatter</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Lightmatter/Lightmatter.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits when finishing a level. IL support in settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Lightmatter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>lil gator game</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/lil%20gator%20game/lilgatorgame.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/lil%20gator%20game</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Maid of Sker</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Maid%20of%20Sker/MaidOfSker.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. Does not split at the end. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Maid%20of%20Sker</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>MX Simulator</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/MX%20Simulator/MXSimulator.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets on a new lap. Splits on each checkpoint. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/MX%20Simulator</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>PAW Patrol: Mighty Pups save Adventure Bay</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/PAW%20Patrol%20%E2%80%93%20Mighty%20Pups%20save%20Adventure%20Bay/PP_MPsAB.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/PAW%20Patrol%20%E2%80%93%20Mighty%20Pups%20save%20Adventure%20Bay</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Pedestrian</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/The%20Pedestrian/ThePedestrian.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts automatically. Splits available in the settings, default split when entering the boat. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/The%20Pedestrian</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Post Void</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Post%20Void/PostVoid.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Post%20Void</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Postbird In Provence</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Postbird%20In%20Provence/PostbirdInProvence.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Postbird%20In%20Provence</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Project Warlock II</Game>
+            <Game>Project Warlock 2</Game>
+            <Game>Project Warlock II Demo</Game>
+            <Game>Project Warlock 2 Demo</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Project%20Warlock%20II/ProjectWarlockII.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits at the end and optionally on each key. Syncs to in-game time. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Project%20Warlock%20II</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>RE:RUN</Game>
+            <Game>RE: RUN</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/RE%20RUN/RERUN.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits when finishing a level. Adds together level times. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/RE%20RUN</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ruff Night at the Gallery</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Ruff%20Night%20at%20the%20Gallery/RuffNightAtTheGallery.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Ruff%20Night%20at%20the%20Gallery</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Spectrum Retreat</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/The%20Spectrum%20Retreat/TheSpectrumRetreat.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/The%20Spectrum%20Retreat</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sphere Complex</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Sphere%20Complex/SphereComplex.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets when starting the first level of any difficulty. Splits when finishing a level. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Sphere%20Complex</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Strobophagia</Game>
+            <Game>Strobophagia | Rave Horror</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Strobophagia%20%E2%80%93%20Rave%20Horror/Strobophagia.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Strobophagia%20%E2%80%93%20Rave%20Horror</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>There Is No Game</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/There%20is%20no%20Game%20(Jam%20Edition%202015)/ThereIsNoGame_Jam2015.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/There%20is%20no%20Game%20(Jam%20Edition%202015)</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Total War: WARHAMMER III</Game>
+            <Game>Total War: WARHAMMER 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Total%20War%20%E2%80%93%20WARHAMMER%20III/TotalWar_Warhammer3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Removes loading times. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Total%20War%20%E2%80%93%20WARHAMMER%20III</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Transformers: The Game</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Transformers%20%E2%80%93%20The%20Game/Transformers2007.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts automatically. Splits available in the settings. Final split must be manual. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Transformers%20%E2%80%93%20The%20Game</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Two Of Us</Game>
+            <Game>ttou</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/The%20Two%20of%20Us/TheTwoOfUs.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits when either player touches the trophy. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/The%20Two%20of%20Us</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Voidigo</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Voidigo/Voidigo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Voidigo</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>YAPP: Yet Another Puzzle Platformer</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/YAPP%20%E2%80%93%20Yet%20Another%20Puzzle%20Platformer/YAPP.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/YAPP%20%E2%80%93%20Yet%20Another%20Puzzle%20Platformer</Website>
+    </AutoSplitter>
+
+    <AutoSplitter>
+        <Games>
+            <Game>Kao the Kangaroo Multiruns</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/KaoTrilogy.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Circuit Superstars</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CircuitSuperstars.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description> Autospltting and In-Game Time available (by rythin) </Description>
     </AutoSplitter>
 </AutoSplitters>
