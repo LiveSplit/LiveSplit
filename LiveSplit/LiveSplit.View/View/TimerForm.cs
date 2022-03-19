@@ -31,7 +31,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Threading;
+using System.Timers;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -77,6 +79,8 @@ namespace LiveSplit.View
         protected float TotalPosition { get; set; }
 
         private bool DontRedraw = false;
+
+        private StringBuilder sb = new StringBuilder();
 
         protected Region UpdateRegion { get; set; }
 
@@ -1153,19 +1157,31 @@ namespace LiveSplit.View
 
         void RefreshTimerWorker()
         {
+            int updateTargetTime = 1000 / Settings.RefreshRate;
             while (true)
             {
-                Thread.Sleep(1000 / Settings.RefreshRate);
+                long updateStartTime = DateTime.Now.Ticks;
+
                 try
                 {
                     TimerElapsed();
                 }
                 catch { }
+
+                long updateEndTime = DateTime.Now.Ticks;
+                int updateDuration = (int)((updateEndTime - updateStartTime) / TimeSpan.TicksPerMillisecond);
+                if (updateDuration < updateTargetTime)
+                {
+                    Thread.Sleep((updateTargetTime - updateDuration));
+                }
             }
         }
 
         void TimerElapsed()
         {
+            //((System.Timers.Timer)source).Interval = 10;
+            //int logCount = 0;
+            decimal updateStartTime = DateTime.Now.Ticks;
             try
             {
                 this.InvokeIfRequired(() =>
@@ -1174,10 +1190,8 @@ namespace LiveSplit.View
                     {
                         if (Hook != null)
                             Hook.Poll();
-
                         if (CurrentState.Run.IsAutoSplitterActive())
                             CurrentState.Run.AutoSplitter.Component.Update(null, CurrentState, 0, 0, Layout.Mode);
-
                         if (DontRedraw)
                             return;
 
@@ -1228,6 +1242,8 @@ namespace LiveSplit.View
                     Invalidate();
                 }
             }
+            decimal updateEndTime = DateTime.Now.Ticks;
+            sb.AppendLine(String.Format("Frametime: {0} \n", updateEndTime));
         }
 
         private void FixSize()
