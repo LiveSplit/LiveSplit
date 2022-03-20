@@ -2,6 +2,19 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Will You Snail?</Game>
+            <Game>Will You Snail</Game>
+            <Game>WYS</Game>
+            <Game>Will You Snail? Category Extensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/wys_asl/main/wys.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter written by diggity and FlippyDolphin.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Shadow Warrior 3</Game>
         </Games>
         <URLs>
@@ -9,6 +22,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and Load Remover made by Meta</Description>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>TALES OF ARISE</Game>
+            <Game>Tale of Arise</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/TalesofArise.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover (By KunoDemetries)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1830,6 +1854,7 @@
         <Games>
             <Game>Aperture Tag</Game>
             <Game>Portal 2</Game>
+            <Game>Portal 2 Speedrun Mod</Game>
             <Game>Portal Reloaded</Game>
             <Game>Portal Stories: Mel</Game>
             <Game>Thinking with Time Machine</Game>
@@ -13772,7 +13797,7 @@
             <URL>https://raw.githubusercontent.com/OwlLukas/Components/main/The%20Suffering%20Prison%20is%20Hell%20Autosplitter/TheSufferingPrisonIsHell.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Full RTA Autosplitting is available. (by Owllukas)</Description>
+        <Description>Start, Split, Reset, Load-Remover and settings are available. (by Owllukas)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13849,7 +13874,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/TalentedPlatinum/AutoSplitters/raw/main/MarbleItUp.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/ULibrary.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts the timer automatically on Learning To Roll. Splits available in the settings. (by TalentedPlatinum, Ero)</Description>
@@ -14223,6 +14248,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>TUNIC</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/TUNIC/TUNIC.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets automatically. Splits when the run is over. Syncs to game time. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/TUNIC</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>There Is No Game</Game>
         </Games>
         <URLs>
@@ -14311,5 +14348,39 @@
         </URLs>
         <Type>Script</Type>
         <Description> Autospltting and In-Game Time available (by rythin) </Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>liminal ranger</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/liminalranger-asl/master/liminalranger.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split supported (By CaptainRektbeard)</Description>
+        <Website>https://github.com/samjones246/liminalranger-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hyperbolica</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/hyperbolica-asl/main/hyperbolica.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split and load removal supported (By CaptainRektbeard)</Description>
+        <Website>https://github.com/samjones246/hyperbolica-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Have a Nice Death</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Museus/autosplitters/main/HaveANiceDeath/HaveANiceDeath.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover for Have a Nice Death</Description>
+        <Website>https://github.com/Museus/autosplitters/tree/main/HaveANiceDeath</Website>
     </AutoSplitter>
 </AutoSplitters>
