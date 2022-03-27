@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+<AutoSplitter>
+        <Games>
+            <Game>Ghostwire: Tokyo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.GhostwireTokyo/main/GhostwireTokyo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter written by Meta.</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Will You Snail?</Game>
@@ -8957,13 +8967,21 @@
             <Game>TR1</Game>
             <Game>TR</Game>
             <Game>TR1996</Game>
+            <Game>Tomb Raider 1 Unfinished Business</Game>
+            <Game>Tomb Raider Unfinished Business</Game>
+            <Game>Tomb Raider 1: Unfinished Business</Game>
+            <Game>Tomb Raider: Unfinished Business</Game>
+            <Game>TR1UB</Game>
+            <Game>TRUB</Game>
+            <Game>TR1:UB</Game>
+            <Game>TR:UB</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TR1996.dll</URL>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Automatic start, split, and reset are available, as well as an IL timer and IGT display. (by Midge, rtrger, Lowosos, RiiFT)</Description>
+        <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. (by Midge, rtrger, Lowosos, RiiFT)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13782,11 +13800,15 @@
             <Game>Elden Ring</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/dwonisch/LiveSplit.EldenRing/master/Components/LiveSplit.EldenRing.dll</URL>
+	    <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/SoulSplitter.dll</URL>
+            <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignColors.dll</URL>
+	    <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignThemes.Wpf.dll</URL>
+	    <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignThemes.Wpf.xml</URL>
+            <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/SoulMemory.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>GameTime for Elden Ring</Description>
-        <Website>https://github.com/dwonisch/LiveSplit.EldenRing</Website>
+        <Description>Modified in game time for Elden Ring</Description>
+        <Website>https://github.com/FrankvdStam/SoulSplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13879,6 +13901,18 @@
         <Type>Script</Type>
         <Description>Starts the timer automatically on Learning To Roll. Splits available in the settings. (by TalentedPlatinum, Ero)</Description>
         <Website>https://github.com/TalentedPlatinum/AutoSplitters/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Marble Blast Ultra</Game>
+            <Game>OpenMBU</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/thearst3rd/autosplitters/main/LiveSplit.OpenMBU.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports load removal, auto start and splits on OpenMBU beta 1.11 and newer. (by thearst3rd)</Description>
+        <Website>https://github.com/thearst3rd/autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14382,5 +14416,26 @@
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover for Have a Nice Death</Description>
         <Website>https://github.com/Museus/autosplitters/tree/main/HaveANiceDeath</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Indiana Jones and the Emperor's Tomb</Game>
+            <Game>Indiana Jones and the Emperors Tomb</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/thekovic/IJET-AutoSplit/main/IJET-AutoSplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoStart, Autosplit, AutoReset by the_kovic</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>PICO PARK</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Schyvun/Pico-Park-Autosplitter/main/pico.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoStart and Autosplit by Paum &amp; Schy</Description>
     </AutoSplitter>
 </AutoSplitters>
