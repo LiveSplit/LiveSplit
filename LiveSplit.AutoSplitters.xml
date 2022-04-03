@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
-<AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>SkiFree</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/OCircles/Livesplit.Autosplitters/main/SkiFree/SkiFree.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by O_Circles</Description>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Ghostwire: Tokyo</Game>
         </Games>
@@ -32,6 +42,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and Load Remover made by Meta</Description>
+    </AutoSplitter>
+	    <AutoSplitter>
+        <Games>
+            <Game>Martha is Dead</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/marthaisdead.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover (By KunoDemetries)</Description>
     </AutoSplitter>
         <AutoSplitter>
         <Games>
@@ -2084,6 +2104,18 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting, Auto Start and Load Removal are available. (By apple1417)</Description>
+        <Website>https://discord.gg/jF8eSnP</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Tiny Tina's Wonderlands</Game>
+            <Game>Wonderlands</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/apple1417/Autosplitters/master/wonderlands.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal are available. (By apple1417)</Description>
         <Website>https://discord.gg/jF8eSnP</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6654,6 +6686,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Anthem</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Lemuura/Livesplit-Autosplitters/main/Anthem.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal is available. (By Lemuura)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Dragon Age: Inquisition</Game>
         </Games>
         <URLs>
@@ -7225,6 +7267,27 @@
         <Description>Autosplitting and Autostart available for commonly run game versions (By Supra)</Description>
         <Website>https://github.com/supra0/slime-rancher-autosplitter</Website>
     </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>Tomb Raider 4</Game>
+            <Game>Tomb Raider IV</Game>
+            <Game>Tomb Raider 4: The Last Revelation</Game>
+            <Game>Tomb Raider IV: The Last Revelation</Game>
+            <Game>Tomb Raider: The Last Revelation</Game>
+            <Game>TR4</Game>
+            <Game>TRIV</Game>
+            <Game>TR4: The Last Revelation</Game>
+            <Game>TRIV: The Last Revelation</Game>
+            <Game>TR: The Last Revelation</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIV/Components/TR4.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TRUtil/Components/TRUtil.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. (by Midge, apel, trivess)</Description>
+        <Website>https://github.com/TombRunners/Autosplitters</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Tomb Raider II</Game>
@@ -7242,10 +7305,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Components/TR2.dll</URL>
-            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderII/Components/TRUtil.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TRUtil/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Automatic start, split and reset for FG, IL, and deathruns of leaderboard-approved versions for TR2 and TR2 Gold - by Midge and rtrger</Description>
+        <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. (by Midge and rtrger)</Description>
         <Website>https://github.com/TombRunners/Autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8978,7 +9041,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TR1996.dll</URL>
-            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaider1996/Components/TRUtil.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TRUtil/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. (by Midge, rtrger, Lowosos, RiiFT)</Description>
@@ -9582,10 +9645,10 @@
             <Game>BONEWORKS</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/DerKO9/AutoSplitters/master/Boneworks/Boneworks.asl</URL>
+            <URL>https://raw.githubusercontent.com/Sychke/AutoSplitters/master/Boneworks/Boneworks.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-splitting, start, and load removal are available (By DerKO).</Description>
+        <Description>Auto-splitting, start, and load removal are available (By DerKO and Sychke).</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11887,10 +11950,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIII/Components/TR3.dll</URL>
-            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIII/Components/TRUtil.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TRUtil/Components/TRUtil.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. By apel, Danza, Midge, rr-, rtrger</Description>
+        <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. (by apel, Danza, Midge, rr-, rtrger)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
