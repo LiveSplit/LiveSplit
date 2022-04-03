@@ -5319,12 +5319,13 @@
             <Game>StarTrack² Stadium</Game>
             <Game>StarTrack² Valley</Game>
             <Game>TrackMania One - Alpine</Game>
+	    <Game>TrackMania² Canyon: Platform</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/RastaBobby/Trackmania2-Autosplitter/master/TM2-Autosplitter-LoadRemover-March2020.asl</URL>
+            <URL>https://raw.githubusercontent.com/Rastats/Maniaplanet/main/TM2-Autosplitter-IGT%20(by%20Malakat).asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover and auto splitting options are available. (By NeKz)</Description>
+        <Description>IGT timer and auto splitting options are available. (By Malakat)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
