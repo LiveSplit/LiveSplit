@@ -2,6 +2,26 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Octopath Traveler</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Eein/octopath-autosplitter/main/octopath.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (By Z3R01337 and SuperFamicom)</Description>
+    </AutoSplitter>
+<AutoSplitter>
+        <Games>
+            <Game>Stranger of Paradise: Final Fantasy Origin</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/StrangerOfParadiseFinalFantasyOrigins.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Remover (By KunoDemetries and Clara_the_Classy)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>SkiFree</Game>
         </Games>
         <URLs>
@@ -2284,8 +2304,6 @@
             <Game>Unreal Return to Na Pali</Game>
             <Game>Return to Na Pali</Game>
             <Game>Unreal Mission Pack: Return to Na Pali</Game>
-            <Game>Splinter Cell</Game>
-            <Game>Tom Clancy's Splinter Cell</Game>
             <Game>Splinter Cell 3</Game>
             <Game>Splinter Cell: Chaos Theory</Game>
             <Game>Splinter Cell Chaos Theory</Game>
@@ -5319,12 +5337,13 @@
             <Game>StarTrack² Stadium</Game>
             <Game>StarTrack² Valley</Game>
             <Game>TrackMania One - Alpine</Game>
+	    <Game>TrackMania² Canyon : Platform</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/RastaBobby/Trackmania2-Autosplitter/master/TM2-Autosplitter-LoadRemover-March2020.asl</URL>
+            <URL>https://raw.githubusercontent.com/Rastats/Maniaplanet/main/TM2-Autosplitter-IGT%20(by%20Malakat).asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover and auto splitting options are available. (By NeKz)</Description>
+        <Description>IGT timer and auto splitting options are available. (By Malakat)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6824,8 +6843,6 @@
             <Game>Sonic &amp; Knuckles</Game>
             <Game>Sonic and Knuckles</Game>
             <Game>Sonic 3 Complete</Game>
-            <Game>Sonic 3: Angel Island Revisited</Game>
-            <Game>S3AIR - D.A. Garden Edition</Game>
             <Game>Sonic the Hedgehog 3</Game>
             <Game>Sonic 3D Blast</Game>
             <Game>Sonic Spinball (Genesis / Mega Drive)</Game>
@@ -6855,6 +6872,18 @@
         <Type>Script</Type>
         <Description>SEGA Master Splitter supported game, see website for details on emulators, timing etc. (By BenInSweden and others.)</Description>
         <Website>https://github.com/SonicSpeedrunning/SEGAMasterSplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic 3: Angel Island Revisited</Game>
+            <Game>S3AIR - D.A. Garden Edition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic3AIR/main/LiveSplit.Sonic3AIR.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Sonic 3 AIR dedicated autosplitter (by Jujstme and BenInSweden)</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.Sonic3AIR</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14500,5 +14529,82 @@
         </URLs>
         <Type>Script</Type>
         <Description>AutoStart and Autosplit by Paum &amp; Schy</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Tomb Raider 5</Game>
+            <Game>Tomb Raider V</Game>
+            <Game>Tomb Raider Chronicles</Game>
+            <Game>Tomb Raider 5: Chronicles</Game>
+            <Game>Tomb Raider V: Chronicles</Game>
+            <Game>Tomb Raider: Chronicles</Game>
+            <Game>TR5</Game>
+            <Game>TRV</Game>
+            <Game>TRC</Game>
+            <Game>TR5: Chronicles</Game>
+            <Game>TRV: Chronicles</Game>
+            <Game>TR: Chronicles</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderV/Components/TR5.dll</URL>
+            <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TRUtil/Components/TRUtil.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. (by Midge and apel)</Description>
+    </AutoSplitter>
+	  <AutoSplitter>
+        <Games>
+            <Game>SM57 Deluxe Collection</Game>
+	    <Game>SM57 2 Deluxe</Game>
+	    <Game>SM57 Deluxe</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/derric-young/smloadremove/main/SM57%20load%20remover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover By Derric Young</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Shadow of Mordor</Game>
+            <Game>Middle-Earth: Shadow of Mordor</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/ShadowofMordor.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal available (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Splinter Cell</Game>
+            <Game>Tom Clancy's Splinter Cell</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/BlueLovin/TCSCAutoSplitter/main/TCSC_AutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal available (by Distro)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Cry of Fear</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/IlyaTsyganov/Livesplit.CryofFear/main/cryoffear.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal by DrLa</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Marble Marcher</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/marblemarcher-asl/main/marblemarcher.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset supported (By CaptainRektbeard)</Description>
+        <Website>https://github.com/samjones246/marblemarcher-asl</Website>
     </AutoSplitter>
 </AutoSplitters>
