@@ -101,6 +101,9 @@ namespace UpdateManager
 
             public void PerformUpdate()
             {
+                string GetLocalComponentsPath(string xmlChangePath) =>
+                    "Components" + Path.DirectorySeparatorChar + xmlChangePath.Split('/').Last();
+
                 IList<Update> updates = Updates.Where(x => x.Version > Version).ToList();
                 List<string> addedFiles = new List<string>();
                 List<string> changedFiles = new List<string>();
@@ -142,13 +145,13 @@ namespace UpdateManager
 
                 foreach (string path in addedFiles.Concat(changedFiles))
                 {
-                    DownloadFile(UpdateURL + path, path.Replace('/', '\\'));
+                    DownloadFile(UpdateURL + path, GetLocalComponentsPath(path));
                     UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
 
                 foreach (string path in removedFiles)
                 {
-                    File.Delete(path);
+                    File.Delete(GetLocalComponentsPath(path));
                     UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
             }
