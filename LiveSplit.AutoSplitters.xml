@@ -2,6 +2,18 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Patrick's Parabox</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SomeoneSom/PatricksParaboxASL/main/Parabox.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (By atpx8)</Description>
+        <Website>https://www.speedrun.com/patricks_parabox</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Octopath Traveler</Game>
         </Games>
         <URLs>
@@ -63,7 +75,7 @@
         <Type>Script</Type>
         <Description>Autosplitter and Load Remover made by Meta</Description>
     </AutoSplitter>
-	    <AutoSplitter>
+        <AutoSplitter>
         <Games>
             <Game>Martha is Dead</Game>
         </Games>
@@ -393,6 +405,17 @@
         <Type>Script</Type>
         <Description>Auto Start (need to set ~ -1.3 to timer start), Split and Reset. Created by Tenebrosful</Description>
         <Website>https://github.com/Tenebrosful/Zebulon-Livesplit.Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Deltarune</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/0.1-beta.2/Deltarune.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Available for all versions, SURVEY inclued. Auto-endsplit only for SURVEY. Created by Tenebrosful from Narry's Autosplitter</Description>
+        <Website>https://github.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4788,7 +4811,7 @@
             <URL>https://raw.githubusercontent.com/JRoeseph/nppNewAuto/master/nppNewAuto.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automatic Splitting is available. (By MoleTrooper, JRoeseph, and XandoToaster)</Description>
+        <Description>Automatic Splitting is available. (By MoleTrooper, JRoeseph, XandoToaster, and Tratix)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5337,7 +5360,7 @@
             <Game>StarTrack² Stadium</Game>
             <Game>StarTrack² Valley</Game>
             <Game>TrackMania One - Alpine</Game>
-	    <Game>TrackMania² Canyon : Platform</Game>
+        <Game>TrackMania² Canyon : Platform</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Rastats/Maniaplanet/main/TM2-Autosplitter-IGT%20(by%20Malakat).asl</URL>
@@ -5501,6 +5524,17 @@
         <Type>Script</Type>
         <Description>Load Removal and Auto Splitting are available. (By ROMaster2)</Description>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Command &amp; Conquer Remastered</Game>
+            <Game>cncremastered</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Pezzah/LiveSplit.AutoSplitters/main/LiveSplit.CnCRemastered.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start / split / reset are available and calculating game time. (By ROMaster2/Pezzah)</Description>
+    </AutoSplitter> 
     <AutoSplitter>
         <Games>
             <Game>SM64: Last Impact</Game>
@@ -7308,6 +7342,13 @@
             <Game>TR4: The Last Revelation</Game>
             <Game>TRIV: The Last Revelation</Game>
             <Game>TR: The Last Revelation</Game>
+            <Game>The Times Exclusive</Game>
+            <Game>Tomb Raider: The Times Exclusive</Game>
+            <Game>Tomb Raider The Times Exclusive</Game>
+            <Game>Tomb Raider: TTE</Game>
+            <Game>Tomb Raider TTE</Game>
+            <Game>TR:TTE</Game>
+            <Game>TRTTE</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIV/Components/TR4.dll</URL>
@@ -10591,16 +10632,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Tomb Raider: The Lost Artifact</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/rtrger/Components/master/TombRaider3Gold/Component/TR3Gold.dll</URL>
-        </URLs>
-        <Type>Component</Type>
-        <Description>Game time, autostart, autoreset and autosplit for The Lost Artifact.</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Oddworld: Abe's Oddysee</Game>
         </Games>
         <URLs>
@@ -11359,10 +11390,10 @@
             <Game>Ratatouille (Asobo)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/ThePhotoshopMaster/Ratatouille-Asobo-Load-Remover/master/RatatouilleLoadRemover.asl</URL>
+            <URL>https://raw.githubusercontent.com/TTPPMM/Ratatouille-Asobo-Load-Remover/any%25/Ratatouille-LoadRemover-AutoSplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load removal</Description>
+        <Description>Auto-start, auto-splitter and load remover.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11976,6 +12007,12 @@
             <Game>TR3: Adventures of Lara Croft</Game>
             <Game>TRIII</Game>
             <Game>TR3</Game>
+            <Game>Tomb Raider: The Lost Artifact</Game>
+            <Game>Tomb Raider The Lost Artifact</Game>
+            <Game>TR: The Lost Artifact</Game>
+            <Game>TR The Lost Artifact</Game>
+            <Game>TR:TLA</Game>
+            <Game>TLA</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TombRunners/autosplitters/master/TombRaiderIII/Components/TR3.dll</URL>
@@ -13892,10 +13929,10 @@
             <Game>Elden Ring</Game>
         </Games>
         <URLs>
-	    <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/SoulSplitter.dll</URL>
+        <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/SoulSplitter.dll</URL>
             <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignColors.dll</URL>
-	    <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignThemes.Wpf.dll</URL>
-	    <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignThemes.Wpf.xml</URL>
+        <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignThemes.Wpf.dll</URL>
+        <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignThemes.Wpf.xml</URL>
             <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/SoulMemory.dll</URL>
         </URLs>
         <Type>Component</Type>
@@ -14064,6 +14101,19 @@
         <Type>Script</Type>
         <Description>Starts automatically. Splits available in the settings, default split on credits. (by Ero)</Description>
         <Website>https://github.com/just-ero/asl/tree/main/And%20All%20Would%20Cry%20Beware!</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>ANNO: Mutationem</Game>
+            <Game>ANNO: Mutationem Demo</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/ANNO%20%E2%80%93%20Mutationem/ANNO_Mutationem.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Removes loading times. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/ANNO%20%E2%80%93%20Mutationem</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14530,7 +14580,7 @@
         <Type>Script</Type>
         <Description>AutoStart and Autosplit by Paum &amp; Schy</Description>
     </AutoSplitter>
-	<AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Tomb Raider 5</Game>
             <Game>Tomb Raider V</Game>
@@ -14552,11 +14602,11 @@
         <Type>Component</Type>
         <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. (by Midge and apel)</Description>
     </AutoSplitter>
-	  <AutoSplitter>
+      <AutoSplitter>
         <Games>
             <Game>SM57 Deluxe Collection</Game>
-	    <Game>SM57 2 Deluxe</Game>
-	    <Game>SM57 Deluxe</Game>
+        <Game>SM57 2 Deluxe</Game>
+        <Game>SM57 Deluxe</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/derric-young/smloadremove/main/SM57%20load%20remover.asl</URL>
@@ -14564,7 +14614,7 @@
         <Type>Script</Type>
         <Description>Load Remover By Derric Young</Description>
     </AutoSplitter>
-	<AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Shadow of Mordor</Game>
             <Game>Middle-Earth: Shadow of Mordor</Game>
@@ -14586,7 +14636,7 @@
         <Type>Script</Type>
         <Description>Load removal available (by Distro)</Description>
     </AutoSplitter>
-	<AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Cry of Fear</Game>
         </Games>
@@ -14606,5 +14656,27 @@
         <Type>Script</Type>
         <Description>Auto start/split/reset supported (By CaptainRektbeard)</Description>
         <Website>https://github.com/samjones246/marblemarcher-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Little Big Adventure 2 (Twinsen's Odyssey)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/amanekko/little-big-adventure-2-ASL/main/Little%20Big%20Adventure%202%20(Twinsen's%20Odyssey)%20-%20Any%25%20(GOG).asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset for LBA2</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>PogoChamp</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/JakeRabinowitz/PogoChampAutosplitter/main/PogoChamp.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplit support with several different modes, made by the developer of PogoChamp.</Description>
+        <Website>https://github.com/JakeRabinowitz/PogoChampAutosplitter</Website>
     </AutoSplitter>
 </AutoSplitters>
