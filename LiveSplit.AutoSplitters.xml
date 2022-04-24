@@ -2,6 +2,75 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Snake Force</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aeihu/AutoSplittersForSomeGames/main/Snake_Force.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Aeihu</Description>
+        <Website>https://www.speedrun.com/snake_force</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Northbury Grove: Walls Closing In</Game>
+            <Game>Northbury Grove Walls Closing In</Game>
+            <Game>Northbury Grove 3</Game>
+            <Game>nbg3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/nbg3_asl/main/nbg3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover by diggity.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Aliens versus Predator 2</Game>
+            <Game>Aliens versus Predator 2: Primal Hunt</Game>
+            <Game>avp2</Game>
+            <Game>avp2ph</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/avp2_asl/main/avp2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover by diggity and The_One.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Charlie in the Moistverse of Madness</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tyshoe/asl/main/Charlie%20in%20the%20Moistverse%20of%20Madness/CharlieInTheMoistverseOfMadness.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (by TY)</Description>
+        <Website>https://www.speedrun.com/charlie_in_the_moistverse_of_madness</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Vessel of Embers</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tyshoe/asl/main/The%20Vessel%20of%20Embers/TheVesselofEmbers.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter revised by TY</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Wild Guns Reloaded</Game>
+            <Game>Wild Guns: Reloaded</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aeihu/AutoSplittersForSomeGames/main/Wild%20Guns%20Reloaded.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Aeihu</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Patrick's Parabox</Game>
         </Games>
         <URLs>
@@ -411,7 +480,18 @@
             <Game>Deltarune</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/0.1-beta.2/Deltarune.asl</URL>
+            <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/release/Deltarune.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Available for all versions, SURVEY inclued. Auto-endsplit only for SURVEY. Created by Tenebrosful from Narry's Autosplitter</Description>
+        <Website>https://github.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Deltarune Category Extensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/release/Deltarune-ce.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Available for all versions, SURVEY inclued. Auto-endsplit only for SURVEY. Created by Tenebrosful from Narry's Autosplitter</Description>
@@ -1438,9 +1518,9 @@
             <Game>Sonic Colours: Ultimate</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicColors/master/Components/LiveSplit.SonicColors.dll</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicColors/master/LiveSplit.SonicColors.asl</URL>
         </URLs>
-        <Type>Component</Type>
+        <Type>Script</Type>
         <Description>Autosplitting and In-Game Timer are available (by Jujstme)</Description>
         <Website>https://discord.gg/XRsRwRU</Website>
     </AutoSplitter>
@@ -6736,6 +6816,16 @@
         <Type>Script</Type>
         <Description>Load Removal and Autosplitter are available (By ToxicTT)</Description>
         <Website>https://www.speedrun.com/va</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>It Takes Two</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Lemuura/It-Takes-Two-Autosplitter/main/ItTakesTwo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By Ironhead39 &amp; Lemuura)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
