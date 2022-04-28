@@ -101,8 +101,14 @@ namespace UpdateManager
 
             public void PerformUpdate()
             {
-                string GetLocalComponentsPath(string xmlChangePath) =>
-                    "Components" + Path.DirectorySeparatorChar + xmlChangePath.Split('/').Last();
+                string ConvertChangeUrlPartToPath(string xmlChangePath)
+                {
+                    string path = xmlChangePath.Replace('/', Path.DirectorySeparatorChar);
+                    bool thirdPartyDll = !UpdateURL.Equals("http://livesplit.org/update/");
+                    return thirdPartyDll
+                        ? Path.Combine("Components", path.Split(Path.DirectorySeparatorChar).Last())
+                        : path;
+                }
 
                 IList<Update> updates = Updates.Where(x => x.Version > Version).ToList();
                 List<string> addedFiles = new List<string>();
@@ -143,15 +149,15 @@ namespace UpdateManager
                 int fileChangesCount = addedFiles.Concat(changedFiles).Concat(removedFiles).Count();
                 double i = 0;
 
-                foreach (string path in addedFiles.Concat(changedFiles))
+                foreach (string xmlChangePath in addedFiles.Concat(changedFiles))
                 {
-                    DownloadFile(UpdateURL + path, GetLocalComponentsPath(path));
+                    DownloadFile(UpdateURL + xmlChangePath, ConvertChangeUrlPartToPath(xmlChangePath));
                     UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
 
-                foreach (string path in removedFiles)
+                foreach (string xmlChangePath in removedFiles)
                 {
-                    File.Delete(GetLocalComponentsPath(path));
+                    File.Delete(ConvertChangeUrlPartToPath(xmlChangePath));
                     UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
             }
