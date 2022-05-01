@@ -2,6 +2,103 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Mini Motorways</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aeihu/AutoSplittersForSomeGames/main/Mini_Motorways.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Aeihu</Description>
+        <Website>https://www.speedrun.com/mini_motorways</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Homecoming: City of Heroes</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Bloodom/Homecoming-City-of-Heroes-Autosplitter/main/City%20of%20Heroes%20Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Bloodom</Description>
+        <Website>https://www.speedrun.com/city_of_heroes</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Stanley Parable: Ultra Deluxe</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/TheStanleyParableUltraDeluxe_Autosplitter/main/TSPUD_AutoSplitter.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Nikoheart</Description>
+        <Website>https://www.speedrun.com/tspud</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Dexter Stardust: Adventures in Outer Space</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/DexterStardustAdventuresInOuterSpace_AutoSplitter/main/DexterStardust.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Nikoheart</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mini Metro</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aeihu/AutoSplittersForSomeGames/main/Mini_Metro.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Aeihu</Description>
+        <Website>https://www.speedrun.com/mini_metro</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Death Flush</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/deathflush_asl/main/deathflush.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover by diggity. Set start time to 4.38.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Selaco</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.Selaco/main/Selaco.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Meta</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Bloodwash</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/bloodwash_asl/main/bloodwash.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover by diggity.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hamilton</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mt180/Auto-Splitters/main/Hamilton.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by mt180</Description>
+        <Website>https://november115.itch.io/hamilton</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Snake Force</Game>
         </Games>
         <URLs>
@@ -91,7 +188,7 @@
         <Type>Script</Type>
         <Description>Autosplitter (By Z3R01337 and SuperFamicom)</Description>
     </AutoSplitter>
-<AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Stranger of Paradise: Final Fantasy Origin</Game>
         </Games>
@@ -737,6 +834,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>FordStreetRacing AutoSplitter (by b5414)</Description>
+        <Website>https://github.com/b5414/LiveSplit_ASL</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hugo: Bukkazoom!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/b5414/LiveSplit_ASL/white/files/HugoBukkazoom.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Hugo: Bukkazoom! AutoSplitter (by b5414)</Description>
         <Website>https://github.com/b5414/LiveSplit_ASL</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -10925,6 +11033,7 @@
     <AutoSplitter>
         <Games>
             <Game>Stardew Valley</Game>
+            <Game>Stardew Valley Category Extension</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Underscore76/LiveSplit.StardewValley/master/Components/LiveSplit.StardewValley.dll</URL>
@@ -11861,7 +11970,7 @@
             <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/LSW1-Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting is available. (By Melody)</Description>
+        <Description>Auto Splitting is available. (By Weed)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11871,7 +11980,7 @@
             <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/TCS-Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting is available. (By Melody)</Description>
+        <Description>Auto Splitting is available. (By Weed)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11912,7 +12021,7 @@
             <URL>https://raw.githubusercontent.com/melodyfast/PikuSplit/main/Pikuniku.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting and Load Removal is available. Auto-splits on every load screen. (by Melody)</Description>
+        <Description>Autosplitting and Load Removal is available. Auto-splits on every load screen. (by Weed)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12684,7 +12793,7 @@
             <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/LIJ-Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting is available. (By Melody)</Description>
+        <Description>Autosplitting is available. (By Weed)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12715,7 +12824,7 @@
             <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/LSW3-Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting is available. (By Melody)</Description>
+        <Description>Autosplitting is available. (By Weed)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12735,7 +12844,7 @@
             <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/DCSV-Autosplitter%2BLoadRemover.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting and Load Removal is available. (By Melody)</Description>
+        <Description>Autosplitting and Load Removal is available. (By Weed)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14408,6 +14517,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Pathfinder: Wrath of the Righteous</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Pathfinder%20%E2%80%93%20Wrath%20of%20the%20Righteous/P_WotR.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Pathfinder%20%E2%80%93%20Wrath%20of%20the%20Righteous</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Pedestrian</Game>
         </Games>
         <URLs>
@@ -14768,5 +14889,27 @@
         <Type>Script</Type>
         <Description>Autosplit support with several different modes, made by the developer of PogoChamp.</Description>
         <Website>https://github.com/JakeRabinowitz/PogoChampAutosplitter</Website>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>LEGO Star Wars: The Skywalker Saga</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/TSS-LoadRemover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal is available. (By Weed)</Description>
+    </AutoSplitter>
+      <AutoSplitter>
+        <Games>
+            <Game>Wolfenstein 3D</Game>
+            <Game>Wolfenstein3D</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rogender/LiveSplit.Wolfenstein3D/main/LiveSplit.Wolfenstein3D.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Wolfenstein 3D autosplitter. Working only with latest version of source ports</Description>
+        <Website>https://github.com/rogender/LiveSplit.Wolfenstein3D</Website>
     </AutoSplitter>
 </AutoSplitters>
