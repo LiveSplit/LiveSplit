@@ -280,7 +280,7 @@
             <URL>https://raw.githubusercontent.com/BrandenEK/dysmantle-autosplitter/main/DYSMANTLE.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for DYSMANTLE (Load remover coming soon)</Description>
+        <Description>Load remover and autosplitter for DYSMANTLE</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3324,7 +3324,7 @@
             <URL>https://raw.githubusercontent.com/Mysterion06/Resident-Evil-5/main/Splitter</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (By Auddy and Mysterion_06_)</Description>
+        <Description>Auto Splitting and Load Removal are available. (By Mysterion_06_ &amp; TheDementedSalad)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4519,11 +4519,11 @@
             <Game>ASAMU</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/0Seren/AutoSplitters/master/ASAMU/ASAMU.asl</URL>
+            <URL>https://raw.githubusercontent.com/gizmovor/ASAMU_Load_Remover/main/ASAMU_Load_Remover.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal are available. (By 0Seren)</Description>
-        <Website>https://github.com/0Seren/AutoSplitters/tree/master/ASAMU</Website>
+        <Description>Auto Splitting, Auto Starting and Load Removal are available. (By Gizmovor)</Description>
+        <Website>https://github.com/gizmovor/ASAMU_Load_Remover</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14911,5 +14911,27 @@
         <Type>Script</Type>
         <Description>Wolfenstein 3D autosplitter. Working only with latest version of source ports</Description>
         <Website>https://github.com/rogender/LiveSplit.Wolfenstein3D</Website>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Pearl Grabber</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/pgrab-asl/master/pgrab.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split supported (By CaptainRektbeard)</Description>
+        <Website>https://github.com/samjones246/pgrab-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Commandos 2</Game>
+            <Game>Commandos 2: Men of Courage</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Commandos-2/LiveSplit.Commandos2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover (By SuicideMachine)</Description>
     </AutoSplitter>
 </AutoSplitters>
