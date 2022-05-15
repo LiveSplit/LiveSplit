@@ -2,6 +2,39 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Zone Runner 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/WaterArcanum/AutoSplitters/main/zonerunner2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Arko. Timer resets on title screen by default.</Description>
+        <Website>https://www.speedrun.com/zone_runner_2</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>DragonFangZ - The Rose &amp; Dungeon of Time</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/yagamuu/speedrun/master/DragonFangZ/dragon_fang_z_the_rose_and_dungeon_of_time_AutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by yagamuu</Description>
+        <Website>https://www.speedrun.com/dragon_fang_z_the_rose_and_dungeon_of_time</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Tropic Jim's Sweet Island Adventure</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/tjsia-asl/master/tjsia.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split supported (By CaptainRektbeard)</Description>
+        <Website>https://github.com/samjones246/tjsia-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Mini Motorways</Game>
         </Games>
         <URLs>
@@ -75,6 +108,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter by Meta</Description>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>POPPY PLAYTIME: CHAPTER 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/PoppyPlaytimeChapter2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Kuno</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14933,5 +14976,26 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load remover (By SuicideMachine)</Description>
+    </AutoSplitter>
+            <AutoSplitter>
+        <Games>
+            <Game>Sleeping Dogs</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/riek-lt/SleepingDogs_Loadremover/main/SleepingDogs_LoadRemover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover for Sleeping Dogs and Sleeping Dogs: Definitive Edition. Made by Plasma</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Roboquest</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Gelmo/LiveSplit.Roboquest/raw/roboquest/Components/LiveSplit.Roboquest.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>AutoSplit, speed graph, and more. (By Gelmo)</Description>
+        <Website>https://github.com/Gelmo/LiveSplit.Roboquest</Website>
     </AutoSplitter>
 </AutoSplitters>
