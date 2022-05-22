@@ -24,6 +24,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Yume Nikki</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/yumenikki-asl/master/yumenikki.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split supported (By CaptainRektbeard)</Description>
+        <Website>https://github.com/samjones246/yumenikki-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Tropic Jim's Sweet Island Adventure</Game>
         </Games>
         <URLs>
@@ -117,7 +128,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/PoppyPlaytimeChapter2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter by Kuno</Description>
+        <Description>Autosplitter (by KunoDemetries)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1665,6 +1676,8 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sonic Colors</Game>
+            <Game>Sonic Colours</Game>
             <Game>Sonic Colors: Ultimate</Game>
             <Game>Sonic Colours: Ultimate</Game>
         </Games>
@@ -5582,6 +5595,19 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Trackmania</Game>
+            <Game>Trackmania Club Campaigns</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/GreepTheSheep/LiveSplit.Server/releases/latest/download/LiveSplit.TMServer.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Openplanet plugin for IGT caclulation and autosplitter are available. (By Greep)</Description>
+        <Website>https://openplanet.dev/plugin/speedrun</Website>
+        <ShowInLayoutEditor />
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>TrackMania² Canyon</Game>
             <Game>TrackMania² Lagoon</Game>
             <Game>TrackMania² Stadium</Game>
@@ -5591,13 +5617,23 @@
             <Game>StarTrack² Stadium</Game>
             <Game>StarTrack² Valley</Game>
             <Game>TrackMania One - Alpine</Game>
-        <Game>TrackMania² Canyon : Platform</Game>
+            <Game>TrackMania² Canyon : Platform</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Rastats/Maniaplanet/main/TM2-Autosplitter-IGT%20(by%20Malakat).asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>IGT timer and auto splitting options are available. (By Malakat)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>ZrT Trackmania Cup</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Rastats/Maniaplanet/main/TM2-Autosplitter-IGT%20(by%20Malakat).asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>IGT timer and auto splitting options are available only for TM² Stadium categories. (By Malakat)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7049,10 +7085,10 @@
             <Game>Slay the Spire</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/ClownFiesta/AutoSplitters/master/LiveSplit.SlayTheSpire.asl</URL>
+            <URL>https://raw.githubusercontent.com/OohBleh/Spire-speedruns-and-other-stuff/main/autosplitters/LiveSplit.SlayTheSpire.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Start and Reset currently supported (By FresherDenimAll)</Description>
+        <Description>Auto Splitting, Start and Reset currently supported (By OohBleh)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7855,6 +7891,17 @@
         <Type>Component</Type>
         <Description>Autosplitter tjern's perfect park (tjern.itch.io/perfect-park)</Description>
         <Website>https://github.com/LRFLEW/LiveSplit.PerfectPark</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Crow Story</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LRFLEW/LiveSplit.CrowStory/main/CrowStory.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>LiveSplit AutoSplitter for Crow Story</Description>
+        <Website>https://github.com/LRFLEW/LiveSplit.CrowStory</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11303,19 +11350,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Trackmania</Game>
-            <Game>Trackmania Category Extensions</Game>
-            <Game>Trackmania Club Campaigns</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Voxelse/ASLScripts/master/Livesplit.Trackmania/Livesplit.Trackmania.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Auto Start/Split and Game Time (by Voxelse)</Description>
-        <Website>https://github.com/Voxelse/ASLScripts/tree/master/Livesplit.Trackmania</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Garfield: Lasagna World Tour</Game>
             <Game>Garfield Lasagna World Tour</Game>
             <Game>Lasagna World Tour</Game>
@@ -13241,10 +13275,10 @@
             <Game>The Emperor's New Groove</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/UltraStars3000/kuzcoASL/main/KuzcoASL.asl</URL>
+            <URL>https://raw.githubusercontent.com/UltraStars3000/UltraASL/main/KuzcoASL.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for the PC version of [The Emperor's New Groove]. (by UltraStars3000)</Description>
+        <Description>Autosplitter for The Emperor's New Groove (by UltraStars3000)</Description>
         <Website>https://discord.gg/Mknzj3RfxG</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -13317,6 +13351,7 @@
         <Games>
             <Game>Death's Door</Game>
             <Game>Deaths Door</Game>
+            <Game>Death's Door Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Voxelse/LiveSplit.DeathsDoor/main/Components/LiveSplit.DeathsDoor.dll</URL>
@@ -13695,7 +13730,7 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Poppy Playtime</Game>
+            <Game>POPPY PLAYTIME: CHAPTER 1</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TitomakaniJr/AutoSplits/main/Poppy%20Playtime/PoppyPlaytime.asl</URL>
@@ -14992,10 +15027,22 @@
             <Game>Roboquest</Game>
         </Games>
         <URLs>
+            <URL>https://github.com/Gelmo/LiveSplit.Roboquest/raw/roboquest/Components/LiveSplit.RoboquestTimer.dll</URL>
             <URL>https://github.com/Gelmo/LiveSplit.Roboquest/raw/roboquest/Components/LiveSplit.Roboquest.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>AutoSplit, speed graph, and more. (By Gelmo)</Description>
         <Website>https://github.com/Gelmo/LiveSplit.Roboquest</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Oddworld: Soulstorm</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/UltraStars3000/UltraASL/main/SoulstormASL.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Oddworld: Soulstorm (by UltraStars3000)</Description>
+        <Website>https://discord.gg/uyqMtsD</Website>
     </AutoSplitter>
 </AutoSplitters>
