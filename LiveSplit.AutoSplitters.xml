@@ -2,6 +2,91 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>.flow</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/dotflow-asl/master/dotflow.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset supported (By CaptainRektbeard)</Description>
+        <Website>https://github.com/samjones246/dotflow-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Granny 3 (PC)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/granny3_asl/master/granny3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by diggity. Final split is manual.</Description>
+        <Website>https://www.speedrun.com/granny_3_pc</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Blair Witch Volumes</Game>
+            <Game>The Blair Witch Volume 1: Rustin Parr</Game>
+            <Game>The Blair Witch Volume I: Rustin Parr</Game>
+            <Game>The Blair Witch Volume 2: The Legend of Coffin Rock</Game>
+            <Game>The Blair Witch Volume II: The Legend of Coffin Rock</Game>
+            <Game>The Blair Witch Volume 3: The Elly Kedward Tale</Game>
+            <Game>The Blair Witch Volume III: The Elly Kedward Tale</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/MildGothDaddy/Bw_asl/main/bw.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover by diggity and MildGothDaddy. Run livesplit as admin. Volume 1 will auto-start.</Description>
+        <Website>https://www.speedrun.com/the_blair_witch_volumes</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Heretic II</Game>
+            <Game>Heretic 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/heretic2_asl/master/heretic2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover and autosplitter by diggity.</Description>
+        <Website>https://www.speedrun.com/heretic_ii</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Aim Climb</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/MechaYutori/AimClimbAutosplitter/main/AimClimbAutosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Yutori.</Description>
+        <Website>https://www.speedrun.com/aim_climb</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>In Sound Mind</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ontrigger/ism-autosplitter/main/insoundmind.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover and Autosplitter by diggity and ontrigger.</Description>
+        <Website>https://www.speedrun.com/in_sound_mind</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>click to ten</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Gauley123/click-to-ten-autosplitter/main/clicktoten.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Gauley</Description>
+        <Website>https://clicktoten.ml</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Zone Runner 2</Game>
         </Games>
         <URLs>
@@ -10,6 +95,18 @@
         <Type>Script</Type>
         <Description>Autosplitter by Arko. Timer resets on title screen by default.</Description>
         <Website>https://www.speedrun.com/zone_runner_2</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Haiku, the Robot</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Schyvun/Haiku-Autosplitter/main/Haiku.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Jarlyk and Schy</Description>
+        <Website>https://www.speedrun.com/haiku</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -534,10 +631,10 @@
             <Game>Severed Steel</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.SeveredSteel/main/SeveredSteel.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SeveredSteel.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts and reads In-Game time. (By Meta)</Description>
+        <Description>Starts and reads In-Game time. (By Meta, and KunoDemetries)</Description>
         <Website>https://discord.gg/QaJJ9WBxGA</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -15045,4 +15142,28 @@
         <Description>Autosplitter for Oddworld: Soulstorm (by UltraStars3000)</Description>
         <Website>https://discord.gg/uyqMtsD</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nightmare of Decay</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/NightmareofDecay.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Doom II</Game>
+            <Game>Doom 2</Game>
+            <Game>Doom II: Hell on Earth</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rogender/LiveSplit.Ultimate-DOOM/master/LiveSplit.Ultimate-DOOM.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>DOOM II autosplitter. Working only on latest versions of source ports</Description>
+        <Website>https://github.com/rogender/LiveSplit.Ultimate-DOOM</Website>
+       </AutoSplitter>
 </AutoSplitters>
