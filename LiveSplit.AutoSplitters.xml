@@ -2,6 +2,31 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Ib</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/ib-asl/master/ib.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset supported (By CaptainRektbeard)</Description>
+        <Website>https://github.com/samjones246/ib-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>My Little Pony: A Maretime Bay Adventure</Game>
+            <Game>My Little Pony: AMBA</Game>
+            <Game>MLP: AMBA</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Ebunix/mlp-amba-autosplits/main/MLP_AMBA_Autosplit.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/libraries/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports auto start and split on each load, as well as load time removal (By Ebunix)</Description>
+        <Website>https://github.com/Ebunix/mlp-amba-autosplits</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>.flow</Game>
         </Games>
         <URLs>
@@ -2217,6 +2242,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available. (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Kao the Kangaroo (2022)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Kao%20the%20Kangaroo/LiveSplit.KaoTheKangaroo2022.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available. (by Jujstme)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15166,4 +15201,24 @@
         <Description>DOOM II autosplitter. Working only on latest versions of source ports</Description>
         <Website>https://github.com/rogender/LiveSplit.Ultimate-DOOM</Website>
        </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Legacy of Kain: Soul Reaver 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Soul-Reaver-2-Autosplitter/main/LoKSR2%20Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Timed via IGT (Load Remover) W/Autosplitter capabilities (by TheDementedSalad, Mysterion06)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Arietta of Spirits</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/thirdspiritgames/aos-speedrunning/main/scripts/AriettaOfSpirits.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Arietta of Spirits.</Description>
+    </AutoSplitter>
 </AutoSplitters>
