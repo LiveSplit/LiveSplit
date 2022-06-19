@@ -5758,6 +5758,7 @@
             <Game>StarTrack² Stadium</Game>
             <Game>StarTrack² Valley</Game>
             <Game>TrackMania One - Alpine</Game>
+            <Game>TrackMania One - Speed</Game>
             <Game>TrackMania² Canyon : Platform</Game>
         </Games>
         <URLs>
@@ -15232,5 +15233,39 @@
         <Type>Script</Type>
         <Description>Load remover for Persona 4 Golden (PC).</Description>
         <Website>https://github.com/emilybrooks/p4g-load-remover</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Another World</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/velcheran/autosplitters/main/AnotherWorld20thAnniversary.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Another World 20th Anniversary edition (PC).</Description>
+        <Website>https://github.com/velcheran/autosplitters/blob/main/AnotherWorld20thAnniversary.asl</Website>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Postal 4: No Regerts</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SpectralPlatypus/AutoSplitters/master/Postal4.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover for Postal 4: No Regerts (by SpectralPlatypus)</Description>
+        <Website>https://www.speedrun.com/postal4</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>I Am Fish</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/aranel616/autosplitters/raw/main/I%20Am%20Fish/IAmFish.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for I Am Fish (By Aranel616)</Description>
+        <Website>https://www.speedrun.com/i_am_fish</Website>
     </AutoSplitter>
 </AutoSplitters>
