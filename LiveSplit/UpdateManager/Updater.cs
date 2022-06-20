@@ -111,7 +111,7 @@ namespace UpdateManager
                 foreach (var change in updates.SelectMany(x => x.FileChanges))
                 {
                     string path = change.Path;
-                    string localPath = change.LocalPath;
+                    string localPath = change.LocalPath ?? change.Path;
 
                     switch (change.Status)
                     {
@@ -136,15 +136,14 @@ namespace UpdateManager
                 foreach (var xmlChangePaths in addedFiles.Concat(changedFiles))
                 {
                     string path = xmlChangePaths.Key;
-                    string localPath = xmlChangePaths.Value ?? path;
+                    string localPath = xmlChangePaths.Value;
                     DownloadFile(UpdateURL + path, ConvertChangeUrlPartToPath(localPath));
                     UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
 
                 foreach (var xmlChangePaths in removedFiles)
                 {
-                    string path = xmlChangePaths.Key;
-                    string localPath = xmlChangePaths.Value ?? path;
+                    string localPath = xmlChangePaths.Value;
                     File.Delete(ConvertChangeUrlPartToPath(localPath));
                     UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
