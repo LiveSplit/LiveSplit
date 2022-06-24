@@ -30,7 +30,21 @@ namespace LiveSplit.Web.Share
 
             Client.AccessToken = accessToken;
 
-            return Client.IsAccessTokenValid;
+            var isTokenValid = Client.IsAccessTokenValid;
+
+            if (isTokenValid)
+            {
+                try
+                {
+                    WebCredentials.SpeedrunComAccessToken = accessToken;
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+            }
+
+            return isTokenValid;
         }
 
         public static Time ToTime(this RunTimes times)
