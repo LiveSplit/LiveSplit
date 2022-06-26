@@ -8361,7 +8361,7 @@
             <Game>The Legend of Heroes: Trails of Cold Steel II</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/CS2-Load-Remover/master/cs2.asl</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/CS2-Load-Remover/master/cs2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load remover / autosplitter available. (By AcridStingray3)</Description>
@@ -8372,18 +8372,30 @@
             <Game>The Legend of Heroes: Trails of Cold Steel 3</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/Livesplit.CS3/master/Livesplit.CS3/Components/Livesplit.CS3.dll</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/Livesplit.CS3/master/Livesplit.CS3/Components/Livesplit.CS3.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Auto Splitting / Load Removing available. (By @AcridStingray3#1637)</Description>
-        <Website>https://github.com/AcridStingray3/Livesplit.CS3</Website>
+        <Website>https://github.com/BasedJellyfish11/Livesplit.CS3</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Legend of Heroes: Trails of Cold Steel IV</Game>
+            <Game>The Legend of Heroes: Trails of Cold Steel 4</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/Livesplit.CS4/master/Livesplit.CS4/Components/Livesplit.CS4.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Splitting / Load Removing available. (By @AcridStingray3#1637)</Description>
+        <Website>https://github.com/BasedJellyfish11/Livesplit.CS4</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>The Legend of Heroes: Trails of Cold Steel</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/CS1-Load-Remover/master/cs1.asl</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/CS1-Load-Remover/master/cs1.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load remover / autosplitter available. (By AcridStingray3)</Description>
@@ -8393,7 +8405,7 @@
             <Game>Eroico</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/Eroico-autosplitter/master/eroico.asl</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/Eroico-autosplitter/master/eroico.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting, resetting and timer auto start available. (By AcridStingray3)</Description>
@@ -8404,21 +8416,10 @@
             <Game>DERU: The Art of Cooperation</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/DERU-autosplitter/master/DERU.asl</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/DERU-autosplitter/master/DERU.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting available. (By AcridStingray3)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Ibb and Obb</Game>
-            <Game>Ibb &amp; Obb</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/IbbObb-autosplitter/master/IbbObb.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitter available. (By @AcridStingray3#1637 , doesn't end the timer)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
