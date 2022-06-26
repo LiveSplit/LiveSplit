@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+ <AutoSplitter>
+        <Games>
+            <Game>The Quarry</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.TheQuarry/main/TheQuarry.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Written by Meta.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Goosebumps: Dead of Night</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/Goosebumps_DeadOfNight/main/GDON_Autosplitter</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load remover/IL Run Timer by Nikoheart.</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Devastation</Game>
@@ -211,6 +232,7 @@
     <AutoSplitter>
         <Games>
             <Game>The Stanley Parable: Ultra Deluxe</Game>
+            <Game>The Stanley Parable: Ultra Deluxe Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Nikoheartttv/TheStanleyParableUltraDeluxe_Autosplitter/main/TSPUD_AutoSplitter.asl</URL>
@@ -409,10 +431,10 @@
             <Game>Ghostwire: Tokyo</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.GhostwireTokyo/main/GhostwireTokyo.asl</URL>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/GhostWireTokyo.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter written by Meta.</Description>
+        <Description>Autosplitter written (By Meta, Kuno Demetries).</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -939,6 +961,16 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic4Episode2/master/LiveSplit.Sonic4Episode2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting by Jujstme</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic Origins</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicOrigins/main/LiveSplit.SonicOrigins.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting by Jujstme</Description>
@@ -2559,9 +2591,9 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sonic Adventure 2: Alternate</Game>
             <Game>Sonic Adventure 2: Battle</Game>
             <Game>Sonic Adventure 2: Battle - Category Extensions</Game>
-            <Game>Sonic Adventure 2 Battle</Game>
             <Game>Sonic Adventure 2</Game>
         </Games>
         <URLs>
@@ -4940,7 +4972,18 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Start/Split/Reset are available. Manual end split required. (By LukeSaward)</Description>
-        <Website>https://github.com/LukeSaward1/DiFM-Speedrun-Mod/releases/latest</Website>
+        <Website>https://github.com/LukeSaward1</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Impossible Quiz</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LukeSaward1/AutoSplitters/main/The%20Impossible%20Quiz/TiQ_Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset are available. (By LukeSaward)</Description>
+        <Website>https://github.com/LukeSaward1</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7049,7 +7092,7 @@
             <Game>Quickie Mountain 2</Game>
             <Game>Celeste Category Extensions</Game>
             <Game>Modded Celeste</Game>
-            <Game>D-Sides</Game>
+            <Game>Monika's D-Sides</Game>
             <Game>2020 Spring Collab</Game>
             <Game>Glyph Pack</Game>
             <Game>Into The Jungle</Game>
@@ -14345,6 +14388,7 @@
             <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignThemes.Wpf.dll</URL>
             <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/MaterialDesignThemes.Wpf.xml</URL>
             <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/SoulMemory.dll</URL>
+            <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/soulinjectee.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>MIGT, load removal, blackscreen removal and autosplitting for Elden Ring and Dark Souls 3</Description>
@@ -14364,13 +14408,22 @@
     <AutoSplitter>
         <Games>
             <Game>Neon White</Game>
-            <Game>Neon White Demo</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/crashb/neon-white-autosplitter/main/neonwhite.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for Neon White</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Neon White Demo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/crashb/neon-white-autosplitter/main/demo/neonwhitedemo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Neon White Demo</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
