@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+       <AutoSplitter>
+        <Games>
+            <Game>Dead Rising 4</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/DeadRising4.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Written by Kuno Demetries and streetbackguy. Autosplitter and Load Remover.</Description>
+    </AutoSplitter>
  <AutoSplitter>
         <Games>
             <Game>The Quarry</Game>
@@ -9,6 +19,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Written by Meta.</Description>
+    </AutoSplitter>
+  <AutoSplitter>
+        <Games>
+            <Game>DEAD RISING 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/DeadRising3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (By Kuno Demetries, StreetBackGuy)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -30,6 +50,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load remover by diggity.</Description>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Sniper Elite 5</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/SniperElite5.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover (By Kunodemetries, xZeko)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4141,6 +4171,9 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Resident Evil Zero</Game>
+            <Game>Resident Evil 0</Game>
+            <Game>RE0</Game>
             <Game>Resident Evil 0 HD</Game>
             <Game>RE0HD</Game>
             <Game>RE0 HD</Game>
@@ -4149,10 +4182,11 @@
             <Game>Resident Evil 0 HD Remaster</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/cursedtoast/re0livesplit/master/LiveSplit.RE0.asl</URL>
+            <URL>https://raw.githubusercontent.com/deserteagle417/RE0-Autosplitter/main/re0hd.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Game Time is available. (By CursedToast)</Description>
+        <Description>Door splits, item splits, and key event splits are available. Click Website for more information.</Description>
+        <Website>https://github.com/deserteagle417/RE0-Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8361,7 +8395,7 @@
             <Game>The Legend of Heroes: Trails of Cold Steel II</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/CS2-Load-Remover/master/cs2.asl</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/CS2-Load-Remover/master/cs2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load remover / autosplitter available. (By AcridStingray3)</Description>
@@ -8372,18 +8406,30 @@
             <Game>The Legend of Heroes: Trails of Cold Steel 3</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/Livesplit.CS3/master/Livesplit.CS3/Components/Livesplit.CS3.dll</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/Livesplit.CS3/master/Livesplit.CS3/Components/Livesplit.CS3.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Auto Splitting / Load Removing available. (By @AcridStingray3#1637)</Description>
-        <Website>https://github.com/AcridStingray3/Livesplit.CS3</Website>
+        <Description>Auto Splitting / Load Removing available. (By @AcridStingray3#5656)</Description>
+        <Website>https://github.com/BasedJellyfish11/Livesplit.CS3</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Legend of Heroes: Trails of Cold Steel IV</Game>
+            <Game>The Legend of Heroes: Trails of Cold Steel 4</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/Livesplit.CS4/master/Livesplit.CS4/Components/Livesplit.CS4.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto Splitting / Load Removing available. (By @AcridStingray3#5656)</Description>
+        <Website>https://github.com/BasedJellyfish11/Livesplit.CS4</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>The Legend of Heroes: Trails of Cold Steel</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/CS1-Load-Remover/master/cs1.asl</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/CS1-Load-Remover/master/cs1.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load remover / autosplitter available. (By AcridStingray3)</Description>
@@ -8393,7 +8439,7 @@
             <Game>Eroico</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/Eroico-autosplitter/master/eroico.asl</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/Eroico-autosplitter/master/eroico.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting, resetting and timer auto start available. (By AcridStingray3)</Description>
@@ -8404,21 +8450,10 @@
             <Game>DERU: The Art of Cooperation</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/DERU-autosplitter/master/DERU.asl</URL>
+            <URL>https://raw.githubusercontent.com/BasedJellyfish11/DERU-autosplitter/master/DERU.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting available. (By AcridStingray3)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Ibb and Obb</Game>
-            <Game>Ibb &amp; Obb</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/AcridStingray3/IbbObb-autosplitter/master/IbbObb.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitter available. (By @AcridStingray3#1637 , doesn't end the timer)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9140,18 +9175,6 @@
         <Type>Script</Type>
         <Description>Autosplitter for the CATegory any% (old patch). Choose which splits you want to use in the settings. (by Lighten95)</Description>
         <Website>https://github.com/LWLeijten/Cat-Quest-Autosplitter</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Sekiro</Game>
-            <Game>Sekiro: Shadows Die Twice</Game>
-        </Games>
-        <URLs>
-            <URL>https://gist.githubusercontent.com/RefinedHornet/70453f953d536229d093a7f86b4559cd/raw/8679a9a6e36e949e1f88ee8979d6852d4e2bb0c9/Sekiro.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Game time, auto-start and several QOL improvments.</Description>
-        <Website>https://gist.github.com/pawREP</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12520,10 +12543,10 @@
             <Game>Peggle Deluxe</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Janiczek/PeggleDeluxeAutosplitter/master/Peggle%20Deluxe%20-%20Adventure%20Mode.asl</URL>
+            <URL>https://raw.githubusercontent.com/brassbeat/autosplitters/main/Peggle-Deluxe/Adventure-Mode</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for Peggle Deluxe - Adventure Mode, for 55 splits.</Description>
+        <Description>Auto start/split for Adventure Mode. Splits by level and by master available.</Description>
         <Website>https://www.speedrun.com/peggle_deluxe</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -14380,6 +14403,8 @@
         <Games>
             <Game>Dark Souls III</Game>
             <Game>Dark Souls 3</Game>
+            <Game>Sekiro</Game>
+            <Game>Sekiro: Shadows Die Twice</Game>
             <Game>Elden Ring</Game>
         </Games>
         <URLs>
@@ -14391,7 +14416,7 @@
             <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/soulinjectee.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>MIGT, load removal, blackscreen removal and autosplitting for Elden Ring and Dark Souls 3</Description>
+        <Description>SoulSplitter: timer and autosplitter for various soulsgames</Description>
         <Website>https://github.com/FrankvdStam/SoulSplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -14494,6 +14519,17 @@
         <Type>Script</Type>
         <Description>Starts the timer automatically on Learning To Roll. Splits available in the settings. (by TalentedPlatinum, Ero)</Description>
         <Website>https://github.com/TalentedPlatinum/AutoSplitters/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Marble Blast Gold</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/thearst3rd/autosplitters/main/LiveSplit.MarbleBlastGold.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports auto start and configurable splits on MBG 1.4.1 (by thearst3rd and CaptainRektbeard)</Description>
+        <Website>https://github.com/thearst3rd/autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15311,6 +15347,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>POSTAL: Brain Damaged</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheIntercom/Autosplitters/master/PostalBrainDamaged/LiveSplit-PostalBrainDamaged.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Basic auto-start, auto-splitting, and auto-reset for POSTAL Brain Damaged (by TheIntercom)</Description>
+        <Website>https://www.speedrun.com/postal_bd/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>I Am Fish</Game>
         </Games>
         <URLs>
@@ -15320,5 +15367,15 @@
         <Type>Script</Type>
         <Description>Autosplitter for I Am Fish (By Aranel616)</Description>
         <Website>https://www.speedrun.com/i_am_fish</Website>
+    </AutoSplitter>
+<AutoSplitter>
+        <Games>
+            <Game>Scooby-Doo! First Frights</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/kamil2050/ASL-scripts/main/Scooby-Doo!%20First%20Frights%20load%20remover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover for PC version by kamil2050</Description>
     </AutoSplitter>
 </AutoSplitters>
