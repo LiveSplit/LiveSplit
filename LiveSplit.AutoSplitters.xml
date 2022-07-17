@@ -2,6 +2,36 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Yakuza 5</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.Yakuza5.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter, Load Remover and Autostart by streetbackguy and Hoxi</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Yakuza 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.Yakuza3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover and Autostart by streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Yakuza 4</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.Yakuza4.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover and Autostart by streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Dead Rising 4</Game>
         </Games>
         <URLs>
@@ -40,6 +70,20 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load remover/IL Run Timer by Nikoheart.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Cult of the Lamb Demo</Game>
+            <Game>COTL Demo</Game>
+            <Game>COTLD</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/MelloYourFello/Autosplitters/raw/main/COTL_DEMO.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for the Demo of Cult of the Lamb (Made by MelloYourFello)</Description>
+        <Website>https://www.speedrun.com/cotl_demo</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -197,7 +241,7 @@
             <Game>Haiku, the Robot</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Schyvun/Haiku-Autosplitter/main/Haiku.asl</URL>
+            <URL>https://raw.githubusercontent.com/Jarlyk/Haiku-Autosplitter/main/Haiku.asl</URL>
             <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
@@ -626,6 +670,21 @@
         <Type>Script</Type>
         <Description>Autosplitter for Tetris Effect that times IGT by reading the game's timer</Description>
         <Website>https://github.com/Adventium-underscore/TEC-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Catatstrophe Crow</Game>
+            <Game>Catatstrophe Crow!</Game>
+            <Game>CC64</Game>
+            <Game>Crow64</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/MelloYourFello/Autosplitters/raw/main/CC64.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Catastrophe Crow! Made by MelloYourFello</Description>
+        <Website>https://www.speedrun.com/crow64</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1175,7 +1234,7 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Wallace And Gromit In Project Zoo</Game>
+            <Game>Wallace &amp; Gromit In Project Zoo</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/WallaceAndGromitInProjectZoo.asl</URL>
@@ -12275,10 +12334,10 @@
             <Game>Yakuza: Like a Dragon</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/vojtas131/AutoSplits/master/lad/livesplit_lad.asl</URL>
+            <URL>https://raw.githubusercontent.com/Mysterion06/YakuzaLADSplitter/main/YakuzaLikeADragonSplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load removal by vojtas131</Description>
+        <Description>Autosplitter with Loadremover by Mysterion_06_</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15458,6 +15517,17 @@
         <Type>Script</Type>
         <Description>Autosplitter is available (by Skoczek)</Description>
         <Website>https://github.com/szczoo17/autosplitters/tree/main/Holo%20Dungeon</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Smol Ame</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/szczoo17/autosplitters/main/Smol%20Ame/smol_ame.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available (by BloodyRedditor and Skoczek)</Description>
+        <Website>https://github.com/szczoo17/autosplitters/tree/main/Smol%20Ame</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
