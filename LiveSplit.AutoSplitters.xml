@@ -2,6 +2,29 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Escape Academy</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Escape%20Academy/escapeacademy.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover by diggity.</Description>
+        <Website>https://github.com/mitchell-merry/autosplitters/blob/main/Escape%20Academy/escapeacademy.asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nocturne</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Nocturne/nocturne.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover by diggity. Run LiveSplit as admin.</Description>
+        <Website>https://github.com/mitchell-merry/autosplitters/blob/main/Nocturne/nocturne.asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Yakuza 5</Game>
         </Games>
         <URLs>
@@ -673,8 +696,8 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Catatstrophe Crow</Game>
-            <Game>Catatstrophe Crow!</Game>
+            <Game>Catastrophe Crow</Game>
+            <Game>Catastrophe Crow!</Game>
             <Game>CC64</Game>
             <Game>Crow64</Game>
         </Games>
@@ -2681,10 +2704,11 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sonic Adventure 2</Game>
             <Game>Sonic Adventure 2: Alternate</Game>
             <Game>Sonic Adventure 2: Battle</Game>
             <Game>Sonic Adventure 2: Battle - Category Extensions</Game>
-            <Game>Sonic Adventure 2</Game>
+            <Game>Sonic Adventure 2: Hunting Redux</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.SA2.asl</URL>
@@ -4245,8 +4269,30 @@
             <URL>https://raw.githubusercontent.com/deserteagle417/RE0-Autosplitter/main/re0hd.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Door splits, item splits, and key event splits are available. Click Website for more information.</Description>
+        <Description>Door splits, item splits, and key event splits are available. Click Website for more information. (by deserteagle417)</Description>
         <Website>https://github.com/deserteagle417/RE0-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Biohazard 3</Game>
+            <Game>Biohazard 3: Nemesis</Game>
+            <Game>Biohazard 3 Nemesis</Game>
+            <Game>Resident Evil 3: Nemesis</Game>
+            <Game>Resident Evil 3 Nemesis</Game>
+            <Game>RE3: Nemesis</Game>
+            <Game>RE3 Nemesis</Game>
+            <Game>Resident Evil 3 1999</Game>
+            <Game>Resident Evil 3 (1999)</Game>
+            <Game>RE3</Game>
+            <Game>RE3 1999</Game>
+            <Game>RE3 (1999)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/deserteagle417/RE3-Autosplitter/main/RE3aio.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Door and Item autosplits available for multiple routes. See Website for more detail. (by deserteagle417)</Description>
+        <Website>https://github.com/deserteagle417/RE3-Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11846,11 +11892,11 @@
             <Game>Super Mario Bros.</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/g2ffi/SMBAutoSplitter/master/SuperMarioBros.asl</URL>
+            <URL>https://raw.githubusercontent.com/periwinkle9/smb-autosplitter/main/SuperMarioBros.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>AutoSplitter for Nestopia v1.40 (By Giffi)</Description>
-        <Website>https://github.com/g2ffi/SMBAutoSplitter/</Website>
+        <Description>(NES) SMB1 autosplitter for various emulators and categories (by periwinkle)</Description>
+        <Website>https://github.com/periwinkle9/smb-autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12338,6 +12384,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter with Loadremover by Mysterion_06_</Description>
+        <Website>https://github.com/Mysterion06/YakuzaLADSplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14469,6 +14516,7 @@
     <AutoSplitter>
         <Games>
             <Game>Resident Evil: Revelations 2</Game>
+            <Game>Biohazard: Revelations 2</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TheDementedSalad/Resident-Evil-2-Revelations-Splitter/main/Resident%20Evil%20Revelations%202%20Autosplitter%202.asl</URL>
@@ -15549,5 +15597,26 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for Taz: Wanted (by MilkGames)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ty the Tasmanian Tiger</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/TY.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal available (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Stray</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.Stray/main/stray.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal available (by Micrologist and Meta)</Description>
+        <Website>https://github.com/Micrologist/LiveSplit.Stray</Website>
     </AutoSplitter>
 </AutoSplitters>
