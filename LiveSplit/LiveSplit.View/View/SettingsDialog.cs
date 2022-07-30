@@ -70,6 +70,8 @@ namespace LiveSplit.View
             Hook = hook;
 
             InitializeHotkeyProfiles(hotkeyProfile);
+            InitializeLanguages(Languages.Instance.GetLanguage());
+            RefreshText();
             SetClickEvents(this);
 
             chkGlobalHotkeys.DataBindings.Add("Checked", this, "GlobalHotkeysEnabled");
@@ -90,6 +92,12 @@ namespace LiveSplit.View
         {
             cmbHotkeyProfiles.Items.AddRange(Settings.HotkeyProfiles.Keys.ToArray());
             cmbHotkeyProfiles.SelectedItem = hotkeyProfile;
+        }
+
+        private void InitializeLanguages(string language)
+        {
+            comboBox1.Items.AddRange(Languages.Instance.GetLanguagesList());
+            comboBox1.SelectedItem = Languages.Instance.replaceStr(language);
         }
 
         private void UpdateDisplayedHotkeyValues()
@@ -171,7 +179,7 @@ namespace LiveSplit.View
         private void SetHotkeyHandlers(TextBox txtBox, Action<KeyOrButton> keySetCallback)
         {
             var oldText = txtBox.Text;
-            txtBox.Text = "Set Hotkey...";
+            txtBox.Text = Languages.Instance.GetText("SetHotkey", "Set Hotkey...");
             txtBox.Select(0, 0);
             KeyEventHandler handlerDown = null;
             KeyEventHandler handlerUp = null;
@@ -344,7 +352,10 @@ namespace LiveSplit.View
         private void btnRenameProfile_Click(object sender, EventArgs e)
         {
             var newName = SelectedHotkeyProfile;
-            var result = InputBox.Show("Rename Hotkey Profile", "Hotkey Profile Name:", ref newName);
+            var result = InputBox.Show(
+                Languages.Instance.GetText("RenameProfileTitle", "Rename Hotkey Profile"), 
+                Languages.Instance.GetText("HotkeyProfileName", "Hotkey Profile Name:"), 
+                ref newName);
             if (result == DialogResult.OK)
             {
                 if (!Settings.HotkeyProfiles.ContainsKey(newName))
@@ -369,7 +380,12 @@ namespace LiveSplit.View
                 }
                 else if (newName != SelectedHotkeyProfile)
                 {
-                    result = MessageBox.Show(this, "A Hotkey Profile with this name already exists.", "Hotkey Profile Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    result = MessageBox.Show(
+                        this, 
+                        Languages.Instance.GetText("ProfileText", "A Hotkey Profile with this name already exists."), 
+                        Languages.Instance.GetText("ProfileCaption", "Hotkey Profile Already Exists"), 
+                        MessageBoxButtons.RetryCancel, 
+                        MessageBoxIcon.Error);
                     if (result == DialogResult.Retry)
                         btnRenameProfile_Click(sender, e);
                 }
@@ -379,7 +395,10 @@ namespace LiveSplit.View
         private void btnNewProfile_Click(object sender, EventArgs e)
         {
             var name = "";
-            var result = InputBox.Show("New Hotkey Profile", "Hotkey Profile Name:", ref name);
+            var result = InputBox.Show(
+                Languages.Instance.GetText("NewProfileTitle", "New Hotkey Profile"), 
+                Languages.Instance.GetText("HotkeyProfileName", "Hotkey Profile Name:"), 
+                ref name);
             if (result == DialogResult.OK)
             {
                 if (!Settings.HotkeyProfiles.ContainsKey(name))
@@ -392,7 +411,12 @@ namespace LiveSplit.View
                 }
                 else
                 {
-                    result = MessageBox.Show(this, "A Hotkey Profile with this name already exists.", "Hotkey Profile Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    result = MessageBox.Show(
+                        this,
+                        Languages.Instance.GetText("ProfileText", "A Hotkey Profile with this name already exists."),
+                        Languages.Instance.GetText("ProfileCaption", "Hotkey Profile Already Exists"),
+                        MessageBoxButtons.RetryCancel, 
+                        MessageBoxIcon.Error);
                     if (result == DialogResult.Retry)
                         btnNewProfile_Click(sender, e);
                 }
@@ -414,6 +438,67 @@ namespace LiveSplit.View
                 Settings.RaceProvider = newSettings;                
             }
            
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label14_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var nowLang = comboBox1.SelectedItem.ToString();
+            var langString = Languages.Instance.langString;
+            foreach (var key in langString.Keys)
+            {
+                if (langString[key] == nowLang)
+                {
+                    Languages.Instance.nowLanguage = key;
+                    RefreshText();
+                }
+            }
+        }
+
+        private void RefreshText ()
+        {
+            btnChooseRaceProvider.Text = Languages.Instance.GetText("btnChooseRaceProvider", "Manage Racing Services...");
+            btnOK.Text = Languages.Instance.GetText("btnOK", "OK");
+            btnCancel.Text = Languages.Instance.GetText("btnCancel", "Cancel");
+            label5.Text = Languages.Instance.GetText("SavedAccounts", "Saved Accounts:");
+            btnLogOut.Text = Languages.Instance.GetText("btnLogOut", "Log Out of All Accounts");
+            groupBox1.Text = Languages.Instance.GetText("Hotkeys", "Hotkeys");
+            chkDeactivateForOtherPrograms.Text = Languages.Instance.GetText("chkDeactivateForOtherPrograms", "Deactivate For Other Programs");
+            label1.Text = Languages.Instance.GetText("StartOrSplit", "Start / Split:");
+            chkGlobalHotkeys.Text = Languages.Instance.GetText("chkGlobalHotkeys", "Global Hotkeys");
+            chkDoubleTap.Text = Languages.Instance.GetText("chkDoubleTap", "Double Tap Prevention");
+            label2.Text = Languages.Instance.GetText("Reset", "Reset:");
+            label6.Text = Languages.Instance.GetText("Pause", "Pause:");
+            label3.Text = Languages.Instance.GetText("SkipSplit", "Skip Split:");
+            label4.Text = Languages.Instance.GetText("UndoSplit", "Undo Split:");
+            label7.Text = Languages.Instance.GetText("ToggleGlobalHotkeys", "Toggle Global Hotkeys");
+            label8.Text = Languages.Instance.GetText("SwitchComparisonPrevious", "Switch Comparison (Previous):");
+            label9.Text = Languages.Instance.GetText("SwitchComparisonNext", "Switch Comparison (Next):");
+            label10.Text = Languages.Instance.GetText("HotkeyDelaySeconds", "Hotkey Delay (Seconds):");
+            grpHotkeyProfiles.Text = Languages.Instance.GetText("grpHotkeyProfiles", "Hotkey Profiles");
+            lblProfile.Text = Languages.Instance.GetText("lblProfile", "Active Hotkey Profile:");
+            btnRemoveProfile.Text = Languages.Instance.GetText("btnRemoveProfile", "Remove");
+            btnRenameProfile.Text = Languages.Instance.GetText("btnRenameProfile", "Rename");
+            btnNewProfile.Text = Languages.Instance.GetText("btnNewProfile", "New");
+            chkAllowGamepads.Text = Languages.Instance.GetText("chkAllowGamepads", "Allow Gamepads as Hotkeys");
+            label11.Text = Languages.Instance.GetText("RaceViewer", "Race Viewer:");
+            label12.Text = Languages.Instance.GetText("ActiveComparisons", "Active Comparisons:");
+            label13.Text = Languages.Instance.GetText("RacingServices", "Racing Services:");
+            btnChooseComparisons.Text = Languages.Instance.GetText("btnChooseComparisons", "Choose Active Comparisons...");
+            chkSimpleSOB.Text = Languages.Instance.GetText("chkSimpleSOB", "Simple Sum of Best Calculation");
+            chkWarnOnReset.Text = Languages.Instance.GetText("chkWarnOnReset", "Warn On Reset If Better Times");
+            labelRefreshRate.Text = Languages.Instance.GetText("labelRefreshRate", "Refresh Rate (Hz):");
+            label14.Text = Languages.Instance.GetText("labelLanguage", "Language");
+            Text = Languages.Instance.GetText("settingsMenuItem", "Settings");
         }
     }
 }

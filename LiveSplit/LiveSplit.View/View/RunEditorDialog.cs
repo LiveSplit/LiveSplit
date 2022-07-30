@@ -218,10 +218,73 @@ namespace LiveSplit.View
 
             SelectedMethod = state.CurrentTimingMethod;
 
+            RefreshText();
             RefreshCategoryAutoCompleteList();
             UpdateSegmentList();
             RefreshAutoSplittingUI();
             SetClickEvents(this);
+        }
+
+        private void RefreshText ()
+        {
+            label2.Text = Languages.Instance.GetText("GameName", "Game Name:");
+            label3.Text = Languages.Instance.GetText("RunCategory", "Run Category:");
+            label1.Text = Languages.Instance.GetText("StartTimerAt", "Start Timer at:");
+            RealTime.Text = Languages.Instance.GetText("RealTime", "Real Time");
+            GameTime.Text = Languages.Instance.GetText("GameTime", "Game Time");
+            Metadata.Text = Languages.Instance.GetText("Metadata", "Additional Info");
+            label4.Text = Languages.Instance.GetText("Attempts", "Attempts:");
+            btnCancel.Text = Languages.Instance.GetText("btnCancel", "Cancel");
+            btnOK.Text = Languages.Instance.GetText("btnOK", "OK");
+            btnOther.Text = Languages.Instance.GetText("btnOther", "Other...");
+            btnImportComparison.Text = Languages.Instance.GetText("btnImportComparison", "Import Comparison...");
+            btnAddComparison.Text = Languages.Instance.GetText("btnAddComparison", "Add Comparison");
+            btnMoveDown.Text = Languages.Instance.GetText("btnMoveDown", "Move Down");
+            btnMoveUp.Text = Languages.Instance.GetText("btnMoveUp", "Move Up");
+            btnRemove.Text = Languages.Instance.GetText("btnRemove", "Remove Segment");
+            btnAdd.Text = Languages.Instance.GetText("btnAdd", "Insert Below");
+            btnInsert.Text = Languages.Instance.GetText("btnInsert", "Insert Above");
+            btnBrowseLayout.Text = Languages.Instance.GetText("btnBrowseLayout", "Browse");
+            chkbxUseLayout.Text = Languages.Instance.GetText("chkbxUseLayout", "Use Layout");
+            btnWebsite.Text = Languages.Instance.GetText("btnWebsite", "Website");
+            btnSettings.Text = Languages.Instance.GetText("btnSettings", "Settings");
+            btnActivate.Text = Languages.Instance.GetText("btnActivate", "Activate");
+            lblDescription.Text = Languages.Instance.GetText("lblDescription", "Description");
+            setIconToolStripMenuItem.Text = Languages.Instance.GetText("setIconToolStripMenuItem", "Set Icon...");
+            downloadBoxartToolStripMenuItem.Text = Languages.Instance.GetText("downloadBoxartToolStripMenuItem", "Download Box Art");
+            downloadIconToolStripMenuItem.Text = Languages.Instance.GetText("downloadIconToolStripMenuItem", "Download Icon");
+            openFromURLMenuItem.Text = Languages.Instance.GetText("openFromURLMenuItem", "Open from URL...");
+            removeIconToolStripMenuItem.Text = Languages.Instance.GetText("removeIconToolStripMenuItem", "Remove Icon");
+            fromFileToolStripMenuItem.Text = Languages.Instance.GetText("fromFileToolStripMenuItem", "From File...");
+            fromSpeedruncomToolStripMenuItem.Text = Languages.Instance.GetText("fromSpeedruncomToolStripMenuItem", "From Speedrun.com...");
+            clearHistoryToolStripMenuItem.Text = Languages.Instance.GetText("clearHistoryToolStripMenuItem", "Clear History");
+            clearTimesToolStripMenuItem.Text = Languages.Instance.GetText("clearTimesToolStripMenuItem", "Clear Times");
+            cleanSumOfBestToolStripMenuItem.Text = Languages.Instance.GetText("cleanSumOfBestToolStripMenuItem", "Clean Sum of Best");
+            Text = Languages.Instance.GetText("RunEditorDialog", "Splits Editor");
+            foreach (DataGridViewColumn item in runGrid.Columns)
+            {
+                Console.WriteLine("表格名：", item.Name);
+                if (item.Name == "Icon")
+                {
+                    item.Name = Languages.Instance.GetText("Icon", "Icon");
+                }
+                if (item.Name == "Segment Name")
+                {
+                    item.Name = Languages.Instance.GetText("SegmentName", "Segment Name");
+                }
+                if (item.Name == "Split Time")
+                {
+                    item.Name = Languages.Instance.GetText("btnInsertSplitTime", "Split Time");
+                }
+                if (item.Name == "Segment Time")
+                {
+                    item.Name = Languages.Instance.GetText("SegmentTime", "Segment Time");
+                }
+                if (item.Name == "Best Segment")
+                {
+                    item.Name = Languages.Instance.GetText("BestSegment", "Best Segment");
+                }
+            }
         }
 
         private IEnumerable<string> SearchForGameName(string name)
@@ -661,7 +724,11 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    Languages.Instance.GetText("BackgroundImageText", "Could not load image!"), 
+                    Languages.Instance.GetText("Error", "Error"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -708,7 +775,11 @@ namespace LiveSplit.View
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                    MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        Languages.Instance.GetText("BackgroundImageText", "Could not load image!"),
+                        Languages.Instance.GetText("Error", "Error"),
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                 }
             }
         }
@@ -1236,7 +1307,11 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show("Could not download the icon of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    Languages.Instance.GetText("DownloadIconText", "Could not download the icon of the game!"), 
+                    Languages.Instance.GetText("Error", "Error"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -1277,7 +1352,11 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show("Could not download the box art of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    Languages.Instance.GetText("DownloadBoxArtText", "Could not download the box art of the game!"), 
+                    Languages.Instance.GetText("Error", "Error"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -1285,7 +1364,10 @@ namespace LiveSplit.View
         {
             string url = null;
 
-            if (DialogResult.OK == InputBox.Show("Open Game Icon from URL", "URL:", ref url))
+            if (DialogResult.OK == InputBox.Show(
+                Languages.Instance.GetText("OpenGameIconFromURL", "Open Game Icon from URL"), 
+                "URL:", 
+                ref url))
             {
                 try
                 {
@@ -1305,14 +1387,22 @@ namespace LiveSplit.View
                         catch (Exception ex)
                         {
                             Log.Error(ex);
-                            MessageBox.Show("The URL was not recognized as an image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(
+                                Languages.Instance.GetText("OpenIconText", "The URL was not recognized as an image."), 
+                                Languages.Instance.GetText("Error", "Error"), 
+                                MessageBoxButtons.OK, 
+                                MessageBoxIcon.Error);
                         }
                     }
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                    MessageBox.Show("The Game Icon couldn't be downloaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        Languages.Instance.GetText("OpenIconText_1", "The Game Icon couldn't be downloaded."),
+                        Languages.Instance.GetText("Error", "Error"),
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                 }
             }
         }
@@ -1360,7 +1450,10 @@ namespace LiveSplit.View
         {
             var name = column.Name;
             var newName = name;
-            var dialogResult = InputBox.Show("Rename Comparison", "Comparison Name:", ref newName);
+            var dialogResult = InputBox.Show(
+                Languages.Instance.GetText("RenameComparison", "Rename Comparison"),
+                Languages.Instance.GetText("ComparisonName", "Comparison Name:"), 
+                ref newName);
             if (dialogResult == DialogResult.OK)
             {
                 if (!Run.Comparisons.Contains(newName))
@@ -1384,14 +1477,24 @@ namespace LiveSplit.View
                     }
                     else
                     {
-                        var result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                        var result = MessageBox.Show(
+                            this,
+                            Languages.Instance.GetText("ComparisonText", "A Comparison name cannot start with [Race]."),
+                            Languages.Instance.GetText("InvalidComparisonName", "Invalid Comparison Name"),
+                            MessageBoxButtons.RetryCancel, 
+                            MessageBoxIcon.Error);
                         if (result == DialogResult.Retry)
                             RenameComparison(column);
                     }
                 }
                 else if (newName != name)
                 {
-                    var result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    var result = MessageBox.Show(
+                        this,
+                        Languages.Instance.GetText("ComparisonText_1", "A Comparison with this name already exists."),
+                        Languages.Instance.GetText("ComparisonAlreadyExists", "Comparison Already Exists"),
+                        MessageBoxButtons.RetryCancel, 
+                        MessageBoxIcon.Error);
                     if (result == DialogResult.Retry)
                         RenameComparison(column);
                 }
@@ -1421,7 +1524,10 @@ namespace LiveSplit.View
         private void btnAddComparison_Click(object sender, EventArgs e)
         {
             var name = "";
-            var result = InputBox.Show("New Comparison", "Comparison Name:", ref name);
+            var result = InputBox.Show(
+                Languages.Instance.GetText("NewComparison", "New Comparison"), 
+                Languages.Instance.GetText("ComparisonName", "Comparison Name:"), 
+                ref name);
             if (result == DialogResult.OK)
             {
                 if (!Run.Comparisons.Contains(name))
@@ -1433,14 +1539,24 @@ namespace LiveSplit.View
                     }
                     else
                     {
-                        result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                        result = MessageBox.Show(
+                            this, 
+                            Languages.Instance.GetText("ComparisonText", "A Comparison name cannot start with [Race]."), 
+                            Languages.Instance.GetText("InvalidComparisonName", "Invalid Comparison Name"), 
+                            MessageBoxButtons.RetryCancel, 
+                            MessageBoxIcon.Error);
                         if (result == DialogResult.Retry)
                             btnAddComparison_Click(sender, e);
                     }
                 }
                 else
                 {
-                    result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    result = MessageBox.Show(
+                        this, 
+                        Languages.Instance.GetText("ComparisonText_1", "A Comparison with this name already exists."), 
+                        Languages.Instance.GetText("ComparisonAlreadyExists", "Comparison Already Exists"), 
+                        MessageBoxButtons.RetryCancel, 
+                        MessageBoxIcon.Error);
                     if (result == DialogResult.Retry)
                         btnAddComparison_Click(sender, e);
                 }
@@ -1472,11 +1588,11 @@ namespace LiveSplit.View
         protected void RefreshAutoSplittingUI()
         {
             lblDescription.Text = Run.AutoSplitter == null
-                ? "There is no Auto Splitter available for this game."
+                ? Languages.Instance.GetText("AutoSplitterTip", "There is no Auto Splitter available for this game.")
                 : Run.AutoSplitter.Description;
             btnActivate.Text = Run.IsAutoSplitterActive()
-                ? "Deactivate"
-                : "Activate";
+                ? Languages.Instance.GetText("btnDeactivate", "Deactivate")
+                : Languages.Instance.GetText("btnActivate", "Activate");
             btnActivate.Enabled = Run.AutoSplitter != null;
             btnSettings.Enabled = Run.IsAutoSplitterActive() && Run.AutoSplitter.Component.GetSettingsControl(LayoutMode.Vertical) != null;
             btnWebsite.Visible = Run.AutoSplitter != null && Run.AutoSplitter.Website != null;

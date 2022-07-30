@@ -73,6 +73,7 @@ namespace LiveSplit.Options
             get { return HotkeyProfiles.First().Value.DoubleTapPrevention; }
             set { HotkeyProfiles.First().Value.DoubleTapPrevention = value; }
         }
+        public string Language { get; set; }
 
         public Settings()
         {
@@ -97,7 +98,8 @@ namespace LiveSplit.Options
                 SimpleSumOfBest = SimpleSumOfBest,
                 RefreshRate = RefreshRate,
                 ActiveAutoSplitters = new List<string>(ActiveAutoSplitters),
-                ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates)
+                ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates),
+                Language = Languages.Instance.nowLanguage
             };
         }
 

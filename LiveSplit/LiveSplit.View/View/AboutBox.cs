@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
+using LiveSplit.Options;
 
 namespace LiveSplit.View
 {
@@ -14,6 +15,7 @@ namespace LiveSplit.View
             lblVersion.Text = Git.Version;
             if (Git.Branch != "master" && Git.Branch != "HEAD")
                 labelProductName.Text = string.Format("{0} ({1})", labelProductName.Text, Git.Branch);
+            RefreshText();
         }
 
 #region Assembly Attribute Accessors
@@ -124,6 +126,12 @@ namespace LiveSplit.View
         private void lblVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start(Git.RevisionUri.AbsoluteUri);
+        }
+
+        private void RefreshText ()
+        {
+            label1.Text = Languages.Instance.GetText("textBoxTip", "We\'ve put a lot of work into LiveSplit. If you like the program, please consider donating.");
+            Text = Languages.Instance.GetText("AboutBox", "About LiveSplit");
         }
     }
 }

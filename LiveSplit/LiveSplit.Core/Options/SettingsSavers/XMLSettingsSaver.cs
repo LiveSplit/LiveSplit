@@ -85,6 +85,7 @@ namespace LiveSplit.Options.SettingsSavers
             parent.AppendChild(autoSplittersActive);
 
             AddDriftToSettings(document, parent);
+            CreateSetting(document, parent, "Language", Languages.Instance.nowLanguage);
 
             document.Save(stream);
         }

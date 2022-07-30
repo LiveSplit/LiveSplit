@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using LiveSplit.Model;
 using LiveSplit.Web.Share;
+using LiveSplit.Options;
 
 namespace LiveSplit.View
 {
@@ -21,6 +22,7 @@ namespace LiveSplit.View
             this.metadata = metadata;
 
             InitializeComponent();
+            RefreshText();
 
             hasPersonalBestDateTime = SpeedrunCom.FindPersonalBestAttemptDate(metadata.LiveSplitRun).HasValue;
 
@@ -117,7 +119,12 @@ namespace LiveSplit.View
                 }
                 else
                 {
-                    MessageBox.Show(this, "You didn't provide a valid Video URL.", "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        this, 
+                        Languages.Instance.GetText("SubmitVideoText", "You didn't provide a valid Video URL."), 
+                        Languages.Instance.GetText("SubmittingFailed", "Submitting Failed"), 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -140,7 +147,12 @@ namespace LiveSplit.View
                 }
                 catch
                 {
-                    MessageBox.Show(this, "You didn't enter a valid Game Time.", "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        this,
+                        Languages.Instance.GetText("SubmitVideoText_1", "You didn't enter a valid Game Time."),
+                        Languages.Instance.GetText("SubmittingFailed", "Submitting Failed"),
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -156,7 +168,12 @@ namespace LiveSplit.View
                 }
                 catch
                 {
-                    MessageBox.Show(this, "You didn't enter a valid Real Time without Loads.", "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        this,
+                        Languages.Instance.GetText("SubmitVideoText_2", "You didn't enter a valid Real Time without Loads."),
+                        Languages.Instance.GetText("SubmittingFailed", "Submitting Failed"),
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                     return;
                 }
             }
@@ -173,7 +190,12 @@ namespace LiveSplit.View
             }
             else
             {
-                MessageBox.Show(this, reason, "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this, 
+                    reason,
+                    Languages.Instance.GetText("SubmittingFailed", "Submitting Failed"),
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -205,6 +227,15 @@ namespace LiveSplit.View
             }
 
             lastSplit.PersonalBestSplitTime = runTime;
+        }
+
+        private void RefreshText ()
+        {
+            label1.Text = Languages.Instance.GetText("Video", "Video:");
+            label2.Text = Languages.Instance.GetText("Comment", "Comment:");
+            btnSubmit.Text = Languages.Instance.GetText("btnSubmit", "Submit");
+            btnCancel.Text = Languages.Instance.GetText("btnCancel", "Cancel");
+            Text = Languages.Instance.GetText("SpeedrunComSubmitDialog", "Submitting to Speedrun.com");
         }
     }
 }

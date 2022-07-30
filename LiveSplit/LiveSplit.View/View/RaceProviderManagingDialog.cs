@@ -28,6 +28,7 @@ namespace LiveSplit.View
             {
                 providerListBox.Items.Add(raceProvider.DisplayName, raceProvider.Enabled);
             }
+            RefreshText();
         }
 
         private void LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -67,6 +68,15 @@ namespace LiveSplit.View
             settingsUIPanel.Controls[0].Visible = true;
             websiteTextLabel.Visible = !string.IsNullOrEmpty(Settings[providerListBox.SelectedIndex].WebsiteLink);
             rulesTextLabel.Visible = !string.IsNullOrEmpty(Settings[providerListBox.SelectedIndex].RulesLink);
+        }
+
+        private void RefreshText()
+        {
+            btnCancel.Text = Languages.Instance.GetText("btnCancel", "Cancel");
+            btnOK.Text = Languages.Instance.GetText("btnOK", "OK");
+            websiteTextLabel.Text = Languages.Instance.GetText("websiteTextLabel", "Website:");
+            rulesTextLabel.Text = Languages.Instance.GetText("rulesTextLabel", "Rules:");
+            Text = Languages.Instance.GetText("RaceProviderManagingDialog", "Manage Racing Services");
         }
     }
 }

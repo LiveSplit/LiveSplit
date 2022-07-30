@@ -61,6 +61,7 @@ namespace LiveSplit.View
 
             cmbBackgroundType.SelectedItem = GetBackgroundTypeString(Settings.BackgroundType);
             originalBackgroundImage = Settings.BackgroundImage;
+            RefreshText();
         }        
 
         private string GetBackgroundTypeString(BackgroundType type)
@@ -88,13 +89,13 @@ namespace LiveSplit.View
             {
                 btnBackground2.BackgroundImage = Settings.BackgroundImage;
                 btnBackground2.BackColor = Color.Transparent;
-                lblBackground.Text = "Image:";
+                lblBackground.Text = Languages.Instance.GetText("lblBackgroundImage", "Image:");
             }
             else
             {
                 btnBackground2.BackgroundImage = null;
                 btnBackground2.DataBindings.Add("BackColor", Settings, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
-                lblBackground.Text = "Color:";
+                lblBackground.Text = Languages.Instance.GetText("lblBackgroundColor", "Color:");
             }
             Settings.BackgroundType = (BackgroundType)Enum.Parse(typeof(BackgroundType), selectedItem.Replace(" ", ""));
         }
@@ -110,7 +111,7 @@ namespace LiveSplit.View
             {
                 var dialog = new OpenFileDialog();
                 dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
-                dialog.Title = "Set Background Image...";
+                dialog.Title = Languages.Instance.GetText("SetBackgroundImage", "Set Background Image...");
                 var result = dialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
@@ -125,7 +126,11 @@ namespace LiveSplit.View
                     catch (Exception ex)
                     {
                         Log.Error(ex);
-                        MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(
+                            Languages.Instance.GetText("BackgroundImageText", "Could not load image!"), 
+                            Languages.Instance.GetText("Error", "Error"), 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Error);
                     }
                 }
             }
@@ -179,6 +184,45 @@ namespace LiveSplit.View
         {
             chkRainbow_CheckedChanged(null, null);
             chkAntiAliasing_CheckedChanged(null, null);
+        }
+
+        private void RefreshText ()
+        {
+            chkMousePassThroughWhileRunning.Text = Languages.Instance.GetText("chkMousePassThroughWhileRunning", "Ignore Mouse While Running and Not In Focus");
+            groupBox2.Text = Languages.Instance.GetText("Colors", "Colors");
+            lblOutlines.Text = Languages.Instance.GetText("lblOutlines", "Text Outlines:");
+            label9.Text = Languages.Instance.GetText("BestSegment", "Best Segment:");
+            label5.Text = Languages.Instance.GetText("AheadGainingTime", "Ahead (Gaining Time):");
+            label6.Text = Languages.Instance.GetText("AheadLosingTime", "Ahead (Losing Time):");
+            label7.Text = Languages.Instance.GetText("BehindGainingTime", "Behind (Gaining Time):");
+            label11.Text = Languages.Instance.GetText("Text", "Text: ");
+            label8.Text = Languages.Instance.GetText("BehindLosingTime", "Behind (Losing Time):");
+            chkRainbow.Text = Languages.Instance.GetText("chkRainbow", "Use Rainbow Best Segment Color");
+            label10.Text = Languages.Instance.GetText("NotRunning", "Not Running:");
+            label2.Text = Languages.Instance.GetText("ThinSeparators", "Thin Separators:");
+            label4.Text = Languages.Instance.GetText("PersonalBest", "Personal Best:");
+            label3.Text = Languages.Instance.GetText("Separators", "Separators:");
+            label12.Text = Languages.Instance.GetText("Paused", "Paused:");
+            label14.Text = Languages.Instance.GetText("Shadows", "Shadows:");
+            chkAlwaysOnTop.Text = Languages.Instance.GetText("chkAlwaysOnTop", "Always on Top");
+            groupBox1.Text = Languages.Instance.GetText("Fonts", "Fonts");
+            chkAntiAliasing.Text = Languages.Instance.GetText("chkAntiAliasing", "Anti-Aliasing");
+            label16.Text = Languages.Instance.GetText("Timer", "Timer:");
+            label17.Text = Languages.Instance.GetText("Times", "Times:");
+            label18.Text = Languages.Instance.GetText("Text", "Text: ");
+            btnTimer.Text = Languages.Instance.GetText("btnTimer", "Choose...");
+            btnTimes.Text = Languages.Instance.GetText("btnTimes", "Choose...");
+            btnTextFont.Text = Languages.Instance.GetText("btnTextFont", "Choose...");
+            chkDropShadows.Text = Languages.Instance.GetText("chkDropShadows", "Drop Shadows");
+            lblTimer.Text = Languages.Instance.GetText("lblTimer", "something");
+            lblTimes.Text = Languages.Instance.GetText("lblTimes", "something");
+            lblText.Text = Languages.Instance.GetText("lblText", "something");
+            chkBestSegments.Text = Languages.Instance.GetText("chkBestSegments", "Show Best Segments");
+            label13.Text = Languages.Instance.GetText("Opacity", "Opacity:");
+            groupBox3.Text = Languages.Instance.GetText("Background", "Background");
+            lblBackground.Text = Languages.Instance.GetText("lblBackgroundColor", "Color:");
+            lblImageOpacity.Text = Languages.Instance.GetText("lblImageOpacity", "Image Opacity:");
+            lblBlur.Text = Languages.Instance.GetText("lblBlur", "Image Blur:");
         }
     }
 }

@@ -55,7 +55,12 @@ namespace LiveSplit.View
             {
                 if (!FormIsClosing)
                 {
-                    MessageBox.Show(this, "You have been kicked from the IRC Channel.", "Kicked From Channel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        this, 
+                        Languages.Instance.GetText("KickedText", "You have been kicked from the IRC Channel."), 
+                        Languages.Instance.GetText("KickedFromChannel", "Kicked From Channel"), 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                     Close();
                 }
             });
@@ -72,7 +77,12 @@ namespace LiveSplit.View
                 {
                     if (!FormIsClosing)
                     {
-                        MessageBox.Show(this, "You have been disconnected from the IRC server.", "Disconnected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(
+                            this, 
+                            Languages.Instance.GetText("DisconnectedText", "You have been disconnected from the IRC server."),
+                            Languages.Instance.GetText("Disconnected", "Disconnected"), 
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                         Close();
                     }
                 });
@@ -89,7 +99,12 @@ namespace LiveSplit.View
 
             this.InvokeIfRequired(() =>
             {
-                MessageBox.Show(this, "Your nickname is already in use.", "Nickname In Use", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this, 
+                    Languages.Instance.GetText("NicknameInUseText", "Your nickname is already in use."),
+                    Languages.Instance.GetText("NicknameInUse", "Nickname In Use"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
                 Close();
             });
         }
@@ -103,7 +118,12 @@ namespace LiveSplit.View
 
             this.InvokeIfRequired(() =>
             {
-                MessageBox.Show(this, "The password is incorrect.", "Password Incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this,
+                    Languages.Instance.GetText("PasswordIncorrectText", "The password is incorrect."),
+                    Languages.Instance.GetText("PasswordIncorrect", "Password Incorrect"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
                 Close();
             });
         }
@@ -160,35 +180,35 @@ namespace LiveSplit.View
                 {
                     chkReady.Enabled = true;
                     chkReady.Checked = false;
-                    btnJoinQuit.Text = "Quit Race";
+                    btnJoinQuit.Text = Languages.Instance.GetText("QuitRace", "Quit Race");
                     btnJoinQuit.Enabled = true;
                 }
                 else if (state == RaceState.EnteredRaceAndReady)
                 {
                     chkReady.Enabled = true;
                     chkReady.Checked = true;
-                    btnJoinQuit.Text = "Quit Race";
+                    btnJoinQuit.Text = Languages.Instance.GetText("QuitRace", "Quit Race");
                     btnJoinQuit.Enabled = true;
                 }
                 else if (state == RaceState.NotInRace)
                 {
                     chkReady.Enabled = false;
                     chkReady.Checked = false;
-                    btnJoinQuit.Text = "Enter Race";
+                    btnJoinQuit.Text = Languages.Instance.GetText("EnterRace", "Enter Race");
                     btnJoinQuit.Enabled = true;
                 }
                 else if (state == RaceState.RaceEnded)
                 {
                     chkReady.Enabled = false;
                     chkReady.Checked = true;
-                    btnJoinQuit.Text = "Rejoin Race";
+                    btnJoinQuit.Text = Languages.Instance.GetText("RejoinRace", "Rejoin Race");
                     btnJoinQuit.Enabled = true;
                 }
                 else if (state == RaceState.RaceStarted)
                 {
                     chkReady.Enabled = false;
                     chkReady.Checked = true;
-                    btnJoinQuit.Text = "Forfeit Race";
+                    btnJoinQuit.Text = Languages.Instance.GetText("ForfeitRace", "Forfeit Race");
                     btnJoinQuit.Enabled = true;
                 }
             });
@@ -303,7 +323,12 @@ namespace LiveSplit.View
 
             this.InvokeIfRequired(() =>
             {
-                MessageBox.Show(this, "RaceBot did not respond to your message. If you created a race within the last 5 minutes, you are not allowed to create another race.", "RaceBot Did Not Respond", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this,
+                    Languages.Instance.GetText("RaceBotDidNotRespondText", "RaceBot did not respond to your message. If you created a race within the last 5 minutes, you are not allowed to create another race."), 
+                    Languages.Instance.GetText("RaceBotDidNotRespond", "RaceBot Did Not Respond"),
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
                 Close();
             });
         }
@@ -357,7 +382,12 @@ namespace LiveSplit.View
                     var race = SpeedRunsLiveAPI.Instance.GetRace(RaceId);
                     if (race.statetext == "In Progress" && ((IDictionary<string, dynamic>)race.entrants.Properties).First(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value.statetext == "Finished")
                     {
-                        var result = MessageBox.Show(this, "Due to SpeedRunsLive rules, you need to confirm that you have completed the race before leaving an unfinished race. Do you confirm that you legitimately finished the race?", "Confirmation Required", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                        var result = MessageBox.Show(
+                            this,
+                            Languages.Instance.GetText("ConfirmationRequiredText", "Due to SpeedRunsLive rules, you need to confirm that you have completed the race before leaving an unfinished race. Do you confirm that you legitimately finished the race?"), 
+                            Languages.Instance.GetText("ConfirmationRequired", "Confirmation Required"), 
+                            MessageBoxButtons.YesNoCancel,
+                            MessageBoxIcon.Question);
                         if (result == DialogResult.Cancel)
                         {
                             e.Cancel = true;
@@ -617,6 +647,14 @@ namespace LiveSplit.View
             {
                 SRLClient.Unready();
             }
+        }
+
+        private void RefreshText ()
+        {
+            chatBox.Text = Languages.Instance.GetText("chatBox", "");
+            chkReady.Text = Languages.Instance.GetText("chkReady", "Ready");
+            btnJoinQuit.Text = Languages.Instance.GetText("btnJoinQuit", "Enter Race");
+            Text = Languages.Instance.GetText("SpeedRunsLiveForm", "Joining Channel...");
         }
     }
 

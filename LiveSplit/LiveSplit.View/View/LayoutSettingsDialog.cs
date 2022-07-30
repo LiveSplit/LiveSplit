@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
+using LiveSplit.Options;
 
 namespace LiveSplit.View
 {
@@ -23,6 +24,7 @@ namespace LiveSplit.View
             Components = new List<IComponent>();
             AddNewTab("Layout", new LayoutSettingsControl(settings, layout));
             AddComponents(tabComponent);
+            RefreshText();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -68,6 +70,24 @@ namespace LiveSplit.View
             page.AutoScroll = true;
             page.Name = name;
             tabControl.TabPages.Add(page);
+        }
+
+        private void RefreshText()
+        {
+            btnCancel.Text = Languages.Instance.GetText("btnCancel", "Cancel");
+            btnOK.Text = Languages.Instance.GetText("btnOK", "OK");
+            Text = Languages.Instance.GetText("LayoutSettingsDialog", "Layout Settings");
+            foreach (TabPage item in tabControl.TabPages)
+            {
+                if (item.Name == "Layout")
+                {
+                    item.Text = Languages.Instance.GetText("TabPageLayout", "Layout");
+                }
+                if (item.Name == "Timer")
+                {
+                    item.Text = Languages.Instance.GetText("TabPageTimer", "Timer");
+                }
+            }
         }
     }
 }
