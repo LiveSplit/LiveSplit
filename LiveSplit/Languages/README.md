@@ -2,6 +2,8 @@
 
 Copy the entire **`Languages` folder** to the directory where **LiveSplit.exe** is located.
 
+Run LiveSplit.exe, right click on the window and set the language in `Settings` -> `Languages`.
+
 ## Add Other Languages
 
 If LiveSplit does not support your language, you can add your language to it.
