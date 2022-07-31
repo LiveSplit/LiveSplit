@@ -8932,10 +8932,10 @@
             <Game>FC5</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/FC5LR.asl</URL>
+            <URL>https://raw.githubusercontent.com/Binslev/FC5LR/main/FC5LR.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>LoadRemover is available (by AlexYeahNot )</Description>
+        <Description>LoadRemover is available (by Binslev, credit to AlexYeahNot)</Description>
         <Website>https://discord.gg/D7vJsC</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8946,10 +8946,10 @@
             <Game>FC:ND</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/AlexYeahNot/asl-scripts/master/FCNDLR.asl</URL>
+            <URL>https://raw.githubusercontent.com/Binslev/FCNDLR/main/FCNDLR.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>LoadRemover is available (by AlexYeahNot )</Description>
+        <Description>LoadRemover is available (by ChiefSupreme, credit to AlexYeahNot)</Description>
         <Website>https://discord.gg/D7vJsC</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -11629,7 +11629,7 @@
             <URL>https://raw.githubusercontent.com/henpemaz/Rain-World-Autosplitter/master/RWAutosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automatic start, triggers for rooms, gates, achiemevemnts, encounters and more. By Henpemaz.</Description>
+        <Description>Automatic start, room triggers, gates, achievements, encounters and more. By Henpemaz and ICED</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15618,5 +15618,45 @@
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal available (by Micrologist and Meta)</Description>
         <Website>https://github.com/Micrologist/LiveSplit.Stray</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Outriders</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Tiln1/outriders-auto-splitter/main/outriders.ASL</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal available (by Tiln1). Made for the Steam version, post-Worldslayer.</Description>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>Metal Gear: Ghost Babel</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NickRPGreen/Metal-Gear-Ghost-Babel-Autosplitter/main/Metal%20Gear%20Ghost%20Babel%20Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and IGT tracking (by NickRPGreen)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Journey to the Savage Planet</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/InfaReQt/JTTSP/main/LoadRemoverJTTSP.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal (by InfaReQt). Works for all current versions of the game.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Vex 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NoobTracker/vex-3-autosplitter/main/vex-3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and IGT for the Any% category, by NoobTracker. For the .exe version. </Description>
     </AutoSplitter>
 </AutoSplitters>
