@@ -13505,14 +13505,21 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Biohazard 2</Game>
             <Game>Resident Evil 2</Game>
+            <Game>BH2</Game>
+            <Game>RE2</Game>
+            <Game>Resident Evil 2 1998</Game>
+            <Game>Resident Evil 2 (1998)</Game>
+            <Game>RE2 1998</Game>
+            <Game>RE2 (1998)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/CarcinogenSDA/re2-classic-autosplitter/main/re2_autosplitter_all_doors.asl</URL>
+            <URL>https://raw.githubusercontent.com/deserteagle417/RE2-Autosplitter/main/RE2aio.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>All Doors Autosplitter for use with Sourcenext 1.10 and RE2 Classic REbirth (by CarcinogenSDA)</Description>
-        <Website>https://github.com/CarcinogenSDA/re2-classic-autosplitter</Website>
+        <Description>Door and Item autosplits for all scenarios and side games. See Website for more detail. (by deserteagle417)</Description>
+        <Website>https://github.com/deserteagle417/RE2-Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
