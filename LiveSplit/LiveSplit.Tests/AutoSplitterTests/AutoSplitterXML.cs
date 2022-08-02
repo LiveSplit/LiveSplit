@@ -42,6 +42,7 @@ namespace LiveSplit.Tests.AutoSplitterTests
 
             Assert.True(!autoSplitters.Any(x => string.IsNullOrWhiteSpace(x.Key)), "Empty Game Names are not allowed");
             Assert.True(!autoSplitters.Values.Any(x => string.IsNullOrWhiteSpace(x.Description)), "Auto Splitters need a description");
+            Assert.True(!autoSplitters.Values.Any(x => x.Description.Length > 120), "Auto Splitter description must be no longer than 120 characters");
             Assert.True(!autoSplitters.Values.Any(x => !x.URLs.Any()), "Auto Splitters need to have at least one URL");
             Assert.True(!autoSplitters.Values.Any(x => x.URLs.Any(y => y.EndsWith(".asl")) && x.Type == AutoSplitterType.Component),
                 "ASL Script is downloaded even though Type \"Component\" is specified");
