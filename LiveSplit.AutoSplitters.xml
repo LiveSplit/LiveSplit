@@ -910,7 +910,7 @@
             <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/release/Deltarune.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Available for all versions, SURVEY inclued. Auto-endsplit only for SURVEY. Created by Tenebrosful from Narry's Autosplitter</Description>
+        <Description>Available for all versions. Auto-endsplit only for SURVEY. Created by Tenebrosful from Narry's Autosplitter</Description>
         <Website>https://github.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -921,7 +921,7 @@
             <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/release/Deltarune-ce.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Available for all versions, SURVEY inclued. Auto-endsplit only for SURVEY. Created by Tenebrosful from Narry's Autosplitter</Description>
+        <Description>Available for all versions. Auto-endsplit only for SURVEY. Created by Tenebrosful from Narry's Autosplitter</Description>
         <Website>https://github.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -1782,7 +1782,7 @@
             <URL>https://raw.githubusercontent.com/Psych0sisA/Autosplitters/master/BloodEX8.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitter for Blood: Fresh Supply. Also pauses the time during the saving function since the pause varies depending on cpu. (by Psych0sis)</Description>
+        <Description>Autosplitter for Blood: Fresh Supply. (by Psych0sis)</Description>
         <Website>https://discord.gg/jf7jJRu</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -2071,7 +2071,7 @@
             <URL>https://raw.githubusercontent.com/Psych0sisA/Autosplitters/master/Blood2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitter and load remover for Blood with 0.73, 0.74 and 0.74-2 DOSBox. Allows for Episode 3 start or Episode 1 start by checkbox selection on "Scriptable Autosplitter" in Layout Settings. (by Psych0sis)</Description>
+        <Description>Autosplitter and load remover for Blood with 0.73, 0.74 and 0.74-2 DOSBox. (by Psych0sis)</Description>
         <Website>https://discord.gg/BQBFsfn</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -2137,7 +2137,7 @@
             <URL>https://raw.githubusercontent.com/tonylukasavage/liveview-autosplitter-castlevania-2/master/cv2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autostart and configurable splits for Dracula parts, whips, and crystals. Documentation, code, and example split file available from the website (By BloodSweatAndCode)</Description>
+        <Description>Autostart and configurable splits for Dracula parts, whips, and crystals. (By BloodSweatAndCode)</Description>
         <Website>https://github.com/tonylukasavage/liveview-autosplitter-castlevania-2</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -2426,7 +2426,7 @@
             <URL>https://raw.githubusercontent.com/RibShark/Rayman2AutoSplitter/master/LiveSplit.Rayman2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto starting, resetting and splitting. Starts after the opening cutscene, final split is performed once the final boss is defeated. (By RibShark)</Description>
+        <Description>Auto starting, resetting and splitting. Starts after the opening cutscene. (By RibShark)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2594,7 +2594,7 @@
             <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/LOVE/LOVE_livesplit.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Works in all game modes after you enter Speedrun mode. Auto start, split, reset. IGT syncing. SleepMargin settings to fix low in-game FPS.</Description>
+        <Description>Works in all game modes after you enter Speedrun mode. Auto start, split, reset. IGT syncing.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4010,7 +4010,7 @@
             <URL>https://raw.githubusercontent.com/andoalon/autosplitters/master/world_of_traps.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-splits at each level. Splits available: https://raw.githubusercontent.com/andoalon/autosplitters/master/World%20of%20Traps%20-%20Any%20%25.lss</Description>
+        <Description>Auto-splits at each level.</Description>
         <Website>https://github.com/andoalon/autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -5300,7 +5300,7 @@
             <URL>https://raw.githubusercontent.com/Krakenos/autosplitters/master/isaac/isaac-repentance.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Game Time, Auto Splitting and Auto Start/Reset are available. Can split by character or by floor. (By Krakenos and Hyphen-ated)</Description>
+        <Description>Game Time, Auto Splitting and Auto Start/Reset are available. (By Krakenos and Hyphen-ated)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5828,7 +5828,7 @@
             <URL>https://raw.githubusercontent.com/xTin0x/Speedrunning/master/coman_mp.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Basic auto-splitter for ILs: starts the timer when the player assumes control of the game, splits when the mission is completed.</Description>
+        <Description>Basic auto-splitter for ILs: starts the timer when the player assumes control of the game.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7265,7 +7265,7 @@
             <URL>https://raw.githubusercontent.com/ttakkyon/RageSplit/master/Rage.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load time removal, save time removal and basic autosplitting are available using the game timer. Check speedrun.com resources page for more info. (By Takyon)</Description>
+        <Description>Load time removal, save time removal and autosplitting are available using the game timer. (By Takyon)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7286,7 +7286,7 @@
             <URL>https://raw.githubusercontent.com/ditmarvisser/Limbo-Autosplit/master/LimboAutosplit.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting for every chapter and Auto Start are available. Check the speedrun.com resources page for more info. (By DitmarVisser)</Description>
+        <Description>Auto Splitting for every chapter and Auto Start are available. (By DitmarVisser)</Description>
         <Website>https://github.com/ditmarvisser/Limbo-Autosplit</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -7565,7 +7565,7 @@
             <URL>https://raw.githubusercontent.com/RavenX8/livesplit-asl/master/SonicGenerations.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Start. Supports Any% and Single act Only categories. Autosplitting all challanges, stages and bosses. Check options for more details. (By RavenX8)</Description>
+        <Description>Auto Start. Supports Any% and Single act Only categories. Splits for all challanges, stages and bosses. (By RavenX8)</Description>
         <Website>https://github.com/RavenX8/livesplit-asl</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8445,7 +8445,7 @@
             <URL>https://raw.githubusercontent.com/ItsTrigger/LiveSplit-Auto-Splitters/master/LiveSplit.SOMA.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-splitting is available. Load time removal requires a helper mod found at https://www.speedrun.com/SOMA/resources (By Trigger)</Description>
+        <Description>Auto-splitting is available. Load time removal requires a helper mod found at Speedrun.com. (By Trigger)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8465,7 +8465,7 @@
             <URL>https://raw.githubusercontent.com/ClarisRobyn/ManiaPlusAutosplitter/master/SonicManiaPlus.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>PC version, auto splitting/start/reset available. Splits at the very end of each act, optional split at the start of the CP2 boss. (By Claris)</Description>
+        <Description>PC version, auto splitting/start/reset available. Splits at the very end of each act. (By Claris)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9542,7 +9542,7 @@
             <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.CMR2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting, Total Race Time (as Game Time), Auto Start and Reset for Championship% categories is available (by Mr. Mary)</Description>
+        <Description>Auto Splitting, Total Race Time (as Game Time), Auto Start and Reset for Championship% (by Mr. Mary)</Description>
         <Website>https://github.com/marysiamzawka/ASL</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -10077,7 +10077,7 @@
             <URL>https://raw.githubusercontent.com/pingval/AutoSplitters/master/th08.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Start/Split/Reset and Spell Card/Death Count are available. Supported categories are Extra and All Last Words currently. (By pingval)</Description>
+        <Description>Auto Start/Split/Reset and Spell Card/Death Count are available. (By pingval)</Description>
         <Website>https://github.com/pingval/AutoSplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -10163,7 +10163,7 @@
             <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/ArkhamOrigins.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-start, and Auto-splitting on pre-rendered cutscenes and load zones is available (by JohnStephenEvil and ShikenNuggets)</Description>
+        <Description>Auto-start and Auto-splitting are available (by JohnStephenEvil and ShikenNuggets)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10463,7 +10463,7 @@
             <URL>https://gitlab.com/xelivous/dt3-autosplitter/raw/master/dt3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load removal, autosplitter, split settings, automatic start and reset are available. Also comes with some meme settings. (by Xelivous)</Description>
+        <Description>Load removal, autosplitter, split settings, automatic start and reset are available. (by Xelivous)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10494,7 +10494,7 @@
             <URL>https://raw.githubusercontent.com/samabam/Multi-PoP-Autosplitter/master/MultiPoPSandsTrilogy.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and IGT/Load-remover for the 7 major categories. (by Samabam, Smathlax, GMP, Karlgamer, ThePedMeister, WinterThunder, Ynscription and SuicideMachine)</Description>
+        <Description>Autosplitter and IGT/Load-remover for the 7 major categories. (by Samabam, Smathlax, GMP, et al.)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10779,7 +10779,7 @@
             <URL>https://raw.githubusercontent.com/NextLevelMemes/Master/master/traautosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for Tomb Raider: Anniversary Any% - No Bug Jump with 23 autosplits, load removal and autoreset by NextLevelMemes</Description>
+        <Description>Autosplitter for Any% - No Bug Jump with 23 autosplits, load removal and autoreset (by NextLevelMemes)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11187,7 +11187,7 @@
             <URL>https://gist.githubusercontent.com/forkerer/ce5376fd4ae4c5868b42132411616569/raw/d8ee3204ce45132c4c93ec0ef57dfca62c2d8457/Carma2Missions.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Wokrs with CARMA2_HW.exe, Automatic timer start on first race beggining, timer restarts on game abort. Settings to decide which missions should split timer, also additional option to split on ped kills. (By forkerer)</Description>
+        <Description>Works with CARMA2_HW.exe, Automatic timer start on first race beginning. (By forkerer)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11207,7 +11207,7 @@
             <URL>https://raw.githubusercontent.com/mbugert/livesplit-autosplitters/master/ProPinballBigRaceUsa.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto splits cities/missions/roads and score milestones. Pauses timer during bonus count. Works with v1.00/v1.18/v1.20b. (By mbugert)</Description>
+        <Description>Auto splits cities/missions/roads and score milestones. Pauses timer during bonus count. (By mbugert)</Description>
         <Website>https://github.com/mbugert/livesplit-autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -12303,7 +12303,7 @@
             <URL>https://raw.githubusercontent.com/SporyTike/LiveSplit.AutoSplitters/main/LiveSplit.SM64.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-Splitter with Auto-Start and Auto-Reset functions. Different settings for custom splits available. Only for Project 64 v1.6 (By SporyTike)</Description>
+        <Description>Auto-Splitter with Auto-Start and Auto-Reset functions. Only for Project 64 v1.6 (By SporyTike)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12313,7 +12313,7 @@
             <URL>https://raw.githubusercontent.com/SporyTike/LiveSplit.AutoSplitters/main/LiveSplit.SM64Rando.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-Splitter with Auto-Start and Auto-Reset functions. Different settings for custom splits available. Only for Project 64 v1.6 (By SporyTike)</Description>
+        <Description>Auto-Splitter with Auto-Start and Auto-Reset functions. Only for Project 64 v1.6 (By SporyTike)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13182,7 +13182,7 @@
             <URL>https://raw.githubusercontent.com/TheDementedSalad/RE6-Autosplitter/main/Resident%20Evil%206%20Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Resident Evil 6 Autosplitter. Works on V1.0.6 and V1.1.0, Timed via IGT, Sub Chapter and Full Chapter splits - (by TheDementedSalad)</Description>
+        <Description>Resident Evil 6 Autosplitter. Works on V1.0.6 and V1.1.0, Timed via IGT. (by TheDementedSalad)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13697,7 +13697,7 @@
             <URL>https://raw.githubusercontent.com/mateusfavarin/CTR-ASL/main/src/CrashTeamRacing.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Supports automatic splitting, resetting and load removal. You must use IL splits in order to use the auto splitting functionality.</Description>
+        <Description>Supports automatic splitting, resetting and load removal. You must use IL splits.</Description>
         <Website>https://github.com/mateusfavarin/CTR-ASL</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -13946,7 +13946,7 @@
             <URL>https://raw.githubusercontent.com/luis-trueba/wallepc_autosplitter/main/wall-e_autosplit.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting (with or without mid-level subsplits) and Load Removal available for PC version only. Consult the leaderboard rules for load removal legality. (By RoboticRocketeer)</Description>
+        <Description>Auto Splitting (with or without mid-level subsplits) and Load Removal available for PC version. (By RoboticRocketeer)</Description>
         <Website>https://github.com/luis-trueba/wallepc_autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
