@@ -2,6 +2,39 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Kingdom Hearts II Final Mix</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Denhonator/KHPCSpeedrunTools/main/LoadRemovers/KH2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>!! PC ONLY !! AutoSplitter and Load Remover by Denho, S0nzero, and ColeQuil</Description>
+        <Website>https://github.com/Denhonator/KHPCSpeedrunTools/blob/main/LoadRemovers/KH2.asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mr. Driller: Drill Land</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aeihu/AutoSplittersForSomeGames/main/Mr_DRILLER_DrillLand.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Aeihu</Description>
+        <Website>https://www.speedrun.com/mr_driller_drill_land</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>What Lies in the Multiverse</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/bauglir-splits/autosplitters/main/What%20Lies%20in%20the%20Multiverse.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load removal, with IGT tracking.</Description>
+        <Website>https://discord.gg/bGTTkRhyfu</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Escape Academy</Game>
         </Games>
         <URLs>
@@ -15665,5 +15698,37 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and IGT for the Any% category, by NoobTracker. For the .exe version. </Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hell Pie</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ShadowthePast/HellPieLoadRemover/main/hellpieloadremover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover for Hell Pie by ShadowthePast</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hammerwatch</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tobbez/hammerwatch-autosplitter/master/Hammerwatch.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto splitter (by tobbez)</Description>
+        <Website>https://github.com/tobbez/hammerwatch-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>MADiSON</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/edunad/madison-autosplit/master/madison.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting available, by FailCake and Hazzytje</Description>
+        <Website>https://github.com/edunad/madison-autosplit</Website>
     </AutoSplitter>
 </AutoSplitters>
