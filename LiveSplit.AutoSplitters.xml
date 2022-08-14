@@ -475,12 +475,15 @@
             <Game>Aliens versus Predator 2: Primal Hunt</Game>
             <Game>avp2</Game>
             <Game>avp2ph</Game>
+            <Game>avp2:ph</Game>
+            <Game>avp2: ph</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Aliens%20versus%20Predator%202/avp2.asl</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/LiveSplit.AVP2/main/bin/Release/Livesplit.AVP2.dll</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/LiveSplit.AVP2/main/bin/Release/AVP2.Campaigns.xml</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitter and load remover by diggity and The_One.</Description>
+        <Type>Component</Type>
+        <Description>Autosplitter and load remover are available. (By diggity and The_One)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4307,6 +4310,40 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Biohazard</Game>
+            <Game>Biohazard 1</Game>
+            <Game>Resident Evil</Game>
+            <Game>Resident Evil 1</Game>
+            <Game>BH1</Game>
+            <Game>RE1</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/deserteagle417/RE1-Autosplitter/main/RE1aio.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Routed Splits for all main categories. Support for all categories. See Website! (by deserteagle417)</Description>
+        <Website>https://github.com/deserteagle417/RE1-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Biohazard 2</Game>
+            <Game>Resident Evil 2</Game>
+            <Game>BH2</Game>
+            <Game>RE2</Game>
+            <Game>Resident Evil 2 1998</Game>
+            <Game>Resident Evil 2 (1998)</Game>
+            <Game>RE2 1998</Game>
+            <Game>RE2 (1998)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/deserteagle417/RE2-Autosplitter/main/RE2aio.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Door and Item autosplits for all scenarios and side games. See Website for more detail. (by deserteagle417)</Description>
+        <Website>https://github.com/deserteagle417/RE2-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Biohazard 3</Game>
             <Game>Biohazard 3: Nemesis</Game>
             <Game>Biohazard 3 Nemesis</Game>
@@ -7590,6 +7627,17 @@
         <Description>Team Forever Splitter (by Jujstme and BenInSweden)</Description>
         <Website>https://discord.gg/NpVGzcRBJ3</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic Triple Trouble (16-Bit)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble16bit/main/LiveSplit.SonicTripleTrouble16bit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start and reset available. Custom splitting options available in settings (by Jujstme)</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble16bit</Website>
+    </AutoSplitter>    
     <AutoSplitter>
         <Games>
             <Game>Sonic Generations</Game>
@@ -12009,18 +12057,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Biohazard</Game>
-            <Game>Resident Evil</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/xSHiiDOx/BiohazardAutoSplitter/master/Biohazard%20Autosplitter.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>New/Updated autosplitter (by SHiiDO). Autostart, Reset and Sections added. Please check Readme.</Description>
-        <Website>https://www.speedrun.com/residentevil/resources</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>ShootMania Storm</Game>
         </Games>
         <URLs>
@@ -13535,24 +13571,6 @@
         <Type>Script</Type>
         <Description>MarisaLand Legacy Autosplitter (by TouhouEnjoyer)</Description>
         <Website>https://github.com/TouhouEnjoyer/marilega-autosplitter</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Biohazard 2</Game>
-            <Game>Resident Evil 2</Game>
-            <Game>BH2</Game>
-            <Game>RE2</Game>
-            <Game>Resident Evil 2 1998</Game>
-            <Game>Resident Evil 2 (1998)</Game>
-            <Game>RE2 1998</Game>
-            <Game>RE2 (1998)</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/deserteagle417/RE2-Autosplitter/main/RE2aio.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Door and Item autosplits for all scenarios and side games. See Website for more detail. (by deserteagle417)</Description>
-        <Website>https://github.com/deserteagle417/RE2-Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15728,7 +15746,45 @@
             <URL>https://raw.githubusercontent.com/edunad/madison-autosplit/master/madison.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting available, by FailCake and Hazzytje</Description>
+        <Description>Auto Splitting available (by FailCake and Hazzytje)</Description>
         <Website>https://github.com/edunad/madison-autosplit</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Mortuary Assistant</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/edunad/mortuary-assistant-autosplit/master/mortuary.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting available (by FailCake and Hazzytje)</Description>
+        <Website>https://github.com/edunad/mortuary-assistant-autosplit</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Give Up, Robot 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mirrorcult/autosplitters/main/GiveUpRobot2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>"New Game" and "New HARD Game" autosplitter for Give Up Robot, 2 Adobe AIR >=e2.0 (by mirrorcult)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Gothic</Game>
+            <Game>Gothic 1</Game>
+            <Game>Gothic 1 Classic</Game>
+            <Game>Gothic 2</Game>
+            <Game>Gothic II</Game>
+            <Game>Gothic 2 Classic</Game>
+            <Game>Gothic 2: Night of the Raven</Game>
+            <Game>Gothic 2 Gold</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/thekovic/GothicASL/main/gothic.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>LiveSplit connection for Gothic 1/2 Timer mod available</Description>
     </AutoSplitter>
 </AutoSplitters>
