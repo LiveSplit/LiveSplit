@@ -2,6 +2,47 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Turnip Boy Commits Tax Evasion</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.TurnipBoy/main/TurnipBoy.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>In-Game Time Tracker and Autosplitter by Meta and SabulineHorizon</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>South Park: The Stick of Truth</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.SouthParkStickOfTruth.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover, Autosplitter and Autostart/reset by streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Marvel's Spider-Man</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.Spider-Man2018Remastered/main/Spiderman2018Remastered.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover and Autostart by Meta</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Deadly Premonition: Director's Cut</Game>
+            <Game>Deadly Premonition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/Livesplit.DeadlyPremonition.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover and Autostart by streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Kingdom Hearts II Final Mix</Game>
         </Games>
         <URLs>
@@ -2024,6 +2065,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Spark the Electric Jester 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/skewbmaster/Livesplit-ASL-Scripts/master/Spark%203/LiveSplit.Spark3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description> Autosplitter and IGT for Spark 3 (by skoob)</Description>
+        <Website>https://discord.gg/rw59u3bph8</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>LUFIA II - ANCIENT CAVE</Game>
         </Games>
         <URLs>
@@ -3708,6 +3760,7 @@
     <AutoSplitter>
         <Games>
             <Game>Resident Evil 5</Game>
+            <Game>Resident Evil 5 (Steam)</Game>
             <Game>RE5</Game>
         </Games>
         <URLs>
@@ -5046,11 +5099,12 @@
             <Game>Manifold Garden</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/manifoldgarden.asl</URL>
+            <URL>https://raw.githubusercontent.com/hatkirby/autosplitters/main/Manifold%20Garden.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Split, start, and reset available. (By Gelly)</Description>
-        <Website>https://github.com/Gelly/autosplitters</Website>
+        <Description>Split, start, and reset available. (By hatkirby)</Description>
+        <Website>https://github.com/hatkirby/autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7524,6 +7578,7 @@
         <Games>
             <Game>Sonic CD (2011)</Game>
             <Game>Sonic CD 2011</Game>
+            <Game>Sonic CD Restored</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicCD2011/main/LiveSplit.SonicCD2011.asl</URL>
@@ -13142,16 +13197,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>ULTRAKILL</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Mysterion06/Ultrakill/main/Ultrakillautosplitter.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitter with IGT by Mysterion_06_</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>The Adventures of Elena Temple</Game>
         </Games>
         <URLs>
@@ -14740,6 +14785,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>ULTRAKILL</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Mysterion06/Ultrakill/raw/main/Ultrakillautosplitter.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, splits, resets automatically. Syncs to in-game time. (by Ero)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Untitled Goose Game</Game>
             <Game>Untitled Goose Game Category Extensions</Game>
         </Games>
@@ -15010,6 +15066,18 @@
         <Type>Script</Type>
         <Description>Removes loads. (by Ero)</Description>
         <Website>https://github.com/just-ero/asl/tree/main/PAW%20Patrol%20%E2%80%93%20Mighty%20Pups%20save%20Adventure%20Bay</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Pathfinder: Kingmaker</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Pathfinder%20%E2%80%93%20Kingmaker/Pathfinder_Kingmaker.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Removes loads. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Pathfinder%20%E2%80%93%20Kingmaker</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15786,5 +15854,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>LiveSplit connection for Gothic 1/2 Timer mod available</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Zapling Bygone</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ori-sky/asl/main/zapling-bygone.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto-starts, splits when the run is over (by Ori Sky)</Description>
     </AutoSplitter>
 </AutoSplitters>
