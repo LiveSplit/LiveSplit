@@ -1,5 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+        <AutoSplitter>
+        <Games>
+            <Game>Saints Row (2022)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.SaintsRow2022/main/SaintsRow2022.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover and Autostart by Meta</Description>
+</AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>South Park: The Fractured But Whole</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.SouthParkFracturedButWhole.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover and Autostart/reset by streetbackguy</Description>
+    </AutoSplitter>
+         <AutoSplitter>
+        <Games>
+                <Game>BARBIE IN THE 12 DANCING PRINCESSES (PC/PS2)</Game>
+                <Game>BARBIE IN THE 12 DANCING PRINCESSES</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/BarbieInThe12DancingPrincesses.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (by KunoDemetries)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Garshasp: The Monster Slayer</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aposteriorist/PeachPit.LiveSplit/main/LiveSplit.GarshaspTheMonsterSlayer.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover and Autostart by PlayingLikeAss</Description>
+        <Website>https://github.com/aposteriorist/PeachPit.LiveSplit</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Turnip Boy Commits Tax Evasion</Game>
@@ -173,14 +215,16 @@
             <Game>Cult of the Lamb Demo</Game>
             <Game>COTL Demo</Game>
             <Game>COTLD</Game>
+            <Game>Cult of the Lamb</Game>
+            <Game>COTL</Game>
         </Games>
         <URLs>
-            <URL>https://github.com/MelloYourFello/Autosplitters/raw/main/COTL_DEMO.asl</URL>
+            <URL>https://raw.githubusercontent.com/glcoder/asl/main/Cult%20Of%20The%20Lamb.asl</URL>
             <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for the Demo of Cult of the Lamb (Made by MelloYourFello)</Description>
-        <Website>https://www.speedrun.com/cotl_demo</Website>
+        <Description>Autosplitter and load remover for Cult of the Lamb.</Description>
+        <Website>https://github.com/glcoder/asl/blob/main/Cult%20Of%20The%20Lamb.asl</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -679,10 +723,10 @@
             <Game>Far Cry 6</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.FarCry6/main/FarCry6.asl</URL>
+            <URL>https://raw.githubusercontent.com/Binslev/FC6LR/main/FC6%201.5.0.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover (By AlexYeahNot, Binslev, and Meta)</Description>
+        <Description>Load Remover for patch 1.5.0 (by Binslev, credit to AlexYeahNot)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2992,11 +3036,11 @@
             <Game>Shrek 2 (PC)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/kevinjpetersen/Shrek2-LiveSplit/master/Shrek2-LiveSplit/Components/Shrek2-LiveSplit.dll</URL>
+            <URL>https://raw.githubusercontent.com/Master-64/Shrek2-LiveSplit/master/Shrek2-LiveSplit/Components/Shrek2-LiveSplit.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Auto Splitting is available. (By KevinJPetersen &amp; Dalet)</Description>
-        <Website>https://github.com/kevinjpetersen/Shrek2-LiveSplit/blob/master/README.md</Website>
+        <Description>Auto Splitting &amp; Load Removal is available. (By KevinJPetersen, Master_64 &amp; Dalet)</Description>
+        <Website>https://github.com/Master-64/Shrek2-LiveSplit/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3263,6 +3307,17 @@
         <Type>Component</Type>
         <Description>Autosplitter is available. (By Fzzy2j)</Description>
         <Website>https://github.com/Fzzy2j/FzzySplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Wolfenstein</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Wolfenstein/LiveSplit.Wolfenstein.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover (By Jujstme)</Description>
+        <Website>https://github.com/Jujstme/Autosplitters/tree/master/Wolfenstein</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3983,22 +4038,6 @@
         <Type>Script</Type>
         <Description>Game Time is available (RPCS3). (By CapitaineToinon)</Description>
         <Website>https://gist.github.com/CapitaineToinon/22aef17d50612c3e4e04cb7b5bdc434e</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Dark Souls</Game>
-            <Game>Dark Souls 1</Game>
-            <Game>Dark Souls 1: Prepare to Die Edition</Game>
-            <Game>Dark Souls: Prepare to Die Edition</Game>
-            <Game>Dark Souls Remastered</Game>
-            <Game>Dark Souls: Remastered</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/CapitaineToinon/LiveSplit.DarkSoulsIGT/master/LiveSplit.DarkSoulsIGT/Components/LiveSplit.DarkSoulsIGT.dll</URL>
-        </URLs>
-        <Type>Component</Type>
-        <Description>Game Time is available. (By CapitaineToinon)</Description>
-        <Website>https://github.com/CapitaineToinon/LiveSplit.DarkSoulsIGT</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5667,6 +5706,18 @@
         </URLs>
         <Type>Script</Type>
         <Description>Tracks in-game time. Auto Start, Split and Reset are available. (By Anty-Lemon and Fladervy)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Pac-Man World Re-Pac</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Pac-Man%20World%20Re-Pac/LiveSplit.PacManWorldRePac.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover (by Jujstme)</Description>
+        <Website>https://github.com/Jujstme/Autosplitters/tree/master/Pac-Man%20World%20Re-Pac</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8598,10 +8649,11 @@
             <Game>Sonic Mania</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/ClarisRobyn/ManiaPlusAutosplitter/master/SonicManiaPlus.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicMania/main/LiveSplit.SonicMania.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>PC version, auto splitting/start/reset available. Splits at the very end of each act. (By Claris)</Description>
+        <Description>Auto splitting/start/reset available. Splits at the end of each act. (by Jujstme and Claris)</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicMania</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14629,6 +14681,12 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Dark Souls</Game>
+            <Game>Dark Souls 1</Game>
+            <Game>Dark Souls 1: Prepare to Die Edition</Game>
+            <Game>Dark Souls: Prepare to Die Edition</Game>
+            <Game>Dark Souls Remastered</Game>
+            <Game>Dark Souls: Remastered</Game>
             <Game>Dark Souls III</Game>
             <Game>Dark Souls 3</Game>
             <Game>Sekiro</Game>
@@ -15864,5 +15922,49 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto-starts, splits when the run is over (by Ori Sky)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Looker</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hatkirby/autosplitters/main/TheLooker.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Split, start, and load removal available. (By hatkirby)</Description>
+        <Website>https://github.com/hatkirby/autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>OpenGOAL: Jak 1</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/open-goal/speedrunning/master/jak1/opengoal-jak1-autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets, splits.  Use with "Speedrunner Mode" enabled!</Description>
+        <Website>https://opengoal.dev/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>KEEK</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NighthawkSLO/Autosplitters/master/KEEK.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset are available. (By NighthawkSLO)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Spirit of the North</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/nyooNyoo/LiveSplit.SpiritOfTheNorth/main/SpiritOfTheNorth.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start/Split/Reset + Loadremover</Description>
     </AutoSplitter>
 </AutoSplitters>
