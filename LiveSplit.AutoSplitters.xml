@@ -15967,4 +15967,14 @@
         <Type>Script</Type>
         <Description>Start/Split/Reset + Loadremover</Description>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Wetrix</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Metroxe/autosplitters/main/Wetrix%20(N64)%20-%20Project64.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start/Split/Reset with support for 100k and 1m runs</Description>
+    </AutoSplitter>
 </AutoSplitters>
