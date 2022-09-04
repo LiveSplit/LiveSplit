@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+    <AutoSplitter>
+        <Games>
+            <Game>Unrailed!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aeihu/AutoSplittersForSomeGames/main/Unrailed.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Aeihu</Description>
+        <Website>https://www.speedrun.com/unrailed</Website>
+    </AutoSplitter>
         <AutoSplitter>
         <Games>
             <Game>Saints Row (2022)</Game>
@@ -167,7 +178,7 @@
             <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.Yakuza4.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover and Autostart by streetbackguy</Description>
+        <Description>Load Remover, Autosplitter and Autostart by streetbackguy and PlayingLikeAss</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -191,7 +202,7 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>DEAD RISING 3</Game>
+            <Game>Dead Rising 3</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/DeadRising3.asl</URL>
@@ -1161,10 +1172,11 @@
             <Game>Clive Barker's Undying</Game>
         </Games>
         <URLs>
-            <URL>https://gist.githubusercontent.com/l0m-dev/0ed7559b7732b2854643080785e22d6f/raw/43c12a8a75e6d9deaf84b0b1f6c3ac355ccbec9e/undying.asl</URL>
+            <URL>https://gist.githubusercontent.com/l0m-dev/0ed7559b7732b2854643080785e22d6f/raw/undying.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Clive Barker's Undying Autosplitter (by l0m#2546, Kuno#6969 and The_One#9436)</Description>
+        <Website>https://discord.gg/ggb8Wd7</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15962,9 +15974,42 @@
             <Game>Spirit of the North</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/nyooNyoo/LiveSplit.SpiritOfTheNorth/main/SpiritOfTheNorth.asl</URL>
+            <URL>https://raw.githubusercontent.com/nyooNyoo/AutoSplitters/main/Spirit%20of%20the%20North/SpiritOfTheNorth.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Start/Split/Reset + Loadremover</Description>
+        <Description>Auto Start/Split/Reset and Load Remover available. (By Nyoo)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Thymesia</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Thymesia-Autosplitter/main/Thymesia.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/End and Load Removal are available. (By TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Star Wars: Shadows of the Empire</Game>
+            <Game>Shadows of the Empire</Game>
+            <Game>SotE</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SabulineHorizon/Autosplitters/main/ShadowsOfTheEmpire.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset. (By SabulineHorizon)</Description>
+        <Website>https://github.com/SabulineHorizon/Autosplitters</Website>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>Wetrix (N64)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Metroxe/autosplitters/main/Wetrix%20(N64)%20-%20Project64.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start/Split/Reset with support for 100k and 1m runs</Description>
     </AutoSplitter>
 </AutoSplitters>
