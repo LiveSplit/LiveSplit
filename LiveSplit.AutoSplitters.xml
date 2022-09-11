@@ -2,6 +2,17 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Contra Hard Corps</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aeihu/AutoSplittersForSomeGames/main/Contra_Hard_Corps.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>PC-Contra Anniversary Collection Only!!. Autosplitter by Aeihu</Description>
+        <Website>https://www.speedrun.com/contra_hard_corps</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Unrailed!</Game>
         </Games>
         <URLs>
@@ -19,7 +30,7 @@
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.SaintsRow2022/main/SaintsRow2022.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover and Autostart by Meta</Description>
+        <Description>Load Remover and Autosplitter by Meta, hoxi, Vlad2D and xsoapbubble</Description>
 </AutoSplitter>
         <AutoSplitter>
         <Games>
@@ -360,7 +371,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ontrigger/ism-autosplitter/main/insoundmind.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Remover and Autosplitter by diggity and ontrigger.</Description>
@@ -3394,11 +3405,11 @@
             <Game>Dishonored 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/drtchops/asl/master/dishonored2.asl</URL>
+            <URL>https://raw.githubusercontent.com/HuthTV/asl/master/dishonored2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Auto Start is available. (By DrTChops and Som1Lse)</Description>
-        <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+        <Description>Load Removal and Auto Start is available. (By DrTChops, Som1Lse and HuthTV)</Description>
+        <Website>https://github.com/HuthTV/asl/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4170,6 +4181,8 @@
             <Game>Quake II</Game>
             <Game>Quake 2 (PC)</Game>
             <Game>Quake II (PC)</Game>
+            <Game>Quake II Mission Pack: Ground Zero</Game>
+            <Game>Quake II Mission Pack: The Reckoning</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/kugelrund/LiveSplit.Quake2/master/Components/LiveSplit.Quake2.dll</URL>
@@ -11278,6 +11291,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Plants vs. Zombies Category Extensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ymblcza/ASL-Scripts/master/PlantsVsZombies.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>For pvz original and Steam version.</Description>
+        <Website>https://discord.gg/ss5uTqE</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Zed</Game>
         </Games>
         <URLs>
@@ -11301,7 +11325,7 @@
             <Game>MindSeize</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/shockkolate/mindseize-autosplitter/master/mindseize.asl</URL>
+            <URL>https://raw.githubusercontent.com/ori-sky/mindseize-autosplitter/master/mindseize.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto-splitting and auto-start are available (by Shockk)</Description>
@@ -15900,6 +15924,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Gloomwood</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/edunad/gloomwood-autosplit/master/gloomwood.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting available (by FailCake and Hazzytje)</Description>
+        <Website>https://github.com/edunad/gloomwood-autosplit</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Give Up, Robot 2</Game>
         </Games>
         <URLs>
@@ -16011,5 +16046,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Start/Split/Reset with support for 100k and 1m runs</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Tinykin</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Toothie2213/tinykinasl/main/tinykin.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Loadremover by Toothie</Description>
+        <Website>https://www.speedrun.com/Tinykin</Website>
     </AutoSplitter>
 </AutoSplitters>
