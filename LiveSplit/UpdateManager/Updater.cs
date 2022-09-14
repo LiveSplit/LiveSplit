@@ -101,38 +101,31 @@ namespace UpdateManager
 
             public void PerformUpdate()
             {
+                string ConvertChangeUrlPartToPath(string xmlChangePath) => xmlChangePath.Replace('/', Path.DirectorySeparatorChar);
+
                 IList<Update> updates = Updates.Where(x => x.Version > Version).ToList();
-                List<string> addedFiles = new List<string>();
-                List<string> changedFiles = new List<string>();
-                List<string> removedFiles = new List<string>();
+                var addedFiles = new Dictionary<string, string>();
+                var changedFiles = new Dictionary<string, string>();
+                var removedFiles = new Dictionary<string, string>();
 
-                foreach (FileChange change in updates.SelectMany(x => x.FileChanges))
+                foreach (var change in updates.SelectMany(x => x.FileChanges))
                 {
-                    bool inAddedFiles = addedFiles.Contains(change.Path);
-                    bool inChangedFiles = changedFiles.Contains(change.Path);
-                    bool inRemovedFiles = removedFiles.Contains(change.Path);
-
                     string path = change.Path;
+                    string localPath = change.LocalPath ?? change.Path;
 
                     switch (change.Status)
                     {
                         case ChangeStatus.Added:
-                            if (!inAddedFiles)
-                                addedFiles.Add(path);
-                            if (inRemovedFiles)
-                                removedFiles.Remove(path);
+                            removedFiles.Remove(path);
+                            addedFiles[path] = localPath;
                             break;
                         case ChangeStatus.Changed:
-                            if (!inChangedFiles)
-                                changedFiles.Add(path);
+                            changedFiles[path] = localPath;
                             break;
                         case ChangeStatus.Removed:
-                            if (inAddedFiles)
-                                addedFiles.Remove(path);
-                            if (inChangedFiles)
-                                changedFiles.Remove(path);
-                            if (!inRemovedFiles)
-                                removedFiles.Add(path);
+                            addedFiles.Remove(path);
+                            changedFiles.Remove(path);
+                            removedFiles[path] = localPath;
                             break;
                     }
                 }
@@ -140,15 +133,18 @@ namespace UpdateManager
                 int fileChangesCount = addedFiles.Concat(changedFiles).Concat(removedFiles).Count();
                 double i = 0;
 
-                foreach (string path in addedFiles.Concat(changedFiles))
+                foreach (var xmlChangePaths in addedFiles.Concat(changedFiles))
                 {
-                    DownloadFile(UpdateURL + path, path.Replace('/', '\\'));
+                    string path = xmlChangePaths.Key;
+                    string localPath = xmlChangePaths.Value;
+                    DownloadFile(UpdateURL + path, ConvertChangeUrlPartToPath(localPath));
                     UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
 
-                foreach (string path in removedFiles)
+                foreach (var xmlChangePaths in removedFiles)
                 {
-                    File.Delete(path);
+                    string localPath = xmlChangePaths.Value;
+                    File.Delete(ConvertChangeUrlPartToPath(localPath));
                     UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
                 }
             }
