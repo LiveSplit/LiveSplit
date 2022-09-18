@@ -371,6 +371,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ontrigger/ism-autosplitter/main/insoundmind.asl</URL>
+            <URL>https://raw.githubusercontent.com/ontrigger/ism-autosplitter/main/ISM.Data.xml</URL>
             <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
@@ -16058,5 +16059,49 @@
         <Type>Script</Type>
         <Description>Loadremover by Toothie</Description>
         <Website>https://www.speedrun.com/Tinykin</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Kamiko</Game>
+        </Games>
+        <URLs>
+            <URL>https://gitlab.com/henny022/asl/-/raw/main/Kamiko/kamiko.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports autostart, splitting and game time. With options. (By Henny022)</Description>
+        <Website>https://gitlab.com/henny022/asl/-/tree/main/Kamiko</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Streelrising</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Steelrising-Splitter-Load-Remover/main/Steelrising.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>IGT Timer Available. (By TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Autonauts</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tyrope/autosplitters/master/autonauts.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, remove loads/pauses, and split on tiers.</Description>
+        <Website>https://github.com/tyrope/autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Taiji</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hatkirby/autosplitters/main/Taiji.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, split, and load removal available. (By hatkirby)</Description>
+        <Website>https://github.com/hatkirby/autosplitters</Website>
     </AutoSplitter>
 </AutoSplitters>
