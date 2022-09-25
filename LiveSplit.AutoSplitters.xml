@@ -2,6 +2,17 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Night at the Gates of Hell</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Night%20at%20the%20Gates%20Of%20Hell/natgoh.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removing is available. (By diggity)</Description>
+        <Website>https://www.speedrun.com/night_at_the_gates_of_hell</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Contra Hard Corps</Game>
         </Games>
         <URLs>
@@ -302,6 +313,18 @@
         <Type>Script</Type>
         <Description>Supports auto start and split on each load, as well as load time removal (By Ebunix)</Description>
         <Website>https://github.com/Ebunix/mlp-amba-autosplits</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+            <Games>
+                <Game>Prodeus</Game>
+            </Games>
+            <URLs>
+                <URL>https://raw.githubusercontent.com/samontenegro/ASL/main/prodeus/prodeus.asl</URL>
+                <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            </URLs>
+            <Type>Script</Type>
+            <Description>Prodeus Autosplitter by oneir1c / @samontenegro</Description>
+            <Website>https://www.speedrun.com/prodeus</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8144,7 +8167,7 @@
             <URL>https://raw.githubusercontent.com/supra0/slime-rancher-autosplitter/master/SlimeRancher.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting and Autostart available for commonly run game versions (By Supra)</Description>
+        <Description>Autosplitting and Autostart available for commonly run game versions (Steam and Epic only)</Description>
         <Website>https://github.com/supra0/slime-rancher-autosplitter</Website>
     </AutoSplitter>
         <AutoSplitter>
@@ -16103,5 +16126,37 @@
         <Type>Script</Type>
         <Description>Start, split, and load removal available. (By hatkirby)</Description>
         <Website>https://github.com/hatkirby/autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Klonoa Phantasy Reverie Series</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Klonoa-Phantasy-Reverie-Series-Splitter/main/Klonoa.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for PR1 and PR2 are available (By TheDementedSalad &amp; NickPRGreen)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Vex</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NoobTracker/vex-1-autosplitter/main/vex.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and IGT for the Any% category, by NoobTracker. For the hacked .exe version. </Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Metal: Hellsinger</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/vojtas131/AutoSplits/master/metal/livesplit_metal.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load removal by vojtas131 &amp; Dev1ne</Description>
+        <Website>https://github.com/vojtas131/AutoSplits/blob/master/metal/livesplit_metal.asl</Website>
     </AutoSplitter>
 </AutoSplitters>
