@@ -2,6 +2,18 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Haunted Gas Station</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Haunted%20Gas%20Station/hgs.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start and stop is available. (By diggity)</Description>
+        <Website>https://www.speedrun.com/haunted_gas_station</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Night at the Gates of Hell</Game>
         </Games>
         <URLs>
@@ -33,7 +45,7 @@
         <Description>Autosplitter by Aeihu</Description>
         <Website>https://www.speedrun.com/unrailed</Website>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Saints Row (2022)</Game>
         </Games>
@@ -42,8 +54,8 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Remover and Autosplitter by Meta, hoxi, Vlad2D and xsoapbubble</Description>
-</AutoSplitter>
-        <AutoSplitter>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>South Park: The Fractured But Whole</Game>
         </Games>
@@ -53,10 +65,10 @@
         <Type>Script</Type>
         <Description>Load Remover and Autostart/reset by streetbackguy</Description>
     </AutoSplitter>
-         <AutoSplitter>
+    <AutoSplitter>
         <Games>
-                <Game>BARBIE IN THE 12 DANCING PRINCESSES (PC/PS2)</Game>
-                <Game>BARBIE IN THE 12 DANCING PRINCESSES</Game>
+            <Game>BARBIE IN THE 12 DANCING PRINCESSES (PC/PS2)</Game>
+            <Game>BARBIE IN THE 12 DANCING PRINCESSES</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/BarbieInThe12DancingPrincesses.asl</URL>
@@ -155,7 +167,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Escape%20Academy/escapeacademy.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and load remover by diggity.</Description>
@@ -238,7 +250,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Nikoheartttv/Goosebumps_DeadOfNight/main/GDON_Autosplitter</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load remover/IL Run Timer by Nikoheart.</Description>
@@ -253,7 +265,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/glcoder/asl/main/Cult%20Of%20The%20Lamb.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and load remover for Cult of the Lamb.</Description>
@@ -308,23 +320,23 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Ebunix/mlp-amba-autosplits/main/MLP_AMBA_Autosplit.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Supports auto start and split on each load, as well as load time removal (By Ebunix)</Description>
         <Website>https://github.com/Ebunix/mlp-amba-autosplits</Website>
     </AutoSplitter>
     <AutoSplitter>
-            <Games>
-                <Game>Prodeus</Game>
-            </Games>
-            <URLs>
-                <URL>https://raw.githubusercontent.com/samontenegro/ASL/main/prodeus/prodeus.asl</URL>
-                <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
-            </URLs>
-            <Type>Script</Type>
-            <Description>Prodeus Autosplitter by oneir1c / @samontenegro</Description>
-            <Website>https://www.speedrun.com/prodeus</Website>
+        <Games>
+            <Game>Prodeus</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samontenegro/ASL/main/prodeus/prodeus.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Prodeus Autosplitter by oneir1c / @samontenegro</Description>
+        <Website>https://www.speedrun.com/prodeus</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -395,7 +407,7 @@
         <URLs>
             <URL>https://raw.githubusercontent.com/ontrigger/ism-autosplitter/main/insoundmind.asl</URL>
             <URL>https://raw.githubusercontent.com/ontrigger/ism-autosplitter/main/ISM.Data.xml</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Remover and Autosplitter by diggity and ontrigger.</Description>
@@ -429,7 +441,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Jarlyk/Haiku-Autosplitter/main/Haiku.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter by Jarlyk and Schy</Description>
@@ -497,7 +509,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Nikoheartttv/TheStanleyParableUltraDeluxe_Autosplitter/main/TSPUD_AutoSplitter.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter by Nikoheart</Description>
@@ -509,7 +521,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Nikoheartttv/DexterStardustAdventuresInOuterSpace_AutoSplitter/main/DexterStardust.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter by Nikoheart</Description>
@@ -545,7 +557,7 @@
         <Type>Script</Type>
         <Description>Autosplitter by Meta</Description>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>POPPY PLAYTIME: CHAPTER 2</Game>
         </Games>
@@ -654,7 +666,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/SomeoneSom/PatricksParaboxASL/main/Parabox.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter (By atpx8)</Description>
@@ -723,7 +735,7 @@
         <Type>Script</Type>
         <Description>Autosplitter and Load Remover made by Meta</Description>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Martha is Dead</Game>
         </Games>
@@ -733,7 +745,7 @@
         <Type>Script</Type>
         <Description>Load Remover (By KunoDemetries)</Description>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>TALES OF ARISE</Game>
             <Game>Tale of Arise</Game>
@@ -870,7 +882,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/MelloYourFello/Autosplitters/raw/main/CC64.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for Catastrophe Crow! Made by MelloYourFello</Description>
@@ -1442,7 +1454,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/FixitFelixJr.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitter (By xZeko) </Description>
+        <Description>Auto Splitter (By xZeko)</Description>
         <Website>https://www.speedrun.com/fix_it_felix_jr</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -5188,7 +5200,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/hatkirby/autosplitters/main/Manifold%20Garden.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Split, start, and reset available. (By hatkirby)</Description>
@@ -5762,7 +5774,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Pac-Man%20World%20Re-Pac/LiveSplit.PacManWorldRePac.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and load remover (by Jujstme)</Description>
@@ -6350,7 +6362,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto start / split / reset are available and calculating game time. (By ROMaster2/Pezzah)</Description>
-    </AutoSplitter> 
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>SM64: Last Impact</Game>
@@ -7019,7 +7031,7 @@
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Cuphead/Cuphead.asl</URL>
             <URL>https://github.com/just-ero/asl/raw/main/Cuphead/Cuphead.Splits.xml</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts automatically. Splits are available in the settings. Removes loads. (temp fix by Ero)</Description>
@@ -7792,7 +7804,7 @@
         <Type>Script</Type>
         <Description>Auto start and reset available. Custom splitting options available in settings (by Jujstme)</Description>
         <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble16bit</Website>
-    </AutoSplitter>    
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Sonic Generations</Game>
@@ -8170,7 +8182,7 @@
         <Description>Autosplitting and Autostart available for commonly run game versions (Steam and Epic only)</Description>
         <Website>https://github.com/supra0/slime-rancher-autosplitter</Website>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Tomb Raider 4</Game>
             <Game>Tomb Raider IV</Game>
@@ -9023,7 +9035,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Tiyenti/distance.asl/master/distance.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto split/start/reset, load removal, and cutscene settings are available. (by Brionac, Californ1a, Seekr, and Tiyenti)</Description>
@@ -9741,7 +9753,7 @@
             <URL>https://raw.githubusercontent.com/yourSolution/EscapeFromYavin4Splitter/master/EY4_v_01.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Load removal and auto splitting. By: Your Solution </Description>
+        <Description> Load removal and auto splitting. By: Your Solution</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10550,6 +10562,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>BONELAB</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Sychke/AutoSplitters/main/Bonelab/Bonelab.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load time removal is available (By Meta and Sychke).</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Starsky &amp; Hutch</Game>
         </Games>
         <URLs>
@@ -10598,7 +10620,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/AxySnake.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting available (by rythin) </Description>
+        <Description> Autosplitting available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10608,7 +10630,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/MagicznaKulaPapatki.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Load Removal available (by rythin) </Description>
+        <Description> Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10620,7 +10642,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/OctahedronCurrentPatch.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Game Time available for current patch (by rythin) </Description>
+        <Description> Autosplitting and Game Time available for current patch (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10631,7 +10653,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/SASSecureTomorrow.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Load Removal available (by rythin) </Description>
+        <Description> Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10642,7 +10664,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/YoNoid2GoaY.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting available for Game of a Year Edition (w/ IGT Mod) (by rythin) </Description>
+        <Description> Autosplitting available for Game of a Year Edition (w/ IGT Mod) (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10654,7 +10676,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/YoNoid2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting available (by rythin) </Description>
+        <Description> Autosplitting available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10664,7 +10686,7 @@
             <URL>https://raw.githubusercontent.com/marysiamzawka/ASL/master/LiveSplit.CMR1.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> In-game timer, auto-start, auto-reset and autosplitting for EU 1.5 available (by Mr. Mary) </Description>
+        <Description> In-game timer, auto-start, auto-reset and autosplitting for EU 1.5 available (by Mr. Mary)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10678,7 +10700,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/Load-Removers/master/Mortyr4.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Autosplitting available. (by rythin, Mr_Mary and pitpo) </Description>
+        <Description>Load Removal and Autosplitting available. (by rythin, Mr_Mary and pitpo)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11148,7 +11170,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Pulstario.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Game Time available (by rythin) </Description>
+        <Description> Autosplitting and Game Time available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11168,7 +11190,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/SuperBlueBoyPlanet.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting available (by rythin and eddiesaurus87) </Description>
+        <Description>Autosplitting available (by rythin and eddiesaurus87)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11234,7 +11256,7 @@
             <URL>https://raw.githubusercontent.com/lachszunge/Broforce-Autosplitter/master/Expendabros.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autospliting and load removal available (by lachszunge and DerKO) </Description>
+        <Description> Autospliting and load removal available (by lachszunge and DerKO)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11254,7 +11276,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Downwell.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting (no final split) and Game Time Available (by rythin and JPlay) </Description>
+        <Description> Autosplitting (no final split) and Game Time Available (by rythin and JPlay)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11264,7 +11286,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/NuclearThrone.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting available (by Gelly and rythin) </Description>
+        <Description> Autosplitting available (by Gelly and rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11278,7 +11300,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/StHazelsHorsepital.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Load Removal available (by rythin) </Description>
+        <Description> Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11286,10 +11308,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/RiskofRain2.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autospltting and Load Removal available (by rythin) </Description>
+        <Description> Autospltting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11503,7 +11525,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachines.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting available (by rythin) </Description>
+        <Description> Autosplitting available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11591,7 +11613,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/FranBow.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Load Removal available (by rythin) </Description>
+        <Description> Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11606,7 +11628,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/KnightsLearnToFly.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Load Removal available (by rythin) </Description>
+        <Description> Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11617,7 +11639,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/PingwinZenekwOpa%C5%82ach.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Load Removal available (by rythin) </Description>
+        <Description> Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11628,7 +11650,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/MinecraftDungeons.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Load Removal available (by rythin, KunoDemetries) </Description>
+        <Description> Autosplitting and Load Removal available (by rythin, KunoDemetries)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11638,7 +11660,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/RedFactionGuerrilla.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Load Removal available (by rythin) </Description>
+        <Description> Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11648,7 +11670,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Spongebob3DObstacleOdyssey.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting available (by rythin) </Description>
+        <Description> Autosplitting available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11658,7 +11680,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/SatanLovesCake.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Game Time available (by rythin) </Description>
+        <Description> Autosplitting and Game Time available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11669,7 +11691,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Skylar.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Load Removal available (by rythin) </Description>
+        <Description> Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11724,7 +11746,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/BestFriends.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Game Time available (by rythin) </Description>
+        <Description> Autosplitting and Game Time available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11735,7 +11757,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/BoneExe.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting available (by rythin) </Description>
+        <Description> Autosplitting available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11745,7 +11767,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CrazyMachines2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting available (by rythin) </Description>
+        <Description> Autosplitting available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11763,7 +11785,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/Kao3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Load Removal available (by rythin, Flower35) </Description>
+        <Description> Autosplitting and Load Removal available (by rythin, Flower35)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11773,7 +11795,7 @@
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/DarkSASI.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Load Removal available (by rythin) </Description>
+        <Description> Autosplitting and Load Removal available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11803,7 +11825,7 @@
             <URL>https://raw.githubusercontent.com/NighthawkSLO/Autosplitters/master/EBF4.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitting and Game Time available (by NighthawkSLO) </Description>
+        <Description> Autosplitting and Game Time available (by NighthawkSLO)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13137,7 +13159,7 @@
             <URL>https://raw.githubusercontent.com/GMPranav/ASLs/main/raji.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for the PC version (by GMP) </Description>
+        <Description>Autosplitter for the PC version (by GMP)</Description>
         <Website>https://github.com/GMPranav/ASLs/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -14293,7 +14315,7 @@
             <URL>https://raw.githubusercontent.com/Zibangarang/SSRAutosplitter/main/SuperSamiRoll.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for Super Sami Roll, auto start/reset/split. Made by Zibang. </Description>
+        <Description>Autosplitter for Super Sami Roll, auto start/reset/split. Made by Zibang.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14520,7 +14542,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/DeamonHunter/Autosplitters/main/Everhood/EverhoodAutosplitter.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autostart, Autosplitting and Load Removal for Everhood (By DeamonHunter, Ero)</Description>
@@ -14654,7 +14676,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/runevision/EyeOfTheTempleAutoSplitter/main/EyeOfTheTemple.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Loadless timer based on in-game time. (By runevision)</Description>
@@ -14711,7 +14733,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/SioNisti/autosplit/raw/main/Drift86%20V3.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for fullgame categories plus an option for lap splits.  (by SioN)</Description>
@@ -14814,7 +14836,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/ldmnt/ash-autosplitter/raw/master/ASH_Autosplitter.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets, splits (check settings), syncs to IGT. Click 'Website' to look up locations. (by Ero and Hamb)</Description>
@@ -14826,7 +14848,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/Sanders68/BoomerangXSplit/raw/master/BOOMERANGX.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. Syncs to game time. (by Ero)</Description>
@@ -14837,7 +14859,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/LiveSplitters/raw/main/Inscryption.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts automatically. Splits available in the settings. Removes loads. (by Ero, Andersama)</Description>
@@ -14849,7 +14871,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/Micrologist/Livesplit.Karlson/raw/master/Karlson3D.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits when completing a level. Syncs to game time. (by Micrologist, Ero)</Description>
@@ -14860,7 +14882,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/TalentedPlatinum/AutoSplitters/raw/main/MarbleItUp.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts the timer automatically on Learning To Roll. Splits available in the settings. (by TalentedPlatinum, Ero)</Description>
@@ -14895,7 +14917,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/ultimate-vegan/receiver-2-anyperc-autosplitter/raw/main/receiver-2.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits after each elvel. Syncs to game time. (by vegan, Ero)</Description>
@@ -14907,7 +14929,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/Mysterion06/Ultrakill/raw/main/Ultrakillautosplitter.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, splits, resets automatically. Syncs to in-game time. (by Ero)</Description>
@@ -14942,7 +14964,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Alba%20%E2%80%93%20A%20Wildlife%20Adventure/Alba.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. Syncs to game time. (by Ero)</Description>
@@ -14966,7 +14988,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/ANNO%20%E2%80%93%20Mutationem/ANNO_Mutationem.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Removes loading times. (by Ero)</Description>
@@ -14978,7 +15000,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Assemble%20with%20Care/AssembleWithCare.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets when progress is reset. Splits after every level and at the end. (by Ero)</Description>
@@ -14990,7 +15012,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/BallisticNG/BallisticNG.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts automatically. Splits after each track, optionally on each completed lap. (by Ero)</Description>
@@ -15013,7 +15035,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Donut%20County/DonutCounty.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts automatically. Splits available in the settings, default split when finishing. Removes loads. (by Ero)</Description>
@@ -15062,7 +15084,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Grapple!/Grapple.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits after every level. (by Ero)</Description>
@@ -15074,7 +15096,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Gunfire%20Reborn/GunfireReborn.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. Pauses when dying. (by Ero)</Description>
@@ -15098,7 +15120,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Here%20Comes%20Niko/HereComesNiko.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
@@ -15110,7 +15132,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/How%20Fish%20is%20Made/HowFishIsMade.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits when the end dialog begins. (by Ero)</Description>
@@ -15133,7 +15155,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Lightmatter/Lightmatter.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits when finishing a level. IL support in settings. (by Ero)</Description>
@@ -15156,7 +15178,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Maid%20of%20Sker/MaidOfSker.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. Does not split at the end. (by Ero)</Description>
@@ -15179,7 +15201,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/PAW%20Patrol%20%E2%80%93%20Mighty%20Pups%20save%20Adventure%20Bay/PP_MPsAB.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Removes loads. (by Ero)</Description>
@@ -15191,7 +15213,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Pathfinder%20%E2%80%93%20Kingmaker/Pathfinder_Kingmaker.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Removes loads. (by Ero)</Description>
@@ -15203,7 +15225,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Pathfinder%20%E2%80%93%20Wrath%20of%20the%20Righteous/P_WotR.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Removes loads. (by Ero)</Description>
@@ -15251,7 +15273,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Project%20Warlock%20II/ProjectWarlockII.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits at the end and optionally on each key. Syncs to in-game time. (by Ero)</Description>
@@ -15289,7 +15311,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Sonic%20Project%20'06/SonicProject06.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts automatically with an offset. Splits upon completion of an act. Removes loads. (by Ero)</Description>
@@ -15324,7 +15346,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Strobophagia%20%E2%80%93%20Rave%20Horror/Strobophagia.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits available in the settings. Removes loads. (by Ero)</Description>
@@ -15336,7 +15358,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/TUNIC/TUNIC.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits when the run is over. Syncs to game time. (by Ero)</Description>
@@ -15383,7 +15405,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/The%20Two%20of%20Us/TheTwoOfUs.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits when either player touches the trophy. (by Ero)</Description>
@@ -15428,10 +15450,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/CircuitSuperstars.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autospltting and In-Game Time available (by rythin) </Description>
+        <Description> Autospltting and In-Game Time available (by rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15461,7 +15483,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Museus/autosplitters/main/HaveANiceDeath/HaveANiceDeath.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover for Have a Nice Death</Description>
@@ -15511,11 +15533,11 @@
         <Type>Component</Type>
         <Description>Automatic start, split, reset, and IGT for FG, IL, and deathruns. (by Midge and apel)</Description>
     </AutoSplitter>
-      <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>SM57 Deluxe Collection</Game>
-        <Game>SM57 2 Deluxe</Game>
-        <Game>SM57 Deluxe</Game>
+            <Game>SM57 2 Deluxe</Game>
+            <Game>SM57 Deluxe</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/derric-young/smloadremove/main/SM57%20load%20remover.asl</URL>
@@ -15582,13 +15604,13 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/JakeRabinowitz/PogoChampAutosplitter/main/PogoChamp.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplit support with several different modes, made by the developer of PogoChamp.</Description>
         <Website>https://github.com/JakeRabinowitz/PogoChampAutosplitter</Website>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>LEGO Star Wars: The Skywalker Saga</Game>
         </Games>
@@ -15598,7 +15620,7 @@
         <Type>Script</Type>
         <Description>Load Removal is available. (By Weed)</Description>
     </AutoSplitter>
-      <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Wolfenstein 3D</Game>
             <Game>Wolfenstein3D</Game>
@@ -15610,7 +15632,7 @@
         <Description>Wolfenstein 3D autosplitter. Working only with latest version of source ports</Description>
         <Website>https://github.com/rogender/LiveSplit.Wolfenstein3D</Website>
     </AutoSplitter>
-     <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Pearl Grabber</Game>
         </Games>
@@ -15632,7 +15654,7 @@
         <Type>Script</Type>
         <Description>Load remover (By SuicideMachine)</Description>
     </AutoSplitter>
-            <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Sleeping Dogs</Game>
         </Games>
@@ -15671,7 +15693,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/NightmareofDecay.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available (by rythin)</Description>
@@ -15688,8 +15710,8 @@
         <Type>Script</Type>
         <Description>DOOM II autosplitter. Working only on latest versions of source ports</Description>
         <Website>https://github.com/rogender/LiveSplit.Ultimate-DOOM</Website>
-       </AutoSplitter>
-     <AutoSplitter>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Legacy of Kain: Soul Reaver 2</Game>
         </Games>
@@ -15731,7 +15753,7 @@
         <Description>Autosplitter for Another World 20th Anniversary edition (PC).</Description>
         <Website>https://github.com/velcheran/autosplitters/blob/main/AnotherWorld20thAnniversary.asl</Website>
     </AutoSplitter>
-     <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Postal 4: No Regerts</Game>
         </Games>
@@ -15748,7 +15770,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TheIntercom/Autosplitters/master/PostalBrainDamaged/LiveSplit-PostalBrainDamaged.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Basic auto-start, auto-splitting, and auto-reset for POSTAL Brain Damaged (by TheIntercom)</Description>
@@ -15760,7 +15782,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/aranel616/autosplitters/raw/main/I%20Am%20Fish/IAmFish.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for I Am Fish (By Aranel616)</Description>
@@ -15827,7 +15849,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/AndetSTK/FunkUnpluggedASL/raw/main/FunkUnplugged.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter with load removal (by Andet, credit to Ero for ASLHelper)</Description>
@@ -15873,7 +15895,7 @@
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal available (by Tiln1). Made for the Steam version, post-Worldslayer.</Description>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Metal Gear: Ghost Babel</Game>
         </Games>
@@ -15901,7 +15923,7 @@
             <URL>https://raw.githubusercontent.com/NoobTracker/vex-3-autosplitter/main/vex-3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and IGT for the Any% category, by NoobTracker. For the .exe version. </Description>
+        <Description>Autosplitter and IGT for the Any% category, by NoobTracker. For the .exe version.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16000,7 +16022,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/hatkirby/autosplitters/main/TheLooker.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Split, start, and load removal available. (By hatkirby)</Description>
@@ -16023,7 +16045,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/NighthawkSLO/Autosplitters/master/KEEK.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Start/Split/Reset are available. (By NighthawkSLO)</Description>
@@ -16061,7 +16083,7 @@
         <Description>Auto start/split/reset. (By SabulineHorizon)</Description>
         <Website>https://github.com/SabulineHorizon/Autosplitters</Website>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Wetrix (N64)</Game>
         </Games>
@@ -16077,7 +16099,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Toothie2213/tinykinasl/main/tinykin.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Loadremover by Toothie</Description>
@@ -16110,7 +16132,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/tyrope/autosplitters/master/autonauts.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autostart, remove loads/pauses, and split on tiers.</Description>
@@ -16133,7 +16155,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TheDementedSalad/Klonoa-Phantasy-Reverie-Series-Splitter/main/Klonoa.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/Components/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for PR1 and PR2 are available (By TheDementedSalad &amp; NickPRGreen)</Description>
@@ -16146,7 +16168,7 @@
             <URL>https://raw.githubusercontent.com/NoobTracker/vex-1-autosplitter/main/vex.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and IGT for the Any% category, by NoobTracker. For the hacked .exe version. </Description>
+        <Description>Autosplitter and IGT for the Any% category, by NoobTracker. For the hacked .exe version.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16158,5 +16180,16 @@
         <Type>Script</Type>
         <Description>Autosplitter and Load removal by vojtas131 &amp; Dev1ne</Description>
         <Website>https://github.com/vojtas131/AutoSplits/blob/master/metal/livesplit_metal.asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Aquanox</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SabulineHorizon/Autosplitters/main/Aquanox.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset/loads. (By SabulineHorizon)</Description>
+        <Website>https://github.com/SabulineHorizon/Autosplitters</Website>
     </AutoSplitter>
 </AutoSplitters>
