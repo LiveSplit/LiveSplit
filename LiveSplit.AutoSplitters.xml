@@ -2,6 +2,76 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Okaeri</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Okaeri/okaeri.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Maid Cafe Massacre</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Maid%20Cafe%20Massacre/maidcafemassacre.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Don't Be Afraid</Game>
+            <Game>Dont Be Afraid</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Don't%20Be%20Afraid/dontbeafraid.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. Run LS as admin. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ninja Gaiden Sigma 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/RazRaz94/autosplitters/main/Ninja%20Gaiden%20Sigma%202%20Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Ninja Gaiden Sigma 2 By LonerHero and Mysterion_06_</Description>
+        <Website>https://www.speedrun.com/ninja_gaiden_sigma_2</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Crypt</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/clydejallorina/CryptSpeedrun/master/LiveSplit/Crypt.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Crypt autosplitter (By gristCollector)</Description>
+        <Website>https://www.speedrun.com/Crypt</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Corridor: Amount of Fear</Game>
+            <Game>Corridor Amount of Fear</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Corridor%20Amount%20of%20Fear/corridor_amount_of_fear.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
+        <Website>https://www.speedrun.com/corridor_amount_of_fear</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Haunted Gas Station</Game>
         </Games>
         <URLs>
@@ -18,6 +88,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Night%20at%20the%20Gates%20Of%20Hell/natgoh.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load removing is available. (By diggity)</Description>
@@ -297,9 +368,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Devil%20Catcher/devilcatcher.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and load remover by diggity.</Description>
+        <Description>Autosplitter and load remover available. (By diggity)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -543,9 +615,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Death%20Flush/deathflush.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and load remover by diggity.</Description>
+        <Description>Autosplitter and load remover available. (By diggity)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -573,9 +646,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Bloodwash/bloodwash.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and load remover by diggity.</Description>
+        <Description>Autosplitter and load remover available. (By diggity)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -608,6 +682,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Northbury%20Grove%203%20-%20Walls%20Closing%20In/nbg3.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and load remover by diggity.</Description>
@@ -5837,11 +5912,12 @@
             <Game>RE7: Biohazard</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/cursedtoast/re7/master/RE7.asl</URL>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/re7/master/RE7.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast)</Description>
-        <Website>https://github.com/cursedtoast/re7/blob/master/README.md</Website>
+        <Description>Auto Splitting and Load Removal available. Compare to IGT. (By CursedToast &amp; TheDementedSalad)</Description>
+        <Website>https://github.com/TheDementedSalad/re7/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12228,11 +12304,11 @@
             <Game>Red Dead Redemption 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/definitelynotcrab/rdr2_asl/master/RDR2.asl</URL>
+            <URL>https://raw.githubusercontent.com/vrchmvgx/rdr2_asl/master/RDR2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Automatic starting, splitting and load removal.</Description>
-        <Website>https://github.com/definitelynotcrab/rdr2_asl</Website>
+        <Website>https://github.com/vrchmvgx/rdr2_asl</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12501,10 +12577,22 @@
             <Game>Valkyria Chronicles</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/archieyates/Autosplitters/master/VC.asl</URL>
+            <URL>https://raw.githubusercontent.com/archieyates/Autosplitters/master/Valkyria%20Chronicles/VC.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for Valkyria Chronicles that supports load removal and final boss hit splits (by Reicha7)</Description>
+        <Website>https://github.com/archieyates/Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Squirm</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/archieyates/Autosplitters/master/Squirm/Squirm.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Squirm with full support for Any%, 100%, and Surprise Party (by Reicha7)</Description>
         <Website>https://github.com/archieyates/Autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -14055,9 +14143,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/The%20Whitetail%20Incident/whitetail.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting is available. Created by diggity and Ero.</Description>
+        <Description>Autosplitting is available. (By diggity)</Description>
         <Website>https://speedrun.com/whitetail</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -14066,9 +14155,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Late%20Work/latework.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automatic start/stop is available. Created by diggity.</Description>
+        <Description>Automatic start/stop is available. (By diggity)</Description>
         <Website>https://www.speedrun.com/late_work</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -16191,5 +16281,26 @@
         <Type>Script</Type>
         <Description>Auto start/split/reset/loads. (By SabulineHorizon)</Description>
         <Website>https://github.com/SabulineHorizon/Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>I Wanna Escape Heavenly Host</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Gaphodil/iwehh-autosplitter/main/IWEHH.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter, death count, and game time, with options. (by Gaphodil)</Description>
+        <Website>https://github.com/Gaphodil/iwehh-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Fobia: St. Dinfna Hotel</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Fobia-Autosplitter/main/Fobia.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Removal Available. Time via IGT (by TheDementedSalad)</Description>
     </AutoSplitter>
 </AutoSplitters>
