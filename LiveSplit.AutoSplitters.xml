@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+  <AutoSplitter>
+        <Games>
+            <Game>Scorn</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.Scorn/main/Scorn.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Remover made by Meta and Nikoheart</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Okaeri</Game>
@@ -33,6 +43,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and load removal is available. Run LS as admin. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ninja Gaiden Sigma</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/RazRaz94/autosplitters/main/NinjaGaidenSigmaAutoSplitterLRT_By%20Mysterion_06_.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (by Mysterion_06_ and LonerHero)</Description>
+        <Website>https://www.speedrun.com/ninja_gaiden_sigma</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -273,7 +294,7 @@
             <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.Yakuza3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover and Autostart by streetbackguy</Description>
+        <Description>Load Remover, Autosplitter and Autostart by streetbackguy and PlayingLikeAss</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7105,13 +7126,11 @@
             <Game>Cuphead Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://github.com/just-ero/asl/raw/main/Cuphead/Cuphead.asl</URL>
-            <URL>https://github.com/just-ero/asl/raw/main/Cuphead/Cuphead.Splits.xml</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Cuphead/master/Components/LiveSplit.Cuphead.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Starts automatically. Splits are available in the settings. Removes loads. (temp fix by Ero)</Description>
-        <Website>https://github.com/just-ero/asl/tree/main/Cuphead</Website>
+        <Type>Component</Type>
+        <Description>Autosplitting and Load Removal is available. (By DevilSquirrel)</Description>
+        <Website>https://github.com/ShootMe/LiveSplit.Cuphead</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8937,64 +8956,6 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load removal (By X-Meme)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Astérix &amp; Obélix XXL</Game>
-            <Game>Asterix &amp; Obelix XXL</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/NoTeefy/AAOXXL1-AutoSplit/master/aaoxxl1.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Automated Splitting/Start/End/Reset + Loadless Timer (By NoTeefy)</Description>
-        <Website>https://noteefy.de/aao</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Astérix &amp; Obélix XXL 2: Mission: Las Vegum Remastered</Game>
-            <Game>Astérix &amp; Obélix XXL 2</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/NoTeefy/AAOXXL2HD-AutoSplit/master/aaormstr.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Automated Splitting/Start/End + Loadless Timer (By NoTeefy)</Description>
-        <Website>https://noteefy.de/aao</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Astérix &amp; Obélix XXL 2: Mission: Las Vegum</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/NoTeefy/AAOXXL2-AutoSplit/master/aaoxxl2.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Automated Splitting/Start/End + Loadless Timer (By NoTeefy)</Description>
-        <Website>https://noteefy.de/aao</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Lost Ember</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/NoTeefy/LostEmber-AutoSplit/master/lostember.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Loadless Timer (By NoTeefy)</Description>
-        <Website>https://discord.gg/bfHd8fW</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Viscera Cleanup Detail</Game>
-            <Game>VCD</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/NoTeefy/VCD-AutoSplit/master/VCD.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Loadless Timer (By NoTeefy)</Description>
-        <Website>https://discord.gg/AdBKn5P</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16302,5 +16263,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and Load Removal Available. Time via IGT (by TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>A Bug's Life</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hdc0/LiveSplit-asl/master/A%20Bug's%20Life.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto starting, splitting and load removal are available. (By hdc0)</Description>
     </AutoSplitter>
 </AutoSplitters>
