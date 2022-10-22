@@ -2,6 +2,16 @@
 <AutoSplitters>
   <AutoSplitter>
         <Games>
+            <Game>Uncharted: The Lost Legacy (PC)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/UCLL.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Remover by Mattmatt</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Scorn</Game>
         </Games>
         <URLs>
