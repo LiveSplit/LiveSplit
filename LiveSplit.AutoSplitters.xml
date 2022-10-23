@@ -2,6 +2,16 @@
 <AutoSplitters>
   <AutoSplitter>
         <Games>
+            <Game>Five Nights at Freddy's: Security Breach</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NintwnDude879/fnaf-sb-autosplitter/master/FNaFSBAutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Remover made by NintenDude and Daltone</Description>
+  </AutoSplitter>
+  <AutoSplitter>
+        <Games>
             <Game>Scorn</Game>
         </Games>
         <URLs>
@@ -16274,4 +16284,35 @@
         <Type>Script</Type>
         <Description>Auto starting, splitting and load removal are available. (By hdc0)</Description>
     </AutoSplitter>
-</AutoSplitters>
+    <AutoSplitter>
+        <Games>
+            <Game>Desperados III</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/smorrrs/Desperados-III-Resources/main/desperados_iii.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start, split, and load removal by smorrs</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Beeny</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/AndetSTK/BeenyASL/main/Beeny.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starting and splitting by Andet, credit to Ero for asl-help</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Organism</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/danielditlev/LiveSplit.AutoSplitters/main/C64_organism.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>ASL script for the 2018 C64 game 'Organism'. Meant for use with Vice 3.6.1</Description>
+    </AutoSplitter>
+  </AutoSplitters>
