@@ -11,7 +11,9 @@ namespace LiveSplit.Model
 {
     public enum AutoSplitterType
     {
-        Component, Script
+        Component,
+        Script,
+        AutoSplittingRuntimeScript
     }
     public class AutoSplitter : ICloneable
     {
@@ -34,17 +36,22 @@ namespace LiveSplit.Model
             {
                 try
                 {
-                    if (!IsDownloaded || Type == AutoSplitterType.Script)
+                    if (!IsDownloaded || Type == AutoSplitterType.Script || Type == AutoSplitterType.AutoSplittingRuntimeScript)
                         DownloadFiles();
-                    if (Type == AutoSplitterType.Component)
+                    switch (Type)
                     {
-                        Factory = ComponentManager.ComponentFactories[FileName];
-                        Component = Factory.Create(state);
-                    }
-                    else
-                    {
-                        Factory = ComponentManager.ComponentFactories["LiveSplit.ScriptableAutoSplit.dll"];
-                        Component = ((dynamic)Factory).Create(state, LocalPath);
+                        case AutoSplitterType.Component:
+                            Factory = ComponentManager.ComponentFactories[FileName];
+                            Component = Factory.Create(state);
+                            break;
+                        case AutoSplitterType.Script:
+                            Factory = ComponentManager.ComponentFactories["LiveSplit.ScriptableAutoSplit.dll"];
+                            Component = ((dynamic)Factory).Create(state, LocalPath);
+                            break;
+                        case AutoSplitterType.AutoSplittingRuntimeScript:
+                            Factory = ComponentManager.ComponentFactories["LiveSplit.AutoSplittingRuntime.dll"];
+                            Component = ((dynamic)Factory).Create(state, LocalPath);
+                            break;
                     }
                 }
                 catch (Exception ex)

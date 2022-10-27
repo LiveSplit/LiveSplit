@@ -95,3 +95,6 @@
 	path = LiveSplit/Components/LiveSplit.Racetime
 	url = https://github.com/LiveSplit/LiveSplit.Racetime.git
 	branch = stable
+[submodule "LiveSplit/Components/LiveSplit.AutoSplittingRuntime"]
+	path = LiveSplit/Components/LiveSplit.AutoSplittingRuntime
+	url = https://github.com/LiveSplit/LiveSplit.AutoSplittingRuntime.git
