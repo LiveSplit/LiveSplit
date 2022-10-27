@@ -65,6 +65,18 @@ The documentation for how to develop, test, and submit an Auto Splitter can be f
 
 [Auto Splitters Documentation](https://github.com/LiveSplit/LiveSplit.AutoSplitters/blob/master/README.md)
 
+## Releasing
+
+1. Update versions of any components that changed to match the new LiveSplit version.
+2. Create a Git tag for the new version.
+3. Download `LiveSplit_Build` from the GitHub Actions build for the latest commit on `master`.
+4. Create a GitHub release for the new version, and upload the LiveSplit build ZIP file with the correct filename (e.g. `LiveSplit_1.8.21.zip`).
+    - Create releases for [`LiveSplit.Counter`](https://github.com/LiveSplit/LiveSplit.Counter) and [`LiveSplit.Server`](https://github.com/LiveSplit/LiveSplit.Server) if necessary.
+5. Modify files in [the update folder of LiveSplit.github.io](https://github.com/LiveSplit/LiveSplit.github.io/tree/master/update) and commit the changes:
+    - Copy changed files from the downloaded LiveSplit build ZIP file to the update folder.
+    - Add new versions to the update XMLs for (`update.xml`, `update.updater.xml`, and the update XMLs for any components that changed).
+    - Update the version on the [downloads page](https://github.com/LiveSplit/LiveSplit.github.io/blob/master/downloads.md).
+
 ## License
 
 The MIT License (MIT)
