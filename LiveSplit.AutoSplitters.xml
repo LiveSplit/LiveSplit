@@ -2,6 +2,26 @@
 <AutoSplitters>
   <AutoSplitter>
         <Games>
+            <Game>Pitfall: The Mayan Adventure</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Svipur/Autosplitters/main/Pitfall%20-%20The%20Mayan%20Adventure%20(Windows%20PC)/PitfallPC.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for the Windows PC version. (Svipur)</Description>
+    </AutoSplitter>
+  <AutoSplitter>
+        <Games>
+            <Game>Uncharted: The Lost Legacy (PC)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/UCLL.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Remover by Mattmatt</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Five Nights at Freddy's: Security Breach</Game>
         </Games>
         <URLs>
@@ -53,6 +73,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and load removal is available. Run LS as admin. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Chaos Legion</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/RazRaz94/autosplitters/main/ChaosLegion.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Chaos Legion PC By LonerHero</Description>
+        <Website>https://www.speedrun.com/chaos_legion</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3358,14 +3389,14 @@
     <AutoSplitter>
         <Games>
             <Game>Dragon Age 2</Game>
+            <Game>Dragon Age II</Game>
             <Game>DA2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/drtchops/asl/master/dragonage2.asl</URL>
+            <URL>https://raw.githubusercontent.com/Lemuura/Livesplit-Autosplitters/main/dragonage2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By DrTChops)</Description>
-        <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+        <Description>Load Removal/Autosplitter is available. (By Lemuura)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5958,11 +5989,11 @@
             <Game>Resident Evil: Village</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/cursedtoast/re8/main/re8.asl</URL>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/re8/main/re8.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splits and Load Removal available. Compare against Game Time.(By CursedToast)</Description>
-        <Website>https://github.com/cursedtoast/re8/blob/main/README.md</Website>
+        <Description>Auto Splits and Load Removal available. Compare to IGT.(By CursedToast &amp; TheDementedSalad)</Description>
+        <Website>https://github.com/TheDementedSalad/re8/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7514,8 +7545,18 @@
             <URL>https://raw.githubusercontent.com/Modiseus/Hue-Auto-Splitter/master/Hue.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Start and auto-splitting are available. (By Modiseus)</Description>
+        <Description>Auto starting, splitting and load removal are available. (By Modiseus, jboardman367 and LukeSaward1)</Description>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hue Category Extensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Modiseus/Hue-Auto-Splitter/master/Hue.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto starting, splitting and load removal are available. (By Modiseus, jboardman367 and LukeSaward1)</Description>
+    </AutoSplitter>  
     <AutoSplitter>
         <Games>
             <Game>Croc 2</Game>
@@ -16314,5 +16355,26 @@
         </URLs>
         <Type>Script</Type>
         <Description>ASL script for the 2018 C64 game 'Organism'. Meant for use with Vice 3.6.1</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Agent Hugo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Banzkux/autosplitters/main/agent-hugo/agenthugo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover for Agent Hugo. (by Banz)</Description>
+        <Website>https://www.speedrun.com/agent_hugo</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Gotham Knights</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ShikenNuggets/Autosplitters/master/GothamKnights.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover by ShikenNuggets</Description>
     </AutoSplitter>
   </AutoSplitters>
