@@ -41,8 +41,8 @@ namespace LiveSplit.Model
         }
 
         public static TimeStamp Now
-            => new TimeStamp(TimeSpan.FromMilliseconds(qpc.Elapsed.TotalMilliseconds / PersistentDrift));
-        
+            => new TimeStamp(TimeSpan.FromTicks((long)(qpc.Elapsed.Ticks / PersistentDrift)));
+
         public static bool IsSyncedWithAtomicClock
             => lastQPCTime != TimeSpan.Zero;
 

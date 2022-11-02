@@ -24,7 +24,7 @@ namespace LiveSplit.Model.RunFactories
 
         static TimeSpan ParseTimeSpan(LiveSplitCore.TimeSpanRef timeSpan)
         {
-            return TimeSpan.FromSeconds(timeSpan.TotalSeconds());
+            return TimeSpan.FromTicks((long)(timeSpan.TotalSeconds() * TimeSpan.TicksPerSecond));
         }
 
         static TimeSpan? ParseOptionalTimeSpan(LiveSplitCore.TimeSpanRef timeSpan)
@@ -33,7 +33,7 @@ namespace LiveSplit.Model.RunFactories
             {
                 return null;
             }
-            return TimeSpan.FromSeconds(timeSpan.TotalSeconds());
+            return TimeSpan.FromTicks((long)(timeSpan.TotalSeconds() * TimeSpan.TicksPerSecond));
         }
 
         static AtomicDateTime? ParseOptionalAtomicDateTime(LiveSplitCore.AtomicDateTimeRef dateTime)

@@ -26,7 +26,7 @@ namespace LiveSplit.Model.Comparisons
             weightedList = weightedList.OrderBy(x => x.Value).ToList();
             var totalWeights = weightedList.Aggregate(0.0, (s, x) => (s + x.Key));
             var averageTime = weightedList.Aggregate(0.0, (s, x) => (s + x.Key * x.Value.TotalSeconds)) / totalWeights;
-            return TimeSpan.FromSeconds(averageTime);
+            return TimeSpan.FromTicks((long)(averageTime * TimeSpan.TicksPerSecond));
         }
 
         protected double GetWeight(int index, int count) => Pow(Weight, count - index - 1);

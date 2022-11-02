@@ -30,7 +30,7 @@ namespace LiveSplit.Model
                 .Select(x => double.Parse(x, NumberStyles.Float, CultureInfo.InvariantCulture))
                 .Aggregate((a, b) => 60 * a + b);
 
-            return TimeSpan.FromSeconds(factor * seconds);
+            return TimeSpan.FromTicks((long)(factor * seconds * TimeSpan.TicksPerSecond));
         }
     }
 }
