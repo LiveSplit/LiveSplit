@@ -38,17 +38,45 @@ namespace LiveSplit.Model
 
             if (document != null)
             {
-                AutoSplitters = document["AutoSplitters"].ChildNodes.OfType<XmlElement>().Where(element => element != null).Select(element =>
-                    new AutoSplitter()
-                    {
-                        Description = element["Description"].InnerText,
-                        URLs = element["URLs"].ChildNodes.OfType<XmlElement>().Select(x => x.InnerText).ToList(),
-                        Type = (AutoSplitterType)Enum.Parse(typeof(AutoSplitterType), element["Type"].InnerText),
-                        Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => (x.InnerText ?? "").ToLower()).ToList(),
-                        ShowInLayoutEditor = element["ShowInLayoutEditor"] != null,
-                        Website = element["Website"] != null ? element["Website"].InnerText : null
-                    }).SelectMany(x => x.Games.Select(y => new KeyValuePair<string, AutoSplitter>(y, x))).ToDictionary(x => x.Key, x => x.Value);
+                AutoSplitters = document["AutoSplitters"].ChildNodes.OfType<XmlElement>()
+                    .Where(element => element != null)
+                    .Select(element => CreateFromXmlElement(element))
+                    .SelectMany(x => x.Games.Select(y => new KeyValuePair<string, AutoSplitter>(y, x)))
+                    .ToDictionary(x => x.Key, x => x.Value);
             }
+        }
+
+        public static AutoSplitter CreateFromXmlElement(XmlElement element)
+        {
+            var typeElementText = element["Type"]?.InnerText;
+            var scriptTypeElementText = element["ScriptType"]?.InnerText;
+
+            AutoSplitterType? autoSplitterType = null;
+            if (typeElementText == "Component")
+            {
+                autoSplitterType = AutoSplitterType.Component;
+            }
+            else if (typeElementText == "Script")
+            {
+                if (scriptTypeElementText == "AutoSplittingRuntime")
+                {
+                    autoSplitterType = AutoSplitterType.AutoSplittingRuntimeScript;
+                }
+                else
+                {
+                    autoSplitterType = AutoSplitterType.Script;
+                }
+            }
+
+            return new AutoSplitter()
+            {
+                Description = element["Description"].InnerText,
+                URLs = element["URLs"].ChildNodes.OfType<XmlElement>().Select(x => x.InnerText).ToList(),
+                Type = autoSplitterType.Value,
+                Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => (x.InnerText ?? "").ToLower()).ToList(),
+                ShowInLayoutEditor = element["ShowInLayoutEditor"] != null,
+                Website = element["Website"] != null ? element["Website"].InnerText : null
+            };
         }
 
         public AutoSplitter Create(string game)
