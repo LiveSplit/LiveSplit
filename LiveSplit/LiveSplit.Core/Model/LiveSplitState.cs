@@ -202,9 +202,14 @@ namespace LiveSplit.Model
 
         public void SetGameTime(TimeSpan? gameTime)
         {
-            if (CurrentTime.RealTime.HasValue && gameTime.HasValue)
+            var currentTime = CurrentTime;
+            if (currentTime.RealTime.HasValue && gameTime.HasValue)
             {
-                LoadingTimes = CurrentTime.RealTime.Value - gameTime.Value;
+                LoadingTimes = currentTime.RealTime.Value - gameTime.Value;
+                if (IsGameTimePaused)
+                {
+                    GameTimePauseTime = gameTime.Value;
+                }
             }
         }
 
