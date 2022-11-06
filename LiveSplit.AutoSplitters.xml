@@ -12,6 +12,16 @@
     </AutoSplitter>
   <AutoSplitter>
         <Games>
+            <Game>A PLAGUE TALE: REQUIEM</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/A_Plague_Tale_Requiem.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover (By TheDementedSalad, KunoDemetires, Meta)</Description>
+    </AutoSplitter>
+  <AutoSplitter>
+        <Games>
             <Game>Uncharted: The Lost Legacy (PC)</Game>
         </Games>
         <URLs>
@@ -39,6 +49,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and Load Remover made by Meta and Nikoheart</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Snuff</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Snuff/snuff.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal is available. (By diggity)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1242,15 +1263,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Eversleep: Lunistice Gaiden</Game>
-            <Game>Eversleep: Lunistice Gaiden Demo</Game>
+            <Game>Lunistice</Game>
+            <Game>Lunistice Demo</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/CryZe/LiveSplit.Eversleep/master/LiveSplit.Eversleep.asl</URL>
+            <URL>https://github.com/CryZe/lunistice-auto-splitter/releases/download/latest/lunistice_auto_splitter.wasm</URL>
         </URLs>
         <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
         <Description>Auto Splitting and Game Time are available (by CryZe)</Description>
-        <Website>https://github.com/CryZe/LiveSplit.Eversleep</Website>
+        <Website>https://github.com/CryZe/lunistice-auto-splitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -5911,7 +5933,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Pac-Man%20World%20Re-Pac/LiveSplit.PacManWorldRePac.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and load remover (by Jujstme)</Description>
@@ -7916,6 +7938,17 @@
         <Type>Script</Type>
         <Description>Requires Sonic 3D in 2D 1.26 or higher</Description>
         <Website>https://github.com/SonicSpeedrunning/Sonic3Din2DSplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic and the Fallen Star</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicAndTheFallenStar/main/LiveSplit.SonicAndTheFallenStar.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by BenInSweden and Jujstme</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicAndTheFallenStar</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11245,10 +11278,10 @@
             <Game>Salt and Sanctuary</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/seresharp/LiveSplit.Salt/master/Livesplit.Salt/Components/LiveSplit.Salt.dll</URL>
+            <URL>https://raw.githubusercontent.com/vorban/LiveSplit.Salt/master/Livesplit.Salt/Components/LiveSplit.Salt.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Autosplitting and auto-start available (by SerenaM)</Description>
+        <Description>Autosplitting and auto-start available (by Nyvelant and SerenaM)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16376,5 +16409,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Remover by ShikenNuggets</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Spacegulls</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/totobono4/Auto-Splitter-Scripts/main/ASL/Spacegulls.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Spacegulls. (by totobono4 and Lyliya)</Description>
     </AutoSplitter>
   </AutoSplitters>
