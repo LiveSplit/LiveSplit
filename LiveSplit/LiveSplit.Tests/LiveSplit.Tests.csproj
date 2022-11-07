@@ -67,6 +67,7 @@
     <Compile Include="TimeFormatTests\RegularTimeFormattersTests.cs" />
     <Compile Include="TimeFormatTests\DeltaTimeFormattersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimeParseTests\TimeSpanParserTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
