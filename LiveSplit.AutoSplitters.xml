@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
   <AutoSplitter>
+    <Games>
+      <Game>2</Game>
+    </Games>
+    <URLs>
+      <URL>https://raw.githubusercontent.com/samjones246/two-asl/master/two.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>Auto start/split/reset &amp; IGT supported (By CaptainRektbeard)</Description>
+    <Website>https://github.com/samjones246/two-asl</Website>
+  </AutoSplitter>
+  <AutoSplitter>
         <Games>
             <Game>Pitfall: The Mayan Adventure</Game>
         </Games>
@@ -49,6 +60,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and Load Remover made by Meta and Nikoheart</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Vacation Island</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Vacation%20Island/vacation_island.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting is available. (By diggity)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -487,11 +508,23 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/samontenegro/ASL/main/prodeus/prodeus.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Prodeus Autosplitter by oneir1c / @samontenegro</Description>
         <Website>https://www.speedrun.com/prodeus</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Signalis</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samontenegro/ASL/main/signalis/signalis.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Signalis Autosplitter and load remover by oneir1c</Description>
+        <Website>https://www.speedrun.com/signalis</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2278,6 +2311,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sonic Omens</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicOmens/main/LiveSplit.SonicOmens.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load time remover (by Jujstme)</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicOmens</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Sonic &amp; Sega All-Stars Racing</Game>
             <Game>Sonic &amp; Sega All-Stars Racing - Category Extensions</Game>
         </Games>
@@ -3076,6 +3120,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal is available. (By ShiningFace)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Sonic Heroes</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/skewbmaster/Livesplit-ASL-Scripts/main/Sonic%20Heroes/LiveSplit.DolphinHeroes64BIT.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>IGT and Autosplitting Script for Sonic Heroes on Dolphin 5.0 (By skoob)</Description>
+        <Website>https://discord.gg/vCSvQrPg3A</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7983,6 +8038,28 @@
         <Type>Script</Type>
         <Description>Auto start and reset available. Custom splitting options available in settings (by Jujstme)</Description>
         <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble16bit</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic Forces</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicForces/main/LiveSplit.SonicForces.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start and reset available. Custom splitting options available in settings (by Jujstme)</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicForces</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic Frontiers</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicFrontiers/main/LiveSplit.SonicFrontiers.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover and IGT calculator (switchable in settings) - by Jujstme</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicFrontiers</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13042,26 +13119,18 @@
         <Games>
             <Game>Peggle Deluxe</Game>
             <Game>Peggle Extreme</Game>
+            <Game>Peggle Nights</Game>
+            <Game>Peggle: World of Warcraft Edition</Game>
             <Game>Pegged</Game>
+            <Game>Peggle Category Extensions</Game>
+            <Game>Peggle Nights Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/brassbeat/autosplitters/main/Peggle-Deluxe/PeggleDeluxeAdventureMode.asl</URL>
+            <URL>https://raw.githubusercontent.com/brassbeat/autosplitters/main/Peggle.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split for Adventure Mode. Splits by level and by master available (by brassbeat).</Description>
-        <Website>https://www.speedrun.com/peggle_deluxe</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Peggle Nights</Game>
-            <Game>Peggle: World of Warcraft Edition</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/brassbeat/autosplitters/main/Peggle-Nights/PeggleNightsAdventureMode.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Auto split for Adventure Mode. Splits by level and by master available (by brassbeat).</Description>
-        <Website>https://www.speedrun.com/peggle_nights</Website>
+        <Website>https://www.speedrun.com/peggle</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16419,5 +16488,26 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter for Spacegulls. (by totobono4 and Lyliya)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lonely Mountains: Downhill</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Lyliya/LonelyMountainDownhill-Autosplitter/master/LonelyMountainDownhill.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Lonely Mountains: Downhill (By Lyliya)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mobility</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tcookiem/MobilityAutosplitter/main/Mobility.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Mobility (by tcookiem)</Description>
+        <Website>https://github.com/tcookiem/MobilityAutosplitter</Website>
     </AutoSplitter>
   </AutoSplitters>
