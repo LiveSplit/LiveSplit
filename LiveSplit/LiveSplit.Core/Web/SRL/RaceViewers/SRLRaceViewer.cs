@@ -7,7 +7,7 @@ namespace LiveSplit.Web.SRL.RaceViewers
     {
         public void ShowRace(IRaceInfo race)
         {
-            var url = string.Format("http://speedrunslive.com/race/?id={0}", race.Id);
+            var url = string.Format("http://speedrunslive.com/race/{0}", race.Id);
             Process.Start(url);
         }
 
