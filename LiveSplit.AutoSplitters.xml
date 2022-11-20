@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+    <AutoSplitter>
+        <Games>
+            <Game>Fifo's Night</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/crysal/Fifos_Night_Load_Remover/main/Fifos_Night.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal is available (by Crysal)</Description>
+    </AutoSplitter>
+	 <AutoSplitter>
+        <Games>
+            <Game>CRASH NITRO KART</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/CrashNitroKart.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover for Dolphin (by KunoDemetries)</Description>
+    </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>2</Game>
@@ -30,6 +50,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (By TheDementedSalad, KunoDemetires, Meta)</Description>
+    </AutoSplitter>
+	 <AutoSplitter>
+        <Games>
+            <Game>ASSAULT SPY</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/AssaultSpy.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover (By KunoDemetires)</Description>
     </AutoSplitter>
   <AutoSplitter>
         <Games>
@@ -762,10 +792,11 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Bloodwash/bloodwash.asl</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Bloodwash/Bloodwash.Data.xml</URL>
             <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and load remover available. (By diggity)</Description>
+        <Description>Autosplitting and load removal is available. Enter the Plaza before doing runs. (By diggity)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2985,21 +3016,39 @@
             <Game>LOVE</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/LOVE/LOVE_livesplit.asl</URL>
+            <URL>https://raw.githubusercontent.com/neesi/autosplitters/main/LOVE/LOVE.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Works in all game modes after you enter Speedrun mode. Auto start, split, reset. IGT syncing.</Description>
+        <Description>Auto start, split, reset. Game Time syncing.</Description>
+        <Website>https://github.com/neesi/autosplitters/tree/main/LOVE</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>LOVE 2: kuso</Game>
             <Game>kuso</Game>
+            <Game>LOVE 2: kuso Demo</Game>
+            <Game>kuso Demo</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/kuso/kuso_livesplit.asl</URL>
+            <URL>https://raw.githubusercontent.com/neesi/autosplitters/main/LOVE_2_kuso/LOVE2kuso.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto start, split, reset. Game Time syncing. SleepMargin settings to fix low in-game FPS.</Description>
+        <Description>Auto start, split, reset. Game Time syncing. Website has important info about Demo version.</Description>
+        <Website>https://github.com/neesi/autosplitters/tree/main/LOVE_2_kuso</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>LOVE 3</Game>
+            <Game>LOVE3</Game>
+            <Game>LOVE 3 Demo</Game>
+            <Game>LOVE3 Demo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/neesi/autosplitters/main/LOVE_3/LOVE3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start, split, reset. Game Time syncing.</Description>
+        <Website>https://github.com/neesi/autosplitters/tree/main/LOVE_3</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3012,17 +3061,6 @@
         <Type>Script</Type>
         <Description>Configurable autosplitting and load remover (by Jujstme)</Description>
         <Website>https://github.com/Jujstme/Autosplitters/tree/master/Halo%20Infinite</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>LOVE 3</Game>
-            <Game>LOVE3</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/neesi/autosplitters/master/LOVE3/LOVE3_livesplit.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Auto start, split, reset. Game Time syncing. Script works in Time Attack mode only (including Level Select).</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4746,6 +4784,17 @@
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal are available. (By Wipefinger, Mysterion_06_, Yuushi)</Description>
         <Website>https://github.com/Mysterion06/Re4Splitter/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Resident Evil 4 2007</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/gabriel-dornelles/ASPC07/main/ASPC07.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Time Removal are available. (by Gabriel Dornelles)</Description>
+        <Website>https://github.com/gabriel-dornelles/ASPC07/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8055,10 +8104,10 @@
             <Game>Sonic Frontiers</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicFrontiers/main/LiveSplit.SonicFrontiers.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicFrontiers/main/Components/LiveSplit.SonicFrontiers.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Load remover and IGT calculator (switchable in settings) - by Jujstme</Description>
+        <Type>Component</Type>
+        <Description>Autosplitter and load remover with configurable splitting conditions (by Jujstme)</Description>
         <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicFrontiers</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -16509,5 +16558,27 @@
         <Type>Script</Type>
         <Description>Autosplitter for Mobility (by tcookiem)</Description>
         <Website>https://github.com/tcookiem/MobilityAutosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Freedom Fighters</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Banzkux/autosplitters/main/freedom-fighters/freedomfighters.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split and load removal available. (By Banz)</Description>
+        <Website>https://github.com/Banzkux/autosplitters/blob/main/freedom-fighters/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Last Battle/Hokuto no Ken</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/dread-pirate-johnny-spaceboots/last-battle-autosplitter/master/LastBattle.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset. (By Johnny Spaceboots)</Description>
+        <Website>https://github.com/dread-pirate-johnny-spaceboots/last-battle-autosplitter</Website>
     </AutoSplitter>
   </AutoSplitters>
