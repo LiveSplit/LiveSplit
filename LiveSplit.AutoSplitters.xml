@@ -20,6 +20,16 @@
         <Type>Script</Type>
         <Description>Load Remover for Dolphin (by KunoDemetries)</Description>
     </AutoSplitter>
+	 <AutoSplitter>
+        <Games>
+            <Game>GUNGRAVE G.O.R.E.</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/GunGraveGore.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter/Load Remover (by KunoDemetries, Micrologist)</Description>
+    </AutoSplitter>
   <AutoSplitter>
     <Games>
       <Game>2</Game>
@@ -100,6 +110,19 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>BATDR</Game>
+            <Game>Bendy and the Dark Revival</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Bendy%20and%20the%20Dark%20Revival/bendyandthedarkrevival.asl</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Bendy%20and%20the%20Dark%20Revival/BATDR.Settings.xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity and Mello)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -943,6 +966,8 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Will%20You%20Snail/wys.asl</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Will%20You%20Snail/WYS.Settings.xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter written by diggity and FlippyDolphin.</Description>
@@ -6443,6 +6468,7 @@
             <Game>TrackMania One - Alpine</Game>
             <Game>TrackMania One - Speed</Game>
             <Game>TrackMania² Canyon : Platform</Game>
+	    <Game>TrackMania² A01</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Rastats/Maniaplanet/main/TM2-Autosplitter-IGT%20(by%20Malakat).asl</URL>
@@ -16580,5 +16606,27 @@
         <Type>Script</Type>
         <Description>Auto start/split/reset. (By Johnny Spaceboots)</Description>
         <Website>https://github.com/dread-pirate-johnny-spaceboots/last-battle-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Alkali</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/krille71/alkali-autosplitter/master/alkali-autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset (by krille71)</Description>
+	<Website>https://github.com/krille71/alkali-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+	    <Game>ADACA</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/BurndiL/ADACA-Autosplitter/main/adaca.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Auto start/split (by Zach and Burndi)</Description>
+	<Website>https://github.com/BurndiL/ADACA-Autosplitter</Website>
     </AutoSplitter>
   </AutoSplitters>
