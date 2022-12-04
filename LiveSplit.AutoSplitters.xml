@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+ <AutoSplitter>
+        <Games>
+            <Game>The Callisto Protocol</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.CallistoProtocol/main/CallistoProtocol.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover, Autostart, and Autosplit made by Meta</Description>
+    </AutoSplitter>
+ <AutoSplitter>
+        <Games>
+            <Game>Marvel's Spider-Man: Miles Morales</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.Spider-ManMilesMorales/main/SpidermanMilesMoralesRemastered.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover made by Meta</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Fifo's Night</Game>
@@ -2444,7 +2464,7 @@
             <URL>https://raw.githubusercontent.com/Traviktox/Lufia_2_ACAutosplitter/master/Lufia.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description> Autosplitter for Lufia II: Rise of the Sinistrals - Ancient Cave. Start the timer at 0.83 (by Traviktox)</Description>
+        <Description> Autosplitter for Lufia II: Rise of the Sinistrals - Ancient Cave. (by Traviktox)</Description>
         <Website>https://discord.gg/Gp7YTr</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -3216,7 +3236,7 @@
             <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D2/L4D2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Auto Splitting are available. (By bill_play3, 2838, and Aciidz)</Description>
+        <Description>Load Removal and Auto Splitting are available. (By bill_play3, 2838, and aciidz)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3227,7 +3247,7 @@
             <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D1/L4D.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Auto Splitting are available. (By bill_play3 and Aciidz)</Description>
+        <Description>Load Removal and Auto Splitting are available. (By bill_play3, 2838, and aciidz)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3237,7 +3257,7 @@
             <URL>https://raw.githubusercontent.com/Suprnova/L4DAC-Autosplitter/main/L4DSurvivors.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Game Time and Auto Splitting are available. (By Aciidz, bill_play3, and Suprnova)</Description>
+        <Description>Game Time and Auto Splitting are available. (By aciidz, bill_play3, and Suprnova)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8108,9 +8128,9 @@
             <Game>Sonic Triple Trouble (16-Bit)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble16bit/main/LiveSplit.SonicTripleTrouble16bit.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble16bit/main/Components/LiveSplit.SonicTripleTrouble16bit.dll</URL>
         </URLs>
-        <Type>Script</Type>
+        <Type>Component</Type>
         <Description>Auto start and reset available. Custom splitting options available in settings (by Jujstme)</Description>
         <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble16bit</Website>
     </AutoSplitter>
@@ -16628,5 +16648,15 @@
 	<Type>Script</Type>
 	<Description>Auto start/split (by Zach and Burndi)</Description>
 	<Website>https://github.com/BurndiL/ADACA-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Agent Hugo: RoboRumble</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SioNisti/autosplit/main/Agent%20Hugo%20Roborubmle.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Loadremover. (by SioN)</Description>
     </AutoSplitter>
   </AutoSplitters>
