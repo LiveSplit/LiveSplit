@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
- <AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Super Kiwi 64</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/superkiwi64-asl/master/superkiwi64.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset and load removal supported (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>The Callisto Protocol</Game>
         </Games>
@@ -10,7 +21,17 @@
         <Type>Script</Type>
         <Description>Load Remover, Autostart, and Autosplit made by Meta</Description>
     </AutoSplitter>
- <AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>BARBIE HORSE ADVENTURES: MYSTERY RIDE</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/BarbieHorseAdventuresMysteryRide.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter/Load Remover (by KunoDemetries)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Marvel's Spider-Man: Miles Morales</Game>
         </Games>
@@ -30,7 +51,7 @@
         <Type>Script</Type>
         <Description>Load Removal is available (by Crysal)</Description>
     </AutoSplitter>
-	 <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>CRASH NITRO KART</Game>
         </Games>
@@ -40,7 +61,7 @@
         <Type>Script</Type>
         <Description>Load Remover for Dolphin (by KunoDemetries)</Description>
     </AutoSplitter>
-	 <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>GUNGRAVE G.O.R.E.</Game>
         </Games>
@@ -50,18 +71,18 @@
         <Type>Script</Type>
         <Description>AutoSplitter/Load Remover (by KunoDemetries, Micrologist)</Description>
     </AutoSplitter>
-  <AutoSplitter>
-    <Games>
-      <Game>2</Game>
-    </Games>
-    <URLs>
-      <URL>https://raw.githubusercontent.com/samjones246/two-asl/master/two.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>Auto start/split/reset &amp; IGT supported (By CaptainRektbeard)</Description>
-    <Website>https://github.com/samjones246/two-asl</Website>
-  </AutoSplitter>
-  <AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/two-asl/master/two.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset &amp; IGT supported (By CaptainRektbeard)</Description>
+        <Website>https://github.com/samjones246/two-asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Pitfall: The Mayan Adventure</Game>
         </Games>
@@ -71,7 +92,7 @@
         <Type>Script</Type>
         <Description>Autosplitter for the Windows PC version. (Svipur)</Description>
     </AutoSplitter>
-  <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>A PLAGUE TALE: REQUIEM</Game>
         </Games>
@@ -81,7 +102,7 @@
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (By TheDementedSalad, KunoDemetires, Meta)</Description>
     </AutoSplitter>
-	 <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>ASSAULT SPY</Game>
         </Games>
@@ -91,7 +112,7 @@
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (By KunoDemetires)</Description>
     </AutoSplitter>
-  <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Uncharted: The Lost Legacy (PC)</Game>
         </Games>
@@ -110,8 +131,8 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and Load Remover made by NintenDude and Daltone</Description>
-  </AutoSplitter>
-  <AutoSplitter>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Scorn</Game>
         </Games>
@@ -3204,7 +3225,7 @@
         <Type>Script</Type>
         <Description>Load Removal is available. (By ShiningFace)</Description>
     </AutoSplitter>
-	<AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Sonic Heroes</Game>
         </Games>
@@ -4679,10 +4700,10 @@
             <Game>Spelunky</Game>
         </Games>
         <URLs>
-            <URL>https://github.com/saturnin55/SpelunkyLiveSplit/raw/master/LiveSplit.Spelunky.dll</URL>
+            <URL>https://github.com/spelunky-fyi/LiveSplit-Spelunky-HD/raw/main/Components/LiveSplit.Spelunky.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Auto Splitting is available. (By sashavol)</Description>
+        <Description>Auto Splitting is available. (By sashavol/garebear)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6488,7 +6509,7 @@
             <Game>TrackMania One - Alpine</Game>
             <Game>TrackMania One - Speed</Game>
             <Game>TrackMania² Canyon : Platform</Game>
-	    <Game>TrackMania² A01</Game>
+            <Game>TrackMania² A01</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Rastats/Maniaplanet/main/TM2-Autosplitter-IGT%20(by%20Malakat).asl</URL>
@@ -7728,7 +7749,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto starting, splitting and load removal are available. (By Modiseus, jboardman367 and LukeSaward1)</Description>
-    </AutoSplitter>  
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Croc 2</Game>
@@ -8083,9 +8104,9 @@
             <Game>Sonic 3D in 2D</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/Sonic3Din2DSplitter/main/Sonic3d2dAutosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/Sonic3Din2DSplitter/main/Components/LiveSplit.Sonic3Din2D.dll</URL>
         </URLs>
-        <Type>Script</Type>
+        <Type>Component</Type>
         <Description>Requires Sonic 3D in 2D 1.26 or higher</Description>
         <Website>https://github.com/SonicSpeedrunning/Sonic3Din2DSplitter</Website>
     </AutoSplitter>
@@ -15127,7 +15148,6 @@
         <Type>Script</Type>
         <Description>Autosplitter for a bad game. (by SioN)</Description>
     </AutoSplitter>
-
     <!-- Auto splitters managed by Ero -->
     <AutoSplitter>
         <Games>
@@ -15244,7 +15264,6 @@
         <Type>Script</Type>
         <Description>Press HONK to start, splits for all goals, multiple reset and pause conditions available. (by Dregu, Ero)</Description>
     </AutoSplitter>
-
     <!-- Auto splitters by Ero -->
     <AutoSplitter>
         <Games>
@@ -15732,7 +15751,6 @@
         <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
         <Website>https://github.com/just-ero/asl/tree/main/YAPP%20%E2%80%93%20Yet%20Another%20Puzzle%20Platformer</Website>
     </AutoSplitter>
-
     <AutoSplitter>
         <Games>
             <Game>Kao the Kangaroo Multiruns</Game>
@@ -16286,7 +16304,7 @@
             <URL>https://raw.githubusercontent.com/mirrorcult/autosplitters/main/GiveUpRobot2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>"New Game" and "New HARD Game" autosplitter for Give Up Robot, 2 Adobe AIR >=e2.0 (by mirrorcult)</Description>
+        <Description>"New Game" and "New HARD Game" autosplitter for Give Up Robot, 2 Adobe AIR &gt;=e2.0 (by mirrorcult)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16636,18 +16654,18 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split/reset (by krille71)</Description>
-	<Website>https://github.com/krille71/alkali-autosplitter</Website>
+        <Website>https://github.com/krille71/alkali-autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
-	<Games>
-	    <Game>ADACA</Game>
-	</Games>
-	<URLs>
-	    <URL>https://raw.githubusercontent.com/BurndiL/ADACA-Autosplitter/main/adaca.asl</URL>
-	</URLs>
-	<Type>Script</Type>
-	<Description>Auto start/split (by Zach and Burndi)</Description>
-	<Website>https://github.com/BurndiL/ADACA-Autosplitter</Website>
+        <Games>
+            <Game>ADACA</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/BurndiL/ADACA-Autosplitter/main/adaca.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split (by Zach and Burndi)</Description>
+        <Website>https://github.com/BurndiL/ADACA-Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16659,4 +16677,24 @@
         <Type>Script</Type>
         <Description>Autosplitter and Loadremover. (by SioN)</Description>
     </AutoSplitter>
-  </AutoSplitters>
+    <AutoSplitter>
+        <Games>
+            <Game>Rick Dangerous (C64)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/danielditlev/LiveSplit.AutoSplitters/main/rick_dangerous_i.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>ASL script for the 1989 C64 game 'Rick Dangerous'. Meant for use with Vice 3.6.1</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Jolly 3: Chapter 1</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/derric-young/Jolly3SpeedrunStuff/main/Jolly%203%20Chapter%201%20Auto%20Splitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, splits, resets. Set timer offset to -28.59. (by AITYuniverse and derric)</Description>
+    </AutoSplitter>
+</AutoSplitters>
