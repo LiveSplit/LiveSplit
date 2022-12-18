@@ -2,6 +2,26 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Wavetale</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Lemuura/Livesplit-Autosplitters/main/Wavetale.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By Lemuura)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Darkwood</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/M4lfreed/Darkwood_Autosplitter/main/DarkwoodSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>A basic Darkwood autosplitter with auto start/split/reset and pause on loads (By D00Mka)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Super Kiwi 64</Game>
         </Games>
         <URLs>
@@ -10,6 +30,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split/reset and load removal supported (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>CHOO-CHOO CHARLES</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/Choo-ChooCharles.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover (By KunoDemetries)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -114,13 +144,14 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Uncharted: The Lost Legacy (PC)</Game>
+            <Game>Uncharted 4: A Thief's End</Game>
+            <Game>Uncharted: The Lost Legacy</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/UCLL.asl</URL>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Uncharted-Legacy-of-Thieves-Collection-Autosplitter/main/Legacy%20of%20Thieves.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and Load Remover by Mattmatt</Description>
+        <Description>Auto Splitting is available. Timed via IGT. (By TheDementedSalad)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6532,6 +6563,7 @@
             <Game>TrackMania Nations Forever</Game>
             <Game>TrackMania United Forever</Game>
             <Game>TMX Community Campaign</Game>
+            <Game>Kackiest Kacky 1</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/donadigo/AutoSplitters/master/Trackmania%20Forever.asl</URL>
@@ -15485,9 +15517,10 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/lil%20gator%20game/lilgatorgame.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Starts, resets automatically. Splits available in the settings. (by Ero)</Description>
+        <Description>Starts, resets automatically. Removes loads. (by Ero)</Description>
         <Website>https://github.com/just-ero/asl/tree/main/lil%20gator%20game</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -16696,5 +16729,25 @@
         </URLs>
         <Type>Script</Type>
         <Description>Starts, splits, resets. Set timer offset to -28.59. (by AITYuniverse and derric)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>I Wanna Be The Indigo Needle</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Rnd-Guy/livesplit-autosplitters/main/indigo-needle/indigo-needle.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, autosplit and optional autoreset. (by Rnd-Guy)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mac Tonight and The Forgotten Ones</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/derric-young/MTATFOAutosplitter/main/MTaTFOAuto.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, Split and Reset by Both Derric and AITYunivers. 6 splits for any%. 7 for 100%</Description>
     </AutoSplitter>
 </AutoSplitters>
