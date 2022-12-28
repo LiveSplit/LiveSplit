@@ -36,7 +36,7 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.ScriptableAutoSplit"]
 	path = LiveSplit/Components/LiveSplit.ScriptableAutoSplit
-	url = https://github.com/LiveSplit/LiveSplit.ScriptableAutoSplit.git
+	url = https://github.com/Gyoshi/LiveSplit.ScriptableAutoSplit
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Server"]
 	path = LiveSplit/Components/LiveSplit.Server
