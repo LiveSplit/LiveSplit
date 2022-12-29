@@ -76,12 +76,12 @@ namespace LiveSplit.ComponentUtil
             for (int i = 0; i < numMods; i++)
             {
                 sb.Clear();
-                if (WinAPI.GetModuleFileNameEx(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
+                if (WinAPI.GetModuleFileNameExW(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
                     throw new Win32Exception();
                 string fileName = sb.ToString();
 
                 sb.Clear();
-                if (WinAPI.GetModuleBaseName(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
+                if (WinAPI.GetModuleBaseNameW(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
                     throw new Win32Exception();
                 string baseName = sb.ToString();
 
