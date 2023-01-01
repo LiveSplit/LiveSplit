@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+   <AutoSplitter>
+        <Games>
+            <Game>Chop Goblins</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/cynkcaj/AutoSplitter/main/ChopGoblins.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover (By cynkcaj)</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>JellyCar Worlds</Game>
@@ -1145,10 +1155,10 @@
             <Game>Far Cry 6</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Binslev/FC6LR/main/FC6%201.5.0.asl</URL>
+            <URL>https://raw.githubusercontent.com/Binslev/FC6LR/main/FC6%201.6.0.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover for patch 1.5.0 (by Binslev, credit to AlexYeahNot)</Description>
+        <Description>Load Remover for patch 1.6.0 (by Binslev, credit to AlexYeahNot)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1607,9 +1617,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/TimeSplitters%20-%20Future%20Perfect/LiveSplit.TimeSplittersFuturePerfect.asl</URL>
+            <URL>https://github.com/Jujstme/emu-help/raw/master/lib/emu-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automatic game time calculator - supports GCN version emulated through Dolphin (by Jujstme)</Description>
+        <Description>Automatic game time calculator - supports both PS2 and GCN versions (by Jujstme)</Description>
         <Website>https://github.com/Jujstme/Autosplitters/tree/master/TimeSplitters%20-%20Future%20Perfect</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -3231,10 +3242,10 @@
             <Game>BL1GOTY</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/FromDarkHell/Livesplit.LoadRemovers/master/Borderlands%201%20Enhanced%20Edition/BLGOTY.asl</URL>
+            <URL>https://gist.github.com/mentalitybl/9ede8a851bb7683089b43a3d723594ef/raw/bl1e.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available for 1.0 (by FromDarkHell)</Description>
+        <Description>Load Removal is available. (by Bgm_)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11500,11 +11511,12 @@
             <Game>Kula World</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Jujstme/LiveSplit.KulaWorld/master/Components/LiveSplit.KulaWorld.dll</URL>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Kula%20World/LiveSplit.KulaWorld.asl</URL>
+           <URL>https://github.com/Jujstme/emu-help/raw/master/lib/emu-help</URL>
         </URLs>
-        <Type>Component</Type>
-        <Description>Automatic splitting and in-game timer</Description>
-        <Website>https://github.com/Jujstme/LiveSplit.KulaWorld</Website>
+        <Type>Script</Type>
+        <Description>Autosplitter and in-game timer. Supports all major PS1 emulators (by Jujstme)</Description>
+        <Website>https://github.com/Jujstme/Autosplitters/tree/master/Kula%20World</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16826,7 +16838,7 @@
             <URL>https://raw.githubusercontent.com/desa35/CCFF7R-Loadremover/master/CCFF7R.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Loadremover with automatic Timer Start by desa.</Description>
+        <Description>Loadremover (by desa) and Autosplitter (by deserteagle417).</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16837,5 +16849,48 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Start/Split/Reset</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Jumpin' Jack</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Marek2810/Tata-hrdina/main/tata-hrdina.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and loadremover for the umpin' Jack (Táta Hrdina). Split at the end of each level.</Description>
+        <Website>https://github.com/Marek2810/Tata-hrdina</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Amok Runner</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Amok-Runner-Autosplitter/main/Amok%20Runner.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting is available. Timed via IGT Load Remover. (By TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Drug Dealer Simulator</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/kenchie-sr/drug-dealer-simulator-livesplit/main/LiveSplit.DDS.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Drug Dealer Simulator. Configurable splitting by level. Auth: Archmagus, Kinzykenzie</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Phoenotopia: Awakening</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Gyoshi/PhoA-AutoSplitter/main/PhoA.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/stop and in-game timer (by Gyoshi)</Description>
+        <Website>https://github.com/Gyoshi/PhoA-AutoSplitter</Website>
     </AutoSplitter>
 </AutoSplitters>
