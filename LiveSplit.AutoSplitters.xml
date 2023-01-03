@@ -3985,10 +3985,10 @@
             <Game>Psychonauts</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Jagaimo1/Psychonauts-In-Game-Time/master/LiveSplit.Psychonauts_IGT.asl</URL>
+            <URL>https://raw.githubusercontent.com/Grimdonuts/psychonautsloadremoval/main/Psychonauts_IGT.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>In-Game Timing is available. (By Abahbob and Jagaimo)</Description>
+        <Description>In-Game Timing/Autosplitter is available (By Grimdonuts, Abahbob, and Jagaimo)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
