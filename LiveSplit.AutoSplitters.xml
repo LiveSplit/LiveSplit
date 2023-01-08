@@ -696,6 +696,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Fashion Police Squad</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samontenegro/ASL/main/fashionpolicesquad/fps.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Fashion Police Squad Autosplitter by oneir1c / @samontenegro</Description>
+        <Website>https://www.speedrun.com/fashion_police_squad</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Signalis</Game>
         </Games>
         <URLs>
@@ -3985,10 +3997,10 @@
             <Game>Psychonauts</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Jagaimo1/Psychonauts-In-Game-Time/master/LiveSplit.Psychonauts_IGT.asl</URL>
+            <URL>https://raw.githubusercontent.com/Grimdonuts/psychonautsloadremoval/main/Psychonauts_IGT.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>In-Game Timing is available. (By Abahbob and Jagaimo)</Description>
+        <Description>In-Game Timing/Autosplitter is available. (By Grimdonuts, Abahbob, and Jagaimo)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8216,11 +8228,11 @@
             <Game>Sonic Forever</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.TeamForeverSplitter/main/LiveSplit.TeamForeverSplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic1Forever/master/Components/LiveSplit.Sonic1Forever.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Team Forever Splitter (by Jujstme and BenInSweden)</Description>
-        <Website>https://github.com/SonicSpeedrunning/LiveSplit.TeamForeverSplitter</Website>
+        <Type>Component</Type>
+        <Description>Auto start and reset available. Customizable splitting options (by Jujstme and BenInSweden).</Description>
+        <Website>https://discord.gg/NpVGzcRBJ3</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8938,6 +8950,18 @@
         <Type>Script</Type>
         <Description>LiveSplit AutoSplitter for Crow Story</Description>
         <Website>https://github.com/LRFLEW/LiveSplit.CrowStory</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Melatonin</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LRFLEW/LiveSplit.Melatonin/main/Melatonin.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>LiveSplit AutoSplitter for Melatonin</Description>
+        <Website>https://github.com/LRFLEW/LiveSplit.Melatonin</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10575,7 +10599,7 @@
             <Game>Control</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/MrLette/ControlAutoSplitter/main/Control.asl</URL>
+            <URL>https://raw.githubusercontent.com/thelolcoder2007/Control.autosplitter/default/Control.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split/end and load removal (by MrLette and derwangler)</Description>
@@ -16893,4 +16917,58 @@
         <Description>Auto start/split/stop and in-game timer (by Gyoshi)</Description>
         <Website>https://github.com/Gyoshi/PhoA-AutoSplitter</Website>
     </AutoSplitter>
+   <AutoSplitter>
+        <Games>
+            <Game>Mario Kart Wii</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/zormy111/mario-kart-wii-autosplitter/main/mkwii-splitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting, In-Game Timer, Autostart, Autoreset (by zorm#01#1)</Description>
+        <Website>https://discord.gg/nxX4uHf</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>God of War (2018)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Dobridp/GoW2018ASL/main/GodOfWar.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Remover (by Dobrido). Splits on every task.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Moonlaw</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SBDWolf/ASL-Autosplitters/main/Moonlaw/Moonlaw.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (by SBDWolf)</Description>
+        <Website>https://github.com/SBDWolf/ASL-Autosplitters/tree/main/Moonlaw</Website>
+    </AutoSplitter>
+   <AutoSplitter>
+        <Games>
+            <Game>LEGO Racers</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/bagelsrc/autosplitters/main/LR.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover by Bagel</Description>
+        <Website>https://github.com/bagelsrc/autosplitters/tree/main</Website>
+    </AutoSplitter>   
+   <AutoSplitter>
+        <Games>
+            <Game>Journey</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/arckoor/autosplitters/main/Journey/Journey.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (by arckoor)</Description>
+        <Website>https://github.com/arckoor/autosplitters/tree/main/Journey</Website>
+    </AutoSplitter>   
 </AutoSplitters>
