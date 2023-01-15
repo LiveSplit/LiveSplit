@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+    <AutoSplitter>
+        <Games>
+            <Game>Lone Ruin</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/LoneRuin_Autosplitter/main/LoneRuin.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Removal (by Nikoheart)</Description>
+    </AutoSplitter>
    <AutoSplitter>
         <Games>
             <Game>Chop Goblins</Game>
@@ -604,7 +615,7 @@
             <Game>Goosebumps: Dead of Night</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Nikoheartttv/Goosebumps_DeadOfNight/main/GDON_Autosplitter</URL>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/Goosebumps_DeadOfNight/main/GDON_Autosplitter.asl</URL>
             <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
         </URLs>
         <Type>Script</Type>
@@ -703,7 +714,7 @@
             <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Fashion Police Squad Autosplitter by oneir1c / @samontenegro</Description>
+        <Description>Fashion Police Squad Autosplitter by oneir1c / @samontenegro and Meta</Description>
         <Website>https://www.speedrun.com/fashion_police_squad</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -3055,6 +3066,7 @@
             <Game>Aperture Tag</Game>
             <Game>Portal 2</Game>
             <Game>Portal 2 Speedrun Mod</Game>
+            <Game>Portal 2 Category Extensions</Game>
             <Game>Portal Reloaded</Game>
             <Game>Portal Stories: Mel</Game>
             <Game>Thinking with Time Machine</Game>
@@ -3100,7 +3112,7 @@
             <Game>Dishonored (PC)</Game>
         </Games>
         <URLs>
-            <URL>http://fatalis.pw/livesplit/update/Components/LiveSplit.Dishonored.dll</URL>
+            <URL>https://github.com/fatalis/LiveSplit.Dishonored/raw/master/Components/LiveSplit.Dishonored.dll</URL>
         </URLs>
         <Type>Component</Type>
         <Description>Load Removal and Auto Splitting are available. (By Fatalis)</Description>
@@ -8224,6 +8236,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sonic 1 SMS Remake</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic1SMSRemake/master/Components/LiveSplit.Sonic1SMSRemake.dll</URL>
+        </URLs>
+        <Type>Component</Type>
+        <Description>Auto start and reset available. Customizable splitting options (by Jujstme)</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.Sonic1SMSRemake</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Sonic The Hedgehog Forever</Game>
             <Game>Sonic Forever</Game>
         </Games>
@@ -8239,10 +8262,10 @@
             <Game>Sonic 2 Absolute</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.TeamForeverSplitter/main/LiveSplit.TeamForeverSplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic2Absolute/master/Components/LiveSplit.Sonic2Absolute.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Team Forever Splitter (by Jujstme and BenInSweden)</Description>
+        <Type>Component</Type>
+        <Description>Auto start and reset available. Customizable splitting options (by Jujstme and BenInSweden).</Description>
         <Website>https://discord.gg/NpVGzcRBJ3</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8255,6 +8278,18 @@
         <Type>Component</Type>
         <Description>Auto start and reset available. Custom splitting options available in settings (by Jujstme)</Description>
         <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble16bit</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic Triple Trouble</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble/main/LiveSplit.SonicTripleTrouble.asl</URL>
+            <URL>https://github.com/Jujstme/emu-help/raw/master/lib/emu-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports most Game Gear emulators (Retroarch included) - by Jujstme</Description>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicTripleTrouble</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9356,6 +9391,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Removal (By Nikko)</Description>
+    </AutoSplitter>
+   <AutoSplitter>
+        <Games>
+            <Game>Little Witch Nobeta</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ShinRunner1st/LWN-ASL/master/Little_Witch_Nobeta.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover for Little Witch Nobeta by ShinRunner1st</Description>
+        <Website>https://discord.gg/3FMeB4m</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16424,6 +16470,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sinner97</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/edunad/sinner-97-autosplit/master/sinner97.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting available (by FailCake)</Description>
+        <Website>https://github.com/edunad/sinner-97-autosplit</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Give Up, Robot 2</Game>
         </Games>
         <URLs>
@@ -16970,5 +17027,25 @@
         <Type>Script</Type>
         <Description>Autosplitter (by arckoor)</Description>
         <Website>https://github.com/arckoor/autosplitters/tree/main/Journey</Website>
-    </AutoSplitter>   
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Dreamball 64</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Grimdonuts/dreamball64autosplitter/main/LiveSplit.Dreamball64.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available By Grimdonuts</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Rising Dusk</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Gyoshi/RisingDusk-AutoSplitter/main/Rising%20Dusk.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Simple auto start/split/stop (by Gyoshi)</Description>
+    </AutoSplitter>
 </AutoSplitters>
