@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 using LiveSplit.Model;
+using System.Xml;
 
 namespace LiveSplit.Tests.Model
 {
@@ -11,6 +12,9 @@ namespace LiveSplit.Tests.Model
         private const string TimeSerializationAsString = "9.00:00:00 | 03:00:00";
         private static readonly TimeSpan AnyTimeSpan = TimeSpan.FromTicks(AnyTickValue);
         private static readonly TimeSpan AnotherTimeSpan = TimeSpan.FromHours(3);
+        private static readonly TimeSpan YetAnotherTimeSpan = TimeSpan.FromMinutes(1774);
+        private const long Difference = 7668000000000;
+        private const long Addition = 7884000000000;
 
         [Fact]
         public void ConstructZeroCorrectly()
@@ -101,6 +105,117 @@ namespace LiveSplit.Tests.Model
             yield return new object[] { "|", null, null };
             yield return new object[] { string.Empty, null, null };
             yield return new object[] { "invalid|4:1.0", null, null };
+        }
+
+        [Theory]
+        [MemberData(nameof(JsonSerializationFeeder))]
+        public void SerializeToJsonCorrectly(TimeSpan? realTime, TimeSpan? gameTime, string expectedRealTimeText, string expectedGameTimeText)
+        {
+            var sut = new Time(realTime, gameTime);
+            var json = sut.ToJson().ToString();
+            Assert.Matches(expectedRealTimeText, json);
+            Assert.Matches(expectedGameTimeText, json);
+        }
+
+        public static IEnumerable<object[]> JsonSerializationFeeder()
+        {
+            yield return new object[] { AnyTimeSpan, AnotherTimeSpan, @"realTime""\s*:\s*""9.00:00:00""", @"gameTime""\s*:\s*""03:00:00""" };
+            yield return new object[] { null, AnotherTimeSpan, @"realTime""\s*:\s*""""", @"gameTime""\s*:\s*""03:00:00""" };
+            yield return new object[] { AnyTimeSpan, null, @"realTime""\s*:\s*""9.00:00:00""", @"gameTime""\s*:\s*""""" };
+            yield return new object[] { null, null, @"realTime""\s*:\s*""""", @"gameTime""\s*:\s*""""" };
+        }
+
+        [Fact]
+        public void SerializeToDefaultXmlRootCorrectly()
+        {
+            var document = new XmlDocument();
+            var sut = new Time(AnyTimeSpan, AnotherTimeSpan);
+            var root = sut.ToXml(document);
+            Assert.Equal("Time", root.Name);
+        }
+
+        [Fact]
+        public void SerializeToGivenXmlRootCorrectly()
+        {
+            var anyRoot = "AnyRoot";
+            var document = new XmlDocument();
+            var sut = new Time(AnyTimeSpan, AnotherTimeSpan);
+            var root = sut.ToXml(document, anyRoot);
+            Assert.Equal(anyRoot, root.Name);
+        }
+
+        [Theory]
+        [MemberData(nameof(XmlSerializationFeeder))]
+        public void SerializeToXmlCorrectly(TimeSpan? realTime, TimeSpan? gameTime, string expectedRealTimeText, string expectedGameTimeText)
+        {
+            var document = new XmlDocument();
+            var sut = new Time(realTime, gameTime);
+            var innerXmlAsText = sut.ToXml(document).InnerXml;
+            Assert.Contains(expectedRealTimeText, innerXmlAsText);
+            Assert.Contains(expectedGameTimeText, innerXmlAsText);
+        }
+
+        public static IEnumerable<object[]> XmlSerializationFeeder()
+        {
+            yield return new object[] { AnyTimeSpan, AnotherTimeSpan, "<RealTime>9.00:00:00</RealTime>", "<GameTime>03:00:00</GameTime>" };
+            yield return new object[] { null, AnotherTimeSpan, string.Empty, "<GameTime>03:00:00</GameTime>" };
+            yield return new object[] { AnyTimeSpan, null, "<RealTime>9.00:00:00</RealTime>", string.Empty };
+            yield return new object[] { null, null, string.Empty, string.Empty };
+        }
+
+        [Theory]
+        [MemberData(nameof(XmlDeserializationFeeder))]
+        public void DeserializeFromXmlCorrectly(string xml, TimeSpan? expectedRealTime, TimeSpan? expectedGameTime)
+        {
+            var document = new XmlDocument();
+            document.LoadXml(xml);
+            var sut = Time.FromXml(document.DocumentElement);
+            Assert.Equal(expectedRealTime, sut.RealTime);
+            Assert.Equal(expectedGameTime, sut.GameTime);
+        }
+
+        public static IEnumerable<object[]> XmlDeserializationFeeder()
+        {
+            yield return new object[] { "<Time><RealTime>9.00:00:00</RealTime><GameTime>03:00:00</GameTime></Time>", AnyTimeSpan, AnotherTimeSpan };
+            yield return new object[] { "<Time><GameTime>03:00:00</GameTime></Time>", null, AnotherTimeSpan };
+            yield return new object[] { "<Time><RealTime>9.00:00:00</RealTime></Time>", AnyTimeSpan, null };
+            yield return new object[] { "<Time></Time>", null, null };
+        }
+
+        [Theory]
+        [MemberData(nameof(SubstractionFeeder))]
+        public void SubstractTimeCorrectly(Time minuend, Time substrahend, Time difference)
+        {
+            var sut = minuend - substrahend;
+            Assert.Equal(difference, sut);
+        }
+
+        public static IEnumerable<object[]> SubstractionFeeder()
+        {
+            yield return new object[] { new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan, YetAnotherTimeSpan), new Time(TimeSpan.FromTicks(Difference), TimeSpan.FromTicks(0)) };
+            yield return new object[] { new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan), new Time(TimeSpan.FromTicks(Difference)) };
+            yield return new object[] { new Time(YetAnotherTimeSpan, AnyTimeSpan), new Time(YetAnotherTimeSpan, AnotherTimeSpan), new Time(TimeSpan.FromTicks(0), TimeSpan.FromTicks(Difference)) };
+            yield return new object[] { new Time(YetAnotherTimeSpan, AnyTimeSpan), new Time(null, AnotherTimeSpan), new Time(null, TimeSpan.FromTicks(Difference)) };
+            yield return new object[] { new Time(AnotherTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan, YetAnotherTimeSpan), Time.Zero };
+            yield return new object[] { Time.Zero, new Time(AnyTimeSpan, AnotherTimeSpan), new Time(TimeSpan.FromTicks(-AnyTickValue), TimeSpan.FromHours(-3)) };
+        }
+
+        [Theory]
+        [MemberData(nameof(AdditionFeeder))]
+        public void AddTimeCorrectly(Time leftAddend, Time rightAddend, Time sum)
+        {
+            var sut = leftAddend + rightAddend;
+            Assert.Equal(sum, sut);
+        }
+
+        public static IEnumerable<object[]> AdditionFeeder()
+        {
+            yield return new object[] { Time.Zero, Time.Zero, Time.Zero };
+            yield return new object[] { new Time(AnyTimeSpan, YetAnotherTimeSpan), Time.Zero, new Time(AnyTimeSpan, YetAnotherTimeSpan) };
+            yield return new object[] { Time.Zero, new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnyTimeSpan, YetAnotherTimeSpan) };
+            yield return new object[] { new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan), new Time(TimeSpan.FromTicks(Addition)) };
+            yield return new object[] { new Time(null, AnotherTimeSpan), new Time(YetAnotherTimeSpan, AnyTimeSpan), new Time(null, TimeSpan.FromTicks(Addition)) };
+
         }
     }
 }
