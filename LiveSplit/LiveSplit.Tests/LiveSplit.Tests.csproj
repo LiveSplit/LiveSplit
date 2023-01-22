@@ -61,6 +61,7 @@
     <Compile Include="AutoSplitterTests\AutoSplitterXML.cs" />
     <Compile Include="ComponetUtil\DeepPointerTests.cs" />
     <Compile Include="Model\AtomicDateTimeMust.cs" />
+    <Compile Include="Model\AttemptMust.cs" />
     <Compile Include="TimeFormatTests\ShowDaysTests.cs" />
     <Compile Include="TimeFormatTests\DigitsFormatTests.cs" />
     <Compile Include="TimeFormatTests\DaysTimeFormatterTests.cs" />
