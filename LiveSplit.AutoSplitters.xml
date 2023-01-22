@@ -2,6 +2,49 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Barbie and the Magic of Pegasus (PC)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jujstme/Autosplitters/master/Barbie%20and%20the%20Magic%20of%20Pegasus/LiveSplit.BarbiePegasus.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available (By Jujstme)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Poop Killer 5</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Poop%20Killer%205/poopkiller5.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Cannibal Abduction</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Cannibal%20Abduction/cannibalabduction.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>ARTIFICIAL Demo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/JaioCG/autosplitters/master/ARTIFICIAL/artificial.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter / In-Game Timer (by Jaio)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Lone Ruin</Game>
         </Games>
         <URLs>
@@ -194,6 +237,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/A_Plague_Tale_Requiem.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (By TheDementedSalad, KunoDemetires, Meta)</Description>
@@ -1181,7 +1225,7 @@
             <URL>https://raw.githubusercontent.com/Binslev/FC6LR/main/FC6%201.6.0.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover for patch 1.6.0 (by Binslev, credit to AlexYeahNot)</Description>
+        <Description>Load Remover is available. Created by Meta, Binslev and AlexYeahNot.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17047,5 +17091,27 @@
         </URLs>
         <Type>Script</Type>
         <Description>Simple auto start/split/stop (by Gyoshi)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>BABBDI</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Lyfeless/Babbdi-Autosplitter/master/babbdi_splitter.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover and customizable start/reset/split (by Lyfeless)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Escape the Backrooms</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/jonetiz/ETB-Autosplitter/main/escape_backrooms.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto splitter and load removal is available by Xero.</Description>
+        <Website>https://github.com/jonetiz/ETB-Autosplitter/blob/main/README.md</Website>
     </AutoSplitter>
 </AutoSplitters>
