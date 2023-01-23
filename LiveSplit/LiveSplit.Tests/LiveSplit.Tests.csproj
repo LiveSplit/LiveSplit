@@ -63,6 +63,7 @@
     <Compile Include="Model\AtomicDateTimeMust.cs" />
     <Compile Include="Model\AttemptMust.cs" />
     <Compile Include="Model\Constants.cs" />
+    <Compile Include="Model\IndexedTimeMust.cs" />
     <Compile Include="Model\TimeMust.cs" />
     <Compile Include="TimeFormatTests\ShowDaysTests.cs" />
     <Compile Include="TimeFormatTests\DigitsFormatTests.cs" />
