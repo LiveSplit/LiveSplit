@@ -1,15 +1,12 @@
 ﻿using System;
 using Xunit;
 using LiveSplit.Model;
+using static LiveSplit.Tests.Model.Constants;
 
 namespace LiveSplit.Tests.Model
 {
     public class AtomicDateTimeMust
     {
-        private static readonly DateTime AnyDateTime = new DateTime(2020, 12, 13);
-        private static readonly DateTime AnotherDateTime = new DateTime(2020, 12, 4);
-        private const long DateTimeDifference = 7776000000000;
-
         [Fact]
         public void ReturnTrue_WhenAtomicDateSyncedWithAtomicClock()
         {

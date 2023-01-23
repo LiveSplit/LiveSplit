@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Xml;
 using Xunit;
 using LiveSplit.Model;
-using System.Xml;
+using static LiveSplit.Tests.Model.Constants;
 
 namespace LiveSplit.Tests.Model
 {
     public class TimeMust
     {
-        private const long AnyTickValue = 7776000000000;
-        private const string TimeSerializationAsString = "9.00:00:00 | 03:00:00";
-        private static readonly TimeSpan AnyTimeSpan = TimeSpan.FromTicks(AnyTickValue);
-        private static readonly TimeSpan AnotherTimeSpan = TimeSpan.FromHours(3);
-        private static readonly TimeSpan YetAnotherTimeSpan = TimeSpan.FromMinutes(1774);
-        private const long Difference = 7668000000000;
-        private const long Addition = 7884000000000;
-
         [Fact]
         public void ConstructZeroCorrectly()
         {

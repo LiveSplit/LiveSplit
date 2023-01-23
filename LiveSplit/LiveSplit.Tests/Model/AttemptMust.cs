@@ -3,19 +3,12 @@ using System.Collections.Generic;
 using System.Xml;
 using Xunit;
 using LiveSplit.Model;
-using LiveSplit.TimeFormatters;
+using static LiveSplit.Tests.Model.Constants;
 
 namespace LiveSplit.Tests.Model
 {
     public class AttemptMust
     {
-        private static readonly DateTime AnyDateTime = new DateTime(2020, 12, 13);
-        private static readonly DateTime AnotherDateTime = new DateTime(2020, 12, 4);
-        private const long AnyTickValue = 7776000000000;
-        private static readonly TimeSpan AnotherTimeSpan = TimeSpan.FromHours(3);
-        private static readonly TimeSpan AnyTimeSpan = TimeSpan.FromTicks(AnyTickValue);
-        private const long Difference = 7668000000000;
-
         [Theory]
         [MemberData(nameof(AttemptConstructorFeeder))]
         public void BeInitializedCorrectly(AtomicDateTime? anyStart, AtomicDateTime? anyEnd, TimeSpan? anyPause)
