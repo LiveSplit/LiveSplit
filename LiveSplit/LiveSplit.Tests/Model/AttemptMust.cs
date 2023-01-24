@@ -127,14 +127,14 @@ namespace LiveSplit.Tests.Model
         public void SerializeToXmlCorrectly_WhenAttemptHasEndedTime()
         {
             var document = new XmlDocument();
-            var attempt = new Attempt(2, new Time(TimeSpan.FromTicks(AnyTickValue), TimeSpan.FromTicks(AnyTickValue)), null, new AtomicDateTime(), null);
+            var attempt = new Attempt(2, new Time(TimeSpan.FromTicks(AnyTickValue), TimeSpan.FromTicks(AnyTickValue)), null, new AtomicDateTime(AnyDateTime, false), null);
 
             var sut = attempt.ToXml(document);
             var xmlText = sut.OuterXml;
 
             Assert.Equal("2", sut.Attributes["id"].Value);
             Assert.Null(sut.Attributes["started"]);
-            Assert.Equal("01/01/0001 03:00:00", sut.Attributes["ended"].Value);
+            Assert.Equal("12/13/2020 00:00:00", sut.Attributes["ended"].Value);
             Assert.Null(sut.Attributes["isStartedSynced"]);
             Assert.Equal("False", sut.Attributes["isEndedSynced"].Value);
             Assert.Contains("<RealTime>9.00:00:00</RealTime>", xmlText);
@@ -146,14 +146,14 @@ namespace LiveSplit.Tests.Model
         public void SerializeToXmlCorrectly_WhenAttemptHasPauseTime()
         {
             var document = new XmlDocument();
-            var attempt = new Attempt(3, new Time(TimeSpan.FromTicks(AnyTickValue), TimeSpan.FromTicks(AnyTickValue)), new AtomicDateTime(AnyDateTime, true), new AtomicDateTime(), AnotherTimeSpan);
+            var attempt = new Attempt(3, new Time(TimeSpan.FromTicks(AnyTickValue), TimeSpan.FromTicks(AnyTickValue)), new AtomicDateTime(AnyDateTime, true), new AtomicDateTime(AnyDateTime, false), AnotherTimeSpan);
 
             var sut = attempt.ToXml(document);
             var xmlText = sut.OuterXml;
 
             Assert.Equal("3", sut.Attributes["id"].Value);
             Assert.Equal("12/13/2020 00:00:00", sut.Attributes["started"].Value);
-            Assert.Equal("01/01/0001 03:00:00", sut.Attributes["ended"].Value);
+            Assert.Equal("12/13/2020 00:00:00", sut.Attributes["ended"].Value);
             Assert.Equal("True", sut.Attributes["isStartedSynced"].Value);
             Assert.Equal("False", sut.Attributes["isEndedSynced"].Value);
             Assert.Contains("<RealTime>9.00:00:00</RealTime>", xmlText);
@@ -180,7 +180,7 @@ namespace LiveSplit.Tests.Model
         [Fact]
         public void DeserializeToXmlCorrectly_WhenAttemptHasStartedTime()
         {
-            var xml = "<Attempt id=\"1\" started=\"12/13/2020 03:00:00\" isStartedSynced=\"True\"><RealTime>9.00:00:00</RealTime></Attempt>";
+            var xml = "<Attempt id=\"1\" started=\"12/13/2020 00:00:00\" isStartedSynced=\"True\"><RealTime>9.00:00:00</RealTime></Attempt>";
             var document = new XmlDocument();
             document.LoadXml(xml);
 
@@ -189,21 +189,21 @@ namespace LiveSplit.Tests.Model
             Assert.Equal(TimeSpan.FromTicks(AnyTickValue), sut.Time.RealTime);
             Assert.Null(sut.Time.GameTime);
             Assert.True(sut.Started.Value.SyncedWithAtomicClock);
-            Assert.Equal(AnyDateTime, sut.Started.Value.Time);
+            Assert.Equal(AnyDateTime.ToUniversalTime(), sut.Started.Value.Time.ToUniversalTime());
             Assert.Null(sut.PauseTime);
         }
 
         [Fact]
         public void DeserializeToXmlCorrectly_WhenAttemptHasEndedTime()
         {
-            var xml = "<Attempt id=\"2\" ended=\"12/13/2020 03:00:00\" isEndedSynced=\"False\"><RealTime>9.00:00:00</RealTime><GameTime>9.00:00:00</GameTime></Attempt>";
+            var xml = "<Attempt id=\"2\" ended=\"12/13/2020 00:00:00\" isEndedSynced=\"False\"><RealTime>9.00:00:00</RealTime><GameTime>9.00:00:00</GameTime></Attempt>";
             var document = new XmlDocument();
             document.LoadXml(xml);
             var sut = Attempt.ParseXml(document.DocumentElement);
 
             Assert.Equal(2, sut.Index);
             Assert.Null(sut.Started);
-            Assert.Equal(AnyDateTime, sut.Ended.Value.Time);
+            Assert.Equal(AnyDateTime.ToUniversalTime(), sut.Ended.Value.Time.ToUniversalTime());
             Assert.False(sut.Ended.Value.SyncedWithAtomicClock);
             Assert.Equal(AnyTimeSpan, sut.Time.RealTime);
             Assert.Equal(AnyTimeSpan, sut.Time.GameTime);
@@ -213,13 +213,13 @@ namespace LiveSplit.Tests.Model
         [Fact]
         public void DeserializeFromXmlCorrectly_WhenXmlIncludesPauseTime()
         {
-            var xml = "<Attempt id=\"3\" started=\"12/13/2020 03:00:00\" isStartedSynced=\"True\" ended=\"01/01/0001 03:00:00\" isEndedSynced=\"False\"><RealTime>9.00:00:00</RealTime><GameTime>9.00:00:00</GameTime><PauseTime>03:00:00</PauseTime></Attempt>";
+            var xml = "<Attempt id=\"3\" started=\"12/13/2020 00:00:00\" isStartedSynced=\"True\" ended=\"01/01/0001 03:00:00\" isEndedSynced=\"False\"><RealTime>9.00:00:00</RealTime><GameTime>9.00:00:00</GameTime><PauseTime>03:00:00</PauseTime></Attempt>";
             var document = new XmlDocument();
             document.LoadXml(xml);
 
             var sut = Attempt.ParseXml(document.DocumentElement);
             Assert.Equal(3, sut.Index);
-            Assert.Equal(AnyDateTime, sut.Started.Value.Time);
+            Assert.Equal(AnyDateTime.ToUniversalTime(), sut.Started.Value.Time.ToUniversalTime());
             Assert.Equal(default, sut.Ended.Value.Time);
             Assert.True(sut.Started.Value.SyncedWithAtomicClock);
             Assert.False(sut.Ended.Value.SyncedWithAtomicClock);
