@@ -4,8 +4,8 @@ namespace LiveSplit.Tests.Model
 {
     internal class Constants
     {
-        public static readonly DateTime AnyDateTime = new DateTime(2020, 12, 13);
-        public static readonly DateTime AnotherDateTime = new DateTime(2020, 12, 4);
+        public static readonly DateTime AnyDateTime = new DateTime(2020, 12, 13, 0, 0, 0, DateTimeKind.Utc);
+        public static readonly DateTime AnotherDateTime = new DateTime(2020, 12, 4, 0, 0, 0, DateTimeKind.Utc);
         public const long DateTimeDifference = 7776000000000;
         public const long AnyTickValue = 7776000000000;
         public const long YetAnotherTickValue = 7760000000000;

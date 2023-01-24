@@ -109,10 +109,12 @@ namespace LiveSplit.Tests.Model
             var attempt = new Attempt(1, new Time(TimeSpan.FromTicks(AnyTickValue)), new AtomicDateTime(AnyDateTime, true), null, null);
 
             var sut = attempt.ToXml(document);
+            var xmlDate = DateTime.Parse(sut.Attributes["started"].Value);
+            var expectedDate = DateTime.Parse("12/13/2020 00:00:00-03:00");
             var xmlText = sut.OuterXml;
 
             Assert.Equal("1", sut.Attributes["id"].Value);
-            Assert.Equal("12/13/2020 03:00:00", sut.Attributes["started"].Value);
+            Assert.Equal(expectedDate, xmlDate);
             Assert.Null(sut.Attributes["ended"]);
             Assert.Equal("True", sut.Attributes["isStartedSynced"].Value);
             Assert.Null(sut.Attributes["isEndedSynced"]);
@@ -150,7 +152,7 @@ namespace LiveSplit.Tests.Model
             var xmlText = sut.OuterXml;
 
             Assert.Equal("3", sut.Attributes["id"].Value);
-            Assert.Equal("12/13/2020 03:00:00", sut.Attributes["started"].Value);
+            Assert.Equal("12/13/2020 00:00:00", sut.Attributes["started"].Value);
             Assert.Equal("01/01/0001 03:00:00", sut.Attributes["ended"].Value);
             Assert.Equal("True", sut.Attributes["isStartedSynced"].Value);
             Assert.Equal("False", sut.Attributes["isEndedSynced"].Value);
@@ -194,15 +196,14 @@ namespace LiveSplit.Tests.Model
         [Fact]
         public void DeserializeToXmlCorrectly_WhenAttemptHasEndedTime()
         {
-            var xml = "<Attempt id=\"2\" ended=\"01/01/0001 03:00:00\" isEndedSynced=\"False\"><RealTime>9.00:00:00</RealTime><GameTime>9.00:00:00</GameTime></Attempt>";
+            var xml = "<Attempt id=\"2\" ended=\"12/13/2020 03:00:00\" isEndedSynced=\"False\"><RealTime>9.00:00:00</RealTime><GameTime>9.00:00:00</GameTime></Attempt>";
             var document = new XmlDocument();
             document.LoadXml(xml);
             var sut = Attempt.ParseXml(document.DocumentElement);
 
-            var attempt = new Attempt(2, new Time(TimeSpan.FromTicks(AnyTickValue), TimeSpan.FromTicks(AnyTickValue)), null, new AtomicDateTime(), null);
             Assert.Equal(2, sut.Index);
             Assert.Null(sut.Started);
-            Assert.Equal(default, sut.Ended.Value.Time);
+            Assert.Equal(AnyDateTime, sut.Ended.Value.Time);
             Assert.False(sut.Ended.Value.SyncedWithAtomicClock);
             Assert.Equal(AnyTimeSpan, sut.Time.RealTime);
             Assert.Equal(AnyTimeSpan, sut.Time.GameTime);
