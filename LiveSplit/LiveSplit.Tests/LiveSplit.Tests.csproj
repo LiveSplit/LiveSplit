@@ -44,6 +44,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
@@ -68,6 +69,7 @@
     <Compile Include="Model\SegmentHistoryMust.cs" />
     <Compile Include="Model\StringExtensionsMust.cs" />
     <Compile Include="Model\TimeMust.cs" />
+    <Compile Include="Options\LayoutSettingsMust.cs" />
     <Compile Include="TimeFormatTests\ShowDaysTests.cs" />
     <Compile Include="TimeFormatTests\DigitsFormatTests.cs" />
     <Compile Include="TimeFormatTests\DaysTimeFormatterTests.cs" />
