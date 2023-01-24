@@ -4,7 +4,7 @@ using Xunit;
 using LiveSplit.ComponentUtil;
 using static LiveSplit.ComponentUtil.DeepPointer;
 
-namespace LiveSplit.Tests.ComponetUtil
+namespace LiveSplit.Tests.ComponentUtil
 {
     public class DeepPointerTests
     {
