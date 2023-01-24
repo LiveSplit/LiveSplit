@@ -109,12 +109,10 @@ namespace LiveSplit.Tests.Model
             var attempt = new Attempt(1, new Time(TimeSpan.FromTicks(AnyTickValue)), new AtomicDateTime(AnyDateTime, true), null, null);
 
             var sut = attempt.ToXml(document);
-            var xmlDate = DateTime.Parse(sut.Attributes["started"].Value);
-            var expectedDate = DateTime.Parse("12/13/2020 00:00:00-03:00");
             var xmlText = sut.OuterXml;
 
             Assert.Equal("1", sut.Attributes["id"].Value);
-            Assert.Equal(expectedDate, xmlDate);
+            Assert.Equal("12/13/2020 00:00:00", sut.Attributes["started"].Value);
             Assert.Null(sut.Attributes["ended"]);
             Assert.Equal("True", sut.Attributes["isStartedSynced"].Value);
             Assert.Null(sut.Attributes["isEndedSynced"]);
@@ -213,14 +211,14 @@ namespace LiveSplit.Tests.Model
         [Fact]
         public void DeserializeFromXmlCorrectly_WhenXmlIncludesPauseTime()
         {
-            var xml = "<Attempt id=\"3\" started=\"12/13/2020 00:00:00\" isStartedSynced=\"True\" ended=\"01/01/0001 03:00:00\" isEndedSynced=\"False\"><RealTime>9.00:00:00</RealTime><GameTime>9.00:00:00</GameTime><PauseTime>03:00:00</PauseTime></Attempt>";
+            var xml = "<Attempt id=\"3\" started=\"12/13/2020 00:00:00\" isStartedSynced=\"True\" ended=\"12/13/2020 00:00:00\" isEndedSynced=\"False\"><RealTime>9.00:00:00</RealTime><GameTime>9.00:00:00</GameTime><PauseTime>03:00:00</PauseTime></Attempt>";
             var document = new XmlDocument();
             document.LoadXml(xml);
 
             var sut = Attempt.ParseXml(document.DocumentElement);
             Assert.Equal(3, sut.Index);
             Assert.Equal(AnyDateTime.ToUniversalTime(), sut.Started.Value.Time.ToUniversalTime());
-            Assert.Equal(default, sut.Ended.Value.Time);
+            Assert.Equal(AnyDateTime.ToUniversalTime(), sut.Ended.Value.Time.ToUniversalTime());
             Assert.True(sut.Started.Value.SyncedWithAtomicClock);
             Assert.False(sut.Ended.Value.SyncedWithAtomicClock);
             Assert.Equal(AnyTimeSpan, sut.Time.RealTime);
