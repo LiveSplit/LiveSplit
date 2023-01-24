@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="AutoSplitterTests\AutoSplitterXML.cs" />
     <Compile Include="ComponentUtil\DeepPointerTests.cs" />
+    <Compile Include="Model\AbbreviationExtensionsMust.cs" />
     <Compile Include="Model\AtomicDateTimeMust.cs" />
     <Compile Include="Model\AttemptMust.cs" />
     <Compile Include="Model\Constants.cs" />
