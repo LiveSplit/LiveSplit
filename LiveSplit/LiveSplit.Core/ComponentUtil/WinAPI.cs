@@ -67,8 +67,8 @@ namespace LiveSplit.ComponentUtil
         public static extern bool EnumProcessModulesEx(IntPtr hProcess, [Out] IntPtr[] lphModule, uint cb,
             out uint lpcbNeeded, uint dwFilterFlag);
 
-        [DllImport("psapi.dll", SetLastError = true)]
-        public static extern uint GetModuleFileNameEx(IntPtr hProcess, IntPtr hModule, [Out] StringBuilder lpBaseName,
+        [DllImport("psapi.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern uint GetModuleFileNameExW(IntPtr hProcess, IntPtr hModule, [Out] StringBuilder lpBaseName,
             uint nSize);
 
         [DllImport("psapi.dll", SetLastError = true)]
@@ -76,8 +76,8 @@ namespace LiveSplit.ComponentUtil
         public static extern bool GetModuleInformation(IntPtr hProcess, IntPtr hModule, [Out] out MODULEINFO lpmodinfo,
             uint cb);
 
-        [DllImport("psapi.dll")]
-        public static extern uint GetModuleBaseName(IntPtr hProcess, IntPtr hModule, [Out] StringBuilder lpBaseName,
+        [DllImport("psapi.dll", CharSet = CharSet.Unicode)]
+        public static extern uint GetModuleBaseNameW(IntPtr hProcess, IntPtr hModule, [Out] StringBuilder lpBaseName,
             uint nSize);
 
         [DllImport("kernel32.dll", SetLastError = true)]
