@@ -67,6 +67,7 @@
     <Compile Include="Model\Constants.cs" />
     <Compile Include="Model\IndexedTimeMust.cs" />
     <Compile Include="Model\SegmentHistoryMust.cs" />
+    <Compile Include="Model\SegmentMust.cs" />
     <Compile Include="Model\StringExtensionsMust.cs" />
     <Compile Include="Model\TimeMust.cs" />
     <Compile Include="Options\LayoutSettingsMust.cs" />
