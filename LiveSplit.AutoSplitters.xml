@@ -1,5 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+<AutoSplitter>
+        <Games>
+            <Game>Hi-Fi RUSH</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.HiFiRUSH/main/HiFiRush.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal is available (by Meta)</Description>
+    </AutoSplitter>
+<AutoSplitter>
+        <Games>
+            <Game>Dead Space</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.DeadSpaceRemake/main/DeadSpaceRemake.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Autosplitting is available (by Meta and TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Madagascar</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/triguii/asl-scripts/main/Madagascar.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover and automatic start for Madagascar (PC) (by Triguii)</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Barbie and the Magic of Pegasus (PC)</Game>
@@ -1520,7 +1550,7 @@
             <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/release/Deltarune.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Available for all versions. Auto-endsplit only for SURVEY. Created by Tenebrosful from Narry's Autosplitter</Description>
+        <Description>Works for SURVEY, 1.08-1.10 and 1.15 (by Tenebrosful, NERS, Narry)</Description>
         <Website>https://github.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -1528,10 +1558,10 @@
             <Game>Deltarune Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/release/Deltarune-ce.asl</URL>
+            <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/release/Deltarune.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Available for all versions. Auto-endsplit only for SURVEY. Created by Tenebrosful from Narry's Autosplitter</Description>
+        <Description>Works for SURVEY, 1.08-1.10 and 1.15 (by Tenebrosful, NERS, Narry)</Description>
         <Website>https://github.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6364,10 +6394,10 @@
             <Game>Jubilee</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/cursedtoast/Jubilee-Autosplitter/main/jubilee.asl</URL>
+            <URL>https://raw.githubusercontent.com/gaphodil/Jubilee-Autosplitter/main/jubilee.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting on shrines and auto-starting timer. By CursedToast</Description>
+        <Description>Auto Splitting on shrines and ending, and auto-starting timer. By CursedToast and Gaphodil</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7629,9 +7659,9 @@
         <Description>Auto Start and Split are available. Split points chosen by user. More may be added by request. (By Roosta)</Description>
         <Website>https://github.com/blakehartley/LRFF13_autosplitter</Website>
     </AutoSplitter>
-    <AutoSplitter>
+   <AutoSplitter>
         <Games>
-            <Game>Dead Space</Game>
+            <Game>Dead Space (2008)</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/deadspace.asl</URL>
@@ -9961,6 +9991,39 @@
         <Type>Script</Type>
         <Description>Auto Splitting and Auto Start/Reset are available (By SuicideMachine)</Description>
         <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Worms 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/dezgeg/Autosplitters/master/LiveSplit.Worms2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Auto Start are available (By Dezgeg)</Description>
+        <Website>https://github.com/dezgeg/Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Worms Armageddon</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/dezgeg/Autosplitters/master/LiveSplit.WormsArmageddon.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Auto Start are available for All Missions Any% and Deathmatch categories (By Dezgeg)</Description>
+        <Website>https://github.com/dezgeg/Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Worms World Party</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/dezgeg/Autosplitters/master/LiveSplit.WormsWorldParty.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Auto Start are available for Any% and Time Attack categories (By Dezgeg)</Description>
+        <Website>https://github.com/dezgeg/Autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16514,7 +16577,7 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Sinner97</Game>
+            <Game>Sinner 97</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/edunad/sinner-97-autosplit/master/sinner97.asl</URL>
@@ -17113,5 +17176,26 @@
         <Type>Script</Type>
         <Description>Auto splitter and load removal is available by Xero.</Description>
         <Website>https://github.com/jonetiz/ETB-Autosplitter/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>One Piece Odyssey</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Art-Izon/OdysseyLoadRemover/main/OdysseyLoadRemover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover (by Nighlin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lingo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hatkirby/autosplitters/main/Lingo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start and split available. (By hatkirby)</Description>
+        <Website>https://github.com/hatkirby/autosplitters</Website>
     </AutoSplitter>
 </AutoSplitters>
