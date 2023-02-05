@@ -1,5 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+     <AutoSplitter>
+        <Games>
+            <Game>Star Wars: The Force Unleashed</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.SWTFU.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal by streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Star Wars: The Force Unleashed 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.SWTFU2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal by Scales</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Exodus from the Earth</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Exodus-From-The-Earth-Autosplitter/main/Exodus%20From%20The%20Earth.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal are available. (By TheDementedSalad &amp; Ellie &amp; SabulineHorizon)</Description>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>Lost Judgment</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.LostJudgment.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Autosplitter by Streetbackguy</Description>
+    </AutoSplitter>
 <AutoSplitter>
         <Games>
             <Game>Hi-Fi RUSH</Game>
@@ -1236,6 +1276,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and Loadless timer made by TDOG20</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Need for Speed: The Run</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Jujstme/LiveSplit.NFSTheRun/releases/download/latest/livesplit_nfstherun.wasm</URL>
+        </URLs>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Load remover (by Jujstme)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10797,10 +10848,10 @@
             <Game>Spyro Reignited Trilogy (PC)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Dinopony/spyrort-asl/master/spyrort.asl</URL>
+            <URL>https://raw.githubusercontent.com/SirBorris/SpyroAutoSplit/main/SRT_AutoSplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-splitting, Start, Reset and Load Removal are available (by Dinopony)</Description>
+        <Description>Auto-splitting, Start, Reset and Load Removal are available (by Dinopony, Edited by SirBorris &amp; BoredBanana)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17190,6 +17241,7 @@
     <AutoSplitter>
         <Games>
             <Game>Lingo</Game>
+            <Game>Lingo Custom Maps</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/hatkirby/autosplitters/main/Lingo.asl</URL>
@@ -17197,5 +17249,39 @@
         <Type>Script</Type>
         <Description>Start and split available. (By hatkirby)</Description>
         <Website>https://github.com/hatkirby/autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>SpongeBob SquarePants: The Cosmic Shake</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/SquareMan/cosmic-shake-auto-splitter/releases/download/latest/cosmic_shake_auto_splitter.wasm</URL>
+        </URLs>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Auto Splitting and Game Time are available (by TheCoolSquare)</Description>
+        <Website>https://github.com/SquareMan/cosmic-shake-auto-splitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Shin Megami Tensei: Persona 3 Portable</Game>
+            <Game>Persona 3 Portable</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.P3P.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal available for Steam and Game Pass version (by hoxi)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Multi-Medium</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/ZarzaSR/TMMSplit/releases/latest/download/TMMSplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal are available (by Zarza)</Description>
+        <Website>https://github.com/ZarzaSR/TMMSplit</Website>
     </AutoSplitter>
 </AutoSplitters>
