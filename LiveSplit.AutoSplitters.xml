@@ -10966,10 +10966,10 @@
             <Game>DUSK</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.DuskIGT.ASL</URL>
+            <URL>https://raw.githubusercontent.com/dauswectus/LiveSplit.Autosplitters/master/LiveSplit.Dusk.ASL</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Game Time and Auto Splitting are available. (By ShiningFace)</Description>
+        <Description>Game Time sync and Auto Splitting are available. (By Dauswectus)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
