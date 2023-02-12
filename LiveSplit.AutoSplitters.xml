@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
-     <AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Postmouse</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Jujstme/LiveSplit.Postmouse/releases/download/latest/livesplit_postmouse.wasm</URL>
+        </URLs>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Load remover (by Jujstme)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hogwarts Legacy</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.HogwartsLegacy/main/HogwartsLegacy.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Autosplitter are available (By Meta)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lake Haven</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.LakeHavenChrysalis.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>In-Game Timer, Autostart and Autosplitter by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Rubber Bandits</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/rubberbandits-asl/master/rubberbandits.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split supported (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Atlantis no Nazo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/obskyr/auto-splitters/master/Atlantis%20no%20Nazo/Atlantis%20no%20Nazo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto-splitter by @Obskyr.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Star Wars: The Force Unleashed</Game>
         </Games>
@@ -30,7 +83,7 @@
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal are available. (By TheDementedSalad &amp; Ellie &amp; SabulineHorizon)</Description>
     </AutoSplitter>
-        <AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Lost Judgment</Game>
         </Games>
@@ -2685,10 +2738,10 @@
             <Game>Sonic Colours: Ultimate</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicColors/master/LiveSplit.SonicColors.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicColors/master/Components/LiveSplit.SonicColors.dll</URL>
         </URLs>
-        <Type>Script</Type>
-        <Description>Autosplitting and In-Game Timer are available (by Jujstme)</Description>
+        <Type>Component</Type>
+        <Description>Autosplitting and In-Game Timer are available. Supports both Sonic Colors and Sonic Colors: Ultimate (by Jujstme)</Description>
         <Website>https://discord.gg/XRsRwRU</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -5862,6 +5915,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Perfect Vermin</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LukeSaward1/AutoSplitters/main/Perfect%20Vermin/PerfectVermin.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset is available. (By LukeSaward)</Description>
+        <Website>https://github.com/LukeSaward1</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>NEAVE</Game>
         </Games>
         <URLs>
@@ -6770,6 +6834,9 @@
             <Game>TrackMania United Forever</Game>
             <Game>TMX Community Campaign</Game>
             <Game>Kackiest Kacky 1</Game>
+            <Game>TrackMania Nations Remake</Game>
+            <Game>Kackiest Kacky 2</Game>
+            <Game>Kackiest Kacky Category Extension</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/donadigo/AutoSplitters/master/Trackmania%20Forever.asl</URL>
@@ -17283,5 +17350,27 @@
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal are available (by Zarza)</Description>
         <Website>https://github.com/ZarzaSR/TMMSplit</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Waluigi's Taco Stand</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/willgundee/WaluigiTacoStand-Autosplitter/main/WaluigiTacoStandAutosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Auto Reset (by Willgundee)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>I Am Jesus Christ</Game>
+            <Game>I Am Jesus Christ: Prologue</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.IAmJesusChrist.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal is available for Prologue (by zoton2)</Description>
+        <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
     </AutoSplitter>
 </AutoSplitters>
