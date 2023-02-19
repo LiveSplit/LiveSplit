@@ -1,5 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+      <AutoSplitter>
+        <Games>
+            <Game>The Misadventures of P.B. Winterbottom</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.PBWinterbottom.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and Load Remover by Streetbackguy</Description>
+    </AutoSplitter>
+      <AutoSplitter>
+        <Games>
+            <Game>Secret Agent Barbie</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/Livesplit.SecretAgentBarbie.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart/Autosplit/Autoreset by Streetbackguy and Taw</Description>
+    </AutoSplitter>
+      <AutoSplitter>
+        <Games>
+            <Game>Curse Crackers: For Whom the Belle Toils</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/AyotoCorp/Curse-Crackers-Autosplitter/main/Curse%20Crackers.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart/Autosplit/Autoreset (by AyotoCorp)</Description>
+    </AutoSplitter>
+      <AutoSplitter>
+        <Games>
+            <Game>Stronghold</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Tay0108/livesplit-autosplitters/master/stronghold.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset available for military campaign (by Tay0108)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Deliver Us Mars</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/DeliverUsMars_Autosplitter/main/DeliverUsMars_Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Autosplitter (by Nikoheart)</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Postmouse</Game>
@@ -10966,10 +11016,10 @@
             <Game>DUSK</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/ShiningFace/LiveSplit-Autotimers/master/LiveSplit.DuskIGT.ASL</URL>
+            <URL>https://raw.githubusercontent.com/dauswectus/LiveSplit.Autosplitters/master/LiveSplit.Dusk.ASL</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Game Time and Auto Splitting are available. (By ShiningFace)</Description>
+        <Description>Game Time sync and Auto Splitting are available. (By Dauswectus)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16507,10 +16557,10 @@
             <Game>Scooby-Doo! First Frights</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/kamil2050/ASL-scripts/main/Scooby-Doo!%20First%20Frights%20load%20remover.asl</URL>
+            <URL>https://raw.githubusercontent.com/kamil2050/ASL-scripts/main/Scooby-Doo!%20First%20Frights%20Autosplitter%20and%20Load%20Remover.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover for PC version by kamil2050</Description>
+        <Description>Load remover and Autosplitter for PC version (by kamil2050, HDBSD, DeathMaster, KRISU)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17372,5 +17422,28 @@
         <Type>Script</Type>
         <Description>Load Removal is available for Prologue (by zoton2)</Description>
         <Website>https://github.com/zoton2/LiveSplit.Scripts</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Streets of Rage</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Devilquest/LiveSplit-AutoSplitters/main/Streets%20of%20Rage/Streets%20of%20Rage%20-%20AutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter for Streets of Rage, check the website for options/configuration (by Devilquest)</Description>
+        <Website>https://github.com/Devilquest/LiveSplit-AutoSplitters/tree/main/Streets%20of%20Rage</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Garden of Banan</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Micrologist/LiveSplit.GardenOfBanan/main/banan.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting by Micrologist</Description>
+        <Website>https://github.com/Micrologist/LiveSplit.GardenOfBanan</Website>
     </AutoSplitter>
 </AutoSplitters>
