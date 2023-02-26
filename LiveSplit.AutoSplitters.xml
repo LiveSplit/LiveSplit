@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
-      <AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Doritos Crash Course Go!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/doritosccg-asl/master/doritosccg.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split supported (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>Judgment</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.Judgment.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Autostart by Streetbackguy</Description>
+    </AutoSplitter>
+<AutoSplitter>
+        <Games>
+            <Game>Atomic Heart</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.AtomicHeart/main/AtomicHeart.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal is available (By Meta)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Snake vs Snake</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Snake%20vs%20Snake/snakevssnake.asl </URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Happys Humble Burger Farm</Game>
+            <Game>Happy's Humble Burger Farm</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Happy's%20Humble%20Burger%20Farm/hhbf.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity, Andet, and goodluckNito)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>The Misadventures of P.B. Winterbottom</Game>
         </Games>
@@ -12,7 +65,7 @@
     </AutoSplitter>
       <AutoSplitter>
         <Games>
-            <Game>Secret Agent Barbie</Game>
+            <Game>Secret Agent Barbie (PC)</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/Livesplit.SecretAgentBarbie.asl</URL>
@@ -67,9 +120,10 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.HogwartsLegacy/main/HogwartsLegacy.asl</URL>
+	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal and Autosplitter are available (By Meta)</Description>
+        <Description>Load Removal and Autosplitter are available (By Meta &amp; TheDementedSalad)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -3713,11 +3767,6 @@
             <Game>Unreal Return to Na Pali</Game>
             <Game>Return to Na Pali</Game>
             <Game>Unreal Mission Pack: Return to Na Pali</Game>
-            <Game>Splinter Cell 3</Game>
-            <Game>Splinter Cell: Chaos Theory</Game>
-            <Game>Splinter Cell Chaos Theory</Game>
-            <Game>Tom Clancy's Splinter Cell: Chaos Theory</Game>
-            <Game>Tom Clancy's Splinter Cell Chaos Theory</Game>
             <Game>XCOM Enforcer</Game>
             <Game>X-COM Enforcer</Game>
             <Game>XCOM: Enforcer</Game>
@@ -16333,6 +16382,20 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Splinter Cell 3</Game>
+            <Game>Splinter Cell: Chaos Theory</Game>
+            <Game>Splinter Cell Chaos Theory</Game>
+            <Game>Tom Clancy's Splinter Cell: Chaos Theory</Game>
+            <Game>Tom Clancy's Splinter Cell Chaos Theory</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/DistProg/SCCTAutoSplitter/main/SCCT_AutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal available (by Distro)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Cry of Fear</Game>
         </Games>
         <URLs>
@@ -16560,7 +16623,7 @@
             <URL>https://raw.githubusercontent.com/kamil2050/ASL-scripts/main/Scooby-Doo!%20First%20Frights%20Autosplitter%20and%20Load%20Remover.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover and Autosplitter for PC version (by kamil2050, HDBSD, DeathMaster, KRISU)</Description>
+        <Description>Load remover and Autosplitter for PC version (by kamil2050, HDBSD, DeathMaster001, KRISU)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17445,5 +17508,48 @@
         <Type>Script</Type>
         <Description>Autosplitting by Micrologist</Description>
         <Website>https://github.com/Micrologist/LiveSplit.GardenOfBanan</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Pizza Tower</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/JavierMarcosFer/autosplitters/main/PizzaTowerAny%25.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start and split available (by XBC30EP450)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+	    <Game>Streets of Rage 2</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/Devilquest/LiveSplit-AutoSplitters/main/Streets%20of%20Rage%202/Streets%20of%20Rage%202%20-%20AutoSplitter.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Auto Splitter for Streets of Rage 2, check the website for options/configuration (by Devilquest)</Description>
+	<Website>https://github.com/Devilquest/LiveSplit-AutoSplitters/tree/main/Streets%20of%20Rage%202</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+	    <Game>Utopia City</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/DylanSilby/Autosplitters/main/Utopia%20City/UtopiaCityAny%25.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Auto Splitter for Utopia City (by CodeNameMeteor)</Description>
+	<Website>https://github.com/DylanSilby/Autosplitters/blob/main/Utopia%20City/UtopiaCityAny%25.asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>I'm going to die if I don't eat sushi!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/2RU10SHI6/sushi_autosplitter/main/Sushi.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter and Load Remover for All sushi lovers (by 2RU10SHI6 / suika_lunch)</Description>
+	<Website>https://www.speedrun.com/im_going_to_die_if_i_dont_eat_sushi</Website>
     </AutoSplitter>
 </AutoSplitters>
