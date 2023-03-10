@@ -17586,4 +17586,14 @@
         <Type>Script</Type>
         <Description>Auto Splitter for Liquidator 2: Welcome to Hell (by CodeNameMeteor)</Description>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lovely Planet</Game>
+        </Games>
+        <URLs>
+            <URL>https://gist.githubusercontent.com/vidhvat/8b102a617070e9e3ef87451fe86300c8/raw/479f04218f80ade381b511699887c842826608b4/LovelyPlanetAutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter for Lovely Planet (by vidhvat)</Description>
+    </AutoSplitter>
 </AutoSplitters>
