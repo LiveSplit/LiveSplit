@@ -2,6 +2,27 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Timothy Vs The Aliens</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/timothyvta-asl/master/timothyvta.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split and load removal supported. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Anemoiapolis</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/bandademan/Anemoiapolis-AutoSplitter/main/Anemoiapolis.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Autostart by Mr. Monocle</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Like a Dragon: Ishin</Game>
         </Games>
         <URLs>
@@ -9,6 +30,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal and Autostart by Streetbackguy</Description>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>Back 4 Blood</Game>
+            <Game>B4B</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/Back4Blood.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter / Load Remover (By KunoDemetries)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2176,10 +2208,10 @@
             <Game>Cyberpunk 2077</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Radioactiv03/Cyberpunk-Load-remover/main/cp77.asl</URL>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.Cyberpunk2077/main/Cyberpunk2077.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available (by Radioactiv)</Description>
+        <Description>Load Remover &amp; Autosplitter (by Radioactiv &amp; Meta)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7423,9 +7455,12 @@
     <AutoSplitter>
         <Games>
             <Game>Star Wars Battlefront II</Game>
+            <Game>Star Wars Battlefront II (2005)</Game>
+            <Game>Star Wars: Battlefront II</Game>
+            <Game>Star Wars: Battlefront II (2005)</Game>
         </Games>
         <URLs>
-            <URL>https://gist.githubusercontent.com/Lako3000/3098368ac04c1f50d3e9e7b52c843088/raw/a9a84a3131d197667d83ebbf40dc195ede524110/gistfile1.txt</URL>
+            <URL>https://raw.githubusercontent.com/9Tpercentmon/swbf2_loadremover/main/swbf2_loadremover_v2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal is available. (By lako3000)</Description>
@@ -17562,7 +17597,7 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitter and Load Remover for All sushi lovers (by 2RU10SHI6 / suika_lunch)</Description>
-        <Website>https://www.speedrun.com/im_going_to_die_if_i_dont_eat_sushi</Website>
+        <Website>https://www.speedrun.com/im_going_to_die_if_i_dont_eat_sushi/guide/temm9</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17585,5 +17620,30 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitter for Liquidator 2: Welcome to Hell (by CodeNameMeteor)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>ENTROPOLY</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/AlbinEriksson/Entropoly-ASL/main/Entropoly.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting, Auto Start and Auto Reset are available. (By Aetias)</Description>
+        <Website>https://github.com/AlbinEriksson/Entropoly-ASL</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Clive 'N' Wrench</Game>
+            <Game>Clive N Wrench</Game>
+            <Game>Clive and Wrench</Game>
+            <Game>CNW</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/CptBrian/CliveNWrench/main/CliveNW.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>(PC) CNW Load Removal and more (By CptBrian and TipDaddy78)</Description>
+        <Website>https://www.speedrun.com/cnw</Website>
     </AutoSplitter>
 </AutoSplitters>
