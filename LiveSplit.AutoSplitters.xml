@@ -2,6 +2,47 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Pole (Demo)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/poledemo-asl/master/poledemo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split supported. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Dude Simulator 5</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.DudeSim5/main/DudeSim5.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and load removal supported. (By Meta)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Baldy Bounce</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/baldybounce-asl/master/baldybounce.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split and load removal supported. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Boson X</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NERS1111/LiveSplit.AutoSplitters/autosplitters/Lotech.BosonX.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start and split supported. (By NERS)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Timothy Vs The Aliens</Game>
         </Games>
         <URLs>
@@ -1776,11 +1817,10 @@
             <Game>Blue Fire</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Luukie13/bluefireAutosplitter/main/BlueFire.asl</URL>
+            <URL>https://raw.githubusercontent.com/Lemuura/Livesplit-Autosplitters/main/BlueFire.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>syncs the livesplit timer to the ingame timer setting. Created by Luukie13 and R30hedron</Description>
-        <Website>https://github.com/Luukie13/bluefireAutosplitter</Website>
+        <Description>Autosplitter is available (By Lemuura and Luukie13)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2971,6 +3011,7 @@
     <AutoSplitter>
         <Games>
             <Game>Call of Duty 4: Modern Warfare</Game>
+	    <Game>Call of Duty 4: Speedrun Mod</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/COD4.asl</URL>
@@ -7463,7 +7504,8 @@
             <URL>https://raw.githubusercontent.com/9Tpercentmon/swbf2_loadremover/main/swbf2_loadremover_v2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By lako3000)</Description>
+        <Description>Load Removal and Autosplitter available. Check Website for help (By 9Tpercentmon and lako3000)</Description>
+	<Website>https://github.com/9Tpercentmon/swbf2_loadremover/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8251,6 +8293,7 @@
             <Game>2020 Spring Collab</Game>
             <Game>Glyph Pack</Game>
             <Game>Into The Jungle</Game>
+			<Game>Strawberry Jam Collab</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/ShootMe/LiveSplit.Celeste/master/Components/LiveSplit.Celeste.dll</URL>
@@ -8633,6 +8676,7 @@
     <AutoSplitter>
         <Games>
             <Game>Sonic Frontiers</Game>
+	    <Game>Sonic Frontiers Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicFrontiers/main/Components/LiveSplit.SonicFrontiers.dll</URL>
@@ -9558,10 +9602,11 @@
             <Game>Sonic Mania</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicMania/main/LiveSplit.SonicMania.asl</URL>
+            <URL>https://github.com/SonicSpeedrunning/LiveSplit.SonicMania/releases/download/latest/livesplit_sonicmania.wasm</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto splitting/start/reset available. Splits at the end of each act. (by Jujstme and Claris)</Description>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Auto splitting/start/reset available. Configurable splits for each act. (by Jujstme and Claris)</Description>
         <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicMania</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -13822,7 +13867,18 @@
             <URL>https://raw.githubusercontent.com/Buurazu/AutoSplitters/main/HuniePop.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-start/reset. Splits on every date/bonus round, and meeting Venus. Works for all categories except 100%</Description>
+        <Description>Auto-start/reset. Splits on every date/bonus round. Works for all categories except 100%</Description>
+        <Website>https://discord.gg/hHMyUjDmzu</Website>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>HunieCam Studio</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Buurazu/AutoSplitters/main/HunieCam%20Studio.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>(Requires the speedrun mod!) Auto-start/reset. Splits on new day and named fan counts by default.</Description>
         <Website>https://discord.gg/hHMyUjDmzu</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -16433,6 +16489,19 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Splinter Cell 6</Game>
+            <Game>Splinter Cell: Blacklist</Game>
+            <Game>Tom Clancy's Splinter Cell Blacklist</Game>
+            <Game>Tom Clancy's Splinter Cell: Blacklist</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SpikeTheMarmot/sc-blacklist-autosplitter/main/blacklist.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset and load removal by Spike</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Cry of Fear</Game>
         </Games>
         <URLs>
@@ -17645,5 +17714,35 @@
         <Type>Script</Type>
         <Description>(PC) CNW Load Removal and more (By CptBrian and TipDaddy78)</Description>
         <Website>https://www.speedrun.com/cnw</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sons of the Forest</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/novopact/SonsOfTheForest-Autosplitter/main/SonsOfTheForest.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start, Optional Split on Death and Reset. (By Novopact)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lovely Planet</Game>
+        </Games>
+        <URLs>
+            <URL>https://gist.githubusercontent.com/vidhvat/8b102a617070e9e3ef87451fe86300c8/raw/LovelyPlanetAutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter for Lovely Planet (by vidhvat)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Road Rash</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/uspeek/road_rash_autosplitter/main/ROADRASH.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>In-game time, autosplitter, reset for PC (by uspeek and Molotok)</Description>
     </AutoSplitter>
 </AutoSplitters>
