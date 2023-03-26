@@ -2,6 +2,16 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Lycanthorn II - Rain of Beasts</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/lycanthorn-asl/master/lycanthorn.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split and load removal supported. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Pole (Demo)</Game>
         </Games>
         <URLs>
@@ -9,6 +19,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split supported. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Shadowrun: Dragonfall</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LurkenW/Shadowrun-Dragonfall-Autosplitter/main/SrDTest.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover (By RadioLurken/LurkenW)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1180,6 +1200,17 @@
         <Type>Script</Type>
         <Description>Autosplitter by Arko. Timer resets on title screen by default.</Description>
         <Website>https://www.speedrun.com/zone_runner_2</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Zone Runner: Anniversary Edition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/WaterArcanum/AutoSplitters/main/zonerunnerAE.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Arko. Timer starts when entering the first zone from level selection.</Description>
+        <Website>https://www.speedrun.com/zone_runner_anniversary_edition</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2887,9 +2918,10 @@
             <Game>Sonic Omens</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicOmens/main/LiveSplit.SonicOmens.asl</URL>
+            <URL>https://github.com/SonicSpeedrunning/LiveSplit.SonicOmens/releases/download/latest/livesplit_sonicomens.wasm</URL>
         </URLs>
         <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
         <Description>Load time remover (by Jujstme)</Description>
         <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicOmens</Website>
     </AutoSplitter>
@@ -2921,14 +2953,25 @@
         <Games>
             <Game>Sonic Colors</Game>
             <Game>Sonic Colours</Game>
-            <Game>Sonic Colors: Ultimate</Game>
-            <Game>Sonic Colours: Ultimate</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicColors/master/Components/LiveSplit.SonicColors.dll</URL>
         </URLs>
         <Type>Component</Type>
-        <Description>Autosplitting and In-Game Timer are available. Supports both Sonic Colors and Sonic Colors: Ultimate (by Jujstme)</Description>
+        <Description>Autosplitting and In-Game Timer are available (by Jujstme)</Description>
+        <Website>https://discord.gg/XRsRwRU</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic Colors: Ultimate</Game>
+            <Game>Sonic Colours: Ultimate</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/SonicSpeedrunning/LiveSplit.SonicColorsUltimate/releases/download/latest/livesplit_soniccolorsultimate.wasm</URL>
+        </URLs>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Autosplitting and In-Game Timer are available (by Jujstme)</Description>
         <Website>https://discord.gg/XRsRwRU</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -8585,9 +8628,10 @@
             <Game>Sonic 3D in 2D</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/Sonic3Din2DSplitter/main/Components/LiveSplit.Sonic3Din2D.dll</URL>
+            <URL>https://github.com/SonicSpeedrunning/LiveSplit.Sonic3Din2D/releases/download/latest/livesplit_sonic3din2d.wasm</URL>
         </URLs>
-        <Type>Component</Type>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
         <Description>Requires Sonic 3D in 2D 1.26 or higher</Description>
         <Website>https://github.com/SonicSpeedrunning/Sonic3Din2DSplitter</Website>
     </AutoSplitter>
@@ -16389,7 +16433,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Museus/autosplitters/main/HaveANiceDeath/HaveANiceDeath.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover for Have a Nice Death</Description>
@@ -16685,6 +16729,17 @@
         <Type>Script</Type>
         <Description>Autosplitter for Another World 20th Anniversary edition (PC).</Description>
         <Website>https://github.com/velcheran/autosplitters/blob/main/AnotherWorld20thAnniversary.asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Postal 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SpectralPlatypus/AutoSplitters/master/Postal3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter/Load Remover for Postal 3 (by SpectralPlatypus)</Description>
+        <Website>https://www.speedrun.com/postal3</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17744,5 +17799,35 @@
         </URLs>
         <Type>Script</Type>
         <Description>In-game time, autosplitter, reset for PC (by uspeek and Molotok)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Tubbyland Archives</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/derric-young/TTLAAutosplitter/main/The%20Tubbyland%20Archives%20Autosplitting%20Systems.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Automated Starting, Spliting and Load Removing by derric_young</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Tubbyland: 2003</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/derric-young/Tubbyland-2003-Autosplitter/main/2003.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autonomus Start, Split, Reset and load Removing by Derric</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Bamse och sjörövarskatten</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SplasBoi/Bamseochsjorovarskatten-Autosplitter/main/bamse-och-sjorovarskatten.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/stop and load remover</Description>
     </AutoSplitter>
 </AutoSplitters>
