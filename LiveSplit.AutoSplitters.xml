@@ -2,6 +2,38 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Planet Alcatraz</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KR33PYK1NG/PALR/main/PALR.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter and Load Remover by KR33PYK1NG.</Description>
+        <Website>https://github.com/KR33PYK1NG/PALR</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Last of Us Part I (PC)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/TLOUP1.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal by Mattmatt</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Rhythm Doctor</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/RhythmDoctor_Autosplitter/main/RhythmDoctor_Autosplitter.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Autosplitter (by Nikoheart)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Lycanthorn II - Rain of Beasts</Game>
         </Games>
         <URLs>
@@ -9,6 +41,19 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split and load removal supported. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>FAITH: THE UNHOLY TRINITY</Game>
+	    <Game>FAITH</Game>
+	    <Game>FAITH: CHAPTER II</Game>
+	    <Game>FAITH: CHAPTER III</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/FAITHTheUnholyTrinity.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter/ Load Remover (By Kuno Demetries)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -216,6 +261,17 @@
         <Type>Script</Type>
         <ScriptType>AutoSplittingRuntime</ScriptType>
         <Description>Load remover (by Jujstme)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Murder of Sonic the Hedgehog</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/SonicSpeedrunning/LiveSplit.SonicMurder/releases/download/latest/livesplit_murderofsonic.wasm</URL>
+        </URLs>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Autosplitter with customizable options (by Jujstme)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13152,11 +13208,11 @@
             <Game>Red Dead Redemption 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/vrchmvgx/rdr2_asl/master/RDR2.asl</URL>
+            <URL>https://raw.githubusercontent.com/definitelynotcrab/rdr2_asl/master/RDR2.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Automatic starting, splitting and load removal.</Description>
-        <Website>https://github.com/vrchmvgx/rdr2_asl</Website>
+        <Website>https://github.com/definitelynotcrab/rdr2_asl</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17808,7 +17864,7 @@
             <URL>https://raw.githubusercontent.com/derric-young/TTLAAutosplitter/main/The%20Tubbyland%20Archives%20Autosplitting%20Systems.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Automated Starting, Spliting and Load Removing by derric_young</Description>
+        <Description>Automated Starting, Spliting and Load Remover (by derric_young)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17818,7 +17874,7 @@
             <URL>https://raw.githubusercontent.com/derric-young/Tubbyland-2003-Autosplitter/main/2003.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autonomus Start, Split, Reset and load Removing by Derric</Description>
+        <Description>Autonomus Start, Split, Reset and load Remover (by Derric)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17829,5 +17885,25 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/stop and load remover</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Resident Evil 4 (2023)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/RE4Make-Autosplitter/main/Resident%20Evil%204%20Remake.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and In Game Time are available. (By TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Post-Shift 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/derric-young/Post-Shift-2-Autosplitter/main/p-s2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter for Both Part A and Part B (by The Real Derric Young)</Description>
     </AutoSplitter>
 </AutoSplitters>
