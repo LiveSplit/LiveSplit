@@ -2,6 +2,18 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Dr. Langeskov, The Tiger, and The Terribly Cursed Emerald: A Whirlwind Heist</Game>
+	    <Game>Dr. Langeskov</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Lemuura/Livesplit-Autosplitters/main/DrLangeskov.asl</URL>
+	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By Lemuura)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Planet Alcatraz</Game>
         </Games>
         <URLs>
@@ -8858,6 +8870,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Rockman 2</Game>
+            <Game>RM2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/McBobX-1/Rockman-2/main/RM2autosplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Rockman 2 (By Coltaho, modified by McBobX)</Description>
+        <Website>https://github.com/McBobX-1/Rockman-2/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Mega Man 3</Game>
             <Game>Megaman 3</Game>
             <Game>MM3</Game>
@@ -13274,10 +13298,10 @@
             <Game>Samurai Jack: Battle Through Time</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Mysterion06/SJGame/master/SJGame.asl</URL>
+            <URL>https://raw.githubusercontent.com/MattPonton/SJGame/main/SJGame-Kamon.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter by Mysterion_06_</Description>
+        <Description>Autosplitter by Mysterion_06_ and PontonFSD</Description>
         <Website>https://github.com/Mysterion06/SJGame/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -17905,5 +17929,48 @@
         </URLs>
         <Type>Script</Type>
         <Description>AutoSplitter for Both Part A and Part B (by The Real Derric Young)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Fantastic 4</Game>
+	          <Game>Fantastic Four</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LeonSReckon/Fantastic-4-ASL/main/Fantastic%204.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset and IGT track are available (by LeonSReckon)</Description>
+    </AutoSplitter>
+	  <AutoSplitter>
+        <Games>
+            <Game>Mini Ghost</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NickRPGreen/Mini-Ghost-Autosplitter/main/Mini%20Ghost.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoSplitter for Mini Ghost (by NickRPGreen)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Team Fortress Classic</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Nomad7/TFCautosplitter/main/LiveSplit.TFC.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for TFC (By Nomad#6589)</Description>
+        <Website>https://github.com/Nomad7/TFCautosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Cars</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Tyfuzzle25/Autosplitters/master/Cars.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Remover. (By Tyfuzzle25)</Description>
+        <Website>https://github.com/Tyfuzzle25/Autosplitters</Website>
     </AutoSplitter>
 </AutoSplitters>
