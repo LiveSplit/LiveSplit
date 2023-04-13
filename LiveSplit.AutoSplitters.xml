@@ -17973,4 +17973,16 @@
         <Description>Autosplitter and Load Remover. (By Tyfuzzle25)</Description>
         <Website>https://github.com/Tyfuzzle25/Autosplitters</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>OCTOPATH TRAVELER II</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Eein/octopath-traveler-2-autosplitter-wasm/releases/latest/download/octopath_traveler_2_autosplitter_wasm.wasm</URL>
+        </URLs>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Autosplitter (By SuperFamicom)</Description>
+        <Website>https://github.com/Eein/octopath-traveler-2-autosplitter-wasm</Website>
+    </AutoSplitter>
 </AutoSplitters>
