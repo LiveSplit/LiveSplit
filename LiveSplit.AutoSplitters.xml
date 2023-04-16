@@ -2,6 +2,16 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Shapez</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Alex-x90/Shapezio_autosplitter/main/shapez.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By Alex_x90)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Dr. Langeskov, The Tiger, and The Terribly Cursed Emerald: A Whirlwind Heist</Game>
 	    <Game>Dr. Langeskov</Game>
         </Games>
@@ -8624,11 +8634,12 @@
             <Game>Sonic CD Restored</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicCD2011/main/LiveSplit.SonicCD2011.asl</URL>
+            <URL>https://github.com/SonicSpeedrunning/LiveSplit.SonicCD2011_wasm/releases/download/latest/livesplit_soniccd2011.wasm</URL>
         </URLs>
         <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
         <Description>Supports both Steam release and decompilation versions of Sonic CD (2011). Settings available.</Description>
-        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicCD2011</Website>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicCD2011_wasm</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
