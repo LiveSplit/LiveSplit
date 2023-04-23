@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<AutoSplitter>
+        <Games>
+            <Game>Sunset Overdrive</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.SunsetOverdrive.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and Load Remover by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Paradox Vector</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/paradoxvector-asl/master/paradoxvector.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split and load removal available. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Rewind or Die</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Rewind%20or%20Die/rewindordie.asl</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Rewind%20or%20Die/RewindOrDie.Settings.Xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Shapez</Game>
@@ -28,6 +60,17 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/KR33PYK1NG/PALR/main/PALR.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter and Load Remover by KR33PYK1NG.</Description>
+        <Website>https://github.com/KR33PYK1NG/PALR</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Planet Alcatraz 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KR33PYK1NG/PALR/main/PA2LR.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitter and Load Remover by KR33PYK1NG.</Description>
@@ -512,7 +555,7 @@
             <URL>https://raw.githubusercontent.com/RandomisedTV/entropy-splitter/main/EntropyAutoSplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter for The Entropy Centre (by RandomizedTV)</Description>
+        <Description>Autosplitter for The Entropy Centre (by RandomisedTV and Fibes)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11229,12 +11272,13 @@
         <Games>
             <Game>Spyro Reignited Trilogy</Game>
             <Game>Spyro Reignited Trilogy (PC)</Game>
+	    <Game>Spyro Reignited Trilogy Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/SirBorris/SpyroAutoSplit/main/SRT_AutoSplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto-splitting, Start, Reset and Load Removal are available (by Dinopony, Edited by SirBorris &amp; BoredBanana)</Description>
+        <Description>Auto-splitting, Start, Reset and Load Removal are available (by Dinopony, Edited by SirBorris and BoredBanana)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15749,17 +15793,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Ultimate DOOM</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/rogender/LiveSplit.Ultimate-DOOM/master/LiveSplit.Ultimate-DOOM.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Ultimate DOOM autosplitter. Working only on latest versions of source ports</Description>
-        <Website>https://github.com/rogender/LiveSplit.Ultimate-DOOM</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Museum of Simulation Technology</Game>
         </Games>
         <URLs>
@@ -16117,6 +16150,7 @@
     <AutoSplitter>
         <Games>
             <Game>Grapple!</Game>
+            <Game>Grapple! (Steam)</Game>
             <Game>Barji’s Grappler</Game>
             <Game>Barji’s Grappler!</Game>
             <Game>Barji's Grappler</Game>
@@ -16124,7 +16158,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Grapple!/Grapple.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts, resets automatically. Splits after every level. (by Ero)</Description>
@@ -16690,18 +16724,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Wolfenstein 3D</Game>
-            <Game>Wolfenstein3D</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/rogender/LiveSplit.Wolfenstein3D/main/LiveSplit.Wolfenstein3D.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Wolfenstein 3D autosplitter. Working only with latest version of source ports</Description>
-        <Website>https://github.com/rogender/LiveSplit.Wolfenstein3D</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Pearl Grabber</Game>
         </Games>
         <URLs>
@@ -16765,19 +16787,6 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal available (by rythin)</Description>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Doom II</Game>
-            <Game>Doom 2</Game>
-            <Game>Doom II: Hell on Earth</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/rogender/LiveSplit.Ultimate-DOOM/master/LiveSplit.Ultimate-DOOM.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>DOOM II autosplitter. Working only on latest versions of source ports</Description>
-        <Website>https://github.com/rogender/LiveSplit.Ultimate-DOOM</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17983,5 +17992,38 @@
         <Type>Script</Type>
         <Description>Autosplitter and Load Remover. (By Tyfuzzle25)</Description>
         <Website>https://github.com/Tyfuzzle25/Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lunch Lady</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheCreeep/AutoSplitters/main/LL_AS.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter By Creep</Description>
+        <Website>https://github.com/TheCreeep/AutoSplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lara Croft GO</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Gyoshi/LaraCroftGO-Autosplitter/master/LaraCroftGO.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/stop (by Gyoshi)</Description>
+        <Website>https://github.com/Gyoshi/PhoA-AutoSplitter</Website>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>Grand Theft Auto: Tightened Thrice</Game>
+	    <Game>GTA: Tightened Thrice</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/hoXyy/Livesplit.Autosplitters/master/LiveSplit.TightenedThrice.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter available (originally by zoton2/iguana, modified for TT by hoxi)</Description>
     </AutoSplitter>
 </AutoSplitters>
