@@ -369,7 +369,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>mkdir $(ProjectDir)Updates\GitInfo\
+    <PreBuildEvent>mkdir "$(ProjectDir)Updates\GitInfo\."
 where git
 if %25ERRORLEVEL%25 == 0 (
 git describe --dirty --always --long --tags &gt; "$(ProjectDir)Updates\GitInfo\version.txt"
