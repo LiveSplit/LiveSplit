@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+    <AutoSplitter>    
+        <Games>
+            <Game>Viewfinder</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/viewfinder-asl/master/viewfinder.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split and load removal available. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Toppys Workshop</Game>
+            <Game>Toppy's Workshop</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/mitchell-merry/autosplitters/raw/main/Toppy's%20Workshop/toppysworkshop.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Dead Island 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/DeadIsland2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Removal by Mattmatt</Description>
+    </AutoSplitter>
 	<AutoSplitter>
         <Games>
             <Game>Sunset Overdrive</Game>
@@ -8,7 +41,7 @@
             <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.SunsetOverdrive.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autostart and Load Remover by Streetbackguy</Description>
+        <Description>Autostart and Load Remover by Streetbackguy and Meta</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -7564,6 +7597,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Densha De D: Shining Stage</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Jugachi/Autosplitters/main/Densha%20De%20D/Shining_Stage.asl</URL>
+	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>In-game time, auto-split, auto-start and load-removal. (by Jugachi)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Metro 2033 Redux</Game>
             <Game>Metro: Last Light Redux</Game>
         </Games>
@@ -13296,6 +13340,7 @@
     <AutoSplitter>
         <Games>
             <Game>Ratatouille (Asobo)</Game>
+	    <Game>Ratatouille (Asobo) Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TTPPMM/Ratatouille-Asobo-Load-Remover/any%25/Ratatouille-LoadRemover-AutoSplitter.asl</URL>
@@ -16387,7 +16432,7 @@
         </Games>
         <URLs>
             <URL>https://github.com/just-ero/asl/raw/main/Sonic%20Project%20'06/SonicProject06.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Starts automatically with an offset. Splits upon completion of an act. Removes loads. (by Ero)</Description>
@@ -18025,5 +18070,63 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter available (originally by zoton2/iguana, modified for TT by hoxi)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Crab Champions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ThePwnzr/CrabChampionsAutosplitter/main/CCAutosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/stop/reset is available (by Mitz)</Description>
+        <Website>https://github.com/ThePwnzr/CrabChampionsAutosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Elder Scrolls: Arena</Game>
+            <Game>TESArena</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/SabulineHorizon/Autosplitters/main/TESArena.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset (By SabulineHorizon)</Description>
+        <Website>https://github.com/SabulineHorizon/Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>BONK: An Interactive Exposition</Game>
+            <Game>BONK</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Gaphodil/autosplitters/main/bonk-autosplitter/BONK.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter, auto-reset, death count, and game time (By Gaphodil)</Description>
+        <Website>https://github.com/Gaphodil/autosplitters/tree/main/bonk-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>BETON BRUTAL</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/CubeSkyy/BetonBrutalAutoSplitter/main/BetonBrutal.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto splits and resets based on in-game height.</Description>
+        <Website>https://github.com/CubeSkyy/BetonBrutalAutoSplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Live A Live (2022)</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Eein/live-a-live-autosplitter-wasm/releases/latest/download/live_a_live_autosplitter_wasm.wasm</URL> </URLs>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Auto Splitting and Game Time are available (by SuperFamicom)</Description>
+        <Website>https://github.com/Eein/live-a-live-autosplitter-wasm</Website>
     </AutoSplitter>
 </AutoSplitters>
