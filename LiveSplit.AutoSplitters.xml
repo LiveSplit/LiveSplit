@@ -13779,10 +13779,10 @@
             <Game>LEGO Star Wars: The Complete Saga (PC/Console)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/TCS-Autosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/zschuh/LiveSplit.AutoSplitters/master/TCSAutosplitterLoadRemover.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting is available. (By Zac &amp; P53.)</Description>
+        <Description>Auto Splitting is available. (By Zac, ERoadhouse &amp; P53.)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
