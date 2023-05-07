@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+    <AutoSplitter>
+        <Games>
+            <Game>Redfall</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Jujstme/LiveSplit.Redfall/releases/download/latest/livesplit_redfall.wasm</URL>
+        </URLs>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Load remover (by Jujstme)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>MEATGRINDER</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.Meatgrinder/main/MEATGRINDER.asl</URL>
+	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal available. (By diggity &amp; Meta)</Description>
+    </AutoSplitter>
     <AutoSplitter>    
         <Games>
             <Game>Viewfinder</Game>
@@ -10,6 +32,18 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split and load removal available. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Exhibition of Memories</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/mitchell-merry/autosplitters/raw/main/Exhibition%20of%20Memories/exhibitionofmemories.asl</URL>
+            <URL>https://github.com/mitchell-merry/autosplitters/raw/main/Exhibition%20of%20Memories/ExhibitionOfMemories.Settings.Xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
     </AutoSplitter>
     <AutoSplitter>    
         <Games>
@@ -765,7 +799,7 @@
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.Scorn/main/Scorn.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and Load Remover made by Meta and Nikoheart</Description>
+        <Description>Autosplitter and Load Remover made by Meta &amp; Nikoheart</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -948,7 +982,7 @@
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.SaintsRow2022/main/SaintsRow2022.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover and Autosplitter by Meta, hoxi, Vlad2D and xsoapbubble</Description>
+        <Description>Load Remover and Autosplitter by Meta, hoxi, Vlad2D &amp; xsoapbubble</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -990,7 +1024,7 @@
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.TurnipBoy/main/TurnipBoy.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>In-Game Time Tracker and Autosplitter by Meta and SabulineHorizon</Description>
+        <Description>In-Game Time Tracker and Autosplitter by Meta &amp; SabulineHorizon</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1670,7 +1704,7 @@
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.ShadowWarrior3/main/ShadowWarrior3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter and Load Remover made by Meta</Description>
+        <Description>Autosplitter &amp; Load Remover made by Meta</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2083,7 +2117,7 @@
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.APlagueTaleInnocence/main/APlagueTaleInnocence.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>A Plague Tale ASL with functionality for load removal and autostart (by Meta, Kuno Demetries)</Description>
+        <Description>A Plague Tale ASL with functionality for load removal and autostart (by Meta &amp; Kuno Demetries)</Description>
         <Website>https://discord.gg/ANz4Ue4</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -2149,7 +2183,7 @@
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.DaysGone/main/DaysGone.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Days Gone load remover and autosplitter (by Meta)</Description>
+        <Description>Days Gone load remover &amp; autosplitter (by Meta)</Description>
         <Website>https://discord.gg/dYnQ5BH</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -6867,10 +6901,11 @@
             <Game>REmake 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/cursedtoast/re2-remake-autosplitter/master/re2.asl</URL>
+            <URL>https://raw.githubusercontent.com/VideoGameRoulette/re2-remake-autosplitter/main/re2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast)</Description>
+        <Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast &amp; VideoGameRoulette)</Description>
+	<Website>https://github.com/VideoGameRoulette/re2-remake-autosplitter/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6894,10 +6929,10 @@
             <Game>R3make</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/cursedtoast/re3-remake-autosplitter/master/re3.asl</URL>
+            <URL>https://raw.githubusercontent.com/VideoGameRoulette/re3-remake-autosplitter/main/re3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and IGT available. Compare against Game Time. (By CursedToast)</Description>
+        <Description>Auto Splitting and IGT available. Compare against Game Time. (By CursedToast &amp; VideoGameRoulette)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8069,10 +8104,10 @@
             <Game>Quantum Conundrum</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/blairmadison11/QuantumConundrumAutosplitter/master/QuantumConundrum.asl</URL>
+            <URL>https://raw.githubusercontent.com/Tesfallout/QuantumConundrumAutosplitter/main/QuantumConundrum.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting and Load Removal is available. (by blairmadison11)</Description>
+        <Description>Autostart, Autosplitting, and Load Removal are available. (by Tesfallout)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12318,6 +12353,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Jurassic Park (SNES)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Halderim/autosplitter/main/LiveSplit.JurassicParkSNES.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description> Autosplitting, timer start and reset timer available (by Halderim)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Jurassic Park: Trespasser</Game>
             <Game>Trespasser</Game>
             <Game>Trespasser: Jurassic Park</Game>
@@ -15773,6 +15818,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TheDementedSalad/Dying-Light-2-Load-Remover/main/Dying%20Light%202%20Load%20Remover.asl</URL>
+	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Removes load times from loading screens, main menu and pausing on single player - (by TheDementedSalad)</Description>
@@ -17787,6 +17833,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/zoton2/LiveSplit.Scripts/master/Release/LiveSplit.IAmJesusChrist.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal is available for Prologue (by zoton2)</Description>
@@ -18128,5 +18175,38 @@
         <ScriptType>AutoSplittingRuntime</ScriptType>
         <Description>Auto Splitting and Game Time are available (by SuperFamicom)</Description>
         <Website>https://github.com/Eein/live-a-live-autosplitter-wasm</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>One Piece: Pirate Warriors 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/OPPW3-Autosplitter/main/One%20Piece%20Pirate%20Warriors%203.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and IGT timer available. (By TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Elder Scrolls Adventures: Redguard</Game>
+            <Game>TESARedguard</Game>
+            <Game>Redguard</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/TESA-Redguard-Autosplitter/main/Elder%20Scrolls%20Redguard.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset/loads (By SabulineHorizon and TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Lone Fungus</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Dregu/LiveSplit-LoneFungus/master/LiveSplit-LoneFungus.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset and IGT (by Dregu)</Description>
+	<Website>https://github.com/Dregu/LiveSplit-LoneFungus</Website>
     </AutoSplitter>
 </AutoSplitters>
