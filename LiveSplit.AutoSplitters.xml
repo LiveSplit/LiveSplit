@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+    <AutoSplitter>    
+        <Games>
+            <Game>Amanda The Adventurer</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/NERS1111/LiveSplit.AutoSplitters/autosplitters/Unity.AmandaTheAdventurerFULLGAME.asl</URL>
+	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start, split and timer pause between endings supported for the full game. (By NERS)</Description>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Redfall</Game>
@@ -2559,6 +2570,17 @@
         <Type>Script</Type>
         <Description>Autosplitter for Duck Life 1 (By Caarda) - Only works on flash player v32.0.0.114</Description>
         <Website>https://www.speedrun.com/dl1</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Duck Life 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Caarda/dl2/main/dl2autosplitterv1.0.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Duck Life 2 (By Caarda) - Only works on flash player v32.0.0.114</Description>
+        <Website>https://www.speedrun.com/dl2</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6901,11 +6923,11 @@
             <Game>REmake 2</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/VideoGameRoulette/re2-remake-autosplitter/main/re2.asl</URL>
+            <URL>https://raw.githubusercontent.com/VideoGameRoulette/re2-remake-autosplitter/master/re2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast &amp; VideoGameRoulette)</Description>
-	<Website>https://github.com/VideoGameRoulette/re2-remake-autosplitter/blob/main/README.md</Website>
+        <Description>Auto Splitting and Load Removal available. Compare against Game Time. (By CursedToast and VideoGameRoulette)</Description>
+        <Website>https://github.com/VideoGameRoulette/re2-remake-autosplitter/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -6929,10 +6951,11 @@
             <Game>R3make</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/VideoGameRoulette/re3-remake-autosplitter/main/re3.asl</URL>
+            <URL>https://raw.githubusercontent.com/VideoGameRoulette/re3-remake-autosplitter/master/re3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and IGT available. Compare against Game Time. (By CursedToast &amp; VideoGameRoulette)</Description>
+        <Description>Auto Splitting and IGT available. Compare against Game Time. (By CursedToast and VideoGameRoulette)</Description>
+        <Website>https://github.com/VideoGameRoulette/re3-remake-autosplitter/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -8818,11 +8841,12 @@
             <Game>S3AIR - D.A. Garden Edition</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.Sonic3AIR/main/LiveSplit.Sonic3AIR.asl</URL>
+            <URL>https://github.com/SonicSpeedrunning/LiveSplit.Sonic3AIR_wasm/releases/download/latest/livesplit_sonic3air.wasm</URL>
         </URLs>
         <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
         <Description>Sonic 3 AIR dedicated autosplitter (by Jujstme and BenInSweden)</Description>
-        <Website>https://github.com/SonicSpeedrunning/LiveSplit.Sonic3AIR</Website>
+        <Website>https://github.com/SonicSpeedrunning/LiveSplit.Sonic3AIR_wasm</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17415,6 +17439,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Shadow Tactics: Blades of the Shogun</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/smorrrs/Shadow-Tactics-Resources/main/shadow_tactics.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start, split, and load removal by smorrs</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Desperados III</Game>
         </Games>
         <URLs>
@@ -18208,5 +18242,37 @@
         <Type>Script</Type>
         <Description>Auto start/split/reset and IGT (by Dregu)</Description>
 	<Website>https://github.com/Dregu/LiveSplit-LoneFungus</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>SUPERHOT</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Dzoiver/SH-Autosplitter/main/SHauto.asl</URL>
+	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split (By Seifer)</Description>
+	<Website>https://github.com/Dzoiver/SH-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Impossible Quiz Demo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/saturnaliam/TiQ-Demo-Autosplitter/main/TiQ_Demo_Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By Lucia)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>ObsCure</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/OwlLukas/Components/main/ObsCure%20(2004)%20AutoSplitter/ObsCure.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By OwlLukas)</Description>
     </AutoSplitter>
 </AutoSplitters>
