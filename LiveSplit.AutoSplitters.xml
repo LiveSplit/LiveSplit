@@ -2,6 +2,16 @@
 <AutoSplitters>
     <AutoSplitter>    
         <Games>
+            <Game>Scars Above</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Scars%20Above/scarsabove.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
             <Game>Amanda The Adventurer</Game>
         </Games>
         <URLs>
@@ -3978,6 +3988,7 @@
         <Games>
             <Game>Left 4 Dead 2</Game>
             <Game>Left 4 Dead 2 Category Extensions</Game>
+	    <Game>Left 4 Dead 2 Custom Campaigns</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/SirWillian/Autosplitters/master/L4D2/L4D2.asl</URL>
@@ -18138,7 +18149,7 @@
             <URL>https://raw.githubusercontent.com/Gyoshi/LaraCroftGO-Autosplitter/master/LaraCroftGO.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto start/split/stop (by Gyoshi)</Description>
+        <Description>Auto split/stop (by Gyoshi)</Description>
         <Website>https://github.com/Gyoshi/PhoA-AutoSplitter</Website>
     </AutoSplitter>
         <AutoSplitter>
@@ -18274,5 +18285,57 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter is available. (By OwlLukas)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Kubinashi Recollection</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kamikaza404/Kubinashi-Recollection-AutoSplitter/master/kubinashi.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By Kamikaza404)</Description>
+	      <Website>https://github.com/Kamikaza404/Kubinashi-Recollection-AutoSplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Bramble: The Mountain King</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheNebiros/bramble_autosplitter_load_remover/main/bramble_autosplitter_load_remover_v6.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Bramble Autosplitter/Load Removal (By Dating_tv &amp; TheNebiros)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Neon Beats</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/saiarcot895/livesplit-neon-beats/master/Livesplit.NeonBeats.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By saiarcot895)</Description>
+        <Website>https://github.com/saiarcot895/livesplit-neon-beats</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Rusted Moss</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/RustedMoss.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and split on credits (by rythin)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+	    <Game>Feeding Frenzy</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/Xh3o1vn/FeedingFrenzy_Autosplitter/main/Feeding%20Frenzy.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>AutoSplitter for Feeding Frenzy (by Xh3o1vn)</Description>
     </AutoSplitter>
 </AutoSplitters>
