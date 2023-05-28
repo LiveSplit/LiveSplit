@@ -2,6 +2,17 @@
 <AutoSplitters>
     <AutoSplitter>    
         <Games>
+            <Game>Gang Beasts</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Gang%20Beasts/gangbeasts.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split and IGT available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
             <Game>Scars Above</Game>
         </Games>
         <URLs>
@@ -9,6 +20,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>The Outlast Trials</Game>
+	    <Game>Outlast Trials</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/OutlastTrials.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter and Load Remover (By KunoDemetries)</Description>
     </AutoSplitter>
     <AutoSplitter>    
         <Games>
@@ -6303,6 +6325,17 @@
         <Type>Script</Type>
         <Description>Load Removal and autosplitting is available for rM:ME. (By Gelly)</Description>
         <Website>https://github.com/Gelly/autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Myst (2020)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/piepenguin/myst2020-asl/main/myst.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/stop and load removal are available. (By piepenguin)</Description>
+        <Website>https://github.com/piepenguin/myst2020-asl</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -13817,7 +13850,7 @@
             <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/TCS-Autosplitter.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting is available. (By Zac &amp; P53.)</Description>
+        <Description>Auto Splitting is available. (By Zac, P53, eroadhouse)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16783,6 +16816,20 @@
         <Description>Load removal available (by Distro)</Description>
     </AutoSplitter>
     <AutoSplitter>
+	<Games>
+            <Game>Splinter Cell 4</Game>
+            <Game>Splinter Cell: Double Agent</Game>
+            <Game>Splinter Cell Double Agent</Game>
+            <Game>Tom Clancy's Splinter Cell: Double Agent</Game>
+            <Game>Tom Clancy's Splinter Cell Double Agent</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/Marius150PL/SCDA-AutoSplitter/main/SCDA-AutoSplitter.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Autostart/split (remembers visited levels until reset) and load removal (by Marius150PL &amp; Distro)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
         <Games>
             <Game>Splinter Cell 6</Game>
             <Game>Splinter Cell: Blacklist</Game>
@@ -18063,6 +18110,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/SplasBoi/Bamseochsjorovarskatten-Autosplitter/main/bamse-och-sjorovarskatten.asl</URL>
+	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/stop and load remover</Description>
@@ -18333,9 +18381,42 @@
 	    <Game>Feeding Frenzy</Game>
 	</Games>
 	<URLs>
-	    <URL>https://raw.githubusercontent.com/Xh3o1vn/FeedingFrenzy_Autosplitter/main/Feeding%20Frenzy.asl</URL>
+	    <URL>https://raw.githubusercontent.com/Xh3o1vn/FeedingFrenzy_Autosplitter/main/FeedingFrenzy.asl</URL>
 	</URLs>
 	<Type>Script</Type>
-	<Description>AutoSplitter for Feeding Frenzy (by Xh3o1vn)</Description>
+	<Description>AutoSplitter for Feeding Frenzy (By Xh3o1vn and plAer2)</Description>
+	<Website>https://github.com/Xh3o1vn/FeedingFrenzy_Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+	    <Game>Feeding Frenzy 2: Shipwreck Showdown</Game>
+	    <Game>Feeding Frenzy 2</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/Xh3o1vn/FeedingFrenzy2_Autosplitter/main/FeedingFrenzy2.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>AutoSplitter for Feeding Frenzy 2 (By Xh3o1vn and plAer2)</Description>
+	<Website>https://github.com/Xh3o1vn/FeedingFrenzy2_Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+	    <Game>Transformers: War for Cybertron</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/WilllTreaty/TF-Autosplitters/main/Livesplit.TWFC.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Autosplitter and Loadless timer made by WillTreaty and KC</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+	    <Game>Transformers: Fall of Cybertron</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/WilllTreaty/TF-Autosplitters/main/Livesplit.TFOC.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Autosplitter and Loadless timer made by WillTreaty</Description>
     </AutoSplitter>
 </AutoSplitters>
