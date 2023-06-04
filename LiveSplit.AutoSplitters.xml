@@ -2,6 +2,80 @@
 <AutoSplitters>
     <AutoSplitter>    
         <Games>
+        	<Game>My Friend Peppa Pig</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.MyFriendPeppaPig.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and Load Remover by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+        	<Game>Hearthstone</Game>
+		<Game>Curse of Naxxramas</Game>
+		<Game>Blackrock Mountain</Game>
+		<Game>The League of Explorers</Game>
+		<Game>One Night in Karazhan</Game>
+		<Game>Knights of the Frozen Throne</Game>
+		<Game>Kobolds &amp; Catacombs</Game>
+		<Game>The Witchwood</Game>
+		<Game>The Boomsday Project</Game>
+		<Game>Rastakhan's Rumble</Game>
+		<Game>The Dalaran Heist</Game>
+		<Game>Tombs of Terror</Game>
+		<Game>Galakrond's Awakening</Game>
+		<Game>Ashes of Outland</Game>
+		<Game>Book of Heroes</Game>
+		<Game>Book of Mercenaries</Game>
+		<Game>Hearthstone Mercenaries</Game>
+		<Game>March of the Lich King</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.Hearthstone.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover by Streetbackguy</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+	<Games>
+            <Game>MK4</Game>
+            <Game>Mortal Kombat 4</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/Marius150PL/MK4-AutoSplitter/main/MK4-AutoSplitter.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Autostart/split/reset for PC version to 1 on 1 Kombat (by Marius150PL)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Poly Bridge 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Poly%20Bridge%203/polybridge3.asl</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Poly%20Bridge%203/PolyBridge3.Settings.xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Poly Bridge</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Poly%20Bridge/polybridge.asl</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Poly%20Bridge/PolyBridge.Settings.xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
             <Game>Gang Beasts</Game>
         </Games>
         <URLs>
@@ -14385,6 +14459,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Warhammer 40,000 BOLTGUN</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/HUECTRUM/boltgun_asl/main/boltgun.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Main timing method is IGT + time between save/loads.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Raji: An Ancient Epic</Game>
         </Games>
         <URLs>
@@ -17277,6 +17361,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>LiveSplit connection for Gothic 1/2 Timer mod available</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Gothic 3</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/marczeslaw11/LoadRemovers/master/Gothic3_loadremover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover available (by marczeslaw11)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
