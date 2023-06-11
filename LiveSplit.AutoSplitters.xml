@@ -2,6 +2,26 @@
 <AutoSplitters>
     <AutoSplitter>    
         <Games>
+            <Game>Porter</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/porter-asl/master/porter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset and IGT supported. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Nomad</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/samjones246/nomad-asl/master/nomad.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split supported. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
         	<Game>My Friend Peppa Pig</Game>
         </Games>
         <URLs>
@@ -3484,11 +3504,11 @@
             <Game>Turok: Dinosaur Hunter</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Glurmo/LiveSplit.ASL.Turok/master/turok.asl</URL>
+            <URL>https://raw.githubusercontent.com/Mibz/LiveSplit.ASL.Turok/main/turok.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Start, Auto Reset, Configurable Auto Splitting (by glurmo).</Description>
-        <Website>https://github.com/Glurmo/LiveSplit.ASL.Turok</Website>
+        <Description>Auto-start/split/reset. Known and custom route support. Randomizer support.</Description>
+        <Website>https://github.com/Mibz/LiveSplit.ASL.Turok</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4721,6 +4741,17 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/PrototypeAlpha/AmnesiaASL/master/AmnesiaRebirth.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Automatic Start/Split/Reset are available. (By Sychotix and PrototypeAlpha)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Amnesia: The Bunker</Game>
+            <Game>Amnesia Bunker</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/PrototypeAlpha/AmnesiaASL/master/AmnesiaBunker.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal and Automatic Start/Split/Reset are available. (By Sychotix and PrototypeAlpha)</Description>
