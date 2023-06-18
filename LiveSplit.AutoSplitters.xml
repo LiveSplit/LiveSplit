@@ -2,6 +2,16 @@
 <AutoSplitters>
     <AutoSplitter>    
         <Games>
+            <Game>Bionic Commando (2009)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/Livesplit.BionicCommando.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and Load Remover by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
             <Game>Porter</Game>
         </Games>
         <URLs>
@@ -131,7 +141,7 @@
             <Game>Amanda The Adventurer</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/NERS1111/LiveSplit.AutoSplitters/autosplitters/Unity.AmandaTheAdventurerFULLGAME.asl</URL>
+            <URL>https://raw.githubusercontent.com/NERS1111/Autosplitter.Projects/main/Unity.AmandaTheAdventurerFULLGAME.asl</URL>
 	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
@@ -370,7 +380,7 @@
             <Game>Boson X</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/NERS1111/LiveSplit.AutoSplitters/autosplitters/Lotech.BosonX.asl</URL>
+            <URL>https://raw.githubusercontent.com/NERS1111/Autosplitter.Projects/main/Lotech.BosonX.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto start and split supported. (By NERS)</Description>
@@ -18087,7 +18097,7 @@
             <URL>https://raw.githubusercontent.com/JavierMarcosFer/autosplitters/main/PizzaTowerAny%25.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Start and split available (by XBC30EP450)</Description>
+        <Description>Start, split and reset available (by XBC30EP450 and SunglassesEmoji)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
