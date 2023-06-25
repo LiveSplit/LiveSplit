@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+   <AutoSplitter>    
+        <Games>
+            <Game>Fractured Minds</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Shaniquaniminiquani/Fractured-Minds.asl/main/Fractured%20Minds%20AutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>AutoStart/Split/End aswell as Load Remover intended for the Amazon Prime version of the game. (By JayC_)</Description>
+    </AutoSplitter>
     <AutoSplitter>    
         <Games>
             <Game>Bionic Commando (2009)</Game>
@@ -9,6 +19,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autostart and Load Remover by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+	<Games>
+            <Game>Spider-Man: Shattered Dimensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mattmatt10111/asl-scripts/master/SpiderManShatteredDimensions.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal by Mattmatt</Description>
     </AutoSplitter>
     <AutoSplitter>    
         <Games>
@@ -2202,17 +2222,7 @@
     <AutoSplitter>
         <Games>
             <Game>Deltarune</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/release/Deltarune.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Works for SURVEY, 1.08-1.10 and 1.15 (by Tenebrosful, NERS, Narry)</Description>
-        <Website>https://github.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Deltarune Category Extensions</Game>
+	    <Game>Deltarune Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Tenebrosful/DELTARUNE-Livesplit.Autosplitter/release/Deltarune.asl</URL>
@@ -5898,6 +5908,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Age of Empires II: Definitive Edition</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/lotsofs/livesplit-asl/master/AoE2DE.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Game Timer available. (By LotsOfS)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Crysis 2</Game>
         </Games>
         <URLs>
@@ -7174,7 +7194,7 @@
             <URL>https://raw.githubusercontent.com/lotsofs/livesplit-asl/master/serioussam2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By S.)</Description>
+        <Description>Load Removal is available. (By LotsOfS)</Description>
         <Website>https://github.com/lotsofs/livesplit-asl/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -7185,7 +7205,7 @@
             <URL>https://raw.githubusercontent.com/lotsofs/livesplit-asl/master/farcry2.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available (By S.)</Description>
+        <Description>Load Removal is available (By LotsOfS)</Description>
         <Website>https://github.com/lotsofs/livesplit-asl/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -18553,5 +18573,40 @@
 	</URLs>
 	<Type>Script</Type>
 	<Description>Autosplitter and Loadless timer made by WillTreaty</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>The Karters 2: Turbo Charged</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/PixelEdgeGames/TheKarters2_AutoSplitter/main/TheKarters2.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Basic AutoSplitter with Start/Pause timer during race. Ensure LiveSplit Compare Against is set to: Game Time</Description>
+        <Website>https://github.com/JakeRabinowitz/PogoChampAutosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Only Up!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Edgarflc/autosplitter_only_up/main/OnlyUp!.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter with Start, Reset and configurable Splits (by traumvogel, t0mz3r, NeKRooZz and wRadion)</Description>
+        <Website>https://github.com/Edgarflc/autosplitter_only_up</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Oblivion Override</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/CptBrian/Autosplitters/master/OblivionOverride.asl</URL>
+	    <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Oblivion Override (PC) Autosplitter (By CptBrian and Ero)</Description>
+        <Website>https://www.speedrun.com/oblivion_override</Website>
     </AutoSplitter>
 </AutoSplitters>
