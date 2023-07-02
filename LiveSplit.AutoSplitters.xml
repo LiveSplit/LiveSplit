@@ -1,5 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+    <AutoSplitter>
+        <Games>
+            <Game>null.</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/samjones246/null-asl/releases/latest/download/null_asl.wasm</URL>
+        </URLs>
+        <Type>Script</Type>
+	<ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Auto start/split/reset and IGT supported. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>En Garde! (Demo)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.EnGardeDemo/main/EnGarde.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal is available. (By Meta)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Hitman 3 Freelancer</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Hitman%203/hitman3.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Janitor Bleeds</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Janitor%20Bleeds/janitorbleeds.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Sniper Killer</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Sniper%20Killer/sniperkillerdemo.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available (Demo Only). (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Echo Point Nova (Demo)</Game>
+            <Game>Echo Point Nova</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Echo%20Point%20Nova/echopointnovademo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Dead From Beyond</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Dead%20From%20Beyond/deadfrombeyond.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Trepang2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.Trepang2/main/Trepang2.asl</URL>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.Trepang2/main/Trepang2.Settings.xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Contains functionality for autostart, autosplit, and load removal (By Meta &amp; diggity)</Description>
+   </AutoSplitter>
    <AutoSplitter>    
         <Games>
             <Game>Fractured Minds</Game>
@@ -199,6 +286,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split and load removal available. (By CaptainRektbeard)</Description>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>The Building 71 Incident</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/The%20Building%2071%20Incident/building71.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
     </AutoSplitter>
     <AutoSplitter>    
         <Games>
