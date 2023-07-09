@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AutoSplitters>
+	<AutoSplitter>
+        <Games>
+            <Game>Moose Lost in the Woods</Game>
+            <Game>MLitW</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Biksell/asl/main/Moose%20Lost%20in%20the%20Woods/MLitW.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By Biksel)</Description>
+        <Website>https://github.com/Biksell/asl/blob/main/Moose%20Lost%20in%20the%20Woods/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Strike Force Heroes Remake</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Biksell/asl/main/Strike%20Force%20Heroes%20Remake/SFHRemake.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (By Biksel)</Description>
+        <Website>https://github.com/Biksell/asl/blob/main/Strike%20Force%20Heroes%20Remake/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>    
+        <Games>
+            <Game>Duck Simulator 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/sandwichmanlovertm/ALS/main/Duck%20Simulator%202.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>start and splitting. for the 3 routes and 4 chapters... no resetting</Description>
+    	</AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>DMZ: North Korea</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Biksell/asl/main/DMZ%20North%20Korea/DMZNorthKorea.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load removal is available. (By Biksel)</Description>
+        <Website>https://github.com/Biksell/asl/blob/main/DMZ%20North%20Korea/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Raw Nerve</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Biksell/asl/main/Raw%20Nerve/RawNerve.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and IGT is available. (By Biksel)</Description>
+        <Website>https://github.com/Biksell/asl/blob/main/Raw%20Nerve/README.md</Website>
+    </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>null.</Game>
@@ -19,7 +78,7 @@
             <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.EnGardeDemo/main/EnGarde.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load removal is available. (By Meta)</Description>
+        <Description>Autosplitting and Load removal is available. (By Biksel, Meta)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -4714,11 +4773,11 @@
             <Game>Lego Batman: The Videogame</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/drtchops/asl/master/legobatman.asl</URL>
+            <URL>https://raw.githubusercontent.com/Biksell/asl/main/LEGO%20Batman/LEGOBatman.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By DrTChops)</Description>
-        <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+        <Description>Autosplitting and Load removal is available. (By Siedemnastek &amp; Biksel)</Description>
+        <Website>https://github.com/Biksell/asl/blob/main/LEGO%20Batman/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14912,10 +14971,10 @@
             <Game>LEGO Indiana Jones: The Original Adventures</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/melodyfast/LEGO-Autosplitters/main/LIJ-Autosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/Siedemnastek/Autosplitter/main/LIJ1.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting is available. (By Elle)</Description>
+        <Description>Autosplitting is available. (By Siedemnastek)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -18706,5 +18765,52 @@
         <Type>Script</Type>
         <Description>Oblivion Override (PC) Autosplitter (By CptBrian and Ero)</Description>
         <Website>https://www.speedrun.com/oblivion_override</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+	<Games>
+	    <Game>Planet of Lana</Game>
+	</Games>
+	<URLs>
+	    <URL>https://raw.githubusercontent.com/PietHelzel/Planet-of-Lana-Autosplitter/main/Planet%20of%20Lana.asl</URL>
+	</URLs>
+	<Type>Script</Type>
+	<Description>Planet of Lana Autosplitter and Load Remover (by Penta)</Description>
+	<Website>https://www.speedrun.com/planet_of_lana</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>NEO: The World Ends With You</Game>
+            <Game>neotwewy</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheTedder/LiveSplit.NEOTWEWY/v1.0.0/neotwewy.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+	<Type>Script</Type>
+	<Description>NEO: The World Ends With You Autosplitter and Load Remover (by Tedder)</Description>
+	<Website>https://www.speedrun.com/neotwewy</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ys IX: Monstrum Nox</Game>
+        </Games>
+        <URLs>
+            <URL>https://gist.githubusercontent.com/JaddoSRL/e59dc11fb7d32a0e821859374d1631d6/raw/Ys%25209%2520Load%2520Remover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover for Ys IX: Monstrum Nox (by Jaddo)</Description>
+        <Website>https://gist.github.com/JaddoSRL/e59dc11fb7d32a0e821859374d1631d6</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Pillars Of Light</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mbourlet/pillarsOfLight-asl/main/pillarsOfLight.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and load remover for Pillars Of Light (by Narom42)</Description>
+        <Website>https://github.com/mbourlet/pillarsOfLight-asl</Website>
     </AutoSplitter>
 </AutoSplitters>
