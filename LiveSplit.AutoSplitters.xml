@@ -2,6 +2,39 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Lust From Beyond - Scarlet</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Lust%20From%20Beyond%20-%20Scarlet/lustfrombeyondscarlet.asl</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Lust%20From%20Beyond%20-%20Scarlet/LFBScarlet.Settings.xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Viva Piñata</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.VivaPinata.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, Load Removal and Autosplit by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Spacky's Nightshift</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Vaqquixx8/autosplitters/main/spacky.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Removal and Autosplit is available (by vaqquixx8)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Stairway to Heaven's Gate</Game>
         </Games>
         <URLs>
@@ -22,7 +55,7 @@
         <Description>Autosplitter is available. (By Biksel)</Description>
         <Website>https://github.com/Biksell/asl/blob/main/LEGO%20Alpha%20Team/README.md</Website>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>DREDGE</Game>
         </Games>
@@ -58,7 +91,7 @@
         <Description>Autosplitter is available. (By Biksel)</Description>
         <Website>https://github.com/Biksell/asl/blob/main/Strike%20Force%20Heroes%20Remake/README.md</Website>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Duck Simulator 2</Game>
         </Games>
@@ -134,7 +167,7 @@
         <Type>Script</Type>
         <Description>Load removal is available. (By diggity)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Sniper Killer</Game>
         </Games>
@@ -156,7 +189,7 @@
         <Type>Script</Type>
         <Description>Autosplitting is available. (By diggity)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Dead From Beyond</Game>
         </Games>
@@ -167,7 +200,7 @@
         <Type>Script</Type>
         <Description>Auto start/split is available. (By diggity)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Trepang2</Game>
         </Games>
@@ -179,7 +212,7 @@
         <Type>Script</Type>
         <Description>Contains functionality for autostart, autosplit, and load removal (By Meta &amp; diggity)</Description>
    </AutoSplitter>
-   <AutoSplitter>    
+   <AutoSplitter>
         <Games>
             <Game>Fractured Minds</Game>
         </Games>
@@ -189,7 +222,7 @@
         <Type>Script</Type>
         <Description>AutoStart/Split/End aswell as Load Remover intended for the Amazon Prime version of the game. (By JayC_)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Bionic Commando (2009)</Game>
         </Games>
@@ -199,7 +232,7 @@
         <Type>Script</Type>
         <Description>Autostart and Load Remover by Streetbackguy</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
 	<Games>
             <Game>Spider-Man: Shattered Dimensions</Game>
         </Games>
@@ -209,7 +242,7 @@
         <Type>Script</Type>
         <Description>Autosplitting and Load Removal by Mattmatt</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Porter</Game>
         </Games>
@@ -219,7 +252,7 @@
         <Type>Script</Type>
         <Description>Auto start/split/reset and IGT supported. (By CaptainRektbeard)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Nomad</Game>
         </Games>
@@ -229,7 +262,7 @@
         <Type>Script</Type>
         <Description>Auto start/split supported. (By CaptainRektbeard)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
         	<Game>My Friend Peppa Pig</Game>
         </Games>
@@ -240,7 +273,7 @@
         <Type>Script</Type>
         <Description>Autostart and Load Remover by Streetbackguy</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
         	<Game>Hearthstone</Game>
 		<Game>Curse of Naxxramas</Game>
@@ -279,7 +312,7 @@
 	<Type>Script</Type>
 	<Description>Autostart/split/reset for PC version to 1 on 1 Kombat (by Marius150PL)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Poly Bridge 3</Game>
         </Games>
@@ -291,7 +324,7 @@
         <Type>Script</Type>
         <Description>Auto start/split is available. (By diggity)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Poly Bridge</Game>
         </Games>
@@ -303,7 +336,7 @@
         <Type>Script</Type>
         <Description>Auto start/split is available. (By diggity)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Gang Beasts</Game>
         </Games>
@@ -314,7 +347,7 @@
         <Type>Script</Type>
         <Description>Auto start/split and IGT available. (By diggity)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Scars Above</Game>
         </Games>
@@ -324,7 +357,7 @@
         <Type>Script</Type>
         <Description>Load removal is available. (By diggity)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>The Outlast Trials</Game>
 	    <Game>Outlast Trials</Game>
@@ -335,7 +368,7 @@
         <Type>Script</Type>
         <Description>Auto Splitter and Load Remover (By KunoDemetries)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Amanda The Adventurer</Game>
         </Games>
@@ -357,7 +390,7 @@
         <ScriptType>AutoSplittingRuntime</ScriptType>
         <Description>Load remover (by Jujstme)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>MEATGRINDER</Game>
         </Games>
@@ -368,7 +401,7 @@
         <Type>Script</Type>
         <Description>Load removal available. (By diggity &amp; Meta)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Viewfinder</Game>
         </Games>
@@ -379,7 +412,7 @@
         <Type>Script</Type>
         <Description>Auto start/split and load removal available. (By CaptainRektbeard)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>The Building 71 Incident</Game>
         </Games>
@@ -390,7 +423,7 @@
         <Type>Script</Type>
         <Description>Autosplitting and load removal is available. (By diggity)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Exhibition of Memories</Game>
         </Games>
@@ -402,7 +435,7 @@
         <Type>Script</Type>
         <Description>Autosplitting and load removal is available. (By diggity)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Toppys Workshop</Game>
             <Game>Toppy's Workshop</Game>
@@ -444,7 +477,7 @@
         <Type>Script</Type>
         <Description>Auto start/split and load removal available. (By CaptainRektbeard)</Description>
     </AutoSplitter>
-    <AutoSplitter>    
+    <AutoSplitter>
         <Games>
             <Game>Rewind or Die</Game>
         </Games>
@@ -1369,7 +1402,7 @@
             <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.SouthParkStickOfTruth.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Remover, Autosplitter and Autostart/reset by streetbackguy</Description>
+        <Description>Load Remover and Autostart/reset by streetbackguy</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1506,7 +1539,7 @@
             <URL>https://raw.githubusercontent.com/KunoDemetries/AutoSplitter/master/DeadRising3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter (By Kuno Demetries, StreetBackGuy)</Description>
+        <Description>Autosplitter (By Kuno Demetries, Streetbackguy)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2571,9 +2604,9 @@
             <Game>Sonic Origins</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicOrigins/main/LiveSplit.SonicOrigins.asl</URL>
+            <URL>https://raw.githubusercontent.com/SonicSpeedrunning/LiveSplit.SonicOrigins/main/Components/LiveSplit.SonicOrigins.dll</URL>
         </URLs>
-        <Type>Script</Type>
+        <Type>Component</Type>
         <Description>Autosplitting and in-game timing with customizable options according to speedrun.com rulings (by Jujstme)</Description>
         <Website>https://github.com/SonicSpeedrunning/LiveSplit.SonicOrigins</Website>
     </AutoSplitter>
@@ -4782,6 +4815,7 @@
             <Game>Lego Batman</Game>
             <Game>Lego Batman The Videogame</Game>
             <Game>Lego Batman: The Videogame</Game>
+            <Game>Lego Batman: The Videogame Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Biksell/asl/main/LEGO%20Batman/LEGOBatman.asl</URL>
@@ -16899,6 +16933,20 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Shady Knight</Game>
+            <Game>Shady Knight Demo</Game>
+            <Game>Shady Knight Demos</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/just-ero/asl/raw/main/Shady%20Knight/ShadyKnight.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Only supports IL runs. Starts, resets automatically. Splits when finishing a level. (by Ero)</Description>
+        <Website>https://github.com/just-ero/asl/tree/main/Shady%20Knight</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Sonic Project '06</Game>
             <Game>Sonic Project 06</Game>
             <Game>Sonic P06</Game>
@@ -18874,7 +18922,7 @@
     <AutoSplitter>
         <Games>
             <Game>Kono Subarashii Sekai ni Syukufuku wo! Fukkatsu no Beldia</Game>
-            <Game>KonoSuba: Fukkatsu no Beldia</Game>   
+            <Game>KonoSuba: Fukkatsu no Beldia</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/kamil2050/ASL-scripts/main/KonoSuba%20Fukkatsu%20no%20Beldia%20load%20remover.asl</URL>
@@ -18884,7 +18932,7 @@
     </AutoSplitter>
            <AutoSplitter>
         <Games>
-            <Game>Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles</Game>  
+            <Game>Demon Slayer -Kimetsu no Yaiba- The Hinokami Chronicles</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/kamil2050/ASL-scripts/main/Demon%20Slayer%20load%20remover.asl</URL>
@@ -18894,7 +18942,7 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Plazma Burst 2</Game>  
+            <Game>Plazma Burst 2</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/XcapeEst/LiveSplit.PlazmaBurst2/main/plazmaburst2.asl</URL>
@@ -18912,5 +18960,48 @@
         <Type>Script</Type>
         <Description>Autosplitter is available. (By neon_uriel)</Description>
         <Website>https://github.com/neon-uriel/asl/blob/main/syobon_action/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Timberman</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Felicien2B/TimbermanASL/main/timberman.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Timberman Classic Mode. Different goals can be selected in the settings. (By Felicien2B and Jean20B)</Description>
+        <Website>https://www.speedrun.com/timberman</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>My Friendly Neighborhood</Game>
+            <Game>My Friendly Neighbourhood</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/My-Friendly-Neighborhood-Splitter/main/My%20Friendly%20Neighborhood.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Door Splitting available. Compare to IGT. (By TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Uwolnić Zozole</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/kamil2050/ASL-scripts/main/Uwolnić%20Zozole%20load%20remover.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover by kamil2050</Description>
+    </AutoSplitter>
+        <AutoSplitter>
+        <Games>
+            <Game>LEGO Indiana Jones 2: The Adventure Continues</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Siedemnastek/Autosplitter/main/LIJ2Final.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Removal Available (By Siedemnastek)</Description>
     </AutoSplitter>
 </AutoSplitters>
