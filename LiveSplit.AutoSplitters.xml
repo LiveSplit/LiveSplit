@@ -11550,20 +11550,20 @@
             <Game>Preflight Panic</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/makkebakke/Autosplitters/master/LiveSplit.PreflightPanic.asl</URL>
+            <URL>https://raw.githubusercontent.com/KinzyKenzie/Autosplitters/master/LiveSplit.PreflightPanic.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Start and Auto Split are available (by Archmagus &amp; Makkebakke)</Description>
+        <Description>Auto Start and Auto Split are available (by Archmagus &amp; KinzyKenzie)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Brütal Legend</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/makkebakke/Autosplitters/master/LiveSplit.BrutalLegend.asl</URL>
+            <URL>https://raw.githubusercontent.com/KinzyKenzie/Autosplitters/master/LiveSplit.BrutalLegend.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting available (by Makkebakke)</Description>
+        <Description>Auto Splitting available (by KinzyKenzie)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12275,7 +12275,7 @@
             <Game>RoboCop (2003)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/makkebakke/Autosplitters/master/LiveSplit.RoboCop2K3.asl</URL>
+            <URL>https://raw.githubusercontent.com/KinzyKenzie/Autosplitters/master/LiveSplit.RoboCop2K3.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto-splitting, start, and load removal are available.</Description>
@@ -18994,7 +18994,7 @@
         <Type>Script</Type>
         <Description>Load remover by kamil2050</Description>
     </AutoSplitter>
-        <AutoSplitter>
+	<AutoSplitter>
         <Games>
             <Game>LEGO Indiana Jones 2: The Adventure Continues</Game>
         </Games>
@@ -19003,5 +19003,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and Load Removal Available (By Siedemnastek)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Wholesome Slaughter</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/kenchie-sr/wholesome-slaughter-livesplit/main/LiveSplit.WholesomeSlaughter.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplit and Load Removal Available (By KinzyKenzie)</Description>
     </AutoSplitter>
 </AutoSplitters>
