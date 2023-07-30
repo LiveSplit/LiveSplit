@@ -2,7 +2,54 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Pogo3D</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Pogo3D/pogo3d.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sanguine Soul</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Sanguine%20Soul/sanguinesoul.asl</URL>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Sanguine%20Soul/SanguineSoul.Settings.xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Himno</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/aaw4421/himno-autosplitter/master/himno.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter is available. (by BlueCrystal)</Description>
+        <Website>https://github.com/aaw4421/himno-autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Ball Pit</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/The%20Ball%20Pit/theballpit.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Lust From Beyond - Scarlet</Game>
+            <Game>Lust From Beyond: Scarlet</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/mitchell-merry/autosplitters/main/Lust%20From%20Beyond%20-%20Scarlet/lustfrombeyondscarlet.asl</URL>
@@ -11550,20 +11597,20 @@
             <Game>Preflight Panic</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/makkebakke/Autosplitters/master/LiveSplit.PreflightPanic.asl</URL>
+            <URL>https://raw.githubusercontent.com/KinzyKenzie/Autosplitters/master/LiveSplit.PreflightPanic.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Start and Auto Split are available (by Archmagus &amp; Makkebakke)</Description>
+        <Description>Auto Start and Auto Split are available (by Archmagus &amp; KinzyKenzie)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Brütal Legend</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/makkebakke/Autosplitters/master/LiveSplit.BrutalLegend.asl</URL>
+            <URL>https://raw.githubusercontent.com/KinzyKenzie/Autosplitters/master/LiveSplit.BrutalLegend.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting available (by Makkebakke)</Description>
+        <Description>Auto Splitting available (by KinzyKenzie)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -12275,7 +12322,7 @@
             <Game>RoboCop (2003)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/makkebakke/Autosplitters/master/LiveSplit.RoboCop2K3.asl</URL>
+            <URL>https://raw.githubusercontent.com/KinzyKenzie/Autosplitters/master/LiveSplit.RoboCop2K3.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Auto-splitting, start, and load removal are available.</Description>
@@ -13651,6 +13698,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Automatic start, room triggers, gates, achievements, encounters and more. By Henpemaz and ICED</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+    <Games>
+        <Game>Rain World: Downpour</Game>
+    </Games>
+    <URLs>
+        <URL>https://raw.githubusercontent.com/rekadoodle/Rain-World-Autosplitter/main/main.asl</URL>
+    </URLs>
+    <Type>Script</Type>
+    <Description>WIP Autosplitter for Rain World 1.9 (Downpour) by rek</Description>
+    <Website>https://github.com/rekadoodle/Rain-World-Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -18979,6 +19037,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/TheDementedSalad/My-Friendly-Neighborhood-Splitter/main/My%20Friendly%20Neighborhood.asl</URL>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/My-Friendly-Neighborhood-Splitter/main/MFN.Settings.xml</URL>
             <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
@@ -19003,5 +19062,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter and Load Removal Available (By Siedemnastek)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>Wholesome Slaughter</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/kenchie-sr/wholesome-slaughter-livesplit/main/LiveSplit.WholesomeSlaughter.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplit and Load Removal Available (By KinzyKenzie)</Description>
     </AutoSplitter>
 </AutoSplitters>
