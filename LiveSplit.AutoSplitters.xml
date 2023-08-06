@@ -2,6 +2,69 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>The Masters Pupil Demo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ZeppelinGames/TheMastersPupilDemoAutoSplit/main/the-masters-pupil-demo.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, split and reset for The Masters Pupil Demo by Zeppelin</Description> 
+   </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>The Masters Pupil</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ZeppelinGames/TheMastersPupilAutoSplit/main/the-masters-pupil.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, split and reset for The Masters Pupil by Zeppelin</Description> 
+   </AutoSplitter>
+   <AutoSplitter>
+        <Games>
+            <Game>Wretched Depths</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/Livesplit.WretchedDepths.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and Load Removal by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Ratchet &amp; Clank: Rift Apart</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Syn34/Rift-Apart-Autosplitter/main/Riftsplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Riftsplitter by Jasper and Sin (Splitting/Load Removal)</Description> 
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Porkchop's Adventure</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/derric-young/Porkchop-s-Adventure-Autosplitter/main/porkchop1.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting Avalible with Toggleable Splits. by Derric</Description> 
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Bloodline</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/Livesplit.Bloodline.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart/split and Load Removal by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Pogo3D</Game>
         </Games>
         <URLs>
@@ -12082,6 +12145,17 @@
         <Description>Autosplitter by Mysterion352</Description>
         <Website>https://github.com/Mysterion06/GollumLOTR/blob/main/README.md</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Pseudoregalia</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mysterion06/PseudoregaliaSplitter/main/Pseudoregalia.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by Mysterion352</Description>
+        <Website>https://github.com/Mysterion06/PseudoregaliaSplitter/blob/main/README.md</Website>
+    </AutoSplitter>
     <!-- Auto splitters by Mysterion352 end -->
     <AutoSplitter>
         <Games>
@@ -18981,6 +19055,8 @@
         <Games>
             <Game>Kono Subarashii Sekai ni Syukufuku wo! Fukkatsu no Beldia</Game>
             <Game>KonoSuba: Fukkatsu no Beldia</Game>
+            <Game>Kono Subarashii Sekai ni Syukufuku wo! Fukkatsu no Beldia Category Extension</Game>
+            <Game>KonoSuba: Fukkatsu no Beldia Category Extension</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/kamil2050/ASL-scripts/main/KonoSuba%20Fukkatsu%20no%20Beldia%20load%20remover.asl</URL>
