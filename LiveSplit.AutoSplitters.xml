@@ -2,6 +2,29 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Nightcry</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.Nightcry.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, Autosplit and Load Removal by Streetbackguy</Description> 
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>What Lies Between</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/luna-dzx/LiveSplit-AutoSplitters/main/auto-wlb.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Website>https://www.speedrun.com/wlb</Website>
+        <Type>Script</Type>
+        <Description>Autostart, split and reset for What Lies Between</Description> 
+   </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Masters Pupil Demo</Game>
         </Games>
         <URLs>
@@ -4078,6 +4101,7 @@
     <AutoSplitter>
         <Games>
             <Game>Kao the Kangaroo</Game>
+            <Game>Kao the Kangaroo Category Extensions</Game>
             <Game>Kangurek Kao</Game>
         </Games>
         <URLs>
@@ -4139,13 +4163,22 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Aperture Tag</Game>
             <Game>Portal 2</Game>
-            <Game>Portal 2 Speedrun Mod</Game>
             <Game>Portal 2 Category Extensions</Game>
+            <Game>Portal 2 Speedrun Mod</Game>
             <Game>Portal Reloaded</Game>
             <Game>Portal Stories: Mel</Game>
+            <Game>Aperture Tag</Game>
             <Game>Thinking with Time Machine</Game>
+            <Game>Aperture Ireland</Game>
+            <Game>Designed For Danger</Game>
+            <Game>Welcome Back</Game>
+            <Game>Memories</Game>
+            <Game>Dilapidation</Game>
+            <Game>P1 Done P2</Game>
+            <Game>Mind Escape</Game>
+            <Game>Portal: Unity Reboot</Game>
+            <Game>Portal: After Hours</Game>
         </Games>
         <URLs>
             <URL>https://s.portal2.sr/asl</URL>
@@ -11913,7 +11946,7 @@
             <URL>https://raw.githubusercontent.com/Mysterion06/DMC4SE-Autosplitter/master/DMC4SE_Splitter_V1.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter with LRT by Mysterion352</Description>
+        <Description>Autosplitter with Loadremover by Mysterion352</Description>
         <Website>https://github.com/Mysterion06/DMC4SE-Autosplitter/blob/master/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -11962,7 +11995,7 @@
             <URL>https://raw.githubusercontent.com/Mysterion06/FFType0Splitter/main/FFType0_Splitter_Current.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter with LRT by Mysterion352</Description>
+        <Description>Autosplitter with Loadremover by Mysterion352</Description>
         <Website>https://github.com/Mysterion06/FFType0Splitter/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -11973,7 +12006,7 @@
             <URL>https://raw.githubusercontent.com/Mysterion06/FF7RSplitter/main/FF7R.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter with LRT by Mysterion352</Description>
+        <Description>Autosplitter with Loadremover by Mysterion352</Description>
         <Website>https://github.com/Mysterion06/FF7RSplitter/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -12142,7 +12175,7 @@
             <URL>https://raw.githubusercontent.com/Mysterion06/GollumLOTR/main/GollumSplitter</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitter by Mysterion352</Description>
+        <Description>Autosplitter with Loadremover by Mysterion352</Description>
         <Website>https://github.com/Mysterion06/GollumLOTR/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -12155,6 +12188,17 @@
         <Type>Script</Type>
         <Description>Autosplitter by Mysterion352</Description>
         <Website>https://github.com/Mysterion06/PseudoregaliaSplitter/blob/main/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Fatum Betula</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mysterion06/FatumBetulaSplitter/main/Fatum%20Betula.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter with Loadremover by Mysterion352</Description>
+        <Website>https://github.com/Mysterion06/FatumBetulaSplitter/blob/main/README.md</Website>
     </AutoSplitter>
     <!-- Auto splitters by Mysterion352 end -->
     <AutoSplitter>
@@ -19149,5 +19193,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Autosplit and Load Removal Available (By KinzyKenzie)</Description>
+    </AutoSplitter>
+	<AutoSplitter>
+        <Games>
+            <Game>AirBorne Troops: Countdown to D-Day</Game>
+            <Game>AirBorne Troops</Game>
+            <Game>ATC2DD</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LeonSReckon/ATC2DD-ASL/main/AirBorne%20Troops%20AutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset and Load Removal Available (By LeonSReckon)</Description>
     </AutoSplitter>
 </AutoSplitters>
