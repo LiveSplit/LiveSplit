@@ -2,6 +2,56 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Birdgut</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/shroomwastaken/BirdGutAutosplitter/master/BirdSplit2point0.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting available. Made by shroom and Zarza</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mafia III</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.MafiaIII/main/MafiaIII.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, Load Removal and AutoSplitter by Meta</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>En Garde!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.EnGarde/main/EnGarde.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, Load Removal and AutoSplitter by Meta</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Stacking</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.Stacking.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart/reset, Load Removal and AutoSplitter by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Dorfromantik</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Raqhael/Dorfromantik-Autosplitter/main/LiveSplit.Dorfromantik.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Point based AutoSplitter for Dorfromantik. Made by endunry</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>World of Horror</Game>
         </Games>
         <URLs>
@@ -4666,14 +4716,16 @@
     <AutoSplitter>
         <Games>
             <Game>Shrek 2</Game>
+            <Game>Shrek 2 PC</Game>
             <Game>Shrek 2 (PC)</Game>
+            <Game>Shrek 2: The Game</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Master-64/Shrek2-LiveSplit/master/Shrek2-LiveSplit/Components/Shrek2-LiveSplit.dll</URL>
+            <URL>https://raw.githubusercontent.com/Master-64/Shrek2-LiveSplit-ASL/main/Source/Shrek_2_PC.asl</URL>
         </URLs>
-        <Type>Component</Type>
-        <Description>Auto Splitting &amp; Load Removal is available. (By KevinJPetersen, Master_64 &amp; Dalet)</Description>
-        <Website>https://github.com/Master-64/Shrek2-LiveSplit/blob/master/README.md</Website>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal is available. (By Master_64)</Description>
+        <Website>https://github.com/Master-64/Shrek2-LiveSplit-ASL/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14844,10 +14896,10 @@
             <Game>Life Is Strange</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Firefox0/Life-Is-Strange/master/lis.asl</URL>
+            <URL>https://raw.githubusercontent.com/aranel616/autosplitters/main/Life%20Is%20Strange/LifeIsStrange.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>AutoSplitter for Life Is Strange. (By PuertoLobos)</Description>
+        <Description>Autosplitter for Life Is Strange. (By Aranel616)</Description>
         <Website>https://www.speedrun.com/life_is_strange</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -19270,5 +19322,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Start/Split/Reset and Load Removal and IGT track are all Available (By LeonSReckon)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Mondealy</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/nkrapivin/mondealy-asl/master/mondealy.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Official autosplitter, requires --livesplit launch parameter. Splits by chapters, has auto start, reset and gameTime</Description>
     </AutoSplitter>
 </AutoSplitters>
