@@ -1667,8 +1667,10 @@ namespace LiveSplit.View
         {
             var alwaysCancel = false;
             var pastResponses = new Dictionary<string, bool>();
+            var userWasPrompted = false;
             SumOfBest.CleanUpCallback callback = parameters =>
                 {
+                    userWasPrompted = true;
                     if (!alwaysCancel)
                     {
                         var formatter = new ShortTimeFormatter();
@@ -1702,7 +1704,16 @@ namespace LiveSplit.View
                 };
             SumOfBest.Clean(Run, callback);
             RaiseRunEdited();
-            MessageBox.Show(this, "Times cleaned!", "Times cleaned", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (!userWasPrompted)
+            {
+                MessageBox.Show(
+                    this,
+                    "No times to clean. There are no potentially invalid segment history elements in the Sum of Best.",
+                    "No times to clean",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+               );
+            }
         }
 
         private void ClickControl(object sender, EventArgs e)
