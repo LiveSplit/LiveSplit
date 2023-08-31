@@ -1650,6 +1650,7 @@ namespace LiveSplit.View
             Run.ClearHistory();
             Fix();
             RaiseRunEdited();
+            MessageBox.Show(this, "History cleared!", "History cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void clearTimesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1659,6 +1660,7 @@ namespace LiveSplit.View
             RebuildComparisonColumns();
             Fix();
             TimesModified();
+            MessageBox.Show(this, "Times cleared!", "Times cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1700,6 +1702,7 @@ namespace LiveSplit.View
                 };
             SumOfBest.Clean(Run, callback);
             RaiseRunEdited();
+            MessageBox.Show(this, "Times cleaned!", "Times cleaned", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void ClickControl(object sender, EventArgs e)
