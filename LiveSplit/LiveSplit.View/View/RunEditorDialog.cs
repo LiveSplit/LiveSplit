@@ -1650,6 +1650,7 @@ namespace LiveSplit.View
             Run.ClearHistory();
             Fix();
             RaiseRunEdited();
+            MessageBox.Show(this, "History cleared!", "History cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void clearTimesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1659,14 +1660,17 @@ namespace LiveSplit.View
             RebuildComparisonColumns();
             Fix();
             TimesModified();
+            MessageBox.Show(this, "Times cleared!", "Times cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var alwaysCancel = false;
             var pastResponses = new Dictionary<string, bool>();
+            var userWasPrompted = false;
             SumOfBest.CleanUpCallback callback = parameters =>
                 {
+                    userWasPrompted = true;
                     if (!alwaysCancel)
                     {
                         var formatter = new ShortTimeFormatter();
@@ -1700,6 +1704,16 @@ namespace LiveSplit.View
                 };
             SumOfBest.Clean(Run, callback);
             RaiseRunEdited();
+            if (!userWasPrompted)
+            {
+                MessageBox.Show(
+                    this,
+                    "No times to clean. There are no potentially invalid segment history elements in the Sum of Best.",
+                    "No times to clean",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information
+               );
+            }
         }
 
         private void ClickControl(object sender, EventArgs e)
