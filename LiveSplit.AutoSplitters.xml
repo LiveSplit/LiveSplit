@@ -2,6 +2,39 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Shantae and the Pirate's Curse</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/BanjoViper/AutoSplitters/main/Shantae%20and%20the%20Pirate's%20Curse/Shantae%20and%20the%20Pirate's%20Curse%20AutoSplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and autosplitting available for Steam and GOG versions. Customizable in settings. (By BanjoViper)</Description>
+        <Website>https://github.com/BanjoViper/AutoSplitters/blob/main/Shantae%20and%20the%20Pirate's%20Curse/README.md</Website>
+     </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>SPRAWL</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/Livesplit.SPRAWL/main/SPRAWL.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting, Autostart, and Load Removal are available (By Micrologist and Meta)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Gedonia</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/c0y0tl/asl/main/gedonia/gedonia.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal is available (By c0y0tl)</Description>
+        <Website>https://github.com/c0y0tl/asl/blob/main/gedonia/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Birdgut</Game>
         </Games>
         <URLs>
@@ -5090,22 +5123,22 @@
             <Game>Yakuza 0</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/drtchops/asl/master/yakuza0.asl</URL>
+            <URL>https://raw.githubusercontent.com/aposteriorist/PeachPit.LiveSplit/main/Yakuza0.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal is available. (By ToxicTT and DrTChops)</Description>
-        <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+        <Description>Auto-start/split/reset and load removal for Steam, Microsoft Store, and GOG. (By ToxicTT, DrTChops, and PlayingLikeAss)</Description>
+        <Website>https://github.com/aposteriorist/PeachPit.LiveSplit</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>Yakuza Kiwami</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/drtchops/asl/master/yakuza_kiwami.asl</URL>
+            <URL>https://raw.githubusercontent.com/aposteriorist/PeachPit.LiveSplit/main/YakuzaKiwami.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting and Load Removal is available. (By ToxicTT and DrTChops)</Description>
-        <Website>https://github.com/drtchops/asl/blob/master/README.md</Website>
+        <Description>Auto-start/split/reset and load removal for Steam, Microsoft Store, and GOG. (By ToxicTT, DrTChops, and PlayingLikeAss)</Description>
+        <Website>https://github.com/aposteriorist/PeachPit.LiveSplit</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14930,11 +14963,11 @@
             <Game>Akiba's Trip: Undead &amp; Undressed</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/C0Y0TL/asl/main/Akiba's%20Trip%20Undead%20%26%20Undressed/atuu.asl</URL>
+            <URL>https://raw.githubusercontent.com/c0y0tl/asl/main/akibas_trip_undead_and_undressed/akibas_trip_undead_and_undressed.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitter for Akiba's Trip: Undead &amp; Undressed (By C0Y0TL)</Description>
-        <Website>https://github.com/C0Y0TL/asl/blob/main/Akiba's%20Trip%20Undead%20%26%20Undressed/README.md</Website>
+        <Description>Auto Splitting is available (By c0y0tl)</Description>
+        <Website>https://github.com/c0y0tl/asl/blob/main/akibas_trip_undead_and_undressed/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -15402,7 +15435,7 @@
             <URL>https://raw.githubusercontent.com/Siedemnastek/Autosplitter/main/LIJ1.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting is available. (By Siedemnastek)</Description>
+        <Description>Autosplitting and Load Removal available. (By Siedemnastek and Tfresh)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -16676,6 +16709,8 @@
             <Game>Sekiro</Game>
             <Game>Sekiro: Shadows Die Twice</Game>
             <Game>Elden Ring</Game>
+            <Game>Armored Core 6</Game>
+            <Game>Armored Core VI: Fires of Rubicon</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/FrankvdStam/SoulSplitter/main/Components/SoulSplitter.dll</URL>
@@ -19332,5 +19367,15 @@
         </URLs>
         <Type>Script</Type>
         <Description>Official autosplitter, requires --livesplit launch parameter. Splits by chapters, has auto start, reset and gameTime</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Bomb Rush Cyberfunk</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Loomeh/BRCAutosplitter/main/BRC.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitting and Load Removal is available (By Auddy and Loomeh)</Description>
     </AutoSplitter>
 </AutoSplitters>
