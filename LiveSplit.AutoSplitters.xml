@@ -2,6 +2,70 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Legend of Kay</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/MashSRL/Legend-of-Kay-AutoSplitter/master/Legend%20Of%20Kay%20AutoSplit.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, Split, Reset and Load Remover for all full game categories. (by MashSRL)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Midnight Mercenaries</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/InYourHeart/Midnight-Mercenaries-AutoSplitter/main/autosplitterScript.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Start, splits and resets for full game and individual levels</Description>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Papers, Please</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ballaire/Autosplitter/main/papersplease.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Splits on day transitions and getting endings. Only tested for Steam version. (by HowToCantaloupe)</Description>
+    </AutoSplitter>
+     <AutoSplitter>
+        <Games>
+            <Game>Starfield</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Radioactiv03/starfield/main/starfield.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and Load Removal is available. (By Radioactiv)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sea of Stars</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/knutwalker/sea-of-stars-autosplitter/releases/download/latest/sea_of_stars_autosplitter.wasm</URL>
+        </URLs>
+        <Type>Script</Type>
+        <ScriptType>AutoSplittingRuntime</ScriptType>
+        <Description>Configurable Autostarter, Autosplitter, and Load Remover for Steam version. (by knutwalker)</Description>
+        <Website>https://github.com/knutwalker/sea-of-stars-autosplitter#readme</Website>
+     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Skator Gator 3D</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Biksell/asl/main/Skator%20Gator%203D/SkatorGator3D.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and IGT available. (By Biksel)</Description>
+        <Website>https://github.com/Biksell/asl/blob/main/Skator%20Gator%203D/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Shantae and the Pirate's Curse</Game>
         </Games>
         <URLs>
@@ -592,6 +656,20 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto start/split and IGT available. (By diggity)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Guild Wars: Prophecies</Game>
+            <Game>Guild Wars: Factions</Game>
+            <Game>Guild Wars: Nightfall</Game>
+            <Game>Guild Wars: Eye of the North</Game>
+            <Game>Guild Wars: All Campaigns</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/DubbleClick/Guild-Wars-Autosplitters/main/GwLoadingScreenStop.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto stop/resume during loading screens.</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -1214,6 +1292,7 @@
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/cynkcaj/AutoSplitter/main/ChopGoblins.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load Remover (By cynkcaj)</Description>
@@ -3679,17 +3758,6 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
-            <Game>Sonic Adventure (DX) - Category Extensions</Game>
-        </Games>
-        <URLs>
-            <URL>https://raw.githubusercontent.com/Sora-yx/autosplitters/master/Sonic%20Adventure%20DX-%20Director-s%20Cut/LiveSplit.SADXIGT.ExT.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description> Autosplitter and IGT for SADX Category Extensions (by Turtlechuck, IDGeek121, Prahaha and Sora)</Description>
-        <Website>https://discord.gg/NUCatnN</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
             <Game>Super Gussun Oyoyo 2</Game>
         </Games>
         <URLs>
@@ -3793,13 +3861,31 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Sonic Adventure DX: Director's Cut</Game>
             <Game>Sonic Adventure (DX)</Game>
+            <Game>Sonic Adventure DX</Game>
+            <Game>Sonic Adventure DX Director's Cut</Game>
+            <Game>SADX</Game>
+            <Game>Sonic Adventure (DX): Director's Cut</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Sora-yx/autosplitters/master/Sonic%20Adventure%20DX-%20Director-s%20Cut/LiveSplit.SADX.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description> Autosplitter and IGT for SADX (by Turtlechuck, IDGeek121, Prahaha and Sora)</Description>
+        <Website>https://discord.gg/NUCatnN</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Sonic Adventure (DX) - Category Extensions</Game>
+            <Game>Sonic Adventure (DX): Category Extensions</Game>
+            <Game>Sonic Adventure DX: Category Extensions</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Sora-yx/autosplitters/master/Sonic%20Adventure%20DX-%20Director-s%20Cut/LiveSplit.SADXIGT.ExT.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description> Autosplitter and IGT for SADX Category Extensions (by Turtlechuck, IDGeek121, Prahaha and Sora)</Description>
         <Website>https://discord.gg/NUCatnN</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -4716,6 +4802,7 @@
             <Game>HP123</Game>
             <Game>Harry Potter Multiruns</Game>
             <Game>Harry Potter Category Extensions</Game>
+            <Game>Harry Potter Custom Content</Game>
             <Game>Unreal</Game>
             <Game>Unreal Gold</Game>
             <Game>Unreal: Return to Na Pali</Game>
@@ -4861,7 +4948,7 @@
             <URL>https://raw.githubusercontent.com/Radioactiv03/fallout-loadremovers/main/fallout3.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Radioactiv)</Description>
+        <Description>Autosplitting and Load Removal is available. (By Radioactiv)</Description>
         <Website>https://github.com/Radioactiv03/fallout-loadremovers/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -4876,7 +4963,7 @@
             <URL>https://raw.githubusercontent.com/Radioactiv03/fallout-loadremovers/main/falloutnv.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load Removal is available. (By Radioactiv)</Description>
+        <Description>>Autosplitting and Load Removal is available. (By Radioactiv)</Description>
         <Website>https://github.com/Radioactiv03/fallout-loadremovers/blob/main/README.md</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -5461,21 +5548,6 @@
         <Type>Script</Type>
         <Description>Load Removal and Auto Start/Reset/Split are available. (By Tenit)</Description>
         <Website>https://github.com/TitaniumBlue1/Autosplitters/blob/master/README.md</Website>
-    </AutoSplitter>
-    <AutoSplitter>
-        <Games>
-            <Game>Sonic Adventure DX</Game>
-            <Game>SADX</Game>
-            <Game>Sonic Adventure DX: Director's Cut</Game>
-            <Game>Sonic Adventure DX: Directors Cut</Game>
-            <Game>Sonic Adventure DX Director's Cut</Game>
-            <Game>Sonic Adventure DX Directors Cut</Game>
-        </Games>
-        <URLs>
-            <URL>https://dl.dropboxusercontent.com/s/phb0per4f9zyecw/sadx.asl</URL>
-        </URLs>
-        <Type>Script</Type>
-        <Description>Auto Splitting (Beta-v1) is available. (By VeritasDL)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -11979,6 +12051,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Blasphemous II</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/BrandenEK/BlasII.AutoSplitter/main/BlasII.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto splitter and load remover</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Earth Defense Force 5</Game>
         </Games>
         <URLs>
@@ -13948,15 +14030,17 @@
         <Description>Automatic start, room triggers, gates, achievements, encounters and more. By Henpemaz and ICED</Description>
     </AutoSplitter>
     <AutoSplitter>
-    <Games>
-        <Game>Rain World: Downpour</Game>
-    </Games>
-    <URLs>
-        <URL>https://raw.githubusercontent.com/rekadoodle/Rain-World-Autosplitter/main/main.asl</URL>
-    </URLs>
-    <Type>Script</Type>
-    <Description>WIP Autosplitter for Rain World 1.9 (Downpour) by rek</Description>
-    <Website>https://github.com/rekadoodle/Rain-World-Autosplitter</Website>
+        <Games>
+            <Game>Rain World: Downpour</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/rekadoodle/Rain-World-Autosplitter/main/rainworlddp.asl</URL>
+            <URL>https://raw.githubusercontent.com/rekadoodle/Rain-World-Autosplitter/main/rainworlddp.settings.xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>WIP Autosplitter for Rain World 1.9 (Downpour) by rek</Description>
+        <Website>https://github.com/rekadoodle/Rain-World-Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17846,12 +17930,13 @@
         <Games>
             <Game>Ty the Tasmanian Tiger</Game>
             <Game>Ty the Tasmanian Tiger Category Extensions</Game>
+            <Game>Mul-Ty-Player</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/rythin-sr/ASL-Scripts/master/TY.asl</URL>
+            <URL>https://github.com/xMcacutt/Ty1-Auto-Splitter/raw/main/TY.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Autosplitting and Load Removal available (by rythin)</Description>
+        <Description>Ty the Tasmanian Tiger 1 Auto-Splitter and Load Remover (by xMcacutt and Rythin)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -19377,5 +19462,76 @@
         </URLs>
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal is available (By Auddy and Loomeh)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Capybro</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ru-mii/AutoSplitters/main/capybro.asl</URL>
+            <URL>https://raw.githubusercontent.com/just-ero/asl-help/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>quests auto splitting, remove all splits for Any%, made by rumii</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Cool Bricks</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/RoddyDev/CoolBricks-Autosplitter/main/CoolBricks.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Supports by level or checkpoint splitting. Made by Roddy and Burndi.</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Resident Evil: Dead Aim</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Resident-Evil-Dead-Aim-Autosplitter/main/Resident%20Evil%20Dead%20Aim%20PS2.asl</URL>
+            <URL>https://github.com/Jujstme/emu-help/raw/master/lib/emu-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>IGT and Area Splitter are Available (By TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Parasite Eve II</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TheDementedSalad/Parasite-Eve-II-Autosplitter/main/Parasite%20Eve%20II.asl</URL>
+            <URL>https://github.com/Jujstme/emu-help/raw/master/lib/emu-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Door splitter and Item Splitter are available. (By TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>25 To Life</Game>
+            <Game>TTL</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LeonSReckon/TTL-ASL/main/25%20To%20Life.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset and Load Remover are Available (By LeonSReckon)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Gears of War</Game>
+            <Game>Gears of War for Windows</Game>
+            <Game>Gears of War GFWL</Game>
+            <Game>Gears of War Game For Windows Live</Game>
+            <Game>Gears of War 2006</Game>
+            <Game>Gears of War (2006)</Game>
+            <Game>Gears of War 1</Game>
+            <Game>Gears of War: 1</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LeonSReckon/Gears-Of-War-ASL/main/Gears%20Of%20War%201.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset and Load-Remover are available (by LeonSReckon) for version 1.03</Description>
     </AutoSplitter>
 </AutoSplitters>
