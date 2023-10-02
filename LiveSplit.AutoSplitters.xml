@@ -19742,4 +19742,37 @@
         <Description>Auto start, split, load removal</Description>
         <Website>https://github.com/gytispieze/1nsane-ASL</Website>
     </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Gensokyo no Nazo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/shadax1/autosplitters/main/gnazo%20-%20character%20get.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) for Gensokyo no Nazo</Description>
+        <Website>https://github.com/shadax1/autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Rosenkreuzstilette</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/shadax1/autosplitters/main/rks.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) for Rosenkreuzstilette</Description>
+        <Website>https://github.com/shadax1/autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Rosenkreuzstilette Freudenstachel</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/shadax1/autosplitters/main/rksf.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) for Rosenkreuzstilette Freudenstachel</Description>
+        <Website>https://github.com/shadax1/autosplitters</Website>
+    </AutoSplitter>
 </AutoSplitters>
