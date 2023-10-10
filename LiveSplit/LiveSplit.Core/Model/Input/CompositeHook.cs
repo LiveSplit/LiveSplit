@@ -111,7 +111,7 @@ namespace LiveSplit.Model.Input
 
         public event EventHandler GamepadHookInitialized;
 
-        public CompositeHook() : this(true) { }
+        public CompositeHook() : this(false) { }
 
         public CompositeHook(bool allowGamepads)
         {
