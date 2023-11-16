@@ -2,6 +2,28 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Inspector Gadget</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Thedragon005/InspectorGadget_AutoSplitter/main/InspectorGadget_AS.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Full Autosplitter by Thedragon005</Description>
+        <Website>https://www.speedrun.com/inspector_gadget</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Totally Accurate Battle Simulator</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.TotallyAccurateBattleSimulator.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load Remover by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Peter Jackson's King Kong</Game>
         </Games>
         <URLs>
@@ -1063,7 +1085,7 @@
             <Game>Rhythm Doctor</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Nikoheartttv/RhythmDoctor_Autosplitter/main/RhythmDoctor_Autosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/Autosplitters/main/Rhythm%20Doctor/RhythmDoctor.asl</URL>
             <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
@@ -1283,7 +1305,7 @@
             <Game>Deliver Us Mars</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Nikoheartttv/DeliverUsMars_Autosplitter/main/DeliverUsMars_Autosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/Autosplitters/main/Deliver%20Us%20Mars/DeliverUsMars.asl</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal and Autosplitter (by Nikoheart)</Description>
@@ -1471,7 +1493,7 @@
             <Game>Lone Ruin</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Nikoheartttv/LoneRuin_Autosplitter/main/LoneRuin.asl</URL>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/Autosplitters/main/Lone%20Ruin/LoneRuin.asl</URL>
             <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
@@ -1549,6 +1571,16 @@
         </URLs>
         <Type>Script</Type>
         <Description>A basic Darkwood autosplitter with auto start/split/reset and pause on loads (By D00Mka)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Haydee</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/M4lfr1d/Haydee_Autosplitter/main/Haydee.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>A basic Haydee autosplitter with auto start/split/reset and pause on loads (By D00Mka)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -2062,8 +2094,8 @@
             <Game>Goosebumps: Dead of Night</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Nikoheartttv/Goosebumps_DeadOfNight/main/GDON_Autosplitter.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/lib/LiveSplit.ASLHelper.bin</URL>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/Autosplitters/main/Goosebumps%20Dead%20Of%20Night/GoosebumpsDeadOfNight.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter/Load remover/IL Run Timer by Nikoheart.</Description>
@@ -2357,8 +2389,8 @@
             <Game>The Stanley Parable: Ultra Deluxe Category Extensions</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Nikoheartttv/TheStanleyParableUltraDeluxe_Autosplitter/main/TSPUD_AutoSplitter.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/Autosplitters/main/The%20Stanley%20Parable%20Ultra%20Deluxe/TSPUD.asl</URL>
+           <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter by Nikoheart</Description>
@@ -2369,8 +2401,8 @@
             <Game>Dexter Stardust: Adventures in Outer Space</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/Nikoheartttv/DexterStardustAdventuresInOuterSpace_AutoSplitter/main/DexterStardust.asl</URL>
-            <URL>https://github.com/just-ero/asl-help/raw/main/lib/UnityASL.bin</URL>
+            <URL>https://raw.githubusercontent.com/Nikoheartttv/Autosplitters/main/Dexter%20Stardust%20Adventures%20in%20Outer%20Space/DexterStardust.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
         </URLs>
         <Type>Script</Type>
         <Description>Autosplitter by Nikoheart</Description>
@@ -6920,6 +6952,20 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>The Talos Principle 2</Game>
+            <Game>The Talos Principle II</Game>
+            <Game>Talos Principle 2</Game>
+            <Game>Talos Principle II</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/apple1417/Autosplitters/master/talos_2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Website>https://github.com/apple1417/Autosplitters</Website>
+        <Description>Auto Splitting, Auto Start and Load Removal are available. (By apple1417)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>The Witness</Game>
             <Game>Witness</Game>
             <Game>The Witness Category Extensions</Game>
@@ -7187,11 +7233,11 @@
             <Game>INSIDE</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/TehGelly/autosplitters/master/InsideAutosplitter.asl</URL>
+            <URL>https://raw.githubusercontent.com/PietHelzel/inside-autosplitter/main/INSIDE.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Start and split are available. (By Gelly)</Description>
-        <Website>https://github.com/Gelly/autosplitters</Website>
+        <Description>Start and split are available. (By Gelly and Penta)</Description>
+        <Website>https://github.com/PietHelzel/inside-autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -9151,11 +9197,18 @@
     <AutoSplitter>
         <Games>
             <Game>Sonic Robo Blast 2</Game>
+            <Game>Sonic Robo Blast 2 Category Extensions</Game>
+            <Game>Sonic Robo Blast 2: The Emerald Isles</Game>
             <Game>Sonic Robo Blast 2: The Mystic Realm</Game>
+            <Game>Sonic Robo Blast 2: The Mystic Realm Category Extensions</Game>
+            <Game>Sonic Robo Blast 2: Tortured Planet</Game>
             <Game>Sonic Robo Blast 2: Shut Up and Get On It</Game>
             <Game>Sonic Robo Blast 2: Shut Up and Get On It 2</Game>
             <Game>Sonic Robo Blast 2: Shut Up and Get On It 3</Game>
             <Game>Sonic Robo Blast 2: The Cyberdime Realm</Game>
+            <Game>Sonic Robo Blast 2: The Cyberdime Realm Category Extensions</Game>
+            <Game>Sonic Robo Blast 2: Persona</Game>
+            <Game>SRB2 Persona</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Refragg/LiveSplit-ASL-Scripts/master/Sonic%20Robo%20Blast%202/autosplitter_srb2.asl</URL>
@@ -14908,12 +14961,13 @@
     <AutoSplitter>
         <Games>
             <Game>LEGO Star Wars: The Complete Saga (PC/Console)</Game>
+            <Game>LEGO Star Wars: The Complete Saga Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/eroadhouse/TCSAutoSplitterLoadRemover/main/TCSAutosplitterLoadRemover.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Auto Splitting is available. (By Zac, P53, eroadhouse)</Description>
+        <Description>Auto Splitting and Load Removal is available. (By Zac, P53, eroadhouse)</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -17814,6 +17868,16 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Tom Clancy's Splinter Cell: Pandora Tomorrow</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/DistProg/SCPTAutosplitter/main/SCPT_Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter available (by Distro)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Splinter Cell 3</Game>
             <Game>Splinter Cell: Chaos Theory</Game>
             <Game>Splinter Cell Chaos Theory</Game>
@@ -18344,6 +18408,28 @@
         <Type>Script</Type>
         <Description>Starts, resets, splits.  Use with "Speedrunner Mode" enabled!</Description>
         <Website>https://opengoal.dev/</Website>
+    </AutoSplitter>    
+    <AutoSplitter>
+        <Games>
+            <Game>Jak and Daxter: Bugged!</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/OpenGOAL-Mods/OG-Bugged/main/opengoal-jak1-BUGGED-autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets, splits. Use with "Speedrunner Mode" enabled!</Description>
+        <Website>https://jakmods.dev/</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Jak The Chicken</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/my-opengoal-mods/OG-Jak-The-Chicken-Reborn/main/opengoal-jak1-autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Starts, resets, splits. Use with "Speedrunner Mode" enabled!</Description>
+        <Website>https://jakmods.dev/</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -20008,5 +20094,37 @@
         </URLs>
         <Type>Script</Type>
         <Description>RTA Area And Boss Splitter (by TheDementedSalad)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Damnation</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LeonSReckon/Damnation-ASL/main/Damnation.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Start/Split/Reset and Load-Remover are available (by LeonSReckon)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Driv3r (Driver 3)</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Mythicey/LiveSplit.Driv3r/main/LiveSplit.Driv3r.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) are available (by Mythicy)</Description>
+        <Website>https://github.com/Mythicey/LiveSplit.Driv3r</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Caesar III (Julius version)</Game>
+        </Games>
+        <URLs>
+            <URL>https://github.com/Gheeksy/caesar-III-autosplitter/raw/master/caesar%20III%20Autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split) for single level available (by Gheeks)</Description>
+        <Website>https://github.com/Gheeksy/caesar-III-autosplitter</Website>
     </AutoSplitter>
 </AutoSplitters>
