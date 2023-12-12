@@ -14323,20 +14323,30 @@
             <Game>Anno 1404</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/tocaloni1/Anno1404-load-remover/master/Anno1404.asl</URL>
+            <URL>https://raw.githubusercontent.com/toca-1/Anno1404-load-remover/master/Anno1404.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover for Anno 1404 (works with original game as well as the history edition) by tocaloni1</Description>
+        <Description>Load remover for Anno 1404 (works with original game as well as the history edition) by toca</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
             <Game>The Dark Eye: Memoria</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/tocaloni1/the-dark-eye-memoria-load-remover/master/memoria.asl</URL>
+            <URL>https://raw.githubusercontent.com/toca-1/the-dark-eye-memoria-load-remover/master/memoria.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Load remover for The Dark Eye: Memoria by tocaloni1</Description>
+        <Description>Load remover for The Dark Eye: Memoria by toca</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Encodya</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toca-1/encodya-load-remover/main/Encodya.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover for Encodya by toca</Description>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
