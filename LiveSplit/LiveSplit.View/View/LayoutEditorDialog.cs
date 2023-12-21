@@ -60,6 +60,7 @@ namespace LiveSplit.View
             CurrentState = state;
             var itemDragger = new ListBoxItemDragger(lbxComponents, form);
             itemDragger.DragCursor = Cursors.SizeAll;
+            RefreshText();
         }
 
         void rdoVertical_CheckedChanged(object sender, EventArgs e)
@@ -98,7 +99,12 @@ namespace LiveSplit.View
             catch (Exception e)
             {
                 Log.Error(e);
-                MessageBox.Show(this, "The Component could not be loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this, 
+                    Languages.Instance.GetText("AddComponentText", "The Component could not be loaded."), 
+                    Languages.Instance.GetText("Error", "Error"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -299,6 +305,17 @@ namespace LiveSplit.View
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void RefreshText()
+        {
+            btnCancel.Text = Languages.Instance.GetText("btnCancel", "Cancel");
+            btnOK.Text = Languages.Instance.GetText("btnOK", "OK");
+            btnLayoutSettings.Text = Languages.Instance.GetText("btnLayoutSettings", "Layout Settings");
+            rdoHorizontal.Text = Languages.Instance.GetText("rdoHorizontal", "Horizontal");
+            rdoVertical.Text = Languages.Instance.GetText("rdoVertical", "Vertical");
+            btnSetSize.Text = Languages.Instance.GetText("btnSetSize", "Set Size");
+            Text = Languages.Instance.GetText("LayoutEditorDialog", "Layout Editor");
         }
     }
 }

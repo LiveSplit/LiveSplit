@@ -17,22 +17,22 @@ namespace LiveSplit.Options.SettingsFactories
             {
                 HotkeyProfiles = new Dictionary<string, HotkeyProfile>()
                 {
-                    {HotkeyProfile.DefaultHotkeyProfileName, new HotkeyProfile()
-                        {
-                            SplitKey = new KeyOrButton(Keys.NumPad1),
-                            ResetKey = new KeyOrButton(Keys.NumPad3),
-                            UndoKey = new KeyOrButton(Keys.NumPad8),
-                            SkipKey = new KeyOrButton(Keys.NumPad2),
-                            SwitchComparisonPrevious = new KeyOrButton(Keys.NumPad4),
-                            SwitchComparisonNext = new KeyOrButton(Keys.NumPad6),
-                            PauseKey = null,
-                            ToggleGlobalHotkeys = null,
-                            GlobalHotkeysEnabled = false,
-                            DeactivateHotkeysForOtherPrograms = false,
-                            DoubleTapPrevention = true,
-                            AllowGamepadsAsHotkeys = false,
-                            HotkeyDelay = 0f
-                        }
+                    { HotkeyProfile.DefaultHotkeyProfileName, new HotkeyProfile()
+                    {
+                        SplitKey = new KeyOrButton(Keys.NumPad1),
+                        ResetKey = new KeyOrButton(Keys.NumPad3),
+                        UndoKey = new KeyOrButton(Keys.NumPad8),
+                        SkipKey = new KeyOrButton(Keys.NumPad2),
+                        SwitchComparisonPrevious = new KeyOrButton(Keys.NumPad4),
+                        SwitchComparisonNext = new KeyOrButton(Keys.NumPad6),
+                        PauseKey = null,
+                        ToggleGlobalHotkeys = null,
+                        GlobalHotkeysEnabled = false,
+                        DeactivateHotkeysForOtherPrograms = false,
+                        DoubleTapPrevention = true,
+                        AllowGamepadsAsHotkeys = false,
+                        HotkeyDelay = 0f
+                    }
                     }
                 },
                 WarnOnReset = true,
@@ -48,11 +48,12 @@ namespace LiveSplit.Options.SettingsFactories
                     { BestSplitTimesComparisonGenerator.ComparisonName, false },
                     { AverageSegmentsComparisonGenerator.ComparisonName, true },
                     { MedianSegmentsComparisonGenerator.ComparisonName, false },
-                    { WorstSegmentsComparisonGenerator.ComparisonName, false},
+                    { WorstSegmentsComparisonGenerator.ComparisonName, false },
                     { PercentileComparisonGenerator.ComparisonName, false },
                     { LatestRunComparisonGenerator.ComparisonName, false },
                     { NoneComparisonGenerator.ComparisonName, false }
-                }
+                },
+                Language = "en",
             };
         }
     }

@@ -320,6 +320,7 @@ namespace LiveSplit.View
 
             new System.Timers.Timer(1000) { Enabled = true }.Elapsed += RaceRefreshTimer_Elapsed;
 
+            RefreshText();
             InitDragAndDrop();
         }
 
@@ -362,7 +363,7 @@ namespace LiveSplit.View
                 ToolStripMenuItem raceProviderItem = new ToolStripMenuItem()
                 {
                     Name = $"{raceProvider.ProviderName}racesMenuItem",
-                    Text = $"{raceProvider.ProviderName} Races",
+                    Text = $"{raceProvider.ProviderName} {Languages.Instance.GetText("Races", "Races")}",
                     Tag = raceProvider
                 };
                 raceProviderItem.MouseHover += racingMenuItem_MouseHover;
@@ -411,7 +412,8 @@ namespace LiveSplit.View
                     if (numSeparators == 0)
                         toolItem.Checked = toolItem.Name == CurrentState.CurrentTimingMethod.ToString();
                     else
-                        toolItem.Checked = toolItem.Text == CurrentState.CurrentComparison.EscapeMenuItemText();
+                        // toolItem.Checked = toolItem.Text == CurrentState.CurrentComparison.EscapeMenuItemText();
+                        toolItem.Checked = toolItem.Name == CurrentState.CurrentComparison.EscapeMenuItemText().Replace(" ", "");
                 }
             }
         }
@@ -569,7 +571,7 @@ namespace LiveSplit.View
                 addItem(new ToolStripSeparator());
 
             var newRaceItem = new ToolStripMenuItem();
-            newRaceItem.Text = "New Race...";
+            newRaceItem.Text = Languages.Instance.GetText("NewRace", "New Race...");
             newRaceItem.Click += (s, e) => { raceProvider.CreateRace?.Invoke(Model); };
             addItem(newRaceItem);
         }
@@ -714,7 +716,7 @@ namespace LiveSplit.View
                 resetMenuItem.Enabled = true;
                 undoSplitMenuItem.Enabled = false;
                 skipSplitMenuItem.Enabled = true;
-                splitMenuItem.Text = "Split";
+                splitMenuItem.Text = Languages.Instance.GetText("splitMenuItem_Split", "Split");
             });
         }
 
@@ -737,7 +739,7 @@ namespace LiveSplit.View
                 undoSplitMenuItem.Enabled = false;
                 skipSplitMenuItem.Enabled = false;
                 splitMenuItem.Enabled = true;
-                splitMenuItem.Text = "Start";
+                splitMenuItem.Text = Languages.Instance.GetText("splitMenuItem_Start", "Start");
             });
         }
 
@@ -745,7 +747,7 @@ namespace LiveSplit.View
         {
             this.InvokeIfRequired(() =>
             {
-                splitMenuItem.Text = "Split";
+                splitMenuItem.Text = Languages.Instance.GetText("splitMenuItem_Split", "Split");
                 pauseMenuItem.Enabled = true;
             });
         }
@@ -754,7 +756,7 @@ namespace LiveSplit.View
         {
             this.InvokeIfRequired(() =>
             {
-                splitMenuItem.Text = "Resume";
+                splitMenuItem.Text = Languages.Instance.GetText("splitMenuItem_Resume", "Resume");
                 undoPausesMenuItem.Enabled = true;
                 pauseMenuItem.Enabled = false;
             });
@@ -880,16 +882,20 @@ namespace LiveSplit.View
             if (openSplitsMenuItem.DropDownItems.Count > 0)
                 openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
             var openFromFileMenuItem = new ToolStripMenuItem("From File...");
+            openFromFileMenuItem.Name = "fromFileToolStripMenuItem";
             openFromFileMenuItem.Click += openSplitsFromFileMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromFileMenuItem);
             var openFromURLMenuItem = new ToolStripMenuItem("From URL...");
+            openFromURLMenuItem.Name = "openFromURLMenuItem_1";
             openFromURLMenuItem.Click += openSplitsFromURLMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromURLMenuItem);
             var openFromSpeedrunComMenuItem = new ToolStripMenuItem("From Speedrun.com...");
+            openFromSpeedrunComMenuItem.Name = "fromSpeedruncomToolStripMenuItem";
             openFromSpeedrunComMenuItem.Click += openFromSpeedrunComMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(openFromSpeedrunComMenuItem);
             openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
             var editSplitHistoryMenuItem = new ToolStripMenuItem("Edit History");
+            editSplitHistoryMenuItem.Name = "editSplitHistoryMenuItem";
             editSplitHistoryMenuItem.Click += editSplitHistoryMenuItem_Click;
             openSplitsMenuItem.DropDownItems.Add(editSplitHistoryMenuItem);
         }
@@ -946,16 +952,20 @@ namespace LiveSplit.View
             if (openLayoutMenuItem.DropDownItems.Count > 0)
                 openLayoutMenuItem.DropDownItems.Add(new ToolStripSeparator());
             var openLayoutFromFileMenuItem = new ToolStripMenuItem("From File...");
+            openLayoutFromFileMenuItem.Name = "fromFileToolStripMenuItem";
             openLayoutFromFileMenuItem.Click += openLayoutFromFileMenuItem_Click;
             openLayoutMenuItem.DropDownItems.Add(openLayoutFromFileMenuItem);
             var openFromURLMenuItem = new ToolStripMenuItem("From URL...");
+            openFromURLMenuItem.Name = "openFromURLMenuItem_1";
             openFromURLMenuItem.Click += openLayoutFromURLMenuItem_Click;
             openLayoutMenuItem.DropDownItems.Add(openFromURLMenuItem);
             var defaultLayoutMenuItem = new ToolStripMenuItem("Default");
+            defaultLayoutMenuItem.Name = "defaultLayoutMenuItem";
             defaultLayoutMenuItem.Click += (x, y) => { LoadDefaultLayout(); };
             openLayoutMenuItem.DropDownItems.Add(defaultLayoutMenuItem);
             openLayoutMenuItem.DropDownItems.Add(new ToolStripSeparator());
             var editLayoutHistoryMenuItem = new ToolStripMenuItem("Edit History");
+            editLayoutHistoryMenuItem.Name = "editSplitHistoryMenuItem";
             editLayoutHistoryMenuItem.Click += editLayoutHistoryMenuItem_Click;
             openLayoutMenuItem.DropDownItems.Add(editLayoutHistoryMenuItem);
         }
@@ -979,7 +989,7 @@ namespace LiveSplit.View
                 TopMost = false;
                 string url = null;
 
-                if (DialogResult.OK == InputBox.Show("Open Layout from URL", "URL:", ref url))
+                if (DialogResult.OK == InputBox.Show(Languages.Instance.GetText("OpenLayoutFromURL", "Open Layout from URL"), "URL:", ref url))
                 {
                     try
                     {
@@ -1010,7 +1020,12 @@ namespace LiveSplit.View
                             {
                                 Log.Error(ex);
                                 DontRedraw = true;
-                                MessageBox.Show(this, "The selected file was not recognized as a layout file. (" + ex.Message + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(
+                                    this,
+                                    Languages.Instance.GetText("OpenLayoutText", "The selected file was not recognized as a layout file. (") + ex.Message + ")", 
+                                    Languages.Instance.GetText("Error", "Error"),
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Error);
                                 DontRedraw = false;
                             }
                         }
@@ -1019,7 +1034,12 @@ namespace LiveSplit.View
                     {
                         Log.Error(ex);
                         DontRedraw = true;
-                        MessageBox.Show(this, "The layout file couldn't be downloaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(
+                            this,
+                            Languages.Instance.GetText("OpenLayoutText_1", "The layout file couldn't be downloaded."),
+                            Languages.Instance.GetText("Error", "Error"),
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Error);
                         DontRedraw = false;
                     }
                 }
@@ -1504,7 +1524,12 @@ namespace LiveSplit.View
             if (!Settings.AgreedToSRLRules)
             {
                 Process.Start("http://speedrunslive.com/faq/rules/");
-                var result = MessageBox.Show(this, "Please read through the rules of SpeedRunsLive carefully.\r\nDo you agree to these rules?", "SpeedRunsLive Rules", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                var result = MessageBox.Show(
+                    this,
+                    Languages.Instance.GetText("SpeedRunsLiveRulesText", "Please read through the rules of SpeedRunsLive carefully.\r\nDo you agree to these rules?"), 
+                    Languages.Instance.GetText("SpeedRunsLiveRules", "SpeedRunsLive Rules"), 
+                    MessageBoxButtons.YesNo, 
+                    MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     Settings.AgreedToSRLRules = true;
@@ -1793,7 +1818,12 @@ namespace LiveSplit.View
             {
                 Log.Error(e);
                 DontRedraw = true;
-                MessageBox.Show(this, "The selected file was not recognized as a splits file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this,
+                    Languages.Instance.GetText("OpenRunText", "The selected file was not recognized as a splits file."),
+                    Languages.Instance.GetText("Error", "Error"),
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
                 DontRedraw = false;
             }
             Cursor.Current = Cursors.Arrow;
@@ -1884,7 +1914,12 @@ namespace LiveSplit.View
                 || CurrentState.CurrentPhase == TimerPhase.Paused))
             {
                 DontRedraw = true;
-                result = MessageBox.Show(this, "This run did not beat your current splits. Would you like to save this run as a Personal Best?", "Save as Personal Best?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                result = MessageBox.Show(
+                    this,
+                    Languages.Instance.GetText("SaveAsPersonalBestText", "This run did not beat your current splits. Would you like to save this run as a Personal Best?"), 
+                    Languages.Instance.GetText("SaveAsPersonalBest", "Save as Personal Best?"), 
+                    MessageBoxButtons.YesNoCancel, 
+                    MessageBoxIcon.Question);
                 DontRedraw = false;
                 if (result == DialogResult.Yes)
                 {
@@ -1925,7 +1960,12 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Splits could not be saved!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this,
+                    Languages.Instance.GetText("SaveFailedText", "Splits could not be saved!"), 
+                    Languages.Instance.GetText("SaveFailed", "Save Failed"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
                 Log.Error(ex);
                 return false;
             }
@@ -1975,7 +2015,12 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Layout could not be saved!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this,
+                    Languages.Instance.GetText("SaveFailedText_1", "Layout could not be saved!"),
+                    Languages.Instance.GetText("SaveFailed", "Save Failed"),
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
                 Log.Error(ex);
                 return false;
             }
@@ -2262,7 +2307,12 @@ namespace LiveSplit.View
                 {
                     Log.Error(e);
                     DontRedraw = true;
-                    MessageBox.Show(this, "The selected file was not recognized as a layout file. (" + e.Message + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        this,
+                        Languages.Instance.GetText("OpenLayoutText", "The selected file was not recognized as a layout file. (") + e.Message + ")",
+                        Languages.Instance.GetText("Error", "Error"),
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                     DontRedraw = false;
                 }
                 Cursor.Current = Cursors.Arrow;
@@ -2410,7 +2460,12 @@ namespace LiveSplit.View
                 try
                 {
                     DontRedraw = true;
-                    var result = MessageBox.Show(this, "Your splits have been updated but not yet saved.\nDo you want to save your splits now?", "Save Splits?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    var result = MessageBox.Show(
+                        this,
+                        Languages.Instance.GetText("SaveSplitsText", "Your splits have been updated but not yet saved.\nDo you want to save your splits now?"), 
+                        Languages.Instance.GetText("SaveSplits", "Save Splits?"), 
+                        MessageBoxButtons.YesNoCancel,
+                        MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         safeToContinue = SaveSplits(false);
@@ -2441,7 +2496,12 @@ namespace LiveSplit.View
                 {
                     DontRedraw = true;
                     var buttons = canCancel ? MessageBoxButtons.YesNoCancel : MessageBoxButtons.YesNo;
-                    var result = MessageBox.Show(this, "Your layout has been updated but not yet saved.\nDo you want to save your layout now?", "Save Layout?", buttons, MessageBoxIcon.Question);
+                    var result = MessageBox.Show(
+                        this,
+                        Languages.Instance.GetText("SaveLayoutText", "Your layout has been updated but not yet saved.\nDo you want to save your layout now?"), 
+                        Languages.Instance.GetText("SaveLayout", "Save Layout?"), 
+                        buttons, 
+                        MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         safeToContinue = SaveLayout();
@@ -2494,7 +2554,12 @@ namespace LiveSplit.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, "Settings could not be saved!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this,
+                    Languages.Instance.GetText("FormClosingText", "Settings could not be saved!"),
+                    Languages.Instance.GetText("SaveFailed", "Save Failed"),
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
                 Log.Error(ex);
             }
 
@@ -2642,7 +2707,12 @@ namespace LiveSplit.View
             if (warnUser)
             {
                 DontRedraw = true;
-                var result = MessageBox.Show(this, "You have beaten some of your best times.\r\nDo you want to update them?", "Update Times?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                var result = MessageBox.Show(
+                    this,
+                    Languages.Instance.GetText("UpdateTimesText", "You have beaten some of your best times.\r\nDo you want to update them?"), 
+                    Languages.Instance.GetText("UpdateTimes", "Update Times?"), 
+                    MessageBoxButtons.YesNoCancel, 
+                    MessageBoxIcon.Question);
                 DontRedraw = false;
                 return result;
             }
@@ -2785,6 +2855,7 @@ namespace LiveSplit.View
             comparisonMenuItem.DropDownItems.Add(gameTimeMenuItem);
 
             RefreshComparisonItems();
+            RefreshText();
         }
 
         void gameTimeMenuItem_Click(object sender, EventArgs e)
@@ -2835,8 +2906,10 @@ namespace LiveSplit.View
         private void AddActionToComparisonsMenu(string name)
         {
             var menuItem = new ToolStripMenuItem(name.EscapeMenuItemText());
+            menuItem.Name = name.EscapeMenuItemText().Replace(" ", "");
             menuItem.Click += (s, e) => SwitchComparison(name);
             comparisonMenuItem.DropDownItems.Add(menuItem);
+            RefreshText();
         }
 
         private void AddActionToControlMenu(string name, Action action)
@@ -2884,6 +2957,7 @@ namespace LiveSplit.View
 
         private void RightClickMenu_Opening(object sender, CancelEventArgs e)
         {
+            RefreshText();
             RebuildControlMenu();
             RebuildComparisonsMenu();
         }
@@ -2936,6 +3010,93 @@ namespace LiveSplit.View
             else
             {
                 e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void RefreshText ()
+        {
+            editSplitsMenuItem.Text = Languages.Instance.GetText("editSplitsMenuItem", "Edit Splits...");
+            openSplitsMenuItem.Text = Languages.Instance.GetText("openSplitsMenuItem", "Open Splits");
+            saveSplitsMenuItem.Text = Languages.Instance.GetText("saveSplitsMenuItem", "Save Splits");
+            saveSplitsAsMenuItem.Text = Languages.Instance.GetText("saveSplitsAsMenuItem", "Save Splits As...");
+            closeSplitsMenuItem.Text = Languages.Instance.GetText("closeSplitsMenuItem", "Close Splits");
+            controlMenuItem.Text = Languages.Instance.GetText("controlMenuItem", "Control");
+            shareMenuItem.Text = Languages.Instance.GetText("shareMenuItem", "Share...");
+            editLayoutMenuItem.Text = Languages.Instance.GetText("editLayoutMenuItem", "Edit Layout...");
+            openLayoutMenuItem.Text = Languages.Instance.GetText("openLayoutMenuItem", "Open Layout");
+            saveLayoutMenuItem.Text = Languages.Instance.GetText("saveLayoutMenuItem", "Save Layout");
+            saveLayoutAsMenuItem.Text = Languages.Instance.GetText("saveLayoutAsMenuItem", "Save Layout As...");
+            settingsMenuItem.Text = Languages.Instance.GetText("settingsMenuItem", "Settings");
+            aboutMenuItem.Text = Languages.Instance.GetText("aboutMenuItem", "About");
+            exitMenuItem.Text = Languages.Instance.GetText("exitMenuItem", "Exit");
+            splitMenuItem.Text = Languages.Instance.GetText("splitMenuItem_Start", "Start");
+            resetMenuItem.Text = Languages.Instance.GetText("resetMenuItem", "Reset");
+            undoSplitMenuItem.Text = Languages.Instance.GetText("undoSplitMenuItem", "Undo Split");
+            skipSplitMenuItem.Text = Languages.Instance.GetText("skipSplitMenuItem", "Skip Split");
+            pauseMenuItem.Text = Languages.Instance.GetText("pauseMenuItem", "Pause");
+            undoPausesMenuItem.Text = Languages.Instance.GetText("undoPausesMenuItem", "Undo All Pause");
+            hotkeysMenuItem.Text = Languages.Instance.GetText("hotkeysMenuItem", "Global Hotkeys");
+            comparisonMenuItem.Text = Languages.Instance.GetText("comparisonMenuItem", "Comparison");
+            foreach (ToolStripItem item in openLayoutMenuItem.DropDownItems)
+            {
+                if (item.Name == "fromFileToolStripMenuItem")
+                {
+                    item.Text = Languages.Instance.GetText("fromFileToolStripMenuItem", "From File...");
+                };
+                if (item.Name == "openFromURLMenuItem_1")
+                {
+                    item.Text = Languages.Instance.GetText("openFromURLMenuItem_1", "From URL...");
+                };
+                if (item.Name == "defaultLayoutMenuItem")
+                {
+                    item.Text = Languages.Instance.GetText("defaultLayoutMenuItem", "Default");
+                };
+                if (item.Name == "editSplitHistoryMenuItem")
+                {
+                    item.Text = Languages.Instance.GetText("editSplitHistoryMenuItem", "Edit History");
+                }
+            }
+            foreach (ToolStripItem item in openSplitsMenuItem.DropDownItems)
+            {
+                if (item.Name == "fromFileToolStripMenuItem")
+                {
+                    item.Text = Languages.Instance.GetText("fromFileToolStripMenuItem", "From File...");
+                };
+                if (item.Name == "openFromURLMenuItem_1")
+                {
+                    item.Text = Languages.Instance.GetText("openFromURLMenuItem_1", "From URL...");
+                };
+                if (item.Name == "fromSpeedruncomToolStripMenuItem")
+                {
+                    item.Text = Languages.Instance.GetText("fromSpeedruncomToolStripMenuItem", "Default");
+                };
+                if (item.Name == "editSplitHistoryMenuItem")
+                {
+                    item.Text = Languages.Instance.GetText("editSplitHistoryMenuItem", "Edit History");
+                };
+            }
+            foreach (ToolStripItem item in comparisonMenuItem.DropDownItems)
+            {
+                if (item.Name == "RealTime")
+                {
+                    item.Text = Languages.Instance.GetText("RealTime", "Real Time");
+                };
+                if (item.Name == "GameTime")
+                {
+                    item.Text = Languages.Instance.GetText("GameTime", "Game Time");
+                };
+                if (item.Name.ToString() == "PersonalBest")
+                {
+                    item.Text = Languages.Instance.GetText("PersonalBest", "Personal Best");
+                };
+                if (item.Name.ToString() == "BestSegments")
+                {
+                    item.Text = Languages.Instance.GetText("BestSegments", "Best Segments");
+                };
+                if (item.Name.ToString() == "AverageSegments")
+                {
+                    item.Text = Languages.Instance.GetText("AverageSegments", "Average Segments");
+                };
             }
         }
     }

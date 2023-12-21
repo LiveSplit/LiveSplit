@@ -35,6 +35,7 @@ namespace LiveSplit.View
             ScreenShotFunction = screenShotFunction;
             Settings = settings;
             InitializeComponent();
+            RefreshText();
         }
 
         void RefreshCategoryList(string gameName)
@@ -345,7 +346,11 @@ namespace LiveSplit.View
 
                 if (!CurrentPlatform.VerifyLogin(username, password))
                 {
-                    MessageBox.Show("Your login information seems to be incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        Languages.Instance.GetText("SubmitText", "Your login information seems to be incorrect."), 
+                        Languages.Instance.GetText("Error", "Error"), 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                     return;
                 }
 
@@ -376,7 +381,11 @@ namespace LiveSplit.View
                 Cursor = Cursors.Default;
             }
 
-            MessageBox.Show("The run could not be shared.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(
+                Languages.Instance.GetText("SubmitText_1", "The run could not be shared."), 
+                Languages.Instance.GetText("Error", "Error"), 
+                MessageBoxButtons.OK, 
+                MessageBoxIcon.Error);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -436,6 +445,33 @@ namespace LiveSplit.View
         private void btnInsertStreamLink_Click(object sender, EventArgs e)
         {
             Insert("$stream");
+        }
+
+        private void RefreshText ()
+        {
+            label1.Text = Languages.Instance.GetText("lblPlatform", "Platform:");
+            label2.Text = Languages.Instance.GetText("Username", "Username:");
+            label3.Text = Languages.Instance.GetText("Password", "Password:");
+            label4.Text = Languages.Instance.GetText("Game", "Game:");
+            label5.Text = Languages.Instance.GetText("Category", "Category:");
+            label6.Text = Languages.Instance.GetText("Version", "Version:");
+            label7.Text = Languages.Instance.GetText("VideoURL", "Video URL:");
+            label8.Text = Languages.Instance.GetText("Text", "Text:");
+            btnClose.Text = Languages.Instance.GetText("btnClose", "Close");
+            label9.Text = Languages.Instance.GetText("Insert", "Insert:");
+            btnInsertGame.Text = Languages.Instance.GetText("btnInsertGame", "Game");
+            btnInsertCategory.Text = Languages.Instance.GetText("btnInsertCategory", "Category");
+            btnInsertTitle.Text = Languages.Instance.GetText("btnInsertTitle", "Title");
+            btnInsertPB.Text = Languages.Instance.GetText("btnInsertPB", "PB");
+            btnPreview.Text = Languages.Instance.GetText("btnPreview", "Preview...");
+            btnInsertSplitName.Text = Languages.Instance.GetText("btnInsertSplitName", "Split Name");
+            btnInsertDeltaTime.Text = Languages.Instance.GetText("btnInsertDeltaTime", "Delta Time");
+            btnInsertSplitTime.Text = Languages.Instance.GetText("btnInsertSplitTime", "Split Time");
+            btnInsertStreamLink.Text = Languages.Instance.GetText("btnInsertStreamLink", "Stream Link");
+            chkAttachSplits.Text = Languages.Instance.GetText("chkAttachSplits", "Attach Splits");
+            btnShare.Text = Languages.Instance.GetText("btnShare", "Share");
+            Text = Languages.Instance.GetText("ShareRunDialog", "Run Sharer");
+
         }
     }
 }

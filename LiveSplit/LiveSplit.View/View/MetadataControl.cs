@@ -75,6 +75,7 @@ namespace LiveSplit.View
             InitializeComponent();
             dynamicControls = new List<Control>();
             variableBindings = new List<VariableBinding>();
+            RefreshText();
         }
 
         private void MetadataControl_Load(object sender, EventArgs e)
@@ -139,7 +140,7 @@ namespace LiveSplit.View
 
                     var emulatedCheckBox = new CheckBox
                     {
-                        Text = "Uses Emulator",
+                        Text = Languages.Instance.GetText("UsesEmulator", "Uses Emulator"),
                         Anchor = AnchorLeftRight,
                         Margin = new Padding(7, 3, 3, 3),
                         Height = 21,
@@ -277,19 +278,22 @@ namespace LiveSplit.View
             if (string.IsNullOrEmpty(Metadata.RunID))
             {
                 btnSubmit.Enabled = true;
-                btnAssociate.Text = "Associate with Speedrun.com...";
+                btnAssociate.Text = Languages.Instance.GetText("btnAssociate", "Associate with Speedrun.com...");
             }
             else
             {
                 btnSubmit.Enabled = false;
-                btnAssociate.Text = "Show on Speedrun.com...";
+                btnAssociate.Text = Languages.Instance.GetText("btnShowOnSpeedrunCom", "Show on Speedrun.com...");
             }
         }
 
         private void associateRun()
         {
             var url = "";
-            var result = InputBox.Show("Enter Speedrun.com URL", "Speedrun.com Run URL:", ref url);
+            var result = InputBox.Show(
+                Languages.Instance.GetText("associateRunTitle_1", "Enter Speedrun.com URL"), 
+                Languages.Instance.GetText("associateRunPromptText_1", "Speedrun.com Run URL:"), 
+                ref url);
 
             if (result == DialogResult.OK)
             {
@@ -303,13 +307,23 @@ namespace LiveSplit.View
                     }
                     else
                     {
-                        MessageBox.Show(this, "The URL provided is not a valid speedrun.com Run URL.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(
+                            this, 
+                            Languages.Instance.GetText("associateRunText_1", "The URL provided is not a valid speedrun.com Run URL."), 
+                            Languages.Instance.GetText("InvalidURL", "Invalid URL"), 
+                            MessageBoxButtons.OK, 
+                            MessageBoxIcon.Error);
                     }
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                    MessageBox.Show(this, "The run could not be associated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        this, 
+                        Languages.Instance.GetText("associateRunText_2", "The run could not be associated."), 
+                        Languages.Instance.GetText("Error", "Error"), 
+                        MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                 }
             }
         }
@@ -351,7 +365,11 @@ namespace LiveSplit.View
 
             if (!isValid)
             {
-                MessageBox.Show(this, reason, "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this, reason, 
+                    Languages.Instance.GetText("SubmittingFailed", "Submitting Failed"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
                 return;
             }
 
@@ -380,6 +398,17 @@ namespace LiveSplit.View
             var variableComboBox = (ComboBox)sender;
             var variableBinding = (VariableBinding)variableComboBox.DataBindings[0].DataSource;
             variableBinding.Value = variableComboBox.SelectedItem.ToString();
+        }
+
+        private void RefreshText ()
+        {
+            lblRegion.Text = Languages.Instance.GetText("lblRegion", "Region:");
+            lblPlatform.Text = Languages.Instance.GetText("lblPlatform", "Platform:");
+            lblRules.Text = Languages.Instance.GetText("lblRules", "Rules:");
+            btnAssociate.Text = Languages.Instance.GetText("btnAssociate", "Associate with Speedrun.com...");
+            tbxRules.Text = Languages.Instance.GetText("tbxRules", "");
+            btnSubmit.Text = Languages.Instance.GetText("btnSubmitRun", "Submit Run...");
+
         }
     }
 }

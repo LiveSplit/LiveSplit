@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using LiveSplit.Options;
 
 namespace LiveSplit.View
 {
@@ -43,7 +44,7 @@ namespace LiveSplit.View
             nmWidth.DataBindings.Add("Value", this, "FormWidth", false, DataSourceUpdateMode.OnPropertyChanged);
             nmHeight.DataBindings.Add("Value", this, "FormHeight", false, DataSourceUpdateMode.OnPropertyChanged);
             chkKeepAspectRatio.DataBindings.Add("Checked", this, "KeepAspectRatio", false, DataSourceUpdateMode.OnPropertyChanged);
-
+            RefreshText();
         }
 
         protected void HeightChanged()
@@ -83,6 +84,16 @@ namespace LiveSplit.View
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void RefreshText ()
+        {
+            btnCancel.Text = Languages.Instance.GetText("btnCancel", "Cancel");
+            btnOK.Text = Languages.Instance.GetText("btnOK", "OK");
+            label1.Text = Languages.Instance.GetText("Width", "Width:");
+            label2.Text = Languages.Instance.GetText("Height", "Height:");
+            chkKeepAspectRatio.Text = Languages.Instance.GetText("chkKeepAspectRatio", "Keep Aspect Ratio");
+            Text = Languages.Instance.GetText("SetSizeForm", "Set Layout Size");
         }
     }
 }

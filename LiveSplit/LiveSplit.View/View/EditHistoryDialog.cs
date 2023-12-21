@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using LiveSplit.Options;
 
 namespace LiveSplit.View
 {
@@ -14,6 +15,7 @@ namespace LiveSplit.View
             InitializeComponent();
             History = history.Reverse().ToList();
             historyListBox.Items.AddRange(History.Where(x => !string.IsNullOrEmpty(x)).ToArray());
+            RefreshText();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -36,6 +38,14 @@ namespace LiveSplit.View
 
             historyListBox.Items.Clear();
             historyListBox.Items.AddRange(History.Where(x => !string.IsNullOrEmpty(x)).ToArray());
+        }
+
+        private void RefreshText()
+        {
+            btnCancel.Text = Languages.Instance.GetText("btnCancel", "Cancel");
+            btnOK.Text = Languages.Instance.GetText("btnOK", "OK");
+            btnRemove.Text = Languages.Instance.GetText("btnRemoveSelected", "Remove Selected");
+            Text = Languages.Instance.GetText("EditHistoryDialog", "Edit History");
         }
     }
 }

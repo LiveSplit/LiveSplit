@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using LiveSplit.Options;
 
 namespace LiveSplit.View
 {
@@ -25,6 +26,7 @@ namespace LiveSplit.View
                 LatestRunComparisonGenerator.ComparisonName,
                 NoneComparisonGenerator.ComparisonName
             });
+            RefreshText();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -55,6 +57,13 @@ namespace LiveSplit.View
                 comparisonsListBox.SetItemChecked(comparisonsListBox.Items.IndexOf(generator.Key), generator.Value);
             }
             DialogInitialized = true;
+        }
+
+        private void RefreshText ()
+        {
+            btnOK.Text = Languages.Instance.GetText("btnOK", "OK");
+            btnCancel.Text = Languages.Instance.GetText("btnCancel", "Cancel");
+            Text = Languages.Instance.GetText("ChooseComparisonsDialog", "Choose Comparisons");
         }
     }
 }

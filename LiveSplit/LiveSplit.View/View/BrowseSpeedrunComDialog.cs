@@ -51,6 +51,7 @@ namespace LiveSplit.View
                     }
                 }
             }
+            RefreshText();
         }
 
         private static int getDigits(int n)
@@ -254,7 +255,12 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show(this, "Search Failed!", "Search Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this, 
+                    Languages.Instance.GetText("SearchFailedText", "Search Failed!"), 
+                    Languages.Instance.GetText("SearchFailedCaption", "Search Failed"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -283,7 +289,12 @@ namespace LiveSplit.View
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show(this, "Download Failed!", "Download Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    this, 
+                    Languages.Instance.GetText("DownloadFailedText", "Download Failed!"), 
+                    Languages.Instance.GetText("DownloadFailedCaption", "Download Failed"), 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -297,19 +308,33 @@ namespace LiveSplit.View
                     var succeededName = false;
                     do
                     {
-                        var result = InputBox.Show(this, "Enter Comparison Name", "Name:", ref name);
+                        var result = InputBox.Show(
+                            this, 
+                            Languages.Instance.GetText("EnterComparisonName", "Enter Comparison Name"), 
+                            Languages.Instance.GetText("Name", "Name:"), 
+                            ref name);
                         if (result == DialogResult.Cancel)
                             return result;
 
                         if (name.StartsWith("[Race]"))
                         {
-                            result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                            result = MessageBox.Show(
+                                this, 
+                                Languages.Instance.GetText("ComparisonText", "A Comparison name cannot start with [Race]."), 
+                                Languages.Instance.GetText("InvalidComparisonName", "Invalid Comparison Name"), 
+                                MessageBoxButtons.RetryCancel, 
+                                MessageBoxIcon.Error);
                             if (result == DialogResult.Cancel)
                                 return result;
                         }
                         else if (name == Model.Run.PersonalBestComparisonName)
                         {
-                            result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                            result = MessageBox.Show(
+                                this, 
+                                Languages.Instance.GetText("ComparisonText_1", "A Comparison with this name already exists."), 
+                                Languages.Instance.GetText("ComparisonAlreadyExists", "Comparison Already Exists"), 
+                                MessageBoxButtons.RetryCancel, 
+                                MessageBoxIcon.Error);
                             if (result == DialogResult.Cancel)
                                 return result;
                         }
@@ -360,6 +385,16 @@ namespace LiveSplit.View
                     Process.Start(uri.AbsoluteUri);
                 }
             }
+        }
+
+        private void RefreshText ()
+        {
+            btnSearch.Text = Languages.Instance.GetText("btnSearch", "Search");
+            btnDownload.Text = Languages.Instance.GetText("btnDownload", "Download");
+            chkDownloadEmpty.Text = Languages.Instance.GetText("chkDownloadEmpty", "Download Empty");
+            chkIncludeTimes.Text = Languages.Instance.GetText("chkIncludeTimes", "Include Times as Comparison");
+            btnShowOnSpeedrunCom.Text = Languages.Instance.GetText("btnShowOnSpeedrunCom", "Show on Speedrun.com");
+            Text = Languages.Instance.GetText("BrowseSpeedrunComDialog", "Browse Speedrun.com");
         }
     }
 }

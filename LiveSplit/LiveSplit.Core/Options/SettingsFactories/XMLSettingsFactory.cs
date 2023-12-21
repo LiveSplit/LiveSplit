@@ -35,6 +35,7 @@ namespace LiveSplit.Options.SettingsFactories
             settings.RefreshRate = ParseInt(parent["RefreshRate"], settings.RefreshRate);
             settings.LastComparison = ParseString(parent["LastComparison"], settings.LastComparison);
             settings.AgreedToSRLRules = ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
+            settings.Language = ParseString(parent["language"], settings.Language);
 
             var recentLayouts = parent["RecentLayouts"];
             foreach (var layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))

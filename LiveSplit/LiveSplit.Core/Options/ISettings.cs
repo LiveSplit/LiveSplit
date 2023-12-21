@@ -43,5 +43,6 @@ namespace LiveSplit.Options
         bool GlobalHotkeysEnabled { get; set; }
         bool DeactivateHotkeysForOtherPrograms { get; set; }
         bool DoubleTapPrevention { get; set; }
+        string Language { get; set; }
     }
 }
