@@ -1503,7 +1503,7 @@ namespace LiveSplit.View
         {
             if (!Settings.AgreedToSRLRules)
             {
-                Process.Start("http://speedrunslive.com/faq/rules/");
+                Process.Start(SRLSettings.SRLRulesLink);
                 var result = MessageBox.Show(this, "Please read through the rules of SpeedRunsLive carefully.\r\nDo you agree to these rules?", "SpeedRunsLive Rules", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {

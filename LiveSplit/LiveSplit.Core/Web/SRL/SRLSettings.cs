@@ -13,8 +13,10 @@ namespace LiveSplit.Web.SRL
 
         public override string DisplayName => "SRL";
 
-        public override string WebsiteLink => "http://www.speedrunslive.com";
-        public override string RulesLink => "http://www.speedrunslive.com/faq/rules/";
+        public override string WebsiteLink => "https://www.speedrunslive.com";
+        public override string RulesLink => SRLRulesLink;
+
+        public static string SRLRulesLink => "https://www.speedrunslive.com/rules-faq/rules";
 
         public override object Clone()
         {
