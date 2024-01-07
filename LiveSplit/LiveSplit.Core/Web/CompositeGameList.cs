@@ -13,9 +13,13 @@ namespace LiveSplit.Web
 
         protected IList<string> gameNames;
 
+        protected IDictionary<string, string> gameIDs;
+
         protected CompositeGameList()
         { }
 
+        public string GetGameID(string gameName) => gameIDs[gameName];
+        
         public IEnumerable<string> GetGameNames()
         {
             if (gameNames == null)
@@ -41,6 +45,39 @@ namespace LiveSplit.Web
                     .Distinct().OrderBy(x => x)
                     .Where(x => !string.IsNullOrEmpty(x))
                     .ToList();
+            }
+
+            return gameNames;
+        }
+        
+        public IList<string> GetGameNamesAndCacheIDs()
+        {
+            if (gameIDs == null)
+            {
+                var speedrunComTask = new Task<IDictionary<string, string>>(
+                    () =>
+                    {
+                        try
+                        {
+                            return SpeedrunCom.Client.Games.GetGameHeaders()
+                                .GroupBy(x => x.Name)
+                                .Select(x => x.First())
+                                .OrderBy(x => x.Name)
+                                .Where(x => !string.IsNullOrEmpty(x.Name))
+                                .ToDictionary(x => x.Name, x => x.ID);
+                        }
+                        catch
+                        {
+                            return new Dictionary<string, string>();
+                        }
+                    });
+
+                speedrunComTask.Start();
+
+                Task.WaitAll(speedrunComTask);
+
+                gameNames = speedrunComTask.Result.Keys.ToList();
+                gameIDs = speedrunComTask.Result;
             }
 
             return gameNames;
