@@ -13,37 +13,52 @@ namespace LiveSplit.Web
 
         protected IList<string> gameNames;
 
+        protected IDictionary<string, string> gameIDs;
+
         protected CompositeGameList()
         { }
+
+        public string GetGameID(string gameName)
+        {
+            if (gameIDs == null)
+            {
+                GetGames();
+            }
+
+            return gameIDs[gameName];
+        }
 
         public IEnumerable<string> GetGameNames()
         {
             if (gameNames == null)
             {
-                var speedrunComTask = new Task<IEnumerable<string>>(
-                    () =>
-                    {
-                        try
-                        {
-                            return SpeedrunCom.Client.Games.GetGameHeaders().Select(x => x.Name);
-                        }
-                        catch
-                        {
-                            return new string[0];
-                        }
-                    });
-
-                speedrunComTask.Start();
-
-                Task.WaitAll(speedrunComTask);
-
-                gameNames = speedrunComTask.Result
-                    .Distinct().OrderBy(x => x)
-                    .Where(x => !string.IsNullOrEmpty(x))
-                    .ToList();
+                GetGames();
             }
 
             return gameNames;
+        }
+
+        private void GetGames()
+        {
+            var gameNames = new List<string>();
+            var gameIDs = new Dictionary<string, string>();
+
+            var headerSet = new HashSet<string>();
+            foreach (var header in SpeedrunCom.Client.Games.GetGameHeaders())
+            {
+                string name = header.Name, id = header.ID;
+        
+                if (!string.IsNullOrEmpty(name) && headerSet.Add(name))
+                {
+                    gameNames.Add(name);
+                    gameIDs[name] = id;
+                }
+            }
+
+            gameNames.Sort();
+
+            this.gameNames = gameNames;
+            this.gameIDs = gameIDs;
         }
     }
 }
