@@ -282,7 +282,7 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    gameNames = CompositeGameList.Instance.GetGameNamesAndCacheIDs().ToArray();
+                    gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
                     abbreviations = gameNames
                     .Select(x => x.GetAbbreviations()
                         .Select(y => new KeyValuePair<string, string>(x, y)))

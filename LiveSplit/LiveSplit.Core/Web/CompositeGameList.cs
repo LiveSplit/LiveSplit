@@ -18,69 +18,47 @@ namespace LiveSplit.Web
         protected CompositeGameList()
         { }
 
-        public string GetGameID(string gameName) => gameIDs[gameName];
-        
+        public string GetGameID(string gameName)
+        {
+            if (gameIDs == null)
+            {
+                GetGames();
+            }
+
+            return gameIDs[gameName];
+        }
+
         public IEnumerable<string> GetGameNames()
         {
             if (gameNames == null)
             {
-                var speedrunComTask = new Task<IEnumerable<string>>(
-                    () =>
-                    {
-                        try
-                        {
-                            return SpeedrunCom.Client.Games.GetGameHeaders().Select(x => x.Name);
-                        }
-                        catch
-                        {
-                            return new string[0];
-                        }
-                    });
-
-                speedrunComTask.Start();
-
-                Task.WaitAll(speedrunComTask);
-
-                gameNames = speedrunComTask.Result
-                    .Distinct().OrderBy(x => x)
-                    .Where(x => !string.IsNullOrEmpty(x))
-                    .ToList();
+                GetGames();
             }
 
             return gameNames;
         }
-        
-        public IList<string> GetGameNamesAndCacheIDs()
+
+        private void GetGames()
         {
-            if (gameIDs == null)
+            var gameNames = new List<string>();
+            var gameIDs = new Dictionary<string, string>();
+
+            var headerSet = new HashSet<string>();
+            foreach (var header in SpeedrunCom.Client.Games.GetGameHeaders())
             {
-                var speedrunComTask = new Task<IDictionary<string, string>>(
-                    () =>
-                    {
-                        try
-                        {
-                            return SpeedrunCom.Client.Games.GetGameHeaders()
-                                .GroupBy(x => x.Name)
-                                .Select(x => x.First())
-                                .OrderBy(x => x.Name)
-                                .Where(x => !string.IsNullOrEmpty(x.Name))
-                                .ToDictionary(x => x.Name, x => x.ID);
-                        }
-                        catch
-                        {
-                            return new Dictionary<string, string>();
-                        }
-                    });
-
-                speedrunComTask.Start();
-
-                Task.WaitAll(speedrunComTask);
-
-                gameNames = speedrunComTask.Result.Keys.ToList();
-                gameIDs = speedrunComTask.Result;
+                string name = header.Name, id = header.ID;
+        
+                if (!string.IsNullOrEmpty(name) && headerSet.Add(name))
+                {
+                    gameNames.Add(name);
+                    gameIDs[name] = id;
+                }
             }
 
-            return gameNames;
+            gameNames.Sort();
+
+            this.gameNames = gameNames;
+            this.gameIDs = gameIDs;
         }
     }
 }
