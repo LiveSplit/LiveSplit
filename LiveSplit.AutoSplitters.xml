@@ -2,6 +2,45 @@
 <AutoSplitters>
     <AutoSplitter>
         <Games>
+            <Game>Ride to Hell: Retribution</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/streetbackguy/Autosplitter-Projects/main/LiveSplit.RideToHellRetribution.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart and Load Remover by Streetbackguy</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Age of Mythology</Game>
+            <Game>Age of Mythology: The Titans</Game>
+            <Game>Age of Mythology: Extended Edition</Game>
+            <Game>Age of Mythology: Tale of the Dragon</Game>
+            <Game>AOM</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/jbadlato/aom-autosplitter/main/aom-autosplitter.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting by joeybadz</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Prince of Persia: The Lost Crown</Game>
+            <Game>Prince of Persia The Lost Crown</Game>
+            <Game>POPTLC</Game>
+            <Game>The Lost Crown</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.POPTLC/main/POPTLC.asl</URL>
+            <URL>https://raw.githubusercontent.com/LiterallyMetaphorical/LiveSplit.POPTLC/main/POPTLC.Settings.xml</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitting and load removal is available. (By diggity and Meta)</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Avatar: Frontiers of Pandora</Game>
         </Games>
         <URLs>
@@ -1588,6 +1627,7 @@
     <AutoSplitter>
         <Games>
             <Game>Madagascar</Game>
+            <Game>Madagascar Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/triguii/asl-scripts/main/Madagascar.asl</URL>
@@ -5844,8 +5884,21 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Silent Hill</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/BoredOfSpeedruns/Silent-Hill-1-Autosplitter/main/Silent_Hill_1.asl</URL>
+            <URL>https://github.com/Jujstme/emu-help/raw/master/lib/emu-help-v2</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>IGT AutoSplitter for Silent Hill 1 on Duckstation and ePSXe (By BoredOfSpeedruns)</Description>
+        <Website>https://github.com/BoredOfSpeedruns/Silent-Hill-1-Autosplitter</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Silent Hill 2</Game>
             <Game>Silent Hill 2 - Directors Cut</Game>
+            <Game>Silent Hill 2 (PC)</Game>
         </Games>
         <URLs>
             <URL>https://raw.githubusercontent.com/Bigmanjapan/LivesplitASLscripts/master/Silent%20Hill%202%20PC/LiveSplit.SilentHill2.asl</URL>
@@ -5857,13 +5910,26 @@
     <AutoSplitter>
         <Games>
             <Game>Silent Hill 3</Game>
+            <Game>Silent Hill 3 (PC)</Game>
         </Games>
         <URLs>
-            <URL>https://raw.githubusercontent.com/SuiMachine/LiveSplit.ASLScripts/master/Silent%20Hill%203/LiveSplit.SH3_Classic.asl</URL>
+            <URL>https://raw.githubusercontent.com/BoredOfSpeedruns/SH3-mRTA-Autosplitter/main/Silent_Hill_3_mRTA.asl</URL>
         </URLs>
         <Type>Script</Type>
-        <Description>Game Time display is available. (By SuicideMachine, based on idea by Shunpuk)</Description>
+        <Description>Modified RTA AutoSplitter. (By BoredOfSpeedruns, based on the script by Gatorjuick and OpaqueGlassJar)</Description>
         <Website>https://github.com/SuiMachine/LiveSplit.ASLScripts</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Silent Hill: 0rigins</Game>
+            <Game>Silent Hill: Origins</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/BoredOfSpeedruns/Silent-Hill-0rigins-Autosplitter/main/Silent_Hill_0rigins.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>IGT AutoSplitter for Silent Hill 0rigins on PPSSPP (By BoredOfSpeedruns)</Description>
+        <Website>https://github.com/BoredOfSpeedruns/Silent-Hill-0rigins-Autosplitter</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -10725,6 +10791,18 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Haven Park</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/LRFLEW/LiveSplit.HavenPark/main/HavenPark.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Remover for the PC version of Haven Park</Description>
+        <Website>https://github.com/LRFLEW/LiveSplit.HavenPark</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>FEAR</Game>
             <Game>FEAR: First Encounter Assault Recon</Game>
             <Game>F.E.A.R.</Game>
@@ -11501,6 +11579,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Nancy Drew: Ghost Dogs of Moon Lake</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/07.%20Ghost%20Dogs%20of%20Moon%20Lake.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Nancy Drew: The Haunted Carousel</Game>
         </Games>
         <URLs>
@@ -11567,6 +11656,17 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Nancy Drew: The Creature of Kapu Cave</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/15.%20The%20Creature%20of%20Kapu%20Cave.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Nancy Drew: The White Wolf of Icicle Creek</Game>
         </Games>
         <URLs>
@@ -11578,6 +11678,50 @@
     </AutoSplitter>
     <AutoSplitter>
         <Games>
+            <Game>Nancy Drew: Legend of the Crystal Skull</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/17.%20Legend%20of%20the%20Crystal%20Skull.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: The Phantom of Venice</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/18.%20VEN.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: Ransom of the Seven Ships</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/20.%20RAN.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: Trail of the Twister</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/22.%20Trail%20of%20the%20Twister.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
             <Game>Nancy Drew: Secrets Can Kill REMASTERED</Game>
         </Games>
         <URLs>
@@ -11586,6 +11730,94 @@
         <Type>Script</Type>
         <Description>Automatic start/split/reset</Description>
         <Website>https://www.speedrun.com/nancy_drew</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: Shadow at the Water's Edge</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/23.%20Shadow%20at%20the%20Water's%20Edge.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: The Captive Curse</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/24.%20The%20Captive%20Curse.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: Alibi in Ashes</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/25.%20ASH.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: Tomb of the Lost Queen</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/26.%20TMB.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: The Deadly Device</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/27.%20DED.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: Ghost of Thornton Hall</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/28.%20GTH.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: The Silent Spy</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/29.%20SPY.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Nancy Drew: The Shattered Medallion</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/toasterberry/Nancy-Drew-Autosplitters/main/Autosplitters/30.%20MED.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto start/split/reset</Description>
+        <Website>https://github.com/toasterberry/Nancy-Drew-Autosplitters</Website>
     </AutoSplitter>
     <AutoSplitter>
         <Games>
@@ -14695,6 +14927,17 @@
         </URLs>
         <Type>Script</Type>
         <Description>Load Removal is available. (By FromDarkHell/Ramnerock)</Description>
+        <Website>https://discord.gg/hMfQ2MA</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Remnant II</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/ToyDragon/Remnant2Autosplitter/main/remnant2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Load remover for Remnant II.</Description>
         <Website>https://discord.gg/hMfQ2MA</Website>
     </AutoSplitter>
     <AutoSplitter>
@@ -20410,5 +20653,147 @@
         <Type>Script</Type>
         <Description>Auto Splitting and Load Removal is available (By c0y0tl)</Description>
         <Website>https://github.com/c0y0tl/asl/blob/main/cold_war/README.md</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+          <Game>Donut Dodo</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kuhaku9893/Autosplitters/main/DonutDodo/DonutDodo.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) and IGT are available (by Kuhaku)</Description>
+        <Website>https://github.com/Kuhaku9893/Autosplitters/tree/main/DonutDodo</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+          <Game>Marfusha</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kuhaku9893/Autosplitters/main/Marfusha/marfusha.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) are available (by Kuhaku)</Description>
+        <Website>https://github.com/Kuhaku9893/Autosplitters/tree/main/Marfusha</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+          <Game>Racing Pitch</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kuhaku9893/Autosplitters/main/RacingPitch/racingpitch.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) and IGT are available (by Kuhaku)</Description>
+        <Website>https://github.com/Kuhaku9893/Autosplitters/tree/main/RacingPitch</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+          <Game>Typoman</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kuhaku9893/Autosplitters/main/Typoman/Typoman.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) are available (by Kuhaku)</Description>
+        <Website>https://github.com/Kuhaku9893/Autosplitters/tree/main/Typoman</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+          <Game>Under Party</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kuhaku9893/Autosplitters/main/Underparty/underparty.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) are available (by Kuhaku)</Description>
+        <Website>https://github.com/Kuhaku9893/Autosplitters/tree/main/Underparty</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+          <Game>Witch's Rhythm Puzzle</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Kuhaku9893/Autosplitters/main/WitchsRhythmPuzzle/WitchsRhythmPuzzle.asl</URL>
+            <URL>https://github.com/just-ero/asl-help/raw/main/lib/asl-help</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter (start, split, reset) are available (by Kuhaku)</Description>
+        <Website>https://github.com/Kuhaku9893/Autosplitters/tree/main/WitchsRhythmPuzzle</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+          <Game>Obama</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/CodeNameMeteor/Autosplitters/main/Obama/ObamaAny.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter for Obama (by CodeNameMeteor)</Description>
+        <Website>https://github.com/CodeNameMeteor/Autosplitters/blob/main/Obama/ObamaAny.asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Assassin's Creed Syndicate</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/TpRedNinja/Assassins-Creed-Syndicate/main/ACS.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Auto Splitter for Assassins Creed Syndicate Jack the ripper DLC (by TpRedNinja)</Description>
+        <Website>https://github.com/TpRedNinja/Assassins-Creed-Syndicate/blob/main/ACS.asl</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>A Game, Creating twin towers with balancing</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/Felicien2B/TwintowerASL/main/twintower.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter for Twintower (Windows) (By Felicien2B and Jean20B)</Description>
+        <Website>https://www.speedrun.com/twintower</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Simple Fish Adventure</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/tor1pp/AutoSplitterASLs/main/SimpleFishAdventure/SimpleFishAdventure.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter by tor1pp</Description>
+        <Website>https://www.speedrun.com/simple_fish_adventure</Website>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Endling Extinction Is Forever</Game>
+        </Games>
+        <URLs>   
+            <URL>https://github.com/JPdev-Github/Livesplit.Endling.Asl/raw/main/Livesplit.Endling.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autostart, Autosplitter and Load Remover by jp_dev</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>Colin McRae: Dirt 2</Game>
+            <Game>Dirt 2</Game>
+        </Games>
+        <URLs>
+            <URL>https://raw.githubusercontent.com/WilllTreaty/My-Autosplitters/main/Livesplit.CMD2.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Loadless timer made by WillTreaty</Description>
+    </AutoSplitter>
+    <AutoSplitter>
+        <Games>
+            <Game>LEGO Star Wars: The Force Awakens</Game>
+        </Games>
+        <URLs>   
+            <URL>https://raw.githubusercontent.com/Siedemnastek/Autosplitter/main/TFA.asl</URL>
+        </URLs>
+        <Type>Script</Type>
+        <Description>Autosplitter and Load Removal Available (By Siedemnastek)</Description>
     </AutoSplitter>
 </AutoSplitters>
