@@ -160,6 +160,8 @@ namespace LiveSplit.Model
                     var lastDelta = GetLastDelta(state, splitNumber - 1, comparison, method);
                     if (showSegmentDeltas && splitNumber > 0 && lastDelta != null && timeDifference > lastDelta)
                         splitColor = state.LayoutSettings.AheadLosingTimeColor;
+                    if (timeDifference == TimeSpan.Zero)
+                        splitColor = state.LayoutSettings.TextColor;
                 }
                 else
                 {
