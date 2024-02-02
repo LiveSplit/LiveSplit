@@ -63,7 +63,7 @@ namespace LiveSplit.TimeFormatters {
             string minusString;
             if (time <= TimeSpan.Zero)
             {
-                minusString = TimeFormatConstants.MINUS;
+                minusString = (time == TimeSpan.Zero ? "" : TimeFormatConstants.MINUS);
                 time = -time;
             }
             else
