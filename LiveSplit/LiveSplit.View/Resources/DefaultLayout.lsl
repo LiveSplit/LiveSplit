@@ -16,6 +16,7 @@
     <PersonalBestColor>FF16A6FF</PersonalBestColor>
     <AheadGainingTimeColor>FF00CC36</AheadGainingTimeColor>
     <AheadLosingTimeColor>FF52CC73</AheadLosingTimeColor>
+    <TiedTimeColor>FFFFFFFF</TiedTimeColor>
     <BehindGainingTimeColor>FFCC5C52</BehindGainingTimeColor>
     <BehindLosingTimeColor>FFCC1200</BehindLosingTimeColor>
     <BestSegmentColor>FFD8AF1F</BestSegmentColor>

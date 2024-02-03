@@ -27,6 +27,7 @@ namespace LiveSplit.UI.LayoutFactories
             settings.PersonalBestColor = SettingsHelper.ParseColor(element["PersonalBestColor"]);
             settings.AheadGainingTimeColor = SettingsHelper.ParseColor(element["AheadGainingTimeColor"]);
             settings.AheadLosingTimeColor = SettingsHelper.ParseColor(element["AheadLosingTimeColor"]);
+            settings.TiedTimeColor = SettingsHelper.ParseColor(element["TiedTimeColor"]);
             settings.BehindGainingTimeColor = SettingsHelper.ParseColor(element["BehindGainingTimeColor"]);
             settings.BehindLosingTimeColor = SettingsHelper.ParseColor(element["BehindLosingTimeColor"]);
             settings.BestSegmentColor = SettingsHelper.ParseColor(element["BestSegmentColor"]);

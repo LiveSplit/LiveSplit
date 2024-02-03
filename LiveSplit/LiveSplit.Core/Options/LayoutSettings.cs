@@ -12,6 +12,7 @@ namespace LiveSplit.Options
         public Color SeparatorsColor { get; set; }
         public Color PersonalBestColor { get; set; }
         public Color AheadGainingTimeColor { get; set; }
+        public Color TiedTimeColor { get; set; }
         public Color AheadLosingTimeColor { get; set; }
         public Color BehindGainingTimeColor { get; set; }
         public Color BehindLosingTimeColor { get; set; }
@@ -57,6 +58,7 @@ namespace LiveSplit.Options
             PersonalBestColor = settings.PersonalBestColor;
             AheadGainingTimeColor = settings.AheadGainingTimeColor;
             AheadLosingTimeColor = settings.AheadLosingTimeColor;
+            TiedTimeColor = settings.TiedTimeColor;
             BehindGainingTimeColor = settings.BehindGainingTimeColor;
             BehindLosingTimeColor = settings.BehindLosingTimeColor;
             BestSegmentColor = settings.BestSegmentColor;

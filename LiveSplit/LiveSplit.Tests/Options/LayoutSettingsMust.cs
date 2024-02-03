@@ -19,6 +19,7 @@ namespace LiveSplit.Tests.Options
                 TextColor = Color.Yellow,
                 AheadGainingTimeColor = Color.Red,
                 AheadLosingTimeColor = Color.AliceBlue,
+                TiedTimeColor = Color.Yellow,
                 AlwaysOnTop = true,
                 AntiAliasing = true,
                 BackgroundColor = Color.Red,
@@ -51,6 +52,7 @@ namespace LiveSplit.Tests.Options
             Assert.Equal(Color.Yellow, sut.TextColor);
             Assert.Equal(Color.Red, sut.AheadGainingTimeColor);
             Assert.Equal(Color.AliceBlue, sut.AheadLosingTimeColor);
+            Assert.Equal(Color.Yellow, sut.TiedTimeColor);
             Assert.True(sut.AlwaysOnTop);
             Assert.True(sut.AntiAliasing);
             Assert.Equal(Color.Red, sut.BackgroundColor);

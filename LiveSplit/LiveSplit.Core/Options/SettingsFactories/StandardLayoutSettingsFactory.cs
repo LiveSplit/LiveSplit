@@ -17,6 +17,7 @@ namespace LiveSplit.Options.SettingsFactories
                 PersonalBestColor = FromArgb(22, 166, 255),
                 AheadGainingTimeColor = FromArgb(41, 204, 84),
                 AheadLosingTimeColor = FromArgb(112, 204, 137),
+                TiedTimeColor = FromArgb(255, 255, 255),
                 BehindGainingTimeColor = FromArgb(204, 120, 112),
                 BehindLosingTimeColor = FromArgb(204, 55, 41),
                 BestSegmentColor = FromArgb(216, 175, 31),
