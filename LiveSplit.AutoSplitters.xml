@@ -8350,7 +8350,9 @@
     <AutoSplitter>
         <Games>
             <Game>Trackmania</Game>
+            <Game>Trackmania (2020)</Game>
             <Game>Trackmania Club Campaigns</Game>
+            <Game>Trackmania Category Extensions</Game>
         </Games>
         <URLs>
             <URL>https://github.com/GreepTheSheep/LiveSplit.Server/releases/latest/download/LiveSplit.TMServer.dll</URL>
