@@ -154,7 +154,7 @@ namespace LiveSplit.Model
 
             if (timeDifference != null)
             {
-                if (timeDifference < TimeSpan.Zero)
+                if (timeDifference <= TimeSpan.Zero)
                 {
                     splitColor = state.LayoutSettings.AheadGainingTimeColor;
                     var lastDelta = GetLastDelta(state, splitNumber - 1, comparison, method);
