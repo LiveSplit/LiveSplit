@@ -28,7 +28,7 @@ namespace LiveSplit.Tests.TimeFormatterTests
         }
         
         [Theory]
-        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "+0")]
+        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "0")]
         [InlineData("00:00:01", TimeAccuracy.Seconds, false, "+1")]
         [InlineData("00:00:00.5", TimeAccuracy.Tenths, false, "+0.5")]
         [InlineData("00:00:01.001", TimeAccuracy.Tenths, false, "+1.0")]
@@ -65,7 +65,7 @@ namespace LiveSplit.Tests.TimeFormatterTests
         }
 
         [Theory]
-        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "+0")]
+        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "0")]
         [InlineData("00:00:01", TimeAccuracy.Seconds, false, "+1")]
         [InlineData("00:00:00.5", TimeAccuracy.Tenths, false, "+0.5")]
         [InlineData("00:00:01.001", TimeAccuracy.Tenths, false, "+1.0")]
@@ -97,7 +97,7 @@ namespace LiveSplit.Tests.TimeFormatterTests
         }
         
         [Theory]
-        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "+0")]
+        [InlineData("00:00:00", TimeAccuracy.Seconds, false, "0")]
         [InlineData("00:00:01", TimeAccuracy.Seconds, false, "+1")]
         [InlineData("00:00:00.5", TimeAccuracy.Tenths, false, "+0.5")]
         [InlineData("00:00:01.001", TimeAccuracy.Tenths, false, "+1.0")]
@@ -129,7 +129,7 @@ namespace LiveSplit.Tests.TimeFormatterTests
         }
         
         [Theory]
-        [InlineData("00:00:00", TimeAccuracy.Seconds, "+0")]
+        [InlineData("00:00:00", TimeAccuracy.Seconds, "0")]
         [InlineData("00:00:01", TimeAccuracy.Seconds, "+1")]
         [InlineData("00:00:00.5", TimeAccuracy.Tenths, "+0.5")]
         [InlineData("00:00:01.001", TimeAccuracy.Tenths, "+1.0")]
