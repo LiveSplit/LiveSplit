@@ -154,14 +154,16 @@ namespace LiveSplit.Model
 
             if (timeDifference != null)
             {
-                if (timeDifference <= TimeSpan.Zero)
+                if (timeDifference == TimeSpan.Zero)
+                {
+                    splitColor = state.LayoutSettings.TextColor;
+                }
+                else if (timeDifference < TimeSpan.Zero)
                 {
                     splitColor = state.LayoutSettings.AheadGainingTimeColor;
                     var lastDelta = GetLastDelta(state, splitNumber - 1, comparison, method);
                     if (showSegmentDeltas && splitNumber > 0 && lastDelta != null && timeDifference > lastDelta)
                         splitColor = state.LayoutSettings.AheadLosingTimeColor;
-                    if (timeDifference == TimeSpan.Zero)
-                        splitColor = state.LayoutSettings.TextColor;
                 }
                 else
                 {
