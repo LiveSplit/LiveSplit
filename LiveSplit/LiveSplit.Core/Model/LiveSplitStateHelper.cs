@@ -156,7 +156,7 @@ namespace LiveSplit.Model
             {
                 if (timeDifference == TimeSpan.Zero)
                 {
-                    splitColor = state.LayoutSettings.TextColor;
+                    splitColor = null;
                 }
                 else if (timeDifference < TimeSpan.Zero)
                 {
