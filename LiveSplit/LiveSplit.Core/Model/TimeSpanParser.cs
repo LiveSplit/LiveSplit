@@ -8,6 +8,9 @@ namespace LiveSplit.Model
 {
     public static class TimeSpanParser
     {
+        private static readonly char[] separators = { ':' };
+        private static readonly char[] dot = { '.' };
+
         public static TimeSpan? ParseNullable(string timeString)
         {
             if (string.IsNullOrEmpty(timeString))
@@ -19,61 +22,62 @@ namespace LiveSplit.Model
         {
             timeString = timeString.Replace(TimeFormatConstants.MINUS, "-");
 
-            var factor = 1;
+            long factor = 1L;
             if (timeString.StartsWith("-"))
             {
-                factor = -1;
+                factor = -1L;
                 timeString = timeString.Substring(1);
             }
 
-            var splitTimeString = timeString.Split(new char[] {'.'}, 3);
-            var secondsText = splitTimeString[splitTimeString.Length - 2];
-            var secondsTicks = ParseSecondsAsTicks(secondsText);
-
-            if (splitTimeString.Length > 2)
+            long ticks = 0L;
+            string[] sections = timeString.Split(separators, 3);
+            
+            switch (sections.Length)
             {
-                var days = ulong.Parse(splitTimeString[0]);
-                secondsTicks += days * TimeSpan.TicksPerDay;
+                case 3:
+                    string[] daysDotHours = sections[0].Split(dot, 2);
+
+                    if (daysDotHours.Length == 2)
+                    {
+                        ticks += long.Parse(daysDotHours[0], CultureInfo.InvariantCulture) * TimeSpan.TicksPerDay;
+                    }
+
+                    ticks += long.Parse(daysDotHours[daysDotHours.Length - 1], CultureInfo.InvariantCulture) * TimeSpan.TicksPerHour;
+                    goto case 2;
+                case 2:
+                    ticks += long.Parse(sections[sections.Length - 2], CultureInfo.InvariantCulture) * TimeSpan.TicksPerMinute;
+                    break;
             }
 
-            var fractionTicks = 0UL;
-            if (splitTimeString.Length > 1)
+            string[] seconds = sections[sections.Length - 1].Split(dot, 3);
+            ticks += long.Parse(seconds[0], CultureInfo.InvariantCulture) * TimeSpan.TicksPerSecond;
+
+            if (seconds.Length > 1)
             {
-                var fractionText = splitTimeString[splitTimeString.Length - 1];
-                fractionTicks = ParseFractionAsTicks(fractionText);
+                ticks += ParseFractionAsTicks(seconds[1]);
             }
 
-            return TimeSpan.FromTicks(factor * (long)(secondsTicks + fractionTicks));
+            return TimeSpan.FromTicks(factor * ticks);
         }
 
-        private static ulong ParseFractionAsTicks(string fractionText)
+        private static long ParseFractionAsTicks(string fractionText)
         {
             if (fractionText.Length > 7)
                 fractionText = fractionText.Substring(0, 7);
 
-            return ulong.Parse(fractionText, NumberStyles.Integer, CultureInfo.InvariantCulture) * powersOfTen[7 - fractionText.Length];
+            return long.Parse(fractionText, NumberStyles.Integer, CultureInfo.InvariantCulture) * powersOfTen[7 - fractionText.Length];
         }
 
-        private static ulong ParseSecondsAsTicks(string secondsText)
+        private static readonly long[] powersOfTen =
         {
-            var totalSeconds = secondsText
-                .Split(':')
-                .Select(x => ulong.Parse(x, NumberStyles.Integer, CultureInfo.InvariantCulture))
-                .Aggregate((a, b) => 60 * a + b);
-
-            return totalSeconds * TimeSpan.TicksPerSecond;
-        }
-
-        private static readonly ulong[] powersOfTen =
-        {
-            1UL,
-            10UL,
-            100UL,
-            1000UL,
-            10000UL,
-            100000UL,
-            1000000UL,
-            10000000UL,
+            1L,
+            10L,
+            100L,
+            1000L,
+            10000L,
+            100000L,
+            1000000L,
+            10000000L,
         };
     }
 }
