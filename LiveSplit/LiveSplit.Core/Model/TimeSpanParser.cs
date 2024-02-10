@@ -10,6 +10,10 @@ namespace LiveSplit.Model
     {
         private static readonly char[] separators = { ':' };
         private static readonly char[] dot = { '.' };
+        private static readonly char[] negativeSigns = {
+            TimeFormatConstants.DASH.Single(),
+            TimeFormatConstants.MINUS.Single()
+        };
 
         public static TimeSpan? ParseNullable(string timeString)
         {
@@ -20,35 +24,36 @@ namespace LiveSplit.Model
 
         public static TimeSpan Parse(string timeString)
         {
-            timeString = timeString.Replace(TimeFormatConstants.MINUS, "-");
-
-            long factor = 1L;
-            if (timeString.StartsWith("-"))
-            {
-                factor = -1L;
-                timeString = timeString.Substring(1);
-            }
+            // Detect negative time.
+            int originalLength = timeString.Length;
+            timeString = timeString.TrimStart(negativeSigns);
+            long factor = timeString.Length < originalLength ? -1L : 1L;
 
             long ticks = 0L;
             string[] sections = timeString.Split(separators, 3);
             
-            switch (sections.Length)
+            if (sections.Length > 2)
             {
-                case 3:
-                    string[] daysDotHours = sections[0].Split(dot, 2);
+                // Parse days and hours in the format [days.]hours
+                string[] daysDotHours = sections[0].Split(dot, 2);
 
-                    if (daysDotHours.Length == 2)
-                    {
-                        ticks += long.Parse(daysDotHours[0], CultureInfo.InvariantCulture) * TimeSpan.TicksPerDay;
-                    }
+                if (daysDotHours.Length == 2)
+                {
+                    // Parse days.
+                    ticks += long.Parse(daysDotHours[0], CultureInfo.InvariantCulture) * TimeSpan.TicksPerDay;
+                }
 
-                    ticks += long.Parse(daysDotHours[daysDotHours.Length - 1], CultureInfo.InvariantCulture) * TimeSpan.TicksPerHour;
-                    goto case 2;
-                case 2:
-                    ticks += long.Parse(sections[sections.Length - 2], CultureInfo.InvariantCulture) * TimeSpan.TicksPerMinute;
-                    break;
+                // Parse hours.
+                ticks += long.Parse(daysDotHours[daysDotHours.Length - 1], CultureInfo.InvariantCulture) * TimeSpan.TicksPerHour;
             }
 
+            if (sections.Length > 1)
+            {
+                // Parse minutes.
+                ticks += long.Parse(sections[sections.Length - 2], CultureInfo.InvariantCulture) * TimeSpan.TicksPerMinute;
+            }
+
+            // Parse seconds.
             string[] seconds = sections[sections.Length - 1].Split(dot, 3);
             ticks += long.Parse(seconds[0], CultureInfo.InvariantCulture) * TimeSpan.TicksPerSecond;
 
