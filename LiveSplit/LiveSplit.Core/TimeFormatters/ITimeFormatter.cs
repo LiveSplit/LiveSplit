@@ -7,9 +7,9 @@ namespace LiveSplit.TimeFormatters
         string Format(TimeSpan? time);
     }
 
-    public class TimeFormatConstants
+    public static class TimeFormatConstants
     {
-        public static string MINUS = "−";
-        public static string DASH = "-";
+        public static readonly string MINUS = "−";
+        public static readonly string DASH = "-";
     }
 }
