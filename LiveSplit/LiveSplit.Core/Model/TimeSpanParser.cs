@@ -26,14 +26,20 @@ namespace LiveSplit.Model
                 timeString = timeString.Substring(1);
             }
 
-            var splitTimeString = timeString.Split(new char[] {'.'}, 2);
-            var secondsText = splitTimeString[0];
+            var splitTimeString = timeString.Split(new char[] {'.'}, 3);
+            var secondsText = splitTimeString[splitTimeString.Length - 2];
             var secondsTicks = ParseSecondsAsTicks(secondsText);
+
+            if (splitTimeString.Length > 2)
+            {
+                var days = ulong.Parse(splitTimeString[0]);
+                secondsTicks += days * TimeSpan.TicksPerDay;
+            }
 
             var fractionTicks = 0UL;
             if (splitTimeString.Length > 1)
             {
-                var fractionText = splitTimeString[1];
+                var fractionText = splitTimeString[splitTimeString.Length - 1];
                 fractionTicks = ParseFractionAsTicks(fractionText);
             }
 
