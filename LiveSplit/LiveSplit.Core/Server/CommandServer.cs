@@ -21,8 +21,7 @@ namespace LiveSplit.Server
         protected LiveSplitState State { get; set; }
         protected Form Form { get; set; }
         protected TimerModel Model { get; set; }
-        protected ITimeFormatter DeltaFormatter { get; set; }
-        protected ITimeFormatter SplitTimeFormatter { get; set; }
+        protected ITimeFormatter TimeFormatter { get; set; }
         protected NamedPipeServerStream WaitingServerPipe { get; set; }
 
         protected bool AlwaysPauseGameTime { get; set; }
@@ -31,13 +30,7 @@ namespace LiveSplit.Server
         {
             Model = new TimerModel();
             Connections = new List<Connection>();
-
-            DeltaFormatter = new DeltaTimeFormatter()
-            {
-                Accuracy = TimeAccuracy.Hundredths,
-                DropDecimals = false
-            };
-            SplitTimeFormatter = new RegularTimeFormatter(TimeAccuracy.Hundredths);
+            TimeFormatter = new PreciseTimeFormatter();
 
             State = state;
             Form = state.Form;
@@ -217,7 +210,7 @@ namespace LiveSplit.Server
                     else if (State.CurrentPhase == TimerPhase.Ended)
                         delta = State.Run.Last().SplitTime[State.CurrentTimingMethod] - State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
 
-                    var response = DeltaFormatter.Format(delta);
+                    var response = TimeFormatter.Format(delta);
                     clientConnection.SendMessage(response);
                 }
                 else if (message == "getsplitindex")
@@ -243,19 +236,19 @@ namespace LiveSplit.Server
                 else if (message == "getlastsplittime" && State.CurrentSplitIndex > 0)
                 {
                     var splittime = State.Run[State.CurrentSplitIndex - 1].SplitTime[State.CurrentTimingMethod];
-                    var response = SplitTimeFormatter.Format(splittime);
+                    var response = TimeFormatter.Format(splittime);
                     clientConnection.SendMessage(response);
                 }
                 else if (message == "getcomparisonsplittime")
                 {
                     var splittime = State.CurrentSplit.Comparisons[State.CurrentComparison][State.CurrentTimingMethod];
-                    var response = SplitTimeFormatter.Format(splittime);
+                    var response = TimeFormatter.Format(splittime);
                     clientConnection.SendMessage(response);
                 }
                 else if (message == "getcurrentrealtime")
                 {
                     var time = State.CurrentTime.RealTime;
-                    var response = SplitTimeFormatter.Format(time);
+                    var response = TimeFormatter.Format(time);
                     clientConnection.SendMessage(response);
                 }
                 else if (message == "getcurrentgametime")
@@ -264,7 +257,7 @@ namespace LiveSplit.Server
                     if (!State.IsGameTimeInitialized)
                         timingMethod = TimingMethod.RealTime;
                     var time = State.CurrentTime[timingMethod];
-                    var response = SplitTimeFormatter.Format(time);
+                    var response = TimeFormatter.Format(time);
                     clientConnection.SendMessage(response);
                 }
                 else if (message == "getcurrenttime")
@@ -273,7 +266,7 @@ namespace LiveSplit.Server
                     if (timingMethod == TimingMethod.GameTime && !State.IsGameTimeInitialized)
                         timingMethod = TimingMethod.RealTime;
                     var time = State.CurrentTime[timingMethod];
-                    var response = SplitTimeFormatter.Format(time);
+                    var response = TimeFormatter.Format(time);
                     clientConnection.SendMessage(response);
                 }
                 else if (message == "getfinaltime" || message.StartsWith("getfinaltime "))
@@ -286,21 +279,21 @@ namespace LiveSplit.Server
                     var time = (State.CurrentPhase == TimerPhase.Ended)
                         ? State.CurrentTime[State.CurrentTimingMethod]
                         : State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
-                    var response = SplitTimeFormatter.Format(time);
+                    var response = TimeFormatter.Format(time);
                     clientConnection.SendMessage(response);
                 }
                 else if (message.StartsWith("getpredictedtime "))
                 {
                     var comparison = message.Split(new char[] { ' ' }, 2)[1];
                     var prediction = PredictTime(State, comparison);
-                    var response = SplitTimeFormatter.Format(prediction);
+                    var response = TimeFormatter.Format(prediction);
                     clientConnection.SendMessage(response);
                 }
                 else if (message == "getbestpossibletime")
                 {
                     var comparison = LiveSplit.Model.Comparisons.BestSegmentsComparisonGenerator.ComparisonName;
                     var prediction = PredictTime(State, comparison);
-                    var response = SplitTimeFormatter.Format(prediction);
+                    var response = TimeFormatter.Format(prediction);
                     clientConnection.SendMessage(response);
                 }
                 else if (message == "getcurrenttimerphase")

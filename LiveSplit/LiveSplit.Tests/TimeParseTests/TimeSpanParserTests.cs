@@ -34,6 +34,7 @@ namespace LiveSplit.Tests.TimeParseTests
             yield return new object[] { "07:05:1.03", "07:05:01.0300000" };
             yield return new object[] { "00:0:01.00900", "00:00:01.0090000" };
             yield return new object[] { "1:05:01.9999999", "01:05:01.9999999" };
+            yield return new object[] { "1.01:57:54", "1.01:57:54" };
         }
 
         [Theory]
