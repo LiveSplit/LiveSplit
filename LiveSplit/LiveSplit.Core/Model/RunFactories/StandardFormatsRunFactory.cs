@@ -2,6 +2,7 @@
 using LiveSplit.UI;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -48,7 +49,8 @@ namespace LiveSplit.Model.RunFactories
             {
                 return null;
             }
-            return new AtomicDateTime(DateTime.Parse(dateTime.ToRfc3339()), dateTime.IsSynchronized());
+            var utcDateTime = DateTime.Parse(dateTime.ToRfc3339(), CultureInfo.InvariantCulture).ToUniversalTime();
+            return new AtomicDateTime(utcDateTime, dateTime.IsSynchronized());
         }
 
         static Time ParseTime(LiveSplitCore.TimeRef time)
