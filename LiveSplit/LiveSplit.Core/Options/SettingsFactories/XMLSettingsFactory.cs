@@ -33,6 +33,7 @@ namespace LiveSplit.Options.SettingsFactories
             settings.WarnOnReset = ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
             settings.SimpleSumOfBest = ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
             settings.RefreshRate = ParseInt(parent["RefreshRate"], settings.RefreshRate);
+            settings.CheckForUpdates = ParseBool(parent["CheckForUpdates"], settings.CheckForUpdates);
             settings.LastComparison = ParseString(parent["LastComparison"], settings.LastComparison);
             settings.AgreedToSRLRules = ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
 

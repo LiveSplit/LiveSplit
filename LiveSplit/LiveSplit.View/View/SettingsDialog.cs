@@ -59,6 +59,12 @@ namespace LiveSplit.View
             set { Settings.RefreshRate = Math.Min(Math.Max(value, 20), 300); }
         }
 
+        public bool CheckForUpdates
+        {
+            get { return Settings.CheckForUpdates; }
+            set { Settings.CheckForUpdates = value; }
+        }
+
         public event EventHandler SumOfBestModeChanged;
 
         public string RaceViewer { get { return Settings.RaceViewer.Name; } set { Settings.RaceViewer = Web.SRL.RaceViewer.FromName(value); } }
@@ -80,6 +86,7 @@ namespace LiveSplit.View
             chkAllowGamepads.DataBindings.Add("Checked", this, "AllowGamepadsAsHotkeys");
 
             txtRefreshRate.DataBindings.Add("Text", this, "RefreshRate");
+            chkCheckForUpdates.DataBindings.Add("Checked", this, "CheckForUpdates");
 
             UpdateDisplayedHotkeyValues();
             RefreshRemoveButton();
