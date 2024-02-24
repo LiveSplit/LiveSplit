@@ -88,7 +88,6 @@ namespace LiveSplit.Server
         {
             var connection = new Connection(stream);
             connection.MessageReceived += connection_MessageReceived;
-            connection.ScriptReceived += connection_ScriptReceived;
             connection.Disconnected += connection_Disconnected;
             Connections.Add(connection);
         }
@@ -99,29 +98,6 @@ namespace LiveSplit.Server
                 return null;
 
             return TimeSpanParser.Parse(timeString);
-        }
-
-        void connection_ScriptReceived(object sender, ScriptEventArgs e)
-        {
-            Form.BeginInvoke(new Action(() => ProcessScriptRequest(e.Script, e.Connection)));
-        }
-
-        private void ProcessScriptRequest(IScript script, Connection clientConnection)
-        {
-            try
-            {
-                script["state"] = State;
-                script["model"] = Model;
-                script["sendMessage"] = new Action<string>(x => clientConnection.SendMessage(x));
-                var result = script.Run();
-                if (result != null)
-                    clientConnection.SendMessage(result.ToString());
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                clientConnection.SendMessage(ex.Message);
-            }
         }
 
         void connection_MessageReceived(object sender, MessageEventArgs e)
