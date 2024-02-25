@@ -19,6 +19,7 @@ namespace LiveSplit.Options
         public bool AgreedToSRLRules { get; set; }
         public bool SimpleSumOfBest { get; set; }
         public int RefreshRate { get; set; }
+        public int ServerPort { get; set; }
         public IRaceViewer RaceViewer { get; set; }
         public IList<RaceProviderSettings> RaceProvider { get; set; }
         public IList<string> ActiveAutoSplitters { get; set; }

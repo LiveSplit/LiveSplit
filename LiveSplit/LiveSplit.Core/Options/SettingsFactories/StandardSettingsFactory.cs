@@ -42,6 +42,7 @@ namespace LiveSplit.Options.SettingsFactories
                 SimpleSumOfBest = false,
                 RaceProvider = ComponentManager.RaceProviderFactories.Values.ToList().Select(x => x.CreateSettings()).ToList(),
                 RefreshRate = 40,
+                ServerPort = 16834,
                 ComparisonGeneratorStates = new Dictionary<string, bool>()
                 {
                     { BestSegmentsComparisonGenerator.ComparisonName, true },
