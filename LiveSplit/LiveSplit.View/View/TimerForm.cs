@@ -66,6 +66,7 @@ namespace LiveSplit.View
         private Image bakedBackground { get; set; }
 
         public CommandServer Server { get; set; }
+        public bool ServerStarted { get; protected set; } = false;
 
         protected GraphicsCache GlobalCache { get; set; }
 
@@ -316,8 +317,7 @@ namespace LiveSplit.View
             BackColor = Color.Black;
 
             Server = new CommandServer(CurrentState);
-            Server.Start();
-
+            Server.StartNamedPipe();
             new System.Timers.Timer(1000) { Enabled = true }.Elapsed += RaceRefreshTimer_Elapsed;
 
             InitDragAndDrop();
@@ -679,6 +679,28 @@ namespace LiveSplit.View
                 if (CurrentState.CurrentSplitIndex < CurrentState.Run.Count - 1)
                     skipSplitMenuItem.Enabled = true;
             });
+        }
+
+        void ServerMenuItem_Click(object sender, EventArgs e)
+        {
+            if (ServerStarted)
+            {
+                Server.StopTcp();
+                this.InvokeIfRequired(() =>
+                {
+                    serverMenuItem.Text = "Start Server";
+                });
+            }
+            else
+            {
+                Server.StartTcp();
+                this.InvokeIfRequired(() =>
+                {
+                    serverMenuItem.Text = "Stop Server";
+                });
+            }
+
+            ServerStarted = !ServerStarted;
         }
 
         void CurrentState_OnSkipSplit(object sender, EventArgs e)
@@ -2501,7 +2523,7 @@ namespace LiveSplit.View
             foreach (var component in Layout.Components)
                 component.Dispose();
             DeactivateAutoSplitter();
-            Server.Stop();
+            Server.StopAll();
         }
 
         private void settingsMenuItem_Click(object sender, EventArgs e)
@@ -2861,6 +2883,9 @@ namespace LiveSplit.View
             controlMenuItem.DropDownItems.Add(hotkeysMenuItem);
 
             hotkeysMenuItem.Checked = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].GlobalHotkeysEnabled;
+
+            controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
+            controlMenuItem.DropDownItems.Add(serverMenuItem);
 
             var components = Layout.Components;
             if (CurrentState.Run.IsAutoSplitterActive())
