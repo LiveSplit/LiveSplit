@@ -120,10 +120,6 @@
       <Project>{56e9d96b-5944-4c2e-876b-cba44b1465ac}</Project>
       <Name>LiveSplit.ScriptableAutoSplit</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.Server\LiveSplit.Server.csproj">
-      <Project>{4e693bb2-7b94-4ecc-b44d-628597183750}</Project>
-      <Name>LiveSplit.Server</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Components\LiveSplit.Splits\LiveSplit.Splits.csproj">
       <Project>{1354e1ff-33ee-4fa9-b110-074cbc16a6f9}</Project>
       <Name>LiveSplit.Splits</Name>
