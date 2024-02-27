@@ -147,7 +147,7 @@ namespace LiveSplit.Server
             return pipe;
         }
 
-        TimeSpan? parseTime(string timeString)
+        TimeSpan? ParseTime(string timeString)
         {
             if (timeString == "-")
                 return null;
@@ -160,7 +160,7 @@ namespace LiveSplit.Server
             Form.BeginInvoke(new Action(() => ProcessMessage(e.Message, e.Connection)));
         }
 
-        private void ProcessMessage(String message, Connection clientConnection)
+        private void ProcessMessage(string message, Connection clientConnection)
         {
             string response = null;
             try
@@ -224,13 +224,13 @@ namespace LiveSplit.Server
                         }
                     case "setgametime":
                         {
-                            var time = parseTime(args[1]);
+                            var time = ParseTime(args[1]);
                             State.SetGameTime(time);
                             break;
                         }
                     case "setloadingtimes":
                         {
-                            var time = parseTime(args[1]);
+                            var time = ParseTime(args[1]);
                             State.LoadingTimes = time ?? TimeSpan.Zero;
                             break;
                         }
