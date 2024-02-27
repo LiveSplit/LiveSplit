@@ -75,7 +75,7 @@ The named pipe is always open while LiveSplit is running but the TCP server **MU
 
 ### Settings
 
-#### Port
+#### Server Port
 
 **Server Port** is the door (one of thousands) on your computer that this program sends data through. Default is 16834. This should be fine for most people, but depending on network configurations, some ports may be blocked. See also https://en.wikipedia.org/wiki/Port_%28computer_networking%29
 
