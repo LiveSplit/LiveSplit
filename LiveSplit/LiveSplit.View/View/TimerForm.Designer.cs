@@ -275,7 +275,7 @@
             //
             this.serverMenuItem.Name = "serverMenuItem";
             this.serverMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.serverMenuItem.Text = "Start Server";
+            this.serverMenuItem.Text = "Start TCP Server";
             this.serverMenuItem.Click += new System.EventHandler(this.ServerMenuItem_Click);
             // 
             // TimerForm
