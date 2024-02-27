@@ -689,7 +689,7 @@ namespace LiveSplit.View
                 Server.StopTcp();
                 this.InvokeIfRequired(() =>
                 {
-                    serverMenuItem.Text = "Start Server";
+                    serverMenuItem.Text = "Start TCP Server";
                 });
             }
             else
@@ -697,7 +697,7 @@ namespace LiveSplit.View
                 Server.StartTcp();
                 this.InvokeIfRequired(() =>
                 {
-                    serverMenuItem.Text = "Stop Server";
+                    serverMenuItem.Text = "Stop TCP Server";
                 });
             }
 
