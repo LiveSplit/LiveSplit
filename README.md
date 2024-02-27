@@ -71,7 +71,7 @@ The internal LiveSplit Server allows for other programs and other computers to c
 
 ### Control
 
-The named pipe is always open while LiveSplit is running but the TCP server **MUST** be started before programs can talk to it (Right click on LiveSplit -> Control -> Start Server). You **MUST** manually start it each time you launch LiveSplit.
+The named pipe is always open while LiveSplit is running but the TCP server **MUST** be started before programs can talk to it (Right click on LiveSplit -> Control -> Start TCP Server). You **MUST** manually start it each time you launch LiveSplit.
 
 ### Settings
 
