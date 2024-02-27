@@ -159,9 +159,6 @@
     <Compile Include="Options\RecentSplitsFile.cs" />
     <Compile Include="Options\SettingsFactories\StandardLayoutSettingsFactory.cs" />
     <Compile Include="Server\Connection.cs" />
-    <Compile Include="Server\CSharpScript.cs" />
-    <Compile Include="Server\IScript.cs" />
-    <Compile Include="Server\ScriptFactory.cs" />
     <Compile Include="Server\CommandServer.cs" />
     <Compile Include="TimeFormatters\AutomaticPrecisionTimeFormatter.cs" />
     <Compile Include="TimeFormatters\PreciseTimeFormatter.cs" />

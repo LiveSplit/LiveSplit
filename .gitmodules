@@ -38,10 +38,6 @@
 	path = LiveSplit/Components/LiveSplit.ScriptableAutoSplit
 	url = https://github.com/LiveSplit/LiveSplit.ScriptableAutoSplit.git
 	branch = master
-[submodule "LiveSplit/Components/LiveSplit.Server"]
-	path = LiveSplit/Components/LiveSplit.Server
-	url = https://github.com/LiveSplit/LiveSplit.Server.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Sound"]
 	path = LiveSplit/Components/LiveSplit.Sound
 	url = https://github.com/LiveSplit/LiveSplit.Sound.git

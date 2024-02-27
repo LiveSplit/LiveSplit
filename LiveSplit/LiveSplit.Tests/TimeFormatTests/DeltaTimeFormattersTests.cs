@@ -133,41 +133,5 @@ namespace LiveSplit.Tests.TimeFormatterTests
             var formattedTime = sut.Format(time);
             Assert.Equal(expectedDelta, formattedTime);
         }
-
-        [Fact]
-        public void PreciseDeltaFormatterFormatTimeAsDash_WhenTimeIsNull()
-        {
-            var sut = new PreciseDeltaFormatter(TimeAccuracy.Hundredths);
-
-            var formattedTime = sut.Format(null);
-            Assert.Equal(TimeFormatConstants.DASH, formattedTime);
-        }
-        
-        [Theory]
-        [InlineData("00:00:00", TimeAccuracy.Seconds, "0")]
-        [InlineData("00:00:00.001", TimeAccuracy.Seconds, "+0")]
-        [InlineData("00:00:01", TimeAccuracy.Seconds, "+1")]
-        [InlineData("00:00:00", TimeAccuracy.Tenths, "0.0")]
-        [InlineData("00:00:00.001", TimeAccuracy.Tenths, "+0.0")]
-        [InlineData("00:00:00.5", TimeAccuracy.Tenths, "+0.5")]
-        [InlineData("00:00:01.001", TimeAccuracy.Tenths, "+1.0")]
-        [InlineData("00:00:01.009", TimeAccuracy.Tenths, "+1.0")]
-        [InlineData("-00:00:01.009", TimeAccuracy.Tenths, "−1.0")]
-        [InlineData("-00:05:01.999", TimeAccuracy.Tenths, "−5:01.9")]
-        [InlineData("00:05:01.999", TimeAccuracy.Tenths, "+5:01.9")]
-        [InlineData("01:05:01.999", TimeAccuracy.Tenths, "+1:05:01.9")]
-        [InlineData("00:00:00", TimeAccuracy.Hundredths, "0.00")]
-        [InlineData("00:00:00.001", TimeAccuracy.Hundredths, "+0.00")]
-        [InlineData("00:00:00.05", TimeAccuracy.Hundredths, "+0.05")]
-        [InlineData("9.11:01:01.999", TimeAccuracy.Hundredths, "+227:01:01.99")]
-        [InlineData("-9.11:01:01.999", TimeAccuracy.Hundredths, "−227:01:01.99")]
-        public void PreciseDeltaFormatterFormatsTimeCorrectly_WhenTimeIsValid(string timespanText, TimeAccuracy timeAccuracy, string expectedDelta)
-        {
-            var sut = new PreciseDeltaFormatter(timeAccuracy);
-            var time = TimeSpan.Parse(timespanText);
-
-            var formattedTime = sut.Format(time);
-            Assert.Equal(expectedDelta, formattedTime);
-        }
     }
 }
