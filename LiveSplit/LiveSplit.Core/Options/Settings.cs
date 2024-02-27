@@ -97,6 +97,7 @@ namespace LiveSplit.Options
                 AgreedToSRLRules = AgreedToSRLRules,
                 SimpleSumOfBest = SimpleSumOfBest,
                 RefreshRate = RefreshRate,
+                ServerPort = ServerPort,
                 ActiveAutoSplitters = new List<string>(ActiveAutoSplitters),
                 ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates)
             };
