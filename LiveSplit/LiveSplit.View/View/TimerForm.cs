@@ -318,6 +318,7 @@ namespace LiveSplit.View
 
             Server = new CommandServer(CurrentState);
             Server.StartNamedPipe();
+
             new System.Timers.Timer(1000) { Enabled = true }.Elapsed += RaceRefreshTimer_Elapsed;
 
             InitDragAndDrop();
