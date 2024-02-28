@@ -96,13 +96,10 @@ namespace LiveSplit.Server
             {
                 var client = Server.EndAcceptTcpClient(result);
 
-                Form.BeginInvoke(new Action(() =>
-                {
-                    var connection = new Connection(client.GetStream());
-                    connection.MessageReceived += connection_MessageReceived;
-                    connection.Disconnected += tcpConnection_Disconnected;
-                    TcpConnections.Add(connection);
-                }));
+                var connection = new Connection(client.GetStream());
+                connection.MessageReceived += connection_MessageReceived;
+                connection.Disconnected += tcpConnection_Disconnected;
+                TcpConnections.Add(connection);
 
                 Server.BeginAcceptTcpClient(AcceptTcpClient, null);
             }
@@ -116,14 +113,10 @@ namespace LiveSplit.Server
                 var waitingPipe = WaitingServerPipe;
                 waitingPipe.EndWaitForConnection(result);
 
-                Form.BeginInvoke(new Action(() =>
-                {
-                    var connection = new Connection(waitingPipe);
-                    connection.MessageReceived += connection_MessageReceived;
-                    connection.Disconnected += pipeConnection_Disconnected;
-                    PipeConnections.Add(connection);
-                }));
-
+                var connection = new Connection(waitingPipe);
+                connection.MessageReceived += connection_MessageReceived;
+                connection.Disconnected += pipeConnection_Disconnected;
+                PipeConnections.Add(connection);
                 
                 WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
             }
@@ -132,12 +125,9 @@ namespace LiveSplit.Server
 
         private void pipeConnection_Disconnected(object sender, EventArgs e)
         {
-            Form.BeginInvoke(new Action(() =>
-            {
-                var connection = (Connection)sender;
-                PipeConnections.Remove(connection);
-                connection.Dispose();
-            }));
+            var connection = (Connection)sender;
+            PipeConnections.Remove(connection);
+            connection.Dispose();
         }
 
         private NamedPipeServerStream CreateServerPipe()
@@ -156,7 +146,7 @@ namespace LiveSplit.Server
 
         void connection_MessageReceived(object sender, MessageEventArgs e)
         {
-            Form.BeginInvoke(new Action(() => ProcessMessage(e.Message, e.Connection)));
+            ProcessMessage(e.Message, e.Connection);
         }
 
         private void ProcessMessage(string message, Connection clientConnection)
@@ -425,12 +415,9 @@ namespace LiveSplit.Server
 
         private void tcpConnection_Disconnected(object sender, EventArgs e)
         {
-            Form.BeginInvoke(new Action(() =>
-            {
-                var connection = (Connection)sender;
-                TcpConnections.Remove(connection);
-                connection.Dispose();
-            }));
+            var connection = (Connection)sender;
+            TcpConnections.Remove(connection);
+            connection.Dispose();
         }
 
         private void State_OnStart(object sender, EventArgs e)
