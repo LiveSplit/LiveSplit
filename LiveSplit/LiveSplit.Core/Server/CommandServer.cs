@@ -380,7 +380,15 @@ namespace LiveSplit.Server
                         }
                     case "switchto":
                         {
-                            State.CurrentTimingMethod = args[1] == "gametime" ? TimingMethod.GameTime : TimingMethod.RealTime;
+                            switch (args[1])
+                            {
+                                case "gametime":
+                                    State.CurrentTimingMethod = TimingMethod.GameTime;
+                                    break;
+                                case "realtime":
+                                    State.CurrentTimingMethod = TimingMethod.RealTime;
+                                    break;
+                            }
                             break;
                         }
                     case "setsplitname":
