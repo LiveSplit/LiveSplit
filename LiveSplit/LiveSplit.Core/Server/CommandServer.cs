@@ -55,7 +55,6 @@ namespace LiveSplit.Server
         public void StartNamedPipe()
         {
             WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
-            
         }
 
         public void StopAll()
@@ -163,266 +162,260 @@ namespace LiveSplit.Server
         private void ProcessMessage(string message, Connection clientConnection)
         {
             string response = null;
-            try
+            var args = message.Split(new[] { ' ' }, 2);
+            var command = args[0];
+            switch (command)
             {
-                var args = message.Split(new[] { ' ' }, 2);
-                var command = args[0];
-                switch (command)
-                {
-                    case "startorsplit":
-                        {
-                            if (State.CurrentPhase == TimerPhase.Running)
-                            {
-                                Model.Split();
-                            }
-                            else
-                            {
-                                Model.Start();
-                            }
-                            break;
-                        }
-                    case "split":
+                case "startorsplit":
+                    {
+                        if (State.CurrentPhase == TimerPhase.Running)
                         {
                             Model.Split();
-                            break;
                         }
-                    case "unsplit":
-                        {
-                            Model.UndoSplit();
-                            break;
-                        }
-                    case "skipsplit":
-                        {
-                            Model.SkipSplit();
-                            break;
-                        }
-                    case "pause":
-                        {
-                            if (State.CurrentPhase != TimerPhase.Paused)
-                            {
-                                Model.Pause();
-                            }
-                            break;
-                        }
-                    case "resume":
-                        {
-                            if (State.CurrentPhase == TimerPhase.Paused)
-                            {
-                                Model.Pause();
-                            }
-                            break;
-                        }
-                    case "reset":
-                        {
-                            Model.Reset();
-                            break;
-                        }
-                    case "starttimer":
+                        else
                         {
                             Model.Start();
-                            break;
                         }
-                    case "setgametime":
+                        break;
+                    }
+                case "split":
+                    {
+                        Model.Split();
+                        break;
+                    }
+                case "unsplit":
+                    {
+                        Model.UndoSplit();
+                        break;
+                    }
+                case "skipsplit":
+                    {
+                        Model.SkipSplit();
+                        break;
+                    }
+                case "pause":
+                    {
+                        if (State.CurrentPhase != TimerPhase.Paused)
                         {
-                            var time = ParseTime(args[1]);
-                            State.SetGameTime(time);
-                            break;
+                            Model.Pause();
                         }
-                    case "setloadingtimes":
+                        break;
+                    }
+                case "resume":
+                    {
+                        if (State.CurrentPhase == TimerPhase.Paused)
                         {
-                            var time = ParseTime(args[1]);
-                            State.LoadingTimes = time ?? TimeSpan.Zero;
-                            break;
+                            Model.Pause();
                         }
-                    case "pausegametime":
-                        {
-                            State.IsGameTimePaused = true;
-                            break;
-                        }
-                    case "unpausegametime":
-                        {
-                            AlwaysPauseGameTime = false;
-                            State.IsGameTimePaused = false;
-                            break;
-                        }
-                    case "alwayspausegametime":
-                        {
-                            AlwaysPauseGameTime = true;
-                            State.IsGameTimePaused = true;
-                            break;
-                        }
-                    case "getdelta":
-                        {
-                            var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
-                            TimeSpan? delta = null;
-                            if (State.CurrentPhase == TimerPhase.Running || State.CurrentPhase == TimerPhase.Paused)
-                                delta = LiveSplitStateHelper.GetLastDelta(State, State.CurrentSplitIndex, comparison, State.CurrentTimingMethod);
-                            else if (State.CurrentPhase == TimerPhase.Ended)
-                                delta = State.Run.Last().SplitTime[State.CurrentTimingMethod] - State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+                        break;
+                    }
+                case "reset":
+                    {
+                        Model.Reset();
+                        break;
+                    }
+                case "starttimer":
+                    {
+                        Model.Start();
+                        break;
+                    }
+                case "setgametime":
+                    {
+                        var time = ParseTime(args[1]);
+                        State.SetGameTime(time);
+                        break;
+                    }
+                case "setloadingtimes":
+                    {
+                        var time = ParseTime(args[1]);
+                        State.LoadingTimes = time ?? TimeSpan.Zero;
+                        break;
+                    }
+                case "pausegametime":
+                    {
+                        State.IsGameTimePaused = true;
+                        break;
+                    }
+                case "unpausegametime":
+                    {
+                        AlwaysPauseGameTime = false;
+                        State.IsGameTimePaused = false;
+                        break;
+                    }
+                case "alwayspausegametime":
+                    {
+                        AlwaysPauseGameTime = true;
+                        State.IsGameTimePaused = true;
+                        break;
+                    }
+                case "getdelta":
+                    {
+                        var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                        TimeSpan? delta = null;
+                        if (State.CurrentPhase == TimerPhase.Running || State.CurrentPhase == TimerPhase.Paused)
+                            delta = LiveSplitStateHelper.GetLastDelta(State, State.CurrentSplitIndex, comparison, State.CurrentTimingMethod);
+                        else if (State.CurrentPhase == TimerPhase.Ended)
+                            delta = State.Run.Last().SplitTime[State.CurrentTimingMethod] - State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
 
-                            // Defaults to "-" when delta is null, such as when State.CurrentPhase == TimerPhase.NotRunning
-                            response = TimeFormatter.Format(delta);
-                            break;
-                        }
-                    case "getsplitindex":
+                        // Defaults to "-" when delta is null, such as when State.CurrentPhase == TimerPhase.NotRunning
+                        response = TimeFormatter.Format(delta);
+                        break;
+                    }
+                case "getsplitindex":
+                    {
+                        var splitindex = State.CurrentSplitIndex;
+                        response = splitindex.ToString();
+                        break;
+                    }
+                case "getcurrentsplitname":
+                    {
+                        if (State.CurrentSplit != null)
                         {
-                            var splitindex = State.CurrentSplitIndex;
-                            response = splitindex.ToString();
-                            break;
+                            response = State.CurrentSplit.Name;
                         }
-                    case "getcurrentsplitname":
+                        else
                         {
-                            if (State.CurrentSplit != null)
-                            {
-                                response = State.CurrentSplit.Name;
-                            }
-                            else
-                            {
-                                response = "-";
-                            }
-                            break;
+                            response = "-";
                         }
-                    case "getlastsplitname":
-                    case "getprevioussplitname":
+                        break;
+                    }
+                case "getlastsplitname":
+                case "getprevioussplitname":
+                    {
+                        if (State.CurrentSplitIndex > 0)
                         {
-                            if (State.CurrentSplitIndex > 0)
-                            {
-                                response = State.Run[State.CurrentSplitIndex - 1].Name;
-                            }
-                            else
-                            {
-                                response = "-";
-                            }
-                            break;
+                            response = State.Run[State.CurrentSplitIndex - 1].Name;
                         }
-                    case "getlastsplittime":
-                    case "getprevioussplittime":
+                        else
                         {
-                            if (State.CurrentSplitIndex > 0)
-                            {
-                                var time = State.Run[State.CurrentSplitIndex - 1].SplitTime[State.CurrentTimingMethod];
-                                response = TimeFormatter.Format(time);
-                            }
-                            else
-                            {
-                                response = "-";
-                            }
-                            break;
+                            response = "-";
                         }
-                    case "getcurrentsplittime":
-                    case "getcomparisonsplittime":
+                        break;
+                    }
+                case "getlastsplittime":
+                case "getprevioussplittime":
+                    {
+                        if (State.CurrentSplitIndex > 0)
                         {
-                            if (State.CurrentSplit != null)
-                            {
-                                var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
-                                var time = State.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
-                                response = TimeFormatter.Format(time);
-                            }
-                            else
-                            {
-                                response = "-";
-                            }
-                            break;
-                        }
-                    case "getcurrentrealtime":
-                        {
-                            response = TimeFormatter.Format(State.CurrentTime.RealTime);
-                            break;
-                        }
-                    case "getcurrentgametime":
-                        {
-                            var timingMethod = TimingMethod.GameTime;
-                            if (!State.IsGameTimeInitialized)
-                                timingMethod = TimingMethod.RealTime;
-                            response = TimeFormatter.Format(State.CurrentTime[timingMethod]);
-                            break;
-                        }
-                    case "getcurrenttime":
-                        {
-                            var timingMethod = State.CurrentTimingMethod;
-                            if (timingMethod == TimingMethod.GameTime && !State.IsGameTimeInitialized)
-                                timingMethod = TimingMethod.RealTime;
-                            response = TimeFormatter.Format(State.CurrentTime[timingMethod]);
-                            break;
-                        }
-                    case "getfinaltime":
-                    case "getfinalsplittime":
-                        {
-                            var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
-                            var time = (State.CurrentPhase == TimerPhase.Ended)
-                                ? State.CurrentTime[State.CurrentTimingMethod]
-                                : State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+                            var time = State.Run[State.CurrentSplitIndex - 1].SplitTime[State.CurrentTimingMethod];
                             response = TimeFormatter.Format(time);
-                            break;
                         }
-                    case "getbestpossibletime":
-                    case "getpredictedtime":
+                        else
                         {
-                            string comparison;
-                            if (command == "getbestpossibletime")
-                                comparison = LiveSplit.Model.Comparisons.BestSegmentsComparisonGenerator.ComparisonName;
-                            else
-                                comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
-                            var prediction = PredictTime(State, comparison);
-                            response = TimeFormatter.Format(prediction);
-                            break;
+                            response = "-";
                         }
-                    case "gettimerphase":
-                    case "getcurrenttimerphase":
+                        break;
+                    }
+                case "getcurrentsplittime":
+                case "getcomparisonsplittime":
+                    {
+                        if (State.CurrentSplit != null)
                         {
-                            response = State.CurrentPhase.ToString();
-                            break;
+                            var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                            var time = State.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
+                            response = TimeFormatter.Format(time);
                         }
-                    case "setcomparison":
+                        else
                         {
-                            State.CurrentComparison = args[1];
-                            break;
+                            response = "-";
                         }
-                    case "switchto":
+                        break;
+                    }
+                case "getcurrentrealtime":
+                    {
+                        response = TimeFormatter.Format(State.CurrentTime.RealTime);
+                        break;
+                    }
+                case "getcurrentgametime":
+                    {
+                        var timingMethod = TimingMethod.GameTime;
+                        if (!State.IsGameTimeInitialized)
+                            timingMethod = TimingMethod.RealTime;
+                        response = TimeFormatter.Format(State.CurrentTime[timingMethod]);
+                        break;
+                    }
+                case "getcurrenttime":
+                    {
+                        var timingMethod = State.CurrentTimingMethod;
+                        if (timingMethod == TimingMethod.GameTime && !State.IsGameTimeInitialized)
+                            timingMethod = TimingMethod.RealTime;
+                        response = TimeFormatter.Format(State.CurrentTime[timingMethod]);
+                        break;
+                    }
+                case "getfinaltime":
+                case "getfinalsplittime":
+                    {
+                        var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                        var time = (State.CurrentPhase == TimerPhase.Ended)
+                            ? State.CurrentTime[State.CurrentTimingMethod]
+                            : State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+                        response = TimeFormatter.Format(time);
+                        break;
+                    }
+                case "getbestpossibletime":
+                case "getpredictedtime":
+                    {
+                        string comparison;
+                        if (command == "getbestpossibletime")
+                            comparison = LiveSplit.Model.Comparisons.BestSegmentsComparisonGenerator.ComparisonName;
+                        else
+                            comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                        var prediction = PredictTime(State, comparison);
+                        response = TimeFormatter.Format(prediction);
+                        break;
+                    }
+                case "gettimerphase":
+                case "getcurrenttimerphase":
+                    {
+                        response = State.CurrentPhase.ToString();
+                        break;
+                    }
+                case "setcomparison":
+                    {
+                        State.CurrentComparison = args[1];
+                        break;
+                    }
+                case "switchto":
+                    {
+                        switch (args[1])
                         {
-                            switch (args[1])
-                            {
-                                case "gametime":
-                                    State.CurrentTimingMethod = TimingMethod.GameTime;
-                                    break;
-                                case "realtime":
-                                    State.CurrentTimingMethod = TimingMethod.RealTime;
-                                    break;
-                            }
-                            break;
+                            case "gametime":
+                                State.CurrentTimingMethod = TimingMethod.GameTime;
+                                break;
+                            case "realtime":
+                                State.CurrentTimingMethod = TimingMethod.RealTime;
+                                break;
                         }
-                    case "setsplitname":
-                    case "setcurrentsplitname":
-                        {
-                            var index = State.CurrentSplitIndex;
-                            var title = args[1];
+                        break;
+                    }
+                case "setsplitname":
+                case "setcurrentsplitname":
+                    {
+                        var index = State.CurrentSplitIndex;
+                        var title = args[1];
 
-                            if (command == "setsplitname")
-                            {
-                                var options = args[1].Split(new[] { ' ' }, 2);
-                                index = Convert.ToInt32(options[0]);
-                                title = options[1];
-                            }
-
-                            if (index >= 0 && index < State.Run.Count)
-                            {
-                                State.Run[index].Name = title;
-                                State.Run.HasChanged = true;
-                            }
-
-                            break;
-                        }
-                    default:
+                        if (command == "setsplitname")
                         {
-                            throw new Exception($"Unrecognized command: \"{command}\"");
+                            var options = args[1].Split(new[] { ' ' }, 2);
+                            index = Convert.ToInt32(options[0]);
+                            title = options[1];
                         }
+
+                        if (index >= 0 && index < State.Run.Count)
+                        {
+                            State.Run[index].Name = title;
+                            State.Run.HasChanged = true;
+                        }
+
+                        break;
+                    }
+                default:
+                    {
+                        Log.Error($"[Server] Invalid command: {message}");
+                        break;
+                    }
                 }
-            }
-            catch (Exception ex)
-            {
-                response = "[Error]: " + ex.GetType() + ": " + ex.Message;
-                Log.Error(ex);
-            }
+
 
             if (!string.IsNullOrEmpty(response))
             {
