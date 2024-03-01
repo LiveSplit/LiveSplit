@@ -17,6 +17,7 @@ namespace LiveSplit.Options
         bool WarnOnReset { get; set; }
         bool SimpleSumOfBest { get; set; }
         int RefreshRate { get; set; }
+        int ServerPort { get; set; }
         IRaceViewer RaceViewer { get; set; }
         IList<RaceProviderSettings> RaceProvider { get; set; }
         

@@ -65,13 +65,119 @@ The documentation for how to develop, test, and submit an Auto Splitter can be f
 
 [Auto Splitters Documentation](https://github.com/LiveSplit/LiveSplit.AutoSplitters/blob/master/README.md)
 
+## The LiveSplit Server
+
+The internal LiveSplit Server allows for other programs and other computers to control LiveSplit. The server can accept connections over either a named pipe located at `\\<hostname>\pipe\LiveSplit` (`.` is the hostname if the client and server are on the same computer) or over TCP/IP.
+
+### Control
+
+The named pipe is always open while LiveSplit is running but the TCP server **MUST** be started before programs can talk to it (Right click on LiveSplit -> Control -> Start TCP Server). You **MUST** manually start it each time you launch LiveSplit.
+
+### Settings
+
+#### Server Port
+
+**Server Port** is the door (one of thousands) on your computer that this program sends data through. Default is 16834. This should be fine for most people, but depending on network configurations, some ports may be blocked. See also https://en.wikipedia.org/wiki/Port_%28computer_networking%29
+
+### Known Uses
+
+- **Android LiveSplit Remote**: https://github.com/Ekelbatzen/LiveSplit.Remote.Android
+- **SplitNotes**: https://github.com/joelnir/SplitNotes
+- **Autosplitter Remote Client**: https://github.com/RavenX8/LiveSplit.Server.Client
+
+Made something cool? Consider getting it added to this list.
+
+### Commands
+
+Commands are case sensitive and end with a carriage return and a line feed (\r\n). You can provide parameters by using a space after the command and sending the parameters afterwards (`<command><space><parameters><\r\n>`).
+
+A command can respond with a message. The message ends with a carriage return and a line feed, just like a command.
+
+Here's the list of commands:
+
+- startorsplit
+- split
+- unsplit
+- skipsplit
+- pause
+- resume
+- reset
+- starttimer
+- setgametime TIME
+- setloadingtimes TIME
+- pausegametime
+- unpausegametime
+- alwayspausegametime
+- setcomparison COMPARISON
+- switchto realtime
+- switchto gametime
+- setsplitname INDEX NAME
+- setcurrentsplitname NAME
+
+The following commands respond with a time:
+
+- getdelta
+- getdelta COMPARISON
+- getlastsplittime
+- getcomparisonsplittime
+- getcurrentrealtime
+- getcurrentgametime
+- getcurrenttime
+- getfinaltime
+- getfinaltime COMPARISON
+- getpredictedtime COMPARISON
+- getbestpossibletime
+
+Other commands:
+
+- getsplitindex
+- getcurrentsplitname
+- getprevioussplitname
+- getcurrenttimerphase
+
+Commands are defined at `ProcessMessage` in "CommandServer.cs".
+
+### Example Clients
+
+#### Python
+
+```python
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("localhost", 16834))
+s.send(b"starttimer\r\n")
+```
+
+#### Java 7+
+
+```java
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+public class MainTest {
+    public static void main(String[] args) throws IOException {
+        Socket socket = new Socket("localhost", 16834);
+        PrintWriter writer = new PrintWriter(socket.getOutputStream());
+        writer.write("starttimer\r\n");
+        writer.flush();
+        socket.close();
+    }
+}
+```
+
+#### Node.js
+
+Node.js client implementation available here: https://github.com/satanch/node-livesplit-client
+
 ## Releasing
 
 1. Update versions of any components that changed (create a Git tag and update the factory file for each component) to match the new LiveSplit version.
 2. Create a Git tag for the new version.
 3. Download `LiveSplit_Build` from the GitHub Actions build for the latest commit on `master`.
 4. Create a GitHub release for the new version, and upload the LiveSplit build ZIP file with the correct filename (e.g. `LiveSplit_1.8.21.zip`).
-    - Create releases for [`LiveSplit.Counter`](https://github.com/LiveSplit/LiveSplit.Counter) and [`LiveSplit.Server`](https://github.com/LiveSplit/LiveSplit.Server) if necessary.
+    - Create a release for [`LiveSplit.Counter`](https://github.com/LiveSplit/LiveSplit.Counter) if necessary.
 5. Modify files in [the update folder of LiveSplit.github.io](https://github.com/LiveSplit/LiveSplit.github.io/tree/master/update) and commit the changes:
     - Copy changed files from the downloaded LiveSplit build ZIP file to the update folder.
     - Add new versions to the update XMLs for (`update.xml`, `update.updater.xml`, and the update XMLs for any components that changed).

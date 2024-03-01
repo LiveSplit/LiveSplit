@@ -39,18 +39,6 @@ jobs:
         run: |
           & "vstest.console.exe" "LiveSplit/LiveSplit.Tests/bin/Release/LiveSplit.Tests.dll"
 
-      - name: Create a folder for the Server component artifacts
-        run: |
-          mkdir .\LiveSplit.Server
-          Move-Item -path .\LiveSplit\bin\Release\Components\LiveSplit.Server.dll -destination .\LiveSplit.Server
-          Move-Item -path .\LiveSplit\bin\Release\Components\Noesis.Javascript.dll -destination .\LiveSplit.Server
-
-      - name: Upload the Server component as an artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: LiveSplit.Server
-          path: LiveSplit.Server
-
       - name: Upload the Counter component as an artifact
         uses: actions/upload-artifact@v2
         with:
