@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using static System.Drawing.Color;
 
 namespace LiveSplit.Options.SettingsFactories
@@ -34,6 +35,7 @@ namespace LiveSplit.Options.SettingsFactories
                 DropShadows = true,
                 BackgroundType = BackgroundType.SolidColor,
                 BackgroundImage = null,
+                BackgroundImages = new List<Image>(),
                 ImageOpacity = 1f,
                 ImageBlur = 0f,
                 Opacity = 1,

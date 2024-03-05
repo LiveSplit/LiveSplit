@@ -2,6 +2,7 @@
 using LiveSplit.Options;
 using LiveSplit.UI.Components;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Xml;
@@ -81,6 +82,7 @@ namespace LiveSplit.UI.LayoutFactories
             }
 
             settings.BackgroundImage = SettingsHelper.GetImageFromElement(element["BackgroundImage"]);
+            settings.BackgroundImages = SettingsHelper.GetImagesFromElement(element["BackgroundImages"]);
 
             return settings;
         }

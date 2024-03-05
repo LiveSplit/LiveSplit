@@ -2,6 +2,6 @@
 {
     public enum BackgroundType
     {
-        SolidColor, VerticalGradient, HorizontalGradient, Image
+        SolidColor, VerticalGradient, HorizontalGradient, Image, ImageRotation
     }
 }
