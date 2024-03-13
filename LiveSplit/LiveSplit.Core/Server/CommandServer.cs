@@ -46,8 +46,6 @@ namespace LiveSplit.Server
 
         public void StartTcp()
         {
-            Server?.Stop();
-            Server = new TcpListener(IPAddress.Any, State.Settings.ServerPort);
             Server.Start();
             Server.BeginAcceptTcpClient(AcceptTcpClient, null);
         }
