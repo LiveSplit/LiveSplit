@@ -117,7 +117,8 @@ namespace LiveSplit.Server
                 connection.MessageReceived += connection_MessageReceived;
                 connection.Disconnected += pipeConnection_Disconnected;
                 PipeConnections.Add(connection);
-                
+
+                WaitingServerPipe = CreateServerPipe();
                 WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
             }
             catch { }
