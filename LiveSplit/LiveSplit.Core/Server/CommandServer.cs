@@ -431,6 +431,7 @@ namespace LiveSplit.Server
         private void tcpConnection_Disconnected(object sender, EventArgs e)
         {
             var connection = (Connection)sender;
+            connection.Disconnected -= tcpConnection_Disconnected;
             TcpConnections.Remove(connection);
             connection.Dispose();
         }
