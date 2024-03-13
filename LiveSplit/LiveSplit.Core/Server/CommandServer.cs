@@ -18,7 +18,7 @@ namespace LiveSplit.Server
     {
         public TcpListener Server { get; set; }
         public List<Connection> PipeConnections { get; set; }
-        public List<Connection> TcpConnections { get; set; }
+        public List<TcpConnection> TcpConnections { get; set; }
 
         protected LiveSplitState State { get; set; }
         protected Form Form { get; set; }
@@ -32,7 +32,7 @@ namespace LiveSplit.Server
         {
             Model = new TimerModel();
             PipeConnections = new List<Connection>();
-            TcpConnections = new List<Connection>();
+            TcpConnections = new List<TcpConnection>();
             TimeFormatter = new PreciseTimeFormatter();
 
             State = state;
@@ -96,14 +96,14 @@ namespace LiveSplit.Server
             {
                 var client = Server.EndAcceptTcpClient(result);
 
-                var connection = new Connection(client.GetStream());
+                var connection = new TcpConnection(client);
                 connection.MessageReceived += connection_MessageReceived;
                 connection.Disconnected += tcpConnection_Disconnected;
                 TcpConnections.Add(connection);
-
-                Server.BeginAcceptTcpClient(AcceptTcpClient, null);
             }
             catch { }
+
+            Server.BeginAcceptTcpClient(AcceptTcpClient, null);
         }
 
         public void AcceptPipeClient(IAsyncResult result)
@@ -117,11 +117,11 @@ namespace LiveSplit.Server
                 connection.MessageReceived += connection_MessageReceived;
                 connection.Disconnected += pipeConnection_Disconnected;
                 PipeConnections.Add(connection);
-
-                WaitingServerPipe = CreateServerPipe();
-                WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
             }
             catch { }
+
+            WaitingServerPipe = CreateServerPipe();
+            WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
         }
 
         private void pipeConnection_Disconnected(object sender, EventArgs e)
@@ -431,7 +431,7 @@ namespace LiveSplit.Server
 
         private void tcpConnection_Disconnected(object sender, EventArgs e)
         {
-            var connection = (Connection)sender;
+            var connection = (TcpConnection)sender;
             connection.Disconnected -= tcpConnection_Disconnected;
             TcpConnections.Remove(connection);
             connection.Dispose();

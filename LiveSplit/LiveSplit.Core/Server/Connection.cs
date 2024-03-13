@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Options;
 using System;
 using System.IO;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
@@ -72,10 +73,26 @@ namespace LiveSplit.Server
             }
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             Stream.Dispose();
             ReaderThread.Abort();
+        }
+    }
+
+    public class TcpConnection : Connection
+    {
+        protected TcpClient client { get; private set; }
+
+        public TcpConnection(TcpClient client) : base(client.GetStream())
+        {
+            this.client = client;
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            client.Close();
         }
     }
 }
