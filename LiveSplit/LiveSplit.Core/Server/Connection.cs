@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.IO;
 using System.Text;
 using System.Threading;
@@ -59,8 +60,16 @@ namespace LiveSplit.Server
 
         public void SendMessage(string message)
         {
-            var buffer = Encoding.UTF8.GetBytes(message + Environment.NewLine);
-            Stream.Write(buffer, 0, buffer.Length);
+            try
+            {
+                var buffer = Encoding.UTF8.GetBytes(message + Environment.NewLine);
+                Stream.Write(buffer, 0, buffer.Length);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                Disconnected?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public void Dispose()
