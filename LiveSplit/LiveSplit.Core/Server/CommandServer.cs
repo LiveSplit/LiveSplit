@@ -211,8 +211,15 @@ namespace LiveSplit.Server
                     }
                 case "setgametime":
                     {
-                        var time = ParseTime(args[1]);
-                        State.SetGameTime(time);
+                        try
+                        {
+                            var time = ParseTime(args[1]);
+                            State.SetGameTime(time);
+                        }
+                        catch (Exception e) {
+                            Log.Error(e);
+                            Log.Error($"[Server] Failed to parse time while setting game time: {args[1]}");
+                        }
                         break;
                     }
                 case "setloadingtimes":
