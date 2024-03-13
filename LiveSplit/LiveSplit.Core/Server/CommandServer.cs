@@ -224,8 +224,16 @@ namespace LiveSplit.Server
                     }
                 case "setloadingtimes":
                     {
-                        var time = ParseTime(args[1]);
-                        State.LoadingTimes = time ?? TimeSpan.Zero;
+                        try
+                        {
+                            var time = ParseTime(args[1]);
+                            State.LoadingTimes = time ?? TimeSpan.Zero;
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(e);
+                            Log.Error($"[Server] Failed to parse time while setting loading times: {args[1]}");
+                        }
                         break;
                     }
                 case "pausegametime":
