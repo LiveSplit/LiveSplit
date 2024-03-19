@@ -97,3 +97,6 @@
 [submodule "LiveSplit/Libs/livesplit-core"]
 	path = LiveSplit/Libs/livesplit-core
 	url = https://github.com/LiveSplit/livesplit-core.git
+[submodule "LiveSplit/Components/LiveSplit.TheRun"]
+	path = LiveSplit/Components/LiveSplit.TheRun
+	url = https://github.com/therungg/LiveSplit.TheRun
