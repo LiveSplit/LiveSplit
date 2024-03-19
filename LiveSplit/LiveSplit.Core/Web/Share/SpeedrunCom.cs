@@ -165,7 +165,7 @@ namespace LiveSplit.Web.Share
                     return false;
                 }
 
-                if (metadata.Category.Players.Value > 1)
+                if (metadata.Category.Players.Value > 1 && metadata.Category.Players.Type == PlayersType.Exactly)
                 {
                     reasonForRejection = "Submitting runs for more than the currently authenticated user is not implemented yet.";
                     return false;
