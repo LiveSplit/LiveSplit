@@ -85,6 +85,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -177,6 +178,14 @@
     <Compile Include="UI\Components\LogicComponent.cs" />
     <Compile Include="UI\Components\RaceProviderAPI.cs" />
     <Compile Include="UI\Components\SeparatorFactory.cs" />
+    <Compile Include="UI\Components\SplitAt\SplitAtComponentFactory.cs" />
+    <Compile Include="UI\Components\SplitAt\SplitAtComponent.cs" />
+    <Compile Include="UI\Components\SplitAt\SplitAtSettings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Components\SplitAt\SplitAtSettings.Designer.cs">
+      <DependentUpon>SplitAtSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\GradientType.cs" />
     <Compile Include="UI\GraphicsCache.cs" />
     <Compile Include="UI\ImageBlur.cs" />
@@ -328,6 +337,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <CustomToolNamespace>LiveSplit</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Components\SplitAt\SplitAtSettings.resx">
+      <DependentUpon>SplitAtSettings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Updates\GitInfo.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
