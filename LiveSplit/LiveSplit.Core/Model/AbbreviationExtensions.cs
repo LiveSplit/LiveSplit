@@ -41,6 +41,7 @@ namespace LiveSplit.Model
                     list.AddRange(seriesTitleAbbreviations);
                 }
                 list.AddRange(subTitleAbbreviations);
+                list.Add(seriesTitleTrimmed);
 
                 var isThereOnlyOneSeriesTitleAbbreviation = seriesTitleAbbreviations.Count == 1;
 
