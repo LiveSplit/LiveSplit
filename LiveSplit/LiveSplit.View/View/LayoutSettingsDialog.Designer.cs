@@ -92,11 +92,11 @@
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 636);
+            this.ClientSize = new System.Drawing.Size(504, 665);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximumSize = new System.Drawing.Size(520, 10000);
-            this.MinimumSize = new System.Drawing.Size(520, 674);
+            this.MinimumSize = new System.Drawing.Size(520, 703);
             this.Name = "LayoutSettingsDialog";
             this.Padding = new System.Windows.Forms.Padding(7);
             this.Text = "Layout Settings";

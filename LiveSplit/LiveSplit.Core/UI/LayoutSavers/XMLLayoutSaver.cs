@@ -17,6 +17,7 @@ namespace LiveSplit.UI.LayoutSavers
             SettingsHelper.CreateSetting(document, element, "ThinSeparatorsColor", settings.ThinSeparatorsColor) ^
             SettingsHelper.CreateSetting(document, element, "SeparatorsColor", settings.SeparatorsColor) ^
             SettingsHelper.CreateSetting(document, element, "PersonalBestColor", settings.PersonalBestColor) ^
+            SettingsHelper.CreateSetting(document, element, "NotPersonalBestColor", settings.NotPersonalBestColor) ^
             SettingsHelper.CreateSetting(document, element, "AheadGainingTimeColor", settings.AheadGainingTimeColor) ^
             SettingsHelper.CreateSetting(document, element, "AheadLosingTimeColor", settings.AheadLosingTimeColor) ^
             SettingsHelper.CreateSetting(document, element, "BehindGainingTimeColor", settings.BehindGainingTimeColor) ^
