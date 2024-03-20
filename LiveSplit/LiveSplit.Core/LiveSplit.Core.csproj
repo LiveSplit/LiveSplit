@@ -204,6 +204,7 @@
     <Compile Include="Web\Share\ASUP.cs" />
     <Compile Include="Web\JSON.cs" />
     <Compile Include="Web\Share\ASUPTimeFormatter.cs" />
+    <Compile Include="Web\Share\BasicAuthInputBox.cs" />
     <Compile Include="Web\Share\Congratsio.cs" />
     <Compile Include="Web\CredentialManager.cs" />
     <Compile Include="Web\Share\Excel.cs" />
