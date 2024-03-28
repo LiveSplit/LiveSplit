@@ -52,6 +52,7 @@ namespace LiveSplit.Server
 
         public void StartNamedPipe()
         {
+            StopPipe();
             WaitingServerPipe = CreateServerPipe();
             WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
         }
