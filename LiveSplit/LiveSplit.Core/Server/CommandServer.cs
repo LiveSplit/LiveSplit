@@ -76,10 +76,7 @@ namespace LiveSplit.Server
 
         public void StopPipe()
         {
-            if (WaitingServerPipe.IsConnected)
-            {
-                WaitingServerPipe.Disconnect();
-            }
+            WaitingServerPipe?.Dispose();
 
             foreach (var connection in PipeConnections)
             {
