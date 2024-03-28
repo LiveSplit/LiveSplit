@@ -41,7 +41,6 @@ namespace LiveSplit.Server
             Model.CurrentState = State;
             State.OnStart += State_OnStart;
             Server = new TcpListener(IPAddress.Any, State.Settings.ServerPort);
-            WaitingServerPipe = CreateServerPipe();
         }
 
         public void StartTcp()
@@ -52,6 +51,7 @@ namespace LiveSplit.Server
 
         public void StartNamedPipe()
         {
+            WaitingServerPipe = CreateServerPipe();
             WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
         }
 
