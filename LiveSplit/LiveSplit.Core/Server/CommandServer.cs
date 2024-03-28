@@ -40,18 +40,20 @@ namespace LiveSplit.Server
 
             Model.CurrentState = State;
             State.OnStart += State_OnStart;
-            Server = new TcpListener(IPAddress.Any, State.Settings.ServerPort);
-            WaitingServerPipe = CreateServerPipe();
         }
 
         public void StartTcp()
         {
+            StopTcp();
+            Server = new TcpListener(IPAddress.Any, State.Settings.ServerPort);
             Server.Start();
             Server.BeginAcceptTcpClient(AcceptTcpClient, null);
         }
 
         public void StartNamedPipe()
         {
+            StopPipe();
+            WaitingServerPipe = CreateServerPipe();
             WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
         }
 
@@ -63,22 +65,18 @@ namespace LiveSplit.Server
 
         public void StopTcp()
         {
-            Server.Stop();
-
             foreach (var connection in TcpConnections)
             {
                 connection.Dispose();
             }
 
             TcpConnections.Clear();
+            Server?.Stop();
         }
 
         public void StopPipe()
         {
-            if (WaitingServerPipe.IsConnected)
-            {
-                WaitingServerPipe.Disconnect();
-            }
+            WaitingServerPipe?.Dispose();
 
             foreach (var connection in PipeConnections)
             {
@@ -93,39 +91,37 @@ namespace LiveSplit.Server
             try
             {
                 var client = Server.EndAcceptTcpClient(result);
-
                 var connection = new TcpConnection(client);
                 connection.MessageReceived += connection_MessageReceived;
                 connection.Disconnected += tcpConnection_Disconnected;
                 TcpConnections.Add(connection);
-            }
-            catch {
-                Server.Start();
+
                 Server.BeginAcceptTcpClient(AcceptTcpClient, null);
             }
+            catch { }
         }
 
         public void AcceptPipeClient(IAsyncResult result)
         {
             try
             {
-                var waitingPipe = WaitingServerPipe;
-                waitingPipe.EndWaitForConnection(result);
-
-                var connection = new Connection(waitingPipe);
+                WaitingServerPipe.EndWaitForConnection(result);
+                var connection = new Connection(WaitingServerPipe);
                 connection.MessageReceived += connection_MessageReceived;
                 connection.Disconnected += pipeConnection_Disconnected;
                 PipeConnections.Add(connection);
+
+                WaitingServerPipe = CreateServerPipe();
+                WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
             }
             catch { }
-
-            WaitingServerPipe = CreateServerPipe();
-            WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
         }
 
         private void pipeConnection_Disconnected(object sender, EventArgs e)
         {
             var connection = (Connection)sender;
+            connection.MessageReceived -= connection_MessageReceived;
+            connection.Disconnected -= pipeConnection_Disconnected;
             PipeConnections.Remove(connection);
             connection.Dispose();
         }
@@ -457,10 +453,10 @@ namespace LiveSplit.Server
         private void tcpConnection_Disconnected(object sender, EventArgs e)
         {
             var connection = (TcpConnection)sender;
+            connection.MessageReceived -= connection_MessageReceived;
             connection.Disconnected -= tcpConnection_Disconnected;
             TcpConnections.Remove(connection);
             connection.Dispose();
-            Server.BeginAcceptTcpClient(AcceptTcpClient, null);
         }
 
         private void State_OnStart(object sender, EventArgs e)
