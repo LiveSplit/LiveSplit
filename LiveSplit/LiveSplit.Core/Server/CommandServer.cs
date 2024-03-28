@@ -88,19 +88,23 @@ namespace LiveSplit.Server
 
         public void AcceptTcpClient(IAsyncResult result)
         {
+            TcpClient client;
+
             try
             {
-                var client = Server.EndAcceptTcpClient(result);
-
-                var connection = new TcpConnection(client);
-                connection.MessageReceived += connection_MessageReceived;
-                connection.Disconnected += tcpConnection_Disconnected;
-                TcpConnections.Add(connection);
+                client = Server.EndAcceptTcpClient(result);
             }
-            catch {
-                Server.Start();
+            catch
+            {
                 Server.BeginAcceptTcpClient(AcceptTcpClient, null);
+                return;
             }
+
+            var connection = new TcpConnection(client);
+            connection.MessageReceived += connection_MessageReceived;
+            connection.Disconnected += tcpConnection_Disconnected;
+            TcpConnections.Add(connection);
+            Server.BeginAcceptTcpClient(AcceptTcpClient, null);
         }
 
         public void AcceptPipeClient(IAsyncResult result)
