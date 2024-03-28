@@ -88,23 +88,17 @@ namespace LiveSplit.Server
 
         public void AcceptTcpClient(IAsyncResult result)
         {
-            TcpClient client;
-
             try
             {
-                client = Server.EndAcceptTcpClient(result);
-            }
-            catch
-            {
-                Server.BeginAcceptTcpClient(AcceptTcpClient, null);
-                return;
-            }
+                var client = Server.EndAcceptTcpClient(result);
+                var connection = new TcpConnection(client);
+                connection.MessageReceived += connection_MessageReceived;
+                connection.Disconnected += tcpConnection_Disconnected;
+                TcpConnections.Add(connection);
 
-            var connection = new TcpConnection(client);
-            connection.MessageReceived += connection_MessageReceived;
-            connection.Disconnected += tcpConnection_Disconnected;
-            TcpConnections.Add(connection);
-            Server.BeginAcceptTcpClient(AcceptTcpClient, null);
+                Server.BeginAcceptTcpClient(AcceptTcpClient, null);
+            }
+            catch { }
         }
 
         public void AcceptPipeClient(IAsyncResult result)
@@ -112,21 +106,15 @@ namespace LiveSplit.Server
             try
             {
                 WaitingServerPipe.EndWaitForConnection(result);
-            }
-            catch
-            {
+                var connection = new Connection(WaitingServerPipe);
+                connection.MessageReceived += connection_MessageReceived;
+                connection.Disconnected += pipeConnection_Disconnected;
+                PipeConnections.Add(connection);
+
                 WaitingServerPipe = CreateServerPipe();
                 WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
-                return;
             }
-
-            var connection = new Connection(WaitingServerPipe);
-            connection.MessageReceived += connection_MessageReceived;
-            connection.Disconnected += pipeConnection_Disconnected;
-            PipeConnections.Add(connection);
-
-            WaitingServerPipe = CreateServerPipe();
-            WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
+            catch { }
         }
 
         private void pipeConnection_Disconnected(object sender, EventArgs e)
