@@ -65,14 +65,13 @@ namespace LiveSplit.Server
 
         public void StopTcp()
         {
-            Server.Stop();
-
             foreach (var connection in TcpConnections)
             {
                 connection.Dispose();
             }
 
             TcpConnections.Clear();
+            Server?.Stop();
         }
 
         public void StopPipe()
