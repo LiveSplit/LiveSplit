@@ -40,11 +40,12 @@ namespace LiveSplit.Server
 
             Model.CurrentState = State;
             State.OnStart += State_OnStart;
-            Server = new TcpListener(IPAddress.Any, State.Settings.ServerPort);
         }
 
         public void StartTcp()
         {
+            StopTcp();
+            Server = new TcpListener(IPAddress.Any, State.Settings.ServerPort);
             Server.Start();
             Server.BeginAcceptTcpClient(AcceptTcpClient, null);
         }
