@@ -1,5 +1,7 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.IO;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading;
 
@@ -59,14 +61,38 @@ namespace LiveSplit.Server
 
         public void SendMessage(string message)
         {
-            var buffer = Encoding.UTF8.GetBytes(message + Environment.NewLine);
-            Stream.Write(buffer, 0, buffer.Length);
+            try
+            {
+                var buffer = Encoding.UTF8.GetBytes(message + Environment.NewLine);
+                Stream.Write(buffer, 0, buffer.Length);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                Disconnected?.Invoke(this, EventArgs.Empty);
+            }
         }
 
-        public void Dispose()
+        public virtual void Dispose()
         {
             Stream.Dispose();
             ReaderThread.Abort();
+        }
+    }
+
+    public class TcpConnection : Connection
+    {
+        protected TcpClient client { get; private set; }
+
+        public TcpConnection(TcpClient client) : base(client.GetStream())
+        {
+            this.client = client;
+        }
+
+        public override void Dispose()
+        {
+            base.Dispose();
+            client.Close();
         }
     }
 }
