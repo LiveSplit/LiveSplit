@@ -396,20 +396,46 @@ namespace LiveSplit.Server
                 case "setsplitname":
                 case "setcurrentsplitname":
                     {
+                        if (args.Length < 2)
+                        {
+                            Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                            break;
+                        }
+
                         var index = State.CurrentSplitIndex;
                         var title = args[1];
 
                         if (command == "setsplitname")
                         {
                             var options = args[1].Split(new[] { ' ' }, 2);
-                            index = Convert.ToInt32(options[0]);
+
+                            try
+                            {
+                                index = Convert.ToInt32(options[0]);
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error(ex);
+                                Log.Error($"[Server] Could not parse {options[0]} as a split index.");
+                            }
+
                             title = options[1];
+
+                            if (options.Length < 2)
+                            {
+                                Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                                break;
+                            }
                         }
 
                         if (index >= 0 && index < State.Run.Count)
                         {
                             State.Run[index].Name = title;
                             State.Run.HasChanged = true;
+                        }
+                        else
+                        {
+                            Log.Warning($"[Sever] Split index {index} out of bounds for command {command}");
                         }
 
                         break;
