@@ -132,6 +132,8 @@ namespace LiveSplit.Server
         private void pipeConnection_Disconnected(object sender, EventArgs e)
         {
             var connection = (Connection)sender;
+            connection.MessageReceived -= connection_MessageReceived;
+            connection.Disconnected -= pipeConnection_Disconnected;
             PipeConnections.Remove(connection);
             connection.Dispose();
         }
@@ -463,6 +465,7 @@ namespace LiveSplit.Server
         private void tcpConnection_Disconnected(object sender, EventArgs e)
         {
             var connection = (TcpConnection)sender;
+            connection.MessageReceived -= connection_MessageReceived;
             connection.Disconnected -= tcpConnection_Disconnected;
             TcpConnections.Remove(connection);
             connection.Dispose();
