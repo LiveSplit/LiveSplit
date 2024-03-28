@@ -111,15 +111,19 @@ namespace LiveSplit.Server
         {
             try
             {
-                var waitingPipe = WaitingServerPipe;
-                waitingPipe.EndWaitForConnection(result);
-
-                var connection = new Connection(waitingPipe);
-                connection.MessageReceived += connection_MessageReceived;
-                connection.Disconnected += pipeConnection_Disconnected;
-                PipeConnections.Add(connection);
+                WaitingServerPipe.EndWaitForConnection(result);
             }
-            catch { }
+            catch
+            {
+                WaitingServerPipe = CreateServerPipe();
+                WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
+                return;
+            }
+
+            var connection = new Connection(WaitingServerPipe);
+            connection.MessageReceived += connection_MessageReceived;
+            connection.Disconnected += pipeConnection_Disconnected;
+            PipeConnections.Add(connection);
 
             WaitingServerPipe = CreateServerPipe();
             WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
