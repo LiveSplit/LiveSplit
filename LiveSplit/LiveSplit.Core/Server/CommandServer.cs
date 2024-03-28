@@ -469,7 +469,6 @@ namespace LiveSplit.Server
             connection.Disconnected -= tcpConnection_Disconnected;
             TcpConnections.Remove(connection);
             connection.Dispose();
-            Server.BeginAcceptTcpClient(AcceptTcpClient, null);
         }
 
         private void State_OnStart(object sender, EventArgs e)
