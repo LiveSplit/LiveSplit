@@ -169,6 +169,7 @@ namespace LiveSplit.Server
                         Model.Split();
                         break;
                     }
+                case "undosplit":
                 case "unsplit":
                     {
                         Model.UndoSplit();
@@ -200,6 +201,7 @@ namespace LiveSplit.Server
                         Model.Reset();
                         break;
                     }
+                case "start":
                 case "starttimer":
                     {
                         Model.Start();
