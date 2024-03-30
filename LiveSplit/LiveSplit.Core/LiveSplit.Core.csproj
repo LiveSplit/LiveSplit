@@ -81,10 +81,6 @@
     <Reference Include="IrcDotNet.Common">
       <HintPath>..\Libs\IRC.Net 0.3\IrcDotNet.Common.dll</HintPath>
     </Reference>
-    <Reference Include="LinqToTwitter, Version=2.1.11.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\LinqToTwitter\net40\LinqToTwitter.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="SharpDX">
       <HintPath>..\Libs\SharpDX\DirectX11-Signed-net40\SharpDX.dll</HintPath>
@@ -233,12 +229,6 @@
     <Compile Include="Web\Share\TwitchGameResolveDialog.Designer.cs">
       <DependentUpon>TwitchGameResolveDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Web\Share\TwitterOAuthForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Web\Share\TwitterOAuthForm.Designer.cs">
-      <DependentUpon>TwitterOAuthForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Web\Share\PBTracker.cs" />
     <Compile Include="Web\Share\ASUPRunUploadPlatform.cs" />
     <Compile Include="Options\FiletypeRegistryHelper.cs" />
@@ -303,7 +293,6 @@
       <DependentUpon>ShareSettings.settings</DependentUpon>
     </Compile>
     <Compile Include="Web\Share\SplitsIO.cs" />
-    <Compile Include="Web\Share\Twitter.cs" />
     <Compile Include="Web\SRL\SRLFactory.cs" />
     <Compile Include="Web\SRL\SRLRaceInfo.cs" />
     <Compile Include="Web\SRL\SRLSettings.cs" />
@@ -348,9 +337,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Web\Share\TwitchGameResolveDialog.resx">
       <DependentUpon>TwitchGameResolveDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Web\Share\TwitterOAuthForm.resx">
-      <DependentUpon>TwitterOAuthForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -124,8 +124,6 @@ namespace LiveSplit.View
 
         private void SubmitDialog_Load(object sender, EventArgs e)
         {
-            cbxPlatform.Items.Add("Twitter");
-
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
             {
                 if (HasPersonalBest(Run))
@@ -135,11 +133,8 @@ namespace LiveSplit.View
                     {
                         cbxPlatform.Items.Add("Congratsio");
                     }
-                    //cbxPlatform.Items.Add("PBTracker");
-                    //cbxPlatform.Items.Add("AllSpeedRuns");
                 }
                 cbxPlatform.Items.Add("Splits.io");
-                //cbxPlatform.Items.Add("Ge.tt");
             }
 
             cbxPlatform.Items.Add("Twitch");
@@ -174,7 +169,6 @@ namespace LiveSplit.View
                 case "AllSpeedRuns": CurrentPlatform = AllSpeedRuns.Instance; break;
                 case "Splits.io": CurrentPlatform = SplitsIO.Instance; break;
                 case "Ge.tt": CurrentPlatform = Gett.Instance; break;
-                case "Twitter": CurrentPlatform = Twitter.Instance; break;
                 case "Twitch": CurrentPlatform = Twitch.Instance; break;
                 case "Congratsio": CurrentPlatform = Congratsio.Instance; break;
                 case "Screenshot": CurrentPlatform = Screenshot.Instance; break;
@@ -188,7 +182,7 @@ namespace LiveSplit.View
             txtNotes.Enabled = btnInsertCategory.Enabled = btnInsertDeltaTime.Enabled = btnInsertGame.Enabled
                 = btnInsertPB.Enabled = btnInsertSplitName.Enabled = btnInsertSplitTime.Enabled
                 = btnInsertStreamLink.Enabled = btnInsertTitle.Enabled = btnPreview.Enabled =
-                ((CurrentPlatform == Twitter.Instance || CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance) |
+                ((CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance) |
                 (txtUser.Enabled = ((CurrentPlatform == Congratsio.Instance) | (txtPassword.Enabled =
                 txtVersion.Enabled = cbxCategory.Enabled = cbxGame.Enabled = 
                 (CurrentPlatform == PBTracker.Instance || CurrentPlatform == AllSpeedRuns.Instance)))));
@@ -276,27 +270,7 @@ namespace LiveSplit.View
 
         private void RefreshNotes()
         {
-            if (CurrentPlatform == Twitter.Instance)
-            {
-                ShareSettings.Default.Reload();
-                if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
-                {
-                    txtNotes.Text = ShareSettings.Default.TwitterFormat;
-                    if (string.IsNullOrEmpty(txtNotes.Text))
-                    {
-                        txtNotes.Text = "I got a $pb in $title.";
-                    }
-                }
-                else
-                {
-                    txtNotes.Text = ShareSettings.Default.TwitterFormatRunning;
-                    if (string.IsNullOrEmpty(txtNotes.Text))
-                    {
-                        txtNotes.Text = "I'm $delta in $title.";
-                    }
-                }
-            }
-            else if (CurrentPlatform == Twitch.Instance)
+            if (CurrentPlatform == Twitch.Instance)
             {
                 ShareSettings.Default.Reload();
                 txtNotes.Text = ShareSettings.Default.TwitchFormat;
@@ -311,15 +285,7 @@ namespace LiveSplit.View
 
         private void SaveNotesFormat()
         {
-            if (CurrentPlatform == Twitter.Instance)
-            {
-                if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
-                    ShareSettings.Default.TwitterFormat = txtNotes.Text;
-                else
-                    ShareSettings.Default.TwitterFormatRunning = txtNotes.Text;
-                ShareSettings.Default.Save();
-            }
-            else if (CurrentPlatform == Twitch.Instance)
+            if (CurrentPlatform == Twitch.Instance)
             {
                 ShareSettings.Default.TwitchFormat = txtNotes.Text;
                 ShareSettings.Default.Save();
