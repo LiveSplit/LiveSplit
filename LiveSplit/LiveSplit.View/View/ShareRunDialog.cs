@@ -129,10 +129,6 @@ namespace LiveSplit.View
                 if (HasPersonalBest(Run))
                 {
                     cbxPlatform.Items.Add("Speedrun.com");
-                    if (Congratsio.Instance.CheckIfPersonalBestIsValid(Run))
-                    {
-                        cbxPlatform.Items.Add("Congratsio");
-                    }
                 }
                 cbxPlatform.Items.Add("Splits.io");
             }
@@ -165,12 +161,8 @@ namespace LiveSplit.View
 
             switch (cbxPlatform.SelectedItem.ToString())
             {
-                case "PBTracker": CurrentPlatform = PBTracker.Instance; break;
-                case "AllSpeedRuns": CurrentPlatform = AllSpeedRuns.Instance; break;
                 case "Splits.io": CurrentPlatform = SplitsIO.Instance; break;
-                case "Ge.tt": CurrentPlatform = Gett.Instance; break;
                 case "Twitch": CurrentPlatform = Twitch.Instance; break;
-                case "Congratsio": CurrentPlatform = Congratsio.Instance; break;
                 case "Screenshot": CurrentPlatform = Screenshot.Instance; break;
                 case "Imgur": CurrentPlatform = Imgur.Instance; break;
                 case "Excel": CurrentPlatform = Excel.Instance; break;
@@ -182,10 +174,7 @@ namespace LiveSplit.View
             txtNotes.Enabled = btnInsertCategory.Enabled = btnInsertDeltaTime.Enabled = btnInsertGame.Enabled
                 = btnInsertPB.Enabled = btnInsertSplitName.Enabled = btnInsertSplitTime.Enabled
                 = btnInsertStreamLink.Enabled = btnInsertTitle.Enabled = btnPreview.Enabled =
-                ((CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance) |
-                (txtUser.Enabled = ((CurrentPlatform == Congratsio.Instance) | (txtPassword.Enabled =
-                txtVersion.Enabled = cbxCategory.Enabled = cbxGame.Enabled = 
-                (CurrentPlatform == PBTracker.Instance || CurrentPlatform == AllSpeedRuns.Instance)))));
+                (CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance);
 
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
                 chkAttachSplits.Enabled = !(CurrentPlatform == Screenshot.Instance || CurrentPlatform == SplitsIO.Instance
@@ -207,10 +196,6 @@ namespace LiveSplit.View
                 btnInsertCategory.Enabled = false;
             if (string.IsNullOrEmpty(Run.GameName) && string.IsNullOrEmpty(Run.CategoryName))
                 btnInsertTitle.Enabled = false;
-            txtVideoURL.Enabled = 
-                CurrentPlatform == PBTracker.Instance 
-                || CurrentPlatform == AllSpeedRuns.Instance 
-                || CurrentPlatform == Congratsio.Instance;
 
             RefreshGameList();
             RefreshDescription();

@@ -129,8 +129,6 @@
             this.tableLayoutPanel1.SetColumnSpan(this.cbxCategory, 5);
             this.cbxCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxCategory.FormattingEnabled = true;
-            this.cbxCategory.Items.AddRange(new object[] {
-            "PBTracker"});
             this.cbxCategory.Location = new System.Drawing.Point(76, 180);
             this.cbxCategory.Name = "cbxCategory";
             this.cbxCategory.Size = new System.Drawing.Size(476, 21);
@@ -142,8 +140,6 @@
             this.tableLayoutPanel1.SetColumnSpan(this.cbxGame, 5);
             this.cbxGame.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxGame.FormattingEnabled = true;
-            this.cbxGame.Items.AddRange(new object[] {
-            "PBTracker"});
             this.cbxGame.Location = new System.Drawing.Point(76, 151);
             this.cbxGame.Name = "cbxGame";
             this.cbxGame.Size = new System.Drawing.Size(476, 21);
