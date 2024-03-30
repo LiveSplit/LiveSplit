@@ -1257,19 +1257,6 @@ namespace LiveSplit.View
 
             try
             {
-                var gameId = PBTracker.Instance.GetGameIdByName(cbxGameName.Text);
-                var cover = PBTracker.Instance.GetGameBoxArt(gameId);
-                SetGameIcon(cover);
-                RaiseRunEdited();
-                return;
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-
-            try
-            {
                 var cover = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
                 SetGameIcon(cover);
                 RaiseRunEdited();
