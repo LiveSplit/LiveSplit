@@ -118,7 +118,6 @@ namespace LiveSplit.Model.Input
         protected string ToString(Joystick joystick, JoystickOffset button, int value)
         {
             var shortMaskMax = 0xFF00;
-            var shortMaskMin = 0xFF;
 
             var originalName = button.ToString();
 
