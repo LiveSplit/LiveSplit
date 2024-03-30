@@ -37,86 +37,6 @@ namespace LiveSplit.View
             InitializeComponent();
         }
 
-        void RefreshCategoryList(string gameName)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    string[] categoryNames;
-                    try
-                    {
-                        categoryNames = CurrentPlatform.GetGameCategories(CurrentPlatform.GetGameIdByName(gameName)).Select(x => x.Value).ToArray();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-
-                        categoryNames = new string[0];
-                    }
-
-                    this.InvokeIfRequired(() =>
-                    {
-                        try
-                        {
-                            cbxCategory.Items.Clear();
-                            cbxCategory.Items.AddRange(categoryNames);
-                            cbxCategory.SelectedItem = categoryNames.FindMostSimilarValueTo(Run.CategoryName);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
-                        }
-                    });
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                }
-            });
-        }
-
-        void RefreshGameList()
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    string[] gameNames;
-                    try
-                    {
-                        gameNames = CurrentPlatform.GetGameNames().ToArray();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-
-                        gameNames = new string[0];
-                    }
-
-                    this.InvokeIfRequired(() =>
-                    {
-                        try
-                        {
-                            cbxGame.Items.Clear();
-                            cbxGame.Items.AddRange(gameNames);
-                            var selectedGameName = gameNames.FindMostSimilarValueTo(Run.GameName);
-                            cbxGame.SelectedItem = selectedGameName;
-                            RefreshCategoryList(selectedGameName);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
-                        }
-                    });
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(ex);
-                }
-            });
-        }
-
         private bool HasPersonalBest(IRun run)
         {
             return run.LastOrDefault().PersonalBestSplitTime.RealTime.HasValue;
@@ -145,11 +65,6 @@ namespace LiveSplit.View
         private void RefreshDescription()
         {
             lblDescription.Text = CurrentPlatform.Description;
-        }
-
-        private void cbxGame_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            RefreshCategoryList(cbxGame.SelectedItem.ToString());
         }
 
         private void cbxPlatform_SelectionChangeCommitted(object sender, EventArgs e)
@@ -197,7 +112,6 @@ namespace LiveSplit.View
             if (string.IsNullOrEmpty(Run.GameName) && string.IsNullOrEmpty(Run.CategoryName))
                 btnInsertTitle.Enabled = false;
 
-            RefreshGameList();
             RefreshDescription();
             RefreshNotes();
         }
@@ -300,16 +214,13 @@ namespace LiveSplit.View
                     return;
                 }
 
-                var gameId = CurrentPlatform.GetGameIdByName(gameName);
-                var categoryId = CurrentPlatform.GetCategoryIdByName(gameId, categoryName);
-
                 var runSubmitted = CurrentPlatform.SubmitRun(
                     Run,
                     username, password,
                     ScreenShotFunction,
                     attachSplits,
                     State.CurrentTimingMethod,
-                    gameId, categoryId,
+                    "", "",
                     version, notes, videoURL);
 
                 if (runSubmitted)

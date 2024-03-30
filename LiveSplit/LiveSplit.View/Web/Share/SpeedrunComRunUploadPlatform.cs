@@ -21,31 +21,6 @@ namespace LiveSplit.Web.Share
         public string Description =>
             "Speedrun.com is a site intended to provide centralized leaderboards for speedrunning.";
 
-        public IEnumerable<ASUP.IdPair> GetGameList()
-        {
-            yield break;
-        }
-
-        public IEnumerable<string> GetGameNames()
-        {
-            yield break;
-        }
-
-        public string GetGameIdByName(string gameName)
-        {
-            return string.Empty;
-        }
-
-        public IEnumerable<ASUP.IdPair> GetGameCategories(string gameId)
-        {
-            yield break;
-        }
-
-        public string GetCategoryIdByName(string gameId, string categoryName)
-        {
-            return string.Empty;
-        }
-
         public bool VerifyLogin(string username, string password)
         {
             return true;

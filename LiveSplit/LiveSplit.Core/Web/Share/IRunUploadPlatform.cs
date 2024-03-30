@@ -12,11 +12,6 @@ namespace LiveSplit.Web.Share
         string Description { get; }
         ISettings Settings { get; set; }
 
-        IEnumerable<ASUP.IdPair> GetGameList();
-        IEnumerable<string> GetGameNames();
-        string GetGameIdByName(string gameName);
-        IEnumerable<ASUP.IdPair> GetGameCategories(string gameId);
-        string GetCategoryIdByName(string gameId, string categoryName);
         bool VerifyLogin(string username, string password);
         bool SubmitRun(
             IRun run,

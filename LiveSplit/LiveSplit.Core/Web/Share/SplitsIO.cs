@@ -60,31 +60,6 @@ namespace LiveSplit.Web.Share
 
         #region Not supported
 
-        IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameList()
-        {
-            yield break;
-        }
-
-        IEnumerable<string> IRunUploadPlatform.GetGameNames()
-        {
-            yield break;
-        }
-
-        string IRunUploadPlatform.GetGameIdByName(string gameName)
-        {
-            return string.Empty;
-        }
-
-        IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameCategories(string gameId)
-        {
-            yield break;
-        }
-
-        string IRunUploadPlatform.GetCategoryIdByName(string gameId, string categoryName)
-        {
-            return string.Empty;
-        }
-
         bool IRunUploadPlatform.VerifyLogin(string username, string password)
         {
             return true;

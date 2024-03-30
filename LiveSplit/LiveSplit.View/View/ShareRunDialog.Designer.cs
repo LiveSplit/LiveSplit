@@ -144,7 +144,6 @@
             this.cbxGame.Name = "cbxGame";
             this.cbxGame.Size = new System.Drawing.Size(476, 21);
             this.cbxGame.TabIndex = 3;
-            this.cbxGame.SelectionChangeCommitted += new System.EventHandler(this.cbxGame_SelectionChangeCommitted);
             // 
             // txtPassword
             // 
