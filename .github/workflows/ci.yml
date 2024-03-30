@@ -58,6 +58,7 @@ jobs:
           Get-ChildItem * -Include *LiveSplit.Counter.dll -Recurse | Remove-Item
           Remove-Item x64/asr_capi.dll
           Remove-Item x86/asr_capi.dll
+          Remove-Item runtimes/win-x64/native/WebView2Loader.dll
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v2
