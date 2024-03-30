@@ -47,7 +47,7 @@ namespace LiveSplit.Web.Share
 
         public ISettings Settings { get; set; }
 
-        public bool VerifyLogin(string username, string password)
+        public bool VerifyLogin()
         {
             return true;
         }
@@ -100,7 +100,7 @@ namespace LiveSplit.Web.Share
             }
         }
 
-        public bool SubmitRun(IRun run, string username, string password, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)
+        public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
         {
             var titleBuilder = new StringBuilder();
 

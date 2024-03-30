@@ -62,7 +62,7 @@ the first time that sharing to Twitch is used.";
 
         public ISettings Settings { get; set; }
 
-        bool IRunUploadPlatform.VerifyLogin(string username, string password)
+        bool IRunUploadPlatform.VerifyLogin()
         {
             return VerifyLogin();
         }
@@ -178,13 +178,11 @@ the first time that sharing to Twitch is used.";
 
         public bool SubmitRun(
             IRun run,
-            string username, string password,
             Func<Image> screenShotFunction = null,
             bool attachSplits = false,
             TimingMethod method = TimingMethod.RealTime,
-            string gameId = "", string categoryId = "",
-            string version = "", string comment = "",
-            string video = "", params string[] additionalParams)
+            string comment = "",
+            params string[] additionalParams)
         {
             if (!IsLoggedIn)
             {

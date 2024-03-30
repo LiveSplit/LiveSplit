@@ -69,11 +69,6 @@ namespace LiveSplit.View
 
         private void cbxPlatform_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            cbxGame.Items.Clear();
-            cbxCategory.Items.Clear();
-            cbxGame.SelectedItem = null;
-            cbxCategory.SelectedItem = null;
-
             switch (cbxPlatform.SelectedItem.ToString())
             {
                 case "Splits.io": CurrentPlatform = SplitsIO.Instance; break;
@@ -193,12 +188,6 @@ namespace LiveSplit.View
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            var username = txtUser.Text;
-            var password = txtPassword.Text;
-            var gameName = cbxGame.SelectedItem == null ? "" : cbxGame.SelectedItem.ToString();
-            var categoryName = cbxCategory.SelectedItem == null ? "" : cbxCategory.SelectedItem.ToString();
-            var version = txtVersion.Text;
-            var videoURL = txtVideoURL.Text;
             var notes = FormatNotes(txtNotes.Text);
             var attachSplits = chkAttachSplits.Checked;
 
@@ -208,7 +197,7 @@ namespace LiveSplit.View
             {
                 Cursor = Cursors.WaitCursor;
 
-                if (!CurrentPlatform.VerifyLogin(username, password))
+                if (!CurrentPlatform.VerifyLogin())
                 {
                     MessageBox.Show("Your login information seems to be incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -216,12 +205,10 @@ namespace LiveSplit.View
 
                 var runSubmitted = CurrentPlatform.SubmitRun(
                     Run,
-                    username, password,
                     ScreenShotFunction,
                     attachSplits,
                     State.CurrentTimingMethod,
-                    "", "",
-                    version, notes, videoURL);
+                    notes);
 
                 if (runSubmitted)
                 {

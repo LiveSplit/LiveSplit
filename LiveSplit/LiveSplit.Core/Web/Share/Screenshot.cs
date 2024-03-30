@@ -19,12 +19,12 @@ namespace LiveSplit.Web.Share
 
         public string Description => "Sharing will save a screenshot of LiveSplit.";
 
-        public bool VerifyLogin(string username, string password)
+        public bool VerifyLogin()
         {
             return true;
         }
 
-        public bool SubmitRun(IRun run, string username, string password, Func<System.Drawing.Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)
+        public bool SubmitRun(IRun run, Func<System.Drawing.Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
         {
             try
             {
