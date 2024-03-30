@@ -2604,7 +2604,7 @@ namespace LiveSplit.View
             }
         }
 
-        private Image MakeScreenShot(bool transparent = false)
+        private Image MakeScreenShot()
         {
             var image = new Bitmap(Width, Height);
             var graphics = Graphics.FromImage(image);
@@ -2613,11 +2613,8 @@ namespace LiveSplit.View
             graphics.FillRectangle(Brushes.Transparent, 0, 0, Width, Height);
             graphics.CompositingMode = CompositingMode.SourceOver;
 
-            if (!transparent)
-            {
-                graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Width, Height);
-                graphics.FillRectangle(new SolidBrush(Layout.Settings.BackgroundColor), 0, 0, Width, Height);
-            }
+            // Start with a black background because we don't support the window being transparent, so this is closer to how LiveSplit actually looks
+            graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Width, Height);
 
             var drawRegion = new Region(new Rectangle(0, 0, Width, Height));
             UpdateRegion = drawRegion;
@@ -2631,7 +2628,7 @@ namespace LiveSplit.View
             using (var dialog = new ShareRunDialog(
                     (LiveSplitState)CurrentState.Clone(),
                     Settings,
-                    () => MakeScreenShot(false)))
+                    () => MakeScreenShot()))
             {
                 try
                 {
