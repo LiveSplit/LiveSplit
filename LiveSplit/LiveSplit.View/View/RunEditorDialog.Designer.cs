@@ -590,6 +590,7 @@
             this.lblDescription.Size = new System.Drawing.Size(281, 13);
             this.lblDescription.TabIndex = 13;
             this.lblDescription.Text = "Description";
+            this.lblDescription.UseMnemonic = false;
             // 
             // RemoveIconMenu
             // 
