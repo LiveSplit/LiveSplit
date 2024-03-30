@@ -29,19 +29,28 @@ namespace LiveSplit.Updates
                                 x.GetChangeLog().Select(y => " - " + y + "\r\n")
                                         .Aggregate("", (y, z) => y + z) + "\r\n")
                                         .Aggregate((x, y) => x + y) + "Do you want to update?";
-                        DialogResult result = (new ScrollableMessageBox()).Show(dialogText, "New updates are available", MessageBoxButtons.YesNo);
-                        if (result == DialogResult.Yes)
+
+                        Action promptForUpdates = () =>
                         {
-                            try
+                            DialogResult result = (new ScrollableMessageBox()).Show(dialogText, "New updates are available", MessageBoxButtons.YesNo);
+                            if (result == DialogResult.Yes)
                             {
-                                Updater.UpdateAll(actualUpdateables, "http://livesplit.org/update/UpdateManager.exe");
-                                closeAction();
+                                try
+                                {
+                                    Updater.UpdateAll(actualUpdateables, "http://livesplit.org/update/UpdateManager.exe");
+                                    closeAction();
+                                }
+                                catch (Exception e)
+                                {
+                                    Log.Error(e);
+                                }
                             }
-                            catch (Exception e)
-                            {
-                                Log.Error(e);
-                            }
-                        }
+                        };
+
+                        if (form.InvokeRequired)
+                            form.Invoke(promptForUpdates);
+                        else
+                            promptForUpdates();
                     }
                     AlreadyChecked.AddRange(actualUpdateables.Select(x => x.GetType()));
                 }
