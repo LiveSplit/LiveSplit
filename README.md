@@ -28,7 +28,7 @@ LiveSplit is a timer program for speedrunners that is both easy to use and full 
 
 **Dynamic Resizing:** LiveSplit can be resized to any size so that it looks good on stream. As LiveSplit’s size is changed, all of its parts are automatically scaled up in order to preserve its appearance.
 
-**Sharing Runs:** Any run can be shared to websites such as [Speedrun.com](http://speedrun.com/), [Congratsio](http://www.congratsio.com/) and [Twitter](https://twitter.com/). Splits can also be distributed using [splits i/o](https://splits.io/) and imported from a URL. You can also share a screenshot of your splits to [Imgur](http://imgur.com/) or save it as a file. Your [Twitch](http://www.twitch.tv/) title can be updated as well based on the game you are playing.
+**Sharing Runs:** Any run can be shared to [Speedrun.com](http://speedrun.com/). Splits can also be distributed using [splits i/o](https://splits.io/) and imported from a URL. You can also share a screenshot of your splits to [Imgur](http://imgur.com/) or save it as a file. Your [Twitch](http://www.twitch.tv/) title can be updated as well based on the game you are playing.
 
 **Component Development:** Anyone can develop their own components that can easily be shared and used with LiveSplit. Additional downloadable components can be found in the [Components Section](https://livesplit.org/components/).
 

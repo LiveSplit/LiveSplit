@@ -2,13 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="LiveSplit.Web.Share" GeneratedClassName="ShareSettings">
   <Profiles />
   <Settings>
-    <Setting Name="TwitterFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="TwitchFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="TwitterFormatRunning" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>
