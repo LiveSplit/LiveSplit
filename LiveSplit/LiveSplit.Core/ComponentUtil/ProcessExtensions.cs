@@ -56,18 +56,19 @@ namespace LiveSplit.ComponentUtil
             const int LIST_MODULES_ALL = 3;
             const int MAX_PATH = 260;
 
-            var hModules = new IntPtr[1024];
-
-            uint cb = (uint)IntPtr.Size*(uint)hModules.Length;
             uint cbNeeded;
-
-            if (!WinAPI.EnumProcessModulesEx(p.Handle, hModules, cb, out cbNeeded, LIST_MODULES_ALL))
+            if (!WinAPI.EnumProcessModulesEx(p.Handle, null, 0, out cbNeeded, LIST_MODULES_ALL))
                 throw new Win32Exception();
+
             uint numMods = cbNeeded / (uint)IntPtr.Size;
 
             int hash = p.StartTime.GetHashCode() + p.Id + (int)numMods;
             if (ModuleCache.ContainsKey(hash))
                 return ModuleCache[hash];
+
+            var hModules = new IntPtr[(int)numMods];
+            if (!WinAPI.EnumProcessModulesEx(p.Handle, hModules, cbNeeded, out _, LIST_MODULES_ALL))
+                throw new Win32Exception();
 
             var ret = new List<ProcessModuleWow64Safe>();
 
@@ -76,12 +77,12 @@ namespace LiveSplit.ComponentUtil
             for (int i = 0; i < numMods; i++)
             {
                 sb.Clear();
-                if (WinAPI.GetModuleFileNameEx(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
+                if (WinAPI.GetModuleFileNameExW(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
                     throw new Win32Exception();
                 string fileName = sb.ToString();
 
                 sb.Clear();
-                if (WinAPI.GetModuleBaseName(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
+                if (WinAPI.GetModuleBaseNameW(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
                     throw new Win32Exception();
                 string baseName = sb.ToString();
 
@@ -99,7 +100,7 @@ namespace LiveSplit.ComponentUtil
                 });
             }
 
-            ModuleCache.Add(hash, ret.ToArray());
+            ModuleCache[hash] = ret.ToArray();
 
             return ret.ToArray();
         }
@@ -307,7 +308,7 @@ namespace LiveSplit.ComponentUtil
                 return default_;
             return str;
         }
-        
+
         public static bool WriteValue<T>(this Process process, IntPtr addr, T obj) where T : struct
         {
             int size = Marshal.SizeOf(obj);
@@ -405,7 +406,7 @@ namespace LiveSplit.ComponentUtil
                 int extraBytes = overwrittenBytes - jmpLen;
                 if (extraBytes > 0)
                 {
-                    var nops = Enumerable.Repeat((byte) 0x90, extraBytes).ToArray();
+                    var nops = Enumerable.Repeat((byte)0x90, extraBytes).ToArray();
                     MemPageProtect oldProtect;
                     if (!process.VirtualProtect(src + jmpLen, nops.Length, MemPageProtect.PAGE_EXECUTE_READWRITE,
                         out oldProtect))

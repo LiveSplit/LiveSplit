@@ -27,39 +27,14 @@ This includes your whole history of all the runs you ever did.";
 
         #region Not supported
 
-        IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameList()
-        {
-            yield break;
-        }
-
-        IEnumerable<string> IRunUploadPlatform.GetGameNames()
-        {
-            yield break;
-        }
-
-        string IRunUploadPlatform.GetGameIdByName(string gameName)
-        {
-            return string.Empty;
-        }
-
-        IEnumerable<ASUP.IdPair> IRunUploadPlatform.GetGameCategories(string gameId)
-        {
-            yield break;
-        }
-
-        string IRunUploadPlatform.GetCategoryIdByName(string gameId, string categoryName)
-        {
-            return string.Empty;
-        }
-
-        bool IRunUploadPlatform.VerifyLogin(string username, string password)
+        bool IRunUploadPlatform.VerifyLogin()
         {
             return true;
         }
 
         #endregion
 
-        public bool SubmitRun(IRun run, string username, string password, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string gameId = "", string categoryId = "", string version = "", string comment = "", string video = "", params string[] additionalParams)
+        public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
         {
             using (var dialog = new SaveFileDialog())
             {

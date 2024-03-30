@@ -35,9 +35,9 @@ namespace LiveSplit
             string path;
 
             if (IntPtr.Size == 4)
-                path = "x86/livesplit_core.dll";
+                path = "x86\\livesplit_core.dll";
             else
-                path = "x64/livesplit_core.dll";
+                path = "x64\\livesplit_core.dll";
 
             unsafe
             {

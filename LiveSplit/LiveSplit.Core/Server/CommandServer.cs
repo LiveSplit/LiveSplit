@@ -16,13 +16,14 @@ namespace LiveSplit.Server
 {
     public class CommandServer
     {
-        public List<Connection> Connections { get; set; }
+        public TcpListener Server { get; set; }
+        public List<Connection> PipeConnections { get; set; }
+        public List<TcpConnection> TcpConnections { get; set; }
 
         protected LiveSplitState State { get; set; }
         protected Form Form { get; set; }
         protected TimerModel Model { get; set; }
-        protected ITimeFormatter DeltaFormatter { get; set; }
-        protected ITimeFormatter SplitTimeFormatter { get; set; }
+        protected ITimeFormatter TimeFormatter { get; set; }
         protected NamedPipeServerStream WaitingServerPipe { get; set; }
 
         protected bool AlwaysPauseGameTime { get; set; }
@@ -30,14 +31,9 @@ namespace LiveSplit.Server
         public CommandServer(LiveSplitState state)
         {
             Model = new TimerModel();
-            Connections = new List<Connection>();
-
-            DeltaFormatter = new DeltaTimeFormatter()
-            {
-                Accuracy = TimeAccuracy.Hundredths,
-                DropDecimals = false
-            };
-            SplitTimeFormatter = new RegularTimeFormatter(TimeAccuracy.Hundredths);
+            PipeConnections = new List<Connection>();
+            TcpConnections = new List<TcpConnection>();
+            TimeFormatter = new PreciseTimeFormatter();
 
             State = state;
             Form = state.Form;
@@ -46,43 +42,88 @@ namespace LiveSplit.Server
             State.OnStart += State_OnStart;
         }
 
-        public void Start()
+        public void StartTcp()
         {
-            CloseAllConnections();
+            StopTcp();
+            Server = new TcpListener(IPAddress.Any, State.Settings.ServerPort);
+            Server.Start();
+            Server.BeginAcceptTcpClient(AcceptTcpClient, null);
+        }
 
+        public void StartNamedPipe()
+        {
+            StopPipe();
             WaitingServerPipe = CreateServerPipe();
             WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
         }
 
-        public void Stop()
+        public void StopAll()
         {
-            CloseAllConnections();
+            StopTcp();
+            StopPipe();
         }
 
-        protected void CloseAllConnections()
+        public void StopTcp()
         {
-            if (WaitingServerPipe != null)
-                WaitingServerPipe.Dispose();
-            foreach (var connection in Connections)
+            foreach (var connection in TcpConnections)
             {
                 connection.Dispose();
             }
-            Connections.Clear();
+
+            TcpConnections.Clear();
+            Server?.Stop();
+        }
+
+        public void StopPipe()
+        {
+            WaitingServerPipe?.Dispose();
+
+            foreach (var connection in PipeConnections)
+            {
+                connection.Dispose();
+            }
+
+            PipeConnections.Clear();
+        }
+
+        public void AcceptTcpClient(IAsyncResult result)
+        {
+            try
+            {
+                var client = Server.EndAcceptTcpClient(result);
+                var connection = new TcpConnection(client);
+                connection.MessageReceived += connection_MessageReceived;
+                connection.Disconnected += tcpConnection_Disconnected;
+                TcpConnections.Add(connection);
+
+                Server.BeginAcceptTcpClient(AcceptTcpClient, null);
+            }
+            catch { }
         }
 
         public void AcceptPipeClient(IAsyncResult result)
         {
             try
             {
-                var waitingPipe = WaitingServerPipe;
-                waitingPipe.EndWaitForConnection(result);
-
-                Form.BeginInvoke(new Action(() => Connect(waitingPipe)));
+                WaitingServerPipe.EndWaitForConnection(result);
+                var connection = new Connection(WaitingServerPipe);
+                connection.MessageReceived += connection_MessageReceived;
+                connection.Disconnected += pipeConnection_Disconnected;
+                PipeConnections.Add(connection);
 
                 WaitingServerPipe = CreateServerPipe();
                 WaitingServerPipe.BeginWaitForConnection(AcceptPipeClient, null);
             }
             catch { }
+        }
+
+        private void pipeConnection_Disconnected(object sender, EventArgs e)
+        {
+            var connection = (Connection)sender;
+            connection.MessageReceived -= connection_MessageReceived;
+            connection.Disconnected -= pipeConnection_Disconnected;
+            PipeConnections.Remove(connection);
+            connection.Dispose();
         }
 
         private NamedPipeServerStream CreateServerPipe()
@@ -91,16 +132,7 @@ namespace LiveSplit.Server
             return pipe;
         }
 
-        private void Connect(Stream stream)
-        {
-            var connection = new Connection(stream);
-            connection.MessageReceived += connection_MessageReceived;
-            connection.ScriptReceived += connection_ScriptReceived;
-            connection.Disconnected += connection_Disconnected;
-            Connections.Add(connection);
-        }
-
-        TimeSpan? parseTime(string timeString)
+        TimeSpan? ParseTime(string timeString)
         {
             if (timeString == "-")
                 return null;
@@ -108,247 +140,325 @@ namespace LiveSplit.Server
             return TimeSpanParser.Parse(timeString);
         }
 
-        void connection_ScriptReceived(object sender, ScriptEventArgs e)
-        {
-            Form.BeginInvoke(new Action(() => ProcessScriptRequest(e.Script, e.Connection)));
-        }
-
-        private void ProcessScriptRequest(IScript script, Connection clientConnection)
-        {
-            try
-            {
-                script["state"] = State;
-                script["model"] = Model;
-                script["sendMessage"] = new Action<string>(x => clientConnection.SendMessage(x));
-                var result = script.Run();
-                if (result != null)
-                    clientConnection.SendMessage(result.ToString());
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-                clientConnection.SendMessage(ex.Message);
-            }
-        }
-
         void connection_MessageReceived(object sender, MessageEventArgs e)
         {
-            Form.BeginInvoke(new Action(() => ProcessMessage(e.Message, e.Connection)));
+            ProcessMessage(e.Message, e.Connection);
         }
 
-        private void ProcessMessage(String message, Connection clientConnection)
+        private void ProcessMessage(string message, Connection clientConnection)
         {
-            try
+            string response = null;
+            var args = message.Split(new[] { ' ' }, 2);
+            var command = args[0];
+            switch (command)
             {
-                if (message == "startorsplit")
-                {
-                    if (State.CurrentPhase == TimerPhase.Running)
+                case "startorsplit":
+                    {
+                        if (State.CurrentPhase == TimerPhase.Running)
+                        {
+                            Model.Split();
+                        }
+                        else
+                        {
+                            Model.Start();
+                        }
+                        break;
+                    }
+                case "split":
                     {
                         Model.Split();
+                        break;
                     }
-                    else
+                case "undosplit":
+                case "unsplit":
+                    {
+                        Model.UndoSplit();
+                        break;
+                    }
+                case "skipsplit":
+                    {
+                        Model.SkipSplit();
+                        break;
+                    }
+                case "pause":
+                    {
+                        if (State.CurrentPhase != TimerPhase.Paused)
+                        {
+                            Model.Pause();
+                        }
+                        break;
+                    }
+                case "resume":
+                    {
+                        if (State.CurrentPhase == TimerPhase.Paused)
+                        {
+                            Model.Pause();
+                        }
+                        break;
+                    }
+                case "reset":
+                    {
+                        Model.Reset();
+                        break;
+                    }
+                case "start":
+                case "starttimer":
                     {
                         Model.Start();
+                        break;
                     }
-                }
-                else if (message == "split")
-                {
-                    Model.Split();
-                }
-                else if (message == "undosplit" || message == "unsplit")
-                {
-                    Model.UndoSplit();
-                }
-                else if (message == "skipsplit")
-                {
-                    Model.SkipSplit();
-                }
-                else if (message == "pause" && State.CurrentPhase != TimerPhase.Paused)
-                {
-                    Model.Pause();
-                }
-                else if (message == "resume" && State.CurrentPhase == TimerPhase.Paused)
-                {
-                    Model.Pause();
-                }
-                else if (message == "reset")
-                {
-                    Model.Reset();
-                }
-                else if (message == "start" || message == "starttimer")
-                {
-                    Model.Start();
-                }
-                else if (message.StartsWith("setgametime "))
-                {
-                    var value = message.Split(' ')[1];
-                    var time = parseTime(value);
-                    State.SetGameTime(time);
-                }
-                else if (message.StartsWith("setloadingtimes "))
-                {
-                    var value = message.Split(' ')[1];
-                    var time = parseTime(value);
-                    State.LoadingTimes = time ?? TimeSpan.Zero;
-                }
-                else if (message == "pausegametime")
-                {
-                    State.IsGameTimePaused = true;
-                }
-                else if (message == "unpausegametime")
-                {
-                    AlwaysPauseGameTime = false;
-                    State.IsGameTimePaused = false;
-                }
-                else if (message == "alwayspausegametime")
-                {
-                    AlwaysPauseGameTime = true;
-                    State.IsGameTimePaused = true;
-                }
-                else if (message == "getdelta" || message.StartsWith("getdelta "))
-                {
-                    var comparison = State.CurrentComparison;
-                    if (message.Contains(" "))
-                        comparison = message.Split(new char[] { ' ' }, 2)[1];
-
-                    TimeSpan? delta = null;
-                    if (State.CurrentPhase == TimerPhase.Running || State.CurrentPhase == TimerPhase.Paused)
-                        delta = LiveSplitStateHelper.GetLastDelta(State, State.CurrentSplitIndex, comparison, State.CurrentTimingMethod);
-                    else if (State.CurrentPhase == TimerPhase.Ended)
-                        delta = State.Run.Last().SplitTime[State.CurrentTimingMethod] - State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
-
-                    var response = DeltaFormatter.Format(delta);
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getsplitindex")
-                {
-                    var splitindex = State.CurrentSplitIndex;
-                    var response = splitindex.ToString();
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getcurrentsplitname")
-                {
-                    var splitindex = State.CurrentSplitIndex;
-                    var currentsplitname = State.CurrentSplit.Name;
-                    var response = currentsplitname;
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getprevioussplitname")
-                {
-                    var previoussplitindex = State.CurrentSplitIndex - 1;
-                    var previoussplitname = State.Run[previoussplitindex].Name;
-                    var response = previoussplitname;
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getlastsplittime" && State.CurrentSplitIndex > 0)
-                {
-                    var splittime = State.Run[State.CurrentSplitIndex - 1].SplitTime[State.CurrentTimingMethod];
-                    var response = SplitTimeFormatter.Format(splittime);
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getcomparisonsplittime")
-                {
-                    var splittime = State.CurrentSplit.Comparisons[State.CurrentComparison][State.CurrentTimingMethod];
-                    var response = SplitTimeFormatter.Format(splittime);
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getcurrentrealtime")
-                {
-                    var time = State.CurrentTime.RealTime;
-                    var response = SplitTimeFormatter.Format(time);
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getcurrentgametime")
-                {
-                    var timingMethod = TimingMethod.GameTime;
-                    if (!State.IsGameTimeInitialized)
-                        timingMethod = TimingMethod.RealTime;
-                    var time = State.CurrentTime[timingMethod];
-                    var response = SplitTimeFormatter.Format(time);
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getcurrenttime")
-                {
-                    var timingMethod = State.CurrentTimingMethod;
-                    if (timingMethod == TimingMethod.GameTime && !State.IsGameTimeInitialized)
-                        timingMethod = TimingMethod.RealTime;
-                    var time = State.CurrentTime[timingMethod];
-                    var response = SplitTimeFormatter.Format(time);
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getfinaltime" || message.StartsWith("getfinaltime "))
-                {
-                    var comparison = State.CurrentComparison;
-                    if (message.Contains(" "))
+                case "setgametime":
                     {
-                        comparison = message.Split(new char[] { ' ' }, 2)[1];
+                        try
+                        {
+                            var time = ParseTime(args[1]);
+                            State.SetGameTime(time);
+                        }
+                        catch (Exception e) {
+                            Log.Error(e);
+                            Log.Error($"[Server] Failed to parse time while setting game time: {args[1]}");
+                        }
+                        break;
                     }
-                    var time = (State.CurrentPhase == TimerPhase.Ended)
-                        ? State.CurrentTime[State.CurrentTimingMethod]
-                        : State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
-                    var response = SplitTimeFormatter.Format(time);
-                    clientConnection.SendMessage(response);
+                case "setloadingtimes":
+                    {
+                        try
+                        {
+                            var time = ParseTime(args[1]);
+                            State.LoadingTimes = time ?? TimeSpan.Zero;
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(e);
+                            Log.Error($"[Server] Failed to parse time while setting loading times: {args[1]}");
+                        }
+                        break;
+                    }
+                case "pausegametime":
+                    {
+                        State.IsGameTimePaused = true;
+                        break;
+                    }
+                case "unpausegametime":
+                    {
+                        AlwaysPauseGameTime = false;
+                        State.IsGameTimePaused = false;
+                        break;
+                    }
+                case "alwayspausegametime":
+                    {
+                        AlwaysPauseGameTime = true;
+                        State.IsGameTimePaused = true;
+                        break;
+                    }
+                case "getdelta":
+                    {
+                        var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                        TimeSpan? delta = null;
+                        if (State.CurrentPhase == TimerPhase.Running || State.CurrentPhase == TimerPhase.Paused)
+                            delta = LiveSplitStateHelper.GetLastDelta(State, State.CurrentSplitIndex, comparison, State.CurrentTimingMethod);
+                        else if (State.CurrentPhase == TimerPhase.Ended)
+                            delta = State.Run.Last().SplitTime[State.CurrentTimingMethod] - State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+
+                        // Defaults to "-" when delta is null, such as when State.CurrentPhase == TimerPhase.NotRunning
+                        response = TimeFormatter.Format(delta);
+                        break;
+                    }
+                case "getsplitindex":
+                    {
+                        var splitindex = State.CurrentSplitIndex;
+                        response = splitindex.ToString();
+                        break;
+                    }
+                case "getcurrentsplitname":
+                    {
+                        if (State.CurrentSplit != null)
+                        {
+                            response = State.CurrentSplit.Name;
+                        }
+                        else
+                        {
+                            response = "-";
+                        }
+                        break;
+                    }
+                case "getlastsplitname":
+                case "getprevioussplitname":
+                    {
+                        if (State.CurrentSplitIndex > 0)
+                        {
+                            response = State.Run[State.CurrentSplitIndex - 1].Name;
+                        }
+                        else
+                        {
+                            response = "-";
+                        }
+                        break;
+                    }
+                case "getlastsplittime":
+                case "getprevioussplittime":
+                    {
+                        if (State.CurrentSplitIndex > 0)
+                        {
+                            var time = State.Run[State.CurrentSplitIndex - 1].SplitTime[State.CurrentTimingMethod];
+                            response = TimeFormatter.Format(time);
+                        }
+                        else
+                        {
+                            response = "-";
+                        }
+                        break;
+                    }
+                case "getcurrentsplittime":
+                case "getcomparisonsplittime":
+                    {
+                        if (State.CurrentSplit != null)
+                        {
+                            var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                            var time = State.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
+                            response = TimeFormatter.Format(time);
+                        }
+                        else
+                        {
+                            response = "-";
+                        }
+                        break;
+                    }
+                case "getcurrentrealtime":
+                    {
+                        response = TimeFormatter.Format(State.CurrentTime.RealTime);
+                        break;
+                    }
+                case "getcurrentgametime":
+                    {
+                        var timingMethod = TimingMethod.GameTime;
+                        if (!State.IsGameTimeInitialized)
+                            timingMethod = TimingMethod.RealTime;
+                        response = TimeFormatter.Format(State.CurrentTime[timingMethod]);
+                        break;
+                    }
+                case "getcurrenttime":
+                    {
+                        var timingMethod = State.CurrentTimingMethod;
+                        if (timingMethod == TimingMethod.GameTime && !State.IsGameTimeInitialized)
+                            timingMethod = TimingMethod.RealTime;
+                        response = TimeFormatter.Format(State.CurrentTime[timingMethod]);
+                        break;
+                    }
+                case "getfinaltime":
+                case "getfinalsplittime":
+                    {
+                        var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                        var time = (State.CurrentPhase == TimerPhase.Ended)
+                            ? State.CurrentTime[State.CurrentTimingMethod]
+                            : State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+                        response = TimeFormatter.Format(time);
+                        break;
+                    }
+                case "getbestpossibletime":
+                case "getpredictedtime":
+                    {
+                        string comparison;
+                        if (command == "getbestpossibletime")
+                            comparison = LiveSplit.Model.Comparisons.BestSegmentsComparisonGenerator.ComparisonName;
+                        else
+                            comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                        var prediction = PredictTime(State, comparison);
+                        response = TimeFormatter.Format(prediction);
+                        break;
+                    }
+                case "gettimerphase":
+                case "getcurrenttimerphase":
+                    {
+                        response = State.CurrentPhase.ToString();
+                        break;
+                    }
+                case "setcomparison":
+                    {
+                        State.CurrentComparison = args[1];
+                        break;
+                    }
+                case "switchto":
+                    {
+                        switch (args[1])
+                        {
+                            case "gametime":
+                                State.CurrentTimingMethod = TimingMethod.GameTime;
+                                break;
+                            case "realtime":
+                                State.CurrentTimingMethod = TimingMethod.RealTime;
+                                break;
+                        }
+                        break;
+                    }
+                case "setsplitname":
+                case "setcurrentsplitname":
+                    {
+                        if (args.Length < 2)
+                        {
+                            Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                            break;
+                        }
+
+                        var index = State.CurrentSplitIndex;
+                        var title = args[1];
+
+                        if (command == "setsplitname")
+                        {
+                            var options = args[1].Split(new[] { ' ' }, 2);
+
+                            try
+                            {
+                                index = Convert.ToInt32(options[0]);
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error(ex);
+                                Log.Error($"[Server] Could not parse {options[0]} as a split index.");
+                            }
+
+                            title = options[1];
+
+                            if (options.Length < 2)
+                            {
+                                Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                                break;
+                            }
+                        }
+
+                        if (index >= 0 && index < State.Run.Count)
+                        {
+                            State.Run[index].Name = title;
+                            State.Run.HasChanged = true;
+                        }
+                        else
+                        {
+                            Log.Warning($"[Sever] Split index {index} out of bounds for command {command}");
+                        }
+
+                        break;
+                    }
+                default:
+                    {
+                        Log.Error($"[Server] Invalid command: {message}");
+                        break;
+                    }
                 }
-                else if (message.StartsWith("getpredictedtime "))
-                {
-                    var comparison = message.Split(new char[] { ' ' }, 2)[1];
-                    var prediction = PredictTime(State, comparison);
-                    var response = SplitTimeFormatter.Format(prediction);
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getbestpossibletime")
-                {
-                    var comparison = LiveSplit.Model.Comparisons.BestSegmentsComparisonGenerator.ComparisonName;
-                    var prediction = PredictTime(State, comparison);
-                    var response = SplitTimeFormatter.Format(prediction);
-                    clientConnection.SendMessage(response);
-                }
-                else if (message == "getcurrenttimerphase")
-                {
-                    var response = State.CurrentPhase.ToString();
-                    clientConnection.SendMessage(response);
-                }
-                else if (message.StartsWith("setcomparison "))
-                {
-                    var comparison = message.Split(new char[] { ' ' }, 2)[1];
-                    State.CurrentComparison = comparison;
-                }
-                else if (message == "switchto realtime")
-                {
-                    State.CurrentTimingMethod = TimingMethod.RealTime;
-                }
-                else if (message == "switchto gametime")
-                {
-                    State.CurrentTimingMethod = TimingMethod.GameTime;
-                }
-                else if (message.StartsWith("setsplitname "))
-                {
-                    int index = Convert.ToInt32(message.Split(new char[] { ' ' }, 3)[1]);
-                    string title = message.Split(new char[] { ' ' }, 3)[2];
-                    State.Run[index].Name = title;
-                    State.Run.HasChanged = true;
-                }
-                else if (message.StartsWith("setcurrentsplitname "))
-                {
-                    string title = message.Split(new char[] { ' ' }, 2)[1];
-                    State.Run[State.CurrentSplitIndex].Name = title;
-                    State.Run.HasChanged = true;
-                }
-            }
-            catch (Exception ex)
+
+
+            if (!string.IsNullOrEmpty(response))
             {
-                Log.Error(ex);
+                clientConnection.SendMessage(response);
             }
         }
 
-        private void connection_Disconnected(object sender, EventArgs e)
+        private void tcpConnection_Disconnected(object sender, EventArgs e)
         {
-            Form.BeginInvoke(new Action(() =>
-            {
-                var connection = (Connection)sender;
-                Connections.Remove(connection);
-                connection.Dispose();
-            }));
+            var connection = (TcpConnection)sender;
+            connection.MessageReceived -= connection_MessageReceived;
+            connection.Disconnected -= tcpConnection_Disconnected;
+            TcpConnections.Remove(connection);
+            connection.Dispose();
         }
 
         private void State_OnStart(object sender, EventArgs e)
@@ -380,7 +490,8 @@ namespace LiveSplit.Server
         public void Dispose()
         {
             State.OnStart -= State_OnStart;
-            CloseAllConnections();
+            StopAll();
+            WaitingServerPipe.Dispose();
         }
     }
 }

@@ -39,18 +39,6 @@ jobs:
         run: |
           & "vstest.console.exe" "LiveSplit/LiveSplit.Tests/bin/Release/LiveSplit.Tests.dll"
 
-      - name: Create a folder for the Server component artifacts
-        run: |
-          mkdir .\LiveSplit.Server
-          Move-Item -path .\LiveSplit\bin\Release\Components\LiveSplit.Server.dll -destination .\LiveSplit.Server
-          Move-Item -path .\LiveSplit\bin\Release\Components\Noesis.Javascript.dll -destination .\LiveSplit.Server
-
-      - name: Upload the Server component as an artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: LiveSplit.Server
-          path: LiveSplit.Server
-
       - name: Upload the Counter component as an artifact
         uses: actions/upload-artifact@v2
         with:
@@ -68,6 +56,8 @@ jobs:
           Get-ChildItem * -Include *MSTest*.dll -Recurse | Remove-Item
           Get-ChildItem * -Include xunit.*.dll -Recurse | Remove-Item
           Get-ChildItem * -Include *LiveSplit.Counter.dll -Recurse | Remove-Item
+          Remove-Item x64/asr_capi.dll
+          Remove-Item x86/asr_capi.dll
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v2

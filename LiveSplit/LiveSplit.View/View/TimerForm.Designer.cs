@@ -16,6 +16,7 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                Server.Dispose();
             }
             base.Dispose(disposing);
         }
@@ -58,6 +59,7 @@
             this.pauseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoPausesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotkeysMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.serverMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RightClickMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -268,6 +270,13 @@
             this.comparisonMenuItem.Name = "comparisonMenuItem";
             this.comparisonMenuItem.Size = new System.Drawing.Size(166, 22);
             this.comparisonMenuItem.Text = "Compare Against";
+            //
+            // serverMenuItem
+            //
+            this.serverMenuItem.Name = "serverMenuItem";
+            this.serverMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.serverMenuItem.Text = "Start TCP Server";
+            this.serverMenuItem.Click += new System.EventHandler(this.ServerMenuItem_Click);
             // 
             // TimerForm
             // 
@@ -326,7 +335,7 @@
         private System.Windows.Forms.ToolStripMenuItem undoPausesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hotkeysMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comparisonMenuItem;
-
+        private System.Windows.Forms.ToolStripMenuItem serverMenuItem;
     }
 }
 

@@ -62,19 +62,24 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Codaxy.Xlio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Codaxy.Xlio.0.9.3.26\lib\net35\Codaxy.Xlio.dll</HintPath>
+    </Reference>
+    <Reference Include="Codaxy.Xlio.XmlSerializers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Codaxy.Xlio.0.9.3.26\lib\net35\Codaxy.Xlio.XmlSerializers.dll</HintPath>
+    </Reference>
     <Reference Include="CustomFontDialog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\CustomFontDialog\CustomFontDialog.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="IrcDotNet">
       <HintPath>..\Libs\IRC.Net 0.3\IrcDotNet.dll</HintPath>
     </Reference>
     <Reference Include="IrcDotNet.Common">
       <HintPath>..\Libs\IRC.Net 0.3\IrcDotNet.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="LinqToTwitter, Version=2.1.11.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\LinqToTwitter\net40\LinqToTwitter.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="SharpDX">
@@ -159,11 +164,9 @@
     <Compile Include="Options\RecentSplitsFile.cs" />
     <Compile Include="Options\SettingsFactories\StandardLayoutSettingsFactory.cs" />
     <Compile Include="Server\Connection.cs" />
-    <Compile Include="Server\CSharpScript.cs" />
-    <Compile Include="Server\IScript.cs" />
-    <Compile Include="Server\ScriptFactory.cs" />
     <Compile Include="Server\CommandServer.cs" />
     <Compile Include="TimeFormatters\AutomaticPrecisionTimeFormatter.cs" />
+    <Compile Include="TimeFormatters\PreciseTimeFormatter.cs" />
     <Compile Include="TimeFormatters\NullFormat.cs" />
     <Compile Include="TimeFormatters\GeneralTimeFormatter.cs" />
     <Compile Include="TimeFormatters\PossibleTimeSaveFormatter.cs" />
@@ -202,14 +205,9 @@
     </Compile>
     <Compile Include="Web\CompositeGameList.cs" />
     <Compile Include="Web\DynamicXMLNode.cs" />
-    <Compile Include="Web\Share\AllSpeedRuns.cs" />
-    <Compile Include="Web\Share\ASUP.cs" />
     <Compile Include="Web\JSON.cs" />
-    <Compile Include="Web\Share\ASUPTimeFormatter.cs" />
-    <Compile Include="Web\Share\Congratsio.cs" />
     <Compile Include="Web\CredentialManager.cs" />
     <Compile Include="Web\Share\Excel.cs" />
-    <Compile Include="Web\Share\Gett.cs" />
     <Compile Include="Web\Share\Imgur.cs" />
     <Compile Include="Web\Share\IRunUploadPlatform.cs" />
     <Compile Include="Web\Share\ISpeedrunComAuthenticator.cs" />
@@ -226,14 +224,6 @@
     <Compile Include="Web\Share\TwitchGameResolveDialog.Designer.cs">
       <DependentUpon>TwitchGameResolveDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="Web\Share\TwitterOAuthForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Web\Share\TwitterOAuthForm.Designer.cs">
-      <DependentUpon>TwitterOAuthForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Web\Share\PBTracker.cs" />
-    <Compile Include="Web\Share\ASUPRunUploadPlatform.cs" />
     <Compile Include="Options\FiletypeRegistryHelper.cs" />
     <Compile Include="Options\SettingsFactories\ILayoutSettingsFactory.cs" />
     <Compile Include="Options\ISettings.cs" />
@@ -296,7 +286,6 @@
       <DependentUpon>ShareSettings.settings</DependentUpon>
     </Compile>
     <Compile Include="Web\Share\SplitsIO.cs" />
-    <Compile Include="Web\Share\Twitter.cs" />
     <Compile Include="Web\SRL\SRLFactory.cs" />
     <Compile Include="Web\SRL\SRLRaceInfo.cs" />
     <Compile Include="Web\SRL\SRLSettings.cs" />
@@ -321,6 +310,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\loader.jar" />
+    <None Include="packages.config" />
     <None Include="Updates\GitInfo\revision.txt" />
     <None Include="Updates\GitInfo\version.txt" />
     <None Include="Updates\GitInfo\branch.txt" />
@@ -341,18 +331,11 @@
     <EmbeddedResource Include="Web\Share\TwitchGameResolveDialog.resx">
       <DependentUpon>TwitchGameResolveDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Web\Share\TwitterOAuthForm.resx">
-      <DependentUpon>TwitterOAuthForm.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj">
       <Project>{924aaffe-5b89-49e2-99ad-ec9373cc838d}</Project>
       <Name>SpeedrunComSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Libs\xlio\Source\Codaxy.Xlio\Codaxy.Xlio.csproj">
-      <Project>{11f82973-690a-48a9-8cb8-bd97e0024e2c}</Project>
-      <Name>Codaxy.Xlio</Name>
     </ProjectReference>
     <ProjectReference Include="..\UpdateManager\UpdateManager.csproj">
       <Project>{56dea3a0-2eb7-493b-b50f-a5e3aa8ae52a}</Project>
@@ -369,7 +352,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>mkdir $(ProjectDir)Updates\GitInfo\
+    <PreBuildEvent>mkdir "$(ProjectDir)Updates\GitInfo\."
 where git
 if %25ERRORLEVEL%25 == 0 (
 git describe --dirty --always --long --tags &gt; "$(ProjectDir)Updates\GitInfo\version.txt"

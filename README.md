@@ -28,7 +28,7 @@ LiveSplit is a timer program for speedrunners that is both easy to use and full 
 
 **Dynamic Resizing:** LiveSplit can be resized to any size so that it looks good on stream. As LiveSplit’s size is changed, all of its parts are automatically scaled up in order to preserve its appearance.
 
-**Sharing Runs:** Any run can be shared to websites such as [Speedrun.com](http://speedrun.com/), [Congratsio](http://www.congratsio.com/) and [Twitter](https://twitter.com/). Splits can also be distributed using [splits i/o](https://splits.io/) and imported from a URL. You can also share a screenshot of your splits to [Imgur](http://imgur.com/) or save it as a file. Your [Twitch](http://www.twitch.tv/) title can be updated as well based on the game you are playing.
+**Sharing Runs:** Any run can be shared to [Speedrun.com](http://speedrun.com/). Splits can also be distributed using [splits i/o](https://splits.io/) and imported from a URL. You can also share a screenshot of your splits to [Imgur](http://imgur.com/) or save it as a file. Your [Twitch](http://www.twitch.tv/) title can be updated as well based on the game you are playing.
 
 **Component Development:** Anyone can develop their own components that can easily be shared and used with LiveSplit. Additional downloadable components can be found in the [Components Section](https://livesplit.org/components/).
 
@@ -48,14 +48,13 @@ You can browse the [Issues](https://github.com/LiveSplit/LiveSplit/issues) to fi
 ## Compiling
 
 LiveSplit is written in C# 7 with Visual Studio and uses .NET Framework 4.6.1. To compile LiveSplit, you need one of these versions of Visual Studio:
- - Visual Studio 2017 Community Edition
- - Visual Studio 2017
+ - Visual Studio 2017 Community Edition or later
+ - Visual Studio 2017 or later
 
 Simply open the project with Visual Studio and it should be able to compile and run without any further configuration.
 
 ## Common Compiling Issues
-1. Could not build Codaxy.Xlio due to sgen.exe not being found. Open LiveSplit\\Libs\\xlio\\Source\\Codaxy.Xlio\\Codaxy.Xlio.csproj in order to edit where it looks for this path. Look for &lt;SGen...&gt; where it defines the attribute "ToolPath". Look on your computer to find the proper path. It is typically down some path such as "C:\\Program Files (x86)\\Microsoft SDKs\\Windows\\x.xA...". Find the version you want to use and bin folder with sgen.exe in it and replace the path in the .csproj file.
-2. No submodules pulled in when you fork/clone the repo which causes the project not to build. There are two ways to remedy this:
+1. No submodules pulled in when you fork/clone the repo which causes the project not to build. There are two ways to remedy this:
  - Cloning for the first time: `git clone --recursive git://repo/repo.git`
  - If already cloned, execute this in the root directory: `git submodule update --init --recursive`
 
@@ -65,13 +64,119 @@ The documentation for how to develop, test, and submit an Auto Splitter can be f
 
 [Auto Splitters Documentation](https://github.com/LiveSplit/LiveSplit.AutoSplitters/blob/master/README.md)
 
+## The LiveSplit Server
+
+The internal LiveSplit Server allows for other programs and other computers to control LiveSplit. The server can accept connections over either a named pipe located at `\\<hostname>\pipe\LiveSplit` (`.` is the hostname if the client and server are on the same computer) or over TCP/IP.
+
+### Control
+
+The named pipe is always open while LiveSplit is running but the TCP server **MUST** be started before programs can talk to it (Right click on LiveSplit -> Control -> Start TCP Server). You **MUST** manually start it each time you launch LiveSplit.
+
+### Settings
+
+#### Server Port
+
+**Server Port** is the door (one of thousands) on your computer that this program sends data through. Default is 16834. This should be fine for most people, but depending on network configurations, some ports may be blocked. See also https://en.wikipedia.org/wiki/Port_%28computer_networking%29
+
+### Known Uses
+
+- **Android LiveSplit Remote**: https://github.com/Ekelbatzen/LiveSplit.Remote.Android
+- **SplitNotes**: https://github.com/joelnir/SplitNotes
+- **Autosplitter Remote Client**: https://github.com/RavenX8/LiveSplit.Server.Client
+
+Made something cool? Consider getting it added to this list.
+
+### Commands
+
+Commands are case sensitive and end with a carriage return and a line feed (\r\n). You can provide parameters by using a space after the command and sending the parameters afterwards (`<command><space><parameters><\r\n>`).
+
+A command can respond with a message. The message ends with a carriage return and a line feed, just like a command.
+
+Here's the list of commands:
+
+- startorsplit
+- split
+- unsplit
+- skipsplit
+- pause
+- resume
+- reset
+- starttimer
+- setgametime TIME
+- setloadingtimes TIME
+- pausegametime
+- unpausegametime
+- alwayspausegametime
+- setcomparison COMPARISON
+- switchto realtime
+- switchto gametime
+- setsplitname INDEX NAME
+- setcurrentsplitname NAME
+
+The following commands respond with a time:
+
+- getdelta
+- getdelta COMPARISON
+- getlastsplittime
+- getcomparisonsplittime
+- getcurrentrealtime
+- getcurrentgametime
+- getcurrenttime
+- getfinaltime
+- getfinaltime COMPARISON
+- getpredictedtime COMPARISON
+- getbestpossibletime
+
+Other commands:
+
+- getsplitindex
+- getcurrentsplitname
+- getprevioussplitname
+- getcurrenttimerphase
+
+Commands are defined at `ProcessMessage` in "CommandServer.cs".
+
+### Example Clients
+
+#### Python
+
+```python
+import socket
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect(("localhost", 16834))
+s.send(b"starttimer\r\n")
+```
+
+#### Java 7+
+
+```java
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.net.Socket;
+
+public class MainTest {
+    public static void main(String[] args) throws IOException {
+        Socket socket = new Socket("localhost", 16834);
+        PrintWriter writer = new PrintWriter(socket.getOutputStream());
+        writer.write("starttimer\r\n");
+        writer.flush();
+        socket.close();
+    }
+}
+```
+
+#### Node.js
+
+Node.js client implementation available here: https://github.com/satanch/node-livesplit-client
+
 ## Releasing
 
-1. Update versions of any components that changed to match the new LiveSplit version.
+1. Update versions of any components that changed (create a Git tag and update the factory file for each component) to match the new LiveSplit version.
 2. Create a Git tag for the new version.
-3. Download `LiveSplit_Build` from the GitHub Actions build for the latest commit on `master`.
+3. Download `LiveSplit_Build` from the GitHub Actions build for the new Git tag.
 4. Create a GitHub release for the new version, and upload the LiveSplit build ZIP file with the correct filename (e.g. `LiveSplit_1.8.21.zip`).
-    - Create releases for [`LiveSplit.Counter`](https://github.com/LiveSplit/LiveSplit.Counter) and [`LiveSplit.Server`](https://github.com/LiveSplit/LiveSplit.Server) if necessary.
+    - Create a release for [`LiveSplit.Counter`](https://github.com/LiveSplit/LiveSplit.Counter) if necessary.
 5. Modify files in [the update folder of LiveSplit.github.io](https://github.com/LiveSplit/LiveSplit.github.io/tree/master/update) and commit the changes:
     - Copy changed files from the downloaded LiveSplit build ZIP file to the update folder.
     - Add new versions to the update XMLs for (`update.xml`, `update.updater.xml`, and the update XMLs for any components that changed).
@@ -81,7 +186,7 @@ The documentation for how to develop, test, and submit an Auto Splitter can be f
 
 The MIT License (MIT)
 
-Copyright (c) 2013-2020 Christopher Serr and Sergey Papushin
+Copyright (c) 2013 Christopher Serr and Sergey Papushin
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

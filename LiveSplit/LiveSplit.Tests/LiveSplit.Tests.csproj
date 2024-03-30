@@ -31,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -39,10 +40,13 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <LangVersion>7.1</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <HintPath>..\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
@@ -59,6 +63,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoSplitterTests\AutoSplitterXML.cs" />
+    <Compile Include="ComponentUtil\DeepPointerTests.cs" />
+    <Compile Include="Model\AbbreviationExtensionsMust.cs" />
+    <Compile Include="Model\AtomicDateTimeMust.cs" />
+    <Compile Include="Model\AttemptMust.cs" />
+    <Compile Include="Model\Constants.cs" />
+    <Compile Include="Model\IndexedTimeMust.cs" />
+    <Compile Include="Model\SegmentHistoryMust.cs" />
+    <Compile Include="Model\SegmentMust.cs" />
+    <Compile Include="Model\StringExtensionsMust.cs" />
+    <Compile Include="Model\TimeMust.cs" />
+    <Compile Include="Options\LayoutSettingsMust.cs" />
     <Compile Include="TimeFormatTests\ShowDaysTests.cs" />
     <Compile Include="TimeFormatTests\DigitsFormatTests.cs" />
     <Compile Include="TimeFormatTests\DaysTimeFormatterTests.cs" />
@@ -104,10 +119,6 @@
     <ProjectReference Include="..\Components\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj">
       <Project>{56e9d96b-5944-4c2e-876b-cba44b1465ac}</Project>
       <Name>LiveSplit.ScriptableAutoSplit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.Server\LiveSplit.Server.csproj">
-      <Project>{4e693bb2-7b94-4ecc-b44d-628597183750}</Project>
-      <Name>LiveSplit.Server</Name>
     </ProjectReference>
     <ProjectReference Include="..\Components\LiveSplit.Splits\LiveSplit.Splits.csproj">
       <Project>{1354e1ff-33ee-4fa9-b110-074cbc16a6f9}</Project>

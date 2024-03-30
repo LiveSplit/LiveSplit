@@ -2,6 +2,7 @@
 using LiveSplit.UI;
 using System;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -24,7 +25,13 @@ namespace LiveSplit.Model.RunFactories
 
         static TimeSpan ParseTimeSpan(LiveSplitCore.TimeSpanRef timeSpan)
         {
-            return TimeSpan.FromTicks((long)(timeSpan.TotalSeconds() * TimeSpan.TicksPerSecond));
+            var wholeSeconds = timeSpan.WholeSeconds();
+            var subsecNanoseconds = timeSpan.SubsecNanoseconds();
+            const long NANOS_PER_SEC = 1_000_000_000;
+            const long NANOS_PER_TICK = NANOS_PER_SEC / TimeSpan.TicksPerSecond;
+
+            var totalTicks = wholeSeconds * TimeSpan.TicksPerSecond + subsecNanoseconds / NANOS_PER_TICK;
+            return new TimeSpan(totalTicks);
         }
 
         static TimeSpan? ParseOptionalTimeSpan(LiveSplitCore.TimeSpanRef timeSpan)
@@ -33,7 +40,7 @@ namespace LiveSplit.Model.RunFactories
             {
                 return null;
             }
-            return TimeSpan.FromTicks((long)(timeSpan.TotalSeconds() * TimeSpan.TicksPerSecond));
+            return ParseTimeSpan(timeSpan);
         }
 
         static AtomicDateTime? ParseOptionalAtomicDateTime(LiveSplitCore.AtomicDateTimeRef dateTime)
@@ -42,7 +49,8 @@ namespace LiveSplit.Model.RunFactories
             {
                 return null;
             }
-            return new AtomicDateTime(DateTime.Parse(dateTime.ToRfc3339()), dateTime.IsSynchronized());
+            var utcDateTime = DateTime.Parse(dateTime.ToRfc3339(), CultureInfo.InvariantCulture).ToUniversalTime();
+            return new AtomicDateTime(utcDateTime, dateTime.IsSynchronized());
         }
 
         static Time ParseTime(LiveSplitCore.TimeRef time)
@@ -54,7 +62,7 @@ namespace LiveSplit.Model.RunFactories
             };
         }
 
-        static Image ParseImage(IntPtr imagePtr, long length)
+        static Image ParseImage(IntPtr imagePtr, ulong length)
         {
             if (length == 0)
             {
@@ -81,12 +89,12 @@ namespace LiveSplit.Model.RunFactories
                 var handle = (Stream as FileStream).SafeFileHandle;
                 if (!handle.IsInvalid)
                 {
-                    result = LiveSplitCore.Run.ParseFileHandle((long)handle.DangerousGetHandle(), FilePath, !string.IsNullOrEmpty(FilePath));
+                    result = LiveSplitCore.Run.ParseFileHandle((long)handle.DangerousGetHandle(), FilePath);
                 }
             }
             if (result == null)
             {
-                result = LiveSplitCore.Run.Parse(Stream, FilePath, !string.IsNullOrEmpty(FilePath));
+                result = LiveSplitCore.Run.Parse(Stream, FilePath);
             }
 
             if (!result.ParsedSuccessfully())
@@ -117,10 +125,23 @@ namespace LiveSplit.Model.RunFactories
                 run.CategoryName = lscRun.CategoryName();
                 run.Offset = ParseTimeSpan(lscRun.Offset());
                 run.AttemptCount = (int)lscRun.AttemptCount();
-                run.LayoutPath = lscRun.LayoutPath();
+
+                var linkedLayout = lscRun.LinkedLayout();
+                if (linkedLayout == null)
+                {
+                    run.LayoutPath = null;
+                }
+                else if (linkedLayout.IsDefault())
+                {
+                    run.LayoutPath = "?default";
+                }
+                else
+                {
+                    run.LayoutPath = linkedLayout.Path();
+                }
 
                 var attemptsCount = lscRun.AttemptHistoryLen();
-                for (var i = 0; i < attemptsCount; ++i)
+                for (var i = 0ul; i < attemptsCount; ++i)
                 {
                     var attempt = lscRun.AttemptHistoryIndex(i);
                     run.AttemptHistory.Add(new Attempt(
@@ -133,7 +154,7 @@ namespace LiveSplit.Model.RunFactories
                 }
 
                 var customComparisonsCount = lscRun.CustomComparisonsLen();
-                for (var i = 0; i < customComparisonsCount; ++i)
+                for (var i = 0ul; i < customComparisonsCount; ++i)
                 {
                     var comparison = lscRun.CustomComparison(i);
                     if (!run.CustomComparisons.Contains(comparison))
@@ -143,7 +164,7 @@ namespace LiveSplit.Model.RunFactories
                 }
 
                 var segmentCount = lscRun.Len();
-                for (var i = 0; i < segmentCount; ++i)
+                for (var i = 0ul; i < segmentCount; ++i)
                 {
                     var segment = lscRun.Segment(i);
                     var split = new Segment(segment.Name())

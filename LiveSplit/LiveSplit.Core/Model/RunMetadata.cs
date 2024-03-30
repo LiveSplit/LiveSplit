@@ -178,7 +178,8 @@ namespace LiveSplit.Model
                         {
                             try
                             {
-                                var game = SpeedrunCom.Client.Games.SearchGameExact(oldGameName, new GameEmbeds(embedRegions: true, embedPlatforms: true));
+                                var gameId = Web.CompositeGameList.Instance.GetGameID(oldGameName);
+                                var game = SpeedrunCom.Client.Games.GetGame(gameId, new GameEmbeds(embedRegions: true, embedPlatforms: true));
                                 gameLoaded = true;
                                 if (game != null)
                                     GameAvailable = true;

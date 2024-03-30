@@ -38,10 +38,6 @@
 	path = LiveSplit/Components/LiveSplit.ScriptableAutoSplit
 	url = https://github.com/LiveSplit/LiveSplit.ScriptableAutoSplit.git
 	branch = master
-[submodule "LiveSplit/Components/LiveSplit.Server"]
-	path = LiveSplit/Components/LiveSplit.Server
-	url = https://github.com/LiveSplit/LiveSplit.Server.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Sound"]
 	path = LiveSplit/Components/LiveSplit.Sound
 	url = https://github.com/LiveSplit/LiveSplit.Sound.git
@@ -73,9 +69,6 @@
 [submodule "LiveSplit/Components/LiveSplit.Subsplits"]
 	path = LiveSplit/Components/LiveSplit.Subsplits
 	url = https://github.com/LiveSplit/LiveSplit.Subsplits
-[submodule "LiveSplit/Libs/xlio"]
-	path = LiveSplit/Libs/xlio
-	url = https://github.com/LiveSplit/xlio.git
 [submodule "LiveSplit/Components/LiveSplit.WorldRecord"]
 	path = LiveSplit/Components/LiveSplit.WorldRecord
 	url = https://github.com/LiveSplit/LiveSplit.WorldRecord.git
@@ -98,3 +91,9 @@
 [submodule "LiveSplit/Components/LiveSplit.AutoSplittingRuntime"]
 	path = LiveSplit/Components/LiveSplit.AutoSplittingRuntime
 	url = https://github.com/LiveSplit/LiveSplit.AutoSplittingRuntime.git
+[submodule "LiveSplit/Libs/livesplit-core"]
+	path = LiveSplit/Libs/livesplit-core
+	url = https://github.com/LiveSplit/livesplit-core.git
+[submodule "LiveSplit/Components/LiveSplit.TheRun"]
+	path = LiveSplit/Components/LiveSplit.TheRun
+	url = https://github.com/therungg/LiveSplit.TheRun
