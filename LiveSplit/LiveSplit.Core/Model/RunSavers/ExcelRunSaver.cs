@@ -133,8 +133,6 @@ namespace LiveSplit.Model.RunSavers
 
                 ++rowIndex;
             }
-
-            sheet.AutoFilter = sheet[0, 0, rowIndex - 1, 3];
         }
 
         private static void FillSegmentHistorySheet(Sheet sheet, IRun run, TimingMethod method)
@@ -200,9 +198,6 @@ namespace LiveSplit.Model.RunSavers
 
                 ++rowIndex;
             }
-
-
-            sheet.AutoFilter = sheet[0, 0, rowIndex - 1, columnIndex - 1];
         }
 
         private static void FillSplitTimesSheet(Sheet sheet, IRun run, TimingMethod method)
@@ -280,8 +275,6 @@ namespace LiveSplit.Model.RunSavers
 
                 ++rowIndex;
             }
-
-            sheet.AutoFilter = sheet[0, 0, rowIndex - 1, columnIndex - 1];
         }
     }
 }
