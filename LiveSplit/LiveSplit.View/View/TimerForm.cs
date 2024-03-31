@@ -2571,16 +2571,21 @@ namespace LiveSplit.View
         {
             try
             {
-                using (var stream = File.OpenRead(Path.Combine(BasePath, SETTINGS_PATH)))
+                var settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
+                if (File.Exists(settingsPath))
                 {
-                    Settings = new XMLSettingsFactory(stream).Create();
+                    using (var stream = File.OpenRead(Path.Combine(BasePath, SETTINGS_PATH)))
+                    {
+                        Settings = new XMLSettingsFactory(stream).Create();
+                        return;
+                    }
                 }
             }
             catch (Exception e)
             {
                 Log.Error(e);
-                Settings = new StandardSettingsFactory().Create();
             }
+            Settings = new StandardSettingsFactory().Create();
         }
 
         private void closeSplitsMenuItem_Click(object sender, EventArgs e)
