@@ -1747,6 +1747,11 @@ namespace LiveSplit.View
                    && runGrid.Columns[info.ColumnIndex] is DataGridViewImageColumn
                    && info.Type == DataGridViewHitTestType.Cell;
         }
+
+        private void cbxGameName_Validated(object sender, EventArgs e)
+        {
+            GameName = cbxGameName.Text;
+        }
     }
 
     public class CustomAutoCompleteComboBox : ComboBox

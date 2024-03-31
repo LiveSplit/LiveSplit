@@ -232,6 +232,7 @@
             this.cbxGameName.Size = new System.Drawing.Size(427, 21);
             this.cbxGameName.TabIndex = 2;
             this.cbxGameName.TextChanged += new System.EventHandler(this.cbxGameName_TextChanged);
+            this.cbxGameName.Validated += new System.EventHandler(this.cbxGameName_Validated);
             // 
             // cbxRunCategory
             // 
