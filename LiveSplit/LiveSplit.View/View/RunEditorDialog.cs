@@ -1209,7 +1209,6 @@ namespace LiveSplit.View
 
         private void removeIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImagesToDispose.Add(GameIcon);
             SetGameIcon(null);
             RaiseRunEdited();
         }
