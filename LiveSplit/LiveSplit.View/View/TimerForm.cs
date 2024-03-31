@@ -110,6 +110,7 @@ namespace LiveSplit.View
         public string BasePath { get; set; }
         protected IEnumerable<RaceProviderAPI> RaceProvider { get; set; }
 
+        private Random rnd = new Random();
         private bool MousePassThrough
         {
             set
@@ -718,6 +719,10 @@ namespace LiveSplit.View
         {
             this.InvokeIfRequired(() =>
             {
+                if (Layout.Settings.BackgroundType == BackgroundType.ImageRotation)
+                {
+                    SwapBackground();
+                }
                 if (CurrentState.CurrentSplitIndex == CurrentState.Run.Count)
                 {
                     pauseMenuItem.Enabled = false;
@@ -1383,9 +1388,15 @@ namespace LiveSplit.View
             }
         }
 
+        private void SwapBackground()
+        {
+            int rndIndex = rnd.Next(Layout.Settings.BackgroundImages.Count);
+            Layout.Settings.BackgroundImage = Layout.Settings.BackgroundImages[rndIndex];
+        }
+
         private void DrawBackground(Graphics g)
         {
-            if (Layout.Settings.BackgroundType == BackgroundType.Image)
+            if (Layout.Settings.BackgroundType == BackgroundType.Image || Layout.Settings.BackgroundType == BackgroundType.ImageRotation)
             {
                 if (Layout.Settings.BackgroundImage != null)
                 {

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using LiveSplit.UI;
 using LiveSplit.Options;
+using System.IO;
+using System.Linq;
 
 namespace LiveSplit.View
 {
@@ -73,6 +76,8 @@ namespace LiveSplit.View
                     return "Vertical Gradient";
                 case BackgroundType.Image:
                     return "Image";
+                case BackgroundType.ImageRotation:
+                    return "Image Rotation";
                 default:
                     return "Solid Color";
             }
@@ -81,10 +86,10 @@ namespace LiveSplit.View
         void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedItem = cmbBackgroundType.SelectedItem.ToString();
-            btnBackground.Visible = selectedItem != "Solid Color" && selectedItem != "Image";
+            btnBackground.Visible = selectedItem != "Solid Color" && selectedItem != "Image" && selectedItem != "Image Rotation";
             btnBackground2.DataBindings.Clear();
-            lblImageOpacity.Enabled = lblBlur.Enabled = trkImageOpacity.Enabled = trkBlur.Enabled = selectedItem == "Image";
-            if (selectedItem == "Image")
+            lblImageOpacity.Enabled = lblBlur.Enabled = trkImageOpacity.Enabled = trkBlur.Enabled = (selectedItem == "Image" || selectedItem == "Image Rotation");
+            if (selectedItem == "Image" || selectedItem == "Image Rotation")
             {
                 btnBackground2.BackgroundImage = Settings.BackgroundImage;
                 btnBackground2.BackColor = Color.Transparent;
@@ -127,6 +132,52 @@ namespace LiveSplit.View
                         Log.Error(ex);
                         MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                }
+            }
+            else if (cmbBackgroundType.SelectedItem.ToString() == "Image Rotation")
+            {
+                var dialog = new FolderBrowserDialog();
+                dialog.Description = "Select the Directory that contains the images";
+                dialog.ShowNewFolderButton = false;
+                var result = dialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    List<Image> images = new List<Image>();
+                    try
+                    {
+                        var fileIterator = Directory.EnumerateFiles(dialog.SelectedPath, "*.*")
+                        .Where(s => s.EndsWith(".bmp") || s.EndsWith(".jpg") || s.EndsWith(".gif") || s.EndsWith(".jpeg") || s.EndsWith(".png"));
+                        Image firstImage = Image.FromFile(fileIterator.First());
+                        fileIterator = fileIterator.Skip(0);
+                        foreach (Image image in Settings.BackgroundImages)
+                        {
+                            image.Dispose();
+                        }
+                        Settings.BackgroundImages.Clear();
+                        Settings.BackgroundImages.Add(firstImage);
+                        foreach (string fileName in fileIterator)
+                        {
+                            try
+                            {
+                                images.Add(Image.FromFile(fileName));
+                            }
+                            catch (Exception ex)
+                            {                                
+                                break;
+                            }
+                        }
+                        if (Settings.BackgroundImage != null && Settings.BackgroundImage != originalBackgroundImage)
+                            Settings.BackgroundImage.Dispose();
+                        Settings.BackgroundImages = images;
+                        Settings.BackgroundImage = ((Button)sender).BackgroundImage = images[0];
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                        MessageBox.Show("Could not find any images in that folder!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    
+                    
                 }
             }
             else
