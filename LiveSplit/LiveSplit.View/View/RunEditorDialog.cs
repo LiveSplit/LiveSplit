@@ -224,7 +224,7 @@ namespace LiveSplit.View
             SetClickEvents(this);
         }
 
-        private IEnumerable<string> SearchForGameName(string name)
+        private string[] SearchForGameName(string name)
         {
             name = name.ToLowerInvariant();
             return abbreviations
@@ -232,7 +232,8 @@ namespace LiveSplit.View
                 .OrderBy(x => x.Key.ToLowerInvariant().Similarity(name))
                 .SelectMany(x => x)
                 .Distinct()
-                .Take(10);
+                .Take(10)
+                .ToArray();
         }
 
         void Run_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -1208,7 +1209,6 @@ namespace LiveSplit.View
 
         private void removeIconToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ImagesToDispose.Add(GameIcon);
             SetGameIcon(null);
             RaiseRunEdited();
         }
@@ -1746,6 +1746,11 @@ namespace LiveSplit.View
                    && runGrid.Columns[info.ColumnIndex] is DataGridViewImageColumn
                    && info.Type == DataGridViewHitTestType.Cell;
         }
+
+        private void cbxGameName_Validated(object sender, EventArgs e)
+        {
+            GameName = cbxGameName.Text;
+        }
     }
 
     public class CustomAutoCompleteComboBox : ComboBox
@@ -1765,7 +1770,7 @@ namespace LiveSplit.View
             set { _autoCompleteSource = value; }
         }
 
-        public Func<string, IEnumerable<string>> GetAllItemsForText { get; set; }
+        public Func<string, string[]> GetAllItemsForText { get; set; }
 
         public CustomAutoCompleteComboBox(Form controlForm) : base()
         {
@@ -1802,8 +1807,7 @@ namespace LiveSplit.View
                                 form.InvokeIfRequired(() =>
                                 {
                                     _box.Items.Clear();
-                                    foreach (string str in legalStrings)
-                                        _box.Items.Add(str);
+                                    _box.Items.AddRange(legalStrings);
                                     DroppedDown = false;
                                     _dropDown.Show(this, new Point(0, Height));
                                     previousText = text;
