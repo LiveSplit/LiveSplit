@@ -206,8 +206,6 @@ namespace LiveSplit.View
             SettingsSaver = new XMLSettingsSaver();
             LoadSettings();
 
-            UpdateRaceProviderIntegration();
-
             CurrentState.CurrentHotkeyProfile = Settings.HotkeyProfiles.First().Key;
 
             UpdateRecentSplits();
@@ -377,7 +375,6 @@ namespace LiveSplit.View
                 srlRaceProvider.JoinRace = SRL_JoinRace;
                 srlRaceProvider.CreateRace = SRL_NewRace;
             }
-
         }
 
         void SetWindowTitle()
@@ -443,10 +440,6 @@ namespace LiveSplit.View
 
         void RacesRefreshed(RaceProviderAPI raceProvider)
         {
-            ToolStripMenuItem racingMenuItem = RightClickMenu.Items.Find($"{raceProvider.ProviderName}racesMenuItem", false).FirstOrDefault() as ToolStripMenuItem;
-            if (racingMenuItem == null)
-                return;
-
             Action<List<ToolStripItem>> replaceItems = null;
 
             replaceItems = x =>
@@ -461,6 +454,10 @@ namespace LiveSplit.View
                 }
                 else
                 {
+                    ToolStripMenuItem racingMenuItem = RightClickMenu.Items.Find($"{raceProvider.ProviderName}racesMenuItem", false).FirstOrDefault() as ToolStripMenuItem;
+                    if (racingMenuItem == null)
+                        return;
+
                     racingMenuItem.DropDownItems.Clear();
                     racingMenuItem.DropDownItems.AddRange(x.ToArray());
                 }
@@ -2760,6 +2757,7 @@ namespace LiveSplit.View
         private void TimerForm_Shown(object sender, EventArgs e)
         {
             SetProgressBar();
+            UpdateRaceProviderIntegration();
         }
 
         private void RebuildComparisonsMenu()
