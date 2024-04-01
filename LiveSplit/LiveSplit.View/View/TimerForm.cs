@@ -447,42 +447,26 @@ namespace LiveSplit.View
             if (racingMenuItem == null)
                 return;
 
-            Action<ToolStripItem> addItem = null;
-            Action clear = null;
+            Action<List<ToolStripItem>> replaceItems = null;
 
-            addItem = x =>
+            replaceItems = x =>
             {
                 if (InvokeRequired)
                 {
-                    Invoke(addItem, x);
+                    Invoke(replaceItems, x);
                 }
                 else if (RightClickMenu.InvokeRequired)
                 {
-                    RightClickMenu.Invoke(addItem, x);
+                    RightClickMenu.Invoke(replaceItems, x);
                 }
                 else
                 {
-                    racingMenuItem.DropDownItems.Add(x);
-                }
-            };
-            clear = () =>
-            {
-                if (InvokeRequired)
-                {
-                    Invoke(clear);
-                }
-                else if (RightClickMenu.InvokeRequired)
-                {
-                    RightClickMenu.Invoke(clear);
-                }
-                else
-                {
-                    RacesToRefresh.Clear();
                     racingMenuItem.DropDownItems.Clear();
+                    racingMenuItem.DropDownItems.AddRange(x.ToArray());
                 }
             };
 
-            clear();
+            var menuItemsToAdd = new List<ToolStripItem>();
 
             foreach (var race in raceProvider.GetRaces())
             {
@@ -498,13 +482,13 @@ namespace LiveSplit.View
                 item.Text = title.EscapeMenuItemText();
                 item.Tag = race.Id;
                 item.Click += (s, e) => { raceProvider.JoinRace?.Invoke(Model, race.Id); };
-                addItem(item);
+                menuItemsToAdd.Add(item);
 
                 SetGameImage(raceProvider, item, race);
             }
 
-            if (racingMenuItem.DropDownItems.Count > 0)
-                addItem(new ToolStripSeparator());
+            if (menuItemsToAdd.Count > 0)
+                menuItemsToAdd.Add(new ToolStripSeparator());
 
             foreach (var race in raceProvider.GetRaces())
             {
@@ -563,16 +547,18 @@ namespace LiveSplit.View
                     }
                 };
 
-                addItem(tsItem);
+                menuItemsToAdd.Add(tsItem);
             }
 
-            if (racingMenuItem.DropDownItems.Count > 0 && !(racingMenuItem.DropDownItems[racingMenuItem.DropDownItems.Count - 1] is ToolStripSeparator))
-                addItem(new ToolStripSeparator());
+            if (menuItemsToAdd.Count > 0 && !(menuItemsToAdd[menuItemsToAdd.Count - 1] is ToolStripSeparator))
+                menuItemsToAdd.Add(new ToolStripSeparator());
 
             var newRaceItem = new ToolStripMenuItem();
             newRaceItem.Text = "New Race...";
             newRaceItem.Click += (s, e) => { raceProvider.CreateRace?.Invoke(Model); };
-            addItem(newRaceItem);
+            menuItemsToAdd.Add(newRaceItem);
+
+            replaceItems(menuItemsToAdd);
         }
 
         void SetGameImage(RaceProviderAPI raceProvider, ToolStripMenuItem item, IRaceInfo race)
