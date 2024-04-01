@@ -1165,14 +1165,23 @@ namespace LiveSplit.View
 
         void RefreshTimerWorker()
         {
+            int updateTargetTime = 1000 / Settings.RefreshRate;
             while (true)
             {
-                Thread.Sleep(1000 / Settings.RefreshRate);
+                long updateStartTime = DateTime.Now.Ticks;
+
                 try
                 {
                     TimerElapsed();
                 }
                 catch { }
+
+                long updateEndTime = DateTime.Now.Ticks;
+                int updateDuration = (int)((updateEndTime - updateStartTime) / TimeSpan.TicksPerMillisecond);
+                if (updateDuration < updateTargetTime)
+                {
+                    Thread.Sleep((updateTargetTime - updateDuration));
+                }
             }
         }
 
@@ -1186,10 +1195,8 @@ namespace LiveSplit.View
                     {
                         if (Hook != null)
                             Hook.Poll();
-
                         if (CurrentState.Run.IsAutoSplitterActive())
                             CurrentState.Run.AutoSplitter.Component.Update(null, CurrentState, 0, 0, Layout.Mode);
-
                         if (DontRedraw)
                             return;
 
