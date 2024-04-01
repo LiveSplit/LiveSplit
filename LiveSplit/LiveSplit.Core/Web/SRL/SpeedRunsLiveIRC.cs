@@ -493,7 +493,7 @@ namespace LiveSplit.Web.SRL
         {
             Username = username;
             Password = password;
-            Client.Connect(server, 6667, new IrcUserRegistrationInfo()
+            Client.Connect(server, 6667, false, new IrcUserRegistrationInfo()
             {
                 UserName = username,
                 NickName = username,
