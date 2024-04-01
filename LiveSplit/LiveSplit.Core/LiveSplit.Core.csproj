@@ -62,18 +62,9 @@
     </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Codaxy.Xlio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Codaxy.Xlio.0.9.3.26\lib\net35\Codaxy.Xlio.dll</HintPath>
-    </Reference>
-    <Reference Include="Codaxy.Xlio.XmlSerializers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Codaxy.Xlio.0.9.3.26\lib\net35\Codaxy.Xlio.XmlSerializers.dll</HintPath>
-    </Reference>
     <Reference Include="CustomFontDialog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\CustomFontDialog\CustomFontDialog.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="IrcDotNet">
       <HintPath>..\Libs\IRC.Net 0.3\IrcDotNet.dll</HintPath>
@@ -82,12 +73,6 @@
       <HintPath>..\Libs\IRC.Net 0.3\IrcDotNet.Common.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="SharpDX, Version=2.5.0.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.2.5.0\lib\net40\SharpDX.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.DirectInput, Version=2.5.0.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.DirectInput.2.5.0\lib\net40\SharpDX.DirectInput.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -310,7 +295,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\loader.jar" />
-    <None Include="packages.config" />
     <None Include="Updates\GitInfo\revision.txt" />
     <None Include="Updates\GitInfo\version.txt" />
     <None Include="Updates\GitInfo\branch.txt" />
@@ -349,7 +333,20 @@
       <LastGenOutput>ShareSettings1.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="Codaxy.Xlio">
+      <Version>0.9.3.26</Version>
+    </PackageReference>
+    <PackageReference Include="SharpDX.DirectInput">
+      <Version>2.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpZipLib">
+      <Version>0.86.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpZipLib.NETStandard">
+      <Version>1.0.7</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>mkdir "$(ProjectDir)Updates\GitInfo\."
