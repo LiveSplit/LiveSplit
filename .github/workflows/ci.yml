@@ -59,6 +59,9 @@ jobs:
           Remove-Item x64/asr_capi.dll
           Remove-Item x86/asr_capi.dll
           Remove-Item runtimes/win-x64/native/WebView2Loader.dll
+          Remove-Item Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
+          Remove-Item Microsoft.WindowsAPICodePack.Sensors.dll
+          Remove-Item Microsoft.WindowsAPICodePack.ShellExtensions.dll
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v2
