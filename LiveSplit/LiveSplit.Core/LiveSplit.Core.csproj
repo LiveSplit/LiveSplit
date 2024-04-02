@@ -1,98 +1,64 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <OutputType>Library</OutputType>
+    <OutDir>..\bin\$(Configuration)</OutDir>
     <RootNamespace>LiveSplit</RootNamespace>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <TargetFramework>net4.6.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <OutputPath>..\bin\Debug\</OutputPath>
-    <DocumentationFile>..\bin\Debug\LiveSplit.Core.XML</DocumentationFile>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <OutputPath>..\bin\Release\</OutputPath>
-    <DocumentationFile>..\bin\Release\LiveSplit.Core.XML</DocumentationFile>
-    <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Candidate|AnyCPU'">
-    <OutputPath>..\bin\Release Candidate\</OutputPath>
-    <DefineConstants>TRACE;RELEASE_CANDIDATE</DefineConstants>
-    <Optimize>true</Optimize>
-    <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>..\bin\Release Candidate\LiveSplit.Core.XML</DocumentationFile>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="CustomFontDialog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\CustomFontDialog\CustomFontDialog.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="WinFormsColor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\WinForms Color Picker\WinFormsColor.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="x86\livesplit_core.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="x64\livesplit_core.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="x86\livesplit_core.dll" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="x64\livesplit_core.dll" CopyToOutputDirectory="PreserveNewest" />
     <Content Include="Resources\loader.jar" />
-    <None Include="Updates\GitInfo\revision.txt" />
-    <None Include="Updates\GitInfo\version.txt" />
-    <None Include="Updates\GitInfo\branch.txt" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj" />
     <ProjectReference Include="..\UpdateManager\UpdateManager.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="Codaxy.Xlio">
-      <Version>0.9.3.26</Version>
-    </PackageReference>
-    <PackageReference Include="IrcDotNet">
-      <Version>0.4.1</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="SharpDX.DirectInput">
-      <Version>2.5.0</Version>
-    </PackageReference>
-    <PackageReference Include="SharpZipLib">
-      <Version>0.86.0</Version>
-    </PackageReference>
-    <PackageReference Include="SharpZipLib.NETStandard">
-      <Version>1.0.7</Version>
-    </PackageReference>
+    <PackageReference Include="Codaxy.Xlio" Version="0.9.3.26" />
+    <PackageReference Include="IrcDotNet" Version="0.4.1" />
+    <PackageReference Include="SharpDX.DirectInput" Version="2.5.0" />
+    <PackageReference Include="SharpZipLib" Version="0.86.0" />
+    <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="WindowsBase" />
+
+    <Reference Include="..\Libs\CustomFontDialog\CustomFontDialog.dll" />
+    <Reference Include="..\Libs\WinForms Color Picker\WinFormsColor.dll" />
+  </ItemGroup>
+
   <PropertyGroup>
-    <PreBuildEvent>mkdir "$(ProjectDir)Updates\GitInfo\."
-where git
-if %25ERRORLEVEL%25 == 0 (
-git describe --dirty --always --long --tags &gt; "$(ProjectDir)Updates\GitInfo\version.txt"
-git rev-parse --abbrev-ref HEAD &gt; "$(ProjectDir)Updates\GitInfo\branch.txt"
-git rev-parse HEAD &gt; "$(ProjectDir)Updates\GitInfo\revision.txt"
-) else (
-echo 13.3.7-0&gt;  "$(ProjectDir)Updates\GitInfo\version.txt"
-echo no-git&gt; "$(ProjectDir)Updates\GitInfo\branch.txt"
-echo deadbeef&gt; "$(ProjectDir)Updates\GitInfo\revision.txt"
-)
-EXIT 0</PreBuildEvent>
+    <PreBuildEvent>
+      mkdir "$(MSBuildProjectDirectory)\Updates\GitInfo\."
+      where git
+      if %25ERRORLEVEL%25 == 0 (
+        git describe --dirty --always --long --tags &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\version.txt"
+        git rev-parse --abbrev-ref HEAD &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\branch.txt"
+        git rev-parse HEAD &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\revision.txt"
+      ) else (
+        echo 13.3.7-0&gt;  "$(MSBuildProjectDirectory)\Updates\GitInfo\version.txt"
+        echo no-git&gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\branch.txt"
+        echo deadbeef&gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\revision.txt"
+      )
+      EXIT 0
+    </PreBuildEvent>
   </PropertyGroup>
+
 </Project>
