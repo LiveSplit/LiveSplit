@@ -1,303 +1,51 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6DE847DB-20A3-4848-AEEE-1B4364AECDFB}</ProjectGuid>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>LiveSplit</RootNamespace>
-    <AssemblyName>LiveSplit.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
     <SccProjectName>Svn</SccProjectName>
     <SccLocalPath>Svn</SccLocalPath>
     <SccAuxPath>Svn</SccAuxPath>
     <SccProvider>SubversionScc</SccProvider>
-    <TargetFrameworkProfile />
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
     <OutputPath>..\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\bin\Debug\LiveSplit.Core.XML</DocumentationFile>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
     <OutputPath>..\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\bin\Release\LiveSplit.Core.XML</DocumentationFile>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Candidate|AnyCPU'">
     <OutputPath>..\bin\Release Candidate\</OutputPath>
     <DefineConstants>TRACE;RELEASE_CANDIDATE</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>..\bin\Release Candidate\LiveSplit.Core.XML</DocumentationFile>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Codaxy.Xlio, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Codaxy.Xlio.0.9.3.26\lib\net35\Codaxy.Xlio.dll</HintPath>
-    </Reference>
-    <Reference Include="Codaxy.Xlio.XmlSerializers, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Codaxy.Xlio.0.9.3.26\lib\net35\Codaxy.Xlio.XmlSerializers.dll</HintPath>
-    </Reference>
     <Reference Include="CustomFontDialog, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\CustomFontDialog\CustomFontDialog.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="IrcDotNet, Version=0.4.1.37926, Culture=neutral, PublicKeyToken=44f6d157e750246b, processorArchitecture=MSIL">
-      <HintPath>..\packages\IrcDotNet.0.4.1\lib\net40\IrcDotNet.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="SharpDX, Version=2.5.0.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.2.5.0\lib\net40\SharpDX.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.DirectInput, Version=2.5.0.0, Culture=neutral, PublicKeyToken=627a3d6d1956f55a, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpDX.DirectInput.2.5.0\lib\net40\SharpDX.DirectInput.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
     <Reference Include="WinFormsColor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\WinForms Color Picker\WinFormsColor.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="ComponentUtil\DeepPointer.cs" />
-    <Compile Include="ComponentUtil\MemoryWatcher.cs" />
-    <Compile Include="ComponentUtil\SignatureScanner.cs" />
-    <Compile Include="ComponentUtil\WinAPI.cs" />
-    <Compile Include="LiveSplitCore.cs" />
-    <Compile Include="LiveSplitCoreFactory.cs" />
-    <Compile Include="Model\AtomicDateTime.cs" />
-    <Compile Include="Model\Attempt.cs" />
-    <Compile Include="Model\AutoSplitter.cs" />
-    <Compile Include="Model\AutoSplitterFactory.cs" />
-    <Compile Include="Model\Comparisons\LatestRunComparisonGenerator.cs" />
-    <Compile Include="Model\Comparisons\WorstSegmentsComparisonGenerator.cs" />
-    <Compile Include="Model\Comparisons\MedianSegmentsComparisonGenerator.cs" />
-    <Compile Include="Model\Comparisons\AverageSegmentsComparisonGenerator.cs" />
-    <Compile Include="Model\Comparisons\BestSegmentsComparisonGenerator.cs" />
-    <Compile Include="Model\Comparisons\BestSplitTimesComparisonGenerator.cs" />
-    <Compile Include="Model\Comparisons\CompositeComparisons.cs" />
-    <Compile Include="Model\Comparisons\IComparisonGenerator.cs" />
-    <Compile Include="Model\Comparisons\IComparisonGeneratorsFactory.cs" />
-    <Compile Include="Model\Comparisons\IComparisons.cs" />
-    <Compile Include="Model\Comparisons\NoneComparisonGenerator.cs" />
-    <Compile Include="Model\Comparisons\StandardComparisonGeneratorsFactory.cs" />
-    <Compile Include="Model\Comparisons\PercentileComparisonGenerator.cs" />
-    <Compile Include="Model\IRaceInfo.cs" />
-    <Compile Include="Model\NTP.cs" />
-    <Compile Include="Model\DoubleTapPrevention.cs" />
-    <Compile Include="Model\Input\CompositeHook.cs" />
-    <Compile Include="Model\Input\GamepadHook.cs" />
-    <Compile Include="Model\Input\HotkeyHook.cs" />
-    <Compile Include="Model\Input\LowLevelKeyboardHook.cs" />
-    <Compile Include="Model\IndexedTime.cs" />
-    <Compile Include="Model\IIndexedTime.cs" />
-    <Compile Include="Model\ILiveSplitStateObserver.cs" />
-    <Compile Include="Model\Input\KeyboardHook.cs" />
-    <Compile Include="Model\Input\XGamePad.cs" />
-    <Compile Include="Model\Input\XInput.cs" />
-    <Compile Include="Model\MetadataChangedEventArgs.cs" />
-    <Compile Include="ComponentUtil\ProcessExtensions.cs" />
-    <Compile Include="Model\RunFactories\StandardFormatsRunFactory.cs" />
-    <Compile Include="Model\RunMetadata.cs" />
-    <Compile Include="Model\RunSavers\ExcelRunSaver.cs" />
-    <Compile Include="Model\RunSavers\JSONRunSaver.cs" />
-    <Compile Include="Model\RunSavers\WSplitRunSaver.cs" />
-    <Compile Include="Model\RunSavers\SplitterZRunSaver.cs" />
-    <Compile Include="Model\AbbreviationExtensions.cs" />
-    <Compile Include="Model\SegmentHistory.cs" />
-    <Compile Include="Model\StringExtensions.cs" />
-    <Compile Include="Model\SumOfWorst.cs" />
-    <Compile Include="Model\SumOfSegmentsHelper.cs" />
-    <Compile Include="Model\SumOfBest.cs" />
-    <Compile Include="Model\Time.cs" />
-    <Compile Include="Model\TimeSpanParser.cs" />
-    <Compile Include="Model\TimingMethod.cs" />
-    <Compile Include="Model\TimeStamp.cs" />
-    <Compile Include="Options\HotkeyProfile.cs" />
-    <Compile Include="Options\Log.cs" />
-    <Compile Include="Options\RaceProviderSettings.cs" />
-    <Compile Include="Options\RecentSplitsFile.cs" />
-    <Compile Include="Options\SettingsFactories\StandardLayoutSettingsFactory.cs" />
-    <Compile Include="Server\Connection.cs" />
-    <Compile Include="Server\CommandServer.cs" />
-    <Compile Include="TimeFormatters\AutomaticPrecisionTimeFormatter.cs" />
-    <Compile Include="TimeFormatters\PreciseTimeFormatter.cs" />
-    <Compile Include="TimeFormatters\NullFormat.cs" />
-    <Compile Include="TimeFormatters\GeneralTimeFormatter.cs" />
-    <Compile Include="TimeFormatters\PossibleTimeSaveFormatter.cs" />
-    <Compile Include="TimeFormatters\TimeFormat.cs" />
-    <Compile Include="TimeFormatters\TimeAccuracy.cs" />
-    <Compile Include="Options\BackgroundType.cs" />
-    <Compile Include="UI\Components\AutoSplit\AutoSplitComponent.cs" />
-    <Compile Include="UI\Components\AutoSplit\IAutoSplitter.cs" />
-    <Compile Include="UI\Components\ComponentCategory.cs" />
-    <Compile Include="UI\Components\ControlComponent.cs" />
-    <Compile Include="UI\Components\IComponentFactory.cs" />
-    <Compile Include="UI\Components\IDeactivatableComponent.cs" />
-    <Compile Include="UI\Components\LogicComponent.cs" />
-    <Compile Include="UI\Components\RaceProviderAPI.cs" />
-    <Compile Include="UI\Components\SeparatorFactory.cs" />
-    <Compile Include="UI\GradientType.cs" />
-    <Compile Include="UI\GraphicsCache.cs" />
-    <Compile Include="UI\ImageBlur.cs" />
-    <Compile Include="UI\IInvalidator.cs" />
-    <Compile Include="UI\ImageExtensions.cs" />
-    <Compile Include="UI\InputBox.cs" />
-    <Compile Include="UI\Invalidator.cs" />
-    <Compile Include="UI\SettingsHelper.cs" />
-    <Compile Include="UI\RenameEventArgs.cs" />
-    <Compile Include="Updates\Git.cs" />
-    <Compile Include="Updates\GitInfo.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GitInfo.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Updates\ScrollableMessageBox.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Updates\ScrollableMessageBox.Designer.cs">
-      <DependentUpon>ScrollableMessageBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Web\CompositeGameList.cs" />
-    <Compile Include="Web\DynamicXMLNode.cs" />
-    <Compile Include="Web\JSON.cs" />
-    <Compile Include="Web\CredentialManager.cs" />
-    <Compile Include="Web\Share\Excel.cs" />
-    <Compile Include="Web\Share\Imgur.cs" />
-    <Compile Include="Web\Share\IRunUploadPlatform.cs" />
-    <Compile Include="Web\Share\ISpeedrunComAuthenticator.cs" />
-    <Compile Include="Web\Share\Screenshot.cs" />
-    <Compile Include="Web\Share\SpeedrunCom.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Web\Share\SpeedrunComApiKeyPrompt.cs" />
-    <Compile Include="Web\Share\Twitch.cs" />
-    <Compile Include="Web\Share\TwitchAccessTokenPrompt.cs" />
-    <Compile Include="Web\Share\TwitchGameResolveDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Web\Share\TwitchGameResolveDialog.Designer.cs">
-      <DependentUpon>TwitchGameResolveDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Options\FiletypeRegistryHelper.cs" />
-    <Compile Include="Options\SettingsFactories\ILayoutSettingsFactory.cs" />
-    <Compile Include="Options\ISettings.cs" />
-    <Compile Include="Options\Settings.cs" />
-    <Compile Include="Options\SettingsFactories\ISettingsFactory.cs" />
-    <Compile Include="Options\SettingsFactories\StandardSettingsFactory.cs" />
-    <Compile Include="Options\SettingsFactories\XMLSettingsFactory.cs" />
-    <Compile Include="Options\SettingsSavers\ISettingsSaver.cs" />
-    <Compile Include="Options\SettingsSavers\XMLSettingsSaver.cs" />
-    <Compile Include="UI\ColorExtensions.cs" />
-    <Compile Include="UI\Components\ComponentFactoryAttribute.cs" />
-    <Compile Include="UI\Components\ComponentManager.cs" />
-    <Compile Include="TimeFormatters\DeltaTimeFormatter.cs" />
-    <Compile Include="UI\Components\IComponent.cs" />
-    <Compile Include="UI\Components\ILayoutComponent.cs" />
-    <Compile Include="UI\Components\LayoutComponent.cs" />
-    <Compile Include="UI\IconShadow.cs" />
-    <Compile Include="UI\ILayout.cs" />
-    <Compile Include="UI\Components\InfoTextComponent.cs" />
-    <Compile Include="UI\Components\InfoTimeComponent.cs" />
-    <Compile Include="Model\RunFactories\IRunFactory.cs" />
-    <Compile Include="Model\RunSavers\IRunSaver.cs" />
-    <Compile Include="Model\ITimerModel.cs" />
-    <Compile Include="TimeFormatters\ITimeFormatter.cs" />
-    <Compile Include="UI\LayoutFactories\ILayoutFactory.cs" />
-    <Compile Include="UI\Components\LineComponent.cs" />
-    <Compile Include="Model\LiveSplitStateHelper.cs" />
-    <Compile Include="TimeFormatters\RegularTimeFormatter.cs" />
-    <Compile Include="Resources\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="UI\Components\SeparatorComponent.cs" />
-    <Compile Include="TimeFormatters\ShortTimeFormatter.cs" />
-    <Compile Include="UI\LayoutSavers\ILayoutSaver.cs" />
-    <Compile Include="UI\LayoutSavers\XMLLayoutSaver.cs" />
-    <Compile Include="UI\LayoutMode.cs" />
-    <Compile Include="UI\SimpleLabel.cs" />
-    <Compile Include="UI\Components\ThinSeparatorComponent.cs" />
-    <Compile Include="Model\TimerModel.cs" />
-    <Compile Include="Model\TimerPhase.cs" />
-    <Compile Include="UI\Layout.cs" />
-    <Compile Include="UI\LayoutFactories\XMLLayoutFactory.cs" />
-    <Compile Include="Options\LayoutSettings.cs" />
-    <Compile Include="Model\LiveSplitState.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\ISegment.cs" />
-    <Compile Include="Model\IRun.cs" />
-    <Compile Include="Model\Segment.cs" />
-    <Compile Include="Model\Run.cs" />
-    <Compile Include="UI\Components\ComponentRenderer.cs" />
-    <Compile Include="UI\Components\ComponentRendererComponent.cs" />
-    <Compile Include="Model\RunSavers\SerializeRunSaver.cs" />
-    <Compile Include="Model\RunSavers\XMLRunSaver.cs" />
-    <Compile Include="Updates\UpdateHelper.cs" />
-    <Compile Include="Web\Share\ShareSettings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>ShareSettings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Web\Share\SplitsIO.cs" />
-    <Compile Include="Web\SRL\SRLFactory.cs" />
-    <Compile Include="Web\SRL\SRLRaceInfo.cs" />
-    <Compile Include="Web\SRL\SRLSettings.cs" />
-    <Compile Include="Web\WebCredentials.cs" />
-    <Compile Include="Web\SRL\RaceState.cs" />
-    <Compile Include="Web\SRL\RaceViewers\IRaceViewer.cs" />
-    <Compile Include="Web\SRL\RaceViewers\Kadgar.cs" />
-    <Compile Include="Web\SRL\RaceViewers\MultiTwitch.cs" />
-    <Compile Include="Web\SRL\RaceViewers\SpeedrunTV.cs" />
-    <Compile Include="Web\SRL\RaceViewers\SRLRaceViewer.cs" />
-    <Compile Include="Web\SRL\SpeedRunsLiveAPI.cs" />
-    <Compile Include="Web\SRL\SpeedRunsLiveIRC.cs" />
-    <Compile Include="Web\SRL\SRLComparisonGenerator.cs" />
-    <Compile Include="Web\SRL\SRLIRCRights.cs" />
-    <Compile Include="Web\SRL\SRLIRCUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="x86\livesplit_core.dll">
@@ -312,38 +60,8 @@
     <None Include="Updates\GitInfo\branch.txt" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>LiveSplit</CustomToolNamespace>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Updates\GitInfo.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>GitInfo.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Updates\ScrollableMessageBox.resx">
-      <DependentUpon>ScrollableMessageBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Web\Share\TwitchGameResolveDialog.resx">
-      <DependentUpon>TwitchGameResolveDialog.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj">
-      <Project>{924aaffe-5b89-49e2-99ad-ec9373cc838d}</Project>
-      <Name>SpeedrunComSharp</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UpdateManager\UpdateManager.csproj">
-      <Project>{56dea3a0-2eb7-493b-b50f-a5e3aa8ae52a}</Project>
-      <Name>UpdateManager</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Web\Share\ShareSettings.settings">
-      <Generator>PublicSettingsSingleFileGenerator</Generator>
-      <LastGenOutput>ShareSettings1.Designer.cs</LastGenOutput>
-    </None>
+    <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj" />
+    <ProjectReference Include="..\UpdateManager\UpdateManager.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Codaxy.Xlio">
@@ -352,6 +70,7 @@
     <PackageReference Include="IrcDotNet">
       <Version>0.4.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="SharpDX.DirectInput">
       <Version>2.5.0</Version>
     </PackageReference>
@@ -362,7 +81,6 @@
       <Version>1.0.7</Version>
     </PackageReference>
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>mkdir "$(ProjectDir)Updates\GitInfo\."
 where git
@@ -377,11 +95,4 @@ echo deadbeef&gt; "$(ProjectDir)Updates\GitInfo\revision.txt"
 )
 EXIT 0</PreBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
