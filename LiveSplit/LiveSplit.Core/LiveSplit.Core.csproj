@@ -7,7 +7,6 @@
     <UseWindowsForms>true</UseWindowsForms>
 
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <Nullable>disable</Nullable>

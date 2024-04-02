@@ -5,7 +5,6 @@
     <LangVersion>7.1</LangVersion>
     <TargetFramework>net4.6.1</TargetFramework>
 
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
