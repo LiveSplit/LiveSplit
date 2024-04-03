@@ -10,64 +10,59 @@ on:
 
 jobs:
   build:
-    runs-on: windows-2019
+    runs-on: windows-latest
 
     steps:
-      - name: Checkout commit
-        uses: actions/checkout@v2
+      - name: Checkout LiveSplit
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
       - name: Fetch history
-        run: git fetch --prune --unshallow --recurse-submodules=no
+        run: git fetch --prune --unshallow --no-recurse-submodules
 
-      - name: Checkout Head Ref
-        if: github.head_ref != ''
-        run: |
-          git checkout -b ${{ github.head_ref }} || git checkout ${{ github.head_ref }}
+      - name: Checkout head_ref
+        if: ${{ github.head_ref != '' }}
+        run: git checkout -b ${{ github.head_ref }} || git checkout ${{ github.head_ref }}
 
       - name: Set up .NET environment
-        uses: vrnobody/Setup-DotNetFrameworkEnv@v1.2.6
-
-      - name: Install NuGet packages
-        run: nuget restore LiveSplit\LiveSplit.sln
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.x'
 
       - name: Build LiveSplit
-        run: msbuild LiveSplit\LiveSplit.sln /verbosity:minimal /p:NoWarn=1591 /p:Configuration=Release
+        run: >
+          dotnet build
+          -v m
+          -c Release
+          -nowarn:'$(NoWarn);CS1587;CS1591'
+          -p:PlatformTarget=x64
+          -p:GenerateDocumentationFile=false
+          -p:DebugType=None
+          .\LiveSplit\LiveSplit.sln
 
       - name: Run tests
-        run: |
-          & "vstest.console.exe" "LiveSplit/LiveSplit.Tests/bin/Release/LiveSplit.Tests.dll"
-
-      - name: Upload the Counter component as an artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: LiveSplit.Counter
-          path: LiveSplit/bin/Release/Components/LiveSplit.Counter.dll
+        run: >
+          dotnet test
+          -v m
+          -c Release
+          --no-restore --no-build
+          .\LiveSplit\LiveSplit.sln
 
       - name: Clean up build folder
         run: |
           mkdir .\LiveSplit\bin\Release\Resources
-          cp .\LiveSplit\Resources\SplitsFile.ico .\LiveSplit\bin\Release\Resources\
-          cp .\LiveSplit\Resources\LayoutFile.ico .\LiveSplit\bin\Release\Resources\
-          cd LiveSplit\bin\Release
-          Get-ChildItem * -Include *.xml -Recurse | Remove-Item
-          Get-ChildItem * -Include *.pdb -Recurse | Remove-Item
-          Get-ChildItem * -Include *MSTest*.dll -Recurse | Remove-Item
-          Get-ChildItem * -Include xunit.*.dll -Recurse | Remove-Item
-          Get-ChildItem * -Include *LiveSplit.Counter.dll -Recurse | Remove-Item
-          Remove-Item x64/asr_capi.dll
-          Remove-Item x86/asr_capi.dll
-          Remove-Item runtimes/win-x64/native/WebView2Loader.dll
-          Remove-Item Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
-          Remove-Item Microsoft.WindowsAPICodePack.Sensors.dll
-          Remove-Item Microsoft.WindowsAPICodePack.ShellExtensions.dll
+          cp .\LiveSplit\Resources\SplitsFile.ico .\LiveSplit\bin\Release\Resources
+          cp .\LiveSplit\Resources\LayoutFile.ico .\LiveSplit\bin\Release\Resources
+          rm .\LiveSplit\bin\Release\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
+          rm .\LiveSplit\bin\Release\Microsoft.WindowsAPICodePack.Sensors.dll
+          rm .\LiveSplit\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.dll
 
       - name: Upload build as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: LiveSplit_Build
-          path: LiveSplit/bin/Release
+          path: .\LiveSplit\bin\Release
 
       - name: Upload build to LiveSplit.github.io
         if: github.repository == 'LiveSplit/LiveSplit' && github.ref == 'refs/heads/master'
