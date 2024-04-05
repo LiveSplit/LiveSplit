@@ -33,7 +33,7 @@ namespace LiveSplit.Server
         public Connection(Stream stream)
         {
             Stream = stream;
-            Reader = new StreamReader(Stream);
+            Reader = new StreamReader(Stream, Encoding.UTF8, false);
 
             ReaderThread = new Thread(new ThreadStart(ReadCommands));
             ReaderThread.Start();
