@@ -25,6 +25,7 @@ namespace LiveSplit.Server
     {
         protected Stream Stream { get; private set; }
         protected StreamReader Reader { get; private set; }
+        protected StreamWriter Writer { get; private set; }
         protected Thread ReaderThread { get; private set; }
 
         public event MessageEventHandler MessageReceived;
@@ -35,6 +36,7 @@ namespace LiveSplit.Server
             Stream = stream;
             Reader = new StreamReader(Stream, Encoding.UTF8, false);
 
+            Writer = new StreamWriter(Stream, Encoding.UTF8)
             ReaderThread = new Thread(new ThreadStart(ReadCommands));
             ReaderThread.Start();
         }
@@ -63,8 +65,8 @@ namespace LiveSplit.Server
         {
             try
             {
-                var buffer = Encoding.UTF8.GetBytes(message + Environment.NewLine);
-                Stream.Write(buffer, 0, buffer.Length);
+                Writer.WriteLine(message);
+                Writer.Flush();
             }
             catch (Exception e)
             {
@@ -78,6 +80,7 @@ namespace LiveSplit.Server
             ReaderThread.Abort();
             Stream.Dispose();
             Reader.Dispose();
+            Writer.Dispose();
         }
     }
 
