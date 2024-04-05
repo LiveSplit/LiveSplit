@@ -37,6 +37,10 @@ namespace LiveSplit.Server
             Reader = new StreamReader(Stream, Encoding.UTF8, false);
 
             Writer = new StreamWriter(Stream, Encoding.UTF8)
+            {
+                NewLine = "\n"
+            };
+
             ReaderThread = new Thread(new ThreadStart(ReadCommands));
             ReaderThread.Start();
         }
