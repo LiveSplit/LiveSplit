@@ -47,11 +47,13 @@ You can browse the [Issues](https://github.com/LiveSplit/LiveSplit/issues) to fi
 
 ## Compiling
 
-LiveSplit is written in C# 7 with Visual Studio and uses .NET Framework 4.6.1. To compile LiveSplit, you need one of these versions of Visual Studio:
- - Visual Studio 2017 Community Edition or later
- - Visual Studio 2017 or later
+LiveSplit uses .NET Framework 4.6.1. To compile LiveSplit, you need the following components installed:
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [.NET Framework 4.6.1 Developer Pack](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net461)
 
-Simply open the project with Visual Studio and it should be able to compile and run without any further configuration.
+After cloning, simply run `dotnet build LiveSplit` from the root of the repository.
+
+To use Visual Studio, you must install a version that supports the .NET SDK version you installed. At the time of writing, the most recent version is [Visual Studio 2022](https://visualstudio.microsoft.com/vs/community).
 
 ## Common Compiling Issues
 1. No submodules pulled in when you fork/clone the repo which causes the project not to build. There are two ways to remedy this:

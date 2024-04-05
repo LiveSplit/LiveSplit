@@ -1,105 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E8047F95-BA79-4E2E-A9BB-5C48D5FA2467}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LiveSplit</RootNamespace>
-    <AssemblyName>LiveSplit</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>Svn</SccProjectName>
-    <SccLocalPath>Svn</SccLocalPath>
-    <SccAuxPath>Svn</SccAuxPath>
-    <SccProvider>SubversionScc</SccProvider>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>..\bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>..\bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+
+    <OutDir>..\bin\$(Configuration)</OutDir>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net4.6.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+
+    <Nullable>disable</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release Candidate|AnyCPU'">
-    <OutputPath>..\bin\Release Candidate\</OutputPath>
-    <DefineConstants>TRACE;RELEASE_CANDIDATE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MixedRecommendedRules.ruleset</CodeAnalysisRuleSet>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>false</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="WinFormsColor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Libs\WinForms Color Picker\WinFormsColor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj">
-      <Project>{6de847db-20a3-4848-aeee-1b4364aecdfb}</Project>
-      <Name>LiveSplit.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LiveSplit.View\LiveSplit.View.csproj">
-      <Project>{f8cf1482-0687-44f3-aba1-967e10c3bb96}</Project>
-      <Name>LiveSplit.View</Name>
-    </ProjectReference>
-  </ItemGroup>
+
   <ItemGroup>
     <Content Include="Icon.ico" />
-    <Content Include="Licenses.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Licenses.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
   <ItemGroup>
-    <None Include="App.config" />
+    <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj" />
+    <ProjectReference Include="..\LiveSplit.View\LiveSplit.View.csproj" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
+  <ItemGroup>
+    <Reference Include="..\Libs\WinForms Color Picker\WinFormsColor.dll" />
+  </ItemGroup>
+
 </Project>

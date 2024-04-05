@@ -1,159 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{80866AD2-578B-439A-B744-62C05F13005A}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LiveSplit.Tests</RootNamespace>
-    <AssemblyName>LiveSplit.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
-    <IsCodedUITest>False</IsCodedUITest>
-    <TestProjectType>UnitTest</TestProjectType>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <OutDir>bin\$(Configuration)</OutDir>
     <LangVersion>7.1</LangVersion>
+    <TargetFramework>net4.6.1</TargetFramework>
+
+    <Nullable>disable</Nullable>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <LangVersion>7.1</LangVersion>
-  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Components\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.Delta\LiveSplit.Delta.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.PossibleTimeSave\LiveSplit.PossibleTimeSave.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.Splits\LiveSplit.Splits.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.SumOfBest\LiveSplit.SumOfBest.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.Timer\LiveSplit.Timer.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj" />
+    <ProjectReference Include="..\Components\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj" />
+    <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.2" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.3" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+  </ItemGroup>
+
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml" />
-    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.abstractions.2.0.3\lib\net35\xunit.abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.assert, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.assert.2.4.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.extensibility.core.2.4.1\lib\net452\xunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.execution.desktop, Version=2.4.1.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\packages\xunit.extensibility.execution.2.4.1\lib\net452\xunit.execution.desktop.dll</HintPath>
-    </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="AutoSplitterTests\AutoSplitterXML.cs" />
-    <Compile Include="ComponentUtil\DeepPointerTests.cs" />
-    <Compile Include="Model\AbbreviationExtensionsMust.cs" />
-    <Compile Include="Model\AtomicDateTimeMust.cs" />
-    <Compile Include="Model\AttemptMust.cs" />
-    <Compile Include="Model\Constants.cs" />
-    <Compile Include="Model\IndexedTimeMust.cs" />
-    <Compile Include="Model\SegmentHistoryMust.cs" />
-    <Compile Include="Model\SegmentMust.cs" />
-    <Compile Include="Model\StringExtensionsMust.cs" />
-    <Compile Include="Model\TimeMust.cs" />
-    <Compile Include="Options\LayoutSettingsMust.cs" />
-    <Compile Include="TimeFormatTests\ShowDaysTests.cs" />
-    <Compile Include="TimeFormatTests\DigitsFormatTests.cs" />
-    <Compile Include="TimeFormatTests\DaysTimeFormatterTests.cs" />
-    <Compile Include="TimeFormatTests\TimeAccuracyTests.cs" />
-    <Compile Include="TimeFormatTests\ShortTimeFormatterTests.cs" />
-    <Compile Include="TimeFormatTests\RegularTimeFormattersTests.cs" />
-    <Compile Include="TimeFormatTests\DeltaTimeFormattersTests.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TimeParseTests\TimeSpanParserTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Components\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj">
-      <Project>{cb42f317-c954-4b0e-a6d1-661dee2137ef}</Project>
-      <Name>LiveSplit.CurrentComparison</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.Delta\LiveSplit.Delta.csproj">
-      <Project>{b2045cae-2d97-4cb1-931c-55837cc77699}</Project>
-      <Name>LiveSplit.Delta</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj">
-      <Project>{316ff340-ba00-4c4f-816b-16959a87725d}</Project>
-      <Name>LiveSplit.DetailedTimer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj">
-      <Project>{0be25aa8-df4d-4473-a52f-15e7c8df180b}</Project>
-      <Name>LiveSplit.ManualGameTime</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.PossibleTimeSave\LiveSplit.PossibleTimeSave.csproj">
-      <Project>{a0a5a4b1-c845-4409-a0db-9f75a192ef9a}</Project>
-      <Name>LiveSplit.PossibleTimeSave</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj">
-      <Project>{b9168df4-29e8-4bdf-845b-14ce96d69441}</Project>
-      <Name>LiveSplit.PreviousSegment</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj">
-      <Project>{78f31888-c600-4d5d-9843-13d023893490}</Project>
-      <Name>LiveSplit.RunPrediction</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj">
-      <Project>{56e9d96b-5944-4c2e-876b-cba44b1465ac}</Project>
-      <Name>LiveSplit.ScriptableAutoSplit</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.Splits\LiveSplit.Splits.csproj">
-      <Project>{1354e1ff-33ee-4fa9-b110-074cbc16a6f9}</Project>
-      <Name>LiveSplit.Splits</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj">
-      <Project>{5e696803-9eee-4c9e-8fc1-04693b0e171e}</Project>
-      <Name>LiveSplit.Subsplits</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.SumOfBest\LiveSplit.SumOfBest.csproj">
-      <Project>{e53b4adc-8fe4-4d3f-ad60-dc1f18897f68}</Project>
-      <Name>LiveSplit.SumOfBest</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.Timer\LiveSplit.Timer.csproj">
-      <Project>{b9045699-7ac0-4b1c-b6a7-0eb4a93c48d7}</Project>
-      <Name>LiveSplit.Timer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj">
-      <Project>{14df9af3-f142-4133-a857-bfbc679421df}</Project>
-      <Name>LiveSplit.TotalPlaytime</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Components\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj">
-      <Project>{b0470637-949c-4a41-9c8c-0ce46561037f}</Project>
-      <Name>LiveSplit.WorldRecord</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj">
-      <Project>{6DE847DB-20A3-4848-AEEE-1B4364AECDFB}</Project>
-      <Name>LiveSplit.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="xunit">
-      <Version>2.4.1</Version>
-    </PackageReference>
-    <PackageReference Include="xunit.runner.visualstudio">
-      <Version>2.4.3</Version>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-  <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>
