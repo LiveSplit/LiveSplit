@@ -75,8 +75,8 @@ namespace LiveSplit.Server
 
         public virtual void Dispose()
         {
-            Stream.Dispose();
             ReaderThread.Abort();
+            Stream.Dispose();
         }
     }
 
