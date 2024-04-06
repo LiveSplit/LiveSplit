@@ -11,6 +11,14 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>1587;1591;1701;1702</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1587;1591;1701;1702</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Content Include="Icon.ico" />
     <Content Include="Licenses.txt" CopyToOutputDirectory="PreserveNewest" />
