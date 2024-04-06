@@ -35,7 +35,6 @@ jobs:
           dotnet build
           -v m
           -c Release
-          -nowarn:'$(NoWarn);CS1587;CS1591'
           -p:PlatformTarget=x64
           -p:GenerateDocumentationFile=false
           -p:DebugType=None
