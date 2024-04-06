@@ -57,6 +57,7 @@ jobs:
           rm .\LiveSplit\bin\Release\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
           rm .\LiveSplit\bin\Release\Microsoft.WindowsAPICodePack.Sensors.dll
           rm .\LiveSplit\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+          rm .\LiveSplit\bin\Release\Components\SpeedrunComSharp.dll
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v4
