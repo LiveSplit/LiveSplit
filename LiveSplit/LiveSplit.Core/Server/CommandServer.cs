@@ -326,7 +326,7 @@ namespace LiveSplit.Server
                     }
                 case "getcurrentrealtime":
                     {
-                        response = TimeFormatter.Format(State.CurrentTime.RealTime);
+                        response = TimeFormatter.Format(GetCurrentTime(State, TimingMethod.RealTime));
                         break;
                     }
                 case "getcurrentgametime":
@@ -334,7 +334,7 @@ namespace LiveSplit.Server
                         var timingMethod = TimingMethod.GameTime;
                         if (!State.IsGameTimeInitialized)
                             timingMethod = TimingMethod.RealTime;
-                        response = TimeFormatter.Format(State.CurrentTime[timingMethod]);
+                        response = TimeFormatter.Format(GetCurrentTime(State, timingMethod));
                         break;
                     }
                 case "getcurrenttime":
@@ -342,7 +342,7 @@ namespace LiveSplit.Server
                         var timingMethod = State.CurrentTimingMethod;
                         if (timingMethod == TimingMethod.GameTime && !State.IsGameTimeInitialized)
                             timingMethod = TimingMethod.RealTime;
-                        response = TimeFormatter.Format(State.CurrentTime[timingMethod]);
+                        response = TimeFormatter.Format(GetCurrentTime(State, timingMethod));
                         break;
                     }
                 case "getfinaltime":
@@ -485,6 +485,14 @@ namespace LiveSplit.Server
             {
                 return state.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
             }
+        }
+
+        private TimeSpan? GetCurrentTime(LiveSplitState state, TimingMethod timingMethod)
+        {
+            if (state.CurrentPhase == TimerPhase.NotRunning)
+                return state.Run.Offset;
+            else
+                return state.CurrentTime[timingMethod];
         }
 
         public void Dispose()
