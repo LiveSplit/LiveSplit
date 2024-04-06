@@ -7,9 +7,6 @@ namespace LiveSplit.TimeFormatters {
 
         public TimeAccuracy Accuracy { get; set; }
 
-        [Obsolete("Use DigitsFormat instead")]
-        public TimeFormat TimeFormat { set => DigitsFormat = value.ToDigitsFormat(); }
-
         public DigitsFormat DigitsFormat { get; set; }
 
         /// <summary>

@@ -2,15 +2,6 @@
 
 namespace LiveSplit.TimeFormatters
 {
-    [Obsolete("Switch over to DigitsFormat")]
-    public enum TimeFormat
-    {
-        TenHours,
-        Hours,
-        Minutes,
-        Seconds
-    }
-
     public enum DigitsFormat
     {
         /// `1`
@@ -27,8 +18,18 @@ namespace LiveSplit.TimeFormatters
         DoubleDigitHours,
     }
 
+    [Obsolete("Switch over to DigitsFormat")]
+    public enum TimeFormat
+    {
+        TenHours,
+        Hours,
+        Minutes,
+        Seconds
+    }
+
     static class FormatUtils
     {
+#pragma warning disable 618
         public static DigitsFormat ToDigitsFormat(this TimeFormat timeFormat)
         {
             if (timeFormat == TimeFormat.Seconds)
@@ -39,6 +40,7 @@ namespace LiveSplit.TimeFormatters
                 return DigitsFormat.SingleDigitHours;
             else if (timeFormat == TimeFormat.TenHours)
                 return DigitsFormat.DoubleDigitHours;
+#pragma warning restore 618
 
             return DigitsFormat.SingleDigitSeconds;
         }

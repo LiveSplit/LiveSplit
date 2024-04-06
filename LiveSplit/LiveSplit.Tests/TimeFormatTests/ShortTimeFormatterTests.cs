@@ -21,7 +21,7 @@ namespace LiveSplit.Tests.TimeFormatterTests
             var sut = new ShortTimeFormatter();
             var defaultFormat = sut.Format(null);
 
-            var formattedValueInSeconds = sut.Format(null, TimeFormat.Seconds);
+            var formattedValueInSeconds = sut.Format(null, DigitsFormat.SingleDigitSeconds);
             Assert.Equal(defaultFormat, formattedValueInSeconds);
         }
 
@@ -54,16 +54,16 @@ namespace LiveSplit.Tests.TimeFormatterTests
             var time = TimeSpan.Parse(timespanText);
 
             var defaultFormat = sut.Format(time);
-            var formattedTimeInSeconds = sut.Format(time, TimeFormat.Seconds);
+            var formattedTimeInSeconds = sut.Format(time, DigitsFormat.SingleDigitSeconds);
             Assert.Equal(defaultFormat, formattedTimeInSeconds);
         }
 
         [Theory]
-        [InlineData(TimeFormat.Seconds)]
-        [InlineData(TimeFormat.Minutes)]
-        [InlineData(TimeFormat.Hours)]
-        [InlineData(TimeFormat.TenHours)]
-        public void FormatsNullTimeInGivenFormatCorrectly(TimeFormat givenFormat)
+        [InlineData(DigitsFormat.SingleDigitSeconds)]
+        [InlineData(DigitsFormat.DoubleDigitMinutes)]
+        [InlineData(DigitsFormat.SingleDigitHours)]
+        [InlineData(DigitsFormat.DoubleDigitHours)]
+        public void FormatsNullTimeInGivenFormatCorrectly(DigitsFormat givenFormat)
         {
             var sut = new ShortTimeFormatter();
 
@@ -72,36 +72,36 @@ namespace LiveSplit.Tests.TimeFormatterTests
         }
 
         [Theory]
-        [InlineData("00:00:00", TimeFormat.Seconds, "0.00")]
-        [InlineData("00:00:00", TimeFormat.Minutes, "00:00.00")]
-        [InlineData("00:00:00", TimeFormat.Hours, "0:00:00.00")]
-        [InlineData("00:00:00", TimeFormat.TenHours, "00:00:00.00")]
+        [InlineData("00:00:00", DigitsFormat.SingleDigitSeconds, "0.00")]
+        [InlineData("00:00:00", DigitsFormat.DoubleDigitMinutes, "00:00.00")]
+        [InlineData("00:00:00", DigitsFormat.SingleDigitHours, "0:00:00.00")]
+        [InlineData("00:00:00", DigitsFormat.DoubleDigitHours, "00:00:00.00")]
 
-        [InlineData("00:00:01.03", TimeFormat.Seconds, "1.03")]
-        [InlineData("00:00:01.03", TimeFormat.Minutes, "00:01.03")]
-        [InlineData("00:00:01.03", TimeFormat.Hours, "0:00:01.03")]
-        [InlineData("00:00:01.03", TimeFormat.TenHours, "00:00:01.03")]
+        [InlineData("00:00:01.03", DigitsFormat.SingleDigitSeconds, "1.03")]
+        [InlineData("00:00:01.03", DigitsFormat.DoubleDigitMinutes, "00:01.03")]
+        [InlineData("00:00:01.03", DigitsFormat.SingleDigitHours, "0:00:01.03")]
+        [InlineData("00:00:01.03", DigitsFormat.DoubleDigitHours, "00:00:01.03")]
 
-        [InlineData("00:05:01.03", TimeFormat.Seconds, "5:01.03")]
-        [InlineData("00:05:01.03", TimeFormat.Minutes, "05:01.03")]
-        [InlineData("00:05:01.03", TimeFormat.Hours, "0:05:01.03")]
-        [InlineData("00:05:01.03", TimeFormat.TenHours, "00:05:01.03")]
+        [InlineData("00:05:01.03", DigitsFormat.SingleDigitSeconds, "5:01.03")]
+        [InlineData("00:05:01.03", DigitsFormat.DoubleDigitMinutes, "05:01.03")]
+        [InlineData("00:05:01.03", DigitsFormat.SingleDigitHours, "0:05:01.03")]
+        [InlineData("00:05:01.03", DigitsFormat.DoubleDigitHours, "00:05:01.03")]
 
-        [InlineData("-00:05:01.03", TimeFormat.Seconds, "−5:01.03")]
-        [InlineData("-00:05:01.03", TimeFormat.Minutes, "−05:01.03")]
-        [InlineData("-00:05:01.03", TimeFormat.Hours, "−0:05:01.03")]
-        [InlineData("-00:05:01.03", TimeFormat.TenHours, "−00:05:01.03")]
+        [InlineData("-00:05:01.03", DigitsFormat.SingleDigitSeconds, "−5:01.03")]
+        [InlineData("-00:05:01.03", DigitsFormat.DoubleDigitMinutes, "−05:01.03")]
+        [InlineData("-00:05:01.03", DigitsFormat.SingleDigitHours, "−0:05:01.03")]
+        [InlineData("-00:05:01.03", DigitsFormat.DoubleDigitHours, "−00:05:01.03")]
 
-        [InlineData("07:05:01.03", TimeFormat.Seconds, "7:05:01.03")]
-        [InlineData("07:05:01.03", TimeFormat.Minutes, "7:05:01.03")]
-        [InlineData("07:05:01.03", TimeFormat.Hours, "7:05:01.03")]
-        [InlineData("07:05:01.03", TimeFormat.TenHours, "07:05:01.03")]
+        [InlineData("07:05:01.03", DigitsFormat.SingleDigitSeconds, "7:05:01.03")]
+        [InlineData("07:05:01.03", DigitsFormat.DoubleDigitMinutes, "7:05:01.03")]
+        [InlineData("07:05:01.03", DigitsFormat.SingleDigitHours, "7:05:01.03")]
+        [InlineData("07:05:01.03", DigitsFormat.DoubleDigitHours, "07:05:01.03")]
 
-        [InlineData("1.07:05:01.03", TimeFormat.Seconds, "31:05:01.03")]
-        [InlineData("1.07:05:01.03", TimeFormat.Minutes, "31:05:01.03")]
-        [InlineData("1.07:05:01.03", TimeFormat.Hours, "31:05:01.03")]
-        [InlineData("1.07:05:01.03", TimeFormat.TenHours, "31:05:01.03")]
-        public void FormatsTimeCorrectly_WhenTimeIsValidAndTimeFormatIsSupplied(string timespanText, TimeFormat format,
+        [InlineData("1.07:05:01.03", DigitsFormat.SingleDigitSeconds, "31:05:01.03")]
+        [InlineData("1.07:05:01.03", DigitsFormat.DoubleDigitMinutes, "31:05:01.03")]
+        [InlineData("1.07:05:01.03", DigitsFormat.SingleDigitHours, "31:05:01.03")]
+        [InlineData("1.07:05:01.03", DigitsFormat.DoubleDigitHours, "31:05:01.03")]
+        public void FormatsTimeCorrectly_WhenTimeIsValidAndTimeFormatIsSupplied(string timespanText, DigitsFormat format,
             string expectedTime)
         {
             var sut = new ShortTimeFormatter();
