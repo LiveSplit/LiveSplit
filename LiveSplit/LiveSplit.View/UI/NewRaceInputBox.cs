@@ -99,8 +99,6 @@ namespace LiveSplit.UI
 
             FormClosing += NewRaceInputBox_FormClosing;
 
-            cbxGameName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-
             cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
             cbxRunCategory.Items.AddRange(new string[] { "Any%", "Low%", "100%" });
             cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
