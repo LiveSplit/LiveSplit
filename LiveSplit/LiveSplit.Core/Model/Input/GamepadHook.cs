@@ -82,8 +82,6 @@ namespace LiveSplit.Model.Input
             var shortMaskMax = 0xFF00;
             var shortMaskMin = 0xFF;
 
-            //Console.WriteLine(button.ToString() + " " + value);
-
             if (joystick.Information.Type == DeviceType.Mouse)
             {
                 if (button == JoystickOffset.X
