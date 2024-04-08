@@ -15,7 +15,7 @@ namespace LiveSplit.Web.Share
             Process.Start("https://www.speedrun.com");
 
             string accessToken = null;
-            InputBox.Show("Speedrun.com Authentication", "Enter your Speedrun.com API Key (Go to speedrun.com/users/<username>/settings/api):", ref accessToken);
+            InputBox.Show("Speedrun.com Authentication", "Enter your Speedrun.com API Key (Go to speedrun.com/settings/api):", ref accessToken);
             return accessToken;
         }
     }
