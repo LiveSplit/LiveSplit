@@ -90,11 +90,13 @@ Made something cool? Consider getting it added to this list.
 
 ### Commands
 
-Commands are case sensitive and end with a carriage return and a line feed (\r\n). You can provide parameters by using a space after the command and sending the parameters afterwards (`<command><space><parameters><\r\n>`).
+Commands are case sensitive and end with a new line. You can provide parameters by using a space after the command and sending the parameters afterwards (`<command><space><parameters><newline>`).
 
-A command can respond with a message. The message ends with a carriage return and a line feed, just like a command.
+Some commands will respond with data and some will not. Every response ends with a newline character.
 
-Here's the list of commands:
+All times and deltas returned by the server are formatted according to [C#'s Constant Format Specifier](https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings#the-constant-c-format-specifier). The server will accept times in the following format: `[-][[[d.]hh:]mm:]ss[.fffffff]`. The hours field can be greated than 23, even if days are present. Individual fields do not need to be padded with zeroes. Any command that returns a time or a string can return a single hyphen `-` to indicate a "null" or invalid value. Commands that take a COMPARISON or a NAME take plain strings that may include spaces. Because it is used as a delimiter to mark the end of a command, newline characters may not appear anywhere within a command.
+
+Commands that generate no response:
 
 - startorsplit
 - split
@@ -115,7 +117,7 @@ Here's the list of commands:
 - setsplitname INDEX NAME
 - setcurrentsplitname NAME
 
-The following commands respond with a time:
+Commands that return a time:
 
 - getdelta
 - getdelta COMPARISON
@@ -129,12 +131,18 @@ The following commands respond with a time:
 - getpredictedtime COMPARISON
 - getbestpossibletime
 
-Other commands:
+Commands that return an int:
 
-- getsplitindex
-- getcurrentsplitname
+- getsplitindex  
+(returns -1 if the timer is not running)
+
+Commands that return a string:
+
+- getcurrentsplitname  
 - getprevioussplitname
 - getcurrenttimerphase
+- ping  
+(always returns `pong`)
 
 Commands are defined at `ProcessMessage` in "CommandServer.cs".
 
@@ -147,7 +155,7 @@ import socket
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(("localhost", 16834))
-s.send(b"starttimer\r\n")
+s.send(b"starttimer\n")
 ```
 
 #### Java 7+
@@ -161,7 +169,7 @@ public class MainTest {
     public static void main(String[] args) throws IOException {
         Socket socket = new Socket("localhost", 16834);
         PrintWriter writer = new PrintWriter(socket.getOutputStream());
-        writer.write("starttimer\r\n");
+        writer.println("starttimer");
         writer.flush();
         socket.close();
     }
