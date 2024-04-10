@@ -214,7 +214,8 @@ namespace LiveSplit.Server
                             var time = ParseTime(args[1]);
                             State.SetGameTime(time);
                         }
-                        catch (Exception e) {
+                        catch (Exception e)
+                        {
                             Log.Error(e);
                             Log.Error($"[Server] Failed to parse time while setting game time: {args[1]}");
                         }
@@ -438,13 +439,17 @@ namespace LiveSplit.Server
 
                         break;
                     }
+                case "ping":
+                    {
+                        response = "pong";
+                        break;
+                    }
                 default:
                     {
                         Log.Error($"[Server] Invalid command: {message}");
                         break;
                     }
-                }
-
+            }
 
             if (!string.IsNullOrEmpty(response))
             {
