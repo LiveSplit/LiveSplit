@@ -141,6 +141,8 @@ Commands that return a string:
 - getcurrentsplitname  
 - getprevioussplitname
 - getcurrenttimerphase
+- ping  
+(always returns `pong`)
 
 Commands are defined at `ProcessMessage` in "CommandServer.cs".
 
