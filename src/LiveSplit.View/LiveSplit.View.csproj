@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <OutDir>..\..\bin\$(Configuration)</OutDir>
     <RootNamespace>LiveSplit</RootNamespace>
     <TargetFramework>net4.6.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Libs\SpeedrunComSharp\SpeedrunComSharp\SpeedrunComSharp.csproj" />
+    <ProjectReference Include="..\..\LiveSplit\Libs\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
     <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj" />
     <ProjectReference Include="..\UpdateManager\UpdateManager.csproj" />
   </ItemGroup>
@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
 
-    <Reference Include="..\Libs\CustomFontDialog\CustomFontDialog.dll" />
+    <Reference Include="..\..\LiveSplit\Libs\CustomFontDialog\CustomFontDialog.dll" />
   </ItemGroup>
 
 </Project>

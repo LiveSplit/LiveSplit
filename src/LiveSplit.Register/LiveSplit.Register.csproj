@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>LiveSplit</RootNamespace>
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <OutDir>..\..\bin\$(Configuration)</OutDir>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net4.6.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>

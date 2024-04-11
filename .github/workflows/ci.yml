@@ -38,7 +38,7 @@ jobs:
           -p:PlatformTarget=x64
           -p:GenerateDocumentationFile=false
           -p:DebugType=None
-          .\LiveSplit\LiveSplit.sln
+          .\LiveSplit.sln
 
       - name: Run tests
         run: >
@@ -46,28 +46,28 @@ jobs:
           -v m
           -c Release
           --no-restore --no-build
-          .\LiveSplit\LiveSplit.sln
+          .\LiveSplit.sln
 
       - name: Clean up build folder
         run: |
-          mkdir .\LiveSplit\bin\Release\Resources
-          cp .\LiveSplit\Resources\SplitsFile.ico .\LiveSplit\bin\Release\Resources
-          cp .\LiveSplit\Resources\LayoutFile.ico .\LiveSplit\bin\Release\Resources
-          rm .\LiveSplit\bin\Release\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
-          rm .\LiveSplit\bin\Release\Microsoft.WindowsAPICodePack.Sensors.dll
-          rm .\LiveSplit\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.dll
-          rm .\LiveSplit\bin\Release\Components\SpeedrunComSharp.dll
+          mkdir .\bin\Release\Resources
+          cp .\res\SplitsFile.ico .\bin\Release\Resources
+          cp .\res\LayoutFile.ico .\bin\Release\Resources
+          rm .\bin\Release\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
+          rm .\bin\Release\Microsoft.WindowsAPICodePack.Sensors.dll
+          rm .\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+          rm .\bin\Release\Components\SpeedrunComSharp.dll
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v4
         with:
           name: LiveSplit_Build
-          path: .\LiveSplit\bin\Release
+          path: .\bin\Release
 
       - name: Upload build to LiveSplit.github.io
         if: github.repository == 'LiveSplit/LiveSplit' && github.ref == 'refs/heads/master'
         run: |
-          7z a LiveSplitDevBuild.zip .\LiveSplit\bin\Release\*
+          7z a LiveSplitDevBuild.zip .\bin\Release\*
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
           git clone -q --branch master --single-branch "https://github.com/LiveSplit/LiveSplit.github.io.git"

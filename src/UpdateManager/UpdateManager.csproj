@@ -4,7 +4,7 @@
     <ApplicationIcon>Update.ico</ApplicationIcon>
     <AssemblyOriginatorKeyFile>LiveSplit.pfx</AssemblyOriginatorKeyFile>
 
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <OutDir>..\..\bin\$(Configuration)</OutDir>
     <TargetFramework>net4.6.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
 
