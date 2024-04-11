@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\LiveSplit\Libs\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
+    <ProjectReference Include="..\..\lib\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
     <ProjectReference Include="..\UpdateManager\UpdateManager.csproj" />
   </ItemGroup>
 
@@ -39,8 +39,8 @@
     <Reference Include="System.Web.Extensions" />
     <Reference Include="WindowsBase" />
 
-    <Reference Include="..\..\LiveSplit\Libs\CustomFontDialog\CustomFontDialog.dll" />
-    <Reference Include="..\..\LiveSplit\Libs\WinForms Color Picker\WinFormsColor.dll" />
+    <Reference Include="..\..\lib\CustomFontDialog\CustomFontDialog.dll" />
+    <Reference Include="..\..\lib\WinForms Color Picker\WinFormsColor.dll" />
   </ItemGroup>
 
   <PropertyGroup>

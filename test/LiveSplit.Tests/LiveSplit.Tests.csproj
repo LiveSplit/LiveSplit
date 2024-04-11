@@ -17,20 +17,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.CurrentComparison\src\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.Delta\src\LiveSplit.Delta\LiveSplit.Delta.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.DetailedTimer\src\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.ManualGameTime\src\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.PossibleTimeSave\src\LiveSplit.PossibleTimeSave\LiveSplit.PossibleTimeSave.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.PreviousSegment\src\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.RunPrediction\src\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.ScriptableAutoSplit\src\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.Splits\src\LiveSplit.Splits\LiveSplit.Splits.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.Subsplits\src\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.SumOfBest\src\LiveSplit.SumOfBest\LiveSplit.SumOfBest.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.Timer\src\LiveSplit.Timer\LiveSplit.Timer.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.TotalPlaytime\src\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj" />
-    <ProjectReference Include="..\..\LiveSplit\Components\LiveSplit.WorldRecord\src\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.CurrentComparison\src\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.Delta\src\LiveSplit.Delta\LiveSplit.Delta.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.DetailedTimer\src\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.ManualGameTime\src\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.PossibleTimeSave\src\LiveSplit.PossibleTimeSave\LiveSplit.PossibleTimeSave.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.PreviousSegment\src\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.RunPrediction\src\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.ScriptableAutoSplit\src\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.Splits\src\LiveSplit.Splits\LiveSplit.Splits.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.Subsplits\src\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.SumOfBest\src\LiveSplit.SumOfBest\LiveSplit.SumOfBest.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.Timer\src\LiveSplit.Timer\LiveSplit.Timer.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.TotalPlaytime\src\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj" />
+    <ProjectReference Include="..\..\components\LiveSplit.WorldRecord\src\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj" />
     <ProjectReference Include="..\..\src\LiveSplit.Core\LiveSplit.Core.csproj" />
   </ItemGroup>
 

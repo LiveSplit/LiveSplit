@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\LiveSplit\Libs\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
+    <ProjectReference Include="..\..\lib\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
     <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj" />
     <ProjectReference Include="..\UpdateManager\UpdateManager.csproj" />
   </ItemGroup>
@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
 
-    <Reference Include="..\..\LiveSplit\Libs\CustomFontDialog\CustomFontDialog.dll" />
+    <Reference Include="..\..\lib\CustomFontDialog\CustomFontDialog.dll" />
   </ItemGroup>
 
 </Project>
