@@ -1,14 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <ApplicationIcon>Update.ico</ApplicationIcon>
-    <AssemblyOriginatorKeyFile>LiveSplit.pfx</AssemblyOriginatorKeyFile>
-
-    <OutDir>..\bin\$(Configuration)</OutDir>
+    <RootNamespace>LiveSplit</RootNamespace>
+    <OutDir>..\..\bin\$(Configuration)</OutDir>
+    <OutputType>WinExe</OutputType>
     <TargetFramework>net4.6.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
 
-    <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
@@ -21,11 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Update.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
+    <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj" />
   </ItemGroup>
 
 </Project>

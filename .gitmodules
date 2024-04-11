@@ -1,99 +1,99 @@
 [submodule "LiveSplit/Components/LiveSplit.CurrentComparison"]
-	path = LiveSplit/Components/LiveSplit.CurrentComparison
+	path = components/LiveSplit.CurrentComparison
 	url = https://github.com/LiveSplit/LiveSplit.CurrentComparison.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Delta"]
-	path = LiveSplit/Components/LiveSplit.Delta
+	path = components/LiveSplit.Delta
 	url = https://github.com/LiveSplit/LiveSplit.Delta.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.DetailedTimer"]
-	path = LiveSplit/Components/LiveSplit.DetailedTimer
+	path = components/LiveSplit.DetailedTimer
 	url = https://github.com/LiveSplit/LiveSplit.DetailedTimer.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Graph"]
-	path = LiveSplit/Components/LiveSplit.Graph
+	path = components/LiveSplit.Graph
 	url = https://github.com/LiveSplit/LiveSplit.Graph.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.HotkeyIndicator"]
-	path = LiveSplit/Components/LiveSplit.HotkeyIndicator
+	path = components/LiveSplit.HotkeyIndicator
 	url = https://github.com/LiveSplit/LiveSplit.HotkeyIndicator.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.ManualGameTime"]
-	path = LiveSplit/Components/LiveSplit.ManualGameTime
+	path = components/LiveSplit.ManualGameTime
 	url = https://github.com/LiveSplit/LiveSplit.ManualGameTime.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.PossibleTimeSave"]
-	path = LiveSplit/Components/LiveSplit.PossibleTimeSave
+	path = components/LiveSplit.PossibleTimeSave
 	url = https://github.com/LiveSplit/LiveSplit.PossibleTimeSave.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.PreviousSegment"]
-	path = LiveSplit/Components/LiveSplit.PreviousSegment
+	path = components/LiveSplit.PreviousSegment
 	url = https://github.com/LiveSplit/LiveSplit.PreviousSegment.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.RunPrediction"]
-	path = LiveSplit/Components/LiveSplit.RunPrediction
+	path = components/LiveSplit.RunPrediction
 	url = https://github.com/LiveSplit/LiveSplit.RunPrediction.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.ScriptableAutoSplit"]
-	path = LiveSplit/Components/LiveSplit.ScriptableAutoSplit
+	path = components/LiveSplit.ScriptableAutoSplit
 	url = https://github.com/LiveSplit/LiveSplit.ScriptableAutoSplit.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Sound"]
-	path = LiveSplit/Components/LiveSplit.Sound
+	path = components/LiveSplit.Sound
 	url = https://github.com/LiveSplit/LiveSplit.Sound.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Splits"]
-	path = LiveSplit/Components/LiveSplit.Splits
+	path = components/LiveSplit.Splits
 	url = https://github.com/LiveSplit/LiveSplit.Splits.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.SumOfBest"]
-	path = LiveSplit/Components/LiveSplit.SumOfBest
+	path = components/LiveSplit.SumOfBest
 	url = https://github.com/LiveSplit/LiveSplit.SumOfBest.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Text"]
-	path = LiveSplit/Components/LiveSplit.Text
+	path = components/LiveSplit.Text
 	url = https://github.com/LiveSplit/LiveSplit.Text.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Timer"]
-	path = LiveSplit/Components/LiveSplit.Timer
+	path = components/LiveSplit.Timer
 	url = https://github.com/LiveSplit/LiveSplit.Timer.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Title"]
-	path = LiveSplit/Components/LiveSplit.Title
+	path = components/LiveSplit.Title
 	url = https://github.com/LiveSplit/LiveSplit.Title.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Video"]
-	path = LiveSplit/Components/LiveSplit.Video
+	path = components/LiveSplit.Video
 	url = https://github.com/LiveSplit/LiveSplit.Video.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Subsplits"]
-	path = LiveSplit/Components/LiveSplit.Subsplits
+	path = components/LiveSplit.Subsplits
 	url = https://github.com/LiveSplit/LiveSplit.Subsplits
 [submodule "LiveSplit/Components/LiveSplit.WorldRecord"]
-	path = LiveSplit/Components/LiveSplit.WorldRecord
+	path = components/LiveSplit.WorldRecord
 	url = https://github.com/LiveSplit/LiveSplit.WorldRecord.git
 [submodule "LiveSplit/Libs/SpeedrunComSharp"]
-	path = LiveSplit/Libs/SpeedrunComSharp
+	path = lib/SpeedrunComSharp
 	url = https://github.com/LiveSplit/SpeedrunComSharp.git
 [submodule "LiveSplit/Components/LiveSplit.TotalPlaytime"]
-	path = LiveSplit/Components/LiveSplit.TotalPlaytime
+	path = components/LiveSplit.TotalPlaytime
 	url = https://github.com/LiveSplit/LiveSplit.TotalPlaytime.git
 [submodule "LiveSplit/Components/LiveSplit.Counter"]
-	path = LiveSplit/Components/LiveSplit.Counter
+	path = components/LiveSplit.Counter
 	url = https://github.com/LiveSplit/LiveSplit.Counter.git
 [submodule "LiveSplit/Components/LiveSplit.BlankSpace"]
-	path = LiveSplit/Components/LiveSplit.BlankSpace
+	path = components/LiveSplit.BlankSpace
 	url = https://github.com/LiveSplit/LiveSplit.BlankSpace.git
 [submodule "LiveSplit/Components/LiveSplit.Racetime"]
-	path = LiveSplit/Components/LiveSplit.Racetime
+	path = components/LiveSplit.Racetime
 	url = https://github.com/LiveSplit/LiveSplit.Racetime.git
 	branch = stable
 [submodule "LiveSplit/Components/LiveSplit.AutoSplittingRuntime"]
-	path = LiveSplit/Components/LiveSplit.AutoSplittingRuntime
+	path = components/LiveSplit.AutoSplittingRuntime
 	url = https://github.com/LiveSplit/LiveSplit.AutoSplittingRuntime.git
 [submodule "LiveSplit/Libs/livesplit-core"]
-	path = LiveSplit/Libs/livesplit-core
+	path = lib/livesplit-core
 	url = https://github.com/LiveSplit/livesplit-core.git
 [submodule "LiveSplit/Components/LiveSplit.TheRun"]
-	path = LiveSplit/Components/LiveSplit.TheRun
+	path = components/LiveSplit.TheRun
 	url = https://github.com/therungg/LiveSplit.TheRun
