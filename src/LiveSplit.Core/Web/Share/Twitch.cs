@@ -149,6 +149,13 @@ the first time that sharing to Twitch is used.";
             return false;
         }
 
+        public void ClearAccessToken()
+        {
+            ChannelName = null;
+            ChannelId = null;
+            AccessToken = null;
+        }
+
         public dynamic SearchGame(string name)
         {
             return curl($"search/categories?query={HttpUtility.UrlEncode(name)}");

@@ -205,6 +205,11 @@ namespace LiveSplit.Web.Share
             }
         }
 
+        public static void ClearAccessToken()
+        {
+            Client.AccessToken = null;
+        }
+
         public static bool SubmitRun(IRun run, out string reasonForRejection, 
             string comment = null, Uri videoUri = null, DateTime? date = null,
             TimeSpan? withoutLoads = null,

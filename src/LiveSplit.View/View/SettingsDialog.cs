@@ -4,6 +4,7 @@ using LiveSplit.UI;
 using LiveSplit.UI.Components;
 using LiveSplit.Utils;
 using LiveSplit.Web;
+using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 using System;
 using System.Collections.Generic;
@@ -408,6 +409,8 @@ namespace LiveSplit.View
 
         private void btnLogOut_Click(object sender, EventArgs e)
         {
+            SpeedrunCom.ClearAccessToken();
+            Twitch.Instance.ClearAccessToken();
             WebCredentials.DeleteAllCredentials();
             RefreshLogOutButton();
         }
