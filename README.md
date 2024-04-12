@@ -186,10 +186,10 @@ Node.js client implementation available here: https://github.com/satanch/node-li
 2. Create a Git tag for the new version.
 3. Download `LiveSplit_Build` from the GitHub Actions build for the new Git tag.
 4. Create a GitHub release for the new version, and upload the LiveSplit build ZIP file with the correct filename (e.g. `LiveSplit_1.8.21.zip`).
-    - Create a release for [`LiveSplit.Counter`](https://github.com/LiveSplit/LiveSplit.Counter) if necessary.
 5. Modify files in [the update folder of LiveSplit.github.io](https://github.com/LiveSplit/LiveSplit.github.io/tree/master/update) and commit the changes:
     - Copy changed files from the downloaded LiveSplit build ZIP file to the update folder.
     - Add new versions to the update XMLs for (`update.xml`, `update.updater.xml`, and the update XMLs for any components that changed).
+    - Modify the [DLL](https://github.com/therungg/LiveSplit.TheRun/blob/main/Components/LiveSplit.TheRun.dll) and [update XML](https://github.com/therungg/LiveSplit.TheRun/blob/main/update.LiveSplit.TheRun.xml) for LiveSplit.TheRun in its repo.
     - Update the version on the [downloads page](https://github.com/LiveSplit/LiveSplit.github.io/blob/master/downloads.md).
 
 ## License
