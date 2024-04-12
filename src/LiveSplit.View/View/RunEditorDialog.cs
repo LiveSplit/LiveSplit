@@ -1228,16 +1228,19 @@ namespace LiveSplit.View
             try
             {
                 var game = Run.Metadata.Game;
-                var cover = game.Assets.GetIconImage();
-                SetGameIcon(cover);
-                RaiseRunEdited();
-                return;
+                if (game != null)
+                {
+                    var cover = game.Assets.GetIconImage();
+                    SetGameIcon(cover);
+                    RaiseRunEdited();
+                    return;
+                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show("Could not download the icon of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            MessageBox.Show("Could not download the icon of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void downloadBoxartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1245,10 +1248,13 @@ namespace LiveSplit.View
             try
             {
                 var game = Run.Metadata.Game;
-                var cover = game.Assets.GetBoxartImage();
-                SetGameIcon(cover);
-                RaiseRunEdited();
-                return;
+                if (game != null)
+                {
+                    var cover = game.Assets.GetBoxartImage();
+                    SetGameIcon(cover);
+                    RaiseRunEdited();
+                    return;
+                }
             }
             catch (Exception ex)
             {
@@ -1260,12 +1266,13 @@ namespace LiveSplit.View
                 var cover = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
                 SetGameIcon(cover);
                 RaiseRunEdited();
+                return;
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show("Could not download the box art of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            MessageBox.Show("Could not download the box art of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void openFromURLMenuItem_Click(object sender, EventArgs e)
