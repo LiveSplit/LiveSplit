@@ -1264,9 +1264,12 @@ namespace LiveSplit.View
             try
             {
                 var cover = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
-                SetGameIcon(cover);
-                RaiseRunEdited();
-                return;
+                if (cover != null)
+                {
+                    SetGameIcon(cover);
+                    RaiseRunEdited();
+                    return;
+                }
             }
             catch (Exception ex)
             {

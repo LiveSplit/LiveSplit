@@ -64,15 +64,17 @@ the first time that sharing to Twitch is used.";
 
         bool IRunUploadPlatform.VerifyLogin()
         {
-            return VerifyLogin();
+            return VerifyLogin(true);
         }
 
-        public bool VerifyLogin()
+        public bool VerifyLogin(bool promptIfNoToken)
         {
             AccessToken = WebCredentials.TwitchAccessToken;
 
             if (VerifyAccessToken())
                 return true;
+            if (!promptIfNoToken)
+                return false;
 
             AccessToken = TwitchAccessTokenPrompt.GetAccessToken();
 
@@ -130,6 +132,8 @@ the first time that sharing to Twitch is used.";
 
         public bool VerifyAccessToken()
         {
+            if (string.IsNullOrEmpty(AccessToken))
+                return false;
             try
             {
                 dynamic verificationInfo = curlAbsolute(new Uri("https://id.twitch.tv/oauth2/validate"));
@@ -166,7 +170,13 @@ the first time that sharing to Twitch is used.";
 
         public Image GetGameBoxArt(string gameName)
         {
-            var url = ((IEnumerable<dynamic>)(SearchGame(gameName).games)).First().box_art_url;
+            if (!IsLoggedIn)
+            {
+                if (!VerifyLogin(false))
+                    return null;
+            }
+
+            var url = ((IEnumerable<dynamic>)(SearchGame(gameName).data)).First().box_art_url;
             var request = WebRequest.Create(url);
 
             using (var response = request.GetResponse())
@@ -184,12 +194,6 @@ the first time that sharing to Twitch is used.";
             string comment = "",
             params string[] additionalParams)
         {
-            if (!IsLoggedIn)
-            {
-                if (!VerifyLogin())
-                    return false;
-            }
-
             TwitchGame game = null;
 
             try
