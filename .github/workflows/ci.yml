@@ -35,7 +35,6 @@ jobs:
           dotnet build
           -v m
           -c Release
-          -p:GenerateDocumentationFile=false
           -p:DebugType=None
           .\LiveSplit.sln
 
@@ -44,7 +43,6 @@ jobs:
           dotnet build
           -v m
           -c UpdateManagerExe
-          -p:GenerateDocumentationFile=false
           -p:DebugType=None
           .\src\UpdateManager\UpdateManager.csproj
 
