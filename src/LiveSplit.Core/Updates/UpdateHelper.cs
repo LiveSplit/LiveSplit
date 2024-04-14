@@ -37,7 +37,7 @@ namespace LiveSplit.Updates
                             {
                                 try
                                 {
-                                    Updater.UpdateAll(actualUpdateables, "http://livesplit.org/update/UpdateManager.exe");
+                                    Updater.UpdateAll(actualUpdateables, "http://livesplit.org/update/UpdateManagerV2.exe", "http://livesplit.org/update/UpdateManagerV2.exe.config");
                                     closeAction();
                                 }
                                 catch (Exception e)

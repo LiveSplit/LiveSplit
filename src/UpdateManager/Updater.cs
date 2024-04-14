@@ -163,9 +163,10 @@ namespace UpdateManager
             new WebClient().DownloadFile(url, path);
         }
 
-        public static void UpdateAll(IEnumerable<IUpdateable> updateables, string updateManagerDownloadURL)
+        public static void UpdateAll(IEnumerable<IUpdateable> updateables, string updateManagerDownloadURL, string updateManagerConfigDownloadUrl)
         {
             DownloadFile(updateManagerDownloadURL, "UpdateManager.exe");
+            DownloadFile(updateManagerConfigDownloadUrl, "UpdateManager.exe.config");
             string arguments = updateables.Where(x => x.CheckForUpdate()).Aggregate("", (x, y) => x + "\"" + y.XMLURL + "\" \"" + y.UpdateURL + "\" " + y.Version + " ") + "\"" + Process.GetCurrentProcess().ProcessName + ".exe\"";
             Process.Start("UpdateManager.exe", arguments);
         }
@@ -197,11 +198,6 @@ namespace UpdateManager
         #endregion
 
         #region Extensions
-
-        public static void PerformUpdate(this IUpdateable updateable, string updateManagerDownloadURL)
-        {
-            UpdateAll(Enumerable.Repeat(updateable, 1), updateManagerDownloadURL);
-        }
 
         public static Version GetNewVersion(this IUpdateable updateable)
         {
