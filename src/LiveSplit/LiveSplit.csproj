@@ -9,7 +9,6 @@
     <UseWindowsForms>true</UseWindowsForms>
 
     <Nullable>disable</Nullable>
-    <NoWarn>1587;1591;1701;1702</NoWarn>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 

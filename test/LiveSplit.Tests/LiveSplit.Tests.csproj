@@ -6,7 +6,6 @@
     <TargetFramework>net4.6.1</TargetFramework>
 
     <Nullable>disable</Nullable>
-    <NoWarn>1587;1591;1701;1702</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>

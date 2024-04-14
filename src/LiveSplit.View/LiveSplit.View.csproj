@@ -8,7 +8,6 @@
 
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <Nullable>disable</Nullable>
-    <NoWarn>1587;1591;1701;1702</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
