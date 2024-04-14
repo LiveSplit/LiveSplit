@@ -11,6 +11,11 @@
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <Nullable>disable</Nullable>
     <NoWarn>1587;1591;1701;1702</NoWarn>
+    <Configurations>Debug;Release;ReleaseExecutable</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'ReleaseExecutable'">
+    <OutputType>WinExe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
