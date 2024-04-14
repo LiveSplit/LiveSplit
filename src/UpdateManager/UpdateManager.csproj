@@ -17,6 +17,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'UpdateManagerExe'">
     <OutputType>WinExe</OutputType>
     <Optimize>True</Optimize>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>

@@ -35,7 +35,6 @@ jobs:
           dotnet build
           -v m
           -c Release
-          -p:PlatformTarget=x64
           -p:GenerateDocumentationFile=false
           -p:DebugType=None
           .\LiveSplit.sln
@@ -45,7 +44,6 @@ jobs:
           dotnet build
           -v m
           -c UpdateManagerExe
-          -p:PlatformTarget=x64
           -p:GenerateDocumentationFile=false
           -p:DebugType=None
           .\src\UpdateManager\UpdateManager.csproj
