@@ -40,6 +40,16 @@ jobs:
           -p:DebugType=None
           .\LiveSplit.sln
 
+      - name: Build UpdateManager.exe
+        run: >
+          dotnet build
+          -v m
+          -c ReleaseExecutable
+          -p:PlatformTarget=x64
+          -p:GenerateDocumentationFile=false
+          -p:DebugType=None
+          .\src\UpdateManager\UpdateManager.csproj
+
       - name: Run tests
         run: >
           dotnet test
@@ -69,6 +79,12 @@ jobs:
         with:
           name: LiveSplit_Build
           path: .\bin\Release
+
+      - name: Upload UpdateManager.exe as an artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: UpdateManagerExe
+          path: .\bin\ReleaseExecutable\UpdateManager.exe
 
       - name: Upload build to LiveSplit.github.io
         if: github.repository == 'LiveSplit/LiveSplit' && github.ref == 'refs/heads/master'
