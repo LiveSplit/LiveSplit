@@ -39,7 +39,7 @@ We need your help!
 You can browse the [Issues](https://github.com/LiveSplit/LiveSplit/issues) to find good issues to get started with. Select one that is not already done or in progress, assign yourself, and drag it over to "In Progress".
 
  1. [Fork](https://github.com/LiveSplit/LiveSplit/fork) the project
- 2. Clone your forked repo: `git clone https://github.com/YourUsername/LiveSplit.git`
+ 2. Clone your forked repo: `git clone --recursive https://github.com/YourUsername/LiveSplit.git`
  3. Create your feature/bugfix branch: `git checkout -b new-feature`
  4. Commit your changes to your new branch: `git commit -am 'Add a new feature'`
  5. Push to the branch: `git push origin new-feature`
@@ -57,7 +57,7 @@ To use Visual Studio, you must install a version that supports the .NET SDK vers
 
 ## Common Compiling Issues
 1. No submodules pulled in when you fork/clone the repo which causes the project not to build. There are two ways to remedy this:
- - Cloning for the first time: `git clone --recursive git://repo/repo.git`
+ - Cloning for the first time: `git clone --recursive https://github.com/LiveSplit/LiveSplit.git`
  - If already cloned, execute this in the root directory: `git submodule update --init --recursive`
 
 ## Auto Splitters
