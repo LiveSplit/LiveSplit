@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Model.Comparisons;
+using LiveSplit.Options;
 using LiveSplit.UI;
 using System;
 using System.Drawing;
@@ -78,7 +79,20 @@ namespace LiveSplit.Model.RunFactories
             // See https://github.com/LiveSplit/LiveSplit/issues/894
             var stream = new MemoryStream(buffer);
 
-            return Image.FromStream(stream);
+            try
+            {
+                return Image.FromStream(stream);
+            }
+            catch (Exception ex)
+            {
+                // .NET Framework's Image doesn't support newer image formats
+                // such as AVIF, WEBP, and JPEG XL. These may be used in
+                // LiveSplit One. So we need to fall back to an empty image
+                // instead of erroring out.
+                Log.Error(ex);
+                stream.Dispose();
+                return null;
+            }
         }
 
         public IRun Create(IComparisonGeneratorsFactory factory)
