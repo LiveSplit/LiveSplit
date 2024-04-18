@@ -1858,6 +1858,11 @@ namespace LiveSplit.View
                     var result = splitDialog.ShowDialog(this);
                     if (result == DialogResult.OK)
                     {
+                        if (!splitDialog.FileName.EndsWith(".lss"))
+                        {
+                            MessageBox.Show(this, "Cannot save splits with a file type that is not .lss", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
                         CurrentState.Run.FilePath = splitDialog.FileName;
                         return SaveSplits(promptPBMessage);
                     }
@@ -2201,6 +2206,11 @@ namespace LiveSplit.View
                     var result = layoutDialog.ShowDialog(this);
                     if (result == DialogResult.OK)
                     {
+                        if (!layoutDialog.FileName.EndsWith(".lsl"))
+                        {
+                            MessageBox.Show(this, "Cannot save layout with a file type that is not .lsl", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
                         Layout.FilePath = layoutDialog.FileName;
                         return SaveLayout();
                     }
