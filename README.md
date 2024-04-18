@@ -108,6 +108,7 @@ Commands that generate no response:
 - starttimer
 - setgametime TIME
 - setloadingtimes TIME
+- addloadingtimes TIME
 - pausegametime
 - unpausegametime
 - alwayspausegametime
