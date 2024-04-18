@@ -235,6 +235,20 @@ namespace LiveSplit.Server
                         }
                         break;
                     }
+                case "addloadingtimes":
+                    {
+                        try
+                        {
+                            var time = ParseTime(args[1]);
+                            State.LoadingTimes = State.LoadingTimes.Add(time ?? TimeSpan.Zero);
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(e);
+                            Log.Error($"[Server] Failed to parse time while adding loading times: {args[1]}");
+                        }
+                        break;
+                    }
                 case "pausegametime":
                     {
                         State.IsGameTimePaused = true;
