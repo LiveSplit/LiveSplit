@@ -516,12 +516,7 @@ namespace LiveSplit.View
                     {
                         try
                         {
-                            var timeSpan = TimeStamp.CurrentDateTime - startTime;
-                            if (timeSpan < TimeSpan.Zero)
-                                timeSpan = TimeSpan.Zero;
-                            var time = new RegularTimeFormatter().Format(timeSpan);
-                            var title = string.Format("[{0}] {1} ({2}/{3} Finished)", time, gameAndGoal, race.Finishes, race.NumEntrants - race.Forfeits) as string;
-                            tsItem.Text = title.EscapeMenuItemText();
+                            UpdateTitle(tsItem, race, startTime, gameAndGoal);
                         }
                         catch { }
                     }
@@ -529,7 +524,7 @@ namespace LiveSplit.View
 
                 SetGameImage(raceProvider, tsItem, race);
 
-                updateTitleAction();
+                UpdateTitle(tsItem, race, startTime, gameAndGoal);
 
                 RacesToRefresh.Add(updateTitleAction);
 
@@ -576,6 +571,16 @@ namespace LiveSplit.View
                 }
                 catch { }
             });
+        }
+
+        void UpdateTitle(ToolStripMenuItem item, IRaceInfo race, DateTime startTime, string gameAndGoal)
+        {
+            var timeSpan = TimeStamp.CurrentDateTime - startTime;
+            if (timeSpan < TimeSpan.Zero)
+                timeSpan = TimeSpan.Zero;
+            var time = new RegularTimeFormatter().Format(timeSpan);
+            var title = string.Format("[{0}] {1} ({2}/{3} Finished)", time, gameAndGoal, race.Finishes, race.NumEntrants - race.Forfeits) as string;
+            item.Text = title.EscapeMenuItemText();
         }
 
         void SRL_JoinRace(ITimerModel model, string raceId)
