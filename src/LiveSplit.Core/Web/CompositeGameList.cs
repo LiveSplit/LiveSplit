@@ -1,7 +1,11 @@
 ﻿using LiveSplit.Web.Share;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
 namespace LiveSplit.Web
 {
@@ -15,6 +19,9 @@ namespace LiveSplit.Web
 
         protected IDictionary<string, string> gameIDs;
 
+        private const string CacheFilename = "speedruncom_game_names.json";
+        private bool loadedFromAPI = false;
+
         protected CompositeGameList()
         { }
 
@@ -22,7 +29,7 @@ namespace LiveSplit.Web
         {
             if (gameIDs == null)
             {
-                GetGames();
+                GetGames(true);
             }
 
             return gameIDs[gameName];
@@ -30,16 +37,22 @@ namespace LiveSplit.Web
 
         public IEnumerable<string> GetGameNames()
         {
-            if (gameNames == null)
+            if (gameNames == null || !loadedFromAPI)
             {
-                GetGames();
+                GetGames(false);
             }
 
             return gameNames;
         }
 
-        private void GetGames()
+        private void GetGames(bool loadFromCache)
         {
+            if (loadFromCache && File.Exists(CacheFilename))
+            {
+                LoadFromCache();
+                return;
+            }
+
             var gameNames = new List<string>();
             var gameIDs = new Dictionary<string, string>();
 
@@ -57,8 +70,24 @@ namespace LiveSplit.Web
 
             gameNames.Sort();
 
+            loadedFromAPI = true;
             this.gameNames = gameNames;
             this.gameIDs = gameIDs;
+
+            SaveToCache();
+        }
+
+        private void SaveToCache()
+        {
+            var jsonString = new JavaScriptSerializer().Serialize(gameIDs);
+            File.WriteAllText(CacheFilename, jsonString);
+        }
+
+        private void LoadFromCache()
+        {
+            var jsonString = File.ReadAllText(CacheFilename);
+            gameIDs = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(jsonString);
+            gameNames = gameIDs.Keys.ToArray();
         }
     }
 }
