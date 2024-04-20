@@ -290,18 +290,21 @@ namespace LiveSplit.View
                     .SelectMany(x => x)
                     .GroupBy(x => x.Value, x => x.Key);
                     cbxGameName.GetAllItemsForText = x => SearchForGameName(x);
-                    this.InvokeIfRequired(() =>
+                    if (gameNames != null)
                     {
-                        Application.DoEvents();
-                        try
+                        this.InvokeIfRequired(() =>
                         {
-                            cbxGameName.Items.AddRange(gameNames);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
-                        }
-                    });
+                            Application.DoEvents();
+                            try
+                            {
+                                cbxGameName.Items.AddRange(gameNames);
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Error(ex);
+                            }
+                        });
+                    }
                 }
                 catch (Exception ex)
                 {

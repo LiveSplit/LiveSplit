@@ -1,4 +1,5 @@
-﻿using LiveSplit.Web.Share;
+﻿using LiveSplit.Options;
+using LiveSplit.Web.Share;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -57,24 +58,33 @@ namespace LiveSplit.Web
             var gameIDs = new Dictionary<string, string>();
 
             var headerSet = new HashSet<string>();
-            foreach (var header in SpeedrunCom.Client.Games.GetGameHeaders())
+            try
             {
-                string name = header.Name, id = header.ID;
-        
-                if (!string.IsNullOrEmpty(name) && headerSet.Add(name))
+                foreach (var header in SpeedrunCom.Client.Games.GetGameHeaders())
                 {
-                    gameNames.Add(name);
-                    gameIDs[name] = id;
+                    string name = header.Name, id = header.ID;
+
+                    if (!string.IsNullOrEmpty(name) && headerSet.Add(name))
+                    {
+                        gameNames.Add(name);
+                        gameIDs[name] = id;
+                    }
                 }
+                gameNames.Sort();
+
+                this.gameNames = gameNames;
+                this.gameIDs = gameIDs;
+
+                SaveToCache();
             }
-
-            gameNames.Sort();
-
-            loadedFromAPI = true;
-            this.gameNames = gameNames;
-            this.gameIDs = gameIDs;
-
-            SaveToCache();
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+            finally
+            {
+                loadedFromAPI = true;
+            }
         }
 
         private void SaveToCache()
