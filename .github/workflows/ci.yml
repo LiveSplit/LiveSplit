@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout LiveSplit
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.1
         with:
           submodules: recursive
 
@@ -26,7 +26,7 @@ jobs:
         run: git checkout -b ${{ github.head_ref }} || git checkout ${{ github.head_ref }}
 
       - name: Set up .NET environment
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v4.0.0
         with:
           dotnet-version: '8.x'
 
@@ -71,7 +71,7 @@ jobs:
           rm .\bin\Release\Components\System.Runtime.CompilerServices.Unsafe.dll
 
       - name: Upload build as an artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.2
         with:
           name: LiveSplit_Build
           path: .\bin\Release
