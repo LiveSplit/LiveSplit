@@ -480,8 +480,6 @@ namespace LiveSplit.View
                 item.Tag = race.Id;
                 item.Click += (s, e) => { raceProvider.JoinRace?.Invoke(Model, race.Id); };
                 menuItemsToAdd.Add(item);
-
-                SetGameImage(raceProvider, item, race);
             }
 
             if (menuItemsToAdd.Count > 0)
@@ -522,8 +520,6 @@ namespace LiveSplit.View
                     }
                 };
 
-                SetGameImage(raceProvider, tsItem, race);
-
                 UpdateTitle(tsItem, race, startTime, gameAndGoal);
 
                 RacesToRefresh.Add(updateTitleAction);
@@ -551,26 +547,6 @@ namespace LiveSplit.View
             menuItemsToAdd.Add(newRaceItem);
 
             replaceItems(menuItemsToAdd);
-        }
-
-        void SetGameImage(RaceProviderAPI raceProvider, ToolStripMenuItem item, IRaceInfo race)
-        {
-            Task.Factory.StartNew(() =>
-            {
-                try
-                {
-                    var image = raceProvider.GetGameImage(race.GameId);
-                    this.InvokeIfRequired(() =>
-                    {
-                        try
-                        {
-                            item.Image = image;
-                        }
-                        catch { }
-                    });
-                }
-                catch { }
-            });
         }
 
         void UpdateTitle(ToolStripMenuItem item, IRaceInfo race, DateTime startTime, string gameAndGoal)

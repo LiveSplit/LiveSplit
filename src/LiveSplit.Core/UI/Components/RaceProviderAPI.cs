@@ -26,7 +26,6 @@ namespace LiveSplit.UI.Components
         public JoinRaceDelegate JoinRace;
         public CreateRaceDelegate CreateRace;
         public abstract void RefreshRacesListAsync();
-        public abstract Image GetGameImage(string id);
         public abstract string ProviderName { get; }
         public abstract string Username { get; }
         public RaceProviderSettings Settings { get; set; }

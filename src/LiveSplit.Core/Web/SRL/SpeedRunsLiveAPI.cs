@@ -21,12 +21,8 @@ namespace LiveSplit.Web.SRL
         protected IEnumerable<SRLRaceInfo> racesList;
         protected IEnumerable<dynamic> gameList;
         protected IList<string> gameNames;
-        protected IDictionary<string, Image> imageList;
 
-        protected SpeedRunsLiveAPI()
-        {
-            imageList = new Dictionary<string, Image>();
-        }
+        protected SpeedRunsLiveAPI() { }
 
         protected Uri GetUri(string subUri)
         {
@@ -88,35 +84,6 @@ namespace LiveSplit.Web.SRL
                 RefreshRacesList();
 
             return racesList;
-        }
-
-        public override Image GetGameImage(string gameId)
-        {
-            lock (imageList)
-            {
-                if (!imageList.ContainsKey(gameId))
-                {
-                    Image image = null;
-
-                    try
-                    {
-                        var request = WebRequest.Create($"http://c15111072.r72.cf2.rackcdn.com/{gameId}.jpg");
-
-                        using (var response = request.GetResponse())
-                        using (var stream = response.GetResponseStream())
-                        {
-                            image = Image.FromStream(stream);
-                        }
-                    }
-                    finally
-                    {
-                        if (!imageList.ContainsKey(gameId))
-                            imageList.Add(gameId, image);
-                    }
-                }
-
-                return imageList[gameId];
-            }
         }
 
         void SpeedRunsLiveAPI_Elapsed(object sender, ElapsedEventArgs e)
