@@ -283,15 +283,10 @@ namespace LiveSplit.View
             {
                 try
                 {
-                    gameNames = CompositeGameList.Instance.GetGameNames().ToArray();
-                    abbreviations = gameNames
-                    .Select(x => x.GetAbbreviations()
-                        .Select(y => new KeyValuePair<string, string>(x, y)))
-                    .SelectMany(x => x)
-                    .GroupBy(x => x.Value, x => x.Key);
-                    cbxGameName.GetAllItemsForText = x => SearchForGameName(x);
-                    if (gameNames != null)
+                    var cachedGameNames = CompositeGameList.Instance.GetGameNames(true);
+                    if (cachedGameNames != null)
                     {
+                        gameNames = cachedGameNames.ToArray();
                         this.InvokeIfRequired(() =>
                         {
                             Application.DoEvents();
@@ -304,6 +299,37 @@ namespace LiveSplit.View
                                 Log.Error(ex);
                             }
                         });
+                    }
+                    else
+                        cachedGameNames = new string[0];
+
+                    var fetchedGameNames = CompositeGameList.Instance.GetGameNames(false);
+                    if (fetchedGameNames != null)
+                    {
+                        gameNames = fetchedGameNames.ToArray();
+                        var newGameNames = gameNames.Except(cachedGameNames).ToArray();
+
+                        abbreviations = gameNames
+                        .Select(x => x.GetAbbreviations()
+                            .Select(y => new KeyValuePair<string, string>(x, y)))
+                        .SelectMany(x => x)
+                        .GroupBy(x => x.Value, x => x.Key);
+                        cbxGameName.GetAllItemsForText = x => SearchForGameName(x);
+                        if (newGameNames.Length > 0)
+                        {
+                            this.InvokeIfRequired(() =>
+                            {
+                                Application.DoEvents();
+                                try
+                                {
+                                    cbxGameName.Items.AddRange(newGameNames);
+                                }
+                                catch (Exception ex)
+                                {
+                                    Log.Error(ex);
+                                }
+                            });
+                        }
                     }
                 }
                 catch (Exception ex)

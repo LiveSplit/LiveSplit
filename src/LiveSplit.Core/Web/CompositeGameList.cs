@@ -28,7 +28,7 @@ namespace LiveSplit.Web
 
         public string GetGameID(string gameName)
         {
-            if (gameIDs == null)
+            if (gameIDs == null && !loadedFromAPI)
             {
                 GetGames(true);
             }
@@ -36,11 +36,11 @@ namespace LiveSplit.Web
             return gameIDs[gameName];
         }
 
-        public IEnumerable<string> GetGameNames()
+        public IEnumerable<string> GetGameNames(bool loadFromCache)
         {
-            if (gameNames == null || !loadedFromAPI)
+            if (!loadedFromAPI && (!loadFromCache || gameNames == null))
             {
-                GetGames(false);
+                GetGames(loadFromCache);
             }
 
             return gameNames;
