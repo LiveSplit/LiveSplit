@@ -54,23 +54,6 @@ jobs:
           --no-restore --no-build
           .\LiveSplit.sln
 
-      - name: Clean up build folder
-        run: |
-          mkdir .\bin\Release\Resources
-          cp .\res\SplitsFile.ico .\bin\Release\Resources
-          cp .\res\LayoutFile.ico .\bin\Release\Resources
-          rm .\bin\Release\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll
-          rm .\bin\Release\Microsoft.WindowsAPICodePack.Sensors.dll
-          rm .\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.dll
-          rm .\bin\Release\Components\SpeedrunComSharp.dll
-          rm .\bin\Release\Components\CustomFontDialog.dll
-          rm .\bin\Release\Components\WinFormsColor.dll
-          rm .\bin\Release\Components\System.Buffers.dll
-          rm .\bin\Release\Components\System.Memory.dll
-          rm .\bin\Release\Components\System.Numerics.Vectors.dll
-          rm .\bin\Release\Components\System.Resources.Extensions.dll
-          rm .\bin\Release\Components\System.Runtime.CompilerServices.Unsafe.dll
-
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v4
         with:
