@@ -33,6 +33,7 @@
       del "$(OutDir)\Microsoft.WindowsAPICodePack.ShellExtensions.dll"
       del "$(OutDir)\Components\SpeedrunComSharp.dll"
       del "$(OutDir)\Components\CustomFontDialog.dll"
+      del "$(OutDir)\Components\CustomFontDialog.dll.config"
       del "$(OutDir)\Components\WinFormsColor.dll"
       del "$(OutDir)\Components\System.Buffers.dll"
       del "$(OutDir)\Components\System.Memory.dll"
