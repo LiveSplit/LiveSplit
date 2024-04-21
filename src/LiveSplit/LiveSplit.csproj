@@ -20,10 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj" />
     <ProjectReference Include="..\LiveSplit.View\LiveSplit.View.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="..\..\lib\WinForms Color Picker\WinFormsColor.dll" />
+    <ProjectReference Include="..\..\lib\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj" />
   </ItemGroup>
 
 </Project>

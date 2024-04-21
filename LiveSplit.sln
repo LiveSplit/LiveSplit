@@ -89,6 +89,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Tests", "test\Liv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomFontDialog", "lib\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj", "{9C4ED8A7-5306-421A-8BBF-2E1C49AAE943}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsColor", "lib\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj", "{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -227,6 +229,10 @@ Global
 		{9C4ED8A7-5306-421A-8BBF-2E1C49AAE943}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C4ED8A7-5306-421A-8BBF-2E1C49AAE943}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C4ED8A7-5306-421A-8BBF-2E1C49AAE943}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -271,5 +277,6 @@ Global
 		{D995FF48-716D-4D47-81DA-6A2C0A8F0F8E} = {A20B2CD3-D574-467F-B1CB-CB723C3314B8}
 		{32D3EE3A-410C-4875-B29F-12D83EA95756} = {ECBBA10A-903C-4610-8BE4-FC8503A97C04}
 		{9C4ED8A7-5306-421A-8BBF-2E1C49AAE943} = {4850A037-C05C-4A26-A0B0-0E109663C7A8}
+		{0D77A457-99DE-41D8-89E6-1EA293FB2AFB} = {4850A037-C05C-4A26-A0B0-0E109663C7A8}
 	EndGlobalSection
 EndGlobal

@@ -64,6 +64,7 @@ jobs:
           rm .\bin\Release\Microsoft.WindowsAPICodePack.ShellExtensions.dll
           rm .\bin\Release\Components\SpeedrunComSharp.dll
           rm .\bin\Release\Components\CustomFontDialog.dll
+          rm .\bin\Release\Components\WinFormsColor.dll
           rm .\bin\Release\Components\System.Buffers.dll
           rm .\bin\Release\Components\System.Memory.dll
           rm .\bin\Release\Components\System.Numerics.Vectors.dll
