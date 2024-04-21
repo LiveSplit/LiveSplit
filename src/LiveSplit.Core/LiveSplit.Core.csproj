@@ -50,9 +50,9 @@
         git rev-parse --abbrev-ref HEAD &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\branch.txt"
         git rev-parse HEAD &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\revision.txt"
       ) else (
-        echo 13.3.7-0&gt;  "$(MSBuildProjectDirectory)\Updates\GitInfo\version.txt"
-        echo no-git&gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\branch.txt"
-        echo deadbeef&gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\revision.txt"
+        touch "$(MSBuildProjectDirectory)\Updates\GitInfo\version.txt"
+        touch "$(MSBuildProjectDirectory)\Updates\GitInfo\branch.txt"
+        touch "$(MSBuildProjectDirectory)\Updates\GitInfo\revision.txt"
       )
       EXIT 0
     </PreBuildEvent>
