@@ -42,10 +42,6 @@ namespace LiveSplit.UI.LayoutFactories
             settings.ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]);
             settings.AlwaysOnTop = SettingsHelper.ParseBool(element["AlwaysOnTop"]);
             settings.TimerFont = SettingsHelper.GetFontFromElement(element["TimerFont"]);
-            using (var timerFont = new Font(settings.TimerFont.FontFamily.Name, (settings.TimerFont.Size / 50f) * 18f, settings.TimerFont.Style, GraphicsUnit.Point))
-            {
-                settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
-            }
             settings.ImageOpacity = SettingsHelper.ParseFloat(element["ImageOpacity"], 1f);
             settings.ImageBlur = SettingsHelper.ParseFloat(element["ImageBlur"], 0f);
 
