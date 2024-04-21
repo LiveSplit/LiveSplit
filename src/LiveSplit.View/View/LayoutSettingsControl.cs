@@ -151,7 +151,7 @@ namespace LiveSplit.View
 
         private void btnTimes_Click(object sender, EventArgs e)
         {
-            var dialog = SettingsHelper.GetFontDialog(Settings.TimesFont, 7, 20);
+            var dialog = SettingsHelper.GetFontDialog(Settings.TimesFont, 11, 26);
             dialog.FontChanged += (s, ev) => Settings.TimesFont = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
             dialog.ShowDialog(this);
             lblTimes.Text = MainFont;
@@ -159,7 +159,7 @@ namespace LiveSplit.View
 
         private void btnTextFont_Click(object sender, EventArgs e)
         {
-            var dialog = SettingsHelper.GetFontDialog(Settings.TextFont, 7, 20);
+            var dialog = SettingsHelper.GetFontDialog(Settings.TextFont, 11, 26);
             dialog.FontChanged += (s, ev) => Settings.TextFont = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
             dialog.ShowDialog(this);
             lblText.Text = SplitNamesFont;
