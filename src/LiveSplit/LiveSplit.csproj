@@ -28,6 +28,7 @@
       mkdir "$(OutDir)\Resources"
       cp "$(MSBuildProjectDirectory)\..\..\res\SplitsFile.ico" "$(OutDir)\Resources"
       cp "$(MSBuildProjectDirectory)\..\..\res\LayoutFile.ico" "$(OutDir)\Resources"
+      rd /s /q "$(OutDir)\runtimes"
       del "$(OutDir)\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll"
       del "$(OutDir)\Microsoft.WindowsAPICodePack.Sensors.dll"
       del "$(OutDir)\Microsoft.WindowsAPICodePack.ShellExtensions.dll"
