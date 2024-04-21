@@ -11,8 +11,8 @@ namespace LiveSplit.View
         public AboutBox()
         {
             InitializeComponent();
-            lblVersion.Text = Git.Version;
-            if (Git.Branch != "master" && Git.Branch != "HEAD")
+            lblVersion.Text = Git.Version ?? "Unknown Version";
+            if (Git.Branch != null && Git.Branch != "master" && Git.Branch != "HEAD")
                 labelProductName.Text = string.Format("{0} ({1})", labelProductName.Text, Git.Branch);
         }
 
@@ -123,7 +123,10 @@ namespace LiveSplit.View
 
         private void lblVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Process.Start(Git.RevisionUri.AbsoluteUri);
+            if (Git.RevisionUri != null)
+            {
+                Process.Start(Git.RevisionUri.AbsoluteUri);
+            }
         }
     }
 }
