@@ -42,7 +42,7 @@ namespace UpdateManager
                             Process.Start(OtherProcess);
                         Invoke(new Action(() => Close()));
                     }
-                    catch (Exception ex) { MessageBox.Show(ex.Message, "Fehler"); }
+                    catch (Exception ex) { MessageBox.Show(ex.Message, "Error"); }
                 };
             new Thread(new ThreadStart(a)).Start();
         }
