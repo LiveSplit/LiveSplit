@@ -3,9 +3,6 @@
   <PropertyGroup>
     <OutDir>bin\$(Configuration)</OutDir>
     <LangVersion>7.1</LangVersion>
-    <TargetFramework>net4.6.1</TargetFramework>
-
-    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -24,13 +21,6 @@
     <ProjectReference Include="..\..\components\LiveSplit.TotalPlaytime\src\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj" />
     <ProjectReference Include="..\..\components\LiveSplit.WorldRecord\src\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj" />
     <ProjectReference Include="..\..\src\LiveSplit.Core\LiveSplit.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.3" />
-    <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
   </ItemGroup>
 
   <ItemGroup>

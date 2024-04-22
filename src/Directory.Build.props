@@ -1,0 +1,9 @@
+<Project>
+
+  <Import Project="..\Directory.Build.props" />
+
+  <PropertyGroup Label="Output Settings">
+    <OutDir>$(BuildPath)</OutDir>
+  </PropertyGroup>
+
+</Project>
