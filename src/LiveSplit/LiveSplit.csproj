@@ -32,6 +32,8 @@
       del "$(OutDir)\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll"
       del "$(OutDir)\Microsoft.WindowsAPICodePack.Sensors.dll"
       del "$(OutDir)\Microsoft.WindowsAPICodePack.ShellExtensions.dll"
+      del "$(OutDir)\x64\asr_capi.dll"
+      del "$(OutDir)\x86\asr_capi.dll"
       del "$(OutDir)\Components\SpeedrunComSharp.dll"
       del "$(OutDir)\Components\CustomFontDialog.dll"
       del "$(OutDir)\Components\CustomFontDialog.dll.config"
