@@ -2,6 +2,11 @@
 
   <Import Project="..\Directory.Build.props" />
 
+  <PropertyGroup Label="Common Directories">
+    <LsSrcPath>$(RootPath)\src</LsSrcPath>
+    <LsLibPath>$(RootPath)\lib</LsLibPath>
+  </PropertyGroup>
+
   <PropertyGroup Label="Output Settings">
     <OutDir>$(BuildPath)\Components</OutDir>
   </PropertyGroup>
