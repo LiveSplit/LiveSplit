@@ -23,8 +23,8 @@
   <PropertyGroup>
     <PostBuildEvent>
       mkdir "$(OutDir)\Resources"
-      cp "$(ResourcesPath)\SplitsFile.ico" "$(OutDir)\Resources"
-      cp "$(ResourcesPath)\LayoutFile.ico" "$(OutDir)\Resources"
+      copy "$(ResourcesPath)\SplitsFile.ico" "$(OutDir)\Resources"
+      copy "$(ResourcesPath)\LayoutFile.ico" "$(OutDir)\Resources"
       rd /s /q "$(OutDir)\runtimes"
       del "$(OutDir)\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll"
       del "$(OutDir)\Microsoft.WindowsAPICodePack.Sensors.dll"
