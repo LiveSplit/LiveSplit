@@ -3,34 +3,24 @@
   <PropertyGroup>
     <OutDir>bin\$(Configuration)</OutDir>
     <LangVersion>7.1</LangVersion>
-    <TargetFramework>net4.6.1</TargetFramework>
-
-    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\components\LiveSplit.CurrentComparison\src\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.Delta\src\LiveSplit.Delta\LiveSplit.Delta.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.DetailedTimer\src\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.ManualGameTime\src\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.PossibleTimeSave\src\LiveSplit.PossibleTimeSave\LiveSplit.PossibleTimeSave.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.PreviousSegment\src\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.RunPrediction\src\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.ScriptableAutoSplit\src\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.Splits\src\LiveSplit.Splits\LiveSplit.Splits.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.Subsplits\src\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.SumOfBest\src\LiveSplit.SumOfBest\LiveSplit.SumOfBest.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.Timer\src\LiveSplit.Timer\LiveSplit.Timer.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.TotalPlaytime\src\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj" />
-    <ProjectReference Include="..\..\components\LiveSplit.WorldRecord\src\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj" />
-    <ProjectReference Include="..\..\src\LiveSplit.Core\LiveSplit.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="coverlet.collector" Version="6.0.2" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.3.3" />
-    <PackageReference Include="xunit" Version="2.4.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.CurrentComparison\src\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.Delta\src\LiveSplit.Delta\LiveSplit.Delta.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.DetailedTimer\src\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.ManualGameTime\src\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.PossibleTimeSave\src\LiveSplit.PossibleTimeSave\LiveSplit.PossibleTimeSave.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.PreviousSegment\src\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.RunPrediction\src\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.ScriptableAutoSplit\src\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.Splits\src\LiveSplit.Splits\LiveSplit.Splits.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.Subsplits\src\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.SumOfBest\src\LiveSplit.SumOfBest\LiveSplit.SumOfBest.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.Timer\src\LiveSplit.Timer\LiveSplit.Timer.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.TotalPlaytime\src\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj" />
+    <ProjectReference Include="$(ComponentsPath)\LiveSplit.WorldRecord\src\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj" />
+    <ProjectReference Include="$(SrcPath)\LiveSplit.Core\LiveSplit.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

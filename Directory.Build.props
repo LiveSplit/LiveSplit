@@ -1,0 +1,27 @@
+<Project>
+
+  <PropertyGroup Label="Project Settings">
+    <TargetFramework>net4.6.1</TargetFramework>
+
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Common Directories">
+    <RootPath>$(MSBuildThisFileDirectory)</RootPath>
+
+    <SrcPath>$(RootPath)\src</SrcPath>
+    <TestPath>$(RootPath)\test</TestPath>
+
+    <LibPath>$(RootPath)\lib</LibPath>
+    <ComponentsPath>$(RootPath)\components</ComponentsPath>
+    <ResourcesPath>$(RootPath)\res</ResourcesPath>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Output Settings">
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+    <ArtifactsPath>$(RootPath)\artifacts</ArtifactsPath>
+
+    <BuildPath>$(RootPath)\bin\$(Configuration.ToLowerInvariant())</BuildPath>
+  </PropertyGroup>
+
+</Project>

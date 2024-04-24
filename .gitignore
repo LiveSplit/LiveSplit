@@ -5,6 +5,7 @@
 .fleet/
 
 # Build artifacts
+artifacts/
 bin/
 obj/
 publish/

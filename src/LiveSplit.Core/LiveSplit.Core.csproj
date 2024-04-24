@@ -1,14 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutDir>..\..\bin\$(Configuration)</OutDir>
     <RootNamespace>LiveSplit</RootNamespace>
-    <TargetFramework>net4.6.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
 
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,10 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\lib\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
-    <ProjectReference Include="..\UpdateManager\UpdateManager.csproj" />
-    <ProjectReference Include="..\..\lib\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj" />
-    <ProjectReference Include="..\..\lib\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj" />
+    <ProjectReference Include="$(LibPath)\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
+    <ProjectReference Include="$(SrcPath)\UpdateManager\UpdateManager.csproj" />
+    <ProjectReference Include="$(LibPath)\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj" />
+    <ProjectReference Include="$(LibPath)\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj" />
   </ItemGroup>
 
   <ItemGroup>

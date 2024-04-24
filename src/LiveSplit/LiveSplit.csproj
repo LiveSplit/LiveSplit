@@ -3,12 +3,9 @@
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
 
-    <OutDir>..\..\bin\$(Configuration)</OutDir>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net4.6.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
 
-    <Nullable>disable</Nullable>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
@@ -18,16 +15,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LiveSplit.Core\LiveSplit.Core.csproj" />
-    <ProjectReference Include="..\LiveSplit.View\LiveSplit.View.csproj" />
-    <ProjectReference Include="..\..\lib\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj" />
+    <ProjectReference Include="$(SrcPath)\LiveSplit.Core\LiveSplit.Core.csproj" />
+    <ProjectReference Include="$(SrcPath)\LiveSplit.View\LiveSplit.View.csproj" />
+    <ProjectReference Include="$(LibPath)\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
     <PostBuildEvent>
       mkdir "$(OutDir)\Resources"
-      cp "$(MSBuildProjectDirectory)\..\..\res\SplitsFile.ico" "$(OutDir)\Resources"
-      cp "$(MSBuildProjectDirectory)\..\..\res\LayoutFile.ico" "$(OutDir)\Resources"
+      copy "$(ResourcesPath)\SplitsFile.ico" "$(OutDir)\Resources"
+      copy "$(ResourcesPath)\LayoutFile.ico" "$(OutDir)\Resources"
       rd /s /q "$(OutDir)\runtimes"
       del "$(OutDir)\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll"
       del "$(OutDir)\Microsoft.WindowsAPICodePack.Sensors.dll"
