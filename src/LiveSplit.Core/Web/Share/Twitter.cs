@@ -24,7 +24,7 @@ namespace LiveSplit.Web.Share
 
         public string Description =>
 @"X (Twitter) allows you to share your run with the world. 
-When sharing, a screenshot of LiveSplit is automatically copied the the clipboard.
+When sharing, a screenshot of LiveSplit is automatically copied to the clipboard.
 When you click share, LiveSplit opens a Tweet composition window in your default browser.";
 
         public bool VerifyLogin()
