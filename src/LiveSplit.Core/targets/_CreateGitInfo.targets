@@ -1,0 +1,42 @@
+<Project>
+
+  <PropertyGroup>
+    <GitInfoPath>$(MSBuildProjectDirectory)\Updates\GitInfo</GitInfoPath>
+  </PropertyGroup>
+
+  <Target Name="_CreateGitInfo" BeforeTargets="PreBuildEvent">
+    <Message Importance="high" Text="Creating Git Info..." />
+    <MakeDir Directories="$(GitInfoPath)" />
+
+    <Exec Command="where git" ContinueOnError="true">
+      <Output TaskParameter="ExitCode" PropertyName="WhereGitExitCode" />
+    </Exec>
+  </Target>
+
+  <Target Name="_CreateGitInfoWithGit" AfterTargets="_CreateGitInfo"
+          Condition="'$(WhereGitExitCode)' == '0'">
+    <Exec Command="git describe --dirty --always --long --tags" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitVersion" />
+    </Exec>
+
+    <Exec Command="git rev-parse --abbrev-ref HEAD" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitBranch" />
+    </Exec>
+
+    <Exec Command="git rev-parse HEAD" ConsoleToMSBuild="true">
+      <Output TaskParameter="ConsoleOutput" PropertyName="GitRevision" />
+    </Exec>
+
+    <WriteLinesToFile File="$(GitInfoPath)\version.txt" Lines="$(GitVersion)" Overwrite="true" />
+    <WriteLinesToFile File="$(GitInfoPath)\branch.txt" Lines="$(GitBranch)" Overwrite="true" />
+    <WriteLinesToFile File="$(GitInfoPath)\revision.txt" Lines="$(GitRevision)" Overwrite="true" />
+  </Target>
+
+  <Target Name="_CreateGitInfoWithoutGit" AfterTargets="_CreateGitInfo"
+          Condition="'$(WhereGitExitCode)' != '0'">
+    <Touch Files="$(GitInfoPath)\version.txt" AlwaysCreate="true" />
+    <Touch Files="$(GitInfoPath)\branch.txt" AlwaysCreate="true" />
+    <Touch Files="$(GitInfoPath)\revision.txt" AlwaysCreate="true" />
+  </Target>
+
+</Project>

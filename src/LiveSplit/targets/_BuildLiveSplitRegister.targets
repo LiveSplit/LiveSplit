@@ -1,0 +1,8 @@
+<Project>
+
+  <Target Name="_BuildLiveSplitRegister" AfterTargets="Build">
+    <MSBuild Projects="$(SrcPath)\LiveSplit.Register\LiveSplit.Register.csproj" Targets="Restore" Properties="IsRestoring=true" />
+    <MSBuild Projects="$(SrcPath)\LiveSplit.Register\LiveSplit.Register.csproj" Targets="Build" Properties="OutputPath=$(OutputPath)" />
+  </Target>
+
+</Project>
