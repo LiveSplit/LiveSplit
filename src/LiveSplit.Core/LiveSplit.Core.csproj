@@ -37,6 +37,21 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Web\Share\ShareSettings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ShareSettings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Web\Share\ShareSettings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>ShareSettings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
   <PropertyGroup>
     <PreBuildEvent>
       mkdir "$(MSBuildProjectDirectory)\Updates\GitInfo\."
