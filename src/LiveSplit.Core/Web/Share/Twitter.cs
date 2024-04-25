@@ -37,14 +37,14 @@ When you click share, LiveSplit opens a Tweet composition window in your default
             if (attachSplits)
                 comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
 
-            ImageToCripboard(screenShotFunction());
+            ImageToClipboard(screenShotFunction());
             var uri = MakeUri(comment);
             Process.Start(uri);
 
             return true;
         }
 
-        private void ImageToCripboard(Image image)
+        private void ImageToClipboard(Image image)
         {
             if (image is null)
                 return;
