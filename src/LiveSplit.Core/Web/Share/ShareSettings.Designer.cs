@@ -30,6 +30,21 @@ namespace LiveSplit.Web.Share
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TwitterFormat
+        {
+            get
+            {
+                return ((string)(this["TwitterFormat"]));
+            }
+            set
+            {
+                this["TwitterFormat"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string TwitchFormat
         {
             get
@@ -39,6 +54,21 @@ namespace LiveSplit.Web.Share
             set
             {
                 this["TwitchFormat"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string TwitterFormatRunning
+        {
+            get
+            {
+                return ((string)(this["TwitterFormatRunning"]));
+            }
+            set
+            {
+                this["TwitterFormatRunning"] = value;
             }
         }
     }

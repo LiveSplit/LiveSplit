@@ -44,6 +44,8 @@ namespace LiveSplit.View
 
         private void SubmitDialog_Load(object sender, EventArgs e)
         {
+            cbxPlatform.Items.Add("X (Twitter)");
+
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
             {
                 if (HasPersonalBest(Run))
@@ -72,6 +74,7 @@ namespace LiveSplit.View
             switch (cbxPlatform.SelectedItem.ToString())
             {
                 case "Splits.io": CurrentPlatform = SplitsIO.Instance; break;
+                case "X (Twitter)": CurrentPlatform = Twitter.Instance; break;
                 case "Twitch": CurrentPlatform = Twitch.Instance; break;
                 case "Screenshot": CurrentPlatform = Screenshot.Instance; break;
                 case "Imgur": CurrentPlatform = Imgur.Instance; break;
@@ -84,7 +87,7 @@ namespace LiveSplit.View
             txtNotes.Enabled = btnInsertCategory.Enabled = btnInsertDeltaTime.Enabled = btnInsertGame.Enabled
                 = btnInsertPB.Enabled = btnInsertSplitName.Enabled = btnInsertSplitTime.Enabled
                 = btnInsertStreamLink.Enabled = btnInsertTitle.Enabled = btnPreview.Enabled =
-                (CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance);
+                (CurrentPlatform == Twitter.Instance || CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance);
 
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
                 chkAttachSplits.Enabled = !(CurrentPlatform == Screenshot.Instance || CurrentPlatform == SplitsIO.Instance
@@ -164,7 +167,27 @@ namespace LiveSplit.View
 
         private void RefreshNotes()
         {
-            if (CurrentPlatform == Twitch.Instance)
+            if (CurrentPlatform == Twitter.Instance)
+            {
+                ShareSettings.Default.Reload();
+                if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
+                {
+                    txtNotes.Text = ShareSettings.Default.TwitterFormat;
+                    if (string.IsNullOrEmpty(txtNotes.Text))
+                    {
+                        txtNotes.Text = "I got a $pb in $title.";
+                    }
+                }
+                else
+                {
+                    txtNotes.Text = ShareSettings.Default.TwitterFormatRunning;
+                    if (string.IsNullOrEmpty(txtNotes.Text))
+                    {
+                        txtNotes.Text = "I'm $delta in $title.";
+                    }
+                }
+            }
+            else if (CurrentPlatform == Twitch.Instance)
             {
                 ShareSettings.Default.Reload();
                 txtNotes.Text = ShareSettings.Default.TwitchFormat;
@@ -179,7 +202,15 @@ namespace LiveSplit.View
 
         private void SaveNotesFormat()
         {
-            if (CurrentPlatform == Twitch.Instance)
+            if (CurrentPlatform == Twitter.Instance)
+            {
+                if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
+                    ShareSettings.Default.TwitterFormat = txtNotes.Text;
+                else
+                    ShareSettings.Default.TwitterFormatRunning = txtNotes.Text;
+                ShareSettings.Default.Save();
+            }
+            else if (CurrentPlatform == Twitch.Instance)
             {
                 ShareSettings.Default.TwitchFormat = txtNotes.Text;
                 ShareSettings.Default.Save();
