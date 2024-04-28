@@ -97,3 +97,6 @@
 [submodule "LiveSplit/Components/LiveSplit.TheRun"]
 	path = components/LiveSplit.TheRun
 	url = https://github.com/therungg/LiveSplit.TheRun
+[submodule "components/LiveSplit.ComparisonTime"]
+	path = components/LiveSplit.ComparisonTime
+	url = https://github.com/LiveSplit/LiveSplit.ComparisonTime.git
