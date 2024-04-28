@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Xunit;
 using LiveSplit.Model;
+using System.Net;
 
 namespace LiveSplit.Tests.AutoSplitterTests
 {
@@ -14,7 +15,17 @@ namespace LiveSplit.Tests.AutoSplitterTests
         [Fact]
         public void TestAutoSplittersXML()
         {
-            var xmlPath = Path.Combine("..", "..", "..", "..", "LiveSplit.AutoSplitters.xml");
+            var xmlPath = Path.Combine("..", "..", "..", "..", AutoSplitterFactory.AutoSplittersXmlFile);
+
+            // Only download the latest XML if the file does not exist. This allows overriding the file
+            // for testing a specific XML.
+            if (!File.Exists(xmlPath))
+            {
+                using (var client = new WebClient())
+                {
+                    client.DownloadFile(AutoSplitterFactory.AutoSplittersXmlUrl, xmlPath);
+                }
+            }
 
             Assert.True(File.Exists(xmlPath), "The Auto Splitters XML is missing");
 
