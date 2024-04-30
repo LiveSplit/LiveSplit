@@ -3,7 +3,7 @@ using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.IO.Pipes;
 using System.Linq;
@@ -422,23 +422,19 @@ namespace LiveSplit.Server
                         {
                             var options = args[1].Split(new[] { ' ' }, 2);
 
-                            try
-                            {
-                                index = Convert.ToInt32(options[0]);
-                            }
-                            catch (Exception ex)
-                            {
-                                Log.Error(ex);
-                                Log.Error($"[Server] Could not parse {options[0]} as a split index.");
-                            }
-
-                            title = options[1];
-
                             if (options.Length < 2)
                             {
                                 Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
                                 break;
                             }
+
+                            if (!int.TryParse(options[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out index))
+                            {
+                                Log.Error($"[Server] Could not parse {options[0]} as a split index while setting split name.");
+                                break;
+                            }
+
+                            title = options[1];
                         }
 
                         if (index >= 0 && index < State.Run.Count)
