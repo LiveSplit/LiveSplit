@@ -3,7 +3,6 @@ using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.IO.Pipes;
 using System.Linq;
