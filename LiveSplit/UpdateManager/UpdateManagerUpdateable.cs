@@ -25,12 +25,12 @@ namespace UpdateManager
 
         public string XMLURL
         {
-            get { return "http://livesplit.org/update/update.updater.xml"; }
+            get { return "http://raw.githubusercontent.com/LiveSplit/LiveSplit.github.io/release-1.8.29/update/update.updater.xml"; }
         }
 
         public string UpdateURL
         {
-            get { return "http://livesplit.org/update/"; }
+            get { return "http://raw.githubusercontent.com/LiveSplit/LiveSplit.github.io/release-1.8.29/update/"; }
         }
 
         public Version Version
