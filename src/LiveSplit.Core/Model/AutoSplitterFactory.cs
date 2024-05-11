@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Xml;
 
 namespace LiveSplit.Model
@@ -37,6 +38,7 @@ namespace LiveSplit.Model
             if (AutoSplitters != null)
                 return;
 
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
             var document = DownloadAutoSplitters();
 
             if (document != null)
