@@ -178,7 +178,8 @@ public class MainTest {
 ```
 
 #### Lua
-Lua is usable for a client, however the lua io library must be available for the script to use.
+Software that implements [Lua](https://www.lua.org/) is usable for as a client. However, the lua io library must be available for the script to use, full documentation available [here](https://www.lua.org/manual/5.3/manual.html#6.8).
+
 ```
 require "io"
 self.LSEndpoint = "\\\\.\\pipe\\LiveSplit" --Localhost LiveSplit pipe.
