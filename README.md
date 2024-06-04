@@ -177,6 +177,18 @@ public class MainTest {
 }
 ```
 
+#### Lua
+Software that implements [Lua](https://www.lua.org/) is usable for as a client. However, the lua io library must be available for the script to use, full documentation available [here](https://www.lua.org/manual/5.3/manual.html#6.8).
+
+```
+require "io"
+self.LSEndpoint = "\\\\.\\pipe\\LiveSplit" --Localhost LiveSplit pipe.
+self.LSPipe = io.open(self.LSEndpoint, "w") --Open/start the pipe. Flush is required after every command.
+self.LSPipe:write "starttimer\n"
+self.LSPipe:flush()
+self.LSPipe:close() --This can be left open as needed.
+```
+
 #### Node.js
 
 Node.js client implementation available here: https://github.com/satanch/node-livesplit-client
