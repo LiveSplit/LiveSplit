@@ -20,27 +20,6 @@
     <ProjectReference Include="$(LibPath)\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <PostBuildEvent>
-      mkdir "$(OutDir)\Resources"
-      copy "$(ResourcesPath)\SplitsFile.ico" "$(OutDir)\Resources"
-      copy "$(ResourcesPath)\LayoutFile.ico" "$(OutDir)\Resources"
-      rd /s /q "$(OutDir)\runtimes"
-      del "$(OutDir)\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll"
-      del "$(OutDir)\Microsoft.WindowsAPICodePack.Sensors.dll"
-      del "$(OutDir)\Microsoft.WindowsAPICodePack.ShellExtensions.dll"
-      del "$(OutDir)\x64\asr_capi.dll"
-      del "$(OutDir)\x86\asr_capi.dll"
-      del "$(OutDir)\Components\SpeedrunComSharp.dll"
-      del "$(OutDir)\Components\CustomFontDialog.dll"
-      del "$(OutDir)\Components\CustomFontDialog.dll.config"
-      del "$(OutDir)\Components\WinFormsColor.dll"
-      del "$(OutDir)\Components\System.Buffers.dll"
-      del "$(OutDir)\Components\System.Memory.dll"
-      del "$(OutDir)\Components\System.Numerics.Vectors.dll"
-      del "$(OutDir)\Components\System.Resources.Extensions.dll"
-      del "$(OutDir)\Components\System.Runtime.CompilerServices.Unsafe.dll"
-    </PostBuildEvent>
-  </PropertyGroup>
+  <Import Project="_BuildForProduction.targets" />
 
 </Project>

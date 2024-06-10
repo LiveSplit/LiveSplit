@@ -1,0 +1,44 @@
+<Project>
+
+  <ItemGroup>
+    <ProjectReference Include="$(SrcPath)\LiveSplit.Register\LiveSplit.Register.csproj"
+                      ReferenceOutputAssembly="false" />
+
+    <ProjectReference Include="$(ComponentsPath)\*\src\*\*.csproj"
+                      Properties="OutputPath=$(OutputPath)\Components"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <Target Name="_MoveFiles" AfterTargets="Build">
+    <Copy SourceFiles="
+      $(ResourcesPath)\LayoutFile.ico;
+      $(ResourcesPath)\SplitsFile.ico"
+          DestinationFolder="$(OutputPath)\Resources" />
+  </Target>
+
+  <Target Name="_CleanOutput" AfterTargets="Build">
+    <ItemGroup>
+      <ComponentsFiles Include="$(OutputPath)\Components\*.*" />
+    </ItemGroup>
+
+    <!-- Removes duplicate files from `Components/`. -->
+    <Delete Files="@(ComponentsFiles)"
+            Condition="Exists('$(OutputPath)\%(Filename)%(Extension)')" />
+
+    <Delete Files="
+      $(OutputPath)\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll;
+      $(OutputPath)\Microsoft.WindowsAPICodePack.Sensors.dll;
+      $(OutputPath)\Microsoft.WindowsAPICodePack.ShellExtensions.dll" />
+
+    <Delete Files="
+      $(OutputPath)\x64\asr_capi.dll;
+      $(OutputPath)\x86\asr_capi.dll" />
+
+    <Delete Files="
+      $(OutputPath)\Components\x64\livesplit_core.dll;
+      $(OutputPath)\Components\x86\livesplit_core.dll" />
+
+    <RemoveDir Directories="$(OutputPath)\runtimes" />
+  </Target>
+
+</Project>

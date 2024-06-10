@@ -36,7 +36,8 @@ jobs:
           -v m
           -c Release
           -p:DebugType=None
-          .\LiveSplit.sln
+          -o .\ci-build
+          .\src\LiveSplit
 
       - name: Build UpdateManager.exe
         run: >
@@ -44,7 +45,8 @@ jobs:
           -v m
           -c UpdateManagerExe
           -p:DebugType=None
-          .\src\UpdateManager\UpdateManager.csproj
+          -o .\ci-update-manager
+          .\src\UpdateManager
 
       - name: Run tests
         run: >
@@ -58,18 +60,18 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: LiveSplit_Build
-          path: .\bin\Release
+          path: .\ci-build
 
       - name: Upload UpdateManager.exe as an artifact
         uses: actions/upload-artifact@v4
         with:
           name: UpdateManagerExe
-          path: .\bin\UpdateManagerExe
+          path: .\ci-update-manager
 
       - name: Upload build to LiveSplit.github.io
         if: github.repository == 'LiveSplit/LiveSplit' && github.ref == 'refs/heads/master'
         run: |
-          7z a LiveSplitDevBuild.zip .\bin\Release\*
+          7z a LiveSplitDevBuild.zip .\ci-build\*
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
           git clone -q --branch master --single-branch "https://github.com/LiveSplit/LiveSplit.github.io.git"

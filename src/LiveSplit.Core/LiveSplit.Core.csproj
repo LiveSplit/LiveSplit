@@ -37,21 +37,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <PreBuildEvent>
-      mkdir "$(MSBuildProjectDirectory)\Updates\GitInfo\."
-      where git
-      if %25ERRORLEVEL%25 == 0 (
-        git describe --dirty --always --long --tags &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\version.txt"
-        git rev-parse --abbrev-ref HEAD &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\branch.txt"
-        git rev-parse HEAD &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\revision.txt"
-      ) else (
-        touch "$(MSBuildProjectDirectory)\Updates\GitInfo\version.txt"
-        touch "$(MSBuildProjectDirectory)\Updates\GitInfo\branch.txt"
-        touch "$(MSBuildProjectDirectory)\Updates\GitInfo\revision.txt"
-      )
-      EXIT 0
-    </PreBuildEvent>
-  </PropertyGroup>
+  <Import Project="_CreateGitInfo.targets" />
 
 </Project>
