@@ -37,6 +37,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
 
-  <Import Project="$(MSBuildThisFileDirectory)\targets\_CreateGitInfo.targets" />
+  <Import Project="$(MSBuildThisFileDirectory)\targets\*.targets" />
 
 </Project>
