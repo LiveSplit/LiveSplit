@@ -317,7 +317,7 @@ namespace LiveSplit.View
             Server = new CommandServer(CurrentState);
             Server.StartNamedPipe();
 
-            new System.Timers.Timer(1000) { Enabled = true }.Elapsed += RaceRefreshTimer_Elapsed;
+            new System.Timers.Timer(1000) { Enabled = true }.Elapsed += PerSecondTimer_Elapsed;
 
             InitDragAndDrop();
         }
@@ -426,8 +426,11 @@ namespace LiveSplit.View
             return goal;
         }
 
-        private void RaceRefreshTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void PerSecondTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            // Invalidate the entire form at least once per second, to avoid parts of the form not being redrawn when necessary in some cases
+            InvalidationRequired = true;
+
             if (ShouldRefreshRaces)
             {
                 for (var i = 0; i < RacesToRefresh.Count; i++)
