@@ -67,6 +67,7 @@ namespace LiveSplit.View
 
         public CommandServer Server { get; set; }
         public bool ServerStarted { get; protected set; } = false;
+        public bool WebSocketStarted { get; protected set; } = false;
 
         protected GraphicsCache GlobalCache { get; set; }
 
@@ -669,6 +670,30 @@ namespace LiveSplit.View
             }
 
             ServerStarted = !ServerStarted;
+        }
+
+        void WebSocketMenuItem_Click(object sender, EventArgs e)
+        {
+            if (WebSocketStarted)
+            {
+                // TODO: Stop WS server.
+
+                this.InvokeIfRequired(() =>
+                {
+                    webSocketMenuItem.Text = "Start WebSocket Server";
+                });
+            }
+            else
+            {
+                // TODO: Start WS server.
+
+                this.InvokeIfRequired(() =>
+                {
+                    webSocketMenuItem.Text = "Stop WebSocket Server";
+                });
+            }
+
+            WebSocketStarted = !WebSocketStarted;
         }
 
         void CurrentState_OnSkipSplit(object sender, EventArgs e)
@@ -2867,6 +2892,7 @@ namespace LiveSplit.View
 
             controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
             controlMenuItem.DropDownItems.Add(serverMenuItem);
+            controlMenuItem.DropDownItems.Add(webSocketMenuItem);
 
             var components = Layout.Components;
             if (CurrentState.Run.IsAutoSplitterActive())
