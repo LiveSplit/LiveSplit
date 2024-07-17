@@ -11,12 +11,14 @@ using System.Net;
 using System.Net.Sockets;
 using System.Windows.Forms;
 using System.Xml;
+using WebSocketSharp.Server;
 
 namespace LiveSplit.Server
 {
     public class CommandServer
     {
         public TcpListener Server { get; set; }
+        public WebSocketServer WsServer { get; set; }
         public List<Connection> PipeConnections { get; set; }
         public List<TcpConnection> TcpConnections { get; set; }
 
@@ -50,6 +52,14 @@ namespace LiveSplit.Server
             Server.BeginAcceptTcpClient(AcceptTcpClient, null);
         }
 
+        public void StartWs()
+        {
+            StopWs();
+            WsServer = new WebSocketServer(State.Settings.ServerPort);
+            WsServer.AddWebSocketService("/livesplit", () => new WsConnection(connection_MessageReceived));
+            WsServer.Start();
+        }
+
         public void StartNamedPipe()
         {
             StopPipe();
@@ -61,6 +71,7 @@ namespace LiveSplit.Server
         {
             StopTcp();
             StopPipe();
+            StopWs();
         }
 
         public void StopTcp()
@@ -72,6 +83,11 @@ namespace LiveSplit.Server
 
             TcpConnections.Clear();
             Server?.Stop();
+        }
+
+        public void StopWs()
+        {
+            WsServer?.Stop();
         }
 
         public void StopPipe()
@@ -145,7 +161,7 @@ namespace LiveSplit.Server
             ProcessMessage(e.Message, e.Connection);
         }
 
-        private void ProcessMessage(string message, Connection clientConnection)
+        private void ProcessMessage(string message, IConnection clientConnection)
         {
             string response = null;
             var args = message.Split(new[] { ' ' }, 2);
