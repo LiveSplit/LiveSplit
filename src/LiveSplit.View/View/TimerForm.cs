@@ -680,8 +680,7 @@ namespace LiveSplit.View
         {
             if (WebSocketStarted)
             {
-                // TODO: Stop WS server.
-
+                Server.StopWs();
                 serverMenuItem.Enabled = true;
 
                 this.InvokeIfRequired(() =>
@@ -691,8 +690,7 @@ namespace LiveSplit.View
             }
             else
             {
-                // TODO: Start WS server.
-
+                Server.StartWs();
                 serverMenuItem.Enabled = false;
 
                 this.InvokeIfRequired(() =>
