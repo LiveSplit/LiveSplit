@@ -145,7 +145,7 @@ namespace LiveSplit.Server
             ProcessMessage(e.Message, e.Connection);
         }
 
-        private void ProcessMessage(string message, Connection clientConnection)
+        private void ProcessMessage(string message, IConnection clientConnection)
         {
             string response = null;
             var args = message.Split(new[] { ' ' }, 2);

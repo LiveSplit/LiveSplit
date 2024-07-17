@@ -9,10 +9,10 @@ namespace LiveSplit.Server
 {
     public class MessageEventArgs : EventArgs
     {
-        public Connection Connection { get; }
+        public IConnection Connection { get; }
         public string Message { get; }
 
-        public MessageEventArgs(Connection connection, string message)
+        public MessageEventArgs(IConnection connection, string message)
         {
             Connection = connection;
             Message = message;
@@ -21,7 +21,7 @@ namespace LiveSplit.Server
 
     public delegate void MessageEventHandler(object sender, MessageEventArgs e);
 
-    public class Connection : IDisposable
+    public class Connection : IConnection, IDisposable
     {
         protected Stream Stream { get; private set; }
         protected StreamReader Reader { get; private set; }
