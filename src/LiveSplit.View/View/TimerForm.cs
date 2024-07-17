@@ -655,6 +655,8 @@ namespace LiveSplit.View
             if (ServerStarted)
             {
                 Server.StopTcp();
+                webSocketMenuItem.Enabled = true;
+
                 this.InvokeIfRequired(() =>
                 {
                     serverMenuItem.Text = "Start TCP Server";
@@ -663,6 +665,8 @@ namespace LiveSplit.View
             else
             {
                 Server.StartTcp();
+                webSocketMenuItem.Enabled = false;
+
                 this.InvokeIfRequired(() =>
                 {
                     serverMenuItem.Text = "Stop TCP Server";
@@ -678,6 +682,8 @@ namespace LiveSplit.View
             {
                 // TODO: Stop WS server.
 
+                serverMenuItem.Enabled = true;
+
                 this.InvokeIfRequired(() =>
                 {
                     webSocketMenuItem.Text = "Start WebSocket Server";
@@ -686,6 +692,8 @@ namespace LiveSplit.View
             else
             {
                 // TODO: Start WS server.
+
+                serverMenuItem.Enabled = false;
 
                 this.InvokeIfRequired(() =>
                 {
