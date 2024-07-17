@@ -68,7 +68,7 @@ The documentation for how to develop, test, and submit an Auto Splitter can be f
 
 ## The LiveSplit Server
 
-The internal LiveSplit Server allows for other programs and other computers to control LiveSplit. The server can accept connections over either a named pipe located at `\\<hostname>\pipe\LiveSplit` (`.` is the hostname if the client and server are on the same computer), over raw TCP/IP, or over the WebSocket (WS) protocol.
+The internal LiveSplit Server allows for other programs and other computers to control LiveSplit. The server can accept connections over either a named pipe located at `\\<hostname>\pipe\LiveSplit` (`.` is the hostname if the client and server are on the same computer), raw TCP/IP, or a WebSocket (WS) server, located at `ws://<hostname>:port/livesplit`.
 
 ### Control
 
