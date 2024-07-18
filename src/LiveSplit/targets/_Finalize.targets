@@ -1,0 +1,24 @@
+<Project>
+
+  <Target Name="_Finalize" AfterTargets="_BuildComponents">
+    <ItemGroup>
+      <_ResourceFiles Include="$(ResourcesPath)\LayoutFile.ico" />
+      <_ResourceFiles Include="$(ResourcesPath)\SplitsFile.ico" />
+
+      <_AssembliesToRemove Include="$(OutputPath)\Components\**\*.*" />
+
+      <_AssembliesToRemove Include="$(OutputPath)\x64\asr_capi.dll" />
+      <_AssembliesToRemove Include="$(OutputPath)\x86\asr_capi.dll" />
+      <_AssembliesToRemove Include="$(OutputPath)\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll" />
+      <_AssembliesToRemove Include="$(OutputPath)\Microsoft.WindowsAPICodePack.Sensors.dll" />
+      <_AssembliesToRemove Include="$(OutputPath)\Microsoft.WindowsAPICodePack.ShellExtensions.dll" />
+    </ItemGroup>
+
+    <Copy SourceFiles="@(_ResourceFiles)" DestinationFolder="$(OutputPath)\Resources" />
+
+    <!-- Delete only those files which already exist in the parent directory. -->
+    <Delete Files="@(_AssembliesToRemove)"
+            Condition="Exists('$(OutputPath)\%(RecursiveDir)\%(Filename)%(Extension)')" />
+  </Target>
+
+</Project>

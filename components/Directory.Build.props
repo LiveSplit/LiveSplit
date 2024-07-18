@@ -7,8 +7,4 @@
     <LsLibPath>$(RootPath)\lib</LsLibPath>
   </PropertyGroup>
 
-  <PropertyGroup Label="Output Settings">
-    <OutDir>$(BuildPath)\Components</OutDir>
-  </PropertyGroup>
-
 </Project>

@@ -1,0 +1,12 @@
+<Project>
+
+  <Target Name="_BuildComponents" AfterTargets="Build">
+    <ItemGroup>
+      <_Components Include="$(ComponentsPath)\*\src\*\*.csproj" />
+    </ItemGroup>
+
+    <MSBuild Projects="@(_Components)" Targets="Restore" Properties="IsRestoring=true" />
+    <MSBuild Projects="@(_Components)" Targets="Build" Properties="OutputPath=$(OutputPath)\Components" />
+  </Target>
+
+</Project>

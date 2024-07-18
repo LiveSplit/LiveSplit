@@ -20,8 +20,6 @@
   <PropertyGroup Label="Output Settings">
     <UseArtifactsOutput>true</UseArtifactsOutput>
     <ArtifactsPath>$(RootPath)\artifacts</ArtifactsPath>
-
-    <BuildPath>$(RootPath)\bin\$(Configuration.ToLowerInvariant())</BuildPath>
   </PropertyGroup>
 
 </Project>
