@@ -67,6 +67,7 @@ namespace LiveSplit.View
 
         public CommandServer Server { get; set; }
         public bool ServerStarted { get; protected set; } = false;
+        public bool WebSocketStarted { get; protected set; } = false;
 
         protected GraphicsCache GlobalCache { get; set; }
 
@@ -317,7 +318,7 @@ namespace LiveSplit.View
             Server = new CommandServer(CurrentState);
             Server.StartNamedPipe();
 
-            new System.Timers.Timer(1000) { Enabled = true }.Elapsed += RaceRefreshTimer_Elapsed;
+            new System.Timers.Timer(1000) { Enabled = true }.Elapsed += PerSecondTimer_Elapsed;
 
             InitDragAndDrop();
         }
@@ -426,8 +427,11 @@ namespace LiveSplit.View
             return goal;
         }
 
-        private void RaceRefreshTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        private void PerSecondTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
+            // Invalidate the entire form at least once per second, to avoid parts of the form not being redrawn when necessary in some cases
+            InvalidationRequired = true;
+
             if (ShouldRefreshRaces)
             {
                 for (var i = 0; i < RacesToRefresh.Count; i++)
@@ -651,6 +655,8 @@ namespace LiveSplit.View
             if (ServerStarted)
             {
                 Server.StopTcp();
+                webSocketMenuItem.Enabled = true;
+
                 this.InvokeIfRequired(() =>
                 {
                     serverMenuItem.Text = "Start TCP Server";
@@ -659,6 +665,8 @@ namespace LiveSplit.View
             else
             {
                 Server.StartTcp();
+                webSocketMenuItem.Enabled = false;
+
                 this.InvokeIfRequired(() =>
                 {
                     serverMenuItem.Text = "Stop TCP Server";
@@ -666,6 +674,32 @@ namespace LiveSplit.View
             }
 
             ServerStarted = !ServerStarted;
+        }
+
+        void WebSocketMenuItem_Click(object sender, EventArgs e)
+        {
+            if (WebSocketStarted)
+            {
+                Server.StopWs();
+                serverMenuItem.Enabled = true;
+
+                this.InvokeIfRequired(() =>
+                {
+                    webSocketMenuItem.Text = "Start WebSocket Server";
+                });
+            }
+            else
+            {
+                Server.StartWs();
+                serverMenuItem.Enabled = false;
+
+                this.InvokeIfRequired(() =>
+                {
+                    webSocketMenuItem.Text = "Stop WebSocket Server";
+                });
+            }
+
+            WebSocketStarted = !WebSocketStarted;
         }
 
         void CurrentState_OnSkipSplit(object sender, EventArgs e)
@@ -2864,6 +2898,7 @@ namespace LiveSplit.View
 
             controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
             controlMenuItem.DropDownItems.Add(serverMenuItem);
+            controlMenuItem.DropDownItems.Add(webSocketMenuItem);
 
             var components = Layout.Components;
             if (CurrentState.Run.IsAutoSplitterActive())
