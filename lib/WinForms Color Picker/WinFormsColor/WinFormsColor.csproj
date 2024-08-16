@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutDir>bin\$(Configuration)</OutDir>
-    <TargetFramework>net4.6.1</TargetFramework>
+    <TargetFramework>net4.8.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
 
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
