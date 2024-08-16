@@ -27,7 +27,7 @@ namespace LiveSplit.TimeFormatters
         {
             var formatRequest = new GeneralTimeFormatter
             {
-                Accuracy = TimeAccuracy.Hundredths,
+                Accuracy = TimeAccuracy.Milliseconds,
                 NullFormat = NullFormat.ZeroWithAccuracy,
                 DigitsFormat = format,
             };
