@@ -7,12 +7,9 @@
     <OutputType>WinExe</OutputType>
     <UseWindowsForms>true</UseWindowsForms>
     <TargetFramework>net4.8.1</TargetFramework>
-
-    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="Icon.ico" />
     <Content Include="Licenses.txt" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
