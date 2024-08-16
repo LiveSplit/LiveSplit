@@ -6,7 +6,7 @@
     <LsSrcPath>$(RootPath)\src</LsSrcPath>
     <LsLibPath>$(RootPath)\lib</LsLibPath>
 
-    <OutDir>$(BuildPath)\Components</OutDir>
+    <OutputPath>$(BuildPath)\Components</OutputPath>
   </PropertyGroup>
 
 </Project>

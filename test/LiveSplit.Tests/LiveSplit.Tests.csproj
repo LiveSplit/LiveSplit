@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutDir>bin\$(Configuration)</OutDir>
+    <OutputPath>bin\$(Configuration)</OutputPath>
     <LangVersion>7.1</LangVersion>
     <TargetFramework>net4.8.1</TargetFramework>
   </PropertyGroup>
