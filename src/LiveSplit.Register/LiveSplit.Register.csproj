@@ -4,6 +4,7 @@
     <RootNamespace>LiveSplit</RootNamespace>
     <OutputType>WinExe</OutputType>
     <UseWindowsForms>true</UseWindowsForms>
+    <TargetFramework>net4.8.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

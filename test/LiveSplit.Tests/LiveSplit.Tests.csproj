@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutDir>bin\$(Configuration)</OutDir>
     <LangVersion>7.1</LangVersion>
+    <TargetFramework>net4.8.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
