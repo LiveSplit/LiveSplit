@@ -1,0 +1,25 @@
+﻿using System;
+using System.Globalization;
+
+namespace LiveSplit.TimeFormatters
+{
+    public class ShortTimeFormatterMilliseconds : GeneralTimeFormatter
+    {
+        public ShortTimeFormatterMilliseconds() 
+        {
+            Accuracy = TimeAccuracy.Milliseconds;
+            NullFormat = NullFormat.ZeroWithAccuracy;
+        }
+        public string Format(TimeSpan? time, DigitsFormat format)
+        {
+            var formatRequest = new GeneralTimeFormatter
+            {
+                Accuracy = TimeAccuracy.Milliseconds,
+                NullFormat = NullFormat.ZeroWithAccuracy,
+                DigitsFormat = format,
+            };
+
+            return formatRequest.Format(time);
+        }
+    }
+}
