@@ -3,13 +3,9 @@ using System.Globalization;
 
 namespace LiveSplit.TimeFormatters
 {
-    public class ShortTimeFormatter : GeneralTimeFormatter
+    public class ShortTimeFormatter : ITimeFormatter
     {
-        public ShortTimeFormatter()
-        {
-            Accuracy = TimeAccuracy.Hundredths;
-            NullFormat = NullFormat.ZeroWithAccuracy;
-        }
+        public ShortTimeFormatter() { }
 
         [Obsolete("Switch over to DigitsFormat")]
         public string Format(TimeSpan? time, TimeFormat format)
@@ -33,6 +29,11 @@ namespace LiveSplit.TimeFormatters
             };
 
             return formatRequest.Format(time);
+        }
+
+        public string Format(TimeSpan? timeSpan)
+        {
+            return Format(timeSpan, DigitsFormat.SingleDigitSeconds);
         }
     }
 }
