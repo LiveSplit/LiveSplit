@@ -10,7 +10,9 @@ namespace LiveSplit.TimeFormatters
             Accuracy = TimeAccuracy.Milliseconds;
             NullFormat = NullFormat.ZeroWithAccuracy;
         }
+
         public string Format(TimeSpan? time, DigitsFormat format)
+
         {
             var formatRequest = new GeneralTimeFormatter
             {
