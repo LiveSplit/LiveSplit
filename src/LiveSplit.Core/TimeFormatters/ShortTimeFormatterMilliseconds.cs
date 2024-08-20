@@ -18,7 +18,7 @@ namespace LiveSplit.TimeFormatters
 
             return formatRequest.Format(time);
         }
-        public string Format(Timespan? time, DigitsFormat format)
+        public string Format(TimeSpan? time)
         {
             return Format(time, DigitsFormat.SingleDigitSeconds);
     }
