@@ -21,5 +21,6 @@ namespace LiveSplit.TimeFormatters
         public string Format(TimeSpan? time)
         {
             return Format(time, DigitsFormat.SingleDigitSeconds);
+        }
     }
 }
