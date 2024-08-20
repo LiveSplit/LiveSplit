@@ -8,7 +8,6 @@ namespace LiveSplit.TimeFormatters
         public ShortTimeFormatterMilliseconds() {}
 
         public string Format(TimeSpan? time, DigitsFormat format)
-
         {
             var formatRequest = new GeneralTimeFormatter
             {
@@ -19,5 +18,8 @@ namespace LiveSplit.TimeFormatters
 
             return formatRequest.Format(time);
         }
+        public string Format(Timespan? time, DigitsFormat format)
+        {
+            return Format(timeSpan, DigitsFormat.SingleDigitSeconds);
     }
 }
