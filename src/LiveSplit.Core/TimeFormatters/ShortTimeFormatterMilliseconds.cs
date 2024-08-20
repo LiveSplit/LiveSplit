@@ -5,11 +5,7 @@ namespace LiveSplit.TimeFormatters
 {
     public class ShortTimeFormatterMilliseconds : GeneralTimeFormatter
     {
-        public ShortTimeFormatterMilliseconds() 
-        {
-            Accuracy = TimeAccuracy.Milliseconds;
-            NullFormat = NullFormat.ZeroWithAccuracy;
-        }
+        public ShortTimeFormatterMilliseconds() {}
 
         public string Format(TimeSpan? time, DigitsFormat format)
 
