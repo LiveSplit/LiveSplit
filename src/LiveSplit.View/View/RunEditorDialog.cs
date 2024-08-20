@@ -146,7 +146,7 @@ namespace LiveSplit.View
             AllowChangingSegments = false;
             ImagesToDispose = new List<Image>();
             SegmentTimeList = new List<TimeSpan?>();
-            TimeFormatter = new ShortTimeFormatter();
+            TimeFormatter = new ShortTimeFormatterMilliseconds();
             SegmentList = new BindingList<ISegment>(Run);
             SegmentList.AllowNew = true;
             SegmentList.AllowRemove = true;
