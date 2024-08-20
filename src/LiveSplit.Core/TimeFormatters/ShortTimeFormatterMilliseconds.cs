@@ -20,6 +20,6 @@ namespace LiveSplit.TimeFormatters
         }
         public string Format(Timespan? time, DigitsFormat format)
         {
-            return Format(timeSpan, DigitsFormat.SingleDigitSeconds);
+            return Format(time, DigitsFormat.SingleDigitSeconds);
     }
 }
