@@ -127,7 +127,7 @@ namespace LiveSplit.Model.RunSavers
                 }
 
                 timeCell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
-                timeCell.Style.Format = "[HH]:MM:SS.00";
+                timeCell.Style.Format = "[HH]:MM:SS.000";
                 timeCell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
 
 
@@ -186,7 +186,7 @@ namespace LiveSplit.Model.RunSavers
                     }
 
                     cell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
-                    cell.Style.Format = "[HH]:MM:SS.00";
+                    cell.Style.Format = "[HH]:MM:SS.000";
                     cell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
                     cell.Style.Fill = CellFill.Solid(
                         ((rowIndex & 1) == 1)
@@ -250,7 +250,7 @@ namespace LiveSplit.Model.RunSavers
                         cell.Value = time.Value.TotalDays;
 
                     cell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
-                    cell.Style.Format = "[HH]:MM:SS.00";
+                    cell.Style.Format = "[HH]:MM:SS.000";
                     cell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
                     if (comparisonName == Run.PersonalBestComparisonName && time.HasValue && segment.BestSegmentTime[method] == (time.Value - lastTime))
                     {
