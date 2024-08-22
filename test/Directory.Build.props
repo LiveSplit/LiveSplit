@@ -1,6 +1,6 @@
 <Project>
 
-  <Import Project="$([MSBuild]::GetPathOfFileAbove(Directory.Build.props, $(MSBuildThisFileDirectory)\..))" />
+  <Import Project="$([MSBuild]::GetPathOfFileAbove(Directory.Build.props, $(MSBuildThisFileDirectory)..))" />
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.2" />
