@@ -1,0 +1,13 @@
+<Project>
+
+  <!-- Project properties. -->
+  <PropertyGroup>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <!-- Output properties. -->
+  <PropertyGroup>
+    <UseArtifactsOutput>true</UseArtifactsOutput>
+  </PropertyGroup>
+
+</Project>

@@ -3,17 +3,10 @@
   <PropertyGroup>
     <RootNamespace>LiveSplit</RootNamespace>
     <UseWindowsForms>true</UseWindowsForms>
+    <TargetFramework>net4.8.1</TargetFramework>
 
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="Resources\DefaultGameIcon.png" />
-    <Content Include="Resources\Icon.ico" />
-    <Content Include="Resources\DownArrow.png" />
-    <Content Include="Resources\Icon.png" />
-    <Content Include="Resources\UpArrow.png" />
-  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="$(LibPath)\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />

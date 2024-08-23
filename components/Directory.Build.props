@@ -1,14 +1,12 @@
 <Project>
 
-  <Import Project="..\Directory.Build.props" />
+  <Import Project="$([MSBuild]::GetPathOfFileAbove(Directory.Build.props, $(MSBuildThisFileDirectory)..))" />
 
-  <PropertyGroup Label="Common Directories">
+  <PropertyGroup>
     <LsSrcPath>$(RootPath)\src</LsSrcPath>
     <LsLibPath>$(RootPath)\lib</LsLibPath>
-  </PropertyGroup>
 
-  <PropertyGroup Label="Output Settings">
-    <OutDir>$(BuildPath)\Components</OutDir>
+    <OutputPath>$(BuildPath)\Components</OutputPath>
   </PropertyGroup>
 
 </Project>
