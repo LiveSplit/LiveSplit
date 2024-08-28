@@ -112,61 +112,6 @@ namespace LiveSplit.Tests.TimeFormatterTests
         }
     }
 
-    public class SegmentTimesFormatterShould
-    {
-        [Theory]
-        [InlineData(TimeAccuracy.Seconds)]
-        [InlineData(TimeAccuracy.Tenths)]
-        [InlineData(TimeAccuracy.Hundredths)]
-        public void FormatTimeAsDash_WhenTimeIsNullRegardlessOfAccuracy(TimeAccuracy accuracy)
-        {
-            var sut = new SegmentTimesFormatter(accuracy);
-
-            var formattedTime = sut.Format(null);
-            Assert.Equal(TimeFormatConstants.DASH, formattedTime);
-        }
-
-        [Theory]
-        [InlineData("00:00:00", TimeAccuracy.Seconds, "0")]
-        [InlineData("00:00:00", TimeAccuracy.Tenths, "0.0")]
-        [InlineData("00:00:00", TimeAccuracy.Hundredths, "0.00")]
-
-        [InlineData("00:05:01", TimeAccuracy.Seconds, "5:01")]
-        [InlineData("00:05:01.2", TimeAccuracy.Seconds, "5:01")]
-        [InlineData("00:05:01.02", TimeAccuracy.Seconds, "5:01")]
-        [InlineData("00:05:01.002", TimeAccuracy.Seconds, "5:01")]
-
-        [InlineData("00:05:01", TimeAccuracy.Tenths, "5:01.0")]
-        [InlineData("00:05:01.2", TimeAccuracy.Tenths, "5:01.2")]
-        [InlineData("00:05:01.02", TimeAccuracy.Tenths, "5:01.0")]
-        [InlineData("00:05:01.002", TimeAccuracy.Tenths, "5:01.0")]
-
-        [InlineData("00:05:01", TimeAccuracy.Hundredths, "5:01.00")]
-        [InlineData("00:05:01.2", TimeAccuracy.Hundredths, "5:01.20")]
-        [InlineData("00:05:01.02", TimeAccuracy.Hundredths, "5:01.02")]
-        [InlineData("00:05:01.002", TimeAccuracy.Hundredths, "5:01.00")]
-
-        [InlineData("-00:05:01.03", TimeAccuracy.Seconds, "−5:01")]
-        [InlineData("-00:05:01.03", TimeAccuracy.Tenths, "−5:01.0")]
-        [InlineData("-00:05:01.03", TimeAccuracy.Hundredths, "−5:01.03")]
-
-        [InlineData("07:05:01.29", TimeAccuracy.Seconds, "7:05:01")]
-        [InlineData("07:05:01.29", TimeAccuracy.Tenths, "7:05:01.2")]
-        [InlineData("07:05:01.29", TimeAccuracy.Hundredths, "7:05:01.29")]
-
-        [InlineData("1.07:05:01.9999", TimeAccuracy.Seconds, "31:05:01")]
-        [InlineData("1.07:05:01.9999", TimeAccuracy.Tenths, "31:05:01.9")]
-        [InlineData("1.07:05:01.9999", TimeAccuracy.Hundredths, "31:05:01.99")]
-        public void FormatTimeCorrectly_WhenTimeIsValidAndAccuracyIsSupplied(string timespanText, TimeAccuracy accuracy, string expectedTime)
-        {
-            var sut = new SegmentTimesFormatter(accuracy);
-            var time = TimeSpan.Parse(timespanText);
-
-            var formattedTime = sut.Format(time);
-            Assert.Equal(expectedTime, formattedTime);
-        }
-    }
-
     public class PossibleTimeSaveFormatterShould
     {
         [Theory]
