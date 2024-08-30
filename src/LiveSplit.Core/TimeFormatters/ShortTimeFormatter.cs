@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace LiveSplit.TimeFormatters
 {
-    public class ShortTimeFormatter : ITimeFormatter
+    public class ShortTimeFormatter : GeneralTimeFormatter
     {
         public ShortTimeFormatter() { }
 
@@ -19,7 +19,7 @@ namespace LiveSplit.TimeFormatters
             return formatRequest.Format(time);
         }
 
-        public string Format(TimeSpan? time, DigitsFormat format)
+        public string Format(TimeSpan? time, DigitsFormat format = DigitsFormat.SingleDigitSeconds)
         {
             var formatRequest = new GeneralTimeFormatter
             {
@@ -29,11 +29,6 @@ namespace LiveSplit.TimeFormatters
             };
 
             return formatRequest.Format(time);
-        }
-
-        public string Format(TimeSpan? timeSpan)
-        {
-            return Format(timeSpan, DigitsFormat.SingleDigitSeconds);
         }
     }
 }
