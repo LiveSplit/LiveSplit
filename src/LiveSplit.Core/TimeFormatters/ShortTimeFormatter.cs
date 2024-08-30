@@ -1,9 +1,9 @@
-﻿using System;
+using System;
 using System.Globalization;
 
 namespace LiveSplit.TimeFormatters
 {
-    public class ShortTimeFormatter : GeneralTimeFormatter
+    public class ShortTimeFormatter : ITimeFormatter
     {
         public ShortTimeFormatter() { }
 
@@ -19,7 +19,7 @@ namespace LiveSplit.TimeFormatters
             return formatRequest.Format(time);
         }
 
-        public string Format(TimeSpan? time, DigitsFormat format = DigitsFormat.SingleDigitSeconds)
+        public string Format(TimeSpan? time, DigitsFormat format)
         {
             var formatRequest = new GeneralTimeFormatter
             {
@@ -29,6 +29,11 @@ namespace LiveSplit.TimeFormatters
             };
 
             return formatRequest.Format(time);
+        }
+
+        public string Format(TimeSpan? timeSpan)
+        {
+            return Format(timeSpan, DigitsFormat.SingleDigitSeconds);
         }
     }
 }
