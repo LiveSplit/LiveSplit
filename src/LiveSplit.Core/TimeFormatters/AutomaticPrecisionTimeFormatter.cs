@@ -10,7 +10,6 @@ namespace LiveSplit.TimeFormatters
             DigitsFormat = DigitsFormat.SingleDigitMinutes;
             Accuracy = TimeAccuracy.Hundredths;
             AutomaticPrecision = true;
-            NullFormat = NullFormat.ZeroWithAccuracy;
         }
 
     }

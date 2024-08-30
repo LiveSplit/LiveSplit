@@ -30,7 +30,7 @@ namespace LiveSplit.TimeFormatters {
         public bool DropDecimals { get; set; }
 
         /// <summary>
-        /// If true, don't display trailing zero demical places
+        /// If true, don't display trailing zero decimal places
         /// </summary>
         public bool AutomaticPrecision { get; set; } = false;
 
