@@ -28,8 +28,7 @@ public class SpeedrunComRunUploadPlatform : IRunUploadPlatform
 
     public bool SubmitRun(IRun run, Func<System.Drawing.Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
-        string reason;
-        var isValid = SpeedrunCom.ValidateRun(run.Metadata.LiveSplitRun, out reason);
+        var isValid = SpeedrunCom.ValidateRun(run.Metadata.LiveSplitRun, out string reason);
 
         if (!isValid)
         {

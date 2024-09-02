@@ -37,8 +37,7 @@ public static class CredentialManager
 {
     public static Credential ReadCredential(string applicationName)
     {
-        IntPtr nCredPtr;
-        bool read = CredRead(applicationName, CredentialType.Generic, 0, out nCredPtr);
+        bool read = CredRead(applicationName, CredentialType.Generic, 0, out IntPtr nCredPtr);
         if (read)
         {
             using (CriticalCredentialHandle critCred = new CriticalCredentialHandle(nCredPtr))

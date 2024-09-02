@@ -365,8 +365,7 @@ public partial class MetadataControl : UserControl
 
     private void btnSubmit_Click(object sender, EventArgs e)
     {
-        string reason;
-        var isValid = SpeedrunCom.ValidateRun(Metadata.LiveSplitRun, out reason);
+        var isValid = SpeedrunCom.ValidateRun(Metadata.LiveSplitRun, out string reason);
 
         if (!isValid)
         {

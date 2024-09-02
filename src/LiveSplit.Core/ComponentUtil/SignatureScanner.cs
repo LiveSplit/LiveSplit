@@ -121,9 +121,8 @@ public class SignatureScanner
     {
         if (_memory == null || _memory.Length != _size)
         {
-            byte[] bytes;
 
-            if (!_process.ReadBytes(_address, _size, out bytes))
+            if (!_process.ReadBytes(_address, _size, out byte[] bytes))
             {
                 _memory = null;
                 yield break;
@@ -325,8 +324,7 @@ public class SigScanTarget
 
         for (int i = 0; i < sigStr.Length; i += 2)
         {
-            byte b;
-            if (byte.TryParse(sigStr.Substring(i, 2), NumberStyles.HexNumber, null, out b))
+            if (byte.TryParse(sigStr.Substring(i, 2), NumberStyles.HexNumber, null, out byte b))
             {
                 sigBytes.Add(b);
                 sigMask.Add(false);

@@ -1226,10 +1226,8 @@ public partial class RunEditorDialog : Form
         for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
         {
             //Remove both segment history elements if one of them has a null time and the other has has a non null time
-            Time firstHistory;
-            Time secondHistory;
-            var firstExists = firstSegment.SegmentHistory.TryGetValue(runIndex, out firstHistory);
-            var secondExists = secondSegment.SegmentHistory.TryGetValue(runIndex, out secondHistory);
+            var firstExists = firstSegment.SegmentHistory.TryGetValue(runIndex, out Time firstHistory);
+            var secondExists = secondSegment.SegmentHistory.TryGetValue(runIndex, out Time secondHistory);
 
             if (firstExists && secondExists
                 && (firstHistory[TimingMethod.RealTime].HasValue != secondHistory[TimingMethod.RealTime].HasValue
@@ -1274,8 +1272,7 @@ public partial class RunEditorDialog : Form
             {
                 curIndex = index + 1;
                 //If a history element isn't there in the segment that's deleted, remove it from the next segment's history as well
-                Time segmentHistoryElement;
-                if (!Run[index].SegmentHistory.TryGetValue(runIndex, out segmentHistoryElement))
+                if (!Run[index].SegmentHistory.TryGetValue(runIndex, out Time segmentHistoryElement))
                 {
                     if (Run[curIndex].SegmentHistory.ContainsKey(runIndex))
                     {
@@ -1289,8 +1286,7 @@ public partial class RunEditorDialog : Form
                 while (curSegment != null && curIndex < Run.Count)
                 {
                     //Add the removed segment's history times to the next non null times
-                    Time segment;
-                    if (Run[curIndex].SegmentHistory.TryGetValue(runIndex, out segment) && segment[method] != null)
+                    if (Run[curIndex].SegmentHistory.TryGetValue(runIndex, out Time segment) && segment[method] != null)
                     {
                         segment[method] = curSegment + segment[method];
                         Run[curIndex].SegmentHistory[runIndex] = segment;

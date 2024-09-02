@@ -52,8 +52,7 @@ public static class SumOfSegmentsHelper
     {
         while (segmentIndex < run.Count)
         {
-            Time segmentTime;
-            if (run[segmentIndex].SegmentHistory.TryGetValue(runIndex, out segmentTime))
+            if (run[segmentIndex].SegmentHistory.TryGetValue(runIndex, out Time segmentTime))
             {
                 var curTime = segmentTime[method];
                 if (curTime.HasValue)

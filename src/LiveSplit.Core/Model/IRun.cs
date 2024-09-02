@@ -123,8 +123,7 @@ public static class RunExtensions
         {
             for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
             {
-                Time historyTime;
-                if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
+                if (curSplit.SegmentHistory.TryGetValue(runIndex, out Time historyTime))
                 {
                     //If the Best Segment is gone, clear the history
                     if (historyTime[method] != null)
@@ -142,8 +141,7 @@ public static class RunExtensions
         {
             for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
             {
-                Time historyTime;
-                if (curSplit.SegmentHistory.TryGetValue(runIndex, out historyTime))
+                if (curSplit.SegmentHistory.TryGetValue(runIndex, out Time historyTime))
                 {
                     //Make sure no times in the history are lower than the Best Segment
                     if (historyTime[method] < curSplit.BestSegmentTime[method])
@@ -224,8 +222,7 @@ public static class RunExtensions
         {
             for (var index = 0; index < run.Count; index++)
             {
-                Time segmentHistoryElement;
-                if (!run[index].SegmentHistory.TryGetValue(runIndex, out segmentHistoryElement))
+                if (!run[index].SegmentHistory.TryGetValue(runIndex, out Time segmentHistoryElement))
                 {
                     //Remove null times in history that aren't followed by a non-null time
                     RemoveItemsFromCache(run, index, cache);
@@ -256,8 +253,7 @@ public static class RunExtensions
             foreach (var attempt in run.AttemptHistory)
             {
                 var ind = attempt.Index;
-                Time element;
-                if (segment.SegmentHistory.TryGetValue(ind, out element))
+                if (segment.SegmentHistory.TryGetValue(ind, out Time element))
                 {
                     if (element.RealTime != null)
                     {
@@ -273,8 +269,7 @@ public static class RunExtensions
 
             for (var runIndex = segment.SegmentHistory.GetMinIndex(); runIndex <= 0; runIndex++)
             {
-                Time element;
-                if (segment.SegmentHistory.TryGetValue(runIndex, out element))
+                if (segment.SegmentHistory.TryGetValue(runIndex, out Time element))
                 {
                     var isNull = true;
                     var isUnique = false;

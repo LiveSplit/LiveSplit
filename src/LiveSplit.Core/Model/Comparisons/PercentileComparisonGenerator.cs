@@ -53,8 +53,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
             foreach (var segment in Run)
             {
                 var currentIndex = Run.IndexOf(segment);
-                Time history;
-                if (segment.SegmentHistory.TryGetValue(ind, out history))
+                if (segment.SegmentHistory.TryGetValue(ind, out Time history))
                 {
                     if (history[method] != null)
                     {

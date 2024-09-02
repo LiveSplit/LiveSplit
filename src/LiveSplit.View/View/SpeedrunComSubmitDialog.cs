@@ -177,8 +177,7 @@ public partial class SpeedrunComSubmitDialog : Form
             }
         }
 
-        string reason;
-        var submitted = SpeedrunCom.SubmitRun(metadata.LiveSplitRun, out reason,
+        var submitted = SpeedrunCom.SubmitRun(metadata.LiveSplitRun, out string reason,
             comment: comment, videoUri: videoUri, date: date, withoutLoads: withoutLoads);
 
         if (submitted)

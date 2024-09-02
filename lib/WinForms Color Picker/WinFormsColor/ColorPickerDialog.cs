@@ -622,8 +622,7 @@ public partial class ColorPickerDialog : Form
             return;
         }
 
-        int argb;
-        if (int.TryParse(this.textBoxHex.Text, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.CurrentUICulture, out argb))
+        if (int.TryParse(this.textBoxHex.Text, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.CurrentUICulture, out int argb))
         {
             Color tmp = Color.FromArgb(argb);
             if (!AlphaEnabled)

@@ -25,8 +25,7 @@ public class BestSplitTimesComparisonGenerator : IComparisonGenerator
 
             foreach (var segment in Run)
             {
-                Time segmentHistoryElement;
-                if (segment.SegmentHistory.TryGetValue(y, out segmentHistoryElement))
+                if (segment.SegmentHistory.TryGetValue(y, out Time segmentHistoryElement))
                 {
                     var segmentTime = segmentHistoryElement[method];
                     if (segmentTime != null)

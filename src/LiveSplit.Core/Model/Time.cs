@@ -103,8 +103,7 @@ public struct Time
     {
         var splits = text.Split('|');
         var newTime = new Time();
-        TimeSpan x;
-        if (TimeSpan.TryParse(splits[0].TrimEnd(), out x))
+        if (TimeSpan.TryParse(splits[0].TrimEnd(), out TimeSpan x))
         {
             newTime.RealTime = x;
         }

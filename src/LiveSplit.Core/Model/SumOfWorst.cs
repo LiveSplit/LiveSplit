@@ -23,9 +23,8 @@ public static class SumOfWorst
             PopulatePrediction(predictions, currentTime + run[segmentIndex].BestSegmentTime[method], segmentIndex + 1);
             foreach (var segment in run[segmentIndex].SegmentHistory)
             {
-                Time segmentTime;
                 if (segmentIndex == 0
-                    || !run[segmentIndex - 1].SegmentHistory.TryGetValue(segment.Key, out segmentTime)
+                    || !run[segmentIndex - 1].SegmentHistory.TryGetValue(segment.Key, out Time segmentTime)
                     || segmentTime[method] != null)
                 {
                     var prediction = TrackBranch(run, currentTime, segmentIndex, segment.Key, method);

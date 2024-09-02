@@ -50,8 +50,7 @@ public class AverageSegmentsComparisonGenerator : IComparisonGenerator
             var ignoreNextHistory = false;
             foreach (var segment in Run)
             {
-                Time history;
-                if (segment.SegmentHistory.TryGetValue(ind, out history))
+                if (segment.SegmentHistory.TryGetValue(ind, out Time history))
                 {
                     if (history[method] == null)
                     {

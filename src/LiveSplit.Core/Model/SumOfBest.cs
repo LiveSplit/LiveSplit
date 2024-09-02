@@ -25,9 +25,8 @@ public static class SumOfBest
             {
                 foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Value[method].HasValue))
                 {
-                    Time segmentTime;
                     if (segmentIndex == 0
-                        || !run[segmentIndex - 1].SegmentHistory.TryGetValue(nullSegment.Key, out segmentTime)
+                        || !run[segmentIndex - 1].SegmentHistory.TryGetValue(nullSegment.Key, out Time segmentTime)
                         || segmentTime[method] != null)
                     {
                         var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
@@ -91,8 +90,7 @@ public static class SumOfBest
     {
         if (predictedTime.HasValue && (!predictions[endingIndex + 1].HasValue || predictedTime < predictions[endingIndex + 1].Value))
         {
-            Time segmentHistoryElement;
-            if (run[endingIndex].SegmentHistory.TryGetValue(runIndex, out segmentHistoryElement))
+            if (run[endingIndex].SegmentHistory.TryGetValue(runIndex, out Time segmentHistoryElement))
             {
                 var parameters = new CleanUpCallbackParameters
                 {

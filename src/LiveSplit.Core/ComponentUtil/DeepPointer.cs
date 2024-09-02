@@ -55,8 +55,7 @@ public class DeepPointer
 
     public T Deref<T>(Process process, T default_ = default(T)) where T : struct // all value types including structs
     {
-        T val;
-        if (!Deref(process, out val))
+        if (!Deref(process, out T val))
         {
             val = default_;
         }
@@ -66,8 +65,7 @@ public class DeepPointer
 
     public bool Deref<T>(Process process, out T value) where T : struct
     {
-        IntPtr ptr;
-        if (!DerefOffsets(process, out ptr)
+        if (!DerefOffsets(process, out IntPtr ptr)
             || !process.ReadValue(ptr, out value))
         {
             value = default(T);
@@ -79,8 +77,7 @@ public class DeepPointer
 
     public byte[] DerefBytes(Process process, int count)
     {
-        byte[] bytes;
-        if (!DerefBytes(process, count, out bytes))
+        if (!DerefBytes(process, count, out byte[] bytes))
         {
             bytes = null;
         }
@@ -90,8 +87,7 @@ public class DeepPointer
 
     public bool DerefBytes(Process process, int count, out byte[] value)
     {
-        IntPtr ptr;
-        if (!DerefOffsets(process, out ptr)
+        if (!DerefOffsets(process, out IntPtr ptr)
             || !process.ReadBytes(ptr, count, out value))
         {
             value = null;
@@ -103,8 +99,7 @@ public class DeepPointer
 
     public string DerefString(Process process, int numBytes, string default_ = null)
     {
-        string str;
-        if (!DerefString(process, ReadStringType.AutoDetect, numBytes, out str))
+        if (!DerefString(process, ReadStringType.AutoDetect, numBytes, out string str))
         {
             str = default_;
         }
@@ -114,8 +109,7 @@ public class DeepPointer
 
     public string DerefString(Process process, ReadStringType type, int numBytes, string default_ = null)
     {
-        string str;
-        if (!DerefString(process, type, numBytes, out str))
+        if (!DerefString(process, type, numBytes, out string str))
         {
             str = default_;
         }
@@ -148,8 +142,7 @@ public class DeepPointer
 
     public bool DerefString(Process process, ReadStringType type, StringBuilder sb)
     {
-        IntPtr ptr;
-        if (!DerefOffsets(process, out ptr)
+        if (!DerefOffsets(process, out IntPtr ptr)
             || !process.ReadString(ptr, type, sb))
         {
             return false;

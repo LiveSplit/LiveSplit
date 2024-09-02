@@ -182,8 +182,7 @@ public class ExcelRunSaver : IRunSaver
             foreach (var segment in run)
             {
                 var cell = row[columnIndex];
-                Time segmentHistoryElement;
-                if (segment.SegmentHistory.TryGetValue(attempt.Index, out segmentHistoryElement))
+                if (segment.SegmentHistory.TryGetValue(attempt.Index, out Time segmentHistoryElement))
                 {
                     var time = segmentHistoryElement[method];
                     if (time.HasValue)

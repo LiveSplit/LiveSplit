@@ -118,8 +118,7 @@ public struct Attempt
         TimeSpan? pauseTime = null;
         if (node.GetElementsByTagName("PauseTime").Count > 0)
         {
-            TimeSpan x;
-            if (TimeSpan.TryParse(node["PauseTime"].InnerText, out x))
+            if (TimeSpan.TryParse(node["PauseTime"].InnerText, out TimeSpan x))
             {
                 pauseTime = x;
             }
