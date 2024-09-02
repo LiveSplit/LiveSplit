@@ -14,8 +14,8 @@ public static class AbbreviationExtensions
             .SkipWhile(c => romanSymbols.Contains(c))
             .FirstOrDefault();
 
-        return charBeforeRomanNumeral == ' '
-            || charBeforeRomanNumeral == default(char);
+        return charBeforeRomanNumeral is ' '
+            or default(char);
     }
 
     private static bool isAllCapsOrDigit(string name)

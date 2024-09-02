@@ -173,9 +173,9 @@ public partial class LayoutEditorDialog : Form
                 try
                 {
                     var component = Layout.Components.ElementAt(lbxComponents.SelectedIndex);
-                    if (component is IDeactivatableComponent)
+                    if (component is IDeactivatableComponent deactivatable)
                     {
-                        ((IDeactivatableComponent)component).Activated = false;
+                        deactivatable.Activated = false;
                     }
 
                     ComponentsToDispose.Add(component);

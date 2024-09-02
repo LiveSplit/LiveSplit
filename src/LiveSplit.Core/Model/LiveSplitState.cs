@@ -153,7 +153,7 @@ public class LiveSplitState : ICloneable
     {
         get
         {
-            if (CurrentPhase == TimerPhase.Paused || CurrentPhase == TimerPhase.Running)
+            if (CurrentPhase is TimerPhase.Paused or TimerPhase.Running)
             {
                 return TimeStamp.Now - StartTime;
             }

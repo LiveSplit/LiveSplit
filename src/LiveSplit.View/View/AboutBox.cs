@@ -13,7 +13,7 @@ internal partial class AboutBox : Form
     {
         InitializeComponent();
         lblVersion.Text = Git.Version ?? "Unknown Version";
-        if (Git.Branch != null && Git.Branch != "master" && Git.Branch != "HEAD")
+        if (Git.Branch is not null and not "master" and not "HEAD")
         {
             labelProductName.Text = string.Format("{0} ({1})", labelProductName.Text, Git.Branch);
         }

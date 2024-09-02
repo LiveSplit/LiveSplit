@@ -26,8 +26,7 @@ public partial class RaceProviderManagingDialog : Form
 
     private void LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
     {
-        var link = sender as LinkLabel;
-        if (link != null && !string.IsNullOrEmpty(link.Text))
+        if (sender is LinkLabel link && !string.IsNullOrEmpty(link.Text))
         {
             Process.Start($"{link.Text}");
         }

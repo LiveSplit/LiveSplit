@@ -166,25 +166,11 @@ public sealed class DynamicJsonObject : DynamicObject
             {
                 sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), "null");
             }
-            else if (value is string)
-            {
-                sb.AppendFormat("\"{0}\": \"{1}\"", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode((string)value));
-            }
-            else if (value is DynamicJsonObject)
-            {
-                sb.Append("\"" + HttpUtility.JavaScriptStringEncode(name) + "\": {\r\n");
-                ((DynamicJsonObject)value).ToString(sb, depth + 1);
-            }
-            else if (value is IDictionary<string, object>)
-            {
-                sb.Append("\"" + HttpUtility.JavaScriptStringEncode(name) + "\": {\r\n");
-                new DynamicJsonObject((IDictionary<string, object>)value).ToString(sb, depth + 1);
-            }
-            else if (value is IEnumerable<object>)
+            else if (value is IEnumerable<object> array)
             {
                 sb.Append("\"" + HttpUtility.JavaScriptStringEncode(name) + "\": [\r\n");
                 var firstInArray = true;
-                foreach (var arrayValue in (IEnumerable<object>)value)
+                foreach (var arrayValue in array)
                 {
                     if (!firstInArray)
                     {
@@ -193,22 +179,22 @@ public sealed class DynamicJsonObject : DynamicObject
 
                     sb.Append('\t', depth + 1);
                     firstInArray = false;
-                    if (arrayValue is IDictionary<string, object>)
+                    if (arrayValue is IDictionary<string, object> dict)
                     {
-                        new DynamicJsonObject((IDictionary<string, object>)arrayValue).ToString(sb, depth + 2);
+                        new DynamicJsonObject(dict).ToString(sb, depth + 2);
                     }
-                    else if (arrayValue is DynamicJsonObject)
+                    else if (arrayValue is DynamicJsonObject obj)
                     {
                         sb.Append("{\r\n");
-                        ((DynamicJsonObject)arrayValue).ToString(sb, depth + 2);
+                        obj.ToString(sb, depth + 2);
                     }
-                    else if (arrayValue is string)
+                    else if (arrayValue is string str)
                     {
-                        sb.AppendFormat("\"{0}\"", HttpUtility.JavaScriptStringEncode((string)arrayValue));
+                        sb.AppendFormat("\"{0}\"", HttpUtility.JavaScriptStringEncode(str));
                     }
-                    else if (arrayValue is decimal)
+                    else if (arrayValue is decimal m)
                     {
-                        sb.AppendFormat("{0}", HttpUtility.JavaScriptStringEncode(((decimal)arrayValue).ToString(CultureInfo.InvariantCulture)));
+                        sb.AppendFormat("{0}", HttpUtility.JavaScriptStringEncode(m.ToString(CultureInfo.InvariantCulture)));
                     }
                     else
                     {
@@ -220,9 +206,23 @@ public sealed class DynamicJsonObject : DynamicObject
                 sb.Append('\t', depth);
                 sb.Append("]");
             }
-            else if (value is bool)
+            else if (value is IDictionary<string, object> dict)
             {
-                sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), (bool)value ? "true" : "false");
+                sb.Append("\"" + HttpUtility.JavaScriptStringEncode(name) + "\": {\r\n");
+                new DynamicJsonObject(dict).ToString(sb, depth + 1);
+            }
+            else if (value is DynamicJsonObject obj)
+            {
+                sb.Append("\"" + HttpUtility.JavaScriptStringEncode(name) + "\": {\r\n");
+                obj.ToString(sb, depth + 1);
+            }
+            else if (value is string str)
+            {
+                sb.AppendFormat("\"{0}\": \"{1}\"", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode(str));
+            }
+            else if (value is bool b)
+            {
+                sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), b ? "true" : "false");
             }
             else if (IsLongType(value))
             {
@@ -236,9 +236,9 @@ public sealed class DynamicJsonObject : DynamicObject
             {
                 sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode(Convert.ToDouble(value).ToString(CultureInfo.InvariantCulture)));
             }
-            else if (value is decimal)
+            else if (value is decimal m)
             {
-                sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode(((decimal)value).ToString(CultureInfo.InvariantCulture)));
+                sb.AppendFormat("\"{0}\": {1}", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode(m.ToString(CultureInfo.InvariantCulture)));
             }
             else
             {
@@ -253,17 +253,17 @@ public sealed class DynamicJsonObject : DynamicObject
 
     private static bool IsLongType(object value)
     {
-        return value is sbyte || value is short || value is int || value is long;
+        return value is sbyte or short or int or long;
     }
 
     private static bool IsULongType(object value)
     {
-        return value is byte || value is ushort || value is uint || value is ulong;
+        return value is byte or ushort or uint or ulong;
     }
 
     private static bool IsDoubleType(object value)
     {
-        return value is float || value is double;
+        return value is float or double;
     }
 
     public override bool TrySetMember(SetMemberBinder binder, object value)
@@ -345,14 +345,12 @@ public sealed class DynamicJsonObject : DynamicObject
 
     private static object WrapResultObject(object result)
     {
-        var dictionary = result as IDictionary<string, object>;
-        if (dictionary != null)
+        if (result is IDictionary<string, object> dictionary)
         {
             return new DynamicJsonObject(dictionary);
         }
 
-        var arrayList = result as ArrayList;
-        if (arrayList != null && arrayList.Count > 0)
+        if (result is ArrayList arrayList && arrayList.Count > 0)
         {
             return arrayList[0] is IDictionary<string, object>
                 ? new List<object>(arrayList.Cast<IDictionary<string, object>>().Select(x => new DynamicJsonObject(x)))

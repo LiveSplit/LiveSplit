@@ -317,7 +317,7 @@ public partial class SpeedRunsLiveForm : Form
             var user = ((IDictionary<string, dynamic>)race.entrants.Properties).FirstOrDefault(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value;
             if (user != null)
             {
-                if (user.statetext == "Finished" || user.statetext == "Forfeit")
+                if (user.statetext is (dynamic)"Finished" or (dynamic)"Forfeit")
                 {
                     SRLClient.RaceState = RaceState.RaceEnded;
                 }
@@ -571,9 +571,9 @@ public partial class SpeedRunsLiveForm : Form
 
     private void btnJoinQuit_Click(object sender, EventArgs e)
     {
-        if (SRLClient.RaceState == RaceState.EnteredRaceAndReady
-            || SRLClient.RaceState == RaceState.EnteredRace
-            || SRLClient.RaceState == RaceState.RaceStarted)
+        if (SRLClient.RaceState is RaceState.EnteredRaceAndReady
+            or RaceState.EnteredRace
+            or RaceState.RaceStarted)
         {
             SRLClient.QuitRace();
         }

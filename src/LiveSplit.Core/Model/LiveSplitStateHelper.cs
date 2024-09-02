@@ -132,7 +132,7 @@ public static class LiveSplitStateHelper
     /// <returns>Returns the current live delta.</returns>
     public static TimeSpan? CheckLiveDelta(LiveSplitState state, bool splitDelta, string comparison, TimingMethod method)
     {
-        if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
+        if (state.CurrentPhase is TimerPhase.Running or TimerPhase.Paused)
         {
             var useBestSegment = state.LayoutSettings.ShowBestSegments;
             var curSplit = state.Run[state.CurrentSplitIndex].Comparisons[comparison][method];

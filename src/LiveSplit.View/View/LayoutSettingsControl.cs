@@ -82,7 +82,7 @@ public partial class LayoutSettingsControl : UserControl
     private void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
     {
         var selectedItem = cmbBackgroundType.SelectedItem.ToString();
-        btnBackground.Visible = selectedItem != "Solid Color" && selectedItem != "Image";
+        btnBackground.Visible = selectedItem is not "Solid Color" and not "Image";
         btnBackground2.DataBindings.Clear();
         lblImageOpacity.Enabled = lblBlur.Enabled = trkImageOpacity.Enabled = trkBlur.Enabled = selectedItem == "Image";
         if (selectedItem == "Image")

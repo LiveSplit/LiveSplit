@@ -457,7 +457,7 @@ public class SpeedRunsLiveIRC : IDisposable
 
     protected void ProcessLiveSplitChannelMessage(string user, string message)
     {
-        if (RaceState == RaceState.RaceStarted || RaceState == RaceState.RaceEnded)
+        if (RaceState is RaceState.RaceStarted or RaceState.RaceEnded)
         {
             if (message.StartsWith("!time ") || message.StartsWith("!done "))
             {

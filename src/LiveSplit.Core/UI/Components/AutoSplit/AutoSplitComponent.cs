@@ -21,7 +21,7 @@ public abstract class AutoSplitComponent : LogicComponent
                 Model.Start();
             }
         }
-        else if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
+        else if (state.CurrentPhase is TimerPhase.Running or TimerPhase.Paused)
         {
             if (AutoSplitter.ShouldReset(state))
             {

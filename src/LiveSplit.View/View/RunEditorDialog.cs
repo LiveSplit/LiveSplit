@@ -463,7 +463,7 @@ public partial class RunEditorDialog : Form
 
     private void eCtl_TextChanged(object sender, EventArgs e)
     {
-        if (runGrid.CurrentCell.ColumnIndex == SPLITTIMEINDEX || runGrid.CurrentCell.ColumnIndex == BESTSEGMENTINDEX || runGrid.CurrentCell.ColumnIndex == SEGMENTTIMEINDEX || runGrid.CurrentCell.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
+        if (runGrid.CurrentCell.ColumnIndex is SPLITTIMEINDEX or BESTSEGMENTINDEX or SEGMENTTIMEINDEX or >= CUSTOMCOMPARISONSINDEX)
         {
             if (Regex.IsMatch(eCtl.Text, "[^0-9:.]"))
             {
@@ -474,7 +474,7 @@ public partial class RunEditorDialog : Form
 
     private void eCtl_KeyPress(object sender, KeyPressEventArgs e)
     {
-        if (runGrid.CurrentCell.ColumnIndex == SPLITTIMEINDEX || runGrid.CurrentCell.ColumnIndex == BESTSEGMENTINDEX || runGrid.CurrentCell.ColumnIndex == SEGMENTTIMEINDEX || runGrid.CurrentCell.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
+        if (runGrid.CurrentCell.ColumnIndex is SPLITTIMEINDEX or BESTSEGMENTINDEX or SEGMENTTIMEINDEX or >= CUSTOMCOMPARISONSINDEX)
         {
             if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != ':' && e.KeyChar != '.' && e.KeyChar != ',')
             {
@@ -490,7 +490,7 @@ public partial class RunEditorDialog : Form
 
     private void runGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
     {
-        if (e.ColumnIndex == SPLITTIMEINDEX || e.ColumnIndex == BESTSEGMENTINDEX || e.ColumnIndex == SEGMENTTIMEINDEX || e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
+        if (e.ColumnIndex is SPLITTIMEINDEX or BESTSEGMENTINDEX or SEGMENTTIMEINDEX or >= CUSTOMCOMPARISONSINDEX)
         {
             if (string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
             {
@@ -1712,7 +1712,7 @@ public partial class RunEditorDialog : Form
     private void btnWebsite_Click(object sender, EventArgs e)
     {
         Uri url = new Uri(Run.AutoSplitter.Website);
-        if (url.Scheme == "http" || url.Scheme == "https")
+        if (url.Scheme is "http" or "https")
         {
             try
             {
@@ -1907,7 +1907,7 @@ public partial class RunEditorDialog : Form
     {
         foreach (Control childControl in control.Controls)
         {
-            if (childControl is Label || childControl is TableLayoutPanel || childControl is PictureBox || childControl is FlowLayoutPanel)
+            if (childControl is Label or TableLayoutPanel or PictureBox or FlowLayoutPanel)
             {
                 SetClickEvents(childControl);
             }
@@ -2062,7 +2062,7 @@ public class CustomAutoCompleteComboBox : ComboBox
             CloseDropDown();
         }
 
-        if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+        if (e.KeyCode is Keys.Down or Keys.Up)
         {
             e.SuppressKeyPress = true;
         }

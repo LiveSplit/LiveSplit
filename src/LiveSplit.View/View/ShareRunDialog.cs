@@ -50,7 +50,7 @@ public partial class ShareRunDialog : Form
     {
         cbxPlatform.Items.Add("X (Twitter)");
 
-        if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
+        if (State.CurrentPhase is TimerPhase.NotRunning or TimerPhase.Ended)
         {
             if (HasPersonalBest(Run))
             {
@@ -94,7 +94,7 @@ public partial class ShareRunDialog : Form
             = btnInsertStreamLink.Enabled = btnInsertTitle.Enabled = btnPreview.Enabled =
             CurrentPlatform == Twitter.Instance || CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance;
 
-        if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
+        if (State.CurrentPhase is TimerPhase.NotRunning or TimerPhase.Ended)
         {
             chkAttachSplits.Enabled = !(CurrentPlatform == Screenshot.Instance || CurrentPlatform == SplitsIO.Instance
                 || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance || CurrentPlatform == SpeedrunComRunUploadPlatform.Instance);
@@ -190,7 +190,7 @@ public partial class ShareRunDialog : Form
         if (CurrentPlatform == Twitter.Instance)
         {
             ShareSettings.Default.Reload();
-            if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
+            if (State.CurrentPhase is TimerPhase.NotRunning or TimerPhase.Ended)
             {
                 txtNotes.Text = ShareSettings.Default.TwitterFormat;
                 if (string.IsNullOrEmpty(txtNotes.Text))
@@ -226,7 +226,7 @@ public partial class ShareRunDialog : Form
     {
         if (CurrentPlatform == Twitter.Instance)
         {
-            if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
+            if (State.CurrentPhase is TimerPhase.NotRunning or TimerPhase.Ended)
             {
                 ShareSettings.Default.TwitterFormat = txtNotes.Text;
             }

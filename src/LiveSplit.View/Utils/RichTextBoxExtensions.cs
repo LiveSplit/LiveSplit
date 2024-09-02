@@ -71,15 +71,15 @@ public static class RichTextBoxExtensions
                     {
                         size = 12;
                     }
-                    else if (code == "/small" || code == "/big")
+                    else if (code is "/small" or "/big")
                     {
                         size = 8.25f;
                     }
-                    else if (code == "center" || code == "centre")
+                    else if (code is "center" or "centre")
                     {
                         alignment = HorizontalAlignment.Center;
                     }
-                    else if (code == "/center" || code == "/centre")
+                    else if (code is "/center" or "/centre")
                     {
                         textBox.AppendText(Environment.NewLine);
                         alignment = HorizontalAlignment.Left;
@@ -117,7 +117,7 @@ public static class RichTextBoxExtensions
                         backColor = Color.Transparent;
                         actualText = Environment.NewLine + actualText;
                     }
-                    else if (code == "list" || code == "/list")
+                    else if (code is "list" or "/list")
                     {
                     }
                     else if (code == "*")

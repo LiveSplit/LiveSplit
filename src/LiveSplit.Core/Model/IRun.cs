@@ -355,7 +355,7 @@ public static class RunExtensions
 
         foreach (var c in extendedName)
         {
-            if (c != '\\' && c != '/' && c != ':' && c != '*' && c != '?' && c != '"' && c != '<' && c != '>' && c != '|')
+            if (c is not '\\' and not '/' and not ':' and not '*' and not '?' and not '"' and not '<' and not '>' and not '|')
             {
                 stringBuilder.Append(c);
             }

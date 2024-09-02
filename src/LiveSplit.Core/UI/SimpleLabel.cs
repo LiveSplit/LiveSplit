@@ -41,9 +41,9 @@ public class SimpleLabel
         {
             try
             {
-                if (Brush is SolidBrush)
+                if (Brush is SolidBrush brush)
                 {
-                    ((SolidBrush)Brush).Color = value;
+                    brush.Color = value;
                 }
                 else
                 {

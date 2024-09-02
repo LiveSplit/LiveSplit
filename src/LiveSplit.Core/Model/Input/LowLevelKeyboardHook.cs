@@ -39,7 +39,7 @@ public class LowLevelKeyboardHook
 
             HookState++;
 
-            if (HookState == 1 || HookState < 0)
+            if (HookState is 1 or < 0)
             {
                 UnstableStateTime = TimeStamp.Now;
             }
@@ -59,7 +59,7 @@ public class LowLevelKeyboardHook
 
                 HookState--;
 
-                if (HookState == -1 || HookState > 0)
+                if (HookState is (-1) or > 0)
                 {
                     UnstableStateTime = TimeStamp.Now;
                 }
@@ -199,7 +199,7 @@ public class KeyboardInput : IDisposable
         {
             Keys key = (Keys)hookStruct.vkCode;
 
-            if (key == Keys.LControlKey || key == Keys.RControlKey)
+            if (key is Keys.LControlKey or Keys.RControlKey)
             {
                 key = Keys.ControlKey;
                 if (modifiers.HasFlag(Keys.Control))
@@ -208,7 +208,7 @@ public class KeyboardInput : IDisposable
                 keyBoardHandle, Code, wParam, lParam);
                 }
             }
-            else if (key == Keys.LMenu || key == Keys.RMenu)
+            else if (key is Keys.LMenu or Keys.RMenu)
             {
                 key = Keys.Menu;
                 if (modifiers.HasFlag(Keys.Alt))
@@ -217,7 +217,7 @@ public class KeyboardInput : IDisposable
                 keyBoardHandle, Code, wParam, lParam);
                 }
             }
-            else if (key == Keys.LShiftKey || key == Keys.RShiftKey)
+            else if (key is Keys.LShiftKey or Keys.RShiftKey)
             {
                 key = Keys.ShiftKey;
                 if (modifiers.HasFlag(Keys.Shift))
@@ -251,15 +251,15 @@ public class KeyboardInput : IDisposable
         {
             Keys key = (Keys)hookStruct.vkCode;
 
-            if (key == Keys.LControlKey || key == Keys.RControlKey)
+            if (key is Keys.LControlKey or Keys.RControlKey)
             {
                 modifiers &= ~Keys.Control;
             }
-            else if (key == Keys.LMenu || key == Keys.RMenu)
+            else if (key is Keys.LMenu or Keys.RMenu)
             {
                 modifiers &= ~Keys.Alt;
             }
-            else if (key == Keys.LShiftKey || key == Keys.RShiftKey)
+            else if (key is Keys.LShiftKey or Keys.RShiftKey)
             {
                 modifiers &= ~Keys.Shift;
             }

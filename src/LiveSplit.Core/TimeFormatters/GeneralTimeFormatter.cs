@@ -59,7 +59,7 @@ public class GeneralTimeFormatter : ITimeFormatter
             {
                 return "0.00";
             }
-            else if (NullFormat == NullFormat.ZeroValue || NullFormat == NullFormat.Dashes)
+            else if (NullFormat is NullFormat.ZeroValue or NullFormat.Dashes)
             {
                 timeNullable = TimeSpan.Zero;
             }

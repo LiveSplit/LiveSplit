@@ -86,7 +86,7 @@ public partial class BrowseSpeedrunComDialog : Form
             var strPlace = place.Value.ToString(CultureInfo.InvariantCulture);
             var postfix = "th";
 
-            if (place % 100 < 10 || place % 100 > 20)
+            if (place % 100 is < 10 or > 20)
             {
                 switch (place % 10)
                 {
@@ -315,9 +315,8 @@ public partial class BrowseSpeedrunComDialog : Form
     {
         try
         {
-            if (splitsTreeView.SelectedNode != null && splitsTreeView.SelectedNode.Tag is Record)
+            if (splitsTreeView.SelectedNode != null && splitsTreeView.SelectedNode.Tag is Record record)
             {
-                var record = (Record)splitsTreeView.SelectedNode.Tag;
                 Run = record.GetRun();
 
                 if (!isImporting)
@@ -406,8 +405,8 @@ public partial class BrowseSpeedrunComDialog : Form
 
     private void splitsTreeView_AfterSelect(object sender, TreeViewEventArgs e)
     {
-        btnDownload.Enabled = e.Node.Tag is Record && ((Record)e.Node.Tag).SplitsAvailable;
-        btnShowOnSpeedrunCom.Enabled = e.Node.Tag is Uri || e.Node.Tag is Record;
+        btnDownload.Enabled = e.Node.Tag is Record record && record.SplitsAvailable;
+        btnShowOnSpeedrunCom.Enabled = e.Node.Tag is Uri or Record;
     }
 
     private void btnShowOnSpeedrunCom_Click(object sender, EventArgs e)
@@ -419,9 +418,8 @@ public partial class BrowseSpeedrunComDialog : Form
                 var uri = (Uri)splitsTreeView.SelectedNode.Tag;
                 Process.Start(uri.AbsoluteUri);
             }
-            else if (splitsTreeView.SelectedNode.Tag is Record)
+            else if (splitsTreeView.SelectedNode.Tag is Record record)
             {
-                var record = (Record)splitsTreeView.SelectedNode.Tag;
                 var uri = record.WebLink;
                 Process.Start(uri.AbsoluteUri);
             }

@@ -35,7 +35,7 @@ public class URLRunImporter : IRunImporter
                 return SplitsIO.Instance.DownloadRunByUri(uri, true);
             }
 
-            if (host == "www.speedrun.com" || host == "speedrun.com")
+            if (host is "www.speedrun.com" or "speedrun.com")
             {
                 var speedrunComRun = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
                 if (speedrunComRun != null && speedrunComRun.SplitsAvailable)

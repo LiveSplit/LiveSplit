@@ -411,9 +411,8 @@ public partial class TimerForm : Form
                 numSeparators++;
             }
 
-            if (item is ToolStripMenuItem)
+            if (item is ToolStripMenuItem toolItem)
             {
-                var toolItem = (ToolStripMenuItem)item;
                 if (numSeparators == 0)
                 {
                     toolItem.Checked = toolItem.Name == CurrentState.CurrentTimingMethod.ToString();
@@ -472,8 +471,7 @@ public partial class TimerForm : Form
             }
             else
             {
-                ToolStripMenuItem racingMenuItem = RightClickMenu.Items.Find($"{raceProvider.ProviderName}racesMenuItem", false).FirstOrDefault() as ToolStripMenuItem;
-                if (racingMenuItem == null)
+                if (RightClickMenu.Items.Find($"{raceProvider.ProviderName}racesMenuItem", false).FirstOrDefault() is not ToolStripMenuItem racingMenuItem)
                 {
                     return;
                 }
@@ -568,7 +566,7 @@ public partial class TimerForm : Form
             menuItemsToAdd.Add(tsItem);
         }
 
-        if (menuItemsToAdd.Count > 0 && !(menuItemsToAdd[menuItemsToAdd.Count - 1] is ToolStripSeparator))
+        if (menuItemsToAdd.Count > 0 && menuItemsToAdd[menuItemsToAdd.Count - 1] is not ToolStripSeparator)
         {
             menuItemsToAdd.Add(new ToolStripSeparator());
         }
@@ -1326,13 +1324,10 @@ public partial class TimerForm : Form
                 }
             });
         }
-        catch (Exception ex)
+        catch (Exception ex) when (ex is not ObjectDisposedException { ObjectName: "TimerForm" })
         {
-            if (!(ex is ObjectDisposedException && ((ObjectDisposedException)ex).ObjectName == "TimerForm"))
-            {
-                Log.Error(ex);
-                Invalidate();
-            }
+            Log.Error(ex);
+            Invalidate();
         }
     }
 
@@ -1677,7 +1672,7 @@ public partial class TimerForm : Form
         const int RESIZE_HANDLE_SIZE = 10;
         bool handled = false;
 
-        if (m.Msg == WM_NCHITTEST || m.Msg == WM_MOUSEMOVE)
+        if (m.Msg is (int)WM_NCHITTEST or (int)WM_MOUSEMOVE)
         {
             Size formSize = Size;
             Point screenPoint = new Point(m.LParam.ToInt32());

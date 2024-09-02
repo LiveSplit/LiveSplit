@@ -31,9 +31,9 @@ public struct GamepadButton
 
     public override readonly bool Equals(object obj)
     {
-        if (obj is GamepadButton)
+        if (obj is GamepadButton button)
         {
-            return this == (GamepadButton)obj;
+            return this == button;
         }
 
         return base.Equals(obj);
@@ -88,10 +88,10 @@ public class GamepadHook
 
         if (joystick.Information.Type == DeviceType.Mouse)
         {
-            if (button == JoystickOffset.X
-                || button == JoystickOffset.Y
-                || button == JoystickOffset.Buttons0
-                || button == JoystickOffset.Buttons1)
+            if (button is JoystickOffset.X
+                or JoystickOffset.Y
+                or JoystickOffset.Buttons0
+                or JoystickOffset.Buttons1)
             {
                 return false;
             }
@@ -102,22 +102,22 @@ public class GamepadHook
             }
         }
 
-        if (button == JoystickOffset.Z
-            || button == JoystickOffset.X
-            || button == JoystickOffset.Y
-            || button == JoystickOffset.RotationX
-            || button == JoystickOffset.RotationY
-            || button == JoystickOffset.RotationZ
-            || button == JoystickOffset.Sliders0
-            || button == JoystickOffset.Sliders1)
+        if (button is JoystickOffset.Z
+            or JoystickOffset.X
+            or JoystickOffset.Y
+            or JoystickOffset.RotationX
+            or JoystickOffset.RotationY
+            or JoystickOffset.RotationZ
+            or JoystickOffset.Sliders0
+            or JoystickOffset.Sliders1)
         {
             return value >= shortMaskMax || value <= shortMaskMin;
         }
 
-        if (button == JoystickOffset.PointOfViewControllers0
-            || button == JoystickOffset.PointOfViewControllers1
-            || button == JoystickOffset.PointOfViewControllers2
-            || button == JoystickOffset.PointOfViewControllers3)
+        if (button is JoystickOffset.PointOfViewControllers0
+            or JoystickOffset.PointOfViewControllers1
+            or JoystickOffset.PointOfViewControllers2
+            or JoystickOffset.PointOfViewControllers3)
         {
             return value != -1;
         }
@@ -146,22 +146,22 @@ public class GamepadHook
             }
         }
 
-        if (button == JoystickOffset.Z
-           || button == JoystickOffset.X
-           || button == JoystickOffset.Y
-           || button == JoystickOffset.RotationX
-           || button == JoystickOffset.RotationY
-           || button == JoystickOffset.RotationZ
-           || button == JoystickOffset.Sliders0
-           || button == JoystickOffset.Sliders1)
+        if (button is JoystickOffset.Z
+           or JoystickOffset.X
+           or JoystickOffset.Y
+           or JoystickOffset.RotationX
+           or JoystickOffset.RotationY
+           or JoystickOffset.RotationZ
+           or JoystickOffset.Sliders0
+           or JoystickOffset.Sliders1)
         {
             return originalName + (value >= shortMaskMax ? '+' : '-');
         }
 
-        if (button == JoystickOffset.PointOfViewControllers0
-            || button == JoystickOffset.PointOfViewControllers1
-            || button == JoystickOffset.PointOfViewControllers2
-            || button == JoystickOffset.PointOfViewControllers3)
+        if (button is JoystickOffset.PointOfViewControllers0
+            or JoystickOffset.PointOfViewControllers1
+            or JoystickOffset.PointOfViewControllers2
+            or JoystickOffset.PointOfViewControllers3)
         {
             if (button == JoystickOffset.PointOfViewControllers0)
             {

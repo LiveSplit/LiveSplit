@@ -294,7 +294,7 @@ public class CommandServer
             {
                 var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
                 TimeSpan? delta = null;
-                if (State.CurrentPhase == TimerPhase.Running || State.CurrentPhase == TimerPhase.Paused)
+                if (State.CurrentPhase is TimerPhase.Running or TimerPhase.Paused)
                 {
                     delta = LiveSplitStateHelper.GetLastDelta(State, State.CurrentSplitIndex, comparison, State.CurrentTimingMethod);
                 }
@@ -530,7 +530,7 @@ public class CommandServer
 
     private TimeSpan? PredictTime(LiveSplitState state, string comparison)
     {
-        if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
+        if (state.CurrentPhase is TimerPhase.Running or TimerPhase.Paused)
         {
             TimeSpan? delta = LiveSplitStateHelper.GetLastDelta(state, state.CurrentSplitIndex, comparison, State.CurrentTimingMethod) ?? TimeSpan.Zero;
             var liveDelta = state.CurrentTime[State.CurrentTimingMethod] - state.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];

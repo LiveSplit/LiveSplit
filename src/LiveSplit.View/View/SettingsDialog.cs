@@ -195,7 +195,7 @@ public partial class SettingsDialog : Form
         handlerDown = (s, x) =>
         {
             var key = x.KeyCode == Keys.Escape ? null : new KeyOrButton(x.KeyCode | x.Modifiers);
-            if (x.KeyCode == Keys.ControlKey || x.KeyCode == Keys.ShiftKey || x.KeyCode == Keys.Menu)
+            if (x.KeyCode is Keys.ControlKey or Keys.ShiftKey or Keys.Menu)
             {
                 return;
             }
@@ -209,7 +209,7 @@ public partial class SettingsDialog : Form
         handlerUp = (s, x) =>
         {
             var key = x.KeyCode == Keys.Escape ? null : new KeyOrButton(x.KeyCode | x.Modifiers);
-            if (x.KeyCode == Keys.ControlKey || x.KeyCode == Keys.ShiftKey || x.KeyCode == Keys.Menu)
+            if (x.KeyCode is Keys.ControlKey or Keys.ShiftKey or Keys.Menu)
             {
                 keySetCallback(key);
                 unregisterEvents();
@@ -283,7 +283,7 @@ public partial class SettingsDialog : Form
     {
         foreach (Control childControl in control.Controls)
         {
-            if (childControl is TableLayoutPanel || childControl is Label || childControl is GroupBox)
+            if (childControl is TableLayoutPanel or Label or GroupBox)
             {
                 SetClickEvents(childControl);
             }
