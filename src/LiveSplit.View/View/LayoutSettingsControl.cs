@@ -66,17 +66,13 @@ public partial class LayoutSettingsControl : UserControl
 
     private string GetBackgroundTypeString(BackgroundType type)
     {
-        switch (type)
+        return type switch
         {
-            case BackgroundType.HorizontalGradient:
-                return "Horizontal Gradient";
-            case BackgroundType.VerticalGradient:
-                return "Vertical Gradient";
-            case BackgroundType.Image:
-                return "Image";
-            default:
-                return "Solid Color";
-        }
+            BackgroundType.HorizontalGradient => "Horizontal Gradient",
+            BackgroundType.VerticalGradient => "Vertical Gradient",
+            BackgroundType.Image => "Image",
+            _ => "Solid Color",
+        };
     }
 
     private void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)

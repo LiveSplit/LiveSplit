@@ -15,14 +15,13 @@ public static class RaceViewer
 {
     public static IRaceViewer FromName(string name)
     {
-        switch (name)
+        return name switch
         {
-            case "Kadgar": return new Kadgar();
-            case "MultiTwitch": return new MultiTwitch();
-            case "Speedrun.tv": return new SpeedrunTV();
-            case "SpeedRunsLive": return new SRLRaceViewer();
-        }
-
-        throw new ArgumentException("name");
+            "Kadgar" => new Kadgar(),
+            "MultiTwitch" => new MultiTwitch(),
+            "Speedrun.tv" => new SpeedrunTV(),
+            "SpeedRunsLive" => new SRLRaceViewer(),
+            _ => throw new ArgumentException("name"),
+        };
     }
 }

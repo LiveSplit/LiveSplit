@@ -247,21 +247,13 @@ internal static class InternetExplorerBrowserEmulation
         }
         else
         {
-            switch (ieVersion)
+            emulationCode = ieVersion switch
             {
-                case 10:
-                    emulationCode = BrowserEmulationVersion.Version10;
-                    break;
-                case 9:
-                    emulationCode = BrowserEmulationVersion.Version9;
-                    break;
-                case 8:
-                    emulationCode = BrowserEmulationVersion.Version8;
-                    break;
-                default:
-                    emulationCode = BrowserEmulationVersion.Version7;
-                    break;
-            }
+                10 => BrowserEmulationVersion.Version10,
+                9 => BrowserEmulationVersion.Version9,
+                8 => BrowserEmulationVersion.Version8,
+                _ => BrowserEmulationVersion.Version7,
+            };
         }
 
         return SetBrowserEmulationVersion(emulationCode, programName);

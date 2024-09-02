@@ -77,16 +77,12 @@ public static class SpeedrunCom
 
     public static Model.TimingMethod ToLiveSplitTimingMethod(this SpeedrunComSharp.TimingMethod timingMethod)
     {
-        switch (timingMethod)
+        return timingMethod switch
         {
-            case SpeedrunComSharp.TimingMethod.RealTime:
-                return Model.TimingMethod.RealTime;
-            case SpeedrunComSharp.TimingMethod.GameTime:
-            case SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads:
-                return Model.TimingMethod.GameTime;
-        }
-
-        throw new ArgumentException("timingMethod");
+            SpeedrunComSharp.TimingMethod.RealTime => Model.TimingMethod.RealTime,
+            SpeedrunComSharp.TimingMethod.GameTime or SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads => Model.TimingMethod.GameTime,
+            _ => throw new ArgumentException("timingMethod"),
+        };
     }
 
     public static Image GetBoxartImage(this Assets assets)

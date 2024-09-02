@@ -467,27 +467,25 @@ public partial class SpeedRunsLiveForm : Form
 
     private static Color GetColorByCode(int colorCode)
     {
-        switch (colorCode)
+        return colorCode switch
         {
-            case 0: return Color.White;
-            case 1:
-            default:
-                return Color.Black;
-            case 2: return Color.DarkBlue;
-            case 3: return Color.Green;
-            case 4: return Color.Red;
-            case 5: return Color.DarkRed;
-            case 6: return Color.Purple;
-            case 7: return Color.Orange;
-            case 8: return Color.Yellow;
-            case 9: return Color.LightGreen;
-            case 10: return Color.Turquoise;
-            case 11: return Color.LightBlue;
-            case 12: return Color.Blue;
-            case 13: return Color.Pink;
-            case 14: return Color.Gray;
-            case 15: return Color.LightGray;
-        }
+            0 => Color.White,
+            2 => Color.DarkBlue,
+            3 => Color.Green,
+            4 => Color.Red,
+            5 => Color.DarkRed,
+            6 => Color.Purple,
+            7 => Color.Orange,
+            8 => Color.Yellow,
+            9 => Color.LightGreen,
+            10 => Color.Turquoise,
+            11 => Color.LightBlue,
+            12 => Color.Blue,
+            13 => Color.Pink,
+            14 => Color.Gray,
+            15 => Color.LightGray,
+            _ => Color.Black,
+        };
     }
 
     private void ChatBoxAppend(string message, Color color)
