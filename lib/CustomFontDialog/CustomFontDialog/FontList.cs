@@ -9,7 +9,6 @@ public partial class FontList : UserControl
 {
 
     public event EventHandler SelectedFontFamilyChanged;
-    private int lastSelectedIndex = -1;
 
     public FontList()
     {
@@ -37,7 +36,7 @@ public partial class FontList : UserControl
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
             }
         }
@@ -94,7 +93,6 @@ public partial class FontList : UserControl
             }
 
             SelectedFontFamilyChanged(lstFont, new EventArgs());
-            lastSelectedIndex = lstFont.SelectedIndex;
         }
     }
 
@@ -132,7 +130,7 @@ public partial class FontList : UserControl
     private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, uint wParam, uint lParam);
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>

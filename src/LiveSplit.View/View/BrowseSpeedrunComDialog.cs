@@ -62,23 +62,6 @@ public partial class BrowseSpeedrunComDialog : Form
         return (int)Math.Floor(Math.Log10(n) + 1);
     }
 
-    private static string formatTime(Time time)
-    {
-        var formatter = new ShortTimeFormatter();
-
-        if (time.RealTime.HasValue && !time.GameTime.HasValue)
-        {
-            return formatter.Format(time.RealTime);
-        }
-
-        if (!time.RealTime.HasValue && time.GameTime.HasValue)
-        {
-            return formatter.Format(time.GameTime);
-        }
-
-        return formatter.Format(time.RealTime) + " / " + formatter.Format(time.GameTime);
-    }
-
     private static string formatPlace(int? place)
     {
         if (place.HasValue)

@@ -29,9 +29,6 @@ public class LiveSplitCoreFactory
         private readonly void* handle;
 
     }
-
-    private static LibraryUnloader unloader;
-
     public static void LoadLiveSplitCore()
     {
         string path;
@@ -53,8 +50,6 @@ public class LiveSplitCoreFactory
             {
                 throw new DllNotFoundException("Unable to load the native livesplit-core library: " + path);
             }
-
-            unloader = new LibraryUnloader(handle);
         }
     }
 }

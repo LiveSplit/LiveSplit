@@ -9,7 +9,6 @@ namespace Fetze.WinFormsColor;
 public class ColorPanel : UserControl
 {
     private Bitmap srcImage = null;
-    private bool pickerDrag = false;
     private int pickerSize = 8;
     private PointF pickerPos = new(0.5f, 0.5f);
     private Color clrTopLeft = Color.Transparent;
@@ -372,13 +371,11 @@ public class ColorPanel : UserControl
                 (e.X - ColorAreaRectangle.X) / (float)ColorAreaRectangle.Width,
                 1.0f - ((e.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height));
             pickerDragTimer.Start();
-            pickerDrag = true;
         }
     }
     protected override void OnMouseUp(MouseEventArgs e)
     {
         base.OnMouseUp(e);
-        pickerDrag = false;
         pickerDragTimer.Stop();
     }
     private void pickerDragTimer_Tick(object sender, EventArgs e)
@@ -391,7 +388,6 @@ public class ColorPanel : UserControl
     protected override void OnMouseLeave(EventArgs e)
     {
         base.OnMouseLeave(e);
-        pickerDrag = false;
     }
     protected override void OnLostFocus(EventArgs e)
     {

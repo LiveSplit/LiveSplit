@@ -178,15 +178,4 @@ public class NewRaceInputBox : Form
         category = cbxRunCategory.Text;
         return dialogResult;
     }
-
-    private void InitializeComponent()
-    {
-        SuspendLayout();
-        // 
-        // NewRaceInputBox
-        // 
-        ClientSize = new Size(284, 317);
-        Name = "NewRaceInputBox";
-        ResumeLayout(false);
-    }
 }

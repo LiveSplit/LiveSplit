@@ -126,7 +126,6 @@ public class KeyboardInput : IDisposable
     private readonly WindowsHookHelper.HookDelegate keyBoardDelegate;
     private IntPtr keyBoardHandle;
     private const int WH_KEYBOARD_LL = 13;
-    private const int WH_KEYBOARD = 2;
     private bool disposed;
 
     [DllImport("kernel32.dll")]

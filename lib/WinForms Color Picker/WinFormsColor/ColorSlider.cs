@@ -9,7 +9,6 @@ namespace Fetze.WinFormsColor;
 public class ColorSlider : UserControl
 {
     private Bitmap srcImage = null;
-    private bool pickerDrag = false;
     private int pickerSize = 5;
     private float pickerPos = 0.5f;
     private Color min = Color.Transparent;
@@ -190,7 +189,6 @@ public class ColorSlider : UserControl
     protected override void OnEnabledChanged(EventArgs e)
     {
         base.OnEnabledChanged(e);
-        pickerDrag = false;
         Invalidate();
     }
     protected override void OnPaint(PaintEventArgs e)
@@ -256,14 +254,12 @@ public class ColorSlider : UserControl
         {
             Focus();
             ValuePercentual = 1.0f - ((e.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height);
-            pickerDrag = true;
             pickerDragTimer.Enabled = true;
         }
     }
     protected override void OnMouseUp(MouseEventArgs e)
     {
         base.OnMouseUp(e);
-        pickerDrag = false;
         pickerDragTimer.Enabled = false;
     }
 
@@ -275,7 +271,6 @@ public class ColorSlider : UserControl
     protected override void OnMouseLeave(EventArgs e)
     {
         base.OnMouseLeave(e);
-        pickerDrag = false;
     }
     protected override void OnLostFocus(EventArgs e)
     {
