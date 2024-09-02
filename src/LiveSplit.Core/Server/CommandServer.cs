@@ -33,8 +33,8 @@ public class CommandServer
     public CommandServer(LiveSplitState state)
     {
         Model = new TimerModel();
-        PipeConnections = new List<Connection>();
-        TcpConnections = new List<TcpConnection>();
+        PipeConnections = [];
+        TcpConnections = [];
         TimeFormatter = new PreciseTimeFormatter();
 
         State = state;
@@ -166,7 +166,7 @@ public class CommandServer
     private void ProcessMessage(string message, IConnection clientConnection)
     {
         string response = null;
-        var args = message.Split(new[] { ' ' }, 2);
+        var args = message.Split([' '], 2);
         var command = args[0];
         switch (command)
         {
@@ -464,7 +464,7 @@ public class CommandServer
 
                 if (command == "setsplitname")
                 {
-                    var options = args[1].Split(new[] { ' ' }, 2);
+                    var options = args[1].Split([' '], 2);
 
                     if (options.Length < 2)
                     {

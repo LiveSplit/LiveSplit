@@ -31,7 +31,7 @@ public class Segment : ISegment
         BestSegmentTime = bestSegmentTime;
         SplitTime = splitTime;
         Icon = icon;
-        SegmentHistory = new SegmentHistory();
+        SegmentHistory = [];
     }
 
     public Segment Clone()

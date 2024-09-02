@@ -15,7 +15,7 @@ public class KeyboardHook
 
     public KeyboardHook()
     {
-        RegisteredKeys = new Dictionary<Keys, bool>();
+        RegisteredKeys = [];
     }
 
     public void RegisterHotKey(Keys key)

@@ -89,7 +89,7 @@ public class NewRaceInputBox : Form
         buttonCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
 
         ClientSize = new Size(396, 180);
-        Controls.AddRange(new Control[] { label, label2, labelNote, cbxGameName, cbxRunCategory, buttonOk, buttonCancel });
+        Controls.AddRange([label, label2, labelNote, cbxGameName, cbxRunCategory, buttonOk, buttonCancel]);
         ClientSize = new Size(Math.Max(300, label.Right + 10), ClientSize.Height);
         FormBorderStyle = FormBorderStyle.FixedDialog;
         StartPosition = FormStartPosition.CenterScreen;
@@ -145,7 +145,7 @@ public class NewRaceInputBox : Form
                 {
                     Log.Error(ex);
 
-                    categoryNames = new[] { "Any%", "Low%", "100%" };
+                    categoryNames = ["Any%", "Low%", "100%"];
                 }
 
                 this.InvokeIfRequired(() =>

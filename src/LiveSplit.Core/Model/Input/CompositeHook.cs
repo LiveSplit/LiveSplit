@@ -37,7 +37,7 @@ public class KeyOrButton
     {
         if (stringRepresentation.Contains(' ') && !stringRepresentation.Contains(", "))
         {
-            var split = stringRepresentation.Split(new char[] { ' ' }, 2);
+            var split = stringRepresentation.Split([' '], 2);
             Button = new GamepadButton(split[1], split[0]);
             IsButton = true;
         }
@@ -129,7 +129,7 @@ public class CompositeHook
     public CompositeHook(bool allowGamepads)
     {
         KeyboardHook = new LowLevelKeyboardHook();
-        RegisteredButtons = new List<GamepadButton>();
+        RegisteredButtons = [];
         KeyboardHook.KeyPressed += KeyboardHook_KeyPressed;
 
         gamepadHookInitialized = false;

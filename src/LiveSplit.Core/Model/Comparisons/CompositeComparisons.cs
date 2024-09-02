@@ -93,8 +93,10 @@ public class CompositeComparisons : IComparisons
 
     public CompositeComparisons Clone()
     {
-        var clone = new CompositeComparisons();
-        clone.Comparisons = new Dictionary<string, Time>(Comparisons);
+        var clone = new CompositeComparisons
+        {
+            Comparisons = new Dictionary<string, Time>(Comparisons)
+        };
         return clone;
     }
 

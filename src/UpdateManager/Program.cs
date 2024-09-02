@@ -22,7 +22,7 @@ internal static class Program
             //"http://irc107.xe.cx/update.xml" "http://irc107.xe.cx/update/" 0.2.0.0 "D:\Projekte\C#\IRC107\bin\Release\IRC107.exe"
             if (args.Length >= 3)
             {
-                List<IUpdateable> updateables = new List<IUpdateable>();
+                List<IUpdateable> updateables = [];
                 for (int i = 0; i + 2 < args.Length; i += 3)
                 {
                     updateables.Add(new Updateable(args[i], args[i + 1], Version.Parse(args[i + 2])));

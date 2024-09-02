@@ -19,7 +19,7 @@ public class Layout : ILayout
 
     public Layout()
     {
-        LayoutComponents = new List<ILayoutComponent>();
+        LayoutComponents = [];
     }
 
     public int VerticalWidth { get; set; }

@@ -29,15 +29,19 @@ public partial class SpeedrunComSubmitDialog : Form
 
         if (!hasPersonalBestDateTime)
         {
-            var dateLabel = new Label();
-            dateLabel.Text = "Date:";
+            var dateLabel = new Label
+            {
+                Text = "Date:"
+            };
             tableLayoutPanel.Controls.Add(dateLabel, 0, row);
             dateLabel.Anchor = AnchorStyles.Left;
             dateLabel.AutoSize = true;
 
-            datePicker = new DateTimePicker();
-            datePicker.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-            datePicker.TabIndex = row;
+            datePicker = new DateTimePicker
+            {
+                Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                TabIndex = row
+            };
             tableLayoutPanel.Controls.Add(datePicker, 1, row);
             tableLayoutPanel.SetColumnSpan(datePicker, 2);
 
@@ -57,15 +61,19 @@ public partial class SpeedrunComSubmitDialog : Form
         {
             if (usesWithoutLoads)
             {
-                var label = new Label();
-                label.Text = "Without Loads:";
+                var label = new Label
+                {
+                    Text = "Without Loads:"
+                };
                 tableLayoutPanel.Controls.Add(label, 0, row);
                 label.Anchor = AnchorStyles.Left;
                 label.AutoSize = true;
 
-                txtWithoutLoads = new TextBox();
-                txtWithoutLoads.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                txtWithoutLoads.TabIndex = row;
+                txtWithoutLoads = new TextBox
+                {
+                    Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                    TabIndex = row
+                };
                 tableLayoutPanel.Controls.Add(txtWithoutLoads, 1, row);
                 tableLayoutPanel.SetColumnSpan(txtWithoutLoads, 2);
 
@@ -77,15 +85,19 @@ public partial class SpeedrunComSubmitDialog : Form
 
             if (usesGameTime)
             {
-                var label = new Label();
-                label.Text = "Game Time:";
+                var label = new Label
+                {
+                    Text = "Game Time:"
+                };
                 tableLayoutPanel.Controls.Add(label, 0, row);
                 label.Anchor = AnchorStyles.Left;
                 label.AutoSize = true;
 
-                txtGameTime = new TextBox();
-                txtGameTime.Anchor = AnchorStyles.Left | AnchorStyles.Right;
-                txtGameTime.TabIndex = row;
+                txtGameTime = new TextBox
+                {
+                    Anchor = AnchorStyles.Left | AnchorStyles.Right,
+                    TabIndex = row
+                };
                 tableLayoutPanel.Controls.Add(txtGameTime, 1, row);
                 tableLayoutPanel.SetColumnSpan(txtGameTime, 2);
 
@@ -209,7 +221,7 @@ public partial class SpeedrunComSubmitDialog : Form
 
             attempt.Time = runTime;
 
-            run.AttemptHistory = run.AttemptHistory.Concat(new[] { attempt }).OrderBy(x => x.Index).ToList();
+            run.AttemptHistory = [.. run.AttemptHistory.Concat(new[] { attempt }).OrderBy(x => x.Index)];
         }
 
         lastSplit.PersonalBestSplitTime = runTime;

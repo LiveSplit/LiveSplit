@@ -66,7 +66,7 @@ public class ComponentManager
             {
                 factory = (T)attr.
                     ComponentFactoryClassType.
-                    GetConstructor(new Type[0]).
+                    GetConstructor([]).
                     Invoke(null);
             }
         }

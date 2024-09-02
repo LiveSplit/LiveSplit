@@ -104,7 +104,7 @@ public partial class TimerForm : Form
     protected bool MouseIsDown = false;
     protected Point MousePoint;
 
-    private readonly List<Action> RacesToRefresh = new List<Action>();
+    private readonly List<Action> RacesToRefresh = [];
     private bool ShouldRefreshRaces = false;
 
     protected Task RefreshTask { get; set; }
@@ -479,7 +479,7 @@ public partial class TimerForm : Form
                 }
 
                 racingMenuItem.DropDownItems.Clear();
-                racingMenuItem.DropDownItems.AddRange(x.ToArray());
+                racingMenuItem.DropDownItems.AddRange([.. x]);
             }
         };
 
@@ -497,9 +497,11 @@ public partial class TimerForm : Form
             var plural = entrants == 1 ? "" : "s";
             var title = string.Format("{0} ({1} Entrant{2})", gameAndGoal, entrants, plural) as string;
 
-            var item = new ToolStripMenuItem();
-            item.Text = title.EscapeMenuItemText();
-            item.Tag = race.Id;
+            var item = new ToolStripMenuItem
+            {
+                Text = title.EscapeMenuItemText(),
+                Tag = race.Id
+            };
             item.Click += (s, e) => raceProvider.JoinRace?.Invoke(Model, race.Id);
             menuItemsToAdd.Add(item);
         }
@@ -571,8 +573,10 @@ public partial class TimerForm : Form
             menuItemsToAdd.Add(new ToolStripSeparator());
         }
 
-        var newRaceItem = new ToolStripMenuItem();
-        newRaceItem.Text = "New Race...";
+        var newRaceItem = new ToolStripMenuItem
+        {
+            Text = "New Race..."
+        };
         newRaceItem.Click += (s, e) => raceProvider.CreateRace?.Invoke(Model);
         menuItemsToAdd.Add(newRaceItem);
 
@@ -658,12 +662,11 @@ public partial class TimerForm : Form
     private void CheckForUpdates()
     {
         UpdateHelper.Update(this, () => Invoke(new Action(() => Process.GetCurrentProcess().Kill())),
-                    new IUpdateable[] {
+                    [
                         new LiveSplitUpdateable(),
-                        UpdateManagerUpdateable.Instance }
-                        .Concat(ComponentManager.ComponentFactories.Values)
-                        .Concat(ComponentManager.RaceProviderFactories.Values)
-                        .ToArray());
+                        UpdateManagerUpdateable.Instance,
+                        .. ComponentManager.ComponentFactories.Values,
+                        .. ComponentManager.RaceProviderFactories.Values, ]);
     }
 
     private void CurrentState_OnUndoSplit(object sender, EventArgs e)
@@ -850,15 +853,19 @@ public partial class TimerForm : Form
             foreach (var category in game
                 .GroupBy(x => x.CategoryName ?? ""))
             {
-                var categoryMenuItem = new ToolStripMenuItem();
-                categoryMenuItem.Tag = "Category";
+                var categoryMenuItem = new ToolStripMenuItem
+                {
+                    Tag = "Category"
+                };
 
                 foreach (var splitsFile in category)
                 {
                     string fileName = Path.GetFileName(splitsFile.Path);
 
-                    var menuItem = new ToolStripMenuItem(fileName.EscapeMenuItemText());
-                    menuItem.Tag = "FileName";
+                    var menuItem = new ToolStripMenuItem(fileName.EscapeMenuItemText())
+                    {
+                        Tag = "FileName"
+                    };
                     menuItem.Click += (x, y) => OpenRunFromFile(splitsFile.Path);
                     categoryMenuItem.DropDownItems.Add(menuItem);
                 }
@@ -1158,8 +1165,10 @@ public partial class TimerForm : Form
                 {
                     if (hotkeyProfile.HotkeyDelay > 0)
                     {
-                        var splitTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
-                        splitTimer.Enabled = true;
+                        var splitTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f)
+                        {
+                            Enabled = true
+                        };
                         splitTimer.Elapsed += splitTimer_Elapsed;
                     }
                     else
@@ -1187,8 +1196,10 @@ public partial class TimerForm : Form
                 {
                     if (hotkeyProfile.HotkeyDelay > 0)
                     {
-                        var pauseTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f);
-                        pauseTimer.Enabled = true;
+                        var pauseTimer = new System.Timers.Timer(hotkeyProfile.HotkeyDelay * 1000f)
+                        {
+                            Enabled = true
+                        };
                         pauseTimer.Elapsed += pauseTimer_Elapsed;
                     }
                     else
@@ -1563,8 +1574,10 @@ public partial class TimerForm : Form
 
             using (var graphics = Graphics.FromImage(bitmap))
             {
-                var matrix = new ColorMatrix();
-                matrix.Matrix33 = opacity;
+                var matrix = new ColorMatrix
+                {
+                    Matrix33 = opacity
+                };
                 var attributes = new ImageAttributes();
                 attributes.SetColorMatrix(matrix, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
 
@@ -3151,13 +3164,13 @@ public partial class TimerForm : Form
     private void RebuildControlMenu()
     {
         controlMenuItem.DropDownItems.Clear();
-        controlMenuItem.DropDownItems.AddRange(new ToolStripItem[] {
+        controlMenuItem.DropDownItems.AddRange([
         splitMenuItem,
         resetMenuItem,
         undoSplitMenuItem,
         skipSplitMenuItem,
         pauseMenuItem,
-        undoPausesMenuItem});
+        undoPausesMenuItem]);
 
         controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
         controlMenuItem.DropDownItems.Add(hotkeysMenuItem);

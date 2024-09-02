@@ -15,7 +15,7 @@ public static class UpdateHelper
     public static readonly Version Version = GetVersionFromGit();
     public static string UserAgent => GetUserAgent();
 
-    public static readonly List<Type> AlreadyChecked = new List<Type>();
+    public static readonly List<Type> AlreadyChecked = [];
 
     public static void Update(Form form, Action closeAction, params IUpdateable[] updateables)
     {

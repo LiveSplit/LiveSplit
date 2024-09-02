@@ -279,9 +279,11 @@ public class TimerModel : ITimerModel
         TimeSpan? splitTimeGameTime = TimeSpan.Zero;
         foreach (var split in CurrentState.Run.Take(CurrentState.CurrentSplitIndex))
         {
-            var newTime = new Time();
-            newTime.RealTime = split.SplitTime.RealTime - splitTimeRTA;
-            newTime.GameTime = split.SplitTime.GameTime - splitTimeGameTime;
+            var newTime = new Time
+            {
+                RealTime = split.SplitTime.RealTime - splitTimeRTA,
+                GameTime = split.SplitTime.GameTime - splitTimeGameTime
+            };
             split.SegmentHistory.Add(CurrentState.Run.AttemptHistory.Last().Index, newTime);
             if (split.SplitTime.RealTime.HasValue)
             {

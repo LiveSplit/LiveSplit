@@ -22,13 +22,13 @@ public class Update
     {
         Version version = Version.Parse(node.Attributes["version"].InnerText);
 
-        List<string> changeLog = new List<string>();
+        List<string> changeLog = [];
         foreach (XmlNode changeNode in node["changelog"].ChildNodes)
         {
             changeLog.Add(changeNode.InnerText);
         }
 
-        List<FileChange> fileChanges = new List<FileChange>();
+        List<FileChange> fileChanges = [];
         foreach (XmlNode changeNode in node["files"].ChildNodes)
         {
             fileChanges.Add(FileChange.Parse(changeNode));

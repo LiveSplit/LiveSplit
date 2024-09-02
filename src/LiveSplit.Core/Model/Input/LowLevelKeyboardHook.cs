@@ -19,7 +19,7 @@ public class LowLevelKeyboardHook
 
     public LowLevelKeyboardHook()
     {
-        RegisteredKeys = new List<Keys>();
+        RegisteredKeys = [];
         Input = new KeyboardInput();
         SafetyHook = new KeyboardHook();
         HookState = 0;

@@ -292,7 +292,7 @@ public class SigScanTarget
 
     public SigScanTarget()
     {
-        _sigs = new List<Signature>();
+        _sigs = [];
     }
 
     public SigScanTarget(int offset, params string[] signature)
@@ -341,8 +341,8 @@ public class SigScanTarget
 
         _sigs.Add(new Signature
         {
-            Pattern = sigBytes.ToArray(),
-            Mask = hasMask ? sigMask.ToArray() : null,
+            Pattern = [.. sigBytes],
+            Mask = hasMask ? [.. sigMask] : null,
             Offset = offset,
         });
     }

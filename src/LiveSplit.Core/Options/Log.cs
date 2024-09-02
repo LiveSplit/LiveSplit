@@ -18,8 +18,10 @@ public static class Log
 
         try
         {
-            var listener = new EventLogTraceListener("LiveSplit");
-            listener.Filter = new EventTypeFilter(SourceLevels.Warning);
+            var listener = new EventLogTraceListener("LiveSplit")
+            {
+                Filter = new EventTypeFilter(SourceLevels.Warning)
+            };
             Trace.Listeners.Add(listener);
         }
         catch { }

@@ -114,8 +114,10 @@ public class ColorPanel : UserControl
 
     public ColorPanel()
     {
-        this.pickerDragTimer = new Timer();
-        this.pickerDragTimer.Interval = 10;
+        this.pickerDragTimer = new Timer
+        {
+            Interval = 10
+        };
         this.pickerDragTimer.Tick += new EventHandler(pickerDragTimer_Tick);
 
         this.SetStyle(ControlStyles.UserPaint, true);
@@ -198,15 +200,19 @@ public class ColorPanel : UserControl
                 new Point(0, 0),
                 new Point(this.srcImage.Width - 1, 0),
                 Color.Transparent,
-                Color.Transparent);
-            gradient.InterpolationColors = blendX;
+                Color.Transparent)
+            {
+                InterpolationColors = blendX
+            };
             g.FillRectangle(gradient, g.ClipBounds);
             gradient = new LinearGradientBrush(
                 new Point(0, this.srcImage.Height - 1),
                 new Point(0, 0),
                 Color.Transparent,
-                Color.Transparent);
-            gradient.InterpolationColors = blendY;
+                Color.Transparent)
+            {
+                InterpolationColors = blendY
+            };
             g.FillRectangle(gradient, g.ClipBounds);
         }
 
@@ -219,60 +225,68 @@ public class ColorPanel : UserControl
     }
     public void SetupHueBrightnessGradient(float saturation = 1.0f, int accuracy = 256)
     {
-        ColorBlend blendX = new ColorBlend();
-        blendX.Colors = new Color[] {
+        ColorBlend blendX = new ColorBlend
+        {
+            Colors = [
             ExtMethodsSystemDrawingColor.ColorFromHSV(0.0f, saturation, 1.0f),
             ExtMethodsSystemDrawingColor.ColorFromHSV(1.0f / 6.0f, saturation, 1.0f),
             ExtMethodsSystemDrawingColor.ColorFromHSV(2.0f / 6.0f, saturation, 1.0f),
             ExtMethodsSystemDrawingColor.ColorFromHSV(3.0f / 6.0f, saturation, 1.0f),
             ExtMethodsSystemDrawingColor.ColorFromHSV(4.0f / 6.0f, saturation, 1.0f),
             ExtMethodsSystemDrawingColor.ColorFromHSV(5.0f / 6.0f, saturation, 1.0f),
-            ExtMethodsSystemDrawingColor.ColorFromHSV(1.0f, saturation, 1.0f) };
-        blendX.Positions = new float[] {
+            ExtMethodsSystemDrawingColor.ColorFromHSV(1.0f, saturation, 1.0f) ],
+            Positions = [
             0.0f,
             1.0f / 6.0f,
             2.0f / 6.0f,
             3.0f / 6.0f,
             4.0f / 6.0f,
             5.0f / 6.0f,
-            1.0f};
+            1.0f]
+        };
 
-        ColorBlend blendY = new ColorBlend();
-        blendY.Colors = new Color[] {
+        ColorBlend blendY = new ColorBlend
+        {
+            Colors = [
             Color.FromArgb(0, 0, 0),
-            Color.Transparent };
-        blendY.Positions = new float[] {
+            Color.Transparent ],
+            Positions = [
             0.0f,
-            1.0f};
+            1.0f]
+        };
         this.SetupXYGradient(blendX, blendY, accuracy);
     }
     public void SetupHueSaturationGradient(float brightness = 1.0f, int accuracy = 256)
     {
-        ColorBlend blendX = new ColorBlend();
-        blendX.Colors = new Color[] {
+        ColorBlend blendX = new ColorBlend
+        {
+            Colors = [
             ExtMethodsSystemDrawingColor.ColorFromHSV(0.0f, 1.0f, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(1.0f / 6.0f, 1.0f, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(2.0f / 6.0f, 1.0f, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(3.0f / 6.0f, 1.0f, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(4.0f / 6.0f, 1.0f, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(5.0f / 6.0f, 1.0f, brightness),
-            ExtMethodsSystemDrawingColor.ColorFromHSV(1.0f, 1.0f, brightness) };
-        blendX.Positions = new float[] {
+            ExtMethodsSystemDrawingColor.ColorFromHSV(1.0f, 1.0f, brightness) ],
+            Positions = [
             0.0f,
             1.0f / 6.0f,
             2.0f / 6.0f,
             3.0f / 6.0f,
             4.0f / 6.0f,
             5.0f / 6.0f,
-            1.0f};
+            1.0f]
+        };
 
-        ColorBlend blendY = new ColorBlend();
-        blendY.Colors = new Color[] {
+        ColorBlend blendY = new ColorBlend
+        {
+            Colors = [
             Color.FromArgb((int)Math.Round(255.0f * brightness), (int)Math.Round(255.0f * brightness), (int)Math.Round(255.0f * brightness)),
-            Color.Transparent };
-        blendY.Positions = new float[] {
+            Color.Transparent ],
+            Positions = [
             0.0f,
-            1.0f};
+            1.0f]
+        };
         this.SetupXYGradient(blendX, blendY, accuracy);
     }
 

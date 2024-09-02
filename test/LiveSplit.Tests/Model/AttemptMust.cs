@@ -29,7 +29,7 @@ public class AttemptMust
 
     public static IEnumerable<object[]> AttemptConstructorFeeder()
     {
-        object[] possibleValues = { null, new AtomicDateTime(AnyDateTime, false) };
+        object[] possibleValues = [null, new AtomicDateTime(AnyDateTime, false)];
         foreach (var anyStart in possibleValues)
         {
             foreach (var anyEnd in possibleValues)

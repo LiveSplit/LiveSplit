@@ -36,7 +36,7 @@ public enum ReadStringType
 
 public static class ExtensionMethods
 {
-    private static readonly Dictionary<int, ProcessModuleWow64Safe[]> ModuleCache = new Dictionary<int, ProcessModuleWow64Safe[]>();
+    private static readonly Dictionary<int, ProcessModuleWow64Safe[]> ModuleCache = [];
 
     public static ProcessModuleWow64Safe MainModuleWow64Safe(this Process p)
     {
@@ -111,9 +111,9 @@ public static class ExtensionMethods
             });
         }
 
-        ModuleCache[hash] = ret.ToArray();
+        ModuleCache[hash] = [.. ret];
 
-        return ret.ToArray();
+        return [.. ret];
     }
 
     public static IEnumerable<MemoryBasicInformation> MemoryPages(this Process process, bool all = false)
@@ -414,7 +414,7 @@ public static class ExtensionMethods
 
         MemPageProtect oldProtect;
         process.VirtualProtect(addr, jmpLen, MemPageProtect.PAGE_EXECUTE_READWRITE, out oldProtect);
-        bool success = process.WriteBytes(addr, instruction.ToArray());
+        bool success = process.WriteBytes(addr, [.. instruction]);
         process.VirtualProtect(addr, jmpLen, oldProtect);
 
         return success;

@@ -143,8 +143,10 @@ public partial class BrowseSpeedrunComDialog : Form
                             return;
                         }
 
-                        var gameNode = new TreeNode(game.Name);
-                        gameNode.Tag = game.WebLink;
+                        var gameNode = new TreeNode(game.Name)
+                        {
+                            Tag = game.WebLink
+                        };
                         var categories = game.FullGameCategories;
                         var timeFormatter = new AutomaticPrecisionTimeFormatter();
 
@@ -156,8 +158,10 @@ public partial class BrowseSpeedrunComDialog : Form
                                 return;
                             }
 
-                            var categoryNode = new TreeNode(category.Name);
-                            categoryNode.Tag = category.WebLink;
+                            var categoryNode = new TreeNode(category.Name)
+                            {
+                                Tag = category.WebLink
+                            };
                             var leaderboard = category.Leaderboard;
                             var records = leaderboard.Records;
 
@@ -173,8 +177,10 @@ public partial class BrowseSpeedrunComDialog : Form
                                 var runners = string.Join(" & ", record.Players.Select(x => x.Name));
                                 var time = record.Times.Primary;
                                 var runText = place + (time.HasValue ? timeFormatter.Format(time) : "") + " by " + runners;
-                                var runNode = new TreeNode(runText);
-                                runNode.Tag = record;
+                                var runNode = new TreeNode(runText)
+                                {
+                                    Tag = record
+                                };
                                 if (!record.SplitsAvailable)
                                 {
                                     runNode.ForeColor = Color.Gray;
@@ -224,8 +230,10 @@ public partial class BrowseSpeedrunComDialog : Form
                             return;
                         }
 
-                        var userNode = new TreeNode("@" + user.Name);
-                        userNode.Tag = user.WebLink;
+                        var userNode = new TreeNode("@" + user.Name)
+                        {
+                            Tag = user.WebLink
+                        };
                         var recordsGroupedByGames = SpeedrunCom.Client.Users.GetPersonalBests(user.ID, embeds: new RunEmbeds(embedGame: true, embedCategory: true))
                             .GroupBy(x => x.Game.Name);
 
@@ -257,8 +265,10 @@ public partial class BrowseSpeedrunComDialog : Form
                                 var coopRunners = record.Players.Count() > 1 ? " by " + string.Join(" & ", record.Players.Select(x => x.Name)) : "";
                                 var recordText = timeFormatter.Format(record.Times.Primary) + " in " + categoryName + coopRunners + place;
 
-                                var recordNode = new TreeNode(recordText);
-                                recordNode.Tag = record;
+                                var recordNode = new TreeNode(recordText)
+                                {
+                                    Tag = record
+                                };
                                 if (!record.SplitsAvailable)
                                 {
                                     recordNode.ForeColor = Color.Gray;

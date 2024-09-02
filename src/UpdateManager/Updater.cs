@@ -29,7 +29,7 @@ public static class Updater
         {
             if (_Updaters == null)
             {
-                _Updaters = new Dictionary<IUpdateable, UpdaterInternal>();
+                _Updaters = [];
             }
 
             return _Updaters;
@@ -51,7 +51,7 @@ public static class Updater
             {
                 if (_Updates == null)
                 {
-                    List<Update> updateList = new List<Update>();
+                    List<Update> updateList = [];
                     try
                     {
                         using (XmlReader reader = XmlReader.Create(XMLURL))

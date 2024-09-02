@@ -84,17 +84,19 @@ public static class CredentialManager
             }
         }
 
-        CREDENTIAL credential = new CREDENTIAL();
-        credential.AttributeCount = 0;
-        credential.Attributes = IntPtr.Zero;
-        credential.Comment = IntPtr.Zero;
-        credential.TargetAlias = IntPtr.Zero;
-        credential.Type = CredentialType.Generic;
-        credential.Persist = (uint)CredentialPersistence.LocalMachine;
-        credential.CredentialBlobSize = (uint)(byteArray == null ? 0 : byteArray.Length);
-        credential.TargetName = Marshal.StringToCoTaskMemUni(applicationName);
-        credential.CredentialBlob = Marshal.StringToCoTaskMemUni(secret);
-        credential.UserName = Marshal.StringToCoTaskMemUni(userName ?? Environment.UserName);
+        CREDENTIAL credential = new CREDENTIAL
+        {
+            AttributeCount = 0,
+            Attributes = IntPtr.Zero,
+            Comment = IntPtr.Zero,
+            TargetAlias = IntPtr.Zero,
+            Type = CredentialType.Generic,
+            Persist = (uint)CredentialPersistence.LocalMachine,
+            CredentialBlobSize = (uint)(byteArray == null ? 0 : byteArray.Length),
+            TargetName = Marshal.StringToCoTaskMemUni(applicationName),
+            CredentialBlob = Marshal.StringToCoTaskMemUni(secret),
+            UserName = Marshal.StringToCoTaskMemUni(userName ?? Environment.UserName)
+        };
 
         bool written = CredWrite(ref credential, 0);
         Marshal.FreeCoTaskMem(credential.TargetName);

@@ -119,8 +119,10 @@ public partial class SpeedRunsLiveForm : Form
     {
         GameId = gameID;
         GameCategory = gameCategory;
-        SRLClient = new SpeedRunsLiveIRC(state, model, new[] { "#speedrunslive" });
-        SRLClient.GameName = gameName;
+        SRLClient = new SpeedRunsLiveIRC(state, model, new[] { "#speedrunslive" })
+        {
+            GameName = gameName
+        };
         SRLClient.ChannelJoined += SRLClient_ChannelJoined;
         SRLClient.RawMessageReceived += SRLClient_RawMessageReceived;
         SRLClient.MessageReceived += SRLClient_MessageReceived;
@@ -284,8 +286,10 @@ public partial class SpeedRunsLiveForm : Form
             RefreshRaceStateBasedOnAPI();
             if (GameCategory != null)
             {
-                var timer = new System.Timers.Timer(3000);
-                timer.Enabled = true;
+                var timer = new System.Timers.Timer(3000)
+                {
+                    Enabled = true
+                };
                 timer.Elapsed += timer_Elapsed;
             }
 
@@ -295,8 +299,10 @@ public partial class SpeedRunsLiveForm : Form
         if (e == "#speedrunslive" && RaceId == null)
         {
             SRLClient.SendMainChannelMessage(".startrace " + GameId);
-            SRLClient.RaceBotResponseTimer = new System.Timers.Timer(10000);
-            SRLClient.RaceBotResponseTimer.Enabled = true;
+            SRLClient.RaceBotResponseTimer = new System.Timers.Timer(10000)
+            {
+                Enabled = true
+            };
             SRLClient.RaceBotResponseTimer.Elapsed += RaceBotResponseTimer_Elapsed;
         }
 

@@ -26,7 +26,7 @@ public class MedianSegmentsComparisonGenerator : IComparisonGenerator
     {
         var elementCount = curList.Count();
         var weightedList = curList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, elementCount), x)).ToList();
-        weightedList = weightedList.OrderBy(x => x.Value).ToList();
+        weightedList = [.. weightedList.OrderBy(x => x.Value)];
         var totalWeights = weightedList.Aggregate(0.0, (s, x) => s + x.Key);
         var halfTotalWeights = totalWeights / 2;
         var curTotal = 0.0;
@@ -52,7 +52,7 @@ public class MedianSegmentsComparisonGenerator : IComparisonGenerator
         var allHistory = new List<List<TimeSpan>>();
         foreach (var segment in Run)
         {
-            allHistory.Add(new List<TimeSpan>());
+            allHistory.Add([]);
         }
 
         foreach (var attempt in Run.AttemptHistory)

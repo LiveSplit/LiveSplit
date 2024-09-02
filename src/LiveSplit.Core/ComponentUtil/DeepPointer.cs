@@ -206,9 +206,11 @@ public class DeepPointer
 
     private void InitializeOffsets(params OffsetT[] offsets)
     {
-        _offsets = new List<OffsetT>();
-        _offsets.Add(0); // deref base first
-        _offsets.AddRange(offsets);
+        _offsets =
+        [
+            0, // deref base first
+            .. offsets,
+        ];
     }
 }
 

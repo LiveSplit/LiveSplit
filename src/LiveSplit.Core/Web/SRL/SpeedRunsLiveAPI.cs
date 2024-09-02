@@ -118,7 +118,7 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
 
     public void RefreshRacesList()
     {
-        List<SRLRaceInfo> infoList = new List<SRLRaceInfo>();
+        List<SRLRaceInfo> infoList = [];
         foreach (var race in JSON.FromUri(GetUri("races")).races)
         {
             infoList.Add(new SRLRaceInfo(race));

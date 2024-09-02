@@ -8,12 +8,12 @@ namespace LiveSplit.Model;
 
 public static class TimeSpanParser
 {
-    private static readonly char[] separators = { ':' };
-    private static readonly char[] dot = { '.' };
-    private static readonly char[] negativeSigns = {
+    private static readonly char[] separators = [':'];
+    private static readonly char[] dot = ['.'];
+    private static readonly char[] negativeSigns = [
         TimeFormatConstants.DASH.Single(),
         TimeFormatConstants.MINUS.Single()
-    };
+    ];
 
     public static TimeSpan? ParseNullable(string timeString)
     {
@@ -79,7 +79,7 @@ public static class TimeSpanParser
     }
 
     private static readonly long[] powersOfTen =
-    {
+    [
         1L,
         10L,
         100L,
@@ -88,5 +88,5 @@ public static class TimeSpanParser
         100000L,
         1000000L,
         10000000L,
-    };
+    ];
 }

@@ -93,8 +93,10 @@ public class ColorSlider : UserControl
 
     public ColorSlider()
     {
-        this.pickerDragTimer = new Timer();
-        this.pickerDragTimer.Interval = 10;
+        this.pickerDragTimer = new Timer
+        {
+            Interval = 10
+        };
         this.pickerDragTimer.Tick += new EventHandler(pickerDragTimer_Tick);
 
         this.SetStyle(ControlStyles.UserPaint, true);
@@ -136,8 +138,10 @@ public class ColorSlider : UserControl
                 new Point(0, this.srcImage.Height - 1),
                 new Point(0, 0),
                 Color.Transparent,
-                Color.Transparent);
-            gradient.InterpolationColors = blend;
+                Color.Transparent)
+            {
+                InterpolationColors = blend
+            };
             g.FillRectangle(gradient, g.ClipBounds);
         }
 
@@ -148,23 +152,25 @@ public class ColorSlider : UserControl
     }
     public void SetupHueGradient(float saturation = 1.0f, float brightness = 1.0f, int accuracy = 256)
     {
-        ColorBlend blend = new ColorBlend();
-        blend.Colors = new Color[] {
+        ColorBlend blend = new ColorBlend
+        {
+            Colors = [
             ExtMethodsSystemDrawingColor.ColorFromHSV(0.0f, saturation, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(1.0f / 6.0f, saturation, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(2.0f / 6.0f, saturation, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(3.0f / 6.0f, saturation, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(4.0f / 6.0f, saturation, brightness),
             ExtMethodsSystemDrawingColor.ColorFromHSV(5.0f / 6.0f, saturation, brightness),
-            ExtMethodsSystemDrawingColor.ColorFromHSV(1.0f, saturation, brightness) };
-        blend.Positions = new float[] {
+            ExtMethodsSystemDrawingColor.ColorFromHSV(1.0f, saturation, brightness) ],
+            Positions = [
             0.0f,
             1.0f / 6.0f,
             2.0f / 6.0f,
             3.0f / 6.0f,
             4.0f / 6.0f,
             5.0f / 6.0f,
-            1.0f};
+            1.0f]
+        };
         this.SetupGradient(blend, accuracy);
     }
 

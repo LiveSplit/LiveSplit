@@ -52,8 +52,8 @@ public partial class LayoutEditorDialog : Form
         Form = form;
         Layout = layout;
         BindingList = new BindingList<ILayoutComponent>(Layout.LayoutComponents);
-        ComponentsToDispose = new List<UI.Components.IComponent>();
-        ImagesToDispose = new List<Image>();
+        ComponentsToDispose = [];
+        ImagesToDispose = [];
         lbxComponents.DataSource = BindingList;
         lbxComponents.DisplayMember = "Component.ComponentName";
         LoadAllComponentsAvailable();
@@ -63,8 +63,10 @@ public partial class LayoutEditorDialog : Form
         rdoVertical.CheckedChanged += rdoVertical_CheckedChanged;
 
         CurrentState = state;
-        var itemDragger = new ListBoxItemDragger(lbxComponents, form);
-        itemDragger.DragCursor = Cursors.SizeAll;
+        var itemDragger = new ListBoxItemDragger(lbxComponents, form)
+        {
+            DragCursor = Cursors.SizeAll
+        };
     }
 
     private void rdoVertical_CheckedChanged(object sender, EventArgs e)

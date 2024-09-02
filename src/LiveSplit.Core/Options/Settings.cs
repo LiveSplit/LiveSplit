@@ -89,10 +89,10 @@ public class Settings : ISettings
 
     public Settings()
     {
-        RecentSplits = new List<RecentSplitsFile>();
-        RecentLayouts = new List<string>();
-        ActiveAutoSplitters = new List<string>();
-        RaceProvider = new List<RaceProviderSettings>();
+        RecentSplits = [];
+        RecentLayouts = [];
+        ActiveAutoSplitters = [];
+        RaceProvider = [];
     }
 
     public object Clone()

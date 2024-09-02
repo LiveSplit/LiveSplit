@@ -21,11 +21,11 @@ public static class Git
     public static readonly int CommitsSinceLastTag = (DescribeSplit == null || DescribeSplit.Length < 3) ? 0 : int.Parse(DescribeSplit[1]);
     public static readonly string Version =
         Describe == null ? null : new[] { LastTag }
-        .Concat(CommitsSinceLastTag > 0 ? new[] { CommitsSinceLastTag.ToString() } : new string[0])
+        .Concat(CommitsSinceLastTag > 0 ? new[] { CommitsSinceLastTag.ToString() } : [])
 #if DEBUG
         .Concat(new[] { "debug" })
 #endif
-        .Concat(IsDirty ? new[] { "dirty" } : new string[0])
+        .Concat(IsDirty ? new[] { "dirty" } : [])
         .Aggregate((a, b) => a + "-" + b)
     ;
     public static readonly string Branch =

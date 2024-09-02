@@ -154,13 +154,15 @@ public partial class RunEditorDialog : Form
         metadataControl.MetadataChanged += metadataControl_MetadataChanged;
         CurrentSplitIndexOffset = 0;
         AllowChangingSegments = false;
-        ImagesToDispose = new List<Image>();
-        SegmentTimeList = new List<TimeSpan?>();
+        ImagesToDispose = [];
+        SegmentTimeList = [];
         TimeFormatter = new ShortTimeFormatterMilliseconds();
-        SegmentList = new BindingList<ISegment>(Run);
-        SegmentList.AllowNew = true;
-        SegmentList.AllowRemove = true;
-        SegmentList.AllowEdit = true;
+        SegmentList = new BindingList<ISegment>(Run)
+        {
+            AllowNew = true,
+            AllowRemove = true,
+            AllowEdit = true
+        };
         SegmentList.ListChanged += SegmentList_ListChanged;
         runGrid.AutoGenerateColumns = false;
         runGrid.AutoSize = true;
@@ -173,39 +175,50 @@ public partial class RunEditorDialog : Form
         runGrid.CellEndEdit += runGrid_CellEndEdit;
         runGrid.SelectionChanged += runGrid_SelectionChanged;
 
-        var iconColumn = new DataGridViewImageColumn() { ImageLayout = DataGridViewImageCellLayout.Zoom };
-        iconColumn.Name = "Icon";
-        iconColumn.Width = 50;
-        iconColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        var iconColumn = new DataGridViewImageColumn
+        {
+            ImageLayout = DataGridViewImageCellLayout.Zoom,
+            Name = "Icon",
+            Width = 50,
+            AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        };
         iconColumn.DefaultCellStyle.NullValue = new Bitmap(1, 1);
         runGrid.Columns.Add(iconColumn);
 
-        var column = new DataGridViewTextBoxColumn();
-        column.Name = "Segment Name";
-        column.MinimumWidth = 120;
-        column.SortMode = DataGridViewColumnSortMode.NotSortable;
+        var column = new DataGridViewTextBoxColumn
+        {
+            Name = "Segment Name",
+            MinimumWidth = 120,
+            SortMode = DataGridViewColumnSortMode.NotSortable
+        };
         runGrid.Columns.Add(column);
 
-        column = new DataGridViewTextBoxColumn();
-        column.Name = "Split Time";
-        column.Width = 100;
-        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        column = new DataGridViewTextBoxColumn
+        {
+            Name = "Split Time",
+            Width = 100,
+            AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        };
         column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         column.SortMode = DataGridViewColumnSortMode.NotSortable;
         runGrid.Columns.Add(column);
 
-        column = new DataGridViewTextBoxColumn();
-        column.Name = "Segment Time";
-        column.Width = 100;
-        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        column = new DataGridViewTextBoxColumn
+        {
+            Name = "Segment Time",
+            Width = 100,
+            AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        };
         column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         column.SortMode = DataGridViewColumnSortMode.NotSortable;
         runGrid.Columns.Add(column);
 
-        column = new DataGridViewTextBoxColumn();
-        column.Name = "Best Segment";
-        column.Width = 100;
-        column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+        column = new DataGridViewTextBoxColumn
+        {
+            Name = "Best Segment",
+            Width = 100,
+            AutoSizeMode = DataGridViewAutoSizeColumnMode.None
+        };
         column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         column.SortMode = DataGridViewColumnSortMode.NotSortable;
         runGrid.Columns.Add(column);
@@ -220,7 +233,7 @@ public partial class RunEditorDialog : Form
         picGameIcon.Image = GameIcon;
         removeIconToolStripMenuItem.Enabled = state.Run.GameIcon != null;
 
-        cbxGameName.GetAllItemsForText = x => new string[0];
+        cbxGameName.GetAllItemsForText = x => [];
 
         cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
         cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
@@ -365,7 +378,7 @@ public partial class RunEditorDialog : Form
         {
             try
             {
-                string[] categoryNames = new[] { "Any%", "Low%", "100%" };
+                string[] categoryNames = ["Any%", "Low%", "100%"];
                 try
                 {
                     var game = Run.Metadata.Game;
@@ -424,7 +437,7 @@ public partial class RunEditorDialog : Form
         else
         {
             btnRemove.Enabled = SegmentList.Count > 1;
-            List<DataGridViewCell> selectedCells = runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex).ToList();
+            List<DataGridViewCell> selectedCells = [.. runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex)];
 
             if (selectedCells.FirstOrDefault() != null)
             {
@@ -681,8 +694,10 @@ public partial class RunEditorDialog : Form
     {
         if (e.ColumnIndex == ICONINDEX && e.RowIndex >= 0 && e.RowIndex < Run.Count)
         {
-            var dialog = new OpenFileDialog();
-            dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
+            var dialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*"
+            };
             var multiEdit = runGrid.SelectedCells.Count > 1;
             if (!string.IsNullOrEmpty(Run[e.RowIndex].Name) && !multiEdit)
             {
@@ -1106,8 +1121,8 @@ public partial class RunEditorDialog : Form
 
         if (e.Control && e.KeyCode == Keys.V)
         {
-            char[] rowSplitter = { '\n' };
-            char[] columnSplitter = { '\t' };
+            char[] rowSplitter = ['\n'];
+            char[] columnSplitter = ['\t'];
 
             var dataInClipboard = Clipboard.GetDataObject();
             var stringInClipboard = (string)dataInClipboard.GetData(DataFormats.Text);
@@ -1474,8 +1489,10 @@ public partial class RunEditorDialog : Form
 
     private void AddComparisonColumn(string name)
     {
-        var column = new DataGridViewTextBoxColumn();
-        column.Name = name;
+        var column = new DataGridViewTextBoxColumn
+        {
+            Name = name
+        };
         column.Width = Math.Max(100, column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.ColumnHeader, true));
         column.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
         column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
@@ -1517,9 +1534,11 @@ public partial class RunEditorDialog : Form
                         segment.Comparisons.Remove(name);
                     }
 
-                    var args = new RenameEventArgs();
-                    args.OldName = name;
-                    args.NewName = newName;
+                    var args = new RenameEventArgs
+                    {
+                        OldName = name,
+                        NewName = newName
+                    };
                     ComparisonRenamed(this, args);
                 }
                 else
@@ -1555,9 +1574,11 @@ public partial class RunEditorDialog : Form
             CurrentState.CurrentComparison = Model.Run.PersonalBestComparisonName;
         }
 
-        var args = new RenameEventArgs();
-        args.OldName = name;
-        args.NewName = "Current Comparison";
+        var args = new RenameEventArgs
+        {
+            OldName = name,
+            NewName = "Current Comparison"
+        };
         ComparisonRenamed(this, args);
 
         foreach (var segment in Run)
@@ -1709,7 +1730,7 @@ public partial class RunEditorDialog : Form
 
     private void btnMoveUp_Click(object sender, EventArgs e)
     {
-        List<DataGridViewCell> selectedCells = runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex).ToList();
+        List<DataGridViewCell> selectedCells = [.. runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex)];
 
         var selectedInd = selectedCells.First().RowIndex;
         bool currCell = false;
@@ -1739,7 +1760,7 @@ public partial class RunEditorDialog : Form
 
     private void btnMoveDown_Click(object sender, EventArgs e)
     {
-        List<DataGridViewCell> selectedCells = runGrid.SelectedCells.Cast<DataGridViewCell>().OrderByDescending(o => o.RowIndex).ToList();
+        List<DataGridViewCell> selectedCells = [.. runGrid.SelectedCells.Cast<DataGridViewCell>().OrderByDescending(o => o.RowIndex)];
 
         var selectedInd = selectedCells.First().RowIndex;
         bool currCell = false;
@@ -2061,17 +2082,21 @@ public class CustomAutoCompleteComboBox : ComboBox
     {
         base.OnHandleCreated(e);
         _dropDown = new ToolStripDropDown();
-        _box = new ListBox();
-        _box.Width = Width;
+        _box = new ListBox
+        {
+            Width = Width
+        };
         _box.Click += (sender, arg) =>
         {
             Text = _box.SelectedItem as string;
             _dropDown.Close();
         };
-        ToolStripControlHost host = new ToolStripControlHost(_box);
-        host.AutoSize = false;
-        host.Margin = Padding.Empty;
-        host.Padding = Padding.Empty;
+        ToolStripControlHost host = new ToolStripControlHost(_box)
+        {
+            AutoSize = false,
+            Margin = Padding.Empty,
+            Padding = Padding.Empty
+        };
         _dropDown.Items.Add(host);
         _dropDown.Height = _box.Height;
         _dropDown.AutoSize = false;

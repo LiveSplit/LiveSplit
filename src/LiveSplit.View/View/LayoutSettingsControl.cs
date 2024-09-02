@@ -110,9 +110,11 @@ public partial class LayoutSettingsControl : UserControl
     {
         if (cmbBackgroundType.SelectedItem.ToString() == "Image")
         {
-            var dialog = new OpenFileDialog();
-            dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
-            dialog.Title = "Set Background Image...";
+            var dialog = new OpenFileDialog
+            {
+                Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*",
+                Title = "Set Background Image..."
+            };
             var result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {

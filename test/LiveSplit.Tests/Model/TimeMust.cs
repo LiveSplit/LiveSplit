@@ -33,7 +33,7 @@ public class TimeMust
 
     public static IEnumerable<object[]> TimeConstructorFeeder()
     {
-        object[] possibleValues = { null, TimeSpan.Zero };
+        object[] possibleValues = [null, TimeSpan.Zero];
         foreach (var anyRealTime in possibleValues)
         {
             foreach (var anyGameTime in possibleValues)

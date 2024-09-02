@@ -79,7 +79,7 @@ public class SimpleLabel
         HasShadow = true;
         ShadowColor = Color.FromArgb(128, 0, 0, 0);
         OutlineColor = Color.FromArgb(0, 0, 0, 0);
-        ((List<string>)(AlternateText = new List<string>())).AddRange(alternateText ?? new string[0]);
+        ((List<string>)(AlternateText = [])).AddRange(alternateText ?? new string[0]);
         Format = new StringFormat
         {
             Alignment = HorizontalAlignment,

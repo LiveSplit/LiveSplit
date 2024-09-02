@@ -38,7 +38,7 @@ public class GraphicsCache
 
     public GraphicsCache()
     {
-        FlagDirectory = new Dictionary<string, object>();
+        FlagDirectory = [];
     }
 
     public void Restart()

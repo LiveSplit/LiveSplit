@@ -36,7 +36,7 @@ public class StringExtensionsMust
     [Fact]
     public void OrderWordsBySimilarityCorrectly()
     {
-        string[] words = { "rabbit", "elephant", "hen", "Elephant", "cat", "Lion" };
+        string[] words = ["rabbit", "elephant", "hen", "Elephant", "cat", "Lion"];
         var result = words.OrderBySimilarityTo("dog");
         Assert.Collection(result,
             p1 => Assert.Equal("hen", p1),
@@ -50,7 +50,7 @@ public class StringExtensionsMust
     [Fact]
     public void FindMostSimilarValueToWordCorrectly()
     {
-        string[] words = { "rabbit", "elephant", "hen", "Elephant", "cat", "Lion" };
+        string[] words = ["rabbit", "elephant", "hen", "Elephant", "cat", "Lion"];
         var result = words.FindMostSimilarValueTo("dog");
         Assert.Equal("hen", result);
     }

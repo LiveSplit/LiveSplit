@@ -86,8 +86,8 @@ public partial class MetadataControl : UserControl
     public MetadataControl()
     {
         InitializeComponent();
-        dynamicControls = new List<Control>();
-        variableBindings = new List<VariableBinding>();
+        dynamicControls = [];
+        variableBindings = [];
     }
 
     private void MetadataControl_Load(object sender, EventArgs e)

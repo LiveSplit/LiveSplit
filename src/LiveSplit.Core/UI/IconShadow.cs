@@ -5,7 +5,7 @@ namespace LiveSplit.UI;
 
 public class IconShadow
 {
-    public static readonly float[] Kernel = { 0.398942f, 0.241971f, 0.053991f, 0.00443185f };
+    public static readonly float[] Kernel = [0.398942f, 0.241971f, 0.053991f, 0.00443185f];
 
     public static Bitmap Generate(Image image, Color shadowColor)
     {

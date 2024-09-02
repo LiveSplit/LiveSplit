@@ -101,26 +101,26 @@ public class Run : IRun, INotifyPropertyChanged
 
     public Run(IComparisonGeneratorsFactory factory)
     {
-        InternalList = new List<ISegment>();
-        AttemptHistory = new List<Attempt>();
+        InternalList = [];
+        AttemptHistory = [];
         Factory = factory;
         ComparisonGenerators = Factory.Create(this).ToList();
-        CustomComparisons = new List<string>() { PersonalBestComparisonName };
+        CustomComparisons = [PersonalBestComparisonName];
         Metadata = new RunMetadata(this);
     }
 
     private Run(IEnumerable<ISegment> collection, IComparisonGeneratorsFactory factory, RunMetadata metadata)
     {
-        InternalList = new List<ISegment>();
+        InternalList = [];
         foreach (var x in collection)
         {
             InternalList.Add(x.Clone() as ISegment);
         }
 
-        AttemptHistory = new List<Attempt>();
+        AttemptHistory = [];
         Factory = factory;
         ComparisonGenerators = Factory.Create(this).ToList();
-        CustomComparisons = new List<string>() { PersonalBestComparisonName };
+        CustomComparisons = [PersonalBestComparisonName];
         Metadata = metadata.Clone(this);
     }
 

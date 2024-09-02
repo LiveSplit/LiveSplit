@@ -28,8 +28,10 @@ public partial class ShareRunDialog : Form
         }
         else
         {
-            var model = new TimerModel();
-            model.CurrentState = State;
+            var model = new TimerModel
+            {
+                CurrentState = State
+            };
             model.ResetAndSetAttemptAsPB();
             Run = State.Run;
         }

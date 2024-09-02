@@ -481,14 +481,18 @@ public static class FiletypeRegistryHelper
     {
         if (!IsAlreadyRegistered())
         {
-            var psi = new ProcessStartInfo();
-            psi.FileName = "LiveSplit.Register.exe";
-            psi.Verb = "runas";
+            var psi = new ProcessStartInfo
+            {
+                FileName = "LiveSplit.Register.exe",
+                Verb = "runas"
+            };
 
             try
             {
-                var process = new Process();
-                process.StartInfo = psi;
+                var process = new Process
+                {
+                    StartInfo = psi
+                };
                 process.Start();
                 process.WaitForExit();
             }

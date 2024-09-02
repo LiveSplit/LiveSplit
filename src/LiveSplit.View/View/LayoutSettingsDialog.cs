@@ -20,8 +20,8 @@ public partial class LayoutSettingsDialog : Form
         InitializeComponent();
         Settings = settings;
         Layout = layout;
-        ComponentSettings = new List<XmlNode>();
-        Components = new List<IComponent>();
+        ComponentSettings = [];
+        Components = [];
         AddNewTab("Layout", new LayoutSettingsControl(settings, layout));
         AddComponents(tabComponent);
     }

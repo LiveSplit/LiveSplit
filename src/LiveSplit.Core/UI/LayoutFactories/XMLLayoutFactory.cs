@@ -20,31 +20,33 @@ public class XMLLayoutFactory : ILayoutFactory
 
     private static LayoutSettings ParseSettings(XmlElement element, Version version)
     {
-        var settings = new LayoutSettings();
-        settings.TextColor = SettingsHelper.ParseColor(element["TextColor"]);
-        settings.BackgroundColor = SettingsHelper.ParseColor(element["BackgroundColor"]);
-        settings.ThinSeparatorsColor = SettingsHelper.ParseColor(element["ThinSeparatorsColor"]);
-        settings.SeparatorsColor = SettingsHelper.ParseColor(element["SeparatorsColor"]);
-        settings.PersonalBestColor = SettingsHelper.ParseColor(element["PersonalBestColor"]);
-        settings.AheadGainingTimeColor = SettingsHelper.ParseColor(element["AheadGainingTimeColor"]);
-        settings.AheadLosingTimeColor = SettingsHelper.ParseColor(element["AheadLosingTimeColor"]);
-        settings.BehindGainingTimeColor = SettingsHelper.ParseColor(element["BehindGainingTimeColor"]);
-        settings.BehindLosingTimeColor = SettingsHelper.ParseColor(element["BehindLosingTimeColor"]);
-        settings.BestSegmentColor = SettingsHelper.ParseColor(element["BestSegmentColor"]);
-        settings.UseRainbowColor = SettingsHelper.ParseBool(element["UseRainbowColor"], false);
-        settings.NotRunningColor = SettingsHelper.ParseColor(element["NotRunningColor"]);
-        settings.PausedColor = SettingsHelper.ParseColor(element["PausedColor"], Color.FromArgb(122, 122, 122));
-        settings.AntiAliasing = SettingsHelper.ParseBool(element["AntiAliasing"], true);
-        settings.DropShadows = SettingsHelper.ParseBool(element["DropShadows"], true);
-        settings.Opacity = SettingsHelper.ParseFloat(element["Opacity"], 1);
-        settings.MousePassThroughWhileRunning = SettingsHelper.ParseBool(element["MousePassThroughWhileRunning"]);
-        settings.TextOutlineColor = SettingsHelper.ParseColor(element["TextOutlineColor"], Color.FromArgb(0, 0, 0, 0));
-        settings.ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0));
-        settings.ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]);
-        settings.AlwaysOnTop = SettingsHelper.ParseBool(element["AlwaysOnTop"]);
-        settings.TimerFont = SettingsHelper.GetFontFromElement(element["TimerFont"]);
-        settings.ImageOpacity = SettingsHelper.ParseFloat(element["ImageOpacity"], 1f);
-        settings.ImageBlur = SettingsHelper.ParseFloat(element["ImageBlur"], 0f);
+        var settings = new LayoutSettings
+        {
+            TextColor = SettingsHelper.ParseColor(element["TextColor"]),
+            BackgroundColor = SettingsHelper.ParseColor(element["BackgroundColor"]),
+            ThinSeparatorsColor = SettingsHelper.ParseColor(element["ThinSeparatorsColor"]),
+            SeparatorsColor = SettingsHelper.ParseColor(element["SeparatorsColor"]),
+            PersonalBestColor = SettingsHelper.ParseColor(element["PersonalBestColor"]),
+            AheadGainingTimeColor = SettingsHelper.ParseColor(element["AheadGainingTimeColor"]),
+            AheadLosingTimeColor = SettingsHelper.ParseColor(element["AheadLosingTimeColor"]),
+            BehindGainingTimeColor = SettingsHelper.ParseColor(element["BehindGainingTimeColor"]),
+            BehindLosingTimeColor = SettingsHelper.ParseColor(element["BehindLosingTimeColor"]),
+            BestSegmentColor = SettingsHelper.ParseColor(element["BestSegmentColor"]),
+            UseRainbowColor = SettingsHelper.ParseBool(element["UseRainbowColor"], false),
+            NotRunningColor = SettingsHelper.ParseColor(element["NotRunningColor"]),
+            PausedColor = SettingsHelper.ParseColor(element["PausedColor"], Color.FromArgb(122, 122, 122)),
+            AntiAliasing = SettingsHelper.ParseBool(element["AntiAliasing"], true),
+            DropShadows = SettingsHelper.ParseBool(element["DropShadows"], true),
+            Opacity = SettingsHelper.ParseFloat(element["Opacity"], 1),
+            MousePassThroughWhileRunning = SettingsHelper.ParseBool(element["MousePassThroughWhileRunning"]),
+            TextOutlineColor = SettingsHelper.ParseColor(element["TextOutlineColor"], Color.FromArgb(0, 0, 0, 0)),
+            ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0)),
+            ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]),
+            AlwaysOnTop = SettingsHelper.ParseBool(element["AlwaysOnTop"]),
+            TimerFont = SettingsHelper.GetFontFromElement(element["TimerFont"]),
+            ImageOpacity = SettingsHelper.ParseFloat(element["ImageOpacity"], 1f),
+            ImageBlur = SettingsHelper.ParseFloat(element["ImageBlur"], 0f)
+        };
 
         if (version >= new Version(1, 3))
         {

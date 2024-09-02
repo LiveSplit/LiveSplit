@@ -43,7 +43,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
         var allHistory = new List<List<IndexedTimeSpan>>();
         foreach (var segment in Run)
         {
-            allHistory.Add(new List<IndexedTimeSpan>());
+            allHistory.Add([]);
         }
 
         foreach (var attempt in Run.AttemptHistory)
@@ -102,7 +102,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
                 var weightedList = new List<KeyValuePair<double, TimeSpan>>();
                 if (tempList.Count > 1)
                 {
-                    tempList = tempList.OrderBy(x => x.Value).ToList();
+                    tempList = [.. tempList.OrderBy(x => x.Value)];
                     var totalWeight = tempList.Aggregate(0.0, (s, x) => s + x.Key);
                     var smallestWeight = tempList[0].Key;
                     var rangeWeight = totalWeight - smallestWeight;
@@ -113,7 +113,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
                         weightedList.Add(new KeyValuePair<double, TimeSpan>(ReWeight(aggWeight, smallestWeight, rangeWeight), value.Value));
                     }
 
-                    weightedList = weightedList.OrderBy(x => x.Value).ToList();
+                    weightedList = [.. weightedList.OrderBy(x => x.Value)];
                 }
                 else
                 {
