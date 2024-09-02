@@ -1,19 +1,18 @@
-﻿namespace LiveSplit.UI.Components
+﻿namespace LiveSplit.UI.Components;
+
+public class LayoutComponent : ILayoutComponent
 {
-    public class LayoutComponent : ILayoutComponent
+    public IComponent Component { get; set; }
+    public string Path { get; set; }
+
+    public LayoutComponent(string path, IComponent component)
     {
-        public IComponent Component { get; set; }
-        public string Path { get; set; }
+        Component = component;
+        Path = path;
+    }
 
-        public LayoutComponent(string path, IComponent component)
-        {
-            Component = component;
-            Path = path;
-        }
-
-        public override string ToString()
-        {
-            return Component.ComponentName;
-        }
+    public override string ToString()
+    {
+        return Component.ComponentName;
     }
 }

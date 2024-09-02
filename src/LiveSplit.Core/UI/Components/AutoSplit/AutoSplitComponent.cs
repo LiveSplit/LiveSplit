@@ -1,44 +1,43 @@
 ﻿using LiveSplit.Model;
-namespace LiveSplit.UI.Components.AutoSplit
+namespace LiveSplit.UI.Components.AutoSplit;
+
+public abstract class AutoSplitComponent : LogicComponent
 {
-    public abstract class AutoSplitComponent : LogicComponent
+    protected ITimerModel Model { get; set; }
+    protected IAutoSplitter AutoSplitter { get; set; }
+
+    protected AutoSplitComponent(IAutoSplitter autoSplitter, LiveSplitState state)
     {
-        protected ITimerModel Model { get; set; }
-        protected IAutoSplitter AutoSplitter { get; set; }
+        Model = new TimerModel() { CurrentState = state };
+        AutoSplitter = autoSplitter;
+    }
 
-        protected AutoSplitComponent(IAutoSplitter autoSplitter, LiveSplitState state)
+    public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
+    {
+        if (state.CurrentPhase == TimerPhase.NotRunning)
         {
-            Model = new TimerModel() { CurrentState = state };
-            AutoSplitter = autoSplitter;
+            if (AutoSplitter.ShouldStart(state))
+            {
+                Model.Start();
+            }
         }
-
-        public override void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)
+        else if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
         {
-            if (state.CurrentPhase == TimerPhase.NotRunning)
+            if (AutoSplitter.ShouldReset(state))
             {
-                if (AutoSplitter.ShouldStart(state))
-                {
-                    Model.Start();
-                }
+                Model.Reset();
+                return;
             }
-            else if (state.CurrentPhase == TimerPhase.Running || state.CurrentPhase == TimerPhase.Paused)
+            else if (AutoSplitter.ShouldSplit(state))
             {
-                if (AutoSplitter.ShouldReset(state))
-                {
-                    Model.Reset();
-                    return;
-                }
-                else if (AutoSplitter.ShouldSplit(state))
-                {
-                    Model.Split();
-                }
-
-                state.IsGameTimePaused = AutoSplitter.IsGameTimePaused(state);
-
-                var gameTime = AutoSplitter.GetGameTime(state);
-                if (gameTime != null)
-                    state.SetGameTime(gameTime);
+                Model.Split();
             }
+
+            state.IsGameTimePaused = AutoSplitter.IsGameTimePaused(state);
+
+            var gameTime = AutoSplitter.GetGameTime(state);
+            if (gameTime != null)
+                state.SetGameTime(gameTime);
         }
     }
 }

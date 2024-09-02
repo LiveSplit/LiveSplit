@@ -1,7 +1,6 @@
-﻿namespace LiveSplit.TimeFormatters
+﻿namespace LiveSplit.TimeFormatters;
+
+public enum TimeAccuracy
 {
-    public enum TimeAccuracy
-    {
-        Seconds, Tenths, Hundredths, Milliseconds
-    }
+    Seconds, Tenths, Hundredths, Milliseconds
 }

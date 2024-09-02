@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace LiveSplit.Model.Comparisons
+namespace LiveSplit.Model.Comparisons;
+
+public interface IComparisonGeneratorsFactory
 {
-    public interface IComparisonGeneratorsFactory
-    {
-        IEnumerable<IComparisonGenerator> Create(IRun run);
-    }
+    IEnumerable<IComparisonGenerator> Create(IRun run);
 }

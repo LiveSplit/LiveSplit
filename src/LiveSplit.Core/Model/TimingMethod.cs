@@ -1,8 +1,7 @@
-﻿namespace LiveSplit.Model
+﻿namespace LiveSplit.Model;
+
+public enum TimingMethod
 {
-    public enum TimingMethod
-    {
-        RealTime,
-        GameTime
-    }
+    RealTime,
+    GameTime
 }

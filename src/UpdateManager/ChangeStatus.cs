@@ -1,7 +1,6 @@
-﻿namespace UpdateManager
+﻿namespace UpdateManager;
+
+public enum ChangeStatus
 {
-    public enum ChangeStatus
-    {
-        Added, Changed, Removed
-    }
+    Added, Changed, Removed
 }

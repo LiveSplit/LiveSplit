@@ -1,10 +1,9 @@
 ﻿using System;
 
-namespace LiveSplit.UI
+namespace LiveSplit.UI;
+
+public class RenameEventArgs : EventArgs
 {
-    public class RenameEventArgs : EventArgs
-    {
-        public string OldName { get; set; }
-        public string NewName { get; set; }
-    }
+    public string OldName { get; set; }
+    public string NewName { get; set; }
 }

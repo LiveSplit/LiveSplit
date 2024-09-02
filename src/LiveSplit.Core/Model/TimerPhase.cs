@@ -1,10 +1,9 @@
-﻿namespace LiveSplit.Model
+﻿namespace LiveSplit.Model;
+
+public enum TimerPhase
 {
-    public enum TimerPhase
-    {
-        NotRunning,
-        Running,
-        Ended,
-        Paused
-    }
+    NotRunning,
+    Running,
+    Ended,
+    Paused
 }

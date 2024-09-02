@@ -1,15 +1,11 @@
-using System;
-using System.Globalization;
+namespace LiveSplit.TimeFormatters;
 
-namespace LiveSplit.TimeFormatters
+public class ShortTimeFormatterMilliseconds : GeneralTimeFormatter
 {
-    public class ShortTimeFormatterMilliseconds : GeneralTimeFormatter
+    public ShortTimeFormatterMilliseconds(DigitsFormat format = DigitsFormat.SingleDigitSeconds)
     {
-        public ShortTimeFormatterMilliseconds(DigitsFormat format = DigitsFormat.SingleDigitSeconds)
-        {
-            Accuracy = TimeAccuracy.Milliseconds;
-            NullFormat = NullFormat.ZeroWithAccuracy;
-            DigitsFormat = format;
-        }
+        Accuracy = TimeAccuracy.Milliseconds;
+        NullFormat = NullFormat.ZeroWithAccuracy;
+        DigitsFormat = format;
     }
 }

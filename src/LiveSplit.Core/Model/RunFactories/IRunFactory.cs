@@ -1,9 +1,8 @@
 ﻿using LiveSplit.Model.Comparisons;
 
-namespace LiveSplit.Model.RunFactories
+namespace LiveSplit.Model.RunFactories;
+
+public interface IRunFactory
 {
-    public interface IRunFactory
-    {
-        IRun Create(IComparisonGeneratorsFactory factory);
-    }
+    IRun Create(IComparisonGeneratorsFactory factory);
 }

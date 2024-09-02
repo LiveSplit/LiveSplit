@@ -1,11 +1,10 @@
-﻿namespace LiveSplit.Web.SRL
+﻿namespace LiveSplit.Web.SRL;
+
+public enum RaceState
 {
-    public enum RaceState
-    {
-        NotInRace,
-        EnteredRace,
-        EnteredRaceAndReady,
-        RaceStarted,
-        RaceEnded
-    }
+    NotInRace,
+    EnteredRace,
+    EnteredRaceAndReady,
+    RaceStarted,
+    RaceEnded
 }

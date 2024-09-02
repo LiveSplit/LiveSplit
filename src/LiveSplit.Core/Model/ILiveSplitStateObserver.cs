@@ -1,6 +1,5 @@
-﻿namespace LiveSplit.Model
+﻿namespace LiveSplit.Model;
+
+public interface ILiveSplitStateObserver
 {
-    public interface ILiveSplitStateObserver
-    {
-    }
 }

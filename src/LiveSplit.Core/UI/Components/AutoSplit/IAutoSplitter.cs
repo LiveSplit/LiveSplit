@@ -1,14 +1,14 @@
-﻿using LiveSplit.Model;
-using System;
+﻿using System;
 
-namespace LiveSplit.UI.Components.AutoSplit
+using LiveSplit.Model;
+
+namespace LiveSplit.UI.Components.AutoSplit;
+
+public interface IAutoSplitter
 {
-    public interface IAutoSplitter
-    {
-        TimeSpan? GetGameTime(LiveSplitState state);
-        bool IsGameTimePaused(LiveSplitState state);
-        bool ShouldSplit(LiveSplitState state);
-        bool ShouldReset(LiveSplitState state);
-        bool ShouldStart(LiveSplitState state);
-    }
+    TimeSpan? GetGameTime(LiveSplitState state);
+    bool IsGameTimePaused(LiveSplitState state);
+    bool ShouldSplit(LiveSplitState state);
+    bool ShouldReset(LiveSplitState state);
+    bool ShouldStart(LiveSplitState state);
 }

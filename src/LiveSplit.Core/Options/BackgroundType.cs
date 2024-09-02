@@ -1,7 +1,6 @@
-﻿namespace LiveSplit.Options
+﻿namespace LiveSplit.Options;
+
+public enum BackgroundType
 {
-    public enum BackgroundType
-    {
-        SolidColor, VerticalGradient, HorizontalGradient, Image
-    }
+    SolidColor, VerticalGradient, HorizontalGradient, Image
 }

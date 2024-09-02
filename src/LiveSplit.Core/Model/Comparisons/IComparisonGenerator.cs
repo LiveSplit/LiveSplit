@@ -1,11 +1,10 @@
 ﻿using LiveSplit.Options;
 
-namespace LiveSplit.Model.Comparisons
+namespace LiveSplit.Model.Comparisons;
+
+public interface IComparisonGenerator
 {
-    public interface IComparisonGenerator
-    {
-        IRun Run { get; set; }
-        string Name { get; }
-        void Generate(ISettings settings);
-    }
+    IRun Run { get; set; }
+    string Name { get; }
+    void Generate(ISettings settings);
 }

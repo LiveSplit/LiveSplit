@@ -1,14 +1,11 @@
-﻿using System;
+﻿namespace LiveSplit.TimeFormatters;
 
-namespace LiveSplit.TimeFormatters
+public class PossibleTimeSaveFormatter : GeneralTimeFormatter
 {
-    public class PossibleTimeSaveFormatter : GeneralTimeFormatter
+    public PossibleTimeSaveFormatter()
     {
-        public PossibleTimeSaveFormatter()
-        {
-            Accuracy = TimeAccuracy.Seconds;
-            DropDecimals = false;
-            NullFormat = NullFormat.Dash;
-        }
+        Accuracy = TimeAccuracy.Seconds;
+        DropDecimals = false;
+        NullFormat = NullFormat.Dash;
     }
 }

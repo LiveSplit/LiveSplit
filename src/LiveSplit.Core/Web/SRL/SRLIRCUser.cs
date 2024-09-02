@@ -1,14 +1,13 @@
-﻿namespace LiveSplit.Web.SRL
-{
-    public class SRLIRCUser
-    {
-        public SRLIRCRights Rights { get; protected set; }
-        public string Name { get; protected set; }
+﻿namespace LiveSplit.Web.SRL;
 
-        public SRLIRCUser(string name, SRLIRCRights rights = SRLIRCRights.Normal)
-        {
-            Name = name;
-            Rights = rights;
-        }
+public class SRLIRCUser
+{
+    public SRLIRCRights Rights { get; protected set; }
+    public string Name { get; protected set; }
+
+    public SRLIRCUser(string name, SRLIRCRights rights = SRLIRCRights.Normal)
+    {
+        Name = name;
+        Rights = rights;
     }
 }

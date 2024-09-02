@@ -1,15 +1,12 @@
-using System;
+namespace LiveSplit.TimeFormatters;
 
-namespace LiveSplit.TimeFormatters
+public class DeltaSplitTimeFormatter : GeneralTimeFormatter
 {
-    public class DeltaSplitTimeFormatter : GeneralTimeFormatter
+    public DeltaSplitTimeFormatter(TimeAccuracy accuracy, bool dropDecimals)
     {
-        public DeltaSplitTimeFormatter(TimeAccuracy accuracy, bool dropDecimals)
-        {
-            Accuracy = accuracy;
-            DropDecimals = dropDecimals;
-            NullFormat = NullFormat.Dash;
-            ShowPlus = true;
-        }
+        Accuracy = accuracy;
+        DropDecimals = dropDecimals;
+        NullFormat = NullFormat.Dash;
+        ShowPlus = true;
     }
 }

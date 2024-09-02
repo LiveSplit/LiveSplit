@@ -1,25 +1,24 @@
 ﻿using System;
 
-namespace UpdateManager
+namespace UpdateManager;
+
+internal class Updateable : IUpdateable
 {
-    internal class Updateable : IUpdateable
+    public string UpdateName
     {
-        public string UpdateName
-        {
-            get { return ""; }
-        }
+        get { return ""; }
+    }
 
-        public string XMLURL { get; set; }
+    public string XMLURL { get; set; }
 
-        public string UpdateURL { get; set; }
+    public string UpdateURL { get; set; }
 
-        public Version Version { get; set; }
+    public Version Version { get; set; }
 
-        public Updateable(string xmlURL, string updateURL, Version version)
-        {
-            XMLURL = xmlURL;
-            UpdateURL = updateURL;
-            Version = version;
-        }
+    public Updateable(string xmlURL, string updateURL, Version version)
+    {
+        XMLURL = xmlURL;
+        UpdateURL = updateURL;
+        Version = version;
     }
 }

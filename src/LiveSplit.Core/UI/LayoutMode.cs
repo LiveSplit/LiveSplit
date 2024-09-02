@@ -1,7 +1,6 @@
-﻿namespace LiveSplit.UI
+﻿namespace LiveSplit.UI;
+
+public enum LayoutMode
 {
-    public enum LayoutMode
-    {
-        Horizontal, Vertical
-    }
+    Horizontal, Vertical
 }

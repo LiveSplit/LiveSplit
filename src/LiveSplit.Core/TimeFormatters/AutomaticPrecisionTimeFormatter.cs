@@ -1,16 +1,13 @@
-﻿using System;
+﻿namespace LiveSplit.TimeFormatters;
 
-namespace LiveSplit.TimeFormatters
+public class AutomaticPrecisionTimeFormatter : GeneralTimeFormatter
 {
-    public class AutomaticPrecisionTimeFormatter : GeneralTimeFormatter
+    public AutomaticPrecisionTimeFormatter()
     {
-        public AutomaticPrecisionTimeFormatter()
-        {
-            NullFormat = NullFormat.ZeroWithAccuracy;
-            DigitsFormat = DigitsFormat.SingleDigitMinutes;
-            Accuracy = TimeAccuracy.Hundredths;
-            AutomaticPrecision = true;
-        }
-
+        NullFormat = NullFormat.ZeroWithAccuracy;
+        DigitsFormat = DigitsFormat.SingleDigitMinutes;
+        Accuracy = TimeAccuracy.Hundredths;
+        AutomaticPrecision = true;
     }
+
 }

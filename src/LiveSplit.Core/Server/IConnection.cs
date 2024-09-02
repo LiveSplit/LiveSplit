@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace LiveSplit.Server;
 
-namespace LiveSplit.Server
+public interface IConnection
 {
-    public interface IConnection
-    {
-        void SendMessage(string message);
-    }
+    void SendMessage(string message);
 }

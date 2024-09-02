@@ -1,7 +1,6 @@
-﻿namespace LiveSplit.Options.SettingsFactories
+﻿namespace LiveSplit.Options.SettingsFactories;
+
+public interface ISettingsFactory
 {
-    public interface ISettingsFactory
-    {
-        ISettings Create();
-    }
+    ISettings Create();
 }
