@@ -165,7 +165,7 @@ the first time that sharing to Twitch is used.";
         var result = SearchGame(name);
         var games = (IEnumerable<dynamic>)result.data;
 
-        Func<dynamic, TwitchGame> func = x => new TwitchGame(x.name, x.id);
+        static TwitchGame func(dynamic x) => new TwitchGame(x.name, x.id);
         return games.Select(func);
     }
 

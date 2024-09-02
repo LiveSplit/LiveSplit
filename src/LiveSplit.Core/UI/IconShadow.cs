@@ -20,21 +20,21 @@ public class IconShadow
         {
             var resultImage = new Bitmap(30, 30);
 
-            Func<int, int, float> get1 = (x, y) =>
+            float get1(int x, int y)
             {
                 x -= 3;
                 y -= 3;
                 if (x < 0 || y < 0 || x >= scaledCopy.Width || y >= scaledCopy.Height)
                     return 0.0f;
                 return scaledCopy.GetPixel(x, y).A / 255.0f;
-            };
+            }
 
-            Func<int, int, float> get2 = (x, y) =>
+            float get2(int x, int y)
             {
                 if (x < 0 || y < 0 || x >= tempImage.Width || y >= tempImage.Height)
                     return 0.0f;
                 return tempImage.GetPixel(x, y).A / 255.0f;
-            };
+            }
 
             //Horizontal Blur
             for (var x = 0; x < tempImage.Width; ++x)

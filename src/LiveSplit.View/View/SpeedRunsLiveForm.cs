@@ -568,14 +568,14 @@ public partial class SpeedRunsLiveForm : Form
 
     private void RebuildUserList()
     {
-        Action action = () =>
+        void action()
+        {
+            lstUsers.Items.Clear();
+            foreach (var user in SRLClient.GetRaceChannelUsers())
             {
-                lstUsers.Items.Clear();
-                foreach (var user in SRLClient.GetRaceChannelUsers())
-                {
-                    lstUsers.Items.Add(new UserListItem(user.Name, GetColorFromRights(user.Rights)));
-                }
-            };
+                lstUsers.Items.Add(new UserListItem(user.Name, GetColorFromRights(user.Rights)));
+            }
+        }
 
         try
         {

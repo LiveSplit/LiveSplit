@@ -1695,40 +1695,40 @@ public partial class RunEditorDialog : Form
         var alwaysCancel = false;
         var pastResponses = new Dictionary<string, bool>();
         var userWasPrompted = false;
-        SumOfBest.CleanUpCallback callback = parameters =>
+        bool callback(SumOfBest.CleanUpCallbackParameters parameters)
+        {
+            userWasPrompted = true;
+            if (!alwaysCancel)
             {
-                userWasPrompted = true;
-                if (!alwaysCancel)
+                var formatter = new ShortTimeFormatter();
+                var messageText = formatter.Format(parameters.timeBetween) + " between "
+                    + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name
+                    + (parameters.combinedSumOfBest != null ? ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest) : "");
+                if (parameters.attempt.Ended.HasValue)
                 {
-                    var formatter = new ShortTimeFormatter();
-                    var messageText = formatter.Format(parameters.timeBetween) + " between "
-                        + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name
-                        + (parameters.combinedSumOfBest != null ? ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest) : "");
-                    if (parameters.attempt.Ended.HasValue)
-                    {
-                        messageText += " in a run on " + parameters.attempt.Ended.Value.Time.ToLocalTime().ToString("M/d/yyyy");
-                    }
-
-                    if (!pastResponses.ContainsKey(messageText))
-                    {
-                        var result = MessageBox.Show(this, "You had a " + (parameters.method == TimingMethod.RealTime ? "Real Time" : "Game Time") + " segment time of " + messageText + ". Do you think that this segment time is inaccurate and should be removed?", "Remove Time From Segment History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                        if (result == System.Windows.Forms.DialogResult.Yes)
-                        {
-                            pastResponses.Add(messageText, true);
-                            return true;
-                        }
-                        else if (result == System.Windows.Forms.DialogResult.No)
-                        {
-                            pastResponses.Add(messageText, false);
-                            return false;
-                        }
-                        alwaysCancel = true;
-                    }
-                    else
-                        return pastResponses[messageText];
+                    messageText += " in a run on " + parameters.attempt.Ended.Value.Time.ToLocalTime().ToString("M/d/yyyy");
                 }
-                return false;
-            };
+
+                if (!pastResponses.ContainsKey(messageText))
+                {
+                    var result = MessageBox.Show(this, "You had a " + (parameters.method == TimingMethod.RealTime ? "Real Time" : "Game Time") + " segment time of " + messageText + ". Do you think that this segment time is inaccurate and should be removed?", "Remove Time From Segment History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        pastResponses.Add(messageText, true);
+                        return true;
+                    }
+                    else if (result == System.Windows.Forms.DialogResult.No)
+                    {
+                        pastResponses.Add(messageText, false);
+                        return false;
+                    }
+                    alwaysCancel = true;
+                }
+                else
+                    return pastResponses[messageText];
+            }
+            return false;
+        }
         SumOfBest.Clean(Run, callback);
         RaiseRunEdited();
         if (!userWasPrompted)

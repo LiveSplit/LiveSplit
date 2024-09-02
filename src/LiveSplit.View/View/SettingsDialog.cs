@@ -183,13 +183,13 @@ public partial class SettingsDialog : Form
         KeyEventHandler handlerUp = null;
         EventHandler leaveHandler = null;
         EventHandlerT<GamepadButton> gamepadButtonPressed = null;
-        Action unregisterEvents = () =>
+        void unregisterEvents()
         {
             txtBox.KeyDown -= handlerDown;
             txtBox.KeyUp -= handlerUp;
             txtBox.Leave -= leaveHandler;
             Hook.AnyGamepadButtonPressed -= gamepadButtonPressed;
-        };
+        }
         handlerDown = (s, x) =>
         {
             var key = x.KeyCode == Keys.Escape ? null : new KeyOrButton(x.KeyCode | x.Modifiers);

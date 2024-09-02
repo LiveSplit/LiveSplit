@@ -32,18 +32,18 @@ public partial class UpdateForm : Form
 
     private void UpdateForm_Load(object sender, EventArgs e)
     {
-        Action a = () =>
+        void a()
+        {
+            try
             {
-                try
-                {
-                    Updater.UpdateAllInternally(Updateables);
+                Updater.UpdateAllInternally(Updateables);
 
-                    if (OtherProcess != null)
-                        Process.Start(OtherProcess);
-                    Invoke(new Action(() => Close()));
-                }
-                catch (Exception ex) { MessageBox.Show(ex.Message, "Error"); }
-            };
-        new Thread(new ThreadStart(a)).Start();
+                if (OtherProcess != null)
+                    Process.Start(OtherProcess);
+                Invoke(new Action(() => Close()));
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error"); }
+        }
+        new Thread(new ThreadStart((Action)a)).Start();
     }
 }
