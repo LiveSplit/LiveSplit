@@ -843,7 +843,7 @@ public partial class RunEditorDialog : Form
         cbxLayoutToUse.Items.Add(Tuple.Create("Default Layout", "?default"));
         var range = CurrentState.Settings.RecentLayouts
             .Reverse()
-            .Where(e => !String.IsNullOrEmpty(e))
+            .Where(e => !string.IsNullOrEmpty(e))
             .Select(value =>
             {
                 var key = Path.GetFileNameWithoutExtension(value).EscapeMenuItemText();
@@ -878,7 +878,7 @@ public partial class RunEditorDialog : Form
     {
         cbxLayoutToUse.DisplayMember = "Item1";
         FillCbxLayoutToUseItems();
-        if (String.IsNullOrEmpty(Run.LayoutPath))
+        if (string.IsNullOrEmpty(Run.LayoutPath))
         {
             chkbxUseLayout.Checked = false;
             flpnlLayoutSelect.Enabled = false;
@@ -940,7 +940,7 @@ public partial class RunEditorDialog : Form
         }
 
         var selected = ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2;
-        if (String.IsNullOrEmpty(selected))
+        if (string.IsNullOrEmpty(selected))
         {
             return;
         }

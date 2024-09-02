@@ -1854,7 +1854,7 @@ public partial class TimerForm : Form
         SwitchComparison(CurrentState.CurrentComparison);
         CreateAutoSplitter();
         UpdateRefreshesRemaining();
-        if (!String.IsNullOrEmpty(run.LayoutPath))
+        if (!string.IsNullOrEmpty(run.LayoutPath))
         {
             if (run.LayoutPath == "?default")
             {

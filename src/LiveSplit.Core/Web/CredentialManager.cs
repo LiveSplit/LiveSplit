@@ -142,7 +142,7 @@ public static class CredentialManager
     private static extern bool CredDelete(string target, CredentialType type, int reservedFlag);
 
     [DllImport("Advapi32.dll", EntryPoint = "CredWriteW", CharSet = CharSet.Unicode, SetLastError = true)]
-    private static extern bool CredWrite([In] ref CREDENTIAL userCredential, [In] UInt32 flags);
+    private static extern bool CredWrite([In] ref CREDENTIAL userCredential, [In] uint flags);
 
     [DllImport("Advapi32.dll", EntryPoint = "CredFree", SetLastError = true)]
     private static extern bool CredFree([In] IntPtr cred);

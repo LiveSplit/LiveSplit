@@ -139,7 +139,7 @@ public partial class FontList : UserControl
     private void lstFont_KeyDown(object sender, KeyEventArgs e)
     {
         // if you type alphanumeric characters while focus is on ListBox, it shifts the focus to TextBox.
-        if (Char.IsLetterOrDigit((char)e.KeyValue))
+        if (char.IsLetterOrDigit((char)e.KeyValue))
         {
             txtFont.Focus();
             txtFont.Text = ((char)e.KeyValue).ToString();

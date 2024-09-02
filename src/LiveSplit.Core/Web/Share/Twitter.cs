@@ -66,7 +66,7 @@ When you click share, LiveSplit opens a Tweet composition window in your default
     private string MakeUri(string text)
     {
         var intentText = "";
-        if (!String.IsNullOrEmpty(text))
+        if (!string.IsNullOrEmpty(text))
         {
             intentText = "?text=" + Uri.EscapeDataString(text);
         }

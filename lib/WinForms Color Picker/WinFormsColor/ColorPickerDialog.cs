@@ -164,7 +164,7 @@ public partial class ColorPickerDialog : Form
             color &= 0xffffff;
         }
 
-        this.textBoxHex.Text = String.Format("{0:X}", color);
+        this.textBoxHex.Text = string.Format("{0:X}", color);
 
         this.numRed.Value = tmp.R;
         this.numGreen.Value = tmp.G;
@@ -663,7 +663,7 @@ public partial class ColorPickerDialog : Form
     private static extern IntPtr GetDC(IntPtr hwnd);
 
     [DllImport("user32.dll")]
-    private static extern Int32 ReleaseDC(IntPtr hwnd, IntPtr hdc);
+    private static extern int ReleaseDC(IntPtr hwnd, IntPtr hdc);
 
     [DllImport("gdi32.dll")]
     private static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
