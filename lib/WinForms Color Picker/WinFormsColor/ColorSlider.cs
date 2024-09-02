@@ -255,7 +255,7 @@ public class ColorSlider : UserControl
         if (e.Button == MouseButtons.Left)
         {
             Focus();
-            ValuePercentual = 1.0f - ((float)(e.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height);
+            ValuePercentual = 1.0f - ((e.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height);
             pickerDrag = true;
             pickerDragTimer.Enabled = true;
         }
@@ -270,7 +270,7 @@ public class ColorSlider : UserControl
     private void pickerDragTimer_Tick(object sender, EventArgs e)
     {
         Point pos = PointToClient(Cursor.Position);
-        ValuePercentual = 1.0f - ((float)(pos.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height);
+        ValuePercentual = 1.0f - ((pos.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height);
     }
     protected override void OnMouseLeave(EventArgs e)
     {

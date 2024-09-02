@@ -369,8 +369,8 @@ public class ColorPanel : UserControl
         {
             Focus();
             ValuePercentual = new PointF(
-                (float)(e.X - ColorAreaRectangle.X) / (float)ColorAreaRectangle.Width,
-                1.0f - ((float)(e.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height));
+                (e.X - ColorAreaRectangle.X) / (float)ColorAreaRectangle.Width,
+                1.0f - ((e.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height));
             pickerDragTimer.Start();
             pickerDrag = true;
         }
@@ -385,8 +385,8 @@ public class ColorPanel : UserControl
     {
         Point pos = PointToClient(Cursor.Position);
         ValuePercentual = new PointF(
-            (float)(pos.X - ColorAreaRectangle.X) / (float)ColorAreaRectangle.Width,
-            1.0f - ((float)(pos.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height));
+            (pos.X - ColorAreaRectangle.X) / (float)ColorAreaRectangle.Width,
+            1.0f - ((pos.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height));
     }
     protected override void OnMouseLeave(EventArgs e)
     {

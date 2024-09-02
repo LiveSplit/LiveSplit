@@ -493,7 +493,7 @@ public partial class TimerForm : Form
             var gameAndGoal = GetShortenedGameAndGoal(string.Format("{0} - {1}", race.GameName, race.Goal));
             var entrants = race.NumEntrants;
             var plural = entrants == 1 ? "" : "s";
-            var title = string.Format("{0} ({1} Entrant{2})", gameAndGoal, entrants, plural) as string;
+            var title = string.Format("{0} ({1} Entrant{2})", gameAndGoal, entrants, plural);
 
             var item = new ToolStripMenuItem
             {
@@ -590,7 +590,7 @@ public partial class TimerForm : Form
         }
 
         var time = new RegularTimeFormatter().Format(timeSpan);
-        var title = string.Format("[{0}] {1} ({2}/{3} Finished)", time, gameAndGoal, race.Finishes, race.NumEntrants - race.Forfeits) as string;
+        var title = string.Format("[{0}] {1} ({2}/{3} Finished)", time, gameAndGoal, race.Finishes, race.NumEntrants - race.Forfeits);
         item.Text = title.EscapeMenuItemText();
     }
 

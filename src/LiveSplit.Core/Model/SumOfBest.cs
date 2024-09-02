@@ -97,7 +97,7 @@ public static class SumOfBest
                     startingSegment = startingIndex >= 0 ? run[startingIndex] : null,
                     endingSegment = endingIndex >= 0 ? run[endingIndex] : null,
                     timeBetween = segmentHistoryElement[method].Value,
-                    combinedSumOfBest = predictions[endingIndex + 1].HasValue ? (TimeSpan?)(predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value) : null,
+                    combinedSumOfBest = predictions[endingIndex + 1].HasValue ? predictions[endingIndex + 1].Value - predictions[startingIndex + 1].Value : null,
                     attempt = run.AttemptHistory.FirstOrDefault(x => x.Index == runIndex),
                     method = method
                 };

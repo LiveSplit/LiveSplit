@@ -21,7 +21,7 @@ public static class ExtMethodsSystemDrawingColor
         int max = Math.Max(color.R, Math.Max(color.G, color.B));
         int min = Math.Min(color.R, Math.Min(color.G, color.B));
 
-        return (max == 0) ? 0.0f : 1.0f - (1.0f * (float)min / (float)max);
+        return (max == 0) ? 0.0f : 1.0f - (1.0f * min / max);
     }
 
     public static System.Drawing.Color ColorFromHSV(float hue, float saturation, float value)
