@@ -217,25 +217,20 @@ public enum CredentialType
 
 public class Credential
 {
-    private readonly string _applicationName;
-    private readonly string _userName;
-    private readonly string _password;
-    private readonly CredentialType _credentialType;
+    public CredentialType CredentialType { get; }
 
-    public CredentialType CredentialType => _credentialType;
+    public string ApplicationName { get; }
 
-    public string ApplicationName => _applicationName;
+    public string UserName { get; }
 
-    public string UserName => _userName;
-
-    public string Password => _password;
+    public string Password { get; }
 
     public Credential(CredentialType credentialType, string applicationName, string userName, string password)
     {
-        _applicationName = applicationName;
-        _userName = userName;
-        _password = password;
-        _credentialType = credentialType;
+        ApplicationName = applicationName;
+        UserName = userName;
+        Password = password;
+        CredentialType = credentialType;
     }
 
     public override string ToString()

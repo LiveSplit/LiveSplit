@@ -1956,7 +1956,6 @@ public partial class RunEditorDialog : Form
 
 public class CustomAutoCompleteComboBox : ComboBox
 {
-    private IList<string> _autoCompleteSource = null;
     private ToolStripDropDown _dropDown = null;
     private ListBox _box = null;
     private readonly Form form;
@@ -1965,11 +1964,7 @@ public class CustomAutoCompleteComboBox : ComboBox
     private string previousText = "";
     private bool taskCanceled = false;
 
-    public IList<string> MyAutoCompleteSource
-    {
-        get => _autoCompleteSource;
-        set => _autoCompleteSource = value;
-    }
+    public IList<string> MyAutoCompleteSource { get; set; } = null;
 
     public Func<string, string[]> GetAllItemsForText { get; set; }
 

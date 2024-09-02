@@ -16,7 +16,6 @@ public class ColorPanel : UserControl
     private Color clrTopRight = Color.Transparent;
     private Color clrBottomLeft = Color.Transparent;
     private Color clrBottomRight = Color.Transparent;
-    private Color valTemp = Color.Transparent;
     private readonly Timer pickerDragTimer = null;
     private bool designSerializeColor = false;
 
@@ -62,7 +61,7 @@ public class ColorPanel : UserControl
             }
         }
     }
-    public Color Value => this.valTemp;
+    public Color Value { get; private set; } = Color.Transparent;
     public Color TopLeftColor
     {
         get => this.clrTopLeft;
@@ -292,11 +291,11 @@ public class ColorPanel : UserControl
 
     protected void UpdateColorValue()
     {
-        Color oldVal = this.valTemp;
-        this.valTemp = this.srcImage.GetPixel(
+        Color oldVal = this.Value;
+        this.Value = this.srcImage.GetPixel(
             (int)Math.Round((this.srcImage.Width - 1) * this.pickerPos.X),
             (int)Math.Round((this.srcImage.Height - 1) * (1.0f - this.pickerPos.Y)));
-        if (oldVal != this.valTemp)
+        if (oldVal != this.Value)
         {
             this.OnValueChanged();
         }
@@ -343,7 +342,7 @@ public class ColorPanel : UserControl
 
         e.Graphics.DrawImage(this.srcImage, colorArea, 0, 0, this.srcImage.Width - 1, this.srcImage.Height - 1, GraphicsUnit.Pixel);
 
-        Pen innerPickerPen = this.valTemp.GetLuminance() > 0.5f ? Pens.Black : Pens.White;
+        Pen innerPickerPen = this.Value.GetLuminance() > 0.5f ? Pens.Black : Pens.White;
         if (this.Enabled)
         {
             e.Graphics.DrawEllipse(innerPickerPen,

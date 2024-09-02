@@ -14,13 +14,11 @@ public class ListBoxItemDragger
     private ListBox listBox;
     public Form Form { get; set; }
 
-    private int dragItemIndex = -1;
-
     /// <summary>
     /// Gets the index of the dragged item.
     /// </summary>
     /// <value>The index of the dragged item.</value>
-    public int DragItemIndex => dragItemIndex;
+    public int DragItemIndex { get; private set; } = -1;
 
     private bool dragging = false;
 
@@ -56,12 +54,7 @@ public class ListBoxItemDragger
         listBox.MouseMove -= new MouseEventHandler(MouseMoveHandler);
     }
 
-    private Cursor dragCursor = Cursors.SizeNS;
-    public Cursor DragCursor
-    {
-        get => dragCursor;
-        set => dragCursor = value;
-    }
+    public Cursor DragCursor { get; set; } = Cursors.SizeNS;
 
     /// <summary>
     /// Raises the <see cref="E:ItemMoved"> event.
@@ -82,14 +75,14 @@ public class ListBoxItemDragger
 
     private void MouseDownHandler(object sender, MouseEventArgs e)
     {
-        dragItemIndex = listBox.SelectedIndex;
+        DragItemIndex = listBox.SelectedIndex;
     }
 
     private Cursor prevCursor = Cursors.Default;
 
     private void MouseUpHandler(object sender, MouseEventArgs e)
     {
-        dragItemIndex = -1;
+        DragItemIndex = -1;
         if (dragging)
         {
             listBox.Cursor = prevCursor;
@@ -103,7 +96,7 @@ public class ListBoxItemDragger
         {
             try
             {
-                if (dragItemIndex >= 0 && e.Y > 0)
+                if (DragItemIndex >= 0 && e.Y > 0)
                 {
                     if (!dragging)
                     {
@@ -114,15 +107,15 @@ public class ListBoxItemDragger
 
                     int dstIndex = listBox.IndexFromPoint(e.X, e.Y);
 
-                    if (dragItemIndex != dstIndex)
+                    if (DragItemIndex != dstIndex)
                     {
-                        dynamic item = listBox.Items[dragItemIndex];
+                        dynamic item = listBox.Items[DragItemIndex];
                         listBox.BeginUpdate();
                         try
                         {
                             dynamic bindingList = listBox.DataSource;
 
-                            bindingList.RemoveAt(dragItemIndex);
+                            bindingList.RemoveAt(DragItemIndex);
                             if (dstIndex != ListBox.NoMatches)
                             {
                                 bindingList.Insert(dstIndex, item);
@@ -140,7 +133,7 @@ public class ListBoxItemDragger
                             listBox.EndUpdate();
                         }
 
-                        dragItemIndex = dstIndex;
+                        DragItemIndex = dstIndex;
                         OnItemMoved(EventArgs.Empty);
                     }
                 }

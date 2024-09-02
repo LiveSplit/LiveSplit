@@ -14,8 +14,6 @@ public class ColorSlider : UserControl
     private float pickerPos = 0.5f;
     private Color min = Color.Transparent;
     private Color max = Color.Transparent;
-    private Color valTemp = Color.Transparent;
-    private bool innerPicker = true;
     private readonly Timer pickerDragTimer = null;
     private bool designSerializeColor = false;
 
@@ -44,11 +42,7 @@ public class ColorSlider : UserControl
         }
     }
     [DefaultValue(true)]
-    public bool ShowInnerPicker
-    {
-        get => this.innerPicker;
-        set => this.innerPicker = value;
-    }
+    public bool ShowInnerPicker { get; set; } = true;
     [DefaultValue(0.5f)]
     public float ValuePercentual
     {
@@ -65,7 +59,7 @@ public class ColorSlider : UserControl
             }
         }
     }
-    public Color Value => this.valTemp;
+    public Color Value { get; private set; } = Color.Transparent;
     public Color Minimum
     {
         get => this.min;
@@ -176,9 +170,9 @@ public class ColorSlider : UserControl
 
     protected void UpdateColorValue()
     {
-        Color oldVal = this.valTemp;
-        this.valTemp = this.srcImage.GetPixel(0, (int)Math.Round((this.srcImage.Height - 1) * (1.0f - this.pickerPos)));
-        if (oldVal != this.valTemp)
+        Color oldVal = this.Value;
+        this.Value = this.srcImage.GetPixel(0, (int)Math.Round((this.srcImage.Height - 1) * (1.0f - this.pickerPos)));
+        if (oldVal != this.Value)
         {
             this.OnValueChanged();
         }
@@ -245,9 +239,9 @@ public class ColorSlider : UserControl
             new Point(colorBoxOuter.Right + this.pickerSize, pickerVisualPos + this.pickerSize),
             new Point(colorBoxOuter.Right + this.pickerSize, pickerVisualPos - this.pickerSize)});
 
-        if (this.innerPicker)
+        if (this.ShowInnerPicker)
         {
-            Pen innerPickerPen = this.valTemp.GetLuminance() > 0.5f ? Pens.Black : Pens.White;
+            Pen innerPickerPen = this.Value.GetLuminance() > 0.5f ? Pens.Black : Pens.White;
             e.Graphics.DrawLine(innerPickerPen,
                 new Point(colorArea.Left, pickerVisualPos),
                 new Point(colorArea.Left + 2, pickerVisualPos));
