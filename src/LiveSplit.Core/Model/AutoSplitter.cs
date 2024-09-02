@@ -23,7 +23,7 @@ public class AutoSplitter : ICloneable
     public bool IsActivated => Component != null;
     public List<string> URLs { get; set; }
     public string LocalPath => Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, FileName));
-    public string FileName => URLs.First().Substring(URLs.First().LastIndexOf('/') + 1);
+    public string FileName => URLs.First()[(URLs.First().LastIndexOf('/') + 1)..];
     public AutoSplitterType Type { get; set; }
     public bool ShowInLayoutEditor { get; set; }
     public IComponent Component { get; set; }
@@ -72,7 +72,7 @@ public class AutoSplitter : ICloneable
 
         foreach (string url in URLs)
         {
-            string fileName = url.Substring(url.LastIndexOf('/') + 1);
+            string fileName = url[(url.LastIndexOf('/') + 1)..];
             string tempFileName = fileName + "-temp";
             string localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
             string tempLocalPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, tempFileName));

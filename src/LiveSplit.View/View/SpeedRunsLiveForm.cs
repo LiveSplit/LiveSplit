@@ -508,18 +508,18 @@ public partial class SpeedRunsLiveForm : Form
                 if (colorSplit && split.Length > 1 && split[1] >= '0' && split[1] <= '9')
                 {
                     int code = -1;
-                    bool parsed = int.TryParse(split.Substring(0, 2), out code);
+                    bool parsed = int.TryParse(split[..2], out code);
                     color = parsed ? GetColorByCode(code) : origColor;
-                    useSplit = split.Substring(2);
+                    useSplit = split[2..];
                 }
                 else if (colorSplit)
                 {
                     int code = -1;
-                    bool parsed = int.TryParse(split.Substring(0, 1), out code);
+                    bool parsed = int.TryParse(split[..1], out code);
                     color = parsed ? GetColorByCode(code) : origColor;
                     if (parsed)
                     {
-                        useSplit = split.Substring(1);
+                        useSplit = split[1..];
                     }
                 }
 

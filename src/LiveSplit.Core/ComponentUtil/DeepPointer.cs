@@ -193,7 +193,7 @@ public class DeepPointer
             }
         }
 
-        ptr += _offsets[_offsets.Count - 1];
+        ptr += _offsets[^1];
         return true;
     }
 

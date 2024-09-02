@@ -71,7 +71,7 @@ public static class SpeedrunCom
     public static IRun GetRun(this SpeedrunComSharp.Run record)
     {
         string apiUri = record.SplitsUri.AbsoluteUri;
-        string path = apiUri.Substring(apiUri.LastIndexOf("/") + 1);
+        string path = apiUri[(apiUri.LastIndexOf("/") + 1)..];
         return SplitsIO.Instance.DownloadRunByPath(path, false);
     }
 
@@ -287,7 +287,7 @@ public static class SpeedrunCom
 
                         string[] splitted = uri.Query.Split('?', '=', '&');
                         claimToken = splitted.SkipWhile(x => x != "claim_token").Skip(1).FirstOrDefault();
-                        splitsIORunId = uri.AbsolutePath.Substring(1);
+                        splitsIORunId = uri.AbsolutePath[1..];
                     }
                     catch (Exception ex)
                     {

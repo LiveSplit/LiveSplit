@@ -344,7 +344,7 @@ public class SpeedRunsLiveIRC : IDisposable
             }
             else if (message.Contains(" has been removed from the race."))
             {
-                string userName = message.Substring(0, message.IndexOf(" "));
+                string userName = message[..message.IndexOf(" ")];
                 string raceComparison = SRLComparisonGenerator.GetRaceComparisonName(userName);
 
                 if (Model.CurrentState.CurrentComparison.Equals(raceComparison))
@@ -369,7 +369,7 @@ public class SpeedRunsLiveIRC : IDisposable
             }
             else if (message.Contains(" enters the race!"))
             {
-                string userName = message.Substring(0, message.IndexOf(" "));
+                string userName = message[..message.IndexOf(" ")];
                 if (LiveSplitChannel.Users.Select(x => x.User.NickName).Contains(userName))
                 {
                     AddComparison(userName);
@@ -463,9 +463,9 @@ public class SpeedRunsLiveIRC : IDisposable
             {
                 try
                 {
-                    TimingMethod method = message.Substring("!time ".Length).StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
+                    TimingMethod method = message["!time ".Length..].StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
                     bool finalSplit = message.StartsWith("!done ");
-                    string arguments = message.Substring("!time RealTime ".Length);
+                    string arguments = message["!time RealTime ".Length..];
 
                     if (finalSplit)
                     {
@@ -475,8 +475,8 @@ public class SpeedRunsLiveIRC : IDisposable
                     else
                     {
                         int timeIndex = arguments.LastIndexOf("\"");
-                        string splitName = Unescape(arguments.Substring(1, timeIndex - 1));
-                        TimeSpan? time = ParseTime(arguments.Substring(timeIndex + 2));
+                        string splitName = Unescape(arguments[1..timeIndex]);
+                        TimeSpan? time = ParseTime(arguments[(timeIndex + 2)..]);
                         ProcessSplit(user, splitName, time, method);
                     }
                 }

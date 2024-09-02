@@ -406,8 +406,8 @@ public static class RunExtensions
         {
             string inside = categoryName.Substring(indexStart + 1, indexEnd - indexStart - 1);
             list.Add(inside);
-            afterParentheses = categoryName.Substring(indexEnd + 1).Trim();
-            categoryName = categoryName.Substring(0, indexStart).Trim();
+            afterParentheses = categoryName[(indexEnd + 1)..].Trim();
+            categoryName = categoryName[..indexStart].Trim();
         }
 
         if (showVariables)

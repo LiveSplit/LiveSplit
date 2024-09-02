@@ -47,17 +47,17 @@ public static class TimeSpanParser
             }
 
             // Parse hours.
-            ticks += long.Parse(daysDotHours[daysDotHours.Length - 1], CultureInfo.InvariantCulture) * TimeSpan.TicksPerHour;
+            ticks += long.Parse(daysDotHours[^1], CultureInfo.InvariantCulture) * TimeSpan.TicksPerHour;
         }
 
         if (sections.Length > 1)
         {
             // Parse minutes.
-            ticks += long.Parse(sections[sections.Length - 2], CultureInfo.InvariantCulture) * TimeSpan.TicksPerMinute;
+            ticks += long.Parse(sections[^2], CultureInfo.InvariantCulture) * TimeSpan.TicksPerMinute;
         }
 
         // Parse seconds.
-        string[] seconds = sections[sections.Length - 1].Split(dot, 3);
+        string[] seconds = sections[^1].Split(dot, 3);
         ticks += long.Parse(seconds[0], CultureInfo.InvariantCulture) * TimeSpan.TicksPerSecond;
 
         if (seconds.Length > 1)
@@ -72,7 +72,7 @@ public static class TimeSpanParser
     {
         if (fractionText.Length > 7)
         {
-            fractionText = fractionText.Substring(0, 7);
+            fractionText = fractionText[..7];
         }
 
         return long.Parse(fractionText, NumberStyles.Integer, CultureInfo.InvariantCulture) * powersOfTen[7 - fractionText.Length];

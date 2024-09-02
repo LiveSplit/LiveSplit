@@ -106,8 +106,8 @@ public static class AbbreviationExtensions
         int indexEnd = name.IndexOf(')', indexStart + 1);
         if (indexStart >= 0 && indexEnd >= 0)
         {
-            string beforeParentheses = name.Substring(0, indexStart).Trim();
-            string afterParentheses = name.Substring(indexEnd + 1).Trim();
+            string beforeParentheses = name[..indexStart].Trim();
+            string afterParentheses = name[(indexEnd + 1)..].Trim();
             name = $"{beforeParentheses} {afterParentheses}".Trim();
             list.AddRange(name.GetAbbreviations());
         }
@@ -123,8 +123,8 @@ public static class AbbreviationExtensions
         else if (name.ToLowerInvariant().Contains(" and "))
         {
             int index = name.ToLower().IndexOf(" and ");
-            string firstPart = name.Substring(0, index);
-            string secondPart = name.Substring(index + " and ".Length);
+            string firstPart = name[..index];
+            string secondPart = name[(index + " and ".Length)..];
             name = firstPart + " & " + secondPart;
             list.AddRange(name.GetAbbreviations());
         }
@@ -132,12 +132,12 @@ public static class AbbreviationExtensions
         {
             if (name.ToLowerInvariant().StartsWith("the "))
             {
-                string theDropped = name.Substring("the ".Length);
+                string theDropped = name["the ".Length..];
                 list.Add(theDropped);
             }
             else if (name.ToLowerInvariant().StartsWith("a "))
             {
-                string aDropped = name.Substring("a ".Length);
+                string aDropped = name["a ".Length..];
                 list.Add(aDropped);
             }
 

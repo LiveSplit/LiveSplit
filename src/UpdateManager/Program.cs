@@ -30,7 +30,7 @@ internal static class Program
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new UpdateForm(updateables, (args.Length % 3 == 1) ? args[args.Length - 1] : null));
+                Application.Run(new UpdateForm(updateables, (args.Length % 3 == 1) ? args[^1] : null));
             }
         }
         catch (Exception) { }

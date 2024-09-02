@@ -156,7 +156,7 @@ internal static class InternetExplorerBrowserEmulation
                     separator = version.IndexOf('.');
                     if (separator != -1)
                     {
-                        int.TryParse(version.Substring(0, separator), out result);
+                        int.TryParse(version[..separator], out result);
                     }
                 }
             }

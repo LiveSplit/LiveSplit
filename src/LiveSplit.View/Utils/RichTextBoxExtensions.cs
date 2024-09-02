@@ -28,8 +28,8 @@ public static class RichTextBoxExtensions
                 bool isEnclosed = closingIndex >= 0;
                 if (isEnclosed)
                 {
-                    string code = token.Substring(0, closingIndex);
-                    actualText = token.Substring(closingIndex + 1);
+                    string code = token[..closingIndex];
+                    actualText = token[(closingIndex + 1)..];
 
                     if (code == "b")
                     {
@@ -103,7 +103,7 @@ public static class RichTextBoxExtensions
                         string quoteText = "Quote";
                         if (code.StartsWith("quote="))
                         {
-                            quoteText = string.Format("Originally posted by {0}", code.Substring(6));
+                            quoteText = string.Format("Originally posted by {0}", code[6..]);
                         }
 
                         textBox.AppendText(Environment.NewLine);
@@ -129,7 +129,7 @@ public static class RichTextBoxExtensions
                     }
                     else if (code.StartsWith("section="))
                     {
-                        string sectionText = code.Substring(8);
+                        string sectionText = code[8..];
                         textBox.AppendText(Environment.NewLine);
                         textBox.SelectionFont = new Font(textBox.Font.FontFamily, 10f, FontStyle.Bold);
                         textBox.SelectionAlignment = HorizontalAlignment.Center;
@@ -148,7 +148,7 @@ public static class RichTextBoxExtensions
                     }
                     else if (code.StartsWith("url="))
                     {
-                        url = code.Substring(4);
+                        url = code[4..];
                     }
                     else
                     {

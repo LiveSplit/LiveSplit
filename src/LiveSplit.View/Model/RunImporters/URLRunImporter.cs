@@ -25,7 +25,7 @@ public class URLRunImporter : IRunImporter
             if (liveSplitOneSplitsIOIndex != -1)
             {
                 // 12 is the length of #/splits-io/
-                url = "https://splits.io/" + url.Substring(liveSplitOneSplitsIOIndex + 12);
+                url = "https://splits.io/" + url[(liveSplitOneSplitsIOIndex + 12)..];
             }
 
             var uri = new Uri(url);

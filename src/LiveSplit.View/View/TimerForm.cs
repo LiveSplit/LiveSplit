@@ -434,7 +434,7 @@ public partial class TimerForm : Form
     {
         if (goal.Length > 65)
         {
-            return goal.Substring(0, 60) + "...";
+            return goal[..60] + "...";
         }
 
         return goal;
@@ -566,7 +566,7 @@ public partial class TimerForm : Form
             menuItemsToAdd.Add(tsItem);
         }
 
-        if (menuItemsToAdd.Count > 0 && menuItemsToAdd[menuItemsToAdd.Count - 1] is not ToolStripSeparator)
+        if (menuItemsToAdd.Count > 0 && menuItemsToAdd[^1] is not ToolStripSeparator)
         {
             menuItemsToAdd.Add(new ToolStripSeparator());
         }
@@ -1063,7 +1063,7 @@ public partial class TimerForm : Form
                     var uri = new Uri(url);
                     if (uri.Host.ToLowerInvariant() == "ge.tt"
                         && uri.LocalPath.Length > 0
-                        && !uri.LocalPath.Substring(1).Contains('/'))
+                        && !uri.LocalPath[1..].Contains('/'))
                     {
                         uri = new Uri(string.Format("http://ge.tt/api/1/files{0}/0/blob?download", uri.LocalPath));
                     }

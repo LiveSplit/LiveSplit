@@ -166,7 +166,7 @@ public partial class SettingsDialog : Form
                 int lastSpaceIndex = keyString.LastIndexOf(' ');
                 if (lastSpaceIndex != -1)
                 {
-                    keyString = keyString.Substring(0, lastSpaceIndex);
+                    keyString = keyString[..lastSpaceIndex];
                 }
             }
 

@@ -19,6 +19,10 @@
     <ProjectReference Include="$(LibPath)\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="all" />
+  </ItemGroup>
+
   <PropertyGroup>
     <PostBuildEvent>
       mkdir "$(OutputPath)\Resources"
