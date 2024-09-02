@@ -37,7 +37,7 @@ public class SettingsHelper
         button.BackColor = picker.SelectedColor;
     }
 
-    public static Color ParseColor(XmlElement colorElement, Color defaultColor = default(Color))
+    public static Color ParseColor(XmlElement colorElement, Color defaultColor = default)
     {
         return colorElement != null
             ? Color.FromArgb(int.Parse(colorElement.InnerText, NumberStyles.HexNumber))
@@ -222,7 +222,7 @@ public class SettingsHelper
             : defaultString;
     }
 
-    public static TimeSpan ParseTimeSpan(XmlElement timeSpanElement, TimeSpan defaultTimeSpan = default(TimeSpan))
+    public static TimeSpan ParseTimeSpan(XmlElement timeSpanElement, TimeSpan defaultTimeSpan = default)
     {
         return timeSpanElement != null
             ? TimeSpan.Parse(timeSpanElement.InnerText)
@@ -230,7 +230,7 @@ public class SettingsHelper
     }
 
     public static bool TryParseTimeSpan(XmlElement timeSpanElement, out TimeSpan result,
-        TimeSpan defaultTimeSpan = default(TimeSpan))
+        TimeSpan defaultTimeSpan = default)
     {
         if (timeSpanElement != null && TimeSpan.TryParse(timeSpanElement.InnerText, out result))
         {
@@ -303,14 +303,14 @@ public class SettingsHelper
         return element;
     }
 
-    public static T ParseEnum<T>(XmlElement element, T defaultEnum = default(T))
+    public static T ParseEnum<T>(XmlElement element, T defaultEnum = default)
     {
         return element != null
             ? (T)Enum.Parse(typeof(T), element.InnerText)
             : defaultEnum;
     }
 
-    public static bool TryParseEnum<T>(XmlElement element, out T result, T defaultEnum = default(T)) where T : struct
+    public static bool TryParseEnum<T>(XmlElement element, out T result, T defaultEnum = default) where T : struct
     {
         if (element != null && Enum.TryParse(element.InnerText, out result))
         {

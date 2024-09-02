@@ -40,7 +40,7 @@ public static class RunExtensions
         return run.AutoSplitter != null && run.AutoSplitter.IsActivated;
     }
 
-    public static void AddSegment(this IRun run, string name, Time pbSplitTime = default(Time), Time bestSegmentTime = default(Time), Image icon = null, Time splitTime = default(Time), SegmentHistory segmentHistory = null)
+    public static void AddSegment(this IRun run, string name, Time pbSplitTime = default, Time bestSegmentTime = default, Image icon = null, Time splitTime = default, SegmentHistory segmentHistory = null)
     {
         var segment = new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime);
         if (segmentHistory != null)
@@ -64,11 +64,11 @@ public static class RunExtensions
     {
         run.ClearHistory();
         run.CustomComparisons.Clear();
-        run.CustomComparisons.Add(Model.Run.PersonalBestComparisonName);
+        run.CustomComparisons.Add(Run.PersonalBestComparisonName);
         foreach (var segment in run)
         {
             segment.Comparisons.Clear();
-            segment.BestSegmentTime = default(Time);
+            segment.BestSegmentTime = default;
         }
 
         run.AttemptCount = 0;

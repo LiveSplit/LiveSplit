@@ -29,7 +29,7 @@ public static class IndexedTimeHelper
 
     public static IIndexedTime ParseXmlOld(XmlElement node)
     {
-        var newTime = node == null ? default(Time) : Time.ParseText(node.InnerText);
+        var newTime = node == null ? default : Time.ParseText(node.InnerText);
         var index = int.Parse(node.GetAttribute("id"));
         return new IndexedTime(newTime, index);
     }

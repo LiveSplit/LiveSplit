@@ -172,7 +172,7 @@ public static class ExtensionMethods
         var type = typeof(T);
         type = type.IsEnum ? Enum.GetUnderlyingType(type) : type;
 
-        val = default(T);
+        val = default;
         if (!ReadValue(process, addr, type, out object val2))
         {
             return false;
@@ -304,7 +304,7 @@ public static class ExtensionMethods
         return true;
     }
 
-    public static T ReadValue<T>(this Process process, IntPtr addr, T default_ = default(T)) where T : struct
+    public static T ReadValue<T>(this Process process, IntPtr addr, T default_ = default) where T : struct
     {
         if (!process.ReadValue(addr, out T val))
         {
@@ -324,7 +324,7 @@ public static class ExtensionMethods
         return bytes;
     }
 
-    public static IntPtr ReadPointer(this Process process, IntPtr addr, IntPtr default_ = default(IntPtr))
+    public static IntPtr ReadPointer(this Process process, IntPtr addr, IntPtr default_ = default)
     {
         if (!process.ReadPointer(addr, out IntPtr ptr))
         {

@@ -360,7 +360,7 @@ public class SpeedRunsLiveIRC : IDisposable
 
                 foreach (var segment in Model.CurrentState.Run)
                 {
-                    segment.Comparisons[raceComparison] = default(Time);
+                    segment.Comparisons[raceComparison] = default;
                 }
             }
             else if (message.StartsWith(Client.LocalUser.NickName + " enters the race!"))
@@ -437,7 +437,7 @@ public class SpeedRunsLiveIRC : IDisposable
                 var comparison = segment.Comparisons.ElementAt(index);
                 if (SRLComparisonGenerator.IsRaceComparison(comparison.Key))
                 {
-                    segment.Comparisons[comparison.Key] = default(Time);
+                    segment.Comparisons[comparison.Key] = default;
                 }
             }
         }

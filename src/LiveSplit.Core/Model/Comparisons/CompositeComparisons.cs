@@ -38,7 +38,7 @@ public class CompositeComparisons : IComparisons
 
     public Time this[string key]
     {
-        get => Comparisons.ContainsKey(key) ? Comparisons[key] : default(Time);
+        get => Comparisons.ContainsKey(key) ? Comparisons[key] : default;
         set
         {
             if (Comparisons.ContainsKey(key))

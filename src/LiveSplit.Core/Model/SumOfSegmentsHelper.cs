@@ -8,7 +8,7 @@ public static class SumOfSegmentsHelper
     {
         if (segmentIndex > 0 && !run[segmentIndex - 1].SplitTime[method].HasValue)
         {
-            return new IndexedTime(default(Time), 0);
+            return new IndexedTime(default, 0);
         }
 
         var firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].SplitTime[method];
@@ -23,14 +23,14 @@ public static class SumOfSegmentsHelper
             segmentIndex++;
         }
 
-        return new IndexedTime(default(Time), 0);
+        return new IndexedTime(default, 0);
     }
 
     public static IndexedTime TrackPersonalBestRun(IRun run, TimeSpan? currentTime, int segmentIndex, TimingMethod method = TimingMethod.RealTime)
     {
         if (segmentIndex > 0 && !run[segmentIndex - 1].PersonalBestSplitTime[method].HasValue)
         {
-            return new IndexedTime(default(Time), 0);
+            return new IndexedTime(default, 0);
         }
 
         var firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].PersonalBestSplitTime[method];
@@ -45,7 +45,7 @@ public static class SumOfSegmentsHelper
             segmentIndex++;
         }
 
-        return new IndexedTime(default(Time), 0);
+        return new IndexedTime(default, 0);
     }
 
     public static IndexedTime TrackBranch(IRun run, TimeSpan? currentTime, int segmentIndex, int runIndex, TimingMethod method = TimingMethod.RealTime)
@@ -68,6 +68,6 @@ public static class SumOfSegmentsHelper
             segmentIndex++;
         }
 
-        return new IndexedTime(default(Time), 0);
+        return new IndexedTime(default, 0);
     }
 }

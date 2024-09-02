@@ -25,20 +25,20 @@ public class ColorSlider : UserControl
         get
         {
             return new Rectangle(
-            this.ClientRectangle.X + this.pickerSize + 2,
-            this.ClientRectangle.Y + this.pickerSize + 2,
-            this.ClientRectangle.Width - (this.pickerSize * 2) - 4,
-            this.ClientRectangle.Height - (this.pickerSize * 2) - 4);
+            ClientRectangle.X + pickerSize + 2,
+            ClientRectangle.Y + pickerSize + 2,
+            ClientRectangle.Width - (pickerSize * 2) - 4,
+            ClientRectangle.Height - (pickerSize * 2) - 4);
         }
     }
     [DefaultValue(5)]
     public int PickerSize
     {
-        get => this.pickerSize;
+        get => pickerSize;
         set
         {
-            this.pickerSize = value;
-            this.Invalidate();
+            pickerSize = value;
+            Invalidate();
         }
     }
     [DefaultValue(true)]
@@ -46,59 +46,59 @@ public class ColorSlider : UserControl
     [DefaultValue(0.5f)]
     public float ValuePercentual
     {
-        get => this.pickerPos;
+        get => pickerPos;
         set
         {
-            float lastVal = this.pickerPos;
-            this.pickerPos = Math.Min(1.0f, Math.Max(0.0f, value));
-            if (this.pickerPos != lastVal)
+            float lastVal = pickerPos;
+            pickerPos = Math.Min(1.0f, Math.Max(0.0f, value));
+            if (pickerPos != lastVal)
             {
-                this.OnPercentualValueChanged();
-                this.UpdateColorValue();
-                this.Invalidate();
+                OnPercentualValueChanged();
+                UpdateColorValue();
+                Invalidate();
             }
         }
     }
     public Color Value { get; private set; } = Color.Transparent;
     public Color Minimum
     {
-        get => this.min;
+        get => min;
         set
         {
-            if (this.min != value)
+            if (min != value)
             {
-                this.SetupGradient(value, this.max);
-                this.designSerializeColor = true;
+                SetupGradient(value, max);
+                designSerializeColor = true;
             }
         }
     }
     public Color Maximum
     {
-        get => this.max;
+        get => max;
         set
         {
-            if (this.max != value)
+            if (max != value)
             {
-                this.SetupGradient(this.min, value);
-                this.designSerializeColor = true;
+                SetupGradient(min, value);
+                designSerializeColor = true;
             }
         }
     }
 
     public ColorSlider()
     {
-        this.pickerDragTimer = new Timer
+        pickerDragTimer = new Timer
         {
             Interval = 10
         };
-        this.pickerDragTimer.Tick += new EventHandler(pickerDragTimer_Tick);
+        pickerDragTimer.Tick += new EventHandler(pickerDragTimer_Tick);
 
-        this.SetStyle(ControlStyles.UserPaint, true);
-        this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-        this.SetStyle(ControlStyles.Selectable, true);
-        this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
-        this.SetStyle(ControlStyles.ResizeRedraw, true);
-        this.SetupHueGradient();
+        SetStyle(ControlStyles.UserPaint, true);
+        SetStyle(ControlStyles.AllPaintingInWmPaint, true);
+        SetStyle(ControlStyles.Selectable, true);
+        SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+        SetStyle(ControlStyles.ResizeRedraw, true);
+        SetupHueGradient();
     }
 
     public void SetupGradient(Color min, Color max, int accuracy = 256)
@@ -107,29 +107,29 @@ public class ColorSlider : UserControl
 
         this.min = min;
         this.max = max;
-        this.srcImage = new Bitmap(1, accuracy);
-        using (Graphics g = Graphics.FromImage(this.srcImage))
+        srcImage = new Bitmap(1, accuracy);
+        using (Graphics g = Graphics.FromImage(srcImage))
         {
             LinearGradientBrush gradient = new LinearGradientBrush(
-                new Point(0, this.srcImage.Height - 1),
+                new Point(0, srcImage.Height - 1),
                 new Point(0, 0),
                 min,
                 max);
             g.FillRectangle(gradient, g.ClipBounds);
         }
 
-        this.UpdateColorValue();
-        this.Invalidate();
+        UpdateColorValue();
+        Invalidate();
     }
     public void SetupGradient(ColorBlend blend, int accuracy = 256)
     {
         accuracy = Math.Max(1, accuracy);
 
-        this.srcImage = new Bitmap(1, accuracy);
-        using (Graphics g = Graphics.FromImage(this.srcImage))
+        srcImage = new Bitmap(1, accuracy);
+        using (Graphics g = Graphics.FromImage(srcImage))
         {
             LinearGradientBrush gradient = new LinearGradientBrush(
-                new Point(0, this.srcImage.Height - 1),
+                new Point(0, srcImage.Height - 1),
                 new Point(0, 0),
                 Color.Transparent,
                 Color.Transparent)
@@ -139,10 +139,10 @@ public class ColorSlider : UserControl
             g.FillRectangle(gradient, g.ClipBounds);
         }
 
-        this.min = this.srcImage.GetPixel(0, this.srcImage.Height - 1);
-        this.max = this.srcImage.GetPixel(0, 0);
-        this.UpdateColorValue();
-        this.Invalidate();
+        min = srcImage.GetPixel(0, srcImage.Height - 1);
+        max = srcImage.GetPixel(0, 0);
+        UpdateColorValue();
+        Invalidate();
     }
     public void SetupHueGradient(float saturation = 1.0f, float brightness = 1.0f, int accuracy = 256)
     {
@@ -165,77 +165,77 @@ public class ColorSlider : UserControl
             5.0f / 6.0f,
             1.0f]
         };
-        this.SetupGradient(blend, accuracy);
+        SetupGradient(blend, accuracy);
     }
 
     protected void UpdateColorValue()
     {
-        Color oldVal = this.Value;
-        this.Value = this.srcImage.GetPixel(0, (int)Math.Round((this.srcImage.Height - 1) * (1.0f - this.pickerPos)));
-        if (oldVal != this.Value)
+        Color oldVal = Value;
+        Value = srcImage.GetPixel(0, (int)Math.Round((srcImage.Height - 1) * (1.0f - pickerPos)));
+        if (oldVal != Value)
         {
-            this.OnValueChanged();
+            OnValueChanged();
         }
     }
 
     protected void OnValueChanged()
     {
-        this.ValueChanged?.Invoke(this, null);
+        ValueChanged?.Invoke(this, null);
     }
     protected void OnPercentualValueChanged()
     {
-        this.PercentualValueChanged?.Invoke(this, null);
+        PercentualValueChanged?.Invoke(this, null);
     }
 
     protected override void OnEnabledChanged(EventArgs e)
     {
         base.OnEnabledChanged(e);
-        this.pickerDrag = false;
-        this.Invalidate();
+        pickerDrag = false;
+        Invalidate();
     }
     protected override void OnPaint(PaintEventArgs e)
     {
         base.OnPaint(e);
 
         Rectangle colorBoxOuter = new Rectangle(
-            this.ClientRectangle.X + this.pickerSize,
-            this.ClientRectangle.Y + this.pickerSize,
-            this.ClientRectangle.Width - (this.pickerSize * 2) - 1,
-            this.ClientRectangle.Height - (this.pickerSize * 2) - 1);
+            ClientRectangle.X + pickerSize,
+            ClientRectangle.Y + pickerSize,
+            ClientRectangle.Width - (pickerSize * 2) - 1,
+            ClientRectangle.Height - (pickerSize * 2) - 1);
         Rectangle colorBoxInner = new Rectangle(
             colorBoxOuter.X + 1,
             colorBoxOuter.Y + 1,
             colorBoxOuter.Width - 2,
             colorBoxOuter.Height - 2);
-        Rectangle colorArea = this.ColorAreaRectangle;
-        int pickerVisualPos = colorArea.Y + (int)Math.Round((1.0f - this.pickerPos) * colorArea.Height);
+        Rectangle colorArea = ColorAreaRectangle;
+        int pickerVisualPos = colorArea.Y + (int)Math.Round((1.0f - pickerPos) * colorArea.Height);
 
-        if (this.min.A < 255 || this.max.A < 255)
+        if (min.A < 255 || max.A < 255)
         {
             e.Graphics.FillRectangle(new HatchBrush(HatchStyle.LargeCheckerBoard, Color.LightGray, Color.Gray), colorArea);
         }
 
         System.Drawing.Imaging.ImageAttributes colorAreaImageAttr = new System.Drawing.Imaging.ImageAttributes();
         colorAreaImageAttr.SetWrapMode(WrapMode.TileFlipXY);
-        e.Graphics.DrawImage(this.srcImage, colorArea, 0, 0, this.srcImage.Width, this.srcImage.Height - 1, GraphicsUnit.Pixel, colorAreaImageAttr);
+        e.Graphics.DrawImage(srcImage, colorArea, 0, 0, srcImage.Width, srcImage.Height - 1, GraphicsUnit.Pixel, colorAreaImageAttr);
 
         e.Graphics.DrawRectangle(SystemPens.ControlDark, colorBoxOuter);
         e.Graphics.DrawRectangle(SystemPens.ControlLightLight, colorBoxInner);
 
-        e.Graphics.DrawLines(this.Enabled ? Pens.Black : SystemPens.ControlDark, new Point[] {
-            new Point(0, pickerVisualPos - this.pickerSize),
-            new Point(this.pickerSize, pickerVisualPos),
-            new Point(0, pickerVisualPos + this.pickerSize),
-            new Point(0, pickerVisualPos - this.pickerSize)});
-        e.Graphics.DrawLines(this.Enabled ? Pens.Black : SystemPens.ControlDark, new Point[] {
-            new Point(colorBoxOuter.Right + this.pickerSize, pickerVisualPos - this.pickerSize),
+        e.Graphics.DrawLines(Enabled ? Pens.Black : SystemPens.ControlDark, new Point[] {
+            new Point(0, pickerVisualPos - pickerSize),
+            new Point(pickerSize, pickerVisualPos),
+            new Point(0, pickerVisualPos + pickerSize),
+            new Point(0, pickerVisualPos - pickerSize)});
+        e.Graphics.DrawLines(Enabled ? Pens.Black : SystemPens.ControlDark, new Point[] {
+            new Point(colorBoxOuter.Right + pickerSize, pickerVisualPos - pickerSize),
             new Point(colorBoxOuter.Right, pickerVisualPos),
-            new Point(colorBoxOuter.Right + this.pickerSize, pickerVisualPos + this.pickerSize),
-            new Point(colorBoxOuter.Right + this.pickerSize, pickerVisualPos - this.pickerSize)});
+            new Point(colorBoxOuter.Right + pickerSize, pickerVisualPos + pickerSize),
+            new Point(colorBoxOuter.Right + pickerSize, pickerVisualPos - pickerSize)});
 
-        if (this.ShowInnerPicker)
+        if (ShowInnerPicker)
         {
-            Pen innerPickerPen = this.Value.GetLuminance() > 0.5f ? Pens.Black : Pens.White;
+            Pen innerPickerPen = Value.GetLuminance() > 0.5f ? Pens.Black : Pens.White;
             e.Graphics.DrawLine(innerPickerPen,
                 new Point(colorArea.Left, pickerVisualPos),
                 new Point(colorArea.Left + 2, pickerVisualPos));
@@ -244,7 +244,7 @@ public class ColorSlider : UserControl
                 new Point(colorArea.Right - 1 - 2, pickerVisualPos));
         }
 
-        if (!this.Enabled)
+        if (!Enabled)
         {
             e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(128, SystemColors.Control)), colorArea);
         }
@@ -252,58 +252,58 @@ public class ColorSlider : UserControl
     protected override void OnMouseDown(MouseEventArgs e)
     {
         base.OnMouseDown(e);
-        if (e.Button == System.Windows.Forms.MouseButtons.Left)
+        if (e.Button == MouseButtons.Left)
         {
-            this.Focus();
-            this.ValuePercentual = 1.0f - ((float)(e.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height);
-            this.pickerDrag = true;
-            this.pickerDragTimer.Enabled = true;
+            Focus();
+            ValuePercentual = 1.0f - ((float)(e.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height);
+            pickerDrag = true;
+            pickerDragTimer.Enabled = true;
         }
     }
     protected override void OnMouseUp(MouseEventArgs e)
     {
         base.OnMouseUp(e);
-        this.pickerDrag = false;
-        this.pickerDragTimer.Enabled = false;
+        pickerDrag = false;
+        pickerDragTimer.Enabled = false;
     }
 
     private void pickerDragTimer_Tick(object sender, EventArgs e)
     {
-        Point pos = this.PointToClient(System.Windows.Forms.Cursor.Position);
-        this.ValuePercentual = 1.0f - ((float)(pos.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height);
+        Point pos = PointToClient(Cursor.Position);
+        ValuePercentual = 1.0f - ((float)(pos.Y - ColorAreaRectangle.Y) / (float)ColorAreaRectangle.Height);
     }
     protected override void OnMouseLeave(EventArgs e)
     {
         base.OnMouseLeave(e);
-        this.pickerDrag = false;
+        pickerDrag = false;
     }
     protected override void OnLostFocus(EventArgs e)
     {
         base.OnLostFocus(e);
-        this.Invalidate();
+        Invalidate();
     }
     protected override void OnGotFocus(EventArgs e)
     {
         base.OnGotFocus(e);
-        this.Invalidate();
+        Invalidate();
     }
 
     private void ResetMinimum()
     {
-        this.SetupHueGradient();
-        this.designSerializeColor = false;
+        SetupHueGradient();
+        designSerializeColor = false;
     }
     private void ResetMaximum()
     {
-        this.SetupHueGradient();
-        this.designSerializeColor = false;
+        SetupHueGradient();
+        designSerializeColor = false;
     }
     private bool ShouldSerializeMinimum()
     {
-        return this.designSerializeColor;
+        return designSerializeColor;
     }
     private bool ShouldSerializeMaximum()
     {
-        return this.designSerializeColor;
+        return designSerializeColor;
     }
 }

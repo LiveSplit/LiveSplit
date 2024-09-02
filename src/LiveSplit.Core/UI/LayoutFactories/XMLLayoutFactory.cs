@@ -71,7 +71,7 @@ public class XMLLayoutFactory : ILayoutFactory
 
         if (version >= new Version(1, 6, 1))
         {
-            settings.BackgroundType = SettingsHelper.ParseEnum<BackgroundType>(element["BackgroundType"], BackgroundType.SolidColor);
+            settings.BackgroundType = SettingsHelper.ParseEnum(element["BackgroundType"], BackgroundType.SolidColor);
         }
         else
         {

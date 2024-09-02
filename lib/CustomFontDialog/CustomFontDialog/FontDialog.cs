@@ -231,20 +231,20 @@ public partial class FontDialog : Form
         "48",
         "72"};
 
-        this.lstSize.Items.Clear();
+        lstSize.Items.Clear();
         foreach (var size in sizes)
         {
             int sizeNum = int.Parse((string)size);
             if (sizeNum >= MinSize && sizeNum <= MaxSize)
             {
-                this.lstSize.Items.Add(size);
+                lstSize.Items.Add(size);
             }
         }
     }
 
     private void FontDialog_FormClosing(object sender, FormClosingEventArgs e)
     {
-        if (DialogResult == System.Windows.Forms.DialogResult.Cancel)
+        if (DialogResult == DialogResult.Cancel)
         {
             Font = OriginalFont;
         }

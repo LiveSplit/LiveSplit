@@ -21,9 +21,9 @@ public class Segment : ISegment
     public SegmentHistory SegmentHistory { get; set; }
 
     public Segment(
-        string name, Time pbSplitTime = default(Time),
-        Time bestSegmentTime = default(Time), Image icon = null,
-        Time splitTime = default(Time))
+        string name, Time pbSplitTime = default,
+        Time bestSegmentTime = default, Image icon = null,
+        Time splitTime = default)
     {
         Comparisons = new CompositeComparisons();
         Name = name;

@@ -53,7 +53,7 @@ public class DeepPointer
         InitializeOffsets(offsets);
     }
 
-    public T Deref<T>(Process process, T default_ = default(T)) where T : struct // all value types including structs
+    public T Deref<T>(Process process, T default_ = default) where T : struct // all value types including structs
     {
         if (!Deref(process, out T val))
         {
@@ -68,7 +68,7 @@ public class DeepPointer
         if (!DerefOffsets(process, out IntPtr ptr)
             || !process.ReadValue(ptr, out value))
         {
-            value = default(T);
+            value = default;
             return false;
         }
 

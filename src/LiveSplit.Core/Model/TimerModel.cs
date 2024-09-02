@@ -79,7 +79,7 @@ public class TimerModel : ITimerModel
             || CurrentState.CurrentPhase == TimerPhase.Paused)
             && CurrentState.CurrentSplitIndex < CurrentState.Run.Count - 1)
         {
-            CurrentState.CurrentSplit.SplitTime = default(Time);
+            CurrentState.CurrentSplit.SplitTime = default;
             CurrentState.CurrentSplitIndex++;
             CurrentState.Run.HasChanged = true;
 
@@ -98,7 +98,7 @@ public class TimerModel : ITimerModel
             }
 
             CurrentState.CurrentSplitIndex--;
-            CurrentState.CurrentSplit.SplitTime = default(Time);
+            CurrentState.CurrentSplit.SplitTime = default;
             CurrentState.Run.HasChanged = true;
 
             OnUndoSplit?.Invoke(this, null);
@@ -144,7 +144,7 @@ public class TimerModel : ITimerModel
         //Reset Splits
         foreach (var split in CurrentState.Run)
         {
-            split.SplitTime = default(Time);
+            split.SplitTime = default;
         }
 
         OnReset?.Invoke(this, oldPhase);

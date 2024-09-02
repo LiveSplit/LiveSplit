@@ -1039,7 +1039,7 @@ public partial class TimerForm : Form
         using (var editHistoryDialog = new EditHistoryDialog(Settings.RecentLayouts))
         {
 
-            if (editHistoryDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.Cancel)
+            if (editHistoryDialog.ShowDialog(this) != DialogResult.Cancel)
             {
                 Settings.RecentLayouts = editHistoryDialog.History;
             }

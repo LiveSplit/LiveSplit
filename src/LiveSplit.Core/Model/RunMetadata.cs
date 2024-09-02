@@ -194,7 +194,7 @@ public class RunMetadata
                             return null;
                         }
                     });
-                    this.game = new Lazy<Game>(() => gameTask.Result);
+                    game = new Lazy<Game>(() => gameTask.Result);
 
                     var platformTask = Task.Factory.StartNew(() =>
                         {
@@ -215,7 +215,7 @@ public class RunMetadata
                 }
                 else
                 {
-                    this.game = new Lazy<Game>(() => null);
+                    game = new Lazy<Game>(() => null);
                 }
 
                 oldCategoryName = null;
@@ -252,7 +252,7 @@ public class RunMetadata
                             return null;
                         }
                     });
-                    this.category = new Lazy<Category>(() => categoryTask.Result);
+                    category = new Lazy<Category>(() => categoryTask.Result);
 
                     var variableTask = Task.Factory.StartNew(() =>
                         {
@@ -303,7 +303,7 @@ public class RunMetadata
                 }
                 else
                 {
-                    this.category = new Lazy<Category>(() => null);
+                    category = new Lazy<Category>(() => null);
                 }
             }
         }

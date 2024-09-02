@@ -53,7 +53,7 @@ public class ComponentManager
 
     public static T LoadFactory<T>(string path)
     {
-        T factory = default(T);
+        T factory = default;
         try
         {
             var attr = (ComponentFactoryAttribute)Attribute

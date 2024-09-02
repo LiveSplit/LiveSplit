@@ -1017,7 +1017,7 @@ public partial class RunEditorDialog : Form
         var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
         for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
         {
-            newSegment.SegmentHistory.Add(x, default(Time));
+            newSegment.SegmentHistory.Add(x, default);
         }
 
         SegmentList.Insert(runGrid.CurrentRow.Index, newSegment);
@@ -1041,7 +1041,7 @@ public partial class RunEditorDialog : Form
         var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
         for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
         {
-            newSegment.SegmentHistory.Add(x, default(Time));
+            newSegment.SegmentHistory.Add(x, default);
         }
 
         SegmentList.Insert(runGrid.CurrentRow.Index + 1, newSegment);
@@ -1858,12 +1858,12 @@ public partial class RunEditorDialog : Form
                 if (!pastResponses.ContainsKey(messageText))
                 {
                     var result = MessageBox.Show(this, "You had a " + (parameters.method == TimingMethod.RealTime ? "Real Time" : "Game Time") + " segment time of " + messageText + ". Do you think that this segment time is inaccurate and should be removed?", "Remove Time From Segment History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    if (result == DialogResult.Yes)
                     {
                         pastResponses.Add(messageText, true);
                         return true;
                     }
-                    else if (result == System.Windows.Forms.DialogResult.No)
+                    else if (result == DialogResult.No)
                     {
                         pastResponses.Add(messageText, false);
                         return false;

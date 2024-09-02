@@ -150,6 +150,6 @@ public partial class FontList : UserControl
     // ensures that focus is lstFont control whenever the form is loaded
     private void FontList_Load(object sender, EventArgs e)
     {
-        this.ActiveControl = lstFont;
+        ActiveControl = lstFont;
     }
 }
