@@ -30,15 +30,13 @@ public class Screenshot : IRunUploadPlatform
         {
             var image = screenShotFunction();
 
-            using (var dialog = new SaveFileDialog())
+            using var dialog = new SaveFileDialog();
+            dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpeg)|*.jpeg|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|TIFF (*.tiff)|*.tiff|WMF (*.wmf)|*.wmf";
+            var result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
             {
-                dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpeg)|*.jpeg|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|TIFF (*.tiff)|*.tiff|WMF (*.wmf)|*.wmf";
-                var result = dialog.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    image.Save(dialog.FileName);
-                    return true;
-                }
+                image.Save(dialog.FileName);
+                return true;
             }
         }
         catch (Exception ex)

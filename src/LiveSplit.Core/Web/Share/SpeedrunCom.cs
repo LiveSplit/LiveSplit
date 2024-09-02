@@ -93,22 +93,18 @@ public static class SpeedrunCom
     {
         var request = WebRequest.Create(assets.CoverMedium.Uri);
 
-        using (var response = request.GetResponse())
-        using (var stream = response.GetResponseStream())
-        {
-            return Image.FromStream(stream);
-        }
+        using var response = request.GetResponse();
+        using var stream = response.GetResponseStream();
+        return Image.FromStream(stream);
     }
 
     public static Image GetIconImage(this Assets assets)
     {
         var request = WebRequest.Create(assets.Icon.Uri);
 
-        using (var response = request.GetResponse())
-        using (var stream = response.GetResponseStream())
-        {
-            return Image.FromStream(stream);
-        }
+        using var response = request.GetResponse();
+        using var stream = response.GetResponseStream();
+        return Image.FromStream(stream);
     }
 
     public static void PatchRun(this IRun run, SpeedrunComSharp.Run srdcRun)

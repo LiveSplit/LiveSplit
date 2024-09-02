@@ -272,15 +272,13 @@ public partial class LayoutEditorDialog : Form
 
     private void btnSetSize_Click(object sender, EventArgs e)
     {
-        using (var setSizeDialog = new SetSizeForm(CurrentState.Form))
-        {
-            var oldSize = CurrentState.Form.Size;
-            var result = setSizeDialog.ShowDialog();
+        using var setSizeDialog = new SetSizeForm(CurrentState.Form);
+        var oldSize = CurrentState.Form.Size;
+        var result = setSizeDialog.ShowDialog();
 
-            if (result == DialogResult.Cancel)
-            {
-                CurrentState.Form.Size = oldSize;
-            }
+        if (result == DialogResult.Cancel)
+        {
+            CurrentState.Form.Size = oldSize;
         }
     }
 

@@ -373,13 +373,11 @@ public partial class MetadataControl : UserControl
             return;
         }
 
-        using (var submitDialog = new SpeedrunComSubmitDialog(Metadata))
+        using var submitDialog = new SpeedrunComSubmitDialog(Metadata);
+        var result = submitDialog.ShowDialog();
+        if (result == DialogResult.OK)
         {
-            var result = submitDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                RefreshAssociateButton();
-            }
+            RefreshAssociateButton();
         }
     }
 

@@ -1070,26 +1070,24 @@ public partial class TimerForm : Form
 
                     var request = WebRequest.Create(uri);
 
-                    using (var response = request.GetResponse())
-                    using (var stream = response.GetResponseStream())
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        stream.CopyTo(memoryStream);
-                        memoryStream.Seek(0, SeekOrigin.Begin);
+                    using var response = request.GetResponse();
+                    using var stream = response.GetResponseStream();
+                    using var memoryStream = new MemoryStream();
+                    stream.CopyTo(memoryStream);
+                    memoryStream.Seek(0, SeekOrigin.Begin);
 
-                        try
-                        {
-                            var layout = new XMLLayoutFactory(memoryStream).Create(CurrentState);
-                            layout.HasChanged = true;
-                            SetLayout(layout);
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
-                            DontRedraw = true;
-                            MessageBox.Show(this, "The selected file was not recognized as a layout file. (" + ex.Message + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            DontRedraw = false;
-                        }
+                    try
+                    {
+                        var layout = new XMLLayoutFactory(memoryStream).Create(CurrentState);
+                        layout.HasChanged = true;
+                        SetLayout(layout);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                        DontRedraw = true;
+                        MessageBox.Show(this, "The selected file was not recognized as a layout file. (" + ex.Message + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        DontRedraw = false;
                     }
                 }
                 catch (Exception ex)
@@ -1920,13 +1918,11 @@ public partial class TimerForm : Form
 
     private ILayout LoadLayoutFromFile(string filePath)
     {
-        using (var stream = File.OpenRead(filePath))
-        {
-            var layout = new XMLLayoutFactory(stream).Create(CurrentState);
-            layout.FilePath = filePath;
-            AddLayoutFileToLRU(filePath);
-            return layout;
-        }
+        using var stream = File.OpenRead(filePath);
+        var layout = new XMLLayoutFactory(stream).Create(CurrentState);
+        layout.FilePath = filePath;
+        AddLayoutFileToLRU(filePath);
+        return layout;
     }
 
     private void OpenRunFromFile(string filePath)
@@ -1984,58 +1980,54 @@ public partial class TimerForm : Form
 
     private void OpenSplits()
     {
-        using (var splitDialog = new OpenFileDialog())
+        using var splitDialog = new OpenFileDialog();
+        splitDialog.Filter = "LiveSplit Splits (*.lss)|*.lss|All files (*.*)|*.*";
+        IsInDialogMode = true;
+        try
         {
-            splitDialog.Filter = "LiveSplit Splits (*.lss)|*.lss|All files (*.*)|*.*";
-            IsInDialogMode = true;
-            try
+            if (Settings.RecentSplits.Any() && !string.IsNullOrEmpty(Settings.RecentSplits.Last().Path))
             {
-                if (Settings.RecentSplits.Any() && !string.IsNullOrEmpty(Settings.RecentSplits.Last().Path))
-                {
-                    splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last().Path);
-                }
+                splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last().Path);
+            }
 
-                var result = splitDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
-                {
-                    OpenRunFromFile(splitDialog.FileName);
-                }
-            }
-            finally
+            var result = splitDialog.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                IsInDialogMode = false;
+                OpenRunFromFile(splitDialog.FileName);
             }
+        }
+        finally
+        {
+            IsInDialogMode = false;
         }
     }
 
     private bool SaveSplitsAs(bool promptPBMessage)
     {
-        using (var splitDialog = new SaveFileDialog())
+        using var splitDialog = new SaveFileDialog();
+        splitDialog.FileName = CurrentState.Run.GetExtendedFileName();
+        splitDialog.Filter = "LiveSplit Splits (*.lss)|*.lss|All Files (*.*)|*.*";
+        IsInDialogMode = true;
+        try
         {
-            splitDialog.FileName = CurrentState.Run.GetExtendedFileName();
-            splitDialog.Filter = "LiveSplit Splits (*.lss)|*.lss|All Files (*.*)|*.*";
-            IsInDialogMode = true;
-            try
+            var result = splitDialog.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                var result = splitDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (!splitDialog.FileName.EndsWith(".lss"))
                 {
-                    if (!splitDialog.FileName.EndsWith(".lss"))
-                    {
-                        MessageBox.Show(this, "Cannot save splits with a file type that is not .lss", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-
-                    CurrentState.Run.FilePath = splitDialog.FileName;
-                    return SaveSplits(promptPBMessage);
+                    MessageBox.Show(this, "Cannot save splits with a file type that is not .lss", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
 
-                return false;
+                CurrentState.Run.FilePath = splitDialog.FileName;
+                return SaveSplits(promptPBMessage);
             }
-            finally
-            {
-                IsInDialogMode = false;
-            }
+
+            return false;
+        }
+        finally
+        {
+            IsInDialogMode = false;
         }
     }
 
@@ -2170,49 +2162,47 @@ public partial class TimerForm : Form
     {
         var runCopy = CurrentState.Run.Clone() as IRun;
         var activeAutoSplitters = new List<string>(CurrentState.Settings.ActiveAutoSplitters);
-        using (RunEditorDialog editor = new RunEditorDialog(CurrentState))
+        using RunEditorDialog editor = new RunEditorDialog(CurrentState);
+        editor.RunEdited += editor_RunEdited;
+        editor.ComparisonRenamed += editor_ComparisonRenamed;
+        editor.SegmentRemovedOrAdded += editor_SegmentRemovedOrAdded;
+        try
         {
-            editor.RunEdited += editor_RunEdited;
-            editor.ComparisonRenamed += editor_ComparisonRenamed;
-            editor.SegmentRemovedOrAdded += editor_SegmentRemovedOrAdded;
-            try
+            TopMost = false;
+            IsInDialogMode = true;
+            if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
             {
-                TopMost = false;
-                IsInDialogMode = true;
-                if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
-                {
-                    editor.AllowChangingSegments = true;
-                }
-
-                var result = editor.ShowDialog(this);
-                if (result == DialogResult.Cancel)
-                {
-                    foreach (var image in runCopy.Select(x => x.Icon))
-                    {
-                        editor.ImagesToDispose.Remove(image);
-                    }
-
-                    editor.ImagesToDispose.Remove(runCopy.GameIcon);
-
-                    CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
-                    SetRun(runCopy);
-                    CurrentState.CallRunManuallyModified();
-                }
-
-                foreach (var image in editor.ImagesToDispose)
-                {
-                    image.Dispose();
-                }
+                editor.AllowChangingSegments = true;
             }
-            finally
+
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.Cancel)
             {
-                TopMost = Layout.Settings.AlwaysOnTop;
-                IsInDialogMode = false;
+                foreach (var image in runCopy.Select(x => x.Icon))
+                {
+                    editor.ImagesToDispose.Remove(image);
+                }
 
-                editor.RunEdited -= editor_RunEdited;
-                editor.ComparisonRenamed -= editor_ComparisonRenamed;
-                editor.SegmentRemovedOrAdded -= editor_SegmentRemovedOrAdded;
+                editor.ImagesToDispose.Remove(runCopy.GameIcon);
+
+                CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
+                SetRun(runCopy);
+                CurrentState.CallRunManuallyModified();
             }
+
+            foreach (var image in editor.ImagesToDispose)
+            {
+                image.Dispose();
+            }
+        }
+        finally
+        {
+            TopMost = Layout.Settings.AlwaysOnTop;
+            IsInDialogMode = false;
+
+            editor.RunEdited -= editor_RunEdited;
+            editor.ComparisonRenamed -= editor_ComparisonRenamed;
+            editor.SegmentRemovedOrAdded -= editor_SegmentRemovedOrAdded;
         }
     }
 
@@ -2272,82 +2262,80 @@ public partial class TimerForm : Form
 
     private void EditLayout()
     {
-        using (var editor = new LayoutEditorDialog(Layout, CurrentState, this))
+        using var editor = new LayoutEditorDialog(Layout, CurrentState, this);
+        editor.OrientationSwitched += editor_OrientationSwitched;
+        editor.LayoutResized += editor_LayoutResized;
+        editor.LayoutSettingsAssigned += editor_LayoutSettingsAssigned;
+        Layout.X = Location.X;
+        Layout.Y = Location.Y;
+        if (Layout.Mode == LayoutMode.Vertical)
         {
-            editor.OrientationSwitched += editor_OrientationSwitched;
-            editor.LayoutResized += editor_LayoutResized;
-            editor.LayoutSettingsAssigned += editor_LayoutSettingsAssigned;
-            Layout.X = Location.X;
-            Layout.Y = Location.Y;
-            if (Layout.Mode == LayoutMode.Vertical)
-            {
-                Layout.VerticalWidth = Size.Width;
-                Layout.VerticalHeight = Size.Height;
-            }
-            else
-            {
-                Layout.HorizontalWidth = Size.Width;
-                Layout.HorizontalHeight = Size.Height;
-            }
+            Layout.VerticalWidth = Size.Width;
+            Layout.VerticalHeight = Size.Height;
+        }
+        else
+        {
+            Layout.HorizontalWidth = Size.Width;
+            Layout.HorizontalHeight = Size.Height;
+        }
 
-            var layoutCopy = (ILayout)Layout.Clone();
-            var document = new XmlDocument();
-            var componentSettings = Layout.Components.Select(x =>
-                {
-                    try
-                    {
-                        return x.GetSettings(document);
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(e);
-                        return null;
-                    }
-                }).ToList();
-            try
+        var layoutCopy = (ILayout)Layout.Clone();
+        var document = new XmlDocument();
+        var componentSettings = Layout.Components.Select(x =>
             {
-                TopMost = false;
-                editor.ShowDialog(this);
-                if (editor.DialogResult == DialogResult.Cancel)
+                try
+                {
+                    return x.GetSettings(document);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                    return null;
+                }
+            }).ToList();
+        try
+        {
+            TopMost = false;
+            editor.ShowDialog(this);
+            if (editor.DialogResult == DialogResult.Cancel)
+            {
+                foreach (var component in layoutCopy.Components)
+                {
+                    editor.ComponentsToDispose.Remove(component);
+                }
+
+                editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
+
+                using (var enumerator = componentSettings.GetEnumerator())
                 {
                     foreach (var component in layoutCopy.Components)
                     {
-                        editor.ComponentsToDispose.Remove(component);
-                    }
-
-                    editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
-
-                    using (var enumerator = componentSettings.GetEnumerator())
-                    {
-                        foreach (var component in layoutCopy.Components)
+                        if (enumerator.MoveNext())
                         {
-                            if (enumerator.MoveNext())
-                            {
-                                component.SetSettings(enumerator.Current);
-                            }
+                            component.SetSettings(enumerator.Current);
                         }
                     }
-
-                    SetLayout(layoutCopy);
                 }
 
-                foreach (var component in editor.ComponentsToDispose)
-                {
-                    component.Dispose();
-                }
-
-                foreach (var image in editor.ImagesToDispose)
-                {
-                    image.Dispose();
-                }
+                SetLayout(layoutCopy);
             }
-            finally
+
+            foreach (var component in editor.ComponentsToDispose)
             {
-                TopMost = Layout.Settings.AlwaysOnTop;
-                editor.OrientationSwitched -= editor_OrientationSwitched;
-                editor.LayoutResized -= editor_LayoutResized;
-                editor.LayoutSettingsAssigned -= editor_LayoutSettingsAssigned;
+                component.Dispose();
             }
+
+            foreach (var image in editor.ImagesToDispose)
+            {
+                image.Dispose();
+            }
+        }
+        finally
+        {
+            TopMost = Layout.Settings.AlwaysOnTop;
+            editor.OrientationSwitched -= editor_OrientationSwitched;
+            editor.LayoutResized -= editor_LayoutResized;
+            editor.LayoutSettingsAssigned -= editor_LayoutSettingsAssigned;
         }
     }
 
@@ -2401,73 +2389,67 @@ public partial class TimerForm : Form
 
     private bool SaveLayoutAs()
     {
-        using (var layoutDialog = new SaveFileDialog())
+        using var layoutDialog = new SaveFileDialog();
+        layoutDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All Files (*.*)|*.*";
+        IsInDialogMode = true;
+        try
         {
-            layoutDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All Files (*.*)|*.*";
-            IsInDialogMode = true;
-            try
+            var result = layoutDialog.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                var result = layoutDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
+                if (!layoutDialog.FileName.EndsWith(".lsl"))
                 {
-                    if (!layoutDialog.FileName.EndsWith(".lsl"))
-                    {
-                        MessageBox.Show(this, "Cannot save layout with a file type that is not .lsl", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return false;
-                    }
-
-                    Layout.FilePath = layoutDialog.FileName;
-                    return SaveLayout();
+                    MessageBox.Show(this, "Cannot save layout with a file type that is not .lsl", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
 
-                return false;
+                Layout.FilePath = layoutDialog.FileName;
+                return SaveLayout();
             }
-            finally
-            {
-                IsInDialogMode = false;
-            }
+
+            return false;
+        }
+        finally
+        {
+            IsInDialogMode = false;
         }
     }
 
     private void OpenAboutBox()
     {
-        using (var aboutBox = new AboutBox())
+        using var aboutBox = new AboutBox();
+        try
         {
-            try
-            {
-                TopMost = false;
-                aboutBox.ShowDialog(this);
-            }
-            finally
-            {
-                TopMost = Layout.Settings.AlwaysOnTop;
-            }
+            TopMost = false;
+            aboutBox.ShowDialog(this);
+        }
+        finally
+        {
+            TopMost = Layout.Settings.AlwaysOnTop;
         }
     }
 
     private void OpenLayout()
     {
-        using (var layoutDialog = new OpenFileDialog())
+        using var layoutDialog = new OpenFileDialog();
+        layoutDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All Files (*.*)|*.*";
+        IsInDialogMode = true;
+        try
         {
-            layoutDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All Files (*.*)|*.*";
-            IsInDialogMode = true;
-            try
+            if (Settings.RecentLayouts.Any() && !string.IsNullOrEmpty(Settings.RecentLayouts.Last()))
             {
-                if (Settings.RecentLayouts.Any() && !string.IsNullOrEmpty(Settings.RecentLayouts.Last()))
-                {
-                    layoutDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentLayouts.Last());
-                }
+                layoutDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentLayouts.Last());
+            }
 
-                var result = layoutDialog.ShowDialog(this);
-                if (result == DialogResult.OK)
-                {
-                    OpenLayoutFromFile(layoutDialog.FileName);
-                }
-            }
-            finally
+            var result = layoutDialog.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                IsInDialogMode = false;
+                OpenLayoutFromFile(layoutDialog.FileName);
             }
+        }
+        finally
+        {
+            IsInDialogMode = false;
         }
     }
 
@@ -2731,16 +2713,12 @@ public partial class TimerForm : Form
                 File.Create(settingsPath).Close();
             }
 
-            using (var memoryStream = new MemoryStream())
-            {
-                SettingsSaver.Save(Settings, memoryStream);
+            using var memoryStream = new MemoryStream();
+            SettingsSaver.Save(Settings, memoryStream);
 
-                using (var stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write))
-                {
-                    var buffer = memoryStream.GetBuffer();
-                    stream.Write(buffer, 0, (int)memoryStream.Length);
-                }
-            }
+            using var stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write);
+            var buffer = memoryStream.GetBuffer();
+            stream.Write(buffer, 0, (int)memoryStream.Length);
         }
         catch (Exception ex)
         {
@@ -2759,39 +2737,37 @@ public partial class TimerForm : Form
 
     private void settingsMenuItem_Click(object sender, EventArgs e)
     {
-        using (var editor = new SettingsDialog(Hook, Settings, CurrentState.CurrentHotkeyProfile))
+        using var editor = new SettingsDialog(Hook, Settings, CurrentState.CurrentHotkeyProfile);
+        editor.SumOfBestModeChanged += editor_SumOfBestModeChanged;
+        try
         {
-            editor.SumOfBestModeChanged += editor_SumOfBestModeChanged;
-            try
+            TopMost = false;
+            var oldSettings = (ISettings)Settings.Clone();
+            Settings.UnregisterAllHotkeys(Hook);
+            var result = editor.ShowDialog(this);
+            if (result == DialogResult.Cancel)
             {
-                TopMost = false;
-                var oldSettings = (ISettings)Settings.Clone();
-                Settings.UnregisterAllHotkeys(Hook);
-                var result = editor.ShowDialog(this);
-                if (result == DialogResult.Cancel)
+                var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
+                CurrentState.Settings = Settings = oldSettings;
+                if (regenerate)
                 {
-                    var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
-                    CurrentState.Settings = Settings = oldSettings;
-                    if (regenerate)
-                    {
-                        RegenerateComparisons();
-                    }
+                    RegenerateComparisons();
                 }
-                else
-                {
-                    SwitchComparisonGenerators();
-                    CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
-                }
+            }
+            else
+            {
+                SwitchComparisonGenerators();
+                CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
+            }
 
-                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
-                UpdateRaceProviderIntegration();
-            }
-            finally
-            {
-                editor.SumOfBestModeChanged -= editor_SumOfBestModeChanged;
-                SetProgressBar();
-                TopMost = Layout.Settings.AlwaysOnTop;
-            }
+            Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+            UpdateRaceProviderIntegration();
+        }
+        finally
+        {
+            editor.SumOfBestModeChanged -= editor_SumOfBestModeChanged;
+            SetProgressBar();
+            TopMost = Layout.Settings.AlwaysOnTop;
         }
     }
 
@@ -2807,11 +2783,9 @@ public partial class TimerForm : Form
             var settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
             if (File.Exists(settingsPath))
             {
-                using (var stream = File.OpenRead(Path.Combine(BasePath, SETTINGS_PATH)))
-                {
-                    Settings = new XMLSettingsFactory(stream).Create();
-                    return;
-                }
+                using var stream = File.OpenRead(Path.Combine(BasePath, SETTINGS_PATH));
+                Settings = new XMLSettingsFactory(stream).Create();
+                return;
             }
         }
         catch (Exception e)
@@ -2868,24 +2842,22 @@ public partial class TimerForm : Form
 
     private void shareMenuItem_Click(object sender, EventArgs e)
     {
-        using (var dialog = new ShareRunDialog(
+        using var dialog = new ShareRunDialog(
                 (LiveSplitState)CurrentState.Clone(),
                 Settings,
-                () => MakeScreenShot()))
+                () => MakeScreenShot());
+        try
         {
-            try
-            {
-                TopMost = false;
-                IsInDialogMode = true;
-                Settings.UnregisterAllHotkeys(Hook);
-                dialog.ShowDialog(this);
-                Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
-            }
-            finally
-            {
-                TopMost = Layout.Settings.AlwaysOnTop;
-                IsInDialogMode = false;
-            }
+            TopMost = false;
+            IsInDialogMode = true;
+            Settings.UnregisterAllHotkeys(Hook);
+            dialog.ShowDialog(this);
+            Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+        }
+        finally
+        {
+            TopMost = Layout.Settings.AlwaysOnTop;
+            IsInDialogMode = false;
         }
     }
 

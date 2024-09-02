@@ -51,15 +51,13 @@ public static class Updater
                     List<Update> updateList = [];
                     try
                     {
-                        using (XmlReader reader = XmlReader.Create(XMLURL))
+                        using XmlReader reader = XmlReader.Create(XMLURL);
+                        XmlDocument doc = new XmlDocument();
+                        doc.Load(reader);
+                        foreach (XmlNode updateNode in doc.DocumentElement.ChildNodes)
                         {
-                            XmlDocument doc = new XmlDocument();
-                            doc.Load(reader);
-                            foreach (XmlNode updateNode in doc.DocumentElement.ChildNodes)
-                            {
-                                Update update = Update.Parse(updateNode);
-                                updateList.Add(update);
-                            }
+                            Update update = Update.Parse(updateNode);
+                            updateList.Add(update);
                         }
                     }
                     catch { }

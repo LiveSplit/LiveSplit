@@ -78,14 +78,12 @@ public class SplitsIO : IRunUploadPlatform
         {
             var request = WebRequest.Create($"{uri.AbsoluteUri}?page={page}");
 
-            using (var response = request.GetResponse())
-            {
-                int.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
-                int.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
-                lastPage = (int)Math.Ceiling(totalItems / (double)perPage);
+            using var response = request.GetResponse();
+            int.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
+            int.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
+            lastPage = (int)Math.Ceiling(totalItems / (double)perPage);
 
-                yield return JSON.FromResponse(response);
-            }
+            yield return JSON.FromResponse(response);
         } while (page++ < lastPage);
     }
 
@@ -185,29 +183,25 @@ public class SplitsIO : IRunUploadPlatform
 
         var request = WebRequest.Create(downloadUri);
 
-        using (var response = request.GetResponse())
-        using (var stream = response.GetResponseStream())
+        using var response = request.GetResponse();
+        using var stream = response.GetResponseStream();
+        using var memoryStream = new MemoryStream();
+        stream.CopyTo(memoryStream);
+        memoryStream.Seek(0, SeekOrigin.Begin);
+
+        var runFactory = new StandardFormatsRunFactory
         {
-            using (var memoryStream = new MemoryStream())
-            {
-                stream.CopyTo(memoryStream);
-                memoryStream.Seek(0, SeekOrigin.Begin);
+            Stream = memoryStream,
+            FilePath = ""
+        };
 
-                var runFactory = new StandardFormatsRunFactory
-                {
-                    Stream = memoryStream,
-                    FilePath = ""
-                };
-
-                var run = runFactory.Create(new StandardComparisonGeneratorsFactory());
-                if (patchRun)
-                {
-                    PatchRun(run, splitsIORun.run.srdc_id);
-                }
-
-                return run;
-            }
+        var run = runFactory.Create(new StandardComparisonGeneratorsFactory());
+        if (patchRun)
+        {
+            PatchRun(run, splitsIORun.run.srdc_id);
         }
+
+        return run;
     }
 
     public IRun DownloadRunById(int runId, bool patchRun)
@@ -304,10 +298,8 @@ public class SplitsIO : IRunUploadPlatform
                 writer.Flush();
             }
 
-            using (var response2 = request.GetResponse())
-            {
-                json = JSON.FromResponse(response2);
-            }
+            using var response2 = request.GetResponse();
+            json = JSON.FromResponse(response2);
         }
 
         return claimTokenUri ? claimUri : publicUri;

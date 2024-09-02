@@ -36,10 +36,8 @@ public class SpeedrunComRunUploadPlatform : IRunUploadPlatform
             return false;
         }
 
-        using (var submitDialog = new SpeedrunComSubmitDialog(run.Metadata))
-        {
-            var result = submitDialog.ShowDialog();
-            return result == DialogResult.OK;
-        }
+        using var submitDialog = new SpeedrunComSubmitDialog(run.Metadata);
+        var result = submitDialog.ShowDialog();
+        return result == DialogResult.OK;
     }
 }

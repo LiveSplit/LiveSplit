@@ -20,10 +20,8 @@ public static class JSON
 {
     public static dynamic FromResponse(WebResponse response)
     {
-        using (var stream = response.GetResponseStream())
-        {
-            return FromStream(stream);
-        }
+        using var stream = response.GetResponseStream();
+        return FromStream(stream);
     }
 
     public static dynamic FromStream(Stream stream)
@@ -57,10 +55,8 @@ public static class JSON
     {
         var request = WebRequest.Create(uri);
 
-        using (var response = request.GetResponse())
-        {
-            return FromResponse(response);
-        }
+        using var response = request.GetResponse();
+        return FromResponse(response);
     }
 
     public static string Escape(string value)
@@ -94,10 +90,8 @@ public static class JSON
             writer.Write(parameters.ToString());
         }
 
-        using (var response = request.GetResponse())
-        {
-            return FromResponse(response);
-        }
+        using var response = request.GetResponse();
+        return FromResponse(response);
     }
 }
 

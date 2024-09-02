@@ -27,10 +27,8 @@ public class LineComponent : IComponent
 
     public void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
     {
-        using (var solidBrush = new SolidBrush(LineColor))
-        {
-            g.FillRectangle(solidBrush, 0.0f, 0.0f, width, VerticalHeight);
-        }
+        using var solidBrush = new SolidBrush(LineColor);
+        g.FillRectangle(solidBrush, 0.0f, 0.0f, width, VerticalHeight);
     }
 
     public string ComponentName => throw new NotSupportedException();
@@ -66,10 +64,8 @@ public class LineComponent : IComponent
 
     public void DrawHorizontal(Graphics g, LiveSplitState state, float height, Region clipRegion)
     {
-        using (var solidBrush = new SolidBrush(LineColor))
-        {
-            g.FillRectangle(solidBrush, 0.0f, 0.0f, HorizontalWidth, height);
-        }
+        using var solidBrush = new SolidBrush(LineColor);
+        g.FillRectangle(solidBrush, 0.0f, 0.0f, HorizontalWidth, height);
     }
 
     public void Update(IInvalidator invalidator, LiveSplitState state, float width, float height, LayoutMode mode)

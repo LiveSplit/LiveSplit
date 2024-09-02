@@ -51,49 +51,47 @@ public class Imgur : IRunUploadPlatform
 
     public dynamic UploadImage(Image image, string title = "", string description = "")
     {
-        using (var memoryStream = new MemoryStream())
+        using var memoryStream = new MemoryStream();
+        image.Save(memoryStream, ImageFormat.Png);
+        memoryStream.Seek(0, SeekOrigin.Begin);
+
+        var request = (HttpWebRequest)WebRequest.Create(GetUri("3/image"));
+        request.Method = "POST";
+        request.Headers.Add("Authorization", "Client-ID " + YOUR_CLIENT_ID);
+
+        using (var stream = request.GetRequestStream())
         {
-            image.Save(memoryStream, ImageFormat.Png);
-            memoryStream.Seek(0, SeekOrigin.Begin);
+            request.ContentType = "multipart/form-data; boundary=AaB03x";
+            var writer = new StreamWriter(stream);
+            writer.WriteLine("--AaB03x");
+            writer.WriteLine("Content-Disposition: form-data; name=\"title\"");
+            writer.WriteLine();
+            writer.WriteLine(title);
+            writer.WriteLine("--AaB03x");
+            writer.WriteLine("Content-Disposition: form-data; name=\"description\"");
+            writer.WriteLine();
+            writer.WriteLine(description);
+            writer.WriteLine("--AaB03x");
+            writer.WriteLine("Content-Disposition: form-data; name=\"image\"; filename=\"splits.png\"");
+            writer.WriteLine("Content-Type: image/png");
+            writer.WriteLine();
+            writer.Flush();
 
-            var request = (HttpWebRequest)WebRequest.Create(GetUri("3/image"));
-            request.Method = "POST";
-            request.Headers.Add("Authorization", "Client-ID " + YOUR_CLIENT_ID);
+            memoryStream.CopyTo(stream);
 
-            using (var stream = request.GetRequestStream())
-            {
-                request.ContentType = "multipart/form-data; boundary=AaB03x";
-                var writer = new StreamWriter(stream);
-                writer.WriteLine("--AaB03x");
-                writer.WriteLine("Content-Disposition: form-data; name=\"title\"");
-                writer.WriteLine();
-                writer.WriteLine(title);
-                writer.WriteLine("--AaB03x");
-                writer.WriteLine("Content-Disposition: form-data; name=\"description\"");
-                writer.WriteLine();
-                writer.WriteLine(description);
-                writer.WriteLine("--AaB03x");
-                writer.WriteLine("Content-Disposition: form-data; name=\"image\"; filename=\"splits.png\"");
-                writer.WriteLine("Content-Type: image/png");
-                writer.WriteLine();
-                writer.Flush();
+            writer.WriteLine();
+            writer.WriteLine("--AaB03x--");
+            writer.Flush();
+        }
 
-                memoryStream.CopyTo(stream);
+        using (var response = request.GetResponse())
+        using (var stream = response.GetResponseStream())
+        {
+            var reader = new StreamReader(stream);
+            var resultString = reader.ReadToEnd();
+            var result = JSON.FromString(resultString);
 
-                writer.WriteLine();
-                writer.WriteLine("--AaB03x--");
-                writer.Flush();
-            }
-
-            using (var response = request.GetResponse())
-            using (var stream = response.GetResponseStream())
-            {
-                var reader = new StreamReader(stream);
-                var resultString = reader.ReadToEnd();
-                var result = JSON.FromString(resultString);
-
-                return result;
-            }
+            return result;
         }
     }
 

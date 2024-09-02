@@ -108,15 +108,13 @@ public class XMLSettingsFactory : ISettingsFactory
 
                 try
                 {
-                    using (var stream = File.OpenRead(path))
-                    {
-                        runFactory.FilePath = path;
-                        runFactory.Stream = stream;
-                        var run = runFactory.Create(comparisonsFactory);
+                    using var stream = File.OpenRead(path);
+                    runFactory.FilePath = path;
+                    runFactory.Stream = stream;
+                    var run = runFactory.Create(comparisonsFactory);
 
-                        var recentSplitsFile = new RecentSplitsFile(path, run, TimingMethod.RealTime, HotkeyProfile.DefaultHotkeyProfileName);
-                        settings.RecentSplits.Add(recentSplitsFile);
-                    }
+                    var recentSplitsFile = new RecentSplitsFile(path, run, TimingMethod.RealTime, HotkeyProfile.DefaultHotkeyProfileName);
+                    settings.RecentSplits.Add(recentSplitsFile);
                 }
                 catch { }
             }

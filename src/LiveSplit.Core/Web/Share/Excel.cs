@@ -36,26 +36,22 @@ This includes your whole history of all the runs you ever did.";
 
     public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
-        using (var dialog = new SaveFileDialog())
+        using var dialog = new SaveFileDialog();
+        dialog.Filter = "Excel Sheet (*.xlsx)|*.xlsx";
+        var result = dialog.ShowDialog();
+        if (result == DialogResult.OK)
         {
-            dialog.Filter = "Excel Sheet (*.xlsx)|*.xlsx";
-            var result = dialog.ShowDialog();
-            if (result == DialogResult.OK)
+            var path = dialog.FileName;
+
+            if (!File.Exists(path))
             {
-                var path = dialog.FileName;
-
-                if (!File.Exists(path))
-                {
-                    File.Create(path).Close();
-                }
-
-                using (var stream = File.Open(path, FileMode.Create, FileAccess.Write))
-                {
-                    var runSaver = new ExcelRunSaver();
-                    runSaver.Save(run, stream);
-                    return true;
-                }
+                File.Create(path).Close();
             }
+
+            using var stream = File.Open(path, FileMode.Create, FileAccess.Write);
+            var runSaver = new ExcelRunSaver();
+            runSaver.Save(run, stream);
+            return true;
         }
 
         return false;

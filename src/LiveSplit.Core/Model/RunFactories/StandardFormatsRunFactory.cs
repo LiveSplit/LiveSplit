@@ -117,110 +117,108 @@ public class StandardFormatsRunFactory : IRunFactory
 
         var timerKind = result.TimerKind();
 
-        using (var lscRun = result.Unwrap())
+        using var lscRun = result.Unwrap();
+        var run = new Run(factory);
+
+        var metadata = lscRun.Metadata();
+        run.Metadata.RunID = metadata.RunId();
+        run.Metadata.PlatformName = metadata.PlatformName();
+        run.Metadata.UsesEmulator = metadata.UsesEmulator();
+        run.Metadata.RegionName = metadata.RegionName();
+        using (var iter = metadata.SpeedrunComVariables())
         {
-            var run = new Run(factory);
-
-            var metadata = lscRun.Metadata();
-            run.Metadata.RunID = metadata.RunId();
-            run.Metadata.PlatformName = metadata.PlatformName();
-            run.Metadata.UsesEmulator = metadata.UsesEmulator();
-            run.Metadata.RegionName = metadata.RegionName();
-            using (var iter = metadata.SpeedrunComVariables())
+            LiveSplitCore.RunMetadataSpeedrunComVariableRef variable;
+            while ((variable = iter.Next()) != null)
             {
-                LiveSplitCore.RunMetadataSpeedrunComVariableRef variable;
-                while ((variable = iter.Next()) != null)
-                {
-                    run.Metadata.VariableValueNames.Add(variable.Name(), variable.Value());
-                }
+                run.Metadata.VariableValueNames.Add(variable.Name(), variable.Value());
             }
-
-            run.GameIcon = ParseImage(lscRun.GameIconPtr(), lscRun.GameIconLen());
-            run.GameName = lscRun.GameName();
-            run.CategoryName = lscRun.CategoryName();
-            run.Offset = ParseTimeSpan(lscRun.Offset());
-            run.AttemptCount = (int)lscRun.AttemptCount();
-
-            var linkedLayout = lscRun.LinkedLayout();
-            if (linkedLayout == null)
-            {
-                run.LayoutPath = null;
-            }
-            else if (linkedLayout.IsDefault())
-            {
-                run.LayoutPath = "?default";
-            }
-            else
-            {
-                run.LayoutPath = linkedLayout.Path();
-            }
-
-            var attemptsCount = lscRun.AttemptHistoryLen();
-            for (var i = 0ul; i < attemptsCount; ++i)
-            {
-                var attempt = lscRun.AttemptHistoryIndex(i);
-                run.AttemptHistory.Add(new Attempt(
-                    attempt.Index(),
-                    ParseTime(attempt.Time()),
-                    ParseOptionalAtomicDateTime(attempt.Started()),
-                    ParseOptionalAtomicDateTime(attempt.Ended()),
-                    ParseOptionalTimeSpan(attempt.PauseTime())
-                ));
-            }
-
-            var customComparisonsCount = lscRun.CustomComparisonsLen();
-            for (var i = 0ul; i < customComparisonsCount; ++i)
-            {
-                var comparison = lscRun.CustomComparison(i);
-                if (!run.CustomComparisons.Contains(comparison))
-                {
-                    run.CustomComparisons.Add(comparison);
-                }
-            }
-
-            var segmentCount = lscRun.Len();
-            for (var i = 0ul; i < segmentCount; ++i)
-            {
-                var segment = lscRun.Segment(i);
-                var split = new Segment(segment.Name())
-                {
-                    Icon = ParseImage(segment.IconPtr(), segment.IconLen()),
-                    BestSegmentTime = ParseTime(segment.BestSegmentTime()),
-                };
-
-                foreach (var comparison in run.CustomComparisons)
-                {
-                    split.Comparisons[comparison] = ParseTime(segment.Comparison(comparison));
-                }
-
-                using (var iter = segment.SegmentHistory().Iter())
-                {
-                    LiveSplitCore.SegmentHistoryElementRef element;
-                    while ((element = iter.Next()) != null)
-                    {
-                        split.SegmentHistory.Add(element.Index(), ParseTime(element.Time()));
-                    }
-                }
-
-                run.Add(split);
-            }
-
-            var document = new XmlDocument();
-            document.LoadXml($"<AutoSplitterSettings>{lscRun.AutoSplitterSettings()}</AutoSplitterSettings>");
-            run.AutoSplitterSettings = document.FirstChild as XmlElement;
-            run.AutoSplitterSettings.Attributes.Append(ToAttribute(document, "gameName", run.GameName));
-
-            if (timerKind == "LiveSplit" && !string.IsNullOrEmpty(FilePath))
-            {
-                run.FilePath = FilePath;
-            }
-
-            if (run.Count < 1)
-            {
-                throw new Exception("Run factory created a run without at least one segment");
-            }
-
-            return run;
         }
+
+        run.GameIcon = ParseImage(lscRun.GameIconPtr(), lscRun.GameIconLen());
+        run.GameName = lscRun.GameName();
+        run.CategoryName = lscRun.CategoryName();
+        run.Offset = ParseTimeSpan(lscRun.Offset());
+        run.AttemptCount = (int)lscRun.AttemptCount();
+
+        var linkedLayout = lscRun.LinkedLayout();
+        if (linkedLayout == null)
+        {
+            run.LayoutPath = null;
+        }
+        else if (linkedLayout.IsDefault())
+        {
+            run.LayoutPath = "?default";
+        }
+        else
+        {
+            run.LayoutPath = linkedLayout.Path();
+        }
+
+        var attemptsCount = lscRun.AttemptHistoryLen();
+        for (var i = 0ul; i < attemptsCount; ++i)
+        {
+            var attempt = lscRun.AttemptHistoryIndex(i);
+            run.AttemptHistory.Add(new Attempt(
+                attempt.Index(),
+                ParseTime(attempt.Time()),
+                ParseOptionalAtomicDateTime(attempt.Started()),
+                ParseOptionalAtomicDateTime(attempt.Ended()),
+                ParseOptionalTimeSpan(attempt.PauseTime())
+            ));
+        }
+
+        var customComparisonsCount = lscRun.CustomComparisonsLen();
+        for (var i = 0ul; i < customComparisonsCount; ++i)
+        {
+            var comparison = lscRun.CustomComparison(i);
+            if (!run.CustomComparisons.Contains(comparison))
+            {
+                run.CustomComparisons.Add(comparison);
+            }
+        }
+
+        var segmentCount = lscRun.Len();
+        for (var i = 0ul; i < segmentCount; ++i)
+        {
+            var segment = lscRun.Segment(i);
+            var split = new Segment(segment.Name())
+            {
+                Icon = ParseImage(segment.IconPtr(), segment.IconLen()),
+                BestSegmentTime = ParseTime(segment.BestSegmentTime()),
+            };
+
+            foreach (var comparison in run.CustomComparisons)
+            {
+                split.Comparisons[comparison] = ParseTime(segment.Comparison(comparison));
+            }
+
+            using (var iter = segment.SegmentHistory().Iter())
+            {
+                LiveSplitCore.SegmentHistoryElementRef element;
+                while ((element = iter.Next()) != null)
+                {
+                    split.SegmentHistory.Add(element.Index(), ParseTime(element.Time()));
+                }
+            }
+
+            run.Add(split);
+        }
+
+        var document = new XmlDocument();
+        document.LoadXml($"<AutoSplitterSettings>{lscRun.AutoSplitterSettings()}</AutoSplitterSettings>");
+        run.AutoSplitterSettings = document.FirstChild as XmlElement;
+        run.AutoSplitterSettings.Attributes.Append(ToAttribute(document, "gameName", run.GameName));
+
+        if (timerKind == "LiveSplit" && !string.IsNullOrEmpty(FilePath))
+        {
+            run.FilePath = FilePath;
+        }
+
+        if (run.Count < 1)
+        {
+            throw new Exception("Run factory created a run without at least one segment");
+        }
+
+        return run;
     }
 }

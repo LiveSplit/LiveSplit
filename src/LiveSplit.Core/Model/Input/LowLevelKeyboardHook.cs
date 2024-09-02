@@ -163,25 +163,23 @@ public class KeyboardInput : IDisposable
 
     public void RegisterHook()
     {
-        using (Process process = Process.GetCurrentProcess())
-        using (ProcessModule module = process.MainModule)
+        using Process process = Process.GetCurrentProcess();
+        using ProcessModule module = process.MainModule;
+        IntPtr hModule = GetModuleHandle(module.ModuleName);
+        messageLoopControl.BeginInvoke(new Action(() =>
         {
-            IntPtr hModule = GetModuleHandle(module.ModuleName);
-            messageLoopControl.BeginInvoke(new Action(() =>
+            try
             {
-                try
+                if (keyBoardHandle != IntPtr.Zero)
                 {
-                    if (keyBoardHandle != IntPtr.Zero)
-                    {
-                        WindowsHookHelper.UnhookWindowsHookEx(keyBoardHandle);
-                    }
+                    WindowsHookHelper.UnhookWindowsHookEx(keyBoardHandle);
                 }
-                catch { }
+            }
+            catch { }
 
-                keyBoardHandle = WindowsHookHelper.SetWindowsHookEx(
-                    WH_KEYBOARD_LL, keyBoardDelegate, hModule, 0);
-            }));
-        }
+            keyBoardHandle = WindowsHookHelper.SetWindowsHookEx(
+                WH_KEYBOARD_LL, keyBoardDelegate, hModule, 0);
+        }));
     }
 
     private IntPtr KeyboardHookDelegate(

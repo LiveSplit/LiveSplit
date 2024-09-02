@@ -106,19 +106,15 @@ the first time that sharing to Twitch is used.";
         if (!string.IsNullOrEmpty(data))
         {
             request.ContentType = "application/json; charset=utf-8";
-            using (var writer = new StreamWriter(request.GetRequestStream()))
-            {
-                writer.Write(data);
-            }
+            using var writer = new StreamWriter(request.GetRequestStream());
+            writer.Write(data);
         }
 
-        using (var response = request.GetResponse())
-        using (var stream = response.GetResponseStream())
-        using (var reader = new StreamReader(stream))
-        {
-            var json = reader.ReadToEnd();
-            return JSON.FromString(json);
-        }
+        using var response = request.GetResponse();
+        using var stream = response.GetResponseStream();
+        using var reader = new StreamReader(stream);
+        var json = reader.ReadToEnd();
+        return JSON.FromString(json);
     }
 
     protected dynamic curl(string subUri, string method = "GET", string data = "")
@@ -204,11 +200,9 @@ the first time that sharing to Twitch is used.";
         var url = ((IEnumerable<dynamic>)SearchGame(gameName).data).First().box_art_url;
         var request = WebRequest.Create(url);
 
-        using (var response = request.GetResponse())
-        using (var stream = response.GetResponseStream())
-        {
-            return Image.FromStream(stream);
-        }
+        using var response = request.GetResponse();
+        using var stream = response.GetResponseStream();
+        return Image.FromStream(stream);
     }
 
     public bool SubmitRun(

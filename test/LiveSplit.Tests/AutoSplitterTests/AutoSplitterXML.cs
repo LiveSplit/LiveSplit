@@ -23,10 +23,8 @@ public class AutoSplitterXML
         // for testing a specific XML.
         if (!File.Exists(xmlPath))
         {
-            using (var client = new WebClient())
-            {
-                client.DownloadFile(AutoSplitterFactory.AutoSplittersXmlUrl, xmlPath);
-            }
+            using var client = new WebClient();
+            client.DownloadFile(AutoSplitterFactory.AutoSplittersXmlUrl, xmlPath);
         }
 
         Assert.True(File.Exists(xmlPath), "The Auto Splitters XML is missing");

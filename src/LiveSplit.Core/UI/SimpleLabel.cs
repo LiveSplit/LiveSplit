@@ -148,34 +148,30 @@ public class SimpleLabel
             if (g.TextRenderingHint == TextRenderingHint.AntiAlias && OutlineColor.A > 0)
             {
                 var fontSize = GetFontSize(g);
-                using (var shadowBrush = new SolidBrush(ShadowColor))
-                using (var gp = new GraphicsPath())
-                using (var outline = new Pen(OutlineColor, GetOutlineSize(fontSize)) { LineJoin = LineJoin.Round })
+                using var shadowBrush = new SolidBrush(ShadowColor);
+                using var gp = new GraphicsPath();
+                using var outline = new Pen(OutlineColor, GetOutlineSize(fontSize)) { LineJoin = LineJoin.Round };
+                if (HasShadow)
                 {
-                    if (HasShadow)
-                    {
-                        gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 1f, y + 1f, width, height), format);
-                        g.FillPath(shadowBrush, gp);
-                        gp.Reset();
-                        gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 2f, y + 2f, width, height), format);
-                        g.FillPath(shadowBrush, gp);
-                        gp.Reset();
-                    }
-
-                    gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x, y, width, height), format);
-                    g.DrawPath(outline, gp);
-                    g.FillPath(Brush, gp);
+                    gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 1f, y + 1f, width, height), format);
+                    g.FillPath(shadowBrush, gp);
+                    gp.Reset();
+                    gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x + 2f, y + 2f, width, height), format);
+                    g.FillPath(shadowBrush, gp);
+                    gp.Reset();
                 }
+
+                gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x, y, width, height), format);
+                g.DrawPath(outline, gp);
+                g.FillPath(Brush, gp);
             }
             else
             {
                 if (HasShadow)
                 {
-                    using (var shadowBrush = new SolidBrush(ShadowColor))
-                    {
-                        g.DrawString(text, Font, shadowBrush, new RectangleF(x + 1f, y + 1f, width, height), format);
-                        g.DrawString(text, Font, shadowBrush, new RectangleF(x + 2f, y + 2f, width, height), format);
-                    }
+                    using var shadowBrush = new SolidBrush(ShadowColor);
+                    g.DrawString(text, Font, shadowBrush, new RectangleF(x + 1f, y + 1f, width, height), format);
+                    g.DrawString(text, Font, shadowBrush, new RectangleF(x + 2f, y + 2f, width, height), format);
                 }
 
                 g.DrawString(text, Font, Brush, new RectangleF(x, y, width, height), format);

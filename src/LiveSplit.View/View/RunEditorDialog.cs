@@ -816,25 +816,23 @@ public partial class RunEditorDialog : Form
     private void btnBrowseLayout_Click(object sender, EventArgs e)
     {
         string initialPath = Path.GetDirectoryName(Run.LayoutPath);
-        using (OpenFileDialog openFileDialog = new OpenFileDialog())
+        using OpenFileDialog openFileDialog = new OpenFileDialog();
+        initialPath ??= Path.GetDirectoryName(CurrentState.Layout.FilePath);
+
+        if (initialPath != null)
         {
-            initialPath ??= Path.GetDirectoryName(CurrentState.Layout.FilePath);
+            openFileDialog.InitialDirectory = initialPath;
+        }
 
-            if (initialPath != null)
-            {
-                openFileDialog.InitialDirectory = initialPath;
-            }
+        openFileDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All files (*.*)|*.*";
+        if (openFileDialog.ShowDialog() != DialogResult.OK)
+        {
+            return;
+        }
 
-            openFileDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All files (*.*)|*.*";
-            if (openFileDialog.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            if (SaveAndApplyLayoutPath(openFileDialog.FileName))
-            {
-                ApplyLayoutPathToCbx(openFileDialog.FileName);
-            }
+        if (SaveAndApplyLayoutPath(openFileDialog.FileName))
+        {
+            ApplyLayoutPathToCbx(openFileDialog.FileName);
         }
     }
 
@@ -1440,20 +1438,18 @@ public partial class RunEditorDialog : Form
 
                 var request = (HttpWebRequest)WebRequest.Create(uri);
 
-                using (var response = request.GetResponse())
-                using (var stream = response.GetResponseStream())
+                using var response = request.GetResponse();
+                using var stream = response.GetResponseStream();
+                try
                 {
-                    try
-                    {
-                        var icon = Image.FromStream(stream);
-                        SetGameIcon(icon);
-                        RaiseRunEdited();
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-                        MessageBox.Show("The URL was not recognized as an image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    var icon = Image.FromStream(stream);
+                    SetGameIcon(icon);
+                    RaiseRunEdited();
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                    MessageBox.Show("The URL was not recognized as an image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

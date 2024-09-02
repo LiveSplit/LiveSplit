@@ -67,15 +67,13 @@ public class SettingsHelper
 
             if (font != null)
             {
-                using (var ms = new MemoryStream())
-                {
-                    var bf = new BinaryFormatter();
+                using var ms = new MemoryStream();
+                var bf = new BinaryFormatter();
 
-                    bf.Serialize(ms, font);
-                    var data = ms.ToArray();
-                    var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
-                    element.InnerXml = cdata.OuterXml;
-                }
+                bf.Serialize(ms, font);
+                var data = ms.ToArray();
+                var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+                element.InnerXml = cdata.OuterXml;
             }
 
             parent.AppendChild(element);
@@ -106,15 +104,13 @@ public class SettingsHelper
 
             if (image != null)
             {
-                using (var ms = new MemoryStream())
-                {
-                    var bf = new BinaryFormatter();
+                using var ms = new MemoryStream();
+                var bf = new BinaryFormatter();
 
-                    bf.Serialize(ms, image);
-                    var data = ms.ToArray();
-                    var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
-                    element.InnerXml = cdata.OuterXml;
-                }
+                bf.Serialize(ms, image);
+                var data = ms.ToArray();
+                var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+                element.InnerXml = cdata.OuterXml;
             }
 
             parent.AppendChild(element);
@@ -132,10 +128,8 @@ public class SettingsHelper
             var base64String = element.InnerText;
             var data = Convert.FromBase64String(base64String);
 
-            using (var ms = new MemoryStream(data))
-            {
-                return (Image)bf.Deserialize(ms);
-            }
+            using var ms = new MemoryStream(data);
+            return (Image)bf.Deserialize(ms);
         }
 
         return null;
