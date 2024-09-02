@@ -11,7 +11,7 @@ namespace LiveSplit.View;
 public partial class LayoutSettingsDialog : Form
 {
     public Options.LayoutSettings Settings { get; set; }
-    public UI.ILayout Layout { get; set; }
+    public new UI.ILayout Layout { get; set; }
     public List<XmlNode> ComponentSettings { get; set; }
     public List<IComponent> Components { get; set; }
 

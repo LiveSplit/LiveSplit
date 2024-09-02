@@ -38,7 +38,7 @@ public partial class FontDialog : Form
     private Font originalFont { get; set; }
     public Font OriginalFont { get => originalFont; set => originalFont = Font = value; }
 
-    public Font Font
+    public override Font Font
     {
         get => lblSampleText.Font;
         set
@@ -50,7 +50,7 @@ public partial class FontDialog : Form
         }
     }
 
-    public event EventHandler FontChanged;
+    public new event EventHandler FontChanged;
 
     private void lstFont_SelectedFontFamilyChanged(object sender, EventArgs e)
     {
@@ -202,7 +202,7 @@ public partial class FontDialog : Form
     }
 
     /// <summary>
-    /// Handles CheckedChanged event for Bold, 
+    /// Handles CheckedChanged event for Bold,
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>

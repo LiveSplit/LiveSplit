@@ -27,7 +27,7 @@ public partial class LayoutEditorDialog : Form
     public List<UI.Components.IComponent> ComponentsToDispose { get; set; }
     public List<Image> ImagesToDispose { get; set; }
 
-    protected ILayout Layout { get; set; }
+    protected new ILayout Layout { get; set; }
     protected BindingList<ILayoutComponent> BindingList { get; set; }
     protected float OverallHeight => BindingList.OfType<ILayoutComponent>().Aggregate(0.0f, (x, y) => x + y.Component.VerticalHeight);
     protected bool IsVertical

@@ -88,6 +88,17 @@ public class KeyOrButton
     {
         return !(a == b);
     }
+
+    public override bool Equals(object obj)
+    {
+        return obj is KeyOrButton other
+            && this == other;
+    }
+
+    public override int GetHashCode()
+    {
+        return IsKey ? Key.GetHashCode() : Button.GetHashCode();
+    }
 }
 
 public class CompositeHook

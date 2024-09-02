@@ -15,7 +15,7 @@ public partial class LayoutSettingsControl : UserControl
     }
 
     public Options.LayoutSettings Settings { get; set; }
-    public ILayout Layout { get; set; }
+    public new ILayout Layout { get; set; }
 
     private Image originalBackgroundImage { get; set; }
 
