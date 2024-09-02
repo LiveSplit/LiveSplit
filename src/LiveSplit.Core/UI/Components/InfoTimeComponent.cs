@@ -10,10 +10,7 @@ public class InfoTimeComponent : InfoTextComponent
     private TimeSpan? timeValue;
     public TimeSpan? TimeValue
     {
-        get
-        {
-            return timeValue;
-        }
+        get => timeValue;
         set
         {
             timeValue = value;
@@ -24,10 +21,7 @@ public class InfoTimeComponent : InfoTextComponent
     private ITimeFormatter formatter;
     public ITimeFormatter Formatter
     {
-        get
-        {
-            return formatter;
-        }
+        get => formatter;
         set
         {
             if (value != null && value != formatter)

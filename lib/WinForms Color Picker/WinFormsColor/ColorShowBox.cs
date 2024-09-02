@@ -17,17 +17,17 @@ public class ColorShowBox : UserControl
 
     public Color Color
     {
-        get { return this.upperColor; }
+        get => this.upperColor;
         set { this.upperColor = this.lowerColor = value; this.Invalidate(); }
     }
     public Color UpperColor
     {
-        get { return this.upperColor; }
+        get => this.upperColor;
         set { this.upperColor = value; this.Invalidate(); }
     }
     public Color LowerColor
     {
-        get { return this.lowerColor; }
+        get => this.lowerColor;
         set { this.lowerColor = value; this.Invalidate(); }
     }
 

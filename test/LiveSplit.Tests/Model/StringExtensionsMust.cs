@@ -28,8 +28,10 @@ public class StringExtensionsMust
     [InlineData("elephant", "Elephant", 0)]
     [InlineData("Lion", "Elephant", 6)]
     [InlineData("Cat", "Hen", 3)]
-    public void CalculateSimilarityCorrectly(string word, string other, int expectedSimilarity) =>
+    public void CalculateSimilarityCorrectly(string word, string other, int expectedSimilarity)
+    {
         Assert.Equal(expectedSimilarity, word.Similarity(other));
+    }
 
     [Fact]
     public void OrderWordsBySimilarityCorrectly()

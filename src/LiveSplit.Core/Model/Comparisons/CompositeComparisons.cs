@@ -12,24 +12,33 @@ public class CompositeComparisons : IComparisons
         Comparisons = new Dictionary<string, Time>();
     }
 
-    public void Add(string key, Time value) => Comparisons.Add(key, value);
+    public void Add(string key, Time value)
+    {
+        Comparisons.Add(key, value);
+    }
 
-    public bool ContainsKey(string key) => Comparisons.ContainsKey(key);
+    public bool ContainsKey(string key)
+    {
+        return Comparisons.ContainsKey(key);
+    }
 
     public ICollection<string> Keys => Comparisons.Keys;
 
-    public bool Remove(string key) => Comparisons.Remove(key);
+    public bool Remove(string key)
+    {
+        return Comparisons.Remove(key);
+    }
 
-    public bool TryGetValue(string key, out Time value) => Comparisons.TryGetValue(key, out value);
+    public bool TryGetValue(string key, out Time value)
+    {
+        return Comparisons.TryGetValue(key, out value);
+    }
 
     public ICollection<Time> Values => Comparisons.Values;
 
     public Time this[string key]
     {
-        get
-        {
-            return Comparisons.ContainsKey(key) ? Comparisons[key] : default(Time);
-        }
+        get => Comparisons.ContainsKey(key) ? Comparisons[key] : default(Time);
         set
         {
             if (Comparisons.ContainsKey(key))
@@ -39,23 +48,44 @@ public class CompositeComparisons : IComparisons
         }
     }
 
-    public void Add(KeyValuePair<string, Time> item) => Comparisons.Add(item);
+    public void Add(KeyValuePair<string, Time> item)
+    {
+        Comparisons.Add(item);
+    }
 
-    public void Clear() => Comparisons.Clear();
+    public void Clear()
+    {
+        Comparisons.Clear();
+    }
 
-    public bool Contains(KeyValuePair<string, Time> item) => Comparisons.Contains(item);
+    public bool Contains(KeyValuePair<string, Time> item)
+    {
+        return Comparisons.Contains(item);
+    }
 
-    public void CopyTo(KeyValuePair<string, Time>[] array, int arrayIndex) => Comparisons.CopyTo(array, arrayIndex);
+    public void CopyTo(KeyValuePair<string, Time>[] array, int arrayIndex)
+    {
+        Comparisons.CopyTo(array, arrayIndex);
+    }
 
     public int Count => Comparisons.Count;
 
     public bool IsReadOnly => Comparisons.IsReadOnly;
 
-    public bool Remove(KeyValuePair<string, Time> item) => Comparisons.Remove(item);
+    public bool Remove(KeyValuePair<string, Time> item)
+    {
+        return Comparisons.Remove(item);
+    }
 
-    public IEnumerator<KeyValuePair<string, Time>> GetEnumerator() => Comparisons.GetEnumerator();
+    public IEnumerator<KeyValuePair<string, Time>> GetEnumerator()
+    {
+        return Comparisons.GetEnumerator();
+    }
 
-    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 
     public CompositeComparisons Clone()
     {
@@ -64,7 +94,10 @@ public class CompositeComparisons : IComparisons
         return clone;
     }
 
-    object ICloneable.Clone() => Clone();
+    object ICloneable.Clone()
+    {
+        return Clone();
+    }
 
     private static Func<string, string> GetShortComparisonNameFunc { get; set; }
 

@@ -38,7 +38,7 @@ public class Run : IRun, INotifyPropertyChanged
     /// </summary>
     public string GameName
     {
-        get { return gameName; }
+        get => gameName;
         set
         {
             gameName = value;
@@ -52,7 +52,7 @@ public class Run : IRun, INotifyPropertyChanged
     /// </summary>
     public string CategoryName
     {
-        get { return categoryName; }
+        get => categoryName;
         set
         {
             categoryName = value;
@@ -123,41 +123,65 @@ public class Run : IRun, INotifyPropertyChanged
         Metadata = metadata.Clone(this);
     }
 
-    public int IndexOf(ISegment item) => InternalList.IndexOf(item);
+    public int IndexOf(ISegment item)
+    {
+        return InternalList.IndexOf(item);
+    }
 
-    public void Insert(int index, ISegment item) => InternalList.Insert(index, item);
+    public void Insert(int index, ISegment item)
+    {
+        InternalList.Insert(index, item);
+    }
 
-    public void RemoveAt(int index) => InternalList.RemoveAt(index);
+    public void RemoveAt(int index)
+    {
+        InternalList.RemoveAt(index);
+    }
 
     public ISegment this[int index]
     {
-        get
-        {
-            return InternalList[index];
-        }
-        set
-        {
-            InternalList[index] = value;
-        }
+        get => InternalList[index];
+        set => InternalList[index] = value;
     }
 
-    public void Add(ISegment item) => InternalList.Add(item);
+    public void Add(ISegment item)
+    {
+        InternalList.Add(item);
+    }
 
-    public void Clear() => InternalList.Clear();
+    public void Clear()
+    {
+        InternalList.Clear();
+    }
 
-    public bool Contains(ISegment item) => InternalList.Contains(item);
+    public bool Contains(ISegment item)
+    {
+        return InternalList.Contains(item);
+    }
 
-    public void CopyTo(ISegment[] array, int arrayIndex) => InternalList.CopyTo(array, arrayIndex);
+    public void CopyTo(ISegment[] array, int arrayIndex)
+    {
+        InternalList.CopyTo(array, arrayIndex);
+    }
 
     public int Count => InternalList.Count;
 
     public bool IsReadOnly => InternalList.IsReadOnly;
 
-    public bool Remove(ISegment item) => InternalList.Remove(item);
+    public bool Remove(ISegment item)
+    {
+        return InternalList.Remove(item);
+    }
 
-    public IEnumerator<ISegment> GetEnumerator() => InternalList.GetEnumerator();
+    public IEnumerator<ISegment> GetEnumerator()
+    {
+        return InternalList.GetEnumerator();
+    }
 
-    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+    System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
 
     public Run Clone()
     {
@@ -180,5 +204,8 @@ public class Run : IRun, INotifyPropertyChanged
         return newRun;
     }
 
-    object ICloneable.Clone() => Clone();
+    object ICloneable.Clone()
+    {
+        return Clone();
+    }
 }

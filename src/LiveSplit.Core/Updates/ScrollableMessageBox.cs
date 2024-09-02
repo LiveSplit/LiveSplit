@@ -19,36 +19,21 @@ public partial class ScrollableMessageBox : Form
 
     public Font MessageFont
     {
-        set
-        {
-            txtMessage.Font = value;
-        }
+        set => txtMessage.Font = value;
 
-        get
-        {
-            return txtMessage.Font;
-        }
+        get => txtMessage.Font;
     }
 
     public Color MessageForeColor
     {
-        get
-        {
-            return txtMessage.ForeColor;
-        }
+        get => txtMessage.ForeColor;
 
-        set
-        {
-            txtMessage.ForeColor = value;
-        }
+        set => txtMessage.ForeColor = value;
     }
 
     public Color MessageBackColor
     {
-        get
-        {
-            return txtMessage.BackColor;
-        }
+        get => txtMessage.BackColor;
 
         set
         {

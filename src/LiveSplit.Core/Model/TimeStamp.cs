@@ -123,8 +123,12 @@ public sealed class TimeStamp
     }
 
     public static TimeSpan operator -(TimeStamp a, TimeStamp b)
-        => a.value - b.value;
+    {
+        return a.value - b.value;
+    }
 
     public static TimeStamp operator -(TimeStamp a, TimeSpan b)
-        => new TimeStamp(a.value - b);
+    {
+        return new TimeStamp(a.value - b);
+    }
 }

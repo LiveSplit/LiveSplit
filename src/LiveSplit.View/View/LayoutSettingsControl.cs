@@ -19,13 +19,13 @@ public partial class LayoutSettingsControl : UserControl
 
     private Image originalBackgroundImage { get; set; }
 
-    public string TimerFont { get { return SettingsHelper.FormatFont(Settings.TimerFont); } }
-    public string MainFont { get { return SettingsHelper.FormatFont(Settings.TimesFont); } }
-    public string SplitNamesFont { get { return SettingsHelper.FormatFont(Settings.TextFont); } }
+    public string TimerFont => SettingsHelper.FormatFont(Settings.TimerFont);
+    public string MainFont => SettingsHelper.FormatFont(Settings.TimesFont);
+    public string SplitNamesFont => SettingsHelper.FormatFont(Settings.TextFont);
 
-    public float Opacity { get { return Settings.Opacity * 100f; } set { Settings.Opacity = value / 100f; } }
-    public float ImageOpacity { get { return Settings.ImageOpacity * 100f; } set { Settings.ImageOpacity = value / 100f; } }
-    public float ImageBlur { get { return Settings.ImageBlur * 100f; } set { Settings.ImageBlur = value / 100f; } }
+    public float Opacity { get => Settings.Opacity * 100f; set => Settings.Opacity = value / 100f; }
+    public float ImageOpacity { get => Settings.ImageOpacity * 100f; set => Settings.ImageOpacity = value / 100f; }
+    public float ImageBlur { get => Settings.ImageBlur * 100f; set => Settings.ImageBlur = value / 100f; }
 
     public LayoutSettingsControl(Options.LayoutSettings settings, ILayout layout)
     {

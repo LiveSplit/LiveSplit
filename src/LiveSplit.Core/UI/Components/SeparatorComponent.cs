@@ -90,7 +90,10 @@ public class SeparatorComponent : IComponent
     public string ComponentName
         => "----------------------------------------------------------------------------";
 
-    public Control GetSettingsControl(LayoutMode mode) => null;
+    public Control GetSettingsControl(LayoutMode mode)
+    {
+        return null;
+    }
 
     public void SetSettings(System.Xml.XmlNode settings)
     {
@@ -101,25 +104,13 @@ public class SeparatorComponent : IComponent
         return document.CreateElement("SeparatorSettings");
     }
 
-    public string UpdateName
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string UpdateName => throw new NotSupportedException();
 
-    public string XMLURL
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string XMLURL => throw new NotSupportedException();
 
-    public string UpdateURL
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string UpdateURL => throw new NotSupportedException();
 
-    public Version Version
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public Version Version => throw new NotSupportedException();
 
     public IDictionary<string, Action> ContextMenuControls => null;
 
@@ -139,5 +130,8 @@ public class SeparatorComponent : IComponent
         GC.SuppressFinalize(this);
     }
 
-    public int GetSettingsHashCode() => 1;
+    public int GetSettingsHashCode()
+    {
+        return 1;
+    }
 }

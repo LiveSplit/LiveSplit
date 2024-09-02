@@ -10,13 +10,13 @@ public static class WebCredentials
 
     public static string TwitchAccessToken
     {
-        get { return CredentialManager.ReadCredential(Twitch)?.Password; }
-        set { CredentialManager.WriteCredential(Twitch, "", value); }
+        get => CredentialManager.ReadCredential(Twitch)?.Password;
+        set => CredentialManager.WriteCredential(Twitch, "", value);
     }
     public static string SpeedrunComAccessToken
     {
-        get { return CredentialManager.ReadCredential(SpeedrunCom)?.Password; }
-        set { CredentialManager.WriteCredential(SpeedrunCom, "", value); }
+        get => CredentialManager.ReadCredential(SpeedrunCom)?.Password;
+        set => CredentialManager.WriteCredential(SpeedrunCom, "", value);
     }
     public static SRLCredentials SpeedRunsLiveIRCCredentials
     {
@@ -25,17 +25,17 @@ public static class WebCredentials
             var credentials = CredentialManager.ReadCredential(SpeedRunsLive);
             return new SRLCredentials(credentials?.UserName, credentials?.Password);
         }
-        set { CredentialManager.WriteCredential(SpeedRunsLive, value.Username, value.Password); }
+        set => CredentialManager.WriteCredential(SpeedRunsLive, value.Username, value.Password);
     }
     public static string RacetimeAccessToken
     {
-        get { return CredentialManager.ReadCredential(RacetimeAccess)?.Password; }
-        set { CredentialManager.WriteCredential(RacetimeAccess, "", value); }
+        get => CredentialManager.ReadCredential(RacetimeAccess)?.Password;
+        set => CredentialManager.WriteCredential(RacetimeAccess, "", value);
     }
     public static string RacetimeRefreshToken
     {
-        get { return CredentialManager.ReadCredential(RacetimeRefresh)?.Password; }
-        set { CredentialManager.WriteCredential(RacetimeRefresh, "", value); }
+        get => CredentialManager.ReadCredential(RacetimeRefresh)?.Password;
+        set => CredentialManager.WriteCredential(RacetimeRefresh, "", value);
     }
 
     public static void DeleteAllCredentials()

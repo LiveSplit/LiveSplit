@@ -41,15 +41,15 @@ public partial class RunEditorDialog : Form
     protected bool IsInitialized = false;
     protected Time PreviousPersonalBestTime;
 
-    protected bool IsGridTab { get { return tabControl.SelectedTab == RealTime || tabControl.SelectedTab == GameTime; } }
-    protected bool IsMetadataTab { get { return tabControl.SelectedTab == Metadata; } }
+    protected bool IsGridTab => tabControl.SelectedTab == RealTime || tabControl.SelectedTab == GameTime;
+    protected bool IsMetadataTab => tabControl.SelectedTab == Metadata;
 
     public List<Image> ImagesToDispose { get; set; }
 
     protected TimingMethod SelectedMethod
     {
-        get { return tabControl.SelectedTab.Text == "Real Time" ? TimingMethod.RealTime : TimingMethod.GameTime; }
-        set { tabControl.SelectTab(value.ToString()); }
+        get => tabControl.SelectedTab.Text == "Real Time" ? TimingMethod.RealTime : TimingMethod.GameTime;
+        set => tabControl.SelectTab(value.ToString());
     }
 
     public int CurrentSplitIndexOffset { get; set; }
@@ -65,10 +65,10 @@ public partial class RunEditorDialog : Form
     private string[] gameNames;
     private IEnumerable<IGrouping<string, string>> abbreviations;
 
-    public Image GameIcon { get { return Run.GameIcon ?? Properties.Resources.DefaultGameIcon; } set { Run.GameIcon = value; } }
+    public Image GameIcon { get => Run.GameIcon ?? Properties.Resources.DefaultGameIcon; set => Run.GameIcon = value; }
     public string GameName
     {
-        get { return Run.GameName; }
+        get => Run.GameName;
         set
         {
             if (Run.GameName != value)
@@ -84,7 +84,7 @@ public partial class RunEditorDialog : Form
     }
     public string CategoryName
     {
-        get { return Run.CategoryName; }
+        get => Run.CategoryName;
         set
         {
             if (Run.CategoryName != value)
@@ -99,10 +99,7 @@ public partial class RunEditorDialog : Form
     }
     public string Offset
     {
-        get
-        {
-            return TimeFormatter.Format(Run.Offset);
-        }
+        get => TimeFormatter.Format(Run.Offset);
         set
         {
             if (Regex.IsMatch(value, "[^0-9:.\\-−]"))
@@ -118,7 +115,7 @@ public partial class RunEditorDialog : Form
     }
     public int AttemptCount
     {
-        get { return Run.AttemptCount; }
+        get => Run.AttemptCount;
         set { Run.AttemptCount = Math.Max(0, value); RaiseRunEdited(); }
     }
 
@@ -1367,15 +1364,9 @@ public partial class RunEditorDialog : Form
         column.SortMode = DataGridViewColumnSortMode.NotSortable;
         var rightClickMenu = new ContextMenuStrip();
         var renameItem = new ToolStripMenuItem("Rename");
-        renameItem.Click += (s, e) =>
-        {
-            RenameComparison(column);
-        };
+        renameItem.Click += (s, e) => RenameComparison(column);
         var removeItem = new ToolStripMenuItem("Remove");
-        removeItem.Click += (s, e) =>
-        {
-            RemoveComparison(column);
-        };
+        removeItem.Click += (s, e) => RemoveComparison(column);
         rightClickMenu.Items.Add(renameItem);
         rightClickMenu.Items.Add(removeItem);
         column.HeaderCell.ContextMenuStrip = rightClickMenu;
@@ -1806,8 +1797,8 @@ public class CustomAutoCompleteComboBox : ComboBox
 
     public IList<string> MyAutoCompleteSource
     {
-        get { return _autoCompleteSource; }
-        set { _autoCompleteSource = value; }
+        get => _autoCompleteSource;
+        set => _autoCompleteSource = value;
     }
 
     public Func<string, string[]> GetAllItemsForText { get; set; }
@@ -1856,10 +1847,7 @@ public class CustomAutoCompleteComboBox : ComboBox
                         }
                         else
                         {
-                            form.InvokeIfRequired(() =>
-                            {
-                                CloseDropDown();
-                            });
+                            form.InvokeIfRequired(() => CloseDropDown());
                         }
                     }
                 }

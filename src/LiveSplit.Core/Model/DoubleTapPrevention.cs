@@ -8,14 +8,8 @@ public class DoubleTapPrevention : ITimerModel
 {
     public LiveSplitState CurrentState
     {
-        get
-        {
-            return InternalModel.CurrentState;
-        }
-        set
-        {
-            InternalModel.CurrentState = value;
-        }
+        get => InternalModel.CurrentState;
+        set => InternalModel.CurrentState = value;
     }
 
     private TimeSpan Delay = new TimeSpan(0, 0, 0, 0, 300);
@@ -25,29 +19,29 @@ public class DoubleTapPrevention : ITimerModel
 
     public ITimerModel InternalModel { get; set; }
 
-    public event EventHandler OnSplit { add { InternalModel.OnSplit += value; } remove { InternalModel.OnSplit -= value; } }
+    public event EventHandler OnSplit { add => InternalModel.OnSplit += value; remove => InternalModel.OnSplit -= value; }
 
-    public event EventHandler OnUndoSplit { add { InternalModel.OnUndoSplit += value; } remove { InternalModel.OnUndoSplit -= value; } }
+    public event EventHandler OnUndoSplit { add => InternalModel.OnUndoSplit += value; remove => InternalModel.OnUndoSplit -= value; }
 
-    public event EventHandler OnSkipSplit { add { InternalModel.OnSkipSplit += value; } remove { InternalModel.OnSkipSplit -= value; } }
+    public event EventHandler OnSkipSplit { add => InternalModel.OnSkipSplit += value; remove => InternalModel.OnSkipSplit -= value; }
 
-    public event EventHandler OnStart { add { InternalModel.OnStart += value; } remove { InternalModel.OnStart -= value; } }
+    public event EventHandler OnStart { add => InternalModel.OnStart += value; remove => InternalModel.OnStart -= value; }
 
-    public event EventHandlerT<TimerPhase> OnReset { add { InternalModel.OnReset += value; } remove { InternalModel.OnReset -= value; } }
+    public event EventHandlerT<TimerPhase> OnReset { add => InternalModel.OnReset += value; remove => InternalModel.OnReset -= value; }
 
-    public event EventHandler OnPause { add { InternalModel.OnPause += value; } remove { InternalModel.OnPause -= value; } }
+    public event EventHandler OnPause { add => InternalModel.OnPause += value; remove => InternalModel.OnPause -= value; }
 
-    public event EventHandler OnUndoAllPauses { add { InternalModel.OnUndoAllPauses += value; } remove { InternalModel.OnUndoAllPauses -= value; } }
+    public event EventHandler OnUndoAllPauses { add => InternalModel.OnUndoAllPauses += value; remove => InternalModel.OnUndoAllPauses -= value; }
 
-    public event EventHandler OnResume { add { InternalModel.OnResume += value; } remove { InternalModel.OnResume -= value; } }
+    public event EventHandler OnResume { add => InternalModel.OnResume += value; remove => InternalModel.OnResume -= value; }
 
-    public event EventHandler OnScrollUp { add { InternalModel.OnScrollUp += value; } remove { InternalModel.OnScrollUp -= value; } }
+    public event EventHandler OnScrollUp { add => InternalModel.OnScrollUp += value; remove => InternalModel.OnScrollUp -= value; }
 
-    public event EventHandler OnScrollDown { add { InternalModel.OnScrollDown += value; } remove { InternalModel.OnScrollDown -= value; } }
+    public event EventHandler OnScrollDown { add => InternalModel.OnScrollDown += value; remove => InternalModel.OnScrollDown -= value; }
 
-    public event EventHandler OnSwitchComparisonPrevious { add { InternalModel.OnSwitchComparisonPrevious += value; } remove { InternalModel.OnSwitchComparisonPrevious -= value; } }
+    public event EventHandler OnSwitchComparisonPrevious { add => InternalModel.OnSwitchComparisonPrevious += value; remove => InternalModel.OnSwitchComparisonPrevious -= value; }
 
-    public event EventHandler OnSwitchComparisonNext { add { InternalModel.OnSwitchComparisonNext += value; } remove { InternalModel.OnSwitchComparisonNext -= value; } }
+    public event EventHandler OnSwitchComparisonNext { add => InternalModel.OnSwitchComparisonNext += value; remove => InternalModel.OnSwitchComparisonNext -= value; }
 
     public DoubleTapPrevention(ITimerModel model)
     {
@@ -96,7 +90,10 @@ public class DoubleTapPrevention : ITimerModel
             InternalModel.UndoSplit();
     }
 
-    public void Reset() => Reset(true);
+    public void Reset()
+    {
+        Reset(true);
+    }
 
     public void Reset(bool updateSplits = true)
     {
@@ -121,15 +118,33 @@ public class DoubleTapPrevention : ITimerModel
         InternalModel.UndoAllPauses();
     }
 
-    public void ScrollUp() => InternalModel.ScrollUp();
+    public void ScrollUp()
+    {
+        InternalModel.ScrollUp();
+    }
 
-    public void ScrollDown() => InternalModel.ScrollDown();
+    public void ScrollDown()
+    {
+        InternalModel.ScrollDown();
+    }
 
-    public void SwitchComparisonPrevious() => InternalModel.SwitchComparisonPrevious();
+    public void SwitchComparisonPrevious()
+    {
+        InternalModel.SwitchComparisonPrevious();
+    }
 
-    public void SwitchComparisonNext() => InternalModel.SwitchComparisonNext();
+    public void SwitchComparisonNext()
+    {
+        InternalModel.SwitchComparisonNext();
+    }
 
-    public void InitializeGameTime() => InternalModel.InitializeGameTime();
+    public void InitializeGameTime()
+    {
+        InternalModel.InitializeGameTime();
+    }
 
-    public void ResetAndSetAttemptAsPB() => InternalModel.ResetAndSetAttemptAsPB();
+    public void ResetAndSetAttemptAsPB()
+    {
+        InternalModel.ResetAndSetAttemptAsPB();
+    }
 }

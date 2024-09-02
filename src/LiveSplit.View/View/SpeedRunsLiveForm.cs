@@ -134,10 +134,7 @@ public partial class SpeedRunsLiveForm : Form
         if (IsDisposed)
             return;
 
-        this.InvokeIfRequired(() =>
-        {
-            Text = SRLClient.ChannelTopic;
-        });
+        this.InvokeIfRequired(() => Text = SRLClient.ChannelTopic);
     }
 
     private void SRLClient_UserListRefreshed(object sender, EventArgs e)
@@ -315,10 +312,7 @@ public partial class SpeedRunsLiveForm : Form
 
     private void EnableJoinButton()
     {
-        this.InvokeIfRequired(() =>
-        {
-            btnJoinQuit.Enabled = true;
-        });
+        this.InvokeIfRequired(() => btnJoinQuit.Enabled = true);
     }
 
     private void SpeedRunsLiveForm_Load(object sender, EventArgs e)
@@ -623,7 +617,7 @@ internal class UserListItem
 {
     public string Value { get; set; }
     public Color Color { get; set; }
-    public Brush Brush { get { return new SolidBrush(Color); } }
+    public Brush Brush => new SolidBrush(Color);
 
     public UserListItem(string value, Color color)
     {

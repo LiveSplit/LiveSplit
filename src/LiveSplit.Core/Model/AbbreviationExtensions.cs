@@ -19,7 +19,9 @@ public static class AbbreviationExtensions
     }
 
     private static bool isAllCapsOrDigit(string name)
-        => name.All(c => (char.IsUpper(c) || char.IsDigit(c)));
+    {
+        return name.All(c => (char.IsUpper(c) || char.IsDigit(c)));
+    }
 
     private static bool tokenize(string name, string splitToken, List<string> list)
     {

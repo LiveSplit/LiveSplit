@@ -140,5 +140,8 @@ public class AutoSplitter : ICloneable
         };
     }
 
-    object ICloneable.Clone() => Clone();
+    object ICloneable.Clone()
+    {
+        return Clone();
+    }
 }

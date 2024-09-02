@@ -27,10 +27,10 @@ public class ComponentRendererComponent : ComponentRenderer, IComponent
         }
     }
 
-    public float PaddingTop { get { return VisibleComponents.Any() ? VisibleComponents.First().PaddingTop : 0; } }
-    public float PaddingLeft { get { return VisibleComponents.Any() ? VisibleComponents.First().PaddingLeft : 0; } }
-    public float PaddingBottom { get { return VisibleComponents.Any() ? VisibleComponents.Last().PaddingBottom : 0; } }
-    public float PaddingRight { get { return VisibleComponents.Any() ? VisibleComponents.Last().PaddingRight : 0; } }
+    public float PaddingTop => VisibleComponents.Any() ? VisibleComponents.First().PaddingTop : 0;
+    public float PaddingLeft => VisibleComponents.Any() ? VisibleComponents.First().PaddingLeft : 0;
+    public float PaddingBottom => VisibleComponents.Any() ? VisibleComponents.Last().PaddingBottom : 0;
+    public float PaddingRight => VisibleComponents.Any() ? VisibleComponents.Last().PaddingRight : 0;
 
     public void DrawVertical(Graphics g, LiveSplitState state, float width, Region clipRegion)
     {
@@ -42,10 +42,7 @@ public class ComponentRendererComponent : ComponentRenderer, IComponent
         Render(g, state, 0, height, LayoutMode.Horizontal, clipRegion);
     }
 
-    public string ComponentName
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string ComponentName => throw new NotSupportedException();
 
     public Control GetSettingsControl(LayoutMode mode)
     {

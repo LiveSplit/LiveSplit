@@ -21,9 +21,15 @@ public class PercentileComparisonGenerator : IComparisonGenerator
         Run = run;
     }
 
-    protected double GetWeight(int index, int count) => Pow(Weight, count - index - 1);
+    protected double GetWeight(int index, int count)
+    {
+        return Pow(Weight, count - index - 1);
+    }
 
-    protected double ReWeight(double a, double b, double c) => (a - b) / c;
+    protected double ReWeight(double a, double b, double c)
+    {
+        return (a - b) / c;
+    }
 
     protected TimeSpan Calculate(double perc, TimeSpan Value1, double Key1, TimeSpan Value2, double Key2)
     {

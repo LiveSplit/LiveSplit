@@ -21,10 +21,7 @@ public class ListBoxItemDragger
     /// Gets the index of the dragged item.
     /// </summary>
     /// <value>The index of the dragged item.</value>
-    public int DragItemIndex
-    {
-        get { return dragItemIndex; }
-    }
+    public int DragItemIndex => dragItemIndex;
 
     private bool dragging = false;
 
@@ -63,8 +60,8 @@ public class ListBoxItemDragger
     private Cursor dragCursor = Cursors.SizeNS;
     public Cursor DragCursor
     {
-        get { return dragCursor; }
-        set { dragCursor = value; }
+        get => dragCursor;
+        set => dragCursor = value;
     }
 
     /// <summary>

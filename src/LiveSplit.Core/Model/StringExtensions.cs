@@ -52,11 +52,17 @@ public static class StringExtensions
     }
 
     public static IEnumerable<string> OrderBySimilarityTo(this IEnumerable<string> list, string value)
-        => list.OrderBy(x => x.Similarity(value));
+    {
+        return list.OrderBy(x => x.Similarity(value));
+    }
 
     public static string FindMostSimilarValueTo(this IEnumerable<string> list, string value)
-        => list.OrderBySimilarityTo(value).FirstOrDefault();
+    {
+        return list.OrderBySimilarityTo(value).FirstOrDefault();
+    }
 
     public static string EscapeMenuItemText(this string text)
-        => text.Replace("&", "&&");
+    {
+        return text.Replace("&", "&&");
+    }
 }

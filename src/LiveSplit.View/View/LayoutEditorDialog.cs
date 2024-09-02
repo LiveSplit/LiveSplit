@@ -32,7 +32,7 @@ public partial class LayoutEditorDialog : Form
     protected float OverallHeight => BindingList.OfType<ILayoutComponent>().Aggregate(0.0f, (x, y) => x + y.Component.VerticalHeight);
     protected bool IsVertical
     {
-        get { return Layout.Mode == LayoutMode.Vertical; }
+        get => Layout.Mode == LayoutMode.Vertical;
         set
         {
             if (value)
@@ -41,7 +41,7 @@ public partial class LayoutEditorDialog : Form
                 Layout.Mode = LayoutMode.Horizontal;
         }
     }
-    protected bool IsHorizontal { get { return !IsVertical; } set { IsVertical = !value; } }
+    protected bool IsHorizontal { get => !IsVertical; set => IsVertical = !value; }
     public LayoutEditorDialog(ILayout layout, LiveSplitState state, Form form)
     {
         InitializeComponent();
@@ -106,10 +106,7 @@ public partial class LayoutEditorDialog : Form
     private void AddComponentFactory(IComponentFactory factory, ToolStripMenuItem menuItem)
     {
         var item = new ToolStripMenuItem(factory.ComponentName);
-        item.Click += (s, e) =>
-            {
-                AddComponent(factory);
-            };
+        item.Click += (s, e) => AddComponent(factory);
         item.ToolTipText = factory.Description;
         menuItem.DropDownItems.Add(item);
     }
@@ -141,10 +138,7 @@ public partial class LayoutEditorDialog : Form
 
         menuAddComponents.Items.Add(new ToolStripSeparator());
         var downloadMore = new ToolStripMenuItem("Download More...");
-        downloadMore.Click += (s, e) =>
-            {
-                Process.Start("http://livesplit.org/components/");
-            };
+        downloadMore.Click += (s, e) => Process.Start("http://livesplit.org/components/");
 
         menuAddComponents.Items.Add(downloadMore);
     }

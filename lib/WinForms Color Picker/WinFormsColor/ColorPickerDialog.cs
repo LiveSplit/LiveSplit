@@ -59,7 +59,7 @@ public partial class ColorPickerDialog : Form
     private InternalColor _selColor = new InternalColor(Color.Red);
     private InternalColor selColor
     {
-        get { return _selColor; }
+        get => _selColor;
         set
         {
             if (SelectedColorChanged != null)
@@ -74,7 +74,7 @@ public partial class ColorPickerDialog : Form
 
     public bool AlphaEnabled
     {
-        get { return this.alphaEnabled; }
+        get => this.alphaEnabled;
         set
         {
             this.alphaEnabled = value;
@@ -84,17 +84,17 @@ public partial class ColorPickerDialog : Form
     }
     public Color OldColor
     {
-        get { return this.oldColor.ToColor(); }
+        get => this.oldColor.ToColor();
         set { this.oldColor = new InternalColor(value); this.UpdateColorShowBox(); }
     }
     public Color SelectedColor
     {
-        get { return this.selColor.ToColor(); }
+        get => this.selColor.ToColor();
         set { this.selColor = new InternalColor(value); this.UpdateColorControls(); }
     }
     public PrimaryAttrib PrimaryAttribute
     {
-        get { return this.primAttrib; }
+        get => this.primAttrib;
         set { this.primAttrib = value; this.UpdateColorControls(); }
     }
 
@@ -611,7 +611,7 @@ public partial class ColorPickerDialog : Form
             pick = false;
             Cursor = Cursors.Default;
         };
-        Action<Color> setColor = x => { SelectedColor = x; };
+        Action<Color> setColor = x => SelectedColor = x;
         new System.Threading.Thread(() =>
             {
                 while (pick)

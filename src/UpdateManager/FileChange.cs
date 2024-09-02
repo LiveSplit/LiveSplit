@@ -16,11 +16,13 @@ public class FileChange
         Status = status;
     }
 
-    public static FileChange Parse(XmlNode node) =>
-        new FileChange
+    public static FileChange Parse(XmlNode node)
+    {
+        return new FileChange
         (
             node.Attributes["path"].InnerText,
             node.Attributes["localPath"]?.InnerText,
             (ChangeStatus)Enum.Parse(typeof(ChangeStatus), node.Attributes["status"].InnerText, true)
         );
+    }
 }

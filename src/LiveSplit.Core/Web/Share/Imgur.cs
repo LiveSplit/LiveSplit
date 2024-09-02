@@ -20,7 +20,7 @@ public class Imgur : IRunUploadPlatform
 
     protected static Imgur _Instance = new Imgur();
 
-    public static Imgur Instance { get { return _Instance; } }
+    public static Imgur Instance => _Instance;
 
     public static readonly Uri BaseUri = new Uri("https://api.imgur.com/");
 
@@ -31,10 +31,7 @@ public class Imgur : IRunUploadPlatform
         return new Uri(BaseUri, subUri);
     }
 
-    public string PlatformName
-    {
-        get { return "Imgur"; }
-    }
+    public string PlatformName => "Imgur";
 
     public string Description
     {

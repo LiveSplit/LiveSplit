@@ -36,10 +36,7 @@ public class SimpleLabel
 
     public Color ForeColor
     {
-        get
-        {
-            return ((SolidBrush)Brush).Color;
-        }
+        get => ((SolidBrush)Brush).Color;
         set
         {
             try

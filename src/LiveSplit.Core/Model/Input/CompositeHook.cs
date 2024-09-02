@@ -16,7 +16,7 @@ public delegate void EventHandlerT<T>(object sender, T value);
 public class KeyOrButton
 {
     public bool IsButton { get; protected set; }
-    public bool IsKey { get { return !IsButton; } set { IsButton = !value; } }
+    public bool IsKey { get => !IsButton; set => IsButton = !value; }
 
     public Keys Key { get; protected set; }
     public GamepadButton Button { get; protected set; }
@@ -88,10 +88,7 @@ public class CompositeHook
     private bool allowGamepads;
     public bool AllowGamepads
     {
-        get
-        {
-            return allowGamepads;
-        }
+        get => allowGamepads;
         set
         {
             allowGamepads = value;

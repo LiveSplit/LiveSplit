@@ -115,10 +115,7 @@ public sealed class DynamicJsonConverter : JavaScriptConverter
         throw new NotImplementedException();
     }
 
-    public override IEnumerable<Type> SupportedTypes
-    {
-        get { return new ReadOnlyCollection<Type>(new List<Type>(new[] { typeof(object) })); }
-    }
+    public override IEnumerable<Type> SupportedTypes => new ReadOnlyCollection<Type>(new List<Type>(new[] { typeof(object) }));
 }
 
 public sealed class DynamicJsonObject : DynamicObject

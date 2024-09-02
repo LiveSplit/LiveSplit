@@ -15,8 +15,9 @@ public class LayoutSettingsMust
         ValidateSubject(sut);
     }
 
-    private static LayoutSettings CreateSubjectUnderTest() =>
-        new LayoutSettings
+    private static LayoutSettings CreateSubjectUnderTest()
+    {
+        return new LayoutSettings
         {
             TextColor = Color.Yellow,
             AheadGainingTimeColor = Color.Red,
@@ -47,6 +48,7 @@ public class LayoutSettingsMust
             TimerFont = new Font("Arial", 9.0F),
             TimesFont = new Font("Arial", 10.0F)
         };
+    }
 
     private static void ValidateSubject(LayoutSettings sut)
     {

@@ -29,10 +29,7 @@ public class RunMetadata
 
     public string RunID
     {
-        get
-        {
-            return runId;
-        }
+        get => runId;
         set
         {
             runId = value;
@@ -45,10 +42,7 @@ public class RunMetadata
 
     public SpeedrunComSharp.Run Run
     {
-        get
-        {
-            return run.Value;
-        }
+        get => run.Value;
         set
         {
             runId = value.ID;
@@ -61,10 +55,7 @@ public class RunMetadata
 
     public string PlatformName
     {
-        get
-        {
-            return platformName;
-        }
+        get => platformName;
         set
         {
             if (platformName != value)
@@ -77,10 +68,7 @@ public class RunMetadata
 
     public string RegionName
     {
-        get
-        {
-            return regionName;
-        }
+        get => regionName;
         set
         {
             if (regionName != value)
@@ -121,10 +109,7 @@ public class RunMetadata
 
     public bool UsesEmulator
     {
-        get
-        {
-            return usesEmulator;
-        }
+        get => usesEmulator;
         set
         {
             if (usesEmulator != value)

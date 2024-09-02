@@ -101,7 +101,10 @@ public static class Updater
 
         public void PerformUpdate()
         {
-            static string ConvertChangeUrlPartToPath(string xmlChangePath) => xmlChangePath.Replace('/', Path.DirectorySeparatorChar);
+            static string ConvertChangeUrlPartToPath(string xmlChangePath)
+            {
+                return xmlChangePath.Replace('/', Path.DirectorySeparatorChar);
+            }
 
             IList<Update> updates = Updates.Where(x => x.Version > Version).ToList();
             var addedFiles = new Dictionary<string, string>();

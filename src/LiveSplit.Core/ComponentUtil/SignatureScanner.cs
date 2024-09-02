@@ -19,7 +19,7 @@ public class SignatureScanner
 
     public IntPtr Address
     {
-        get { return _address; }
+        get => _address;
         set
         {
             _memory = null;
@@ -29,7 +29,7 @@ public class SignatureScanner
 
     public int Size
     {
-        get { return _size; }
+        get => _size;
         set
         {
             _memory = null;
@@ -39,7 +39,7 @@ public class SignatureScanner
 
     public Process Process
     {
-        get { return _process; }
+        get => _process;
         set
         {
             _memory = null;
@@ -49,7 +49,7 @@ public class SignatureScanner
 
     public byte[] Memory
     {
-        get { return _memory; }
+        get => _memory;
         set
         {
             _memory = value;
@@ -135,7 +135,7 @@ public class SignatureScanner
     {
         // IEnumerator
         public int Current { get; private set; }
-        object IEnumerator.Current { get { return Current; } }
+        object IEnumerator.Current => Current;
 
         private readonly byte[] _memory;
         private readonly int _align;
@@ -262,10 +262,7 @@ public class SigScanTarget
     public OnFoundCallback OnFound { get; set; }
 
     private readonly List<Signature> _sigs;
-    public ReadOnlyCollection<Signature> Signatures
-    {
-        get { return _sigs.AsReadOnly(); }
-    }
+    public ReadOnlyCollection<Signature> Signatures => _sigs.AsReadOnly();
 
     public SigScanTarget()
     {

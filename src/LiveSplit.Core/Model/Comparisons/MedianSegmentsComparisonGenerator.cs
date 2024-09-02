@@ -39,7 +39,10 @@ public class MedianSegmentsComparisonGenerator : IComparisonGenerator
         return TimeSpan.Zero;
     }
 
-    protected double GetWeight(int index, int count) => Pow(Weight, count - index - 1);
+    protected double GetWeight(int index, int count)
+    {
+        return Pow(Weight, count - index - 1);
+    }
 
     public void Generate(TimingMethod method)
     {

@@ -18,23 +18,11 @@ public class UpdateManagerUpdateable : IUpdateable
         }
     }
 
-    public string UpdateName
-    {
-        get { return "Update Manager"; }
-    }
+    public string UpdateName => "Update Manager";
 
-    public string XMLURL
-    {
-        get { return "http://livesplit.org/update/update.updater.xml"; }
-    }
+    public string XMLURL => "http://livesplit.org/update/update.updater.xml";
 
-    public string UpdateURL
-    {
-        get { return "http://livesplit.org/update/"; }
-    }
+    public string UpdateURL => "http://livesplit.org/update/";
 
-    public Version Version
-    {
-        get { return Version.Parse("2.0.4"); }
-    }
+    public Version Version => Version.Parse("2.0.4");
 }

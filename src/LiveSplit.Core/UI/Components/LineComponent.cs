@@ -33,10 +33,7 @@ public class LineComponent : IComponent
         }
     }
 
-    public string ComponentName
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string ComponentName => throw new NotSupportedException();
 
     public float MinimumWidth => 0f;
 
@@ -55,32 +52,17 @@ public class LineComponent : IComponent
         throw new NotImplementedException();
     }
 
-    public string UpdateName
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string UpdateName => throw new NotSupportedException();
 
-    public string XMLURL
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string XMLURL => throw new NotSupportedException();
 
-    public string UpdateURL
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string UpdateURL => throw new NotSupportedException();
 
-    public Version Version
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public Version Version => throw new NotSupportedException();
 
     public IDictionary<string, Action> ContextMenuControls => null;
 
-    public float MinimumHeight
-    {
-        get { throw new NotImplementedException(); }
-    }
+    public float MinimumHeight => throw new NotImplementedException();
 
     public void DrawHorizontal(Graphics g, LiveSplitState state, float height, Region clipRegion)
     {

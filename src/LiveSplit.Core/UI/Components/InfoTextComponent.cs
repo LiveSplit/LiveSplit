@@ -9,12 +9,12 @@ namespace LiveSplit.UI.Components;
 
 public class InfoTextComponent : IComponent
 {
-    public string InformationName { get { return NameLabel.Text; } set { NameLabel.Text = value; } }
-    public string InformationValue { get { return ValueLabel.Text; } set { ValueLabel.Text = value; } }
+    public string InformationName { get => NameLabel.Text; set => NameLabel.Text = value; }
+    public string InformationValue { get => ValueLabel.Text; set => ValueLabel.Text = value; }
 
     public GraphicsCache Cache { get; set; }
 
-    public ICollection<string> AlternateNameText { get { return NameLabel.AlternateText; } set { NameLabel.AlternateText = value; } }
+    public ICollection<string> AlternateNameText { get => NameLabel.AlternateText; set => NameLabel.AlternateText = value; }
 
     public SimpleLabel NameLabel { get; protected set; }
     public SimpleLabel ValueLabel { get; protected set; }
@@ -153,10 +153,7 @@ public class InfoTextComponent : IComponent
         ValueLabel.Draw(g);
     }
 
-    public string ComponentName
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string ComponentName => throw new NotSupportedException();
 
     public Control GetSettingsControl(LayoutMode mode)
     {
@@ -173,25 +170,13 @@ public class InfoTextComponent : IComponent
         throw new NotImplementedException();
     }
 
-    public string UpdateName
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string UpdateName => throw new NotSupportedException();
 
-    public string XMLURL
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string XMLURL => throw new NotSupportedException();
 
-    public string UpdateURL
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public string UpdateURL => throw new NotSupportedException();
 
-    public Version Version
-    {
-        get { throw new NotSupportedException(); }
-    }
+    public Version Version => throw new NotSupportedException();
 
     public IDictionary<string, Action> ContextMenuControls => null;
 

@@ -14,9 +14,15 @@ public class SegmentHistory : Dictionary<int, Time>, ICloneable
     {
     }
 
-    public SegmentHistory Clone() => new SegmentHistory(this);
+    public SegmentHistory Clone()
+    {
+        return new SegmentHistory(this);
+    }
 
-    object ICloneable.Clone() => Clone();
+    object ICloneable.Clone()
+    {
+        return Clone();
+    }
 
     public int GetMinIndex()
     {

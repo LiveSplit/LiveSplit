@@ -9,7 +9,7 @@ public partial class SetSizeForm : Form
 
     public int FormWidth
     {
-        get { return TimerForm.Width; }
+        get => TimerForm.Width;
         set
         {
             TimerForm.Width = value;
@@ -18,7 +18,7 @@ public partial class SetSizeForm : Form
     }
     public int FormHeight
     {
-        get { return TimerForm.Height; }
+        get => TimerForm.Height;
         set
         {
             TimerForm.Height = value;

@@ -18,18 +18,15 @@ public partial class FontDialog : Form
     private int minSize { get; set; }
     private int maxSize { get; set; }
 
-    public int MinSize { get { return minSize; } set { minSize = value; UpdateSizeOptions(); } }
-    public int MaxSize { get { return maxSize; } set { maxSize = value; UpdateSizeOptions(); } }
+    public int MinSize { get => minSize; set { minSize = value; UpdateSizeOptions(); } }
+    public int MaxSize { get => maxSize; set { maxSize = value; UpdateSizeOptions(); } }
 
     private Font originalFont { get; set; }
-    public Font OriginalFont { get { return originalFont; } set { originalFont = Font = value; } }
+    public Font OriginalFont { get => originalFont; set => originalFont = Font = value; }
 
     public Font Font
     {
-        get
-        {
-            return lblSampleText.Font;
-        }
+        get => lblSampleText.Font;
         set
         {
             lstFont.SelectedFontFamily = value.FontFamily;

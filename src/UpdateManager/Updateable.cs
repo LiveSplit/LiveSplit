@@ -4,10 +4,7 @@ namespace UpdateManager;
 
 internal class Updateable : IUpdateable
 {
-    public string UpdateName
-    {
-        get { return ""; }
-    }
+    public string UpdateName => "";
 
     public string XMLURL { get; set; }
 

@@ -42,7 +42,11 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
     {
         if (gameNames == null)
         {
-            static string map(dynamic x) => x.name;
+            static string map(dynamic x)
+            {
+                return x.name;
+            }
+
             gameNames = GetGameList().Select(map).ToList();
         }
         return gameNames;
@@ -58,7 +62,11 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
 
     public string GetGameIDFromName(string name)
     {
-        bool map(dynamic x) => x.name == name;
+        bool map(dynamic x)
+        {
+            return x.name == name;
+        }
+
         var gameID = GetGameList().Where(map).FirstOrDefault();
         if (gameID != null)
             return gameID.abbrev;

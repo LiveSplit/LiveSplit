@@ -13,17 +13,23 @@ public class DeepPointerTests
 {
     // List of default exceptions when invalid arguments are supplied
     [Fact]
-    public void ThrowException_WhenInitializedWithValidBaseAndNullOffsets() =>
+    public void ThrowException_WhenInitializedWithValidBaseAndNullOffsets()
+    {
         Assert.Throws<ArgumentNullException>(() => new DeepPointer(0, null));
+    }
 
     [Fact]
-    public void ThrowException_WhenInitializedWithValidModuleAndBaseAndNullOffsets() =>
+    public void ThrowException_WhenInitializedWithValidModuleAndBaseAndNullOffsets()
+    {
         Assert.Throws<ArgumentNullException>(() => new DeepPointer(string.Empty, 0, null));
+    }
 
     [Theory]
     [MemberData(nameof(DerefTypeFeeder))]
-    public void ThrowException_WhenInitializedWithValidBaseAndDerefTypeButNullOffsets(DerefType anyDerefType) =>
+    public void ThrowException_WhenInitializedWithValidBaseAndDerefTypeButNullOffsets(DerefType anyDerefType)
+    {
         Assert.Throws<ArgumentNullException>(() => new DeepPointer(0, anyDerefType, null));
+    }
 
     public static IEnumerable<object[]> DerefTypeFeeder()
     {
@@ -34,14 +40,20 @@ public class DeepPointerTests
     }
 
     [Fact]
-    public void ThrowException_WhenInitializedWithValidModuleBaseDerefTypeButNullOffsets() =>
+    public void ThrowException_WhenInitializedWithValidModuleBaseDerefTypeButNullOffsets()
+    {
         Assert.Throws<ArgumentNullException>(() => new DeepPointer(string.Empty, 0, DerefType.Auto, null));
+    }
 
     [Fact]
-    public void ThrowException_WhenInitializedWithValidPointerAndNullOffsets() =>
+    public void ThrowException_WhenInitializedWithValidPointerAndNullOffsets()
+    {
         Assert.Throws<ArgumentNullException>(() => new DeepPointer((IntPtr)0, null));
+    }
 
     [Fact]
-    public void ThrowException_WhenInitializedWithValidPointerDerefTypeButNullOffset() =>
+    public void ThrowException_WhenInitializedWithValidPointerDerefTypeButNullOffset()
+    {
         Assert.Throws<ArgumentNullException>(() => new DeepPointer((IntPtr)0, DerefType.Auto, null));
+    }
 }

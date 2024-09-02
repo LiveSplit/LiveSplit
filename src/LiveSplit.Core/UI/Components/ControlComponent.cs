@@ -16,8 +16,8 @@ public abstract class ControlComponent : IDeactivatableComponent
 
     public bool Activated
     {
-        get { return Control.Visible; }
-        set { Control.Visible = activated = value; }
+        get => Control.Visible;
+        set => Control.Visible = activated = value;
     }
     protected bool activated;
 

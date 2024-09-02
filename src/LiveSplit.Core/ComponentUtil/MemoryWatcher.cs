@@ -12,10 +12,7 @@ public class MemoryWatcherList : List<MemoryWatcher>
     public delegate void MemoryWatcherDataChangedEventHandler(MemoryWatcher watcher);
     public event MemoryWatcherDataChangedEventHandler OnWatcherDataChanged;
 
-    public MemoryWatcher this[string name]
-    {
-        get { return this.First(w => w.Name == name); }
-    }
+    public MemoryWatcher this[string name] => this.First(w => w.Name == name);
 
     public void UpdateAll(Process process)
     {
@@ -120,13 +117,13 @@ public class StringWatcher : MemoryWatcher
 {
     public new string Current
     {
-        get { return (string)base.Current; }
-        set { base.Current = value; }
+        get => (string)base.Current;
+        set => base.Current = value;
     }
     public new string Old
     {
-        get { return (string)base.Old; }
-        set { base.Old = value; }
+        get => (string)base.Old;
+        set => base.Old = value;
     }
 
     public delegate void StringChangedEventHandler(string old, string current);
@@ -214,13 +211,13 @@ public class MemoryWatcher<T> : MemoryWatcher where T : struct
 {
     public new T Current
     {
-        get { return (T)(base.Current ?? default(T)); }
-        set { base.Current = value; }
+        get => (T)(base.Current ?? default(T));
+        set => base.Current = value;
     }
     public new T Old
     {
-        get { return (T)(base.Old ?? default(T)); }
-        set { base.Old = value; }
+        get => (T)(base.Old ?? default(T));
+        set => base.Old = value;
     }
 
     public delegate void DataChangedEventHandler(T old, T current);

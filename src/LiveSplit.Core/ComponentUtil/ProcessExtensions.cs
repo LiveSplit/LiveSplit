@@ -19,10 +19,7 @@ public class ProcessModuleWow64Safe
     public string FileName { get; set; }
     public int ModuleMemorySize { get; set; }
     public string ModuleName { get; set; }
-    public FileVersionInfo FileVersionInfo
-    {
-        get { return FileVersionInfo.GetVersionInfo(FileName); }
-    }
+    public FileVersionInfo FileVersionInfo => FileVersionInfo.GetVersionInfo(FileName);
     public override string ToString()
     {
         return ModuleName ?? base.ToString();

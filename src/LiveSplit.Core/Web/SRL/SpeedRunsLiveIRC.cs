@@ -20,7 +20,7 @@ public class SpeedRunsLiveIRC : IDisposable
 
     public RaceState RaceState
     {
-        get { return _State; }
+        get => _State;
         set
         {
             _State = value;

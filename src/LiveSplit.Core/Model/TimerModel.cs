@@ -9,10 +9,7 @@ public class TimerModel : ITimerModel
 {
     public LiveSplitState CurrentState
     {
-        get
-        {
-            return _CurrentState;
-        }
+        get => _CurrentState;
         set
         {
             _CurrentState = value;
@@ -53,7 +50,10 @@ public class TimerModel : ITimerModel
         }
     }
 
-    public void InitializeGameTime() => CurrentState.IsGameTimeInitialized = true;
+    public void InitializeGameTime()
+    {
+        CurrentState.IsGameTimeInitialized = true;
+    }
 
     public void Split()
     {

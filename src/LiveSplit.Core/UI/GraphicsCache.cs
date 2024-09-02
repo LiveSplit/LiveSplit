@@ -12,10 +12,7 @@ public class GraphicsCache
 
     public object this[string flag]
     {
-        get
-        {
-            return FlagDirectory[flag];
-        }
+        get => FlagDirectory[flag];
         set
         {
             if (!FlagDirectory.ContainsKey(flag))

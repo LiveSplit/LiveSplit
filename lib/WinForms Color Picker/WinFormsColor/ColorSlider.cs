@@ -38,19 +38,19 @@ public class ColorSlider : UserControl
     [DefaultValue(5)]
     public int PickerSize
     {
-        get { return this.pickerSize; }
+        get => this.pickerSize;
         set { this.pickerSize = value; this.Invalidate(); }
     }
     [DefaultValue(true)]
     public bool ShowInnerPicker
     {
-        get { return this.innerPicker; }
-        set { this.innerPicker = value; }
+        get => this.innerPicker;
+        set => this.innerPicker = value;
     }
     [DefaultValue(0.5f)]
     public float ValuePercentual
     {
-        get { return this.pickerPos; }
+        get => this.pickerPos;
         set
         {
             float lastVal = this.pickerPos;
@@ -63,16 +63,10 @@ public class ColorSlider : UserControl
             }
         }
     }
-    public Color Value
-    {
-        get
-        {
-            return this.valTemp;
-        }
-    }
+    public Color Value => this.valTemp;
     public Color Minimum
     {
-        get { return this.min; }
+        get => this.min;
         set
         {
             if (this.min != value)
@@ -84,7 +78,7 @@ public class ColorSlider : UserControl
     }
     public Color Maximum
     {
-        get { return this.max; }
+        get => this.max;
         set
         {
             if (this.max != value)

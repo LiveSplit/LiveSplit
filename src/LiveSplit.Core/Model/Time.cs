@@ -34,7 +34,7 @@ public struct Time
 
     public TimeSpan? this[TimingMethod method]
     {
-        readonly get { return method == TimingMethod.RealTime ? RealTime : GameTime; }
+        readonly get => method == TimingMethod.RealTime ? RealTime : GameTime;
         set
         {
             if (method == TimingMethod.RealTime)
@@ -106,9 +106,18 @@ public struct Time
         return newTime;
     }
 
-    public override readonly string ToString() => $"{RealTime} | {GameTime}";
+    public override readonly string ToString()
+    {
+        return $"{RealTime} | {GameTime}";
+    }
 
-    public static Time operator +(Time a, Time b) => new Time(a.RealTime + b.RealTime, a.GameTime + b.GameTime);
+    public static Time operator +(Time a, Time b)
+    {
+        return new Time(a.RealTime + b.RealTime, a.GameTime + b.GameTime);
+    }
 
-    public static Time operator -(Time a, Time b) => new Time(a.RealTime - b.RealTime, a.GameTime - b.GameTime);
+    public static Time operator -(Time a, Time b)
+    {
+        return new Time(a.RealTime - b.RealTime, a.GameTime - b.GameTime);
+    }
 }

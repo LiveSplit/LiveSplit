@@ -12,8 +12,8 @@ public class Segment : ISegment
     public string Name { get; set; }
     public Time PersonalBestSplitTime
     {
-        get { return Comparisons[Run.PersonalBestComparisonName]; }
-        set { Comparisons[Run.PersonalBestComparisonName] = value; }
+        get => Comparisons[Run.PersonalBestComparisonName];
+        set => Comparisons[Run.PersonalBestComparisonName] = value;
     }
     public IComparisons Comparisons { get; set; }
     public Time BestSegmentTime { get; set; }
@@ -48,5 +48,8 @@ public class Segment : ISegment
         };
     }
 
-    object ICloneable.Clone() => Clone();
+    object ICloneable.Clone()
+    {
+        return Clone();
+    }
 }

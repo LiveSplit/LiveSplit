@@ -14,8 +14,12 @@ public struct AtomicDateTime
     }
 
     public static TimeSpan operator -(AtomicDateTime a, AtomicDateTime b)
-        => a.Time - b.Time;
+    {
+        return a.Time - b.Time;
+    }
 
     public static TimeSpan operator -(AtomicDateTime a, DateTime b)
-        => a.Time - b;
+    {
+        return a.Time - b;
+    }
 }

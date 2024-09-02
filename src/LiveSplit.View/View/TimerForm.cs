@@ -52,8 +52,8 @@ public partial class TimerForm : Form
     protected bool ResetMessageShown { get; set; }
     public new ILayout Layout
     {
-        get { return CurrentState.Layout; }
-        set { CurrentState.Layout = value; }
+        get => CurrentState.Layout;
+        set => CurrentState.Layout = value;
     }
     protected float OldSize { get; set; }
     protected int RefreshesRemaining { get; set; }
@@ -149,13 +149,7 @@ public partial class TimerForm : Form
     }
     private bool MousePassThroughState = false;
 
-    private bool IsForegroundWindow
-    {
-        get
-        {
-            return GetForegroundWindow() == Handle;
-        }
-    }
+    private bool IsForegroundWindow => GetForegroundWindow() == Handle;
 
     private float? ResizingInitialAspectRatio { get; set; } = null;
 
@@ -484,7 +478,7 @@ public partial class TimerForm : Form
             var item = new ToolStripMenuItem();
             item.Text = title.EscapeMenuItemText();
             item.Tag = race.Id;
-            item.Click += (s, e) => { raceProvider.JoinRace?.Invoke(Model, race.Id); };
+            item.Click += (s, e) => raceProvider.JoinRace?.Invoke(Model, race.Id);
             menuItemsToAdd.Add(item);
         }
 
@@ -549,7 +543,7 @@ public partial class TimerForm : Form
 
         var newRaceItem = new ToolStripMenuItem();
         newRaceItem.Text = "New Race...";
-        newRaceItem.Click += (s, e) => { raceProvider.CreateRace?.Invoke(Model); };
+        newRaceItem.Click += (s, e) => raceProvider.CreateRace?.Invoke(Model);
         menuItemsToAdd.Add(newRaceItem);
 
         replaceItems(menuItemsToAdd);
@@ -627,10 +621,7 @@ public partial class TimerForm : Form
 
     private void CheckForUpdates()
     {
-        UpdateHelper.Update(this, () => Invoke(new Action(() =>
-                     {
-                         Process.GetCurrentProcess().Kill();
-                     })),
+        UpdateHelper.Update(this, () => Invoke(new Action(() => Process.GetCurrentProcess().Kill())),
                     new IUpdateable[] {
                         new LiveSplitUpdateable(),
                         UpdateManagerUpdateable.Instance }
@@ -659,20 +650,14 @@ public partial class TimerForm : Form
             Server.StopTcp();
             webSocketMenuItem.Enabled = true;
 
-            this.InvokeIfRequired(() =>
-            {
-                serverMenuItem.Text = "Start TCP Server";
-            });
+            this.InvokeIfRequired(() => serverMenuItem.Text = "Start TCP Server");
         }
         else
         {
             Server.StartTcp();
             webSocketMenuItem.Enabled = false;
 
-            this.InvokeIfRequired(() =>
-            {
-                serverMenuItem.Text = "Stop TCP Server";
-            });
+            this.InvokeIfRequired(() => serverMenuItem.Text = "Stop TCP Server");
         }
 
         ServerStarted = !ServerStarted;
@@ -685,20 +670,14 @@ public partial class TimerForm : Form
             Server.StopWs();
             serverMenuItem.Enabled = true;
 
-            this.InvokeIfRequired(() =>
-            {
-                webSocketMenuItem.Text = "Start WebSocket Server";
-            });
+            this.InvokeIfRequired(() => webSocketMenuItem.Text = "Start WebSocket Server");
         }
         else
         {
             Server.StartWs();
             serverMenuItem.Enabled = false;
 
-            this.InvokeIfRequired(() =>
-            {
-                webSocketMenuItem.Text = "Stop WebSocket Server";
-            });
+            this.InvokeIfRequired(() => webSocketMenuItem.Text = "Stop WebSocket Server");
         }
 
         WebSocketStarted = !WebSocketStarted;
@@ -785,10 +764,7 @@ public partial class TimerForm : Form
 
     private void CurrentState_OnUndoAllPauses(object sender, EventArgs e)
     {
-        this.InvokeIfRequired(() =>
-        {
-            undoPausesMenuItem.Enabled = false;
-        });
+        this.InvokeIfRequired(() => undoPausesMenuItem.Enabled = false);
     }
 
     private void AddSplitsFileToLRU(string filePath, IRun run, TimingMethod lastTimingMethod, string lastHotkeyProfile)
@@ -832,10 +808,7 @@ public partial class TimerForm : Form
 
                     var menuItem = new ToolStripMenuItem(fileName.EscapeMenuItemText());
                     menuItem.Tag = "FileName";
-                    menuItem.Click += (x, y) =>
-                    {
-                        OpenRunFromFile(splitsFile.Path);
-                    };
+                    menuItem.Click += (x, y) => OpenRunFromFile(splitsFile.Path);
                     categoryMenuItem.DropDownItems.Add(menuItem);
                 }
 
@@ -963,7 +936,7 @@ public partial class TimerForm : Form
         foreach (var item in Settings.RecentLayouts.Reverse().Where(x => !string.IsNullOrEmpty(x)))
         {
             var menuItem = new ToolStripMenuItem(Path.GetFileNameWithoutExtension(item).EscapeMenuItemText());
-            menuItem.Click += (x, y) => { OpenLayoutFromFile(item); };
+            menuItem.Click += (x, y) => OpenLayoutFromFile(item);
             openLayoutMenuItem.DropDownItems.Add(menuItem);
         }
         if (openLayoutMenuItem.DropDownItems.Count > 0)
@@ -975,7 +948,7 @@ public partial class TimerForm : Form
         openFromURLMenuItem.Click += openLayoutFromURLMenuItem_Click;
         openLayoutMenuItem.DropDownItems.Add(openFromURLMenuItem);
         var defaultLayoutMenuItem = new ToolStripMenuItem("Default");
-        defaultLayoutMenuItem.Click += (x, y) => { LoadDefaultLayout(); };
+        defaultLayoutMenuItem.Click += (x, y) => LoadDefaultLayout();
         openLayoutMenuItem.DropDownItems.Add(defaultLayoutMenuItem);
         openLayoutMenuItem.DropDownItems.Add(new ToolStripSeparator());
         var editLayoutHistoryMenuItem = new ToolStripMenuItem("Edit History");

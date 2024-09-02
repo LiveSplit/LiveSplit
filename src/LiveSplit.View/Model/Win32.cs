@@ -58,8 +58,8 @@ internal class Win32
         public int Right;
         public int Bottom;
 
-        public readonly int Width { get { return Right - Left; } }
-        public readonly int Height { get { return Bottom - Top; } }
+        public readonly int Width => Right - Left;
+        public readonly int Height => Bottom - Top;
     }
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]

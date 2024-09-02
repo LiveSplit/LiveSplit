@@ -212,25 +212,13 @@ public class Credential
     private readonly string _password;
     private readonly CredentialType _credentialType;
 
-    public CredentialType CredentialType
-    {
-        get { return _credentialType; }
-    }
+    public CredentialType CredentialType => _credentialType;
 
-    public string ApplicationName
-    {
-        get { return _applicationName; }
-    }
+    public string ApplicationName => _applicationName;
 
-    public string UserName
-    {
-        get { return _userName; }
-    }
+    public string UserName => _userName;
 
-    public string Password
-    {
-        get { return _password; }
-    }
+    public string Password => _password;
 
     public Credential(CredentialType credentialType, string applicationName, string userName, string password)
     {

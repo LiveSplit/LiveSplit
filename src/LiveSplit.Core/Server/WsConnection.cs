@@ -16,5 +16,8 @@ internal class WsConnection : WebSocketBehavior, IConnection
         _eventHandler.Invoke(this, new MessageEventArgs(this, e.Data));
     }
 
-    public void SendMessage(string message) => Send(message);
+    public void SendMessage(string message)
+    {
+        Send(message);
+    }
 }

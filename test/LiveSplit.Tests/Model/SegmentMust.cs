@@ -37,8 +37,10 @@ public class SegmentMust
         VerifySegment(sut);
     }
 
-    private static Segment CreateSubjectUnderTest() =>
-        new Segment("any name", AnyPersonalBestSplitTime, AnyBestSegmentTime, AnyBitmap, AnySplitTime);
+    private static Segment CreateSubjectUnderTest()
+    {
+        return new Segment("any name", AnyPersonalBestSplitTime, AnyBestSegmentTime, AnyBitmap, AnySplitTime);
+    }
 
     private static void VerifySegment(Segment sut)
     {

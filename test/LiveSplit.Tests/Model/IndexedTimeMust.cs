@@ -60,8 +60,10 @@ public class IndexedTimeMust
     }
 
     [Fact]
-    public void ReturnNull_WhenDeserializingNullOldXml() =>
+    public void ReturnNull_WhenDeserializingNullOldXml()
+    {
         Assert.Throws<NullReferenceException>(() => IndexedTimeHelper.ParseXmlOld(null));
+    }
 
     [Fact]
     public void DeserializeOldXmlCorrectly()

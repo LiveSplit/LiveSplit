@@ -39,13 +39,13 @@ public class ColorPanel : UserControl
     [DefaultValue(8)]
     public int PickerSize
     {
-        get { return this.pickerSize; }
+        get => this.pickerSize;
         set { this.pickerSize = value; this.Invalidate(); }
     }
     [DefaultValue(0.5f)]
     public PointF ValuePercentual
     {
-        get { return this.pickerPos; }
+        get => this.pickerPos;
         set
         {
             PointF last = this.pickerPos;
@@ -60,16 +60,10 @@ public class ColorPanel : UserControl
             }
         }
     }
-    public Color Value
-    {
-        get
-        {
-            return this.valTemp;
-        }
-    }
+    public Color Value => this.valTemp;
     public Color TopLeftColor
     {
-        get { return this.clrTopLeft; }
+        get => this.clrTopLeft;
         set
         {
             if (this.clrTopLeft != value)
@@ -81,7 +75,7 @@ public class ColorPanel : UserControl
     }
     public Color TopRightColor
     {
-        get { return this.clrTopRight; }
+        get => this.clrTopRight;
         set
         {
             if (this.clrTopRight != value)
@@ -93,7 +87,7 @@ public class ColorPanel : UserControl
     }
     public Color BottomLeftColor
     {
-        get { return this.clrBottomLeft; }
+        get => this.clrBottomLeft;
         set
         {
             if (this.clrBottomLeft != value)
@@ -105,7 +99,7 @@ public class ColorPanel : UserControl
     }
     public Color BottomRightColor
     {
-        get { return this.clrBottomRight; }
+        get => this.clrBottomRight;
         set
         {
             if (this.clrBottomRight != value)

@@ -201,9 +201,9 @@ public struct Vector3f
     public float Y { get; set; }
     public float Z { get; set; }
 
-    public readonly int IX { get { return (int)X; } }
-    public readonly int IY { get { return (int)Y; } }
-    public readonly int IZ { get { return (int)Z; } }
+    public readonly int IX => (int)X;
+    public readonly int IY => (int)Y;
+    public readonly int IZ => (int)Z;
 
     public Vector3f(float x, float y, float z) : this()
     {

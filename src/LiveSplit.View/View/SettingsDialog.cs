@@ -28,45 +28,45 @@ public partial class SettingsDialog : Form
     public string ToggleGlobalHotkeys => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleGlobalHotkeys);
     public float HotkeyDelay
     {
-        get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].HotkeyDelay; }
-        set { Settings.HotkeyProfiles[SelectedHotkeyProfile].HotkeyDelay = Math.Max(value, 0); }
+        get => Settings.HotkeyProfiles[SelectedHotkeyProfile].HotkeyDelay;
+        set => Settings.HotkeyProfiles[SelectedHotkeyProfile].HotkeyDelay = Math.Max(value, 0);
     }
     public bool GlobalHotkeysEnabled
     {
-        get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].GlobalHotkeysEnabled; }
-        set { Settings.HotkeyProfiles[SelectedHotkeyProfile].GlobalHotkeysEnabled = value; }
+        get => Settings.HotkeyProfiles[SelectedHotkeyProfile].GlobalHotkeysEnabled;
+        set => Settings.HotkeyProfiles[SelectedHotkeyProfile].GlobalHotkeysEnabled = value;
     }
     public bool DoubleTapPrevention
     {
-        get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].DoubleTapPrevention; }
-        set { Settings.HotkeyProfiles[SelectedHotkeyProfile].DoubleTapPrevention = value; }
+        get => Settings.HotkeyProfiles[SelectedHotkeyProfile].DoubleTapPrevention;
+        set => Settings.HotkeyProfiles[SelectedHotkeyProfile].DoubleTapPrevention = value;
     }
     public bool DeactivateHotkeysForOtherPrograms
     {
-        get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].DeactivateHotkeysForOtherPrograms; }
-        set { Settings.HotkeyProfiles[SelectedHotkeyProfile].DeactivateHotkeysForOtherPrograms = value; }
+        get => Settings.HotkeyProfiles[SelectedHotkeyProfile].DeactivateHotkeysForOtherPrograms;
+        set => Settings.HotkeyProfiles[SelectedHotkeyProfile].DeactivateHotkeysForOtherPrograms = value;
     }
     public bool AllowGamepadsAsHotkeys
     {
-        get { return Settings.HotkeyProfiles[SelectedHotkeyProfile].AllowGamepadsAsHotkeys; }
-        set { Settings.HotkeyProfiles[SelectedHotkeyProfile].AllowGamepadsAsHotkeys = value; }
+        get => Settings.HotkeyProfiles[SelectedHotkeyProfile].AllowGamepadsAsHotkeys;
+        set => Settings.HotkeyProfiles[SelectedHotkeyProfile].AllowGamepadsAsHotkeys = value;
     }
 
     public int RefreshRate
     {
-        get { return Settings.RefreshRate; }
-        set { Settings.RefreshRate = Math.Min(Math.Max(value, 20), 300); }
+        get => Settings.RefreshRate;
+        set => Settings.RefreshRate = Math.Min(Math.Max(value, 20), 300);
     }
 
     public int ServerPort
     {
-        get { return Settings.ServerPort; }
-        set { Settings.ServerPort = value; }
+        get => Settings.ServerPort;
+        set => Settings.ServerPort = value;
     }
 
     public event EventHandler SumOfBestModeChanged;
 
-    public string RaceViewer { get { return Settings.RaceViewer.Name; } set { Settings.RaceViewer = Web.SRL.RaceViewer.FromName(value); } }
+    public string RaceViewer { get => Settings.RaceViewer.Name; set => Settings.RaceViewer = Web.SRL.RaceViewer.FromName(value); }
 
     public SettingsDialog(CompositeHook hook, ISettings settings, string hotkeyProfile)
     {
@@ -238,59 +238,35 @@ public partial class SettingsDialog : Form
     }
     private void Split_Set_Enter(object sender, EventArgs e)
     {
-        SetHotkeyHandlers((TextBox)sender, x =>
-        {
-            Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey = x;
-        });
+        SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].SplitKey = x);
     }
     private void Reset_Set_Enter(object sender, EventArgs e)
     {
-        SetHotkeyHandlers((TextBox)sender, x =>
-        {
-            Settings.HotkeyProfiles[SelectedHotkeyProfile].ResetKey = x;
-        });
+        SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].ResetKey = x);
     }
     private void Skip_Set_Enter(object sender, EventArgs e)
     {
-        SetHotkeyHandlers((TextBox)sender, x =>
-        {
-            Settings.HotkeyProfiles[SelectedHotkeyProfile].SkipKey = x;
-        });
+        SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].SkipKey = x);
     }
     private void Undo_Set_Enter(object sender, EventArgs e)
     {
-        SetHotkeyHandlers((TextBox)sender, x =>
-        {
-            Settings.HotkeyProfiles[SelectedHotkeyProfile].UndoKey = x;
-        });
+        SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].UndoKey = x);
     }
     private void Pause_Set_Enter(object sender, EventArgs e)
     {
-        SetHotkeyHandlers((TextBox)sender, x =>
-        {
-            Settings.HotkeyProfiles[SelectedHotkeyProfile].PauseKey = x;
-        });
+        SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].PauseKey = x);
     }
     private void Toggle_Set_Enter(object sender, EventArgs e)
     {
-        SetHotkeyHandlers((TextBox)sender, x =>
-        {
-            Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleGlobalHotkeys = x;
-        });
+        SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleGlobalHotkeys = x);
     }
     private void Switch_Previous_Set_Enter(object sender, EventArgs e)
     {
-        SetHotkeyHandlers((TextBox)sender, x =>
-        {
-            Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonPrevious = x;
-        });
+        SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonPrevious = x);
     }
     private void Switch_Next_Set_Enter(object sender, EventArgs e)
     {
-        SetHotkeyHandlers((TextBox)sender, x =>
-        {
-            Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonNext = x;
-        });
+        SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonNext = x);
     }
 
     private void ClickControl(object sender, EventArgs e)

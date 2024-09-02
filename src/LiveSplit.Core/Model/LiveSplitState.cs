@@ -33,10 +33,7 @@ public class LiveSplitState : ICloneable
     internal TimeSpan? loadingTimes;
     public TimeSpan LoadingTimes
     {
-        get
-        {
-            return loadingTimes ?? TimeSpan.Zero;
-        }
+        get => loadingTimes ?? TimeSpan.Zero;
         set
         {
             loadingTimes = value;
@@ -48,10 +45,7 @@ public class LiveSplitState : ICloneable
     }
     public bool IsGameTimeInitialized
     {
-        get
-        {
-            return loadingTimes.HasValue;
-        }
+        get => loadingTimes.HasValue;
         set
         {
             if (value)
@@ -65,7 +59,7 @@ public class LiveSplitState : ICloneable
     private bool isGameTimePaused;
     public bool IsGameTimePaused
     {
-        get { return isGameTimePaused; }
+        get => isGameTimePaused;
         set
         {
             if (!value && isGameTimePaused)
@@ -215,7 +209,13 @@ public class LiveSplitState : ICloneable
         }
     }
 
-    public void CallRunManuallyModified() => RunManuallyModified?.Invoke(this, null);
+    public void CallRunManuallyModified()
+    {
+        RunManuallyModified?.Invoke(this, null);
+    }
 
-    public void CallComparisonRenamed(EventArgs e) => ComparisonRenamed?.Invoke(this, e);
+    public void CallComparisonRenamed(EventArgs e)
+    {
+        ComparisonRenamed?.Invoke(this, e);
+    }
 }
