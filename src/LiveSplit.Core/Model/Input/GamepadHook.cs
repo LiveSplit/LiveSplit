@@ -54,14 +54,14 @@ public class GamepadHook
     public GamepadHook()
     {
         var input = new DirectInput();
-        var devices = input.GetDevices();
+        IList<DeviceInstance> devices = input.GetDevices();
         Joysticks = devices
             .Where(x => x.Type != DeviceType.Keyboard)
             .Select(x => new Joystick(input, x.InstanceGuid)).ToList();
 
-        for (var ind = 0; ind < Joysticks.Count; ind++)
+        for (int ind = 0; ind < Joysticks.Count; ind++)
         {
-            var joystick = Joysticks[ind];
+            Joystick joystick = Joysticks[ind];
             try
             {
                 joystick.Properties.BufferSize = 128;
@@ -83,8 +83,8 @@ public class GamepadHook
 
     protected bool IsPressed(Joystick joystick, JoystickOffset button, int value)
     {
-        var shortMaskMax = 0xFF00;
-        var shortMaskMin = 0xFF;
+        int shortMaskMax = 0xFF00;
+        int shortMaskMin = 0xFF;
 
         if (joystick.Information.Type == DeviceType.Mouse)
         {
@@ -127,15 +127,15 @@ public class GamepadHook
 
     protected string ToString(Joystick joystick, JoystickOffset button, int value)
     {
-        var shortMaskMax = 0xFF00;
+        int shortMaskMax = 0xFF00;
 
-        var originalName = button.ToString();
+        string originalName = button.ToString();
 
         if (joystick.Information.Type == DeviceType.Mouse)
         {
             if (button == JoystickOffset.Z)
             {
-                var result = value < LastScrollWheelValue ? "Scroll_Down" : "Scroll_Up";
+                string result = value < LastScrollWheelValue ? "Scroll_Down" : "Scroll_Up";
                 LastScrollWheelValue = value;
                 return result;
             }
@@ -227,19 +227,19 @@ public class GamepadHook
         {
             Joystick brokenJoystick = null;
 
-            var i = 0;
+            int i = 0;
 
-            foreach (var joystick in Joysticks)
+            foreach (Joystick joystick in Joysticks)
             {
                 try
                 {
                     joystick.Poll();
-                    var states = joystick.GetBufferedData();
-                    foreach (var state in states)
+                    JoystickUpdate[] states = joystick.GetBufferedData();
+                    foreach (JoystickUpdate state in states)
                     {
                         if (IsPressed(joystick, state.Offset, state.Value) && ButtonPressed != null)
                         {
-                            var buttonName = ToString(joystick, state.Offset, state.Value);
+                            string buttonName = ToString(joystick, state.Offset, state.Value);
                             ButtonPressed(this, new GamepadButton(joystick.Information.InstanceName + " " + joystick.Information.InstanceGuid, buttonName));
                         }
                     }

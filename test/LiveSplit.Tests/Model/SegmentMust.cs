@@ -12,10 +12,10 @@ namespace LiveSplit.Tests.Model;
 
 public class SegmentMust
 {
-    private static readonly Bitmap AnyBitmap = new Bitmap(10, 10);
+    private static readonly Bitmap AnyBitmap = new(10, 10);
     private static readonly Time AnyPersonalBestSplitTime = Time.Zero;
-    private static readonly Time AnyBestSegmentTime = new Time(AnyTimeSpan, AnotherTimeSpan);
-    private static readonly Time AnySplitTime = new Time(YetAnotherTimeSpan, AnyTimeSpan);
+    private static readonly Time AnyBestSegmentTime = new(AnyTimeSpan, AnotherTimeSpan);
+    private static readonly Time AnySplitTime = new(YetAnotherTimeSpan, AnyTimeSpan);
 
     [Fact]
     public void BeInitializedCorrectly_WhenUsingDefaultValues()
@@ -33,7 +33,7 @@ public class SegmentMust
     [Fact]
     public void BeInitializedCorrectly()
     {
-        var sut = CreateSubjectUnderTest();
+        Segment sut = CreateSubjectUnderTest();
         VerifySegment(sut);
     }
 
@@ -56,8 +56,8 @@ public class SegmentMust
     [Fact]
     public void BeClonedCorrectly()
     {
-        var original = CreateSubjectUnderTest();
-        var sut = original.Clone();
+        Segment original = CreateSubjectUnderTest();
+        Segment sut = original.Clone();
         VerifySegment(sut);
     }
 

@@ -63,8 +63,8 @@ public abstract class ControlComponent : IDeactivatableComponent
     {
         var points = new PointF[]
         {
-            new PointF(0, 0),
-            new PointF(width, height)
+            new(0, 0),
+            new(width, height)
         };
         g.Transform.TransformPoints(points);
 

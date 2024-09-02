@@ -23,7 +23,7 @@ public static class MouseHook
 
     private static IntPtr SetHook(LowLevelMouseProc proc)
     {
-        using Process curProcess = Process.GetCurrentProcess();
+        using var curProcess = Process.GetCurrentProcess();
         using ProcessModule curModule = curProcess.MainModule;
         return SetWindowsHookEx(WH_MOUSE_LL, proc,
           GetModuleHandle(curModule.ModuleName), 0);
@@ -36,7 +36,7 @@ public static class MouseHook
     {
         if (nCode >= 0 && MouseMessages.WM_LBUTTONUP == (MouseMessages)wParam)
         {
-            MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
+            var hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
             MouseAction(null, new EventArgs());
         }
 

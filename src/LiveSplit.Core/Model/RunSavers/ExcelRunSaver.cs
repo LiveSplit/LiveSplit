@@ -13,12 +13,12 @@ public class ExcelRunSaver : IRunSaver
     public void Save(IRun run, Stream stream)
     {
         var workbook = new Workbook();
-        var splitsRealTimeSheet = workbook.Sheets.AddSheet("Splits (Real Time)");
-        var attemptHistoryRealTimeSheet = workbook.Sheets.AddSheet("Attempt History (Real Time)");
-        var segmentHistoryRealTimeSheet = workbook.Sheets.AddSheet("Segment History (Real Time)");
-        var splitsGameTimeSheet = workbook.Sheets.AddSheet("Splits (Game Time)");
-        var attemptHistoryGameTimeSheet = workbook.Sheets.AddSheet("Attempt History (Game Time)");
-        var segmentHistoryGameTimeSheet = workbook.Sheets.AddSheet("Segment History (Game Time)");
+        Sheet splitsRealTimeSheet = workbook.Sheets.AddSheet("Splits (Real Time)");
+        Sheet attemptHistoryRealTimeSheet = workbook.Sheets.AddSheet("Attempt History (Real Time)");
+        Sheet segmentHistoryRealTimeSheet = workbook.Sheets.AddSheet("Segment History (Real Time)");
+        Sheet splitsGameTimeSheet = workbook.Sheets.AddSheet("Splits (Game Time)");
+        Sheet attemptHistoryGameTimeSheet = workbook.Sheets.AddSheet("Attempt History (Game Time)");
+        Sheet segmentHistoryGameTimeSheet = workbook.Sheets.AddSheet("Segment History (Game Time)");
 
         FillSplitTimesSheet(splitsRealTimeSheet, run, TimingMethod.RealTime);
         FillAttemptHistorySheet(attemptHistoryRealTimeSheet, run, TimingMethod.RealTime);
@@ -32,12 +32,12 @@ public class ExcelRunSaver : IRunSaver
 
     private void FillAttemptHistorySheet(Sheet sheet, IRun run, TimingMethod method)
     {
-        var attemptIdColumn = 0;
-        var startedColumn = 1;
-        var endedColumn = 2;
-        var timeColumn = 3;
+        int attemptIdColumn = 0;
+        int startedColumn = 1;
+        int endedColumn = 2;
+        int timeColumn = 3;
 
-        var header = sheet.Data.Rows[0];
+        SheetRow header = sheet.Data.Rows[0];
 
         header[attemptIdColumn].Value = "Attempt ID";
         header[attemptIdColumn].Style.Font.Bold = true;
@@ -73,11 +73,11 @@ public class ExcelRunSaver : IRunSaver
         header[timeColumn].Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
         header[timeColumn].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
 
-        var rowIndex = 1;
-        var bestTime = TimeSpan.MaxValue;
-        foreach (var attempt in run.AttemptHistory)
+        int rowIndex = 1;
+        TimeSpan bestTime = TimeSpan.MaxValue;
+        foreach (Attempt attempt in run.AttemptHistory)
         {
-            var row = sheet.Data.Rows[rowIndex];
+            SheetRow row = sheet.Data.Rows[rowIndex];
 
             row[attemptIdColumn].Value = attempt.Index;
             row[attemptIdColumn].Style.Fill = CellFill.Solid(
@@ -85,7 +85,7 @@ public class ExcelRunSaver : IRunSaver
                 ? new Color(221, 221, 221)
                 : new Color(238, 238, 238));
 
-            var startedCell = row[startedColumn];
+            CellData startedCell = row[startedColumn];
             startedCell.Style.Fill = CellFill.Solid(
                 ((rowIndex & 1) == 1)
                 ? new Color(221, 221, 221)
@@ -98,7 +98,7 @@ public class ExcelRunSaver : IRunSaver
                 startedCell.Value = attempt.Started.Value.Time;
             }
 
-            var endedCell = row[endedColumn];
+            CellData endedCell = row[endedColumn];
             endedCell.Style.Fill = CellFill.Solid(
                 ((rowIndex & 1) == 1)
                 ? new Color(221, 221, 221)
@@ -111,14 +111,14 @@ public class ExcelRunSaver : IRunSaver
                 endedCell.Value = attempt.Ended.Value.Time;
             }
 
-            var timeCell = row[timeColumn];
+            CellData timeCell = row[timeColumn];
 
             timeCell.Style.Fill = CellFill.Solid(
                 ((rowIndex & 1) == 1)
                 ? new Color(221, 221, 221)
                 : new Color(238, 238, 238));
 
-            var time = attempt.Time[method];
+            TimeSpan? time = attempt.Time[method];
             if (time.HasValue)
             {
                 timeCell.Value = time.Value.TotalDays;
@@ -142,7 +142,7 @@ public class ExcelRunSaver : IRunSaver
 
     private static void FillSegmentHistorySheet(Sheet sheet, IRun run, TimingMethod method)
     {
-        var header = sheet.Data.Rows[0];
+        SheetRow header = sheet.Data.Rows[0];
 
         header[0].Value = "Attempt ID";
         header[0].Style.Font.Bold = true;
@@ -151,10 +151,10 @@ public class ExcelRunSaver : IRunSaver
         header[0].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
         header[0].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
 
-        var columnIndex = 1;
-        foreach (var segment in run)
+        int columnIndex = 1;
+        foreach (ISegment segment in run)
         {
-            var cell = header[columnIndex];
+            CellData cell = header[columnIndex];
 
             cell.Value = segment.Name;
 
@@ -168,10 +168,10 @@ public class ExcelRunSaver : IRunSaver
             columnIndex++;
         }
 
-        var rowIndex = 1;
-        foreach (var attempt in run.AttemptHistory)
+        int rowIndex = 1;
+        foreach (Attempt attempt in run.AttemptHistory)
         {
-            var row = sheet.Data.Rows[rowIndex];
+            SheetRow row = sheet.Data.Rows[rowIndex];
 
             row[0].Value = attempt.Index;
             row[0].Style.Fill = CellFill.Solid(
@@ -179,12 +179,12 @@ public class ExcelRunSaver : IRunSaver
                 ? new Color(221, 221, 221)
                 : new Color(238, 238, 238));
             columnIndex = 1;
-            foreach (var segment in run)
+            foreach (ISegment segment in run)
             {
-                var cell = row[columnIndex];
+                CellData cell = row[columnIndex];
                 if (segment.SegmentHistory.TryGetValue(attempt.Index, out Time segmentHistoryElement))
                 {
-                    var time = segmentHistoryElement[method];
+                    TimeSpan? time = segmentHistoryElement[method];
                     if (time.HasValue)
                     {
                         cell.Value = time.Value.TotalDays;
@@ -208,7 +208,7 @@ public class ExcelRunSaver : IRunSaver
 
     private static void FillSplitTimesSheet(Sheet sheet, IRun run, TimingMethod method)
     {
-        var header = sheet.Data.Rows[0];
+        SheetRow header = sheet.Data.Rows[0];
 
         header[0].Value = "Segment";
         header[0].Style.Font.Bold = true;
@@ -217,10 +217,10 @@ public class ExcelRunSaver : IRunSaver
         header[0].Style.Border.Bottom = new BorderEdge { Style = BorderStyle.Medium, Color = Color.White };
         header[0].Style.Fill = CellFill.Solid(new Color(128, 128, 128));
 
-        var columnIndex = 1;
-        foreach (var comparisonName in run.Comparisons.Where(x => x != NoneComparisonGenerator.ComparisonName))
+        int columnIndex = 1;
+        foreach (string comparisonName in run.Comparisons.Where(x => x != NoneComparisonGenerator.ComparisonName))
         {
-            var cell = header[columnIndex];
+            CellData cell = header[columnIndex];
 
             cell.Value = comparisonName;
 
@@ -234,12 +234,12 @@ public class ExcelRunSaver : IRunSaver
             columnIndex++;
         }
 
-        var lastTime = TimeSpan.Zero;
+        TimeSpan lastTime = TimeSpan.Zero;
 
-        var rowIndex = 1;
-        foreach (var segment in run)
+        int rowIndex = 1;
+        foreach (ISegment segment in run)
         {
-            var row = sheet.Data.Rows[rowIndex];
+            SheetRow row = sheet.Data.Rows[rowIndex];
 
             row[0].Value = segment.Name;
             row[0].Style.Fill = CellFill.Solid(
@@ -248,10 +248,10 @@ public class ExcelRunSaver : IRunSaver
                 : new Color(238, 238, 238));
             columnIndex = 1;
 
-            foreach (var comparisonName in run.Comparisons.Where(x => x != NoneComparisonGenerator.ComparisonName))
+            foreach (string comparisonName in run.Comparisons.Where(x => x != NoneComparisonGenerator.ComparisonName))
             {
-                var cell = row[columnIndex];
-                var time = segment.Comparisons[comparisonName][method];
+                CellData cell = row[columnIndex];
+                TimeSpan? time = segment.Comparisons[comparisonName][method];
                 if (time.HasValue)
                 {
                     cell.Value = time.Value.TotalDays;

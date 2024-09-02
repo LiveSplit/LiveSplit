@@ -36,7 +36,7 @@ public class Segment : ISegment
 
     public Segment Clone()
     {
-        var newSegmentHistory = SegmentHistory.Clone();
+        SegmentHistory newSegmentHistory = SegmentHistory.Clone();
 
         return new Segment(Name)
         {

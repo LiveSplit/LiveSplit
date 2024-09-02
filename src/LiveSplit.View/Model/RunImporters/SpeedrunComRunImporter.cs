@@ -10,7 +10,7 @@ public class SpeedrunComRunImporter : IRunImporter
     public IRun Import(Form form = null)
     {
         var dialog = new BrowseSpeedrunComDialog(false);
-        var result = dialog.ShowDialog(form);
+        DialogResult result = dialog.ShowDialog(form);
         if (result == DialogResult.OK)
         {
             return dialog.Run;
@@ -22,8 +22,8 @@ public class SpeedrunComRunImporter : IRunImporter
     public string ImportAsComparison(IRun run, Form form = null)
     {
         var dialog = new BrowseSpeedrunComDialog(true, run.GameName, run.CategoryName);
-        var result = dialog.ShowDialog(form);
-        var name = dialog.RunName;
+        DialogResult result = dialog.ShowDialog(form);
+        string name = dialog.RunName;
         if (result == DialogResult.OK)
         {
             result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref name);

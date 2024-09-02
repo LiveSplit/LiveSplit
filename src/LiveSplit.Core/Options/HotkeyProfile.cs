@@ -32,7 +32,7 @@ public class HotkeyProfile : ICloneable
     {
         var hotkeyProfile = new HotkeyProfile();
 
-        var keyStart = element["SplitKey"];
+        XmlElement keyStart = element["SplitKey"];
         if (!string.IsNullOrEmpty(keyStart.InnerText))
         {
             hotkeyProfile.SplitKey = new KeyOrButton(keyStart.InnerText);
@@ -42,7 +42,7 @@ public class HotkeyProfile : ICloneable
             hotkeyProfile.SplitKey = null;
         }
 
-        var keyReset = element["ResetKey"];
+        XmlElement keyReset = element["ResetKey"];
         if (!string.IsNullOrEmpty(keyReset.InnerText))
         {
             hotkeyProfile.ResetKey = new KeyOrButton(keyReset.InnerText);
@@ -52,7 +52,7 @@ public class HotkeyProfile : ICloneable
             hotkeyProfile.ResetKey = null;
         }
 
-        var keySkip = element["SkipKey"];
+        XmlElement keySkip = element["SkipKey"];
         if (!string.IsNullOrEmpty(keySkip.InnerText))
         {
             hotkeyProfile.SkipKey = new KeyOrButton(keySkip.InnerText);
@@ -62,7 +62,7 @@ public class HotkeyProfile : ICloneable
             hotkeyProfile.SkipKey = null;
         }
 
-        var keyUndo = element["UndoKey"];
+        XmlElement keyUndo = element["UndoKey"];
         if (!string.IsNullOrEmpty(keyUndo.InnerText))
         {
             hotkeyProfile.UndoKey = new KeyOrButton(keyUndo.InnerText);
@@ -74,7 +74,7 @@ public class HotkeyProfile : ICloneable
 
         if (version >= new Version(1, 0))
         {
-            var keyPause = element["PauseKey"];
+            XmlElement keyPause = element["PauseKey"];
             if (!string.IsNullOrEmpty(keyPause.InnerText))
             {
                 hotkeyProfile.PauseKey = new KeyOrButton(keyPause.InnerText);
@@ -84,7 +84,7 @@ public class HotkeyProfile : ICloneable
                 hotkeyProfile.PauseKey = null;
             }
 
-            var keyToggle = element["ToggleGlobalHotkeys"];
+            XmlElement keyToggle = element["ToggleGlobalHotkeys"];
             if (!string.IsNullOrEmpty(keyToggle.InnerText))
             {
                 hotkeyProfile.ToggleGlobalHotkeys = new KeyOrButton(keyToggle.InnerText);
@@ -96,7 +96,7 @@ public class HotkeyProfile : ICloneable
 
             if (version >= new Version(1, 3))
             {
-                var keySwitchPrevious = element["SwitchComparisonPrevious"];
+                XmlElement keySwitchPrevious = element["SwitchComparisonPrevious"];
                 if (!string.IsNullOrEmpty(keySwitchPrevious.InnerText))
                 {
                     hotkeyProfile.SwitchComparisonPrevious = new KeyOrButton(keySwitchPrevious.InnerText);
@@ -106,7 +106,7 @@ public class HotkeyProfile : ICloneable
                     hotkeyProfile.SwitchComparisonPrevious = null;
                 }
 
-                var keySwitchNext = element["SwitchComparisonNext"];
+                XmlElement keySwitchNext = element["SwitchComparisonNext"];
                 if (!string.IsNullOrEmpty(keySwitchNext.InnerText))
                 {
                     hotkeyProfile.SwitchComparisonNext = new KeyOrButton(keySwitchNext.InnerText);
@@ -134,9 +134,9 @@ public class HotkeyProfile : ICloneable
 
     public XmlElement ToXml(XmlDocument document, string name = "HotkeyProfile")
     {
-        var parent = document.CreateElement(name);
+        XmlElement parent = document.CreateElement(name);
 
-        var splitKey = document.CreateElement("SplitKey");
+        XmlElement splitKey = document.CreateElement("SplitKey");
         if (SplitKey != null)
         {
             splitKey.InnerText = SplitKey.ToString();
@@ -144,7 +144,7 @@ public class HotkeyProfile : ICloneable
 
         parent.AppendChild(splitKey);
 
-        var resetKey = document.CreateElement("ResetKey");
+        XmlElement resetKey = document.CreateElement("ResetKey");
         if (ResetKey != null)
         {
             resetKey.InnerText = ResetKey.ToString();
@@ -152,7 +152,7 @@ public class HotkeyProfile : ICloneable
 
         parent.AppendChild(resetKey);
 
-        var skipKey = document.CreateElement("SkipKey");
+        XmlElement skipKey = document.CreateElement("SkipKey");
         if (SkipKey != null)
         {
             skipKey.InnerText = SkipKey.ToString();
@@ -160,7 +160,7 @@ public class HotkeyProfile : ICloneable
 
         parent.AppendChild(skipKey);
 
-        var undoKey = document.CreateElement("UndoKey");
+        XmlElement undoKey = document.CreateElement("UndoKey");
         if (UndoKey != null)
         {
             undoKey.InnerText = UndoKey.ToString();
@@ -168,7 +168,7 @@ public class HotkeyProfile : ICloneable
 
         parent.AppendChild(undoKey);
 
-        var pauseKey = document.CreateElement("PauseKey");
+        XmlElement pauseKey = document.CreateElement("PauseKey");
         if (PauseKey != null)
         {
             pauseKey.InnerText = PauseKey.ToString();
@@ -176,7 +176,7 @@ public class HotkeyProfile : ICloneable
 
         parent.AppendChild(pauseKey);
 
-        var toggleKey = document.CreateElement("ToggleGlobalHotkeys");
+        XmlElement toggleKey = document.CreateElement("ToggleGlobalHotkeys");
         if (ToggleGlobalHotkeys != null)
         {
             toggleKey.InnerText = ToggleGlobalHotkeys.ToString();
@@ -184,7 +184,7 @@ public class HotkeyProfile : ICloneable
 
         parent.AppendChild(toggleKey);
 
-        var switchComparisonPrevious = document.CreateElement("SwitchComparisonPrevious");
+        XmlElement switchComparisonPrevious = document.CreateElement("SwitchComparisonPrevious");
         if (SwitchComparisonPrevious != null)
         {
             switchComparisonPrevious.InnerText = SwitchComparisonPrevious.ToString();
@@ -192,7 +192,7 @@ public class HotkeyProfile : ICloneable
 
         parent.AppendChild(switchComparisonPrevious);
 
-        var switchComparisonNext = document.CreateElement("SwitchComparisonNext");
+        XmlElement switchComparisonNext = document.CreateElement("SwitchComparisonNext");
         if (SwitchComparisonNext != null)
         {
             switchComparisonNext.InnerText = SwitchComparisonNext.ToString();

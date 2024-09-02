@@ -41,7 +41,7 @@ public class ShowDaysTests
         };
 
         var time = TimeSpan.Parse(timespanText);
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
 
         Assert.Equal(expectedTime, formattedTime);
     }

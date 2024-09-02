@@ -23,7 +23,7 @@ public partial class TwitchGameResolveDialog : Form
     {
         try
         {
-            var suggestedGames = Twitch.Instance.FindGame(cbxGames.Text);
+            System.Collections.Generic.IEnumerable<Twitch.TwitchGame> suggestedGames = Twitch.Instance.FindGame(cbxGames.Text);
             cbxGames.Items.Clear();
             cbxGames.Items.AddRange(suggestedGames.ToArray());
         }

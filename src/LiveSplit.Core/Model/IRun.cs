@@ -54,7 +54,7 @@ public static class RunExtensions
     public static void ClearHistory(this IRun run)
     {
         run.AttemptHistory.Clear();
-        foreach (var segment in run)
+        foreach (ISegment segment in run)
         {
             segment.SegmentHistory.Clear();
         }
@@ -65,7 +65,7 @@ public static class RunExtensions
         run.ClearHistory();
         run.CustomComparisons.Clear();
         run.CustomComparisons.Add(Run.PersonalBestComparisonName);
-        foreach (var segment in run)
+        foreach (ISegment segment in run)
         {
             segment.Comparisons.Clear();
             segment.BestSegmentTime = default;
@@ -102,7 +102,7 @@ public static class RunExtensions
             .DefaultIfEmpty()
             .Max()) > 0)
         {
-            var reassign_id = min_id - 1;
+            int reassign_id = min_id - 1;
 
             foreach (Segment segment in run)
             {
@@ -121,7 +121,7 @@ public static class RunExtensions
     {
         if (curSplit.BestSegmentTime[method] == null)
         {
-            for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
+            for (int runIndex = minIndex; runIndex <= maxIndex; runIndex++)
             {
                 if (curSplit.SegmentHistory.TryGetValue(runIndex, out Time historyTime))
                 {
@@ -139,7 +139,7 @@ public static class RunExtensions
     {
         if (curSplit.BestSegmentTime[method] != null)
         {
-            for (var runIndex = minIndex; runIndex <= maxIndex; runIndex++)
+            for (int runIndex = minIndex; runIndex <= maxIndex; runIndex++)
             {
                 if (curSplit.SegmentHistory.TryGetValue(runIndex, out Time historyTime))
                 {
@@ -157,35 +157,35 @@ public static class RunExtensions
     private static void FixComparisonTimesAndHistory(IRun run, TimingMethod method)
     {
         //Remove negative Best Segment times
-        foreach (var curSplit in run)
+        foreach (ISegment curSplit in run)
         {
             if (curSplit.BestSegmentTime[method] < TimeSpan.Zero)
             {
-                var newTime = curSplit.BestSegmentTime;
+                Time newTime = curSplit.BestSegmentTime;
                 newTime[method] = null;
                 curSplit.BestSegmentTime = newTime;
             }
         }
 
-        var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+        int maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
 
-        foreach (var curSplit in run)
+        foreach (ISegment curSplit in run)
         {
-            var minIndex = curSplit.SegmentHistory.GetMinIndex();
+            int minIndex = curSplit.SegmentHistory.GetMinIndex();
             FixHistoryFromNullBestSegments(curSplit, method, minIndex, maxIndex);
         }
 
-        foreach (var comparison in run.CustomComparisons)
+        foreach (string comparison in run.CustomComparisons)
         {
-            var previousTime = TimeSpan.Zero;
-            foreach (var curSplit in run)
+            TimeSpan previousTime = TimeSpan.Zero;
+            foreach (ISegment curSplit in run)
             {
                 if (curSplit.Comparisons[comparison][method] != null)
                 {
                     //Prevent comparison times from decreasing from one split to the next
                     if (curSplit.Comparisons[comparison][method] < previousTime)
                     {
-                        var newComparison = curSplit.Comparisons[comparison];
+                        Time newComparison = curSplit.Comparisons[comparison];
                         newComparison[method] = previousTime;
                         curSplit.Comparisons[comparison] = newComparison;
                     }
@@ -193,10 +193,10 @@ public static class RunExtensions
                     //Fix Best Segment time if the PB segment is faster
                     if (comparison == Run.PersonalBestComparisonName)
                     {
-                        var currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
+                        TimeSpan? currentSegment = curSplit.Comparisons[comparison][method] - previousTime;
                         if (curSplit.BestSegmentTime[method] == null || curSplit.BestSegmentTime[method] > currentSegment)
                         {
-                            var newTime = curSplit.BestSegmentTime;
+                            Time newTime = curSplit.BestSegmentTime;
                             newTime[method] = currentSegment;
                             curSplit.BestSegmentTime = newTime;
                         }
@@ -207,9 +207,9 @@ public static class RunExtensions
             }
         }
 
-        foreach (var curSplit in run)
+        foreach (ISegment curSplit in run)
         {
-            var minIndex = curSplit.SegmentHistory.GetMinIndex();
+            int minIndex = curSplit.SegmentHistory.GetMinIndex();
             FixHistoryFromBestSegmentTimes(curSplit, method, minIndex, maxIndex);
         }
     }
@@ -217,10 +217,10 @@ public static class RunExtensions
     private static void RemoveNullValues(IRun run)
     {
         var cache = new List<int>();
-        var maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-        for (var runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
+        int maxIndex = run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+        for (int runIndex = run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
         {
-            for (var index = 0; index < run.Count; index++)
+            for (int index = 0; index < run.Count; index++)
             {
                 if (!run[index].SegmentHistory.TryGetValue(runIndex, out Time segmentHistoryElement))
                 {
@@ -245,14 +245,14 @@ public static class RunExtensions
     {
         var rtaSet = new HashSet<TimeSpan>();
         var igtSet = new HashSet<TimeSpan>();
-        foreach (var segment in run)
+        foreach (ISegment segment in run)
         {
             rtaSet.Clear();
             igtSet.Clear();
 
-            foreach (var attempt in run.AttemptHistory)
+            foreach (Attempt attempt in run.AttemptHistory)
             {
-                var ind = attempt.Index;
+                int ind = attempt.Index;
                 if (segment.SegmentHistory.TryGetValue(ind, out Time element))
                 {
                     if (element.RealTime != null)
@@ -267,12 +267,12 @@ public static class RunExtensions
                 }
             }
 
-            for (var runIndex = segment.SegmentHistory.GetMinIndex(); runIndex <= 0; runIndex++)
+            for (int runIndex = segment.SegmentHistory.GetMinIndex(); runIndex <= 0; runIndex++)
             {
                 if (segment.SegmentHistory.TryGetValue(runIndex, out Time element))
                 {
-                    var isNull = true;
-                    var isUnique = false;
+                    bool isNull = true;
+                    bool isUnique = false;
                     if (element.RealTime != null)
                     {
                         isUnique |= rtaSet.Add(element.RealTime.Value);
@@ -296,8 +296,8 @@ public static class RunExtensions
 
     private static void RemoveItemsFromCache(IRun run, int index, IList<int> cache)
     {
-        var ind = index - cache.Count;
-        foreach (var item in cache)
+        int ind = index - cache.Count;
+        foreach (int item in cache)
         {
             run[ind].SegmentHistory.Remove(item);
             ind++;
@@ -313,16 +313,16 @@ public static class RunExtensions
 
     public static void ImportSegmentHistory(this IRun run)
     {
-        var minIndex = GetMinSegmentHistoryIndex(run);
+        int minIndex = GetMinSegmentHistoryIndex(run);
         run.ImportSegmentHistory(TimingMethod.RealTime, minIndex - 1);
         run.ImportSegmentHistory(TimingMethod.GameTime, minIndex - 2);
     }
 
     private static void ImportSegmentHistory(this IRun run, TimingMethod method, int index)
     {
-        var prevTime = TimeSpan.Zero;
+        TimeSpan prevTime = TimeSpan.Zero;
 
-        foreach (var segment in run)
+        foreach (ISegment segment in run)
         {
             //Import the PB splits into the history
             segment.SegmentHistory.Add(index, new Time(method, segment.PersonalBestSplitTime[method] - prevTime));
@@ -335,7 +335,7 @@ public static class RunExtensions
 
     public static void ImportBestSegment(this IRun run, int segmentIndex)
     {
-        var segment = run[segmentIndex];
+        ISegment segment = run[segmentIndex];
         if (segment.BestSegmentTime.RealTime.HasValue || segment.BestSegmentTime.GameTime.HasValue)
         {
             segment.SegmentHistory.Add(GetMinSegmentHistoryIndex(run) - 1, segment.BestSegmentTime);
@@ -344,11 +344,11 @@ public static class RunExtensions
 
     public static string GetExtendedFileName(this IRun run, bool useExtendedCategoryName = true)
     {
-        var extendedName = run.GetExtendedName(useExtendedCategoryName);
+        string extendedName = run.GetExtendedName(useExtendedCategoryName);
 
         var stringBuilder = new StringBuilder();
 
-        foreach (var c in extendedName)
+        foreach (char c in extendedName)
         {
             if (c is not '\\' and not '/' and not ':' and not '*' and not '?' and not '"' and not '<' and not '>' and not '|')
             {
@@ -368,7 +368,7 @@ public static class RunExtensions
             stringBuilder.Append(run.GameName);
         }
 
-        var categoryName = run.CategoryName;
+        string categoryName = run.CategoryName;
 
         if (useExtendedCategoryName)
         {
@@ -392,19 +392,19 @@ public static class RunExtensions
     {
         var list = new List<string>();
 
-        var categoryName = run.CategoryName;
-        var afterParentheses = "";
+        string categoryName = run.CategoryName;
+        string afterParentheses = "";
 
         if (string.IsNullOrEmpty(categoryName))
         {
             return string.Empty;
         }
 
-        var indexStart = categoryName.IndexOf('(');
-        var indexEnd = categoryName.IndexOf(')', indexStart + 1);
+        int indexStart = categoryName.IndexOf('(');
+        int indexEnd = categoryName.IndexOf(')', indexStart + 1);
         if (indexStart >= 0 && indexEnd >= 0)
         {
-            var inside = categoryName.Substring(indexStart + 1, indexEnd - indexStart - 1);
+            string inside = categoryName.Substring(indexStart + 1, indexEnd - indexStart - 1);
             list.Add(inside);
             afterParentheses = categoryName.Substring(indexEnd + 1).Trim();
             categoryName = categoryName.Substring(0, indexStart).Trim();
@@ -424,13 +424,13 @@ public static class RunExtensions
                 variables = run.Metadata.Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).Select(x => x.Name);
             }
 
-            foreach (var variable in variables)
+            foreach (string variable in variables)
             {
                 if (run.Metadata.VariableValueNames.ContainsKey(variable))
                 {
-                    var name = variable.TrimEnd('?');
-                    var variableValue = run.Metadata.VariableValueNames[variable];
-                    var valueLower = variableValue.ToLowerInvariant();
+                    string name = variable.TrimEnd('?');
+                    string variableValue = run.Metadata.VariableValueNames[variable];
+                    string valueLower = variableValue.ToLowerInvariant();
 
                     if (valueLower == "yes")
                     {
@@ -450,7 +450,7 @@ public static class RunExtensions
 
         if (showRegion)
         {
-            var doSimpleRegion = !run.Metadata.GameAvailable && !waitForOnlineData;
+            bool doSimpleRegion = !run.Metadata.GameAvailable && !waitForOnlineData;
             if (doSimpleRegion)
             {
                 if (!string.IsNullOrEmpty(run.Metadata.RegionName))
@@ -466,7 +466,7 @@ public static class RunExtensions
 
         if (showPlatform)
         {
-            var doSimplePlatform = !run.Metadata.GameAvailable && !waitForOnlineData;
+            bool doSimplePlatform = !run.Metadata.GameAvailable && !waitForOnlineData;
             if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || (run.Metadata.Game != null && run.Metadata.Game.Platforms.Count > 1)))
             {
                 if (run.Metadata.UsesEmulator)

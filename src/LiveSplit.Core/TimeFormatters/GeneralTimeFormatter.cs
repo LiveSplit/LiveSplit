@@ -85,7 +85,7 @@ public class GeneralTimeFormatter : ITimeFormatter
         string decimalFormat = "";
         if (AutomaticPrecision)
         {
-            var totalSeconds = time.TotalSeconds;
+            double totalSeconds = time.TotalSeconds;
             if (Accuracy == TimeAccuracy.Seconds || totalSeconds % 1 == 0)
             {
                 decimalFormat = "";

@@ -44,14 +44,14 @@ public partial class ChooseComparisonsDialog : Form
     {
         if (DialogInitialized)
         {
-            var generatorName = (string)comparisonsListBox.Items[e.Index];
+            string generatorName = (string)comparisonsListBox.Items[e.Index];
             ComparisonGeneratorStates[generatorName] = e.NewValue == CheckState.Checked;
         }
     }
 
     private void ChooseComparisonsDialog_Load(object sender, EventArgs e)
     {
-        foreach (var generator in ComparisonGeneratorStates)
+        foreach (KeyValuePair<string, bool> generator in ComparisonGeneratorStates)
         {
             comparisonsListBox.SetItemChecked(comparisonsListBox.Items.IndexOf(generator.Key), generator.Value);
         }

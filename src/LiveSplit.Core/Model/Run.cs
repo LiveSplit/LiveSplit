@@ -89,7 +89,7 @@ public class Run : IRun, INotifyPropertyChanged
 
     private void TriggerPropertyChanged(string propertyName)
     {
-        var propertyChanged = PropertyChanged;
+        PropertyChangedEventHandler propertyChanged = PropertyChanged;
         propertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
@@ -112,7 +112,7 @@ public class Run : IRun, INotifyPropertyChanged
     private Run(IEnumerable<ISegment> collection, IComparisonGeneratorsFactory factory, RunMetadata metadata)
     {
         InternalList = [];
-        foreach (var x in collection)
+        foreach (ISegment x in collection)
         {
             InternalList.Add(x.Clone() as ISegment);
         }

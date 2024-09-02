@@ -163,7 +163,7 @@ public class KeyboardInput : IDisposable
 
     public void RegisterHook()
     {
-        using Process process = Process.GetCurrentProcess();
+        using var process = Process.GetCurrentProcess();
         using ProcessModule module = process.MainModule;
         IntPtr hModule = GetModuleHandle(module.ModuleName);
         messageLoopControl.BeginInvoke(new Action(() =>
@@ -195,7 +195,7 @@ public class KeyboardInput : IDisposable
 
         if (wParam == (IntPtr)0x0100 || wParam == (IntPtr)0x0104) //KeyDown
         {
-            Keys key = (Keys)hookStruct.vkCode;
+            var key = (Keys)hookStruct.vkCode;
 
             if (key is Keys.LControlKey or Keys.RControlKey)
             {
@@ -247,7 +247,7 @@ public class KeyboardInput : IDisposable
         }
         else if (wParam == (IntPtr)0x0101 || wParam == (IntPtr)0x0105) //KeyUp
         {
-            Keys key = (Keys)hookStruct.vkCode;
+            var key = (Keys)hookStruct.vkCode;
 
             if (key is Keys.LControlKey or Keys.RControlKey)
             {

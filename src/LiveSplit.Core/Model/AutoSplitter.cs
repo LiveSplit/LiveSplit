@@ -70,12 +70,12 @@ public class AutoSplitter : ICloneable
     {
         var client = new WebClient();
 
-        foreach (var url in URLs)
+        foreach (string url in URLs)
         {
-            var fileName = url.Substring(url.LastIndexOf('/') + 1);
-            var tempFileName = fileName + "-temp";
-            var localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
-            var tempLocalPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, tempFileName));
+            string fileName = url.Substring(url.LastIndexOf('/') + 1);
+            string tempFileName = fileName + "-temp";
+            string localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
+            string tempLocalPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, tempFileName));
 
             try
             {
@@ -85,7 +85,7 @@ public class AutoSplitter : ICloneable
 
                 if (url != URLs.First() && localPath.EndsWith(".dll"))
                 {
-                    var factory = ComponentManager.LoadFactory<IComponentFactory>(localPath);
+                    IComponentFactory factory = ComponentManager.LoadFactory<IComponentFactory>(localPath);
                     if (factory != null)
                     {
                         ComponentManager.ComponentFactories.Add(fileName, factory);
@@ -117,7 +117,7 @@ public class AutoSplitter : ICloneable
 
         if (Type == AutoSplitterType.Component)
         {
-            var factory = ComponentManager.LoadFactory<IComponentFactory>(LocalPath);
+            IComponentFactory factory = ComponentManager.LoadFactory<IComponentFactory>(LocalPath);
             ComponentManager.ComponentFactories.Add(Path.GetFileName(LocalPath), factory);
         }
     }

@@ -11,10 +11,10 @@ public static class SumOfSegmentsHelper
             return new IndexedTime(default, 0);
         }
 
-        var firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].SplitTime[method];
+        TimeSpan? firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].SplitTime[method];
         while (segmentIndex < run.Count)
         {
-            var secondSplitTime = run[segmentIndex].SplitTime[method];
+            TimeSpan? secondSplitTime = run[segmentIndex].SplitTime[method];
             if (secondSplitTime.HasValue)
             {
                 return new IndexedTime(new Time(method, secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
@@ -33,10 +33,10 @@ public static class SumOfSegmentsHelper
             return new IndexedTime(default, 0);
         }
 
-        var firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].PersonalBestSplitTime[method];
+        TimeSpan? firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].PersonalBestSplitTime[method];
         while (segmentIndex < run.Count)
         {
-            var secondSplitTime = run[segmentIndex].PersonalBestSplitTime[method];
+            TimeSpan? secondSplitTime = run[segmentIndex].PersonalBestSplitTime[method];
             if (secondSplitTime.HasValue)
             {
                 return new IndexedTime(new Time(method, secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
@@ -54,7 +54,7 @@ public static class SumOfSegmentsHelper
         {
             if (run[segmentIndex].SegmentHistory.TryGetValue(runIndex, out Time segmentTime))
             {
-                var curTime = segmentTime[method];
+                TimeSpan? curTime = segmentTime[method];
                 if (curTime.HasValue)
                 {
                     return new IndexedTime(new Time(method, curTime + currentTime), segmentIndex + 1);

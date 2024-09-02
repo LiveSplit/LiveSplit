@@ -19,13 +19,13 @@ namespace LiveSplit.Web.Share;
 
 public class SplitsIO : IRunUploadPlatform
 {
-    protected static readonly SplitsIO _Instance = new SplitsIO();
+    protected static readonly SplitsIO _Instance = new();
 
     public static SplitsIO Instance => _Instance;
 
-    public static readonly Uri BaseUri = new Uri("http://splits.io/");
-    public static readonly Uri APIUri = new Uri("https://splits.io/api/v3/");
-    public static readonly Uri APIV4Uri = new Uri("https://splits.io/api/v4/");
+    public static readonly Uri BaseUri = new("http://splits.io/");
+    public static readonly Uri APIUri = new("https://splits.io/api/v3/");
+    public static readonly Uri APIV4Uri = new("https://splits.io/api/v4/");
 
     public const decimal NoTime = 0.0m;
 
@@ -69,16 +69,16 @@ public class SplitsIO : IRunUploadPlatform
 
     private static IEnumerable<dynamic> DoPaginatedRequest(Uri uri)
     {
-        var page = 1;
-        var totalItems = 1;
-        var perPage = 1;
-        var lastPage = 1;
+        int page = 1;
+        int totalItems = 1;
+        int perPage = 1;
+        int lastPage = 1;
 
         do
         {
             var request = WebRequest.Create($"{uri.AbsoluteUri}?page={page}");
 
-            using var response = request.GetResponse();
+            using WebResponse response = request.GetResponse();
             int.TryParse(response.Headers["Total"], NumberStyles.Integer, CultureInfo.InvariantCulture, out totalItems);
             int.TryParse(response.Headers["Per-Page"], NumberStyles.Integer, CultureInfo.InvariantCulture, out perPage);
             lastPage = (int)Math.Ceiling(totalItems / (double)perPage);
@@ -89,9 +89,9 @@ public class SplitsIO : IRunUploadPlatform
 
     public IEnumerable<dynamic> SearchGame(string name)
     {
-        var escapedName = HttpUtility.UrlPathEncode(name);
-        var uri = GetAPIUri($"games?search={escapedName}");
-        var response = JSON.FromUri(uri);
+        string escapedName = HttpUtility.UrlPathEncode(name);
+        Uri uri = GetAPIUri($"games?search={escapedName}");
+        dynamic response = JSON.FromUri(uri);
         return (response.games as IEnumerable<dynamic>) ?? new dynamic[0];
     }
 
@@ -99,9 +99,9 @@ public class SplitsIO : IRunUploadPlatform
     {
         try
         {
-            var escapedName = HttpUtility.UrlPathEncode(name.ToLowerInvariant());
-            var uri = GetAPIUri($"users/{escapedName}");
-            var response = JSON.FromUri(uri);
+            string escapedName = HttpUtility.UrlPathEncode(name.ToLowerInvariant());
+            Uri uri = GetAPIUri($"users/{escapedName}");
+            dynamic response = JSON.FromUri(uri);
             return response.user;
         }
         catch (Exception ex)
@@ -113,35 +113,35 @@ public class SplitsIO : IRunUploadPlatform
 
     public dynamic GetGameById(int gameId)
     {
-        var uri = GetAPIUri($"games/{gameId}");
-        var response = JSON.FromUri(uri);
+        Uri uri = GetAPIUri($"games/{gameId}");
+        dynamic response = JSON.FromUri(uri);
         return response.game;
     }
 
     public IEnumerable<dynamic> GetRunsForCategory(int gameId, int categoryId)
     {
-        var uri = GetAPIUri($"games/{gameId}/categories/{categoryId}/runs");
-        var pages = DoPaginatedRequest(uri);
+        Uri uri = GetAPIUri($"games/{gameId}/categories/{categoryId}/runs");
+        IEnumerable<dynamic> pages = DoPaginatedRequest(uri);
         return pages.SelectMany(page => (page.runs as IEnumerable<dynamic>) ?? new dynamic[0]);
     }
 
     public IEnumerable<dynamic> GetRunsForUser(string userId)
     {
-        var uri = GetAPIUri($"users/{userId}/runs");
-        var pages = DoPaginatedRequest(uri);
+        Uri uri = GetAPIUri($"users/{userId}/runs");
+        IEnumerable<dynamic> pages = DoPaginatedRequest(uri);
         return pages.SelectMany(page => (page.runs as IEnumerable<dynamic>) ?? new dynamic[0]);
     }
 
     public dynamic GetRunById(int runId)
     {
-        var uri = GetAPIUri($"runs/{runId}");
-        var response = JSON.FromUri(uri);
+        Uri uri = GetAPIUri($"runs/{runId}");
+        dynamic response = JSON.FromUri(uri);
         return response.run;
     }
 
     public dynamic GetV4RunById(string runId)
     {
-        var uri = GetAPIV4Uri($"runs/{runId}");
+        Uri uri = GetAPIV4Uri($"runs/{runId}");
         return JSON.FromUri(uri);
     }
 
@@ -154,7 +154,7 @@ public class SplitsIO : IRunUploadPlatform
                 return;
             }
 
-            var speedrunComRun = SpeedrunCom.Client.Runs.GetRun(speedrunComId);
+            SpeedrunComSharp.Run speedrunComRun = SpeedrunCom.Client.Runs.GetRun(speedrunComId);
             if (speedrunComRun == null)
             {
                 return;
@@ -170,21 +170,21 @@ public class SplitsIO : IRunUploadPlatform
 
     public IRun DownloadRunByPath(string path, bool patchRun)
     {
-        var uri = GetSiteUri(path);
+        Uri uri = GetSiteUri(path);
         return DownloadRunByUri(uri, patchRun);
     }
 
     public IRun DownloadRunByUri(Uri uri, bool patchRun)
     {
-        var id = uri.LocalPath;
-        var splitsIORun = GetV4RunById(id);
-        var program = splitsIORun.run.program as string;
-        var downloadUri = GetSiteUri($"{id}/download/{program}");
+        string id = uri.LocalPath;
+        dynamic splitsIORun = GetV4RunById(id);
+        string program = splitsIORun.run.program as string;
+        Uri downloadUri = GetSiteUri($"{id}/download/{program}");
 
         var request = WebRequest.Create(downloadUri);
 
-        using var response = request.GetResponse();
-        using var stream = response.GetResponseStream();
+        using WebResponse response = request.GetResponse();
+        using Stream stream = response.GetResponseStream();
         using var memoryStream = new MemoryStream();
         stream.CopyTo(memoryStream);
         memoryStream.Seek(0, SeekOrigin.Begin);
@@ -195,7 +195,7 @@ public class SplitsIO : IRunUploadPlatform
             FilePath = ""
         };
 
-        var run = runFactory.Create(new StandardComparisonGeneratorsFactory());
+        IRun run = runFactory.Create(new StandardComparisonGeneratorsFactory());
         if (patchRun)
         {
             PatchRun(run, splitsIORun.run.srdc_id);
@@ -206,14 +206,14 @@ public class SplitsIO : IRunUploadPlatform
 
     public IRun DownloadRunById(int runId, bool patchRun)
     {
-        var run = GetRunById(runId);
-        var uri = GetSiteUri(run.path);
+        dynamic run = GetRunById(runId);
+        dynamic uri = GetSiteUri(run.path);
         return DownloadRunByUri(uri, patchRun);
     }
 
     public void ClaimWithSpeedrunComRun(string splitsIORunId, string claimToken, string srdcRunId)
     {
-        var uri = GetAPIV4Uri(
+        Uri uri = GetAPIV4Uri(
             $"runs/{Uri.EscapeDataString(splitsIORunId)}?claim_token={Uri.EscapeDataString(claimToken)}&srdc_id={Uri.EscapeDataString(srdcRunId)}");
 
         var request = WebRequest.Create(uri);
@@ -227,16 +227,16 @@ public class SplitsIO : IRunUploadPlatform
 
         if (screenShotFunction != null)
         {
-            var image = screenShotFunction();
+            Image image = screenShotFunction();
             if (image.Width < 280 || image.Height < 150)
             {
-                var factor1 = 280.0 / image.Width;
-                var factor2 = 150.0 / image.Height;
-                var factor = Math.Max(factor1, factor2);
+                double factor1 = 280.0 / image.Width;
+                double factor2 = 150.0 / image.Height;
+                double factor = Math.Max(factor1, factor2);
                 image = new Bitmap(image, (int)((factor * image.Width) + 0.5), (int)((factor * image.Height) + 0.5));
             }
 
-            var result = Imgur.Instance.UploadImage(image);
+            dynamic result = Imgur.Instance.UploadImage(image);
             image_url = (string)result.data.link;
         }
 
@@ -244,7 +244,7 @@ public class SplitsIO : IRunUploadPlatform
         request.Method = "POST";
         request.ContentType = "multipart/form-data; boundary=AaB03x";
 
-        using (var stream = request.GetRequestStream())
+        using (Stream stream = request.GetRequestStream())
         {
             var writer = new StreamWriter(stream);
             if (image_url != null)
@@ -259,20 +259,20 @@ public class SplitsIO : IRunUploadPlatform
         dynamic json;
         string claimUri;
         string publicUri;
-        using (var response = request.GetResponse())
+        using (WebResponse response = request.GetResponse())
         {
             json = JSON.FromResponse(response);
 
             claimUri = json.uris.claim_uri;
             publicUri = json.uris.public_uri;
-            var presignedRequest = json.presigned_request;
+            dynamic presignedRequest = json.presigned_request;
 
             request = (HttpWebRequest)WebRequest.Create(presignedRequest.uri);
             request.Method = presignedRequest.method;
 
-            var fields = presignedRequest.fields;
+            dynamic fields = presignedRequest.fields;
 
-            using (var stream = request.GetRequestStream())
+            using (Stream stream = request.GetRequestStream())
             {
                 request.ContentType = "multipart/form-data; boundary=AaB03x";
 
@@ -298,7 +298,7 @@ public class SplitsIO : IRunUploadPlatform
                 writer.Flush();
             }
 
-            using var response2 = request.GetResponse();
+            using WebResponse response2 = request.GetResponse();
             json = JSON.FromResponse(response2);
         }
 
@@ -315,7 +315,7 @@ public class SplitsIO : IRunUploadPlatform
 
     public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
-        var url = Share(run, screenShotFunction, claimTokenUri: true);
+        string url = Share(run, screenShotFunction, claimTokenUri: true);
         Process.Start(url);
         Clipboard.SetText(url);
 

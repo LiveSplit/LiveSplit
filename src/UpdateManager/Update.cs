@@ -20,7 +20,7 @@ public class Update
 
     public static Update Parse(XmlNode node)
     {
-        Version version = Version.Parse(node.Attributes["version"].InnerText);
+        var version = Version.Parse(node.Attributes["version"].InnerText);
 
         List<string> changeLog = [];
         foreach (XmlNode changeNode in node["changelog"].ChildNodes)

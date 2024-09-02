@@ -11,7 +11,7 @@ public class Kadgar : IRaceViewer
     {
         var builder = new StringBuilder();
         builder.Append("http://kadgar.net/live/");
-        foreach (var stream in race.LiveStreams)
+        foreach (string stream in race.LiveStreams)
         {
             builder.Append(stream);
             builder.Append(",");

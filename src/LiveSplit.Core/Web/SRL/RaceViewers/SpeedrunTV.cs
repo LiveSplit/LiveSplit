@@ -8,8 +8,8 @@ public class SpeedrunTV : IRaceViewer
 {
     public void ShowRace(IRaceInfo race)
     {
-        var raceId = race.Id;
-        var url = string.Format("http://speedrun.tv/race:{0}", raceId);
+        string raceId = race.Id;
+        string url = string.Format("http://speedrun.tv/race:{0}", raceId);
         Process.Start(url);
     }
 

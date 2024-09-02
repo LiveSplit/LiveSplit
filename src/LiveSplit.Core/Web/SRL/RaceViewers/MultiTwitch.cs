@@ -11,7 +11,7 @@ public class MultiTwitch : IRaceViewer
     {
         var builder = new StringBuilder();
         builder.Append("http://multitwitch.tv/");
-        foreach (var stream in race.LiveStreams)
+        foreach (string stream in race.LiveStreams)
         {
             builder.Append(stream);
             builder.Append("/");

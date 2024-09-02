@@ -50,7 +50,7 @@ public partial class SetSizeForm : Form
     {
         if (KeepAspectRatio && OldHeight != FormHeight)
         {
-            var newValue = (int)((FormWidth * (float)FormHeight / OldHeight) + 0.5f);
+            int newValue = (int)((FormWidth * (float)FormHeight / OldHeight) + 0.5f);
             OldHeight = FormHeight;
             OldWidth = newValue;
             FormWidth = newValue;
@@ -65,7 +65,7 @@ public partial class SetSizeForm : Form
     {
         if (KeepAspectRatio && OldWidth != FormWidth)
         {
-            var newValue = (int)((FormHeight * (float)FormWidth / OldWidth) + 0.5f);
+            int newValue = (int)((FormHeight * (float)FormWidth / OldWidth) + 0.5f);
             OldWidth = FormWidth;
             OldHeight = newValue;
             FormHeight = newValue;

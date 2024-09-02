@@ -50,8 +50,8 @@ public class SettingsHelper
         {
             var bf = new BinaryFormatter();
 
-            var base64String = element.InnerText;
-            var data = Convert.FromBase64String(base64String);
+            string base64String = element.InnerText;
+            byte[] data = Convert.FromBase64String(base64String);
             var ms = new MemoryStream(data);
             return (Font)bf.Deserialize(ms);
         }
@@ -63,7 +63,7 @@ public class SettingsHelper
     {
         if (document != null)
         {
-            var element = document.CreateElement(elementName);
+            XmlElement element = document.CreateElement(elementName);
 
             if (font != null)
             {
@@ -71,8 +71,8 @@ public class SettingsHelper
                 var bf = new BinaryFormatter();
 
                 bf.Serialize(ms, font);
-                var data = ms.ToArray();
-                var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+                byte[] data = ms.ToArray();
+                XmlCDataSection cdata = document.CreateCDataSection(Convert.ToBase64String(data));
                 element.InnerXml = cdata.OuterXml;
             }
 
@@ -100,7 +100,7 @@ public class SettingsHelper
     {
         if (document != null)
         {
-            var element = document.CreateElement(elementName);
+            XmlElement element = document.CreateElement(elementName);
 
             if (image != null)
             {
@@ -108,8 +108,8 @@ public class SettingsHelper
                 var bf = new BinaryFormatter();
 
                 bf.Serialize(ms, image);
-                var data = ms.ToArray();
-                var cdata = document.CreateCDataSection(Convert.ToBase64String(data));
+                byte[] data = ms.ToArray();
+                XmlCDataSection cdata = document.CreateCDataSection(Convert.ToBase64String(data));
                 element.InnerXml = cdata.OuterXml;
             }
 
@@ -125,8 +125,8 @@ public class SettingsHelper
         {
             var bf = new BinaryFormatter();
 
-            var base64String = element.InnerText;
-            var data = Convert.FromBase64String(base64String);
+            string base64String = element.InnerText;
+            byte[] data = Convert.FromBase64String(base64String);
 
             using var ms = new MemoryStream(data);
             return (Image)bf.Deserialize(ms);
@@ -237,7 +237,7 @@ public class SettingsHelper
 
     public static XmlElement ToElement<T>(XmlDocument document, string name, T value)
     {
-        var element = document.CreateElement(name);
+        XmlElement element = document.CreateElement(name);
         element.InnerText = value?.ToString();
         return element;
     }
@@ -246,7 +246,7 @@ public class SettingsHelper
     {
         if (document != null)
         {
-            var element = document.CreateElement(name);
+            XmlElement element = document.CreateElement(name);
             element.InnerText = color.ToArgb().ToString("X8");
             parent.AppendChild(element);
         }
@@ -258,7 +258,7 @@ public class SettingsHelper
     {
         if (document != null)
         {
-            var element = document.CreateElement(name);
+            XmlElement element = document.CreateElement(name);
             element.InnerText = value?.ToString();
             parent.AppendChild(element);
         }
@@ -270,7 +270,7 @@ public class SettingsHelper
     {
         if (document != null)
         {
-            var element = document.CreateElement(name);
+            XmlElement element = document.CreateElement(name);
             element.InnerText = value.ToString(CultureInfo.InvariantCulture);
             parent.AppendChild(element);
         }
@@ -282,7 +282,7 @@ public class SettingsHelper
     {
         if (document != null)
         {
-            var element = document.CreateElement(name);
+            XmlElement element = document.CreateElement(name);
             element.InnerText = value.ToString(CultureInfo.InvariantCulture);
             parent.AppendChild(element);
         }
@@ -292,7 +292,7 @@ public class SettingsHelper
 
     public static XmlAttribute ToAttribute<T>(XmlDocument document, string name, T value)
     {
-        var element = document.CreateAttribute(name);
+        XmlAttribute element = document.CreateAttribute(name);
         element.Value = value?.ToString();
         return element;
     }

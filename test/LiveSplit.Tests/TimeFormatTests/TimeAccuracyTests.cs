@@ -31,7 +31,7 @@ public class TimeAccuracyTests
             Accuracy = accuracy
         };
         var time = TimeSpan.Parse(timespanText);
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
 
         Assert.Equal(expectedTime, formattedTime);
     }

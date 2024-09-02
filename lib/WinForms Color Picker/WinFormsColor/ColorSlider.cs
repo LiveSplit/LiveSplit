@@ -108,9 +108,9 @@ public class ColorSlider : UserControl
         this.min = min;
         this.max = max;
         srcImage = new Bitmap(1, accuracy);
-        using (Graphics g = Graphics.FromImage(srcImage))
+        using (var g = Graphics.FromImage(srcImage))
         {
-            LinearGradientBrush gradient = new LinearGradientBrush(
+            var gradient = new LinearGradientBrush(
                 new Point(0, srcImage.Height - 1),
                 new Point(0, 0),
                 min,
@@ -126,9 +126,9 @@ public class ColorSlider : UserControl
         accuracy = Math.Max(1, accuracy);
 
         srcImage = new Bitmap(1, accuracy);
-        using (Graphics g = Graphics.FromImage(srcImage))
+        using (var g = Graphics.FromImage(srcImage))
         {
-            LinearGradientBrush gradient = new LinearGradientBrush(
+            var gradient = new LinearGradientBrush(
                 new Point(0, srcImage.Height - 1),
                 new Point(0, 0),
                 Color.Transparent,
@@ -146,7 +146,7 @@ public class ColorSlider : UserControl
     }
     public void SetupHueGradient(float saturation = 1.0f, float brightness = 1.0f, int accuracy = 256)
     {
-        ColorBlend blend = new ColorBlend
+        var blend = new ColorBlend
         {
             Colors = [
             ExtMethodsSystemDrawingColor.ColorFromHSV(0.0f, saturation, brightness),
@@ -197,12 +197,12 @@ public class ColorSlider : UserControl
     {
         base.OnPaint(e);
 
-        Rectangle colorBoxOuter = new Rectangle(
+        var colorBoxOuter = new Rectangle(
             ClientRectangle.X + pickerSize,
             ClientRectangle.Y + pickerSize,
             ClientRectangle.Width - (pickerSize * 2) - 1,
             ClientRectangle.Height - (pickerSize * 2) - 1);
-        Rectangle colorBoxInner = new Rectangle(
+        var colorBoxInner = new Rectangle(
             colorBoxOuter.X + 1,
             colorBoxOuter.Y + 1,
             colorBoxOuter.Width - 2,
@@ -215,7 +215,7 @@ public class ColorSlider : UserControl
             e.Graphics.FillRectangle(new HatchBrush(HatchStyle.LargeCheckerBoard, Color.LightGray, Color.Gray), colorArea);
         }
 
-        System.Drawing.Imaging.ImageAttributes colorAreaImageAttr = new System.Drawing.Imaging.ImageAttributes();
+        var colorAreaImageAttr = new System.Drawing.Imaging.ImageAttributes();
         colorAreaImageAttr.SetWrapMode(WrapMode.TileFlipXY);
         e.Graphics.DrawImage(srcImage, colorArea, 0, 0, srcImage.Width, srcImage.Height - 1, GraphicsUnit.Pixel, colorAreaImageAttr);
 
@@ -223,15 +223,15 @@ public class ColorSlider : UserControl
         e.Graphics.DrawRectangle(SystemPens.ControlLightLight, colorBoxInner);
 
         e.Graphics.DrawLines(Enabled ? Pens.Black : SystemPens.ControlDark, new Point[] {
-            new Point(0, pickerVisualPos - pickerSize),
-            new Point(pickerSize, pickerVisualPos),
-            new Point(0, pickerVisualPos + pickerSize),
-            new Point(0, pickerVisualPos - pickerSize)});
+            new(0, pickerVisualPos - pickerSize),
+            new(pickerSize, pickerVisualPos),
+            new(0, pickerVisualPos + pickerSize),
+            new(0, pickerVisualPos - pickerSize)});
         e.Graphics.DrawLines(Enabled ? Pens.Black : SystemPens.ControlDark, new Point[] {
-            new Point(colorBoxOuter.Right + pickerSize, pickerVisualPos - pickerSize),
-            new Point(colorBoxOuter.Right, pickerVisualPos),
-            new Point(colorBoxOuter.Right + pickerSize, pickerVisualPos + pickerSize),
-            new Point(colorBoxOuter.Right + pickerSize, pickerVisualPos - pickerSize)});
+            new(colorBoxOuter.Right + pickerSize, pickerVisualPos - pickerSize),
+            new(colorBoxOuter.Right, pickerVisualPos),
+            new(colorBoxOuter.Right + pickerSize, pickerVisualPos + pickerSize),
+            new(colorBoxOuter.Right + pickerSize, pickerVisualPos - pickerSize)});
 
         if (ShowInnerPicker)
         {

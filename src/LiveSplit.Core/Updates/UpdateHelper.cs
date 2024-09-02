@@ -23,7 +23,7 @@ public static class UpdateHelper
         {
             try
             {
-                var actualUpdateables = updateables.Where(x => !AlreadyChecked.Contains(x.GetType()));
+                IEnumerable<IUpdateable> actualUpdateables = updateables.Where(x => !AlreadyChecked.Contains(x.GetType()));
                 if (Updater.CheckForAnyUpdate(actualUpdateables))
                 {
                     string dialogText = actualUpdateables.Where(x => x.CheckForUpdate()).Select(x =>
@@ -83,7 +83,7 @@ public static class UpdateHelper
 
     private static string GetUserAgent()
     {
-        var versionString = (Version != null) ? Version.ToString() : "Unknown";
+        string versionString = (Version != null) ? Version.ToString() : "Unknown";
         return $"LiveSplit/{versionString}";
     }
 }

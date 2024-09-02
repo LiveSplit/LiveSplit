@@ -29,7 +29,7 @@ public abstract class RaceProviderSettings : ICloneable
 
     public virtual void FromXml(XmlElement element, Version version)
     {
-        var enabled = element.Attributes["enabled"];
+        XmlAttribute enabled = element.Attributes["enabled"];
         if (!bool.TryParse(enabled.Value, out Enabled))
         {
             Enabled = true;
@@ -38,9 +38,9 @@ public abstract class RaceProviderSettings : ICloneable
 
     public virtual XmlElement ToXml(XmlDocument document)
     {
-        var parent = document.CreateElement("Plugin");
+        XmlElement parent = document.CreateElement("Plugin");
 
-        var providerName = document.CreateAttribute("name");
+        XmlAttribute providerName = document.CreateAttribute("name");
         if (providerName != null)
         {
             providerName.InnerText = Name.ToString();
@@ -48,7 +48,7 @@ public abstract class RaceProviderSettings : ICloneable
 
         parent.Attributes.Append(providerName);
 
-        var enabled = document.CreateAttribute("enabled");
+        XmlAttribute enabled = document.CreateAttribute("enabled");
         if (enabled != null)
         {
             enabled.InnerText = Enabled.ToString();

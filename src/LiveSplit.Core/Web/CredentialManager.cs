@@ -40,7 +40,7 @@ public static class CredentialManager
         bool read = CredRead(applicationName, CredentialType.Generic, 0, out IntPtr nCredPtr);
         if (read)
         {
-            using CriticalCredentialHandle critCred = new CriticalCredentialHandle(nCredPtr);
+            using var critCred = new CriticalCredentialHandle(nCredPtr);
             CREDENTIAL cred = critCred.GetCredential();
             return ReadCredential(cred);
         }
@@ -81,7 +81,7 @@ public static class CredentialManager
             }
         }
 
-        CREDENTIAL credential = new CREDENTIAL
+        var credential = new CREDENTIAL
         {
             AttributeCount = 0,
             Attributes = IntPtr.Zero,
@@ -124,10 +124,10 @@ public static class CredentialManager
             return;
         }
 
-        var success = CredDelete(applicationName, CredentialType.Generic, 0);
+        bool success = CredDelete(applicationName, CredentialType.Generic, 0);
         if (!success)
         {
-            var lastError = Marshal.GetLastWin32Error();
+            int lastError = Marshal.GetLastWin32Error();
             throw new Win32Exception(lastError);
         }
     }
@@ -179,7 +179,7 @@ public static class CredentialManager
         {
             if (!IsInvalid)
             {
-                CREDENTIAL credential = (CREDENTIAL)Marshal.PtrToStructure(handle, typeof(CREDENTIAL));
+                var credential = (CREDENTIAL)Marshal.PtrToStructure(handle, typeof(CREDENTIAL));
                 return credential;
             }
 

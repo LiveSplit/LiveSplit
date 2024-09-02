@@ -35,7 +35,7 @@ public abstract class AutoSplitComponent : LogicComponent
 
             state.IsGameTimePaused = AutoSplitter.IsGameTimePaused(state);
 
-            var gameTime = AutoSplitter.GetGameTime(state);
+            System.TimeSpan? gameTime = AutoSplitter.GetGameTime(state);
             if (gameTime != null)
             {
                 state.SetGameTime(gameTime);

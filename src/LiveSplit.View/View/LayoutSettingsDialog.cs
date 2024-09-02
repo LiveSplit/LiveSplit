@@ -45,9 +45,9 @@ public partial class LayoutSettingsDialog : Form
 
     protected void AddComponents(IComponent tabComponent = null)
     {
-        foreach (var component in Layout.Components)
+        foreach (IComponent component in Layout.Components)
         {
-            var settingsControl = component.GetSettingsControl(Layout.Mode);
+            Control settingsControl = component.GetSettingsControl(Layout.Mode);
             if (settingsControl != null)
             {
                 AddNewTab(component.ComponentName, settingsControl);

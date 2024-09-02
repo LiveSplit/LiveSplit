@@ -160,10 +160,10 @@ public partial class SettingsDialog : Form
     {
         if (key != null)
         {
-            var keyString = key.ToString();
+            string keyString = key.ToString();
             if (key.IsButton)
             {
-                var lastSpaceIndex = keyString.LastIndexOf(' ');
+                int lastSpaceIndex = keyString.LastIndexOf(' ');
                 if (lastSpaceIndex != -1)
                 {
                     keyString = keyString.Substring(0, lastSpaceIndex);
@@ -177,7 +177,7 @@ public partial class SettingsDialog : Form
     }
     private void SetHotkeyHandlers(TextBox txtBox, Action<KeyOrButton> keySetCallback)
     {
-        var oldText = txtBox.Text;
+        string oldText = txtBox.Text;
         txtBox.Text = "Set Hotkey...";
         txtBox.Select(0, 0);
         KeyEventHandler handlerDown = null;
@@ -194,7 +194,7 @@ public partial class SettingsDialog : Form
 
         handlerDown = (s, x) =>
         {
-            var key = x.KeyCode == Keys.Escape ? null : new KeyOrButton(x.KeyCode | x.Modifiers);
+            KeyOrButton key = x.KeyCode == Keys.Escape ? null : new KeyOrButton(x.KeyCode | x.Modifiers);
             if (x.KeyCode is Keys.ControlKey or Keys.ShiftKey or Keys.Menu)
             {
                 return;
@@ -208,7 +208,7 @@ public partial class SettingsDialog : Form
         };
         handlerUp = (s, x) =>
         {
-            var key = x.KeyCode == Keys.Escape ? null : new KeyOrButton(x.KeyCode | x.Modifiers);
+            KeyOrButton key = x.KeyCode == Keys.Escape ? null : new KeyOrButton(x.KeyCode | x.Modifiers);
             if (x.KeyCode is Keys.ControlKey or Keys.ShiftKey or Keys.Menu)
             {
                 keySetCallback(key);
@@ -307,7 +307,7 @@ public partial class SettingsDialog : Form
     private void btnChooseComparisons_Click(object sender, EventArgs e)
     {
         var generatorStates = new Dictionary<string, bool>(Settings.ComparisonGeneratorStates);
-        var result = new ChooseComparisonsDialog() { ComparisonGeneratorStates = generatorStates }.ShowDialog(this);
+        DialogResult result = new ChooseComparisonsDialog() { ComparisonGeneratorStates = generatorStates }.ShowDialog(this);
         if (result == DialogResult.OK)
         {
             Settings.ComparisonGeneratorStates = generatorStates;
@@ -333,15 +333,15 @@ public partial class SettingsDialog : Form
 
     private void btnRenameProfile_Click(object sender, EventArgs e)
     {
-        var newName = SelectedHotkeyProfile;
-        var result = InputBox.Show("Rename Hotkey Profile", "Hotkey Profile Name:", ref newName);
+        string newName = SelectedHotkeyProfile;
+        DialogResult result = InputBox.Show("Rename Hotkey Profile", "Hotkey Profile Name:", ref newName);
         if (result == DialogResult.OK)
         {
             if (!Settings.HotkeyProfiles.ContainsKey(newName))
             {
-                for (var i = 0; i < Settings.RecentSplits.Count; i++)
+                for (int i = 0; i < Settings.RecentSplits.Count; i++)
                 {
-                    var file = Settings.RecentSplits[i];
+                    RecentSplitsFile file = Settings.RecentSplits[i];
                     if (file.LastHotkeyProfile == SelectedHotkeyProfile)
                     {
                         var newFile = new RecentSplitsFile(file.Path, file.LastTimingMethod, newName, file.GameName, file.CategoryName);
@@ -350,7 +350,7 @@ public partial class SettingsDialog : Form
                     }
                 }
 
-                var curProfile = Settings.HotkeyProfiles[SelectedHotkeyProfile];
+                HotkeyProfile curProfile = Settings.HotkeyProfiles[SelectedHotkeyProfile];
                 Settings.HotkeyProfiles.Remove(SelectedHotkeyProfile);
                 Settings.HotkeyProfiles[newName] = curProfile;
                 cmbHotkeyProfiles.Items.Remove(SelectedHotkeyProfile);
@@ -370,8 +370,8 @@ public partial class SettingsDialog : Form
 
     private void btnNewProfile_Click(object sender, EventArgs e)
     {
-        var name = "";
-        var result = InputBox.Show("New Hotkey Profile", "Hotkey Profile Name:", ref name);
+        string name = "";
+        DialogResult result = InputBox.Show("New Hotkey Profile", "Hotkey Profile Name:", ref name);
         if (result == DialogResult.OK)
         {
             if (!Settings.HotkeyProfiles.ContainsKey(name))

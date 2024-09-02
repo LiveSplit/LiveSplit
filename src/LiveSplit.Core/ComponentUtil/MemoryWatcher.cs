@@ -20,7 +20,7 @@ public class MemoryWatcherList : List<MemoryWatcher>
         {
             var changedList = new List<MemoryWatcher>();
 
-            foreach (var watcher in this)
+            foreach (MemoryWatcher watcher in this)
             {
                 bool changed = watcher.Update(process);
                 if (changed)
@@ -30,14 +30,14 @@ public class MemoryWatcherList : List<MemoryWatcher>
             }
 
             // only report changes when all of the other watches are updated too
-            foreach (var watcher in changedList)
+            foreach (MemoryWatcher watcher in changedList)
             {
                 OnWatcherDataChanged(watcher);
             }
         }
         else
         {
-            foreach (var watcher in this)
+            foreach (MemoryWatcher watcher in this)
             {
                 watcher.Update(process);
             }
@@ -46,7 +46,7 @@ public class MemoryWatcherList : List<MemoryWatcher>
 
     public void ResetAll()
     {
-        foreach (var watcher in this)
+        foreach (MemoryWatcher watcher in this)
         {
             watcher.Reset();
         }

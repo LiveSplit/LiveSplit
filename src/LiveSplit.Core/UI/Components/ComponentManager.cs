@@ -39,12 +39,12 @@ public class ComponentManager
 
     public static IDictionary<string, T> LoadAllFactories<T>()
     {
-        var path = Path.GetFullPath(Path.Combine(BasePath ?? "", PATH_COMPONENTS));
+        string path = Path.GetFullPath(Path.Combine(BasePath ?? "", PATH_COMPONENTS));
         return Directory
             .EnumerateFiles(path, "*.dll")
             .Select(x =>
             {
-                var factory = LoadFactory<T>(x);
+                T factory = LoadFactory<T>(x);
                 return new KeyValuePair<string, T>(Path.GetFileName(x), factory);
             })
             .Where(x => x.Value != null)

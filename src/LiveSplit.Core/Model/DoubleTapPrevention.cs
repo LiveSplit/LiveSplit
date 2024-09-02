@@ -12,8 +12,8 @@ public class DoubleTapPrevention : ITimerModel
         set => InternalModel.CurrentState = value;
     }
 
-    private TimeSpan Delay = new TimeSpan(0, 0, 0, 0, 300);
-    private TimeSpan LongDelay = new TimeSpan(0, 0, 0, 0, 600);
+    private TimeSpan Delay = new(0, 0, 0, 0, 300);
+    private TimeSpan LongDelay = new(0, 0, 0, 0, 600);
 
     private TimeStamp LastEvent;
 

@@ -49,18 +49,18 @@ public struct Attempt
 
     public readonly XmlNode ToXml(XmlDocument document)
     {
-        var attempt = document.CreateElement("Attempt");
+        XmlElement attempt = document.CreateElement("Attempt");
 
-        var time = Time.ToXml(document);
+        XmlElement time = Time.ToXml(document);
         attempt.InnerXml = time.InnerXml;
 
-        var id = document.CreateAttribute("id");
+        XmlAttribute id = document.CreateAttribute("id");
         id.InnerText = Index.ToString();
         attempt.Attributes.Append(id);
 
         if (Started.HasValue)
         {
-            var started = document.CreateAttribute("started");
+            XmlAttribute started = document.CreateAttribute("started");
             started.InnerText = Started.Value.Time.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
             attempt.Attributes.Append(started);
             attempt.Attributes.Append(SettingsHelper.ToAttribute(document, "isStartedSynced", Started.Value.SyncedWithAtomicClock));
@@ -68,7 +68,7 @@ public struct Attempt
 
         if (Ended.HasValue)
         {
-            var ended = document.CreateAttribute("ended");
+            XmlAttribute ended = document.CreateAttribute("ended");
             ended.InnerText = Ended.Value.Time.ToUniversalTime().ToString(CultureInfo.InvariantCulture);
             attempt.Attributes.Append(ended);
             attempt.Attributes.Append(SettingsHelper.ToAttribute(document, "isEndedSynced", Ended.Value.SyncedWithAtomicClock));
@@ -76,7 +76,7 @@ public struct Attempt
 
         if (PauseTime.HasValue)
         {
-            var pauseTime = document.CreateElement("PauseTime");
+            XmlElement pauseTime = document.CreateElement("PauseTime");
             pauseTime.InnerText = PauseTime.ToString();
             attempt.AppendChild(pauseTime);
         }
@@ -87,11 +87,11 @@ public struct Attempt
     public static Attempt ParseXml(XmlElement node)
     {
         var newTime = Time.FromXml(node);
-        var index = int.Parse(node.Attributes["id"].InnerText, CultureInfo.InvariantCulture);
+        int index = int.Parse(node.Attributes["id"].InnerText, CultureInfo.InvariantCulture);
         AtomicDateTime? started = null;
-        var startedSynced = false;
+        bool startedSynced = false;
         AtomicDateTime? ended = null;
-        var endedSynced = false;
+        bool endedSynced = false;
 
         if (node.HasAttribute("started"))
         {

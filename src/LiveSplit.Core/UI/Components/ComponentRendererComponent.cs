@@ -67,7 +67,7 @@ public class ComponentRendererComponent : ComponentRenderer, IComponent
 
     public void Dispose()
     {
-        foreach (var component in VisibleComponents)
+        foreach (IComponent component in VisibleComponents)
         {
             component.Dispose();
         }

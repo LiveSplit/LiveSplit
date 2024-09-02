@@ -34,9 +34,9 @@ public class TimeMust
     public static IEnumerable<object[]> TimeConstructorFeeder()
     {
         object[] possibleValues = [null, TimeSpan.Zero];
-        foreach (var anyRealTime in possibleValues)
+        foreach (object anyRealTime in possibleValues)
         {
-            foreach (var anyGameTime in possibleValues)
+            foreach (object anyGameTime in possibleValues)
             {
                 yield return new object[] { anyRealTime, anyGameTime };
             }
@@ -108,7 +108,7 @@ public class TimeMust
     public void SerializeToJsonCorrectly(TimeSpan? realTime, TimeSpan? gameTime, string expectedRealTimeText, string expectedGameTimeText)
     {
         var sut = new Time(realTime, gameTime);
-        var json = sut.ToJson().ToString();
+        string json = sut.ToJson().ToString();
         Assert.Matches(expectedRealTimeText, json);
         Assert.Matches(expectedGameTimeText, json);
     }
@@ -126,17 +126,17 @@ public class TimeMust
     {
         var document = new XmlDocument();
         var sut = new Time(AnyTimeSpan, AnotherTimeSpan);
-        var root = sut.ToXml(document);
+        XmlElement root = sut.ToXml(document);
         Assert.Equal("Time", root.Name);
     }
 
     [Fact]
     public void SerializeToGivenXmlRootCorrectly()
     {
-        var anyRoot = "AnyRoot";
+        string anyRoot = "AnyRoot";
         var document = new XmlDocument();
         var sut = new Time(AnyTimeSpan, AnotherTimeSpan);
-        var root = sut.ToXml(document, anyRoot);
+        XmlElement root = sut.ToXml(document, anyRoot);
         Assert.Equal(anyRoot, root.Name);
     }
 
@@ -146,7 +146,7 @@ public class TimeMust
     {
         var document = new XmlDocument();
         var sut = new Time(realTime, gameTime);
-        var innerXmlAsText = sut.ToXml(document).InnerXml;
+        string innerXmlAsText = sut.ToXml(document).InnerXml;
         Assert.Contains(expectedRealTimeText, innerXmlAsText);
         Assert.Contains(expectedGameTimeText, innerXmlAsText);
     }
@@ -182,7 +182,7 @@ public class TimeMust
     [MemberData(nameof(SubstractionFeeder))]
     public void SubstractTimeCorrectly(Time minuend, Time substrahend, Time difference)
     {
-        var sut = minuend - substrahend;
+        Time sut = minuend - substrahend;
         Assert.Equal(difference, sut);
     }
 
@@ -200,7 +200,7 @@ public class TimeMust
     [MemberData(nameof(AdditionFeeder))]
     public void AddTimeCorrectly(Time leftAddend, Time rightAddend, Time sum)
     {
-        var sut = leftAddend + rightAddend;
+        Time sut = leftAddend + rightAddend;
         Assert.Equal(sum, sut);
     }
 

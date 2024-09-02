@@ -37,7 +37,7 @@ public partial class MetadataControl : UserControl
             }
             set
             {
-                var choice = Variable.Values.FirstOrDefault(x => x.Value == value);
+                VariableValue choice = Variable.Values.FirstOrDefault(x => x.Value == value);
                 string variableValue = null;
                 if (choice == null)
                 {
@@ -127,7 +127,7 @@ public partial class MetadataControl : UserControl
         cmbPlatform.DataBindings.Clear();
         tbxRules.Clear();
 
-        foreach (var control in dynamicControls)
+        foreach (Control control in dynamicControls)
         {
             tableLayoutPanel1.Controls.Remove(control);
         }
@@ -145,12 +145,12 @@ public partial class MetadataControl : UserControl
             cmbPlatform.DataBindings.Add("SelectedItem", Metadata, "PlatformName");
             refreshRules();
 
-            var controlIndex = 0;
+            int controlIndex = 0;
 
             if (Metadata.Game != null && Metadata.Game.Ruleset.EmulatorsAllowed)
             {
-                var emulatedRow = getDynamicControlRowIndex(controlIndex);
-                var emulatedColumn = getDynamicControlColumnIndex(controlIndex);
+                int emulatedRow = getDynamicControlRowIndex(controlIndex);
+                int emulatedColumn = getDynamicControlColumnIndex(controlIndex);
 
                 var emulatedCheckBox = new CheckBox
                 {
@@ -171,7 +171,7 @@ public partial class MetadataControl : UserControl
                 controlIndex++;
             }
 
-            foreach (var variable in Metadata.VariableValues.Keys)
+            foreach (Variable variable in Metadata.VariableValues.Keys)
             {
                 var variableLabel = new Label()
                 {
@@ -192,9 +192,9 @@ public partial class MetadataControl : UserControl
                 variableComboBox.Items.Add(string.Empty);
                 variableComboBox.Items.AddRange(variable.Values.Select(x => x.Value).ToArray());
 
-                var variableRow = getDynamicControlRowIndex(controlIndex);
-                var variableLabelColumn = getDynamicControlColumnIndex(controlIndex);
-                var variableComboBoxColumn = variableLabelColumn + 1;
+                int variableRow = getDynamicControlRowIndex(controlIndex);
+                int variableLabelColumn = getDynamicControlColumnIndex(controlIndex);
+                int variableComboBoxColumn = variableLabelColumn + 1;
 
                 tableLayoutPanel1.Controls.Add(variableLabel, variableLabelColumn, variableRow);
                 tableLayoutPanel1.Controls.Add(variableComboBox, variableComboBoxColumn, variableRow);
@@ -217,7 +217,7 @@ public partial class MetadataControl : UserControl
             }
         }
 
-        foreach (var control in dynamicControls)
+        foreach (Control control in dynamicControls)
         {
             control.Visible = true;
         }
@@ -234,7 +234,7 @@ public partial class MetadataControl : UserControl
 
         if (Metadata.Game.Ruleset.DefaultTimingMethod != SpeedrunComSharp.TimingMethod.RealTime)
         {
-            var timingText = Metadata.Game.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads
+            string timingText = Metadata.Game.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads
                 ? "are timed without the loading times"
                 : "are timed with the Game Time";
 
@@ -248,13 +248,13 @@ public partial class MetadataControl : UserControl
 
         if (additionalRules.Any())
         {
-            var firstRule = additionalRules.First();
-            var lastRule = additionalRules.Last();
+            string firstRule = additionalRules.First();
+            string lastRule = additionalRules.Last();
 
             var stringBuilder = new StringBuilder();
             stringBuilder.Append("Runs of this game ");
 
-            foreach (var additionalRule in additionalRules)
+            foreach (string additionalRule in additionalRules)
             {
                 if (additionalRule != firstRule)
                 {
@@ -307,14 +307,14 @@ public partial class MetadataControl : UserControl
 
     private void associateRun()
     {
-        var url = "";
-        var result = InputBox.Show("Enter Speedrun.com URL", "Speedrun.com Run URL:", ref url);
+        string url = "";
+        DialogResult result = InputBox.Show("Enter Speedrun.com URL", "Speedrun.com Run URL:", ref url);
 
         if (result == DialogResult.OK)
         {
             try
             {
-                var run = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
+                SpeedrunComSharp.Run run = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
                 if (run != null)
                 {
                     Metadata.LiveSplitRun.PatchRun(run);
@@ -365,7 +365,7 @@ public partial class MetadataControl : UserControl
 
     private void btnSubmit_Click(object sender, EventArgs e)
     {
-        var isValid = SpeedrunCom.ValidateRun(Metadata.LiveSplitRun, out string reason);
+        bool isValid = SpeedrunCom.ValidateRun(Metadata.LiveSplitRun, out string reason);
 
         if (!isValid)
         {
@@ -374,7 +374,7 @@ public partial class MetadataControl : UserControl
         }
 
         using var submitDialog = new SpeedrunComSubmitDialog(Metadata);
-        var result = submitDialog.ShowDialog();
+        DialogResult result = submitDialog.ShowDialog();
         if (result == DialogResult.OK)
         {
             RefreshAssociateButton();

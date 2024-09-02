@@ -24,13 +24,13 @@ public class MedianSegmentsComparisonGenerator : IComparisonGenerator
 
     protected TimeSpan CalculateMedian(IEnumerable<TimeSpan> curList)
     {
-        var elementCount = curList.Count();
+        int elementCount = curList.Count();
         var weightedList = curList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, elementCount), x)).ToList();
         weightedList = [.. weightedList.OrderBy(x => x.Value)];
-        var totalWeights = weightedList.Aggregate(0.0, (s, x) => s + x.Key);
-        var halfTotalWeights = totalWeights / 2;
-        var curTotal = 0.0;
-        foreach (var element in weightedList)
+        double totalWeights = weightedList.Aggregate(0.0, (s, x) => s + x.Key);
+        double halfTotalWeights = totalWeights / 2;
+        double curTotal = 0.0;
+        foreach (KeyValuePair<double, TimeSpan> element in weightedList)
         {
             curTotal += element.Key;
             if (curTotal >= halfTotalWeights)
@@ -50,16 +50,16 @@ public class MedianSegmentsComparisonGenerator : IComparisonGenerator
     public void Generate(TimingMethod method)
     {
         var allHistory = new List<List<TimeSpan>>();
-        foreach (var segment in Run)
+        foreach (ISegment segment in Run)
         {
             allHistory.Add([]);
         }
 
-        foreach (var attempt in Run.AttemptHistory)
+        foreach (Attempt attempt in Run.AttemptHistory)
         {
-            var ind = attempt.Index;
-            var ignoreNextHistory = false;
-            foreach (var segment in Run)
+            int ind = attempt.Index;
+            bool ignoreNextHistory = false;
+            foreach (ISegment segment in Run)
             {
                 if (segment.SegmentHistory.TryGetValue(ind, out Time history))
                 {
@@ -84,9 +84,9 @@ public class MedianSegmentsComparisonGenerator : IComparisonGenerator
         }
 
         TimeSpan? totalTime = TimeSpan.Zero;
-        for (var ind = 0; ind < Run.Count; ind++)
+        for (int ind = 0; ind < Run.Count; ind++)
         {
-            var curList = allHistory[ind];
+            List<TimeSpan> curList = allHistory[ind];
             if (curList.Count == 0)
             {
                 totalTime = null;

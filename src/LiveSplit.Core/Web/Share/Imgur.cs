@@ -18,11 +18,11 @@ public class Imgur : IRunUploadPlatform
 {
     private const string YOUR_CLIENT_ID = "63e6ae2de8601ef";
 
-    protected static Imgur _Instance = new Imgur();
+    protected static Imgur _Instance = new();
 
     public static Imgur Instance => _Instance;
 
-    public static readonly Uri BaseUri = new Uri("https://api.imgur.com/");
+    public static readonly Uri BaseUri = new("https://api.imgur.com/");
 
     protected Imgur() { }
 
@@ -59,7 +59,7 @@ public class Imgur : IRunUploadPlatform
         request.Method = "POST";
         request.Headers.Add("Authorization", "Client-ID " + YOUR_CLIENT_ID);
 
-        using (var stream = request.GetRequestStream())
+        using (Stream stream = request.GetRequestStream())
         {
             request.ContentType = "multipart/form-data; boundary=AaB03x";
             var writer = new StreamWriter(stream);
@@ -84,12 +84,12 @@ public class Imgur : IRunUploadPlatform
             writer.Flush();
         }
 
-        using (var response = request.GetResponse())
-        using (var stream = response.GetResponseStream())
+        using (WebResponse response = request.GetResponse())
+        using (Stream stream = response.GetResponseStream())
         {
             var reader = new StreamReader(stream);
-            var resultString = reader.ReadToEnd();
-            var result = JSON.FromString(resultString);
+            string resultString = reader.ReadToEnd();
+            dynamic result = JSON.FromString(resultString);
 
             return result;
         }
@@ -99,8 +99,8 @@ public class Imgur : IRunUploadPlatform
     {
         var titleBuilder = new StringBuilder();
 
-        var gameNameEmpty = string.IsNullOrEmpty(run.GameName);
-        var categoryEmpty = string.IsNullOrEmpty(run.CategoryName);
+        bool gameNameEmpty = string.IsNullOrEmpty(run.GameName);
+        bool categoryEmpty = string.IsNullOrEmpty(run.CategoryName);
 
         titleBuilder.Append(new RegularTimeFormatter(TimeAccuracy.Seconds).Format(run.Last().PersonalBestSplitTime[method]));
         if (titleBuilder.Length > 0 && (!gameNameEmpty || !categoryEmpty))
@@ -123,10 +123,10 @@ public class Imgur : IRunUploadPlatform
 
         if (screenShotFunction != null)
         {
-            var image = screenShotFunction();
-            var result = UploadImage(image, titleBuilder.ToString(), comment);
+            Image image = screenShotFunction();
+            dynamic result = UploadImage(image, titleBuilder.ToString(), comment);
 
-            var url = "http://imgur.com/" + (string)result.data.id;
+            string url = "http://imgur.com/" + (string)result.data.id;
             Process.Start(url);
             Clipboard.SetText(url);
         }

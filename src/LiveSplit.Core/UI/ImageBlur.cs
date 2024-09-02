@@ -9,50 +9,50 @@ public class ImageBlur
 {
     public static Bitmap Generate(Image image, double sigma)
     {
-        var scaleFactor = (1.5 * sigma) + 1;
-        var kernelWidth = (int)Round(3 * sigma / scaleFactor);
+        double scaleFactor = (1.5 * sigma) + 1;
+        int kernelWidth = (int)Round(3 * sigma / scaleFactor);
         if (kernelWidth == 0)
         {
             return new Bitmap(image);
         }
 
-        var kernel = new double[kernelWidth];
-        for (var i = 0; i < kernelWidth; i++)
+        double[] kernel = new double[kernelWidth];
+        for (int i = 0; i < kernelWidth; i++)
         {
-            var x = i * scaleFactor;
+            double x = i * scaleFactor;
             kernel[i] = Exp(-x * x / (2 * sigma * sigma)) / (sigma * Sqrt(2 * PI));
         }
 
-        var overallWeight = kernel[0];
-        for (var i = 1; i < kernelWidth; i++)
+        double overallWeight = kernel[0];
+        for (int i = 1; i < kernelWidth; i++)
         {
             overallWeight += 2 * kernel[i];
         }
 
-        var width = (int)Round(image.Width / scaleFactor);
-        var height = (int)Round(image.Height / scaleFactor);
+        int width = (int)Round(image.Width / scaleFactor);
+        int height = (int)Round(image.Height / scaleFactor);
 
         var sourceImage = new Bitmap(image, width, height);
-        var resultImage = sourceImage;
+        Bitmap resultImage = sourceImage;
         var sourceBuffer = new BlurColor[width, height];
         var tempBuffer = new BlurColor[width, height];
 
-        for (var y = 0; y < height; y++)
+        for (int y = 0; y < height; y++)
         {
-            for (var x = 0; x < width; x++)
+            for (int x = 0; x < width; x++)
             {
                 sourceBuffer[x, y] = new BlurColor(sourceImage.GetPixel(x, y));
             }
         }
 
-        for (var y = 0; y < height; y++)
+        for (int y = 0; y < height; y++)
         {
             Parallel.For(0, width, x =>
             {
-                var result = kernel[0] * GetColor(sourceBuffer, x, y);
-                for (var i = 1; i < kernelWidth; i++)
+                BlurColor result = kernel[0] * GetColor(sourceBuffer, x, y);
+                for (int i = 1; i < kernelWidth; i++)
                 {
-                    var weight = kernel[i];
+                    double weight = kernel[i];
                     result += weight * (GetColor(sourceBuffer, x - i, y) + GetColor(sourceBuffer, x + i, y));
                 }
 
@@ -61,14 +61,14 @@ public class ImageBlur
             });
         }
 
-        for (var y = 0; y < height; y++)
+        for (int y = 0; y < height; y++)
         {
             Parallel.For(0, width, x =>
             {
-                var result = kernel[0] * GetColor(tempBuffer, x, y);
-                for (var i = 1; i < kernelWidth; i++)
+                BlurColor result = kernel[0] * GetColor(tempBuffer, x, y);
+                for (int i = 1; i < kernelWidth; i++)
                 {
-                    var weight = kernel[i];
+                    double weight = kernel[i];
                     result += weight * (GetColor(tempBuffer, x, y - i) + GetColor(tempBuffer, x, y + i));
                 }
 
@@ -101,7 +101,7 @@ public class ImageBlur
         {
             get
             {
-                var saturated = Saturate();
+                BlurColor saturated = Saturate();
                 return Color.FromArgb((int)Round(saturated.A), (int)Round(saturated.R), (int)Round(saturated.G), (int)Round(saturated.B));
             }
         }

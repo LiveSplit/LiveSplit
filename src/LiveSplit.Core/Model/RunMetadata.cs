@@ -97,8 +97,8 @@ public class RunMetadata
                 return new Dictionary<Variable, VariableValue>();
             }
 
-            var categoryId = Category?.ID;
-            var variables = Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);
+            string categoryId = Category?.ID;
+            IEnumerable<Variable> variables = Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);
             return variables.ToDictionary(x => x, x =>
             {
                 if (!VariableValueNames.ContainsKey(x.Name))
@@ -106,8 +106,8 @@ public class RunMetadata
                     return null;
                 }
 
-                var variableValue = VariableValueNames[x.Name];
-                var foundValue = x.Values.FirstOrDefault(y => y.Value == variableValue);
+                string variableValue = VariableValueNames[x.Name];
+                VariableValue foundValue = x.Values.FirstOrDefault(y => y.Value == variableValue);
 
                 if (foundValue == null && x.IsUserDefined)
                 {
@@ -174,12 +174,12 @@ public class RunMetadata
                 oldGameName = LiveSplitRun.GameName;
                 if (!string.IsNullOrEmpty(LiveSplitRun.GameName))
                 {
-                    var gameTask = Task.Factory.StartNew(() =>
+                    Task<Game> gameTask = Task.Factory.StartNew(() =>
                     {
                         try
                         {
-                            var gameId = Web.CompositeGameList.Instance.GetGameID(oldGameName);
-                            var game = SpeedrunCom.Client.Games.GetGame(gameId, new GameEmbeds(embedRegions: true, embedPlatforms: true));
+                            string gameId = Web.CompositeGameList.Instance.GetGameID(oldGameName);
+                            Game game = SpeedrunCom.Client.Games.GetGame(gameId, new GameEmbeds(embedRegions: true, embedPlatforms: true));
                             gameLoaded = true;
                             if (game != null)
                             {
@@ -196,17 +196,17 @@ public class RunMetadata
                     });
                     game = new Lazy<Game>(() => gameTask.Result);
 
-                    var platformTask = Task.Factory.StartNew(() =>
+                    Task platformTask = Task.Factory.StartNew(() =>
                         {
-                            var game = this.game.Value;
+                            Game game = this.game.Value;
                             if ((game != null && !game.Platforms.Any(x => x.Name == PlatformName)) || (gameLoaded && game == null))
                             {
                                 PlatformName = string.Empty;
                             }
                         });
-                    var regionTask = Task.Factory.StartNew(() =>
+                    Task regionTask = Task.Factory.StartNew(() =>
                         {
-                            var game = this.game.Value;
+                            Game game = this.game.Value;
                             if ((game != null && !game.Regions.Any(x => x.Name == RegionName)) || (gameLoaded && game == null))
                             {
                                 RegionName = string.Empty;
@@ -228,9 +228,9 @@ public class RunMetadata
                 oldCategoryName = LiveSplitRun.CategoryName;
                 if (!string.IsNullOrEmpty(oldCategoryName))
                 {
-                    var categoryTask = Task.Factory.StartNew(() =>
+                    Task<Category> categoryTask = Task.Factory.StartNew(() =>
                     {
-                        var game = this.game.Value;
+                        Game game = this.game.Value;
                         if (game == null)
                         {
                             return null;
@@ -238,7 +238,7 @@ public class RunMetadata
 
                         try
                         {
-                            var category = SpeedrunCom.Client.Games.GetCategories(game.ID, embeds: new CategoryEmbeds(embedVariables: true))
+                            Category category = SpeedrunCom.Client.Games.GetCategories(game.ID, embeds: new CategoryEmbeds(embedVariables: true))
                                 .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == oldCategoryName);
                             if (category != null)
                             {
@@ -254,11 +254,11 @@ public class RunMetadata
                     });
                     category = new Lazy<Category>(() => categoryTask.Result);
 
-                    var variableTask = Task.Factory.StartNew(() =>
+                    Task variableTask = Task.Factory.StartNew(() =>
                         {
-                            var category = this.category.Value;
-                            var categoryId = category?.ID;
-                            var game = this.game.Value;
+                            Category category = this.category.Value;
+                            string categoryId = category?.ID;
+                            Game game = this.game.Value;
                             if (game == null && !gameLoaded)
                             {
                                 return;
@@ -273,9 +273,9 @@ public class RunMetadata
                                 {
                                     var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).ToList();
 
-                                    foreach (var variableNamePair in variableValueNames)
+                                    foreach (KeyValuePair<string, string> variableNamePair in variableValueNames)
                                     {
-                                        var variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
+                                        Variable variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
                                         if (variable == null
                                         || (!variable.Values.Any(x => x.Value == variableNamePair.Value) && !variable.IsUserDefined))
                                         {
@@ -288,7 +288,7 @@ public class RunMetadata
                                     deletions.AddRange(variableValueNames.Keys);
                                 }
 
-                                foreach (var variable in deletions)
+                                foreach (string variable in deletions)
                                 {
                                     variableValueNames.Remove(variable);
                                 }

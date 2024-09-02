@@ -22,7 +22,7 @@ public static class WebCredentials
     {
         get
         {
-            var credentials = CredentialManager.ReadCredential(SpeedRunsLive);
+            Credential credentials = CredentialManager.ReadCredential(SpeedRunsLive);
             return new SRLCredentials(credentials?.UserName, credentials?.Password);
         }
         set => CredentialManager.WriteCredential(SpeedRunsLive, value.Username, value.Password);

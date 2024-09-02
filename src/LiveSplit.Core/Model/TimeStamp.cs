@@ -41,7 +41,7 @@ public sealed class TimeStamp
     }
 
     public static TimeStamp Now
-        => new TimeStamp(TimeSpan.FromTicks((long)(qpc.Elapsed.Ticks / PersistentDrift)));
+        => new(TimeSpan.FromTicks((long)(qpc.Elapsed.Ticks / PersistentDrift)));
 
     public static bool IsSyncedWithAtomicClock
         => lastQPCTime != TimeSpan.Zero;
@@ -66,7 +66,7 @@ public sealed class TimeStamp
             var times = new List<long>();
             DateTime ntpTime;
             TimeSpan qpcTime = TimeSpan.Zero;
-            for (var count = 1; count <= 10; count++)
+            for (int count = 1; count <= 10; count++)
             {
                 try
                 {
@@ -84,21 +84,21 @@ public sealed class TimeStamp
 
             if (times.Count >= 5)
             {
-                var averageDifference = times.Average();
+                double averageDifference = times.Average();
                 lastQPCTime = qpcTime;
                 lastNTPTime = new DateTime(qpcTime.Ticks + (long)averageDifference, DateTimeKind.Utc);
 
                 if (firstQPCTime != TimeSpan.Zero)
                 {
-                    var qpcDelta = lastQPCTime - firstQPCTime;
-                    var ntpDelta = lastNTPTime - firstNTPTime;
+                    TimeSpan qpcDelta = lastQPCTime - firstQPCTime;
+                    TimeSpan ntpDelta = lastNTPTime - firstNTPTime;
 
-                    var newDrift = qpcDelta.TotalMilliseconds / ntpDelta.TotalMilliseconds;
+                    double newDrift = qpcDelta.TotalMilliseconds / ntpDelta.TotalMilliseconds;
 
                     // Ignore any drift that is too far from 1
                     if (Math.Abs(newDrift - 1) < 0.01)
                     {
-                        var weight = Math.Pow(0.95, ntpDelta.TotalHours);
+                        double weight = Math.Pow(0.95, ntpDelta.TotalHours);
                         NewDrift = Math.Pow(newDrift, 1 - weight) * Math.Pow(PersistentDrift, weight);
                     }
 
@@ -120,9 +120,9 @@ public sealed class TimeStamp
 
     private static void Wait(TimeSpan waitTime)
     {
-        var before = Now;
+        TimeStamp before = Now;
         Thread.Sleep(waitTime);
-        var elapsed = Now - before;
+        TimeSpan elapsed = Now - before;
         if (elapsed.TotalMinutes > waitTime.TotalMinutes + 2)
         {
             firstQPCTime = TimeSpan.Zero;

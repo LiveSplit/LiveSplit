@@ -73,7 +73,7 @@ public partial class ScrollableMessageBox : Form
     public DialogResult ShowFromFile(string filename, string caption, MessageBoxButtons buttonType)
     {
         // read the file into the message box
-        using (StreamReader sr = new StreamReader(filename))
+        using (var sr = new StreamReader(filename))
         {
             txtMessage.Text = sr.ReadToEnd();
         }
@@ -126,7 +126,7 @@ public partial class ScrollableMessageBox : Form
 
     private void AddOKButton()
     {
-        Button btnOK = new Button
+        var btnOK = new Button
         {
             Text = "OK"
         };
@@ -139,7 +139,7 @@ public partial class ScrollableMessageBox : Form
 
     private void AddYesNoButtons()
     {
-        Button btnYes = new Button
+        var btnYes = new Button
         {
             Text = "Yes"
         };
@@ -152,7 +152,7 @@ public partial class ScrollableMessageBox : Form
         btnYes.DialogResult = DialogResult.Yes;
         AcceptButton = btnYes;
 
-        Button btnNo = new Button
+        var btnNo = new Button
         {
             Text = "No"
         };
@@ -165,7 +165,7 @@ public partial class ScrollableMessageBox : Form
 
     private void AddOkCancelButtons()
     {
-        Button btnOK = new Button
+        var btnOK = new Button
         {
             Text = "OK"
         };
@@ -175,7 +175,7 @@ public partial class ScrollableMessageBox : Form
         btnOK.DialogResult = DialogResult.OK;
         AcceptButton = btnOK;
 
-        Button btnCancel = new Button
+        var btnCancel = new Button
         {
             Text = "Cancel"
         };

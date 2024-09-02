@@ -18,8 +18,8 @@ public static class ImageExtensions
             return null;
         }
 
-        var width = image.Width;
-        var height = image.Height;
+        int width = image.Width;
+        int height = image.Height;
         if (width <= maxDim && height <= maxDim)
         {
             return image;

@@ -128,8 +128,8 @@ public class Settings : ISettings
 
         if (HotkeyProfiles.ContainsKey(hotkeyProfileName))
         {
-            var hotkeyProfile = HotkeyProfiles[hotkeyProfileName];
-            var deactivateForOtherPrograms = hotkeyProfile.GlobalHotkeysEnabled && hotkeyProfile.DeactivateHotkeysForOtherPrograms;
+            HotkeyProfile hotkeyProfile = HotkeyProfiles[hotkeyProfileName];
+            bool deactivateForOtherPrograms = hotkeyProfile.GlobalHotkeysEnabled && hotkeyProfile.DeactivateHotkeysForOtherPrograms;
             if (hotkeyProfile.SplitKey != null)
             {
                 try
@@ -232,7 +232,7 @@ public class Settings : ISettings
 
     public void AddToRecentSplits(string path, IRun run, TimingMethod lastTimingMethod, string lastHotkeyProfile)
     {
-        var foundRecentSplitsFile = RecentSplits.FirstOrDefault(x => x.Path == path);
+        RecentSplitsFile foundRecentSplitsFile = RecentSplits.FirstOrDefault(x => x.Path == path);
         if (foundRecentSplitsFile.Path != null)
         {
             RecentSplits.Remove(foundRecentSplitsFile);
@@ -268,7 +268,7 @@ public class Settings : ISettings
         if (deactivateForOtherPrograms && key.IsKey)
         {
             var args = new System.Windows.Forms.KeyEventArgs(key.Key);
-            var modifiers = (args.Alt ? ModifierKeys.Alt : ModifierKeys.None)
+            ModifierKeys modifiers = (args.Alt ? ModifierKeys.Alt : ModifierKeys.None)
                 | (args.Shift ? ModifierKeys.Shift : ModifierKeys.None)
                 | (args.Control ? ModifierKeys.Control : ModifierKeys.None);
             HotkeyHook.Instance.RegisterHotKey(modifiers, args.KeyCode);

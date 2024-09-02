@@ -13,7 +13,7 @@ public class ShortTimeFormatterTests
     {
         var sut = new ShortTimeFormatter();
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal("0.00", formattedTime);
     }
 
@@ -21,9 +21,9 @@ public class ShortTimeFormatterTests
     public void FormatsTimeInSecondsByDefault_WhenTimeIsNullAndNoFormatIsSupplied()
     {
         var sut = new ShortTimeFormatter();
-        var defaultFormat = sut.Format(null);
+        string defaultFormat = sut.Format(null);
 
-        var formattedValueInSeconds = sut.Format(null, DigitsFormat.SingleDigitSeconds);
+        string formattedValueInSeconds = sut.Format(null, DigitsFormat.SingleDigitSeconds);
         Assert.Equal(defaultFormat, formattedValueInSeconds);
     }
 
@@ -39,7 +39,7 @@ public class ShortTimeFormatterTests
         var sut = new ShortTimeFormatter();
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
         Assert.Equal(expectedTime, formattedTime);
     }
 
@@ -55,8 +55,8 @@ public class ShortTimeFormatterTests
         var sut = new ShortTimeFormatter();
         var time = TimeSpan.Parse(timespanText);
 
-        var defaultFormat = sut.Format(time);
-        var formattedTimeInSeconds = sut.Format(time, DigitsFormat.SingleDigitSeconds);
+        string defaultFormat = sut.Format(time);
+        string formattedTimeInSeconds = sut.Format(time, DigitsFormat.SingleDigitSeconds);
         Assert.Equal(defaultFormat, formattedTimeInSeconds);
     }
 
@@ -69,7 +69,7 @@ public class ShortTimeFormatterTests
     {
         var sut = new ShortTimeFormatter();
 
-        var formattedTime = sut.Format(null, givenFormat);
+        string formattedTime = sut.Format(null, givenFormat);
         Assert.Equal("0.00", formattedTime);
     }
 
@@ -109,7 +109,7 @@ public class ShortTimeFormatterTests
         var sut = new ShortTimeFormatter();
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time, format);
+        string formattedTime = sut.Format(time, format);
         Assert.Equal(expectedTime, formattedTime);
     }
 }
@@ -127,7 +127,7 @@ public class PossibleTimeSaveFormatterShould
             Accuracy = accuracy
         };
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal(TimeFormatConstants.DASH, formattedTime);
     }
 
@@ -172,7 +172,7 @@ public class PossibleTimeSaveFormatterShould
 
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
         Assert.Equal(expectedTime, formattedTime);
     }
 
@@ -211,7 +211,7 @@ public class PossibleTimeSaveFormatterShould
 
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
         Assert.Equal(expectedTime, formattedTime);
     }
 }

@@ -14,7 +14,7 @@ public class DaysTimeFormatterTests
     {
         var sut = new DaysTimeFormatter();
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal("0", formattedTime);
     }
 
@@ -31,7 +31,7 @@ public class DaysTimeFormatterTests
         var sut = new DaysTimeFormatter();
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
         Assert.Equal(expectedTime, formattedTime);
     }
 

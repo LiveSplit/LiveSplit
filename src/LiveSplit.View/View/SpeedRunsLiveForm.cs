@@ -26,8 +26,8 @@ public partial class SpeedRunsLiveForm : Form
     {
         RaceId = raceId;
         GameCategory = null;
-        var raceChannel = string.Format("#srl-{0}", raceId);
-        var liveSplitChannel = string.Format("{0}-livesplit", raceChannel);
+        string raceChannel = string.Format("#srl-{0}", raceId);
+        string liveSplitChannel = string.Format("{0}-livesplit", raceChannel);
         SRLClient = new SpeedRunsLiveIRC(state, model, new[] { "#speedrunslive", raceChannel, liveSplitChannel });
         SRLClient.ChannelJoined += SRLClient_ChannelJoined;
         SRLClient.RawMessageReceived += SRLClient_RawMessageReceived;
@@ -265,7 +265,7 @@ public partial class SpeedRunsLiveForm : Form
         RebuildUserList();
         if (e.Item1 == SRLClient.RaceChannelName)
         {
-            var colorCode = GetColorCodeFromRights(e.Item2.Rights);
+            string colorCode = GetColorCodeFromRights(e.Item2.Rights);
             ChatBoxAppend((char)3 + colorCode + (char)2 + e.Item2.Name + (char)2 + (char)3 + "1: " + e.Item3, Color.Black);
         }
     }
@@ -313,8 +313,8 @@ public partial class SpeedRunsLiveForm : Form
     {
         try
         {
-            var race = SpeedRunsLiveAPI.Instance.GetRace(RaceId);
-            var user = ((IDictionary<string, dynamic>)race.entrants.Properties).FirstOrDefault(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value;
+            dynamic race = SpeedRunsLiveAPI.Instance.GetRace(RaceId);
+            dynamic user = ((IDictionary<string, dynamic>)race.entrants.Properties).FirstOrDefault(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value;
             if (user != null)
             {
                 if (user.statetext is (dynamic)"Finished" or (dynamic)"Forfeit")
@@ -368,15 +368,15 @@ public partial class SpeedRunsLiveForm : Form
         btnJoinQuit.Enabled = false;
         var authDialog = new AuthenticationDialog();
 
-        var credentials = WebCredentials.SpeedRunsLiveIRCCredentials;
+        SRLCredentials credentials = WebCredentials.SpeedRunsLiveIRCCredentials;
         authDialog.Username = credentials.Username ?? "";
         authDialog.Password = credentials.Password ?? "";
         authDialog.RememberPassword = !string.IsNullOrEmpty(authDialog.Password);
 
         if (authDialog.ShowDialog(this) == DialogResult.OK)
         {
-            var username = authDialog.Username;
-            var password = authDialog.Password;
+            string username = authDialog.Username;
+            string password = authDialog.Password;
 
             WebCredentials.SpeedRunsLiveIRCCredentials = new SRLCredentials(username, authDialog.RememberPassword ? password : "");
 
@@ -395,10 +395,10 @@ public partial class SpeedRunsLiveForm : Form
             if (SRLClient.RaceState == RaceState.RaceEnded)
             {
                 SpeedRunsLiveAPI.Instance.RefreshRacesList();
-                var race = SpeedRunsLiveAPI.Instance.GetRace(RaceId);
+                dynamic race = SpeedRunsLiveAPI.Instance.GetRace(RaceId);
                 if (race.statetext == "In Progress" && ((IDictionary<string, dynamic>)race.entrants.Properties).First(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value.statetext == "Finished")
                 {
-                    var result = MessageBox.Show(this, "Due to SpeedRunsLive rules, you need to confirm that you have completed the race before leaving an unfinished race. Do you confirm that you legitimately finished the race?", "Confirmation Required", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show(this, "Due to SpeedRunsLive rules, you need to confirm that you have completed the race before leaving an unfinished race. Do you confirm that you legitimately finished the race?", "Confirmation Required", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (result == DialogResult.Cancel)
                     {
                         e.Cancel = true;
@@ -503,7 +503,7 @@ public partial class SpeedRunsLiveForm : Form
             Color origColor = color;
             string colorlessMessage = "";
             int actualBegin = chatBox.Text.Length;
-            foreach (var split in message.Split(new[] { (char)3 }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (string split in message.Split(new[] { (char)3 }, StringSplitOptions.RemoveEmptyEntries))
             {
                 begin = chatBox.Text.Length;
                 string useSplit = split;
@@ -525,9 +525,9 @@ public partial class SpeedRunsLiveForm : Form
                     }
                 }
 
-                var replacedText = useSplit.Replace(((char)2).ToString(), "");
+                string replacedText = useSplit.Replace(((char)2).ToString(), "");
                 bool isFirst = true;
-                foreach (var word in replacedText.Split(' '))
+                foreach (string word in replacedText.Split(' '))
                 {
                     chatBox.AppendText((isFirst ? "" : " ") + word);
                     isFirst = false;
@@ -627,7 +627,7 @@ public partial class SpeedRunsLiveForm : Form
         void action()
         {
             lstUsers.Items.Clear();
-            foreach (var user in SRLClient.GetRaceChannelUsers())
+            foreach (SRLIRCUser user in SRLClient.GetRaceChannelUsers())
             {
                 lstUsers.Items.Add(new UserListItem(user.Name, GetColorFromRights(user.Rights)));
             }

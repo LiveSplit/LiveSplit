@@ -16,7 +16,7 @@ public class NoneComparisonGenerator : IComparisonGenerator
 
     public void Generate(ISettings settings)
     {
-        foreach (var segment in Run)
+        foreach (ISegment segment in Run)
         {
             segment.Comparisons[Name] = default;
         }

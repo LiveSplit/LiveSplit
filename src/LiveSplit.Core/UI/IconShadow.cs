@@ -9,11 +9,11 @@ public class IconShadow
 
     public static Bitmap Generate(Image image, Color shadowColor)
     {
-        var shadowStrength = 0.8f;
-        var red = shadowColor.R;
-        var green = shadowColor.G;
-        var blue = shadowColor.B;
-        var alpha = 255f * (Math.Pow((shadowColor.A / 255f) - 1f, 3) + 1f);
+        float shadowStrength = 0.8f;
+        byte red = shadowColor.R;
+        byte green = shadowColor.G;
+        byte blue = shadowColor.B;
+        double alpha = 255f * (Math.Pow((shadowColor.A / 255f) - 1f, 3) + 1f);
 
         using var scaledCopy = new Bitmap(image, 24, 24);
         using var tempImage = new Bitmap(30, 30);
@@ -42,15 +42,15 @@ public class IconShadow
         }
 
         //Horizontal Blur
-        for (var x = 0; x < tempImage.Width; ++x)
+        for (int x = 0; x < tempImage.Width; ++x)
         {
-            for (var y = 0; y < tempImage.Height; ++y)
+            for (int y = 0; y < tempImage.Height; ++y)
             {
-                var result = Kernel[0] * get1(x, y);
+                float result = Kernel[0] * get1(x, y);
 
                 for (int i = 1; i < 4; ++i)
                 {
-                    var weight = Kernel[i];
+                    float weight = Kernel[i];
                     result += weight * (get1(x - i, y) + get1(x + i, y));
                 }
 
@@ -59,15 +59,15 @@ public class IconShadow
         }
 
         //Vertical Blur
-        for (var x = 0; x < resultImage.Width; ++x)
+        for (int x = 0; x < resultImage.Width; ++x)
         {
-            for (var y = 0; y < resultImage.Height; ++y)
+            for (int y = 0; y < resultImage.Height; ++y)
             {
-                var result = Kernel[0] * get2(x, y);
+                float result = Kernel[0] * get2(x, y);
 
                 for (int i = 1; i < 4; ++i)
                 {
-                    var weight = Kernel[i];
+                    float weight = Kernel[i];
                     result += weight * (get2(x, y - i) + get2(x, y + i));
                 }
 

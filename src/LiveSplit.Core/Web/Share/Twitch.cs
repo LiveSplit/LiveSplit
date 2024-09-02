@@ -16,9 +16,9 @@ public class Twitch : IRunUploadPlatform
 {
     internal const string ClientId = "lkz3x9qaxaeujde1tvq21r8d7cdr40x";
 
-    public static readonly Uri BaseUri = new Uri("https://api.twitch.tv/helix/");
+    public static readonly Uri BaseUri = new("https://api.twitch.tv/helix/");
 
-    protected static readonly Twitch _Instance = new Twitch();
+    protected static readonly Twitch _Instance = new();
     public static Twitch Instance => _Instance;
 
     protected string AccessToken { get; set; }
@@ -82,7 +82,7 @@ the first time that sharing to Twitch is used.";
 
         AccessToken = TwitchAccessTokenPrompt.GetAccessToken();
 
-        var verified = VerifyAccessToken();
+        bool verified = VerifyAccessToken();
 
         if (verified)
         {
@@ -110,16 +110,16 @@ the first time that sharing to Twitch is used.";
             writer.Write(data);
         }
 
-        using var response = request.GetResponse();
-        using var stream = response.GetResponseStream();
+        using WebResponse response = request.GetResponse();
+        using Stream stream = response.GetResponseStream();
         using var reader = new StreamReader(stream);
-        var json = reader.ReadToEnd();
+        string json = reader.ReadToEnd();
         return JSON.FromString(json);
     }
 
     protected dynamic curl(string subUri, string method = "GET", string data = "")
     {
-        var uri = GetUri(subUri);
+        Uri uri = GetUri(subUri);
         return curlAbsolute(uri, method, data);
     }
 
@@ -171,7 +171,7 @@ the first time that sharing to Twitch is used.";
 
     public IEnumerable<TwitchGame> FindGame(string name)
     {
-        var result = SearchGame(name);
+        dynamic result = SearchGame(name);
         var games = (IEnumerable<dynamic>)result.data;
 
         static TwitchGame func(dynamic x)
@@ -197,11 +197,11 @@ the first time that sharing to Twitch is used.";
             }
         }
 
-        var url = ((IEnumerable<dynamic>)SearchGame(gameName).data).First().box_art_url;
-        var request = WebRequest.Create(url);
+        dynamic url = ((IEnumerable<dynamic>)SearchGame(gameName).data).First().box_art_url;
+        dynamic request = WebRequest.Create(url);
 
-        using var response = request.GetResponse();
-        using var stream = response.GetResponseStream();
+        using dynamic response = request.GetResponse();
+        using dynamic stream = response.GetResponseStream();
         return Image.FromStream(stream);
     }
 
@@ -217,7 +217,7 @@ the first time that sharing to Twitch is used.";
 
         try
         {
-            var gameList = FindGame(run.GameName);
+            IEnumerable<TwitchGame> gameList = FindGame(run.GameName);
 
             game = gameList.First(twitchGame => twitchGame.Name == run.GameName);
         }
@@ -231,7 +231,7 @@ the first time that sharing to Twitch is used.";
                 try
                 {
                     var dialog = new TwitchGameResolveDialog(run.GameName);
-                    var result = dialog.ShowDialog();
+                    DialogResult result = dialog.ShowDialog();
                     if (result != DialogResult.OK)
                     {
                         return false;

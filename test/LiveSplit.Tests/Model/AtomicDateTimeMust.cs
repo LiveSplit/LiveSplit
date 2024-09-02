@@ -29,7 +29,7 @@ public class AtomicDateTimeMust
     {
         var minuend = new AtomicDateTime(AnyDateTime, true);
         var subtrahend = new AtomicDateTime(AnotherDateTime, true);
-        var difference = minuend - subtrahend;
+        System.TimeSpan difference = minuend - subtrahend;
         Assert.Equal(DateTimeDifference, difference.Ticks);
     }
 
@@ -37,8 +37,8 @@ public class AtomicDateTimeMust
     public void CalculateDifferenceWithDateTimeCorrectly()
     {
         var minuend = new AtomicDateTime(AnyDateTime, false);
-        var subtrahend = AnotherDateTime;
-        var difference = minuend - subtrahend;
+        System.DateTime subtrahend = AnotherDateTime;
+        System.TimeSpan difference = minuend - subtrahend;
         Assert.Equal(DateTimeDifference, difference.Ticks);
     }
 }

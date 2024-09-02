@@ -118,12 +118,12 @@ public static class ExtensionMethods
     public static IEnumerable<MemoryBasicInformation> MemoryPages(this Process process, bool all = false)
     {
         // hardcoded values because GetSystemInfo / GetNativeSystemInfo can't return info for remote process
-        var min = 0x10000L;
-        var max = process.Is64Bit() ? 0x00007FFFFFFEFFFFL : 0x7FFEFFFFL;
+        long min = 0x10000L;
+        long max = process.Is64Bit() ? 0x00007FFFFFFEFFFFL : 0x7FFEFFFFL;
 
         var mbiSize = (SizeT)Marshal.SizeOf(typeof(MemoryBasicInformation));
 
-        var addr = min;
+        long addr = min;
         do
         {
             if (WinAPI.VirtualQueryEx(process.Handle, (IntPtr)addr, out MemoryBasicInformation mbi, mbiSize) == (SizeT)0)
@@ -169,7 +169,7 @@ public static class ExtensionMethods
 
     public static bool ReadValue<T>(this Process process, IntPtr addr, out T val) where T : struct
     {
-        var type = typeof(T);
+        Type type = typeof(T);
         type = type.IsEnum ? Enum.GetUnderlyingType(type) : type;
 
         val = default;
@@ -200,7 +200,7 @@ public static class ExtensionMethods
 
     public static bool ReadBytes(this Process process, IntPtr addr, int count, out byte[] val)
     {
-        var bytes = new byte[count];
+        byte[] bytes = new byte[count];
 
         val = null;
         if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT read)
@@ -221,7 +221,7 @@ public static class ExtensionMethods
 
     public static bool ReadPointer(this Process process, IntPtr addr, bool is64Bit, out IntPtr val)
     {
-        var bytes = new byte[is64Bit ? 8 : 4];
+        byte[] bytes = new byte[is64Bit ? 8 : 4];
 
         val = IntPtr.Zero;
         if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT read)
@@ -261,7 +261,7 @@ public static class ExtensionMethods
 
     public static bool ReadString(this Process process, IntPtr addr, ReadStringType type, StringBuilder sb)
     {
-        var bytes = new byte[sb.Capacity];
+        byte[] bytes = new byte[sb.Capacity];
         if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT read)
             || read != (SizeT)bytes.Length)
         {
@@ -380,7 +380,7 @@ public static class ExtensionMethods
 
     private static bool WriteJumpOrCall(Process process, IntPtr addr, IntPtr dest, bool call)
     {
-        var x64 = process.Is64Bit();
+        bool x64 = process.Is64Bit();
 
         int jmpLen = x64 ? 12 : 5;
 
@@ -435,7 +435,7 @@ public static class ExtensionMethods
         try
         {
             // read the original bytes from the prologue of src
-            var origSrcBytes = process.ReadBytes(src, overwrittenBytes);
+            byte[] origSrcBytes = process.ReadBytes(src, overwrittenBytes);
             if (origSrcBytes == null)
             {
                 throw new Win32Exception();
@@ -463,7 +463,7 @@ public static class ExtensionMethods
             int extraBytes = overwrittenBytes - jmpLen;
             if (extraBytes > 0)
             {
-                var nops = Enumerable.Repeat((byte)0x90, extraBytes).ToArray();
+                byte[] nops = Enumerable.Repeat((byte)0x90, extraBytes).ToArray();
                 if (!process.VirtualProtect(src + jmpLen, nops.Length, MemPageProtect.PAGE_EXECUTE_READWRITE,
                     out MemPageProtect oldProtect))
                 {

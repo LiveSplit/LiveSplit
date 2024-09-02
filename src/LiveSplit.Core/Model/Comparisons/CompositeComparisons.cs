@@ -123,7 +123,7 @@ public class CompositeComparisons : IComparisons
         }
         else
         {
-            var oldFunc = GetShortComparisonNameFunc;
+            Func<string, string> oldFunc = GetShortComparisonNameFunc;
             GetShortComparisonNameFunc = x =>
             {
                 if (x == longName)

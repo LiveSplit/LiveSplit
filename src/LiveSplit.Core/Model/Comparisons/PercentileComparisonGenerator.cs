@@ -33,26 +33,26 @@ public class PercentileComparisonGenerator : IComparisonGenerator
 
     protected TimeSpan Calculate(double perc, TimeSpan Value1, double Key1, TimeSpan Value2, double Key2)
     {
-        var percDn = (Key1 - perc) * Value2.Ticks / (Key1 - Key2);
-        var percUp = (perc - Key2) * Value1.Ticks / (Key1 - Key2);
+        double percDn = (Key1 - perc) * Value2.Ticks / (Key1 - Key2);
+        double percUp = (perc - Key2) * Value1.Ticks / (Key1 - Key2);
         return TimeSpan.FromTicks(Convert.ToInt64(percUp + percDn));
     }
 
     public void Generate(TimingMethod method)
     {
         var allHistory = new List<List<IndexedTimeSpan>>();
-        foreach (var segment in Run)
+        foreach (ISegment segment in Run)
         {
             allHistory.Add([]);
         }
 
-        foreach (var attempt in Run.AttemptHistory)
+        foreach (Attempt attempt in Run.AttemptHistory)
         {
-            var ind = attempt.Index;
-            var historyStartingIndex = -1;
-            foreach (var segment in Run)
+            int ind = attempt.Index;
+            int historyStartingIndex = -1;
+            foreach (ISegment segment in Run)
             {
-                var currentIndex = Run.IndexOf(segment);
+                int currentIndex = Run.IndexOf(segment);
                 if (segment.SegmentHistory.TryGetValue(ind, out Time history))
                 {
                     if (history[method] != null)
@@ -69,17 +69,17 @@ public class PercentileComparisonGenerator : IComparisonGenerator
         }
 
         var weightedLists = new List<List<KeyValuePair<double, TimeSpan>>>();
-        var overallStartingIndex = -1;
+        int overallStartingIndex = -1;
 
-        foreach (var currentList in allHistory)
+        foreach (List<IndexedTimeSpan> currentList in allHistory)
         {
-            var nullSegment = false;
-            var curIndex = allHistory.IndexOf(currentList);
-            var curPBTime = Run[curIndex].PersonalBestSplitTime[method];
-            var previousPBTime = overallStartingIndex >= 0 ? Run[overallStartingIndex].PersonalBestSplitTime[method] : null;
+            bool nullSegment = false;
+            int curIndex = allHistory.IndexOf(currentList);
+            TimeSpan? curPBTime = Run[curIndex].PersonalBestSplitTime[method];
+            TimeSpan? previousPBTime = overallStartingIndex >= 0 ? Run[overallStartingIndex].PersonalBestSplitTime[method] : null;
             var finalList = new List<TimeSpan>();
 
-            var matchingSegmentHistory = currentList.Where(x => x.Index == overallStartingIndex);
+            IEnumerable<IndexedTimeSpan> matchingSegmentHistory = currentList.Where(x => x.Index == overallStartingIndex);
             if (matchingSegmentHistory.Any())
             {
                 finalList = matchingSegmentHistory.Select(x => x.Time).ToList();
@@ -102,11 +102,11 @@ public class PercentileComparisonGenerator : IComparisonGenerator
                 if (tempList.Count > 1)
                 {
                     tempList = [.. tempList.OrderBy(x => x.Value)];
-                    var totalWeight = tempList.Aggregate(0.0, (s, x) => s + x.Key);
-                    var smallestWeight = tempList[0].Key;
-                    var rangeWeight = totalWeight - smallestWeight;
-                    var aggWeight = 0.0;
-                    foreach (var value in tempList)
+                    double totalWeight = tempList.Aggregate(0.0, (s, x) => s + x.Key);
+                    double smallestWeight = tempList[0].Key;
+                    double rangeWeight = totalWeight - smallestWeight;
+                    double aggWeight = 0.0;
+                    foreach (KeyValuePair<double, TimeSpan> value in tempList)
                     {
                         aggWeight += value.Key;
                         weightedList.Add(new KeyValuePair<double, TimeSpan>(ReWeight(aggWeight, smallestWeight, rangeWeight), value.Value));
@@ -133,26 +133,26 @@ public class PercentileComparisonGenerator : IComparisonGenerator
             goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value;
         }
 
-        var runSum = TimeSpan.Zero;
+        TimeSpan runSum = TimeSpan.Zero;
         var outputSplits = new List<TimeSpan>();
-        var percentile = 0.5;
-        var percMax = 1.0;
-        var percMin = 0.0;
-        var loopProtection = 0;
+        double percentile = 0.5;
+        double percMax = 1.0;
+        double percMin = 0.0;
+        int loopProtection = 0;
 
         do
         {
             runSum = TimeSpan.Zero;
             outputSplits.Clear();
             percentile = (0.5 * (percMax - percMin)) + percMin;
-            foreach (var weightedList in weightedLists)
+            foreach (List<KeyValuePair<double, TimeSpan>> weightedList in weightedLists)
             {
                 if (weightedList != null)
                 {
-                    var curValue = TimeSpan.Zero;
+                    TimeSpan curValue = TimeSpan.Zero;
                     if (weightedList.Count > 1)
                     {
-                        for (var n = 0; n < weightedList.Count; n++)
+                        for (int n = 0; n < weightedList.Count; n++)
                         {
                             if (weightedList[n].Key > percentile)
                             {
@@ -195,7 +195,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
 
         TimeSpan totalTime = TimeSpan.Zero;
         TimeSpan? useTime = TimeSpan.Zero;
-        for (var ind = 0; ind < Run.Count; ind++)
+        for (int ind = 0; ind < Run.Count; ind++)
         {
             totalTime += outputSplits[ind];
             if (outputSplits[ind] == TimeSpan.Zero)

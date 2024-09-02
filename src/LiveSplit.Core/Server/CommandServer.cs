@@ -76,7 +76,7 @@ public class CommandServer
 
     public void StopTcp()
     {
-        foreach (var connection in TcpConnections)
+        foreach (TcpConnection connection in TcpConnections)
         {
             connection.Dispose();
         }
@@ -94,7 +94,7 @@ public class CommandServer
     {
         WaitingServerPipe?.Dispose();
 
-        foreach (var connection in PipeConnections)
+        foreach (Connection connection in PipeConnections)
         {
             connection.Dispose();
         }
@@ -106,7 +106,7 @@ public class CommandServer
     {
         try
         {
-            var client = Server.EndAcceptTcpClient(result);
+            TcpClient client = Server.EndAcceptTcpClient(result);
             var connection = new TcpConnection(client);
             connection.MessageReceived += connection_MessageReceived;
             connection.Disconnected += tcpConnection_Disconnected;
@@ -166,8 +166,8 @@ public class CommandServer
     private void ProcessMessage(string message, IConnection clientConnection)
     {
         string response = null;
-        var args = message.Split([' '], 2);
-        var command = args[0];
+        string[] args = message.Split([' '], 2);
+        string command = args[0];
         switch (command)
         {
             case "startorsplit":
@@ -232,7 +232,7 @@ public class CommandServer
             {
                 try
                 {
-                    var time = ParseTime(args[1]);
+                    TimeSpan? time = ParseTime(args[1]);
                     State.SetGameTime(time);
                 }
                 catch (Exception e)
@@ -247,7 +247,7 @@ public class CommandServer
             {
                 try
                 {
-                    var time = ParseTime(args[1]);
+                    TimeSpan? time = ParseTime(args[1]);
                     State.LoadingTimes = time ?? TimeSpan.Zero;
                 }
                 catch (Exception e)
@@ -262,7 +262,7 @@ public class CommandServer
             {
                 try
                 {
-                    var time = ParseTime(args[1]);
+                    TimeSpan? time = ParseTime(args[1]);
                     State.LoadingTimes = State.LoadingTimes.Add(time ?? TimeSpan.Zero);
                 }
                 catch (Exception e)
@@ -292,7 +292,7 @@ public class CommandServer
             }
             case "getdelta":
             {
-                var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                string comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
                 TimeSpan? delta = null;
                 if (State.CurrentPhase is TimerPhase.Running or TimerPhase.Paused)
                 {
@@ -309,7 +309,7 @@ public class CommandServer
             }
             case "getsplitindex":
             {
-                var splitindex = State.CurrentSplitIndex;
+                int splitindex = State.CurrentSplitIndex;
                 response = splitindex.ToString();
                 break;
             }
@@ -345,7 +345,7 @@ public class CommandServer
             {
                 if (State.CurrentSplitIndex > 0)
                 {
-                    var time = State.Run[State.CurrentSplitIndex - 1].SplitTime[State.CurrentTimingMethod];
+                    TimeSpan? time = State.Run[State.CurrentSplitIndex - 1].SplitTime[State.CurrentTimingMethod];
                     response = TimeFormatter.Format(time);
                 }
                 else
@@ -360,8 +360,8 @@ public class CommandServer
             {
                 if (State.CurrentSplit != null)
                 {
-                    var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
-                    var time = State.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
+                    string comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                    TimeSpan? time = State.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
                     response = TimeFormatter.Format(time);
                 }
                 else
@@ -378,7 +378,7 @@ public class CommandServer
             }
             case "getcurrentgametime":
             {
-                var timingMethod = TimingMethod.GameTime;
+                TimingMethod timingMethod = TimingMethod.GameTime;
                 if (!State.IsGameTimeInitialized)
                 {
                     timingMethod = TimingMethod.RealTime;
@@ -389,7 +389,7 @@ public class CommandServer
             }
             case "getcurrenttime":
             {
-                var timingMethod = State.CurrentTimingMethod;
+                TimingMethod timingMethod = State.CurrentTimingMethod;
                 if (timingMethod == TimingMethod.GameTime && !State.IsGameTimeInitialized)
                 {
                     timingMethod = TimingMethod.RealTime;
@@ -401,8 +401,8 @@ public class CommandServer
             case "getfinaltime":
             case "getfinalsplittime":
             {
-                var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
-                var time = (State.CurrentPhase == TimerPhase.Ended)
+                string comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                TimeSpan? time = (State.CurrentPhase == TimerPhase.Ended)
                     ? State.CurrentTime[State.CurrentTimingMethod]
                     : State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
                 response = TimeFormatter.Format(time);
@@ -421,7 +421,7 @@ public class CommandServer
                     comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
                 }
 
-                var prediction = PredictTime(State, comparison);
+                TimeSpan? prediction = PredictTime(State, comparison);
                 response = TimeFormatter.Format(prediction);
                 break;
             }
@@ -459,12 +459,12 @@ public class CommandServer
                     break;
                 }
 
-                var index = State.CurrentSplitIndex;
-                var title = args[1];
+                int index = State.CurrentSplitIndex;
+                string title = args[1];
 
                 if (command == "setsplitname")
                 {
-                    var options = args[1].Split([' '], 2);
+                    string[] options = args[1].Split([' '], 2);
 
                     if (options.Length < 2)
                     {
@@ -533,7 +533,7 @@ public class CommandServer
         if (state.CurrentPhase is TimerPhase.Running or TimerPhase.Paused)
         {
             TimeSpan? delta = LiveSplitStateHelper.GetLastDelta(state, state.CurrentSplitIndex, comparison, State.CurrentTimingMethod) ?? TimeSpan.Zero;
-            var liveDelta = state.CurrentTime[State.CurrentTimingMethod] - state.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
+            TimeSpan? liveDelta = state.CurrentTime[State.CurrentTimingMethod] - state.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
             if (liveDelta > delta)
             {
                 delta = liveDelta;

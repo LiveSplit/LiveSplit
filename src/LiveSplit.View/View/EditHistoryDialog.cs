@@ -31,7 +31,7 @@ public partial class EditHistoryDialog : Form
 
     private void btnRemove_Click(object sender, EventArgs e)
     {
-        foreach (var item in historyListBox.SelectedItems)
+        foreach (object item in historyListBox.SelectedItems)
         {
             History.Remove((string)item);
         }

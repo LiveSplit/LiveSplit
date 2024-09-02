@@ -28,7 +28,7 @@ public static class SpeedrunCom
             return true;
         }
 
-        var accessToken = Authenticator?.GetAccessToken();
+        string accessToken = Authenticator?.GetAccessToken();
         if (string.IsNullOrEmpty(accessToken))
         {
             return false;
@@ -36,7 +36,7 @@ public static class SpeedrunCom
 
         Client.AccessToken = accessToken;
 
-        var isTokenValid = Client.IsAccessTokenValid;
+        bool isTokenValid = Client.IsAccessTokenValid;
 
         if (isTokenValid)
         {
@@ -70,8 +70,8 @@ public static class SpeedrunCom
     }
     public static IRun GetRun(this SpeedrunComSharp.Run record)
     {
-        var apiUri = record.SplitsUri.AbsoluteUri;
-        var path = apiUri.Substring(apiUri.LastIndexOf("/") + 1);
+        string apiUri = record.SplitsUri.AbsoluteUri;
+        string path = apiUri.Substring(apiUri.LastIndexOf("/") + 1);
         return SplitsIO.Instance.DownloadRunByPath(path, false);
     }
 
@@ -93,8 +93,8 @@ public static class SpeedrunCom
     {
         var request = WebRequest.Create(assets.CoverMedium.Uri);
 
-        using var response = request.GetResponse();
-        using var stream = response.GetResponseStream();
+        using WebResponse response = request.GetResponse();
+        using System.IO.Stream stream = response.GetResponseStream();
         return Image.FromStream(stream);
     }
 
@@ -102,8 +102,8 @@ public static class SpeedrunCom
     {
         var request = WebRequest.Create(assets.Icon.Uri);
 
-        using var response = request.GetResponse();
-        using var stream = response.GetResponseStream();
+        using WebResponse response = request.GetResponse();
+        using System.IO.Stream stream = response.GetResponseStream();
         return Image.FromStream(stream);
     }
 
@@ -120,9 +120,9 @@ public static class SpeedrunCom
 
     public static DateTime? FindPersonalBestAttemptDate(IRun run)
     {
-        var runTime = run.Last().PersonalBestSplitTime;
+        Time runTime = run.Last().PersonalBestSplitTime;
 
-        var attempt = run.AttemptHistory.FirstOrDefault(x =>
+        Attempt attempt = run.AttemptHistory.FirstOrDefault(x =>
             x.Time.GameTime == runTime.GameTime
             && x.Time.RealTime == runTime.RealTime);
 
@@ -133,7 +133,7 @@ public static class SpeedrunCom
     {
         try
         {
-            var metadata = run.Metadata;
+            RunMetadata metadata = run.Metadata;
 
             if (!string.IsNullOrEmpty(metadata.RunID))
             {
@@ -183,9 +183,9 @@ public static class SpeedrunCom
                 return false;
             }
 
-            var primaryTimingMethod = metadata.Game.Ruleset.DefaultTimingMethod.ToLiveSplitTimingMethod();
+            Model.TimingMethod primaryTimingMethod = metadata.Game.Ruleset.DefaultTimingMethod.ToLiveSplitTimingMethod();
 
-            var runTime = run.Last().PersonalBestSplitTime;
+            Time runTime = run.Last().PersonalBestSplitTime;
 
             if (!runTime.RealTime.HasValue)
             {
@@ -193,7 +193,7 @@ public static class SpeedrunCom
                 return false;
             }
 
-            var variableThatNeedsAValueButHasNone = metadata.VariableValues.Where(x => x.Key.IsMandatory).FirstOrDefault(x => x.Value == null);
+            System.Collections.Generic.KeyValuePair<Variable, VariableValue> variableThatNeedsAValueButHasNone = metadata.VariableValues.Where(x => x.Key.IsMandatory).FirstOrDefault(x => x.Value == null);
             if (variableThatNeedsAValueButHasNone.Value != null)
             {
                 reasonForRejection = $"You need to specify a value for the variable \"{variableThatNeedsAValueButHasNone.Key.Name}\".";
@@ -223,9 +223,9 @@ public static class SpeedrunCom
     {
         try
         {
-            var metadata = run.Metadata;
+            RunMetadata metadata = run.Metadata;
 
-            var isValid = ValidateRun(run, out reasonForRejection);
+            bool isValid = ValidateRun(run, out reasonForRejection);
             if (!isValid)
             {
                 return false;
@@ -240,8 +240,8 @@ public static class SpeedrunCom
                 return false;
             }
 
-            var timingMethods = metadata.Game.Ruleset.TimingMethods;
-            var runTime = run.Last().PersonalBestSplitTime;
+            System.Collections.ObjectModel.ReadOnlyCollection<SpeedrunComSharp.TimingMethod> timingMethods = metadata.Game.Ruleset.TimingMethods;
+            Time runTime = run.Last().PersonalBestSplitTime;
 
             if (date == null)
             {
@@ -262,21 +262,21 @@ public static class SpeedrunCom
 
             try
             {
-                var categoryId = metadata.Category.ID;
-                var platformId = metadata.Platform.ID;
-                var regionId = metadata.Region?.ID;
-                var realTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTime) ? runTime.RealTime : null;
-                var realTimeWithoutLoads = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads) ? runTime.GameTime : null;
+                string categoryId = metadata.Category.ID;
+                string platformId = metadata.Platform.ID;
+                string regionId = metadata.Region?.ID;
+                TimeSpan? realTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTime) ? runTime.RealTime : null;
+                TimeSpan? realTimeWithoutLoads = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads) ? runTime.GameTime : null;
 
                 if (withoutLoads.HasValue)
                 {
                     realTimeWithoutLoads = withoutLoads;
                 }
 
-                var gameTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.GameTime) ? runTime.GameTime : null;
+                TimeSpan? gameTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.GameTime) ? runTime.GameTime : null;
 
-                var emulated = metadata.Game.Ruleset.EmulatorsAllowed && metadata.UsesEmulator;
-                var variables = metadata.VariableValues.Values.Where(x => x != null);
+                bool emulated = metadata.Game.Ruleset.EmulatorsAllowed && metadata.UsesEmulator;
+                System.Collections.Generic.IEnumerable<VariableValue> variables = metadata.VariableValues.Values.Where(x => x != null);
 
                 Uri splitsIOUri = null;
                 string splitsIORunId = null;
@@ -289,7 +289,7 @@ public static class SpeedrunCom
                         var uri = new Uri(SplitsIO.Instance.Share(run, claimTokenUri: true));
                         splitsIOUri = SplitsIO.Instance.GetSiteUri(uri.AbsolutePath);
 
-                        var splitted = uri.Query.Split('?', '=', '&');
+                        string[] splitted = uri.Query.Split('?', '=', '&');
                         claimToken = splitted.SkipWhile(x => x != "claim_token").Skip(1).FirstOrDefault();
                         splitsIORunId = uri.AbsolutePath.Substring(1);
                     }
@@ -299,7 +299,7 @@ public static class SpeedrunCom
                     }
                 }
 
-                var submittedRun = Client.Runs.Submit(
+                SpeedrunComSharp.Run submittedRun = Client.Runs.Submit(
                     //simulateSubmitting: true,
                     categoryId: categoryId,
                     platformId: platformId,

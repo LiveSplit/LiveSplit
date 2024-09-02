@@ -13,7 +13,7 @@ public class SRLRaceInfo : IRaceInfo
     public SRLRaceInfo(dynamic data)
     {
         _data = data;
-        foreach (var entrant in _data.entrants.Properties.Values)
+        foreach (dynamic entrant in _data.entrants.Properties.Values)
         {
             if (entrant.time >= 0)
             {
@@ -39,7 +39,7 @@ public class SRLRaceInfo : IRaceInfo
 
     public bool IsParticipant(string username)
     {
-        var racers = ((IEnumerable<string>)_data.entrants.Properties.Keys).Select(x => x.ToLower());
+        IEnumerable<string> racers = ((IEnumerable<string>)_data.entrants.Properties.Keys).Select(x => x.ToLower());
         return racers.Contains((username ?? "").ToLower());
     }
 
@@ -47,7 +47,7 @@ public class SRLRaceInfo : IRaceInfo
     {
         get
         {
-            foreach (var entrant in _data.entrants.Properties.Values)
+            foreach (dynamic entrant in _data.entrants.Properties.Values)
             {
                 if (entrant.statetext == "Forfeit" || entrant.time >= 0)
                 {

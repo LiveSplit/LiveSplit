@@ -81,8 +81,8 @@ public partial class LayoutEditorDialog : Form
     {
         try
         {
-            var componentFactory = ComponentManager.ComponentFactories.FirstOrDefault(x => x.Value.ComponentName == factory.ComponentName);
-            var component = componentFactory.Value == null
+            KeyValuePair<string, IComponentFactory> componentFactory = ComponentManager.ComponentFactories.FirstOrDefault(x => x.Value.ComponentName == factory.ComponentName);
+            LayoutComponent component = componentFactory.Value == null
                 ? new LayoutComponent("", new SeparatorComponent())
                 : new LayoutComponent(componentFactory.Key, componentFactory.Value.Create(CurrentState));
 
@@ -120,7 +120,7 @@ public partial class LayoutEditorDialog : Form
     private void AddGroup(ComponentCategory groupCategory, IEnumerable<IComponentFactory> factories)
     {
         var groupItem = new ToolStripMenuItem(groupCategory.ToString());
-        foreach (var factory in factories)
+        foreach (IComponentFactory factory in factories)
         {
             AddComponentFactory(factory, groupItem);
         }
@@ -130,13 +130,13 @@ public partial class LayoutEditorDialog : Form
 
     private void LoadAllComponentsAvailable()
     {
-        var autosplitters = AutoSplitterFactory.Instance.AutoSplitters != null
+        IEnumerable<string> autosplitters = AutoSplitterFactory.Instance.AutoSplitters != null
             ? AutoSplitterFactory.Instance.AutoSplitters.Where(x => !x.Value.ShowInLayoutEditor).Select(x => x.Value.FileName)
             : new List<string>();
-        var groups = ComponentManager.ComponentFactories.Where(x => !autosplitters.Contains(x.Key)).Select(x => x.Value).GroupBy(x => x.Category, x => x).OrderBy(x => x.Key);
-        foreach (var group in groups)
+        IOrderedEnumerable<IGrouping<ComponentCategory, IComponentFactory>> groups = ComponentManager.ComponentFactories.Where(x => !autosplitters.Contains(x.Key)).Select(x => x.Value).GroupBy(x => x.Category, x => x).OrderBy(x => x.Key);
+        foreach (IGrouping<ComponentCategory, IComponentFactory> group in groups)
         {
-            var category = group.Key;
+            ComponentCategory category = group.Key;
             var componentFactories = (IEnumerable<IComponentFactory>)group;
             if (category == ComponentCategory.Other)
             {
@@ -172,7 +172,7 @@ public partial class LayoutEditorDialog : Form
             {
                 try
                 {
-                    var component = Layout.Components.ElementAt(lbxComponents.SelectedIndex);
+                    UI.Components.IComponent component = Layout.Components.ElementAt(lbxComponents.SelectedIndex);
                     if (component is IDeactivatableComponent deactivatable)
                     {
                         deactivatable.Activated = false;
@@ -240,7 +240,7 @@ public partial class LayoutEditorDialog : Form
     {
         var oldSettings = (Options.LayoutSettings)Layout.Settings.Clone();
         var settingsDialog = new LayoutSettingsDialog(Layout.Settings, Layout, tabControl);
-        var result = settingsDialog.ShowDialog(this);
+        DialogResult result = settingsDialog.ShowDialog(this);
         //settingsDialog.Dispose();
         if (result == DialogResult.OK)
         {
@@ -273,8 +273,8 @@ public partial class LayoutEditorDialog : Form
     private void btnSetSize_Click(object sender, EventArgs e)
     {
         using var setSizeDialog = new SetSizeForm(CurrentState.Form);
-        var oldSize = CurrentState.Form.Size;
-        var result = setSizeDialog.ShowDialog();
+        Size oldSize = CurrentState.Form.Size;
+        DialogResult result = setSizeDialog.ShowDialog();
 
         if (result == DialogResult.Cancel)
         {
@@ -291,10 +291,10 @@ public partial class LayoutEditorDialog : Form
         int index = lbxComponents.IndexFromPoint(e.Location);
         if (index != ListBox.NoMatches)
         {
-            var selectedItem = lbxComponents.Items[index];
+            object selectedItem = lbxComponents.Items[index];
             try
             {
-                var control = ((ILayoutComponent)selectedItem).Component;
+                UI.Components.IComponent control = ((ILayoutComponent)selectedItem).Component;
                 if (control.GetSettingsControl(Layout.Mode) != null)
                 {
                     ShowLayoutSettings(((ILayoutComponent)selectedItem).Component);

@@ -7,7 +7,7 @@ namespace LiveSplit.Model;
 
 public struct Time
 {
-    public static readonly Time Zero = new Time(TimeSpan.Zero, TimeSpan.Zero);
+    public static readonly Time Zero = new(TimeSpan.Zero, TimeSpan.Zero);
 
     public TimeSpan? RealTime { get; set; }
     public TimeSpan? GameTime { get; set; }
@@ -73,17 +73,17 @@ public struct Time
 
     public readonly XmlElement ToXml(XmlDocument document, string name = "Time")
     {
-        var parent = document.CreateElement(name);
+        XmlElement parent = document.CreateElement(name);
         if (RealTime != null)
         {
-            var realTime = document.CreateElement("RealTime");
+            XmlElement realTime = document.CreateElement("RealTime");
             realTime.InnerText = RealTime.ToString();
             parent.AppendChild(realTime);
         }
 
         if (GameTime != null)
         {
-            var gameTime = document.CreateElement("GameTime");
+            XmlElement gameTime = document.CreateElement("GameTime");
             gameTime.InnerText = GameTime.ToString();
             parent.AppendChild(gameTime);
         }
@@ -101,7 +101,7 @@ public struct Time
 
     public static Time ParseText(string text)
     {
-        var splits = text.Split('|');
+        string[] splits = text.Split('|');
         var newTime = new Time();
         if (TimeSpan.TryParse(splits[0].TrimEnd(), out TimeSpan x))
         {

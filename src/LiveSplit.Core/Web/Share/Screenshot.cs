@@ -9,7 +9,7 @@ namespace LiveSplit.Web.Share;
 public class Screenshot : IRunUploadPlatform
 {
     public ISettings Settings { get; set; }
-    protected static readonly Screenshot _Instance = new Screenshot();
+    protected static readonly Screenshot _Instance = new();
 
     public static Screenshot Instance => _Instance;
 
@@ -28,11 +28,11 @@ public class Screenshot : IRunUploadPlatform
     {
         try
         {
-            var image = screenShotFunction();
+            System.Drawing.Image image = screenShotFunction();
 
             using var dialog = new SaveFileDialog();
             dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpeg)|*.jpeg|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|TIFF (*.tiff)|*.tiff|WMF (*.wmf)|*.wmf";
-            var result = dialog.ShowDialog();
+            DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
                 image.Save(dialog.FileName);

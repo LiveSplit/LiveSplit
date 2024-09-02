@@ -10,7 +10,7 @@ public class StringExtensionsMust
     public void EscapeAmpersandCorrectly()
     {
         const string fileMenu = "&File";
-        var sut = fileMenu.EscapeMenuItemText();
+        string sut = fileMenu.EscapeMenuItemText();
         Assert.Equal("&&File", sut);
     }
 
@@ -37,7 +37,7 @@ public class StringExtensionsMust
     public void OrderWordsBySimilarityCorrectly()
     {
         string[] words = ["rabbit", "elephant", "hen", "Elephant", "cat", "Lion"];
-        var result = words.OrderBySimilarityTo("dog");
+        System.Collections.Generic.IEnumerable<string> result = words.OrderBySimilarityTo("dog");
         Assert.Collection(result,
             p1 => Assert.Equal("hen", p1),
             p2 => Assert.Equal("cat", p2),
@@ -51,7 +51,7 @@ public class StringExtensionsMust
     public void FindMostSimilarValueToWordCorrectly()
     {
         string[] words = ["rabbit", "elephant", "hen", "Elephant", "cat", "Lion"];
-        var result = words.FindMostSimilarValueTo("dog");
+        string result = words.FindMostSimilarValueTo("dog");
         Assert.Equal("hen", result);
     }
 }

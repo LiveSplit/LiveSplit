@@ -42,7 +42,7 @@ public class AutoSplitterFactory
         }
 
         ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
-        var document = DownloadAutoSplitters();
+        XmlDocument document = DownloadAutoSplitters();
 
         if (document != null)
         {
@@ -56,8 +56,8 @@ public class AutoSplitterFactory
 
     public static AutoSplitter CreateFromXmlElement(XmlElement element)
     {
-        var typeElementText = element["Type"]?.InnerText;
-        var scriptTypeElementText = element["ScriptType"]?.InnerText;
+        string typeElementText = element["Type"]?.InnerText;
+        string scriptTypeElementText = element["ScriptType"]?.InnerText;
 
         AutoSplitterType? autoSplitterType = null;
         if (typeElementText == "Component")

@@ -12,7 +12,7 @@ public class AbbreviationExtensionsMust
     [MemberData(nameof(AbbreviationsFeeder))]
     public void ReturnAbbreviationsCorrectly(string anyPhrase, string[] expectedAbbreviations)
     {
-        var abbreviations = anyPhrase.GetAbbreviations();
+        IEnumerable<string> abbreviations = anyPhrase.GetAbbreviations();
         Assert.Equal(expectedAbbreviations, abbreviations);
     }
 

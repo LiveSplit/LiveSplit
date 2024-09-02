@@ -96,7 +96,7 @@ public class SimpleLabel
 
         if (!IsMonospaced)
         {
-            var actualText = CalculateAlternateText(g, Width);
+            string actualText = CalculateAlternateText(g, Width);
             DrawText(actualText, g, X, Y, Width, Height, Format);
         }
         else
@@ -107,11 +107,11 @@ public class SimpleLabel
                 LineAlignment = VerticalAlignment
             };
 
-            var measurement = MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
-            var offset = Width;
-            var charIndex = 0;
+            int measurement = MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+            float offset = Width;
+            int charIndex = 0;
             SetActualWidth(g);
-            var cutOffText = CutOff(g);
+            string cutOffText = CutOff(g);
 
             offset = Width - MeasureActualWidth(cutOffText, g);
             if (HorizontalAlignment != StringAlignment.Far)
@@ -121,8 +121,8 @@ public class SimpleLabel
 
             while (charIndex < cutOffText.Length)
             {
-                var curOffset = 0f;
-                var curChar = cutOffText[charIndex];
+                float curOffset = 0f;
+                char curChar = cutOffText[charIndex];
 
                 if (char.IsDigit(curChar))
                 {
@@ -147,7 +147,7 @@ public class SimpleLabel
         {
             if (g.TextRenderingHint == TextRenderingHint.AntiAlias && OutlineColor.A > 0)
             {
-                var fontSize = GetFontSize(g);
+                float fontSize = GetFontSize(g);
                 using var shadowBrush = new SolidBrush(ShadowColor);
                 using var gp = new GraphicsPath();
                 using var outline = new Pen(OutlineColor, GetOutlineSize(fontSize)) { LineJoin = LineJoin.Round };
@@ -211,9 +211,9 @@ public class SimpleLabel
 
     public string CalculateAlternateText(Graphics g, float width)
     {
-        var actualText = Text;
+        string actualText = Text;
         ActualWidth = g.MeasureString(Text, Font, 9999, Format).Width;
-        foreach (var curText in AlternateText.OrderByDescending(x => x.Length))
+        foreach (string curText in AlternateText.OrderByDescending(x => x.Length))
         {
             if (width < ActualWidth)
             {
@@ -231,13 +231,13 @@ public class SimpleLabel
 
     private float MeasureActualWidth(string text, Graphics g)
     {
-        var charIndex = 0;
-        var measurement = MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
-        var offset = 0;
+        int charIndex = 0;
+        int measurement = MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+        int offset = 0;
 
         while (charIndex < text.Length)
         {
-            var curChar = text[charIndex];
+            char curChar = text[charIndex];
 
             if (char.IsDigit(curChar))
             {
@@ -261,7 +261,7 @@ public class SimpleLabel
             return Text;
         }
 
-        var cutOffText = Text;
+        string cutOffText = Text;
         while (ActualWidth >= Width && !string.IsNullOrEmpty(cutOffText))
         {
             cutOffText = cutOffText.Remove(cutOffText.Length - 1, 1);

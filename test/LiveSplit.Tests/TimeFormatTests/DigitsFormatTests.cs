@@ -74,7 +74,7 @@ public class DigitsFormatTests
 
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
         Assert.Equal(expectedTime, formattedTime);
     }
 
@@ -83,7 +83,7 @@ public class DigitsFormatTests
     {
         var sut = new GeneralTimeFormatter();
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal(TimeFormatConstants.DASH, formattedTime);
     }
 
@@ -99,7 +99,7 @@ public class DigitsFormatTests
             NullFormat = nullFormat
         };
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal(expectedConversion, formattedTime);
     }
 
@@ -117,7 +117,7 @@ public class DigitsFormatTests
             Accuracy = accuracy
         };
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal(expectedConversion, formattedTime);
     }
 }

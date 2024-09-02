@@ -19,11 +19,11 @@ public class LatestRunComparisonGenerator : IComparisonGenerator
 
     private int GetAttemptIndex()
     {
-        var maxIndex = Run.AttemptHistory.LastOrDefault().Index;
-        for (var segmentIndex = Run.Count - 1; segmentIndex >= 0; segmentIndex--)
+        int maxIndex = Run.AttemptHistory.LastOrDefault().Index;
+        for (int segmentIndex = Run.Count - 1; segmentIndex >= 0; segmentIndex--)
         {
-            var segment = Run[segmentIndex];
-            for (var attemptIndex = maxIndex; attemptIndex >= 1; attemptIndex--)
+            ISegment segment = Run[segmentIndex];
+            for (int attemptIndex = maxIndex; attemptIndex >= 1; attemptIndex--)
             {
                 if (segment.SegmentHistory.ContainsKey(attemptIndex))
                 {
@@ -37,12 +37,12 @@ public class LatestRunComparisonGenerator : IComparisonGenerator
 
     public void Generate(TimingMethod method)
     {
-        var attemptIndex = GetAttemptIndex();
+        int attemptIndex = GetAttemptIndex();
 
         if (attemptIndex > 0)
         {
             TimeSpan? totalTime = TimeSpan.Zero;
-            for (var ind = 0; ind < Run.Count; ind++)
+            for (int ind = 0; ind < Run.Count; ind++)
             {
                 TimeSpan? segmentTime = null;
                 if (Run[ind].SegmentHistory.ContainsKey(attemptIndex))

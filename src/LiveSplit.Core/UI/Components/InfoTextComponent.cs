@@ -90,7 +90,7 @@ public class InfoTextComponent : IComponent
             ValueLabel.ShadowColor = state.LayoutSettings.ShadowsColor;
             ValueLabel.OutlineColor = state.LayoutSettings.TextOutlineColor;
 
-            var textHeight = 0.75f * Math.Max(g.MeasureString("A", ValueLabel.Font).Height, g.MeasureString("A", NameLabel.Font).Height);
+            float textHeight = 0.75f * Math.Max(g.MeasureString("A", ValueLabel.Font).Height, g.MeasureString("A", NameLabel.Font).Height);
             PaddingTop = Math.Max(0, (VerticalHeight - textHeight) / 2f);
             PaddingBottom = PaddingTop;
 

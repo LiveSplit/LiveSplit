@@ -13,11 +13,11 @@ public static class InputBox
 
     public static DialogResult Show(IWin32Window owner, string title, string promptText, ref string value)
     {
-        using Form form = new Form();
-        Label label = new Label();
-        TextBox textBox = new TextBox();
-        Button buttonOk = new Button();
-        Button buttonCancel = new Button();
+        using var form = new Form();
+        var label = new Label();
+        var textBox = new TextBox();
+        var buttonOk = new Button();
+        var buttonCancel = new Button();
 
         form.Text = title;
         label.Text = promptText;
@@ -60,13 +60,13 @@ public static class InputBox
 
     public static DialogResult Show(IWin32Window owner, string title, string promptText, string promptText2, ref string value, ref string value2)
     {
-        using Form form = new Form();
-        Label label = new Label();
-        Label label2 = new Label();
-        TextBox textBox = new TextBox();
-        TextBox textBox2 = new TextBox();
-        Button buttonOk = new Button();
-        Button buttonCancel = new Button();
+        using var form = new Form();
+        var label = new Label();
+        var label2 = new Label();
+        var textBox = new TextBox();
+        var textBox2 = new TextBox();
+        var buttonOk = new Button();
+        var buttonCancel = new Button();
 
         form.Text = title;
         label.Text = promptText;

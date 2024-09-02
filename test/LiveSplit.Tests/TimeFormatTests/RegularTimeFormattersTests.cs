@@ -20,7 +20,7 @@ public class RegularTimeFormattersTests
     {
         var sut = new RegularTimeFormatter(timeAccuracy);
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal(expectedTime, formattedTime);
     }
 
@@ -44,7 +44,7 @@ public class RegularTimeFormattersTests
         var sut = new RegularTimeFormatter(timeAccuracy);
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
         Assert.Equal(expectedTime, formattedTime);
     }
 
@@ -53,7 +53,7 @@ public class RegularTimeFormattersTests
     {
         var sut = new AutomaticPrecisionTimeFormatter();
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal("0", formattedTime);
     }
 
@@ -79,7 +79,7 @@ public class RegularTimeFormattersTests
         var sut = new AutomaticPrecisionTimeFormatter();
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
         Assert.Equal(expectedTime, formattedTime);
     }
 
@@ -94,7 +94,7 @@ public class RegularTimeFormattersTests
         var formatter = new RegularTimeFormatter(timeAccuracy);
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = formatter.Format(time);
+        string formattedTime = formatter.Format(time);
         Assert.Equal(expectedTime, formattedTime);
     }
 }

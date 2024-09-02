@@ -288,7 +288,7 @@ public partial class RunEditorDialog : Form
         if (IsInitialized)
         {
             DeactivateAutoSplitter();
-            var splitter = AutoSplitterFactory.Instance.Create(cbxGameName.Text);
+            AutoSplitter splitter = AutoSplitterFactory.Instance.Create(cbxGameName.Text);
             Run.AutoSplitter = splitter;
             if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
             {
@@ -314,7 +314,7 @@ public partial class RunEditorDialog : Form
         {
             try
             {
-                var cachedGameNames = CompositeGameList.Instance.GetGameNames(true);
+                IEnumerable<string> cachedGameNames = CompositeGameList.Instance.GetGameNames(true);
                 if (cachedGameNames != null)
                 {
                     gameNames = cachedGameNames.ToArray();
@@ -336,11 +336,11 @@ public partial class RunEditorDialog : Form
                     cachedGameNames = new string[0];
                 }
 
-                var fetchedGameNames = CompositeGameList.Instance.GetGameNames(false);
+                IEnumerable<string> fetchedGameNames = CompositeGameList.Instance.GetGameNames(false);
                 if (fetchedGameNames != null)
                 {
                     gameNames = fetchedGameNames.ToArray();
-                    var newGameNames = gameNames.Except(cachedGameNames).ToArray();
+                    string[] newGameNames = gameNames.Except(cachedGameNames).ToArray();
 
                     abbreviations = gameNames
                     .Select(x => x.GetAbbreviations()
@@ -381,7 +381,7 @@ public partial class RunEditorDialog : Form
                 string[] categoryNames = ["Any%", "Low%", "100%"];
                 try
                 {
-                    var game = Run.Metadata.Game;
+                    SpeedrunComSharp.Game game = Run.Metadata.Game;
                     if (game != null)
                     {
                         categoryNames = game.FullGameCategories.Select(x => x.Name).ToArray();
@@ -511,7 +511,7 @@ public partial class RunEditorDialog : Form
 
     private void runGrid_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
     {
-        var parsingResults = ParseCell(e.Value, e.RowIndex, e.ColumnIndex, true);
+        ParsingResults parsingResults = ParseCell(e.Value, e.RowIndex, e.ColumnIndex, true);
         if (parsingResults.Parsed)
         {
             e.ParsingApplied = true;
@@ -626,7 +626,7 @@ public partial class RunEditorDialog : Form
         {
             if (e.ColumnIndex == SPLITTIMEINDEX)
             {
-                var comparisonValue = Run[e.RowIndex].PersonalBestSplitTime[SelectedMethod];
+                TimeSpan? comparisonValue = Run[e.RowIndex].PersonalBestSplitTime[SelectedMethod];
                 if (comparisonValue == null)
                 {
                     e.Value = "";
@@ -640,7 +640,7 @@ public partial class RunEditorDialog : Form
             }
             else if (e.ColumnIndex == BESTSEGMENTINDEX)
             {
-                var comparisonValue = Run[e.RowIndex].BestSegmentTime[SelectedMethod];
+                TimeSpan? comparisonValue = Run[e.RowIndex].BestSegmentTime[SelectedMethod];
                 if (comparisonValue == null)
                 {
                     e.Value = "";
@@ -654,7 +654,7 @@ public partial class RunEditorDialog : Form
             }
             else if (e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
             {
-                var comparisonValue = Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name][SelectedMethod];
+                TimeSpan? comparisonValue = Run[e.RowIndex].Comparisons[runGrid.Columns[e.ColumnIndex].Name][SelectedMethod];
                 if (comparisonValue == null)
                 {
                     e.Value = "";
@@ -698,7 +698,7 @@ public partial class RunEditorDialog : Form
             {
                 Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*"
             };
-            var multiEdit = runGrid.SelectedCells.Count > 1;
+            bool multiEdit = runGrid.SelectedCells.Count > 1;
             if (!string.IsNullOrEmpty(Run[e.RowIndex].Name) && !multiEdit)
             {
                 dialog.Title = "Set Icon for " + Run[e.RowIndex].Name + "...";
@@ -708,7 +708,7 @@ public partial class RunEditorDialog : Form
                 dialog.Title = "Set Icon...";
             }
 
-            var result = dialog.ShowDialog();
+            DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
                 ChangeImage(e.RowIndex, dialog.FileName, multiEdit);
@@ -769,7 +769,7 @@ public partial class RunEditorDialog : Form
         runGrid.InvalidateColumn(SPLITTIMEINDEX);
         runGrid.InvalidateColumn(BESTSEGMENTINDEX);
         runGrid.InvalidateColumn(SEGMENTTIMEINDEX);
-        for (var index = CUSTOMCOMPARISONSINDEX; index < runGrid.Columns.Count; index++)
+        for (int index = CUSTOMCOMPARISONSINDEX; index < runGrid.Columns.Count; index++)
         {
             runGrid.InvalidateColumn(index);
         }
@@ -796,7 +796,7 @@ public partial class RunEditorDialog : Form
         }
 
         dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
-        var result = dialog.ShowDialog();
+        DialogResult result = dialog.ShowDialog();
         if (result == DialogResult.OK)
         {
             try
@@ -816,7 +816,7 @@ public partial class RunEditorDialog : Form
     private void btnBrowseLayout_Click(object sender, EventArgs e)
     {
         string initialPath = Path.GetDirectoryName(Run.LayoutPath);
-        using OpenFileDialog openFileDialog = new OpenFileDialog();
+        using var openFileDialog = new OpenFileDialog();
         initialPath ??= Path.GetDirectoryName(CurrentState.Layout.FilePath);
 
         if (initialPath != null)
@@ -844,7 +844,7 @@ public partial class RunEditorDialog : Form
             .Where(e => !string.IsNullOrEmpty(e))
             .Select(value =>
             {
-                var key = Path.GetFileNameWithoutExtension(value).EscapeMenuItemText();
+                string key = Path.GetFileNameWithoutExtension(value).EscapeMenuItemText();
                 return Tuple.Create(key, value);
             }).ToList();
         cbxLayoutToUse.Items.AddRange(range.ToArray());
@@ -864,7 +864,7 @@ public partial class RunEditorDialog : Form
 
         if (selected == null)
         {
-            var fileName = Path.GetFileNameWithoutExtension(layoutPath).EscapeMenuItemText();
+            string fileName = Path.GetFileNameWithoutExtension(layoutPath).EscapeMenuItemText();
             selected = Tuple.Create(fileName, layoutPath);
             cbxLayoutToUse.Items.Insert(1, selected);
         }
@@ -937,7 +937,7 @@ public partial class RunEditorDialog : Form
             return;
         }
 
-        var selected = ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2;
+        string selected = ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2;
         if (string.IsNullOrEmpty(selected))
         {
             return;
@@ -949,7 +949,7 @@ public partial class RunEditorDialog : Form
     private void chkbxUseLayout_CheckedChanged(object sender, EventArgs e)
     {
         flpnlLayoutSelect.Enabled = chkbxUseLayout.Checked;
-        var layoutPath = chkbxUseLayout.Checked && cbxLayoutToUse.SelectedItem != null ?
+        string layoutPath = chkbxUseLayout.Checked && cbxLayoutToUse.SelectedItem != null ?
             ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2 : null;
         if (Run.LayoutPath == layoutPath)
         {
@@ -973,11 +973,11 @@ public partial class RunEditorDialog : Form
 
     private void UpdateSegmentList()
     {
-        var previousTime = TimeSpan.Zero;
+        TimeSpan previousTime = TimeSpan.Zero;
         SegmentTimeList.Clear();
-        foreach (var curSeg in Run)
+        foreach (ISegment curSeg in Run)
         {
-            var splitTime = curSeg.PersonalBestSplitTime[SelectedMethod];
+            TimeSpan? splitTime = curSeg.PersonalBestSplitTime[SelectedMethod];
 
             SegmentTimeList.Add(splitTime - previousTime);
 
@@ -990,11 +990,11 @@ public partial class RunEditorDialog : Form
 
     private void FixSplitsFromSegments()
     {
-        var previousTime = TimeSpan.Zero;
-        for (var index = 0; index < Run.Count; index++)
+        TimeSpan previousTime = TimeSpan.Zero;
+        for (int index = 0; index < Run.Count; index++)
         {
-            var curSegment = Run[index];
-            var curSegTime = SegmentTimeList[index];
+            ISegment curSegment = Run[index];
+            TimeSpan? curSegTime = SegmentTimeList[index];
 
             var time = new Time(curSegment.PersonalBestSplitTime);
             time[SelectedMethod] = previousTime + curSegTime;
@@ -1012,8 +1012,8 @@ public partial class RunEditorDialog : Form
         var newSegment = new Segment("");
         Run.ImportBestSegment(runGrid.CurrentRow.Index);
 
-        var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-        for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
+        int maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+        for (int x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
         {
             newSegment.SegmentHistory.Add(x, default);
         }
@@ -1036,8 +1036,8 @@ public partial class RunEditorDialog : Form
             Run.ImportBestSegment(runGrid.CurrentRow.Index + 1);
         }
 
-        var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-        for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
+        int maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+        for (int x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
         {
             newSegment.SegmentHistory.Add(x, default);
         }
@@ -1056,9 +1056,9 @@ public partial class RunEditorDialog : Form
     {
         if (e.KeyCode == Keys.Delete)
         {
-            foreach (var selectedObject in runGrid.SelectedCells.OfType<DataGridViewCell>().Reverse())
+            foreach (DataGridViewCell selectedObject in runGrid.SelectedCells.OfType<DataGridViewCell>().Reverse())
             {
-                var selectedCell = selectedObject;
+                DataGridViewCell selectedCell = selectedObject;
 
                 if (selectedCell.RowIndex >= Run.Count || selectedCell.RowIndex < 0)
                 {
@@ -1119,21 +1119,21 @@ public partial class RunEditorDialog : Form
             char[] rowSplitter = ['\n'];
             char[] columnSplitter = ['\t'];
 
-            var dataInClipboard = Clipboard.GetDataObject();
-            var stringInClipboard = (string)dataInClipboard.GetData(DataFormats.Text);
+            IDataObject dataInClipboard = Clipboard.GetDataObject();
+            string stringInClipboard = (string)dataInClipboard.GetData(DataFormats.Text);
 
             if (stringInClipboard != null && runGrid.SelectedCells.Count > 0)
             {
-                var rowsInClipboard = stringInClipboard.Replace("\r\n", "\n").Split(rowSplitter);
+                string[] rowsInClipboard = stringInClipboard.Replace("\r\n", "\n").Split(rowSplitter);
 
-                var r = runGrid.SelectedCells[0].RowIndex;
-                var c = runGrid.SelectedCells[0].ColumnIndex;
+                int r = runGrid.SelectedCells[0].RowIndex;
+                int c = runGrid.SelectedCells[0].ColumnIndex;
 
-                var maxRow = Math.Min(rowsInClipboard.Length, runGrid.RowCount - r);
+                int maxRow = Math.Min(rowsInClipboard.Length, runGrid.RowCount - r);
 
-                var splitsChanged = false;
-                var segmentsChanged = false;
-                var shouldFix = false;
+                bool splitsChanged = false;
+                bool segmentsChanged = false;
+                bool shouldFix = false;
 
                 for (int iRow = r; iRow < r + maxRow; iRow++)
                 {
@@ -1157,8 +1157,8 @@ public partial class RunEditorDialog : Form
                                 shouldFix = true;
                             }
 
-                            var cell = runGrid.Rows[iRow].Cells[iCol];
-                            var parsingResults = ParseCell(valuesInRow[iCol - c], iRow, iCol, false);
+                            DataGridViewCell cell = runGrid.Rows[iRow].Cells[iCol];
+                            ParsingResults parsingResults = ParseCell(valuesInRow[iCol - c], iRow, iCol, false);
                             if (parsingResults.Parsed)
                             {
                                 cell.Value = parsingResults.Value;
@@ -1183,10 +1183,10 @@ public partial class RunEditorDialog : Form
 
     private void RemoveSelected()
     {
-        foreach (var selectedObject in runGrid.SelectedCells)
+        foreach (object selectedObject in runGrid.SelectedCells)
         {
             var selectedCell = (DataGridViewCell)selectedObject;
-            var selectedIndex = selectedCell.RowIndex;
+            int selectedIndex = selectedCell.RowIndex;
 
             if (Run.Count <= 1 || selectedIndex >= Run.Count || selectedIndex < 0)
             {
@@ -1217,15 +1217,15 @@ public partial class RunEditorDialog : Form
 
     private void SwitchSegments(int segIndex)
     {
-        var firstSegment = SegmentList.ElementAt(segIndex);
-        var secondSegment = SegmentList.ElementAt(segIndex + 1);
+        ISegment firstSegment = SegmentList.ElementAt(segIndex);
+        ISegment secondSegment = SegmentList.ElementAt(segIndex + 1);
 
-        var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-        for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
+        int maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+        for (int runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
         {
             //Remove both segment history elements if one of them has a null time and the other has has a non null time
-            var firstExists = firstSegment.SegmentHistory.TryGetValue(runIndex, out Time firstHistory);
-            var secondExists = secondSegment.SegmentHistory.TryGetValue(runIndex, out Time secondHistory);
+            bool firstExists = firstSegment.SegmentHistory.TryGetValue(runIndex, out Time firstHistory);
+            bool secondExists = secondSegment.SegmentHistory.TryGetValue(runIndex, out Time secondHistory);
 
             if (firstExists && secondExists
                 && (firstHistory[TimingMethod.RealTime].HasValue != secondHistory[TimingMethod.RealTime].HasValue
@@ -1237,12 +1237,12 @@ public partial class RunEditorDialog : Form
         }
 
         var comparisonKeys = new List<string>(firstSegment.Comparisons.Keys);
-        foreach (var comparison in comparisonKeys)
+        foreach (string comparison in comparisonKeys)
         {
             //Fix the comparison times based on the new positions of the two segments
-            var previousTime = segIndex > 0 ? SegmentList.ElementAt(segIndex - 1).Comparisons[comparison] : new Time(TimeSpan.Zero, TimeSpan.Zero);
-            var firstSegmentTime = firstSegment.Comparisons[comparison] - previousTime;
-            var secondSegmentTime = secondSegment.Comparisons[comparison] - firstSegment.Comparisons[comparison];
+            Time previousTime = segIndex > 0 ? SegmentList.ElementAt(segIndex - 1).Comparisons[comparison] : new Time(TimeSpan.Zero, TimeSpan.Zero);
+            Time firstSegmentTime = firstSegment.Comparisons[comparison] - previousTime;
+            Time secondSegmentTime = secondSegment.Comparisons[comparison] - firstSegment.Comparisons[comparison];
             secondSegment.Comparisons[comparison] = new Time(previousTime + secondSegmentTime);
             firstSegment.Comparisons[comparison] = new Time(secondSegment.Comparisons[comparison] + firstSegmentTime);
         }
@@ -1261,12 +1261,12 @@ public partial class RunEditorDialog : Form
 
     private void FixWithTimingMethod(int index, TimingMethod method)
     {
-        var curIndex = index + 1;
+        int curIndex = index + 1;
 
         if (curIndex < Run.Count)
         {
-            var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-            for (var runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
+            int maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+            for (int runIndex = Run.GetMinSegmentHistoryIndex(); runIndex <= maxIndex; runIndex++)
             {
                 curIndex = index + 1;
                 //If a history element isn't there in the segment that's deleted, remove it from the next segment's history as well
@@ -1280,7 +1280,7 @@ public partial class RunEditorDialog : Form
                     continue;
                 }
 
-                var curSegment = segmentHistoryElement[method];
+                TimeSpan? curSegment = segmentHistoryElement[method];
                 while (curSegment != null && curIndex < Run.Count)
                 {
                     //Add the removed segment's history times to the next non null times
@@ -1298,9 +1298,9 @@ public partial class RunEditorDialog : Form
             curIndex = index + 1;
 
             //Set the new Best Segment time to be the sum of the two Best Segments
-            var minBestSegment = Run[index].BestSegmentTime[method] + Run[curIndex].BestSegmentTime[method];
+            TimeSpan? minBestSegment = Run[index].BestSegmentTime[method] + Run[curIndex].BestSegmentTime[method];
             //Use any element in the history that has a lower time than this sum
-            foreach (var history in Run[curIndex].SegmentHistory)
+            foreach (KeyValuePair<int, Time> history in Run[curIndex].SegmentHistory)
             {
                 if (history.Value[method] < minBestSegment)
                 {
@@ -1308,7 +1308,7 @@ public partial class RunEditorDialog : Form
                 }
             }
 
-            var newTime = Run[curIndex].BestSegmentTime;
+            Time newTime = Run[curIndex].BestSegmentTime;
             newTime[method] = minBestSegment;
             Run[curIndex].BestSegmentTime = newTime;
         }
@@ -1373,10 +1373,10 @@ public partial class RunEditorDialog : Form
     {
         try
         {
-            var game = Run.Metadata.Game;
+            SpeedrunComSharp.Game game = Run.Metadata.Game;
             if (game != null)
             {
-                var cover = game.Assets.GetIconImage();
+                Image cover = game.Assets.GetIconImage();
                 SetGameIcon(cover);
                 RaiseRunEdited();
                 return;
@@ -1394,10 +1394,10 @@ public partial class RunEditorDialog : Form
     {
         try
         {
-            var game = Run.Metadata.Game;
+            SpeedrunComSharp.Game game = Run.Metadata.Game;
             if (game != null)
             {
-                var cover = game.Assets.GetBoxartImage();
+                Image cover = game.Assets.GetBoxartImage();
                 SetGameIcon(cover);
                 RaiseRunEdited();
                 return;
@@ -1410,7 +1410,7 @@ public partial class RunEditorDialog : Form
 
         try
         {
-            var cover = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
+            Image cover = Twitch.Instance.GetGameBoxArt(cbxGameName.Text);
             if (cover != null)
             {
                 SetGameIcon(cover);
@@ -1438,8 +1438,8 @@ public partial class RunEditorDialog : Form
 
                 var request = (HttpWebRequest)WebRequest.Create(uri);
 
-                using var response = request.GetResponse();
-                using var stream = response.GetResponseStream();
+                using WebResponse response = request.GetResponse();
+                using Stream stream = response.GetResponseStream();
                 try
                 {
                     var icon = Image.FromStream(stream);
@@ -1467,7 +1467,7 @@ public partial class RunEditorDialog : Form
             runGrid.Columns.RemoveAt(CUSTOMCOMPARISONSINDEX);
         }
 
-        foreach (var comparison in Run.CustomComparisons)
+        foreach (string comparison in Run.CustomComparisons)
         {
             if (comparison != Model.Run.PersonalBestComparisonName)
             {
@@ -1500,9 +1500,9 @@ public partial class RunEditorDialog : Form
 
     private void RenameComparison(DataGridViewTextBoxColumn column)
     {
-        var name = column.Name;
-        var newName = name;
-        var dialogResult = InputBox.Show("Rename Comparison", "Comparison Name:", ref newName);
+        string name = column.Name;
+        string newName = name;
+        DialogResult dialogResult = InputBox.Show("Rename Comparison", "Comparison Name:", ref newName);
         if (dialogResult == DialogResult.OK)
         {
             if (!Run.Comparisons.Contains(newName))
@@ -1517,7 +1517,7 @@ public partial class RunEditorDialog : Form
                     }
 
                     Run.CustomComparisons[Run.CustomComparisons.IndexOf(name)] = newName;
-                    foreach (var segment in Run)
+                    foreach (ISegment segment in Run)
                     {
                         segment.Comparisons[newName] = segment.Comparisons[name];
                         segment.Comparisons.Remove(name);
@@ -1532,7 +1532,7 @@ public partial class RunEditorDialog : Form
                 }
                 else
                 {
-                    var result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    DialogResult result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                     if (result == DialogResult.Retry)
                     {
                         RenameComparison(column);
@@ -1541,7 +1541,7 @@ public partial class RunEditorDialog : Form
             }
             else if (newName != name)
             {
-                var result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                DialogResult result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
                 {
                     RenameComparison(column);
@@ -1554,7 +1554,7 @@ public partial class RunEditorDialog : Form
 
     private void RemoveComparison(DataGridViewTextBoxColumn column)
     {
-        var name = column.Name;
+        string name = column.Name;
         runGrid.Columns.Remove(column);
         Run.CustomComparisons.Remove(name);
 
@@ -1570,7 +1570,7 @@ public partial class RunEditorDialog : Form
         };
         ComparisonRenamed(this, args);
 
-        foreach (var segment in Run)
+        foreach (ISegment segment in Run)
         {
             segment.Comparisons.Remove(name);
         }
@@ -1580,8 +1580,8 @@ public partial class RunEditorDialog : Form
 
     private void btnAddComparison_Click(object sender, EventArgs e)
     {
-        var name = "";
-        var result = InputBox.Show("New Comparison", "Comparison Name:", ref name);
+        string name = "";
+        DialogResult result = InputBox.Show("New Comparison", "Comparison Name:", ref name);
         if (result == DialogResult.OK)
         {
             if (!Run.Comparisons.Contains(name))
@@ -1613,7 +1613,7 @@ public partial class RunEditorDialog : Form
 
     private void TabSelected(object sender, TabControlEventArgs e)
     {
-        var margin = tabControl.Margin;
+        Padding margin = tabControl.Margin;
         if (IsGridTab)
         {
             margin.Bottom = 0;
@@ -1689,11 +1689,11 @@ public partial class RunEditorDialog : Form
     private void btnSettings_Click(object sender, EventArgs e)
     {
         var dialog = new ComponentSettingsDialog(Run.AutoSplitter.Component);
-        var result = dialog.ShowDialog();
+        DialogResult result = dialog.ShowDialog();
         if (result == DialogResult.OK)
         {
             var document = new XmlDocument();
-            var autoSplitterSettings = document.CreateElement("AutoSplitterSettings");
+            XmlElement autoSplitterSettings = document.CreateElement("AutoSplitterSettings");
             autoSplitterSettings.InnerXml = Run.AutoSplitter.Component.GetSettings(document).InnerXml;
             autoSplitterSettings.Attributes.Append(SettingsHelper.ToAttribute(document, "gameName", Run.GameName));
             Run.AutoSplitterSettings = autoSplitterSettings;
@@ -1703,7 +1703,7 @@ public partial class RunEditorDialog : Form
 
     private void btnWebsite_Click(object sender, EventArgs e)
     {
-        Uri url = new Uri(Run.AutoSplitter.Website);
+        var url = new Uri(Run.AutoSplitter.Website);
         if (url.Scheme is "http" or "https")
         {
             try
@@ -1721,7 +1721,7 @@ public partial class RunEditorDialog : Form
     {
         List<DataGridViewCell> selectedCells = [.. runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex)];
 
-        var selectedInd = selectedCells.First().RowIndex;
+        int selectedInd = selectedCells.First().RowIndex;
         bool currCell = false;
 
         if (selectedCells != null)
@@ -1751,7 +1751,7 @@ public partial class RunEditorDialog : Form
     {
         List<DataGridViewCell> selectedCells = [.. runGrid.SelectedCells.Cast<DataGridViewCell>().OrderByDescending(o => o.RowIndex)];
 
-        var selectedInd = selectedCells.First().RowIndex;
+        int selectedInd = selectedCells.First().RowIndex;
         bool currCell = false;
 
         if (selectedCells != null)
@@ -1802,7 +1802,7 @@ public partial class RunEditorDialog : Form
 
     private void ImportClick(IRunImporter importer)
     {
-        var name = importer.ImportAsComparison(Run, this);
+        string name = importer.ImportAsComparison(Run, this);
         if (name != null)
         {
             AddComparisonColumn(name);
@@ -1834,16 +1834,16 @@ public partial class RunEditorDialog : Form
 
     private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)
     {
-        var alwaysCancel = false;
+        bool alwaysCancel = false;
         var pastResponses = new Dictionary<string, bool>();
-        var userWasPrompted = false;
+        bool userWasPrompted = false;
         bool callback(SumOfBest.CleanUpCallbackParameters parameters)
         {
             userWasPrompted = true;
             if (!alwaysCancel)
             {
                 var formatter = new ShortTimeFormatter();
-                var messageText = formatter.Format(parameters.timeBetween) + " between "
+                string messageText = formatter.Format(parameters.timeBetween) + " between "
                     + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name
                     + (parameters.combinedSumOfBest != null ? ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest) : "");
                 if (parameters.attempt.Ended.HasValue)
@@ -1853,7 +1853,7 @@ public partial class RunEditorDialog : Form
 
                 if (!pastResponses.ContainsKey(messageText))
                 {
-                    var result = MessageBox.Show(this, "You had a " + (parameters.method == TimingMethod.RealTime ? "Real Time" : "Game Time") + " segment time of " + messageText + ". Do you think that this segment time is inaccurate and should be removed?", "Remove Time From Segment History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show(this, "You had a " + (parameters.method == TimingMethod.RealTime ? "Real Time" : "Game Time") + " segment time of " + messageText + ". Do you think that this segment time is inaccurate and should be removed?", "Remove Time From Segment History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         pastResponses.Add(messageText, true);
@@ -1914,7 +1914,7 @@ public partial class RunEditorDialog : Form
         {
             Point dgvPos = runGrid.PointToClient(new Point(e.X, e.Y));
             DataGridView.HitTestInfo info = runGrid.HitTest(dgvPos.X, dgvPos.Y);
-            var imagePath = (e.Data.GetData(DataFormats.FileDrop) as string[])?[0];
+            string imagePath = (e.Data.GetData(DataFormats.FileDrop) as string[])?[0];
             ChangeImage(info.RowIndex, imagePath, false);
             runGrid.Refresh();
         }
@@ -1929,7 +1929,7 @@ public partial class RunEditorDialog : Form
     {
         Point dgvPos = runGrid.PointToClient(new Point(e.X, e.Y));
         DataGridView.HitTestInfo info = runGrid.HitTest(dgvPos.X, dgvPos.Y);
-        var imagePath = (e.Data.GetData(DataFormats.FileDrop) as string[])?[0];
+        string imagePath = (e.Data.GetData(DataFormats.FileDrop) as string[])?[0];
 
         return e.Data.GetDataPresent(DataFormats.FileDrop)
                && info.ColumnIndex != -1
@@ -1984,8 +1984,8 @@ public class CustomAutoCompleteComboBox : ComboBox
                         return;
                     }
 
-                    var text = currentText;
-                    var legalStrings = GetAllItemsForText(text);
+                    string text = currentText;
+                    string[] legalStrings = GetAllItemsForText(text);
 
                     if (currentText == text && previousText != text)
                     {
@@ -2075,7 +2075,7 @@ public class CustomAutoCompleteComboBox : ComboBox
             Text = _box.SelectedItem as string;
             _dropDown.Close();
         };
-        ToolStripControlHost host = new ToolStripControlHost(_box)
+        var host = new ToolStripControlHost(_box)
         {
             AutoSize = false,
             Margin = Padding.Empty,

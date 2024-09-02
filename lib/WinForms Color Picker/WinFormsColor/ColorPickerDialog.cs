@@ -55,8 +55,8 @@ public partial class ColorPickerDialog : Form
     }
 
     private bool alphaEnabled = true;
-    private InternalColor oldColor = new InternalColor(Color.Red);
-    private InternalColor _selColor = new InternalColor(Color.Red);
+    private InternalColor oldColor = new(Color.Red);
+    private InternalColor _selColor = new(Color.Red);
     private InternalColor selColor
     {
         get => _selColor;
@@ -156,9 +156,9 @@ public partial class ColorPickerDialog : Form
     }
     private void UpdateText()
     {
-        Color tmp = selColor.ToColor();
+        var tmp = selColor.ToColor();
         suspendTextEvents = true;
-        var color = tmp.ToArgb();
+        int color = tmp.ToArgb();
         if (!AlphaEnabled)
         {
             color &= 0xffffff;
@@ -562,7 +562,7 @@ public partial class ColorPickerDialog : Form
             return;
         }
 
-        Color tmp = selColor.ToColor();
+        var tmp = selColor.ToColor();
         selColor = new InternalColor(Color.FromArgb(
             tmp.A,
             (byte)numRed.Value,
@@ -577,7 +577,7 @@ public partial class ColorPickerDialog : Form
             return;
         }
 
-        Color tmp = selColor.ToColor();
+        var tmp = selColor.ToColor();
         selColor = new InternalColor(Color.FromArgb(
             tmp.A,
             tmp.R,
@@ -592,7 +592,7 @@ public partial class ColorPickerDialog : Form
             return;
         }
 
-        Color tmp = selColor.ToColor();
+        var tmp = selColor.ToColor();
         selColor = new InternalColor(Color.FromArgb(
             tmp.A,
             tmp.R,
@@ -607,7 +607,7 @@ public partial class ColorPickerDialog : Form
             return;
         }
 
-        Color tmp = selColor.ToColor();
+        var tmp = selColor.ToColor();
         selColor = new InternalColor(Color.FromArgb(
             (byte)numAlpha.Value,
             tmp.R,
@@ -624,7 +624,7 @@ public partial class ColorPickerDialog : Form
 
         if (int.TryParse(textBoxHex.Text, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.CurrentUICulture, out int argb))
         {
-            Color tmp = Color.FromArgb(argb);
+            var tmp = Color.FromArgb(argb);
             if (!AlphaEnabled)
             {
                 tmp = Color.FromArgb(255, tmp);
@@ -672,7 +672,7 @@ public partial class ColorPickerDialog : Form
         IntPtr hdc = GetDC(IntPtr.Zero);
         uint pixel = GetPixel(hdc, x, y);
         ReleaseDC(IntPtr.Zero, hdc);
-        Color color = Color.FromArgb((int)(pixel & 0x000000FF),
+        var color = Color.FromArgb((int)(pixel & 0x000000FF),
                      (int)(pixel & 0x0000FF00) >> 8,
                      (int)(pixel & 0x00FF0000) >> 16);
         return color;
@@ -699,7 +699,7 @@ public partial class ColorPickerDialog : Form
             {
                 while (pick)
                 {
-                    var color = GetPixelColor(Cursor.Position.X, Cursor.Position.Y);
+                    Color color = GetPixelColor(Cursor.Position.X, Cursor.Position.Y);
                     if (InvokeRequired)
                     {
                         Invoke(setColor, color);

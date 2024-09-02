@@ -228,7 +228,7 @@ public class LiveSplitState : ICloneable
 
     public void SetGameTime(TimeSpan? gameTime)
     {
-        var currentTime = CurrentTime;
+        Time currentTime = CurrentTime;
         if (currentTime.RealTime.HasValue && gameTime.HasValue)
         {
             LoadingTimes = currentTime.RealTime.Value - gameTime.Value;

@@ -8,8 +8,8 @@ public static class AbbreviationExtensions
 {
     private static bool endsWithRomanNumeral(string name)
     {
-        var romanSymbols = new[] { 'I', 'V', 'X' };
-        var charBeforeRomanNumeral = name
+        char[] romanSymbols = ['I', 'V', 'X'];
+        char charBeforeRomanNumeral = name
             .Reverse()
             .SkipWhile(c => romanSymbols.Contains(c))
             .FirstOrDefault();
@@ -27,14 +27,14 @@ public static class AbbreviationExtensions
     {
         if (name.Contains(splitToken))
         {
-            var splits = name.Split(new[] { splitToken }, 2, StringSplitOptions.None);
-            var seriesTitle = splits[0];
-            var subTitle = splits[1];
+            string[] splits = name.Split(new[] { splitToken }, 2, StringSplitOptions.None);
+            string seriesTitle = splits[0];
+            string subTitle = splits[1];
             var seriesTitleAbbreviations = seriesTitle.GetAbbreviations().ToList();
             var subTitleAbbreviations = subTitle.GetAbbreviations().ToList();
-            var seriesTitleTrimmed = seriesTitle.Trim();
+            string seriesTitleTrimmed = seriesTitle.Trim();
 
-            var isSeriesTitleRepresentative = !string.IsNullOrEmpty(seriesTitleTrimmed)
+            bool isSeriesTitleRepresentative = !string.IsNullOrEmpty(seriesTitleTrimmed)
                 && (char.IsDigit(seriesTitleTrimmed.Last())
                     || endsWithRomanNumeral(seriesTitleTrimmed));
 
@@ -45,11 +45,11 @@ public static class AbbreviationExtensions
 
             list.AddRange(subTitleAbbreviations);
 
-            var isThereOnlyOneSeriesTitleAbbreviation = seriesTitleAbbreviations.Count == 1;
+            bool isThereOnlyOneSeriesTitleAbbreviation = seriesTitleAbbreviations.Count == 1;
 
-            foreach (var subTitleAbbreviation in subTitleAbbreviations)
+            foreach (string subTitleAbbreviation in subTitleAbbreviations)
             {
-                foreach (var seriesTitleAbbreviation in seriesTitleAbbreviations)
+                foreach (string seriesTitleAbbreviation in seriesTitleAbbreviations)
                 {
                     if (isSeriesTitleRepresentative
                         || seriesTitleAbbreviation != seriesTitle
@@ -70,15 +70,15 @@ public static class AbbreviationExtensions
     {
         if (name.Contains(splitToken))
         {
-            var splits = name.Split(new[] { splitToken }, 2, StringSplitOptions.None);
-            var seriesTitle = splits[0];
-            var subTitle = splits[1];
+            string[] splits = name.Split(new[] { splitToken }, 2, StringSplitOptions.None);
+            string seriesTitle = splits[0];
+            string subTitle = splits[1];
             var seriesTitleAbbreviations = seriesTitle.GetAbbreviations().ToList();
             var subTitleAbbreviations = subTitle.GetAbbreviations().ToList();
 
-            foreach (var subTitleAbbreviation in subTitleAbbreviations)
+            foreach (string subTitleAbbreviation in subTitleAbbreviations)
             {
-                foreach (var seriesTitleAbbreviation in seriesTitleAbbreviations)
+                foreach (string seriesTitleAbbreviation in seriesTitleAbbreviations)
                 {
                     list.Add(seriesTitleAbbreviation + splitToken + subTitleAbbreviation);
                 }
@@ -102,12 +102,12 @@ public static class AbbreviationExtensions
 
         var list = new List<string>() { name };
 
-        var indexStart = name.LastIndexOf('(');
-        var indexEnd = name.IndexOf(')', indexStart + 1);
+        int indexStart = name.LastIndexOf('(');
+        int indexEnd = name.IndexOf(')', indexStart + 1);
         if (indexStart >= 0 && indexEnd >= 0)
         {
-            var beforeParentheses = name.Substring(0, indexStart).Trim();
-            var afterParentheses = name.Substring(indexEnd + 1).Trim();
+            string beforeParentheses = name.Substring(0, indexStart).Trim();
+            string afterParentheses = name.Substring(indexEnd + 1).Trim();
             name = $"{beforeParentheses} {afterParentheses}".Trim();
             list.AddRange(name.GetAbbreviations());
         }
@@ -122,9 +122,9 @@ public static class AbbreviationExtensions
         }
         else if (name.ToLowerInvariant().Contains(" and "))
         {
-            var index = name.ToLower().IndexOf(" and ");
-            var firstPart = name.Substring(0, index);
-            var secondPart = name.Substring(index + " and ".Length);
+            int index = name.ToLower().IndexOf(" and ");
+            string firstPart = name.Substring(0, index);
+            string secondPart = name.Substring(index + " and ".Length);
             name = firstPart + " & " + secondPart;
             list.AddRange(name.GetAbbreviations());
         }
@@ -132,21 +132,21 @@ public static class AbbreviationExtensions
         {
             if (name.ToLowerInvariant().StartsWith("the "))
             {
-                var theDropped = name.Substring("the ".Length);
+                string theDropped = name.Substring("the ".Length);
                 list.Add(theDropped);
             }
             else if (name.ToLowerInvariant().StartsWith("a "))
             {
-                var aDropped = name.Substring("a ".Length);
+                string aDropped = name.Substring("a ".Length);
                 list.Add(aDropped);
             }
 
             if (name.Contains(" "))
             {
-                var splits = name
+                string[] splits = name
                     .Replace('&', 'a')
                     .Split(new[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
-                var abbreviation = splits
+                string abbreviation = splits
                     .Select(x =>
                         {
                             if (char.IsDigit(x[0]))

@@ -18,16 +18,16 @@ public class BestSplitTimesComparisonGenerator : IComparisonGenerator
 
     public void Generate(TimingMethod method)
     {
-        var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
-        for (var y = Run.GetMinSegmentHistoryIndex(); y <= maxIndex; y++)
+        int maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
+        for (int y = Run.GetMinSegmentHistoryIndex(); y <= maxIndex; y++)
         {
-            var time = TimeSpan.Zero;
+            TimeSpan time = TimeSpan.Zero;
 
-            foreach (var segment in Run)
+            foreach (ISegment segment in Run)
             {
                 if (segment.SegmentHistory.TryGetValue(y, out Time segmentHistoryElement))
                 {
-                    var segmentTime = segmentHistoryElement[method];
+                    TimeSpan? segmentTime = segmentHistoryElement[method];
                     if (segmentTime != null)
                     {
                         time += segmentTime.Value;
@@ -50,7 +50,7 @@ public class BestSplitTimesComparisonGenerator : IComparisonGenerator
 
     public void Generate(ISettings settings)
     {
-        foreach (var segment in Run)
+        foreach (ISegment segment in Run)
         {
             if (Run.IndexOf(segment) > 0)
             {

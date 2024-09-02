@@ -17,7 +17,7 @@ public class AutoSplitterXML
     [Fact]
     public void TestAutoSplittersXML()
     {
-        var xmlPath = Path.Combine("..", "..", "..", "..", AutoSplitterFactory.AutoSplittersXmlFile);
+        string xmlPath = Path.Combine("..", "..", "..", "..", AutoSplitterFactory.AutoSplittersXmlFile);
 
         // Only download the latest XML if the file does not exist. This allows overriding the file
         // for testing a specific XML.
@@ -32,13 +32,13 @@ public class AutoSplitterXML
         var document = new XmlDocument();
         document.Load(xmlPath);
 
-        var autoSplitterElems = document["AutoSplitters"].ChildNodes.OfType<XmlElement>().Where(element => element != null);
+        IEnumerable<XmlElement> autoSplitterElems = document["AutoSplitters"].ChildNodes.OfType<XmlElement>().Where(element => element != null);
         Assert.True(autoSplitterElems.All(x => x.Name == "AutoSplitter"), "<AutoSplitters> must contain only <AutoSplitter> elements");
 
-        var gameElems = autoSplitterElems.SelectMany(x => x["Games"].ChildNodes.OfType<XmlElement>());
+        IEnumerable<XmlElement> gameElems = autoSplitterElems.SelectMany(x => x["Games"].ChildNodes.OfType<XmlElement>());
         Assert.True(gameElems.All(x => x.Name == "Game"), "<Games> must contain only <Game> elements");
 
-        var urlElems = autoSplitterElems.SelectMany(x => x["URLs"].ChildNodes.OfType<XmlElement>());
+        IEnumerable<XmlElement> urlElems = autoSplitterElems.SelectMany(x => x["URLs"].ChildNodes.OfType<XmlElement>());
         Assert.True(urlElems.All(x => x.Name == "URL"), "<URLs> must contain only <URL> elements");
 
         IDictionary<string, AutoSplitter> autoSplitters = autoSplitterElems

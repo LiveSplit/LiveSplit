@@ -10,7 +10,7 @@ public class StandardLayoutFactory : ILayoutFactory
     public ILayout Create(LiveSplitState state)
     {
         using var stream = new MemoryStream(Properties.Resources.DefaultLayout);
-        var layout = new XMLLayoutFactory(stream).Create(state);
+        ILayout layout = new XMLLayoutFactory(stream).Create(state);
 
         layout.X = layout.Y = 100;
         CenturyGothicFix(layout);

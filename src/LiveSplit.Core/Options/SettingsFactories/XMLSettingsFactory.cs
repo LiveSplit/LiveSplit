@@ -26,10 +26,10 @@ public class XMLSettingsFactory : ISettingsFactory
     {
         var document = new XmlDocument();
         document.Load(Stream);
-        var settings = new StandardSettingsFactory().Create();
+        ISettings settings = new StandardSettingsFactory().Create();
 
-        var parent = document["Settings"];
-        var version = ParseAttributeVersion(parent);
+        XmlElement parent = document["Settings"];
+        Version version = ParseAttributeVersion(parent);
 
         settings.WarnOnReset = ParseBool(parent["WarnOnReset"], settings.WarnOnReset);
         settings.SimpleSumOfBest = ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
@@ -38,8 +38,8 @@ public class XMLSettingsFactory : ISettingsFactory
         settings.LastComparison = ParseString(parent["LastComparison"], settings.LastComparison);
         settings.AgreedToSRLRules = ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
 
-        var recentLayouts = parent["RecentLayouts"];
-        foreach (var layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))
+        XmlElement recentLayouts = parent["RecentLayouts"];
+        foreach (object layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))
         {
             var layoutElement = layoutNode as XmlElement;
             settings.RecentLayouts.Add(layoutElement.InnerText);
@@ -52,45 +52,45 @@ public class XMLSettingsFactory : ISettingsFactory
 
         if (version >= new Version(1, 4))
         {
-            var activeAutoSplitters = parent["ActiveAutoSplitters"];
-            foreach (var splitter in activeAutoSplitters.GetElementsByTagName("AutoSplitter").OfType<XmlElement>())
+            XmlElement activeAutoSplitters = parent["ActiveAutoSplitters"];
+            foreach (XmlElement splitter in activeAutoSplitters.GetElementsByTagName("AutoSplitter").OfType<XmlElement>())
             {
                 settings.ActiveAutoSplitters.Add(splitter.InnerText);
             }
         }
 
-        var recentSplits = parent["RecentSplits"];
+        XmlElement recentSplits = parent["RecentSplits"];
 
         if (version >= new Version(1, 6))
         {
-            foreach (var generatorNode in parent["ComparisonGeneratorStates"].ChildNodes.OfType<XmlElement>())
+            foreach (XmlElement generatorNode in parent["ComparisonGeneratorStates"].ChildNodes.OfType<XmlElement>())
             {
-                var comparisonName = generatorNode.GetAttribute("name");
+                string comparisonName = generatorNode.GetAttribute("name");
                 if (settings.ComparisonGeneratorStates.ContainsKey(comparisonName))
                 {
                     settings.ComparisonGeneratorStates[comparisonName] = bool.Parse(generatorNode.InnerText);
                 }
             }
 
-            foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsFile"))
+            foreach (object splitNode in recentSplits.GetElementsByTagName("SplitsFile"))
             {
                 var splitElement = splitNode as XmlElement;
                 string gameName = splitElement.GetAttribute("gameName");
                 string categoryName = splitElement.GetAttribute("categoryName");
 
-                var method = TimingMethod.RealTime;
+                TimingMethod method = TimingMethod.RealTime;
                 if (version >= new Version(1, 6, 1))
                 {
                     method = (TimingMethod)Enum.Parse(typeof(TimingMethod), splitElement.GetAttribute("lastTimingMethod"));
                 }
 
-                var hotkeyProfile = HotkeyProfile.DefaultHotkeyProfileName;
+                string hotkeyProfile = HotkeyProfile.DefaultHotkeyProfileName;
                 if (version >= new Version(1, 8))
                 {
                     hotkeyProfile = splitElement.GetAttribute("lastHotkeyProfile");
                 }
 
-                var path = splitElement.InnerText;
+                string path = splitElement.InnerText;
 
                 var recentSplitsFile = new RecentSplitsFile(path, method, hotkeyProfile, gameName, categoryName);
                 settings.RecentSplits.Add(recentSplitsFile);
@@ -101,17 +101,17 @@ public class XMLSettingsFactory : ISettingsFactory
             var comparisonsFactory = new StandardComparisonGeneratorsFactory();
             var runFactory = new StandardFormatsRunFactory();
 
-            foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsPath"))
+            foreach (object splitNode in recentSplits.GetElementsByTagName("SplitsPath"))
             {
                 var splitElement = splitNode as XmlElement;
-                var path = splitElement.InnerText;
+                string path = splitElement.InnerText;
 
                 try
                 {
-                    using var stream = File.OpenRead(path);
+                    using FileStream stream = File.OpenRead(path);
                     runFactory.FilePath = path;
                     runFactory.Stream = stream;
-                    var run = runFactory.Create(comparisonsFactory);
+                    IRun run = runFactory.Create(comparisonsFactory);
 
                     var recentSplitsFile = new RecentSplitsFile(path, run, TimingMethod.RealTime, HotkeyProfile.DefaultHotkeyProfileName);
                     settings.RecentSplits.Add(recentSplitsFile);
@@ -123,9 +123,9 @@ public class XMLSettingsFactory : ISettingsFactory
         if (version >= new Version(1, 8))
         {
             settings.HotkeyProfiles.Clear();
-            foreach (var hotkeyProfileNode in parent["HotkeyProfiles"].ChildNodes.OfType<XmlElement>())
+            foreach (XmlElement hotkeyProfileNode in parent["HotkeyProfiles"].ChildNodes.OfType<XmlElement>())
             {
-                var hotkeyProfileName = hotkeyProfileNode.GetAttribute("name");
+                string hotkeyProfileName = hotkeyProfileNode.GetAttribute("name");
                 settings.HotkeyProfiles[hotkeyProfileName] = HotkeyProfile.FromXml(hotkeyProfileNode, version);
             }
         }
@@ -138,13 +138,13 @@ public class XMLSettingsFactory : ISettingsFactory
         settings.RaceProvider.Clear();
         if (version >= new Version(1, 8, 8))
         {
-            foreach (var providerNode in parent["RaceProviderPlugins"].ChildNodes.OfType<XmlElement>())
+            foreach (XmlElement providerNode in parent["RaceProviderPlugins"].ChildNodes.OfType<XmlElement>())
             {
-                var providerName = providerNode.GetAttribute("name");
+                string providerName = providerNode.GetAttribute("name");
                 RaceProviderSettings raceProviderSettings = null;
                 if (ComponentManager.RaceProviderFactories.ContainsKey(providerName))
                 {
-                    var factory = ComponentManager.RaceProviderFactories[providerName];
+                    IRaceProviderFactory factory = ComponentManager.RaceProviderFactories[providerName];
                     raceProviderSettings = factory.CreateSettings();
                 }
                 else
@@ -157,9 +157,9 @@ public class XMLSettingsFactory : ISettingsFactory
             }
         }
 
-        foreach (var factory in ComponentManager.RaceProviderFactories.Values)
+        foreach (IRaceProviderFactory factory in ComponentManager.RaceProviderFactories.Values)
         {
-            var raceProviderSettings = factory.CreateSettings();
+            RaceProviderSettings raceProviderSettings = factory.CreateSettings();
             if (!settings.RaceProvider.Any(x => x.GetType() == raceProviderSettings.GetType()))
             {
                 settings.RaceProvider.Add(raceProviderSettings);
@@ -173,12 +173,12 @@ public class XMLSettingsFactory : ISettingsFactory
 
     private static void LoadDrift(XmlElement parent)
     {
-        var element = parent["TimerDrift"];
+        XmlElement element = parent["TimerDrift"];
         if (element != null)
         {
-            var base64String = element.InnerText;
-            var data = Convert.FromBase64String(base64String);
-            var loadedDrift = BitConverter.ToDouble(data, 0);
+            string base64String = element.InnerText;
+            byte[] data = Convert.FromBase64String(base64String);
+            double loadedDrift = BitConverter.ToDouble(data, 0);
 
             // Reset drift to 1 if it is too far off
             if (Math.Abs(loadedDrift - 1) > 0.01)

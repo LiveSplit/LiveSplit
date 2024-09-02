@@ -33,7 +33,7 @@ public class DeepPointerTests
 
     public static IEnumerable<object[]> DerefTypeFeeder()
     {
-        foreach (var enumType in Enum.GetValues(typeof(DerefType)))
+        foreach (object enumType in Enum.GetValues(typeof(DerefType)))
         {
             yield return new object[] { enumType };
         }

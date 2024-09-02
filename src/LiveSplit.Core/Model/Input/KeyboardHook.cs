@@ -33,11 +33,11 @@ public class KeyboardHook
 
     public void Poll()
     {
-        foreach (var keyPair in RegisteredKeys.ToList())
+        foreach (KeyValuePair<Keys, bool> keyPair in RegisteredKeys.ToList())
         {
-            var key = keyPair.Key;
-            var modifiersDown = true;
-            var modifiers = Keys.None;
+            Keys key = keyPair.Key;
+            bool modifiersDown = true;
+            Keys modifiers = Keys.None;
             if (key.HasFlag(Keys.Shift))
             {
                 modifiersDown &= IsKeyDown(Keys.ShiftKey);
@@ -56,9 +56,9 @@ public class KeyboardHook
                 modifiers |= Keys.Alt;
             }
 
-            var keyWithoutModifiers = key & ~modifiers;
-            var isPressed = IsKeyDown(keyWithoutModifiers);
-            var wasPressedBefore = keyPair.Value;
+            Keys keyWithoutModifiers = key & ~modifiers;
+            bool isPressed = IsKeyDown(keyWithoutModifiers);
+            bool wasPressedBefore = keyPair.Value;
             RegisteredKeys[key] = isPressed;
 
             if (modifiersDown && isPressed && !wasPressedBefore)
@@ -70,7 +70,7 @@ public class KeyboardHook
 
     protected bool IsKeyDown(Keys key)
     {
-        var result = GetAsyncKeyState(key);
+        short result = GetAsyncKeyState(key);
         return ((result >> 15) & 1) == 1;
     }
 }

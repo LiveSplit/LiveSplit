@@ -11,7 +11,7 @@ public class ColorPanel : UserControl
     private Bitmap srcImage = null;
     private bool pickerDrag = false;
     private int pickerSize = 8;
-    private PointF pickerPos = new PointF(0.5f, 0.5f);
+    private PointF pickerPos = new(0.5f, 0.5f);
     private Color clrTopLeft = Color.Transparent;
     private Color clrTopRight = Color.Transparent;
     private Color clrBottomLeft = Color.Transparent;
@@ -137,8 +137,8 @@ public class ColorPanel : UserControl
         clrBottomLeft = bl;
         clrBottomRight = br;
         srcImage = new Bitmap(accuracy, accuracy);
-        Bitmap tempImg = new Bitmap(2, 2);
-        using (Graphics g = Graphics.FromImage(tempImg))
+        var tempImg = new Bitmap(2, 2);
+        using (var g = Graphics.FromImage(tempImg))
         {
             g.DrawRectangle(new Pen(tl), 0, 0, 1, 1);
             g.DrawRectangle(new Pen(tr), 1, 0, 1, 1);
@@ -146,7 +146,7 @@ public class ColorPanel : UserControl
             g.DrawRectangle(new Pen(br), 1, 1, 1, 1);
         }
 
-        using (Graphics g = Graphics.FromImage(srcImage))
+        using (var g = Graphics.FromImage(srcImage))
         {
             g.DrawImage(
                 tempImg,
@@ -163,7 +163,7 @@ public class ColorPanel : UserControl
         accuracy = Math.Max(1, accuracy);
 
         srcImage = new Bitmap(accuracy, accuracy);
-        using (Graphics g = Graphics.FromImage(srcImage))
+        using (var g = Graphics.FromImage(srcImage))
         {
             LinearGradientBrush gradient;
             gradient = new LinearGradientBrush(
@@ -192,7 +192,7 @@ public class ColorPanel : UserControl
         accuracy = Math.Max(1, accuracy);
 
         srcImage = new Bitmap(accuracy, accuracy);
-        using (Graphics g = Graphics.FromImage(srcImage))
+        using (var g = Graphics.FromImage(srcImage))
         {
             LinearGradientBrush gradient;
             gradient = new LinearGradientBrush(
@@ -224,7 +224,7 @@ public class ColorPanel : UserControl
     }
     public void SetupHueBrightnessGradient(float saturation = 1.0f, int accuracy = 256)
     {
-        ColorBlend blendX = new ColorBlend
+        var blendX = new ColorBlend
         {
             Colors = [
             ExtMethodsSystemDrawingColor.ColorFromHSV(0.0f, saturation, 1.0f),
@@ -244,7 +244,7 @@ public class ColorPanel : UserControl
             1.0f]
         };
 
-        ColorBlend blendY = new ColorBlend
+        var blendY = new ColorBlend
         {
             Colors = [
             Color.FromArgb(0, 0, 0),
@@ -257,7 +257,7 @@ public class ColorPanel : UserControl
     }
     public void SetupHueSaturationGradient(float brightness = 1.0f, int accuracy = 256)
     {
-        ColorBlend blendX = new ColorBlend
+        var blendX = new ColorBlend
         {
             Colors = [
             ExtMethodsSystemDrawingColor.ColorFromHSV(0.0f, 1.0f, brightness),
@@ -277,7 +277,7 @@ public class ColorPanel : UserControl
             1.0f]
         };
 
-        ColorBlend blendY = new ColorBlend
+        var blendY = new ColorBlend
         {
             Colors = [
             Color.FromArgb((int)Math.Round(255.0f * brightness), (int)Math.Round(255.0f * brightness), (int)Math.Round(255.0f * brightness)),
@@ -314,18 +314,18 @@ public class ColorPanel : UserControl
     {
         base.OnPaint(e);
 
-        Rectangle colorBoxOuter = new Rectangle(
+        var colorBoxOuter = new Rectangle(
             ClientRectangle.X,
             ClientRectangle.Y,
             ClientRectangle.Width - 1,
             ClientRectangle.Height - 1);
-        Rectangle colorBoxInner = new Rectangle(
+        var colorBoxInner = new Rectangle(
             colorBoxOuter.X + 1,
             colorBoxOuter.Y + 1,
             colorBoxOuter.Width - 2,
             colorBoxOuter.Height - 2);
         Rectangle colorArea = ColorAreaRectangle;
-        Point pickerVisualPos = new Point(
+        var pickerVisualPos = new Point(
             colorArea.X + (int)Math.Round(pickerPos.X * colorArea.Width),
             colorArea.Y + (int)Math.Round((1.0f - pickerPos.Y) * colorArea.Height));
 

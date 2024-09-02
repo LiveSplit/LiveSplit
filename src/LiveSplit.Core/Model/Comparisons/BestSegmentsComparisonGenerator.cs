@@ -22,8 +22,8 @@ public class BestSegmentsComparisonGenerator : IComparisonGenerator
         var gameTimePredictions = new TimeSpan?[Run.Count + 1];
         SumOfBest.CalculateSumOfBest(Run, 0, Run.Count - 1, realTimePredictions, settings.SimpleSumOfBest, false, TimingMethod.RealTime);
         SumOfBest.CalculateSumOfBest(Run, 0, Run.Count - 1, gameTimePredictions, settings.SimpleSumOfBest, false, TimingMethod.GameTime);
-        var index = 1;
-        foreach (var segment in Run)
+        int index = 1;
+        foreach (ISegment segment in Run)
         {
             segment.Comparisons[Name] = new Time(
                 realTimePredictions[index],

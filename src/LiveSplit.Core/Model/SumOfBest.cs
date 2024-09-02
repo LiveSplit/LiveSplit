@@ -23,13 +23,13 @@ public static class SumOfBest
             PopulatePrediction(predictions, currentTime + run[segmentIndex].BestSegmentTime[method], segmentIndex + 1);
             if (!simpleCalculation)
             {
-                foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Value[method].HasValue))
+                foreach (KeyValuePair<int, Time> nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Value[method].HasValue))
                 {
                     if (segmentIndex == 0
                         || !run[segmentIndex - 1].SegmentHistory.TryGetValue(nullSegment.Key, out Time segmentTime)
                         || segmentTime[method] != null)
                     {
-                        var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
+                        IndexedTime prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
                         PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                     }
                 }
@@ -37,11 +37,11 @@ public static class SumOfBest
 
             if (useCurrentRun)
             {
-                var currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex, method);
+                IndexedTime currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
             }
 
-            var personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex, method);
+            IndexedTime personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex, method);
             PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index);
         }
     }
@@ -51,7 +51,7 @@ public static class SumOfBest
         int segmentIndex = 0;
         TimeSpan? currentTime = TimeSpan.Zero;
         predictions[startIndex] = TimeSpan.Zero;
-        foreach (var segment in run.Skip(startIndex).Take(endIndex - startIndex + 1))
+        foreach (ISegment segment in run.Skip(startIndex).Take(endIndex - startIndex + 1))
         {
             currentTime = predictions[segmentIndex];
             PopulatePredictions(run, currentTime, segmentIndex, predictions, simpleCalculation, useCurrentRun, method);
@@ -73,12 +73,12 @@ public static class SumOfBest
         CalculateSumOfBest(run, 0, run.Count - 1, predictions, true, false, method);
         int segmentIndex = 0;
         TimeSpan? currentTime = TimeSpan.Zero;
-        foreach (var segment in run)
+        foreach (ISegment segment in run)
         {
             currentTime = predictions[segmentIndex];
-            foreach (var nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Value[method].HasValue))
+            foreach (KeyValuePair<int, Time> nullSegment in run[segmentIndex].SegmentHistory.Where(x => !x.Value[method].HasValue))
             {
-                var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
+                IndexedTime prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
                 CheckPrediction(run, predictions, prediction.Time[method], segmentIndex - 1, prediction.Index - 1, nullSegment.Key, method, callback);
             }
 

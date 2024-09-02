@@ -24,7 +24,7 @@ public class DeltaTimeFormattersTests
             DropDecimals = false
         };
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal(TimeFormatConstants.DASH, formattedTime);
     }
 
@@ -57,7 +57,7 @@ public class DeltaTimeFormattersTests
 
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedDelta = sut.Format(time);
+        string formattedDelta = sut.Format(time);
         Assert.Equal(expectedDelta, formattedDelta);
     }
 
@@ -66,7 +66,7 @@ public class DeltaTimeFormattersTests
     {
         var sut = new DeltaSplitTimeFormatter(TimeAccuracy.Hundredths, dropDecimals: false);
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal(TimeFormatConstants.DASH, formattedTime);
     }
 
@@ -94,7 +94,7 @@ public class DeltaTimeFormattersTests
         var sut = new DeltaSplitTimeFormatter(timeAccuracy, dropDecimals: dropDecimals);
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
         Assert.Equal(expectedDelta, formattedTime);
     }
 }

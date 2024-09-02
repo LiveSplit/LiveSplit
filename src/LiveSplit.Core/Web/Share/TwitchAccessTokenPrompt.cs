@@ -12,7 +12,7 @@ public class TwitchAccessTokenPrompt
 
     public static string GetAccessToken()
     {
-        var oauthUrl = string.Format(
+        string oauthUrl = string.Format(
             "https://id.twitch.tv/oauth2/authorize?response_type=token&client_id={0}&redirect_uri={1}&scope={2}",
             Twitch.ClientId,
             RedirectUrl,
@@ -21,7 +21,7 @@ public class TwitchAccessTokenPrompt
         Process.Start(oauthUrl);
 
         string urlWithToken = null;
-        var result = InputBox.Show("Twitch Authentication", "After completing the OAuth flow and being redirected to a GitHub Pages 404 error page, copy the full URL from the address bar of your browser:", ref urlWithToken);
+        System.Windows.Forms.DialogResult result = InputBox.Show("Twitch Authentication", "After completing the OAuth flow and being redirected to a GitHub Pages 404 error page, copy the full URL from the address bar of your browser:", ref urlWithToken);
 
         if (result == System.Windows.Forms.DialogResult.Cancel)
         {
@@ -30,7 +30,7 @@ public class TwitchAccessTokenPrompt
 
         try
         {
-            var match = Regex.Match(urlWithToken, ".*access_token=(\\w+).+");
+            Match match = Regex.Match(urlWithToken, ".*access_token=(\\w+).+");
 
             return match.Groups[1].Value;
         }

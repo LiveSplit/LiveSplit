@@ -30,14 +30,14 @@ public class Invalidator : IInvalidator
 
     public void Invalidate(float x, float y, float width, float height)
     {
-        var points = new[]
-        {
+        PointF[] points =
+        [
             new PointF(x, y),
             new PointF(x+width, y+height)
-        };
+        ];
         Transform.TransformPoints(points);
-        var offsetX = points[0].X - Offset;
-        var offsetY = points[0].Y - Offset;
+        double offsetX = points[0].X - Offset;
+        double offsetY = points[0].Y - Offset;
         var rect = new Rectangle(
             (int)Math.Ceiling(offsetX),
             (int)Math.Ceiling(offsetY),

@@ -15,12 +15,12 @@ public class NTP
             const string ntpServer = "time.windows.com";
 
             // NTP message size - 16 bytes of the digest (RFC 2030)
-            var ntpData = new byte[48];
+            byte[] ntpData = new byte[48];
 
             //Setting the Leap Indicator, Version Number and Mode values
             ntpData[0] = 0x1B; //LI = 0 (no warning), VN = 3 (IPv4 only), Mode = 3 (Client Mode)
 
-            var addresses = Dns.GetHostEntry(ntpServer).AddressList;
+            IPAddress[] addresses = Dns.GetHostEntry(ntpServer).AddressList;
 
             //The UDP port number assigned to NTP is 123
             var ipEndPoint = new IPEndPoint(addresses[0], 123);
@@ -32,12 +32,12 @@ public class NTP
             //Stops code hang if NTP is blocked
             socket.ReceiveTimeout = 3000;
 
-            var before = TimeStamp.Now;
+            TimeStamp before = TimeStamp.Now;
 
             socket.Send(ntpData);
             socket.Receive(ntpData);
 
-            var after = TimeStamp.Now;
+            TimeStamp after = TimeStamp.Now;
             var delta = TimeSpan.FromTicks((after - before).Ticks / 2);
 
             socket.Close();
@@ -56,13 +56,13 @@ public class NTP
             intPart = SwapEndianness(intPart);
             fractPart = SwapEndianness(fractPart);
 
-            var milliseconds = (intPart * 1000) + (fractPart * 1000 / 0x100000000L);
+            ulong milliseconds = (intPart * 1000) + (fractPart * 1000 / 0x100000000L);
 
             //**UTC** time
-            var networkDateTime = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(milliseconds);
-            var resultingTime = networkDateTime + delta;
+            DateTime networkDateTime = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(milliseconds);
+            DateTime resultingTime = networkDateTime + delta;
 
-            var offsetFromLocal = (DateTime.UtcNow - resultingTime).Duration();
+            TimeSpan offsetFromLocal = (DateTime.UtcNow - resultingTime).Duration();
             if (offsetFromLocal > TimeSpan.FromHours(1))
             {
                 throw new Exception("NTP time is too far off from local time");

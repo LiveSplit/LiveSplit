@@ -28,7 +28,7 @@ public class SplitTimeFormattersTests
         var sut = new SplitTimeFormatter(timeAccuracy);
         var time = TimeSpan.Parse(timespanText);
 
-        var formattedTime = sut.Format(time);
+        string formattedTime = sut.Format(time);
         Assert.Equal(expectedTime, formattedTime);
     }
 
@@ -40,7 +40,7 @@ public class SplitTimeFormattersTests
     {
         var sut = new SplitTimeFormatter(timeAccuracy);
 
-        var formattedTime = sut.Format(null);
+        string formattedTime = sut.Format(null);
         Assert.Equal(TimeFormatConstants.DASH, formattedTime);
     }
 }

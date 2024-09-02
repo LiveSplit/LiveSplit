@@ -75,7 +75,7 @@ public class XMLLayoutFactory : ILayoutFactory
         }
         else
         {
-            var gradientType = element["BackgroundGradient"];
+            XmlElement gradientType = element["BackgroundGradient"];
             if (gradientType == null || gradientType.InnerText == "Plain")
             {
                 settings.BackgroundType = BackgroundType.SolidColor;
@@ -100,8 +100,8 @@ public class XMLLayoutFactory : ILayoutFactory
         var document = new XmlDocument();
         document.Load(Stream);
         var layout = new Layout();
-        var parent = document["Layout"];
-        var version = SettingsHelper.ParseAttributeVersion(parent);
+        XmlElement parent = document["Layout"];
+        Version version = SettingsHelper.ParseAttributeVersion(parent);
 
         layout.X = SettingsHelper.ParseInt(parent["X"]);
         layout.Y = SettingsHelper.ParseInt(parent["Y"]);
@@ -112,13 +112,13 @@ public class XMLLayoutFactory : ILayoutFactory
         layout.Mode = SettingsHelper.ParseEnum<LayoutMode>(parent["Mode"]);
         layout.Settings = ParseSettings(parent["Settings"], version);
 
-        var components = parent["Components"];
-        foreach (var componentNode in components.GetElementsByTagName("Component"))
+        XmlElement components = parent["Components"];
+        foreach (object componentNode in components.GetElementsByTagName("Component"))
         {
             var componentElement = componentNode as XmlElement;
-            var path = componentElement["Path"];
-            var settings = componentElement["Settings"];
-            var layoutComponent = ComponentManager.LoadLayoutComponent(path.InnerText, state);
+            XmlElement path = componentElement["Path"];
+            XmlElement settings = componentElement["Settings"];
+            ILayoutComponent layoutComponent = ComponentManager.LoadLayoutComponent(path.InnerText, state);
             if (layoutComponent != null)
             {
                 try

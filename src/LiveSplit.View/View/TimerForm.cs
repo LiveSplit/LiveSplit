@@ -94,7 +94,7 @@ public partial class TimerForm : Form
     {
         get
         {
-            var cp = base.CreateParams;
+            CreateParams cp = base.CreateParams;
             cp.Style |= WS_MINIMIZEBOX;
             cp.ClassStyle |= CS_DBLCLKS;
             return cp;
@@ -131,7 +131,7 @@ public partial class TimerForm : Form
 
             MousePassThroughState = value;
 
-            var prevWindowLong = GetWindowLong(Handle, GWL_EXSTYLE);
+            uint prevWindowLong = GetWindowLong(Handle, GWL_EXSTYLE);
             if (value)
             {
                 if ((prevWindowLong & (WS_EX_LAYERED | WS_EX_TRANSPARENT)) != (WS_EX_LAYERED | WS_EX_TRANSPARENT))
@@ -211,7 +211,7 @@ public partial class TimerForm : Form
         UpdateRecentSplits();
         UpdateRecentLayouts();
 
-        var timerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
+        IRun timerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
 
         IRun run = timerOnlyRun;
         try
@@ -224,7 +224,7 @@ public partial class TimerForm : Form
             }
             else if (Settings.RecentSplits.Count > 0)
             {
-                var lastSplitFile = Settings.RecentSplits.Last();
+                RecentSplitsFile lastSplitFile = Settings.RecentSplits.Last();
                 if (!string.IsNullOrEmpty(lastSplitFile.Path))
                 {
                     UpdateStateFromSplitsPath(lastSplitFile.Path);
@@ -354,7 +354,7 @@ public partial class TimerForm : Form
         }
 
         RaceProvider = ComponentManager.RaceProviderFactories.Select(x => x.Value.Create(Model, Settings.RaceProvider.FirstOrDefault(y => y.Name == x.Key)));
-        foreach (var raceProvider in RaceProvider.Reverse())
+        foreach (RaceProviderAPI raceProvider in RaceProvider.Reverse())
         {
             if (Settings.RaceProvider.Any(x => x.DisplayName == raceProvider.ProviderName && !x.Enabled))
             {
@@ -362,7 +362,7 @@ public partial class TimerForm : Form
             }
 
             raceProvider.RacesRefreshedCallback = RacesRefreshed;
-            ToolStripMenuItem raceProviderItem = new ToolStripMenuItem()
+            var raceProviderItem = new ToolStripMenuItem()
             {
                 Name = $"{raceProvider.ProviderName}racesMenuItem",
                 Text = $"{raceProvider.ProviderName} Races",
@@ -374,7 +374,7 @@ public partial class TimerForm : Form
             raceProvider.RefreshRacesListAsync();
         }
 
-        var srlRaceProvider = RaceProvider.FirstOrDefault(x => x.ProviderName == "SRL");
+        RaceProviderAPI srlRaceProvider = RaceProvider.FirstOrDefault(x => x.ProviderName == "SRL");
         if (srlRaceProvider != null)
         {
             srlRaceProvider.JoinRace = SRL_JoinRace;
@@ -384,9 +384,9 @@ public partial class TimerForm : Form
 
     private void SetWindowTitle()
     {
-        var lowestAvailableNumber = 0;
-        var currentName = "LiveSplit";
-        var processNames = Process.GetProcessesByName("LiveSplit").Select(x => x.MainWindowTitle);
+        int lowestAvailableNumber = 0;
+        string currentName = "LiveSplit";
+        IEnumerable<string> processNames = Process.GetProcessesByName("LiveSplit").Select(x => x.MainWindowTitle);
 
         while (processNames.Contains(currentName))
         {
@@ -403,8 +403,8 @@ public partial class TimerForm : Form
 
     private void RefreshComparisonItems()
     {
-        var numSeparators = 0;
-        foreach (var item in comparisonMenuItem.DropDownItems.OfType<ToolStripItem>().Reverse())
+        int numSeparators = 0;
+        foreach (ToolStripItem item in comparisonMenuItem.DropDownItems.OfType<ToolStripItem>().Reverse())
         {
             if (item is ToolStripSeparator)
             {
@@ -447,9 +447,9 @@ public partial class TimerForm : Form
 
         if (ShouldRefreshRaces)
         {
-            for (var i = 0; i < RacesToRefresh.Count; i++)
+            for (int i = 0; i < RacesToRefresh.Count; i++)
             {
-                var updateTitleAction = RacesToRefresh[i];
+                Action updateTitleAction = RacesToRefresh[i];
                 updateTitleAction();
             }
         }
@@ -483,17 +483,17 @@ public partial class TimerForm : Form
 
         var menuItemsToAdd = new List<ToolStripItem>();
 
-        foreach (var race in raceProvider.GetRaces())
+        foreach (IRaceInfo race in raceProvider.GetRaces())
         {
             if (race.State != 1)
             {
                 continue;
             }
 
-            var gameAndGoal = GetShortenedGameAndGoal(string.Format("{0} - {1}", race.GameName, race.Goal));
-            var entrants = race.NumEntrants;
-            var plural = entrants == 1 ? "" : "s";
-            var title = string.Format("{0} ({1} Entrant{2})", gameAndGoal, entrants, plural);
+            string gameAndGoal = GetShortenedGameAndGoal(string.Format("{0} - {1}", race.GameName, race.Goal));
+            int entrants = race.NumEntrants;
+            string plural = entrants == 1 ? "" : "s";
+            string title = string.Format("{0} ({1} Entrant{2})", gameAndGoal, entrants, plural);
 
             var item = new ToolStripMenuItem
             {
@@ -509,14 +509,14 @@ public partial class TimerForm : Form
             menuItemsToAdd.Add(new ToolStripSeparator());
         }
 
-        foreach (var race in raceProvider.GetRaces())
+        foreach (IRaceInfo race in raceProvider.GetRaces())
         {
             if (race.State != 3)
             {
                 continue;
             }
 
-            var gameAndGoal = GetShortenedGameAndGoal(string.Format("{0} - {1}", race.GameName, race.Goal));
+            string gameAndGoal = GetShortenedGameAndGoal(string.Format("{0} - {1}", race.GameName, race.Goal));
             var startTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
             startTime = startTime.AddSeconds(race.Starttime);
 
@@ -583,14 +583,14 @@ public partial class TimerForm : Form
 
     private void UpdateTitle(ToolStripMenuItem item, IRaceInfo race, DateTime startTime, string gameAndGoal)
     {
-        var timeSpan = TimeStamp.CurrentDateTime - startTime;
+        TimeSpan timeSpan = TimeStamp.CurrentDateTime - startTime;
         if (timeSpan < TimeSpan.Zero)
         {
             timeSpan = TimeSpan.Zero;
         }
 
-        var time = new RegularTimeFormatter().Format(timeSpan);
-        var title = string.Format("[{0}] {1} ({2}/{3} Finished)", time, gameAndGoal, race.Finishes, race.NumEntrants - race.Forfeits);
+        string time = new RegularTimeFormatter().Format(timeSpan);
+        string title = string.Format("[{0}] {1} ({2}/{3} Finished)", time, gameAndGoal, race.Finishes, race.NumEntrants - race.Forfeits);
         item.Text = title.EscapeMenuItemText();
     }
 
@@ -609,14 +609,14 @@ public partial class TimerForm : Form
     {
         if (ShowSRLRules())
         {
-            var gameName = CurrentState.Run.GameName;
-            var gameCategory = CurrentState.Run.CategoryName;
+            string gameName = CurrentState.Run.GameName;
+            string gameCategory = CurrentState.Run.CategoryName;
             var inputBox = new NewRaceInputBox();
             TopMost = false;
-            var result = inputBox.Show(ref gameName, ref gameCategory);
+            DialogResult result = inputBox.Show(ref gameName, ref gameCategory);
             if (result == DialogResult.OK)
             {
-                var id = SpeedRunsLiveAPI.Instance.GetGameIDFromName(gameName);
+                string id = SpeedRunsLiveAPI.Instance.GetGameIDFromName(gameName);
                 if (id == null)
                 {
                     id = "new";
@@ -777,7 +777,7 @@ public partial class TimerForm : Form
         {
             if (InTimerOnlyMode)
             {
-                var timerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
+                IRun timerOnlyRun = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
                 timerOnlyRun.Offset = CurrentState.Run.Offset;
 
                 SetRun(timerOnlyRun);
@@ -841,14 +841,14 @@ public partial class TimerForm : Form
     {
         openSplitsMenuItem.DropDownItems.Clear();
 
-        foreach (var game in Settings.RecentSplits
+        foreach (IGrouping<string, RecentSplitsFile> game in Settings.RecentSplits
             .Reverse()
             .Where(x => !string.IsNullOrEmpty(x.Path))
             .GroupBy(x => x.GameName ?? ""))
         {
             var gameMenuItem = new ToolStripMenuItem();
 
-            foreach (var category in game
+            foreach (IGrouping<string, RecentSplitsFile> category in game
                 .GroupBy(x => x.CategoryName ?? ""))
             {
                 var categoryMenuItem = new ToolStripMenuItem
@@ -856,7 +856,7 @@ public partial class TimerForm : Form
                     Tag = "Category"
                 };
 
-                foreach (var splitsFile in category)
+                foreach (RecentSplitsFile splitsFile in category)
                 {
                     string fileName = Path.GetFileName(splitsFile.Path);
 
@@ -964,7 +964,7 @@ public partial class TimerForm : Form
             IsInDialogMode = true;
 
             var runImporter = new SpeedrunComRunImporter();
-            var run = runImporter.Import(this);
+            IRun run = runImporter.Import(this);
 
             if (run != null)
             {
@@ -1007,7 +1007,7 @@ public partial class TimerForm : Form
     {
         openLayoutMenuItem.DropDownItems.Clear();
 
-        foreach (var item in Settings.RecentLayouts.Reverse().Where(x => !string.IsNullOrEmpty(x)))
+        foreach (string item in Settings.RecentLayouts.Reverse().Where(x => !string.IsNullOrEmpty(x)))
         {
             var menuItem = new ToolStripMenuItem(Path.GetFileNameWithoutExtension(item).EscapeMenuItemText());
             menuItem.Click += (x, y) => OpenLayoutFromFile(item);
@@ -1070,15 +1070,15 @@ public partial class TimerForm : Form
 
                     var request = WebRequest.Create(uri);
 
-                    using var response = request.GetResponse();
-                    using var stream = response.GetResponseStream();
+                    using WebResponse response = request.GetResponse();
+                    using Stream stream = response.GetResponseStream();
                     using var memoryStream = new MemoryStream();
                     stream.CopyTo(memoryStream);
                     memoryStream.Seek(0, SeekOrigin.Begin);
 
                     try
                     {
-                        var layout = new XMLLayoutFactory(memoryStream).Create(CurrentState);
+                        ILayout layout = new XMLLayoutFactory(memoryStream).Create(CurrentState);
                         layout.HasChanged = true;
                         SetLayout(layout);
                     }
@@ -1109,7 +1109,7 @@ public partial class TimerForm : Form
     private void openSplitsFromURLMenuItem_Click(object sender, EventArgs e)
     {
         var runImporter = new URLRunImporter();
-        var run = runImporter.Import(this);
+        IRun run = runImporter.Import(this);
 
         if (run != null)
         {
@@ -1153,7 +1153,7 @@ public partial class TimerForm : Form
     {
         Action action = () =>
         {
-            var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+            HotkeyProfile hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
 
             if ((ActiveForm == this || hotkeyProfile.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
             {
@@ -1332,7 +1332,7 @@ public partial class TimerForm : Form
     private void FixSize()
     {
         ComponentRenderer.CalculateOverallSize(Layout.Mode);
-        var currentSize = ComponentRenderer.OverallSize;
+        float currentSize = ComponentRenderer.OverallSize;
         if (RefreshesRemaining <= 0)
         {
             if (OldSize != currentSize)
@@ -1350,7 +1350,7 @@ public partial class TimerForm : Form
                 OldSize = currentSize;
             }
 
-            var minSize = (int)((currentSize / 5) + 0.5f);
+            int minSize = (int)((currentSize / 5) + 0.5f);
             if (Layout.Mode == LayoutMode.Vertical)
             {
                 MinimumSize = new Size(25, Math.Max(minSize, 25));
@@ -1412,7 +1412,7 @@ public partial class TimerForm : Form
 
     protected void UpdateAllComponents()
     {
-        foreach (var component in Layout.Components)
+        foreach (UI.Components.IComponent component in Layout.Components)
         {
             component.Update(null, CurrentState, Width, Height, Layout.Mode);
         }
@@ -1447,7 +1447,7 @@ public partial class TimerForm : Form
 
         FixSize();
 
-        var scaleFactor = Layout.Mode == LayoutMode.Vertical
+        float scaleFactor = Layout.Mode == LayoutMode.Vertical
             ? Height / ComponentRenderer.OverallSize
             : Width / ComponentRenderer.OverallSize;
 
@@ -1477,7 +1477,7 @@ public partial class TimerForm : Form
     {
         try
         {
-            var clip = e.Graphics.Clip;
+            Region clip = e.Graphics.Clip;
             e.Graphics.Clip = new Region();
             PaintForm(e.Graphics, clip);
         }
@@ -1501,7 +1501,7 @@ public partial class TimerForm : Form
                     CreateBakedBackground();
                 }
 
-                foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
+                foreach (RectangleF rectangle in UpdateRegion.GetRegionScans(g.Transform))
                 {
                     var rect = Rectangle.Round(rectangle);
                     g.DrawImage(bakedBackground, rect, rect, GraphicsUnit.Pixel);
@@ -1527,9 +1527,9 @@ public partial class TimerForm : Form
 
     private void CreateBakedBackground()
     {
-        var image = Layout.Settings.BackgroundImage;
-        var opacity = Layout.Settings.ImageOpacity;
-        var blur = Layout.Settings.ImageBlur;
+        Image image = Layout.Settings.BackgroundImage;
+        float opacity = Layout.Settings.ImageOpacity;
+        float blur = Layout.Settings.ImageBlur;
 
         if (image != null)
         {
@@ -1545,8 +1545,8 @@ public partial class TimerForm : Form
                 image = blurredBackground;
             }
 
-            var croppedWidth = (float)image.Width;
-            var croppedHeight = (float)image.Height;
+            float croppedWidth = image.Width;
+            float croppedHeight = image.Height;
 
             if (image.Width / (float)image.Height > Width / (float)Height)
             {
@@ -1638,7 +1638,7 @@ public partial class TimerForm : Form
         if (!Settings.AgreedToSRLRules)
         {
             Process.Start(SRLSettings.SRLRulesLink);
-            var result = MessageBox.Show(this, "Please read through the rules of SpeedRunsLive carefully.\r\nDo you agree to these rules?", "SpeedRunsLive Rules", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(this, "Please read through the rules of SpeedRunsLive carefully.\r\nDo you agree to these rules?", "SpeedRunsLive Rules", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (result == DialogResult.Yes)
             {
                 Settings.AgreedToSRLRules = true;
@@ -1673,10 +1673,10 @@ public partial class TimerForm : Form
         if (m.Msg is (int)WM_NCHITTEST or (int)WM_MOUSEMOVE)
         {
             Size formSize = Size;
-            Point screenPoint = new Point(m.LParam.ToInt32());
+            var screenPoint = new Point(m.LParam.ToInt32());
             Point clientPoint = PointToClient(screenPoint);
 
-            Dictionary<uint, Rectangle> boxes = new Dictionary<uint, Rectangle>() {
+            var boxes = new Dictionary<uint, Rectangle>() {
                 {HTBOTTOMLEFT, new Rectangle(0, formSize.Height - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE)},
                 {HTBOTTOM, new Rectangle(RESIZE_HANDLE_SIZE, formSize.Height - RESIZE_HANDLE_SIZE, formSize.Width - (2*RESIZE_HANDLE_SIZE), RESIZE_HANDLE_SIZE)},
                 {HTBOTTOMRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, formSize.Height - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE)},
@@ -1711,7 +1711,7 @@ public partial class TimerForm : Form
             }
 
             hRgn = CreateRectRgn(0, 0, 0, 0);
-            var x = GetUpdateRgn(Handle, hRgn, false);
+            int x = GetUpdateRgn(Handle, hRgn, false);
             try
             {
                 UpdateRegion = Region.FromHrgn(hRgn);
@@ -1779,11 +1779,11 @@ public partial class TimerForm : Form
         }
 
         var rect = (Win32.RECT)Marshal.PtrToStructure(m.LParam, typeof(Win32.RECT));
-        var currentAspectRatio = (float)rect.Width / rect.Height;
+        float currentAspectRatio = (float)rect.Width / rect.Height;
 
         if (currentAspectRatio >= ResizingInitialAspectRatio.Value)
         {
-            var newWidth = (int)(rect.Height * ResizingInitialAspectRatio.Value);
+            int newWidth = (int)(rect.Height * ResizingInitialAspectRatio.Value);
             if (anchorLeft)
             {
                 rect.Right = rect.Left + newWidth;
@@ -1795,7 +1795,7 @@ public partial class TimerForm : Form
         }
         else
         {
-            var newHeight = (int)(rect.Width / ResizingInitialAspectRatio.Value);
+            int newHeight = (int)(rect.Width / ResizingInitialAspectRatio.Value);
             if (anchorTop)
             {
                 rect.Bottom = rect.Top + newHeight;
@@ -1828,7 +1828,7 @@ public partial class TimerForm : Form
 
     private void SetRun(IRun run)
     {
-        foreach (var icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
+        foreach (Image icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
         {
             icon?.Dispose();
         }
@@ -1839,7 +1839,7 @@ public partial class TimerForm : Form
         }
 
         run.ComparisonGenerators = new List<IComparisonGenerator>(CurrentState.Run.ComparisonGenerators);
-        foreach (var generator in run.ComparisonGenerators)
+        foreach (IComparisonGenerator generator in run.ComparisonGenerators)
         {
             generator.Run = run;
         }
@@ -1867,7 +1867,7 @@ public partial class TimerForm : Form
 
     private void CreateAutoSplitter()
     {
-        var splitter = AutoSplitterFactory.Instance.Create(CurrentState.Run.GameName);
+        AutoSplitter splitter = AutoSplitterFactory.Instance.Create(CurrentState.Run.GameName);
         CurrentState.Run.AutoSplitter = splitter;
         if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(CurrentState.Run.GameName))
         {
@@ -1898,7 +1898,7 @@ public partial class TimerForm : Form
     {
         IRun run;
 
-        using (var stream = File.OpenRead(filePath))
+        using (FileStream stream = File.OpenRead(filePath))
         {
             RunFactory.Stream = stream;
             RunFactory.FilePath = filePath;
@@ -1918,8 +1918,8 @@ public partial class TimerForm : Form
 
     private ILayout LoadLayoutFromFile(string filePath)
     {
-        using var stream = File.OpenRead(filePath);
-        var layout = new XMLLayoutFactory(stream).Create(CurrentState);
+        using FileStream stream = File.OpenRead(filePath);
+        ILayout layout = new XMLLayoutFactory(stream).Create(CurrentState);
         layout.FilePath = filePath;
         AddLayoutFileToLRU(filePath);
         return layout;
@@ -1940,12 +1940,12 @@ public partial class TimerForm : Form
                 return;
             }
 
-            var previousTimingMethod = CurrentState.CurrentTimingMethod;
-            var previousHotkeyProfile = CurrentState.CurrentHotkeyProfile;
+            TimingMethod previousTimingMethod = CurrentState.CurrentTimingMethod;
+            string previousHotkeyProfile = CurrentState.CurrentHotkeyProfile;
 
             UpdateStateFromSplitsPath(filePath);
 
-            var run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
+            IRun run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
             SetRun(run);
             CurrentState.CallRunManuallyModified();
         }
@@ -1962,7 +1962,7 @@ public partial class TimerForm : Form
 
     private void UpdateStateFromSplitsPath(string filePath)
     {
-        var recentSplitsFile = Settings.RecentSplits.LastOrDefault(splitsFile => splitsFile.Path == filePath);
+        RecentSplitsFile recentSplitsFile = Settings.RecentSplits.LastOrDefault(splitsFile => splitsFile.Path == filePath);
         if (recentSplitsFile.Path != null)
         {
             CurrentState.CurrentTimingMethod = recentSplitsFile.LastTimingMethod;
@@ -1990,7 +1990,7 @@ public partial class TimerForm : Form
                 splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last().Path);
             }
 
-            var result = splitDialog.ShowDialog(this);
+            DialogResult result = splitDialog.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 OpenRunFromFile(splitDialog.FileName);
@@ -2010,7 +2010,7 @@ public partial class TimerForm : Form
         IsInDialogMode = true;
         try
         {
-            var result = splitDialog.ShowDialog(this);
+            DialogResult result = splitDialog.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 if (!splitDialog.FileName.EndsWith(".lss"))
@@ -2033,7 +2033,7 @@ public partial class TimerForm : Form
 
     private bool SaveSplits(bool promptPBMessage)
     {
-        var savePath = CurrentState.Run.FilePath;
+        string savePath = CurrentState.Run.FilePath;
 
         if (savePath == null)
         {
@@ -2042,7 +2042,7 @@ public partial class TimerForm : Form
 
         CurrentState.Run.FixSplits();
 
-        var result = DialogResult.No;
+        DialogResult result = DialogResult.No;
 
         if (promptPBMessage && ((CurrentState.CurrentPhase == TimerPhase.Ended
             && CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] != null
@@ -2063,7 +2063,7 @@ public partial class TimerForm : Form
             }
         }
 
-        var stateCopy = CurrentState;
+        LiveSplitState stateCopy = CurrentState;
         if (result == DialogResult.No)
         {
             var modelCopy = new TimerModel();
@@ -2083,9 +2083,9 @@ public partial class TimerForm : Form
             {
                 RunSaver.Save(stateCopy.Run, memoryStream);
 
-                using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
+                using (FileStream stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
                 {
-                    var buffer = memoryStream.GetBuffer();
+                    byte[] buffer = memoryStream.GetBuffer();
                     stream.Write(buffer, 0, (int)memoryStream.Length);
                 }
 
@@ -2106,7 +2106,7 @@ public partial class TimerForm : Form
 
     private bool SaveLayout()
     {
-        var savePath = Layout.FilePath;
+        string savePath = Layout.FilePath;
         if (Layout.Mode == LayoutMode.Vertical)
         {
             Layout.VerticalWidth = Width;
@@ -2137,9 +2137,9 @@ public partial class TimerForm : Form
             {
                 LayoutSaver.Save(Layout, memoryStream);
 
-                using (var stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
+                using (FileStream stream = File.Open(savePath, FileMode.Create, FileAccess.Write))
                 {
-                    var buffer = memoryStream.GetBuffer();
+                    byte[] buffer = memoryStream.GetBuffer();
                     stream.Write(buffer, 0, (int)memoryStream.Length);
                 }
 
@@ -2162,7 +2162,7 @@ public partial class TimerForm : Form
     {
         var runCopy = CurrentState.Run.Clone() as IRun;
         var activeAutoSplitters = new List<string>(CurrentState.Settings.ActiveAutoSplitters);
-        using RunEditorDialog editor = new RunEditorDialog(CurrentState);
+        using var editor = new RunEditorDialog(CurrentState);
         editor.RunEdited += editor_RunEdited;
         editor.ComparisonRenamed += editor_ComparisonRenamed;
         editor.SegmentRemovedOrAdded += editor_SegmentRemovedOrAdded;
@@ -2175,10 +2175,10 @@ public partial class TimerForm : Form
                 editor.AllowChangingSegments = true;
             }
 
-            var result = editor.ShowDialog(this);
+            DialogResult result = editor.ShowDialog(this);
             if (result == DialogResult.Cancel)
             {
-                foreach (var image in runCopy.Select(x => x.Icon))
+                foreach (Image image in runCopy.Select(x => x.Icon))
                 {
                     editor.ImagesToDispose.Remove(image);
                 }
@@ -2190,7 +2190,7 @@ public partial class TimerForm : Form
                 CurrentState.CallRunManuallyModified();
             }
 
-            foreach (var image in editor.ImagesToDispose)
+            foreach (Image image in editor.ImagesToDispose)
             {
                 image.Dispose();
             }
@@ -2236,7 +2236,7 @@ public partial class TimerForm : Form
             ILayout layout;
             try
             {
-                var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
+                string lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
                 if (lastLayoutPath != null)
                 {
                     layout = LoadLayoutFromFile(lastLayoutPath);
@@ -2299,16 +2299,16 @@ public partial class TimerForm : Form
             editor.ShowDialog(this);
             if (editor.DialogResult == DialogResult.Cancel)
             {
-                foreach (var component in layoutCopy.Components)
+                foreach (UI.Components.IComponent component in layoutCopy.Components)
                 {
                     editor.ComponentsToDispose.Remove(component);
                 }
 
                 editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
 
-                using (var enumerator = componentSettings.GetEnumerator())
+                using (List<XmlNode>.Enumerator enumerator = componentSettings.GetEnumerator())
                 {
-                    foreach (var component in layoutCopy.Components)
+                    foreach (UI.Components.IComponent component in layoutCopy.Components)
                     {
                         if (enumerator.MoveNext())
                         {
@@ -2320,12 +2320,12 @@ public partial class TimerForm : Form
                 SetLayout(layoutCopy);
             }
 
-            foreach (var component in editor.ComponentsToDispose)
+            foreach (UI.Components.IComponent component in editor.ComponentsToDispose)
             {
                 component.Dispose();
             }
 
-            foreach (var image in editor.ImagesToDispose)
+            foreach (Image image in editor.ImagesToDispose)
             {
                 image.Dispose();
             }
@@ -2394,7 +2394,7 @@ public partial class TimerForm : Form
         IsInDialogMode = true;
         try
         {
-            var result = layoutDialog.ShowDialog(this);
+            DialogResult result = layoutDialog.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 if (!layoutDialog.FileName.EndsWith(".lsl"))
@@ -2441,7 +2441,7 @@ public partial class TimerForm : Form
                 layoutDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentLayouts.Last());
             }
 
-            var result = layoutDialog.ShowDialog(this);
+            DialogResult result = layoutDialog.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 OpenLayoutFromFile(layoutDialog.FileName);
@@ -2461,7 +2461,7 @@ public partial class TimerForm : Form
             Cursor.Current = Cursors.WaitCursor;
             try
             {
-                var layout = LoadLayoutFromFile(filePath);
+                ILayout layout = LoadLayoutFromFile(filePath);
                 SetLayout(layout);
                 success = true;
             }
@@ -2483,7 +2483,7 @@ public partial class TimerForm : Form
     {
         if (WarnUserAboutLayoutSave(true))
         {
-            var layout = new StandardLayoutFactory().Create(CurrentState);
+            ILayout layout = new StandardLayoutFactory().Create(CurrentState);
             layout.X = Location.X;
             layout.Y = Location.Y;
             SetLayout(layout);
@@ -2500,12 +2500,12 @@ public partial class TimerForm : Form
                 Layout.Settings.BackgroundImage.Dispose();
             }
 
-            foreach (var component in Layout.Components.Except(layout.Components))
+            foreach (UI.Components.IComponent component in Layout.Components.Except(layout.Components))
             {
                 component.Dispose();
             }
 
-            foreach (var component in layout.Components.Except(Layout.Components).OfType<IDeactivatableComponent>())
+            foreach (IDeactivatableComponent component in layout.Components.Except(Layout.Components).OfType<IDeactivatableComponent>())
             {
                 component.Activated = true;
             }
@@ -2531,8 +2531,8 @@ public partial class TimerForm : Form
             }
         }
 
-        var x = Math.Max(SystemInformation.VirtualScreen.X, Math.Min(Layout.X, SystemInformation.VirtualScreen.X + SystemInformation.VirtualScreen.Width - Width));
-        var y = Math.Max(SystemInformation.VirtualScreen.Y, Math.Min(Layout.Y, SystemInformation.VirtualScreen.Y + SystemInformation.VirtualScreen.Height - Height));
+        int x = Math.Max(SystemInformation.VirtualScreen.X, Math.Min(Layout.X, SystemInformation.VirtualScreen.X + SystemInformation.VirtualScreen.Width - Width));
+        int y = Math.Max(SystemInformation.VirtualScreen.Y, Math.Min(Layout.Y, SystemInformation.VirtualScreen.Y + SystemInformation.VirtualScreen.Height - Height));
         Location = new Point(x, y);
         TopMost = Layout.Settings.AlwaysOnTop;
         SetInTimerOnlyMode();
@@ -2540,7 +2540,7 @@ public partial class TimerForm : Form
 
     private void CloseSplits()
     {
-        var needToChangeLayout = Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer";
+        bool needToChangeLayout = Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer";
 
         if (!WarnUserAboutSplitsSave())
         {
@@ -2554,7 +2554,7 @@ public partial class TimerForm : Form
 
         AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
-        var run = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
+        IRun run = new StandardRunFactory().Create(ComparisonGeneratorsFactory);
         Model.Reset();
         SetRun(run);
         Settings.AddToRecentSplits("", null, TimingMethod.RealTime, CurrentState.CurrentHotkeyProfile);
@@ -2562,7 +2562,7 @@ public partial class TimerForm : Form
 
         if (needToChangeLayout)
         {
-            var layout = new TimerOnlyLayoutFactory().Create(CurrentState);
+            ILayout layout = new TimerOnlyLayoutFactory().Create(CurrentState);
             layout.Settings = Layout.Settings;
             layout.X = Location.X;
             layout.Y = Location.Y;
@@ -2636,7 +2636,7 @@ public partial class TimerForm : Form
             try
             {
                 DontRedraw = true;
-                var result = MessageBox.Show(this, "Your splits have been updated but not yet saved.\nDo you want to save your splits now?", "Save Splits?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show(this, "Your splits have been updated but not yet saved.\nDo you want to save your splits now?", "Save Splits?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     safeToContinue = SaveSplits(false);
@@ -2668,8 +2668,8 @@ public partial class TimerForm : Form
             try
             {
                 DontRedraw = true;
-                var buttons = canCancel ? MessageBoxButtons.YesNoCancel : MessageBoxButtons.YesNo;
-                var result = MessageBox.Show(this, "Your layout has been updated but not yet saved.\nDo you want to save your layout now?", "Save Layout?", buttons, MessageBoxIcon.Question);
+                MessageBoxButtons buttons = canCancel ? MessageBoxButtons.YesNoCancel : MessageBoxButtons.YesNo;
+                DialogResult result = MessageBox.Show(this, "Your layout has been updated but not yet saved.\nDo you want to save your layout now?", "Save Layout?", buttons, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
                     safeToContinue = SaveLayout();
@@ -2707,7 +2707,7 @@ public partial class TimerForm : Form
 
         try
         {
-            var settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
+            string settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
             if (!File.Exists(settingsPath))
             {
                 File.Create(settingsPath).Close();
@@ -2716,8 +2716,8 @@ public partial class TimerForm : Form
             using var memoryStream = new MemoryStream();
             SettingsSaver.Save(Settings, memoryStream);
 
-            using var stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write);
-            var buffer = memoryStream.GetBuffer();
+            using FileStream stream = File.Open(settingsPath, FileMode.Create, FileAccess.Write);
+            byte[] buffer = memoryStream.GetBuffer();
             stream.Write(buffer, 0, (int)memoryStream.Length);
         }
         catch (Exception ex)
@@ -2726,7 +2726,7 @@ public partial class TimerForm : Form
             Log.Error(ex);
         }
 
-        foreach (var component in Layout.Components)
+        foreach (UI.Components.IComponent component in Layout.Components)
         {
             component.Dispose();
         }
@@ -2744,10 +2744,10 @@ public partial class TimerForm : Form
             TopMost = false;
             var oldSettings = (ISettings)Settings.Clone();
             Settings.UnregisterAllHotkeys(Hook);
-            var result = editor.ShowDialog(this);
+            DialogResult result = editor.ShowDialog(this);
             if (result == DialogResult.Cancel)
             {
-                var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
+                bool regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
                 CurrentState.Settings = Settings = oldSettings;
                 if (regenerate)
                 {
@@ -2780,10 +2780,10 @@ public partial class TimerForm : Form
     {
         try
         {
-            var settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
+            string settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
             if (File.Exists(settingsPath))
             {
-                using var stream = File.OpenRead(Path.Combine(BasePath, SETTINGS_PATH));
+                using FileStream stream = File.OpenRead(Path.Combine(BasePath, SETTINGS_PATH));
                 Settings = new XMLSettingsFactory(stream).Create();
                 return;
             }
@@ -2805,7 +2805,7 @@ public partial class TimerForm : Form
     {
         if (Layout.Mode == LayoutMode.Vertical)
         {
-            var minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallSize);
+            float minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallSize);
             if (Width < minimumWidth)
             {
                 Height = (int)((Height / (minimumWidth / Width)) + 0.5f);
@@ -2813,7 +2813,7 @@ public partial class TimerForm : Form
         }
         else
         {
-            var minimumHeight = ComponentRenderer.MinimumHeight * (Width / ComponentRenderer.OverallSize);
+            float minimumHeight = ComponentRenderer.MinimumHeight * (Width / ComponentRenderer.OverallSize);
             if (Height < minimumHeight)
             {
                 Width = (int)((Width / (minimumHeight / Height)) + 0.5f);
@@ -2863,8 +2863,8 @@ public partial class TimerForm : Form
 
     private DialogResult WarnAboutResetting()
     {
-        var warnUser = false;
-        for (var index = 0; index < CurrentState.Run.Count; index++)
+        bool warnUser = false;
+        for (int index = 0; index < CurrentState.Run.Count; index++)
         {
             if (LiveSplitStateHelper.CheckBestSegment(CurrentState, index, CurrentState.CurrentTimingMethod))
             {
@@ -2881,7 +2881,7 @@ public partial class TimerForm : Form
         if (warnUser)
         {
             DontRedraw = true;
-            var result = MessageBox.Show(this, "You have beaten some of your best times.\r\nDo you want to update them?", "Update Times?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(this, "You have beaten some of your best times.\r\nDo you want to update them?", "Update Times?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             DontRedraw = false;
             return result;
         }
@@ -2899,7 +2899,7 @@ public partial class TimerForm : Form
 
         if (!ResetMessageShown)
         {
-            var result = DialogResult.Yes;
+            DialogResult result = DialogResult.Yes;
             if (Settings.WarnOnReset && (!InTimerOnlyMode))
             {
                 ResetMessageShown = true;
@@ -2921,7 +2921,7 @@ public partial class TimerForm : Form
 
     private void racingMenuItem_MouseHover(object sender, EventArgs e)
     {
-        RaceProviderAPI raceProvider = (RaceProviderAPI)(sender as ToolStripMenuItem)?.Tag;
+        var raceProvider = (RaceProviderAPI)(sender as ToolStripMenuItem)?.Tag;
         raceProvider?.RefreshRacesListAsync();
         ShouldRefreshRaces = true;
     }
@@ -2948,7 +2948,7 @@ public partial class TimerForm : Form
 
     private void hotkeysMenuItem_Click(object sender, EventArgs e)
     {
-        var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+        HotkeyProfile hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
 
         if (hotkeysMenuItem.Checked)
         {
@@ -2981,7 +2981,7 @@ public partial class TimerForm : Form
     {
         try
         {
-            var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+            HotkeyProfile hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
             if (hotkeyProfile.ToggleGlobalHotkeys != null)
             {
                 TaskbarManager.Instance.SetProgressState(hotkeyProfile.GlobalHotkeysEnabled ? TaskbarProgressBarState.Normal : TaskbarProgressBarState.Error);
@@ -3008,7 +3008,7 @@ public partial class TimerForm : Form
     {
         comparisonMenuItem.DropDownItems.Clear();
 
-        foreach (var customComparison in CurrentState.Run.CustomComparisons)
+        foreach (string customComparison in CurrentState.Run.CustomComparisons)
         {
             AddActionToComparisonsMenu(customComparison);
         }
@@ -3018,8 +3018,8 @@ public partial class TimerForm : Form
             comparisonMenuItem.DropDownItems.Add(new ToolStripSeparator());
         }
 
-        var raceSeparatorAdded = false;
-        foreach (var generator in CurrentState.Run.ComparisonGenerators)
+        bool raceSeparatorAdded = false;
+        foreach (IComparisonGenerator generator in CurrentState.Run.ComparisonGenerators)
         {
             if (!raceSeparatorAdded && generator is SRLComparisonGenerator)
             {
@@ -3061,7 +3061,7 @@ public partial class TimerForm : Form
     {
         if (CurrentState != null && CurrentState.Run != null)
         {
-            foreach (var generator in CurrentState.Run.ComparisonGenerators)
+            foreach (IComparisonGenerator generator in CurrentState.Run.ComparisonGenerators)
             {
                 generator.Generate(CurrentState.Settings);
             }
@@ -3070,10 +3070,10 @@ public partial class TimerForm : Form
 
     private void SwitchComparisonGenerators()
     {
-        var allGenerators = new StandardComparisonGeneratorsFactory().GetAllGenerators(CurrentState.Run);
-        foreach (var generator in allGenerators)
+        IEnumerable<IComparisonGenerator> allGenerators = new StandardComparisonGeneratorsFactory().GetAllGenerators(CurrentState.Run);
+        foreach (IComparisonGenerator generator in allGenerators)
         {
-            var generatorInRun = CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == generator.Name);
+            IComparisonGenerator generatorInRun = CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == generator.Name);
             if (generatorInRun != null)
             {
                 CurrentState.Run.ComparisonGenerators.Remove(generatorInRun);
@@ -3133,22 +3133,22 @@ public partial class TimerForm : Form
         controlMenuItem.DropDownItems.Add(serverMenuItem);
         controlMenuItem.DropDownItems.Add(webSocketMenuItem);
 
-        var components = Layout.Components;
+        IEnumerable<UI.Components.IComponent> components = Layout.Components;
         if (CurrentState.Run.IsAutoSplitterActive())
         {
             components = components.Concat(new[] { CurrentState.Run.AutoSplitter.Component });
         }
 
-        var componentControls =
+        IEnumerable<IDictionary<string, Action>> componentControls =
             components
             .Select(x => x.ContextMenuControls)
             .Where(x => x != null && x.Any());
 
-        foreach (var componentControlSection in componentControls)
+        foreach (IDictionary<string, Action> componentControlSection in componentControls)
         {
             controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
 
-            foreach (var componentControl in componentControlSection)
+            foreach (KeyValuePair<string, Action> componentControl in componentControlSection)
             {
                 AddActionToControlMenu(componentControl.Key, componentControl.Value);
             }
@@ -3178,14 +3178,14 @@ public partial class TimerForm : Form
     {
         if (e.Data.GetData(DataFormats.FileDrop, false) is string[] fileList)
         {
-            var lssOpened = false;
-            var lslOpened = false;
+            bool lssOpened = false;
+            bool lslOpened = false;
 
             foreach (string fileToOpen in fileList)
             {
                 if (File.Exists(fileToOpen))
                 {
-                    var extension = Path.GetExtension(fileToOpen).ToLower();
+                    string extension = Path.GetExtension(fileToOpen).ToLower();
 
                     if (!lslOpened && extension == ".lsl")
                     {

@@ -12,8 +12,8 @@ public class TimeSpanParserTests
     [MemberData(nameof(TimeSpanFeeder))]
     public void ParsesTimeSpanCorrectly(string timeSpanToParse, string expectedTimeSpan)
     {
-        var time = TimeSpanParser.Parse(timeSpanToParse);
-        var formattedTime = time.ToString();
+        System.TimeSpan time = TimeSpanParser.Parse(timeSpanToParse);
+        string formattedTime = time.ToString();
         Assert.Equal(expectedTimeSpan, formattedTime);
     }
 
@@ -43,8 +43,8 @@ public class TimeSpanParserTests
     [MemberData(nameof(TimeSpanFeeder))]
     public void ParsesTimeSpanCorrectly_WhenUsingParseNullable(string timeSpanToParse, string expectedTimeSpan)
     {
-        var time = TimeSpanParser.ParseNullable(timeSpanToParse);
-        var formattedTime = time.ToString();
+        System.TimeSpan? time = TimeSpanParser.ParseNullable(timeSpanToParse);
+        string formattedTime = time.ToString();
         Assert.Equal(expectedTimeSpan, formattedTime);
     }
 
@@ -53,7 +53,7 @@ public class TimeSpanParserTests
     [InlineData(null)]
     public void ReturnsNull_WhenParsingInvalidTimeSpan(string timeSpanToParse)
     {
-        var time = TimeSpanParser.ParseNullable(timeSpanToParse);
+        System.TimeSpan? time = TimeSpanParser.ParseNullable(timeSpanToParse);
         Assert.Null(time);
     }
 }

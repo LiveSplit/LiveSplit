@@ -37,7 +37,7 @@ public class KeyOrButton
     {
         if (stringRepresentation.Contains(' ') && !stringRepresentation.Contains(", "))
         {
-            var split = stringRepresentation.Split([' '], 2);
+            string[] split = stringRepresentation.Split([' '], 2);
             Button = new GamepadButton(split[1], split[0]);
             IsButton = true;
         }

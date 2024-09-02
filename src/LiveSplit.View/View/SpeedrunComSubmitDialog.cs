@@ -25,7 +25,7 @@ public partial class SpeedrunComSubmitDialog : Form
 
         hasPersonalBestDateTime = SpeedrunCom.FindPersonalBestAttemptDate(metadata.LiveSplitRun).HasValue;
 
-        var row = 2;
+        int row = 2;
 
         if (!hasPersonalBestDateTime)
         {
@@ -51,12 +51,12 @@ public partial class SpeedrunComSubmitDialog : Form
             row++;
         }
 
-        var runTime = metadata.LiveSplitRun.Last().PersonalBestSplitTime;
+        Time runTime = metadata.LiveSplitRun.Last().PersonalBestSplitTime;
 
-        var timingMethods = metadata.Game.Ruleset.TimingMethods;
-        var usesGameTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.GameTime);
-        var usesWithoutLoads = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads);
-        var usesBoth = usesGameTime && usesWithoutLoads;
+        System.Collections.ObjectModel.ReadOnlyCollection<SpeedrunComSharp.TimingMethod> timingMethods = metadata.Game.Ruleset.TimingMethods;
+        bool usesGameTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.GameTime);
+        bool usesWithoutLoads = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads);
+        bool usesBoth = usesGameTime && usesWithoutLoads;
         if (!runTime.GameTime.HasValue || usesBoth)
         {
             if (usesWithoutLoads)
@@ -121,7 +121,7 @@ public partial class SpeedrunComSubmitDialog : Form
 
         if (!string.IsNullOrEmpty(txtVideo.Text))
         {
-            var videoText = txtVideo.Text;
+            string videoText = txtVideo.Text;
             if (!videoText.StartsWith("http"))
             {
                 videoText = "http://" + videoText;
@@ -138,7 +138,7 @@ public partial class SpeedrunComSubmitDialog : Form
             }
         }
 
-        var comment = txtComment.Text;
+        string comment = txtComment.Text;
 
         DateTime? date = null;
 
@@ -151,7 +151,7 @@ public partial class SpeedrunComSubmitDialog : Form
         {
             try
             {
-                var gameTime = TimeSpanParser.ParseNullable(txtGameTime.Text);
+                TimeSpan? gameTime = TimeSpanParser.ParseNullable(txtGameTime.Text);
                 patchGameTime(gameTime);
             }
             catch
@@ -177,7 +177,7 @@ public partial class SpeedrunComSubmitDialog : Form
             }
         }
 
-        var submitted = SpeedrunCom.SubmitRun(metadata.LiveSplitRun, out string reason,
+        bool submitted = SpeedrunCom.SubmitRun(metadata.LiveSplitRun, out string reason,
             comment: comment, videoUri: videoUri, date: date, withoutLoads: withoutLoads);
 
         if (submitted)
@@ -199,16 +199,16 @@ public partial class SpeedrunComSubmitDialog : Form
             return;
         }
 
-        var run = metadata.LiveSplitRun;
-        var lastSplit = run.Last();
-        var runTime = lastSplit.PersonalBestSplitTime;
+        IRun run = metadata.LiveSplitRun;
+        ISegment lastSplit = run.Last();
+        Time runTime = lastSplit.PersonalBestSplitTime;
 
         if (runTime.GameTime.HasValue)
         {
             return;
         }
 
-        var attempt = run.AttemptHistory.FirstOrDefault(x =>
+        Attempt attempt = run.AttemptHistory.FirstOrDefault(x =>
             x.Time.GameTime == runTime.GameTime
             && x.Time.RealTime == runTime.RealTime);
 

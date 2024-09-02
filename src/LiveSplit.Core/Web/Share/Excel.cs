@@ -11,7 +11,7 @@ namespace LiveSplit.Web.Share;
 
 public class Excel : IRunUploadPlatform
 {
-    protected static Excel _Instance = new Excel();
+    protected static Excel _Instance = new();
 
     public static Excel Instance => _Instance;
 
@@ -38,17 +38,17 @@ This includes your whole history of all the runs you ever did.";
     {
         using var dialog = new SaveFileDialog();
         dialog.Filter = "Excel Sheet (*.xlsx)|*.xlsx";
-        var result = dialog.ShowDialog();
+        DialogResult result = dialog.ShowDialog();
         if (result == DialogResult.OK)
         {
-            var path = dialog.FileName;
+            string path = dialog.FileName;
 
             if (!File.Exists(path))
             {
                 File.Create(path).Close();
             }
 
-            using var stream = File.Open(path, FileMode.Create, FileAccess.Write);
+            using FileStream stream = File.Open(path, FileMode.Create, FileAccess.Write);
             var runSaver = new ExcelRunSaver();
             runSaver.Save(run, stream);
             return true;

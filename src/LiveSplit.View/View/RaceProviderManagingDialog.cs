@@ -18,7 +18,7 @@ public partial class RaceProviderManagingDialog : Form
         rulesLink.LinkClicked += LinkClicked;
         Settings = settings;
 
-        foreach (var raceProvider in Settings)
+        foreach (RaceProviderSettings raceProvider in Settings)
         {
             providerListBox.Items.Add(raceProvider.DisplayName, raceProvider.Enabled);
         }

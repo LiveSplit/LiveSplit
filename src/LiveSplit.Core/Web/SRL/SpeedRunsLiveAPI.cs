@@ -12,10 +12,10 @@ namespace LiveSplit.Web.SRL;
 
 public class SpeedRunsLiveAPI : RaceProviderAPI
 {
-    protected static readonly SpeedRunsLiveAPI _Instance = new SpeedRunsLiveAPI();
+    protected static readonly SpeedRunsLiveAPI _Instance = new();
 
     public static SpeedRunsLiveAPI Instance => _Instance;
-    public static readonly Uri BaseUri = new Uri("http://api.speedrunslive.com:81/");
+    public static readonly Uri BaseUri = new("http://api.speedrunslive.com:81/");
 
     protected IEnumerable<SRLRaceInfo> racesList;
     protected IEnumerable<dynamic> gameList;
@@ -67,7 +67,7 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
             return x.name == name;
         }
 
-        var gameID = GetGameList().FirstOrDefault(map);
+        dynamic gameID = GetGameList().FirstOrDefault(map);
         if (gameID != null)
         {
             return gameID.abbrev;
@@ -78,13 +78,13 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
 
     public IEnumerable<dynamic> GetEntrants(string raceID)
     {
-        var race = GetRace(raceID);
+        dynamic race = GetRace(raceID);
         return race.entrants;
     }
 
     public dynamic GetRace(string raceID)
     {
-        var races = GetRaces();
+        IEnumerable<IRaceInfo> races = GetRaces();
         return races.First(x => x.Id == raceID);
     }
 
@@ -116,7 +116,7 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
     public void RefreshRacesList()
     {
         List<SRLRaceInfo> infoList = [];
-        foreach (var race in JSON.FromUri(GetUri("races")).races)
+        foreach (dynamic race in JSON.FromUri(GetUri("races")).races)
         {
             infoList.Add(new SRLRaceInfo(race));
         }

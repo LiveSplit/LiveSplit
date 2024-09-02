@@ -10,7 +10,7 @@ namespace LiveSplit.Web.Share;
 public class SpeedrunComRunUploadPlatform : IRunUploadPlatform
 {
     public ISettings Settings { get; set; }
-    protected static readonly SpeedrunComRunUploadPlatform instance = new SpeedrunComRunUploadPlatform();
+    protected static readonly SpeedrunComRunUploadPlatform instance = new();
 
     public static SpeedrunComRunUploadPlatform Instance => instance;
 
@@ -28,7 +28,7 @@ public class SpeedrunComRunUploadPlatform : IRunUploadPlatform
 
     public bool SubmitRun(IRun run, Func<System.Drawing.Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
-        var isValid = SpeedrunCom.ValidateRun(run.Metadata.LiveSplitRun, out string reason);
+        bool isValid = SpeedrunCom.ValidateRun(run.Metadata.LiveSplitRun, out string reason);
 
         if (!isValid)
         {
@@ -37,7 +37,7 @@ public class SpeedrunComRunUploadPlatform : IRunUploadPlatform
         }
 
         using var submitDialog = new SpeedrunComSubmitDialog(run.Metadata);
-        var result = submitDialog.ShowDialog();
+        DialogResult result = submitDialog.ShowDialog();
         return result == DialogResult.OK;
     }
 }

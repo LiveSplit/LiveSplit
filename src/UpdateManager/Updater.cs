@@ -51,12 +51,12 @@ public static class Updater
                     List<Update> updateList = [];
                     try
                     {
-                        using XmlReader reader = XmlReader.Create(XMLURL);
-                        XmlDocument doc = new XmlDocument();
+                        using var reader = XmlReader.Create(XMLURL);
+                        var doc = new XmlDocument();
                         doc.Load(reader);
                         foreach (XmlNode updateNode in doc.DocumentElement.ChildNodes)
                         {
-                            Update update = Update.Parse(updateNode);
+                            var update = Update.Parse(updateNode);
                             updateList.Add(update);
                         }
                     }
@@ -113,7 +113,7 @@ public static class Updater
             var changedFiles = new Dictionary<string, string>();
             var removedFiles = new Dictionary<string, string>();
 
-            foreach (var change in updates.SelectMany(x => x.FileChanges))
+            foreach (FileChange change in updates.SelectMany(x => x.FileChanges))
             {
                 string path = change.Path;
                 string localPath = change.LocalPath ?? change.Path;
@@ -138,7 +138,7 @@ public static class Updater
             int fileChangesCount = addedFiles.Concat(changedFiles).Concat(removedFiles).Count();
             double i = 0;
 
-            foreach (var xmlChangePaths in addedFiles.Concat(changedFiles))
+            foreach (KeyValuePair<string, string> xmlChangePaths in addedFiles.Concat(changedFiles))
             {
                 string path = xmlChangePaths.Key;
                 string localPath = xmlChangePaths.Value;
@@ -146,7 +146,7 @@ public static class Updater
                 UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
             }
 
-            foreach (var xmlChangePaths in removedFiles)
+            foreach (KeyValuePair<string, string> xmlChangePaths in removedFiles)
             {
                 string localPath = xmlChangePaths.Value;
                 File.Delete(ConvertChangeUrlPartToPath(localPath));

@@ -54,10 +54,10 @@ public partial class FontDialog : Form
 
     private void lstFont_SelectedFontFamilyChanged(object sender, EventArgs e)
     {
-        var family = lstFont.SelectedFontFamily;
-        var bold = family.IsStyleAvailable(FontStyle.Bold);
-        var regular = family.IsStyleAvailable(FontStyle.Regular);
-        var italics = family.IsStyleAvailable(FontStyle.Italic);
+        FontFamily family = lstFont.SelectedFontFamily;
+        bool bold = family.IsStyleAvailable(FontStyle.Bold);
+        bool regular = family.IsStyleAvailable(FontStyle.Regular);
+        bool italics = family.IsStyleAvailable(FontStyle.Italic);
 
         chbBold.Enabled = true;
         chbItalic.Enabled = true;
@@ -156,7 +156,7 @@ public partial class FontDialog : Form
     private void UpdateSampleText()
     {
         float size = txtSize.Text != "" ? float.Parse(txtSize.Text) : 1;
-        var family = lstFont.SelectedFontFamily;
+        FontFamily family = lstFont.SelectedFontFamily;
 
         if (family != null)
         {
@@ -213,7 +213,7 @@ public partial class FontDialog : Form
 
     private void UpdateSizeOptions()
     {
-        var sizes = new object[] {
+        object[] sizes = [
         "8",
         "9",
         "10",
@@ -229,10 +229,10 @@ public partial class FontDialog : Form
         "28",
         "36",
         "48",
-        "72"};
+        "72"];
 
         lstSize.Items.Clear();
-        foreach (var size in sizes)
+        foreach (object size in sizes)
         {
             int sizeNum = int.Parse((string)size);
             if (sizeNum >= MinSize && sizeNum <= MaxSize)

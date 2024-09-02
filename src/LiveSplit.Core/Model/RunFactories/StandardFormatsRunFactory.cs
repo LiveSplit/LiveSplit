@@ -25,12 +25,12 @@ public class StandardFormatsRunFactory : IRunFactory
 
     private static TimeSpan ParseTimeSpan(LiveSplitCore.TimeSpanRef timeSpan)
     {
-        var wholeSeconds = timeSpan.WholeSeconds();
-        var subsecNanoseconds = timeSpan.SubsecNanoseconds();
+        long wholeSeconds = timeSpan.WholeSeconds();
+        int subsecNanoseconds = timeSpan.SubsecNanoseconds();
         const long NANOS_PER_SEC = 1_000_000_000;
         const long NANOS_PER_TICK = NANOS_PER_SEC / TimeSpan.TicksPerSecond;
 
-        var totalTicks = (wholeSeconds * TimeSpan.TicksPerSecond) + (subsecNanoseconds / NANOS_PER_TICK);
+        long totalTicks = (wholeSeconds * TimeSpan.TicksPerSecond) + (subsecNanoseconds / NANOS_PER_TICK);
         return new TimeSpan(totalTicks);
     }
 
@@ -51,7 +51,7 @@ public class StandardFormatsRunFactory : IRunFactory
             return null;
         }
 
-        var utcDateTime = DateTime.Parse(dateTime.ToRfc3339(), CultureInfo.InvariantCulture).ToUniversalTime();
+        DateTime utcDateTime = DateTime.Parse(dateTime.ToRfc3339(), CultureInfo.InvariantCulture).ToUniversalTime();
         return new AtomicDateTime(utcDateTime, dateTime.IsSynchronized());
     }
 
@@ -101,7 +101,7 @@ public class StandardFormatsRunFactory : IRunFactory
         LiveSplitCore.ParseRunResult result = null;
         if (Stream is FileStream)
         {
-            var handle = (Stream as FileStream).SafeFileHandle;
+            Microsoft.Win32.SafeHandles.SafeFileHandle handle = (Stream as FileStream).SafeFileHandle;
             if (!handle.IsInvalid)
             {
                 result = LiveSplitCore.Run.ParseFileHandle((long)handle.DangerousGetHandle(), FilePath);
@@ -115,17 +115,17 @@ public class StandardFormatsRunFactory : IRunFactory
             throw new Exception();
         }
 
-        var timerKind = result.TimerKind();
+        string timerKind = result.TimerKind();
 
-        using var lscRun = result.Unwrap();
+        using LiveSplitCore.Run lscRun = result.Unwrap();
         var run = new Run(factory);
 
-        var metadata = lscRun.Metadata();
+        LiveSplitCore.RunMetadataRef metadata = lscRun.Metadata();
         run.Metadata.RunID = metadata.RunId();
         run.Metadata.PlatformName = metadata.PlatformName();
         run.Metadata.UsesEmulator = metadata.UsesEmulator();
         run.Metadata.RegionName = metadata.RegionName();
-        using (var iter = metadata.SpeedrunComVariables())
+        using (LiveSplitCore.RunMetadataSpeedrunComVariablesIter iter = metadata.SpeedrunComVariables())
         {
             LiveSplitCore.RunMetadataSpeedrunComVariableRef variable;
             while ((variable = iter.Next()) != null)
@@ -140,7 +140,7 @@ public class StandardFormatsRunFactory : IRunFactory
         run.Offset = ParseTimeSpan(lscRun.Offset());
         run.AttemptCount = (int)lscRun.AttemptCount();
 
-        var linkedLayout = lscRun.LinkedLayout();
+        LiveSplitCore.LinkedLayout linkedLayout = lscRun.LinkedLayout();
         if (linkedLayout == null)
         {
             run.LayoutPath = null;
@@ -154,10 +154,10 @@ public class StandardFormatsRunFactory : IRunFactory
             run.LayoutPath = linkedLayout.Path();
         }
 
-        var attemptsCount = lscRun.AttemptHistoryLen();
-        for (var i = 0ul; i < attemptsCount; ++i)
+        ulong attemptsCount = lscRun.AttemptHistoryLen();
+        for (ulong i = 0ul; i < attemptsCount; ++i)
         {
-            var attempt = lscRun.AttemptHistoryIndex(i);
+            LiveSplitCore.AttemptRef attempt = lscRun.AttemptHistoryIndex(i);
             run.AttemptHistory.Add(new Attempt(
                 attempt.Index(),
                 ParseTime(attempt.Time()),
@@ -167,32 +167,32 @@ public class StandardFormatsRunFactory : IRunFactory
             ));
         }
 
-        var customComparisonsCount = lscRun.CustomComparisonsLen();
-        for (var i = 0ul; i < customComparisonsCount; ++i)
+        ulong customComparisonsCount = lscRun.CustomComparisonsLen();
+        for (ulong i = 0ul; i < customComparisonsCount; ++i)
         {
-            var comparison = lscRun.CustomComparison(i);
+            string comparison = lscRun.CustomComparison(i);
             if (!run.CustomComparisons.Contains(comparison))
             {
                 run.CustomComparisons.Add(comparison);
             }
         }
 
-        var segmentCount = lscRun.Len();
-        for (var i = 0ul; i < segmentCount; ++i)
+        ulong segmentCount = lscRun.Len();
+        for (ulong i = 0ul; i < segmentCount; ++i)
         {
-            var segment = lscRun.Segment(i);
+            LiveSplitCore.SegmentRef segment = lscRun.Segment(i);
             var split = new Segment(segment.Name())
             {
                 Icon = ParseImage(segment.IconPtr(), segment.IconLen()),
                 BestSegmentTime = ParseTime(segment.BestSegmentTime()),
             };
 
-            foreach (var comparison in run.CustomComparisons)
+            foreach (string comparison in run.CustomComparisons)
             {
                 split.Comparisons[comparison] = ParseTime(segment.Comparison(comparison));
             }
 
-            using (var iter = segment.SegmentHistory().Iter())
+            using (LiveSplitCore.SegmentHistoryIter iter = segment.SegmentHistory().Iter())
             {
                 LiveSplitCore.SegmentHistoryElementRef element;
                 while ((element = iter.Next()) != null)

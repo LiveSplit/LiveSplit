@@ -11,7 +11,7 @@ namespace LiveSplit.Web;
 
 public class CompositeGameList
 {
-    protected static CompositeGameList _Instance = new CompositeGameList();
+    protected static CompositeGameList _Instance = new();
 
     public static CompositeGameList Instance => _Instance;
 
@@ -59,7 +59,7 @@ public class CompositeGameList
         var headerSet = new HashSet<string>();
         try
         {
-            foreach (var header in SpeedrunCom.Client.Games.GetGameHeaders())
+            foreach (SpeedrunComSharp.GameHeader header in SpeedrunCom.Client.Games.GetGameHeaders())
             {
                 string name = header.Name, id = header.ID;
 
@@ -89,13 +89,13 @@ public class CompositeGameList
 
     private void SaveToCache()
     {
-        var jsonString = new JavaScriptSerializer().Serialize(gameIDs);
+        string jsonString = new JavaScriptSerializer().Serialize(gameIDs);
         File.WriteAllText(CacheFilename, jsonString);
     }
 
     private void LoadFromCache()
     {
-        var jsonString = File.ReadAllText(CacheFilename);
+        string jsonString = File.ReadAllText(CacheFilename);
         gameIDs = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(jsonString);
         gameNames = gameIDs.Keys.ToArray();
     }

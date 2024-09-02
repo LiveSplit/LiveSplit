@@ -52,7 +52,7 @@ public class XMLLayoutSaver : ILayoutSaver
             components = document.CreateElement("Components");
         }
 
-        var hashCode = SettingsHelper.CreateSetting(document, parent, "Mode", layout.Mode)
+        int hashCode = SettingsHelper.CreateSetting(document, parent, "Mode", layout.Mode)
             ^ SettingsHelper.CreateSetting(document, parent, "X", layout.X)
             ^ SettingsHelper.CreateSetting(document, parent, "Y", layout.Y)
             ^ SettingsHelper.CreateSetting(document, parent, "VerticalWidth", layout.VerticalWidth)
@@ -68,18 +68,18 @@ public class XMLLayoutSaver : ILayoutSaver
         }
 
         var layoutComponents = new List<ILayoutComponent>(layout.LayoutComponents);
-        var count = 1;
+        int count = 1;
 
-        foreach (var component in layoutComponents)
+        foreach (ILayoutComponent component in layoutComponents)
         {
             try
             {
                 if (document != null)
                 {
-                    var componentElement = document.CreateElement("Component");
+                    XmlElement componentElement = document.CreateElement("Component");
                     components.AppendChild(componentElement);
                     SettingsHelper.CreateSetting(document, componentElement, "Path", component.Path);
-                    var settings = document.CreateElement("Settings");
+                    XmlElement settings = document.CreateElement("Settings");
 
                     settings.InnerXml = component.Component.GetSettings(document).InnerXml;
 
@@ -87,7 +87,7 @@ public class XMLLayoutSaver : ILayoutSaver
                 }
                 else
                 {
-                    var type = component.Component.GetType();
+                    Type type = component.Component.GetType();
                     if (type.GetMethod("GetSettingsHashCode") != null)
                     {
                         hashCode ^= ((dynamic)component.Component).GetSettingsHashCode() ^ (component.GetHashCode() * count);
@@ -115,7 +115,7 @@ public class XMLLayoutSaver : ILayoutSaver
 
         XmlNode docNode = document.CreateXmlDeclaration("1.0", "UTF-8", null);
         document.AppendChild(docNode);
-        var parent = document.CreateElement("Layout");
+        XmlElement parent = document.CreateElement("Layout");
         parent.Attributes.Append(SettingsHelper.ToAttribute(document, "version", "1.6.1"));
         CreateLayoutNode(document, parent, layout);
         document.AppendChild(parent);

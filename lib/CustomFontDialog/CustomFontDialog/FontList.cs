@@ -89,7 +89,7 @@ public partial class FontList : UserControl
         {
             if (!txtFont.Focused)
             {
-                var f = ((FontItem)lstFont.SelectedItem).Font;
+                Font f = ((FontItem)lstFont.SelectedItem).Font;
                 txtFont.Text = f.Name;
             }
 

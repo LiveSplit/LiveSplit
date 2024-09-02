@@ -64,7 +64,7 @@ public class SegmentHistoryMust
             { 0, new Time(YetAnotherTimeSpan, AnyTimeSpan) }
         };
 
-        var sut = original.Clone();
+        SegmentHistory sut = original.Clone();
         Assert.NotSame(original, sut);
         Assert.Equal(original.Count, sut.Count);
         Assert.Equal(original[0], sut[0]);

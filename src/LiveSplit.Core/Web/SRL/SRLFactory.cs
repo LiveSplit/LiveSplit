@@ -14,7 +14,7 @@ public class SRLFactory : IRaceProviderFactory
 
     public string UpdateURL => "";
 
-    public Version Version => new Version();
+    public Version Version => new();
 
     public RaceProviderAPI Create(ITimerModel model, RaceProviderSettings settings)
     {

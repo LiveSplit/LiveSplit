@@ -27,7 +27,7 @@ internal class DynamicXMLAttributesCollection : DynamicObject
 
     public override bool TryGetMember(GetMemberBinder binder, out object result)
     {
-        var attribute = Attributes[binder.Name];
+        XmlAttribute attribute = Attributes[binder.Name];
 
         // Attribute is not present.
         if (attribute == null)
@@ -63,7 +63,7 @@ internal class DynamicXMLElement : DynamicObject
             return true;
         }
 
-        var memberElement = Element[binder.Name];
+        XmlElement memberElement = Element[binder.Name];
 
         // Child element is not present
         if (memberElement == null)

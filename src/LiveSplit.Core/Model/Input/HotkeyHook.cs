@@ -47,8 +47,8 @@ public sealed class HotkeyHook : IDisposable
             base.WndProc(ref m);
             if (m.Msg == WM_HOTKEY)
             {
-                Keys key = (Keys)(((int)m.LParam >> 16) & 65535);
-                ModifierKeys modifier = (ModifierKeys)((int)m.LParam & 65535);
+                var key = (Keys)(((int)m.LParam >> 16) & 65535);
+                var modifier = (ModifierKeys)((int)m.LParam & 65535);
                 KeyPressed?.Invoke(this, new KeyPressedEventArgs(modifier, key));
             }
         }
@@ -57,7 +57,7 @@ public sealed class HotkeyHook : IDisposable
             DestroyHandle();
         }
     }
-    private readonly Window _window = new Window();
+    private readonly Window _window = new();
     private int _currentId;
     public event EventHandler<KeyPressedEventArgs> KeyPressed;
     [DllImport("user32.dll", SetLastError = true)]

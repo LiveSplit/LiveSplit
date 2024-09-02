@@ -22,7 +22,7 @@ public partial class BrowseSpeedrunComDialog : Form
     public string RunName { get; protected set; }
     private readonly bool isImporting;
 
-    private readonly BackgroundWorker searchWorker = new BackgroundWorker
+    private readonly BackgroundWorker searchWorker = new()
     {
         WorkerSupportsCancellation = true,
     };
@@ -43,9 +43,9 @@ public partial class BrowseSpeedrunComDialog : Form
             {
                 if (splitsTreeView.Nodes.Count > 0)
                 {
-                    var gameNode = splitsTreeView.Nodes[0];
+                    TreeNode gameNode = splitsTreeView.Nodes[0];
                     gameNode.Expand();
-                    var categoryNode = gameNode.Nodes.Cast<TreeNode>().FirstOrDefault(x => x.Text == categoryName);
+                    TreeNode categoryNode = gameNode.Nodes.Cast<TreeNode>().FirstOrDefault(x => x.Text == categoryName);
                     categoryNode?.Expand();
                 }
             }
@@ -83,8 +83,8 @@ public partial class BrowseSpeedrunComDialog : Form
     {
         if (place.HasValue)
         {
-            var strPlace = place.Value.ToString(CultureInfo.InvariantCulture);
-            var postfix = "th";
+            string strPlace = place.Value.ToString(CultureInfo.InvariantCulture);
+            string postfix = "th";
 
             if (place % 100 is < 10 or > 20)
             {
@@ -126,14 +126,14 @@ public partial class BrowseSpeedrunComDialog : Form
         splitsTreeView.Nodes.Clear();
         try
         {
-            var fuzzyGameName = txtSearch.Text;
+            string fuzzyGameName = txtSearch.Text;
             if (!string.IsNullOrEmpty(fuzzyGameName))
             {
                 try
                 {
-                    var games = SpeedrunCom.Client.Games.GetGames(name: fuzzyGameName, embeds: new GameEmbeds(embedCategories: true));
+                    System.Collections.Generic.IEnumerable<Game> games = SpeedrunCom.Client.Games.GetGames(name: fuzzyGameName, embeds: new GameEmbeds(embedCategories: true));
 
-                    foreach (var game in games)
+                    foreach (Game game in games)
                     {
                         if (searchWorker.CancellationPending)
                         {
@@ -144,11 +144,11 @@ public partial class BrowseSpeedrunComDialog : Form
                         {
                             Tag = game.WebLink
                         };
-                        var categories = game.FullGameCategories;
+                        System.Collections.Generic.IEnumerable<Category> categories = game.FullGameCategories;
                         var timeFormatter = new AutomaticPrecisionTimeFormatter();
 
-                        var anySplitsAvailableForGame = false;
-                        foreach (var category in categories)
+                        bool anySplitsAvailableForGame = false;
+                        foreach (Category category in categories)
                         {
                             if (searchWorker.CancellationPending)
                             {
@@ -159,21 +159,21 @@ public partial class BrowseSpeedrunComDialog : Form
                             {
                                 Tag = category.WebLink
                             };
-                            var leaderboard = category.Leaderboard;
-                            var records = leaderboard.Records;
+                            Leaderboard leaderboard = category.Leaderboard;
+                            System.Collections.ObjectModel.ReadOnlyCollection<Record> records = leaderboard.Records;
 
-                            var anySplitsAvailableForCategory = false;
-                            foreach (var record in records)
+                            bool anySplitsAvailableForCategory = false;
+                            foreach (Record record in records)
                             {
                                 if (searchWorker.CancellationPending)
                                 {
                                     return;
                                 }
 
-                                var place = record.Rank.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ".   ";
-                                var runners = string.Join(" & ", record.Players.Select(x => x.Name));
-                                var time = record.Times.Primary;
-                                var runText = place + (time.HasValue ? timeFormatter.Format(time) : "") + " by " + runners;
+                                string place = record.Rank.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ".   ";
+                                string runners = string.Join(" & ", record.Players.Select(x => x.Name));
+                                TimeSpan? time = record.Times.Primary;
+                                string runText = place + (time.HasValue ? timeFormatter.Format(time) : "") + " by " + runners;
                                 var runNode = new TreeNode(runText)
                                 {
                                     Tag = record
@@ -217,10 +217,10 @@ public partial class BrowseSpeedrunComDialog : Form
 
                 try
                 {
-                    var fuzzyUserName = txtSearch.Text.TrimStart('@');
-                    var users = SpeedrunCom.Client.Users.GetUsersFuzzy(fuzzyName: fuzzyUserName);
+                    string fuzzyUserName = txtSearch.Text.TrimStart('@');
+                    System.Collections.Generic.IEnumerable<User> users = SpeedrunCom.Client.Users.GetUsersFuzzy(fuzzyName: fuzzyUserName);
 
-                    foreach (var user in users)
+                    foreach (User user in users)
                     {
                         if (searchWorker.CancellationPending)
                         {
@@ -231,36 +231,36 @@ public partial class BrowseSpeedrunComDialog : Form
                         {
                             Tag = user.WebLink
                         };
-                        var recordsGroupedByGames = SpeedrunCom.Client.Users.GetPersonalBests(user.ID, embeds: new RunEmbeds(embedGame: true, embedCategory: true))
+                        System.Collections.Generic.IEnumerable<IGrouping<string, Record>> recordsGroupedByGames = SpeedrunCom.Client.Users.GetPersonalBests(user.ID, embeds: new RunEmbeds(embedGame: true, embedCategory: true))
                             .GroupBy(x => x.Game.Name);
 
-                        var anySplitsAvailableForUser = false;
-                        foreach (var recordsForGame in recordsGroupedByGames)
+                        bool anySplitsAvailableForUser = false;
+                        foreach (IGrouping<string, Record> recordsForGame in recordsGroupedByGames)
                         {
                             if (searchWorker.CancellationPending)
                             {
                                 return;
                             }
 
-                            var gameName = recordsForGame.Key;
+                            string gameName = recordsForGame.Key;
                             var gameNode = new TreeNode(gameName);
-                            var game = recordsForGame.First().Game;
+                            Game game = recordsForGame.First().Game;
                             var timeFormatter = new AutomaticPrecisionTimeFormatter();
                             gameNode.Tag = game.WebLink;
 
-                            var anySplitsAvailableForGame = false;
-                            foreach (var record in recordsForGame)
+                            bool anySplitsAvailableForGame = false;
+                            foreach (Record record in recordsForGame)
                             {
                                 if (searchWorker.CancellationPending)
                                 {
                                     return;
                                 }
 
-                                var categoryName = record.Category.Name;
+                                string categoryName = record.Category.Name;
 
-                                var place = formatPlace(record.Rank);
-                                var coopRunners = record.Players.Count() > 1 ? " by " + string.Join(" & ", record.Players.Select(x => x.Name)) : "";
-                                var recordText = timeFormatter.Format(record.Times.Primary) + " in " + categoryName + coopRunners + place;
+                                string place = formatPlace(record.Rank);
+                                string coopRunners = record.Players.Count() > 1 ? " by " + string.Join(" & ", record.Players.Select(x => x.Name)) : "";
+                                string recordText = timeFormatter.Format(record.Times.Primary) + " in " + categoryName + coopRunners + place;
 
                                 var recordNode = new TreeNode(recordText)
                                 {
@@ -324,9 +324,9 @@ public partial class BrowseSpeedrunComDialog : Form
                     Run.PatchRun(record);
                 }
 
-                var runners = string.Join(" & ", record.Players.Select(x => x.Name));
+                string runners = string.Join(" & ", record.Players.Select(x => x.Name));
                 RunName = runners;
-                var result = PostProcessRun(RunName);
+                DialogResult result = PostProcessRun(RunName);
                 if (result == DialogResult.OK)
                 {
                     DialogResult = result;
@@ -345,13 +345,13 @@ public partial class BrowseSpeedrunComDialog : Form
     {
         if (chkDownloadEmpty.Checked)
         {
-            var name = nodeText;
+            string name = nodeText;
             if (chkIncludeTimes.Checked)
             {
-                var succeededName = false;
+                bool succeededName = false;
                 do
                 {
-                    var result = InputBox.Show(this, "Enter Comparison Name", "Name:", ref name);
+                    DialogResult result = InputBox.Show(this, "Enter Comparison Name", "Name:", ref name);
                     if (result == DialogResult.Cancel)
                     {
                         return result;
@@ -381,11 +381,11 @@ public partial class BrowseSpeedrunComDialog : Form
                 while (!succeededName);
             }
 
-            var pbTimes = Run.Select(x => x.PersonalBestSplitTime).ToArray();
+            Time[] pbTimes = Run.Select(x => x.PersonalBestSplitTime).ToArray();
             Run.ClearTimes();
             if (chkIncludeTimes.Checked)
             {
-                for (var index = 0; index < Run.Count; index++)
+                for (int index = 0; index < Run.Count; index++)
                 {
                     Run[index].Comparisons[name] = pbTimes[index];
                 }
@@ -420,7 +420,7 @@ public partial class BrowseSpeedrunComDialog : Form
             }
             else if (splitsTreeView.SelectedNode.Tag is Record record)
             {
-                var uri = record.WebLink;
+                Uri uri = record.WebLink;
                 Process.Start(uri.AbsoluteUri);
             }
         }

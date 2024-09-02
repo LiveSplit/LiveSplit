@@ -18,7 +18,7 @@ public static class IRunImportRunExtensions
     {
         for (int i = startIndex; i < target.Count; i++)
         {
-            var targetSeg = target[i];
+            ISegment targetSeg = target[i];
             if (targetSeg.Name.Trim().ToLower() == segment.Name.Trim().ToLower())
             {
                 return i;
@@ -36,8 +36,8 @@ public static class IRunImportRunExtensions
             if (!SRLComparisonGenerator.IsRaceComparison(name))
             {
                 target.CustomComparisons.Add(name);
-                var maxMatched = -1;
-                foreach (var segment in comparisonRun)
+                int maxMatched = -1;
+                foreach (ISegment segment in comparisonRun)
                 {
                     if (segment == comparisonRun.Last())
                     {
@@ -45,7 +45,7 @@ public static class IRunImportRunExtensions
                     }
                     else
                     {
-                        var matchingIndex = FindMatchingIndex(target, segment, maxMatched + 1);
+                        int matchingIndex = FindMatchingIndex(target, segment, maxMatched + 1);
                         if (matchingIndex >= 0)
                         {
                             target[matchingIndex].Comparisons[name] = segment.PersonalBestSplitTime;
@@ -59,7 +59,7 @@ public static class IRunImportRunExtensions
             }
             else
             {
-                var result = MessageBox.Show(form, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                DialogResult result = MessageBox.Show(form, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
                 {
                     return false;
@@ -68,7 +68,7 @@ public static class IRunImportRunExtensions
         }
         else
         {
-            var result = MessageBox.Show(form, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+            DialogResult result = MessageBox.Show(form, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
             if (result == DialogResult.Retry)
             {
                 return false;
@@ -83,7 +83,7 @@ public static class IRunImportRunExtensions
     {
         while (!AddComparisonFromRun(target, comparisonRun, name, form))
         {
-            var result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref name);
+            DialogResult result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref name);
             if (result == DialogResult.Cancel)
             {
                 return null;

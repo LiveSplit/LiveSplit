@@ -139,27 +139,27 @@ public partial class ShareRunDialog : Form
         var timeFormatter = new RegularTimeFormatter(TimeAccuracy.Seconds);
         var deltaTimeFormatter = new DeltaTimeFormatter();
 
-        var game = Run.GameName ?? "";
-        var category = Run.GetExtendedCategoryName();
-        var pb = timeFormatter.Format(Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod]) ?? "";
-        var title = Run.GetExtendedName();
+        string game = Run.GameName ?? "";
+        string category = Run.GetExtendedCategoryName();
+        string pb = timeFormatter.Format(Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod]) ?? "";
+        string title = Run.GetExtendedName();
 
-        var splitName = "";
-        var splitTime = "-";
-        var deltaTime = "-";
+        string splitName = "";
+        string splitTime = "-";
+        string deltaTime = "-";
 
         if ((State.CurrentPhase == TimerPhase.Running
             || State.CurrentPhase == TimerPhase.Paused)
             && State.CurrentSplitIndex > 0)
         {
-            var lastSplit = Run[State.CurrentSplitIndex - 1];
+            ISegment lastSplit = Run[State.CurrentSplitIndex - 1];
 
             splitName = lastSplit.Name ?? "";
             splitTime = timeFormatter.Format(lastSplit.SplitTime[State.CurrentTimingMethod]);
             deltaTime = deltaTimeFormatter.Format(lastSplit.SplitTime[State.CurrentTimingMethod] - lastSplit.PersonalBestSplitTime[State.CurrentTimingMethod]);
         }
 
-        var streamLink = "";
+        string streamLink = "";
 
         if (notePlaceholder.Contains("$stream"))
         {
@@ -167,7 +167,7 @@ public partial class ShareRunDialog : Form
             {
                 if (Twitch.Instance.IsLoggedIn || Twitch.Instance.VerifyLogin(true))
                 {
-                    var userName = Twitch.Instance.ChannelName;
+                    string userName = Twitch.Instance.ChannelName;
                     streamLink = string.Format("http://twitch.tv/{0}", userName);
                 }
             }
@@ -246,8 +246,8 @@ public partial class ShareRunDialog : Form
 
     private void btnSubmit_Click(object sender, EventArgs e)
     {
-        var notes = FormatNotes(txtNotes.Text);
-        var attachSplits = chkAttachSplits.Checked;
+        string notes = FormatNotes(txtNotes.Text);
+        bool attachSplits = chkAttachSplits.Checked;
 
         SaveNotesFormat();
 
@@ -261,7 +261,7 @@ public partial class ShareRunDialog : Form
                 return;
             }
 
-            var runSubmitted = CurrentPlatform.SubmitRun(
+            bool runSubmitted = CurrentPlatform.SubmitRun(
                 Run,
                 ScreenShotFunction,
                 attachSplits,
@@ -299,7 +299,7 @@ public partial class ShareRunDialog : Form
 
     private void Insert(string insertText)
     {
-        var selectionIndex = txtNotes.SelectionStart;
+        int selectionIndex = txtNotes.SelectionStart;
         txtNotes.Text = txtNotes.Text.Insert(selectionIndex, insertText);
         txtNotes.SelectionStart = selectionIndex + insertText.Length;
         txtNotes.Focus();

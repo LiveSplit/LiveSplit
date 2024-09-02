@@ -14,10 +14,10 @@ public class Twitter : IRunUploadPlatform
 {
     public ISettings Settings { get; set; }
 
-    protected static readonly Twitter _Instance = new Twitter();
+    protected static readonly Twitter _Instance = new();
     public static Twitter Instance => _Instance;
 
-    public static readonly Uri BaseUri = new Uri("https://twitter.com/intent/tweet");
+    public static readonly Uri BaseUri = new("https://twitter.com/intent/tweet");
 
     protected Twitter() { }
 
@@ -41,7 +41,7 @@ When you click share, LiveSplit opens a Tweet composition window in your default
         }
 
         ImageToClipboard(screenShotFunction());
-        var uri = MakeUri(comment);
+        string uri = MakeUri(comment);
         Process.Start(uri);
 
         return true;
@@ -65,7 +65,7 @@ When you click share, LiveSplit opens a Tweet composition window in your default
     }
     private string MakeUri(string text)
     {
-        var intentText = "";
+        string intentText = "";
         if (!string.IsNullOrEmpty(text))
         {
             intentText = "?text=" + Uri.EscapeDataString(text);

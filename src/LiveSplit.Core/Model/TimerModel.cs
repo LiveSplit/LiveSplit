@@ -137,12 +137,12 @@ public class TimerModel : ITimerModel
 
     private void ResetSplits()
     {
-        var oldPhase = CurrentState.CurrentPhase;
+        TimerPhase oldPhase = CurrentState.CurrentPhase;
         CurrentState.CurrentPhase = TimerPhase.NotRunning;
         CurrentState.CurrentSplitIndex = -1;
 
         //Reset Splits
-        foreach (var split in CurrentState.Run)
+        foreach (ISegment split in CurrentState.Run)
         {
             split.SplitTime = default;
         }
@@ -179,7 +179,7 @@ public class TimerModel : ITimerModel
             Pause();
         }
 
-        var pauseTime = CurrentState.PauseTime ?? TimeSpan.Zero;
+        TimeSpan pauseTime = CurrentState.PauseTime ?? TimeSpan.Zero;
         if (CurrentState.CurrentPhase == TimerPhase.Ended)
         {
             CurrentState.Run.Last().SplitTime += new Time(pauseTime, pauseTime);
@@ -219,14 +219,14 @@ public class TimerModel : ITimerModel
 
     private void UpdateAttemptHistory()
     {
-        Time time = new Time();
+        var time = new Time();
         if (CurrentState.CurrentPhase == TimerPhase.Ended)
         {
             time = CurrentState.CurrentTime;
         }
 
-        var maxIndex = CurrentState.Run.AttemptHistory.DefaultIfEmpty().Max(x => x.Index);
-        var newIndex = Math.Max(0, maxIndex + 1);
+        int maxIndex = CurrentState.Run.AttemptHistory.DefaultIfEmpty().Max(x => x.Index);
+        int newIndex = Math.Max(0, maxIndex + 1);
         var newAttempt = new Attempt(newIndex, time, CurrentState.AttemptStarted, CurrentState.AttemptEnded, CurrentState.PauseTime);
         CurrentState.Run.AttemptHistory.Add(newAttempt);
     }
@@ -237,7 +237,7 @@ public class TimerModel : ITimerModel
         TimeSpan? previousSplitTimeRTA = TimeSpan.Zero;
         TimeSpan? currentSegmentGameTime = TimeSpan.Zero;
         TimeSpan? previousSplitTimeGameTime = TimeSpan.Zero;
-        foreach (var split in CurrentState.Run)
+        foreach (ISegment split in CurrentState.Run)
         {
             var newBestSegment = new Time(split.BestSegmentTime);
             if (split.SplitTime.RealTime != null)
@@ -266,7 +266,7 @@ public class TimerModel : ITimerModel
 
     private void UpdatePBSplits()
     {
-        var curMethod = CurrentState.CurrentTimingMethod;
+        TimingMethod curMethod = CurrentState.CurrentTimingMethod;
         if ((CurrentState.Run.Last().SplitTime[curMethod] != null && CurrentState.Run.Last().PersonalBestSplitTime[curMethod] == null) || CurrentState.Run.Last().SplitTime[curMethod] < CurrentState.Run.Last().PersonalBestSplitTime[curMethod])
         {
             SetRunAsPB();
@@ -277,7 +277,7 @@ public class TimerModel : ITimerModel
     {
         TimeSpan? splitTimeRTA = TimeSpan.Zero;
         TimeSpan? splitTimeGameTime = TimeSpan.Zero;
-        foreach (var split in CurrentState.Run.Take(CurrentState.CurrentSplitIndex))
+        foreach (ISegment split in CurrentState.Run.Take(CurrentState.CurrentSplitIndex))
         {
             var newTime = new Time
             {
@@ -319,7 +319,7 @@ public class TimerModel : ITimerModel
     {
         CurrentState.Run.ImportSegmentHistory();
         CurrentState.Run.FixSplits();
-        foreach (var current in CurrentState.Run)
+        foreach (ISegment current in CurrentState.Run)
         {
             current.PersonalBestSplitTime = current.SplitTime;
         }

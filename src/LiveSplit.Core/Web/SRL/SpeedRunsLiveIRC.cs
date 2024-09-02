@@ -133,7 +133,7 @@ public class SpeedRunsLiveIRC : IDisposable
             if (RaceChannel != null && LiveSplitChannel != null)
             {
                 RemoveRaceComparisons();
-                foreach (var user in GetRaceChannelUsers().Where(x => x.Rights.HasFlag(SRLIRCRights.Voice) && x.Name != Username))
+                foreach (SRLIRCUser user in GetRaceChannelUsers().Where(x => x.Rights.HasFlag(SRLIRCRights.Voice) && x.Name != Username))
                 {
                     if (LiveSplitChannel.Users.Select(x => x.User.NickName).Contains(user.Name))
                     {
@@ -176,9 +176,9 @@ public class SpeedRunsLiveIRC : IDisposable
         {
             if (Model.CurrentState.CurrentSplitIndex > 0)
             {
-                var split = Model.CurrentState.Run[Model.CurrentState.CurrentSplitIndex - 1];
-                var timeRTA = "-";
-                var timeIGT = "-";
+                ISegment split = Model.CurrentState.Run[Model.CurrentState.CurrentSplitIndex - 1];
+                string timeRTA = "-";
+                string timeIGT = "-";
                 if (split.SplitTime.RealTime != null)
                 {
                     timeRTA = timeFormatter.Format(split.SplitTime.RealTime);
@@ -221,8 +221,8 @@ public class SpeedRunsLiveIRC : IDisposable
 
         if (LiveSplitChannel != null && (RaceState == RaceState.RaceStarted || RaceState == RaceState.RaceEnded))
         {
-            var split = Model.CurrentState.CurrentSplit;
-            var time = "-";
+            ISegment split = Model.CurrentState.CurrentSplit;
+            string time = "-";
             if (Model.CurrentState.CurrentSplitIndex == Model.CurrentState.Run.Count - 1)
             {
                 Client.LocalUser.SendMessage(LiveSplitChannel, $"!done RealTime {time}");
@@ -264,7 +264,7 @@ public class SpeedRunsLiveIRC : IDisposable
             {
                 Task.Factory.StartNew(() =>
                 {
-                    foreach (var channel in ChannelsToJoin)
+                    foreach (string channel in ChannelsToJoin)
                     {
                         Client.Channels.Join(channel);
                     }
@@ -281,7 +281,7 @@ public class SpeedRunsLiveIRC : IDisposable
             && e.Message.Source.Name == "RaceBot"
             && e.Message.Parameters.Count > 1)
         {
-            var text = e.Message.Parameters[1];
+            string text = e.Message.Parameters[1];
             if (text != null && !text.Contains("#srl"))
             {
                 MessageReceived?.Invoke(this, new Tuple<string, SRLIRCUser, string>(RaceChannelName, new SRLIRCUser("RaceBot", SRLIRCRights.Operator), text));
@@ -293,8 +293,8 @@ public class SpeedRunsLiveIRC : IDisposable
 
     protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)
     {
-        var run = Model.CurrentState.Run;
-        var segment = GetMatchingSegment(run, user, segmentName, method, time.HasValue);
+        IRun run = Model.CurrentState.Run;
+        ISegment segment = GetMatchingSegment(run, user, segmentName, method, time.HasValue);
         if (segment != null)
         {
             AddSplit(user, segment, time, method);
@@ -303,8 +303,8 @@ public class SpeedRunsLiveIRC : IDisposable
 
     private static ISegment GetMatchingSegment(IRun run, string user, string segmentName, TimingMethod method, bool timeHasValue)
     {
-        var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(user);
-        var trimmedSegmentName = segmentName.Trim().ToLower();
+        string comparisonName = SRLComparisonGenerator.GetRaceComparisonName(user);
+        string trimmedSegmentName = segmentName.Trim().ToLower();
 
         if (timeHasValue)
         {
@@ -316,14 +316,14 @@ public class SpeedRunsLiveIRC : IDisposable
 
     protected void ProcessFinalSplit(string user, TimeSpan? time, TimingMethod method)
     {
-        var run = Model.CurrentState.Run;
-        var segment = run.Last();
+        IRun run = Model.CurrentState.Run;
+        ISegment segment = run.Last();
         AddSplit(user, segment, time, method);
     }
 
     protected void AddSplit(string user, ISegment segment, TimeSpan? time, TimingMethod method)
     {
-        var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(user);
+        string comparisonName = SRLComparisonGenerator.GetRaceComparisonName(user);
         var newTime = new Time(segment.Comparisons[comparisonName]);
         newTime[method] = time;
         segment.Comparisons[comparisonName] = newTime;
@@ -344,21 +344,21 @@ public class SpeedRunsLiveIRC : IDisposable
             }
             else if (message.Contains(" has been removed from the race."))
             {
-                var userName = message.Substring(0, message.IndexOf(" "));
-                var raceComparison = SRLComparisonGenerator.GetRaceComparisonName(userName);
+                string userName = message.Substring(0, message.IndexOf(" "));
+                string raceComparison = SRLComparisonGenerator.GetRaceComparisonName(userName);
 
                 if (Model.CurrentState.CurrentComparison.Equals(raceComparison))
                 {
                     Model.CurrentState.CurrentComparison = Run.PersonalBestComparisonName;
                 }
 
-                var comparisonGenerator = Model.CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == raceComparison);
+                IComparisonGenerator comparisonGenerator = Model.CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == raceComparison);
                 if (comparisonGenerator != null)
                 {
                     Model.CurrentState.Run.ComparisonGenerators.Remove(comparisonGenerator);
                 }
 
-                foreach (var segment in Model.CurrentState.Run)
+                foreach (ISegment segment in Model.CurrentState.Run)
                 {
                     segment.Comparisons[raceComparison] = default;
                 }
@@ -369,7 +369,7 @@ public class SpeedRunsLiveIRC : IDisposable
             }
             else if (message.Contains(" enters the race!"))
             {
-                var userName = message.Substring(0, message.IndexOf(" "));
+                string userName = message.Substring(0, message.IndexOf(" "));
                 if (LiveSplitChannel.Users.Select(x => x.User.NickName).Contains(userName))
                 {
                     AddComparison(userName);
@@ -405,8 +405,8 @@ public class SpeedRunsLiveIRC : IDisposable
 
     protected void AddComparison(string userName)
     {
-        var run = Model.CurrentState.Run;
-        var comparisonName = SRLComparisonGenerator.GetRaceComparisonName(userName);
+        IRun run = Model.CurrentState.Run;
+        string comparisonName = SRLComparisonGenerator.GetRaceComparisonName(userName);
         if (run.ComparisonGenerators.All(x => x.Name != comparisonName))
         {
             CompositeComparisons.AddShortComparisonName(comparisonName, userName);
@@ -421,7 +421,7 @@ public class SpeedRunsLiveIRC : IDisposable
             Model.CurrentState.CurrentComparison = Run.PersonalBestComparisonName;
         }
 
-        for (var ind = 0; ind < Model.CurrentState.Run.ComparisonGenerators.Count; ind++)
+        for (int ind = 0; ind < Model.CurrentState.Run.ComparisonGenerators.Count; ind++)
         {
             if (SRLComparisonGenerator.IsRaceComparison(Model.CurrentState.Run.ComparisonGenerators[ind].Name))
             {
@@ -430,11 +430,11 @@ public class SpeedRunsLiveIRC : IDisposable
             }
         }
 
-        foreach (var segment in Model.CurrentState.Run)
+        foreach (ISegment segment in Model.CurrentState.Run)
         {
-            for (var index = 0; index < segment.Comparisons.Count; index++)
+            for (int index = 0; index < segment.Comparisons.Count; index++)
             {
-                var comparison = segment.Comparisons.ElementAt(index);
+                KeyValuePair<string, Time> comparison = segment.Comparisons.ElementAt(index);
                 if (SRLComparisonGenerator.IsRaceComparison(comparison.Key))
                 {
                     segment.Comparisons[comparison.Key] = default;
@@ -447,8 +447,8 @@ public class SpeedRunsLiveIRC : IDisposable
     {
         if ((user == "RaceBot") && RaceChannel == null && message.StartsWith("Race initiated for " + GameName))
         {
-            var index = message.IndexOf("#srl");
-            var channel = message.Substring(index, 10);
+            int index = message.IndexOf("#srl");
+            string channel = message.Substring(index, 10);
             Client.Channels.Join(channel);
             Client.Channels.Join(channel + "-livesplit");
             RaceBotResponseTimer.Enabled = false;
@@ -463,20 +463,20 @@ public class SpeedRunsLiveIRC : IDisposable
             {
                 try
                 {
-                    var method = message.Substring("!time ".Length).StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
-                    var finalSplit = message.StartsWith("!done ");
-                    var arguments = message.Substring("!time RealTime ".Length);
+                    TimingMethod method = message.Substring("!time ".Length).StartsWith("GameTime") ? TimingMethod.GameTime : TimingMethod.RealTime;
+                    bool finalSplit = message.StartsWith("!done ");
+                    string arguments = message.Substring("!time RealTime ".Length);
 
                     if (finalSplit)
                     {
-                        var time = ParseTime(arguments);
+                        TimeSpan? time = ParseTime(arguments);
                         ProcessFinalSplit(user, time, method);
                     }
                     else
                     {
-                        var timeIndex = arguments.LastIndexOf("\"");
-                        var splitName = Unescape(arguments.Substring(1, timeIndex - 1));
-                        var time = ParseTime(arguments.Substring(timeIndex + 2));
+                        int timeIndex = arguments.LastIndexOf("\"");
+                        string splitName = Unescape(arguments.Substring(1, timeIndex - 1));
+                        TimeSpan? time = ParseTime(arguments.Substring(timeIndex + 2));
                         ProcessSplit(user, splitName, time, method);
                     }
                 }
@@ -515,11 +515,11 @@ public class SpeedRunsLiveIRC : IDisposable
 
         if (MessageReceived != null)
         {
-            var rights = SRLIRCRights.Normal;
+            SRLIRCRights rights = SRLIRCRights.Normal;
             if (e.Targets[0] is IrcChannel)
             {
                 var target = e.Targets[0] as IrcChannel;
-                var source = target.Users.FirstOrDefault(x => x.User.NickName == e.Source.Name);
+                IrcChannelUser source = target.Users.FirstOrDefault(x => x.User.NickName == e.Source.Name);
                 if (source != null)
                 {
                     rights = SRLIRCRightsHelper.FromIrcChannelUser(source);

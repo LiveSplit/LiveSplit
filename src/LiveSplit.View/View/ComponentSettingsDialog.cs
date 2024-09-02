@@ -35,7 +35,7 @@ public partial class ComponentSettingsDialog : Form
 
     protected void AddComponent(IComponent component)
     {
-        var settingsControl = Component.GetSettingsControl(LayoutMode.Vertical);
+        Control settingsControl = Component.GetSettingsControl(LayoutMode.Vertical);
         AddControl(component.ComponentName, settingsControl);
         ComponentSettings = component.GetSettings(new XmlDocument());
     }

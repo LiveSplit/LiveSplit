@@ -8,7 +8,7 @@ public class SRLRaceViewer : IRaceViewer
 {
     public void ShowRace(IRaceInfo race)
     {
-        var url = string.Format("http://speedrunslive.com/race/{0}", race.Id);
+        string url = string.Format("http://speedrunslive.com/race/{0}", race.Id);
         Process.Start(url);
     }
 

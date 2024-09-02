@@ -274,7 +274,7 @@ public static class FiletypeRegistryHelper
 
     public static void RegisterFileFormats()
     {
-        var root = Registry.ClassesRoot;
+        RegistryKey root = Registry.ClassesRoot;
         if (!IsAlreadyRegistered())
         {
             try
@@ -314,28 +314,28 @@ public static class FiletypeRegistryHelper
             }
         }
 
-        var lssExtensionKey = root.OpenSubKey(".lss");
+        RegistryKey lssExtensionKey = root.OpenSubKey(".lss");
         if (lssExtensionKey == null)
         {
             AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
             CreateLSSExtensionKey();
         }
 
-        var lssApplicationKey = root.OpenSubKey("LiveSplit.SplitsFile");
+        RegistryKey lssApplicationKey = root.OpenSubKey("LiveSplit.SplitsFile");
         if (lssApplicationKey == null)
         {
             AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
             CreateLSSApplicationKey();
         }
 
-        var lslExtensionKey = root.OpenSubKey(".lsl");
+        RegistryKey lslExtensionKey = root.OpenSubKey(".lsl");
         if (lslExtensionKey == null)
         {
             AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
             CreateLSLExtensionKey();
         }
 
-        var lslApplicationKey = root.OpenSubKey("LiveSplit.LayoutFile");
+        RegistryKey lslApplicationKey = root.OpenSubKey("LiveSplit.LayoutFile");
         if (lslApplicationKey == null)
         {
             AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
@@ -345,27 +345,27 @@ public static class FiletypeRegistryHelper
 
     private static void CreateLSSExtensionKey()
     {
-        var root = Registry.ClassesRoot;
-        var lssExtensionKey = root.CreateSubKey(".lss");
+        RegistryKey root = Registry.ClassesRoot;
+        RegistryKey lssExtensionKey = root.CreateSubKey(".lss");
         lssExtensionKey.SetValue("", "LiveSplit.SplitsFile");
     }
 
     private static bool CheckLSSExtensionKey()
     {
-        var root = Registry.ClassesRoot;
-        var lssExtensionKey = root.OpenSubKey(".lss");
+        RegistryKey root = Registry.ClassesRoot;
+        RegistryKey lssExtensionKey = root.OpenSubKey(".lss");
         return lssExtensionKey.GetValue("").ToString() == "LiveSplit.SplitsFile";
     }
 
     private static void CreateLSSApplicationKey()
     {
-        var root = Registry.ClassesRoot;
-        var lssApplicationKey = root.CreateSubKey("LiveSplit.SplitsFile");
-        var shell = lssApplicationKey.CreateSubKey("shell");
-        var open = shell.CreateSubKey("open");
-        var command = open.CreateSubKey("command");
+        RegistryKey root = Registry.ClassesRoot;
+        RegistryKey lssApplicationKey = root.CreateSubKey("LiveSplit.SplitsFile");
+        RegistryKey shell = lssApplicationKey.CreateSubKey("shell");
+        RegistryKey open = shell.CreateSubKey("open");
+        RegistryKey command = open.CreateSubKey("command");
         command.SetValue("", $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -s \"{"%1"}\"");
-        var iconKey = lssApplicationKey.CreateSubKey("DefaultIcon");
+        RegistryKey iconKey = lssApplicationKey.CreateSubKey("DefaultIcon");
         iconKey.SetValue("", $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"SplitsFile.ico"}");
         SHChangeNotify(HChangeNotifyEventID.SHCNE_ASSOCCHANGED, HChangeNotifyFlags.SHCNF_IDLIST, IntPtr.Zero, IntPtr.Zero);
 
@@ -373,17 +373,17 @@ public static class FiletypeRegistryHelper
 
     private static bool CheckLSSApplicationKey()
     {
-        var root = Registry.ClassesRoot;
-        var lssApplicationKey = root.OpenSubKey("LiveSplit.SplitsFile");
-        var shell = lssApplicationKey.OpenSubKey("shell");
-        var open = shell.OpenSubKey("open");
-        var command = open.OpenSubKey("command");
+        RegistryKey root = Registry.ClassesRoot;
+        RegistryKey lssApplicationKey = root.OpenSubKey("LiveSplit.SplitsFile");
+        RegistryKey shell = lssApplicationKey.OpenSubKey("shell");
+        RegistryKey open = shell.OpenSubKey("open");
+        RegistryKey command = open.OpenSubKey("command");
         if (command.GetValue("").ToString() != $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -s \"{"%1"}\"")
         {
             return false;
         }
 
-        var iconKey = lssApplicationKey.OpenSubKey("DefaultIcon");
+        RegistryKey iconKey = lssApplicationKey.OpenSubKey("DefaultIcon");
         if (iconKey.GetValue("").ToString() != $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"SplitsFile.ico"}")
         {
             return false;
@@ -394,44 +394,44 @@ public static class FiletypeRegistryHelper
 
     private static void CreateLSLExtensionKey()
     {
-        var root = Registry.ClassesRoot;
-        var lslExtensionKey = root.CreateSubKey(".lsl");
+        RegistryKey root = Registry.ClassesRoot;
+        RegistryKey lslExtensionKey = root.CreateSubKey(".lsl");
         lslExtensionKey.SetValue("", "LiveSplit.LayoutFile");
     }
 
     private static bool CheckLSLExtensionKey()
     {
-        var root = Registry.ClassesRoot;
-        var lslExtensionKey = root.OpenSubKey(".lsl");
+        RegistryKey root = Registry.ClassesRoot;
+        RegistryKey lslExtensionKey = root.OpenSubKey(".lsl");
         return lslExtensionKey.GetValue("").ToString() == "LiveSplit.LayoutFile";
     }
 
     private static void CreateLSLApplicationKey()
     {
-        var root = Registry.ClassesRoot;
-        var lslApplicationKey = root.CreateSubKey("LiveSplit.LayoutFile");
-        var shell = lslApplicationKey.CreateSubKey("shell");
-        var open = shell.CreateSubKey("open");
-        var command = open.CreateSubKey("command");
+        RegistryKey root = Registry.ClassesRoot;
+        RegistryKey lslApplicationKey = root.CreateSubKey("LiveSplit.LayoutFile");
+        RegistryKey shell = lslApplicationKey.CreateSubKey("shell");
+        RegistryKey open = shell.CreateSubKey("open");
+        RegistryKey command = open.CreateSubKey("command");
         command.SetValue("", $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -l \"{"%1"}\"");
-        var iconKey = lslApplicationKey.CreateSubKey("DefaultIcon");
+        RegistryKey iconKey = lslApplicationKey.CreateSubKey("DefaultIcon");
         iconKey.SetValue("", $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"LayoutFile.ico"}");
         SHChangeNotify(HChangeNotifyEventID.SHCNE_ASSOCCHANGED, HChangeNotifyFlags.SHCNF_IDLIST, IntPtr.Zero, IntPtr.Zero);
     }
 
     private static bool CheckLSLApplicationKey()
     {
-        var root = Registry.ClassesRoot;
-        var lslApplicationKey = root.OpenSubKey("LiveSplit.LayoutFile");
-        var shell = lslApplicationKey.OpenSubKey("shell");
-        var open = shell.OpenSubKey("open");
-        var command = open.OpenSubKey("command");
+        RegistryKey root = Registry.ClassesRoot;
+        RegistryKey lslApplicationKey = root.OpenSubKey("LiveSplit.LayoutFile");
+        RegistryKey shell = lslApplicationKey.OpenSubKey("shell");
+        RegistryKey open = shell.OpenSubKey("open");
+        RegistryKey command = open.OpenSubKey("command");
         if (command.GetValue("").ToString() != $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -l \"{"%1"}\"")
         {
             return false;
         }
 
-        var iconKey = lslApplicationKey.OpenSubKey("DefaultIcon");
+        RegistryKey iconKey = lslApplicationKey.OpenSubKey("DefaultIcon");
         if (iconKey.GetValue("").ToString() != $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"LayoutFile.ico"}")
         {
             return false;
@@ -444,26 +444,26 @@ public static class FiletypeRegistryHelper
     {
         try
         {
-            var root = Registry.ClassesRoot;
-            var lssExtensionKey = root.OpenSubKey(".lss");
+            RegistryKey root = Registry.ClassesRoot;
+            RegistryKey lssExtensionKey = root.OpenSubKey(".lss");
             if (lssExtensionKey == null || !CheckLSSExtensionKey())
             {
                 return false;
             }
 
-            var lssApplicationKey = root.OpenSubKey("LiveSplit.SplitsFile");
+            RegistryKey lssApplicationKey = root.OpenSubKey("LiveSplit.SplitsFile");
             if (lssApplicationKey == null || !CheckLSSApplicationKey())
             {
                 return false;
             }
 
-            var lslExtensionKey = root.OpenSubKey(".lsl");
+            RegistryKey lslExtensionKey = root.OpenSubKey(".lsl");
             if (lslExtensionKey == null || !CheckLSLExtensionKey())
             {
                 return false;
             }
 
-            var lslApplicationKey = root.OpenSubKey("LiveSplit.LayoutFile");
+            RegistryKey lslApplicationKey = root.OpenSubKey("LiveSplit.LayoutFile");
             if (lslApplicationKey == null || !CheckLSLApplicationKey())
             {
                 return false;

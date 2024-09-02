@@ -11,7 +11,7 @@ public class LayoutSettingsMust
     [Fact]
     public void RememberValuesCorrectly()
     {
-        var sut = CreateSubjectUnderTest();
+        LayoutSettings sut = CreateSubjectUnderTest();
         ValidateSubject(sut);
     }
 
@@ -88,7 +88,7 @@ public class LayoutSettingsMust
     [Fact]
     public void CloneLayoutSettingsCorrectly()
     {
-        var original = CreateSubjectUnderTest();
+        LayoutSettings original = CreateSubjectUnderTest();
         var sut = (LayoutSettings)original.Clone();
         ValidateSubject(sut);
     }
@@ -96,7 +96,7 @@ public class LayoutSettingsMust
     [Fact]
     public void AssignLayoutSettingsCorrectly()
     {
-        var original = CreateSubjectUnderTest();
+        LayoutSettings original = CreateSubjectUnderTest();
         var sut = new LayoutSettings();
         sut.Assign(original);
         ValidateSubject(sut);

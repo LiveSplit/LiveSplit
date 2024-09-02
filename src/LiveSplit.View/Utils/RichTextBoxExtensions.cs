@@ -12,23 +12,23 @@ public static class RichTextBoxExtensions
     {
         try
         {
-            var tokens = text.Split('[');
+            string[] tokens = text.Split('[');
 
-            var style = FontStyle.Regular;
-            var size = 8.25f;
-            var backColor = Color.Transparent;
-            var textColor = Color.Black;
-            var alignment = HorizontalAlignment.Left;
-            var url = string.Empty;
+            FontStyle style = FontStyle.Regular;
+            float size = 8.25f;
+            Color backColor = Color.Transparent;
+            Color textColor = Color.Black;
+            HorizontalAlignment alignment = HorizontalAlignment.Left;
+            string url = string.Empty;
 
-            foreach (var token in tokens)
+            foreach (string token in tokens)
             {
-                var actualText = token;
-                var closingIndex = token.IndexOf("]");
-                var isEnclosed = closingIndex >= 0;
+                string actualText = token;
+                int closingIndex = token.IndexOf("]");
+                bool isEnclosed = closingIndex >= 0;
                 if (isEnclosed)
                 {
-                    var code = token.Substring(0, closingIndex);
+                    string code = token.Substring(0, closingIndex);
                     actualText = token.Substring(closingIndex + 1);
 
                     if (code == "b")
@@ -100,7 +100,7 @@ public static class RichTextBoxExtensions
                     }
                     else if (code == "quote" || code.StartsWith("quote="))
                     {
-                        var quoteText = "Quote";
+                        string quoteText = "Quote";
                         if (code.StartsWith("quote="))
                         {
                             quoteText = string.Format("Originally posted by {0}", code.Substring(6));
@@ -129,7 +129,7 @@ public static class RichTextBoxExtensions
                     }
                     else if (code.StartsWith("section="))
                     {
-                        var sectionText = code.Substring(8);
+                        string sectionText = code.Substring(8);
                         textBox.AppendText(Environment.NewLine);
                         textBox.SelectionFont = new Font(textBox.Font.FontFamily, 10f, FontStyle.Bold);
                         textBox.SelectionAlignment = HorizontalAlignment.Center;

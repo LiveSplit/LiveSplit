@@ -136,7 +136,7 @@ public class SignatureScanner
             // have to implement IEnumerator manually because you can't yield in an unsafe block...
             foreach (int off in new ScanEnumerator(_memory, align, sig))
             {
-                var ptr = _address + off + sig.Offset;
+                IntPtr ptr = _address + off + sig.Offset;
                 if (target.OnFound != null)
                 {
                     ptr = target.OnFound(_process, this, ptr);
@@ -320,7 +320,7 @@ public class SigScanTarget
 
         var sigBytes = new List<byte>();
         var sigMask = new List<bool>();
-        var hasMask = false;
+        bool hasMask = false;
 
         for (int i = 0; i < sigStr.Length; i += 2)
         {

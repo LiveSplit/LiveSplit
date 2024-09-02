@@ -81,7 +81,7 @@ public partial class LayoutSettingsControl : UserControl
 
     private void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
     {
-        var selectedItem = cmbBackgroundType.SelectedItem.ToString();
+        string selectedItem = cmbBackgroundType.SelectedItem.ToString();
         btnBackground.Visible = selectedItem is not "Solid Color" and not "Image";
         btnBackground2.DataBindings.Clear();
         lblImageOpacity.Enabled = lblBlur.Enabled = trkImageOpacity.Enabled = trkBlur.Enabled = selectedItem == "Image";
@@ -115,7 +115,7 @@ public partial class LayoutSettingsControl : UserControl
                 Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*",
                 Title = "Set Background Image..."
             };
-            var result = dialog.ShowDialog();
+            DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
                 try
@@ -145,7 +145,7 @@ public partial class LayoutSettingsControl : UserControl
     {
         // Scale down font in dialog so that size is closer to other font settings, and to allow more granular control over size
         var timerFont = new Font(Settings.TimerFont.FontFamily.Name, Settings.TimerFont.Size / 50f * 18f, Settings.TimerFont.Style, GraphicsUnit.Pixel);
-        var dialog = SettingsHelper.GetFontDialog(timerFont, 7, 20);
+        CustomFontDialog.FontDialog dialog = SettingsHelper.GetFontDialog(timerFont, 7, 20);
         dialog.FontChanged += (s, ev) => updateTimerFont(((CustomFontDialog.FontChangedEventArgs)ev).NewFont);
         dialog.ShowDialog(this);
         lblTimer.Text = TimerFont;
@@ -159,7 +159,7 @@ public partial class LayoutSettingsControl : UserControl
 
     private void btnTimes_Click(object sender, EventArgs e)
     {
-        var dialog = SettingsHelper.GetFontDialog(Settings.TimesFont, 11, 26);
+        CustomFontDialog.FontDialog dialog = SettingsHelper.GetFontDialog(Settings.TimesFont, 11, 26);
         dialog.FontChanged += (s, ev) => Settings.TimesFont = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
         dialog.ShowDialog(this);
         lblTimes.Text = MainFont;
@@ -167,7 +167,7 @@ public partial class LayoutSettingsControl : UserControl
 
     private void btnTextFont_Click(object sender, EventArgs e)
     {
-        var dialog = SettingsHelper.GetFontDialog(Settings.TextFont, 11, 26);
+        CustomFontDialog.FontDialog dialog = SettingsHelper.GetFontDialog(Settings.TextFont, 11, 26);
         dialog.FontChanged += (s, ev) => Settings.TextFont = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
         dialog.ShowDialog(this);
         lblText.Text = SplitNamesFont;
