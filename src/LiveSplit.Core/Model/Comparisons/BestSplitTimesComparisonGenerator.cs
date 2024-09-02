@@ -41,7 +41,10 @@ public class BestSplitTimesComparisonGenerator : IComparisonGenerator
                         }
                     }
                 }
-                else break;
+                else
+                {
+                    break;
+                }
             }
         }
     }
@@ -51,10 +54,15 @@ public class BestSplitTimesComparisonGenerator : IComparisonGenerator
         foreach (var segment in Run)
         {
             if (Run.IndexOf(segment) > 0)
+            {
                 segment.Comparisons[Name] = segment.Comparisons[Model.Run.PersonalBestComparisonName];
+            }
             else
+            {
                 segment.Comparisons[Name] = segment.BestSegmentTime;
+            }
         }
+
         Generate(TimingMethod.RealTime);
         Generate(TimingMethod.GameTime);
     }

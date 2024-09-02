@@ -97,6 +97,7 @@ public partial class LayoutSettingsControl : UserControl
             btnBackground2.DataBindings.Add("BackColor", Settings, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
             lblBackground.Text = "Color:";
         }
+
         Settings.BackgroundType = (BackgroundType)Enum.Parse(typeof(BackgroundType), selectedItem.Replace(" ", ""));
     }
 
@@ -119,7 +120,9 @@ public partial class LayoutSettingsControl : UserControl
                 {
                     var image = Image.FromFile(dialog.FileName);
                     if (Settings.BackgroundImage != null && Settings.BackgroundImage != originalBackgroundImage)
+                    {
                         Settings.BackgroundImage.Dispose();
+                    }
 
                     Settings.BackgroundImage = ((Button)sender).BackgroundImage = image;
                 }
@@ -139,7 +142,7 @@ public partial class LayoutSettingsControl : UserControl
     private void btnTimer_Click(object sender, EventArgs e)
     {
         // Scale down font in dialog so that size is closer to other font settings, and to allow more granular control over size
-        var timerFont = new Font(Settings.TimerFont.FontFamily.Name, (Settings.TimerFont.Size / 50f) * 18f, Settings.TimerFont.Style, GraphicsUnit.Pixel);
+        var timerFont = new Font(Settings.TimerFont.FontFamily.Name, Settings.TimerFont.Size / 50f * 18f, Settings.TimerFont.Style, GraphicsUnit.Pixel);
         var dialog = SettingsHelper.GetFontDialog(timerFont, 7, 20);
         dialog.FontChanged += (s, ev) => updateTimerFont(((CustomFontDialog.FontChangedEventArgs)ev).NewFont);
         dialog.ShowDialog(this);
@@ -149,7 +152,7 @@ public partial class LayoutSettingsControl : UserControl
     private void updateTimerFont(Font timerFont)
     {
         // Scale font back up to the size the Timer component expects
-        Settings.TimerFont = new Font(timerFont.FontFamily.Name, (timerFont.Size / 18f) * 50f, timerFont.Style, GraphicsUnit.Pixel);
+        Settings.TimerFont = new Font(timerFont.FontFamily.Name, timerFont.Size / 18f * 50f, timerFont.Style, GraphicsUnit.Pixel);
     }
 
     private void btnTimes_Click(object sender, EventArgs e)

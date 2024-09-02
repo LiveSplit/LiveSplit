@@ -28,7 +28,10 @@ public static class Updater
         get
         {
             if (_Updaters == null)
+            {
                 _Updaters = new Dictionary<IUpdateable, UpdaterInternal>();
+            }
+
             return _Updaters;
         }
     }
@@ -63,6 +66,7 @@ public static class Updater
                         }
                     }
                     catch { }
+
                     _Updates = updateList;
                 }
 
@@ -84,8 +88,11 @@ public static class Updater
             foreach (Update update in Updates)
             {
                 if (update.Version > Version)
+                {
                     return true;
+                }
             }
+
             return false;
         }
 
@@ -161,7 +168,9 @@ public static class Updater
     {
         string dir = Path.GetDirectoryName(Path.Combine(Directory.GetCurrentDirectory(), path));
         if (!Directory.Exists(dir))
+        {
             Directory.CreateDirectory(dir);
+        }
 
         new WebClient().DownloadFile(url, path);
     }
@@ -177,7 +186,9 @@ public static class Updater
     internal static void UpdateAllInternally(IEnumerable<IUpdateable> updateables)
     {
         foreach (IUpdateable updateable in updateables.Where(x => x.CheckForUpdate()))
+        {
             GetUpdater(updateable).PerformUpdate();
+        }
     }
 
     public static IEnumerable<string> GetChangeLogFromAll(IEnumerable<IUpdateable> updateables)
@@ -188,7 +199,9 @@ public static class Updater
     internal static UpdaterInternal GetUpdater(IUpdateable updateable)
     {
         if (!Updaters.ContainsKey(updateable))
+        {
             Updaters.Add(updateable, new UpdaterInternal(updateable.XMLURL, updateable.UpdateURL, updateable.Version));
+        }
 
         return Updaters[updateable];
     }

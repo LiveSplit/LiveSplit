@@ -116,6 +116,7 @@ public class Run : IRun, INotifyPropertyChanged
         {
             InternalList.Add(x.Clone() as ISegment);
         }
+
         AttemptHistory = new List<Attempt>();
         Factory = factory;
         ComparisonGenerators = Factory.Create(this).ToList();

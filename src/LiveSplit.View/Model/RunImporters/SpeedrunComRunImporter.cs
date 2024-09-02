@@ -12,7 +12,10 @@ public class SpeedrunComRunImporter : IRunImporter
         var dialog = new BrowseSpeedrunComDialog(false);
         var result = dialog.ShowDialog(form);
         if (result == DialogResult.OK)
+        {
             return dialog.Run;
+        }
+
         return null;
     }
 
@@ -25,10 +28,12 @@ public class SpeedrunComRunImporter : IRunImporter
         {
             result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref name);
         }
+
         if (result == DialogResult.OK)
         {
             return run.AddComparisonWithNameInput(dialog.Run, name, form);
         }
+
         return null;
     }
 }

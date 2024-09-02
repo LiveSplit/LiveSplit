@@ -45,6 +45,7 @@ public class Screenshot : IRunUploadPlatform
         {
             Log.Error(ex);
         }
+
         return false;
     }
 }

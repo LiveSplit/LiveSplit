@@ -53,7 +53,9 @@ public class LiveSplitState : ICloneable
                 loadingTimes = LoadingTimes;
             }
             else
+            {
                 loadingTimes = null;
+            }
         }
     }
     private bool isGameTimePaused;
@@ -63,9 +65,13 @@ public class LiveSplitState : ICloneable
         set
         {
             if (!value && isGameTimePaused)
+            {
                 LoadingTimes = CurrentTime.RealTime.Value - (CurrentTime.GameTime ?? CurrentTime.RealTime.Value);
+            }
             else if (value && !isGameTimePaused)
-                GameTimePauseTime = (CurrentTime.GameTime ?? CurrentTime.RealTime);
+            {
+                GameTimePauseTime = CurrentTime.GameTime ?? CurrentTime.RealTime;
+            }
 
             isGameTimePaused = value;
         }
@@ -94,20 +100,32 @@ public class LiveSplitState : ICloneable
             var curTime = new Time();
 
             if (CurrentPhase == TimerPhase.NotRunning)
+            {
                 curTime.RealTime = TimeSpan.Zero;
+            }
             else if (CurrentPhase == TimerPhase.Running)
+            {
                 curTime.RealTime = TimeStamp.Now - AdjustedStartTime;
+            }
             else if (CurrentPhase == TimerPhase.Paused)
+            {
                 curTime.RealTime = TimePausedAt;
+            }
             else
+            {
                 curTime.RealTime = Run.Last().SplitTime.RealTime;
+            }
 
             if (CurrentPhase == TimerPhase.Ended)
+            {
                 curTime.GameTime = Run.Last().SplitTime.GameTime;
+            }
             else
+            {
                 curTime.GameTime = IsGameTimePaused
                     ? GameTimePauseTime
                     : curTime.RealTime - (IsGameTimeInitialized ? (TimeSpan?)LoadingTimes : null);
+            }
 
             return curTime;
         }
@@ -118,9 +136,15 @@ public class LiveSplitState : ICloneable
         get
         {
             if (CurrentPhase == TimerPhase.Paused)
+            {
                 return TimeStamp.Now - StartTimeWithOffset - TimePausedAt;
+            }
+
             if (CurrentPhase != TimerPhase.NotRunning && StartTimeWithOffset != AdjustedStartTime)
+            {
                 return AdjustedStartTime - StartTimeWithOffset;
+            }
+
             return null;
         }
     }
@@ -130,9 +154,15 @@ public class LiveSplitState : ICloneable
         get
         {
             if (CurrentPhase == TimerPhase.Paused || CurrentPhase == TimerPhase.Running)
+            {
                 return TimeStamp.Now - StartTime;
+            }
+
             if (CurrentPhase == TimerPhase.Ended)
+            {
                 return AttemptEnded - AttemptStarted;
+            }
+
             return TimeSpan.Zero;
         }
     }

@@ -26,8 +26,8 @@ public class AverageSegmentsComparisonGenerator : IComparisonGenerator
         var elementCount = curList.Count();
         var weightedList = curList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, elementCount), x)).ToList();
         weightedList = weightedList.OrderBy(x => x.Value).ToList();
-        var totalWeights = weightedList.Aggregate(0.0, (s, x) => (s + x.Key));
-        var averageTime = weightedList.Aggregate(0.0, (s, x) => (s + x.Key * x.Value.TotalSeconds)) / totalWeights;
+        var totalWeights = weightedList.Aggregate(0.0, (s, x) => s + x.Key);
+        var averageTime = weightedList.Aggregate(0.0, (s, x) => s + (x.Key * x.Value.TotalSeconds)) / totalWeights;
         return TimeSpan.FromTicks((long)(averageTime * TimeSpan.TicksPerSecond));
     }
 
@@ -40,7 +40,10 @@ public class AverageSegmentsComparisonGenerator : IComparisonGenerator
     {
         var allHistory = new List<List<TimeSpan>>();
         foreach (var segment in Run)
+        {
             allHistory.Add(new List<TimeSpan>());
+        }
+
         foreach (var attempt in Run.AttemptHistory)
         {
             var ind = attempt.Index;
@@ -51,24 +54,39 @@ public class AverageSegmentsComparisonGenerator : IComparisonGenerator
                 if (segment.SegmentHistory.TryGetValue(ind, out history))
                 {
                     if (history[method] == null)
+                    {
                         ignoreNextHistory = true;
+                    }
                     else if (!ignoreNextHistory)
                     {
                         allHistory[Run.IndexOf(segment)].Add(history[method].Value);
                     }
-                    else ignoreNextHistory = false;
+                    else
+                    {
+                        ignoreNextHistory = false;
+                    }
                 }
-                else ignoreNextHistory = false;
+                else
+                {
+                    ignoreNextHistory = false;
+                }
             }
         }
+
         TimeSpan? totalTime = TimeSpan.Zero;
         for (var ind = 0; ind < Run.Count; ind++)
         {
             var curList = allHistory[ind];
             if (curList.Count == 0)
+            {
                 totalTime = null;
+            }
+
             if (totalTime != null)
+            {
                 totalTime += CalculateAverage(curList);
+            }
+
             var time = new Time(Run[ind].Comparisons[Name]);
             time[method] = totalTime;
             Run[ind].Comparisons[Name] = time;

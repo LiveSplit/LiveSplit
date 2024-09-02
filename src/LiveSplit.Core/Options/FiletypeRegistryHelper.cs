@@ -285,6 +285,7 @@ public static class FiletypeRegistryHelper
             {
                 Log.Error(e);
             }
+
             try
             {
                 root.DeleteSubKeyTree("LiveSplit.SplitsFile");
@@ -293,6 +294,7 @@ public static class FiletypeRegistryHelper
             {
                 Log.Error(e);
             }
+
             try
             {
                 root.DeleteSubKeyTree(".lsl");
@@ -301,6 +303,7 @@ public static class FiletypeRegistryHelper
             {
                 Log.Error(e);
             }
+
             try
             {
                 root.DeleteSubKeyTree("LiveSplit.LayoutFile");
@@ -317,18 +320,21 @@ public static class FiletypeRegistryHelper
             AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
             CreateLSSExtensionKey();
         }
+
         var lssApplicationKey = root.OpenSubKey("LiveSplit.SplitsFile");
         if (lssApplicationKey == null)
         {
             AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
             CreateLSSApplicationKey();
         }
+
         var lslExtensionKey = root.OpenSubKey(".lsl");
         if (lslExtensionKey == null)
         {
             AppDomain.CurrentDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
             CreateLSLExtensionKey();
         }
+
         var lslApplicationKey = root.OpenSubKey("LiveSplit.LayoutFile");
         if (lslApplicationKey == null)
         {
@@ -373,10 +379,16 @@ public static class FiletypeRegistryHelper
         var open = shell.OpenSubKey("open");
         var command = open.OpenSubKey("command");
         if (command.GetValue("").ToString() != $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -s \"{"%1"}\"")
+        {
             return false;
+        }
+
         var iconKey = lssApplicationKey.OpenSubKey("DefaultIcon");
         if (iconKey.GetValue("").ToString() != $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"SplitsFile.ico"}")
+        {
             return false;
+        }
+
         return true;
     }
 
@@ -415,10 +427,16 @@ public static class FiletypeRegistryHelper
         var open = shell.OpenSubKey("open");
         var command = open.OpenSubKey("command");
         if (command.GetValue("").ToString() != $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -l \"{"%1"}\"")
+        {
             return false;
+        }
+
         var iconKey = lslApplicationKey.OpenSubKey("DefaultIcon");
         if (iconKey.GetValue("").ToString() != $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"LayoutFile.ico"}")
+        {
             return false;
+        }
+
         return true;
     }
 
@@ -432,16 +450,19 @@ public static class FiletypeRegistryHelper
             {
                 return false;
             }
+
             var lssApplicationKey = root.OpenSubKey("LiveSplit.SplitsFile");
             if (lssApplicationKey == null || !CheckLSSApplicationKey())
             {
                 return false;
             }
+
             var lslExtensionKey = root.OpenSubKey(".lsl");
             if (lslExtensionKey == null || !CheckLSLExtensionKey())
             {
                 return false;
             }
+
             var lslApplicationKey = root.OpenSubKey("LiveSplit.LayoutFile");
             if (lslApplicationKey == null || !CheckLSLApplicationKey())
             {
@@ -452,6 +473,7 @@ public static class FiletypeRegistryHelper
         {
             Log.Error(ex);
         }
+
         return true;
     }
 

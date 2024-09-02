@@ -29,7 +29,9 @@ public partial class MetadataControl : UserControl
             get
             {
                 if (Metadata.VariableValueNames.ContainsKey(Variable.Name))
+                {
                     return Metadata.VariableValueNames[Variable.Name];
+                }
 
                 return string.Empty;
             }
@@ -40,21 +42,30 @@ public partial class MetadataControl : UserControl
                 if (choice == null)
                 {
                     if (Variable.IsUserDefined)
+                    {
                         variableValue = value;
+                    }
                 }
                 else
                 {
                     variableValue = choice.Value;
                 }
+
                 if (Metadata.VariableValueNames.ContainsKey(Variable.Name))
                 {
                     if (variableValue == null)
+                    {
                         Metadata.VariableValueNames.Remove(Variable.Name);
+                    }
                     else
+                    {
                         Metadata.VariableValueNames[Variable.Name] = variableValue;
+                    }
                 }
                 else if (variableValue != null)
+                {
                     Metadata.VariableValueNames.Add(Variable.Name, variableValue);
+                }
 
                 VariableChanged?.Invoke(this, new MetadataChangedEventArgs(true));
             }
@@ -83,19 +94,23 @@ public partial class MetadataControl : UserControl
     {
         RefreshInformation();
         if (Metadata != null)
+        {
             Metadata.PropertyChanged += Metadata_Changed;
+        }
     }
 
     private void Metadata_Changed(object sender, EventArgs e)
     {
         var metadataChanged = MetadataChanged;
         if (metadataChanged != null)
+        {
             metadataChanged(this, e);
+        }
     }
 
     private int getDynamicControlRowIndex(int controlIndex)
     {
-        return controlIndex / VariablesPerRow + VariablesFirstRowIndex;
+        return (controlIndex / VariablesPerRow) + VariablesFirstRowIndex;
     }
 
     private int getDynamicControlColumnIndex(int controlIndex)
@@ -106,7 +121,9 @@ public partial class MetadataControl : UserControl
     public void RefreshInformation()
     {
         if (Metadata == null)
+        {
             return;
+        }
 
         cmbRegion.Items.Clear();
         cmbPlatform.Items.Clear();
@@ -246,9 +263,13 @@ public partial class MetadataControl : UserControl
                 if (additionalRule != firstRule)
                 {
                     if (additionalRule != lastRule)
+                    {
                         stringBuilder.Append(", ");
+                    }
                     else
+                    {
                         stringBuilder.Append(" and ");
+                    }
                 }
 
                 stringBuilder.Append(additionalRule);

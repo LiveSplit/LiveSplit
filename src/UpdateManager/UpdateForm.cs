@@ -15,7 +15,10 @@ public partial class UpdateForm : Form
     {
         InitializeComponent();
         foreach (IUpdateable updateable in updateables)
+        {
             Updater.GetUpdater(updateable).UpdatePercentageRefreshed += new UpdatePercentageRefreshedEventHandler(updater_UpdatePercentageRefreshed);
+        }
+
         Updateables = updateables;
         OtherProcess = otherProcess;
     }
@@ -25,9 +28,13 @@ public partial class UpdateForm : Form
         Action a = () => prgUpdate.Value = (int)(100 * e.Percentage);
 
         if (prgUpdate.InvokeRequired)
+        {
             prgUpdate.Invoke(a);
+        }
         else
+        {
             a();
+        }
     }
 
     private void UpdateForm_Load(object sender, EventArgs e)
@@ -39,11 +46,18 @@ public partial class UpdateForm : Form
                 Updater.UpdateAllInternally(Updateables);
 
                 if (OtherProcess != null)
+                {
                     Process.Start(OtherProcess);
+                }
+
                 Invoke(new Action(() => Close()));
             }
-            catch (Exception ex) { MessageBox.Show(ex.Message, "Error"); }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
         }
+
         new Thread(new ThreadStart((Action)a)).Start();
     }
 }

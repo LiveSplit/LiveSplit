@@ -10,27 +10,36 @@ public class ColorShowBox : UserControl
     private Color upperColor = Color.Transparent;
     private Color lowerColor = Color.Transparent;
 
-
     public event EventHandler UpperClick = null;
     public event EventHandler LowerClick = null;
-
 
     public Color Color
     {
         get => this.upperColor;
-        set { this.upperColor = this.lowerColor = value; this.Invalidate(); }
+        set
+        {
+            this.upperColor = this.lowerColor = value;
+            this.Invalidate();
+        }
     }
     public Color UpperColor
     {
         get => this.upperColor;
-        set { this.upperColor = value; this.Invalidate(); }
+        set
+        {
+            this.upperColor = value;
+            this.Invalidate();
+        }
     }
     public Color LowerColor
     {
         get => this.lowerColor;
-        set { this.lowerColor = value; this.Invalidate(); }
+        set
+        {
+            this.lowerColor = value;
+            this.Invalidate();
+        }
     }
-
 
     public ColorShowBox()
     {
@@ -42,21 +51,29 @@ public class ColorShowBox : UserControl
     protected void OnUpperClick()
     {
         if (this.UpperClick != null)
+        {
             this.UpperClick(this, null);
+        }
     }
     protected void OnLowerClick()
     {
         if (this.LowerClick != null)
+        {
             this.LowerClick(this, null);
+        }
     }
 
     protected override void OnMouseClick(MouseEventArgs e)
     {
         base.OnMouseClick(e);
         if (e.Y > (this.ClientRectangle.Top + this.ClientRectangle.Bottom) / 2)
+        {
             this.OnLowerClick();
+        }
         else
+        {
             this.OnUpperClick();
+        }
     }
     protected override void OnPaint(PaintEventArgs e)
     {
@@ -68,10 +85,10 @@ public class ColorShowBox : UserControl
             this.ClientRectangle.X,
             this.ClientRectangle.Y,
             this.ClientRectangle.Width,
-            this.ClientRectangle.Height / 2 + 1);
+            (this.ClientRectangle.Height / 2) + 1);
         e.Graphics.FillRectangle(new SolidBrush(this.lowerColor),
             this.ClientRectangle.X,
-            this.ClientRectangle.Y + this.ClientRectangle.Height - this.ClientRectangle.Height / 2,
+            this.ClientRectangle.Y + this.ClientRectangle.Height - (this.ClientRectangle.Height / 2),
             this.ClientRectangle.Width,
             this.ClientRectangle.Height / 2);
     }

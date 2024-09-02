@@ -36,7 +36,9 @@ public class RunMetadata
             run = new Lazy<SpeedrunComSharp.Run>(() => SpeedrunCom.Client.Runs.GetRun(runId));
 
             if (value != null)
+            {
                 TriggerPropertyChanged(false);
+            }
         }
     }
 
@@ -49,7 +51,9 @@ public class RunMetadata
             run = new Lazy<SpeedrunComSharp.Run>(() => value);
 
             if (value != null)
+            {
                 TriggerPropertyChanged(false);
+            }
         }
     }
 
@@ -59,7 +63,9 @@ public class RunMetadata
         set
         {
             if (platformName != value)
+            {
                 TriggerPropertyChanged(true);
+            }
 
             platformName = value;
         }
@@ -72,7 +78,9 @@ public class RunMetadata
         set
         {
             if (regionName != value)
+            {
                 TriggerPropertyChanged(true);
+            }
 
             regionName = value;
         }
@@ -85,14 +93,18 @@ public class RunMetadata
         get
         {
             if (Game == null)
+            {
                 return new Dictionary<Variable, VariableValue>();
+            }
 
             var categoryId = Category != null ? Category.ID : null;
             var variables = Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);
             return variables.ToDictionary(x => x, x =>
             {
                 if (!VariableValueNames.ContainsKey(x.Name))
+                {
                     return null;
+                }
 
                 var variableValue = VariableValueNames[x.Name];
                 var foundValue = x.Values.FirstOrDefault(y => y.Value == variableValue);
@@ -113,12 +125,13 @@ public class RunMetadata
         set
         {
             if (usesEmulator != value)
+            {
                 TriggerPropertyChanged(true);
+            }
 
             usesEmulator = value;
         }
     }
-
 
     public bool GameAvailable { get; private set; }
     public Game Game
@@ -169,7 +182,10 @@ public class RunMetadata
                             var game = SpeedrunCom.Client.Games.GetGame(gameId, new GameEmbeds(embedRegions: true, embedPlatforms: true));
                             gameLoaded = true;
                             if (game != null)
+                            {
                                 GameAvailable = true;
+                            }
+
                             return game;
                         }
                         catch
@@ -183,22 +199,27 @@ public class RunMetadata
                     var platformTask = Task.Factory.StartNew(() =>
                         {
                             var game = this.game.Value;
-                            if (game != null && !game.Platforms.Any(x => x.Name == PlatformName) || gameLoaded && game == null)
+                            if ((game != null && !game.Platforms.Any(x => x.Name == PlatformName)) || (gameLoaded && game == null))
+                            {
                                 PlatformName = string.Empty;
+                            }
                         });
                     var regionTask = Task.Factory.StartNew(() =>
                         {
                             var game = this.game.Value;
-                            if (game != null && !game.Regions.Any(x => x.Name == RegionName) || gameLoaded && game == null)
+                            if ((game != null && !game.Regions.Any(x => x.Name == RegionName)) || (gameLoaded && game == null))
+                            {
                                 RegionName = string.Empty;
+                            }
                         });
                 }
                 else
+                {
                     this.game = new Lazy<Game>(() => null);
+                }
 
                 oldCategoryName = null;
             }
-
 
             if (LiveSplitRun.CategoryName != oldCategoryName)
             {
@@ -211,14 +232,19 @@ public class RunMetadata
                     {
                         var game = this.game.Value;
                         if (game == null)
+                        {
                             return null;
+                        }
 
                         try
                         {
                             var category = SpeedrunCom.Client.Games.GetCategories(game.ID, embeds: new CategoryEmbeds(embedVariables: true))
                                 .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == oldCategoryName);
                             if (category != null)
+                            {
                                 CategoryAvailable = true;
+                            }
+
                             return category;
                         }
                         catch
@@ -234,7 +260,9 @@ public class RunMetadata
                             var categoryId = category != null ? category.ID : null;
                             var game = this.game.Value;
                             if (game == null && !gameLoaded)
+                            {
                                 return;
+                            }
 
                             try
                             {
@@ -250,7 +278,9 @@ public class RunMetadata
                                         var variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
                                         if (variable == null
                                         || (!variable.Values.Any(x => x.Value == variableNamePair.Value) && !variable.IsUserDefined))
+                                        {
                                             deletions.Add(variableNamePair.Key);
+                                        }
                                     }
                                 }
                                 else
@@ -262,6 +292,7 @@ public class RunMetadata
                                 {
                                     variableValueNames.Remove(variable);
                                 }
+
                                 VariableValueNames = variableValueNames;
                             }
                             catch (Exception ex)
@@ -271,7 +302,9 @@ public class RunMetadata
                         });
                 }
                 else
+                {
                     this.category = new Lazy<Category>(() => null);
+                }
             }
         }
     }

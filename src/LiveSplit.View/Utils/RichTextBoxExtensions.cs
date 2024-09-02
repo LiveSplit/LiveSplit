@@ -102,7 +102,9 @@ public static class RichTextBoxExtensions
                     {
                         var quoteText = "Quote";
                         if (code.StartsWith("quote="))
+                        {
                             quoteText = string.Format("Originally posted by {0}", code.Substring(6));
+                        }
 
                         textBox.AppendText(Environment.NewLine);
                         textBox.SelectionFont = new Font(textBox.Font.FontFamily, 8.25f, FontStyle.Underline | FontStyle.Italic);
@@ -115,12 +117,16 @@ public static class RichTextBoxExtensions
                         backColor = Color.Transparent;
                         actualText = Environment.NewLine + actualText;
                     }
-                    else if (code == "list" || code == "/list") { }
+                    else if (code == "list" || code == "/list")
+                    {
+                    }
                     else if (code == "*")
                     {
                         actualText = "    ●  " + actualText;
                     }
-                    else if (code == "/section") { }
+                    else if (code == "/section")
+                    {
+                    }
                     else if (code.StartsWith("section="))
                     {
                         var sectionText = code.Substring(8);
@@ -129,7 +135,9 @@ public static class RichTextBoxExtensions
                         textBox.SelectionAlignment = HorizontalAlignment.Center;
                         textBox.AppendText(sectionText + Environment.NewLine);
                     }
-                    else if (code == "url") { }
+                    else if (code == "url")
+                    {
+                    }
                     else if (code == "/url")
                     {
                         if (!string.IsNullOrEmpty(url))

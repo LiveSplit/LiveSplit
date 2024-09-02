@@ -17,8 +17,8 @@ public class Excel : IRunUploadPlatform
 
     public string PlatformName => "Excel";
 
-    public string Description =>
-@"Export your splits as an Excel Sheet to analyze your splits. 
+    public string Description
+=> @"Export your splits as an Excel Sheet to analyze your splits. 
 This includes your whole history of all the runs you ever did.";
 
     public ISettings Settings { get; set; }
@@ -45,7 +45,10 @@ This includes your whole history of all the runs you ever did.";
                 var path = dialog.FileName;
 
                 if (!File.Exists(path))
+                {
                     File.Create(path).Close();
+                }
+
                 using (var stream = File.Open(path, FileMode.Create, FileAccess.Write))
                 {
                     var runSaver = new ExcelRunSaver();
@@ -54,6 +57,7 @@ This includes your whole history of all the runs you ever did.";
                 }
             }
         }
+
         return false;
     }
 }

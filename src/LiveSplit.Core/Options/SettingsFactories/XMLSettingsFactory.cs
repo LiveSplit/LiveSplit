@@ -67,7 +67,9 @@ public class XMLSettingsFactory : ISettingsFactory
             {
                 var comparisonName = generatorNode.GetAttribute("name");
                 if (settings.ComparisonGeneratorStates.ContainsKey(comparisonName))
+                {
                     settings.ComparisonGeneratorStates[comparisonName] = bool.Parse(generatorNode.InnerText);
+                }
             }
 
             foreach (var splitNode in recentSplits.GetElementsByTagName("SplitsFile"))
@@ -78,11 +80,15 @@ public class XMLSettingsFactory : ISettingsFactory
 
                 var method = TimingMethod.RealTime;
                 if (version >= new Version(1, 6, 1))
+                {
                     method = (TimingMethod)Enum.Parse(typeof(TimingMethod), splitElement.GetAttribute("lastTimingMethod"));
+                }
 
                 var hotkeyProfile = HotkeyProfile.DefaultHotkeyProfileName;
                 if (version >= new Version(1, 8))
+                {
                     hotkeyProfile = splitElement.GetAttribute("lastHotkeyProfile");
+                }
 
                 var path = splitElement.InnerText;
 
@@ -144,17 +150,22 @@ public class XMLSettingsFactory : ISettingsFactory
                     raceProviderSettings = factory.CreateSettings();
                 }
                 else
+                {
                     raceProviderSettings = new UnloadedRaceProviderSettings();
+                }
 
                 raceProviderSettings.FromXml(providerNode, version);
                 settings.RaceProvider.Add(raceProviderSettings);
             }
         }
+
         foreach (var factory in ComponentManager.RaceProviderFactories.Values)
         {
             var raceProviderSettings = factory.CreateSettings();
             if (!settings.RaceProvider.Any(x => x.GetType() == raceProviderSettings.GetType()))
+            {
                 settings.RaceProvider.Add(raceProviderSettings);
+            }
         }
 
         LoadDrift(parent);
@@ -173,7 +184,9 @@ public class XMLSettingsFactory : ISettingsFactory
 
             // Reset drift to 1 if it is too far off
             if (Math.Abs(loadedDrift - 1) > 0.01)
+            {
                 loadedDrift = 1;
+            }
 
             TimeStamp.PersistentDrift = TimeStamp.NewDrift = loadedDrift;
         }

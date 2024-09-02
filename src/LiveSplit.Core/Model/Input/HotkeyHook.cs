@@ -47,7 +47,7 @@ public sealed class HotkeyHook : IDisposable
             base.WndProc(ref m);
             if (m.Msg == WM_HOTKEY)
             {
-                Keys key = (Keys)((int)m.LParam >> 16 & 65535);
+                Keys key = (Keys)(((int)m.LParam >> 16) & 65535);
                 ModifierKeys modifier = (ModifierKeys)((int)m.LParam & 65535);
                 KeyPressed?.Invoke(this, new KeyPressedEventArgs(modifier, key));
             }
@@ -81,6 +81,7 @@ public sealed class HotkeyHook : IDisposable
         {
             UnregisterHotKey(_window.Handle, i);
         }
+
         _currentId = 0;
     }
 

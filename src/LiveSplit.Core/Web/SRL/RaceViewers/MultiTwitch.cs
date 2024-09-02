@@ -16,6 +16,7 @@ public class MultiTwitch : IRaceViewer
             builder.Append(stream);
             builder.Append("/");
         }
+
         builder.Length -= 1;
         Process.Start(builder.ToString());
     }

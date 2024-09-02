@@ -26,9 +26,12 @@ public class LatestRunComparisonGenerator : IComparisonGenerator
             for (var attemptIndex = maxIndex; attemptIndex >= 1; attemptIndex--)
             {
                 if (segment.SegmentHistory.ContainsKey(attemptIndex))
+                {
                     return attemptIndex;
+                }
             }
         }
+
         return 0;
     }
 
@@ -43,9 +46,13 @@ public class LatestRunComparisonGenerator : IComparisonGenerator
             {
                 TimeSpan? segmentTime = null;
                 if (Run[ind].SegmentHistory.ContainsKey(attemptIndex))
+                {
                     segmentTime = Run[ind].SegmentHistory[attemptIndex][method];
+                }
                 else
+                {
                     totalTime = null;
+                }
 
                 var time = new Time(Run[ind].Comparisons[Name]);
                 if (totalTime != null && segmentTime != null)
@@ -54,7 +61,9 @@ public class LatestRunComparisonGenerator : IComparisonGenerator
                     time[method] = totalTime;
                 }
                 else
+                {
                     time[method] = null;
+                }
 
                 Run[ind].Comparisons[Name] = time;
             }

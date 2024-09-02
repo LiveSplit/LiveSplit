@@ -48,7 +48,9 @@ public partial class SpeedRunsLiveForm : Form
     private void SRLClient_Kicked(object sender, EventArgs e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         this.InvokeIfRequired(() =>
         {
@@ -63,7 +65,9 @@ public partial class SpeedRunsLiveForm : Form
     private void SRLClient_Disconnected(object sender, EventArgs e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         try
         {
@@ -82,7 +86,9 @@ public partial class SpeedRunsLiveForm : Form
     private void SRLClient_NicknameInUse(object sender, EventArgs e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         FormIsClosing = true;
 
@@ -96,7 +102,9 @@ public partial class SpeedRunsLiveForm : Form
     private void SRLClient_PasswordIncorrect(object sender, EventArgs e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         FormIsClosing = true;
 
@@ -132,7 +140,9 @@ public partial class SpeedRunsLiveForm : Form
     private void SRLClient_GoalChanged(object sender, EventArgs e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         this.InvokeIfRequired(() => Text = SRLClient.ChannelTopic);
     }
@@ -140,7 +150,9 @@ public partial class SpeedRunsLiveForm : Form
     private void SRLClient_UserListRefreshed(object sender, EventArgs e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         RebuildUserList();
     }
@@ -148,7 +160,9 @@ public partial class SpeedRunsLiveForm : Form
     private void SRLClient_StateChanged(object sender, RaceState state)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         this.InvokeIfRequired(() =>
         {
@@ -193,7 +207,9 @@ public partial class SpeedRunsLiveForm : Form
     private void ExitMessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         if (e.Item1 == SRLClient.RaceChannelName
             && e.Item2.Name == "RaceBot"
@@ -203,16 +219,22 @@ public partial class SpeedRunsLiveForm : Form
             SRLClient.RaceState = RaceState.NotInRace;
             SRLClient.MessageReceived -= ExitMessageReceived;
             if (InvokeRequired)
+            {
                 Invoke(new Action(Close));
+            }
             else
+            {
                 Close();
+            }
         }
     }
 
     private void UndoneMessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         if (e.Item1 == SRLClient.RaceChannelName
             && e.Item2.Name == "RaceBot"
@@ -221,16 +243,22 @@ public partial class SpeedRunsLiveForm : Form
             SRLClient.RaceState = RaceState.RaceStarted;
             SRLClient.MessageReceived -= UndoneMessageReceived;
             if (InvokeRequired)
+            {
                 Invoke(new Action(Close));
+            }
             else
+            {
                 Close();
+            }
         }
     }
 
     private void SRLClient_MessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         RebuildUserList();
         if (e.Item1 == SRLClient.RaceChannelName)
@@ -247,7 +275,9 @@ public partial class SpeedRunsLiveForm : Form
     private void SRLClient_ChannelJoined(object sender, string e)
     {
         if (IsDisposed)
+        {
             return;
+        }
 
         if (e == SRLClient.RaceChannelName)
         {
@@ -258,8 +288,10 @@ public partial class SpeedRunsLiveForm : Form
                 timer.Enabled = true;
                 timer.Elapsed += timer_Elapsed;
             }
+
             EnableJoinButton();
         }
+
         if (e == "#speedrunslive" && RaceId == null)
         {
             SRLClient.SendMainChannelMessage(".startrace " + GameId);
@@ -267,6 +299,7 @@ public partial class SpeedRunsLiveForm : Form
             SRLClient.RaceBotResponseTimer.Enabled = true;
             SRLClient.RaceBotResponseTimer.Elapsed += RaceBotResponseTimer_Elapsed;
         }
+
         RebuildUserList();
     }
 
@@ -279,13 +312,22 @@ public partial class SpeedRunsLiveForm : Form
             if (user != null)
             {
                 if (user.statetext == "Finished" || user.statetext == "Forfeit")
+                {
                     SRLClient.RaceState = RaceState.RaceEnded;
+                }
                 else if (race.statetext == "In Progress")
+                {
                     SRLClient.RaceState = RaceState.RaceStarted;
+                }
                 else if (user.statetext == "Ready")
+                {
                     SRLClient.RaceState = RaceState.EnteredRaceAndReady;
+                }
                 else
+                {
                     SRLClient.RaceState = RaceState.EnteredRace;
+                }
+
                 SRLClient_StateChanged(this, SRLClient.RaceState);
             }
         }
@@ -390,7 +432,10 @@ public partial class SpeedRunsLiveForm : Form
     {
         FormIsClosing = true;
         if (SRLClient.IsConnected)
+        {
             SRLClient.Disconnect();
+        }
+
         SRLClient.Dispose();
     }
 
@@ -398,9 +443,14 @@ public partial class SpeedRunsLiveForm : Form
     {
         string colorCode = "12";
         if (rights == SRLIRCRights.Operator)
+        {
             colorCode = "4";
+        }
         else if (rights == SRLIRCRights.Voice)
+        {
             colorCode = "3";
+        }
+
         return colorCode;
     }
 
@@ -464,8 +514,11 @@ public partial class SpeedRunsLiveForm : Form
                     bool parsed = int.TryParse(split.Substring(0, 1), out code);
                     color = parsed ? GetColorByCode(code) : origColor;
                     if (parsed)
+                    {
                         useSplit = split.Substring(1);
+                    }
                 }
+
                 var replacedText = useSplit.Replace(((char)2).ToString(), "");
                 bool isFirst = true;
                 foreach (var word in replacedText.Split(' '))
@@ -473,11 +526,13 @@ public partial class SpeedRunsLiveForm : Form
                     chatBox.AppendText((isFirst ? "" : " ") + word);
                     isFirst = false;
                 }
+
                 colorlessMessage += useSplit;
                 chatBox.Select(begin, chatBox.Text.Length);
                 chatBox.SelectionColor = color;
                 colorSplit = true;
             }
+
             bool bold = false;
             int boldBeginPosition = actualBegin;
             foreach (string boldSplit in colorlessMessage.Split((char)2))
@@ -487,6 +542,7 @@ public partial class SpeedRunsLiveForm : Form
                     chatBox.Select(boldBeginPosition, boldSplit.Length);
                     chatBox.SelectionFont = new Font(chatBox.SelectionFont, FontStyle.Bold);
                 }
+
                 bold = !bold;
                 boldBeginPosition += boldSplit.Length;
             }
@@ -587,7 +643,9 @@ public partial class SpeedRunsLiveForm : Form
     private void txtMessage_KeyDown(object sender, KeyEventArgs e)
     {
         if (txtMessage.Text.StartsWith("\r\n"))
+        {
             txtMessage.Clear();
+        }
 
         if (e.KeyCode == Keys.Enter && txtMessage.Text.Length != 0)
         {

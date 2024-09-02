@@ -14,7 +14,9 @@ internal partial class AboutBox : Form
         InitializeComponent();
         lblVersion.Text = Git.Version ?? "Unknown Version";
         if (Git.Branch != null && Git.Branch != "master" && Git.Branch != "HEAD")
+        {
             labelProductName.Text = string.Format("{0} ({1})", labelProductName.Text, Git.Branch);
+        }
     }
 
     #region Assembly Attribute Accessors
@@ -32,6 +34,7 @@ internal partial class AboutBox : Form
                     return titleAttribute.Title;
                 }
             }
+
             return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
         }
     }
@@ -47,6 +50,7 @@ internal partial class AboutBox : Form
             {
                 return "";
             }
+
             return ((AssemblyDescriptionAttribute)attributes[0]).Description;
         }
     }
@@ -60,6 +64,7 @@ internal partial class AboutBox : Form
             {
                 return "";
             }
+
             return ((AssemblyProductAttribute)attributes[0]).Product;
         }
     }
@@ -73,6 +78,7 @@ internal partial class AboutBox : Form
             {
                 return "";
             }
+
             return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
         }
     }
@@ -86,6 +92,7 @@ internal partial class AboutBox : Form
             {
                 return "";
             }
+
             return ((AssemblyCompanyAttribute)attributes[0]).Company;
         }
     }

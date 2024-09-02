@@ -43,6 +43,7 @@ public class XMLRunSaver : IRunSaver
             variableElement.Attributes.Append(ToAttribute(document, "name", variable.Key));
             variables.AppendChild(variableElement);
         }
+
         metadata.AppendChild(variables);
         parent.AppendChild(metadata);
 
@@ -54,6 +55,7 @@ public class XMLRunSaver : IRunSaver
         {
             runHistory.AppendChild(attempt.ToXml(document));
         }
+
         parent.AppendChild(runHistory);
 
         var segmentElement = document.CreateElement("Segments");
@@ -76,6 +78,7 @@ public class XMLRunSaver : IRunSaver
                 splitTime.Attributes.Append(ToAttribute(document, "name", comparison));
                 splitTimes.AppendChild(splitTime);
             }
+
             splitElement.AppendChild(splitTimes);
 
             splitElement.AppendChild(segment.BestSegmentTime.ToXml(document, "BestSegmentTime"));
@@ -86,12 +89,16 @@ public class XMLRunSaver : IRunSaver
                 var indexedTime = new IndexedTime(historySegment.Value, historySegment.Key);
                 history.AppendChild(indexedTime.ToXml(document));
             }
+
             splitElement.AppendChild(history);
         }
 
         var autoSplitterSettings = document.CreateElement("AutoSplitterSettings");
         if (run.IsAutoSplitterActive())
+        {
             autoSplitterSettings.InnerXml = run.AutoSplitter.Component.GetSettings(document).InnerXml;
+        }
+
         parent.AppendChild(autoSplitterSettings);
 
         document.Save(stream);

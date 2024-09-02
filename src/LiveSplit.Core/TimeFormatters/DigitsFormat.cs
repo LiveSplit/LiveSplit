@@ -33,13 +33,21 @@ internal static class FormatUtils
     public static DigitsFormat ToDigitsFormat(this TimeFormat timeFormat)
     {
         if (timeFormat == TimeFormat.Seconds)
+        {
             return DigitsFormat.SingleDigitSeconds;
+        }
         else if (timeFormat == TimeFormat.Minutes)
+        {
             return DigitsFormat.DoubleDigitMinutes;
+        }
         else if (timeFormat == TimeFormat.Hours)
+        {
             return DigitsFormat.SingleDigitHours;
+        }
         else if (timeFormat == TimeFormat.TenHours)
+        {
             return DigitsFormat.DoubleDigitHours;
+        }
 #pragma warning restore 618
 
         return DigitsFormat.SingleDigitSeconds;

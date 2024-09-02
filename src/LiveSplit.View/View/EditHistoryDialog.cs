@@ -32,7 +32,9 @@ public partial class EditHistoryDialog : Form
     private void btnRemove_Click(object sender, EventArgs e)
     {
         foreach (var item in historyListBox.SelectedItems)
+        {
             History.Remove((string)item);
+        }
 
         historyListBox.Items.Clear();
         historyListBox.Items.AddRange(History.Where(x => !string.IsNullOrEmpty(x)).ToArray());

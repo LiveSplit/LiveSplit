@@ -63,7 +63,10 @@ public partial class ColorPickerDialog : Form
         set
         {
             if (SelectedColorChanged != null)
+            {
                 SelectedColorChanged(this, new EventArgs());
+            }
+
             _selColor = value;
         }
     }
@@ -85,17 +88,29 @@ public partial class ColorPickerDialog : Form
     public Color OldColor
     {
         get => this.oldColor.ToColor();
-        set { this.oldColor = new InternalColor(value); this.UpdateColorShowBox(); }
+        set
+        {
+            this.oldColor = new InternalColor(value);
+            this.UpdateColorShowBox();
+        }
     }
     public Color SelectedColor
     {
         get => this.selColor.ToColor();
-        set { this.selColor = new InternalColor(value); this.UpdateColorControls(); }
+        set
+        {
+            this.selColor = new InternalColor(value);
+            this.UpdateColorControls();
+        }
     }
     public PrimaryAttrib PrimaryAttribute
     {
         get => this.primAttrib;
-        set { this.primAttrib = value; this.UpdateColorControls(); }
+        set
+        {
+            this.primAttrib = value;
+            this.UpdateColorControls();
+        }
     }
 
     public ColorPickerDialog()
@@ -148,7 +163,10 @@ public partial class ColorPickerDialog : Form
         this.suspendTextEvents = true;
         var color = tmp.ToArgb();
         if (!AlphaEnabled)
+        {
             color &= 0xffffff;
+        }
+
         this.textBoxHex.Text = String.Format("{0:X}", color);
 
         this.numRed.Value = tmp.R;
@@ -432,32 +450,54 @@ public partial class ColorPickerDialog : Form
 
     private void radioHue_CheckedChanged(object sender, EventArgs e)
     {
-        if (this.radioHue.Checked) this.PrimaryAttribute = PrimaryAttrib.Hue;
+        if (this.radioHue.Checked)
+        {
+            this.PrimaryAttribute = PrimaryAttrib.Hue;
+        }
     }
     private void radioSaturation_CheckedChanged(object sender, EventArgs e)
     {
-        if (this.radioSaturation.Checked) this.PrimaryAttribute = PrimaryAttrib.Saturation;
+        if (this.radioSaturation.Checked)
+        {
+            this.PrimaryAttribute = PrimaryAttrib.Saturation;
+        }
     }
     private void radioValue_CheckedChanged(object sender, EventArgs e)
     {
-        if (this.radioValue.Checked) this.PrimaryAttribute = PrimaryAttrib.Brightness;
+        if (this.radioValue.Checked)
+        {
+            this.PrimaryAttribute = PrimaryAttrib.Brightness;
+        }
     }
     private void radioRed_CheckedChanged(object sender, EventArgs e)
     {
-        if (this.radioRed.Checked) this.PrimaryAttribute = PrimaryAttrib.Red;
+        if (this.radioRed.Checked)
+        {
+            this.PrimaryAttribute = PrimaryAttrib.Red;
+        }
     }
     private void radioGreen_CheckedChanged(object sender, EventArgs e)
     {
-        if (this.radioGreen.Checked) this.PrimaryAttribute = PrimaryAttrib.Green;
+        if (this.radioGreen.Checked)
+        {
+            this.PrimaryAttribute = PrimaryAttrib.Green;
+        }
     }
     private void radioBlue_CheckedChanged(object sender, EventArgs e)
     {
-        if (this.radioBlue.Checked) this.PrimaryAttribute = PrimaryAttrib.Blue;
+        if (this.radioBlue.Checked)
+        {
+            this.PrimaryAttribute = PrimaryAttrib.Blue;
+        }
     }
 
     private void colorPanel_PercentualValueChanged(object sender, EventArgs e)
     {
-        if (this.ContainsFocus) this.UpdateSelectedColorFromPanelValue();
+        if (this.ContainsFocus)
+        {
+            this.UpdateSelectedColorFromPanelValue();
+        }
+
         this.UpdateColorSliderGradient();
         this.UpdateAlphaSliderGradient();
         this.UpdateColorShowBox();
@@ -465,7 +505,11 @@ public partial class ColorPickerDialog : Form
     }
     private void colorSlider_PercentualValueChanged(object sender, EventArgs e)
     {
-        if (this.ContainsFocus) this.UpdateSelectedColorFromSliderValue();
+        if (this.ContainsFocus)
+        {
+            this.UpdateSelectedColorFromSliderValue();
+        }
+
         this.UpdateColorPanelGradient();
         this.UpdateAlphaSliderGradient();
         this.UpdateColorShowBox();
@@ -473,7 +517,11 @@ public partial class ColorPickerDialog : Form
     }
     private void alphaSlider_PercentualValueChanged(object sender, EventArgs e)
     {
-        if (this.ContainsFocus) this.UpdateSelectedColorFromAlphaValue();
+        if (this.ContainsFocus)
+        {
+            this.UpdateSelectedColorFromAlphaValue();
+        }
+
         this.UpdateColorSliderGradient();
         this.UpdateColorPanelGradient();
         this.UpdateColorShowBox();
@@ -482,25 +530,41 @@ public partial class ColorPickerDialog : Form
 
     private void numHue_ValueChanged(object sender, EventArgs e)
     {
-        if (this.suspendTextEvents) return;
+        if (this.suspendTextEvents)
+        {
+            return;
+        }
+
         this.selColor = new InternalColor(this.selColor) { h = (float)this.numHue.Value / 360.0f };
         this.UpdateColorControls();
     }
     private void numSaturation_ValueChanged(object sender, EventArgs e)
     {
-        if (this.suspendTextEvents) return;
+        if (this.suspendTextEvents)
+        {
+            return;
+        }
+
         this.selColor = new InternalColor(this.selColor) { s = (float)this.numSaturation.Value / 100.0f };
         this.UpdateColorControls();
     }
     private void numValue_ValueChanged(object sender, EventArgs e)
     {
-        if (this.suspendTextEvents) return;
+        if (this.suspendTextEvents)
+        {
+            return;
+        }
+
         this.selColor = new InternalColor(this.selColor) { v = (float)this.numValue.Value / 100.0f };
         this.UpdateColorControls();
     }
     private void numRed_ValueChanged(object sender, EventArgs e)
     {
-        if (this.suspendTextEvents) return;
+        if (this.suspendTextEvents)
+        {
+            return;
+        }
+
         Color tmp = this.selColor.ToColor();
         this.selColor = new InternalColor(Color.FromArgb(
             tmp.A,
@@ -511,7 +575,11 @@ public partial class ColorPickerDialog : Form
     }
     private void numGreen_ValueChanged(object sender, EventArgs e)
     {
-        if (this.suspendTextEvents) return;
+        if (this.suspendTextEvents)
+        {
+            return;
+        }
+
         Color tmp = this.selColor.ToColor();
         this.selColor = new InternalColor(Color.FromArgb(
             tmp.A,
@@ -522,7 +590,11 @@ public partial class ColorPickerDialog : Form
     }
     private void numBlue_ValueChanged(object sender, EventArgs e)
     {
-        if (this.suspendTextEvents) return;
+        if (this.suspendTextEvents)
+        {
+            return;
+        }
+
         Color tmp = this.selColor.ToColor();
         this.selColor = new InternalColor(Color.FromArgb(
             tmp.A,
@@ -533,7 +605,11 @@ public partial class ColorPickerDialog : Form
     }
     private void numAlpha_ValueChanged(object sender, EventArgs e)
     {
-        if (this.suspendTextEvents) return;
+        if (this.suspendTextEvents)
+        {
+            return;
+        }
+
         Color tmp = this.selColor.ToColor();
         this.selColor = new InternalColor(Color.FromArgb(
             (byte)this.numAlpha.Value,
@@ -544,13 +620,20 @@ public partial class ColorPickerDialog : Form
     }
     private void textBoxHex_TextChanged(object sender, EventArgs e)
     {
-        if (this.suspendTextEvents) return;
+        if (this.suspendTextEvents)
+        {
+            return;
+        }
+
         int argb;
         if (int.TryParse(this.textBoxHex.Text, System.Globalization.NumberStyles.HexNumber, System.Globalization.CultureInfo.CurrentUICulture, out argb))
         {
             Color tmp = Color.FromArgb(argb);
             if (!AlphaEnabled)
+            {
                 tmp = Color.FromArgb(255, tmp);
+            }
+
             this.selColor = new InternalColor(tmp);
             this.UpdateColorControls();
         }
@@ -570,9 +653,13 @@ public partial class ColorPickerDialog : Form
     private void ColorPickerDialog_FormClosed(object sender, FormClosedEventArgs e)
     {
         if (this.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+        {
             this.SelectedColor = this.OldColor;
+        }
         else
+        {
             this.OldColor = this.SelectedColor;
+        }
     }
 
     [DllImport("user32.dll")]
@@ -618,9 +705,14 @@ public partial class ColorPickerDialog : Form
                 {
                     var color = GetPixelColor(Cursor.Position.X, Cursor.Position.Y);
                     if (this.InvokeRequired)
+                    {
                         this.Invoke(setColor, color);
+                    }
                     else
+                    {
                         setColor(color);
+                    }
+
                     System.Threading.Thread.Sleep(10);
                 }
             }).Start();

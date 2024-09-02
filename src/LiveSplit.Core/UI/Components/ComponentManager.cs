@@ -18,15 +18,24 @@ public class ComponentManager
     public static ILayoutComponent LoadLayoutComponent(string path, LiveSplitState state)
     {
         if (ComponentFactories == null)
+        {
             ComponentFactories = LoadAllFactories<IComponentFactory>();
+        }
+
         IComponent component = null;
 
         if (string.IsNullOrEmpty(path))
+        {
             component = new SeparatorComponent();
+        }
         else if (!ComponentFactories.ContainsKey(path))
+        {
             return null;
+        }
         else
+        {
             component = ComponentFactories[path].Create(state);
+        }
 
         return new LayoutComponent(path, component);
     }
@@ -55,13 +64,14 @@ public class ComponentManager
 
             if (attr != null)
             {
-                factory = (T)(attr.
+                factory = (T)attr.
                     ComponentFactoryClassType.
                     GetConstructor(new Type[0]).
-                    Invoke(null));
+                    Invoke(null);
             }
         }
         catch { }
+
         return factory;
     }
 }

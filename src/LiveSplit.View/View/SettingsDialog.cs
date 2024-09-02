@@ -172,6 +172,7 @@ public partial class SettingsDialog : Form
 
             return keyString;
         }
+
         return "None";
     }
     private void SetHotkeyHandlers(TextBox txtBox, Action<KeyOrButton> keySetCallback)
@@ -190,11 +191,15 @@ public partial class SettingsDialog : Form
             txtBox.Leave -= leaveHandler;
             Hook.AnyGamepadButtonPressed -= gamepadButtonPressed;
         }
+
         handlerDown = (s, x) =>
         {
             var key = x.KeyCode == Keys.Escape ? null : new KeyOrButton(x.KeyCode | x.Modifiers);
             if (x.KeyCode == Keys.ControlKey || x.KeyCode == Keys.ShiftKey || x.KeyCode == Keys.Menu)
+            {
                 return;
+            }
+
             keySetCallback(key);
             unregisterEvents();
             txtBox.Select(0, 0);
@@ -283,6 +288,7 @@ public partial class SettingsDialog : Form
                 SetClickEvents(childControl);
             }
         }
+
         control.Click += ClickControl;
     }
 
@@ -301,9 +307,11 @@ public partial class SettingsDialog : Form
     private void btnChooseComparisons_Click(object sender, EventArgs e)
     {
         var generatorStates = new Dictionary<string, bool>(Settings.ComparisonGeneratorStates);
-        var result = (new ChooseComparisonsDialog() { ComparisonGeneratorStates = generatorStates }).ShowDialog(this);
+        var result = new ChooseComparisonsDialog() { ComparisonGeneratorStates = generatorStates }.ShowDialog(this);
         if (result == DialogResult.OK)
+        {
             Settings.ComparisonGeneratorStates = generatorStates;
+        }
     }
 
     private void cmbHotkeyProfiles_SelectedIndexChanged(object sender, EventArgs e)
@@ -353,7 +361,9 @@ public partial class SettingsDialog : Form
             {
                 result = MessageBox.Show(this, "A Hotkey Profile with this name already exists.", "Hotkey Profile Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
+                {
                     btnRenameProfile_Click(sender, e);
+                }
             }
         }
     }
@@ -376,7 +386,9 @@ public partial class SettingsDialog : Form
             {
                 result = MessageBox.Show(this, "A Hotkey Profile with this name already exists.", "Hotkey Profile Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
+                {
                     btnNewProfile_Click(sender, e);
+                }
             }
         }
     }

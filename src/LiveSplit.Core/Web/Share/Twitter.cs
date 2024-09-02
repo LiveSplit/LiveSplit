@@ -23,8 +23,8 @@ public class Twitter : IRunUploadPlatform
 
     public string PlatformName => "X (Twitter)";
 
-    public string Description =>
-@"X (Twitter) allows you to share your run with the world. 
+    public string Description
+=> @"X (Twitter) allows you to share your run with the world. 
 When sharing, a screenshot of LiveSplit is automatically copied to the clipboard.
 When you click share, LiveSplit opens a Tweet composition window in your default browser.";
 
@@ -36,7 +36,9 @@ When you click share, LiveSplit opens a Tweet composition window in your default
     public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
         if (attachSplits)
+        {
             comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
+        }
 
         ImageToClipboard(screenShotFunction());
         var uri = MakeUri(comment);
@@ -48,7 +50,9 @@ When you click share, LiveSplit opens a Tweet composition window in your default
     private void ImageToClipboard(Image image)
     {
         if (image is null)
+        {
             return;
+        }
 
         Image pngImage;
         using (var stream = new MemoryStream())
@@ -56,6 +60,7 @@ When you click share, LiveSplit opens a Tweet composition window in your default
             image.Save(stream, ImageFormat.Png);
             pngImage = Image.FromStream(stream);
         }
+
         Clipboard.SetDataObject(pngImage);
     }
     private string MakeUri(string text)

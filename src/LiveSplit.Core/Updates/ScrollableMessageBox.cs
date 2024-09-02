@@ -42,7 +42,6 @@ public partial class ScrollableMessageBox : Form
         }
     }
 
-
     /// <summary>
     /// 
     /// </summary>
@@ -130,7 +129,7 @@ public partial class ScrollableMessageBox : Form
         Button btnOK = new Button();
         btnOK.Text = "OK";
         Controls.Add(btnOK);
-        btnOK.Location = new Point(Width / 2 - 35, txtMessage.Bottom + 5);
+        btnOK.Location = new Point((Width / 2) - 35, txtMessage.Bottom + 5);
         btnOK.Size = new Size(70, 20);
         btnOK.DialogResult = DialogResult.OK;
         AcceptButton = btnOK;
@@ -144,7 +143,7 @@ public partial class ScrollableMessageBox : Form
 
         // calculate the location of the buttons so that they are centered
         // at the bottom
-        btnYes.Location = new Point(Width / 2 - 80, txtMessage.Bottom + 5);
+        btnYes.Location = new Point((Width / 2) - 80, txtMessage.Bottom + 5);
         btnYes.Size = new Size(75, 23);
         btnYes.DialogResult = DialogResult.Yes;
         AcceptButton = btnYes;
@@ -152,7 +151,7 @@ public partial class ScrollableMessageBox : Form
         Button btnNo = new Button();
         btnNo.Text = "No";
         Controls.Add(btnNo);
-        btnNo.Location = new Point(Width / 2 + 5, txtMessage.Bottom + 5);
+        btnNo.Location = new Point((Width / 2) + 5, txtMessage.Bottom + 5);
         btnNo.Size = new Size(75, 23);
         btnNo.DialogResult = DialogResult.No;
         CancelButton = btnNo;
@@ -163,7 +162,7 @@ public partial class ScrollableMessageBox : Form
         Button btnOK = new Button();
         btnOK.Text = "OK";
         Controls.Add(btnOK);
-        btnOK.Location = new Point(Width / 2 - 75, txtMessage.Bottom + 5);
+        btnOK.Location = new Point((Width / 2) - 75, txtMessage.Bottom + 5);
         btnOK.Size = new Size(70, 20);
         btnOK.DialogResult = DialogResult.OK;
         AcceptButton = btnOK;
@@ -171,7 +170,7 @@ public partial class ScrollableMessageBox : Form
         Button btnCancel = new Button();
         btnCancel.Text = "Cancel";
         Controls.Add(btnCancel);
-        btnCancel.Location = new Point(Width / 2 + 5, txtMessage.Bottom + 5);
+        btnCancel.Location = new Point((Width / 2) + 5, txtMessage.Bottom + 5);
         btnCancel.Size = new Size(70, 20);
         btnCancel.DialogResult = DialogResult.Cancel;
         CancelButton = btnCancel;

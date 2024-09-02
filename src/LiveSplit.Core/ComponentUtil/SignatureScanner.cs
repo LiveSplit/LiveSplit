@@ -60,11 +60,19 @@ public class SignatureScanner
     public SignatureScanner(Process proc, IntPtr addr, int size)
     {
         if (proc == null)
+        {
             throw new ArgumentNullException(nameof(proc));
+        }
+
         if (addr == IntPtr.Zero)
+        {
             throw new ArgumentException("addr cannot be IntPtr.Zero.", nameof(addr));
+        }
+
         if (size <= 0)
+        {
             throw new ArgumentException("size cannot be less than zero.", nameof(size));
+        }
 
         _process = proc;
         _address = addr;
@@ -75,7 +83,9 @@ public class SignatureScanner
     public SignatureScanner(byte[] mem)
     {
         if (mem == null)
+        {
             throw new ArgumentNullException(nameof(mem));
+        }
 
         _memory = mem;
         _size = mem.Length;
@@ -90,7 +100,9 @@ public class SignatureScanner
     public IntPtr Scan(SigScanTarget target, int align)
     {
         if ((long)_address % align != 0)
+        {
             throw new ArgumentOutOfRangeException(nameof(align), "start address must be aligned");
+        }
 
         return ScanAll(target, align).FirstOrDefault();
     }
@@ -98,7 +110,9 @@ public class SignatureScanner
     public IEnumerable<IntPtr> ScanAll(SigScanTarget target, int align = 1)
     {
         if ((long)_address % align != 0)
+        {
             throw new ArgumentOutOfRangeException(nameof(align), "start address must be aligned");
+        }
 
         return ScanInternal(target, align);
     }
@@ -125,7 +139,10 @@ public class SignatureScanner
             {
                 var ptr = _address + off + sig.Offset;
                 if (target.OnFound != null)
+                {
                     ptr = target.OnFound(_process, this, ptr);
+                }
+
                 yield return ptr;
             }
         }
@@ -149,7 +166,9 @@ public class SignatureScanner
         public ScanEnumerator(byte[] mem, int align, SigScanTarget.Signature sig)
         {
             if (mem.Length < sig.Pattern.Length)
+            {
                 throw new ArgumentOutOfRangeException(nameof(mem), "memory buffer length must be >= pattern length");
+            }
 
             _memory = mem;
             _align = align;
@@ -198,9 +217,14 @@ public class SignatureScanner
                     for (int sigIndex = 0; sigIndex < sigLen; sigIndex++)
                     {
                         if (mask[sigIndex])
+                        {
                             continue;
+                        }
+
                         if (sig[sigIndex] != mem[index + sigIndex])
+                        {
                             goto next;
+                        }
                     }
 
                     // fully matched
@@ -231,7 +255,9 @@ public class SignatureScanner
                     for (int sigIndex = 0; sigIndex < sigLen; sigIndex++)
                     {
                         if (sig[sigIndex] != mem[index + sigIndex])
+                        {
                             goto next;
+                        }
                     }
 
                     // fully matched
@@ -289,7 +315,9 @@ public class SigScanTarget
     {
         string sigStr = string.Join(string.Empty, signature).Replace(" ", string.Empty);
         if (sigStr.Length % 2 != 0)
+        {
             throw new ArgumentException(nameof(signature));
+        }
 
         var sigBytes = new List<byte>();
         var sigMask = new List<bool>();

@@ -30,6 +30,7 @@ public partial class FontList : UserControl
                             break;
                         }
                     }
+
                     if (firstAvailableStyle.HasValue)
                     {
                         lstFont.Items.Add(new FontItem(new Font(f, 12, firstAvailableStyle.Value)));
@@ -39,7 +40,6 @@ public partial class FontList : UserControl
             catch (Exception ex)
             {
             }
-
         }
     }
 
@@ -48,18 +48,24 @@ public partial class FontList : UserControl
         get
         {
             if (lstFont.SelectedItem != null)
+            {
                 return ((FontItem)lstFont.SelectedItem).Font.FontFamily;
+            }
             else
+            {
                 return null;
+            }
         }
         set
         {
-            if (value == null) lstFont.ClearSelected();
+            if (value == null)
+            {
+                lstFont.ClearSelected();
+            }
             else
             {
                 lstFont.SelectedIndex = IndexOf(value);
             }
-
         }
     }
 
@@ -94,7 +100,10 @@ public partial class FontList : UserControl
 
     private void txtFont_TextChanged(object sender, EventArgs e)
     {
-        if (!txtFont.Focused) return;
+        if (!txtFont.Focused)
+        {
+            return;
+        }
 
         for (int i = 0; i < lstFont.Items.Count; i++)
         {
@@ -106,7 +115,7 @@ public partial class FontList : UserControl
                 const uint WM_VSCROLL = 0x0115;
                 const uint SB_THUMBPOSITION = 4;
 
-                uint b = ((uint)(lstFont.SelectedIndex) << 16) | (SB_THUMBPOSITION & 0xffff);
+                uint b = ((uint)lstFont.SelectedIndex << 16) | (SB_THUMBPOSITION & 0xffff);
                 SendMessage(lstFont.Handle, WM_VSCROLL, b, 0);
 
                 return;
@@ -118,7 +127,6 @@ public partial class FontList : UserControl
     {
         txtFont.SelectAll();
     }
-
 
     [DllImport("user32.dll")]
     private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, uint wParam, uint lParam);

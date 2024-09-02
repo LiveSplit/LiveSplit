@@ -38,9 +38,13 @@ public struct Time
         set
         {
             if (method == TimingMethod.RealTime)
+            {
                 RealTime = value;
+            }
             else
+            {
                 GameTime = value;
+            }
         }
     }
 
@@ -51,13 +55,19 @@ public struct Time
         if (element.GetElementsByTagName("RealTime").Count > 0)
         {
             if (TimeSpan.TryParse(element["RealTime"].InnerText, out x))
+            {
                 newTime.RealTime = x;
+            }
         }
+
         if (element.GetElementsByTagName("GameTime").Count > 0)
         {
             if (TimeSpan.TryParse(element["GameTime"].InnerText, out x))
+            {
                 newTime.GameTime = x;
+            }
         }
+
         return newTime;
     }
 
@@ -70,12 +80,14 @@ public struct Time
             realTime.InnerText = RealTime.ToString();
             parent.AppendChild(realTime);
         }
+
         if (GameTime != null)
         {
             var gameTime = document.CreateElement("GameTime");
             gameTime.InnerText = GameTime.ToString();
             parent.AppendChild(gameTime);
         }
+
         return parent;
     }
 
@@ -93,16 +105,26 @@ public struct Time
         var newTime = new Time();
         TimeSpan x;
         if (TimeSpan.TryParse(splits[0].TrimEnd(), out x))
+        {
             newTime.RealTime = x;
+        }
         else
+        {
             newTime.RealTime = null;
+        }
+
         if (splits.Length > 1)
         {
             if (TimeSpan.TryParse(splits[1].TrimStart(), out x))
+            {
                 newTime.GameTime = x;
+            }
             else
+            {
                 newTime.GameTime = null;
+            }
         }
+
         return newTime;
     }
 

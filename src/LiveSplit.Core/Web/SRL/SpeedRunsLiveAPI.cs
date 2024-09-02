@@ -49,13 +49,16 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
 
             gameNames = GetGameList().Select(map).ToList();
         }
+
         return gameNames;
     }
 
     public IEnumerable<string> GetCategories(string gameID)
     {
         if (string.IsNullOrEmpty(gameID))
+        {
             return new string[0];
+        }
 
         return ((IEnumerable<dynamic>)JSON.FromUri(GetUri("goals/" + gameID + "?season=0")).goals).Select(x => (string)x.name);
     }
@@ -69,7 +72,10 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
 
         var gameID = GetGameList().Where(map).FirstOrDefault();
         if (gameID != null)
+        {
             return gameID.abbrev;
+        }
+
         return null;
     }
 
@@ -88,7 +94,9 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
     public override IEnumerable<IRaceInfo> GetRaces()
     {
         if (racesList == null)
+        {
             RefreshRacesList();
+        }
 
         return racesList;
     }

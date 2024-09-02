@@ -37,7 +37,9 @@ public class FileRunImporter : IRunImporter
                     var comparisonName = Path.GetFileNameWithoutExtension(splitDialog.FileName);
                     result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref comparisonName);
                     if (result != DialogResult.Cancel)
+                    {
                         return run.AddComparisonWithNameInput(imported, comparisonName, form);
+                    }
                 }
             }
         }

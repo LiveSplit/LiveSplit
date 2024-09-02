@@ -51,17 +51,26 @@ public class KeyOrButton
     public override string ToString()
     {
         if (IsKey)
+        {
             return Key.ToString();
+        }
         else
+        {
             return Button.Button.ToString() + " " + Button.GamepadName;
+        }
     }
 
     public static bool operator ==(KeyOrButton a, KeyOrButton b)
     {
         if ((object)a == null && (object)b == null)
+        {
             return true;
+        }
+
         if ((object)a == null || (object)b == null)
+        {
             return false;
+        }
 
         if (a.IsKey && b.IsKey)
         {
@@ -71,6 +80,7 @@ public class KeyOrButton
         {
             return a.Button == b.Button;
         }
+
         return false;
     }
 
@@ -93,9 +103,13 @@ public class CompositeHook
         {
             allowGamepads = value;
             if (allowGamepads)
+            {
                 InitializeGamepadHook();
+            }
             else
+            {
                 CallInitializeEvent();
+            }
         }
     }
     private bool gamepadHookInitialized;
@@ -131,7 +145,9 @@ public class CompositeHook
     private void InitializeGamepadHook()
     {
         if (gamepadHookInitialized)
+        {
             return;
+        }
 
         gamepadHookInitialized = true;
 
@@ -159,7 +175,9 @@ public class CompositeHook
                         try
                         {
                             if (AllowGamepads)
+                            {
                                 GamepadHook.Poll();
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -216,9 +234,13 @@ public class CompositeHook
     public void RegisterHotKey(KeyOrButton keyOrButton)
     {
         if (keyOrButton.IsKey)
+        {
             RegisterHotKey(keyOrButton.Key);
+        }
         else
+        {
             RegisterGamepadButton(keyOrButton.Button);
+        }
     }
 
     public void Poll()

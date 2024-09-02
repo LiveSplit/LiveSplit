@@ -23,7 +23,9 @@ public partial class ShareRunDialog : Form
     {
         State = state;
         if (State.CurrentPhase != TimerPhase.Ended)
+        {
             Run = state.Run;
+        }
         else
         {
             var model = new TimerModel();
@@ -31,6 +33,7 @@ public partial class ShareRunDialog : Form
             model.ResetAndSetAttemptAsPB();
             Run = State.Run;
         }
+
         ScreenShotFunction = screenShotFunction;
         Settings = settings;
         InitializeComponent();
@@ -51,6 +54,7 @@ public partial class ShareRunDialog : Form
             {
                 cbxPlatform.Items.Add("Speedrun.com");
             }
+
             cbxPlatform.Items.Add("Splits.io");
         }
 
@@ -86,13 +90,17 @@ public partial class ShareRunDialog : Form
         txtNotes.Enabled = btnInsertCategory.Enabled = btnInsertDeltaTime.Enabled = btnInsertGame.Enabled
             = btnInsertPB.Enabled = btnInsertSplitName.Enabled = btnInsertSplitTime.Enabled
             = btnInsertStreamLink.Enabled = btnInsertTitle.Enabled = btnPreview.Enabled =
-            (CurrentPlatform == Twitter.Instance || CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance);
+            CurrentPlatform == Twitter.Instance || CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance;
 
         if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
+        {
             chkAttachSplits.Enabled = !(CurrentPlatform == Screenshot.Instance || CurrentPlatform == SplitsIO.Instance
                 || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance || CurrentPlatform == SpeedrunComRunUploadPlatform.Instance);
+        }
         else
+        {
             chkAttachSplits.Enabled = false;
+        }
 
         if (State.CurrentPhase == TimerPhase.Ended || State.CurrentPhase == TimerPhase.NotRunning
             || State.CurrentSplitIndex == 0)
@@ -101,13 +109,24 @@ public partial class ShareRunDialog : Form
         }
 
         if (Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod] == null)
+        {
             btnInsertPB.Enabled = false;
+        }
+
         if (string.IsNullOrEmpty(Run.GameName))
+        {
             btnInsertGame.Enabled = false;
+        }
+
         if (string.IsNullOrEmpty(Run.CategoryName))
+        {
             btnInsertCategory.Enabled = false;
+        }
+
         if (string.IsNullOrEmpty(Run.GameName) && string.IsNullOrEmpty(Run.CategoryName))
+        {
             btnInsertTitle.Enabled = false;
+        }
 
         RefreshDescription();
         RefreshNotes();
@@ -196,7 +215,9 @@ public partial class ShareRunDialog : Form
             }
         }
         else
+        {
             txtNotes.Text = "";
+        }
     }
 
     private void SaveNotesFormat()
@@ -204,9 +225,14 @@ public partial class ShareRunDialog : Form
         if (CurrentPlatform == Twitter.Instance)
         {
             if (State.CurrentPhase == TimerPhase.NotRunning || State.CurrentPhase == TimerPhase.Ended)
+            {
                 ShareSettings.Default.TwitterFormat = txtNotes.Text;
+            }
             else
+            {
                 ShareSettings.Default.TwitterFormatRunning = txtNotes.Text;
+            }
+
             ShareSettings.Default.Save();
         }
         else if (CurrentPlatform == Twitch.Instance)

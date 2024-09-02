@@ -69,6 +69,7 @@ public class CompositeGameList
                     gameIDs[name] = id;
                 }
             }
+
             gameNames.Sort();
 
             this.gameNames = gameNames;

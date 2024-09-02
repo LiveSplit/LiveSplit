@@ -17,7 +17,10 @@ public static class StringExtensions
         if (string.IsNullOrEmpty(s))
         {
             if (string.IsNullOrEmpty(other))
+            {
                 return 0;
+            }
+
             return other.Length;
         }
 
@@ -34,8 +37,15 @@ public static class StringExtensions
         int[,] d = new int[n + 1, m + 1];
 
         // initialize the top and right of the table to 0, 1, 2, ...
-        for (int i = 0; i <= n; d[i, 0] = i++) ;
-        for (int j = 1; j <= m; d[0, j] = j++) ;
+        for (int i = 0; i <= n; d[i, 0] = i++)
+        {
+            ;
+        }
+
+        for (int j = 1; j <= m; d[0, j] = j++)
+        {
+            ;
+        }
 
         for (int i = 1; i <= n; i++)
         {
@@ -48,6 +58,7 @@ public static class StringExtensions
                 d[i, j] = Math.Min(Math.Min(min1, min2), min3);
             }
         }
+
         return d[n, m];
     }
 

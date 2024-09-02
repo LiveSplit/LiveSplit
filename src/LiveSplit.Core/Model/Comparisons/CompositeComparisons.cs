@@ -42,9 +42,13 @@ public class CompositeComparisons : IComparisons
         set
         {
             if (Comparisons.ContainsKey(key))
+            {
                 Comparisons[key] = value;
+            }
             else
+            {
                 Comparisons.Add(key, value);
+            }
         }
     }
 
@@ -108,7 +112,10 @@ public class CompositeComparisons : IComparisons
             GetShortComparisonNameFunc = x =>
             {
                 if (x == longName)
+                {
                     return shortName;
+                }
+
                 return x;
             };
         }
@@ -118,7 +125,10 @@ public class CompositeComparisons : IComparisons
             GetShortComparisonNameFunc = x =>
             {
                 if (x == longName)
+                {
                     return shortName;
+                }
+
                 return oldFunc(x);
             };
         }
@@ -127,8 +137,12 @@ public class CompositeComparisons : IComparisons
     public static string GetShortComparisonName(string longName)
     {
         if (GetShortComparisonNameFunc == null)
+        {
             return longName;
+        }
         else
+        {
             return GetShortComparisonNameFunc(longName);
+        }
     }
 }

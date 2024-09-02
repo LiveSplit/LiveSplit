@@ -50,9 +50,13 @@ public abstract class ControlComponent : IDeactivatableComponent
     public void InvokeIfNeeded(Action x)
     {
         if (Form != null && Form.InvokeRequired)
+        {
             Form.Invoke(x);
+        }
         else
+        {
             x();
+        }
     }
 
     public void Reposition(float width, float height, Graphics g)

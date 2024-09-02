@@ -34,6 +34,7 @@ public class URLRunImporter : IRunImporter
             {
                 return SplitsIO.Instance.DownloadRunByUri(uri, true);
             }
+
             if (host == "www.speedrun.com" || host == "speedrun.com")
             {
                 var speedrunComRun = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
@@ -73,6 +74,7 @@ public class URLRunImporter : IRunImporter
             Log.Error(ex);
             MessageBox.Show(form, "The splits file couldn't be downloaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
         return null;
     }
 
@@ -83,6 +85,7 @@ public class URLRunImporter : IRunImporter
         {
             return LoadRunFromURL(url, form);
         }
+
         return null;
     }
 
@@ -95,6 +98,7 @@ public class URLRunImporter : IRunImporter
             var imported = LoadRunFromURL(url, form);
             return run.AddComparisonWithNameInput(imported, name, form);
         }
+
         return null;
     }
 }

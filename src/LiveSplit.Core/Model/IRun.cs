@@ -44,7 +44,10 @@ public static class RunExtensions
     {
         var segment = new Segment(name, pbSplitTime, bestSegmentTime, icon, splitTime);
         if (segmentHistory != null)
+        {
             segment.SegmentHistory = segmentHistory;
+        }
+
         run.Add(segment);
     }
 
@@ -67,6 +70,7 @@ public static class RunExtensions
             segment.Comparisons.Clear();
             segment.BestSegmentTime = default(Time);
         }
+
         run.AttemptCount = 0;
         run.Metadata.RunID = null;
     }
@@ -124,7 +128,9 @@ public static class RunExtensions
                 {
                     //If the Best Segment is gone, clear the history
                     if (historyTime[method] != null)
+                    {
                         curSplit.SegmentHistory.Remove(runIndex);
+                    }
                 }
             }
         }
@@ -225,10 +231,15 @@ public static class RunExtensions
                     RemoveItemsFromCache(run, index, cache);
                 }
                 else if (segmentHistoryElement.RealTime == null && segmentHistoryElement.GameTime == null)
+                {
                     cache.Add(runIndex);
+                }
                 else
+                {
                     cache.Clear();
+                }
             }
+
             RemoveItemsFromCache(run, run.Count, cache);
         }
     }
@@ -249,9 +260,14 @@ public static class RunExtensions
                 if (segment.SegmentHistory.TryGetValue(ind, out element))
                 {
                     if (element.RealTime != null)
+                    {
                         rtaSet.Add(element.RealTime.Value);
+                    }
+
                     if (element.GameTime != null)
+                    {
                         igtSet.Add(element.GameTime.Value);
+                    }
                 }
             }
 
@@ -267,6 +283,7 @@ public static class RunExtensions
                         isUnique |= rtaSet.Add(element.RealTime.Value);
                         isNull = false;
                     }
+
                     if (element.GameTime != null)
                     {
                         isUnique |= igtSet.Add(element.GameTime.Value);
@@ -274,7 +291,9 @@ public static class RunExtensions
                     }
 
                     if (!isUnique && !isNull)
+                    {
                         segment.SegmentHistory.Remove(runIndex);
+                    }
                 }
             }
         }
@@ -288,6 +307,7 @@ public static class RunExtensions
             run[ind].SegmentHistory.Remove(item);
             ind++;
         }
+
         cache.Clear();
     }
 
@@ -312,10 +332,11 @@ public static class RunExtensions
             //Import the PB splits into the history
             segment.SegmentHistory.Add(index, new Time(method, segment.PersonalBestSplitTime[method] - prevTime));
             if (segment.PersonalBestSplitTime[method].HasValue)
+            {
                 prevTime = segment.PersonalBestSplitTime[method].Value;
+            }
         }
     }
-
 
     public static void ImportBestSegment(this IRun run, int segmentIndex)
     {
@@ -335,7 +356,9 @@ public static class RunExtensions
         foreach (var c in extendedName)
         {
             if (c != '\\' && c != '/' && c != ':' && c != '*' && c != '?' && c != '"' && c != '<' && c != '>' && c != '|')
+            {
                 stringBuilder.Append(c);
+            }
         }
 
         return stringBuilder.ToString();
@@ -378,7 +401,9 @@ public static class RunExtensions
         var afterParentheses = "";
 
         if (string.IsNullOrEmpty(categoryName))
+        {
             return string.Empty;
+        }
 
         var indexStart = categoryName.IndexOf('(');
         var indexEnd = categoryName.IndexOf(')', indexStart + 1);
@@ -397,7 +422,10 @@ public static class RunExtensions
             {
                 string categoryId = null;
                 if ((run.Metadata.CategoryAvailable || waitForOnlineData) && run.Metadata.Category != null)
+                {
                     categoryId = run.Metadata.Category.ID;
+                }
+
                 variables = run.Metadata.Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).Select(x => x.Name);
             }
 
@@ -431,7 +459,9 @@ public static class RunExtensions
             if (doSimpleRegion)
             {
                 if (!string.IsNullOrEmpty(run.Metadata.RegionName))
+                {
                     list.Add(run.Metadata.RegionName);
+                }
             }
             else if (run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game != null && run.Metadata.Game.Regions.Count > 1)
             {
@@ -445,9 +475,13 @@ public static class RunExtensions
             if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || (run.Metadata.Game != null && run.Metadata.Game.Platforms.Count > 1)))
             {
                 if (run.Metadata.UsesEmulator)
+                {
                     list.Add($"{run.Metadata.PlatformName} Emulator");
+                }
                 else
+                {
                     list.Add(run.Metadata.PlatformName);
+                }
             }
             else if (run.Metadata.UsesEmulator)
             {

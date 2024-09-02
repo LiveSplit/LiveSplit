@@ -56,11 +56,15 @@ public class Connection : IConnection, IDisposable
                 command = Reader.ReadLine();
             }
             catch { }
+
             if (command != null)
             {
                 MessageReceived?.Invoke(this, new MessageEventArgs(this, command));
             }
-            else break;
+            else
+            {
+                break;
+            }
         }
 
         Disconnected?.Invoke(this, EventArgs.Empty);

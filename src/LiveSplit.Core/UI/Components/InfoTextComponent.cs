@@ -132,6 +132,7 @@ public class InfoTextComponent : IComponent
             LongestString = InformationName;
             NameMeasureLabel.Text = LongestString;
         }
+
         NameMeasureLabel.Text = LongestString;
         NameMeasureLabel.Font = state.LayoutSettings.TextFont;
         NameMeasureLabel.SetActualWidth(g);

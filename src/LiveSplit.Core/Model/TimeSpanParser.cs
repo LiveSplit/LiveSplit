@@ -18,7 +18,10 @@ public static class TimeSpanParser
     public static TimeSpan? ParseNullable(string timeString)
     {
         if (string.IsNullOrEmpty(timeString))
+        {
             return null;
+        }
+
         return Parse(timeString);
     }
 
@@ -68,7 +71,9 @@ public static class TimeSpanParser
     private static long ParseFractionAsTicks(string fractionText)
     {
         if (fractionText.Length > 7)
+        {
             fractionText = fractionText.Substring(0, 7);
+        }
 
         return long.Parse(fractionText, NumberStyles.Integer, CultureInfo.InvariantCulture) * powersOfTen[7 - fractionText.Length];
     }

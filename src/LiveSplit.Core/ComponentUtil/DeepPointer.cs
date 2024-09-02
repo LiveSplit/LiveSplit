@@ -57,7 +57,10 @@ public class DeepPointer
     {
         T val;
         if (!Deref(process, out val))
+        {
             val = default_;
+        }
+
         return val;
     }
 
@@ -78,7 +81,10 @@ public class DeepPointer
     {
         byte[] bytes;
         if (!DerefBytes(process, count, out bytes))
+        {
             bytes = null;
+        }
+
         return bytes;
     }
 
@@ -99,7 +105,10 @@ public class DeepPointer
     {
         string str;
         if (!DerefString(process, ReadStringType.AutoDetect, numBytes, out str))
+        {
             str = default_;
+        }
+
         return str;
     }
 
@@ -107,7 +116,10 @@ public class DeepPointer
     {
         string str;
         if (!DerefString(process, type, numBytes, out str))
+        {
             str = default_;
+        }
+
         return str;
     }
 
@@ -124,6 +136,7 @@ public class DeepPointer
             str = null;
             return false;
         }
+
         str = sb.ToString();
         return true;
     }
@@ -141,6 +154,7 @@ public class DeepPointer
         {
             return false;
         }
+
         return true;
     }
 
@@ -148,9 +162,13 @@ public class DeepPointer
     {
         bool is64Bit;
         if (_derefType == DerefType.Auto)
+        {
             is64Bit = process.Is64Bit();
+        }
         else
+        {
             is64Bit = _derefType == DerefType.Bit64;
+        }
 
         if (!string.IsNullOrEmpty(_module))
         {
@@ -214,16 +232,16 @@ public struct Vector3f
 
     public readonly float Distance(Vector3f other)
     {
-        float result = (X - other.X) * (X - other.X) +
-            (Y - other.Y) * (Y - other.Y) +
-            (Z - other.Z) * (Z - other.Z);
+        float result = ((X - other.X) * (X - other.X)) +
+            ((Y - other.Y) * (Y - other.Y)) +
+            ((Z - other.Z) * (Z - other.Z));
         return (float)Math.Sqrt(result);
     }
 
     public readonly float DistanceXY(Vector3f other)
     {
-        float result = (X - other.X) * (X - other.X) +
-            (Y - other.Y) * (Y - other.Y);
+        float result = ((X - other.X) * (X - other.X)) +
+            ((Y - other.Y) * (Y - other.Y));
         return (float)Math.Sqrt(result);
     }
 

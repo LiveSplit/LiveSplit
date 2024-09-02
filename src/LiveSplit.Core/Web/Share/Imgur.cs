@@ -106,14 +106,22 @@ public class Imgur : IRunUploadPlatform
 
         titleBuilder.Append(new RegularTimeFormatter(TimeAccuracy.Seconds).Format(run.Last().PersonalBestSplitTime[method]));
         if (titleBuilder.Length > 0 && (!gameNameEmpty || !categoryEmpty))
+        {
             titleBuilder.Append(" in ");
+        }
+
         titleBuilder.Append(run.GameName);
         if (!gameNameEmpty && !categoryEmpty)
+        {
             titleBuilder.Append(" - ");
+        }
+
         titleBuilder.Append(run.CategoryName);
 
         if (attachSplits)
+        {
             comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
+        }
 
         if (screenShotFunction != null)
         {

@@ -151,7 +151,9 @@ public class CommandServer
     private TimeSpan? ParseTime(string timeString)
     {
         if (timeString == "-")
+        {
             return null;
+        }
 
         return TimeSpanParser.Parse(timeString);
     }
@@ -178,6 +180,7 @@ public class CommandServer
                 {
                     Model.Start();
                 }
+
                 break;
             }
             case "split":
@@ -202,6 +205,7 @@ public class CommandServer
                 {
                     Model.Pause();
                 }
+
                 break;
             }
             case "resume":
@@ -210,6 +214,7 @@ public class CommandServer
                 {
                     Model.Pause();
                 }
+
                 break;
             }
             case "reset":
@@ -235,6 +240,7 @@ public class CommandServer
                     Log.Error(e);
                     Log.Error($"[Server] Failed to parse time while setting game time: {args[1]}");
                 }
+
                 break;
             }
             case "setloadingtimes":
@@ -249,6 +255,7 @@ public class CommandServer
                     Log.Error(e);
                     Log.Error($"[Server] Failed to parse time while setting loading times: {args[1]}");
                 }
+
                 break;
             }
             case "addloadingtimes":
@@ -263,6 +270,7 @@ public class CommandServer
                     Log.Error(e);
                     Log.Error($"[Server] Failed to parse time while adding loading times: {args[1]}");
                 }
+
                 break;
             }
             case "pausegametime":
@@ -287,9 +295,13 @@ public class CommandServer
                 var comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
                 TimeSpan? delta = null;
                 if (State.CurrentPhase == TimerPhase.Running || State.CurrentPhase == TimerPhase.Paused)
+                {
                     delta = LiveSplitStateHelper.GetLastDelta(State, State.CurrentSplitIndex, comparison, State.CurrentTimingMethod);
+                }
                 else if (State.CurrentPhase == TimerPhase.Ended)
+                {
                     delta = State.Run.Last().SplitTime[State.CurrentTimingMethod] - State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+                }
 
                 // Defaults to "-" when delta is null, such as when State.CurrentPhase == TimerPhase.NotRunning
                 response = TimeFormatter.Format(delta);
@@ -311,6 +323,7 @@ public class CommandServer
                 {
                     response = "-";
                 }
+
                 break;
             }
             case "getlastsplitname":
@@ -324,6 +337,7 @@ public class CommandServer
                 {
                     response = "-";
                 }
+
                 break;
             }
             case "getlastsplittime":
@@ -338,6 +352,7 @@ public class CommandServer
                 {
                     response = "-";
                 }
+
                 break;
             }
             case "getcurrentsplittime":
@@ -353,6 +368,7 @@ public class CommandServer
                 {
                     response = "-";
                 }
+
                 break;
             }
             case "getcurrentrealtime":
@@ -364,7 +380,10 @@ public class CommandServer
             {
                 var timingMethod = TimingMethod.GameTime;
                 if (!State.IsGameTimeInitialized)
+                {
                     timingMethod = TimingMethod.RealTime;
+                }
+
                 response = TimeFormatter.Format(GetCurrentTime(State, timingMethod));
                 break;
             }
@@ -372,7 +391,10 @@ public class CommandServer
             {
                 var timingMethod = State.CurrentTimingMethod;
                 if (timingMethod == TimingMethod.GameTime && !State.IsGameTimeInitialized)
+                {
                     timingMethod = TimingMethod.RealTime;
+                }
+
                 response = TimeFormatter.Format(GetCurrentTime(State, timingMethod));
                 break;
             }
@@ -391,9 +413,14 @@ public class CommandServer
             {
                 string comparison;
                 if (command == "getbestpossibletime")
+                {
                     comparison = LiveSplit.Model.Comparisons.BestSegmentsComparisonGenerator.ComparisonName;
+                }
                 else
+                {
                     comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
+                }
+
                 var prediction = PredictTime(State, comparison);
                 response = TimeFormatter.Format(prediction);
                 break;
@@ -420,6 +447,7 @@ public class CommandServer
                         State.CurrentTimingMethod = TimingMethod.RealTime;
                         break;
                 }
+
                 break;
             }
             case "setsplitname":
@@ -495,7 +523,9 @@ public class CommandServer
     private void State_OnStart(object sender, EventArgs e)
     {
         if (AlwaysPauseGameTime)
+        {
             State.IsGameTimePaused = true;
+        }
     }
 
     private TimeSpan? PredictTime(LiveSplitState state, string comparison)
@@ -505,7 +535,10 @@ public class CommandServer
             TimeSpan? delta = LiveSplitStateHelper.GetLastDelta(state, state.CurrentSplitIndex, comparison, State.CurrentTimingMethod) ?? TimeSpan.Zero;
             var liveDelta = state.CurrentTime[State.CurrentTimingMethod] - state.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
             if (liveDelta > delta)
+            {
                 delta = liveDelta;
+            }
+
             return delta + state.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
         }
         else if (state.CurrentPhase == TimerPhase.Ended)
@@ -521,9 +554,13 @@ public class CommandServer
     private TimeSpan? GetCurrentTime(LiveSplitState state, TimingMethod timingMethod)
     {
         if (state.CurrentPhase == TimerPhase.NotRunning)
+        {
             return state.Run.Offset;
+        }
         else
+        {
             return state.CurrentTime[timingMethod];
+        }
     }
 
     public void Dispose()

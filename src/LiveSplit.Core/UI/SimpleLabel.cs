@@ -115,8 +115,9 @@ public class SimpleLabel
 
             offset = Width - MeasureActualWidth(cutOffText, g);
             if (HorizontalAlignment != StringAlignment.Far)
+            {
                 offset = 0f;
-
+            }
 
             while (charIndex < cutOffText.Length)
             {
@@ -124,11 +125,15 @@ public class SimpleLabel
                 var curChar = cutOffText[charIndex];
 
                 if (char.IsDigit(curChar))
+                {
                     curOffset = measurement;
+                }
                 else
+                {
                     curOffset = MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+                }
 
-                DrawText(curChar.ToString(), g, X + offset - curOffset / 2f, Y, curOffset * 2f, Height, monoFormat);
+                DrawText(curChar.ToString(), g, X + offset - (curOffset / 2f), Y, curOffset * 2f, Height, monoFormat);
 
                 charIndex++;
                 offset += curOffset;
@@ -156,6 +161,7 @@ public class SimpleLabel
                         g.FillPath(shadowBrush, gp);
                         gp.Reset();
                     }
+
                     gp.AddString(text, Font.FontFamily, (int)Font.Style, fontSize, new RectangleF(x, y, width, height), format);
                     g.DrawPath(outline, gp);
                     g.FillPath(Brush, gp);
@@ -171,6 +177,7 @@ public class SimpleLabel
                         g.DrawString(text, Font, shadowBrush, new RectangleF(x + 2f, y + 2f, width, height), format);
                     }
                 }
+
                 g.DrawString(text, Font, Brush, new RectangleF(x, y, width, height), format);
             }
         }
@@ -178,13 +185,16 @@ public class SimpleLabel
 
     private float GetOutlineSize(float fontSize)
     {
-        return 2.1f + fontSize * 0.055f;
+        return 2.1f + (fontSize * 0.055f);
     }
 
     private float GetFontSize(Graphics g)
     {
         if (Font.Unit == GraphicsUnit.Point)
+        {
             return Font.Size * g.DpiY / 72;
+        }
+
         return Font.Size;
     }
 
@@ -194,9 +204,13 @@ public class SimpleLabel
         Format.LineAlignment = VerticalAlignment;
 
         if (!IsMonospaced)
+        {
             ActualWidth = g.MeasureString(Text, Font, 9999, Format).Width;
+        }
         else
+        {
             ActualWidth = MeasureActualWidth(Text, g);
+        }
     }
 
     public string CalculateAlternateText(Graphics g, float width)
@@ -215,6 +229,7 @@ public class SimpleLabel
                 break;
             }
         }
+
         return actualText;
     }
 
@@ -229,27 +244,39 @@ public class SimpleLabel
             var curChar = text[charIndex];
 
             if (char.IsDigit(curChar))
+            {
                 offset += measurement;
+            }
             else
+            {
                 offset += MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+            }
 
             charIndex++;
         }
+
         return offset;
     }
 
     private string CutOff(Graphics g)
     {
         if (ActualWidth < Width)
+        {
             return Text;
+        }
+
         var cutOffText = Text;
         while (ActualWidth >= Width && !string.IsNullOrEmpty(cutOffText))
         {
             cutOffText = cutOffText.Remove(cutOffText.Length - 1, 1);
             ActualWidth = MeasureActualWidth(cutOffText + "...", g);
         }
+
         if (ActualWidth >= Width)
+        {
             return "";
+        }
+
         return cutOffText + "...";
     }
 }

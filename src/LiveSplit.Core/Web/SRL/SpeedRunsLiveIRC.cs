@@ -79,7 +79,9 @@ public class SpeedRunsLiveIRC : IDisposable
     private void RaceChannel_UserKicked(object sender, IrcChannelUserEventArgs e)
     {
         if (e.ChannelUser.User.NickName == Client.LocalUser.NickName)
+        {
             Kicked?.Invoke(this, null);
+        }
     }
 
     private void Client_Disconnected(object sender, EventArgs e)
@@ -90,7 +92,9 @@ public class SpeedRunsLiveIRC : IDisposable
     private void Model_OnReset(object sender, TimerPhase e)
     {
         if (RaceState == RaceState.RaceStarted)
+        {
             QuitRace();
+        }
     }
 
     private void RaiseUserListRefreshed(object sender, EventArgs e)
@@ -132,7 +136,9 @@ public class SpeedRunsLiveIRC : IDisposable
                 foreach (var user in GetRaceChannelUsers().Where(x => x.Rights.HasFlag(SRLIRCRights.Voice) && x.Name != Username))
                 {
                     if (LiveSplitChannel.Users.Select(x => x.User.NickName).Contains(user.Name))
+                    {
                         AddComparison(user.Name);
+                    }
                 }
             }
         }
@@ -174,9 +180,15 @@ public class SpeedRunsLiveIRC : IDisposable
                 var timeRTA = "-";
                 var timeIGT = "-";
                 if (split.SplitTime.RealTime != null)
+                {
                     timeRTA = timeFormatter.Format(split.SplitTime.RealTime);
+                }
+
                 if (split.SplitTime.GameTime != null)
+                {
                     timeIGT = timeFormatter.Format(split.SplitTime.GameTime);
+                }
+
                 if (Model.CurrentState.CurrentPhase == TimerPhase.Ended)
                 {
                     Client.LocalUser.SendMessage(LiveSplitChannel, $"!done RealTime {timeRTA}");
@@ -193,7 +205,9 @@ public class SpeedRunsLiveIRC : IDisposable
         if (RaceChannel != null)
         {
             if (Model.CurrentState.CurrentPhase == TimerPhase.Ended && RaceState == RaceState.RaceStarted)
+            {
                 Client.LocalUser.SendMessage(RaceChannel, ".done");
+            }
         }
     }
 
@@ -201,7 +215,9 @@ public class SpeedRunsLiveIRC : IDisposable
     {
         if (LiveSplitChannel != null && RaceState == RaceState.RaceEnded
             && Model.CurrentState.CurrentSplitIndex == Model.CurrentState.Run.Count - 1)
+        {
             Undone();
+        }
 
         if (LiveSplitChannel != null && (RaceState == RaceState.RaceStarted || RaceState == RaceState.RaceEnded))
         {
@@ -249,7 +265,9 @@ public class SpeedRunsLiveIRC : IDisposable
                 Task.Factory.StartNew(() =>
                 {
                     foreach (var channel in ChannelsToJoin)
+                    {
                         Client.Channels.Join(channel);
+                    }
                 });
             }
             else if (e.Message.Parameters[1] == "Password incorrect.")
@@ -278,7 +296,9 @@ public class SpeedRunsLiveIRC : IDisposable
         var run = Model.CurrentState.Run;
         var segment = GetMatchingSegment(run, user, segmentName, method, time.HasValue);
         if (segment != null)
+        {
             AddSplit(user, segment, time, method);
+        }
     }
 
     private static ISegment GetMatchingSegment(IRun run, string user, string segmentName, TimingMethod method, bool timeHasValue)
@@ -290,6 +310,7 @@ public class SpeedRunsLiveIRC : IDisposable
         {
             return run.FirstOrDefault(x => x.Name.Trim().ToLower() == trimmedSegmentName && x.Comparisons[comparisonName][method] == null);
         }
+
         return run.LastOrDefault(x => x.Name.Trim().ToLower() == trimmedSegmentName && x.Comparisons[comparisonName][method] != null);
     }
 
@@ -327,14 +348,20 @@ public class SpeedRunsLiveIRC : IDisposable
                 var raceComparison = SRLComparisonGenerator.GetRaceComparisonName(userName);
 
                 if (Model.CurrentState.CurrentComparison.Equals(raceComparison))
+                {
                     Model.CurrentState.CurrentComparison = Run.PersonalBestComparisonName;
+                }
 
                 var comparisonGenerator = Model.CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == raceComparison);
                 if (comparisonGenerator != null)
+                {
                     Model.CurrentState.Run.ComparisonGenerators.Remove(comparisonGenerator);
+                }
 
                 foreach (var segment in Model.CurrentState.Run)
+                {
                     segment.Comparisons[raceComparison] = default(Time);
+                }
             }
             else if (message.StartsWith(Client.LocalUser.NickName + " enters the race!"))
             {
@@ -344,7 +371,9 @@ public class SpeedRunsLiveIRC : IDisposable
             {
                 var userName = message.Substring(0, message.IndexOf(" "));
                 if (LiveSplitChannel.Users.Select(x => x.User.NickName).Contains(userName))
+                {
                     AddComparison(userName);
+                }
             }
             else if (message.StartsWith(Client.LocalUser.NickName + " is ready!"))
             {
@@ -388,7 +417,10 @@ public class SpeedRunsLiveIRC : IDisposable
     public void RemoveRaceComparisons()
     {
         if (SRLComparisonGenerator.IsRaceComparison(Model.CurrentState.CurrentComparison))
+        {
             Model.CurrentState.CurrentComparison = Run.PersonalBestComparisonName;
+        }
+
         for (var ind = 0; ind < Model.CurrentState.Run.ComparisonGenerators.Count; ind++)
         {
             if (SRLComparisonGenerator.IsRaceComparison(Model.CurrentState.Run.ComparisonGenerators[ind].Name))
@@ -397,13 +429,16 @@ public class SpeedRunsLiveIRC : IDisposable
                 ind--;
             }
         }
+
         foreach (var segment in Model.CurrentState.Run)
         {
             for (var index = 0; index < segment.Comparisons.Count; index++)
             {
                 var comparison = segment.Comparisons.ElementAt(index);
                 if (SRLComparisonGenerator.IsRaceComparison(comparison.Key))
+                {
                     segment.Comparisons[comparison.Key] = default(Time);
+                }
             }
         }
     }
@@ -456,7 +491,10 @@ public class SpeedRunsLiveIRC : IDisposable
     protected TimeSpan? ParseTime(string timeString)
     {
         if (timeString == "-")
+        {
             return null;
+        }
+
         return TimeSpanParser.Parse(timeString);
     }
 
@@ -487,6 +525,7 @@ public class SpeedRunsLiveIRC : IDisposable
                     rights = SRLIRCRightsHelper.FromIrcChannelUser(source);
                 }
             }
+
             MessageReceived(this, new Tuple<string, SRLIRCUser, string>(e.Targets[0].Name, new SRLIRCUser(e.Source.Name, rights), e.Text));
         }
     }
@@ -591,7 +630,9 @@ public class SpeedRunsLiveIRC : IDisposable
     public IEnumerable<SRLIRCUser> GetRaceChannelUsers()
     {
         if (RaceChannel == null)
+        {
             return new SRLIRCUser[0];
+        }
 
         return RaceChannel.Users
             .Select(x =>

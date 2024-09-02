@@ -7,7 +7,10 @@ public static class SumOfSegmentsHelper
     public static IndexedTime TrackCurrentRun(IRun run, TimeSpan? currentTime, int segmentIndex, TimingMethod method = TimingMethod.RealTime)
     {
         if (segmentIndex > 0 && !run[segmentIndex - 1].SplitTime[method].HasValue)
+        {
             return new IndexedTime(default(Time), 0);
+        }
+
         var firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].SplitTime[method];
         while (segmentIndex < run.Count)
         {
@@ -16,15 +19,20 @@ public static class SumOfSegmentsHelper
             {
                 return new IndexedTime(new Time(method, secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
             }
+
             segmentIndex++;
         }
+
         return new IndexedTime(default(Time), 0);
     }
 
     public static IndexedTime TrackPersonalBestRun(IRun run, TimeSpan? currentTime, int segmentIndex, TimingMethod method = TimingMethod.RealTime)
     {
         if (segmentIndex > 0 && !run[segmentIndex - 1].PersonalBestSplitTime[method].HasValue)
+        {
             return new IndexedTime(default(Time), 0);
+        }
+
         var firstSplitTime = segmentIndex < 1 ? TimeSpan.Zero : run[segmentIndex - 1].PersonalBestSplitTime[method];
         while (segmentIndex < run.Count)
         {
@@ -33,8 +41,10 @@ public static class SumOfSegmentsHelper
             {
                 return new IndexedTime(new Time(method, secondSplitTime - firstSplitTime + currentTime), segmentIndex + 1);
             }
+
             segmentIndex++;
         }
+
         return new IndexedTime(default(Time), 0);
     }
 
@@ -51,9 +61,14 @@ public static class SumOfSegmentsHelper
                     return new IndexedTime(new Time(method, curTime + currentTime), segmentIndex + 1);
                 }
             }
-            else break;
+            else
+            {
+                break;
+            }
+
             segmentIndex++;
         }
+
         return new IndexedTime(default(Time), 0);
     }
 }

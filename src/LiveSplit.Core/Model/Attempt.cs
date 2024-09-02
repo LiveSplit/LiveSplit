@@ -27,9 +27,13 @@ public struct Attempt
         get
         {
             if (Ended.HasValue && Started.HasValue)
+            {
                 return Ended - Started;
+            }
             else
+            {
                 return Time.RealTime;
+            }
         }
     }
 
@@ -93,7 +97,10 @@ public struct Attempt
         {
             var startedTime = DateTime.Parse(node.Attributes["started"].InnerText, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
             if (node.HasAttribute("isStartedSynced"))
+            {
                 startedSynced = bool.Parse(node.Attributes["isStartedSynced"].InnerText);
+            }
+
             started = new AtomicDateTime(startedTime, startedSynced);
         }
 
@@ -101,7 +108,10 @@ public struct Attempt
         {
             var endedTime = DateTime.Parse(node.Attributes["ended"].InnerText, CultureInfo.InvariantCulture, DateTimeStyles.AssumeUniversal);
             if (node.HasAttribute("isEndedSynced"))
+            {
                 endedSynced = bool.Parse(node.Attributes["isEndedSynced"].InnerText);
+            }
+
             ended = new AtomicDateTime(endedTime, endedSynced);
         }
 
@@ -110,7 +120,9 @@ public struct Attempt
         {
             TimeSpan x;
             if (TimeSpan.TryParse(node["PauseTime"].InnerText, out x))
+            {
                 pauseTime = x;
+            }
         }
 
         return new Attempt(index, newTime, started, ended, pauseTime);

@@ -75,7 +75,10 @@ public partial class RunEditorDialog : Form
             {
                 Run.GameName = value;
                 if (IsMetadataTab)
+                {
                     metadataControl.RefreshInformation();
+                }
+
                 RefreshCategoryAutoCompleteList();
                 RaiseRunEdited();
                 Run.Metadata.RunID = null;
@@ -91,7 +94,10 @@ public partial class RunEditorDialog : Form
             {
                 Run.CategoryName = value;
                 if (IsMetadataTab)
+                {
                     metadataControl.RefreshInformation();
+                }
+
                 RaiseRunEdited();
                 Run.Metadata.RunID = null;
             }
@@ -103,7 +109,9 @@ public partial class RunEditorDialog : Form
         set
         {
             if (Regex.IsMatch(value, "[^0-9:.\\-−]"))
+            {
                 return;
+            }
 
             try
             {
@@ -116,7 +124,11 @@ public partial class RunEditorDialog : Form
     public int AttemptCount
     {
         get => Run.AttemptCount;
-        set { Run.AttemptCount = Math.Max(0, value); RaiseRunEdited(); }
+        set
+        {
+            Run.AttemptCount = Math.Max(0, value);
+            RaiseRunEdited();
+        }
     }
 
     private class ParsingResults
@@ -237,9 +249,13 @@ public partial class RunEditorDialog : Form
     private void Run_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == "GameName")
+        {
             cbxGameName.Text = Run.GameName;
+        }
         else if (e.PropertyName == "CategoryName")
+        {
             cbxRunCategory.Text = Run.CategoryName;
+        }
     }
 
     private void metadataControl_MetadataChanged(object sender, EventArgs e)
@@ -250,6 +266,7 @@ public partial class RunEditorDialog : Form
             Run.Metadata.RunID = null;
             metadataControl.RefreshAssociateButton();
         }
+
         RaiseRunEdited();
     }
 
@@ -265,6 +282,7 @@ public partial class RunEditorDialog : Form
                 splitter.Activate(CurrentState);
                 SetAutoSplitterSettings();
             }
+
             RefreshAutoSplittingUI();
         }
     }
@@ -272,7 +290,9 @@ public partial class RunEditorDialog : Form
     private void DeactivateAutoSplitter()
     {
         if (Run.IsAutoSplitterActive())
+        {
             Run.AutoSplitter.Deactivate();
+        }
     }
 
     private void FillCbxGameName()
@@ -299,7 +319,9 @@ public partial class RunEditorDialog : Form
                     });
                 }
                 else
+                {
                     cachedGameNames = new string[0];
+                }
 
                 var fetchedGameNames = CompositeGameList.Instance.GetGameNames(false);
                 if (fetchedGameNames != null)
@@ -348,12 +370,15 @@ public partial class RunEditorDialog : Form
                 {
                     var game = Run.Metadata.Game;
                     if (game != null)
+                    {
                         categoryNames = game.FullGameCategories.Select(x => x.Name).ToArray();
+                    }
                 }
                 catch (Exception ex)
                 {
                     Log.Error(ex);
                 }
+
                 this.InvokeIfRequired(() =>
                 {
                     try
@@ -455,7 +480,9 @@ public partial class RunEditorDialog : Form
         if (e.ColumnIndex == SPLITTIMEINDEX || e.ColumnIndex == BESTSEGMENTINDEX || e.ColumnIndex == SEGMENTTIMEINDEX || e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
         {
             if (string.IsNullOrWhiteSpace(e.FormattedValue.ToString()))
+            {
                 return;
+            }
 
             try
             {
@@ -478,7 +505,9 @@ public partial class RunEditorDialog : Form
             e.Value = parsingResults.Value;
         }
         else
+        {
             e.ParsingApplied = false;
+        }
     }
 
     private ParsingResults ParseCell(object value, int rowIndex, int columnIndex, bool shouldFix)
@@ -499,26 +528,35 @@ public partial class RunEditorDialog : Form
                 time[SelectedMethod] = null;
                 Run[rowIndex].PersonalBestSplitTime = time;
             }
+
             if (columnIndex == BESTSEGMENTINDEX)
             {
                 var time = new Time(Run[rowIndex].BestSegmentTime);
                 time[SelectedMethod] = null;
                 Run[rowIndex].BestSegmentTime = time;
             }
+
             if (columnIndex == SEGMENTTIMEINDEX)
             {
                 SegmentTimeList[rowIndex] = null;
                 if (shouldFix)
+                {
                     FixSplitsFromSegments();
+                }
             }
+
             if (columnIndex >= CUSTOMCOMPARISONSINDEX)
             {
                 var time = new Time(Run[rowIndex].Comparisons[runGrid.Columns[columnIndex].Name]);
                 time[SelectedMethod] = null;
                 Run[rowIndex].Comparisons[runGrid.Columns[columnIndex].Name] = time;
             }
+
             if (shouldFix)
+            {
                 Fix();
+            }
+
             TimesModified();
             return new ParsingResults(true, value);
         }
@@ -530,28 +568,37 @@ public partial class RunEditorDialog : Form
             {
                 SegmentTimeList[rowIndex] = (TimeSpan)value;
                 if (shouldFix)
+                {
                     FixSplitsFromSegments();
+                }
             }
+
             if (columnIndex >= CUSTOMCOMPARISONSINDEX)
             {
                 var time = new Time(Run[rowIndex].Comparisons[runGrid.Columns[columnIndex].Name]);
                 time[SelectedMethod] = (TimeSpan)value;
                 Run[rowIndex].Comparisons[runGrid.Columns[columnIndex].Name] = time;
             }
+
             if (columnIndex == SPLITTIMEINDEX)
             {
                 var time = new Time(Run[rowIndex].PersonalBestSplitTime);
                 time[SelectedMethod] = (TimeSpan)value;
                 Run[rowIndex].PersonalBestSplitTime = time;
             }
+
             if (columnIndex == BESTSEGMENTINDEX)
             {
                 var time = new Time(Run[rowIndex].BestSegmentTime);
                 time[SelectedMethod] = (TimeSpan)value;
                 Run[rowIndex].BestSegmentTime = time;
             }
+
             if (shouldFix)
+            {
                 Fix();
+            }
+
             TimesModified();
             return new ParsingResults(true, value);
         }
@@ -645,6 +692,7 @@ public partial class RunEditorDialog : Form
             {
                 dialog.Title = "Set Icon...";
             }
+
             var result = dialog.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -663,7 +711,9 @@ public partial class RunEditorDialog : Form
             {
                 var oldImage = (Image)runGrid.Rows[rowIndex].Cells[ICONINDEX].Value;
                 if (oldImage != null)
+                {
                     ImagesToDispose.Add(oldImage);
+                }
 
                 Run[rowIndex].Icon = image;
                 runGrid.NotifyCurrentCellDirty(true);
@@ -673,11 +723,15 @@ public partial class RunEditorDialog : Form
                 foreach (DataGridViewCell cell in runGrid.SelectedCells)
                 {
                     if (cell.ColumnIndex != ICONINDEX)
+                    {
                         continue;
+                    }
 
                     var oldImage = (Image)cell.Value;
                     if (oldImage != null)
+                    {
                         ImagesToDispose.Add(oldImage);
+                    }
 
                     Run[cell.RowIndex].Icon = (Image)image.Clone();
                     runGrid.UpdateCellValue(ICONINDEX, cell.RowIndex);
@@ -701,7 +755,9 @@ public partial class RunEditorDialog : Form
         runGrid.InvalidateColumn(BESTSEGMENTINDEX);
         runGrid.InvalidateColumn(SEGMENTTIMEINDEX);
         for (var index = CUSTOMCOMPARISONSINDEX; index < runGrid.Columns.Count; index++)
+        {
             runGrid.InvalidateColumn(index);
+        }
     }
 
     private void SetGameIcon(Image icon)
@@ -723,6 +779,7 @@ public partial class RunEditorDialog : Form
         {
             dialog.Title = "Set Game Icon...";
         }
+
         dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
         var result = dialog.ShowDialog();
         if (result == DialogResult.OK)
@@ -750,15 +807,18 @@ public partial class RunEditorDialog : Form
             {
                 initialPath = Path.GetDirectoryName(CurrentState.Layout.FilePath);
             }
+
             if (initialPath != null)
             {
                 openFileDialog.InitialDirectory = initialPath;
             }
+
             openFileDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All files (*.*)|*.*";
             if (openFileDialog.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
+
             if (SaveAndApplyLayoutPath(openFileDialog.FileName))
             {
                 ApplyLayoutPathToCbx(openFileDialog.FileName);
@@ -791,12 +851,14 @@ public partial class RunEditorDialog : Form
                 break;
             }
         }
+
         if (selected == null)
         {
             var fileName = Path.GetFileNameWithoutExtension(layoutPath).EscapeMenuItemText();
             selected = Tuple.Create(fileName, layoutPath);
             cbxLayoutToUse.Items.Insert(1, selected);
         }
+
         cbxLayoutToUse.SelectedItem = selected;
     }
 
@@ -810,6 +872,7 @@ public partial class RunEditorDialog : Form
             flpnlLayoutSelect.Enabled = false;
             return;
         }
+
         ApplyLayoutPathToCbx(Run.LayoutPath);
         chkbxUseLayout.Checked = true;
     }
@@ -826,6 +889,7 @@ public partial class RunEditorDialog : Form
         {
             return true;
         }
+
         TimerForm timerForm;
         try
         {
@@ -852,6 +916,7 @@ public partial class RunEditorDialog : Form
         {
             SaveLayoutPath(layoutPath);
         }
+
         return success;
     }
 
@@ -861,11 +926,13 @@ public partial class RunEditorDialog : Form
         {
             return;
         }
+
         var selected = ((Tuple<string, string>)cbxLayoutToUse.SelectedItem).Item2;
         if (String.IsNullOrEmpty(selected))
         {
             return;
         }
+
         SaveAndApplyLayoutPath(selected);
     }
 
@@ -878,6 +945,7 @@ public partial class RunEditorDialog : Form
         {
             return;
         }
+
         SaveLayoutPath(layoutPath);
     }
 
@@ -904,7 +972,9 @@ public partial class RunEditorDialog : Form
             SegmentTimeList.Add(splitTime - previousTime);
 
             if (splitTime != null)
+            {
                 previousTime = splitTime.Value;
+            }
         }
     }
 
@@ -921,7 +991,9 @@ public partial class RunEditorDialog : Form
             curSegment.PersonalBestSplitTime = time;
 
             if (curSegTime != null)
+            {
                 previousTime = curSegment.PersonalBestSplitTime[SelectedMethod].Value;
+            }
         }
     }
 
@@ -932,7 +1004,10 @@ public partial class RunEditorDialog : Form
 
         var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
         for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
+        {
             newSegment.SegmentHistory.Add(x, default(Time));
+        }
+
         SegmentList.Insert(runGrid.CurrentRow.Index, newSegment);
         runGrid.ClearSelection();
         runGrid.CurrentCell = runGrid.Rows[runGrid.CurrentRow.Index - 1].Cells[runGrid.CurrentCell.ColumnIndex];
@@ -947,10 +1022,16 @@ public partial class RunEditorDialog : Form
     {
         var newSegment = new Segment("");
         if (runGrid.CurrentRow.Index + 1 < Run.Count)
+        {
             Run.ImportBestSegment(runGrid.CurrentRow.Index + 1);
+        }
+
         var maxIndex = Run.AttemptHistory.Select(x => x.Index).DefaultIfEmpty(0).Max();
         for (var x = Run.GetMinSegmentHistoryIndex(); x <= maxIndex; x++)
+        {
             newSegment.SegmentHistory.Add(x, default(Time));
+        }
+
         SegmentList.Insert(runGrid.CurrentRow.Index + 1, newSegment);
         runGrid.ClearSelection();
         runGrid.CurrentCell = runGrid.Rows[runGrid.CurrentRow.Index + 1].Cells[runGrid.CurrentCell.ColumnIndex];
@@ -970,7 +1051,9 @@ public partial class RunEditorDialog : Form
                 var selectedCell = selectedObject;
 
                 if (selectedCell.RowIndex >= Run.Count || selectedCell.RowIndex < 0)
+                {
                     continue;
+                }
 
                 if (selectedCell.ColumnIndex == SEGMENTNAMEINDEX)
                 {
@@ -980,7 +1063,10 @@ public partial class RunEditorDialog : Form
                 else if (selectedCell.ColumnIndex == ICONINDEX)
                 {
                     if (Run[selectedCell.RowIndex].Icon != null)
+                    {
                         ImagesToDispose.Add(Run[selectedCell.RowIndex].Icon);
+                    }
+
                     Run[selectedCell.RowIndex].Icon = null;
                     RaiseRunEdited();
                 }
@@ -1009,10 +1095,12 @@ public partial class RunEditorDialog : Form
                         time[SelectedMethod] = null;
                         Run[selectedCell.RowIndex].Comparisons[selectedCell.OwningColumn.Name] = time;
                     }
+
                     Fix();
                     TimesModified();
                 }
             }
+
             runGrid.Invalidate();
         }
 
@@ -1046,11 +1134,18 @@ public partial class RunEditorDialog : Form
                         if (runGrid.ColumnCount - 1 >= iCol)
                         {
                             if (iCol == SEGMENTTIMEINDEX)
+                            {
                                 segmentsChanged = true;
+                            }
                             else if (iCol == SPLITTIMEINDEX)
+                            {
                                 splitsChanged = true;
+                            }
+
                             if (iCol != SEGMENTNAMEINDEX)
+                            {
                                 shouldFix = true;
+                            }
 
                             var cell = runGrid.Rows[iRow].Cells[iCol];
                             var parsingResults = ParseCell(valuesInRow[iCol - c], iRow, iCol, false);
@@ -1066,7 +1161,10 @@ public partial class RunEditorDialog : Form
                 if (shouldFix)
                 {
                     if (segmentsChanged && !splitsChanged)
+                    {
                         FixSplitsFromSegments();
+                    }
+
                     Fix();
                 }
             }
@@ -1081,7 +1179,10 @@ public partial class RunEditorDialog : Form
             var selectedIndex = selectedCell.RowIndex;
 
             if (Run.Count <= 1 || selectedIndex >= Run.Count || selectedIndex < 0)
+            {
                 continue;
+            }
+
             FixAfterDeletion(selectedIndex);
             if (selectedIndex == Run.Count - 1 && selectedIndex == runGrid.CurrentRow.Index)
             {
@@ -1089,8 +1190,12 @@ public partial class RunEditorDialog : Form
                 runGrid.CurrentCell = runGrid.Rows[runGrid.CurrentRow.Index - 1].Cells[runGrid.CurrentCell.ColumnIndex];
                 runGrid.CurrentCell.Selected = true;
             }
+
             if (Run[selectedIndex].Icon != null)
+            {
                 ImagesToDispose.Add(Run[selectedIndex].Icon);
+            }
+
             SegmentList.RemoveAt(selectedIndex);
         }
 
@@ -1161,7 +1266,10 @@ public partial class RunEditorDialog : Form
                 if (!Run[index].SegmentHistory.TryGetValue(runIndex, out segmentHistoryElement))
                 {
                     if (Run[curIndex].SegmentHistory.ContainsKey(runIndex))
+                    {
                         Run[curIndex].SegmentHistory.Remove(runIndex);
+                    }
+
                     continue;
                 }
 
@@ -1176,6 +1284,7 @@ public partial class RunEditorDialog : Form
                         Run[curIndex].SegmentHistory[runIndex] = segment;
                         break;
                     }
+
                     curIndex++;
                 }
             }
@@ -1188,8 +1297,11 @@ public partial class RunEditorDialog : Form
             foreach (var history in Run[curIndex].SegmentHistory)
             {
                 if (history.Value[method] < minBestSegment)
+                {
                     minBestSegment = history.Value[method];
+                }
             }
+
             var newTime = Run[curIndex].BestSegmentTime;
             newTime[method] = minBestSegment;
             Run[curIndex].BestSegmentTime = newTime;
@@ -1204,6 +1316,7 @@ public partial class RunEditorDialog : Form
             Run.Metadata.RunID = null;
             PreviousPersonalBestTime = Run.Last().PersonalBestSplitTime;
         }
+
         RaiseRunEdited();
     }
 
@@ -1267,6 +1380,7 @@ public partial class RunEditorDialog : Form
         {
             Log.Error(ex);
         }
+
         MessageBox.Show("Could not download the icon of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
@@ -1302,6 +1416,7 @@ public partial class RunEditorDialog : Form
         {
             Log.Error(ex);
         }
+
         MessageBox.Show("Could not download the box art of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
@@ -1347,10 +1462,13 @@ public partial class RunEditorDialog : Form
         {
             runGrid.Columns.RemoveAt(CUSTOMCOMPARISONSINDEX);
         }
+
         foreach (var comparison in Run.CustomComparisons)
         {
             if (comparison != Model.Run.PersonalBestComparisonName)
+            {
                 AddComparisonColumn(comparison);
+            }
         }
     }
 
@@ -1388,13 +1506,17 @@ public partial class RunEditorDialog : Form
                     column.Name = newName;
                     column.Width = Math.Max(100, column.GetPreferredWidth(DataGridViewAutoSizeColumnMode.ColumnHeader, true));
                     if (CurrentState.CurrentComparison == name)
+                    {
                         CurrentState.CurrentComparison = newName;
+                    }
+
                     Run.CustomComparisons[Run.CustomComparisons.IndexOf(name)] = newName;
                     foreach (var segment in Run)
                     {
                         segment.Comparisons[newName] = segment.Comparisons[name];
                         segment.Comparisons.Remove(name);
                     }
+
                     var args = new RenameEventArgs();
                     args.OldName = name;
                     args.NewName = newName;
@@ -1404,16 +1526,21 @@ public partial class RunEditorDialog : Form
                 {
                     var result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                     if (result == DialogResult.Retry)
+                    {
                         RenameComparison(column);
+                    }
                 }
             }
             else if (newName != name)
             {
                 var result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
+                {
                     RenameComparison(column);
+                }
             }
         }
+
         RaiseRunEdited();
     }
 
@@ -1424,7 +1551,9 @@ public partial class RunEditorDialog : Form
         Run.CustomComparisons.Remove(name);
 
         if (CurrentState.CurrentComparison == name)
+        {
             CurrentState.CurrentComparison = Model.Run.PersonalBestComparisonName;
+        }
 
         var args = new RenameEventArgs();
         args.OldName = name;
@@ -1432,7 +1561,10 @@ public partial class RunEditorDialog : Form
         ComparisonRenamed(this, args);
 
         foreach (var segment in Run)
+        {
             segment.Comparisons.Remove(name);
+        }
+
         RaiseRunEdited();
     }
 
@@ -1453,14 +1585,18 @@ public partial class RunEditorDialog : Form
                 {
                     result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                     if (result == DialogResult.Retry)
+                    {
                         btnAddComparison_Click(sender, e);
+                    }
                 }
             }
             else
             {
                 result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
+                {
                     btnAddComparison_Click(sender, e);
+                }
             }
         }
     }
@@ -1526,6 +1662,7 @@ public partial class RunEditorDialog : Form
             Run.AutoSplitter.Activate(CurrentState);
             SetAutoSplitterSettings();
         }
+
         RefreshAutoSplittingUI();
     }
 
@@ -1534,7 +1671,9 @@ public partial class RunEditorDialog : Form
         if (Run.AutoSplitter.IsActivated
         && Run.AutoSplitterSettings != null
         && Run.AutoSplitterSettings.GetAttribute("gameName") == cbxGameName.Text)
+        {
             Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
+        }
     }
 
     private void btnSettings_Click(object sender, EventArgs e)
@@ -1655,7 +1794,9 @@ public partial class RunEditorDialog : Form
     {
         var name = importer.ImportAsComparison(Run, this);
         if (name != null)
+        {
             AddComparisonColumn(name);
+        }
     }
 
     private void btnOther_Click(object sender, EventArgs e)
@@ -1713,13 +1854,18 @@ public partial class RunEditorDialog : Form
                         pastResponses.Add(messageText, false);
                         return false;
                     }
+
                     alwaysCancel = true;
                 }
                 else
+                {
                     return pastResponses[messageText];
+                }
             }
+
             return false;
         }
+
         SumOfBest.Clean(Run, callback);
         RaiseRunEdited();
         if (!userWasPrompted)
@@ -1744,8 +1890,11 @@ public partial class RunEditorDialog : Form
         foreach (Control childControl in control.Controls)
         {
             if (childControl is Label || childControl is TableLayoutPanel || childControl is PictureBox || childControl is FlowLayoutPanel)
+            {
                 SetClickEvents(childControl);
+            }
         }
+
         control.Click += ClickControl;
     }
 
@@ -1826,7 +1975,9 @@ public class CustomAutoCompleteComboBox : ComboBox
                 {
                     refreshDropDown.Wait();
                     if (taskCanceled || IsDisposed)
+                    {
                         return;
+                    }
 
                     var text = currentText;
                     var legalStrings = GetAllItemsForText(text);
@@ -1868,13 +2019,17 @@ public class CustomAutoCompleteComboBox : ComboBox
     {
         base.OnLostFocus(e);
         if (!_dropDown.Focused)
+        {
             CloseDropDown();
+        }
     }
 
     private void TryReleaseRefreshDropDown()
     {
         if (refreshDropDown.CurrentCount == 0)
+        {
             refreshDropDown.Release();
+        }
     }
 
     public void CloseDropDown()
@@ -1887,11 +2042,18 @@ public class CustomAutoCompleteComboBox : ComboBox
         if (e.KeyCode == Keys.Down)
         {
             if (_box.Items.Count > 0)
+            {
                 SelectedItem = _box.Items[0];
+            }
+
             CloseDropDown();
         }
+
         if (e.KeyCode == Keys.Down || e.KeyCode == Keys.Up)
+        {
             e.SuppressKeyPress = true;
+        }
+
         base.OnKeyDown(e);
     }
 
@@ -1902,7 +2064,10 @@ public class CustomAutoCompleteComboBox : ComboBox
         _box = new ListBox();
         _box.Width = Width;
         _box.Click += (sender, arg) =>
-        { Text = _box.SelectedItem as string; _dropDown.Close(); };
+        {
+            Text = _box.SelectedItem as string;
+            _dropDown.Close();
+        };
         ToolStripControlHost host = new ToolStripControlHost(_box);
         host.AutoSize = false;
         host.Margin = Padding.Empty;

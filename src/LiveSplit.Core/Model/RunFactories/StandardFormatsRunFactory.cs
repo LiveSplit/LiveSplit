@@ -30,7 +30,7 @@ public class StandardFormatsRunFactory : IRunFactory
         const long NANOS_PER_SEC = 1_000_000_000;
         const long NANOS_PER_TICK = NANOS_PER_SEC / TimeSpan.TicksPerSecond;
 
-        var totalTicks = wholeSeconds * TimeSpan.TicksPerSecond + subsecNanoseconds / NANOS_PER_TICK;
+        var totalTicks = (wholeSeconds * TimeSpan.TicksPerSecond) + (subsecNanoseconds / NANOS_PER_TICK);
         return new TimeSpan(totalTicks);
     }
 
@@ -40,6 +40,7 @@ public class StandardFormatsRunFactory : IRunFactory
         {
             return null;
         }
+
         return ParseTimeSpan(timeSpan);
     }
 
@@ -49,6 +50,7 @@ public class StandardFormatsRunFactory : IRunFactory
         {
             return null;
         }
+
         var utcDateTime = DateTime.Parse(dateTime.ToRfc3339(), CultureInfo.InvariantCulture).ToUniversalTime();
         return new AtomicDateTime(utcDateTime, dateTime.IsSynchronized());
     }
@@ -105,13 +107,16 @@ public class StandardFormatsRunFactory : IRunFactory
                 result = LiveSplitCore.Run.ParseFileHandle((long)handle.DangerousGetHandle(), FilePath);
             }
         }
+
         if (result == null)
         {
             result = LiveSplitCore.Run.Parse(Stream, FilePath);
         }
 
         if (!result.ParsedSuccessfully())
+        {
             throw new Exception();
+        }
 
         var timerKind = result.TimerKind();
 
@@ -209,10 +214,14 @@ public class StandardFormatsRunFactory : IRunFactory
             run.AutoSplitterSettings.Attributes.Append(ToAttribute(document, "gameName", run.GameName));
 
             if (timerKind == "LiveSplit" && !string.IsNullOrEmpty(FilePath))
+            {
                 run.FilePath = FilePath;
+            }
 
             if (run.Count < 1)
+            {
                 throw new Exception("Run factory created a run without at least one segment");
+            }
 
             return run;
         }

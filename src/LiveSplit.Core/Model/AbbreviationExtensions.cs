@@ -20,7 +20,7 @@ public static class AbbreviationExtensions
 
     private static bool isAllCapsOrDigit(string name)
     {
-        return name.All(c => (char.IsUpper(c) || char.IsDigit(c)));
+        return name.All(c => char.IsUpper(c) || char.IsDigit(c));
     }
 
     private static bool tokenize(string name, string splitToken, List<string> list)
@@ -42,6 +42,7 @@ public static class AbbreviationExtensions
             {
                 list.AddRange(seriesTitleAbbreviations);
             }
+
             list.AddRange(subTitleAbbreviations);
 
             var isThereOnlyOneSeriesTitleAbbreviation = seriesTitleAbbreviations.Count == 1;
@@ -61,6 +62,7 @@ public static class AbbreviationExtensions
 
             return true;
         }
+
         return false;
     }
 
@@ -84,6 +86,7 @@ public static class AbbreviationExtensions
 
             return true;
         }
+
         return false;
     }
 
@@ -108,9 +111,15 @@ public static class AbbreviationExtensions
             name = $"{beforeParentheses} {afterParentheses}".Trim();
             list.AddRange(name.GetAbbreviations());
         }
-        else if (tokenize(name, ": ", list)) { }
-        else if (tokenize(name, " - ", list)) { }
-        else if (tokenizeAndKeepBoth(name, " | ", list)) { }
+        else if (tokenize(name, ": ", list))
+        {
+        }
+        else if (tokenize(name, " - ", list))
+        {
+        }
+        else if (tokenizeAndKeepBoth(name, " | ", list))
+        {
+        }
         else if (name.ToLowerInvariant().Contains(" and "))
         {
             var index = name.ToLower().IndexOf(" and ");
@@ -141,11 +150,17 @@ public static class AbbreviationExtensions
                     .Select(x =>
                         {
                             if (char.IsDigit(x[0]))
+                            {
                                 return x
                                     .TakeWhile(c => c != ' ')
                                     .Aggregate("", (a, b) => a + b);
+                            }
+
                             if (x.Length <= 4 && isAllCapsOrDigit(x))
+                            {
                                 return " " + x;
+                            }
+
                             return x[0].ToString();
                         })
                     .Aggregate("", (a, b) => a + b)

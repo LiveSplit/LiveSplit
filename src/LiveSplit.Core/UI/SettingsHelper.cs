@@ -53,6 +53,7 @@ public class SettingsHelper
             var ms = new MemoryStream(data);
             return (Font)bf.Deserialize(ms);
         }
+
         return null;
     }
 
@@ -74,8 +75,10 @@ public class SettingsHelper
                     element.InnerXml = cdata.OuterXml;
                 }
             }
+
             parent.AppendChild(element);
         }
+
         return getFontHashCode(font);
     }
 
@@ -84,11 +87,12 @@ public class SettingsHelper
         int hash = 17;
         unchecked
         {
-            hash = hash * 23 + font.Name.GetHashCode();
-            hash = hash * 23 + font.FontFamily.GetHashCode();
-            hash = hash * 23 + font.Size.GetHashCode();
-            hash = hash * 23 + font.Style.GetHashCode();
+            hash = (hash * 23) + font.Name.GetHashCode();
+            hash = (hash * 23) + font.FontFamily.GetHashCode();
+            hash = (hash * 23) + font.Size.GetHashCode();
+            hash = (hash * 23) + font.Style.GetHashCode();
         }
+
         return hash;
     }
 
@@ -131,6 +135,7 @@ public class SettingsHelper
                 return (Image)bf.Deserialize(ms);
             }
         }
+
         return null;
     }
 
@@ -209,7 +214,9 @@ public class SettingsHelper
     public static string ParseString(XmlElement stringElement, string defaultString = null)
     {
         if (defaultString == null)
+        {
             defaultString = string.Empty;
+        }
 
         return stringElement != null
             ? stringElement.InnerText
@@ -250,6 +257,7 @@ public class SettingsHelper
             element.InnerText = color.ToArgb().ToString("X8");
             parent.AppendChild(element);
         }
+
         return color.GetHashCode();
     }
 
@@ -261,6 +269,7 @@ public class SettingsHelper
             element.InnerText = value?.ToString();
             parent.AppendChild(element);
         }
+
         return value != null ? value.GetHashCode() : 0;
     }
 
@@ -272,6 +281,7 @@ public class SettingsHelper
             element.InnerText = value.ToString(CultureInfo.InvariantCulture);
             parent.AppendChild(element);
         }
+
         return value.GetHashCode();
     }
 
@@ -283,6 +293,7 @@ public class SettingsHelper
             element.InnerText = value.ToString(CultureInfo.InvariantCulture);
             parent.AppendChild(element);
         }
+
         return value.GetHashCode();
     }
 

@@ -125,7 +125,10 @@ public partial class TimerForm : Form
             // If we're trying to set to false and it's already false, don't bother doing anything.
             // We can't do this for setting to true because setting Opacity may have messed the GWL_EXSTYLE flags up.
             if (!value && !MousePassThroughState)
+            {
                 return;
+            }
+
             MousePassThroughState = value;
 
             var prevWindowLong = GetWindowLong(Handle, GWL_EXSTYLE);
@@ -271,7 +274,9 @@ public partial class TimerForm : Form
 
         InTimerOnlyMode = run == timerOnlyRun;
         if (InTimerOnlyMode)
+        {
             SetInTimerOnlyMode();
+        }
 
         CurrentState.LayoutSettings = Layout.Settings;
         CreateAutoSplitter();
@@ -339,7 +344,7 @@ public partial class TimerForm : Form
         int lastRaceProvider = RightClickMenu.Items.IndexOfKey("endRaceSection") - 1;
         if (lastRaceProvider - firstRaceProvider >= 0)
         {
-            for (int i = 0; i < (lastRaceProvider - firstRaceProvider) + 1; i++)
+            for (int i = 0; i < lastRaceProvider - firstRaceProvider + 1; i++)
             {
                 RightClickMenu.Items[firstRaceProvider].Tag = null;
                 RightClickMenu.Items[firstRaceProvider].MouseHover -= racingMenuItem_MouseHover;
@@ -352,7 +357,9 @@ public partial class TimerForm : Form
         foreach (var raceProvider in RaceProvider.Reverse())
         {
             if (Settings.RaceProvider.Any(x => x.DisplayName == raceProvider.ProviderName && !x.Enabled))
+            {
                 continue;
+            }
 
             raceProvider.RacesRefreshedCallback = RacesRefreshed;
             ToolStripMenuItem raceProviderItem = new ToolStripMenuItem()
@@ -366,6 +373,7 @@ public partial class TimerForm : Form
             RightClickMenu.Items.Insert(menuItemIndex + 1, raceProviderItem);
             raceProvider.RefreshRacesListAsync();
         }
+
         var srlRaceProvider = RaceProvider.FirstOrDefault(x => x.ProviderName == "SRL");
         if (srlRaceProvider != null)
         {
@@ -399,14 +407,21 @@ public partial class TimerForm : Form
         foreach (var item in comparisonMenuItem.DropDownItems.OfType<ToolStripItem>().Reverse())
         {
             if (item is ToolStripSeparator)
+            {
                 numSeparators++;
+            }
+
             if (item is ToolStripMenuItem)
             {
                 var toolItem = (ToolStripMenuItem)item;
                 if (numSeparators == 0)
+                {
                     toolItem.Checked = toolItem.Name == CurrentState.CurrentTimingMethod.ToString();
+                }
                 else
+                {
                     toolItem.Checked = toolItem.Text == CurrentState.CurrentComparison.EscapeMenuItemText();
+                }
             }
         }
     }
@@ -419,7 +434,10 @@ public partial class TimerForm : Form
     private string GetShortenedGameAndGoal(string goal)
     {
         if (goal.Length > 65)
+        {
             return goal.Substring(0, 60) + "...";
+        }
+
         return goal;
     }
 
@@ -456,7 +474,9 @@ public partial class TimerForm : Form
             {
                 ToolStripMenuItem racingMenuItem = RightClickMenu.Items.Find($"{raceProvider.ProviderName}racesMenuItem", false).FirstOrDefault() as ToolStripMenuItem;
                 if (racingMenuItem == null)
+                {
                     return;
+                }
 
                 racingMenuItem.DropDownItems.Clear();
                 racingMenuItem.DropDownItems.AddRange(x.ToArray());
@@ -468,7 +488,9 @@ public partial class TimerForm : Form
         foreach (var race in raceProvider.GetRaces())
         {
             if (race.State != 1)
+            {
                 continue;
+            }
 
             var gameAndGoal = GetShortenedGameAndGoal(string.Format("{0} - {1}", race.GameName, race.Goal));
             var entrants = race.NumEntrants;
@@ -483,12 +505,16 @@ public partial class TimerForm : Form
         }
 
         if (menuItemsToAdd.Count > 0)
+        {
             menuItemsToAdd.Add(new ToolStripSeparator());
+        }
 
         foreach (var race in raceProvider.GetRaces())
         {
             if (race.State != 3)
+            {
                 continue;
+            }
 
             var gameAndGoal = GetShortenedGameAndGoal(string.Format("{0} - {1}", race.GameName, race.Goal));
             var startTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
@@ -527,7 +553,9 @@ public partial class TimerForm : Form
             tsItem.Click += (s, ev) =>
             {
                 if (!race.IsParticipant(raceProvider.Username))
+                {
                     Settings.RaceViewer.ShowRace(race);
+                }
                 else
                 {
                     tsItem.Tag = race.Id;
@@ -539,7 +567,9 @@ public partial class TimerForm : Form
         }
 
         if (menuItemsToAdd.Count > 0 && !(menuItemsToAdd[menuItemsToAdd.Count - 1] is ToolStripSeparator))
+        {
             menuItemsToAdd.Add(new ToolStripSeparator());
+        }
 
         var newRaceItem = new ToolStripMenuItem();
         newRaceItem.Text = "New Race...";
@@ -553,7 +583,10 @@ public partial class TimerForm : Form
     {
         var timeSpan = TimeStamp.CurrentDateTime - startTime;
         if (timeSpan < TimeSpan.Zero)
+        {
             timeSpan = TimeSpan.Zero;
+        }
+
         var time = new RegularTimeFormatter().Format(timeSpan);
         var title = string.Format("[{0}] {1} ({2}/{3} Finished)", time, gameAndGoal, race.Finishes, race.NumEntrants - race.Forfeits) as string;
         item.Text = title.EscapeMenuItemText();
@@ -588,9 +621,11 @@ public partial class TimerForm : Form
                     gameCategory = gameName + " - " + gameCategory;
                     gameName = "New Game";
                 }
+
                 var form = new SpeedRunsLiveForm(CurrentState, model, gameName, id, gameCategory);
                 form.Show(this);
             }
+
             TopMost = CurrentState.LayoutSettings.AlwaysOnTop;
         }
     }
@@ -610,6 +645,7 @@ public partial class TimerForm : Form
                 Layout.HorizontalWidth = Size.Width;
                 Layout.HorizontalHeight = Size.Height;
             }
+
             MaintainMinimumSize();
         }
     }
@@ -637,9 +673,14 @@ public partial class TimerForm : Form
             pauseMenuItem.Enabled = true;
             splitMenuItem.Enabled = true;
             if (CurrentState.CurrentSplitIndex == 0)
+            {
                 undoSplitMenuItem.Enabled = false;
+            }
+
             if (CurrentState.CurrentSplitIndex < CurrentState.Run.Count - 1)
+            {
                 skipSplitMenuItem.Enabled = true;
+            }
         });
     }
 
@@ -688,7 +729,10 @@ public partial class TimerForm : Form
         this.InvokeIfRequired(() =>
         {
             if (CurrentState.CurrentSplitIndex >= CurrentState.Run.Count - 1)
+            {
                 skipSplitMenuItem.Enabled = false;
+            }
+
             undoSplitMenuItem.Enabled = true;
         });
     }
@@ -702,8 +746,12 @@ public partial class TimerForm : Form
                 pauseMenuItem.Enabled = false;
                 splitMenuItem.Enabled = false;
             }
+
             if (CurrentState.CurrentSplitIndex >= CurrentState.Run.Count - 1)
+            {
                 skipSplitMenuItem.Enabled = false;
+            }
+
             undoSplitMenuItem.Enabled = true;
         });
     }
@@ -733,6 +781,7 @@ public partial class TimerForm : Form
 
                 SetRun(timerOnlyRun);
             }
+
             resetMenuItem.Enabled = false;
             pauseMenuItem.Enabled = false;
             undoPausesMenuItem.Enabled = false;
@@ -782,7 +831,9 @@ public partial class TimerForm : Form
     protected void SetInTimerOnlyMode()
     {
         if (Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer")
+        {
             InTimerOnlyMode = false;
+        }
     }
 
     private void UpdateRecentSplits()
@@ -825,7 +876,9 @@ public partial class TimerForm : Form
                 {
                     string categoryName;
                     if (string.IsNullOrEmpty(category.Key))
+                    {
                         categoryName = "Unknown Category";
+                    }
                     else
                     {
                         categoryName = category.Key;
@@ -847,7 +900,9 @@ public partial class TimerForm : Form
                     gameMenuItem = (ToolStripMenuItem)gameMenuItem.DropDownItems[0];
                     gameName = gameMenuItem.Text;
                     if (gameMenuItem.Text == "Unknown Category")
+                    {
                         gameName = "Unknown";
+                    }
                 }
             }
             else
@@ -860,7 +915,9 @@ public partial class TimerForm : Form
                     if ((string)gameMenuItem.Tag == "Category")
                     {
                         if (!gameMenuItem.Text.StartsWith("Unknown Category"))
+                        {
                             gameName += " - " + gameMenuItem.Text;
+                        }
                     }
                     else
                     {
@@ -873,8 +930,12 @@ public partial class TimerForm : Form
 
             openSplitsMenuItem.DropDownItems.Add(gameMenuItem);
         }
+
         if (openSplitsMenuItem.DropDownItems.Count > 0)
+        {
             openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
+        }
+
         var openFromFileMenuItem = new ToolStripMenuItem("From File...");
         openFromFileMenuItem.Click += openSplitsFromFileMenuItem_Click;
         openSplitsMenuItem.DropDownItems.Add(openFromFileMenuItem);
@@ -903,9 +964,15 @@ public partial class TimerForm : Form
             if (run != null)
             {
                 if (!WarnUserAboutSplitsSave())
+                {
                     return;
+                }
+
                 if (!WarnAndRemoveTimerOnly(true))
+                {
                     return;
+                }
+
                 run.HasChanged = true;
                 SetRun(run);
                 CurrentState.CallRunManuallyModified();
@@ -923,7 +990,9 @@ public partial class TimerForm : Form
         using (var editHistoryDialog = new EditHistoryDialog(Settings.RecentSplits.Select(x => x.Path)))
         {
             if (editHistoryDialog.ShowDialog(this) != DialogResult.Cancel)
+            {
                 Settings.RecentSplits = new List<RecentSplitsFile>(Settings.RecentSplits.Where(x => editHistoryDialog.History.Contains(x.Path)));
+            }
         }
 
         UpdateRecentSplits();
@@ -939,8 +1008,12 @@ public partial class TimerForm : Form
             menuItem.Click += (x, y) => OpenLayoutFromFile(item);
             openLayoutMenuItem.DropDownItems.Add(menuItem);
         }
+
         if (openLayoutMenuItem.DropDownItems.Count > 0)
+        {
             openLayoutMenuItem.DropDownItems.Add(new ToolStripSeparator());
+        }
+
         var openLayoutFromFileMenuItem = new ToolStripMenuItem("From File...");
         openLayoutFromFileMenuItem.Click += openLayoutFromFileMenuItem_Click;
         openLayoutMenuItem.DropDownItems.Add(openLayoutFromFileMenuItem);
@@ -962,8 +1035,11 @@ public partial class TimerForm : Form
         {
 
             if (editHistoryDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.Cancel)
+            {
                 Settings.RecentLayouts = editHistoryDialog.History;
+            }
         }
+
         UpdateRecentLayouts();
     }
 
@@ -1035,9 +1111,15 @@ public partial class TimerForm : Form
         if (run != null)
         {
             if (!WarnUserAboutSplitsSave())
+            {
                 return;
+            }
+
             if (!WarnAndRemoveTimerOnly(true))
+            {
                 return;
+            }
+
             run.HasChanged = true;
             SetRun(run);
             CurrentState.CallRunManuallyModified();
@@ -1081,7 +1163,9 @@ public partial class TimerForm : Form
                         splitTimer.Elapsed += splitTimer_Elapsed;
                     }
                     else
+                    {
                         StartOrSplit();
+                    }
                 }
 
                 else if (hotkeyProfile.UndoKey == e)
@@ -1108,14 +1192,19 @@ public partial class TimerForm : Form
                         pauseTimer.Elapsed += pauseTimer_Elapsed;
                     }
                     else
+                    {
                         Model.Pause();
+                    }
                 }
 
                 else if (hotkeyProfile.SwitchComparisonPrevious == e)
+                {
                     Model.SwitchComparisonPrevious();
-
+                }
                 else if (hotkeyProfile.SwitchComparisonNext == e)
+                {
                     Model.SwitchComparisonNext();
+                }
             }
 
             if (hotkeyProfile.ToggleGlobalHotkeys == e)
@@ -1172,19 +1261,27 @@ public partial class TimerForm : Form
                 try
                 {
                     if (Hook != null)
+                    {
                         Hook.Poll();
+                    }
 
                     if (CurrentState.Run.IsAutoSplitterActive())
+                    {
                         CurrentState.Run.AutoSplitter.Component.Update(null, CurrentState, 0, 0, Layout.Mode);
+                    }
 
                     if (DontRedraw)
+                    {
                         return;
+                    }
 
                     if (RefreshesRemaining > 0 || InvalidationRequired)
                     {
                         InvalidateForm();
                         if (InvalidationRequired)
+                        {
                             InvalidationRequired = false;
+                        }
                     }
                     else
                     {
@@ -1192,7 +1289,9 @@ public partial class TimerForm : Form
                         GlobalCache["LayoutHashCode"] = new XMLLayoutSaver().CreateLayoutNode(null, null, Layout);
 
                         if (GlobalCache.HasChanged)
+                        {
                             InvalidateForm();
+                        }
                         else
                         {
                             Invalidator.Restart();
@@ -1239,16 +1338,26 @@ public partial class TimerForm : Form
             {
                 MinimumSize = new Size(0, 0);
                 if (Layout.Mode == LayoutMode.Vertical)
-                    Height = (int)((currentSize / (double)OldSize) * Height + 0.5);
+                {
+                    Height = (int)((currentSize / (double)OldSize * Height) + 0.5);
+                }
                 else
-                    Width = (int)((currentSize / (double)OldSize) * Width + 0.5);
+                {
+                    Width = (int)((currentSize / (double)OldSize * Width) + 0.5);
+                }
+
                 OldSize = currentSize;
             }
-            var minSize = (int)(currentSize / 5 + 0.5f);
+
+            var minSize = (int)((currentSize / 5) + 0.5f);
             if (Layout.Mode == LayoutMode.Vertical)
+            {
                 MinimumSize = new Size(25, Math.Max(minSize, 25));
+            }
             else
+            {
                 MinimumSize = new Size(Math.Max(minSize, 25), 25);
+            }
         }
     }
 
@@ -1257,14 +1366,23 @@ public partial class TimerForm : Form
         if (RefreshesRemaining > 0)
         {
             if (Layout.Mode == LayoutMode.Vertical)
+            {
                 Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
+            }
             else
+            {
                 Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
+            }
 
             if (OldSize != ComponentRenderer.OverallSize)
+            {
                 UpdateRefreshesRemaining();
+            }
             else
+            {
                 RefreshesRemaining--;
+            }
+
             OldSize = ComponentRenderer.OverallSize;
         }
     }
@@ -1294,13 +1412,17 @@ public partial class TimerForm : Form
     protected void UpdateAllComponents()
     {
         foreach (var component in Layout.Components)
+        {
             component.Update(null, CurrentState, Width, Height, Layout.Mode);
+        }
     }
 
     private void PaintForm(Graphics g, Region clip)
     {
         if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
+        {
             UpdateRegion.Union(clip);
+        }
 
         DrawBackground(g);
 
@@ -1310,9 +1432,14 @@ public partial class TimerForm : Form
         MousePassThrough = Layout.Settings.MousePassThroughWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running && !IsForegroundWindow;
 
         if (Layout.Settings.AntiAliasing)
+        {
             g.TextRenderingHint = TextRenderingHint.AntiAlias;
+        }
         else
+        {
             g.TextRenderingHint = TextRenderingHint.ClearTypeGridFit;
+        }
+
         g.CompositingQuality = CompositingQuality.GammaCorrected;
         g.InterpolationMode = InterpolationMode.Bilinear;
         g.SmoothingMode = SmoothingMode.AntiAlias;
@@ -1330,9 +1457,13 @@ public partial class TimerForm : Form
         float transformedHeight = Height;
 
         if (Layout.Mode == LayoutMode.Vertical)
+        {
             transformedWidth /= scaleFactor;
+        }
         else
+        {
             transformedHeight /= scaleFactor;
+        }
 
         ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
 
@@ -1368,6 +1499,7 @@ public partial class TimerForm : Form
                 {
                     CreateBakedBackground();
                 }
+
                 foreach (var rectangle in UpdateRegion.GetRegionScans(g.Transform))
                 {
                     var rect = Rectangle.Round(rectangle);
@@ -1376,8 +1508,8 @@ public partial class TimerForm : Form
             }
         }
         else if (Layout.Settings.BackgroundColor != Color.Transparent
-            || Layout.Settings.BackgroundType != BackgroundType.SolidColor
-            && Layout.Settings.BackgroundColor2 != Color.Transparent)
+            || (Layout.Settings.BackgroundType != BackgroundType.SolidColor
+            && Layout.Settings.BackgroundColor2 != Color.Transparent))
         {
             var gradientBrush = new LinearGradientBrush(
                         new PointF(0, 0),
@@ -1405,9 +1537,13 @@ public partial class TimerForm : Form
                 if (blur != previousBlur || image != previousBackground)
                 {
                     if (blurredBackground != null)
+                    {
                         blurredBackground.Dispose();
+                    }
+
                     blurredBackground = ImageBlur.Generate(image, blur * 10);
                 }
+
                 image = blurredBackground;
             }
 
@@ -1444,7 +1580,9 @@ public partial class TimerForm : Form
             }
 
             if (bakedBackground != null)
+            {
                 bakedBackground.Dispose();
+            }
 
             bakedBackground = bitmap;
             previousBackground = Layout.Settings.BackgroundImage;
@@ -1475,7 +1613,10 @@ public partial class TimerForm : Form
     private void TimerForm_MouseUp(object sender, MouseEventArgs e)
     {
         if (e.Button == MouseButtons.Left)
+        {
             MouseIsDown = false;
+        }
+
         if (e.Button == MouseButtons.Right)
         {
             RightClickMenu.Show(this, e.Location);
@@ -1506,8 +1647,10 @@ public partial class TimerForm : Form
                 Settings.AgreedToSRLRules = true;
                 return true;
             }
+
             return false;
         }
+
         return true;
     }
 
@@ -1538,13 +1681,13 @@ public partial class TimerForm : Form
 
             Dictionary<uint, Rectangle> boxes = new Dictionary<uint, Rectangle>() {
                 {HTBOTTOMLEFT, new Rectangle(0, formSize.Height - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE)},
-                {HTBOTTOM, new Rectangle(RESIZE_HANDLE_SIZE, formSize.Height - RESIZE_HANDLE_SIZE, formSize.Width - 2*RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE)},
+                {HTBOTTOM, new Rectangle(RESIZE_HANDLE_SIZE, formSize.Height - RESIZE_HANDLE_SIZE, formSize.Width - (2*RESIZE_HANDLE_SIZE), RESIZE_HANDLE_SIZE)},
                 {HTBOTTOMRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, formSize.Height - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE)},
-                {HTRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, formSize.Height - 2*RESIZE_HANDLE_SIZE)},
+                {HTRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, formSize.Height - (2*RESIZE_HANDLE_SIZE))},
                 {HTTOPRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, 0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE) },
-                {HTTOP, new Rectangle(RESIZE_HANDLE_SIZE, 0, formSize.Width - 2*RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE) },
+                {HTTOP, new Rectangle(RESIZE_HANDLE_SIZE, 0, formSize.Width - (2*RESIZE_HANDLE_SIZE), RESIZE_HANDLE_SIZE) },
                 {HTTOPLEFT, new Rectangle(0, 0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE) },
-                {HTLEFT, new Rectangle(0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, formSize.Height - 2*RESIZE_HANDLE_SIZE) }
+                {HTLEFT, new Rectangle(0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, formSize.Height - (2*RESIZE_HANDLE_SIZE)) }
             };
 
             foreach (KeyValuePair<uint, Rectangle> hitBox in boxes)
@@ -1569,6 +1712,7 @@ public partial class TimerForm : Form
             {
                 DeleteObject(hRgn);
             }
+
             hRgn = CreateRectRgn(0, 0, 0, 0);
             var x = GetUpdateRgn(Handle, hRgn, false);
             try
@@ -1602,10 +1746,14 @@ public partial class TimerForm : Form
         const uint WMSZ_BOTTOMRIGHT = 8;
 
         if (!ResizingInitialAspectRatio.HasValue)
+        {
             return false;
+        }
 
         if (!ModifierKeys.HasFlag(Keys.Shift))
+        {
             return false;
+        }
 
         bool anchorLeft;
         bool anchorTop;
@@ -1640,17 +1788,25 @@ public partial class TimerForm : Form
         {
             var newWidth = (int)(rect.Height * ResizingInitialAspectRatio.Value);
             if (anchorLeft)
+            {
                 rect.Right = rect.Left + newWidth;
+            }
             else
+            {
                 rect.Left = rect.Right - newWidth;
+            }
         }
         else
         {
             var newHeight = (int)(rect.Width / ResizingInitialAspectRatio.Value);
             if (anchorTop)
+            {
                 rect.Bottom = rect.Top + newHeight;
+            }
             else
+            {
                 rect.Top = rect.Bottom - newHeight;
+            }
         }
 
         Marshal.StructureToPtr(rect, m.LParam, false);
@@ -1678,8 +1834,11 @@ public partial class TimerForm : Form
         foreach (var icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
         {
             if (icon != null)
+            {
                 icon.Dispose();
+            }
         }
+
         if (CurrentState.Run.GameIcon != null && CurrentState.Run.GameIcon != run.GameIcon)
         {
             CurrentState.Run.GameIcon.Dispose();
@@ -1687,7 +1846,10 @@ public partial class TimerForm : Form
 
         run.ComparisonGenerators = new List<IComparisonGenerator>(CurrentState.Run.ComparisonGenerators);
         foreach (var generator in run.ComparisonGenerators)
+        {
             generator.Run = run;
+        }
+
         run.FixSplits();
         DeactivateAutoSplitter();
         CurrentState.Run = run;
@@ -1719,20 +1881,26 @@ public partial class TimerForm : Form
             if (splitter.IsActivated
             && CurrentState.Run.AutoSplitterSettings != null
             && CurrentState.Run.AutoSplitterSettings.GetAttribute("gameName") == CurrentState.Run.GameName)
+            {
                 CurrentState.Run.AutoSplitter.Component.SetSettings(CurrentState.Run.AutoSplitterSettings);
+            }
         }
     }
 
     private void DeactivateAutoSplitter()
     {
         if (CurrentState.Run.AutoSplitter != null)
+        {
             CurrentState.Run.AutoSplitter.Deactivate();
+        }
     }
 
     private void AddCurrentSplitsToLRU(TimingMethod lastTimingMethod, string lastHotkeyProfile)
     {
         if (CurrentState.Run != null && Settings.RecentSplits.Any(x => x.Path == CurrentState.Run.FilePath))
+        {
             AddSplitsFileToLRU(CurrentState.Run.FilePath, CurrentState.Run, lastTimingMethod, lastHotkeyProfile);
+        }
     }
 
     private IRun LoadRunFromFile(string filePath, TimingMethod? previousTimingMethod = null, string previousHotkeyProfile = null)
@@ -1748,7 +1916,9 @@ public partial class TimerForm : Form
         }
 
         if (previousTimingMethod.HasValue && previousHotkeyProfile != null)
+        {
             AddCurrentSplitsToLRU(previousTimingMethod.Value, previousHotkeyProfile);
+        }
 
         AddSplitsFileToLRU(filePath, run, CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
@@ -1772,9 +1942,14 @@ public partial class TimerForm : Form
         try
         {
             if (!WarnUserAboutSplitsSave())
+            {
                 return;
+            }
+
             if (!WarnAndRemoveTimerOnly(true))
+            {
                 return;
+            }
 
             var previousTimingMethod = CurrentState.CurrentTimingMethod;
             var previousHotkeyProfile = CurrentState.CurrentHotkeyProfile;
@@ -1792,6 +1967,7 @@ public partial class TimerForm : Form
             MessageBox.Show(this, "The selected file was not recognized as a splits file.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             DontRedraw = false;
         }
+
         Cursor.Current = Cursors.Arrow;
     }
 
@@ -1822,7 +1998,10 @@ public partial class TimerForm : Form
             try
             {
                 if (Settings.RecentSplits.Any() && !string.IsNullOrEmpty(Settings.RecentSplits.Last().Path))
+                {
                     splitDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentSplits.Last().Path);
+                }
+
                 var result = splitDialog.ShowDialog(this);
                 if (result == DialogResult.OK)
                 {
@@ -1853,9 +2032,11 @@ public partial class TimerForm : Form
                         MessageBox.Show(this, "Cannot save splits with a file type that is not .lss", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
+
                     CurrentState.Run.FilePath = splitDialog.FileName;
                     return SaveSplits(promptPBMessage);
                 }
+
                 return false;
             }
             finally
@@ -1892,7 +2073,9 @@ public partial class TimerForm : Form
                 Model.ResetAndSetAttemptAsPB();
             }
             else if (result == DialogResult.Cancel)
+            {
                 return false;
+            }
         }
 
         var stateCopy = CurrentState;
@@ -1907,7 +2090,9 @@ public partial class TimerForm : Form
         try
         {
             if (!File.Exists(savePath))
+            {
                 File.Create(savePath).Close();
+            }
 
             using (var memoryStream = new MemoryStream())
             {
@@ -1930,6 +2115,7 @@ public partial class TimerForm : Form
             Log.Error(ex);
             return false;
         }
+
         return true;
     }
 
@@ -1946,6 +2132,7 @@ public partial class TimerForm : Form
             Layout.HorizontalWidth = Width;
             Layout.HorizontalHeight = Height;
         }
+
         Layout.X = Location.X;
         Layout.Y = Location.Y;
 
@@ -1957,7 +2144,9 @@ public partial class TimerForm : Form
         try
         {
             if (!File.Exists(savePath))
+            {
                 File.Create(savePath).Close();
+            }
 
             using (var memoryStream = new MemoryStream())
             {
@@ -1980,6 +2169,7 @@ public partial class TimerForm : Form
             Log.Error(ex);
             return false;
         }
+
         return true;
     }
 
@@ -1997,20 +2187,29 @@ public partial class TimerForm : Form
                 TopMost = false;
                 IsInDialogMode = true;
                 if (CurrentState.CurrentPhase == TimerPhase.NotRunning)
+                {
                     editor.AllowChangingSegments = true;
+                }
+
                 var result = editor.ShowDialog(this);
                 if (result == DialogResult.Cancel)
                 {
                     foreach (var image in runCopy.Select(x => x.Icon))
+                    {
                         editor.ImagesToDispose.Remove(image);
+                    }
+
                     editor.ImagesToDispose.Remove(runCopy.GameIcon);
 
                     CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
                     SetRun(runCopy);
                     CurrentState.CallRunManuallyModified();
                 }
+
                 foreach (var image in editor.ImagesToDispose)
+                {
                     image.Dispose();
+                }
             }
             finally
             {
@@ -2046,7 +2245,9 @@ public partial class TimerForm : Form
         if (InTimerOnlyMode)
         {
             if (!WarnUserAboutLayoutSave(canCancel))
+            {
                 return false;
+            }
 
             InTimerOnlyMode = false;
             ILayout layout;
@@ -2054,19 +2255,25 @@ public partial class TimerForm : Form
             {
                 var lastLayoutPath = Settings.RecentLayouts.LastOrDefault(x => !string.IsNullOrEmpty(x));
                 if (lastLayoutPath != null)
+                {
                     layout = LoadLayoutFromFile(lastLayoutPath);
+                }
                 else
+                {
                     layout = new StandardLayoutFactory().Create(CurrentState);
+                }
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
                 layout = new StandardLayoutFactory().Create(CurrentState);
             }
+
             layout.X = Location.X;
             layout.Y = Location.Y;
             SetLayout(layout);
         }
+
         return true;
     }
 
@@ -2089,6 +2296,7 @@ public partial class TimerForm : Form
                 Layout.HorizontalWidth = Size.Width;
                 Layout.HorizontalHeight = Size.Height;
             }
+
             var layoutCopy = (ILayout)Layout.Clone();
             var document = new XmlDocument();
             var componentSettings = Layout.Components.Select(x =>
@@ -2110,7 +2318,10 @@ public partial class TimerForm : Form
                 if (editor.DialogResult == DialogResult.Cancel)
                 {
                     foreach (var component in layoutCopy.Components)
+                    {
                         editor.ComponentsToDispose.Remove(component);
+                    }
+
                     editor.ImagesToDispose.Remove(layoutCopy.Settings.BackgroundImage);
 
                     using (var enumerator = componentSettings.GetEnumerator())
@@ -2118,15 +2329,24 @@ public partial class TimerForm : Form
                         foreach (var component in layoutCopy.Components)
                         {
                             if (enumerator.MoveNext())
+                            {
                                 component.SetSettings(enumerator.Current);
+                            }
                         }
                     }
+
                     SetLayout(layoutCopy);
                 }
+
                 foreach (var component in editor.ComponentsToDispose)
+                {
                     component.Dispose();
+                }
+
                 foreach (var image in editor.ImagesToDispose)
+                {
                     image.Dispose();
+                }
             }
             finally
             {
@@ -2181,6 +2401,7 @@ public partial class TimerForm : Form
                 Layout.HorizontalHeight = 45;
             }
         }
+
         TopMost = false;
         SetLayout(Layout);
     }
@@ -2201,9 +2422,11 @@ public partial class TimerForm : Form
                         MessageBox.Show(this, "Cannot save layout with a file type that is not .lsl", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
+
                     Layout.FilePath = layoutDialog.FileName;
                     return SaveLayout();
                 }
+
                 return false;
             }
             finally
@@ -2238,7 +2461,10 @@ public partial class TimerForm : Form
             try
             {
                 if (Settings.RecentLayouts.Any() && !string.IsNullOrEmpty(Settings.RecentLayouts.Last()))
+                {
                     layoutDialog.InitialDirectory = Path.GetDirectoryName(Settings.RecentLayouts.Last());
+                }
+
                 var result = layoutDialog.ShowDialog(this);
                 if (result == DialogResult.OK)
                 {
@@ -2271,8 +2497,10 @@ public partial class TimerForm : Form
                 MessageBox.Show(this, "The selected file was not recognized as a layout file. (" + e.Message + ")", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 DontRedraw = false;
             }
+
             Cursor.Current = Cursors.Arrow;
         }
+
         return success;
     }
 
@@ -2293,14 +2521,21 @@ public partial class TimerForm : Form
         if (Layout != null && Layout != layout)
         {
             if (Layout.Settings.BackgroundImage != null && Layout.Settings.BackgroundImage != layout.Settings.BackgroundImage)
+            {
                 Layout.Settings.BackgroundImage.Dispose();
+            }
 
             foreach (var component in Layout.Components.Except(layout.Components))
+            {
                 component.Dispose();
+            }
 
             foreach (var component in layout.Components.Except(Layout.Components).OfType<IDeactivatableComponent>())
+            {
                 component.Activated = true;
+            }
         }
+
         Layout = layout;
         ComponentRenderer.VisibleComponents = Layout.Components;
         CurrentState.LayoutSettings = layout.Settings;
@@ -2309,13 +2544,18 @@ public partial class TimerForm : Form
         if (Layout.Mode == LayoutMode.Vertical)
         {
             if (Layout.VerticalWidth != UI.Layout.InvalidSize && Layout.VerticalHeight != UI.Layout.InvalidSize)
+            {
                 Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
+            }
         }
         else
         {
             if (Layout.HorizontalWidth != UI.Layout.InvalidSize && Layout.HorizontalHeight != UI.Layout.InvalidSize)
+            {
                 Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
+            }
         }
+
         var x = Math.Max(SystemInformation.VirtualScreen.X, Math.Min(Layout.X, SystemInformation.VirtualScreen.X + SystemInformation.VirtualScreen.Width - Width));
         var y = Math.Max(SystemInformation.VirtualScreen.Y, Math.Min(Layout.Y, SystemInformation.VirtualScreen.Y + SystemInformation.VirtualScreen.Height - Height));
         Location = new Point(x, y);
@@ -2328,9 +2568,14 @@ public partial class TimerForm : Form
         var needToChangeLayout = Layout.Components.Count() != 1 || Layout.Components.FirstOrDefault().ComponentName != "Timer";
 
         if (!WarnUserAboutSplitsSave())
+        {
             return;
+        }
+
         if (needToChangeLayout && !WarnUserAboutLayoutSave(true))
+        {
             return;
+        }
 
         AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
 
@@ -2431,10 +2676,12 @@ public partial class TimerForm : Form
                 DontRedraw = false;
             }
         }
+
         if (safeToContinue)
         {
             Model.Reset();
         }
+
         return safeToContinue;
     }
 
@@ -2462,6 +2709,7 @@ public partial class TimerForm : Form
                 DontRedraw = false;
             }
         }
+
         return safeToContinue;
     }
 
@@ -2472,6 +2720,7 @@ public partial class TimerForm : Form
             e.Cancel = true;
             return;
         }
+
         if (!WarnUserAboutLayoutSave(true))
         {
             e.Cancel = true;
@@ -2485,7 +2734,9 @@ public partial class TimerForm : Form
         {
             var settingsPath = Path.Combine(BasePath, SETTINGS_PATH);
             if (!File.Exists(settingsPath))
+            {
                 File.Create(settingsPath).Close();
+            }
 
             using (var memoryStream = new MemoryStream())
             {
@@ -2505,7 +2756,10 @@ public partial class TimerForm : Form
         }
 
         foreach (var component in Layout.Components)
+        {
             component.Dispose();
+        }
+
         DeactivateAutoSplitter();
         Server.StopAll();
     }
@@ -2526,13 +2780,16 @@ public partial class TimerForm : Form
                     var regenerate = Settings.SimpleSumOfBest != oldSettings.SimpleSumOfBest;
                     CurrentState.Settings = Settings = oldSettings;
                     if (regenerate)
+                    {
                         RegenerateComparisons();
+                    }
                 }
                 else
                 {
                     SwitchComparisonGenerators();
                     CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
                 }
+
                 Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
                 UpdateRaceProviderIntegration();
             }
@@ -2568,6 +2825,7 @@ public partial class TimerForm : Form
         {
             Log.Error(e);
         }
+
         Settings = new StandardSettingsFactory().Create();
     }
 
@@ -2582,13 +2840,17 @@ public partial class TimerForm : Form
         {
             var minimumWidth = ComponentRenderer.MinimumWidth * (Height / ComponentRenderer.OverallSize);
             if (Width < minimumWidth)
-                Height = (int)(Height / (minimumWidth / Width) + 0.5f);
+            {
+                Height = (int)((Height / (minimumWidth / Width)) + 0.5f);
+            }
         }
         else
         {
             var minimumHeight = ComponentRenderer.MinimumHeight * (Width / ComponentRenderer.OverallSize);
             if (Height < minimumHeight)
-                Width = (int)(Width / (minimumHeight / Height) + 0.5f);
+            {
+                Width = (int)((Width / (minimumHeight / Height)) + 0.5f);
+            }
         }
     }
 
@@ -2645,8 +2907,12 @@ public partial class TimerForm : Form
                 break;
             }
         }
-        if (!warnUser && (CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] != null && CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] == null) || CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] < CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod])
+
+        if ((!warnUser && CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] != null && CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] == null) || CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] < CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod])
+        {
             warnUser = true;
+        }
+
         if (warnUser)
         {
             DontRedraw = true;
@@ -2654,6 +2920,7 @@ public partial class TimerForm : Form
             DontRedraw = false;
             return result;
         }
+
         return DialogResult.Yes;
     }
 
@@ -2673,10 +2940,16 @@ public partial class TimerForm : Form
                 ResetMessageShown = true;
                 result = WarnAboutResetting();
             }
+
             if (result == DialogResult.Yes)
+            {
                 Model.Reset();
+            }
             else if (result == DialogResult.No)
+            {
                 Model.Reset(false);
+            }
+
             ResetMessageShown = false;
         }
     }
@@ -2713,9 +2986,13 @@ public partial class TimerForm : Form
         var hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
 
         if (hotkeysMenuItem.Checked)
+        {
             hotkeysMenuItem.Checked = hotkeyProfile.GlobalHotkeysEnabled = false;
+        }
         else
+        {
             hotkeysMenuItem.Checked = hotkeyProfile.GlobalHotkeysEnabled = true;
+        }
 
         SetProgressBar();
     }
@@ -2746,7 +3023,9 @@ public partial class TimerForm : Form
                 TaskbarManager.Instance.SetProgressValue(100, 100);
             }
             else
+            {
                 TaskbarManager.Instance.SetProgressState(TaskbarProgressBarState.NoProgress);
+            }
         }
         catch (Exception ex)
         {
@@ -2765,10 +3044,14 @@ public partial class TimerForm : Form
         comparisonMenuItem.DropDownItems.Clear();
 
         foreach (var customComparison in CurrentState.Run.CustomComparisons)
+        {
             AddActionToComparisonsMenu(customComparison);
+        }
 
         if (CurrentState.Run.ComparisonGenerators.Count > 0)
+        {
             comparisonMenuItem.DropDownItems.Add(new ToolStripSeparator());
+        }
 
         var raceSeparatorAdded = false;
         foreach (var generator in CurrentState.Run.ComparisonGenerators)
@@ -2778,6 +3061,7 @@ public partial class TimerForm : Form
                 comparisonMenuItem.DropDownItems.Add(new ToolStripSeparator());
                 raceSeparatorAdded = true;
             }
+
             AddActionToComparisonsMenu(generator.Name);
         }
 
@@ -2813,7 +3097,9 @@ public partial class TimerForm : Form
         if (CurrentState != null && CurrentState.Run != null)
         {
             foreach (var generator in CurrentState.Run.ComparisonGenerators)
+            {
                 generator.Generate(CurrentState.Settings);
+            }
         }
     }
 
@@ -2824,12 +3110,16 @@ public partial class TimerForm : Form
         {
             var generatorInRun = CurrentState.Run.ComparisonGenerators.FirstOrDefault(x => x.Name == generator.Name);
             if (generatorInRun != null)
+            {
                 CurrentState.Run.ComparisonGenerators.Remove(generatorInRun);
+            }
 
             if (Settings.ComparisonGeneratorStates[generator.Name])
+            {
                 CurrentState.Run.ComparisonGenerators.Add(generator);
-
+            }
         }
+
         SwitchComparison(CurrentState.CurrentComparison);
         RegenerateComparisons();
     }
@@ -2837,7 +3127,10 @@ public partial class TimerForm : Form
     private void SwitchComparison(string name)
     {
         if (!CurrentState.Run.Comparisons.Contains(name))
+        {
             name = Run.PersonalBestComparisonName;
+        }
+
         CurrentState.CurrentComparison = name;
     }
 
@@ -2877,7 +3170,9 @@ public partial class TimerForm : Form
 
         var components = Layout.Components;
         if (CurrentState.Run.IsAutoSplitterActive())
+        {
             components = components.Concat(new[] { CurrentState.Run.AutoSplitter.Component });
+        }
 
         var componentControls =
             components
@@ -2904,7 +3199,9 @@ public partial class TimerForm : Form
     private void TimerForm_ResizeBegin(object sender, EventArgs e)
     {
         if (Size.Height > 0)
+        {
             ResizingInitialAspectRatio = (float)Size.Width / Size.Height;
+        }
     }
 
     private void TimerForm_ResizeEnd(object sender, EventArgs e)

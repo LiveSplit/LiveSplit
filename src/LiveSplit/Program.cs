@@ -30,10 +30,15 @@ internal static class Program
             for (var i = 0; i < args.Length; ++i)
             {
                 if (args[i] == "-s")
+                {
                     splitsPath = args[++i];
+                }
                 else if (args[i] == "-l")
+                {
                     layoutPath = args[++i];
+                }
             }
+
             Application.Run(new TimerForm(splitsPath: splitsPath, layoutPath: layoutPath));
         }
 #if !DEBUG

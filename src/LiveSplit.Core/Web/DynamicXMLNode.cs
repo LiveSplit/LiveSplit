@@ -73,9 +73,13 @@ internal class DynamicXMLElement : DynamicObject
         }
 
         if (memberElement.HasChildNodes)
+        {
             result = new DynamicXMLElement(memberElement);
+        }
         else
+        {
             result = memberElement.InnerText;
+        }
 
         return true;
     }

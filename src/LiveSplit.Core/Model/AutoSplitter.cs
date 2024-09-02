@@ -38,7 +38,10 @@ public class AutoSplitter : ICloneable
             try
             {
                 if (!IsDownloaded || Type == AutoSplitterType.Script || Type == AutoSplitterType.AutoSplittingRuntimeScript)
+                {
                     DownloadFiles();
+                }
+
                 switch (Type)
                 {
                     case AutoSplitterType.Component:
@@ -84,7 +87,9 @@ public class AutoSplitter : ICloneable
                 {
                     var factory = ComponentManager.LoadFactory<IComponentFactory>(localPath);
                     if (factory != null)
+                    {
                         ComponentManager.ComponentFactories.Add(fileName, factory);
+                    }
                 }
             }
             catch (WebException)

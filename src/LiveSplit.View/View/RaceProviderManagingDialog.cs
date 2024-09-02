@@ -28,9 +28,10 @@ public partial class RaceProviderManagingDialog : Form
     {
         var link = sender as LinkLabel;
         if (link != null && !string.IsNullOrEmpty(link.Text))
+        {
             Process.Start($"{link.Text}");
+        }
     }
-
 
     private void btnOK_Click(object sender, EventArgs e)
     {
@@ -52,7 +53,9 @@ public partial class RaceProviderManagingDialog : Form
     private void providerListBox_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (providerListBox.SelectedIndex < 0)
+        {
             return;
+        }
 
         websiteLink.Text = Settings[providerListBox.SelectedIndex].WebsiteLink;
         rulesLink.Text = Settings[providerListBox.SelectedIndex].RulesLink;

@@ -12,7 +12,9 @@ public class Program
         try
         {
             if (!EventLog.SourceExists("LiveSplit"))
+            {
                 EventLog.CreateEventSource("LiveSplit", "Application");
+            }
         }
         catch { }
 
@@ -29,7 +31,9 @@ public class Program
         try
         {
             if (!InternetExplorerBrowserEmulation.IsBrowserEmulationSet("LiveSplit.exe"))
+            {
                 InternetExplorerBrowserEmulation.SetBrowserEmulationVersion("LiveSplit.exe");
+            }
         }
         catch (Exception ex)
         {

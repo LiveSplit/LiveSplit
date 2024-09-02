@@ -24,7 +24,9 @@ internal static class Program
             {
                 List<IUpdateable> updateables = new List<IUpdateable>();
                 for (int i = 0; i + 2 < args.Length; i += 3)
+                {
                     updateables.Add(new Updateable(args[i], args[i + 1], Version.Parse(args[i + 2])));
+                }
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);

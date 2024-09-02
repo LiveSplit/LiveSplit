@@ -21,7 +21,9 @@ public class LiveSplitCoreFactory
         ~LibraryUnloader()
         {
             if (handle != null)
+            {
                 FreeLibrary(handle);
+            }
         }
 
         private readonly void* handle;
@@ -35,16 +37,22 @@ public class LiveSplitCoreFactory
         string path;
 
         if (IntPtr.Size == 4)
+        {
             path = "x86\\livesplit_core.dll";
+        }
         else
+        {
             path = "x64\\livesplit_core.dll";
+        }
 
         unsafe
         {
             void* handle = LoadLibrary(path);
 
             if (handle == null)
+            {
                 throw new DllNotFoundException("Unable to load the native livesplit-core library: " + path);
+            }
 
             unloader = new LibraryUnloader(handle);
         }

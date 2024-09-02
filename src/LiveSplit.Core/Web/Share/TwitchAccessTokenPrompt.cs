@@ -24,7 +24,9 @@ public class TwitchAccessTokenPrompt
         var result = InputBox.Show("Twitch Authentication", "After completing the OAuth flow and being redirected to a GitHub Pages 404 error page, copy the full URL from the address bar of your browser:", ref urlWithToken);
 
         if (result == System.Windows.Forms.DialogResult.Cancel)
+        {
             return null;
+        }
 
         try
         {

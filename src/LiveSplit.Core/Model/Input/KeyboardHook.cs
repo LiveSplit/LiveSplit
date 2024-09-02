@@ -21,7 +21,9 @@ public class KeyboardHook
     public void RegisterHotKey(Keys key)
     {
         if (!RegisteredKeys.ContainsKey(key))
+        {
             RegisteredKeys.Add(key, false);
+        }
     }
 
     public void UnregisterAllHotkeys()
@@ -41,11 +43,13 @@ public class KeyboardHook
                 modifiersDown &= IsKeyDown(Keys.ShiftKey);
                 modifiers |= Keys.Shift;
             }
+
             if (key.HasFlag(Keys.Control))
             {
                 modifiersDown &= IsKeyDown(Keys.ControlKey);
                 modifiers |= Keys.Control;
             }
+
             if (key.HasFlag(Keys.Alt))
             {
                 modifiersDown &= IsKeyDown(Keys.Menu);
@@ -58,7 +62,9 @@ public class KeyboardHook
             RegisteredKeys[key] = isPressed;
 
             if (modifiersDown && isPressed && !wasPressedBefore)
+            {
                 KeyPressed?.Invoke(this, new KeyEventArgs(key));
+            }
         }
     }
 

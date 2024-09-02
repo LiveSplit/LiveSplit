@@ -24,7 +24,9 @@ public class MemoryWatcherList : List<MemoryWatcher>
             {
                 bool changed = watcher.Update(process);
                 if (changed)
+                {
                     changedList.Add(watcher);
+                }
             }
 
             // only report changes when all of the other watches are updated too
@@ -105,10 +107,14 @@ public abstract class MemoryWatcher
             if (LastUpdateTime.HasValue)
             {
                 if (DateTime.Now - LastUpdateTime.Value < UpdateInterval.Value)
+                {
                     return false;
+                }
             }
+
             LastUpdateTime = DateTime.Now;
         }
+
         return true;
     }
 }
@@ -157,17 +163,25 @@ public class StringWatcher : MemoryWatcher
         Changed = false;
 
         if (!Enabled)
+        {
             return false;
+        }
 
         if (!CheckInterval())
+        {
             return false;
+        }
 
         string str;
         bool success;
         if (AddrType == AddressType.DeepPointer)
+        {
             success = DeepPtr.DerefString(process, _stringType, _numBytes, out str);
+        }
         else
+        {
             success = process.ReadString(Address, _stringType, _numBytes, out str);
+        }
 
         if (success)
         {
@@ -177,7 +191,9 @@ public class StringWatcher : MemoryWatcher
         else
         {
             if (FailAction == ReadFailAction.DontUpdate)
+            {
                 return false;
+            }
 
             base.Old = base.Current;
             base.Current = str;
@@ -233,19 +249,27 @@ public class MemoryWatcher<T> : MemoryWatcher where T : struct
         Changed = false;
 
         if (!Enabled)
+        {
             return false;
+        }
 
         if (!CheckInterval())
+        {
             return false;
+        }
 
         base.Old = Current;
 
         T val;
         bool success;
         if (AddrType == AddressType.DeepPointer)
+        {
             success = DeepPtr.Deref(process, out val);
+        }
         else
+        {
             success = process.ReadValue(Address, out val);
+        }
 
         if (success)
         {
@@ -255,7 +279,9 @@ public class MemoryWatcher<T> : MemoryWatcher where T : struct
         else
         {
             if (FailAction == ReadFailAction.DontUpdate)
+            {
                 return false;
+            }
 
             base.Old = base.Current;
             base.Current = val;

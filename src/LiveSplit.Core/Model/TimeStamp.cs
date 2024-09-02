@@ -54,6 +54,7 @@ public sealed class TimeStamp
             {
                 return new AtomicDateTime(lastNTPTime.Add(Now - new TimeStamp(lastQPCTime)), true);
             }
+
             return new AtomicDateTime(DateTime.UtcNow, false);
         }
     }
@@ -74,9 +75,13 @@ public sealed class TimeStamp
                     times.Add(ntpTime.Ticks - qpcTime.Ticks);
                 }
                 catch { }
+
                 if (count < 10)
+                {
                     Wait(TimeSpan.FromSeconds(5));
+                }
             }
+
             if (times.Count >= 5)
             {
                 var averageDifference = times.Average();
@@ -106,7 +111,10 @@ public sealed class TimeStamp
                     Wait(TimeSpan.FromHours(1));
                 }
             }
-            else Wait(TimeSpan.FromHours(0.5));
+            else
+            {
+                Wait(TimeSpan.FromHours(0.5));
+            }
         }
     }
 

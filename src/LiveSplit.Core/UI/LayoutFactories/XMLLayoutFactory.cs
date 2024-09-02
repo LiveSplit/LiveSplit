@@ -55,9 +55,14 @@ public class XMLLayoutFactory : ILayoutFactory
         else
         {
             if (settings.BackgroundColor == Color.Black)
+            {
                 settings.BackgroundColor = settings.BackgroundColor2 = Color.Transparent;
+            }
             else
+            {
                 settings.BackgroundColor2 = settings.BackgroundColor;
+            }
+
             settings.TimesFont = SettingsHelper.GetFontFromElement(element["MainFont"]);
             settings.TextFont = SettingsHelper.GetFontFromElement(element["SplitNamesFont"]);
         }
@@ -70,11 +75,17 @@ public class XMLLayoutFactory : ILayoutFactory
         {
             var gradientType = element["BackgroundGradient"];
             if (gradientType == null || gradientType.InnerText == "Plain")
+            {
                 settings.BackgroundType = BackgroundType.SolidColor;
+            }
             else if (gradientType.InnerText == "Vertical")
+            {
                 settings.BackgroundType = BackgroundType.VerticalGradient;
+            }
             else
+            {
                 settings.BackgroundType = BackgroundType.HorizontalGradient;
+            }
         }
 
         settings.BackgroundImage = SettingsHelper.GetImageFromElement(element["BackgroundImage"]);
@@ -116,6 +127,7 @@ public class XMLLayoutFactory : ILayoutFactory
                 {
                     Log.Error(e);
                 }
+
                 layout.LayoutComponents.Add(layoutComponent);
             }
             else
@@ -123,6 +135,7 @@ public class XMLLayoutFactory : ILayoutFactory
                 throw new Exception(path.InnerText + " could not be found");
             }
         }
+
         return layout;
     }
 }

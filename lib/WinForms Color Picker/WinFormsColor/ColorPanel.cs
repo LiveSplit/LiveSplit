@@ -20,10 +20,8 @@ public class ColorPanel : UserControl
     private readonly Timer pickerDragTimer = null;
     private bool designSerializeColor = false;
 
-
     public event EventHandler ValueChanged = null;
     public event EventHandler PercentualValueChanged = null;
-
 
     public Rectangle ColorAreaRectangle
     {
@@ -40,7 +38,11 @@ public class ColorPanel : UserControl
     public int PickerSize
     {
         get => this.pickerSize;
-        set { this.pickerSize = value; this.Invalidate(); }
+        set
+        {
+            this.pickerSize = value;
+            this.Invalidate();
+        }
     }
     [DefaultValue(0.5f)]
     public PointF ValuePercentual
@@ -110,7 +112,6 @@ public class ColorPanel : UserControl
         }
     }
 
-
     public ColorPanel()
     {
         this.pickerDragTimer = new Timer();
@@ -143,6 +144,7 @@ public class ColorPanel : UserControl
             g.DrawRectangle(new Pen(bl), 0, 1, 1, 1);
             g.DrawRectangle(new Pen(br), 1, 1, 1, 1);
         }
+
         using (Graphics g = Graphics.FromImage(this.srcImage))
         {
             g.DrawImage(
@@ -151,6 +153,7 @@ public class ColorPanel : UserControl
                 0, 0, tempImg.Width - 1, tempImg.Height - 1,
                 GraphicsUnit.Pixel);
         }
+
         this.UpdateColorValue();
         this.Invalidate();
     }
@@ -175,6 +178,7 @@ public class ColorPanel : UserControl
                 top);
             g.FillRectangle(gradient, g.ClipBounds);
         }
+
         this.clrTopLeft = this.srcImage.GetPixel(0, 0);
         this.clrTopRight = this.srcImage.GetPixel(this.srcImage.Width - 1, 0);
         this.clrBottomLeft = this.srcImage.GetPixel(0, this.srcImage.Height - 1);
@@ -205,6 +209,7 @@ public class ColorPanel : UserControl
             gradient.InterpolationColors = blendY;
             g.FillRectangle(gradient, g.ClipBounds);
         }
+
         this.clrTopLeft = this.srcImage.GetPixel(0, 0);
         this.clrTopRight = this.srcImage.GetPixel(this.srcImage.Width - 1, 0);
         this.clrBottomLeft = this.srcImage.GetPixel(0, this.srcImage.Height - 1);
@@ -277,18 +282,25 @@ public class ColorPanel : UserControl
         this.valTemp = this.srcImage.GetPixel(
             (int)Math.Round((this.srcImage.Width - 1) * this.pickerPos.X),
             (int)Math.Round((this.srcImage.Height - 1) * (1.0f - this.pickerPos.Y)));
-        if (oldVal != this.valTemp) this.OnValueChanged();
+        if (oldVal != this.valTemp)
+        {
+            this.OnValueChanged();
+        }
     }
 
     protected void OnValueChanged()
     {
         if (this.ValueChanged != null)
+        {
             this.ValueChanged(this, null);
+        }
     }
     protected void OnPercentualValueChanged()
     {
         if (this.PercentualValueChanged != null)
+        {
             this.PercentualValueChanged(this, null);
+        }
     }
 
     protected override void OnPaint(PaintEventArgs e)
@@ -311,7 +323,9 @@ public class ColorPanel : UserControl
             colorArea.Y + (int)Math.Round((1.0f - this.pickerPos.Y) * colorArea.Height));
 
         if (this.clrBottomLeft.A < 255 || this.clrBottomRight.A < 255 || this.clrTopLeft.A < 255 || this.clrTopRight.A < 255)
+        {
             e.Graphics.FillRectangle(new HatchBrush(HatchStyle.LargeCheckerBoard, Color.LightGray, Color.Gray), colorArea);
+        }
 
         e.Graphics.DrawImage(this.srcImage, colorArea, 0, 0, this.srcImage.Width - 1, this.srcImage.Height - 1, GraphicsUnit.Pixel);
 
@@ -319,16 +333,16 @@ public class ColorPanel : UserControl
         if (this.Enabled)
         {
             e.Graphics.DrawEllipse(innerPickerPen,
-                pickerVisualPos.X - this.pickerSize / 2,
-                pickerVisualPos.Y - this.pickerSize / 2,
+                pickerVisualPos.X - (this.pickerSize / 2),
+                pickerVisualPos.Y - (this.pickerSize / 2),
                 this.pickerSize,
                 this.pickerSize);
         }
         else
         {
             e.Graphics.DrawRectangle(innerPickerPen,
-                pickerVisualPos.X - this.pickerSize / 4,
-                pickerVisualPos.Y - this.pickerSize / 4,
+                pickerVisualPos.X - (this.pickerSize / 4),
+                pickerVisualPos.Y - (this.pickerSize / 4),
                 this.pickerSize / 2,
                 this.pickerSize / 2);
         }
@@ -349,7 +363,7 @@ public class ColorPanel : UserControl
             this.Focus();
             this.ValuePercentual = new PointF(
                 (float)(e.X - this.ColorAreaRectangle.X) / (float)this.ColorAreaRectangle.Width,
-                1.0f - (float)(e.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height);
+                1.0f - ((float)(e.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height));
             this.pickerDragTimer.Start();
             this.pickerDrag = true;
         }
@@ -365,7 +379,7 @@ public class ColorPanel : UserControl
         Point pos = this.PointToClient(System.Windows.Forms.Cursor.Position);
         this.ValuePercentual = new PointF(
             (float)(pos.X - this.ColorAreaRectangle.X) / (float)this.ColorAreaRectangle.Width,
-            1.0f - (float)(pos.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height);
+            1.0f - ((float)(pos.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height));
     }
     protected override void OnMouseLeave(EventArgs e)
     {

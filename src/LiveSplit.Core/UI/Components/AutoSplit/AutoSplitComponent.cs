@@ -37,7 +37,9 @@ public abstract class AutoSplitComponent : LogicComponent
 
             var gameTime = AutoSplitter.GetGameTime(state);
             if (gameTime != null)
+            {
                 state.SetGameTime(gameTime);
+            }
         }
     }
 }

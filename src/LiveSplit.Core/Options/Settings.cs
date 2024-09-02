@@ -99,7 +99,7 @@ public class Settings : ISettings
     {
         return new Settings()
         {
-            HotkeyProfiles = HotkeyProfiles.ToDictionary(x => x.Key, x => (HotkeyProfile)(x.Value.Clone())),
+            HotkeyProfiles = HotkeyProfiles.ToDictionary(x => x.Key, x => (HotkeyProfile)x.Value.Clone()),
             WarnOnReset = WarnOnReset,
             RecentSplits = new List<RecentSplitsFile>(RecentSplits),
             RecentLayouts = new List<string>(RecentLayouts),
@@ -141,6 +141,7 @@ public class Settings : ISettings
                     Log.Error(e);
                 }
             }
+
             if (hotkeyProfile.ResetKey != null)
             {
                 try
@@ -152,6 +153,7 @@ public class Settings : ISettings
                     Log.Error(e);
                 }
             }
+
             if (hotkeyProfile.SkipKey != null)
             {
                 try
@@ -163,6 +165,7 @@ public class Settings : ISettings
                     Log.Error(e);
                 }
             }
+
             if (hotkeyProfile.UndoKey != null)
             {
                 try
@@ -174,6 +177,7 @@ public class Settings : ISettings
                     Log.Error(e);
                 }
             }
+
             if (hotkeyProfile.PauseKey != null)
             {
                 try
@@ -185,6 +189,7 @@ public class Settings : ISettings
                     Log.Error(e);
                 }
             }
+
             if (hotkeyProfile.ToggleGlobalHotkeys != null)
             {
                 try
@@ -196,6 +201,7 @@ public class Settings : ISettings
                     Log.Error(e);
                 }
             }
+
             if (hotkeyProfile.SwitchComparisonPrevious != null)
             {
                 try
@@ -207,6 +213,7 @@ public class Settings : ISettings
                     Log.Error(e);
                 }
             }
+
             if (hotkeyProfile.SwitchComparisonNext != null)
             {
                 try
@@ -227,23 +234,32 @@ public class Settings : ISettings
     {
         var foundRecentSplitsFile = RecentSplits.FirstOrDefault(x => x.Path == path);
         if (foundRecentSplitsFile.Path != null)
+        {
             RecentSplits.Remove(foundRecentSplitsFile);
+        }
 
         var recentSplitsFile = new RecentSplitsFile(path, run, lastTimingMethod, lastHotkeyProfile);
 
         RecentSplits.Add(recentSplitsFile);
 
         while (RecentSplits.Count > 50)
+        {
             RecentSplits.RemoveAt(0);
+        }
     }
 
     public void AddToRecentLayouts(string path)
     {
         if (RecentLayouts.Contains(path))
+        {
             RecentLayouts.Remove(path);
+        }
+
         RecentLayouts.Add(path);
         while (RecentLayouts.Count > 10)
+        {
             RecentLayouts.RemoveAt(0);
+        }
     }
 
     private void RegisterHotkey(CompositeHook hook, KeyOrButton key, bool deactivateForOtherPrograms)

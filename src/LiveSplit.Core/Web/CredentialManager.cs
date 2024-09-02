@@ -72,12 +72,16 @@ public static class CredentialManager
         if (Environment.OSVersion.Version < new Version(6, 1) /* Windows 7 */)
         {
             if (byteArray != null && byteArray.Length > 512)
+            {
                 throw new ArgumentOutOfRangeException("secret", "The secret message has exceeded 512 bytes.");
+            }
         }
         else
         {
             if (byteArray != null && byteArray.Length > 512 * 5)
+            {
                 throw new ArgumentOutOfRangeException("secret", "The secret message has exceeded 2560 bytes.");
+            }
         }
 
         CREDENTIAL credential = new CREDENTIAL();
@@ -112,10 +116,14 @@ public static class CredentialManager
     public static void DeleteCredential(string applicationName)
     {
         if (applicationName == null)
+        {
             throw new ArgumentNullException(nameof(applicationName));
+        }
 
         if (!CredentialExists(applicationName))
+        {
             return;
+        }
 
         var success = CredDelete(applicationName, CredentialType.Generic, 0);
         if (!success)

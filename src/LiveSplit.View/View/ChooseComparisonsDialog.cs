@@ -55,6 +55,7 @@ public partial class ChooseComparisonsDialog : Form
         {
             comparisonsListBox.SetItemChecked(comparisonsListBox.Items.IndexOf(generator.Key), generator.Value);
         }
+
         DialogInitialized = true;
     }
 }

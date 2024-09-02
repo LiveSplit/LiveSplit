@@ -24,11 +24,15 @@ public static class SpeedrunCom
     public static bool MakeSureUserIsAuthenticated()
     {
         if (Client.IsAccessTokenValid)
+        {
             return true;
+        }
 
         var accessToken = Authenticator?.GetAccessToken();
         if (string.IsNullOrEmpty(accessToken))
+        {
             return false;
+        }
 
         Client.AccessToken = accessToken;
 
@@ -54,9 +58,13 @@ public static class SpeedrunCom
         var time = new Time(realTime: times.RealTime);
 
         if (times.GameTime.HasValue)
+        {
             time.GameTime = times.GameTime.Value;
+        }
         else if (times.RealTimeWithoutLoads.HasValue)
+        {
             time.GameTime = times.RealTimeWithoutLoads.Value;
+        }
 
         return time;
     }

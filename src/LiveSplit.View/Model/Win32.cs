@@ -19,7 +19,10 @@ internal class Win32
         public int y;
 
         public Point(int x, int y)
-        { this.x = x; this.y = y; }
+        {
+            this.x = x;
+            this.y = y;
+        }
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -29,7 +32,10 @@ internal class Win32
         public int cy;
 
         public Size(int cx, int cy)
-        { this.cx = cx; this.cy = cy; }
+        {
+            this.cx = cx;
+            this.cy = cy;
+        }
     }
 
     [StructLayout(LayoutKind.Sequential, Pack = 1)]

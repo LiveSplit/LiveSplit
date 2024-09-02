@@ -31,6 +31,7 @@ public class XMLSettingsSaver : ISettingsSaver
             hotkeyProfileElement.Attributes.Append(name);
             hotkeyProfiles.AppendChild(hotkeyProfileElement);
         }
+
         parent.AppendChild(hotkeyProfiles);
 
         CreateSetting(document, parent, "WarnOnReset", settings.WarnOnReset);
@@ -47,12 +48,14 @@ public class XMLSettingsSaver : ISettingsSaver
             splitsFileElement.SetAttribute("lastHotkeyProfile", splitsFile.LastHotkeyProfile.ToString());
             recentSplits.AppendChild(splitsFileElement);
         }
+
         parent.AppendChild(recentSplits);
         var recentLayouts = document.CreateElement("RecentLayouts");
         foreach (var layout in settings.RecentLayouts)
         {
             CreateSetting(document, recentLayouts, "LayoutPath", layout);
         }
+
         parent.AppendChild(recentLayouts);
 
         CreateSetting(document, parent, "LastComparison", settings.LastComparison);
@@ -70,6 +73,7 @@ public class XMLSettingsSaver : ISettingsSaver
             generatorElement.InnerText = generator.Value.ToString();
             generatorStates.AppendChild(generatorElement);
         }
+
         parent.AppendChild(generatorStates);
 
         var raceProviderPlugins = document.CreateElement("RaceProviderPlugins");
@@ -78,6 +82,7 @@ public class XMLSettingsSaver : ISettingsSaver
             var raceProviderElement = raceProvider.ToXml(document);
             raceProviderPlugins.AppendChild(raceProviderElement);
         }
+
         parent.AppendChild(raceProviderPlugins);
 
         var autoSplittersActive = document.CreateElement("ActiveAutoSplitters");
@@ -85,6 +90,7 @@ public class XMLSettingsSaver : ISettingsSaver
         {
             CreateSetting(document, autoSplittersActive, "AutoSplitter", splitter);
         }
+
         parent.AppendChild(autoSplittersActive);
 
         AddDriftToSettings(document, parent);

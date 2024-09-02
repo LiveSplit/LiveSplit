@@ -44,7 +44,7 @@ public class GeneralTimeFormatter : ITimeFormatter
 
     public string Format(TimeSpan? timeNullable)
     {
-        bool isNull = (!timeNullable.HasValue);
+        bool isNull = !timeNullable.HasValue;
         if (isNull)
         {
             if (NullFormat == NullFormat.Dash)
@@ -79,7 +79,7 @@ public class GeneralTimeFormatter : ITimeFormatter
         }
         else
         {
-            minusString = (ShowPlus ? "+" : "");
+            minusString = ShowPlus ? "+" : "";
         }
 
         string decimalFormat = "";
@@ -87,35 +87,57 @@ public class GeneralTimeFormatter : ITimeFormatter
         {
             var totalSeconds = time.TotalSeconds;
             if (Accuracy == TimeAccuracy.Seconds || totalSeconds % 1 == 0)
+            {
                 decimalFormat = "";
-            else if (Accuracy == TimeAccuracy.Tenths || (10 * totalSeconds) % 1 == 0)
+            }
+            else if (Accuracy == TimeAccuracy.Tenths || 10 * totalSeconds % 1 == 0)
+            {
                 decimalFormat = @"\.f";
-            else if (Accuracy == TimeAccuracy.Hundredths || (100 * totalSeconds) % 1 == 0)
+            }
+            else if (Accuracy == TimeAccuracy.Hundredths || 100 * totalSeconds % 1 == 0)
+            {
                 decimalFormat = @"\.ff";
+            }
             else
+            {
                 decimalFormat = @"\.fff";
+            }
         }
         else
         {
             if (DropDecimals && time.TotalMinutes >= 1)
+            {
                 decimalFormat = "";
+            }
             else if (Accuracy == TimeAccuracy.Seconds)
+            {
                 decimalFormat = "";
+            }
             else if (Accuracy == TimeAccuracy.Tenths)
+            {
                 decimalFormat = @"\.f";
+            }
             else if (Accuracy == TimeAccuracy.Hundredths)
+            {
                 decimalFormat = @"\.ff";
+            }
             else if (Accuracy == TimeAccuracy.Milliseconds)
+            {
                 decimalFormat = @"\.fff";
+            }
         }
 
         string formatted;
         if (time.TotalDays >= 1)
         {
             if (ShowDays)
+            {
                 formatted = minusString + time.ToString(@"d\d\ " + (DigitsFormat == DigitsFormat.DoubleDigitHours ? "hh" : "h") + @"\:mm\:ss" + decimalFormat, ic);
+            }
             else
+            {
                 formatted = minusString + (int)time.TotalHours + time.ToString(@"\:mm\:ss" + decimalFormat, ic);
+            }
         }
         else if (DigitsFormat == DigitsFormat.DoubleDigitHours)
         {
@@ -143,7 +165,9 @@ public class GeneralTimeFormatter : ITimeFormatter
         }
 
         if (isNull && NullFormat == NullFormat.Dashes)
+        {
             formatted = formatted.Replace('0', '-');
+        }
 
         return formatted;
     }
@@ -151,12 +175,20 @@ public class GeneralTimeFormatter : ITimeFormatter
     private string ZeroWithAccuracy()
     {
         if (AutomaticPrecision || Accuracy == TimeAccuracy.Seconds)
+        {
             return "0";
+        }
         else if (Accuracy == TimeAccuracy.Tenths)
+        {
             return "0.0";
+        }
         else if (Accuracy == TimeAccuracy.Milliseconds)
+        {
             return "0.000";
+        }
         else
+        {
             return "0.00";
+        }
     }
 }

@@ -13,7 +13,7 @@ public class IconShadow
         var red = shadowColor.R;
         var green = shadowColor.G;
         var blue = shadowColor.B;
-        var alpha = 255f * (Math.Pow((shadowColor.A / 255f - 1f), 3) + 1f);
+        var alpha = 255f * (Math.Pow((shadowColor.A / 255f) - 1f, 3) + 1f);
 
         using (var scaledCopy = new Bitmap(image, 24, 24))
         using (var tempImage = new Bitmap(30, 30))
@@ -25,14 +25,20 @@ public class IconShadow
                 x -= 3;
                 y -= 3;
                 if (x < 0 || y < 0 || x >= scaledCopy.Width || y >= scaledCopy.Height)
+                {
                     return 0.0f;
+                }
+
                 return scaledCopy.GetPixel(x, y).A / 255.0f;
             }
 
             float get2(int x, int y)
             {
                 if (x < 0 || y < 0 || x >= tempImage.Width || y >= tempImage.Height)
+                {
                     return 0.0f;
+                }
+
                 return tempImage.GetPixel(x, y).A / 255.0f;
             }
 
@@ -49,7 +55,7 @@ public class IconShadow
                         result += weight * (get1(x - i, y) + get1(x + i, y));
                     }
 
-                    tempImage.SetPixel(x, y, Color.FromArgb((int)(alpha * result + 0.5f), red, green, blue));
+                    tempImage.SetPixel(x, y, Color.FromArgb((int)((alpha * result) + 0.5f), red, green, blue));
                 }
             }
 
@@ -66,7 +72,7 @@ public class IconShadow
                         result += weight * (get2(x, y - i) + get2(x, y + i));
                     }
 
-                    resultImage.SetPixel(x, y, Color.FromArgb((int)(shadowStrength * alpha * result + 0.5f), red, green, blue));
+                    resultImage.SetPixel(x, y, Color.FromArgb((int)((shadowStrength * alpha * result) + 0.5f), red, green, blue));
                 }
             }
 

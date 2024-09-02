@@ -94,7 +94,9 @@ public class ExcelRunSaver : IRunSaver
             startedCell.Style.Format = "dd mmm yy hh:mm:ss";
             startedCell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
             if (attempt.Started.HasValue)
+            {
                 startedCell.Value = attempt.Started.Value.Time;
+            }
 
             var endedCell = row[endedColumn];
             endedCell.Style.Fill = CellFill.Solid(
@@ -105,7 +107,9 @@ public class ExcelRunSaver : IRunSaver
             endedCell.Style.Format = "dd mmm yy hh:mm:ss";
             endedCell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
             if (attempt.Ended.HasValue)
+            {
                 endedCell.Value = attempt.Ended.Value.Time;
+            }
 
             var timeCell = row[timeColumn];
 
@@ -131,7 +135,6 @@ public class ExcelRunSaver : IRunSaver
             timeCell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
             timeCell.Style.Format = "[HH]:MM:SS.000";
             timeCell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
-
 
             ++rowIndex;
         }
@@ -184,7 +187,9 @@ public class ExcelRunSaver : IRunSaver
                 {
                     var time = segmentHistoryElement[method];
                     if (time.HasValue)
+                    {
                         cell.Value = time.Value.TotalDays;
+                    }
                 }
 
                 cell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
@@ -249,7 +254,9 @@ public class ExcelRunSaver : IRunSaver
                 var cell = row[columnIndex];
                 var time = segment.Comparisons[comparisonName][method];
                 if (time.HasValue)
+                {
                     cell.Value = time.Value.TotalDays;
+                }
 
                 cell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
                 cell.Style.Format = "[HH]:MM:SS.000";
@@ -270,7 +277,9 @@ public class ExcelRunSaver : IRunSaver
                 }
 
                 if (comparisonName == Run.PersonalBestComparisonName && time.HasValue)
+                {
                     lastTime = time.Value;
+                }
 
                 columnIndex++;
             }

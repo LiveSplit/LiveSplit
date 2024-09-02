@@ -16,9 +16,14 @@ public class SRLRaceInfo : IRaceInfo
         foreach (var entrant in _data.entrants.Properties.Values)
         {
             if (entrant.time >= 0)
+            {
                 Finishes++;
+            }
+
             if (entrant.statetext == "Forfeit")
+            {
                 Forfeits++;
+            }
         }
     }
 
@@ -45,7 +50,9 @@ public class SRLRaceInfo : IRaceInfo
             foreach (var entrant in _data.entrants.Properties.Values)
             {
                 if (entrant.statetext == "Forfeit" || entrant.time >= 0)
+                {
                     continue;
+                }
 
                 yield return entrant.twitch;
             }

@@ -12,7 +12,6 @@ public static class MouseHook
     {
         _hookID = SetHook(_proc);
 
-
     }
     public static void stop()
     {
@@ -42,6 +41,7 @@ public static class MouseHook
             MSLLHOOKSTRUCT hookStruct = (MSLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(MSLLHOOKSTRUCT));
             MouseAction(null, new EventArgs());
         }
+
         return CallNextHookEx(_hookID, nCode, wParam, lParam);
     }
 
@@ -88,6 +88,5 @@ public static class MouseHook
 
     [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     private static extern IntPtr GetModuleHandle(string lpModuleName);
-
 
 }

@@ -34,7 +34,7 @@ public static class UpdateHelper
 
                     Action promptForUpdates = () =>
                     {
-                        DialogResult result = (new ScrollableMessageBox()).Show(dialogText, "New updates are available", MessageBoxButtons.YesNo);
+                        DialogResult result = new ScrollableMessageBox().Show(dialogText, "New updates are available", MessageBoxButtons.YesNo);
                         if (result == DialogResult.Yes)
                         {
                             try
@@ -50,10 +50,15 @@ public static class UpdateHelper
                     };
 
                     if (form.InvokeRequired)
+                    {
                         form.Invoke(promptForUpdates);
+                    }
                     else
+                    {
                         promptForUpdates();
+                    }
                 }
+
                 AlreadyChecked.AddRange(actualUpdateables.Select(x => x.GetType()));
             }
             catch (Exception e)

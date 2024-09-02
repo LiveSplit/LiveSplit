@@ -14,12 +14,16 @@ public static class ImageExtensions
     public static Image Scale(this Image image, int maxDim)
     {
         if (image == null)
+        {
             return null;
+        }
 
         var width = image.Width;
         var height = image.Height;
         if (width <= maxDim && height <= maxDim)
+        {
             return image;
+        }
 
         using (image)
         {

@@ -32,17 +32,17 @@ public static class SumOfWorst
                     PopulatePrediction(predictions, prediction.Time[method], prediction.Index);
                 }
             }
+
             if (useCurrentRun)
             {
                 var currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
             }
+
             var personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex, method);
             PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index);
         }
     }
-
-
 
     public static TimeSpan? CalculateSumOfWorst(IRun run, int startIndex, int endIndex, IList<TimeSpan?> predictions, bool useCurrentRun = true, TimingMethod method = TimingMethod.RealTime)
     {
@@ -55,6 +55,7 @@ public static class SumOfWorst
             PopulatePredictions(run, currentTime, segmentIndex, predictions, useCurrentRun, method);
             segmentIndex++;
         }
+
         return predictions[endIndex + 1];
     }
 }

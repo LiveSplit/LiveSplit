@@ -108,7 +108,9 @@ internal static class InternetExplorerBrowserEmulation
                 value = key.GetValue(programName, null);
 
                 if (value != null)
+                {
                     result = (BrowserEmulationVersion)Convert.ToInt32(value);
+                }
             }
         }
         catch (SecurityException)
@@ -153,7 +155,9 @@ internal static class InternetExplorerBrowserEmulation
                     version = value.ToString();
                     separator = version.IndexOf('.');
                     if (separator != -1)
+                    {
                         int.TryParse(version.Substring(0, separator), out result);
+                    }
                 }
             }
         }
@@ -200,11 +204,15 @@ internal static class InternetExplorerBrowserEmulation
             if (key != null)
             {
                 if (browserEmulationVersion != BrowserEmulationVersion.Default)
+                {
                     // if it's a valid value, update or create the value
                     key.SetValue(programName, (int)browserEmulationVersion, RegistryValueKind.DWord);
+                }
                 else
+                {
                     // otherwise, remove the existing value
                     key.DeleteValue(programName, false);
+                }
 
                 result = true;
             }

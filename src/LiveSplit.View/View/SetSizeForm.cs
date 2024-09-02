@@ -50,28 +50,31 @@ public partial class SetSizeForm : Form
     {
         if (KeepAspectRatio && OldHeight != FormHeight)
         {
-            var newValue = (int)(FormWidth * (float)FormHeight / OldHeight + 0.5f);
+            var newValue = (int)((FormWidth * (float)FormHeight / OldHeight) + 0.5f);
             OldHeight = FormHeight;
             OldWidth = newValue;
             FormWidth = newValue;
         }
         else
+        {
             OldHeight = FormHeight;
+        }
     }
 
     protected void WidthChanged()
     {
         if (KeepAspectRatio && OldWidth != FormWidth)
         {
-            var newValue = (int)(FormHeight * (float)FormWidth / OldWidth + 0.5f);
+            var newValue = (int)((FormHeight * (float)FormWidth / OldWidth) + 0.5f);
             OldWidth = FormWidth;
             OldHeight = newValue;
             FormHeight = newValue;
         }
         else
+        {
             OldWidth = FormWidth;
+        }
     }
-
 
     private void btnOK_Click(object sender, EventArgs e)
     {

@@ -46,24 +46,32 @@ public static class ExtensionMethods
     public static ProcessModuleWow64Safe[] ModulesWow64Safe(this Process p)
     {
         if (ModuleCache.Count > 100)
+        {
             ModuleCache.Clear();
+        }
 
         const int LIST_MODULES_ALL = 3;
         const int MAX_PATH = 260;
 
         uint cbNeeded;
         if (!WinAPI.EnumProcessModulesEx(p.Handle, null, 0, out cbNeeded, LIST_MODULES_ALL))
+        {
             throw new Win32Exception();
+        }
 
         uint numMods = cbNeeded / (uint)IntPtr.Size;
 
         int hash = p.StartTime.GetHashCode() + p.Id + (int)numMods;
         if (ModuleCache.ContainsKey(hash))
+        {
             return ModuleCache[hash];
+        }
 
         var hModules = new IntPtr[(int)numMods];
         if (!WinAPI.EnumProcessModulesEx(p.Handle, hModules, cbNeeded, out _, LIST_MODULES_ALL))
+        {
             throw new Win32Exception();
+        }
 
         var ret = new List<ProcessModuleWow64Safe>();
 
@@ -73,17 +81,25 @@ public static class ExtensionMethods
         {
             sb.Clear();
             if (WinAPI.GetModuleFileNameExW(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
+            {
                 throw new Win32Exception();
+            }
+
             string fileName = sb.ToString();
 
             sb.Clear();
             if (WinAPI.GetModuleBaseNameW(p.Handle, hModules[i], sb, (uint)sb.Capacity) == 0)
+            {
                 throw new Win32Exception();
+            }
+
             string baseName = sb.ToString();
 
             var moduleInfo = new WinAPI.MODULEINFO();
             if (!WinAPI.GetModuleInformation(p.Handle, hModules[i], out moduleInfo, (uint)Marshal.SizeOf(moduleInfo)))
+            {
                 throw new Win32Exception();
+            }
 
             ret.Add(new ProcessModuleWow64Safe()
             {
@@ -113,20 +129,29 @@ public static class ExtensionMethods
         {
             MemoryBasicInformation mbi;
             if (WinAPI.VirtualQueryEx(process.Handle, (IntPtr)addr, out mbi, mbiSize) == (SizeT)0)
+            {
                 break;
+            }
+
             addr += (long)mbi.RegionSize;
 
             // don't care about reserved/free pages
             if (mbi.State != MemPageState.MEM_COMMIT)
+            {
                 continue;
+            }
 
             // probably don't care about guarded pages
             if (!all && (mbi.Protect & MemPageProtect.PAGE_GUARD) != 0)
+            {
                 continue;
+            }
 
             // probably don't care about image/file maps
             if (!all && mbi.Type != MemPageType.MEM_PRIVATE)
+            {
                 continue;
+            }
 
             yield return mbi;
 
@@ -138,7 +163,10 @@ public static class ExtensionMethods
         bool procWow64;
         WinAPI.IsWow64Process(process.Handle, out procWow64);
         if (Environment.Is64BitOperatingSystem && !procWow64)
+        {
             return true;
+        }
+
         return false;
     }
 
@@ -150,7 +178,9 @@ public static class ExtensionMethods
         val = default(T);
         object val2;
         if (!ReadValue(process, addr, type, out val2))
+        {
             return false;
+        }
 
         val = (T)val2;
 
@@ -164,7 +194,9 @@ public static class ExtensionMethods
         val = null;
         int size = type == typeof(bool) ? 1 : Marshal.SizeOf(type);
         if (!ReadBytes(process, addr, size, out bytes))
+        {
             return false;
+        }
 
         val = ResolveToType(bytes, type);
 
@@ -179,7 +211,9 @@ public static class ExtensionMethods
         val = null;
         if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out read)
             || read != (SizeT)bytes.Length)
+        {
             return false;
+        }
 
         val = bytes;
 
@@ -199,7 +233,9 @@ public static class ExtensionMethods
         val = IntPtr.Zero;
         if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out read)
             || read != (SizeT)bytes.Length)
+        {
             return false;
+        }
 
         val = is64Bit ? (IntPtr)BitConverter.ToInt64(bytes, 0) : (IntPtr)BitConverter.ToUInt32(bytes, 0);
 
@@ -236,21 +272,33 @@ public static class ExtensionMethods
         SizeT read;
         if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out read)
             || read != (SizeT)bytes.Length)
+        {
             return false;
+        }
 
         if (type == ReadStringType.AutoDetect)
         {
             if (read.ToUInt64() >= 2 && bytes[1] == '\x0')
+            {
                 sb.Append(Encoding.Unicode.GetString(bytes));
+            }
             else
+            {
                 sb.Append(Encoding.UTF8.GetString(bytes));
+            }
         }
         else if (type == ReadStringType.UTF8)
+        {
             sb.Append(Encoding.UTF8.GetString(bytes));
+        }
         else if (type == ReadStringType.UTF16)
+        {
             sb.Append(Encoding.Unicode.GetString(bytes));
+        }
         else
+        {
             sb.Append(Encoding.ASCII.GetString(bytes));
+        }
 
         for (int i = 0; i < sb.Length; i++)
         {
@@ -268,7 +316,10 @@ public static class ExtensionMethods
     {
         T val;
         if (!process.ReadValue(addr, out val))
+        {
             val = default_;
+        }
+
         return val;
     }
 
@@ -276,7 +327,10 @@ public static class ExtensionMethods
     {
         byte[] bytes;
         if (!process.ReadBytes(addr, count, out bytes))
+        {
             return null;
+        }
+
         return bytes;
     }
 
@@ -284,7 +338,10 @@ public static class ExtensionMethods
     {
         IntPtr ptr;
         if (!process.ReadPointer(addr, out ptr))
+        {
             return default_;
+        }
+
         return ptr;
     }
 
@@ -292,7 +349,10 @@ public static class ExtensionMethods
     {
         string str;
         if (!process.ReadString(addr, numBytes, out str))
+        {
             return default_;
+        }
+
         return str;
     }
 
@@ -300,7 +360,10 @@ public static class ExtensionMethods
     {
         string str;
         if (!process.ReadString(addr, type, numBytes, out str))
+        {
             return default_;
+        }
+
         return str;
     }
 
@@ -322,7 +385,9 @@ public static class ExtensionMethods
         SizeT written;
         if (!WinAPI.WriteProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out written)
             || written != (SizeT)bytes.Length)
+        {
             return false;
+        }
 
         return true;
     }
@@ -369,33 +434,45 @@ public static class ExtensionMethods
     {
         int jmpLen = process.Is64Bit() ? 12 : 5;
         if (overwrittenBytes < jmpLen)
+        {
             throw new ArgumentOutOfRangeException(nameof(overwrittenBytes),
                 $"must be >= length of jmp instruction ({jmpLen})");
+        }
 
         // allocate memory to store the original src prologue bytes we overwrite with jump to dest
         // along with the jump back to src
         IntPtr gate;
         if ((gate = process.AllocateMemory(jmpLen + overwrittenBytes)) == IntPtr.Zero)
+        {
             throw new Win32Exception();
+        }
 
         try
         {
             // read the original bytes from the prologue of src
             var origSrcBytes = process.ReadBytes(src, overwrittenBytes);
             if (origSrcBytes == null)
+            {
                 throw new Win32Exception();
+            }
 
             // write the original prologue of src into the start of gate
             if (!process.WriteBytes(gate, origSrcBytes))
+            {
                 throw new Win32Exception();
+            }
 
             // write the jump from the end of the gate back to src
             if (!process.WriteJumpInstruction(gate + overwrittenBytes, src + overwrittenBytes))
+            {
                 throw new Win32Exception();
+            }
 
             // finally write the jump from src to dest
             if (!process.WriteJumpInstruction(src, dest))
+            {
                 throw new Win32Exception();
+            }
 
             // nop the leftover bytes in the src prologue
             int extraBytes = overwrittenBytes - jmpLen;
@@ -405,9 +482,15 @@ public static class ExtensionMethods
                 MemPageProtect oldProtect;
                 if (!process.VirtualProtect(src + jmpLen, nops.Length, MemPageProtect.PAGE_EXECUTE_READWRITE,
                     out oldProtect))
+                {
                     throw new Win32Exception();
+                }
+
                 if (!process.WriteBytes(src + jmpLen, nops))
+                {
                     throw new Win32Exception();
+                }
+
                 process.VirtualProtect(src + jmpLen, nops.Length, oldProtect);
             }
         }
@@ -447,9 +530,13 @@ public static class ExtensionMethods
         else if (type == typeof(bool))
         {
             if (bytes == null)
+            {
                 val = false;
+            }
             else
-                val = (bytes[0] != 0);
+            {
+                val = bytes[0] != 0;
+            }
         }
         else if (type == typeof(short))
         {

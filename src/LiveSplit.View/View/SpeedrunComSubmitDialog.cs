@@ -111,7 +111,10 @@ public partial class SpeedrunComSubmitDialog : Form
         {
             var videoText = txtVideo.Text;
             if (!videoText.StartsWith("http"))
+            {
                 videoText = "http://" + videoText;
+            }
+
             if (Uri.IsWellFormedUriString(videoText, UriKind.Absolute))
             {
                 videoUri = new Uri(videoText);
@@ -181,14 +184,18 @@ public partial class SpeedrunComSubmitDialog : Form
     private void patchGameTime(TimeSpan? gameTime)
     {
         if (!gameTime.HasValue)
+        {
             return;
+        }
 
         var run = metadata.LiveSplitRun;
         var lastSplit = run.Last();
         var runTime = lastSplit.PersonalBestSplitTime;
 
         if (runTime.GameTime.HasValue)
+        {
             return;
+        }
 
         var attempt = run.AttemptHistory.FirstOrDefault(x =>
             x.Time.GameTime == runTime.GameTime

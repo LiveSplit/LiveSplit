@@ -18,8 +18,8 @@ public class SpeedrunComRunUploadPlatform : IRunUploadPlatform
 
     public string PlatformName => "Speedrun.com";
 
-    public string Description =>
-        "Speedrun.com is a site intended to provide centralized leaderboards for speedrunning.";
+    public string Description
+        => "Speedrun.com is a site intended to provide centralized leaderboards for speedrunning.";
 
     public bool VerifyLogin()
     {

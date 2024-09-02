@@ -6,7 +6,6 @@ using LiveSplit.Utils;
 
 namespace LiveSplit.UI;
 
-
 /// <summary>
 /// Turn on item dragging for some ListBox control
 /// </summary>
@@ -70,7 +69,10 @@ public class ListBoxItemDragger
     /// <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
     protected void OnItemMoved(EventArgs e)
     {
-        if (ItemMoved != null) ItemMoved(this, e);
+        if (ItemMoved != null)
+        {
+            ItemMoved(this, e);
+        }
     }
 
     /// <summary>
@@ -82,7 +84,6 @@ public class ListBoxItemDragger
     {
         dragItemIndex = listBox.SelectedIndex;
     }
-
 
     private Cursor prevCursor = Cursors.Default;
 
@@ -110,6 +111,7 @@ public class ListBoxItemDragger
                         prevCursor = listBox.Cursor;
                         listBox.Cursor = DragCursor;
                     }
+
                     int dstIndex = listBox.IndexFromPoint(e.X, e.Y);
 
                     if (dragItemIndex != dstIndex)
@@ -122,7 +124,9 @@ public class ListBoxItemDragger
 
                             bindingList.RemoveAt(dragItemIndex);
                             if (dstIndex != ListBox.NoMatches)
+                            {
                                 bindingList.Insert(dstIndex, item);
+                            }
                             else
                             {
                                 bindingList.Add(item);
@@ -135,6 +139,7 @@ public class ListBoxItemDragger
                         {
                             listBox.EndUpdate();
                         }
+
                         dragItemIndex = dstIndex;
                         OnItemMoved(EventArgs.Empty);
                     }

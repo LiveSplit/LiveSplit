@@ -18,8 +18,22 @@ public partial class FontDialog : Form
     private int minSize { get; set; }
     private int maxSize { get; set; }
 
-    public int MinSize { get => minSize; set { minSize = value; UpdateSizeOptions(); } }
-    public int MaxSize { get => maxSize; set { maxSize = value; UpdateSizeOptions(); } }
+    public int MinSize
+    {
+        get => minSize; set
+        {
+            minSize = value;
+            UpdateSizeOptions();
+        }
+    }
+    public int MaxSize
+    {
+        get => maxSize; set
+        {
+            maxSize = value;
+            UpdateSizeOptions();
+        }
+    }
 
     private Font originalFont { get; set; }
     public Font OriginalFont { get => originalFont; set => originalFont = Font = value; }
@@ -68,6 +82,7 @@ public partial class FontDialog : Form
             chbBold.Enabled = false;
             chbBold.Checked = true;
         }
+
         if (!italics)
         {
             chbItalic.Enabled = false;
@@ -80,19 +95,24 @@ public partial class FontDialog : Form
     private void lstSize_SelectedIndexChanged(object sender, EventArgs e)
     {
         if (lstSize.SelectedItem != null)
+        {
             txtSize.Text = lstSize.SelectedItem.ToString();
+        }
     }
 
     private void txtSize_TextChanged(object sender, EventArgs e)
     {
         if (lstSize.Items.Contains(txtSize.Text))
+        {
             lstSize.SelectedItem = txtSize.Text;
+        }
         else
+        {
             lstSize.ClearSelected();
+        }
 
         UpdateSampleText();
     }
-
 
     private void txtSize_KeyDown(object sender, KeyEventArgs e)
     {
@@ -124,13 +144,13 @@ public partial class FontDialog : Form
                     e.SuppressKeyPress = true;
                     e.Handled = true;
                 }
+
                 break;
             default:
                 e.SuppressKeyPress = true;
                 e.Handled = true;
                 break;
         }
-
     }
 
     private void UpdateSampleText()
@@ -145,13 +165,19 @@ public partial class FontDialog : Form
             {
                 style = FontStyle.Bold;
             }
+
             if (chbItalic.Checked && family.IsStyleAvailable(FontStyle.Italic))
             {
                 if (style == null)
+                {
                     style = FontStyle.Italic;
+                }
                 else
+                {
                     style |= FontStyle.Italic;
+                }
             }
+
             if (style == null && family.IsStyleAvailable(FontStyle.Regular))
             {
                 style = FontStyle.Regular;
@@ -160,9 +186,14 @@ public partial class FontDialog : Form
             if (style.HasValue)
             {
                 if (size < 1)
+                {
                     size = 1;
+                }
                 else if (size > float.MaxValue)
+                {
                     size = float.MaxValue;
+                }
+
                 lblSampleText.Font = new Font(family, size, style.Value, GraphicsUnit.Pixel);
 
                 TriggerFontChanged();
@@ -205,7 +236,9 @@ public partial class FontDialog : Form
         {
             int sizeNum = int.Parse((string)size);
             if (sizeNum >= MinSize && sizeNum <= MaxSize)
+            {
                 this.lstSize.Items.Add(size);
+            }
         }
     }
 
@@ -220,6 +253,8 @@ public partial class FontDialog : Form
     private void TriggerFontChanged()
     {
         if (FontChanged != null)
+        {
             FontChanged(this, new FontChangedEventArgs() { NewFont = Font });
+        }
     }
 }

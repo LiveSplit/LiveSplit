@@ -52,10 +52,14 @@ public class DoubleTapPrevention : ITimerModel
     protected bool CheckDoubleTap()
     {
         if (!CurrentState.Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].DoubleTapPrevention)
+        {
             return true;
+        }
 
         if (CurrentState.CurrentPhase == TimerPhase.Ended)
+        {
             return TimeStamp.Now - LastEvent > LongDelay;
+        }
 
         return TimeStamp.Now - LastEvent > Delay;
     }
@@ -81,13 +85,17 @@ public class DoubleTapPrevention : ITimerModel
     public void SkipSplit()
     {
         if (CheckDoubleTap())
+        {
             InternalModel.SkipSplit();
+        }
     }
 
     public void UndoSplit()
     {
         if (CheckDoubleTap())
+        {
             InternalModel.UndoSplit();
+        }
     }
 
     public void Reset()

@@ -9,16 +9,20 @@ public class ImageBlur
 {
     public static Bitmap Generate(Image image, double sigma)
     {
-        var scaleFactor = 1.5 * sigma + 1;
-        var kernelWidth = (int)Round((3 * sigma) / scaleFactor);
+        var scaleFactor = (1.5 * sigma) + 1;
+        var kernelWidth = (int)Round(3 * sigma / scaleFactor);
         if (kernelWidth == 0)
+        {
             return new Bitmap(image);
+        }
+
         var kernel = new double[kernelWidth];
         for (var i = 0; i < kernelWidth; i++)
         {
             var x = i * scaleFactor;
             kernel[i] = Exp(-x * x / (2 * sigma * sigma)) / (sigma * Sqrt(2 * PI));
         }
+
         var overallWeight = kernel[0];
         for (var i = 1; i < kernelWidth; i++)
         {
@@ -51,6 +55,7 @@ public class ImageBlur
                     var weight = kernel[i];
                     result += weight * (GetColor(sourceBuffer, x - i, y) + GetColor(sourceBuffer, x + i, y));
                 }
+
                 result /= overallWeight;
                 tempBuffer[x, y] = result;
             });
@@ -66,6 +71,7 @@ public class ImageBlur
                     var weight = kernel[i];
                     result += weight * (GetColor(tempBuffer, x, y - i) + GetColor(tempBuffer, x, y + i));
                 }
+
                 result /= overallWeight;
                 lock (resultImage)
                 {

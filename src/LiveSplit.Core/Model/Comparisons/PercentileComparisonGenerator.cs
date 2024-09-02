@@ -42,7 +42,10 @@ public class PercentileComparisonGenerator : IComparisonGenerator
     {
         var allHistory = new List<List<IndexedTimeSpan>>();
         foreach (var segment in Run)
+        {
             allHistory.Add(new List<IndexedTimeSpan>());
+        }
+
         foreach (var attempt in Run.AttemptHistory)
         {
             var ind = attempt.Index;
@@ -59,7 +62,10 @@ public class PercentileComparisonGenerator : IComparisonGenerator
                         historyStartingIndex = currentIndex;
                     }
                 }
-                else historyStartingIndex = currentIndex;
+                else
+                {
+                    historyStartingIndex = currentIndex;
+                }
             }
         }
 
@@ -97,7 +103,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
                 if (tempList.Count > 1)
                 {
                     tempList = tempList.OrderBy(x => x.Value).ToList();
-                    var totalWeight = tempList.Aggregate(0.0, (s, x) => (s + x.Key));
+                    var totalWeight = tempList.Aggregate(0.0, (s, x) => s + x.Key);
                     var smallestWeight = tempList[0].Key;
                     var rangeWeight = totalWeight - smallestWeight;
                     var aggWeight = 0.0;
@@ -106,18 +112,27 @@ public class PercentileComparisonGenerator : IComparisonGenerator
                         aggWeight += value.Key;
                         weightedList.Add(new KeyValuePair<double, TimeSpan>(ReWeight(aggWeight, smallestWeight, rangeWeight), value.Value));
                     }
+
                     weightedList = weightedList.OrderBy(x => x.Value).ToList();
                 }
-                else weightedList.Add(new KeyValuePair<double, TimeSpan>(1.0, tempList[0].Value));
+                else
+                {
+                    weightedList.Add(new KeyValuePair<double, TimeSpan>(1.0, tempList[0].Value));
+                }
+
                 weightedLists.Add(weightedList);
             }
             else
+            {
                 weightedLists.Add(null);
+            }
         }
 
         TimeSpan? goalTime = null;
         if (Run[Run.Count - 1].PersonalBestSplitTime[method].HasValue)
+        {
             goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value;
+        }
 
         var runSum = TimeSpan.Zero;
         var outputSplits = new List<TimeSpan>();
@@ -130,7 +145,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
         {
             runSum = TimeSpan.Zero;
             outputSplits.Clear();
-            percentile = 0.5 * (percMax - percMin) + percMin;
+            percentile = (0.5 * (percMax - percMin)) + percMin;
             foreach (var weightedList in weightedLists)
             {
                 if (weightedList != null)
@@ -145,6 +160,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
                                 curValue = Calculate(percentile, weightedList[n].Value, weightedList[n].Key, weightedList[n - 1].Value, weightedList[n - 1].Key);
                                 break;
                             }
+
                             if (weightedList[n].Key == percentile)
                             {
                                 curValue = weightedList[n].Value;
@@ -156,15 +172,25 @@ public class PercentileComparisonGenerator : IComparisonGenerator
                     {
                         curValue = weightedList[0].Value;
                     }
+
                     outputSplits.Add(curValue);
                     runSum += curValue;
                 }
                 else
+                {
                     outputSplits.Add(TimeSpan.Zero);
+                }
             }
+
             if (runSum > goalTime)
+            {
                 percMax = percentile;
-            else percMin = percentile;
+            }
+            else
+            {
+                percMin = percentile;
+            }
+
             loopProtection += 1;
         } while (!(runSum - goalTime).Equals(TimeSpan.Zero) && loopProtection < 50 && goalTime != null);
 
@@ -174,9 +200,14 @@ public class PercentileComparisonGenerator : IComparisonGenerator
         {
             totalTime += outputSplits[ind];
             if (outputSplits[ind] == TimeSpan.Zero)
+            {
                 useTime = null;
+            }
             else
+            {
                 useTime = totalTime;
+            }
+
             var time = new Time(Run[ind].Comparisons[Name]);
             time[method] = useTime;
             Run[ind].Comparisons[Name] = time;

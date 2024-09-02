@@ -38,6 +38,7 @@ public static class JSON
         {
             Log.Error(ex);
         }
+
         return FromString(json);
     }
 
@@ -105,7 +106,9 @@ public sealed class DynamicJsonConverter : JavaScriptConverter
     public override object Deserialize(IDictionary<string, object> dictionary, Type type, JavaScriptSerializer serializer)
     {
         if (dictionary == null)
+        {
             throw new ArgumentNullException(nameof(dictionary));
+        }
 
         return type == typeof(object) ? new DynamicJsonObject(dictionary) : null;
     }
@@ -131,7 +134,10 @@ public sealed class DynamicJsonObject : DynamicObject
     public DynamicJsonObject(IDictionary<string, object> dictionary)
     {
         if (dictionary == null)
+        {
             throw new ArgumentNullException(nameof(dictionary));
+        }
+
         _dictionary = dictionary;
     }
 
@@ -148,7 +154,10 @@ public sealed class DynamicJsonObject : DynamicObject
         foreach (var pair in _dictionary)
         {
             if (!firstInDictionary)
+            {
                 sb.Append(",\r\n");
+            }
+
             sb.Append('\t', depth);
             firstInDictionary = false;
             var value = pair.Value;
@@ -178,24 +187,35 @@ public sealed class DynamicJsonObject : DynamicObject
                 foreach (var arrayValue in (IEnumerable<object>)value)
                 {
                     if (!firstInArray)
+                    {
                         sb.Append(",\r\n");
+                    }
+
                     sb.Append('\t', depth + 1);
                     firstInArray = false;
                     if (arrayValue is IDictionary<string, object>)
+                    {
                         new DynamicJsonObject((IDictionary<string, object>)arrayValue).ToString(sb, depth + 2);
+                    }
                     else if (arrayValue is DynamicJsonObject)
                     {
                         sb.Append("{\r\n");
                         ((DynamicJsonObject)arrayValue).ToString(sb, depth + 2);
                     }
                     else if (arrayValue is string)
+                    {
                         sb.AppendFormat("\"{0}\"", HttpUtility.JavaScriptStringEncode((string)arrayValue));
+                    }
                     else if (arrayValue is decimal)
+                    {
                         sb.AppendFormat("{0}", HttpUtility.JavaScriptStringEncode(((decimal)arrayValue).ToString(CultureInfo.InvariantCulture)));
+                    }
                     else
+                    {
                         sb.AppendFormat("\"{0}\"", HttpUtility.JavaScriptStringEncode((arrayValue ?? "").ToString()));
-
+                    }
                 }
+
                 sb.Append("\r\n");
                 sb.Append('\t', depth);
                 sb.Append("]");
@@ -225,6 +245,7 @@ public sealed class DynamicJsonObject : DynamicObject
                 sb.AppendFormat("\"{0}\": \"{1}\"", HttpUtility.JavaScriptStringEncode(name), HttpUtility.JavaScriptStringEncode((value ?? "").ToString()));
             }
         }
+
         sb.Append("\r\n");
         sb.Append('\t', depth - 1);
         sb.Append("}");
@@ -279,7 +300,9 @@ public sealed class DynamicJsonObject : DynamicObject
         result = WrapResultObject(result);
 
         if (result is string)
+        {
             result = JavaScriptStringDecode(result as string);
+        }
 
         return true;
     }
@@ -324,7 +347,9 @@ public sealed class DynamicJsonObject : DynamicObject
     {
         var dictionary = result as IDictionary<string, object>;
         if (dictionary != null)
+        {
             return new DynamicJsonObject(dictionary);
+        }
 
         var arrayList = result as ArrayList;
         if (arrayList != null && arrayList.Count > 0)

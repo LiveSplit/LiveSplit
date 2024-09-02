@@ -33,8 +33,8 @@ public class SplitsIO : IRunUploadPlatform
 
     public string PlatformName => "Splits.io";
 
-    public string Description =>
-        "Splits.io is the best platform for sharing individual "
+    public string Description
+        => "Splits.io is the best platform for sharing individual "
         + "splits with the world and downloading them from there. "
         + "You can also browse Splits.io with \"Open Splits From Splits.io...\" "
         + "or import splits as a comparison with \"Import Comparison From Splits.io...\". "
@@ -86,7 +86,6 @@ public class SplitsIO : IRunUploadPlatform
 
                 yield return JSON.FromResponse(response);
             }
-
         } while (page++ < lastPage);
     }
 
@@ -153,11 +152,15 @@ public class SplitsIO : IRunUploadPlatform
         try
         {
             if (string.IsNullOrEmpty(speedrunComId))
+            {
                 return;
+            }
 
             var speedrunComRun = SpeedrunCom.Client.Runs.GetRun(speedrunComId);
             if (speedrunComRun == null)
+            {
                 return;
+            }
 
             run.PatchRun(speedrunComRun);
         }
@@ -198,7 +201,10 @@ public class SplitsIO : IRunUploadPlatform
 
                 var run = runFactory.Create(new StandardComparisonGeneratorsFactory());
                 if (patchRun)
+                {
                     PatchRun(run, splitsIORun.run.srdc_id);
+                }
+
                 return run;
             }
         }
@@ -233,8 +239,9 @@ public class SplitsIO : IRunUploadPlatform
                 var factor1 = 280.0 / image.Width;
                 var factor2 = 150.0 / image.Height;
                 var factor = Math.Max(factor1, factor2);
-                image = new Bitmap(image, (int)(factor * image.Width + 0.5), (int)(factor * image.Height + 0.5));
+                image = new Bitmap(image, (int)((factor * image.Width) + 0.5), (int)((factor * image.Height) + 0.5));
             }
+
             var result = Imgur.Instance.UploadImage(image);
             image_url = (string)result.data.link;
         }
@@ -250,6 +257,7 @@ public class SplitsIO : IRunUploadPlatform
             {
                 WriteKeyAndValue(writer, "image_url", image_url);
             }
+
             writer.WriteLine("--AaB03x--");
             writer.Flush();
         }

@@ -118,7 +118,9 @@ public class NewRaceInputBox : Form
             {
                 var result = MessageBox.Show(this, "The game you entered could not be found in the SpeedRunsLive Game List. Are you sure you would like to start a race with a New Game?", "Game Not Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No)
+                {
                     e.Cancel = true;
+                }
             }
         }
     }

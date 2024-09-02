@@ -9,5 +9,4 @@ public class AutomaticPrecisionTimeFormatter : GeneralTimeFormatter
         Accuracy = TimeAccuracy.Hundredths;
         AutomaticPrecision = true;
     }
-
 }

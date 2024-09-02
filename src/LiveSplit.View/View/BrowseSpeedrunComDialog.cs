@@ -58,7 +58,9 @@ public partial class BrowseSpeedrunComDialog : Form
     private static int getDigits(int n)
     {
         if (n == 0)
+        {
             return 1;
+        }
 
         return (int)Math.Floor(Math.Log10(n) + 1);
     }
@@ -68,10 +70,14 @@ public partial class BrowseSpeedrunComDialog : Form
         var formatter = new ShortTimeFormatter();
 
         if (time.RealTime.HasValue && !time.GameTime.HasValue)
+        {
             return formatter.Format(time.RealTime);
+        }
 
         if (!time.RealTime.HasValue && time.GameTime.HasValue)
+        {
             return formatter.Format(time.GameTime);
+        }
 
         return formatter.Format(time.RealTime) + " / " + formatter.Format(time.GameTime);
     }
@@ -95,6 +101,7 @@ public partial class BrowseSpeedrunComDialog : Form
 
             return " (" + strPlace + postfix + ")";
         }
+
         return "";
     }
 
@@ -104,6 +111,7 @@ public partial class BrowseSpeedrunComDialog : Form
         {
             return;
         }
+
         if (searchWorker.IsBusy)
         {
             searchWorker.CancelAsync();
@@ -112,9 +120,9 @@ public partial class BrowseSpeedrunComDialog : Form
                 Application.DoEvents();
             }
         }
+
         searchWorker.RunWorkerAsync();
     }
-
 
     private void btnSearchWorkerTask(object sender, EventArgs e)
     {
@@ -134,6 +142,7 @@ public partial class BrowseSpeedrunComDialog : Form
                         {
                             return;
                         }
+
                         var gameNode = new TreeNode(game.Name);
                         gameNode.Tag = game.WebLink;
                         var categories = game.FullGameCategories;
@@ -146,6 +155,7 @@ public partial class BrowseSpeedrunComDialog : Form
                             {
                                 return;
                             }
+
                             var categoryNode = new TreeNode(category.Name);
                             categoryNode.Tag = category.WebLink;
                             var leaderboard = category.Leaderboard;
@@ -158,6 +168,7 @@ public partial class BrowseSpeedrunComDialog : Form
                                 {
                                     return;
                                 }
+
                                 var place = record.Rank.ToString(CultureInfo.InvariantCulture).PadLeft(getDigits(records.Count())) + ".   ";
                                 var runners = string.Join(" & ", record.Players.Select(x => x.Name));
                                 var time = record.Times.Primary;
@@ -165,21 +176,34 @@ public partial class BrowseSpeedrunComDialog : Form
                                 var runNode = new TreeNode(runText);
                                 runNode.Tag = record;
                                 if (!record.SplitsAvailable)
+                                {
                                     runNode.ForeColor = Color.Gray;
+                                }
                                 else
+                                {
                                     anySplitsAvailableForCategory = true;
+                                }
+
                                 categoryNode.Nodes.Add(runNode);
                             }
 
                             if (!anySplitsAvailableForCategory)
+                            {
                                 categoryNode.ForeColor = Color.Gray;
+                            }
                             else
+                            {
                                 anySplitsAvailableForGame = true;
+                            }
 
                             gameNode.Nodes.Add(categoryNode);
                         }
+
                         if (!anySplitsAvailableForGame)
+                        {
                             gameNode.ForeColor = Color.Gray;
+                        }
+
                         splitsTreeView.Invoke((MethodInvoker)delegate
                         {
                             splitsTreeView.Nodes.Add(gameNode);
@@ -199,6 +223,7 @@ public partial class BrowseSpeedrunComDialog : Form
                         {
                             return;
                         }
+
                         var userNode = new TreeNode("@" + user.Name);
                         userNode.Tag = user.WebLink;
                         var recordsGroupedByGames = SpeedrunCom.Client.Users.GetPersonalBests(user.ID, embeds: new RunEmbeds(embedGame: true, embedCategory: true))
@@ -211,6 +236,7 @@ public partial class BrowseSpeedrunComDialog : Form
                             {
                                 return;
                             }
+
                             var gameName = recordsForGame.Key;
                             var gameNode = new TreeNode(gameName);
                             var game = recordsForGame.First().Game;
@@ -224,6 +250,7 @@ public partial class BrowseSpeedrunComDialog : Form
                                 {
                                     return;
                                 }
+
                                 var categoryName = record.Category.Name;
 
                                 var place = formatPlace(record.Rank);
@@ -233,20 +260,34 @@ public partial class BrowseSpeedrunComDialog : Form
                                 var recordNode = new TreeNode(recordText);
                                 recordNode.Tag = record;
                                 if (!record.SplitsAvailable)
+                                {
                                     recordNode.ForeColor = Color.Gray;
+                                }
                                 else
+                                {
                                     anySplitsAvailableForGame = true;
+                                }
+
                                 gameNode.Nodes.Add(recordNode);
                             }
 
                             if (!anySplitsAvailableForGame)
+                            {
                                 gameNode.ForeColor = Color.Gray;
+                            }
                             else
+                            {
                                 anySplitsAvailableForUser = true;
+                            }
+
                             userNode.Nodes.Add(gameNode);
                         }
+
                         if (!anySplitsAvailableForUser)
+                        {
                             userNode.ForeColor = Color.Gray;
+                        }
+
                         splitsTreeView.Invoke((MethodInvoker)delegate
                         {
                             splitsTreeView.Nodes.Add(userNode);
@@ -273,7 +314,9 @@ public partial class BrowseSpeedrunComDialog : Form
                 Run = record.GetRun();
 
                 if (!isImporting)
+                {
                     Run.PatchRun(record);
+                }
 
                 var runners = string.Join(" & ", record.Players.Select(x => x.Name));
                 RunName = runners;
@@ -304,25 +347,34 @@ public partial class BrowseSpeedrunComDialog : Form
                 {
                     var result = InputBox.Show(this, "Enter Comparison Name", "Name:", ref name);
                     if (result == DialogResult.Cancel)
+                    {
                         return result;
+                    }
 
                     if (name.StartsWith("[Race]"))
                     {
                         result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                         if (result == DialogResult.Cancel)
+                        {
                             return result;
+                        }
                     }
                     else if (name == Model.Run.PersonalBestComparisonName)
                     {
                         result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                         if (result == DialogResult.Cancel)
+                        {
                             return result;
+                        }
                     }
                     else
+                    {
                         succeededName = true;
+                    }
                 }
                 while (!succeededName);
             }
+
             var pbTimes = Run.Select(x => x.PersonalBestSplitTime).ToArray();
             Run.ClearTimes();
             if (chkIncludeTimes.Checked)
@@ -331,10 +383,12 @@ public partial class BrowseSpeedrunComDialog : Form
                 {
                     Run[index].Comparisons[name] = pbTimes[index];
                 }
+
                 Run.CustomComparisons.Add(name);
                 Run.FixSplits();
             }
         }
+
         return DialogResult.OK;
     }
 

@@ -10,7 +10,9 @@ public static class Log
         try
         {
             if (!EventLog.SourceExists("LiveSplit"))
+            {
                 EventLog.CreateEventSource("LiveSplit", "Application");
+            }
         }
         catch { }
 

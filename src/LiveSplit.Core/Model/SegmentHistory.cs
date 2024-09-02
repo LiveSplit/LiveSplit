@@ -27,7 +27,10 @@ public class SegmentHistory : Dictionary<int, Time>, ICloneable
     public int GetMinIndex()
     {
         if (Count > 0)
+        {
             return Math.Min(this.Min(x => x.Key), 1);
+        }
+
         return 1;
     }
 }

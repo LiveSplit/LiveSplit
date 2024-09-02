@@ -19,10 +19,8 @@ public class ColorSlider : UserControl
     private readonly Timer pickerDragTimer = null;
     private bool designSerializeColor = false;
 
-
     public event EventHandler ValueChanged = null;
     public event EventHandler PercentualValueChanged = null;
-
 
     public Rectangle ColorAreaRectangle
     {
@@ -31,15 +29,19 @@ public class ColorSlider : UserControl
             return new Rectangle(
             this.ClientRectangle.X + this.pickerSize + 2,
             this.ClientRectangle.Y + this.pickerSize + 2,
-            this.ClientRectangle.Width - this.pickerSize * 2 - 4,
-            this.ClientRectangle.Height - this.pickerSize * 2 - 4);
+            this.ClientRectangle.Width - (this.pickerSize * 2) - 4,
+            this.ClientRectangle.Height - (this.pickerSize * 2) - 4);
         }
     }
     [DefaultValue(5)]
     public int PickerSize
     {
         get => this.pickerSize;
-        set { this.pickerSize = value; this.Invalidate(); }
+        set
+        {
+            this.pickerSize = value;
+            this.Invalidate();
+        }
     }
     [DefaultValue(true)]
     public bool ShowInnerPicker
@@ -89,7 +91,6 @@ public class ColorSlider : UserControl
         }
     }
 
-
     public ColorSlider()
     {
         this.pickerDragTimer = new Timer();
@@ -120,6 +121,7 @@ public class ColorSlider : UserControl
                 max);
             g.FillRectangle(gradient, g.ClipBounds);
         }
+
         this.UpdateColorValue();
         this.Invalidate();
     }
@@ -138,6 +140,7 @@ public class ColorSlider : UserControl
             gradient.InterpolationColors = blend;
             g.FillRectangle(gradient, g.ClipBounds);
         }
+
         this.min = this.srcImage.GetPixel(0, this.srcImage.Height - 1);
         this.max = this.srcImage.GetPixel(0, 0);
         this.UpdateColorValue();
@@ -169,18 +172,25 @@ public class ColorSlider : UserControl
     {
         Color oldVal = this.valTemp;
         this.valTemp = this.srcImage.GetPixel(0, (int)Math.Round((this.srcImage.Height - 1) * (1.0f - this.pickerPos)));
-        if (oldVal != this.valTemp) this.OnValueChanged();
+        if (oldVal != this.valTemp)
+        {
+            this.OnValueChanged();
+        }
     }
 
     protected void OnValueChanged()
     {
         if (this.ValueChanged != null)
+        {
             this.ValueChanged(this, null);
+        }
     }
     protected void OnPercentualValueChanged()
     {
         if (this.PercentualValueChanged != null)
+        {
             this.PercentualValueChanged(this, null);
+        }
     }
 
     protected override void OnEnabledChanged(EventArgs e)
@@ -196,8 +206,8 @@ public class ColorSlider : UserControl
         Rectangle colorBoxOuter = new Rectangle(
             this.ClientRectangle.X + this.pickerSize,
             this.ClientRectangle.Y + this.pickerSize,
-            this.ClientRectangle.Width - this.pickerSize * 2 - 1,
-            this.ClientRectangle.Height - this.pickerSize * 2 - 1);
+            this.ClientRectangle.Width - (this.pickerSize * 2) - 1,
+            this.ClientRectangle.Height - (this.pickerSize * 2) - 1);
         Rectangle colorBoxInner = new Rectangle(
             colorBoxOuter.X + 1,
             colorBoxOuter.Y + 1,
@@ -207,7 +217,9 @@ public class ColorSlider : UserControl
         int pickerVisualPos = colorArea.Y + (int)Math.Round((1.0f - this.pickerPos) * colorArea.Height);
 
         if (this.min.A < 255 || this.max.A < 255)
+        {
             e.Graphics.FillRectangle(new HatchBrush(HatchStyle.LargeCheckerBoard, Color.LightGray, Color.Gray), colorArea);
+        }
 
         System.Drawing.Imaging.ImageAttributes colorAreaImageAttr = new System.Drawing.Imaging.ImageAttributes();
         colorAreaImageAttr.SetWrapMode(WrapMode.TileFlipXY);
@@ -249,7 +261,7 @@ public class ColorSlider : UserControl
         if (e.Button == System.Windows.Forms.MouseButtons.Left)
         {
             this.Focus();
-            this.ValuePercentual = 1.0f - (float)(e.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height;
+            this.ValuePercentual = 1.0f - ((float)(e.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height);
             this.pickerDrag = true;
             this.pickerDragTimer.Enabled = true;
         }
@@ -264,7 +276,7 @@ public class ColorSlider : UserControl
     private void pickerDragTimer_Tick(object sender, EventArgs e)
     {
         Point pos = this.PointToClient(System.Windows.Forms.Cursor.Position);
-        this.ValuePercentual = 1.0f - (float)(pos.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height;
+        this.ValuePercentual = 1.0f - ((float)(pos.Y - this.ColorAreaRectangle.Y) / (float)this.ColorAreaRectangle.Height);
     }
     protected override void OnMouseLeave(EventArgs e)
     {

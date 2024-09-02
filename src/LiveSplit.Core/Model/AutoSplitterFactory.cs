@@ -37,7 +37,9 @@ public class AutoSplitterFactory
     public void Init()
     {
         if (AutoSplitters != null)
+        {
             return;
+        }
 
         ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
         var document = DownloadAutoSplitters();
@@ -88,14 +90,18 @@ public class AutoSplitterFactory
     public AutoSplitter Create(string game)
     {
         if (AutoSplitters == null)
+        {
             Init();
+        }
 
         if (AutoSplitters != null && !string.IsNullOrEmpty(game))
         {
             game = game.ToLower();
 
             if (AutoSplitters.ContainsKey(game))
+            {
                 return AutoSplitters[game];
+            }
         }
 
         return null;
@@ -113,10 +119,15 @@ public class AutoSplitterFactory
         {
             Log.Error(ex);
             if (File.Exists(AutoSplittersXmlFile))
+            {
                 autoSplitters.Load(AutoSplittersXmlFile);
+            }
             else
+            {
                 return null;
+            }
         }
+
         return autoSplitters;
     }
 }

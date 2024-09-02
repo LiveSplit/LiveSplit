@@ -56,10 +56,10 @@ public class NTP
             intPart = SwapEndianness(intPart);
             fractPart = SwapEndianness(fractPart);
 
-            var milliseconds = (intPart * 1000) + ((fractPart * 1000) / 0x100000000L);
+            var milliseconds = (intPart * 1000) + (fractPart * 1000 / 0x100000000L);
 
             //**UTC** time
-            var networkDateTime = (new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc)).AddMilliseconds(milliseconds);
+            var networkDateTime = new DateTime(1900, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(milliseconds);
             var resultingTime = networkDateTime + delta;
 
             var offsetFromLocal = (DateTime.UtcNow - resultingTime).Duration();

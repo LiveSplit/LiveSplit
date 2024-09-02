@@ -25,7 +25,10 @@ public class InfoTimeComponent : InfoTextComponent
         set
         {
             if (value != null && value != formatter)
+            {
                 InformationValue = value.Format(timeValue);
+            }
+
             formatter = value;
         }
     }

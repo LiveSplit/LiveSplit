@@ -35,11 +35,13 @@ public static class SumOfBest
                     }
                 }
             }
+
             if (useCurrentRun)
             {
                 var currentRunPrediction = TrackCurrentRun(run, currentTime, segmentIndex, method);
                 PopulatePrediction(predictions, currentRunPrediction.Time[method], currentRunPrediction.Index);
             }
+
             var personalBestRunPrediction = TrackPersonalBestRun(run, currentTime, segmentIndex, method);
             PopulatePrediction(predictions, personalBestRunPrediction.Time[method], personalBestRunPrediction.Index);
         }
@@ -56,6 +58,7 @@ public static class SumOfBest
             PopulatePredictions(run, currentTime, segmentIndex, predictions, simpleCalculation, useCurrentRun, method);
             segmentIndex++;
         }
+
         return predictions[endIndex + 1];
     }
 
@@ -79,6 +82,7 @@ public static class SumOfBest
                 var prediction = TrackBranch(run, currentTime, segmentIndex + 1, nullSegment.Key, method);
                 CheckPrediction(run, predictions, prediction.Time[method], segmentIndex - 1, prediction.Index - 1, nullSegment.Key, method, callback);
             }
+
             segmentIndex++;
         }
     }

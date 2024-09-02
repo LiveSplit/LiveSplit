@@ -36,9 +36,13 @@ public partial class LayoutEditorDialog : Form
         set
         {
             if (value)
+            {
                 Layout.Mode = LayoutMode.Vertical;
+            }
             else
+            {
                 Layout.Mode = LayoutMode.Horizontal;
+            }
         }
     }
     protected bool IsHorizontal { get => !IsVertical; set => IsVertical = !value; }
@@ -118,6 +122,7 @@ public partial class LayoutEditorDialog : Form
         {
             AddComponentFactory(factory, groupItem);
         }
+
         menuAddComponents.Items.Add(groupItem);
     }
 
@@ -132,7 +137,10 @@ public partial class LayoutEditorDialog : Form
             var category = group.Key;
             var componentFactories = (IEnumerable<IComponentFactory>)group;
             if (category == ComponentCategory.Other)
+            {
                 componentFactories = new[] { new SeparatorFactory() }.Concat(componentFactories).OrderBy(x => x.ComponentName);
+            }
+
             AddGroup(category, componentFactories);
         }
 
@@ -164,7 +172,10 @@ public partial class LayoutEditorDialog : Form
                 {
                     var component = Layout.Components.ElementAt(lbxComponents.SelectedIndex);
                     if (component is IDeactivatableComponent)
+                    {
                         ((IDeactivatableComponent)component).Activated = false;
+                    }
+
                     ComponentsToDispose.Add(component);
                     BindingList.RemoveAt(lbxComponents.SelectedIndex);
                 }
@@ -232,14 +243,18 @@ public partial class LayoutEditorDialog : Form
         if (result == DialogResult.OK)
         {
             if (oldSettings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+            {
                 ImagesToDispose.Add(oldSettings.BackgroundImage);
+            }
 
             Layout.HasChanged = true;
         }
         else if (result == DialogResult.Cancel)
         {
             if (Layout.Settings.BackgroundImage != null && oldSettings.BackgroundImage != Layout.Settings.BackgroundImage)
+            {
                 Layout.Settings.BackgroundImage.Dispose();
+            }
 
             Layout.Settings.Assign(oldSettings);
             LayoutSettingsAssigned(null, null);
@@ -261,7 +276,9 @@ public partial class LayoutEditorDialog : Form
             var result = setSizeDialog.ShowDialog();
 
             if (result == DialogResult.Cancel)
+            {
                 CurrentState.Form.Size = oldSize;
+            }
         }
     }
 
