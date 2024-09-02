@@ -23,7 +23,7 @@ public static class ColorExtensions
         int hi = ToInt32(Floor(hue / 60)) % 6;
         double f = (hue / 60) - Floor(hue / 60);
 
-        value = value * 255;
+        value *= 255;
         int v = ToInt32(value);
         int p = ToInt32(value * (1 - saturation));
         int q = ToInt32(value * (1 - (f * saturation)));
