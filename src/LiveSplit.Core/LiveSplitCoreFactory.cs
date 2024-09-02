@@ -24,7 +24,7 @@ public class LiveSplitCoreFactory
                 FreeLibrary(handle);
         }
 
-        private void* handle;
+        private readonly void* handle;
 
     }
 

@@ -103,7 +103,7 @@ public class SignatureScanner
         return ScanInternal(target, align);
     }
 
-    IEnumerable<IntPtr> ScanInternal(SigScanTarget target, int align)
+    private IEnumerable<IntPtr> ScanInternal(SigScanTarget target, int align)
     {
         if (_memory == null || _memory.Length != _size)
         {
@@ -131,7 +131,7 @@ public class SignatureScanner
         }
     }
 
-    class ScanEnumerator : IEnumerator<int>, IEnumerable<int>
+    private class ScanEnumerator : IEnumerator<int>, IEnumerable<int>
     {
         // IEnumerator
         public int Current { get; private set; }
@@ -182,7 +182,7 @@ public class SignatureScanner
             return this;
         }
 
-        unsafe bool NextPattern()
+        private unsafe bool NextPattern()
         {
             fixed (bool* mask = _sig.Mask)
             fixed (byte* mem = _memory, sig = _sig.Pattern)
@@ -216,7 +216,7 @@ public class SignatureScanner
             }
         }
 
-        unsafe bool NextBytes()
+        private unsafe bool NextBytes()
         {
             // just a straight memory compare
             fixed (byte* mem = _memory, sig = _sig.Pattern)
@@ -261,7 +261,7 @@ public class SigScanTarget
     public delegate IntPtr OnFoundCallback(Process proc, SignatureScanner scanner, IntPtr ptr);
     public OnFoundCallback OnFound { get; set; }
 
-    private List<Signature> _sigs;
+    private readonly List<Signature> _sigs;
     public ReadOnlyCollection<Signature> Signatures
     {
         get { return _sigs.AsReadOnly(); }

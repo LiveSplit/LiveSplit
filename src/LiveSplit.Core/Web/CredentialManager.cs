@@ -126,16 +126,16 @@ public static class CredentialManager
     }
 
     [DllImport("Advapi32.dll", EntryPoint = "CredReadW", CharSet = CharSet.Unicode, SetLastError = true)]
-    static extern bool CredRead(string target, CredentialType type, int reservedFlag, out IntPtr credentialPtr);
+    private static extern bool CredRead(string target, CredentialType type, int reservedFlag, out IntPtr credentialPtr);
 
     [DllImport("Advapi32.dll", EntryPoint = "CredDeleteW", CharSet = CharSet.Unicode, SetLastError = true)]
-    static extern bool CredDelete(string target, CredentialType type, int reservedFlag);
+    private static extern bool CredDelete(string target, CredentialType type, int reservedFlag);
 
     [DllImport("Advapi32.dll", EntryPoint = "CredWriteW", CharSet = CharSet.Unicode, SetLastError = true)]
-    static extern bool CredWrite([In] ref CREDENTIAL userCredential, [In] UInt32 flags);
+    private static extern bool CredWrite([In] ref CREDENTIAL userCredential, [In] UInt32 flags);
 
     [DllImport("Advapi32.dll", EntryPoint = "CredFree", SetLastError = true)]
-    static extern bool CredFree([In] IntPtr cred);
+    private static extern bool CredFree([In] IntPtr cred);
 
     private enum CredentialPersistence : uint
     {
@@ -161,7 +161,7 @@ public static class CredentialManager
         public IntPtr UserName;
     }
 
-    sealed class CriticalCredentialHandle : CriticalHandleZeroOrMinusOneIsInvalid
+    private sealed class CriticalCredentialHandle : CriticalHandleZeroOrMinusOneIsInvalid
     {
         public CriticalCredentialHandle(IntPtr preexistingHandle)
         {

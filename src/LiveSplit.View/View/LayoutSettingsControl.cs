@@ -79,7 +79,7 @@ public partial class LayoutSettingsControl : UserControl
         }
     }
 
-    void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
+    private void cmbGradientType_SelectedIndexChanged(object sender, EventArgs e)
     {
         var selectedItem = cmbBackgroundType.SelectedItem.ToString();
         btnBackground.Visible = selectedItem != "Solid Color" && selectedItem != "Image";

@@ -14,13 +14,13 @@ public class DeepPointer
 {
     public enum DerefType { Auto, Bit32, Bit64 }
 
-    private IntPtr _absoluteBase;
-    private bool _usingAbsoluteBase;
-    private DerefType _derefType;
+    private readonly IntPtr _absoluteBase;
+    private readonly bool _usingAbsoluteBase;
+    private readonly DerefType _derefType;
 
-    private OffsetT _base;
+    private readonly OffsetT _base;
     private List<OffsetT> _offsets;
-    private string _module;
+    private readonly string _module;
 
     public DeepPointer(IntPtr absoluteBase, params OffsetT[] offsets)
         : this(absoluteBase, DerefType.Auto, offsets) { }
@@ -201,9 +201,9 @@ public struct Vector3f
     public float Y { get; set; }
     public float Z { get; set; }
 
-    public int IX { get { return (int)X; } }
-    public int IY { get { return (int)Y; } }
-    public int IZ { get { return (int)Z; } }
+    public readonly int IX { get { return (int)X; } }
+    public readonly int IY { get { return (int)Y; } }
+    public readonly int IZ { get { return (int)Z; } }
 
     public Vector3f(float x, float y, float z) : this()
     {
@@ -212,7 +212,7 @@ public struct Vector3f
         Z = z;
     }
 
-    public float Distance(Vector3f other)
+    public readonly float Distance(Vector3f other)
     {
         float result = (X - other.X) * (X - other.X) +
             (Y - other.Y) * (Y - other.Y) +
@@ -220,27 +220,27 @@ public struct Vector3f
         return (float)Math.Sqrt(result);
     }
 
-    public float DistanceXY(Vector3f other)
+    public readonly float DistanceXY(Vector3f other)
     {
         float result = (X - other.X) * (X - other.X) +
             (Y - other.Y) * (Y - other.Y);
         return (float)Math.Sqrt(result);
     }
 
-    public bool BitEquals(Vector3f other)
+    public readonly bool BitEquals(Vector3f other)
     {
         return X.BitEquals(other.X)
                && Y.BitEquals(other.Y)
                && Z.BitEquals(other.Z);
     }
 
-    public bool BitEqualsXY(Vector3f other)
+    public readonly bool BitEqualsXY(Vector3f other)
     {
         return X.BitEquals(other.X)
                && Y.BitEquals(other.Y);
     }
 
-    public override string ToString()
+    public override readonly string ToString()
     {
         return X + " " + Y + " " + Z;
     }

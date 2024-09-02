@@ -109,7 +109,7 @@ public class NewRaceInputBox : Form
         RefreshCategoryAutoCompleteList("");
     }
 
-    void NewRaceInputBox_FormClosing(object sender, FormClosingEventArgs e)
+    private void NewRaceInputBox_FormClosing(object sender, FormClosingEventArgs e)
     {
         if (DialogResult == DialogResult.OK)
         {
@@ -122,12 +122,13 @@ public class NewRaceInputBox : Form
             }
         }
     }
-    void cbxGameName_TextChanged(object sender, EventArgs e)
+
+    private void cbxGameName_TextChanged(object sender, EventArgs e)
     {
         RefreshCategoryAutoCompleteList(((ComboBox)sender).Text);
     }
 
-    void RefreshCategoryAutoCompleteList(string gameName)
+    private void RefreshCategoryAutoCompleteList(string gameName)
     {
         Task.Factory.StartNew(() =>
         {

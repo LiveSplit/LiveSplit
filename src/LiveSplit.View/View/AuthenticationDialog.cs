@@ -15,7 +15,7 @@ public partial class AuthenticationDialog : Form
         Load += AuthenticationDialog_Load;
     }
 
-    void AuthenticationDialog_Load(object sender, EventArgs e)
+    private void AuthenticationDialog_Load(object sender, EventArgs e)
     {
         tbxUsername.Text = Username;
         tbxPassword.Text = Password;

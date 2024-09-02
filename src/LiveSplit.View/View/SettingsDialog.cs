@@ -128,19 +128,19 @@ public partial class SettingsDialog : Form
         btnLogOut.Enabled = WebCredentials.AnyCredentialsExist();
     }
 
-    void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
+    private void chkSimpleSOB_CheckedChanged(object sender, EventArgs e)
     {
         Settings.SimpleSumOfBest = chkSimpleSOB.Checked;
         SumOfBestModeChanged?.Invoke(this, null);
     }
 
-    void SettingsDialog_Load(object sender, EventArgs e)
+    private void SettingsDialog_Load(object sender, EventArgs e)
     {
         chkSimpleSOB.Checked = Settings.SimpleSumOfBest;
         chkGlobalHotkeys_CheckedChanged(null, null);
     }
 
-    void chkGlobalHotkeys_CheckedChanged(object sender, EventArgs e)
+    private void chkGlobalHotkeys_CheckedChanged(object sender, EventArgs e)
     {
         if (chkGlobalHotkeys.Checked)
         {

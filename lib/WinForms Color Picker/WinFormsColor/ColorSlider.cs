@@ -16,7 +16,7 @@ public class ColorSlider : UserControl
     private Color max = Color.Transparent;
     private Color valTemp = Color.Transparent;
     private bool innerPicker = true;
-    private Timer pickerDragTimer = null;
+    private readonly Timer pickerDragTimer = null;
     private bool designSerializeColor = false;
 
 

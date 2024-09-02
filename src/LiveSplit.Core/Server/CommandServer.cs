@@ -148,7 +148,7 @@ public class CommandServer
         return pipe;
     }
 
-    TimeSpan? ParseTime(string timeString)
+    private TimeSpan? ParseTime(string timeString)
     {
         if (timeString == "-")
             return null;
@@ -156,7 +156,7 @@ public class CommandServer
         return TimeSpanParser.Parse(timeString);
     }
 
-    void connection_MessageReceived(object sender, MessageEventArgs e)
+    private void connection_MessageReceived(object sender, MessageEventArgs e)
     {
         ProcessMessage(e.Message, e.Connection);
     }

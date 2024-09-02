@@ -63,7 +63,7 @@ public partial class LayoutEditorDialog : Form
         itemDragger.DragCursor = Cursors.SizeAll;
     }
 
-    void rdoVertical_CheckedChanged(object sender, EventArgs e)
+    private void rdoVertical_CheckedChanged(object sender, EventArgs e)
     {
         Layout.HasChanged = true;
         IsVertical = rdoVertical.Checked;

@@ -27,7 +27,7 @@ public enum TimeFormat
     Seconds
 }
 
-static class FormatUtils
+internal static class FormatUtils
 {
 #pragma warning disable 618
     public static DigitsFormat ToDigitsFormat(this TimeFormat timeFormat)

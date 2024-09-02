@@ -39,7 +39,7 @@ public enum ReadStringType
 
 public static class ExtensionMethods
 {
-    private static Dictionary<int, ProcessModuleWow64Safe[]> ModuleCache = new Dictionary<int, ProcessModuleWow64Safe[]>();
+    private static readonly Dictionary<int, ProcessModuleWow64Safe[]> ModuleCache = new Dictionary<int, ProcessModuleWow64Safe[]>();
 
     public static ProcessModuleWow64Safe MainModuleWow64Safe(this Process p)
     {
@@ -423,7 +423,7 @@ public static class ExtensionMethods
         return gate;
     }
 
-    static object ResolveToType(byte[] bytes, Type type)
+    private static object ResolveToType(byte[] bytes, Type type)
     {
         object val;
 

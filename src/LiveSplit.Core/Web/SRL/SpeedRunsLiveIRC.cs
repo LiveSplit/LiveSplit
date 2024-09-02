@@ -76,29 +76,29 @@ public class SpeedRunsLiveIRC : IDisposable
         RaceState = RaceState.NotInRace;
     }
 
-    void RaceChannel_UserKicked(object sender, IrcChannelUserEventArgs e)
+    private void RaceChannel_UserKicked(object sender, IrcChannelUserEventArgs e)
     {
         if (e.ChannelUser.User.NickName == Client.LocalUser.NickName)
             Kicked?.Invoke(this, null);
     }
 
-    void Client_Disconnected(object sender, EventArgs e)
+    private void Client_Disconnected(object sender, EventArgs e)
     {
         Disconnected?.Invoke(this, null);
     }
 
-    void Model_OnReset(object sender, TimerPhase e)
+    private void Model_OnReset(object sender, TimerPhase e)
     {
         if (RaceState == RaceState.RaceStarted)
             QuitRace();
     }
 
-    void RaiseUserListRefreshed(object sender, EventArgs e)
+    private void RaiseUserListRefreshed(object sender, EventArgs e)
     {
         UserListRefreshed?.Invoke(this, null);
     }
 
-    void LocalUser_JoinedChannel(object sender, IrcChannelEventArgs e)
+    private void LocalUser_JoinedChannel(object sender, IrcChannelEventArgs e)
     {
         e.Channel.MessageReceived += SpeedRunsLive_MessageReceived;
 
@@ -122,7 +122,7 @@ public class SpeedRunsLiveIRC : IDisposable
         ChannelJoined?.Invoke(this, e.Channel.Name);
     }
 
-    void Channel_UsersListReceived(object sender, EventArgs e)
+    private void Channel_UsersListReceived(object sender, EventArgs e)
     {
         try
         {
@@ -142,7 +142,7 @@ public class SpeedRunsLiveIRC : IDisposable
         }
     }
 
-    void RaceChannel_TopicChanged(object sender, EventArgs e)
+    private void RaceChannel_TopicChanged(object sender, EventArgs e)
     {
         ChannelTopic = RaceChannel.Topic;
         GoalChanged?.Invoke(null, null);
@@ -162,7 +162,7 @@ public class SpeedRunsLiveIRC : IDisposable
         return value.Replace("\\.", "\"").Replace("\\\\", "\\");
     }
 
-    void Model_OnSplit(object sender, EventArgs e)
+    private void Model_OnSplit(object sender, EventArgs e)
     {
         var timeFormatter = new RegularTimeFormatter(TimeAccuracy.Hundredths);
 
@@ -197,7 +197,7 @@ public class SpeedRunsLiveIRC : IDisposable
         }
     }
 
-    void Model_OnUndoSplit(object sender, EventArgs e)
+    private void Model_OnUndoSplit(object sender, EventArgs e)
     {
         if (LiveSplitChannel != null && RaceState == RaceState.RaceEnded
             && Model.CurrentState.CurrentSplitIndex == Model.CurrentState.Run.Count - 1)
@@ -220,13 +220,13 @@ public class SpeedRunsLiveIRC : IDisposable
         }
     }
 
-    void Client_Registered(object sender, EventArgs e)
+    private void Client_Registered(object sender, EventArgs e)
     {
         Client.LocalUser.SendMessage("NickServ", $"IDENTIFY {Password}");
         Client.LocalUser.JoinedChannel += LocalUser_JoinedChannel;
     }
 
-    void Client_RawMessageReceived(object sender, IrcRawMessageEventArgs e)
+    private void Client_RawMessageReceived(object sender, IrcRawMessageEventArgs e)
     {
         if (e.Message.Command == "010")
         {
@@ -460,7 +460,7 @@ public class SpeedRunsLiveIRC : IDisposable
         return TimeSpanParser.Parse(timeString);
     }
 
-    void SpeedRunsLive_MessageReceived(object sender, IrcMessageEventArgs e)
+    private void SpeedRunsLive_MessageReceived(object sender, IrcMessageEventArgs e)
     {
         if (e.Targets.Count > 0 && e.Targets[0] == RaceChannel)
         {
@@ -508,11 +508,11 @@ public class SpeedRunsLiveIRC : IDisposable
         Connect("irc2.speedrunslive.com", username, password);
     }
 
-    void Client_Connected(object sender, EventArgs e)
+    private void Client_Connected(object sender, EventArgs e)
     {
     }
 
-    void Client_ConnectFailed(object sender, IrcErrorEventArgs e)
+    private void Client_ConnectFailed(object sender, IrcErrorEventArgs e)
     {
     }
 

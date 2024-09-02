@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace LiveSplit.Model;
 
-class Win32
+internal class Win32
 {
     public const int WS_EX_LAYERED = 0x80000;
     public const int HTCAPTION = 0x02;
@@ -58,8 +58,8 @@ class Win32
         public int Right;
         public int Bottom;
 
-        public int Width { get { return Right - Left; } }
-        public int Height { get { return Bottom - Top; } }
+        public readonly int Width { get { return Right - Left; } }
+        public readonly int Height { get { return Bottom - Top; } }
     }
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]

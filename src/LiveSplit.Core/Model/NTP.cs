@@ -73,7 +73,7 @@ public class NTP
     }
 
     // stackoverflow.com/a/3294698
-    static uint SwapEndianness(ulong x)
+    private static uint SwapEndianness(ulong x)
     {
         return (uint)(((x & 0x000000ff) << 24) +
                        ((x & 0x0000ff00) << 8) +

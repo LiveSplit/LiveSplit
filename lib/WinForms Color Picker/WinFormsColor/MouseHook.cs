@@ -19,7 +19,7 @@ public static class MouseHook
         UnhookWindowsHookEx(_hookID);
     }
 
-    private static LowLevelMouseProc _proc = HookCallback;
+    private static readonly LowLevelMouseProc _proc = HookCallback;
     private static IntPtr _hookID = IntPtr.Zero;
 
     private static IntPtr SetHook(LowLevelMouseProc proc)

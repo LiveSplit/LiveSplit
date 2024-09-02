@@ -23,7 +23,7 @@ public class StandardFormatsRunFactory : IRunFactory
         FilePath = filePath;
     }
 
-    static TimeSpan ParseTimeSpan(LiveSplitCore.TimeSpanRef timeSpan)
+    private static TimeSpan ParseTimeSpan(LiveSplitCore.TimeSpanRef timeSpan)
     {
         var wholeSeconds = timeSpan.WholeSeconds();
         var subsecNanoseconds = timeSpan.SubsecNanoseconds();
@@ -34,7 +34,7 @@ public class StandardFormatsRunFactory : IRunFactory
         return new TimeSpan(totalTicks);
     }
 
-    static TimeSpan? ParseOptionalTimeSpan(LiveSplitCore.TimeSpanRef timeSpan)
+    private static TimeSpan? ParseOptionalTimeSpan(LiveSplitCore.TimeSpanRef timeSpan)
     {
         if (timeSpan == null)
         {
@@ -43,7 +43,7 @@ public class StandardFormatsRunFactory : IRunFactory
         return ParseTimeSpan(timeSpan);
     }
 
-    static AtomicDateTime? ParseOptionalAtomicDateTime(LiveSplitCore.AtomicDateTimeRef dateTime)
+    private static AtomicDateTime? ParseOptionalAtomicDateTime(LiveSplitCore.AtomicDateTimeRef dateTime)
     {
         if (dateTime == null)
         {
@@ -53,7 +53,7 @@ public class StandardFormatsRunFactory : IRunFactory
         return new AtomicDateTime(utcDateTime, dateTime.IsSynchronized());
     }
 
-    static Time ParseTime(LiveSplitCore.TimeRef time)
+    private static Time ParseTime(LiveSplitCore.TimeRef time)
     {
         return new Time
         {
@@ -62,7 +62,7 @@ public class StandardFormatsRunFactory : IRunFactory
         };
     }
 
-    static Image ParseImage(IntPtr imagePtr, ulong length)
+    private static Image ParseImage(IntPtr imagePtr, ulong length)
     {
         if (length == 0)
         {

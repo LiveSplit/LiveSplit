@@ -17,7 +17,7 @@ public class ColorPanel : UserControl
     private Color clrBottomLeft = Color.Transparent;
     private Color clrBottomRight = Color.Transparent;
     private Color valTemp = Color.Transparent;
-    private Timer pickerDragTimer = null;
+    private readonly Timer pickerDragTimer = null;
     private bool designSerializeColor = false;
 
 

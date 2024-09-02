@@ -8,7 +8,7 @@ namespace LiveSplit.Web.SRL;
 
 public class SRLRaceInfo : IRaceInfo
 {
-    private dynamic _data;
+    private readonly dynamic _data;
 
     public SRLRaceInfo(dynamic data)
     {

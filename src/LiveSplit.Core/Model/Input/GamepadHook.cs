@@ -29,7 +29,7 @@ public struct GamepadButton
         return !(a == b);
     }
 
-    public override bool Equals(object obj)
+    public override readonly bool Equals(object obj)
     {
         if (obj is GamepadButton)
             return this == (GamepadButton)obj;
@@ -37,7 +37,7 @@ public struct GamepadButton
         return base.Equals(obj);
     }
 
-    public override int GetHashCode()
+    public override readonly int GetHashCode()
     {
         return GamepadName.GetHashCode() ^ Button.GetHashCode();
     }

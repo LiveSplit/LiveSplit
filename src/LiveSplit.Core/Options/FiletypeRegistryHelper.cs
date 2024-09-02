@@ -29,7 +29,7 @@ public static class FiletypeRegistryHelper
     /// <i>dwItem2</i> is not used and should be <see langword="null"/>.</para>
     /// </remarks>
     [Flags]
-    enum HChangeNotifyEventID
+    private enum HChangeNotifyEventID
     {
         /// <summary>
         /// All events have occurred. 
@@ -267,7 +267,7 @@ public static class FiletypeRegistryHelper
     #endregion // enum HChangeNotifyFlags
 
     [DllImport("shell32.dll")]
-    static extern void SHChangeNotify(HChangeNotifyEventID wEventId,
+    private static extern void SHChangeNotify(HChangeNotifyEventID wEventId,
                                        HChangeNotifyFlags uFlags,
                                        IntPtr dwItem1,
                                        IntPtr dwItem2);

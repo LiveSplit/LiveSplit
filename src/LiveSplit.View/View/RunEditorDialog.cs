@@ -237,7 +237,7 @@ public partial class RunEditorDialog : Form
             .ToArray();
     }
 
-    void Run_PropertyChanged(object sender, PropertyChangedEventArgs e)
+    private void Run_PropertyChanged(object sender, PropertyChangedEventArgs e)
     {
         if (e.PropertyName == "GameName")
             cbxGameName.Text = Run.GameName;
@@ -245,7 +245,7 @@ public partial class RunEditorDialog : Form
             cbxRunCategory.Text = Run.CategoryName;
     }
 
-    void metadataControl_MetadataChanged(object sender, EventArgs e)
+    private void metadataControl_MetadataChanged(object sender, EventArgs e)
     {
         var args = (MetadataChangedEventArgs)e;
         if (args.ClearRunID)
@@ -256,7 +256,7 @@ public partial class RunEditorDialog : Form
         RaiseRunEdited();
     }
 
-    void cbxGameName_TextChanged(object sender, EventArgs e)
+    private void cbxGameName_TextChanged(object sender, EventArgs e)
     {
         if (IsInitialized)
         {
@@ -340,7 +340,7 @@ public partial class RunEditorDialog : Form
         });
     }
 
-    void RefreshCategoryAutoCompleteList()
+    private void RefreshCategoryAutoCompleteList()
     {
         Task.Factory.StartNew(() =>
         {
@@ -377,12 +377,12 @@ public partial class RunEditorDialog : Form
         });
     }
 
-    void runGrid_SelectionChanged(object sender, EventArgs e)
+    private void runGrid_SelectionChanged(object sender, EventArgs e)
     {
         UpdateButtonsStatus();
     }
 
-    void SegmentList_ListChanged(object sender, ListChangedEventArgs e)
+    private void SegmentList_ListChanged(object sender, ListChangedEventArgs e)
     {
         TimesModified();
         UpdateButtonsStatus();
@@ -417,7 +417,7 @@ public partial class RunEditorDialog : Form
         }
     }
 
-    void runGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+    private void runGrid_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
     {
         eCtl = e.Control;
         eCtl.TextChanged -= new EventHandler(eCtl_TextChanged);
@@ -448,12 +448,12 @@ public partial class RunEditorDialog : Form
         }
     }
 
-    void runGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+    private void runGrid_CellEndEdit(object sender, DataGridViewCellEventArgs e)
     {
         runGrid.Rows[e.RowIndex].ErrorText = "";
     }
 
-    void runGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+    private void runGrid_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
     {
         if (e.ColumnIndex == SPLITTIMEINDEX || e.ColumnIndex == BESTSEGMENTINDEX || e.ColumnIndex == SEGMENTTIMEINDEX || e.ColumnIndex >= CUSTOMCOMPARISONSINDEX)
         {
@@ -472,7 +472,7 @@ public partial class RunEditorDialog : Form
         }
     }
 
-    void runGrid_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
+    private void runGrid_CellParsing(object sender, DataGridViewCellParsingEventArgs e)
     {
         var parsingResults = ParseCell(e.Value, e.RowIndex, e.ColumnIndex, true);
         if (parsingResults.Parsed)
@@ -563,7 +563,7 @@ public partial class RunEditorDialog : Form
         return new ParsingResults(false, null);
     }
 
-    void runGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+    private void runGrid_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
     {
         if (e.RowIndex < Run.Count)
         {
@@ -633,7 +633,7 @@ public partial class RunEditorDialog : Form
         }
     }
 
-    void runGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+    private void runGrid_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
     {
         if (e.ColumnIndex == ICONINDEX && e.RowIndex >= 0 && e.RowIndex < Run.Count)
         {
@@ -1798,8 +1798,8 @@ public class CustomAutoCompleteComboBox : ComboBox
     private IList<string> _autoCompleteSource = null;
     private ToolStripDropDown _dropDown = null;
     private ListBox _box = null;
-    private Form form;
-    private SemaphoreSlim refreshDropDown;
+    private readonly Form form;
+    private readonly SemaphoreSlim refreshDropDown;
     private string currentText = "";
     private string previousText = "";
     private bool taskCanceled = false;

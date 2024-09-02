@@ -131,7 +131,7 @@ public class CompositeHook
         return GamepadHook.GetMouse();
     }
 
-    void InitializeGamepadHook()
+    private void InitializeGamepadHook()
     {
         if (gamepadHookInitialized)
             return;
@@ -175,7 +175,7 @@ public class CompositeHook
         });
     }
 
-    void CallInitializeEvent()
+    private void CallInitializeEvent()
     {
         if (!initializeEventCalled && GamepadHookInitialized != null)
         {
@@ -184,13 +184,13 @@ public class CompositeHook
         }
     }
 
-    void KeyboardHook_KeyPressed(object sender, KeyEventArgs e)
+    private void KeyboardHook_KeyPressed(object sender, KeyEventArgs e)
     {
         KeyPressed?.Invoke(this, e);
         KeyOrButtonPressed?.Invoke(this, new KeyOrButton(e.KeyCode | e.Modifiers));
     }
 
-    void GamepadHook_ButtonPressed(object sender, GamepadButton e)
+    private void GamepadHook_ButtonPressed(object sender, GamepadButton e)
     {
         AnyGamepadButtonPressed?.Invoke(this, e);
 

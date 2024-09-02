@@ -35,7 +35,7 @@ public abstract class ControlComponent : IDeactivatableComponent
     public float PaddingRight => 0;
 
     public bool ErrorWithControl { get; set; }
-    private Action<Exception> ErrorCallback;
+    private readonly Action<Exception> ErrorCallback;
 
     public IDictionary<string, Action> ContextMenuControls { get; protected set; }
 

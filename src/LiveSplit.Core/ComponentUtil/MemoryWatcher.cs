@@ -132,8 +132,8 @@ public class StringWatcher : MemoryWatcher
     public delegate void StringChangedEventHandler(string old, string current);
     public event StringChangedEventHandler OnChanged;
 
-    private ReadStringType _stringType;
-    private int _numBytes;
+    private readonly ReadStringType _stringType;
+    private readonly int _numBytes;
 
     public StringWatcher(DeepPointer pointer, ReadStringType type, int numBytes)
         : base(pointer)

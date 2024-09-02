@@ -69,8 +69,8 @@ public partial class MetadataControl : UserControl
     public RunMetadata Metadata { get; set; }
     public event EventHandler MetadataChanged;
 
-    private List<Control> dynamicControls;
-    private List<VariableBinding> variableBindings;
+    private readonly List<Control> dynamicControls;
+    private readonly List<VariableBinding> variableBindings;
 
     public MetadataControl()
     {
@@ -86,7 +86,7 @@ public partial class MetadataControl : UserControl
             Metadata.PropertyChanged += Metadata_Changed;
     }
 
-    void Metadata_Changed(object sender, EventArgs e)
+    private void Metadata_Changed(object sender, EventArgs e)
     {
         var metadataChanged = MetadataChanged;
         if (metadataChanged != null)

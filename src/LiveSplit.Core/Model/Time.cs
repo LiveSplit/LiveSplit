@@ -34,7 +34,7 @@ public struct Time
 
     public TimeSpan? this[TimingMethod method]
     {
-        get { return method == TimingMethod.RealTime ? RealTime : GameTime; }
+        readonly get { return method == TimingMethod.RealTime ? RealTime : GameTime; }
         set
         {
             if (method == TimingMethod.RealTime)
@@ -61,7 +61,7 @@ public struct Time
         return newTime;
     }
 
-    public XmlElement ToXml(XmlDocument document, string name = "Time")
+    public readonly XmlElement ToXml(XmlDocument document, string name = "Time")
     {
         var parent = document.CreateElement(name);
         if (RealTime != null)
@@ -79,7 +79,7 @@ public struct Time
         return parent;
     }
 
-    public DynamicJsonObject ToJson()
+    public readonly DynamicJsonObject ToJson()
     {
         dynamic json = new DynamicJsonObject();
         json.realTime = RealTime.ToString();
@@ -106,7 +106,7 @@ public struct Time
         return newTime;
     }
 
-    public override string ToString() => $"{RealTime} | {GameTime}";
+    public override readonly string ToString() => $"{RealTime} | {GameTime}";
 
     public static Time operator +(Time a, Time b) => new Time(a.RealTime + b.RealTime, a.GameTime + b.GameTime);
 

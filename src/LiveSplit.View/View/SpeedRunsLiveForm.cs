@@ -14,7 +14,7 @@ namespace LiveSplit.View;
 
 public partial class SpeedRunsLiveForm : Form
 {
-    SpeedRunsLiveIRC SRLClient { get; set; }
+    private SpeedRunsLiveIRC SRLClient { get; set; }
 
     protected bool FormIsClosing { get; set; }
 
@@ -45,7 +45,7 @@ public partial class SpeedRunsLiveForm : Form
         FormIsClosing = false;
     }
 
-    void SRLClient_Kicked(object sender, EventArgs e)
+    private void SRLClient_Kicked(object sender, EventArgs e)
     {
         if (IsDisposed)
             return;
@@ -60,7 +60,7 @@ public partial class SpeedRunsLiveForm : Form
         });
     }
 
-    void SRLClient_Disconnected(object sender, EventArgs e)
+    private void SRLClient_Disconnected(object sender, EventArgs e)
     {
         if (IsDisposed)
             return;
@@ -79,7 +79,7 @@ public partial class SpeedRunsLiveForm : Form
         catch { }
     }
 
-    void SRLClient_NicknameInUse(object sender, EventArgs e)
+    private void SRLClient_NicknameInUse(object sender, EventArgs e)
     {
         if (IsDisposed)
             return;
@@ -93,7 +93,7 @@ public partial class SpeedRunsLiveForm : Form
         });
     }
 
-    void SRLClient_PasswordIncorrect(object sender, EventArgs e)
+    private void SRLClient_PasswordIncorrect(object sender, EventArgs e)
     {
         if (IsDisposed)
             return;
@@ -129,7 +129,7 @@ public partial class SpeedRunsLiveForm : Form
         FormIsClosing = false;
     }
 
-    void SRLClient_GoalChanged(object sender, EventArgs e)
+    private void SRLClient_GoalChanged(object sender, EventArgs e)
     {
         if (IsDisposed)
             return;
@@ -140,7 +140,7 @@ public partial class SpeedRunsLiveForm : Form
         });
     }
 
-    void SRLClient_UserListRefreshed(object sender, EventArgs e)
+    private void SRLClient_UserListRefreshed(object sender, EventArgs e)
     {
         if (IsDisposed)
             return;
@@ -148,7 +148,7 @@ public partial class SpeedRunsLiveForm : Form
         RebuildUserList();
     }
 
-    void SRLClient_StateChanged(object sender, RaceState state)
+    private void SRLClient_StateChanged(object sender, RaceState state)
     {
         if (IsDisposed)
             return;
@@ -193,7 +193,7 @@ public partial class SpeedRunsLiveForm : Form
         });
     }
 
-    void ExitMessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
+    private void ExitMessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
     {
         if (IsDisposed)
             return;
@@ -212,7 +212,7 @@ public partial class SpeedRunsLiveForm : Form
         }
     }
 
-    void UndoneMessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
+    private void UndoneMessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
     {
         if (IsDisposed)
             return;
@@ -230,7 +230,7 @@ public partial class SpeedRunsLiveForm : Form
         }
     }
 
-    void SRLClient_MessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
+    private void SRLClient_MessageReceived(object sender, Tuple<string, SRLIRCUser, string> e)
     {
         if (IsDisposed)
             return;
@@ -243,11 +243,11 @@ public partial class SpeedRunsLiveForm : Form
         }
     }
 
-    void SRLClient_RawMessageReceived(object sender, string e)
+    private void SRLClient_RawMessageReceived(object sender, string e)
     {
     }
 
-    void SRLClient_ChannelJoined(object sender, string e)
+    private void SRLClient_ChannelJoined(object sender, string e)
     {
         if (IsDisposed)
             return;
@@ -273,7 +273,7 @@ public partial class SpeedRunsLiveForm : Form
         RebuildUserList();
     }
 
-    void RefreshRaceStateBasedOnAPI()
+    private void RefreshRaceStateBasedOnAPI()
     {
         try
         {
@@ -295,7 +295,7 @@ public partial class SpeedRunsLiveForm : Form
         catch { }
     }
 
-    void RaceBotResponseTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void RaceBotResponseTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
         SRLClient.RaceBotResponseTimer.Enabled = false;
         FormIsClosing = true;
@@ -307,7 +307,7 @@ public partial class SpeedRunsLiveForm : Form
         });
     }
 
-    void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void timer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
         SRLClient.SendRaceChannelMessage(".setgoal " + GameCategory);
         ((System.Timers.Timer)sender).Enabled = false;

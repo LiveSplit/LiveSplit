@@ -2,7 +2,7 @@
 
 namespace CustomFontDialog;
 
-struct FontItem
+internal struct FontItem
 {
     public Font Font { get; set; }
 
@@ -11,7 +11,7 @@ struct FontItem
         Font = font;
     }
 
-    public override string ToString()
+    public override readonly string ToString()
     {
         return Font.FontFamily.Name;
     }

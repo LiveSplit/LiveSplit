@@ -28,7 +28,7 @@ public class LowLevelKeyboardHook
         Lock = new int();
     }
 
-    void SafetyHook_KeyPressed(object sender, KeyEventArgs e)
+    private void SafetyHook_KeyPressed(object sender, KeyEventArgs e)
     {
         lock (Lock)
         {
@@ -42,7 +42,7 @@ public class LowLevelKeyboardHook
         }
     }
 
-    void Input_KeyBoardKeyPressed(object sender, KeyEventArgs e)
+    private void Input_KeyBoardKeyPressed(object sender, KeyEventArgs e)
     {
         if (RegisteredKeys.Contains(e.KeyCode | e.Modifiers) && KeyPressed != null)
         {
@@ -113,16 +113,16 @@ public class KeyboardInput : IDisposable
 
     public event KeyEventHandler KeyBoardKeyPressed;
 
-    private WindowsHookHelper.HookDelegate keyBoardDelegate;
+    private readonly WindowsHookHelper.HookDelegate keyBoardDelegate;
     private IntPtr keyBoardHandle;
     private const int WH_KEYBOARD_LL = 13;
     private const int WH_KEYBOARD = 2;
     private bool disposed;
 
     [DllImport("kernel32.dll")]
-    static extern uint GetLastError();
+    private static extern uint GetLastError();
     [DllImport("kernel32.dll")]
-    static extern IntPtr GetModuleHandle(string module);
+    private static extern IntPtr GetModuleHandle(string module);
 
     private Keys modifiers;
     private Control messageLoopControl;

@@ -85,7 +85,7 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
         return racesList;
     }
 
-    void SpeedRunsLiveAPI_Elapsed(object sender, ElapsedEventArgs e)
+    private void SpeedRunsLiveAPI_Elapsed(object sender, ElapsedEventArgs e)
     {
         try
         {

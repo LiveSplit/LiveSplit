@@ -6,13 +6,13 @@ using LiveSplit.View;
 
 namespace LiveSplit;
 
-static class Program
+internal static class Program
 {
     /// <summary>
     /// Der Haupteinstiegspunkt für die Anwendung.
     /// </summary>
     [STAThread]
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
         try
         {

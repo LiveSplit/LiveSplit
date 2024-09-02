@@ -22,7 +22,7 @@ public struct Attempt
     /// if it's from before LiveSplit 1.6. If it is from before
     /// 1.6 and resetted then it will return null.
     /// </summary>
-    public TimeSpan? Duration
+    public readonly TimeSpan? Duration
     {
         get
         {
@@ -43,7 +43,7 @@ public struct Attempt
         PauseTime = pauseTime;
     }
 
-    public XmlNode ToXml(XmlDocument document)
+    public readonly XmlNode ToXml(XmlDocument document)
     {
         var attempt = document.CreateElement("Attempt");
 
@@ -116,7 +116,7 @@ public struct Attempt
         return new Attempt(index, newTime, started, ended, pauseTime);
     }
 
-    public DynamicJsonObject ToJson()
+    public readonly DynamicJsonObject ToJson()
     {
         dynamic json = new DynamicJsonObject();
         json.id = Index;

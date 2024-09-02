@@ -20,7 +20,7 @@ public partial class BrowseSpeedrunComDialog : Form
 {
     public IRun Run { get; protected set; }
     public string RunName { get; protected set; }
-    private bool isImporting;
+    private readonly bool isImporting;
 
     private readonly BackgroundWorker searchWorker = new BackgroundWorker
     {

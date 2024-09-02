@@ -7,7 +7,7 @@ using LiveSplit.Updates;
 
 namespace LiveSplit.View;
 
-partial class AboutBox : Form
+internal partial class AboutBox : Form
 {
     public AboutBox()
     {

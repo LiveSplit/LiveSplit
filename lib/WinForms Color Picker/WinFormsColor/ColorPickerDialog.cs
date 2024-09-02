@@ -48,7 +48,7 @@ public partial class ColorPickerDialog : Form
             this.a = c.a;
         }
 
-        public Color ToColor()
+        public readonly Color ToColor()
         {
             return Color.FromArgb((int)Math.Round(this.a * 255.0f), ExtMethodsSystemDrawingColor.ColorFromHSV(this.h, this.s, this.v));
         }
@@ -576,13 +576,13 @@ public partial class ColorPickerDialog : Form
     }
 
     [DllImport("user32.dll")]
-    static extern IntPtr GetDC(IntPtr hwnd);
+    private static extern IntPtr GetDC(IntPtr hwnd);
 
     [DllImport("user32.dll")]
-    static extern Int32 ReleaseDC(IntPtr hwnd, IntPtr hdc);
+    private static extern Int32 ReleaseDC(IntPtr hwnd, IntPtr hdc);
 
     [DllImport("gdi32.dll")]
-    static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
+    private static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
 
     private System.Drawing.Color GetPixelColor(int x, int y)
     {

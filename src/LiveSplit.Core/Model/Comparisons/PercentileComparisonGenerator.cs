@@ -183,7 +183,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
         Generate(TimingMethod.GameTime);
     }
 
-    class IndexedTimeSpan
+    private class IndexedTimeSpan
     {
         public TimeSpan Time { get; set; }
         public int Index { get; set; }

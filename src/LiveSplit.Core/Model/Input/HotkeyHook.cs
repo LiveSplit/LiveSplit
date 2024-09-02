@@ -36,7 +36,7 @@ public sealed class HotkeyHook : IDisposable
 
     private class Window : NativeWindow, IDisposable
     {
-        private static int WM_HOTKEY = 786;
+        private static readonly int WM_HOTKEY = 786;
         public event EventHandler<KeyPressedEventArgs> KeyPressed;
         public Window()
         {
@@ -57,7 +57,7 @@ public sealed class HotkeyHook : IDisposable
             DestroyHandle();
         }
     }
-    private Window _window = new Window();
+    private readonly Window _window = new Window();
     private int _currentId;
     public event EventHandler<KeyPressedEventArgs> KeyPressed;
     [DllImport("user32.dll", SetLastError = true)]

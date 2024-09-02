@@ -1,6 +1,6 @@
 ﻿namespace LiveSplit.Model;
 
-public struct IndexedTime : IIndexedTime
+public readonly struct IndexedTime : IIndexedTime
 {
     public Time Time { get; }
     public int Index { get; }

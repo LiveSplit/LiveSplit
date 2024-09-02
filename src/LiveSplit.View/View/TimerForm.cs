@@ -87,8 +87,8 @@ public partial class TimerForm : Form
     public const int WM_NCLBUTTONDOWN = 0xA1;
     public const int HT_CAPTION = 0x2;
     public const string SETTINGS_PATH = "settings.cfg";
-    const int WS_MINIMIZEBOX = 0x20000;
-    const int CS_DBLCLKS = 0x8;
+    private const int WS_MINIMIZEBOX = 0x20000;
+    private const int CS_DBLCLKS = 0x8;
 
     protected override CreateParams CreateParams
     {
@@ -104,7 +104,7 @@ public partial class TimerForm : Form
     protected bool MouseIsDown = false;
     protected Point MousePoint;
 
-    private List<Action> RacesToRefresh = new List<Action>();
+    private readonly List<Action> RacesToRefresh = new List<Action>();
     private bool ShouldRefreshRaces = false;
 
     protected Task RefreshTask { get; set; }
@@ -160,10 +160,10 @@ public partial class TimerForm : Form
     private float? ResizingInitialAspectRatio { get; set; } = null;
 
     [DllImport("user32.dll")]
-    static extern int GetUpdateRgn(IntPtr hWnd, IntPtr hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
+    private static extern int GetUpdateRgn(IntPtr hWnd, IntPtr hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
 
     [DllImport("gdi32.dll")]
-    static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
+    private static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
 
     [DllImport("user32")]
     private static extern uint SetWindowLong(IntPtr hwnd, int nIndex, uint dwNewLong);
@@ -332,7 +332,7 @@ public partial class TimerForm : Form
         DragEnter += TimerForm_DragEnter;
     }
 
-    void UpdateRaceProviderIntegration()
+    private void UpdateRaceProviderIntegration()
     {
         if (RightClickMenu.InvokeRequired)
         {
@@ -380,7 +380,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void SetWindowTitle()
+    private void SetWindowTitle()
     {
         var lowestAvailableNumber = 0;
         var currentName = "LiveSplit";
@@ -394,12 +394,12 @@ public partial class TimerForm : Form
         Text = currentName;
     }
 
-    void CurrentState_OnSwitchComparisonNext(object sender, EventArgs e)
+    private void CurrentState_OnSwitchComparisonNext(object sender, EventArgs e)
     {
         RefreshComparisonItems();
     }
 
-    void RefreshComparisonItems()
+    private void RefreshComparisonItems()
     {
         var numSeparators = 0;
         foreach (var item in comparisonMenuItem.DropDownItems.OfType<ToolStripItem>().Reverse())
@@ -417,7 +417,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void CurrentState_OnSwitchComparisonPrevious(object sender, EventArgs e)
+    private void CurrentState_OnSwitchComparisonPrevious(object sender, EventArgs e)
     {
         RefreshComparisonItems();
     }
@@ -444,7 +444,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void RacesRefreshed(RaceProviderAPI raceProvider)
+    private void RacesRefreshed(RaceProviderAPI raceProvider)
     {
         Action<List<ToolStripItem>> replaceItems = null;
 
@@ -555,7 +555,7 @@ public partial class TimerForm : Form
         replaceItems(menuItemsToAdd);
     }
 
-    void UpdateTitle(ToolStripMenuItem item, IRaceInfo race, DateTime startTime, string gameAndGoal)
+    private void UpdateTitle(ToolStripMenuItem item, IRaceInfo race, DateTime startTime, string gameAndGoal)
     {
         var timeSpan = TimeStamp.CurrentDateTime - startTime;
         if (timeSpan < TimeSpan.Zero)
@@ -565,7 +565,7 @@ public partial class TimerForm : Form
         item.Text = title.EscapeMenuItemText();
     }
 
-    void SRL_JoinRace(ITimerModel model, string raceId)
+    private void SRL_JoinRace(ITimerModel model, string raceId)
     {
         if (ShowSRLRules())
         {
@@ -576,7 +576,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void SRL_NewRace(ITimerModel model)
+    private void SRL_NewRace(ITimerModel model)
     {
         if (ShowSRLRules())
         {
@@ -601,7 +601,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void TimerForm_SizeChanged(object sender, EventArgs e)
+    private void TimerForm_SizeChanged(object sender, EventArgs e)
     {
         CreateBakedBackground();
         if (RefreshesRemaining <= 0)
@@ -639,7 +639,7 @@ public partial class TimerForm : Form
                         .ToArray());
     }
 
-    void CurrentState_OnUndoSplit(object sender, EventArgs e)
+    private void CurrentState_OnUndoSplit(object sender, EventArgs e)
     {
         this.InvokeIfRequired(() =>
         {
@@ -652,7 +652,7 @@ public partial class TimerForm : Form
         });
     }
 
-    void ServerMenuItem_Click(object sender, EventArgs e)
+    private void ServerMenuItem_Click(object sender, EventArgs e)
     {
         if (ServerStarted)
         {
@@ -678,7 +678,7 @@ public partial class TimerForm : Form
         ServerStarted = !ServerStarted;
     }
 
-    void WebSocketMenuItem_Click(object sender, EventArgs e)
+    private void WebSocketMenuItem_Click(object sender, EventArgs e)
     {
         if (WebSocketStarted)
         {
@@ -704,7 +704,7 @@ public partial class TimerForm : Form
         WebSocketStarted = !WebSocketStarted;
     }
 
-    void CurrentState_OnSkipSplit(object sender, EventArgs e)
+    private void CurrentState_OnSkipSplit(object sender, EventArgs e)
     {
         this.InvokeIfRequired(() =>
         {
@@ -714,7 +714,7 @@ public partial class TimerForm : Form
         });
     }
 
-    void CurrentState_OnSplit(object sender, EventArgs e)
+    private void CurrentState_OnSplit(object sender, EventArgs e)
     {
         this.InvokeIfRequired(() =>
         {
@@ -729,7 +729,7 @@ public partial class TimerForm : Form
         });
     }
 
-    void CurrentState_OnStart(object sender, EventArgs e)
+    private void CurrentState_OnStart(object sender, EventArgs e)
     {
         this.InvokeIfRequired(() =>
         {
@@ -741,7 +741,7 @@ public partial class TimerForm : Form
         });
     }
 
-    void CurrentState_OnReset(object sender, TimerPhase e)
+    private void CurrentState_OnReset(object sender, TimerPhase e)
     {
         RegenerateComparisons();
 
@@ -764,7 +764,7 @@ public partial class TimerForm : Form
         });
     }
 
-    void CurrentState_OnResume(object sender, EventArgs e)
+    private void CurrentState_OnResume(object sender, EventArgs e)
     {
         this.InvokeIfRequired(() =>
         {
@@ -773,7 +773,7 @@ public partial class TimerForm : Form
         });
     }
 
-    void CurrentState_OnPause(object sender, EventArgs e)
+    private void CurrentState_OnPause(object sender, EventArgs e)
     {
         this.InvokeIfRequired(() =>
         {
@@ -917,7 +917,7 @@ public partial class TimerForm : Form
         openSplitsMenuItem.DropDownItems.Add(editSplitHistoryMenuItem);
     }
 
-    void openFromSpeedrunComMenuItem_Click(object sender, EventArgs e)
+    private void openFromSpeedrunComMenuItem_Click(object sender, EventArgs e)
     {
         try
         {
@@ -945,7 +945,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void editSplitHistoryMenuItem_Click(object sender, EventArgs e)
+    private void editSplitHistoryMenuItem_Click(object sender, EventArgs e)
     {
         using (var editHistoryDialog = new EditHistoryDialog(Settings.RecentSplits.Select(x => x.Path)))
         {
@@ -983,7 +983,7 @@ public partial class TimerForm : Form
         openLayoutMenuItem.DropDownItems.Add(editLayoutHistoryMenuItem);
     }
 
-    void editLayoutHistoryMenuItem_Click(object sender, EventArgs e)
+    private void editLayoutHistoryMenuItem_Click(object sender, EventArgs e)
     {
         using (var editHistoryDialog = new EditHistoryDialog(Settings.RecentLayouts))
         {
@@ -994,7 +994,7 @@ public partial class TimerForm : Form
         UpdateRecentLayouts();
     }
 
-    void openLayoutFromURLMenuItem_Click(object sender, EventArgs e)
+    private void openLayoutFromURLMenuItem_Click(object sender, EventArgs e)
     {
         try
         {
@@ -1054,7 +1054,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void openSplitsFromURLMenuItem_Click(object sender, EventArgs e)
+    private void openSplitsFromURLMenuItem_Click(object sender, EventArgs e)
     {
         var runImporter = new URLRunImporter();
         var run = runImporter.Import(this);
@@ -1091,7 +1091,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void hook_KeyOrButtonPressed(object sender, KeyOrButton e)
+    private void hook_KeyOrButtonPressed(object sender, KeyOrButton e)
     {
         Action action = () =>
         {
@@ -1165,19 +1165,19 @@ public partial class TimerForm : Form
         }).Start();
     }
 
-    void pauseTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void pauseTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
         ((System.Timers.Timer)sender).Stop();
         Model.Pause();
     }
 
-    void splitTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+    private void splitTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
     {
         ((System.Timers.Timer)sender).Stop();
         StartOrSplit();
     }
 
-    void RefreshTimerWorker()
+    private void RefreshTimerWorker()
     {
         while (true)
         {
@@ -1190,7 +1190,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void TimerElapsed()
+    private void TimerElapsed()
     {
         try
         {
@@ -1685,10 +1685,10 @@ public partial class TimerForm : Form
         return true;
     }
 
-    IntPtr hRgn = IntPtr.Zero;
+    private IntPtr hRgn = IntPtr.Zero;
     [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
     [return: MarshalAs(UnmanagedType.Bool)]
-    static extern bool DeleteObject([In] IntPtr hObject);
+    private static extern bool DeleteObject([In] IntPtr hObject);
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
     {
@@ -2051,17 +2051,17 @@ public partial class TimerForm : Form
         }
     }
 
-    void editor_SegmentRemovedOrAdded(object sender, EventArgs e)
+    private void editor_SegmentRemovedOrAdded(object sender, EventArgs e)
     {
         InvalidationRequired = true;
     }
 
-    void editor_ComparisonRenamed(object sender, EventArgs e)
+    private void editor_ComparisonRenamed(object sender, EventArgs e)
     {
         CurrentState.CallComparisonRenamed(e);
     }
 
-    void editor_RunEdited(object sender, EventArgs e)
+    private void editor_RunEdited(object sender, EventArgs e)
     {
         RegenerateComparisons();
         CurrentState.CallRunManuallyModified();
@@ -2165,12 +2165,12 @@ public partial class TimerForm : Form
         }
     }
 
-    void editor_LayoutSettingsAssigned(object sender, EventArgs e)
+    private void editor_LayoutSettingsAssigned(object sender, EventArgs e)
     {
         InvalidationRequired = true;
     }
 
-    void editor_LayoutResized(object sender, EventArgs e)
+    private void editor_LayoutResized(object sender, EventArgs e)
     {
         SetInTimerOnlyMode();
         if (Layout.Mode == LayoutMode.Horizontal)
@@ -2185,7 +2185,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void editor_OrientationSwitched(object sender, EventArgs e)
+    private void editor_OrientationSwitched(object sender, EventArgs e)
     {
         ComponentRenderer.CalculateOverallSize(Layout.Mode);
         if (Layout.Mode == LayoutMode.Vertical)
@@ -2572,7 +2572,7 @@ public partial class TimerForm : Form
         }
     }
 
-    void editor_SumOfBestModeChanged(object sender, EventArgs e)
+    private void editor_SumOfBestModeChanged(object sender, EventArgs e)
     {
         RegenerateComparisons();
     }
@@ -2823,13 +2823,13 @@ public partial class TimerForm : Form
         RefreshComparisonItems();
     }
 
-    void gameTimeMenuItem_Click(object sender, EventArgs e)
+    private void gameTimeMenuItem_Click(object sender, EventArgs e)
     {
         CurrentState.CurrentTimingMethod = TimingMethod.GameTime;
         RefreshComparisonItems();
     }
 
-    void realTimeMenuItem_Click(object sender, EventArgs e)
+    private void realTimeMenuItem_Click(object sender, EventArgs e)
     {
         CurrentState.CurrentTimingMethod = TimingMethod.RealTime;
         RefreshComparisonItems();

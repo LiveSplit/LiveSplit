@@ -12,7 +12,7 @@ public sealed class TimeStamp
     public static double PersistentDrift { get; set; }
     public static double NewDrift { get; set; }
 
-    private static Stopwatch qpc;
+    private static readonly Stopwatch qpc;
 
     private static TimeSpan firstQPCTime;
     private static DateTime firstNTPTime;

@@ -100,7 +100,7 @@ public partial class ScrollableMessageBox : Form
         return ShowDialog();
     }
 
-    void RemoveButtons()
+    private void RemoveButtons()
     {
         List<Button> buttons = new List<Button>();
         foreach (Control c in Controls)
@@ -117,7 +117,7 @@ public partial class ScrollableMessageBox : Form
         }
     }
 
-    void ChooseButtons(MessageBoxButtons buttonType)
+    private void ChooseButtons(MessageBoxButtons buttonType)
     {
         // remove existing buttons
         RemoveButtons();

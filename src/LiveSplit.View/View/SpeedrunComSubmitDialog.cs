@@ -11,11 +11,11 @@ namespace LiveSplit.View;
 
 public partial class SpeedrunComSubmitDialog : Form
 {
-    private RunMetadata metadata;
-    private bool hasPersonalBestDateTime;
-    private DateTimePicker datePicker;
-    private TextBox txtWithoutLoads;
-    private TextBox txtGameTime;
+    private readonly RunMetadata metadata;
+    private readonly bool hasPersonalBestDateTime;
+    private readonly DateTimePicker datePicker;
+    private readonly TextBox txtWithoutLoads;
+    private readonly TextBox txtGameTime;
 
     public SpeedrunComSubmitDialog(RunMetadata metadata)
     {

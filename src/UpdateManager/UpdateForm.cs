@@ -8,8 +8,8 @@ namespace UpdateManager;
 
 public partial class UpdateForm : Form
 {
-    IEnumerable<IUpdateable> Updateables { get; set; }
-    string OtherProcess { get; set; }
+    private IEnumerable<IUpdateable> Updateables { get; set; }
+    private string OtherProcess { get; set; }
 
     public UpdateForm(IEnumerable<IUpdateable> updateables, string otherProcess = null)
     {
@@ -20,7 +20,7 @@ public partial class UpdateForm : Form
         OtherProcess = otherProcess;
     }
 
-    void updater_UpdatePercentageRefreshed(object sender, UpdatePercentageRefreshedEventArgs e)
+    private void updater_UpdatePercentageRefreshed(object sender, UpdatePercentageRefreshedEventArgs e)
     {
         Action a = () => prgUpdate.Value = (int)(100 * e.Percentage);
 
