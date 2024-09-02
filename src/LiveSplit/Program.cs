@@ -21,7 +21,7 @@ internal static class Program
             Environment.CurrentDirectory = Path.GetDirectoryName(Application.ExecutablePath);
 
 #if !DEBUG
-            FiletypeRegistryHelper.RegisterFileFormatsIfNotAlreadyRegistered();
+            Options.FiletypeRegistryHelper.RegisterFileFormatsIfNotAlreadyRegistered();
 #endif
 
             string splitsPath = null;
@@ -44,7 +44,7 @@ internal static class Program
 #if !DEBUG
         catch (Exception e)
         {
-            Log.Error(e);
+            Options.Log.Error(e);
             MessageBox.Show(string.Format("LiveSplit has crashed due to the following reason:\n\n{0}", e.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 #endif
