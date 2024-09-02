@@ -17,10 +17,7 @@ public class ComponentManager
 
     public static ILayoutComponent LoadLayoutComponent(string path, LiveSplitState state)
     {
-        if (ComponentFactories == null)
-        {
-            ComponentFactories = LoadAllFactories<IComponentFactory>();
-        }
+        ComponentFactories ??= LoadAllFactories<IComponentFactory>();
 
         IComponent component = null;
 

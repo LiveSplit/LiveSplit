@@ -101,11 +101,7 @@ public partial class MetadataControl : UserControl
 
     private void Metadata_Changed(object sender, EventArgs e)
     {
-        var metadataChanged = MetadataChanged;
-        if (metadataChanged != null)
-        {
-            metadataChanged(this, e);
-        }
+        MetadataChanged?.Invoke(this, e);
     }
 
     private int getDynamicControlRowIndex(int controlIndex)

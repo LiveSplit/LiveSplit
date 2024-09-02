@@ -108,10 +108,7 @@ public class StandardFormatsRunFactory : IRunFactory
             }
         }
 
-        if (result == null)
-        {
-            result = LiveSplitCore.Run.Parse(Stream, FilePath);
-        }
+        result ??= LiveSplitCore.Run.Parse(Stream, FilePath);
 
         if (!result.ParsedSuccessfully())
         {

@@ -62,10 +62,7 @@ public class ListBoxItemDragger
     /// <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
     protected void OnItemMoved(EventArgs e)
     {
-        if (ItemMoved != null)
-        {
-            ItemMoved(this, e);
-        }
+        ItemMoved?.Invoke(this, e);
     }
 
     /// <summary>

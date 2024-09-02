@@ -198,7 +198,7 @@ public class Run : IRun, INotifyPropertyChanged
             FilePath = FilePath,
             CustomComparisons = new List<string>(CustomComparisons),
             ComparisonGenerators = new List<IComparisonGenerator>(ComparisonGenerators),
-            AutoSplitter = AutoSplitter != null ? AutoSplitter.Clone() : null,
+            AutoSplitter = AutoSplitter?.Clone(),
             AutoSplitterSettings = AutoSplitterSettings,
             LayoutPath = LayoutPath
         };

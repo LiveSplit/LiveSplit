@@ -12,10 +12,7 @@ public class UpdateManagerUpdateable : IUpdateable
     {
         get
         {
-            if (_Instance == null)
-            {
-                _Instance = new UpdateManagerUpdateable();
-            }
+            _Instance ??= new UpdateManagerUpdateable();
 
             return _Instance;
         }

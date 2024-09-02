@@ -252,9 +252,6 @@ public partial class FontDialog : Form
 
     private void TriggerFontChanged()
     {
-        if (FontChanged != null)
-        {
-            FontChanged(this, new FontChangedEventArgs() { NewFont = Font });
-        }
+        FontChanged?.Invoke(this, new FontChangedEventArgs() { NewFont = Font });
     }
 }

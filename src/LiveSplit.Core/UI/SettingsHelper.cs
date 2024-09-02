@@ -215,10 +215,7 @@ public class SettingsHelper
 
     public static string ParseString(XmlElement stringElement, string defaultString = null)
     {
-        if (defaultString == null)
-        {
-            defaultString = string.Empty;
-        }
+        defaultString ??= string.Empty;
 
         return stringElement != null
             ? stringElement.InnerText

@@ -97,7 +97,7 @@ public class RunMetadata
                 return new Dictionary<Variable, VariableValue>();
             }
 
-            var categoryId = Category != null ? Category.ID : null;
+            var categoryId = Category?.ID;
             var variables = Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId);
             return variables.ToDictionary(x => x, x =>
             {
@@ -257,7 +257,7 @@ public class RunMetadata
                     var variableTask = Task.Factory.StartNew(() =>
                         {
                             var category = this.category.Value;
-                            var categoryId = category != null ? category.ID : null;
+                            var categoryId = category?.ID;
                             var game = this.game.Value;
                             if (game == null && !gameLoaded)
                             {

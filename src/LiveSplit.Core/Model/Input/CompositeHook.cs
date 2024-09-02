@@ -62,12 +62,12 @@ public class KeyOrButton
 
     public static bool operator ==(KeyOrButton a, KeyOrButton b)
     {
-        if ((object)a == null && (object)b == null)
+        if (a is null && b is null)
         {
             return true;
         }
 
-        if ((object)a == null || (object)b == null)
+        if (a is null || b is null)
         {
             return false;
         }

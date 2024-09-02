@@ -818,10 +818,7 @@ public partial class RunEditorDialog : Form
         string initialPath = Path.GetDirectoryName(Run.LayoutPath);
         using (OpenFileDialog openFileDialog = new OpenFileDialog())
         {
-            if (initialPath == null)
-            {
-                initialPath = Path.GetDirectoryName(CurrentState.Layout.FilePath);
-            }
+            initialPath ??= Path.GetDirectoryName(CurrentState.Layout.FilePath);
 
             if (initialPath != null)
             {

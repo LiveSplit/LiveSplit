@@ -83,7 +83,7 @@ public class AutoSplitterFactory
             Type = autoSplitterType.Value,
             Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => (x.InnerText ?? "").ToLower()).ToList(),
             ShowInLayoutEditor = element["ShowInLayoutEditor"] != null,
-            Website = element["Website"] != null ? element["Website"].InnerText : null
+            Website = element["Website"]?.InnerText
         };
     }
 

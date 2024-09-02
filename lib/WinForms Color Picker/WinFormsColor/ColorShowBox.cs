@@ -50,17 +50,11 @@ public class ColorShowBox : UserControl
 
     protected void OnUpperClick()
     {
-        if (this.UpperClick != null)
-        {
-            this.UpperClick(this, null);
-        }
+        this.UpperClick?.Invoke(this, null);
     }
     protected void OnLowerClick()
     {
-        if (this.LowerClick != null)
-        {
-            this.LowerClick(this, null);
-        }
+        this.LowerClick?.Invoke(this, null);
     }
 
     protected override void OnMouseClick(MouseEventArgs e)

@@ -27,10 +27,7 @@ public static class Updater
     {
         get
         {
-            if (_Updaters == null)
-            {
-                _Updaters = [];
-            }
+            _Updaters ??= [];
 
             return _Updaters;
         }

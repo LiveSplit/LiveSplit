@@ -1271,10 +1271,7 @@ public partial class TimerForm : Form
             {
                 try
                 {
-                    if (Hook != null)
-                    {
-                        Hook.Poll();
-                    }
+                    Hook?.Poll();
 
                     if (CurrentState.Run.IsAutoSplitterActive())
                     {
@@ -1547,10 +1544,7 @@ public partial class TimerForm : Form
             {
                 if (blur != previousBlur || image != previousBackground)
                 {
-                    if (blurredBackground != null)
-                    {
-                        blurredBackground.Dispose();
-                    }
+                    blurredBackground?.Dispose();
 
                     blurredBackground = ImageBlur.Generate(image, blur * 10);
                 }
@@ -1592,10 +1586,7 @@ public partial class TimerForm : Form
                     attributes);
             }
 
-            if (bakedBackground != null)
-            {
-                bakedBackground.Dispose();
-            }
+            bakedBackground?.Dispose();
 
             bakedBackground = bitmap;
             previousBackground = Layout.Settings.BackgroundImage;
@@ -1846,10 +1837,7 @@ public partial class TimerForm : Form
     {
         foreach (var icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
         {
-            if (icon != null)
-            {
-                icon.Dispose();
-            }
+            icon?.Dispose();
         }
 
         if (CurrentState.Run.GameIcon != null && CurrentState.Run.GameIcon != run.GameIcon)
@@ -1902,10 +1890,7 @@ public partial class TimerForm : Form
 
     private void DeactivateAutoSplitter()
     {
-        if (CurrentState.Run.AutoSplitter != null)
-        {
-            CurrentState.Run.AutoSplitter.Deactivate();
-        }
+        CurrentState.Run.AutoSplitter?.Deactivate();
     }
 
     private void AddCurrentSplitsToLRU(TimingMethod lastTimingMethod, string lastHotkeyProfile)

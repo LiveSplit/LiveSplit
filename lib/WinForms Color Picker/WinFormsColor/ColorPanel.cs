@@ -303,17 +303,11 @@ public class ColorPanel : UserControl
 
     protected void OnValueChanged()
     {
-        if (this.ValueChanged != null)
-        {
-            this.ValueChanged(this, null);
-        }
+        this.ValueChanged?.Invoke(this, null);
     }
     protected void OnPercentualValueChanged()
     {
-        if (this.PercentualValueChanged != null)
-        {
-            this.PercentualValueChanged(this, null);
-        }
+        this.PercentualValueChanged?.Invoke(this, null);
     }
 
     protected override void OnPaint(PaintEventArgs e)

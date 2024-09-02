@@ -30,10 +30,7 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
 
     public IEnumerable<dynamic> GetGameList()
     {
-        if (gameList == null)
-        {
-            gameList = (IEnumerable<dynamic>)JSON.FromUri(GetUri("games")).games;
-        }
+        gameList ??= (IEnumerable<dynamic>)JSON.FromUri(GetUri("games")).games;
 
         return gameList;
     }

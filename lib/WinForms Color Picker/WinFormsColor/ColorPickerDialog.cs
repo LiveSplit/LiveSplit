@@ -62,10 +62,7 @@ public partial class ColorPickerDialog : Form
         get => _selColor;
         set
         {
-            if (SelectedColorChanged != null)
-            {
-                SelectedColorChanged(this, new EventArgs());
-            }
+            SelectedColorChanged?.Invoke(this, new EventArgs());
 
             _selColor = value;
         }

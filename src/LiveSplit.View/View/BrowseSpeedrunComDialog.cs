@@ -46,10 +46,7 @@ public partial class BrowseSpeedrunComDialog : Form
                     var gameNode = splitsTreeView.Nodes[0];
                     gameNode.Expand();
                     var categoryNode = gameNode.Nodes.Cast<TreeNode>().FirstOrDefault(x => x.Text == categoryName);
-                    if (categoryNode != null)
-                    {
-                        categoryNode.Expand();
-                    }
+                    categoryNode?.Expand();
                 }
             }
         }

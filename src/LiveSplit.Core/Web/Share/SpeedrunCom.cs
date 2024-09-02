@@ -116,7 +116,7 @@ public static class SpeedrunCom
         run.GameName = srdcRun.Game.Name;
         run.CategoryName = srdcRun.Category.Name;
         run.Metadata.PlatformName = srdcRun.System.Platform.Name;
-        run.Metadata.RegionName = srdcRun.System.Region != null ? srdcRun.System.Region.Name : null;
+        run.Metadata.RegionName = srdcRun.System.Region?.Name;
         run.Metadata.UsesEmulator = srdcRun.System.IsEmulated;
         run.Metadata.VariableValueNames = srdcRun.VariableValues.ToDictionary(x => x.Name, x => x.Value);
         run.Metadata.RunID = srdcRun.ID;
@@ -268,7 +268,7 @@ public static class SpeedrunCom
             {
                 var categoryId = metadata.Category.ID;
                 var platformId = metadata.Platform.ID;
-                var regionId = metadata.Region != null ? metadata.Region.ID : null;
+                var regionId = metadata.Region?.ID;
                 var realTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTime) ? runTime.RealTime : null;
                 var realTimeWithoutLoads = timingMethods.Contains(SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads) ? runTime.GameTime : null;
 
