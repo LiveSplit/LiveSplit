@@ -104,7 +104,7 @@ public static class RunExtensions
         {
             int reassign_id = min_id - 1;
 
-            foreach (Segment segment in run)
+            foreach (Segment segment in run.Cast<Segment>())
             {
                 if (segment.SegmentHistory.TryGetValue(unattached_id, out Time time))
                 {
