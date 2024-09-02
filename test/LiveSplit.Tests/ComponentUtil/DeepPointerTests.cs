@@ -48,12 +48,12 @@ public class DeepPointerTests
     [Fact]
     public void ThrowException_WhenInitializedWithValidPointerAndNullOffsets()
     {
-        Assert.Throws<ArgumentNullException>(() => new DeepPointer((IntPtr)0, null));
+        Assert.Throws<ArgumentNullException>(() => new DeepPointer((nint)0, null));
     }
 
     [Fact]
     public void ThrowException_WhenInitializedWithValidPointerDerefTypeButNullOffset()
     {
-        Assert.Throws<ArgumentNullException>(() => new DeepPointer((IntPtr)0, DerefType.Auto, null));
+        Assert.Throws<ArgumentNullException>(() => new DeepPointer((nint)0, DerefType.Auto, null));
     }
 }

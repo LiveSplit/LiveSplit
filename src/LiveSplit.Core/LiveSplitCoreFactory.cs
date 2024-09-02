@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace LiveSplit;
@@ -33,7 +34,7 @@ public class LiveSplitCoreFactory
     {
         string path;
 
-        if (IntPtr.Size == 4)
+        if (Unsafe.SizeOf<nint>() == 4)
         {
             path = "x86\\livesplit_core.dll";
         }

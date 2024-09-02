@@ -19,9 +19,9 @@ public static class MouseHook
     }
 
     private static readonly LowLevelMouseProc _proc = HookCallback;
-    private static IntPtr _hookID = IntPtr.Zero;
+    private static nint _hookID = 0;
 
-    private static IntPtr SetHook(LowLevelMouseProc proc)
+    private static nint SetHook(LowLevelMouseProc proc)
     {
         using var curProcess = Process.GetCurrentProcess();
         using ProcessModule curModule = curProcess.MainModule;
@@ -29,10 +29,10 @@ public static class MouseHook
           GetModuleHandle(curModule.ModuleName), 0);
     }
 
-    private delegate IntPtr LowLevelMouseProc(int nCode, IntPtr wParam, IntPtr lParam);
+    private delegate nint LowLevelMouseProc(int nCode, nint wParam, nint lParam);
 
-    private static IntPtr HookCallback(
-      int nCode, IntPtr wParam, IntPtr lParam)
+    private static nint HookCallback(
+      int nCode, nint wParam, nint lParam)
     {
         if (nCode >= 0 && MouseMessages.WM_LBUTTONUP == (MouseMessages)wParam)
         {
@@ -69,22 +69,22 @@ public static class MouseHook
         public uint mouseData;
         public uint flags;
         public uint time;
-        public IntPtr dwExtraInfo;
+        public nint dwExtraInfo;
     }
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    private static extern IntPtr SetWindowsHookEx(int idHook,
-      LowLevelMouseProc lpfn, IntPtr hMod, uint dwThreadId);
+    private static extern nint SetWindowsHookEx(int idHook,
+      LowLevelMouseProc lpfn, nint hMod, uint dwThreadId);
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool UnhookWindowsHookEx(IntPtr hhk);
+    private static extern bool UnhookWindowsHookEx(nint hhk);
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode,
-      IntPtr wParam, IntPtr lParam);
+    private static extern nint CallNextHookEx(nint hhk, int nCode,
+      nint wParam, nint lParam);
 
     [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    private static extern IntPtr GetModuleHandle(string lpModuleName);
+    private static extern nint GetModuleHandle(string lpModuleName);
 
 }

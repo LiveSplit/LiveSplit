@@ -62,10 +62,10 @@ public sealed class HotkeyHook : IDisposable
     public event EventHandler<KeyPressedEventArgs> KeyPressed;
     [DllImport("user32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+    private static extern bool RegisterHotKey(nint hWnd, int id, uint fsModifiers, uint vk);
     [DllImport("user32.dll", SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+    private static extern bool UnregisterHotKey(nint hWnd, int id);
     public void RegisterHotKey(ModifierKeys modifier, Keys key)
     {
         _currentId++;

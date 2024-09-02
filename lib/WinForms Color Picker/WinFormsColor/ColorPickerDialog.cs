@@ -659,19 +659,19 @@ public partial class ColorPickerDialog : Form
     }
 
     [DllImport("user32.dll")]
-    private static extern IntPtr GetDC(IntPtr hwnd);
+    private static extern nint GetDC(nint hwnd);
 
     [DllImport("user32.dll")]
-    private static extern int ReleaseDC(IntPtr hwnd, IntPtr hdc);
+    private static extern int ReleaseDC(nint hwnd, nint hdc);
 
     [DllImport("gdi32.dll")]
-    private static extern uint GetPixel(IntPtr hdc, int nXPos, int nYPos);
+    private static extern uint GetPixel(nint hdc, int nXPos, int nYPos);
 
     private Color GetPixelColor(int x, int y)
     {
-        IntPtr hdc = GetDC(IntPtr.Zero);
+        nint hdc = GetDC(0);
         uint pixel = GetPixel(hdc, x, y);
-        ReleaseDC(IntPtr.Zero, hdc);
+        ReleaseDC(0, hdc);
         var color = Color.FromArgb((int)(pixel & 0x000000FF),
                      (int)(pixel & 0x0000FF00) >> 8,
                      (int)(pixel & 0x00FF0000) >> 16);

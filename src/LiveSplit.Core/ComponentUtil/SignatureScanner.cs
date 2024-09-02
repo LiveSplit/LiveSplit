@@ -14,10 +14,10 @@ public class SignatureScanner
 {
     private byte[] _memory;
     private Process _process;
-    private IntPtr _address;
+    private nint _address;
     private int _size;
 
-    public IntPtr Address
+    public nint Address
     {
         get => _address;
         set
@@ -57,16 +57,16 @@ public class SignatureScanner
         }
     }
 
-    public SignatureScanner(Process proc, IntPtr addr, int size)
+    public SignatureScanner(Process proc, nint addr, int size)
     {
         if (proc == null)
         {
             throw new ArgumentNullException(nameof(proc));
         }
 
-        if (addr == IntPtr.Zero)
+        if (addr == 0)
         {
-            throw new ArgumentException("addr cannot be IntPtr.Zero.", nameof(addr));
+            throw new ArgumentException("addr cannot be 0.", nameof(addr));
         }
 
         if (size <= 0)
@@ -92,12 +92,12 @@ public class SignatureScanner
     }
 
     // backwards compat method signature
-    public IntPtr Scan(SigScanTarget target)
+    public nint Scan(SigScanTarget target)
     {
         return Scan(target, 1);
     }
 
-    public IntPtr Scan(SigScanTarget target, int align)
+    public nint Scan(SigScanTarget target, int align)
     {
         if ((long)_address % align != 0)
         {
@@ -107,7 +107,7 @@ public class SignatureScanner
         return ScanAll(target, align).FirstOrDefault();
     }
 
-    public IEnumerable<IntPtr> ScanAll(SigScanTarget target, int align = 1)
+    public IEnumerable<nint> ScanAll(SigScanTarget target, int align = 1)
     {
         if ((long)_address % align != 0)
         {
@@ -117,7 +117,7 @@ public class SignatureScanner
         return ScanInternal(target, align);
     }
 
-    private IEnumerable<IntPtr> ScanInternal(SigScanTarget target, int align)
+    private IEnumerable<nint> ScanInternal(SigScanTarget target, int align)
     {
         if (_memory == null || _memory.Length != _size)
         {
@@ -136,7 +136,7 @@ public class SignatureScanner
             // have to implement IEnumerator manually because you can't yield in an unsafe block...
             foreach (int off in new ScanEnumerator(_memory, align, sig))
             {
-                IntPtr ptr = _address + off + sig.Offset;
+                nint ptr = _address + off + sig.Offset;
                 if (target.OnFound != null)
                 {
                     ptr = target.OnFound(_process, this, ptr);
@@ -283,7 +283,7 @@ public class SigScanTarget
         public int Offset;
     }
 
-    public delegate IntPtr OnFoundCallback(Process proc, SignatureScanner scanner, IntPtr ptr);
+    public delegate nint OnFoundCallback(Process proc, SignatureScanner scanner, nint ptr);
     public OnFoundCallback OnFound { get; set; }
 
     private readonly List<Signature> _sigs;

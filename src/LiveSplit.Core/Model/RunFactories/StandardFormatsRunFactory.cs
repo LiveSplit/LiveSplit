@@ -64,7 +64,7 @@ public class StandardFormatsRunFactory : IRunFactory
         };
     }
 
-    private static Image ParseImage(IntPtr imagePtr, ulong length)
+    private static Image ParseImage(nint imagePtr, ulong length)
     {
         if (length == 0)
         {

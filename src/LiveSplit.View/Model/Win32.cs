@@ -1,5 +1,4 @@
-﻿using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
 
 namespace LiveSplit.Model;
 
@@ -70,27 +69,27 @@ internal class Win32
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool UpdateLayeredWindow(IntPtr hwnd, IntPtr hdcDst,
-        ref Point pptDst, ref Size psize, IntPtr hdcSrc, ref Point pprSrc,
+    public static extern bool UpdateLayeredWindow(nint hwnd, nint hdcDst,
+        ref Point pptDst, ref Size psize, nint hdcSrc, ref Point pprSrc,
         int crKey, ref BLENDFUNCTION pblend, int dwFlags);
 
     [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    public static extern IntPtr CreateCompatibleDC(IntPtr hDC);
+    public static extern nint CreateCompatibleDC(nint hDC);
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    public static extern IntPtr GetDC(IntPtr hWnd);
+    public static extern nint GetDC(nint hWnd);
 
     [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    public static extern int ReleaseDC(IntPtr hWnd, IntPtr hDC);
+    public static extern int ReleaseDC(nint hWnd, nint hDC);
 
     [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool DeleteDC(IntPtr hdc);
+    public static extern bool DeleteDC(nint hdc);
 
     [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
-    public static extern IntPtr SelectObject(IntPtr hDC, IntPtr hObject);
+    public static extern nint SelectObject(nint hDC, nint hObject);
 
     [DllImport("gdi32.dll", CharSet = CharSet.Auto, SetLastError = true)]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool DeleteObject(IntPtr hObject);
+    public static extern bool DeleteObject(nint hObject);
 }
