@@ -67,7 +67,7 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
             return x.name == name;
         }
 
-        var gameID = GetGameList().Where(map).FirstOrDefault();
+        var gameID = GetGameList().FirstOrDefault(map);
         if (gameID != null)
         {
             return gameID.abbrev;
@@ -109,7 +109,7 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
 
     public override void RefreshRacesListAsync()
     {
-        Task.Factory.StartNew(() => RefreshRacesList())
+        Task.Factory.StartNew(RefreshRacesList)
             .ContinueWith((raceItem) => { }, TaskContinuationOptions.OnlyOnFaulted);
     }
 

@@ -2845,7 +2845,7 @@ public partial class TimerForm : Form
         using var dialog = new ShareRunDialog(
                 (LiveSplitState)CurrentState.Clone(),
                 Settings,
-                () => MakeScreenShot());
+                MakeScreenShot);
         try
         {
             TopMost = false;

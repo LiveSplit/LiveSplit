@@ -37,7 +37,7 @@ public sealed class TimeStamp
         qpc = new Stopwatch();
         qpc.Start();
 
-        Task.Factory.StartNew(() => RefreshDrift());
+        Task.Factory.StartNew(RefreshDrift);
     }
 
     public static TimeStamp Now

@@ -50,7 +50,7 @@ public partial class UpdateForm : Form
                     Process.Start(OtherProcess);
                 }
 
-                Invoke(new Action(() => Close()));
+                Invoke(new Action(Close));
             }
             catch (Exception ex)
             {

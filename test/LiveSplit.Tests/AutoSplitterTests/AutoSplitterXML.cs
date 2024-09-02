@@ -42,7 +42,7 @@ public class AutoSplitterXML
         Assert.True(urlElems.All(x => x.Name == "URL"), "<URLs> must contain only <URL> elements");
 
         IDictionary<string, AutoSplitter> autoSplitters = autoSplitterElems
-            .Select(element => AutoSplitterFactory.CreateFromXmlElement(element))
+            .Select(AutoSplitterFactory.CreateFromXmlElement)
             .SelectMany(x => x.Games.Select(y => new KeyValuePair<string, AutoSplitter>(y, x)))
             .ToDictionary(x => x.Key, x => x.Value);
 

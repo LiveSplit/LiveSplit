@@ -48,7 +48,7 @@ public class AutoSplitterFactory
         {
             AutoSplitters = document["AutoSplitters"].ChildNodes.OfType<XmlElement>()
                 .Where(element => element != null)
-                .Select(element => CreateFromXmlElement(element))
+                .Select(CreateFromXmlElement)
                 .SelectMany(x => x.Games.Select(y => new KeyValuePair<string, AutoSplitter>(y, x)))
                 .ToDictionary(x => x.Key, x => x.Value);
         }
