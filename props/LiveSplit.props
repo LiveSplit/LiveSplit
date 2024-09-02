@@ -2,6 +2,8 @@
 
   <!-- Project properties. -->
   <PropertyGroup>
+    <LangVersion>12</LangVersion>
+
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
