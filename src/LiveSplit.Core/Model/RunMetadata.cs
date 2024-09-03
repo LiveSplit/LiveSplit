@@ -398,6 +398,28 @@ public sealed class CustomVariable
     public bool IsPermanent { get; private set; }
 
     /// <summary>
+    ///     Constructs an empty temporary custom variable.
+    /// </summary>
+    public CustomVariable()
+        : this(null, false) { }
+
+    /// <summary>
+    ///     Constructs a custom variable with the given <paramref name="value"/>,
+    ///     as permanent if <paramref name="value"/> is <see langword="true"/>.
+    /// </summary>
+    /// <param name="value">
+    ///     The value of the custom variable.
+    /// </param>
+    /// <param name="isPermanent">
+    ///     Indicates whether it should be saved in the run permanently.
+    /// </param>
+    public CustomVariable(string value, bool isPermanent)
+    {
+        Value = value;
+        IsPermanent = isPermanent;
+    }
+
+    /// <summary>
     ///     Makes the custom variable permanent.
     /// </summary>
     /// <returns>The same custom variable object marked permanent.</returns>
@@ -413,10 +435,6 @@ public sealed class CustomVariable
     /// <returns>A copy of the custom variable.</returns>
     public CustomVariable Clone()
     {
-        return new CustomVariable
-        {
-            Value = Value,
-            IsPermanent = IsPermanent,
-        };
+        return new CustomVariable(Value, IsPermanent);
     }
 }
