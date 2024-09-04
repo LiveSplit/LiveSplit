@@ -9,8 +9,8 @@ public class StringExtensionsMust
     [Fact]
     public void EscapeAmpersandCorrectly()
     {
-        const string fileMenu = "&File";
-        string sut = fileMenu.EscapeMenuItemText();
+        const string FileMenu = "&File";
+        string sut = FileMenu.EscapeMenuItemText();
         Assert.Equal("&&File", sut);
     }
 

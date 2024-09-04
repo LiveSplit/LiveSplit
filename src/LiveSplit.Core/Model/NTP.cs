@@ -12,7 +12,7 @@ public class NTP
         get
         {
             //default Windows time server
-            const string ntpServer = "time.windows.com";
+            const string NtpServer = "time.windows.com";
 
             // NTP message size - 16 bytes of the digest (RFC 2030)
             byte[] ntpData = new byte[48];
@@ -20,7 +20,7 @@ public class NTP
             //Setting the Leap Indicator, Version Number and Mode values
             ntpData[0] = 0x1B; //LI = 0 (no warning), VN = 3 (IPv4 only), Mode = 3 (Client Mode)
 
-            IPAddress[] addresses = Dns.GetHostEntry(ntpServer).AddressList;
+            IPAddress[] addresses = Dns.GetHostEntry(NtpServer).AddressList;
 
             //The UDP port number assigned to NTP is 123
             var ipEndPoint = new IPEndPoint(addresses[0], 123);
@@ -44,13 +44,13 @@ public class NTP
 
             //Offset to get to the "Transmit Timestamp" field (time at which the reply
             //departed the server for the client, in 64-bit timestamp format."
-            const byte serverReplyTime = 40;
+            const byte ServerReplyTime = 40;
 
             //Get the seconds part
-            ulong intPart = BitConverter.ToUInt32(ntpData, serverReplyTime);
+            ulong intPart = BitConverter.ToUInt32(ntpData, ServerReplyTime);
 
             //Get the seconds fraction
-            ulong fractPart = BitConverter.ToUInt32(ntpData, serverReplyTime + 4);
+            ulong fractPart = BitConverter.ToUInt32(ntpData, ServerReplyTime + 4);
 
             //Convert From big-endian to little-endian
             intPart = SwapEndianness(intPart);

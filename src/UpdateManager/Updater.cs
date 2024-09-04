@@ -103,7 +103,7 @@ public static class Updater
 
         public void PerformUpdate()
         {
-            static string ConvertChangeUrlPartToPath(string xmlChangePath)
+            static string convertChangeUrlPartToPath(string xmlChangePath)
             {
                 return xmlChangePath.Replace('/', Path.DirectorySeparatorChar);
             }
@@ -142,14 +142,14 @@ public static class Updater
             {
                 string path = xmlChangePaths.Key;
                 string localPath = xmlChangePaths.Value;
-                DownloadFile(UpdateURL + path, ConvertChangeUrlPartToPath(localPath));
+                DownloadFile(UpdateURL + path, convertChangeUrlPartToPath(localPath));
                 UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
             }
 
             foreach (KeyValuePair<string, string> xmlChangePaths in removedFiles)
             {
                 string localPath = xmlChangePaths.Value;
-                File.Delete(ConvertChangeUrlPartToPath(localPath));
+                File.Delete(convertChangeUrlPartToPath(localPath));
                 UpdatePercentageRefreshed?.Invoke(this, new UpdatePercentageRefreshedEventArgs(++i / fileChangesCount));
             }
         }
