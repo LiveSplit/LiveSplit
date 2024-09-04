@@ -134,6 +134,15 @@ public class StandardFormatsRunFactory : IRunFactory
             }
         }
 
+        using (LiveSplitCore.RunMetadataCustomVariablesIter iter = metadata.CustomVariables())
+        {
+            LiveSplitCore.RunMetadataCustomVariableRef variable;
+            while ((variable = iter.Next()) != null)
+            {
+                run.Metadata.GetOrAddCustomVariable(variable.Name()).AsPermanent().Value = variable.Value();
+            }
+        }
+
         run.GameIcon = ParseImage(lscRun.GameIconPtr(), lscRun.GameIconLen());
         run.GameName = lscRun.GameName();
         run.CategoryName = lscRun.CategoryName();

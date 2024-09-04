@@ -119,7 +119,10 @@ public class RunMetadata
         }
     }
 
-    private Dictionary<string, CustomVariable> CustomVariables { get; set; } = new Dictionary<string, CustomVariable>();
+    /// <summary>
+    ///     A dictionary mapping custom variable names to <see cref="CustomVariable"/> objects.
+    /// </summary>
+    public Dictionary<string, CustomVariable> CustomVariables { get; private set; } = new Dictionary<string, CustomVariable>();
 
     /// <summary>
     ///     Gets the custom variable with the specified <paramref name="name"/> if it exists;
