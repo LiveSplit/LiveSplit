@@ -88,9 +88,6 @@
 	path = components/LiveSplit.Racetime
 	url = https://github.com/LiveSplit/LiveSplit.Racetime.git
 	branch = stable
-[submodule "LiveSplit/Components/LiveSplit.AutoSplittingRuntime"]
-	path = components/LiveSplit.AutoSplittingRuntime
-	url = https://github.com/LiveSplit/LiveSplit.AutoSplittingRuntime.git
 [submodule "LiveSplit/Libs/livesplit-core"]
 	path = lib/livesplit-core
 	url = https://github.com/LiveSplit/livesplit-core.git

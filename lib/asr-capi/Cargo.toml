@@ -1,0 +1,25 @@
+[package]
+name = "asr-capi"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[target.'cfg(target_pointer_width = "64")'.dependencies]
+anyhow = "1.0.75"
+livesplit-auto-splitting = { git = "https://github.com/LiveSplit/livesplit-core" }
+# livesplit-auto-splitting = { path = "P:\\livesplit-core\\crates\\livesplit-auto-splitting" }
+mime_guess = "2.0.4"
+smallstr = { version = "0.3.0", features = ["union"] }
+
+[lib]
+crate-type = ["cdylib"]
+
+[profile.release]
+lto = true
+panic = "abort"
+strip = true
+codegen-units = 1
+
+[profile.release.build-override]
+opt-level = 0

@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Control", "Control", "{47D5421A-6A7E-4876-9141-8C513ED145DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.AutoSplittingRuntime", "components\LiveSplit.AutoSplittingRuntime\src\LiveSplit.AutoSplittingRuntime\LiveSplit.AutoSplittingRuntime.csproj", "{3A74E85A-C6A8-410B-9AB4-B76BFE58DF0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.AutoSplittingRuntime", "components\LiveSplit.AutoSplittingRuntime\LiveSplit.AutoSplittingRuntime.csproj", "{3A74E85A-C6A8-410B-9AB4-B76BFE58DF0D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ManualGameTime", "components\LiveSplit.ManualGameTime\src\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj", "{121186C6-D768-4839-BB3C-D86C84EB60BA}"
 EndProject
