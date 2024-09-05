@@ -65,7 +65,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Timer", "Timer", "{CAE9FFAE
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.DetailedTimer", "components\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj", "{BD795636-66CF-46D7-86B2-3D0D4BBE2AB0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Timer", "components\LiveSplit.Timer\src\LiveSplit.Timer\LiveSplit.Timer.csproj", "{00967C58-C705-4B8F-B6E5-1B04432CBC23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Timer", "components\LiveSplit.Timer\LiveSplit.Timer.csproj", "{00967C58-C705-4B8F-B6E5-1B04432CBC23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{4850A037-C05C-4A26-A0B0-0E109663C7A8}"
 EndProject
