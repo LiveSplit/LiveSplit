@@ -1,7 +1,3 @@
-[submodule "LiveSplit/Components/LiveSplit.PreviousSegment"]
-	path = components/LiveSplit.PreviousSegment
-	url = https://github.com/LiveSplit/LiveSplit.PreviousSegment.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.RunPrediction"]
 	path = components/LiveSplit.RunPrediction
 	url = https://github.com/LiveSplit/LiveSplit.RunPrediction.git

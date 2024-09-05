@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Delta", "componen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.PossibleTimeSave", "components\LiveSplit.PossibleTimeSave\LiveSplit.PossibleTimeSave.csproj", "{342F5A83-7DA9-4AB6-A7BA-31B1C98CAE00}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.PreviousSegment", "components\LiveSplit.PreviousSegment\src\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj", "{BF48A8B7-109A-4970-92FC-0E5155422FC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.PreviousSegment", "components\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj", "{BF48A8B7-109A-4970-92FC-0E5155422FC5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.RunPrediction", "components\LiveSplit.RunPrediction\src\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj", "{D9E6393B-150E-4D5C-802C-B0D5BD169368}"
 EndProject
