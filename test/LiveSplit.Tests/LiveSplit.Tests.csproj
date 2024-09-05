@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(ComponentsPath)\LiveSplit.CurrentComparison\src\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj" />
     <ProjectReference Include="$(ComponentsPath)\LiveSplit.Delta\src\LiveSplit.Delta\LiveSplit.Delta.csproj" />
     <ProjectReference Include="$(ComponentsPath)\LiveSplit.DetailedTimer\src\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj" />
     <ProjectReference Include="$(ComponentsPath)\LiveSplit.ManualGameTime\src\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj" />

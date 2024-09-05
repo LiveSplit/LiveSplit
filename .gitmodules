@@ -1,7 +1,3 @@
-[submodule "LiveSplit/Components/LiveSplit.CurrentComparison"]
-	path = components/LiveSplit.CurrentComparison
-	url = https://github.com/LiveSplit/LiveSplit.CurrentComparison.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Delta"]
 	path = components/LiveSplit.Delta
 	url = https://github.com/LiveSplit/LiveSplit.Delta.git
