@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.WorldRecord", "co
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "List", "List", "{DB5D73B6-0B6B-4E87-AA0A-1170FBE61274}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Splits", "components\LiveSplit.Splits\src\LiveSplit.Splits\LiveSplit.Splits.csproj", "{29FCBBD3-AECD-4E9B-A88B-81F1A2A34488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Splits", "components\LiveSplit.Splits\LiveSplit.Splits.csproj", "{29FCBBD3-AECD-4E9B-A88B-81F1A2A34488}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Subsplits", "components\LiveSplit.Subsplits\src\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj", "{0A1A33C4-682C-4638-A67B-A4DFDF094C3F}"
 EndProject
