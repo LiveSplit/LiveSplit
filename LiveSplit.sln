@@ -49,7 +49,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Graph", "componen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Sound", "components\LiveSplit.Sound\LiveSplit.Sound.csproj", "{42179497-127A-4F0E-BE27-8655FB218FDE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Video", "components\LiveSplit.Video\src\LiveSplit.Video\LiveSplit.Video.csproj", "{59637D64-B12A-4129-B0BD-3F0E40FF9938}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Video", "components\LiveSplit.Video\LiveSplit.Video.csproj", "{59637D64-B12A-4129-B0BD-3F0E40FF9938}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{EE292569-BD0A-4F22-BD2E-1202B33CA83E}"
 EndProject
