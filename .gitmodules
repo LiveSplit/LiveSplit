@@ -46,10 +46,6 @@
 [submodule "LiveSplit/Components/LiveSplit.TotalPlaytime"]
 	path = components/LiveSplit.TotalPlaytime
 	url = https://github.com/LiveSplit/LiveSplit.TotalPlaytime.git
-[submodule "LiveSplit/Components/LiveSplit.Racetime"]
-	path = components/LiveSplit.Racetime
-	url = https://github.com/LiveSplit/LiveSplit.Racetime.git
-	branch = stable
 [submodule "LiveSplit/Libs/livesplit-core"]
 	path = lib/livesplit-core
 	url = https://github.com/LiveSplit/livesplit-core.git
