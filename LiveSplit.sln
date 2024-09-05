@@ -51,7 +51,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Video", "componen
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{EE292569-BD0A-4F22-BD2E-1202B33CA83E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.BlankSpace", "components\LiveSplit.BlankSpace\src\LiveSplit.BlankSpace\LiveSplit.BlankSpace.csproj", "{D0F9DB4C-32DB-4CDC-BB39-CFFCA78B75DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.BlankSpace", "components\LiveSplit.BlankSpace\LiveSplit.BlankSpace.csproj", "{D0F9DB4C-32DB-4CDC-BB39-CFFCA78B75DE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Counter", "components\LiveSplit.Counter\src\LiveSplit.Counter\LiveSplit.Counter.csproj", "{26C33094-FD58-4C67-BD12-A58F15258396}"
 EndProject

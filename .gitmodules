@@ -81,9 +81,6 @@
 [submodule "LiveSplit/Components/LiveSplit.Counter"]
 	path = components/LiveSplit.Counter
 	url = https://github.com/LiveSplit/LiveSplit.Counter.git
-[submodule "LiveSplit/Components/LiveSplit.BlankSpace"]
-	path = components/LiveSplit.BlankSpace
-	url = https://github.com/LiveSplit/LiveSplit.BlankSpace.git
 [submodule "LiveSplit/Components/LiveSplit.Racetime"]
 	path = components/LiveSplit.Racetime
 	url = https://github.com/LiveSplit/LiveSplit.Racetime.git
