@@ -78,9 +78,6 @@
 [submodule "LiveSplit/Components/LiveSplit.TotalPlaytime"]
 	path = components/LiveSplit.TotalPlaytime
 	url = https://github.com/LiveSplit/LiveSplit.TotalPlaytime.git
-[submodule "LiveSplit/Components/LiveSplit.Counter"]
-	path = components/LiveSplit.Counter
-	url = https://github.com/LiveSplit/LiveSplit.Counter.git
 [submodule "LiveSplit/Components/LiveSplit.Racetime"]
 	path = components/LiveSplit.Racetime
 	url = https://github.com/LiveSplit/LiveSplit.Racetime.git
