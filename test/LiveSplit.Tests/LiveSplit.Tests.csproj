@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(ComponentsPath)\LiveSplit.RunPrediction\src\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj" />
     <ProjectReference Include="$(ComponentsPath)\LiveSplit.ScriptableAutoSplit\src\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj" />
     <ProjectReference Include="$(ComponentsPath)\LiveSplit.Splits\src\LiveSplit.Splits\LiveSplit.Splits.csproj" />
     <ProjectReference Include="$(ComponentsPath)\LiveSplit.Subsplits\src\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj" />

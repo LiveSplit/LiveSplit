@@ -1,7 +1,3 @@
-[submodule "LiveSplit/Components/LiveSplit.RunPrediction"]
-	path = components/LiveSplit.RunPrediction
-	url = https://github.com/LiveSplit/LiveSplit.RunPrediction.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.ScriptableAutoSplit"]
 	path = components/LiveSplit.ScriptableAutoSplit
 	url = https://github.com/LiveSplit/LiveSplit.ScriptableAutoSplit.git
