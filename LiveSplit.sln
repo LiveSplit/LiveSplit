@@ -41,7 +41,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "List", "List", "{DB5D73B6-0
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Splits", "components\LiveSplit.Splits\LiveSplit.Splits.csproj", "{29FCBBD3-AECD-4E9B-A88B-81F1A2A34488}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Subsplits", "components\LiveSplit.Subsplits\src\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj", "{0A1A33C4-682C-4638-A67B-A4DFDF094C3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Subsplits", "components\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj", "{0A1A33C4-682C-4638-A67B-A4DFDF094C3F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Media", "Media", "{36F5A6EF-35FC-409B-BCE0-D38E92F53EA4}"
 EndProject

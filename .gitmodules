@@ -18,9 +18,6 @@
 	path = components/LiveSplit.Video
 	url = https://github.com/LiveSplit/LiveSplit.Video.git
 	branch = master
-[submodule "LiveSplit/Components/LiveSplit.Subsplits"]
-	path = components/LiveSplit.Subsplits
-	url = https://github.com/LiveSplit/LiveSplit.Subsplits
 [submodule "LiveSplit/Components/LiveSplit.WorldRecord"]
 	path = components/LiveSplit.WorldRecord
 	url = https://github.com/LiveSplit/LiveSplit.WorldRecord.git
