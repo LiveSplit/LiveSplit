@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ScriptableAutoSpl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Information", "Information", "{3A3C7035-1C1F-462D-B388-291BEF33000D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ComparisonTime", "components\LiveSplit.ComparisonTime\LiveSplit.ComparisonTime.csproj", "{13E9FE68-5CCD-4B61-B22F-87846111A2A5}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.CurrentComparison", "components\LiveSplit.CurrentComparison\src\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj", "{D773B588-652D-4EA0-AD7A-BDEF4B5BD25B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Delta", "components\LiveSplit.Delta\src\LiveSplit.Delta\LiveSplit.Delta.csproj", "{55894E24-BDD7-4F49-AED8-9C3F804766F0}"
@@ -119,8 +121,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomFontDialog", "lib\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj", "{9C4ED8A7-5306-421A-8BBF-2E1C49AAE943}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsColor", "lib\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj", "{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ComparisonTime", "components\LiveSplit.ComparisonTime\src\LiveSplit.ComparisonTime\LiveSplit.ComparisonTime.csproj", "{13E9FE68-5CCD-4B61-B22F-87846111A2A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
