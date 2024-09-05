@@ -22,6 +22,3 @@
 [submodule "LiveSplit/Libs/livesplit-core"]
 	path = lib/livesplit-core
 	url = https://github.com/LiveSplit/livesplit-core.git
-[submodule "LiveSplit/Components/LiveSplit.TheRun"]
-	path = components/LiveSplit.TheRun
-	url = https://github.com/therungg/LiveSplit.TheRun
