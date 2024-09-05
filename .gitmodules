@@ -1,7 +1,3 @@
-[submodule "LiveSplit/Components/LiveSplit.ManualGameTime"]
-	path = components/LiveSplit.ManualGameTime
-	url = https://github.com/LiveSplit/LiveSplit.ManualGameTime.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.PossibleTimeSave"]
 	path = components/LiveSplit.PossibleTimeSave
 	url = https://github.com/LiveSplit/LiveSplit.PossibleTimeSave.git
