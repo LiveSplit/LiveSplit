@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <ProjectReference Include="$(ComponentsPath)\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj" />
-    <ProjectReference Include="$(ComponentsPath)\LiveSplit.WorldRecord\src\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj" />
     <ProjectReference Include="$(SrcPath)\LiveSplit.Core\LiveSplit.Core.csproj" />
   </ItemGroup>
 

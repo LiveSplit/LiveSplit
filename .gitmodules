@@ -1,6 +1,3 @@
-[submodule "LiveSplit/Components/LiveSplit.WorldRecord"]
-	path = components/LiveSplit.WorldRecord
-	url = https://github.com/LiveSplit/LiveSplit.WorldRecord.git
 [submodule "LiveSplit/Libs/SpeedrunComSharp"]
 	path = lib/SpeedrunComSharp
 	url = https://github.com/LiveSplit/SpeedrunComSharp.git
