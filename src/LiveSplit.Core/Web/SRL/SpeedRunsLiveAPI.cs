@@ -1,127 +1,138 @@
-﻿using LiveSplit.Model;
-using LiveSplit.UI.Components;
-using LiveSplit.Web.Share;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using System.Timers;
 
-namespace LiveSplit.Web.SRL
+using LiveSplit.Model;
+using LiveSplit.UI.Components;
+using LiveSplit.Web.Share;
+
+namespace LiveSplit.Web.SRL;
+
+public class SpeedRunsLiveAPI : RaceProviderAPI
 {
-    public class SpeedRunsLiveAPI : RaceProviderAPI
+    protected static readonly SpeedRunsLiveAPI _Instance = new();
+
+    public static SpeedRunsLiveAPI Instance => _Instance;
+    public static readonly Uri BaseUri = new("http://api.speedrunslive.com:81/");
+
+    protected IEnumerable<SRLRaceInfo> racesList;
+    protected IEnumerable<dynamic> gameList;
+    protected IList<string> gameNames;
+
+    protected SpeedRunsLiveAPI() { }
+
+    protected Uri GetUri(string subUri)
     {
-        protected static readonly SpeedRunsLiveAPI _Instance = new SpeedRunsLiveAPI();
+        return new Uri(BaseUri, subUri);
+    }
 
-        public static SpeedRunsLiveAPI Instance => _Instance;
-        public static readonly Uri BaseUri = new Uri("http://api.speedrunslive.com:81/");
+    public IEnumerable<dynamic> GetGameList()
+    {
+        gameList ??= (IEnumerable<dynamic>)JSON.FromUri(GetUri("games")).games;
 
-        protected IEnumerable<SRLRaceInfo> racesList;
-        protected IEnumerable<dynamic> gameList;
-        protected IList<string> gameNames;
+        return gameList;
+    }
 
-        protected SpeedRunsLiveAPI() { }
-
-        protected Uri GetUri(string subUri)
+    public IEnumerable<string> GetGameNames()
+    {
+        if (gameNames == null)
         {
-            return new Uri(BaseUri, subUri);
-        }
-
-        public IEnumerable<dynamic> GetGameList()
-        {
-            if (gameList == null)
+            static string map(dynamic x)
             {
-                gameList = (IEnumerable<dynamic>)JSON.FromUri(GetUri("games")).games;
+                return x.name;
             }
 
-            return gameList;
+            gameNames = GetGameList().Select(map).ToList();
         }
 
-        public IEnumerable<string> GetGameNames()
+        return gameNames;
+    }
+
+    public IEnumerable<string> GetCategories(string gameID)
+    {
+        if (string.IsNullOrEmpty(gameID))
         {
-            if (gameNames == null)
-            {
-                Func<dynamic, string> map = x => x.name;
-                gameNames = GetGameList().Select(map).ToList();
-            }
-            return gameNames;
+            return new string[0];
         }
 
-        public IEnumerable<string> GetCategories(string gameID)
-        {
-            if (string.IsNullOrEmpty(gameID))
-                return new string[0];
+        return ((IEnumerable<dynamic>)JSON.FromUri(GetUri("goals/" + gameID + "?season=0")).goals).Select(x => (string)x.name);
+    }
 
-            return ((IEnumerable<dynamic>)JSON.FromUri(GetUri("goals/" + gameID + "?season=0")).goals).Select(x => (string)x.name);
+    public string GetGameIDFromName(string name)
+    {
+        bool map(dynamic x)
+        {
+            return x.name == name;
         }
 
-        public string GetGameIDFromName (string name)
+        dynamic gameID = GetGameList().FirstOrDefault(map);
+        if (gameID != null)
         {
-            Func<dynamic, bool> map = x => x.name == name;
-            var gameID = GetGameList().Where(map).FirstOrDefault();
-            if (gameID != null)
-                return gameID.abbrev;
-            return null;
+            return gameID.abbrev;
         }
 
-        public IEnumerable<dynamic> GetEntrants(string raceID)
+        return null;
+    }
+
+    public IEnumerable<dynamic> GetEntrants(string raceID)
+    {
+        dynamic race = GetRace(raceID);
+        return race.entrants;
+    }
+
+    public dynamic GetRace(string raceID)
+    {
+        IEnumerable<IRaceInfo> races = GetRaces();
+        return races.First(x => x.Id == raceID);
+    }
+
+    public override IEnumerable<IRaceInfo> GetRaces()
+    {
+        if (racesList == null)
         {
-            var race = GetRace(raceID);
-            return race.entrants;
+            RefreshRacesList();
         }
 
-        public dynamic GetRace(string raceID)
+        return racesList;
+    }
+
+    private void SpeedRunsLiveAPI_Elapsed(object sender, ElapsedEventArgs e)
+    {
+        try
         {
-            var races = GetRaces();
-            return races.First(x => x.Id == raceID);
+            RefreshRacesList();
+        }
+        catch { }
+    }
+
+    public override void RefreshRacesListAsync()
+    {
+        Task.Factory.StartNew(RefreshRacesList)
+            .ContinueWith((raceItem) => { }, TaskContinuationOptions.OnlyOnFaulted);
+    }
+
+    public void RefreshRacesList()
+    {
+        List<SRLRaceInfo> infoList = [];
+        foreach (dynamic race in JSON.FromUri(GetUri("races")).races)
+        {
+            infoList.Add(new SRLRaceInfo(race));
         }
 
-        public override IEnumerable<IRaceInfo> GetRaces()
+        racesList = infoList;
+        RacesRefreshedCallback?.Invoke(this);
+    }
+
+    public override string ProviderName => "SRL";
+
+    public override string Username
+    {
+        get
         {
-            if (racesList == null)
-                RefreshRacesList();
-
-            return racesList;
-        }
-
-        void SpeedRunsLiveAPI_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            try
-            {
-                RefreshRacesList();
-            }
-            catch { }
-        }
-
-        public override void RefreshRacesListAsync()
-        {
-            Task.Factory.StartNew(() => RefreshRacesList())
-                .ContinueWith((raceItem) => { }, TaskContinuationOptions.OnlyOnFaulted);
-        }
-
-        public void RefreshRacesList()
-        {
-            List<SRLRaceInfo> infoList = new List<SRLRaceInfo>();
-            foreach (var race in JSON.FromUri(GetUri("races")).races)
-            {
-                infoList.Add(new SRLRaceInfo(race));
-            }
-
-            racesList = infoList;
-            RacesRefreshedCallback?.Invoke(this);
-        }
-
-        public override string ProviderName => "SRL";
-
-        public override string Username
-        {
-            get
-            {
-                ShareSettings.Default.Reload();
-                return WebCredentials.SpeedRunsLiveIRCCredentials.Username;
-            }
+            ShareSettings.Default.Reload();
+            return WebCredentials.SpeedRunsLiveIRCCredentials.Username;
         }
     }
 }

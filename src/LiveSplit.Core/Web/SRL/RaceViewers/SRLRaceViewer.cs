@@ -1,16 +1,16 @@
-﻿using LiveSplit.Model;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
-namespace LiveSplit.Web.SRL.RaceViewers
+using LiveSplit.Model;
+
+namespace LiveSplit.Web.SRL.RaceViewers;
+
+public class SRLRaceViewer : IRaceViewer
 {
-    public class SRLRaceViewer : IRaceViewer
+    public void ShowRace(IRaceInfo race)
     {
-        public void ShowRace(IRaceInfo race)
-        {
-            var url = string.Format("http://speedrunslive.com/race/{0}", race.Id);
-            Process.Start(url);
-        }
-
-        public string Name => "SpeedRunsLive";
+        string url = string.Format("http://speedrunslive.com/race/{0}", race.Id);
+        Process.Start(url);
     }
+
+    public string Name => "SpeedRunsLive";
 }

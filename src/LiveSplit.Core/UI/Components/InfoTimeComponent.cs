@@ -1,63 +1,60 @@
-﻿using LiveSplit.TimeFormatters;
-using System;
+﻿using System;
 using System.Drawing;
 
-namespace LiveSplit.UI.Components
+using LiveSplit.TimeFormatters;
+
+namespace LiveSplit.UI.Components;
+
+public class InfoTimeComponent : InfoTextComponent
 {
-    public class InfoTimeComponent : InfoTextComponent
+    private TimeSpan? timeValue;
+    public TimeSpan? TimeValue
     {
-        private TimeSpan? timeValue;
-        public TimeSpan? TimeValue 
+        get => timeValue;
+        set
         {
-            get 
-            { 
-                return timeValue; 
-            } 
-            set
-            {
-                timeValue = value;
-                InformationValue = Formatter.Format(timeValue);
-            }
+            timeValue = value;
+            InformationValue = Formatter.Format(timeValue);
         }
+    }
 
-        private ITimeFormatter formatter;
-        public ITimeFormatter Formatter
+    private ITimeFormatter formatter;
+    public ITimeFormatter Formatter
+    {
+        get => formatter;
+        set
         {
-            get
+            if (value != null && value != formatter)
             {
-                return formatter;
+                InformationValue = value.Format(timeValue);
             }
-            set
-            {
-                if (value != null && value != formatter)
-                    InformationValue = value.Format(timeValue);
-                formatter = value;
-            }
-        }
 
-        public override void PrepareDraw(Model.LiveSplitState state, LayoutMode mode)
-        {
-            ValueLabel.IsMonospaced = true;
-            ValueLabel.Font = state.LayoutSettings.TimesFont;
-            NameMeasureLabel.Font = state.LayoutSettings.TextFont;
-            NameLabel.Font = state.LayoutSettings.TextFont;
-            if (mode == LayoutMode.Vertical)
-            {
-                NameLabel.VerticalAlignment = StringAlignment.Center;
-                ValueLabel.VerticalAlignment = StringAlignment.Center;
-            }
-            else
-            {
-                NameLabel.VerticalAlignment = StringAlignment.Near;
-                ValueLabel.VerticalAlignment = StringAlignment.Far;
-            }
+            formatter = value;
         }
+    }
 
-        public InfoTimeComponent(string informationName, TimeSpan? timeValue, ITimeFormatter formatter)
-            : base(informationName, "")
+    public override void PrepareDraw(Model.LiveSplitState state, LayoutMode mode)
+    {
+        ValueLabel.IsMonospaced = true;
+        ValueLabel.Font = state.LayoutSettings.TimesFont;
+        NameMeasureLabel.Font = state.LayoutSettings.TextFont;
+        NameLabel.Font = state.LayoutSettings.TextFont;
+        if (mode == LayoutMode.Vertical)
         {
-            Formatter = formatter;
-            TimeValue = timeValue;
+            NameLabel.VerticalAlignment = StringAlignment.Center;
+            ValueLabel.VerticalAlignment = StringAlignment.Center;
         }
+        else
+        {
+            NameLabel.VerticalAlignment = StringAlignment.Near;
+            ValueLabel.VerticalAlignment = StringAlignment.Far;
+        }
+    }
+
+    public InfoTimeComponent(string informationName, TimeSpan? timeValue, ITimeFormatter formatter)
+        : base(informationName, "")
+    {
+        Formatter = formatter;
+        TimeValue = timeValue;
     }
 }

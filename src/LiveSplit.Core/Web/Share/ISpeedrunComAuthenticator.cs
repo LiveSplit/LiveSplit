@@ -1,7 +1,6 @@
-﻿namespace LiveSplit.Web.Share
+﻿namespace LiveSplit.Web.Share;
+
+public interface ISpeedrunComAuthenticator
 {
-    public interface ISpeedrunComAuthenticator
-    {
-        string GetAccessToken();
-    }
+    string GetAccessToken();
 }

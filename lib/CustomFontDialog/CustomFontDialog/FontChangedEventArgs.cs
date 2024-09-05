@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Drawing;
 
-namespace CustomFontDialog
+namespace CustomFontDialog;
+
+public class FontChangedEventArgs : EventArgs
 {
-    public class FontChangedEventArgs : EventArgs
-    {
-        public Font NewFont { get; set; }
-    }
+    public Font NewFont { get; set; }
 }

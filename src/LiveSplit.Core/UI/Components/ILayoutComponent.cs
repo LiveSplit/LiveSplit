@@ -1,8 +1,7 @@
-﻿namespace LiveSplit.UI.Components
+﻿namespace LiveSplit.UI.Components;
+
+public interface ILayoutComponent
 {
-    public interface ILayoutComponent
-    {
-        string Path { get; set; }
-        IComponent Component { get; set; }
-    }
+    string Path { get; set; }
+    IComponent Component { get; set; }
 }

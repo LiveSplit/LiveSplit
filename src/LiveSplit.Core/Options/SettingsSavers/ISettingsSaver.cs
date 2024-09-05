@@ -1,9 +1,8 @@
 ﻿using System.IO;
 
-namespace LiveSplit.Options.SettingsSavers
+namespace LiveSplit.Options.SettingsSavers;
+
+public interface ISettingsSaver
 {
-    public interface ISettingsSaver
-    {
-        void Save(ISettings settings, Stream stream);
-    }
+    void Save(ISettings settings, Stream stream);
 }

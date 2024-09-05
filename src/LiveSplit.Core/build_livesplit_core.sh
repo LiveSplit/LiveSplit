@@ -5,4 +5,4 @@ RUSTFLAGS="-C target-feature=+crt-static" cargo +stable-i686-pc-windows-msvc rus
 cp ../../src/LiveSplit.Core/x86/target/release/livesplit_core.dll ../../src/LiveSplit.Core/x86/.
 cd capi/bind_gen
 cargo run
-cp ../bindings/LiveSplitCore.cs ../../../../src/LiveSplit.Core/.
+cp ../bindings/LiveSplitCore.cs ../../../../src/LiveSplit.Core/LiveSplitCore.g.cs

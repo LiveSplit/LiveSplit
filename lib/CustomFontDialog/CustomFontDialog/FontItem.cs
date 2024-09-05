@@ -1,19 +1,18 @@
 ﻿using System.Drawing;
 
-namespace CustomFontDialog
+namespace CustomFontDialog;
+
+internal struct FontItem
 {
-    struct FontItem
+    public Font Font { get; set; }
+
+    public FontItem(Font font)
     {
-        public Font Font { get; set; }
+        Font = font;
+    }
 
-        public FontItem(Font font)
-        {
-            Font = font;
-        }
-
-        public override string ToString()
-        {
-            return Font.FontFamily.Name;
-        }
+    public override readonly string ToString()
+    {
+        return Font.FontFamily.Name;
     }
 }

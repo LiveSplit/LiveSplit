@@ -5,286 +5,308 @@ using System.Linq;
 
 // Note: Please be careful when modifying this because it could break existing components!
 
-namespace LiveSplit.ComponentUtil
+namespace LiveSplit.ComponentUtil;
+
+public class MemoryWatcherList : List<MemoryWatcher>
 {
-    public class MemoryWatcherList : List<MemoryWatcher>
+    public delegate void MemoryWatcherDataChangedEventHandler(MemoryWatcher watcher);
+    public event MemoryWatcherDataChangedEventHandler OnWatcherDataChanged;
+
+    public MemoryWatcher this[string name] => this.First(w => w.Name == name);
+
+    public void UpdateAll(Process process)
     {
-        public delegate void MemoryWatcherDataChangedEventHandler(MemoryWatcher watcher);
-        public event MemoryWatcherDataChangedEventHandler OnWatcherDataChanged;
-
-        public MemoryWatcher this[string name]
+        if (OnWatcherDataChanged != null)
         {
-            get { return this.First(w => w.Name == name); }
-        }
+            var changedList = new List<MemoryWatcher>();
 
-        public void UpdateAll(Process process)
-        {
-            if (OnWatcherDataChanged != null)
+            foreach (MemoryWatcher watcher in this)
             {
-                var changedList = new List<MemoryWatcher>();
-
-                foreach (var watcher in this)
+                bool changed = watcher.Update(process);
+                if (changed)
                 {
-                    bool changed = watcher.Update(process);
-                    if (changed)
-                        changedList.Add(watcher);
-                }
-
-                // only report changes when all of the other watches are updated too
-                foreach (var watcher in changedList)
-                {
-                    OnWatcherDataChanged(watcher);
+                    changedList.Add(watcher);
                 }
             }
-            else
+
+            // only report changes when all of the other watches are updated too
+            foreach (MemoryWatcher watcher in changedList)
             {
-                foreach (var watcher in this)
-                {
-                    watcher.Update(process);
-                }
+                OnWatcherDataChanged(watcher);
             }
         }
-
-        public void ResetAll()
+        else
         {
-            foreach (var watcher in this)
+            foreach (MemoryWatcher watcher in this)
             {
-                watcher.Reset();
+                watcher.Update(process);
             }
         }
     }
 
-    public abstract class MemoryWatcher
+    public void ResetAll()
     {
-        public enum ReadFailAction
+        foreach (MemoryWatcher watcher in this)
         {
-            DontUpdate,
-            SetZeroOrNull,
+            watcher.Reset();
         }
+    }
+}
 
-        public string Name { get; set; }
-        public bool Enabled { get; set; }
-        public object Current { get; set; }
-        public object Old { get; set; }
-        public bool Changed { get; protected set; }
-        public TimeSpan? UpdateInterval { get; set; }
-        public ReadFailAction FailAction { get; set; }
+public abstract class MemoryWatcher
+{
+    public enum ReadFailAction
+    {
+        DontUpdate,
+        SetZeroOrNull,
+    }
 
-        protected bool InitialUpdate { get; set; }
-        protected DateTime? LastUpdateTime { get; set; }
-        protected DeepPointer DeepPtr { get; set; }
-        protected IntPtr Address { get; set; }
+    public string Name { get; set; }
+    public bool Enabled { get; set; }
+    public object Current { get; set; }
+    public object Old { get; set; }
+    public bool Changed { get; protected set; }
+    public TimeSpan? UpdateInterval { get; set; }
+    public ReadFailAction FailAction { get; set; }
 
-        protected AddressType AddrType { get; }
-        protected enum AddressType { DeepPointer, Absolute }
+    protected bool InitialUpdate { get; set; }
+    protected DateTime? LastUpdateTime { get; set; }
+    protected DeepPointer DeepPtr { get; set; }
+    protected nint Address { get; set; }
 
-        protected MemoryWatcher(DeepPointer pointer)
+    protected AddressType AddrType { get; }
+    protected enum AddressType { DeepPointer, Absolute }
+
+    protected MemoryWatcher(DeepPointer pointer)
+    {
+        DeepPtr = pointer;
+        AddrType = AddressType.DeepPointer;
+        Enabled = true;
+        FailAction = ReadFailAction.DontUpdate;
+    }
+
+    protected MemoryWatcher(nint address)
+    {
+        Address = address;
+        AddrType = AddressType.Absolute;
+        Enabled = true;
+        FailAction = ReadFailAction.DontUpdate;
+    }
+
+    /// <summary>
+    /// Updates the watcher and returns true if the value has changed.
+    /// </summary>
+    public abstract bool Update(Process process);
+
+    public abstract void Reset();
+
+    protected bool CheckInterval()
+    {
+        if (UpdateInterval.HasValue)
         {
-            DeepPtr = pointer;
-            AddrType = AddressType.DeepPointer;
-            Enabled = true;
-            FailAction = ReadFailAction.DontUpdate;
-        }
-
-        protected MemoryWatcher(IntPtr address)
-        {
-            Address = address;
-            AddrType = AddressType.Absolute;
-            Enabled = true;
-            FailAction = ReadFailAction.DontUpdate;
-        }
-
-        /// <summary>
-        /// Updates the watcher and returns true if the value has changed.
-        /// </summary>
-        public abstract bool Update(Process process);
-            
-        public abstract void Reset();
-
-        protected bool CheckInterval()
-        {
-            if (UpdateInterval.HasValue)
+            if (LastUpdateTime.HasValue)
             {
-                if (LastUpdateTime.HasValue)
+                if (DateTime.Now - LastUpdateTime.Value < UpdateInterval.Value)
                 {
-                    if (DateTime.Now - LastUpdateTime.Value < UpdateInterval.Value)
-                        return false;
+                    return false;
                 }
-                LastUpdateTime = DateTime.Now;
             }
+
+            LastUpdateTime = DateTime.Now;
+        }
+
+        return true;
+    }
+}
+
+public class StringWatcher : MemoryWatcher
+{
+    public new string Current
+    {
+        get => (string)base.Current;
+        set => base.Current = value;
+    }
+    public new string Old
+    {
+        get => (string)base.Old;
+        set => base.Old = value;
+    }
+
+    public delegate void StringChangedEventHandler(string old, string current);
+    public event StringChangedEventHandler OnChanged;
+
+    private readonly ReadStringType _stringType;
+    private readonly int _numBytes;
+
+    public StringWatcher(DeepPointer pointer, ReadStringType type, int numBytes)
+        : base(pointer)
+    {
+        _stringType = type;
+        _numBytes = numBytes;
+    }
+
+    public StringWatcher(DeepPointer pointer, int numBytes)
+        : this(pointer, ReadStringType.AutoDetect, numBytes) { }
+
+    public StringWatcher(nint address, ReadStringType type, int numBytes)
+        : base(address)
+    {
+        _stringType = type;
+        _numBytes = numBytes;
+    }
+
+    public StringWatcher(nint address, int numBytes)
+        : this(address, ReadStringType.AutoDetect, numBytes) { }
+
+    public override bool Update(Process process)
+    {
+        Changed = false;
+
+        if (!Enabled)
+        {
+            return false;
+        }
+
+        if (!CheckInterval())
+        {
+            return false;
+        }
+
+        string str;
+        bool success;
+        if (AddrType == AddressType.DeepPointer)
+        {
+            success = DeepPtr.DerefString(process, _stringType, _numBytes, out str);
+        }
+        else
+        {
+            success = process.ReadString(Address, _stringType, _numBytes, out str);
+        }
+
+        if (success)
+        {
+            base.Old = base.Current;
+            base.Current = str;
+        }
+        else
+        {
+            if (FailAction == ReadFailAction.DontUpdate)
+            {
+                return false;
+            }
+
+            base.Old = base.Current;
+            base.Current = str;
+        }
+
+        if (!InitialUpdate)
+        {
+            InitialUpdate = true;
+            return false;
+        }
+
+        if (!Current.Equals(Old))
+        {
+            OnChanged?.Invoke(Old, Current);
+            Changed = true;
             return true;
         }
+
+        return false;
     }
 
-    public class StringWatcher : MemoryWatcher
+    public override void Reset()
     {
-        public new string Current
+        base.Current = null;
+        base.Old = null;
+        InitialUpdate = false;
+    }
+}
+
+public class MemoryWatcher<T> : MemoryWatcher where T : struct
+{
+    public new T Current
+    {
+        get => (T)(base.Current ?? default(T));
+        set => base.Current = value;
+    }
+    public new T Old
+    {
+        get => (T)(base.Old ?? default(T));
+        set => base.Old = value;
+    }
+
+    public delegate void DataChangedEventHandler(T old, T current);
+    public event DataChangedEventHandler OnChanged;
+
+    public MemoryWatcher(DeepPointer pointer)
+        : base(pointer) { }
+    public MemoryWatcher(nint address)
+        : base(address) { }
+
+    public override bool Update(Process process)
+    {
+        Changed = false;
+
+        if (!Enabled)
         {
-            get { return (string)base.Current; }
-            set { base.Current = value; }
-        }
-        public new string Old
-        {
-            get { return (string)base.Old; }
-            set { base.Old = value; }
-        }
-
-        public delegate void StringChangedEventHandler(string old, string current);
-        public event StringChangedEventHandler OnChanged;
-
-        private ReadStringType _stringType;
-        private int _numBytes;
-
-        public StringWatcher(DeepPointer pointer, ReadStringType type, int numBytes)
-            : base(pointer)
-        {
-            _stringType = type;
-            _numBytes = numBytes;
-        }
-
-        public StringWatcher(DeepPointer pointer, int numBytes)
-            : this(pointer, ReadStringType.AutoDetect, numBytes) { }
-
-        public StringWatcher(IntPtr address, ReadStringType type, int numBytes)
-            : base(address)
-        {
-            _stringType = type;
-            _numBytes = numBytes;
-        }
-
-        public StringWatcher(IntPtr address, int numBytes)
-            : this(address, ReadStringType.AutoDetect, numBytes) { }
-
-        public override bool Update(Process process)
-        {
-            Changed = false;
-
-            if (!Enabled)
-                return false;
-
-            if (!CheckInterval())
-                return false;
-
-            string str;
-            bool success;
-            if (AddrType == AddressType.DeepPointer)
-                success = DeepPtr.DerefString(process, _stringType, _numBytes, out str);
-            else
-                success = process.ReadString(Address, _stringType, _numBytes, out str);
-
-            if (success)
-            {
-                base.Old = base.Current;
-                base.Current = str;
-            }
-            else
-            {
-                if (FailAction == ReadFailAction.DontUpdate)
-                    return false;
-
-                base.Old = base.Current;
-                base.Current = str;
-            }
-
-            if (!InitialUpdate)
-            {
-                InitialUpdate = true;
-                return false;
-            }
-
-            if (!Current.Equals(Old))
-            {
-                OnChanged?.Invoke(Old, Current);
-                Changed = true;
-                return true;
-            }
-
             return false;
         }
 
-        public override void Reset()
+        if (!CheckInterval())
         {
-            base.Current = null;
-            base.Old = null;
-            InitialUpdate = false;
-        }
-    }
-
-    public class MemoryWatcher<T> : MemoryWatcher where T : struct
-    {
-        public new T Current
-        {
-            get { return (T)(base.Current ?? default(T)); }
-            set { base.Current = value; }
-        }
-        public new T Old
-        {
-            get { return (T)(base.Old ?? default(T)); }
-            set { base.Old = value; }
-        }
-
-        public delegate void DataChangedEventHandler(T old, T current);
-        public event DataChangedEventHandler OnChanged;
-
-        public MemoryWatcher(DeepPointer pointer)
-            : base(pointer) { }
-        public MemoryWatcher(IntPtr address)
-            : base(address) { }
-
-        public override bool Update(Process process)
-        {
-            Changed = false;
-
-            if (!Enabled)
-                return false;
-
-            if (!CheckInterval())
-                return false;
-
-            base.Old = Current;
-
-            T val;
-            bool success;
-            if (AddrType == AddressType.DeepPointer)
-                success = DeepPtr.Deref(process, out val);
-            else
-                success = process.ReadValue(Address, out val);
-
-            if (success)
-            {
-                base.Old = base.Current;
-                base.Current = val;
-            }
-            else
-            {
-                if (FailAction == ReadFailAction.DontUpdate)
-                    return false;
-
-                base.Old = base.Current;
-                base.Current = val;
-            }
-
-            if (!InitialUpdate)
-            {
-                InitialUpdate = true;
-                return false;
-            }
-
-            if (!Current.Equals(Old))
-            {
-                OnChanged?.Invoke(Old, Current);
-                Changed = true;
-                return true;
-            }
-
             return false;
         }
 
-        public override void Reset()
+        base.Old = Current;
+
+        T val;
+        bool success;
+        if (AddrType == AddressType.DeepPointer)
         {
-            base.Current = default(T);
-            base.Old = default(T);
-            InitialUpdate = false;
+            success = DeepPtr.Deref(process, out val);
         }
+        else
+        {
+            success = process.ReadValue(Address, out val);
+        }
+
+        if (success)
+        {
+            base.Old = base.Current;
+            base.Current = val;
+        }
+        else
+        {
+            if (FailAction == ReadFailAction.DontUpdate)
+            {
+                return false;
+            }
+
+            base.Old = base.Current;
+            base.Current = val;
+        }
+
+        if (!InitialUpdate)
+        {
+            InitialUpdate = true;
+            return false;
+        }
+
+        if (!Current.Equals(Old))
+        {
+            OnChanged?.Invoke(Old, Current);
+            Changed = true;
+            return true;
+        }
+
+        return false;
+    }
+
+    public override void Reset()
+    {
+        base.Current = default(T);
+        base.Old = default(T);
+        InitialUpdate = false;
     }
 }

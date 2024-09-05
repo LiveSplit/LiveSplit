@@ -2,6 +2,9 @@
 
   <!-- Project properties. -->
   <PropertyGroup>
+    <LangVersion>12</LangVersion>
+
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <Nullable>disable</Nullable>
   </PropertyGroup>
 

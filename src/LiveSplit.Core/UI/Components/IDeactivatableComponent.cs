@@ -1,7 +1,6 @@
-﻿namespace LiveSplit.UI.Components
+﻿namespace LiveSplit.UI.Components;
+
+public interface IDeactivatableComponent : IComponent
 {
-    public interface IDeactivatableComponent : IComponent
-    {
-        bool Activated { get; set; }
-    }
+    bool Activated { get; set; }
 }

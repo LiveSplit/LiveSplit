@@ -5,207 +5,200 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
-namespace LiveSplit.Updates
+namespace LiveSplit.Updates;
+
+public partial class ScrollableMessageBox : Form
 {
-    public partial class ScrollableMessageBox : Form
+    public ScrollableMessageBox()
     {
-        public ScrollableMessageBox()
+        InitializeComponent();
+    }
+
+    public Font MessageFont
+    {
+        set => txtMessage.Font = value;
+
+        get => txtMessage.Font;
+    }
+
+    public Color MessageForeColor
+    {
+        get => txtMessage.ForeColor;
+
+        set => txtMessage.ForeColor = value;
+    }
+
+    public Color MessageBackColor
+    {
+        get => txtMessage.BackColor;
+
+        set
         {
-            InitializeComponent();
+            txtMessage.BackColor = value;
+            BackColor = value;
+        }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="text">text inside the message box</param>
+    /// <param name="caption">caption on the title bar</param>
+    public DialogResult Show(string text, string caption)
+    {
+        // populate the text box with the message
+        txtMessage.Text = text;
+        // populate the caption with the passed in caption
+        Text = caption;
+        //Assume OK Button, by default
+        ChooseButtons(MessageBoxButtons.OK);
+        // the active control should be the OK button
+        ActiveControl = Controls[Controls.Count - 1];
+        return ShowDialog();
+    }
+
+    public DialogResult Show(string text, string caption, MessageBoxButtons buttonType)
+    {
+        txtMessage.Text = text;
+        Text = caption;
+        //Assume OK Button
+        ChooseButtons(buttonType);
+        ActiveControl = Controls[Controls.Count - 1];
+        return ShowDialog();
+    }
+
+    public DialogResult ShowFromFile(string filename, string caption, MessageBoxButtons buttonType)
+    {
+        // read the file into the message box
+        using (var sr = new StreamReader(filename))
+        {
+            txtMessage.Text = sr.ReadToEnd();
         }
 
-        public Font MessageFont
+        Text = caption;
+        ChooseButtons(buttonType);
+        ActiveControl = Controls[Controls.Count - 1];
+        return ShowDialog();
+    }
+
+    private void RemoveButtons()
+    {
+        List<Button> buttons = [];
+        foreach (Control c in Controls)
         {
-            set
+            if (c is Button)
             {
-                txtMessage.Font = value;
-            }
-
-            get
-            {
-                return txtMessage.Font;
-            }
-        }
-
-        public Color MessageForeColor
-        {
-            get
-            {
-                return txtMessage.ForeColor;
-            }
-
-            set
-            {
-                txtMessage.ForeColor = value;
-            }
-        }
-
-        public Color MessageBackColor
-        {
-            get
-            {
-                return txtMessage.BackColor;
-            }
-
-            set
-            {
-                txtMessage.BackColor = value;
-                BackColor = value;
-            }
-        }
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="text">text inside the message box</param>
-        /// <param name="caption">caption on the title bar</param>
-        public DialogResult Show(string text, string caption)
-        {
-            // populate the text box with the message
-            txtMessage.Text = text;
-            // populate the caption with the passed in caption
-            Text = caption;
-            //Assume OK Button, by default
-            ChooseButtons(MessageBoxButtons.OK);
-            // the active control should be the OK button
-            ActiveControl = Controls[Controls.Count - 1];
-            return ShowDialog();
-        }
-
-        public DialogResult Show(string text, string caption, MessageBoxButtons buttonType)
-        {
-            txtMessage.Text = text;
-            Text = caption;
-            //Assume OK Button
-            ChooseButtons(buttonType);
-            ActiveControl = Controls[Controls.Count - 1];
-            return ShowDialog();
-        }
-
-        public DialogResult ShowFromFile(string filename, string caption, MessageBoxButtons buttonType)
-        {
-            // read the file into the message box
-            using (StreamReader sr = new StreamReader(filename))
-            {
-                txtMessage.Text = sr.ReadToEnd();
-            }
-
-            Text = caption;
-            ChooseButtons(buttonType);
-            ActiveControl = Controls[Controls.Count - 1];
-            return ShowDialog();
-        }
-
-        void RemoveButtons()
-        {
-            List<Button> buttons = new List<Button>();
-            foreach (Control c in Controls)
-            {
-                if (c is Button)
-                {
-                    buttons.Add(c as Button);
-                }
-            }
-
-            foreach (Button b in buttons)
-            {
-                Controls.Remove(b);
+                buttons.Add(c as Button);
             }
         }
 
-        void ChooseButtons(MessageBoxButtons buttonType)
+        foreach (Button b in buttons)
         {
-            // remove existing buttons
-            RemoveButtons();
-
-            // decide which button set to add from buttonType, and add it
-            switch (buttonType)
-            {
-                case MessageBoxButtons.OK:
-                    AddOKButton();
-                    break;
-                case MessageBoxButtons.YesNo:
-                    AddYesNoButtons();
-                    break;
-                case MessageBoxButtons.OKCancel:
-                    AddOkCancelButtons();
-                    break;
-                default:
-                    AddOKButton(); // default is an OK button
-                    break;
-            }
+            Controls.Remove(b);
         }
+    }
 
-        private void AddOKButton()
+    private void ChooseButtons(MessageBoxButtons buttonType)
+    {
+        // remove existing buttons
+        RemoveButtons();
+
+        // decide which button set to add from buttonType, and add it
+        switch (buttonType)
         {
-            Button btnOK = new Button();
-            btnOK.Text = "OK";
-            Controls.Add(btnOK);
-            btnOK.Location = new Point(Width / 2 - 35, txtMessage.Bottom + 5);
-            btnOK.Size = new Size(70, 20);
-            btnOK.DialogResult = DialogResult.OK;
-            AcceptButton = btnOK;
+            case MessageBoxButtons.OK:
+                AddOKButton();
+                break;
+            case MessageBoxButtons.YesNo:
+                AddYesNoButtons();
+                break;
+            case MessageBoxButtons.OKCancel:
+                AddOkCancelButtons();
+                break;
+            default:
+                AddOKButton(); // default is an OK button
+                break;
         }
+    }
 
-        private void AddYesNoButtons()
+    private void AddOKButton()
+    {
+        var btnOK = new Button
         {
-            Button btnYes = new Button();
-            btnYes.Text = "Yes";
-            Controls.Add(btnYes);
+            Text = "OK"
+        };
+        Controls.Add(btnOK);
+        btnOK.Location = new Point((Width / 2) - 35, txtMessage.Bottom + 5);
+        btnOK.Size = new Size(70, 20);
+        btnOK.DialogResult = DialogResult.OK;
+        AcceptButton = btnOK;
+    }
 
-            // calculate the location of the buttons so that they are centered
-            // at the bottom
-            btnYes.Location = new Point(Width / 2 - 80, txtMessage.Bottom + 5);
-            btnYes.Size = new Size(75, 23);
-            btnYes.DialogResult = DialogResult.Yes;
-            AcceptButton = btnYes;
-
-            Button btnNo = new Button();
-            btnNo.Text = "No";
-            Controls.Add(btnNo);
-            btnNo.Location = new Point(Width / 2 + 5, txtMessage.Bottom + 5);
-            btnNo.Size = new Size(75, 23);
-            btnNo.DialogResult = DialogResult.No;
-            CancelButton = btnNo;
-        }
-
-        private void AddOkCancelButtons()
+    private void AddYesNoButtons()
+    {
+        var btnYes = new Button
         {
-            Button btnOK = new Button();
-            btnOK.Text = "OK";
-            Controls.Add(btnOK);
-            btnOK.Location = new Point(Width / 2 - 75, txtMessage.Bottom + 5);
-            btnOK.Size = new Size(70, 20);
-            btnOK.DialogResult = DialogResult.OK;
-            AcceptButton = btnOK;
+            Text = "Yes"
+        };
+        Controls.Add(btnYes);
 
-            Button btnCancel = new Button();
-            btnCancel.Text = "Cancel";
-            Controls.Add(btnCancel);
-            btnCancel.Location = new Point(Width / 2 + 5, txtMessage.Bottom + 5);
-            btnCancel.Size = new Size(70, 20);
-            btnCancel.DialogResult = DialogResult.Cancel;
-            CancelButton = btnCancel;
-        }
+        // calculate the location of the buttons so that they are centered
+        // at the bottom
+        btnYes.Location = new Point((Width / 2) - 80, txtMessage.Bottom + 5);
+        btnYes.Size = new Size(75, 23);
+        btnYes.DialogResult = DialogResult.Yes;
+        AcceptButton = btnYes;
 
-        public void Show(string text)
+        var btnNo = new Button
         {
-            txtMessage.Text = text;
-            ChooseButtons(MessageBoxButtons.OK);
-            ShowDialog();
-        }
+            Text = "No"
+        };
+        Controls.Add(btnNo);
+        btnNo.Location = new Point((Width / 2) + 5, txtMessage.Bottom + 5);
+        btnNo.Size = new Size(75, 23);
+        btnNo.DialogResult = DialogResult.No;
+        CancelButton = btnNo;
+    }
 
-        private void ScrollableMessageBox_Resize(object sender, EventArgs e)
+    private void AddOkCancelButtons()
+    {
+        var btnOK = new Button
         {
-            // txtMessage.SetBounds(0, 0, this.ClientRectangle.Width - 10, this.Height - 55);
-        }
+            Text = "OK"
+        };
+        Controls.Add(btnOK);
+        btnOK.Location = new Point((Width / 2) - 75, txtMessage.Bottom + 5);
+        btnOK.Size = new Size(70, 20);
+        btnOK.DialogResult = DialogResult.OK;
+        AcceptButton = btnOK;
 
-        private void ScrollableMessageBox_Load(object sender, EventArgs e)
+        var btnCancel = new Button
         {
-        }
+            Text = "Cancel"
+        };
+        Controls.Add(btnCancel);
+        btnCancel.Location = new Point((Width / 2) + 5, txtMessage.Bottom + 5);
+        btnCancel.Size = new Size(70, 20);
+        btnCancel.DialogResult = DialogResult.Cancel;
+        CancelButton = btnCancel;
+    }
+
+    public void Show(string text)
+    {
+        txtMessage.Text = text;
+        ChooseButtons(MessageBoxButtons.OK);
+        ShowDialog();
+    }
+
+    private void ScrollableMessageBox_Resize(object sender, EventArgs e)
+    {
+        // txtMessage.SetBounds(0, 0, this.ClientRectangle.Width - 10, this.Height - 55);
+    }
+
+    private void ScrollableMessageBox_Load(object sender, EventArgs e)
+    {
     }
 }

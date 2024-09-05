@@ -1,9 +1,8 @@
 ﻿using LiveSplit.Model;
 
-namespace LiveSplit.UI.LayoutFactories
+namespace LiveSplit.UI.LayoutFactories;
+
+public interface ILayoutFactory
 {
-    public interface ILayoutFactory
-    {
-        ILayout Create(LiveSplitState state);
-    }
+    ILayout Create(LiveSplitState state);
 }

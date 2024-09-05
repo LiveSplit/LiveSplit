@@ -1,12 +1,11 @@
 ﻿using System;
 
-namespace UpdateManager
+namespace UpdateManager;
+
+public interface IUpdateable
 {
-    public interface IUpdateable
-    {
-        string UpdateName { get; }
-        string XMLURL { get; }
-        string UpdateURL { get; }
-        Version Version { get; }
-    }
+    string UpdateName { get; }
+    string XMLURL { get; }
+    string UpdateURL { get; }
+    Version Version { get; }
 }

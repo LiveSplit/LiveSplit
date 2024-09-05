@@ -1,39 +1,38 @@
 using System;
-using System.Globalization;
 
-namespace LiveSplit.TimeFormatters
+namespace LiveSplit.TimeFormatters;
+
+public class ShortTimeFormatter : ITimeFormatter
 {
-    public class ShortTimeFormatter : ITimeFormatter
+    public ShortTimeFormatter() { }
+
+    [Obsolete("Switch over to DigitsFormat")]
+    public string Format(TimeSpan? time, TimeFormat format)
     {
-        public ShortTimeFormatter() { }
-
-        [Obsolete("Switch over to DigitsFormat")]
-        public string Format(TimeSpan? time, TimeFormat format)
+        var formatRequest = new GeneralTimeFormatter
         {
-            var formatRequest = new GeneralTimeFormatter {
-                Accuracy = TimeAccuracy.Hundredths,
-                NullFormat = NullFormat.ZeroWithAccuracy,
-                DigitsFormat = format.ToDigitsFormat(),
-            };
+            Accuracy = TimeAccuracy.Hundredths,
+            NullFormat = NullFormat.ZeroWithAccuracy,
+            DigitsFormat = format.ToDigitsFormat(),
+        };
 
-            return formatRequest.Format(time);
-        }
+        return formatRequest.Format(time);
+    }
 
-        public string Format(TimeSpan? time, DigitsFormat format)
+    public string Format(TimeSpan? time, DigitsFormat format)
+    {
+        var formatRequest = new GeneralTimeFormatter
         {
-            var formatRequest = new GeneralTimeFormatter
-            {
-                Accuracy = TimeAccuracy.Hundredths,
-                NullFormat = NullFormat.ZeroWithAccuracy,
-                DigitsFormat = format,
-            };
+            Accuracy = TimeAccuracy.Hundredths,
+            NullFormat = NullFormat.ZeroWithAccuracy,
+            DigitsFormat = format,
+        };
 
-            return formatRequest.Format(time);
-        }
+        return formatRequest.Format(time);
+    }
 
-        public string Format(TimeSpan? timeSpan)
-        {
-            return Format(timeSpan, DigitsFormat.SingleDigitSeconds);
-        }
+    public string Format(TimeSpan? timeSpan)
+    {
+        return Format(timeSpan, DigitsFormat.SingleDigitSeconds);
     }
 }

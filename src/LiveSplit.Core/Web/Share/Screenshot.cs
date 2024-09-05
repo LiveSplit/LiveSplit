@@ -1,51 +1,49 @@
-﻿using LiveSplit.Model;
-using LiveSplit.Options;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Windows.Forms;
 
-namespace LiveSplit.Web.Share
+using LiveSplit.Model;
+using LiveSplit.Options;
+
+namespace LiveSplit.Web.Share;
+
+public class Screenshot : IRunUploadPlatform
 {
-    public class Screenshot : IRunUploadPlatform
+    public ISettings Settings { get; set; }
+    protected static readonly Screenshot _Instance = new();
+
+    public static Screenshot Instance => _Instance;
+
+    protected Screenshot() { }
+
+    public string PlatformName => "Screenshot";
+
+    public string Description => "Sharing will save a screenshot of LiveSplit.";
+
+    public bool VerifyLogin()
     {
-        public ISettings Settings { get; set; }
-        protected static readonly Screenshot _Instance = new Screenshot();
+        return true;
+    }
 
-        public static Screenshot Instance => _Instance;
-
-        protected Screenshot() { }
-
-        public string PlatformName => "Screenshot";
-
-        public string Description => "Sharing will save a screenshot of LiveSplit.";
-
-        public bool VerifyLogin()
+    public bool SubmitRun(IRun run, Func<System.Drawing.Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
+    {
+        try
         {
-            return true;
+            System.Drawing.Image image = screenShotFunction();
+
+            using var dialog = new SaveFileDialog();
+            dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpeg)|*.jpeg|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|TIFF (*.tiff)|*.tiff|WMF (*.wmf)|*.wmf";
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                image.Save(dialog.FileName);
+                return true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
         }
 
-        public bool SubmitRun(IRun run, Func<System.Drawing.Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
-        {
-            try
-            {
-                var image = screenShotFunction();
-
-                using (var dialog = new SaveFileDialog())
-                {
-                    dialog.Filter = "PNG (*.png)|*.png|JPEG (*.jpeg)|*.jpeg|GIF (*.gif)|*.gif|Bitmap (*.bmp)|*.bmp|TIFF (*.tiff)|*.tiff|WMF (*.wmf)|*.wmf";
-                    var result = dialog.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                        image.Save(dialog.FileName);
-                        return true;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-            return false;
-        }
+        return false;
     }
 }

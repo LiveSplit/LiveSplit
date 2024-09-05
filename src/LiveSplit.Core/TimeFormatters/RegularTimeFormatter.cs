@@ -1,14 +1,11 @@
-﻿using System;
+﻿namespace LiveSplit.TimeFormatters;
 
-namespace LiveSplit.TimeFormatters
+public class RegularTimeFormatter : GeneralTimeFormatter
 {
-    public class RegularTimeFormatter : GeneralTimeFormatter
+    public RegularTimeFormatter(TimeAccuracy accuracy = TimeAccuracy.Seconds)
     {
-        public RegularTimeFormatter(TimeAccuracy accuracy = TimeAccuracy.Seconds)
-        {
-            Accuracy = accuracy;
-            NullFormat = NullFormat.ZeroWithAccuracy;
-            DigitsFormat = DigitsFormat.SingleDigitMinutes;
-        }
+        Accuracy = accuracy;
+        NullFormat = NullFormat.ZeroWithAccuracy;
+        DigitsFormat = DigitsFormat.SingleDigitMinutes;
     }
 }

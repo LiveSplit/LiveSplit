@@ -1,103 +1,102 @@
-﻿using LiveSplit.Options;
-using LiveSplit.Web.Share;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-namespace LiveSplit.Web
+using LiveSplit.Options;
+using LiveSplit.Web.Share;
+
+namespace LiveSplit.Web;
+
+public class CompositeGameList
 {
-    public class CompositeGameList
+    protected static CompositeGameList _Instance = new();
+
+    public static CompositeGameList Instance => _Instance;
+
+    protected IList<string> gameNames;
+
+    protected IDictionary<string, string> gameIDs;
+
+    private const string CacheFilename = "speedruncom_game_names.json";
+    private bool loadedFromAPI = false;
+
+    protected CompositeGameList()
+    { }
+
+    public string GetGameID(string gameName)
     {
-        protected static CompositeGameList _Instance = new CompositeGameList();
-
-        public static CompositeGameList Instance => _Instance;
-
-        protected IList<string> gameNames;
-
-        protected IDictionary<string, string> gameIDs;
-
-        private const string CacheFilename = "speedruncom_game_names.json";
-        private bool loadedFromAPI = false;
-
-        protected CompositeGameList()
-        { }
-
-        public string GetGameID(string gameName)
+        if (gameIDs == null && !loadedFromAPI)
         {
-            if (gameIDs == null && !loadedFromAPI)
-            {
-                GetGames(true);
-            }
-
-            return gameIDs[gameName];
+            GetGames(true);
         }
 
-        public IEnumerable<string> GetGameNames(bool loadFromCache)
-        {
-            if (!loadedFromAPI && (!loadFromCache || gameNames == null))
-            {
-                GetGames(loadFromCache);
-            }
+        return gameIDs[gameName];
+    }
 
-            return gameNames;
+    public IEnumerable<string> GetGameNames(bool loadFromCache)
+    {
+        if (!loadedFromAPI && (!loadFromCache || gameNames == null))
+        {
+            GetGames(loadFromCache);
         }
 
-        private void GetGames(bool loadFromCache)
+        return gameNames;
+    }
+
+    private void GetGames(bool loadFromCache)
+    {
+        if (loadFromCache && File.Exists(CacheFilename))
         {
-            if (loadFromCache && File.Exists(CacheFilename))
-            {
-                LoadFromCache();
-                return;
-            }
+            LoadFromCache();
+            return;
+        }
 
-            var gameNames = new List<string>();
-            var gameIDs = new Dictionary<string, string>();
+        var gameNames = new List<string>();
+        var gameIDs = new Dictionary<string, string>();
 
-            var headerSet = new HashSet<string>();
-            try
+        var headerSet = new HashSet<string>();
+        try
+        {
+            foreach (SpeedrunComSharp.GameHeader header in SpeedrunCom.Client.Games.GetGameHeaders())
             {
-                foreach (var header in SpeedrunCom.Client.Games.GetGameHeaders())
+                string name = header.Name, id = header.ID;
+
+                if (!string.IsNullOrEmpty(name) && headerSet.Add(name))
                 {
-                    string name = header.Name, id = header.ID;
-
-                    if (!string.IsNullOrEmpty(name) && headerSet.Add(name))
-                    {
-                        gameNames.Add(name);
-                        gameIDs[name] = id;
-                    }
+                    gameNames.Add(name);
+                    gameIDs[name] = id;
                 }
-                gameNames.Sort();
+            }
 
-                this.gameNames = gameNames;
-                this.gameIDs = gameIDs;
+            gameNames.Sort();
 
-                SaveToCache();
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-            finally
-            {
-                loadedFromAPI = true;
-            }
+            this.gameNames = gameNames;
+            this.gameIDs = gameIDs;
+
+            SaveToCache();
         }
-
-        private void SaveToCache()
+        catch (Exception ex)
         {
-            var jsonString = new JavaScriptSerializer().Serialize(gameIDs);
-            File.WriteAllText(CacheFilename, jsonString);
+            Log.Error(ex);
         }
-
-        private void LoadFromCache()
+        finally
         {
-            var jsonString = File.ReadAllText(CacheFilename);
-            gameIDs = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(jsonString);
-            gameNames = gameIDs.Keys.ToArray();
+            loadedFromAPI = true;
         }
+    }
+
+    private void SaveToCache()
+    {
+        string jsonString = new JavaScriptSerializer().Serialize(gameIDs);
+        File.WriteAllText(CacheFilename, jsonString);
+    }
+
+    private void LoadFromCache()
+    {
+        string jsonString = File.ReadAllText(CacheFilename);
+        gameIDs = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(jsonString);
+        gameNames = gameIDs.Keys.ToArray();
     }
 }

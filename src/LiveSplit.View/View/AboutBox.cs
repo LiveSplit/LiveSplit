@@ -1,132 +1,133 @@
-﻿using LiveSplit.Updates;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace LiveSplit.View
+using LiveSplit.Updates;
+
+namespace LiveSplit.View;
+
+internal partial class AboutBox : Form
 {
-    partial class AboutBox : Form
+    public AboutBox()
     {
-        public AboutBox()
+        InitializeComponent();
+        lblVersion.Text = Git.Version ?? "Unknown Version";
+        if (Git.Branch is not null and not "master" and not "HEAD")
         {
-            InitializeComponent();
-            lblVersion.Text = Git.Version ?? "Unknown Version";
-            if (Git.Branch != null && Git.Branch != "master" && Git.Branch != "HEAD")
-                labelProductName.Text = string.Format("{0} ({1})", labelProductName.Text, Git.Branch);
+            labelProductName.Text = string.Format("{0} ({1})", labelProductName.Text, Git.Branch);
         }
+    }
 
-#region Assembly Attribute Accessors
+    #region Assembly Attribute Accessors
 
-        public string AssemblyTitle
+    public string AssemblyTitle
+    {
+        get
         {
-            get
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+            if (attributes.Length > 0)
             {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
-                if (attributes.Length > 0)
+                var titleAttribute = (AssemblyTitleAttribute)attributes[0];
+                if (titleAttribute.Title != "")
                 {
-                    AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
-                    {
-                        return titleAttribute.Title;
-                    }
+                    return titleAttribute.Title;
                 }
-                return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
             }
-        }
 
-        public string AssemblyVersion
+            return System.IO.Path.GetFileNameWithoutExtension(Assembly.GetExecutingAssembly().CodeBase);
+        }
+    }
+
+    public string AssemblyVersion => Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+    public string AssemblyDescription
+    {
+        get
         {
-            get
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
+            if (attributes.Length == 0)
             {
-                return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                return "";
             }
-        }
 
-        public string AssemblyDescription
+            return ((AssemblyDescriptionAttribute)attributes[0]).Description;
+        }
+    }
+
+    public string AssemblyProduct
+    {
+        get
         {
-            get
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+            if (attributes.Length == 0)
             {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyDescriptionAttribute)attributes[0]).Description;
+                return "";
             }
-        }
 
-        public string AssemblyProduct
+            return ((AssemblyProductAttribute)attributes[0]).Product;
+        }
+    }
+
+    public string AssemblyCopyright
+    {
+        get
         {
-            get
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+            if (attributes.Length == 0)
             {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyProductAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyProductAttribute)attributes[0]).Product;
+                return "";
             }
-        }
 
-        public string AssemblyCopyright
+            return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
+        }
+    }
+
+    public string AssemblyCompany
+    {
+        get
         {
-            get
+            object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+            if (attributes.Length == 0)
             {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyCopyrightAttribute)attributes[0]).Copyright;
+                return "";
             }
+
+            return ((AssemblyCompanyAttribute)attributes[0]).Company;
         }
+    }
+    #endregion
 
-        public string AssemblyCompany
+    private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
+    {
+
+    }
+
+    private void WebsiteLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        Process.Start("http://livesplit.org");
+    }
+
+    private void CryZeLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        Process.Start("http://twitter.com/CryZe107");
+    }
+
+    private void wooferzfgLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        Process.Start("http://twitter.com/wooferzfg");
+    }
+
+    private void donateButton_Click(object sender, EventArgs e)
+    {
+        Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R3Z2LGPKRNBNJ");
+    }
+
+    private void lblVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+    {
+        if (Git.RevisionUri != null)
         {
-            get
-            {
-                object[] attributes = Assembly.GetExecutingAssembly().GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
-                if (attributes.Length == 0)
-                {
-                    return "";
-                }
-                return ((AssemblyCompanyAttribute)attributes[0]).Company;
-            }
-        }
-#endregion
-
-        private void tableLayoutPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void WebsiteLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://livesplit.org");
-        }
-
-        private void CryZeLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://twitter.com/CryZe107");
-        }
-
-        private void wooferzfgLinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://twitter.com/wooferzfg");
-        }
-
-        private void donateButton_Click(object sender, EventArgs e)
-        {
-            Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=R3Z2LGPKRNBNJ");
-        }
-
-        private void lblVersion_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            if (Git.RevisionUri != null)
-            {
-                Process.Start(Git.RevisionUri.AbsoluteUri);
-            }
+            Process.Start(Git.RevisionUri.AbsoluteUri);
         }
     }
 }

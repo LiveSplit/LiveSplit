@@ -1,24 +1,25 @@
-﻿using LiveSplit.Model;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Text;
 
-namespace LiveSplit.Web.SRL.RaceViewers
+using LiveSplit.Model;
+
+namespace LiveSplit.Web.SRL.RaceViewers;
+
+public class MultiTwitch : IRaceViewer
 {
-    public class MultiTwitch : IRaceViewer
+    public void ShowRace(IRaceInfo race)
     {
-        public void ShowRace(IRaceInfo race)
+        var builder = new StringBuilder();
+        builder.Append("http://multitwitch.tv/");
+        foreach (string stream in race.LiveStreams)
         {
-            var builder = new StringBuilder();
-            builder.Append("http://multitwitch.tv/");
-            foreach (var stream in race.LiveStreams)
-            {
-                builder.Append(stream);
-                builder.Append("/");
-            }
-            builder.Length -= 1;
-            Process.Start(builder.ToString());
+            builder.Append(stream);
+            builder.Append("/");
         }
 
-        public string Name => "MultiTwitch";
+        builder.Length -= 1;
+        Process.Start(builder.ToString());
     }
+
+    public string Name => "MultiTwitch";
 }

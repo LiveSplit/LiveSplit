@@ -1,9 +1,8 @@
 ﻿using System.IO;
 
-namespace LiveSplit.UI.LayoutSavers
+namespace LiveSplit.UI.LayoutSavers;
+
+public interface ILayoutSaver
 {
-    public interface ILayoutSaver
-    {
-        void Save(ILayout layout, Stream stream);
-    }
+    void Save(ILayout layout, Stream stream);
 }

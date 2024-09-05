@@ -3,38 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 
-namespace UpdateManager
+namespace UpdateManager;
+
+public class Update
 {
-    public class Update
+    public Version Version { get; set; }
+    public IList<string> ChangeLog { get; set; }
+    public IList<FileChange> FileChanges { get; set; }
+
+    public Update(Version version, IEnumerable<string> changeLog, IEnumerable<FileChange> fileChanges)
     {
-        public Version Version { get; set; }
-        public IList<string> ChangeLog { get; set; }
-        public IList<FileChange> FileChanges { get; set; }
+        Version = version;
+        ChangeLog = changeLog.ToList();
+        FileChanges = fileChanges.ToList();
+    }
 
-        public Update(Version version, IEnumerable<string> changeLog, IEnumerable<FileChange> fileChanges)
+    public static Update Parse(XmlNode node)
+    {
+        var version = Version.Parse(node.Attributes["version"].InnerText);
+
+        List<string> changeLog = [];
+        foreach (XmlNode changeNode in node["changelog"].ChildNodes)
         {
-            Version = version;
-            ChangeLog = changeLog.ToList();
-            FileChanges = fileChanges.ToList();
+            changeLog.Add(changeNode.InnerText);
         }
 
-        public static Update Parse(XmlNode node)
+        List<FileChange> fileChanges = [];
+        foreach (XmlNode changeNode in node["files"].ChildNodes)
         {
-            Version version = Version.Parse(node.Attributes["version"].InnerText);
-
-            List<string> changeLog = new List<string>();
-            foreach (XmlNode changeNode in node["changelog"].ChildNodes)
-            {
-                changeLog.Add(changeNode.InnerText);
-            }
-
-            List<FileChange> fileChanges = new List<FileChange>();
-            foreach (XmlNode changeNode in node["files"].ChildNodes)
-            {
-                fileChanges.Add(FileChange.Parse(changeNode));
-            }
-
-            return new Update(version, changeLog, fileChanges);
+            fileChanges.Add(FileChange.Parse(changeNode));
         }
+
+        return new Update(version, changeLog, fileChanges);
     }
 }

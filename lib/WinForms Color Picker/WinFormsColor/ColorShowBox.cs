@@ -1,82 +1,89 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Windows.Forms;
 
-namespace Fetze.WinFormsColor
+namespace Fetze.WinFormsColor;
+
+public class ColorShowBox : UserControl
 {
-	public class ColorShowBox : UserControl
-	{
-		private	Color	upperColor	= Color.Transparent;
-		private	Color	lowerColor	= Color.Transparent;
+    private Color upperColor = Color.Transparent;
+    private Color lowerColor = Color.Transparent;
 
+    public event EventHandler UpperClick = null;
+    public event EventHandler LowerClick = null;
 
-		public event EventHandler UpperClick = null;
-		public event EventHandler LowerClick = null;
+    public Color Color
+    {
+        get => upperColor;
+        set
+        {
+            upperColor = lowerColor = value;
+            Invalidate();
+        }
+    }
+    public Color UpperColor
+    {
+        get => upperColor;
+        set
+        {
+            upperColor = value;
+            Invalidate();
+        }
+    }
+    public Color LowerColor
+    {
+        get => lowerColor;
+        set
+        {
+            lowerColor = value;
+            Invalidate();
+        }
+    }
 
+    public ColorShowBox()
+    {
+        DoubleBuffered = true;
+        SetStyle(ControlStyles.ResizeRedraw, true);
+        BorderStyle = BorderStyle.FixedSingle;
+    }
 
-		public Color Color
-		{
-			get { return this.upperColor; }
-			set { this.upperColor = this.lowerColor = value; this.Invalidate(); }
-		}
-		public Color UpperColor
-		{
-			get { return this.upperColor; }
-			set { this.upperColor = value; this.Invalidate(); }
-		}
-		public Color LowerColor
-		{
-			get { return this.lowerColor; }
-			set { this.lowerColor = value; this.Invalidate(); }
-		}
+    protected void OnUpperClick()
+    {
+        UpperClick?.Invoke(this, null);
+    }
+    protected void OnLowerClick()
+    {
+        LowerClick?.Invoke(this, null);
+    }
 
+    protected override void OnMouseClick(MouseEventArgs e)
+    {
+        base.OnMouseClick(e);
+        if (e.Y > (ClientRectangle.Top + ClientRectangle.Bottom) / 2)
+        {
+            OnLowerClick();
+        }
+        else
+        {
+            OnUpperClick();
+        }
+    }
+    protected override void OnPaint(PaintEventArgs e)
+    {
+        base.OnPaint(e);
 
-		public ColorShowBox()
-		{
-			this.DoubleBuffered = true;
-			this.SetStyle(ControlStyles.ResizeRedraw, true);
-			this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-		}
-		
-		protected void OnUpperClick()
-		{
-			if (this.UpperClick != null)
-				this.UpperClick(this, null);
-		}
-		protected void OnLowerClick()
-		{
-			if (this.LowerClick != null)
-				this.LowerClick(this, null);
-		}
+        e.Graphics.FillRectangle(new HatchBrush(HatchStyle.LargeCheckerBoard, Color.LightGray, Color.Gray), ClientRectangle);
 
-		protected override void OnMouseClick(MouseEventArgs e)
-		{
-			base.OnMouseClick(e);
-			if (e.Y > (this.ClientRectangle.Top + this.ClientRectangle.Bottom) / 2)
-				this.OnLowerClick();
-			else
-				this.OnUpperClick();
-		}
-		protected override void OnPaint(PaintEventArgs e)
-		{
-			base.OnPaint(e);
-
-			e.Graphics.FillRectangle(new HatchBrush(HatchStyle.LargeCheckerBoard, Color.LightGray, Color.Gray), this.ClientRectangle);
-			
-			e.Graphics.FillRectangle(new SolidBrush(this.upperColor),
-				this.ClientRectangle.X,
-				this.ClientRectangle.Y,
-				this.ClientRectangle.Width,
-				this.ClientRectangle.Height / 2 + 1);
-			e.Graphics.FillRectangle(new SolidBrush(this.lowerColor),
-				this.ClientRectangle.X,
-				this.ClientRectangle.Y + this.ClientRectangle.Height - this.ClientRectangle.Height / 2,
-				this.ClientRectangle.Width,
-				this.ClientRectangle.Height / 2);
-		}
-	}
+        e.Graphics.FillRectangle(new SolidBrush(upperColor),
+            ClientRectangle.X,
+            ClientRectangle.Y,
+            ClientRectangle.Width,
+            (ClientRectangle.Height / 2) + 1);
+        e.Graphics.FillRectangle(new SolidBrush(lowerColor),
+            ClientRectangle.X,
+            ClientRectangle.Y + ClientRectangle.Height - (ClientRectangle.Height / 2),
+            ClientRectangle.Width,
+            ClientRectangle.Height / 2);
+    }
 }

@@ -1,88 +1,90 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace LiveSplit.View
+namespace LiveSplit.View;
+
+public partial class SetSizeForm : Form
 {
-    public partial class SetSizeForm : Form
+    public Form TimerForm { get; set; }
+
+    public int FormWidth
     {
-        public Form TimerForm { get; set; }
-
-        public int FormWidth
+        get => TimerForm.Width;
+        set
         {
-            get { return TimerForm.Width; }
-            set
-            {
-                TimerForm.Width = value;
-                WidthChanged();
-            }
+            TimerForm.Width = value;
+            WidthChanged();
         }
-        public int FormHeight
+    }
+    public int FormHeight
+    {
+        get => TimerForm.Height;
+        set
         {
-            get { return TimerForm.Height; }
-            set
-            {
-                TimerForm.Height = value;
-                HeightChanged();
-            }
+            TimerForm.Height = value;
+            HeightChanged();
         }
+    }
 
-        protected int OldWidth { get; set; }
-        protected int OldHeight { get; set; }
+    protected int OldWidth { get; set; }
+    protected int OldHeight { get; set; }
 
-        public bool KeepAspectRatio { get; set; }
+    public bool KeepAspectRatio { get; set; }
 
-        public SetSizeForm(Form form)
+    public SetSizeForm(Form form)
+    {
+        InitializeComponent();
+
+        TimerForm = form;
+        KeepAspectRatio = false;
+        OldHeight = FormHeight;
+        OldWidth = FormWidth;
+
+        nmWidth.DataBindings.Add("Value", this, "FormWidth", false, DataSourceUpdateMode.OnPropertyChanged);
+        nmHeight.DataBindings.Add("Value", this, "FormHeight", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkKeepAspectRatio.DataBindings.Add("Checked", this, "KeepAspectRatio", false, DataSourceUpdateMode.OnPropertyChanged);
+
+    }
+
+    protected void HeightChanged()
+    {
+        if (KeepAspectRatio && OldHeight != FormHeight)
         {
-            InitializeComponent();
-
-            TimerForm = form;
-            KeepAspectRatio = false;
+            int newValue = (int)((FormWidth * (float)FormHeight / OldHeight) + 0.5f);
             OldHeight = FormHeight;
+            OldWidth = newValue;
+            FormWidth = newValue;
+        }
+        else
+        {
+            OldHeight = FormHeight;
+        }
+    }
+
+    protected void WidthChanged()
+    {
+        if (KeepAspectRatio && OldWidth != FormWidth)
+        {
+            int newValue = (int)((FormHeight * (float)FormWidth / OldWidth) + 0.5f);
             OldWidth = FormWidth;
-
-            nmWidth.DataBindings.Add("Value", this, "FormWidth", false, DataSourceUpdateMode.OnPropertyChanged);
-            nmHeight.DataBindings.Add("Value", this, "FormHeight", false, DataSourceUpdateMode.OnPropertyChanged);
-            chkKeepAspectRatio.DataBindings.Add("Checked", this, "KeepAspectRatio", false, DataSourceUpdateMode.OnPropertyChanged);
-
+            OldHeight = newValue;
+            FormHeight = newValue;
         }
-
-        protected void HeightChanged()
+        else
         {
-            if (KeepAspectRatio && OldHeight != FormHeight)
-            {
-                var newValue = (int)(FormWidth * (float)FormHeight / OldHeight + 0.5f);
-                OldHeight = FormHeight;
-                OldWidth = newValue;
-                FormWidth = newValue;
-            }
-            else
-                OldHeight = FormHeight;
+            OldWidth = FormWidth;
         }
+    }
 
-        protected void WidthChanged()
-        {
-            if (KeepAspectRatio && OldWidth != FormWidth)
-            {
-                var newValue = (int)(FormHeight * (float)FormWidth / OldWidth + 0.5f);
-                OldWidth = FormWidth;
-                OldHeight = newValue;
-                FormHeight = newValue;
-            }
-            else
-                OldWidth = FormWidth;
-        }
+    private void btnOK_Click(object sender, EventArgs e)
+    {
+        DialogResult = DialogResult.OK;
+        Close();
+    }
 
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.OK;
-            Close();
-        }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            Close();
-        }
+    private void btnCancel_Click(object sender, EventArgs e)
+    {
+        DialogResult = DialogResult.Cancel;
+        Close();
     }
 }

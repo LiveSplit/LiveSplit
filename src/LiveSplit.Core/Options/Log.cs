@@ -1,62 +1,65 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace LiveSplit.Options
+namespace LiveSplit.Options;
+
+public static class Log
 {
-    public static class Log
+    static Log()
     {
-        static Log()
+        try
         {
-            try
+            if (!EventLog.SourceExists("LiveSplit"))
             {
-                if (!EventLog.SourceExists("LiveSplit"))
-                    EventLog.CreateEventSource("LiveSplit", "Application");
+                EventLog.CreateEventSource("LiveSplit", "Application");
             }
-            catch { }
-
-            try
-            {
-                var listener = new EventLogTraceListener("LiveSplit");
-                listener.Filter = new EventTypeFilter(SourceLevels.Warning);
-                Trace.Listeners.Add(listener);
-            }
-            catch { }
         }
+        catch { }
 
-        public static void Error(Exception ex)
+        try
         {
-            try
+            var listener = new EventLogTraceListener("LiveSplit")
             {
-                Trace.TraceError("{0}\n\n{1}", ex.Message, ex.StackTrace);
-            }
-            catch { }
+                Filter = new EventTypeFilter(SourceLevels.Warning)
+            };
+            Trace.Listeners.Add(listener);
         }
+        catch { }
+    }
 
-        public static void Error(string message)
+    public static void Error(Exception ex)
+    {
+        try
         {
-            try
-            {
-                Trace.TraceError(message);
-            }
-            catch { }
+            Trace.TraceError("{0}\n\n{1}", ex.Message, ex.StackTrace);
         }
+        catch { }
+    }
 
-        public static void Info(string message)
+    public static void Error(string message)
+    {
+        try
         {
-            try
-            {
-                Trace.TraceInformation(message);
-            }
-            catch { }
+            Trace.TraceError(message);
         }
+        catch { }
+    }
 
-        public static void Warning(string message)
+    public static void Info(string message)
+    {
+        try
         {
-            try
-            {
-                Trace.TraceWarning(message);
-            }
-            catch { }
+            Trace.TraceInformation(message);
         }
+        catch { }
+    }
+
+    public static void Warning(string message)
+    {
+        try
+        {
+            Trace.TraceWarning(message);
+        }
+        catch { }
     }
 }

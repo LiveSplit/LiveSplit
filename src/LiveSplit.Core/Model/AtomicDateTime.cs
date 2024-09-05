@@ -1,22 +1,25 @@
 ﻿using System;
 
-namespace LiveSplit.Model
+namespace LiveSplit.Model;
+
+public struct AtomicDateTime
 {
-    public struct AtomicDateTime
+    public DateTime Time { get; }
+    public bool SyncedWithAtomicClock { get; private set; }
+
+    public AtomicDateTime(DateTime time, bool synced)
     {
-        public DateTime Time { get; }
-        public bool SyncedWithAtomicClock { get; private set; }
+        Time = time;
+        SyncedWithAtomicClock = synced;
+    }
 
-        public AtomicDateTime(DateTime time, bool synced)
-        {
-            Time = time;
-            SyncedWithAtomicClock = synced;
-        }
+    public static TimeSpan operator -(AtomicDateTime a, AtomicDateTime b)
+    {
+        return a.Time - b.Time;
+    }
 
-        public static TimeSpan operator -(AtomicDateTime a, AtomicDateTime b)
-            => a.Time - b.Time;
-
-        public static TimeSpan operator -(AtomicDateTime a, DateTime b)
-            => a.Time - b;
+    public static TimeSpan operator -(AtomicDateTime a, DateTime b)
+    {
+        return a.Time - b;
     }
 }

@@ -1,47 +1,45 @@
-﻿using LiveSplit.Model.Comparisons;
-using LiveSplit.Model.RunFactories;
-using LiveSplit.UI;
-using System;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
 
-namespace LiveSplit.Model.RunImporters
+using LiveSplit.Model.Comparisons;
+using LiveSplit.Model.RunFactories;
+using LiveSplit.UI;
+
+namespace LiveSplit.Model.RunImporters;
+
+public class FileRunImporter : IRunImporter
 {
-    public class FileRunImporter : IRunImporter
+    public IRun Import(Form form = null)
     {
-        public IRun Import(Form form = null)
-        {
-            throw new NotSupportedException();
-        }
+        throw new NotSupportedException();
+    }
 
-        public string ImportAsComparison(IRun run, Form form = null)
+    public string ImportAsComparison(IRun run, Form form = null)
+    {
+        using var splitDialog = new OpenFileDialog();
+        DialogResult result = splitDialog.ShowDialog();
+        if (result == DialogResult.OK)
         {
-            using (var splitDialog = new OpenFileDialog())
+            string filePath = splitDialog.FileName;
+
+            using FileStream stream = File.OpenRead(filePath);
+            var runFactory = new StandardFormatsRunFactory();
+            var comparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
+
+            runFactory.Stream = stream;
+            runFactory.FilePath = filePath;
+
+            IRun imported = runFactory.Create(comparisonGeneratorsFactory);
+
+            string comparisonName = Path.GetFileNameWithoutExtension(splitDialog.FileName);
+            result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref comparisonName);
+            if (result != DialogResult.Cancel)
             {
-                var result = splitDialog.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    var filePath = splitDialog.FileName;
-
-                    using (var stream = File.OpenRead(filePath))
-                    {
-                        var runFactory = new StandardFormatsRunFactory();
-                        var comparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
-
-                        runFactory.Stream = stream;
-                        runFactory.FilePath = filePath;
-
-                        var imported = runFactory.Create(comparisonGeneratorsFactory);
-
-                        var comparisonName = Path.GetFileNameWithoutExtension(splitDialog.FileName);
-                        result = InputBox.Show(form, "Enter Comparison Name", "Name:", ref comparisonName);
-                        if (result != DialogResult.Cancel)
-                            return run.AddComparisonWithNameInput(imported, comparisonName, form);
-                    }
-                }
+                return run.AddComparisonWithNameInput(imported, comparisonName, form);
             }
-
-            return null;
         }
+
+        return null;
     }
 }
