@@ -1,7 +1,3 @@
-[submodule "LiveSplit/Components/LiveSplit.PossibleTimeSave"]
-	path = components/LiveSplit.PossibleTimeSave
-	url = https://github.com/LiveSplit/LiveSplit.PossibleTimeSave.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.PreviousSegment"]
 	path = components/LiveSplit.PreviousSegment
 	url = https://github.com/LiveSplit/LiveSplit.PreviousSegment.git
