@@ -29,7 +29,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.RunPrediction", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.SumOfBest", "components\LiveSplit.SumOfBest\LiveSplit.SumOfBest.csproj", "{EA7BF68F-9719-4078-896C-1F1E837CEC31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Text", "components\LiveSplit.Text\src\LiveSplit.Text\LiveSplit.Text.csproj", "{EE47DC13-2D24-4AAF-912B-F57B79B65386}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Text", "components\LiveSplit.Text\LiveSplit.Text.csproj", "{EE47DC13-2D24-4AAF-912B-F57B79B65386}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Title", "components\LiveSplit.Title\src\LiveSplit.Title\LiveSplit.Title.csproj", "{91D84354-3346-46DC-9CAB-93DFF1F58BF6}"
 EndProject

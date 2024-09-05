@@ -1,7 +1,3 @@
-[submodule "LiveSplit/Components/LiveSplit.Text"]
-	path = components/LiveSplit.Text
-	url = https://github.com/LiveSplit/LiveSplit.Text.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Timer"]
 	path = components/LiveSplit.Timer
 	url = https://github.com/LiveSplit/LiveSplit.Timer.git
