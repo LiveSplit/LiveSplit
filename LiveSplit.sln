@@ -57,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.BlankSpace", "com
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Counter", "components\LiveSplit.Counter\LiveSplit.Counter.csproj", "{26C33094-FD58-4C67-BD12-A58F15258396}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.HotkeyIndicator", "components\LiveSplit.HotkeyIndicator\src\LiveSplit.HotkeyIndicator\LiveSplit.HotkeyIndicator.csproj", "{6B463D7F-FEDB-4AF5-8536-B6FECF9CA50F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.HotkeyIndicator", "components\LiveSplit.HotkeyIndicator\LiveSplit.HotkeyIndicator.csproj", "{6B463D7F-FEDB-4AF5-8536-B6FECF9CA50F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Racetime", "components\LiveSplit.Racetime\src\LiveSplit.Racetime\LiveSplit.Racetime.csproj", "{10C74B50-B3A9-4D6F-BE4D-D4515F61A7E7}"
 EndProject

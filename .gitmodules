@@ -1,7 +1,3 @@
-[submodule "LiveSplit/Components/LiveSplit.HotkeyIndicator"]
-	path = components/LiveSplit.HotkeyIndicator
-	url = https://github.com/LiveSplit/LiveSplit.HotkeyIndicator.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.ManualGameTime"]
 	path = components/LiveSplit.ManualGameTime
 	url = https://github.com/LiveSplit/LiveSplit.ManualGameTime.git
