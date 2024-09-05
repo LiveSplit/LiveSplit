@@ -1,7 +1,3 @@
-[submodule "LiveSplit/Components/LiveSplit.Sound"]
-	path = components/LiveSplit.Sound
-	url = https://github.com/LiveSplit/LiveSplit.Sound.git
-	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Splits"]
 	path = components/LiveSplit.Splits
 	url = https://github.com/LiveSplit/LiveSplit.Splits.git
