@@ -7,65 +7,65 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Control", "Control", "{47D5421A-6A7E-4876-9141-8C513ED145DD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.AutoSplittingRuntime", "components\LiveSplit.AutoSplittingRuntime\src\LiveSplit.AutoSplittingRuntime\LiveSplit.AutoSplittingRuntime.csproj", "{3A74E85A-C6A8-410B-9AB4-B76BFE58DF0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.AutoSplittingRuntime", "components\LiveSplit.AutoSplittingRuntime\LiveSplit.AutoSplittingRuntime.csproj", "{3A74E85A-C6A8-410B-9AB4-B76BFE58DF0D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ManualGameTime", "components\LiveSplit.ManualGameTime\src\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj", "{121186C6-D768-4839-BB3C-D86C84EB60BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ManualGameTime", "components\LiveSplit.ManualGameTime\LiveSplit.ManualGameTime.csproj", "{121186C6-D768-4839-BB3C-D86C84EB60BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ScriptableAutoSplit", "components\LiveSplit.ScriptableAutoSplit\src\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj", "{148662A8-C86A-4267-8ABF-F0B57037272C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ScriptableAutoSplit", "components\LiveSplit.ScriptableAutoSplit\LiveSplit.ScriptableAutoSplit.csproj", "{148662A8-C86A-4267-8ABF-F0B57037272C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Information", "Information", "{3A3C7035-1C1F-462D-B388-291BEF33000D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.CurrentComparison", "components\LiveSplit.CurrentComparison\src\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj", "{D773B588-652D-4EA0-AD7A-BDEF4B5BD25B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ComparisonTime", "components\LiveSplit.ComparisonTime\LiveSplit.ComparisonTime.csproj", "{13E9FE68-5CCD-4B61-B22F-87846111A2A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Delta", "components\LiveSplit.Delta\src\LiveSplit.Delta\LiveSplit.Delta.csproj", "{55894E24-BDD7-4F49-AED8-9C3F804766F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.CurrentComparison", "components\LiveSplit.CurrentComparison\LiveSplit.CurrentComparison.csproj", "{D773B588-652D-4EA0-AD7A-BDEF4B5BD25B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.PossibleTimeSave", "components\LiveSplit.PossibleTimeSave\src\LiveSplit.PossibleTimeSave\LiveSplit.PossibleTimeSave.csproj", "{342F5A83-7DA9-4AB6-A7BA-31B1C98CAE00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Delta", "components\LiveSplit.Delta\LiveSplit.Delta.csproj", "{55894E24-BDD7-4F49-AED8-9C3F804766F0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.PreviousSegment", "components\LiveSplit.PreviousSegment\src\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj", "{BF48A8B7-109A-4970-92FC-0E5155422FC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.PossibleTimeSave", "components\LiveSplit.PossibleTimeSave\LiveSplit.PossibleTimeSave.csproj", "{342F5A83-7DA9-4AB6-A7BA-31B1C98CAE00}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.RunPrediction", "components\LiveSplit.RunPrediction\src\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj", "{D9E6393B-150E-4D5C-802C-B0D5BD169368}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.PreviousSegment", "components\LiveSplit.PreviousSegment\LiveSplit.PreviousSegment.csproj", "{BF48A8B7-109A-4970-92FC-0E5155422FC5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.SumOfBest", "components\LiveSplit.SumOfBest\src\LiveSplit.SumOfBest\LiveSplit.SumOfBest.csproj", "{EA7BF68F-9719-4078-896C-1F1E837CEC31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.RunPrediction", "components\LiveSplit.RunPrediction\LiveSplit.RunPrediction.csproj", "{D9E6393B-150E-4D5C-802C-B0D5BD169368}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Text", "components\LiveSplit.Text\src\LiveSplit.Text\LiveSplit.Text.csproj", "{EE47DC13-2D24-4AAF-912B-F57B79B65386}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.SumOfBest", "components\LiveSplit.SumOfBest\LiveSplit.SumOfBest.csproj", "{EA7BF68F-9719-4078-896C-1F1E837CEC31}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Title", "components\LiveSplit.Title\src\LiveSplit.Title\LiveSplit.Title.csproj", "{91D84354-3346-46DC-9CAB-93DFF1F58BF6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Text", "components\LiveSplit.Text\LiveSplit.Text.csproj", "{EE47DC13-2D24-4AAF-912B-F57B79B65386}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.TotalPlaytime", "components\LiveSplit.TotalPlaytime\src\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj", "{E3555DFB-8722-4A3C-8532-F140627D3226}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Title", "components\LiveSplit.Title\LiveSplit.Title.csproj", "{91D84354-3346-46DC-9CAB-93DFF1F58BF6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.WorldRecord", "components\LiveSplit.WorldRecord\src\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj", "{D1E39041-EA68-414C-9C52-98BC1C1C5E25}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.TotalPlaytime", "components\LiveSplit.TotalPlaytime\LiveSplit.TotalPlaytime.csproj", "{E3555DFB-8722-4A3C-8532-F140627D3226}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.WorldRecord", "components\LiveSplit.WorldRecord\LiveSplit.WorldRecord.csproj", "{D1E39041-EA68-414C-9C52-98BC1C1C5E25}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "List", "List", "{DB5D73B6-0B6B-4E87-AA0A-1170FBE61274}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Splits", "components\LiveSplit.Splits\src\LiveSplit.Splits\LiveSplit.Splits.csproj", "{29FCBBD3-AECD-4E9B-A88B-81F1A2A34488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Splits", "components\LiveSplit.Splits\LiveSplit.Splits.csproj", "{29FCBBD3-AECD-4E9B-A88B-81F1A2A34488}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Subsplits", "components\LiveSplit.Subsplits\src\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj", "{0A1A33C4-682C-4638-A67B-A4DFDF094C3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Subsplits", "components\LiveSplit.Subsplits\LiveSplit.Subsplits.csproj", "{0A1A33C4-682C-4638-A67B-A4DFDF094C3F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Media", "Media", "{36F5A6EF-35FC-409B-BCE0-D38E92F53EA4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Graph", "components\LiveSplit.Graph\src\LiveSplit.Graph\LiveSplit.Graph.csproj", "{E6BCC49D-E6BA-4E4E-AA69-42E37D07B2AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Graph", "components\LiveSplit.Graph\LiveSplit.Graph.csproj", "{E6BCC49D-E6BA-4E4E-AA69-42E37D07B2AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Sound", "components\LiveSplit.Sound\src\LiveSplit.Sound\LiveSplit.Sound.csproj", "{42179497-127A-4F0E-BE27-8655FB218FDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Sound", "components\LiveSplit.Sound\LiveSplit.Sound.csproj", "{42179497-127A-4F0E-BE27-8655FB218FDE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Video", "components\LiveSplit.Video\src\LiveSplit.Video\LiveSplit.Video.csproj", "{59637D64-B12A-4129-B0BD-3F0E40FF9938}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Video", "components\LiveSplit.Video\LiveSplit.Video.csproj", "{59637D64-B12A-4129-B0BD-3F0E40FF9938}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{EE292569-BD0A-4F22-BD2E-1202B33CA83E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.BlankSpace", "components\LiveSplit.BlankSpace\src\LiveSplit.BlankSpace\LiveSplit.BlankSpace.csproj", "{D0F9DB4C-32DB-4CDC-BB39-CFFCA78B75DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.BlankSpace", "components\LiveSplit.BlankSpace\LiveSplit.BlankSpace.csproj", "{D0F9DB4C-32DB-4CDC-BB39-CFFCA78B75DE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Counter", "components\LiveSplit.Counter\src\LiveSplit.Counter\LiveSplit.Counter.csproj", "{26C33094-FD58-4C67-BD12-A58F15258396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Counter", "components\LiveSplit.Counter\LiveSplit.Counter.csproj", "{26C33094-FD58-4C67-BD12-A58F15258396}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.HotkeyIndicator", "components\LiveSplit.HotkeyIndicator\src\LiveSplit.HotkeyIndicator\LiveSplit.HotkeyIndicator.csproj", "{6B463D7F-FEDB-4AF5-8536-B6FECF9CA50F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.HotkeyIndicator", "components\LiveSplit.HotkeyIndicator\LiveSplit.HotkeyIndicator.csproj", "{6B463D7F-FEDB-4AF5-8536-B6FECF9CA50F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Racetime", "components\LiveSplit.Racetime\src\LiveSplit.Racetime\LiveSplit.Racetime.csproj", "{10C74B50-B3A9-4D6F-BE4D-D4515F61A7E7}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.TheRun", "components\LiveSplit.TheRun\src\LiveSplit.TheRun\LiveSplit.TheRun.csproj", "{FD6723E9-5C48-4341-A49E-3F9FE240A106}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Racetime", "components\LiveSplit.Racetime\LiveSplit.Racetime.csproj", "{10C74B50-B3A9-4D6F-BE4D-D4515F61A7E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Timer", "Timer", "{CAE9FFAE-CAE9-4E18-9E59-83C8CDC2D330}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.DetailedTimer", "components\LiveSplit.DetailedTimer\src\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj", "{BD795636-66CF-46D7-86B2-3D0D4BBE2AB0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.DetailedTimer", "components\LiveSplit.DetailedTimer\LiveSplit.DetailedTimer.csproj", "{BD795636-66CF-46D7-86B2-3D0D4BBE2AB0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Timer", "components\LiveSplit.Timer\src\LiveSplit.Timer\LiveSplit.Timer.csproj", "{00967C58-C705-4B8F-B6E5-1B04432CBC23}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Timer", "components\LiveSplit.Timer\LiveSplit.Timer.csproj", "{00967C58-C705-4B8F-B6E5-1B04432CBC23}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{4850A037-C05C-4A26-A0B0-0E109663C7A8}"
 EndProject
@@ -101,7 +101,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit", "src\LiveSplit\
 		{E6BCC49D-E6BA-4E4E-AA69-42E37D07B2AC} = {E6BCC49D-E6BA-4E4E-AA69-42E37D07B2AC}
 		{EA7BF68F-9719-4078-896C-1F1E837CEC31} = {EA7BF68F-9719-4078-896C-1F1E837CEC31}
 		{EE47DC13-2D24-4AAF-912B-F57B79B65386} = {EE47DC13-2D24-4AAF-912B-F57B79B65386}
-		{FD6723E9-5C48-4341-A49E-3F9FE240A106} = {FD6723E9-5C48-4341-A49E-3F9FE240A106}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.Core", "src\LiveSplit.Core\LiveSplit.Core.csproj", "{26D65334-18E2-4C86-9BF3-193FDCB6886A}"
@@ -119,8 +118,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomFontDialog", "lib\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj", "{9C4ED8A7-5306-421A-8BBF-2E1C49AAE943}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WinFormsColor", "lib\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj", "{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LiveSplit.ComparisonTime", "components\LiveSplit.ComparisonTime\src\LiveSplit.ComparisonTime\LiveSplit.ComparisonTime.csproj", "{13E9FE68-5CCD-4B61-B22F-87846111A2A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -140,6 +137,10 @@ Global
 		{148662A8-C86A-4267-8ABF-F0B57037272C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{148662A8-C86A-4267-8ABF-F0B57037272C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{148662A8-C86A-4267-8ABF-F0B57037272C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13E9FE68-5CCD-4B61-B22F-87846111A2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13E9FE68-5CCD-4B61-B22F-87846111A2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13E9FE68-5CCD-4B61-B22F-87846111A2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13E9FE68-5CCD-4B61-B22F-87846111A2A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D773B588-652D-4EA0-AD7A-BDEF4B5BD25B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D773B588-652D-4EA0-AD7A-BDEF4B5BD25B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D773B588-652D-4EA0-AD7A-BDEF4B5BD25B}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -216,10 +217,6 @@ Global
 		{10C74B50-B3A9-4D6F-BE4D-D4515F61A7E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10C74B50-B3A9-4D6F-BE4D-D4515F61A7E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10C74B50-B3A9-4D6F-BE4D-D4515F61A7E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FD6723E9-5C48-4341-A49E-3F9FE240A106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FD6723E9-5C48-4341-A49E-3F9FE240A106}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FD6723E9-5C48-4341-A49E-3F9FE240A106}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FD6723E9-5C48-4341-A49E-3F9FE240A106}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD795636-66CF-46D7-86B2-3D0D4BBE2AB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BD795636-66CF-46D7-86B2-3D0D4BBE2AB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD795636-66CF-46D7-86B2-3D0D4BBE2AB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -264,10 +261,6 @@ Global
 		{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0D77A457-99DE-41D8-89E6-1EA293FB2AFB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13E9FE68-5CCD-4B61-B22F-87846111A2A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13E9FE68-5CCD-4B61-B22F-87846111A2A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13E9FE68-5CCD-4B61-B22F-87846111A2A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13E9FE68-5CCD-4B61-B22F-87846111A2A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -278,6 +271,7 @@ Global
 		{121186C6-D768-4839-BB3C-D86C84EB60BA} = {47D5421A-6A7E-4876-9141-8C513ED145DD}
 		{148662A8-C86A-4267-8ABF-F0B57037272C} = {47D5421A-6A7E-4876-9141-8C513ED145DD}
 		{3A3C7035-1C1F-462D-B388-291BEF33000D} = {CCE02961-4FBF-40BF-B2B6-8982462F0909}
+		{13E9FE68-5CCD-4B61-B22F-87846111A2A5} = {3A3C7035-1C1F-462D-B388-291BEF33000D}
 		{D773B588-652D-4EA0-AD7A-BDEF4B5BD25B} = {3A3C7035-1C1F-462D-B388-291BEF33000D}
 		{55894E24-BDD7-4F49-AED8-9C3F804766F0} = {3A3C7035-1C1F-462D-B388-291BEF33000D}
 		{342F5A83-7DA9-4AB6-A7BA-31B1C98CAE00} = {3A3C7035-1C1F-462D-B388-291BEF33000D}
@@ -300,7 +294,6 @@ Global
 		{26C33094-FD58-4C67-BD12-A58F15258396} = {EE292569-BD0A-4F22-BD2E-1202B33CA83E}
 		{6B463D7F-FEDB-4AF5-8536-B6FECF9CA50F} = {EE292569-BD0A-4F22-BD2E-1202B33CA83E}
 		{10C74B50-B3A9-4D6F-BE4D-D4515F61A7E7} = {EE292569-BD0A-4F22-BD2E-1202B33CA83E}
-		{FD6723E9-5C48-4341-A49E-3F9FE240A106} = {EE292569-BD0A-4F22-BD2E-1202B33CA83E}
 		{CAE9FFAE-CAE9-4E18-9E59-83C8CDC2D330} = {CCE02961-4FBF-40BF-B2B6-8982462F0909}
 		{BD795636-66CF-46D7-86B2-3D0D4BBE2AB0} = {CAE9FFAE-CAE9-4E18-9E59-83C8CDC2D330}
 		{00967C58-C705-4B8F-B6E5-1B04432CBC23} = {CAE9FFAE-CAE9-4E18-9E59-83C8CDC2D330}
@@ -313,6 +306,5 @@ Global
 		{32D3EE3A-410C-4875-B29F-12D83EA95756} = {ECBBA10A-903C-4610-8BE4-FC8503A97C04}
 		{9C4ED8A7-5306-421A-8BBF-2E1C49AAE943} = {4850A037-C05C-4A26-A0B0-0E109663C7A8}
 		{0D77A457-99DE-41D8-89E6-1EA293FB2AFB} = {4850A037-C05C-4A26-A0B0-0E109663C7A8}
-		{13E9FE68-5CCD-4B61-B22F-87846111A2A5} = {3A3C7035-1C1F-462D-B388-291BEF33000D}
 	EndGlobalSection
 EndGlobal

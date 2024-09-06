@@ -11,7 +11,7 @@
     <ResourcesPath>$(RootPath)\res</ResourcesPath>
 
     <ArtifactsPath>$(RootPath)\artifacts</ArtifactsPath>
-    <BuildPath>$(RootPath)\bin\$(Configuration.ToLowerInvariant())</BuildPath>
+    <BuildPath>$(RootPath)\build\$(Configuration.ToLowerInvariant())</BuildPath>
   </PropertyGroup>
 
 </Project>

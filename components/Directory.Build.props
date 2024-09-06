@@ -3,9 +3,6 @@
   <Import Project="$([MSBuild]::GetPathOfFileAbove(Directory.Build.props, $(MSBuildThisFileDirectory)..))" />
 
   <PropertyGroup>
-    <LsSrcPath>$(RootPath)\src</LsSrcPath>
-    <LsLibPath>$(RootPath)\lib</LsLibPath>
-
     <OutputPath>$(BuildPath)\Components</OutputPath>
   </PropertyGroup>
 
