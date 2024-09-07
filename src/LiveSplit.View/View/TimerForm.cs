@@ -157,19 +157,19 @@ public partial class TimerForm : Form
     private float? ResizingInitialAspectRatio { get; set; } = null;
 
     [DllImport("user32.dll")]
-    private static extern int GetUpdateRgn(nint hWnd, nint hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
+    private static extern int GetUpdateRgn(IntPtr hWnd, IntPtr hRgn, [MarshalAs(UnmanagedType.Bool)] bool bErase);
 
     [DllImport("gdi32.dll")]
-    private static extern nint CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
+    private static extern IntPtr CreateRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect);
 
     [DllImport("user32")]
-    private static extern uint SetWindowLong(nint hwnd, int nIndex, uint dwNewLong);
+    private static extern uint SetWindowLong(IntPtr hwnd, int nIndex, uint dwNewLong);
 
     [DllImport("user32")]
-    private static extern uint GetWindowLong(nint hwnd, int nIndex);
+    private static extern uint GetWindowLong(IntPtr hwnd, int nIndex);
 
     [DllImport("user32.dll")]
-    private static extern nint GetForegroundWindow();
+    private static extern IntPtr GetForegroundWindow();
 
     public TimerForm(string splitsPath = null, string layoutPath = null, string basePath = "")
     {
@@ -1691,7 +1691,7 @@ public partial class TimerForm : Form
             {
                 if (hitBox.Value.Contains(clientPoint))
                 {
-                    m.Result = (nint)hitBox.Key;
+                    m.Result = (IntPtr)hitBox.Key;
                     handled = true;
                     break;
                 }
@@ -1705,7 +1705,7 @@ public partial class TimerForm : Form
 
         if (m.Msg == WM_PAINT)
         {
-            if (hRgn != 0)
+            if (hRgn != IntPtr.Zero)
             {
                 DeleteObject(hRgn);
             }
@@ -1811,10 +1811,10 @@ public partial class TimerForm : Form
         return true;
     }
 
-    private nint hRgn = 0;
+    private IntPtr hRgn = IntPtr.Zero;
     [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
     [return: MarshalAs(UnmanagedType.Bool)]
-    private static extern bool DeleteObject([In] nint hObject);
+    private static extern bool DeleteObject([In] IntPtr hObject);
 
     private void exitToolStripMenuItem_Click(object sender, EventArgs e)
     {

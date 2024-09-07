@@ -269,8 +269,8 @@ public static class FiletypeRegistryHelper
     [DllImport("shell32.dll")]
     private static extern void SHChangeNotify(HChangeNotifyEventID wEventId,
                                        HChangeNotifyFlags uFlags,
-                                       nint dwItem1,
-                                       nint dwItem2);
+                                       IntPtr dwItem1,
+                                       IntPtr dwItem2);
 
     public static void RegisterFileFormats()
     {
@@ -367,7 +367,7 @@ public static class FiletypeRegistryHelper
         command.SetValue("", $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -s \"{"%1"}\"");
         RegistryKey iconKey = lssApplicationKey.CreateSubKey("DefaultIcon");
         iconKey.SetValue("", $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"SplitsFile.ico"}");
-        SHChangeNotify(HChangeNotifyEventID.SHCNE_ASSOCCHANGED, HChangeNotifyFlags.SHCNF_IDLIST, 0, 0);
+        SHChangeNotify(HChangeNotifyEventID.SHCNE_ASSOCCHANGED, HChangeNotifyFlags.SHCNF_IDLIST, IntPtr.Zero, IntPtr.Zero);
 
     }
 
@@ -416,7 +416,7 @@ public static class FiletypeRegistryHelper
         command.SetValue("", $"\"{Application.ExecutablePath.Replace("LiveSplit.Register.exe", "LiveSplit.exe")}\" -l \"{"%1"}\"");
         RegistryKey iconKey = lslApplicationKey.CreateSubKey("DefaultIcon");
         iconKey.SetValue("", $"{Path.GetDirectoryName(Application.ExecutablePath)}\\Resources\\{"LayoutFile.ico"}");
-        SHChangeNotify(HChangeNotifyEventID.SHCNE_ASSOCCHANGED, HChangeNotifyFlags.SHCNF_IDLIST, 0, 0);
+        SHChangeNotify(HChangeNotifyEventID.SHCNE_ASSOCCHANGED, HChangeNotifyFlags.SHCNF_IDLIST, IntPtr.Zero, IntPtr.Zero);
     }
 
     private static bool CheckLSLApplicationKey()

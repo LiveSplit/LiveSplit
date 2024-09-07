@@ -127,7 +127,7 @@ public partial class FontList : UserControl
     }
 
     [DllImport("user32.dll")]
-    private static extern nint SendMessage(nint hWnd, uint Msg, uint wParam, uint lParam);
+    private static extern IntPtr SendMessage(IntPtr hWnd, uint Msg, uint wParam, uint lParam);
 
     /// <summary>
     ///

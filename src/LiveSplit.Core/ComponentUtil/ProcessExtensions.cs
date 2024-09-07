@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-using SizeT = nuint;
+using SizeT = System.UIntPtr;
 
 // Note: Please be careful when modifying this because it could break existing components!
 // http://stackoverflow.com/questions/1456785/a-definitive-guide-to-api-breaking-changes-in-net
@@ -15,8 +15,8 @@ using SizeT = nuint;
 namespace LiveSplit.ComponentUtil;
 public class ProcessModuleWow64Safe
 {
-    public nint BaseAddress { get; set; }
-    public nint EntryPointAddress { get; set; }
+    public IntPtr BaseAddress { get; set; }
+    public IntPtr EntryPointAddress { get; set; }
     public string FileName { get; set; }
     public int ModuleMemorySize { get; set; }
     public string ModuleName { get; set; }
@@ -59,7 +59,7 @@ public static class ExtensionMethods
             throw new Win32Exception();
         }
 
-        uint numMods = cbNeeded / (uint)Unsafe.SizeOf<nint>();
+        uint numMods = cbNeeded / (uint)Unsafe.SizeOf<IntPtr>();
 
         int hash = p.StartTime.GetHashCode() + p.Id + (int)numMods;
         if (ModuleCache.ContainsKey(hash))
@@ -67,7 +67,7 @@ public static class ExtensionMethods
             return ModuleCache[hash];
         }
 
-        nint[] hModules = new nint[(int)numMods];
+        IntPtr[] hModules = new IntPtr[(int)numMods];
         if (!WinAPI.EnumProcessModulesEx(p.Handle, hModules, cbNeeded, out _, LIST_MODULES_ALL))
         {
             throw new Win32Exception();
@@ -122,12 +122,12 @@ public static class ExtensionMethods
         long min = 0x10000L;
         long max = process.Is64Bit() ? 0x00007FFFFFFEFFFFL : 0x7FFEFFFFL;
 
-        nuint mbiSize = (SizeT)Marshal.SizeOf(typeof(MemoryBasicInformation));
+        UIntPtr mbiSize = (SizeT)Marshal.SizeOf(typeof(MemoryBasicInformation));
 
         long addr = min;
         do
         {
-            if (WinAPI.VirtualQueryEx(process.Handle, (nint)addr, out MemoryBasicInformation mbi, mbiSize) == 0)
+            if (WinAPI.VirtualQueryEx(process.Handle, (IntPtr)addr, out MemoryBasicInformation mbi, mbiSize) == SizeT.Zero)
             {
                 break;
             }
@@ -168,7 +168,7 @@ public static class ExtensionMethods
         return false;
     }
 
-    public static bool ReadValue<T>(this Process process, nint addr, out T val) where T : struct
+    public static bool ReadValue<T>(this Process process, IntPtr addr, out T val) where T : struct
     {
         Type type = typeof(T);
         type = type.IsEnum ? Enum.GetUnderlyingType(type) : type;
@@ -184,7 +184,7 @@ public static class ExtensionMethods
         return true;
     }
 
-    public static bool ReadValue(Process process, nint addr, Type type, out object val)
+    public static bool ReadValue(Process process, IntPtr addr, Type type, out object val)
     {
 
         val = null;
@@ -199,7 +199,7 @@ public static class ExtensionMethods
         return true;
     }
 
-    public static bool ReadBytes(this Process process, nint addr, int count, out byte[] val)
+    public static bool ReadBytes(this Process process, IntPtr addr, int count, out byte[] val)
     {
         byte[] bytes = new byte[count];
 
@@ -215,33 +215,33 @@ public static class ExtensionMethods
         return true;
     }
 
-    public static bool ReadPointer(this Process process, nint addr, out nint val)
+    public static bool ReadPointer(this Process process, IntPtr addr, out IntPtr val)
     {
         return ReadPointer(process, addr, process.Is64Bit(), out val);
     }
 
-    public static bool ReadPointer(this Process process, nint addr, bool is64Bit, out nint val)
+    public static bool ReadPointer(this Process process, IntPtr addr, bool is64Bit, out IntPtr val)
     {
         byte[] bytes = new byte[is64Bit ? 8 : 4];
 
-        val = 0;
+        val = IntPtr.Zero;
         if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT read)
             || read != (SizeT)bytes.Length)
         {
             return false;
         }
 
-        val = is64Bit ? (nint)BitConverter.ToInt64(bytes, 0) : (nint)BitConverter.ToUInt32(bytes, 0);
+        val = is64Bit ? (IntPtr)BitConverter.ToInt64(bytes, 0) : (IntPtr)BitConverter.ToUInt32(bytes, 0);
 
         return true;
     }
 
-    public static bool ReadString(this Process process, nint addr, int numBytes, out string str)
+    public static bool ReadString(this Process process, IntPtr addr, int numBytes, out string str)
     {
         return ReadString(process, addr, ReadStringType.AutoDetect, numBytes, out str);
     }
 
-    public static bool ReadString(this Process process, nint addr, ReadStringType type, int numBytes, out string str)
+    public static bool ReadString(this Process process, IntPtr addr, ReadStringType type, int numBytes, out string str)
     {
         var sb = new StringBuilder(numBytes);
         if (!ReadString(process, addr, type, sb))
@@ -255,12 +255,12 @@ public static class ExtensionMethods
         return true;
     }
 
-    public static bool ReadString(this Process process, nint addr, StringBuilder sb)
+    public static bool ReadString(this Process process, IntPtr addr, StringBuilder sb)
     {
         return ReadString(process, addr, ReadStringType.AutoDetect, sb);
     }
 
-    public static bool ReadString(this Process process, nint addr, ReadStringType type, StringBuilder sb)
+    public static bool ReadString(this Process process, IntPtr addr, ReadStringType type, StringBuilder sb)
     {
         byte[] bytes = new byte[sb.Capacity];
         if (!WinAPI.ReadProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT read)
@@ -305,7 +305,7 @@ public static class ExtensionMethods
         return true;
     }
 
-    public static T ReadValue<T>(this Process process, nint addr, T default_ = default) where T : struct
+    public static T ReadValue<T>(this Process process, IntPtr addr, T default_ = default) where T : struct
     {
         if (!process.ReadValue(addr, out T val))
         {
@@ -315,7 +315,7 @@ public static class ExtensionMethods
         return val;
     }
 
-    public static byte[] ReadBytes(this Process process, nint addr, int count)
+    public static byte[] ReadBytes(this Process process, IntPtr addr, int count)
     {
         if (!process.ReadBytes(addr, count, out byte[] bytes))
         {
@@ -325,9 +325,9 @@ public static class ExtensionMethods
         return bytes;
     }
 
-    public static nint ReadPointer(this Process process, nint addr, nint default_ = default)
+    public static IntPtr ReadPointer(this Process process, IntPtr addr, IntPtr default_ = default)
     {
-        if (!process.ReadPointer(addr, out nint ptr))
+        if (!process.ReadPointer(addr, out IntPtr ptr))
         {
             return default_;
         }
@@ -335,7 +335,7 @@ public static class ExtensionMethods
         return ptr;
     }
 
-    public static string ReadString(this Process process, nint addr, int numBytes, string default_ = null)
+    public static string ReadString(this Process process, IntPtr addr, int numBytes, string default_ = null)
     {
         if (!process.ReadString(addr, numBytes, out string str))
         {
@@ -345,7 +345,7 @@ public static class ExtensionMethods
         return str;
     }
 
-    public static string ReadString(this Process process, nint addr, ReadStringType type, int numBytes, string default_ = null)
+    public static string ReadString(this Process process, IntPtr addr, ReadStringType type, int numBytes, string default_ = null)
     {
         if (!process.ReadString(addr, type, numBytes, out string str))
         {
@@ -355,12 +355,12 @@ public static class ExtensionMethods
         return str;
     }
 
-    public static bool WriteValue<T>(this Process process, nint addr, T obj) where T : struct
+    public static bool WriteValue<T>(this Process process, IntPtr addr, T obj) where T : struct
     {
         int size = Marshal.SizeOf(obj);
         byte[] arr = new byte[size];
 
-        nint ptr = Marshal.AllocHGlobal(size);
+        IntPtr ptr = Marshal.AllocHGlobal(size);
         Marshal.StructureToPtr(obj, ptr, true);
         Marshal.Copy(ptr, arr, 0, size);
         Marshal.FreeHGlobal(ptr);
@@ -368,7 +368,7 @@ public static class ExtensionMethods
         return process.WriteBytes(addr, arr);
     }
 
-    public static bool WriteBytes(this Process process, nint addr, byte[] bytes)
+    public static bool WriteBytes(this Process process, IntPtr addr, byte[] bytes)
     {
         if (!WinAPI.WriteProcessMemory(process.Handle, addr, bytes, (SizeT)bytes.Length, out SizeT written)
             || written != (SizeT)bytes.Length)
@@ -379,7 +379,7 @@ public static class ExtensionMethods
         return true;
     }
 
-    private static bool WriteJumpOrCall(Process process, nint addr, nint dest, bool call)
+    private static bool WriteJumpOrCall(Process process, IntPtr addr, IntPtr dest, bool call)
     {
         bool x64 = process.Is64Bit();
 
@@ -389,7 +389,7 @@ public static class ExtensionMethods
         if (x64)
         {
             instruction.AddRange(new byte[] { 0x48, 0xB8 }); // mov rax immediate
-            instruction.AddRange(BitConverter.GetBytes(dest));
+            instruction.AddRange(BitConverter.GetBytes((long)dest));
             instruction.AddRange(new byte[] { 0xFF, call ? (byte)0xD0 : (byte)0xE0 }); // jmp/call rax
         }
         else
@@ -406,17 +406,17 @@ public static class ExtensionMethods
         return success;
     }
 
-    public static bool WriteJumpInstruction(this Process process, nint addr, nint dest)
+    public static bool WriteJumpInstruction(this Process process, IntPtr addr, IntPtr dest)
     {
         return WriteJumpOrCall(process, addr, dest, false);
     }
 
-    public static bool WriteCallInstruction(this Process process, nint addr, nint dest)
+    public static bool WriteCallInstruction(this Process process, IntPtr addr, IntPtr dest)
     {
         return WriteJumpOrCall(process, addr, dest, true);
     }
 
-    public static nint WriteDetour(this Process process, nint src, int overwrittenBytes, nint dest)
+    public static IntPtr WriteDetour(this Process process, IntPtr src, int overwrittenBytes, IntPtr dest)
     {
         int jmpLen = process.Is64Bit() ? 12 : 5;
         if (overwrittenBytes < jmpLen)
@@ -427,8 +427,8 @@ public static class ExtensionMethods
 
         // allocate memory to store the original src prologue bytes we overwrite with jump to dest
         // along with the jump back to src
-        nint gate;
-        if ((gate = process.AllocateMemory(jmpLen + overwrittenBytes)) == 0)
+        IntPtr gate;
+        if ((gate = process.AllocateMemory(jmpLen + overwrittenBytes)) == IntPtr.Zero)
         {
             throw new Win32Exception();
         }
@@ -543,38 +543,38 @@ public static class ExtensionMethods
         return val;
     }
 
-    public static nint AllocateMemory(this Process process, int size)
+    public static IntPtr AllocateMemory(this Process process, int size)
     {
-        return WinAPI.VirtualAllocEx(process.Handle, 0, (SizeT)size, (uint)MemPageState.MEM_COMMIT,
+        return WinAPI.VirtualAllocEx(process.Handle, IntPtr.Zero, (SizeT)size, (uint)MemPageState.MEM_COMMIT,
             MemPageProtect.PAGE_EXECUTE_READWRITE);
     }
 
-    public static bool FreeMemory(this Process process, nint addr)
+    public static bool FreeMemory(this Process process, IntPtr addr)
     {
         const uint MEM_RELEASE = 0x8000;
-        return WinAPI.VirtualFreeEx(process.Handle, addr, 0, MEM_RELEASE);
+        return WinAPI.VirtualFreeEx(process.Handle, addr, SizeT.Zero, MEM_RELEASE);
     }
 
-    public static bool VirtualProtect(this Process process, nint addr, int size, MemPageProtect protect,
+    public static bool VirtualProtect(this Process process, IntPtr addr, int size, MemPageProtect protect,
         out MemPageProtect oldProtect)
     {
         return WinAPI.VirtualProtectEx(process.Handle, addr, (SizeT)size, protect, out oldProtect);
     }
 
-    public static bool VirtualProtect(this Process process, nint addr, int size, MemPageProtect protect)
+    public static bool VirtualProtect(this Process process, IntPtr addr, int size, MemPageProtect protect)
     {
         return WinAPI.VirtualProtectEx(process.Handle, addr, (SizeT)size, protect, out MemPageProtect oldProtect);
     }
 
-    public static nint CreateThread(this Process process, nint startAddress, nint parameter)
+    public static IntPtr CreateThread(this Process process, IntPtr startAddress, IntPtr parameter)
     {
-        return WinAPI.CreateRemoteThread(process.Handle, 0, 0, startAddress, parameter, 0,
-            out nint threadId);
+        return WinAPI.CreateRemoteThread(process.Handle, IntPtr.Zero, SizeT.Zero, startAddress, parameter, 0,
+            out IntPtr threadId);
     }
 
-    public static nint CreateThread(this Process process, nint startAddress)
+    public static IntPtr CreateThread(this Process process, IntPtr startAddress)
     {
-        return CreateThread(process, startAddress, 0);
+        return CreateThread(process, startAddress, IntPtr.Zero);
     }
 
     public static void Suspend(this Process process)
