@@ -34,7 +34,7 @@ public class LiveSplitCoreFactory
     {
         string path;
 
-        if (Unsafe.SizeOf<nint>() == 4)
+        if (Unsafe.SizeOf<IntPtr>() == 4)
         {
             path = "x86\\livesplit_core.dll";
         }

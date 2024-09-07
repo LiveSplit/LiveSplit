@@ -14,7 +14,7 @@ public class DeepPointer
 {
     public enum DerefType { Auto, Bit32, Bit64 }
 
-    private readonly nint _absoluteBase;
+    private readonly IntPtr _absoluteBase;
     private readonly bool _usingAbsoluteBase;
     private readonly DerefType _derefType;
 
@@ -22,10 +22,10 @@ public class DeepPointer
     private List<OffsetT> _offsets;
     private readonly string _module;
 
-    public DeepPointer(nint absoluteBase, params OffsetT[] offsets)
+    public DeepPointer(IntPtr absoluteBase, params OffsetT[] offsets)
         : this(absoluteBase, DerefType.Auto, offsets) { }
 
-    public DeepPointer(nint absoluteBase, DerefType derefType, params OffsetT[] offsets)
+    public DeepPointer(IntPtr absoluteBase, DerefType derefType, params OffsetT[] offsets)
     {
         _absoluteBase = absoluteBase;
         _usingAbsoluteBase = true;
@@ -65,7 +65,7 @@ public class DeepPointer
 
     public bool Deref<T>(Process process, out T value) where T : struct
     {
-        if (!DerefOffsets(process, out nint ptr)
+        if (!DerefOffsets(process, out IntPtr ptr)
             || !process.ReadValue(ptr, out value))
         {
             value = default;
@@ -87,7 +87,7 @@ public class DeepPointer
 
     public bool DerefBytes(Process process, int count, out byte[] value)
     {
-        if (!DerefOffsets(process, out nint ptr)
+        if (!DerefOffsets(process, out IntPtr ptr)
             || !process.ReadBytes(ptr, count, out value))
         {
             value = null;
@@ -142,7 +142,7 @@ public class DeepPointer
 
     public bool DerefString(Process process, ReadStringType type, StringBuilder sb)
     {
-        if (!DerefOffsets(process, out nint ptr)
+        if (!DerefOffsets(process, out IntPtr ptr)
             || !process.ReadString(ptr, type, sb))
         {
             return false;
@@ -151,7 +151,7 @@ public class DeepPointer
         return true;
     }
 
-    public bool DerefOffsets(Process process, out nint ptr)
+    public bool DerefOffsets(Process process, out IntPtr ptr)
     {
         bool is64Bit;
         if (_derefType == DerefType.Auto)
@@ -169,7 +169,7 @@ public class DeepPointer
                 .FirstOrDefault(m => m.ModuleName.ToLower() == _module);
             if (module == null)
             {
-                ptr = 0;
+                ptr = IntPtr.Zero;
                 return false;
             }
 
@@ -187,7 +187,7 @@ public class DeepPointer
         for (int i = 0; i < _offsets.Count - 1; i++)
         {
             if (!process.ReadPointer(ptr + _offsets[i], is64Bit, out ptr)
-                || ptr == 0)
+                || ptr == IntPtr.Zero)
             {
                 return false;
             }

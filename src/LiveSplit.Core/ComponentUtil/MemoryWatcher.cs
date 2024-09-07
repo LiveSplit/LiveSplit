@@ -72,7 +72,7 @@ public abstract class MemoryWatcher
     protected bool InitialUpdate { get; set; }
     protected DateTime? LastUpdateTime { get; set; }
     protected DeepPointer DeepPtr { get; set; }
-    protected nint Address { get; set; }
+    protected IntPtr Address { get; set; }
 
     protected AddressType AddrType { get; }
     protected enum AddressType { DeepPointer, Absolute }
@@ -85,7 +85,7 @@ public abstract class MemoryWatcher
         FailAction = ReadFailAction.DontUpdate;
     }
 
-    protected MemoryWatcher(nint address)
+    protected MemoryWatcher(IntPtr address)
     {
         Address = address;
         AddrType = AddressType.Absolute;
@@ -148,14 +148,14 @@ public class StringWatcher : MemoryWatcher
     public StringWatcher(DeepPointer pointer, int numBytes)
         : this(pointer, ReadStringType.AutoDetect, numBytes) { }
 
-    public StringWatcher(nint address, ReadStringType type, int numBytes)
+    public StringWatcher(IntPtr address, ReadStringType type, int numBytes)
         : base(address)
     {
         _stringType = type;
         _numBytes = numBytes;
     }
 
-    public StringWatcher(nint address, int numBytes)
+    public StringWatcher(IntPtr address, int numBytes)
         : this(address, ReadStringType.AutoDetect, numBytes) { }
 
     public override bool Update(Process process)
@@ -241,7 +241,7 @@ public class MemoryWatcher<T> : MemoryWatcher where T : struct
 
     public MemoryWatcher(DeepPointer pointer)
         : base(pointer) { }
-    public MemoryWatcher(nint address)
+    public MemoryWatcher(IntPtr address)
         : base(address) { }
 
     public override bool Update(Process process)

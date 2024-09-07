@@ -109,7 +109,7 @@ public class KeyboardInput : IDisposable
         public uint scanCode;
         public KBDLLHOOKSTRUCTFlags flags;
         public uint time;
-        public nuint dwExtraInfo;
+        public UIntPtr dwExtraInfo;
     }
 
     [Flags]
@@ -124,14 +124,14 @@ public class KeyboardInput : IDisposable
     public event KeyEventHandler KeyBoardKeyPressed;
 
     private readonly WindowsHookHelper.HookDelegate keyBoardDelegate;
-    private nint keyBoardHandle;
+    private IntPtr keyBoardHandle;
     private const int WH_KEYBOARD_LL = 13;
     private bool disposed;
 
     [DllImport("kernel32.dll")]
     private static extern uint GetLastError();
     [DllImport("kernel32.dll")]
-    private static extern nint GetModuleHandle(string module);
+    private static extern IntPtr GetModuleHandle(string module);
 
     private Keys modifiers;
     private Control messageLoopControl;
@@ -164,12 +164,12 @@ public class KeyboardInput : IDisposable
     {
         using var process = Process.GetCurrentProcess();
         using ProcessModule module = process.MainModule;
-        nint hModule = GetModuleHandle(module.ModuleName);
+        IntPtr hModule = GetModuleHandle(module.ModuleName);
         messageLoopControl.BeginInvoke(new Action(() =>
         {
             try
             {
-                if (keyBoardHandle != 0)
+                if (keyBoardHandle != IntPtr.Zero)
                 {
                     WindowsHookHelper.UnhookWindowsHookEx(keyBoardHandle);
                 }
@@ -181,8 +181,8 @@ public class KeyboardInput : IDisposable
         }));
     }
 
-    private nint KeyboardHookDelegate(
-        int Code, nint wParam, nint lParam)
+    private IntPtr KeyboardHookDelegate(
+        int Code, IntPtr wParam, IntPtr lParam)
     {
         if (Code < 0)
         {
@@ -192,7 +192,7 @@ public class KeyboardInput : IDisposable
 
         var hookStruct = (KBDLLHOOKSTRUCT)Marshal.PtrToStructure(lParam, typeof(KBDLLHOOKSTRUCT));
 
-        if (wParam is 0x0100 or 0x0104) //KeyDown
+        if (wParam == (IntPtr)0x0100 || wParam == (IntPtr)0x0104) //KeyDown
         {
             var key = (Keys)hookStruct.vkCode;
 
@@ -244,7 +244,7 @@ public class KeyboardInput : IDisposable
                 modifiers &= ~Keys.Alt;
             }
         }
-        else if (wParam is 0x0101 or 0x0105) //KeyUp
+        else if (wParam == (IntPtr)0x0101 || wParam == (IntPtr)0x0105) //KeyUp
         {
             var key = (Keys)hookStruct.vkCode;
 
@@ -276,7 +276,7 @@ public class KeyboardInput : IDisposable
     {
         if (!disposed)
         {
-            if (keyBoardHandle != 0)
+            if (keyBoardHandle != IntPtr.Zero)
             {
                 WindowsHookHelper.UnhookWindowsHookEx(
                     keyBoardHandle);
@@ -294,18 +294,18 @@ public class KeyboardInput : IDisposable
 
 public class WindowsHookHelper
 {
-    public delegate nint HookDelegate(
-        int Code, nint wParam, nint lParam);
+    public delegate IntPtr HookDelegate(
+        int Code, IntPtr wParam, IntPtr lParam);
 
     [DllImport("User32.dll")]
-    public static extern nint CallNextHookEx(
-        nint hHook, int nCode, nint wParam, nint lParam);
+    public static extern IntPtr CallNextHookEx(
+        IntPtr hHook, int nCode, IntPtr wParam, IntPtr lParam);
 
     [DllImport("User32.dll")]
-    public static extern nint UnhookWindowsHookEx(nint hHook);
+    public static extern IntPtr UnhookWindowsHookEx(IntPtr hHook);
 
     [DllImport("User32.dll")]
-    public static extern nint SetWindowsHookEx(
-        int idHook, HookDelegate lpfn, nint hmod,
+    public static extern IntPtr SetWindowsHookEx(
+        int idHook, HookDelegate lpfn, IntPtr hmod,
         int dwThreadId);
 }
