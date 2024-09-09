@@ -136,16 +136,12 @@ public class RunMetadata
     /// </returns>
     public CustomVariable GetOrAddCustomVariable(string name)
     {
-        if (CustomVariables.TryGetValue(name, out CustomVariable value))
+        if (!CustomVariables.TryGetValue(name, out CustomVariable variable))
         {
-            return value;
+            CustomVariables.Add(variable = new());
         }
-        else
-        {
-            CustomVariable newValue = new CustomVariable();
-            CustomVariables[name] = newValue;
-            return newValue;
-        }
+
+        return variable;
     }
 
     /// <summary>
@@ -401,14 +397,15 @@ public sealed class CustomVariable
     public bool IsPermanent { get; private set; }
 
     /// <summary>
-    ///     Constructs an empty temporary custom variable.
+    ///     Creates a new instance of the <see cref="CustomVariable"/> class
+    ///     with a default value and temporary permanence.
     /// </summary>
     public CustomVariable()
         : this(null, false) { }
 
     /// <summary>
-    ///     Constructs a custom variable with the given <paramref name="value"/>,
-    ///     as permanent if <paramref name="value"/> is <see langword="true"/>.
+    ///     Creates a new instance of the <see cref="CustomVariable"/> class
+    ///     with the specified <paramref name="value"/> and permanence.
     /// </summary>
     /// <param name="value">
     ///     The value of the custom variable.
@@ -425,7 +422,9 @@ public sealed class CustomVariable
     /// <summary>
     ///     Makes the custom variable permanent.
     /// </summary>
-    /// <returns>The same custom variable object marked permanent.</returns>
+    /// <returns>
+    ///     The same custom variable object marked permanent.
+    /// </returns>
     public CustomVariable AsPermanent()
     {
         IsPermanent = true;
@@ -435,7 +434,9 @@ public sealed class CustomVariable
     /// <summary>
     ///     Constructs a new custom variable with the same value and permanence.
     /// </summary>
-    /// <returns>A copy of the custom variable.</returns>
+    /// <returns>
+    ///     A copy of the custom variable.
+    /// </returns>
     public CustomVariable Clone()
     {
         return new CustomVariable(Value, IsPermanent);
