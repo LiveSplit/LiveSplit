@@ -138,7 +138,7 @@ public class RunMetadata
     {
         if (!CustomVariables.TryGetValue(name, out CustomVariable variable))
         {
-            CustomVariables.Add(variable = new());
+            CustomVariables.Add(name, variable = new());
         }
 
         return variable;
