@@ -398,7 +398,7 @@ public sealed class CustomVariable
 
     /// <summary>
     ///     Creates a new instance of the <see cref="CustomVariable"/> class
-    ///     with a default value and temporary permanence.
+    ///     with a default value, not permanent.
     /// </summary>
     public CustomVariable()
         : this(null, false) { }
