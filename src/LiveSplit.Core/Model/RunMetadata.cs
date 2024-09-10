@@ -158,6 +158,25 @@ public class RunMetadata
         return GetOrAddCustomVariable(name).Value;
     }
 
+    /// <summary>
+    ///     Sets a custom variable, mapping <paramref name="name"/> to <paramref name="value"/>.
+    /// </summary>
+    /// <param name="name">
+    ///     The key of the custom variable.
+    /// </param>
+    /// <param name="value">
+    ///     The value which the custom variable should have.
+    /// </param>
+    public void SetCustomVariable(string name, string value)
+    {
+        CustomVariable v = GetOrAddCustomVariable(name);
+        v.Value = value;
+        if (v.IsPermanent)
+        {
+            LiveSplitRun.HasChanged = true;
+        }
+    }
+
     public bool UsesEmulator
     {
         get => usesEmulator;

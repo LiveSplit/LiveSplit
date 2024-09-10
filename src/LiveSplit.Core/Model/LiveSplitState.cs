@@ -93,11 +93,6 @@ public class LiveSplitState : ICloneable
     public event EventHandler RunManuallyModified;
     public event EventHandler ComparisonRenamed;
 
-    /// <summary>
-    ///     Invoked when setting a custom variable.
-    /// </summary>
-    public event EventHandler CustomVariableSet;
-
     public Time CurrentTime
     {
         get
@@ -242,30 +237,6 @@ public class LiveSplitState : ICloneable
                 GameTimePauseTime = gameTime.Value;
             }
         }
-    }
-
-    /// <summary>
-    ///     Sets a custom variable, mapping <paramref name="name"/> to <paramref name="value"/>.
-    /// </summary>
-    /// <param name="name">
-    ///     The key of the custom variable.
-    /// </param>
-    /// <param name="value">
-    ///     The value which the custom variable should have.
-    /// </param>
-    /// <remarks>
-    ///     Invokes <see cref="CustomVariableSet"/>.
-    /// </remarks>
-    public void SetCustomVariable(string name, string value)
-    {
-        CustomVariable v = Run.Metadata.GetOrAddCustomVariable(name);
-        v.Value = value;
-        if (v.IsPermanent)
-        {
-            Run.HasChanged = true;
-        }
-
-        CustomVariableSet?.Invoke(this, null);
     }
 
     public void CallRunManuallyModified()
