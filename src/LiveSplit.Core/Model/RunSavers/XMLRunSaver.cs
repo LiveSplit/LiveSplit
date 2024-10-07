@@ -45,6 +45,20 @@ public class XMLRunSaver : IRunSaver
         }
 
         metadata.AppendChild(variables);
+
+        XmlElement customVariables = document.CreateElement("CustomVariables");
+        foreach (System.Collections.Generic.KeyValuePair<string, CustomVariable> entry in run.Metadata.CustomVariables)
+        {
+            if (entry.Value.IsPermanent)
+            {
+                XmlElement customVariableElement = ToElement(document, "Variable", entry.Value.Value);
+                customVariableElement.Attributes.Append(ToAttribute(document, "name", entry.Key));
+                customVariables.AppendChild(customVariableElement);
+            }
+        }
+
+        metadata.AppendChild(customVariables);
+
         parent.AppendChild(metadata);
 
         CreateSetting(document, parent, "Offset", run.Offset);
