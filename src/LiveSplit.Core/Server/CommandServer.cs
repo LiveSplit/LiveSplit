@@ -357,10 +357,11 @@ public class CommandServer
                 {
                     commandResponse.Data.Add("name", State.CurrentSplit.Name);
                 }
-                /*else
+                else
                 {
-                    commandResponse.Data.Add("name", "-");
-                }*/
+                    //commandResponse.Data.Add("name", "-");
+                    commandResponse.State = "NoData";
+                }
 
                 break;
             }
@@ -371,10 +372,11 @@ public class CommandServer
                 {
                     commandResponse.Data.Add("name", State.Run[State.CurrentSplitIndex - 1].Name);
                 }
-                /*else
+                else
                 {
-                    commandResponse.Data.Add("name", "-");
-                }*/
+                    //commandResponse.Data.Add("name", "-");
+                    commandResponse.State = "NoData";
+                }
 
                 break;
             }
@@ -386,10 +388,12 @@ public class CommandServer
                     TimeSpan? time = State.Run[State.CurrentSplitIndex - 1].SplitTime[State.CurrentTimingMethod];
                     commandResponse.Data.Add("time", TimeFormatter.Format(time));
                 }
-                /*else
+                else
                 {
-                    response = "-";
-                }*/
+                    //response = "-";
+                    commandResponse.State = "NoData";
+                }
+
                 break;
             }
             case "getcurrentsplittime":
@@ -401,10 +405,11 @@ public class CommandServer
                     TimeSpan? time = State.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
                     commandResponse.Data.Add("time", TimeFormatter.Format(time));
                 }
-                /*else
+                else
                 {
-                    response = "-";
-                }*/
+                    //response = "-";
+                    commandResponse.State = "NoData";
+                }
 
                 break;
             }
@@ -546,7 +551,7 @@ public class CommandServer
             }
             default:
             {
-                string errMsg = $"Invalid command: {message}";
+                string errMsg = $"Invalid command: {command}";
                 Log.Error($"[Server] {errMsg}");
                 SetFailedResponse(commandResponse, errMsg);
                 break;
