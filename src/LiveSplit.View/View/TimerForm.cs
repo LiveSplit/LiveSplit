@@ -66,6 +66,25 @@ public partial class TimerForm : Form
     private float previousBlur { get; set; }
     private Image blurredBackground { get; set; }
     private Image bakedBackground { get; set; }
+    private bool TransparentBackground
+    {
+        set
+        {
+            // If the value isn't changing, don't bother setting the composition attribute
+            if (TransparentBackgroundState != value)
+            {
+                TransparentBackgroundState = value;
+                var attributeData = new WindowCompositionAttributeData()
+                {
+                    Attribute = WCA_ACCENT_POLICY,
+                    Data = value ? AccentPolicyBlurPtr : AccentPolicyDisabledPtr,
+                    SizeOfData = Marshal.SizeOf(typeof(AccentPolicy))
+                };
+                SetWindowCompositionAttribute(Handle, attributeData);
+            }
+        }
+    }
+    private bool TransparentBackgroundState = false;
 
     public CommandServer Server { get; set; }
     public bool ServerStarted { get; protected set; } = false;
@@ -170,6 +189,42 @@ public partial class TimerForm : Form
 
     [DllImport("user32.dll")]
     private static extern IntPtr GetForegroundWindow();
+
+    private const int ACCENT_DISABLED = 0;
+    private const int ACCENT_ENABLE_BLURBEHIND = 3;
+    private const int WCA_ACCENT_POLICY = 19;
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct AccentPolicy
+    {
+        public int AccentState;
+        public uint AccentFlags;
+        public uint GradientColor;
+        public uint AnimationId;
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal struct WindowCompositionAttributeData
+    {
+        public int Attribute;
+        public IntPtr Data;
+        public int SizeOfData;
+    }
+
+    private AccentPolicy AccentPolicyBlur = new()
+    {
+        AccentState = ACCENT_ENABLE_BLURBEHIND,
+    };
+    private static readonly IntPtr AccentPolicyBlurPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(AccentPolicy)));
+
+    private AccentPolicy AccentPolicyDisabled = new()
+    {
+        AccentState = ACCENT_DISABLED,
+    };
+    private static readonly IntPtr AccentPolicyDisabledPtr = Marshal.AllocHGlobal(Marshal.SizeOf(typeof(AccentPolicy)));
+
+    [DllImport("user32.dll")]
+    private static extern int SetWindowCompositionAttribute(IntPtr hWnd, in WindowCompositionAttributeData data);
 
     public TimerForm(string splitsPath = null, string layoutPath = null, string basePath = "")
     {
@@ -315,6 +370,9 @@ public partial class TimerForm : Form
 
         TopMost = Layout.Settings.AlwaysOnTop;
         BackColor = Color.Black;
+
+        Marshal.StructureToPtr(AccentPolicyBlur, AccentPolicyBlurPtr, false);
+        Marshal.StructureToPtr(AccentPolicyDisabled, AccentPolicyDisabledPtr, false);
 
         Server = new CommandServer(CurrentState);
         Server.StartNamedPipe();
@@ -1427,6 +1485,7 @@ public partial class TimerForm : Form
 
         DrawBackground(g);
 
+        TransparentBackground = Layout.Settings.TransparentBackground;
         Opacity = Layout.Settings.Opacity;
 
         // Set MousePassThrough after setting Opacity, because setting Opacity can reset the Form's WS_EX_LAYERED flag.
@@ -1530,6 +1589,12 @@ public partial class TimerForm : Form
         Image image = Layout.Settings.BackgroundImage;
         float opacity = Layout.Settings.ImageOpacity;
         float blur = Layout.Settings.ImageBlur;
+
+        // Transparent background requires image to be a Bitmap to function
+        if (Layout.Settings.TransparentBackground)
+        {
+            image = new Bitmap(image);
+        }
 
         if (image != null)
         {
