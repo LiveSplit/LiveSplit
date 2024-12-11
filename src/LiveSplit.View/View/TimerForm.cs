@@ -1590,6 +1590,12 @@ public partial class TimerForm : Form
         float opacity = Layout.Settings.ImageOpacity;
         float blur = Layout.Settings.ImageBlur;
 
+        // Transparent background requires image to be a Bitmap to function
+        if (Layout.Settings.TransparentBackground)
+        {
+            image = new Bitmap(image);
+        }
+
         if (image != null)
         {
             if (blur > 0)
