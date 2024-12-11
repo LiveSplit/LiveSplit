@@ -22,6 +22,7 @@ public class LayoutSettings : ICloneable
     public Color ShadowsColor { get; set; }
 
     public BackgroundType BackgroundType { get; set; }
+    public bool TransparentBackground { get; set; }
 
     public Image BackgroundImage { get; set; }
     public float ImageOpacity { get; set; }
@@ -75,6 +76,7 @@ public class LayoutSettings : ICloneable
         Opacity = settings.Opacity;
         MousePassThroughWhileRunning = settings.MousePassThroughWhileRunning;
         BackgroundType = settings.BackgroundType;
+        TransparentBackground = settings.TransparentBackground;
         BackgroundImage = settings.BackgroundImage;
         ImageOpacity = settings.ImageOpacity;
         ImageBlur = settings.ImageBlur;

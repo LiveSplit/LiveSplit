@@ -45,7 +45,8 @@ public class XMLLayoutFactory : ILayoutFactory
             AlwaysOnTop = SettingsHelper.ParseBool(element["AlwaysOnTop"]),
             TimerFont = SettingsHelper.GetFontFromElement(element["TimerFont"]),
             ImageOpacity = SettingsHelper.ParseFloat(element["ImageOpacity"], 1f),
-            ImageBlur = SettingsHelper.ParseFloat(element["ImageBlur"], 0f)
+            ImageBlur = SettingsHelper.ParseFloat(element["ImageBlur"], 0f),
+            TransparentBackground = SettingsHelper.ParseBool(element["TransparentBackground"], false)
         };
 
         if (version >= new Version(1, 3))

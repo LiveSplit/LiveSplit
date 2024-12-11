@@ -36,6 +36,7 @@ public class XMLLayoutSaver : ILayoutSaver
         SettingsHelper.CreateSetting(document, element, "AntiAliasing", settings.AntiAliasing) ^
         SettingsHelper.CreateSetting(document, element, "DropShadows", settings.DropShadows) ^
         SettingsHelper.CreateSetting(document, element, "BackgroundType", settings.BackgroundType) ^
+        SettingsHelper.CreateSetting(document, element, "TransparentBackground", settings.TransparentBackground) ^
         SettingsHelper.CreateSetting(document, element, "BackgroundImage", settings.BackgroundImage) ^
         SettingsHelper.CreateSetting(document, element, "ImageOpacity", settings.ImageOpacity) ^
         SettingsHelper.CreateSetting(document, element, "ImageBlur", settings.ImageBlur) ^
