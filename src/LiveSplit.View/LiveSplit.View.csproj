@@ -18,7 +18,7 @@
   <ItemGroup>
     <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="all" />
     <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
-    <PackageReference Include="WindowsAPICodePack" Version="8.0.4" />
+    <PackageReference Include="WindowsAPICodePack" Version="8.0.6" />
   </ItemGroup>
 
   <ItemGroup>
