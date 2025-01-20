@@ -28,7 +28,7 @@ public class SpeedRunsLiveIRC : IDisposable
             StateChanged?.Invoke(this, RaceState);
         }
     }
-    protected IrcClient Client { get; set; }
+    protected StandardIrcClient Client { get; set; }
     public ITimerModel Model { get; set; }
 
     public bool IsConnected => Client.IsConnected;
@@ -62,7 +62,7 @@ public class SpeedRunsLiveIRC : IDisposable
     public SpeedRunsLiveIRC(LiveSplitState state, ITimerModel model, IEnumerable<string> channels)
     {
         ChannelsToJoin = channels.ToList();
-        Client = new IrcClient();
+        Client = new StandardIrcClient();
         Client.ConnectFailed += Client_ConnectFailed;
         Client.Connected += Client_Connected;
         Client.Registered += Client_Registered;
