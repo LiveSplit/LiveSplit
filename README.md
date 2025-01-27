@@ -142,6 +142,7 @@ Commands that return a string:
 - getcurrentsplitname  
 - getprevioussplitname
 - getcurrenttimerphase
+- getcustomvariablevalue NAME
 - ping  
 (always returns `pong`)
 
