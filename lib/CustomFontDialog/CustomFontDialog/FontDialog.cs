@@ -36,9 +36,9 @@ public partial class FontDialog : Form
     }
 
     private Font originalFont { get; set; }
-    public Font OriginalFont { get => originalFont; set => originalFont = Font = value; }
+    public Font OriginalFont { get => originalFont; set => originalFont = SelectedFont = value; }
 
-    public override Font Font
+    public Font SelectedFont
     {
         get => lblSampleText.Font;
         set
@@ -246,12 +246,12 @@ public partial class FontDialog : Form
     {
         if (DialogResult == DialogResult.Cancel)
         {
-            Font = OriginalFont;
+            SelectedFont = OriginalFont;
         }
     }
 
     private void TriggerFontChanged()
     {
-        FontChanged?.Invoke(this, new FontChangedEventArgs() { NewFont = Font });
+        FontChanged?.Invoke(this, new FontChangedEventArgs() { NewFont = SelectedFont });
     }
 }
