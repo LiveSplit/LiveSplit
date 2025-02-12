@@ -45,6 +45,15 @@ public class XMLSettingsFactory : ISettingsFactory
             settings.RecentLayouts.Add(layoutElement.InnerText);
         }
 
+        if (Environment.OSVersion.Version.Major >= Settings.DPI_AWARENESS_OS_MIN_VERSION)
+        {
+            settings.EnableDPIAwareness = ParseBool(parent["EnableDPIAwareness"], settings.EnableDPIAwareness);
+        }
+        else
+        {
+            settings.EnableDPIAwareness = false;
+        }
+
         if (version >= new Version(1, 3))
         {
             settings.RaceViewer = RaceViewer.FromName(parent["RaceViewer"].InnerText);
