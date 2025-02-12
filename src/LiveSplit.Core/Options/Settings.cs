@@ -11,6 +11,7 @@ namespace LiveSplit.Options;
 
 public class Settings : ISettings
 {
+    public const int DPI_AWARENESS_OS_MIN_VERSION = 6;
     public IDictionary<string, HotkeyProfile> HotkeyProfiles { get; set; }
     public IList<RecentSplitsFile> RecentSplits { get; set; }
     public IList<string> RecentLayouts { get; set; }
@@ -24,6 +25,7 @@ public class Settings : ISettings
     public IList<RaceProviderSettings> RaceProvider { get; set; }
     public IList<string> ActiveAutoSplitters { get; set; }
     public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
+    public bool EnableDPIAwareness { get; set; }
 
     // Deprecated properties
     public KeyOrButton SplitKey
@@ -111,7 +113,8 @@ public class Settings : ISettings
             RefreshRate = RefreshRate,
             ServerPort = ServerPort,
             ActiveAutoSplitters = new List<string>(ActiveAutoSplitters),
-            ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates)
+            ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates),
+            EnableDPIAwareness = EnableDPIAwareness
         };
     }
 

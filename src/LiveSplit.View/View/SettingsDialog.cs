@@ -51,6 +51,11 @@ public partial class SettingsDialog : Form
         get => Settings.HotkeyProfiles[SelectedHotkeyProfile].AllowGamepadsAsHotkeys;
         set => Settings.HotkeyProfiles[SelectedHotkeyProfile].AllowGamepadsAsHotkeys = value;
     }
+    public bool EnableDPIAwareness
+    {
+        get => Settings.EnableDPIAwareness;
+        set => Settings.EnableDPIAwareness = value;
+    }
 
     public int RefreshRate
     {
@@ -83,6 +88,7 @@ public partial class SettingsDialog : Form
         chkWarnOnReset.DataBindings.Add("Checked", Settings, "WarnOnReset");
         cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
         chkAllowGamepads.DataBindings.Add("Checked", this, "AllowGamepadsAsHotkeys");
+        chkEnableDPIAwareness.DataBindings.Add("Checked", this, "EnableDPIAwareness");
 
         txtRefreshRate.DataBindings.Add("Text", this, "RefreshRate");
         txtServerPort.DataBindings.Add("Text", this, "ServerPort");
@@ -90,6 +96,13 @@ public partial class SettingsDialog : Form
         UpdateDisplayedHotkeyValues();
         RefreshRemoveButton();
         RefreshLogOutButton();
+
+        if (Environment.OSVersion.Version.Major < LiveSplit.Options.Settings.DPI_AWARENESS_OS_MIN_VERSION)
+        {
+            settings.EnableDPIAwareness = false;
+            chkEnableDPIAwareness.Checked = false;
+            chkEnableDPIAwareness.Enabled = false;
+        }
     }
 
     private void InitializeHotkeyProfiles(string hotkeyProfile)

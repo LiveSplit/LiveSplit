@@ -44,4 +44,5 @@ public interface ISettings : ICloneable
     bool GlobalHotkeysEnabled { get; set; }
     bool DeactivateHotkeysForOtherPrograms { get; set; }
     bool DoubleTapPrevention { get; set; }
+    bool EnableDPIAwareness { get; set; }
 }
