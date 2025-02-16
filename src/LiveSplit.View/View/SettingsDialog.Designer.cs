@@ -1,4 +1,6 @@
-﻿namespace LiveSplit.View
+﻿using System;
+
+namespace LiveSplit.View
 {
     partial class SettingsDialog
     {
@@ -29,6 +31,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnChooseRaceProvider = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -79,6 +82,8 @@
             this.panelPort = new System.Windows.Forms.Panel();
             this.txtServerPort = new System.Windows.Forms.TextBox();
             this.lblPort = new System.Windows.Forms.Label();
+            this.chkEnableDPIAwareness = new System.Windows.Forms.CheckBox();
+            this.ttpEnableDPIAwarenessInfo = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -189,6 +194,7 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 178F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 56F));
+            this.tableLayoutPanel2.Controls.Add(this.chkEnableDPIAwareness, 1, 10);
             this.tableLayoutPanel2.Controls.Add(this.chkDeactivateForOtherPrograms, 1, 8);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.chkGlobalHotkeys, 0, 8);
@@ -232,9 +238,24 @@
             this.tableLayoutPanel2.Size = new System.Drawing.Size(368, 402);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
+            // chkEnableDPIAwareness
+            // 
+            this.chkEnableDPIAwareness.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkEnableDPIAwareness.AutoSize = true;
+            this.chkEnableDPIAwareness.Location = new System.Drawing.Point(246, 368);
+            this.chkEnableDPIAwareness.Margin = new System.Windows.Forms.Padding(9, 4, 4, 4);
+            this.chkEnableDPIAwareness.Name = "chkEnableDPIAwareness";
+            this.chkEnableDPIAwareness.Size = new System.Drawing.Size(166, 20);
+            this.chkEnableDPIAwareness.TabIndex = 16;
+            this.chkEnableDPIAwareness.Text = "Enable DPI Aware";
+            this.ttpEnableDPIAwarenessInfo.SetToolTip(this.chkEnableDPIAwareness, "You must restart LiveSplit after changing this setting for changes to take effect" +
+        ".");
+            this.chkEnableDPIAwareness.UseVisualStyleBackColor = true;
+            // 
+            // 
             // chkDeactivateForOtherPrograms
             // 
-            this.chkDeactivateForOtherPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chkDeactivateForOtherPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkDeactivateForOtherPrograms.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.chkDeactivateForOtherPrograms, 2);
@@ -258,7 +279,7 @@
             // 
             // chkGlobalHotkeys
             // 
-            this.chkGlobalHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chkGlobalHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkGlobalHotkeys.AutoSize = true;
             this.chkGlobalHotkeys.Location = new System.Drawing.Point(7, 235);
@@ -562,7 +583,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -670,7 +691,7 @@
             // 
             // txtRefreshRate
             // 
-            this.txtRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtRefreshRate.Location = new System.Drawing.Point(128, 6);
             this.txtRefreshRate.Name = "txtRefreshRate";
@@ -690,7 +711,7 @@
             // 
             // panelPort
             // 
-            this.panelPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panelPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.panelPort, 3);
             this.panelPort.Controls.Add(this.txtServerPort);
@@ -703,7 +724,7 @@
             // 
             // txtServerPort
             // 
-            this.txtServerPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtServerPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtServerPort.Location = new System.Drawing.Point(139, 6);
             this.txtServerPort.Name = "txtServerPort";
@@ -720,6 +741,12 @@
             this.lblPort.Size = new System.Drawing.Size(63, 13);
             this.lblPort.TabIndex = 0;
             this.lblPort.Text = "Server Port:";
+            // 
+            // ttpEnableDPIAwarenessInfo
+            // 
+            this.ttpEnableDPIAwarenessInfo.AutoPopDelay = 5000;
+            this.ttpEnableDPIAwarenessInfo.InitialDelay = 100;
+            this.ttpEnableDPIAwarenessInfo.ReshowDelay = 100;
             // 
             // SettingsDialog
             // 
@@ -800,5 +827,7 @@
         private System.Windows.Forms.Panel panelPort;
         private System.Windows.Forms.TextBox txtServerPort;
         private System.Windows.Forms.Label lblPort;
+        private System.Windows.Forms.CheckBox chkEnableDPIAwareness;
+        private System.Windows.Forms.ToolTip ttpEnableDPIAwarenessInfo;
     }
 }

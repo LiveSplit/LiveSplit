@@ -38,6 +38,15 @@ public class XMLSettingsSaver : ISettingsSaver
         CreateSetting(document, parent, "RaceViewer", settings.RaceViewer.Name);
         CreateSetting(document, parent, "AgreedToSRLRules", settings.AgreedToSRLRules);
 
+        if (Environment.OSVersion.Version.Major >= Settings.DPI_AWARENESS_OS_MIN_VERSION)
+        {
+            CreateSetting(document, parent, "EnableDPIAwareness", settings.EnableDPIAwareness);
+        }
+        else
+        {
+            CreateSetting(document, parent, "EnableDPIAwareness", false);
+        }
+
         XmlElement recentSplits = document.CreateElement("RecentSplits");
         foreach (RecentSplitsFile splitsFile in settings.RecentSplits)
         {
