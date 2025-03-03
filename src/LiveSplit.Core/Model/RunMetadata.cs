@@ -16,9 +16,12 @@ public class RunMetadata
 
     private string oldGameName;
     private string oldCategoryName;
+    private string oldLevelName;
     private Lazy<Game> game;
     private bool gameLoaded;
     private Lazy<Category> category;
+    private CategoryType categoryType;
+    private Lazy<Level> level;
     private Lazy<SpeedrunComSharp.Run> run;
     private string runId;
     private string platformName;
@@ -211,6 +214,15 @@ public class RunMetadata
         }
     }
 
+    public Level Level
+    {
+        get
+        {
+            Refresh();
+            return level.Value;
+        }
+    }
+
     public RunMetadata(IRun run)
     {
         LiveSplitRun = run;
@@ -218,6 +230,7 @@ public class RunMetadata
         CustomVariables = new Dictionary<string, CustomVariable>();
         game = new Lazy<Game>(() => null);
         category = new Lazy<Category>(() => null);
+        level = new Lazy<Level>(() => null);
         this.run = new Lazy<SpeedrunComSharp.Run>(() => null);
     }
 
@@ -256,21 +269,21 @@ public class RunMetadata
                     game = new Lazy<Game>(() => gameTask.Result);
 
                     Task platformTask = Task.Factory.StartNew(() =>
+                    {
+                        Game game = this.game.Value;
+                        if ((game != null && !game.Platforms.Any(x => x.Name == PlatformName)) || (gameLoaded && game == null))
                         {
-                            Game game = this.game.Value;
-                            if ((game != null && !game.Platforms.Any(x => x.Name == PlatformName)) || (gameLoaded && game == null))
-                            {
-                                PlatformName = string.Empty;
-                            }
-                        });
+                            PlatformName = string.Empty;
+                        }
+                    });
                     Task regionTask = Task.Factory.StartNew(() =>
+                    {
+                        Game game = this.game.Value;
+                        if ((game != null && !game.Regions.Any(x => x.Name == RegionName)) || (gameLoaded && game == null))
                         {
-                            Game game = this.game.Value;
-                            if ((game != null && !game.Regions.Any(x => x.Name == RegionName)) || (gameLoaded && game == null))
-                            {
-                                RegionName = string.Empty;
-                            }
-                        });
+                            RegionName = string.Empty;
+                        }
+                    });
                 }
                 else
                 {
@@ -280,9 +293,52 @@ public class RunMetadata
                 oldCategoryName = null;
             }
 
+            if (LiveSplitRun.LevelName != oldLevelName)
+            {
+                oldLevelName = LiveSplitRun.LevelName;
+                if (!string.IsNullOrEmpty(oldLevelName))
+                {
+                    Task<Level> levelTask = Task<Level>.Factory.StartNew(() =>
+                    {
+                        Game game = this.game.Value;
+                        if (game == null)
+                        {
+                            return null;
+                        }
+
+                        try
+                        {
+                            Level level = SpeedrunCom.Client.Games.GetLevels(game.ID, embeds: new LevelEmbeds(embedVariables: true))
+                                .FirstOrDefault(x => x.Name == oldLevelName);
+
+                            return level;
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+                    });
+                    level = new Lazy<Level>(() => levelTask.Result);
+
+                }
+                else
+                {
+                    level = new Lazy<Level>(() => null);
+                }
+            }
+
             if (LiveSplitRun.CategoryName != oldCategoryName)
             {
                 CategoryAvailable = false;
+
+                if (string.IsNullOrEmpty(LiveSplitRun.LevelName))
+                {
+                    categoryType = CategoryType.PerGame;
+                }
+                else
+                {
+                    categoryType = CategoryType.PerLevel;
+                }
 
                 oldCategoryName = LiveSplitRun.CategoryName;
                 if (!string.IsNullOrEmpty(oldCategoryName))
@@ -298,7 +354,7 @@ public class RunMetadata
                         try
                         {
                             Category category = SpeedrunCom.Client.Games.GetCategories(game.ID, embeds: new CategoryEmbeds(embedVariables: true))
-                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == oldCategoryName);
+                                .FirstOrDefault(x => x.Type == categoryType && x.Name == oldCategoryName);
                             if (category != null)
                             {
                                 CategoryAvailable = true;
@@ -314,51 +370,51 @@ public class RunMetadata
                     category = new Lazy<Category>(() => categoryTask.Result);
 
                     Task variableTask = Task.Factory.StartNew(() =>
+                    {
+                        Category category = this.category.Value;
+                        string categoryId = category?.ID;
+                        Game game = this.game.Value;
+                        if (game == null && !gameLoaded)
                         {
-                            Category category = this.category.Value;
-                            string categoryId = category?.ID;
-                            Game game = this.game.Value;
-                            if (game == null && !gameLoaded)
-                            {
-                                return;
-                            }
+                            return;
+                        }
 
-                            try
-                            {
-                                var deletions = new List<string>();
-                                var variableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value);
+                        try
+                        {
+                            var deletions = new List<string>();
+                            var variableValueNames = VariableValueNames.ToDictionary(x => x.Key, x => x.Value);
 
-                                if (game != null)
+                            if (game != null)
+                            {
+                                var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).ToList();
+
+                                foreach (KeyValuePair<string, string> variableNamePair in variableValueNames)
                                 {
-                                    var variables = game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).ToList();
-
-                                    foreach (KeyValuePair<string, string> variableNamePair in variableValueNames)
+                                    Variable variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
+                                    if (variable == null
+                                    || (!variable.Values.Any(x => x.Value == variableNamePair.Value) && !variable.IsUserDefined))
                                     {
-                                        Variable variable = variables.FirstOrDefault(x => x.Name == variableNamePair.Key);
-                                        if (variable == null
-                                        || (!variable.Values.Any(x => x.Value == variableNamePair.Value) && !variable.IsUserDefined))
-                                        {
-                                            deletions.Add(variableNamePair.Key);
-                                        }
+                                        deletions.Add(variableNamePair.Key);
                                     }
                                 }
-                                else
-                                {
-                                    deletions.AddRange(variableValueNames.Keys);
-                                }
-
-                                foreach (string variable in deletions)
-                                {
-                                    variableValueNames.Remove(variable);
-                                }
-
-                                VariableValueNames = variableValueNames;
                             }
-                            catch (Exception ex)
+                            else
                             {
-                                Log.Error(ex);
+                                deletions.AddRange(variableValueNames.Keys);
                             }
-                        });
+
+                            foreach (string variable in deletions)
+                            {
+                                variableValueNames.Remove(variable);
+                            }
+
+                            VariableValueNames = variableValueNames;
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error(ex);
+                        }
+                    });
                 }
                 else
                 {
@@ -374,9 +430,11 @@ public class RunMetadata
         {
             oldGameName = oldGameName,
             oldCategoryName = oldCategoryName,
+            oldLevelName = oldLevelName,
             game = game,
             gameLoaded = gameLoaded,
             category = category,
+            level = level,
             run = this.run,
             runId = runId,
             platformName = platformName,
