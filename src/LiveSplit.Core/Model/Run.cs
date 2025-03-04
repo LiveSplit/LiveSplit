@@ -206,6 +206,7 @@ public class Run : IRun, INotifyPropertyChanged
             GameIcon = GameIcon,
             GameName = GameName,
             CategoryName = CategoryName,
+            LevelName = LevelName,
             Offset = Offset,
             AttemptCount = AttemptCount,
             AttemptHistory = new List<Attempt>(AttemptHistory),

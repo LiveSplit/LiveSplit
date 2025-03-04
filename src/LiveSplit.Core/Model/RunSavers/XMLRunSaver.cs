@@ -22,6 +22,7 @@ public class XMLRunSaver : IRunSaver
         CreateSetting(document, parent, "GameIcon", run.GameIcon);
         CreateSetting(document, parent, "GameName", run.GameName);
         CreateSetting(document, parent, "CategoryName", run.CategoryName);
+        CreateSetting(document, parent, "LevelName", run.LevelName);
         CreateSetting(document, parent, "LayoutPath", run.LayoutPath);
 
         XmlElement metadata = document.CreateElement("Metadata");
