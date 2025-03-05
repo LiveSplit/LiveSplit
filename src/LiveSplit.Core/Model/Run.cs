@@ -63,7 +63,7 @@ public class Run : IRun, INotifyPropertyChanged
     }
 
     /// <summary>
-    /// Gets or sets the category of the run.
+    /// Gets or sets the level of the run.
     /// </summary>
     public string LevelName
     {
