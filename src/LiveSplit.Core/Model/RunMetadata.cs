@@ -330,21 +330,21 @@ public class RunMetadata
             if (LiveSplitRun.CategoryName != oldCategoryName)
             {
                 CategoryAvailable = false;
-
-                if (string.IsNullOrEmpty(LiveSplitRun.LevelName))
-                {
-                    categoryType = CategoryType.PerGame;
-                }
-                else
-                {
-                    categoryType = CategoryType.PerLevel;
-                }
-
                 oldCategoryName = LiveSplitRun.CategoryName;
+
                 if (!string.IsNullOrEmpty(oldCategoryName))
                 {
                     Task<Category> categoryTask = Task.Factory.StartNew(() =>
                     {
+                        if (string.IsNullOrEmpty(LiveSplitRun.LevelName))
+                        {
+                            categoryType = CategoryType.PerGame;
+                        }
+                        else
+                        {
+                            categoryType = CategoryType.PerLevel;
+                        }
+
                         Game game = this.game.Value;
                         if (game == null)
                         {
