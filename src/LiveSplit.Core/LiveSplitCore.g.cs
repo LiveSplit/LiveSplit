@@ -3634,7 +3634,7 @@ namespace LiveSplitCore
             return result;
         }
         /// <summary>
-        /// Accesses the name of the level this Run is for.
+        /// Accesses the name of the level of this Run.
         /// </summary>
         public string LevelName()
         {
@@ -3918,7 +3918,7 @@ namespace LiveSplitCore
             LiveSplitCoreNative.Run_set_category_name(this.ptr, category);
         }
         /// <summary>
-        /// Sets the name of the category this Run is for.
+        /// Sets the name of the level of this Run.
         /// </summary>
         public void SetLevelName(string level)
         {
