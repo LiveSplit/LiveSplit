@@ -322,32 +322,7 @@ public partial class RunEditorDialog : Form
                 if (cachedGameNames != null)
                 {
                     gameNames = cachedGameNames.ToArray();
-                    this.InvokeIfRequired(() =>
-                    {
-                        bool remaining = true;
-                        int currentIdx = 0;
-                        try
-                        {
-                            while (remaining && !token.IsCancellationRequested)
-                            {
-                                Application.DoEvents();
-                                int count = Math.Min(gameNames.Count() - currentIdx, MAXADDITIONSPERADDRANGE);
-                                string[] subGameNames = new string[count];
-                                for (int i = 0; i < count; ++i)
-                                {
-                                    subGameNames[i] = gameNames[currentIdx + i];
-                                }
-
-                                cbxGameName.Items.AddRange(subGameNames);
-                                currentIdx += count;
-                                remaining = currentIdx < gameNames.Count();
-                            }
-                        }
-                        catch (Exception ex)
-                        {
-                            Log.Error(ex);
-                        }
-                    });
+                    AddCbxGameNamesIncremental(gameNames, token);
                 }
                 else
                 {
@@ -366,35 +341,8 @@ public partial class RunEditorDialog : Form
                     .SelectMany(x => x)
                     .GroupBy(x => x.Value, x => x.Key);
                     cbxGameName.GetAllItemsForText = x => SearchForGameName(x);
-                    if (newGameNames.Length > 0)
-                    {
-                        this.InvokeIfRequired(() =>
-                        {
-                            bool remaining = true;
-                            int currentIdx = 0;
-                            try
-                            {
-                                while (remaining && !token.IsCancellationRequested)
-                                {
-                                    Application.DoEvents();
-                                    int count = Math.Min(newGameNames.Count() - currentIdx, MAXADDITIONSPERADDRANGE);
-                                    string[] subNewGameNames = new string[count];
-                                    for (int i = 0; i < count; ++i)
-                                    {
-                                        subNewGameNames[i] = newGameNames[currentIdx + i];
-                                    }
 
-                                    cbxGameName.Items.AddRange(newGameNames);
-                                    currentIdx += count;
-                                    remaining = currentIdx < newGameNames.Count();
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                Log.Error(ex);
-                            }
-                        });
-                    }
+                    AddCbxGameNamesIncremental(newGameNames, token);
                 }
             }
             catch (Exception ex)
@@ -402,6 +350,38 @@ public partial class RunEditorDialog : Form
                 Log.Error(ex);
             }
         }, token);
+    }
+
+    private void AddCbxGameNamesIncremental(string[] gamesToAdd, CancellationToken token)
+    {
+        if (gamesToAdd.Length > 0)
+        {
+            this.InvokeIfRequired(() =>
+            {
+                try
+                {
+                    int currentIdx = 0;
+                    int count;
+                    while (currentIdx < gamesToAdd.Count() && !token.IsCancellationRequested)
+                    {
+                        Application.DoEvents();
+                        count = Math.Min(gamesToAdd.Count() - currentIdx, MAXADDITIONSPERADDRANGE);
+                        string[] partialGamesToAdd = new string[count];
+                        for (int i = 0; i < count; ++i)
+                        {
+                            partialGamesToAdd[i] = gamesToAdd[currentIdx + i];
+                        }
+
+                        cbxGameName.Items.AddRange(partialGamesToAdd);
+                        currentIdx += count;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+            });
+        }
     }
 
     private void RefreshCategoryAutoCompleteList()
