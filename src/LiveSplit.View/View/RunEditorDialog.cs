@@ -33,6 +33,8 @@ public partial class RunEditorDialog : Form
     private const int BESTSEGMENTINDEX = 4;
     private const int CUSTOMCOMPARISONSINDEX = 5;
 
+    private const int MAXADDITIONSPERADDRANGE = 1000;
+
     public IRun Run { get; set; }
     public LiveSplitState CurrentState { get; set; }
     protected BindingList<ISegment> SegmentList { get; set; }
@@ -40,6 +42,7 @@ public partial class RunEditorDialog : Form
     protected IList<TimeSpan?> SegmentTimeList { get; set; }
     protected bool IsInitialized = false;
     protected Time PreviousPersonalBestTime;
+    private readonly CancellationTokenSource FillCbxGameTaskToken = new();
 
     protected bool IsGridTab => tabControl.SelectedTab == RealTime || tabControl.SelectedTab == GameTime;
     protected bool IsMetadataTab => tabControl.SelectedTab == Metadata;
@@ -310,6 +313,7 @@ public partial class RunEditorDialog : Form
 
     private void FillCbxGameName()
     {
+        var token = FillCbxGameTaskToken.Token;
         Task.Factory.StartNew(() =>
         {
             try
@@ -320,10 +324,24 @@ public partial class RunEditorDialog : Form
                     gameNames = cachedGameNames.ToArray();
                     this.InvokeIfRequired(() =>
                     {
-                        Application.DoEvents();
+                        bool remaining = true;
+                        int currentIdx = 0;
                         try
                         {
-                            cbxGameName.Items.AddRange(gameNames);
+                            while (remaining && !token.IsCancellationRequested)
+                            {
+                                Application.DoEvents();
+                                int count = Math.Min(gameNames.Count() - currentIdx, MAXADDITIONSPERADDRANGE);
+                                string[] subGameNames = new string[count];
+                                for (int i = 0; i < count; ++i)
+                                {
+                                    subGameNames[i] = gameNames[currentIdx + i];
+                                }
+
+                                cbxGameName.Items.AddRange(subGameNames);
+                                currentIdx += count;
+                                remaining = currentIdx < gameNames.Count();
+                            }
                         }
                         catch (Exception ex)
                         {
@@ -352,10 +370,24 @@ public partial class RunEditorDialog : Form
                     {
                         this.InvokeIfRequired(() =>
                         {
-                            Application.DoEvents();
+                            bool remaining = true;
+                            int currentIdx = 0;
                             try
                             {
-                                cbxGameName.Items.AddRange(newGameNames);
+                                while (remaining && !token.IsCancellationRequested)
+                                {
+                                    Application.DoEvents();
+                                    int count = Math.Min(newGameNames.Count() - currentIdx, MAXADDITIONSPERADDRANGE);
+                                    string[] subNewGameNames = new string[count];
+                                    for (int i = 0; i < count; ++i)
+                                    {
+                                        subNewGameNames[i] = newGameNames[currentIdx + i];
+                                    }
+
+                                    cbxGameName.Items.AddRange(newGameNames);
+                                    currentIdx += count;
+                                    remaining = currentIdx < newGameNames.Count();
+                                }
                             }
                             catch (Exception ex)
                             {
@@ -369,7 +401,7 @@ public partial class RunEditorDialog : Form
             {
                 Log.Error(ex);
             }
-        });
+        }, token);
     }
 
     private void RefreshCategoryAutoCompleteList()
@@ -1940,6 +1972,11 @@ public partial class RunEditorDialog : Form
     private void cbxGameName_Validated(object sender, EventArgs e)
     {
         GameName = cbxGameName.Text;
+    }
+
+    private void RunEditorDialog_FormClosing(object sender, FormClosingEventArgs e)
+    {
+        FillCbxGameTaskToken.Cancel();
     }
 }
 
