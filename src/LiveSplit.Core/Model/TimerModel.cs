@@ -121,6 +121,17 @@ public class TimerModel : ITimerModel
 
     private void ResetState(bool updateTimes)
     {
+        if (!CurrentState.IsGameTimeInitialized)
+        {
+            // Remove Game Times because they haven't been used
+            foreach (Segment split in CurrentState.Run)
+            {
+                Time time = split.SplitTime;
+                time.GameTime = null;
+                split.SplitTime = time;
+            }
+        }
+
         if (CurrentState.CurrentPhase != TimerPhase.Ended)
         {
             CurrentState.AttemptEnded = TimeStamp.CurrentDateTime;
