@@ -14,8 +14,8 @@ public class HCPComparisonGenerator : IComparisonGenerator
     public const string ComparisonName = "Golf HCP";
     public const string ShortComparisonName = "HCP";
     public string Name => ComparisonName;
-    private const int NumRuns = 8;
-    private const int AverageSamplesCount = 20;
+    private const int MaximumNumberOfBestRunsToIncludePerSegment = 8;
+    private const int NumberOfLatestRunsToInclude = 20;
 
     public HCPComparisonGenerator(IRun run)
     {
@@ -24,7 +24,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
 
     protected TimeSpan CalculateAverage(IEnumerable<TimeSpan> curList)
     {
-        double averageTime = curList.OrderBy(x => x.TotalSeconds).Take(AverageSamplesCount).ToList().Aggregate(0.0, (s, x) => s + x.TotalSeconds) / Min(AverageSamplesCount, curList.Count());
+        double averageTime = curList.OrderBy(x => x.TotalSeconds).Take(MaximumNumberOfBestRunsToIncludePerSegment).ToList().Aggregate(0.0, (s, x) => s + x.TotalSeconds) / Min(MaximumNumberOfBestRunsToIncludePerSegment, curList.Count());
         return TimeSpan.FromTicks((long)(averageTime * TimeSpan.TicksPerSecond));
     }
 
@@ -40,7 +40,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
         var recentRuns = Run.AttemptHistory
             .Where(attempt => Run.Last().SegmentHistory.TryGetValue(attempt.Index, out Time lastSegmentTime) && lastSegmentTime[method] != null)
             .OrderByDescending(attempt => attempt.Index)
-            .Take(NumRuns);
+            .Take(NumberOfLatestRunsToInclude);
 
         foreach (Attempt attempt in recentRuns)
         {
