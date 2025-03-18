@@ -24,6 +24,7 @@ public partial class ChooseComparisonsDialog : Form
             WorstSegmentsComparisonGenerator.ComparisonName,
             PercentileComparisonGenerator.ComparisonName,
             LatestRunComparisonGenerator.ComparisonName,
+            HCPComparisonGenerator.ComparisonName,
             NoneComparisonGenerator.ComparisonName
         });
     }
