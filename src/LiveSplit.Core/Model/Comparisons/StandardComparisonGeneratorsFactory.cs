@@ -15,6 +15,7 @@ public class StandardComparisonGeneratorsFactory : IComparisonGeneratorsFactory
         AddShortComparisonName(WorstSegmentsComparisonGenerator.ComparisonName, WorstSegmentsComparisonGenerator.ShortComparisonName);
         AddShortComparisonName(PercentileComparisonGenerator.ComparisonName, PercentileComparisonGenerator.ShortComparisonName);
         AddShortComparisonName(LatestRunComparisonGenerator.ComparisonName, LatestRunComparisonGenerator.ShortComparisonName);
+        AddShortComparisonName(HCPComparisonGenerator.ComparisonName, HCPComparisonGenerator.ShortComparisonName);
     }
     public IEnumerable<IComparisonGenerator> Create(IRun run)
     {
@@ -31,6 +32,7 @@ public class StandardComparisonGeneratorsFactory : IComparisonGeneratorsFactory
         yield return new WorstSegmentsComparisonGenerator(run);
         yield return new PercentileComparisonGenerator(run);
         yield return new LatestRunComparisonGenerator(run);
+        yield return new HCPComparisonGenerator(run);
         yield return new NoneComparisonGenerator(run);
     }
 }

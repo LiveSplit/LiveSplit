@@ -54,6 +54,7 @@ public class StandardSettingsFactory : ISettingsFactory
                 { WorstSegmentsComparisonGenerator.ComparisonName, false},
                 { PercentileComparisonGenerator.ComparisonName, false },
                 { LatestRunComparisonGenerator.ComparisonName, false },
+                { HCPComparisonGenerator.ComparisonName, false },
                 { NoneComparisonGenerator.ComparisonName, false }
             }
         };
