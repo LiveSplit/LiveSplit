@@ -4,8 +4,6 @@ using System.Linq;
 
 using LiveSplit.Options;
 
-using static System.Math;
-
 namespace LiveSplit.Model.Comparisons;
 
 public class HCPComparisonGenerator : IComparisonGenerator
@@ -24,7 +22,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
 
     protected TimeSpan CalculateAverage(IEnumerable<TimeSpan> curList)
     {
-        double averageTime = curList.OrderBy(x => x.TotalSeconds).Take(MaximumNumberOfBestRunsToIncludePerSegment).ToList().Aggregate(0.0, (s, x) => s + x.TotalSeconds) / Min(MaximumNumberOfBestRunsToIncludePerSegment, curList.Count());
+        double averageTime = curList.OrderBy(x => x.TotalSeconds).Take(MaximumNumberOfBestRunsToIncludePerSegment).Average(x => x.TotalSeconds);
         return TimeSpan.FromTicks((long)(averageTime * TimeSpan.TicksPerSecond));
     }
 
