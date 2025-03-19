@@ -123,8 +123,7 @@ public class LiveSplitState : ICloneable
             else
             {
                 curTime.GameTime = IsGameTimePaused
-                    ? GameTimePauseTime
-                    : curTime.RealTime - (IsGameTimeInitialized ? LoadingTimes : null);
+                    ? GameTimePauseTime : curTime.RealTime - LoadingTimes;
             }
 
             return curTime;
