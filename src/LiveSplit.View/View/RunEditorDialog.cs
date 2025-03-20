@@ -266,7 +266,6 @@ public partial class RunEditorDialog : Form
         cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
         cbxRunLevel.AutoCompleteSource = AutoCompleteSource.ListItems;
-        cbxRunLevel.Items.AddRange(new[] { "Easy", "Medium", "Hard" });
         cbxRunLevel.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
         SelectedMethod = state.CurrentTimingMethod;
@@ -469,7 +468,7 @@ public partial class RunEditorDialog : Form
         {
             try
             {
-                string[] levelNames = ["Easy", "Medium", "Hard"];
+                string[] levelNames = [];
                 try
                 {
                     SpeedrunComSharp.Game game = Run.Metadata.Game;
