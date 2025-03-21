@@ -717,6 +717,7 @@
             this.MinimumSize = new System.Drawing.Size(700, 510);
             this.Name = "RunEditorDialog";
             this.Text = "Splits Editor";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RunEditorDialog_FormClosing);
             this.Load += new System.EventHandler(this.RunEditorDialog_Load);
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);

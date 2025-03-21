@@ -205,6 +205,7 @@ public partial class TimerForm : Form
         LayoutSaver = new XMLLayoutSaver();
         SettingsSaver = new XMLSettingsSaver();
         LoadSettings();
+        SetDPIAwareness();
 
         CurrentState.CurrentHotkeyProfile = Settings.HotkeyProfiles.First().Key;
 
@@ -2796,6 +2797,21 @@ public partial class TimerForm : Form
         Settings = new StandardSettingsFactory().Create();
     }
 
+    private void SetDPIAwareness()
+    {
+        if (Environment.OSVersion.Version.Major >= LiveSplit.Options.Settings.DPI_AWARENESS_OS_MIN_VERSION && Settings.EnableDPIAwareness)
+        {
+            try
+            {
+                SetProcessDPIAware();
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+            }
+        }
+    }
+
     private void closeSplitsMenuItem_Click(object sender, EventArgs e)
     {
         CloseSplits();
@@ -3213,4 +3229,7 @@ public partial class TimerForm : Form
             e.Effect = DragDropEffects.None;
         }
     }
+
+    [System.Runtime.InteropServices.DllImport("user32.dll")]
+    private static extern bool SetProcessDPIAware();
 }

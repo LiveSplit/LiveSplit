@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 using LiveSplit.Model;
@@ -542,6 +543,13 @@ public class CommandServer
                     commandResponse.Data.Add("message", warnMsg);
                 }
 
+                break;
+            }
+            case "getcustomvariablevalue":
+            {
+                string value = State.Run.Metadata.CustomVariableValue(args[1]);
+                // make sure response isn't null or empty, and doesn't contain line endings
+                response = string.IsNullOrEmpty(value) ? "-" : Regex.Replace(value, @"\r\n?|\n", " ");
                 break;
             }
             case "ping":

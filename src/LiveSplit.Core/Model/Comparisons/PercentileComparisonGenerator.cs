@@ -13,7 +13,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
     public IRun Run { get; set; }
     public const string ComparisonName = "Balanced PB";
     public const string ShortComparisonName = "Balanced";
-    public string Name => ComparisonName;
+    public virtual string Name => ComparisonName;
     public const double Weight = 0.9375;
 
     public PercentileComparisonGenerator(IRun run)
@@ -36,6 +36,15 @@ public class PercentileComparisonGenerator : IComparisonGenerator
         double percDn = (Key1 - perc) * Value2.Ticks / (Key1 - Key2);
         double percUp = (perc - Key2) * Value1.Ticks / (Key1 - Key2);
         return TimeSpan.FromTicks(Convert.ToInt64(percUp + percDn));
+    }
+
+    protected virtual TimeSpan? GetGoalTime(TimingMethod method) {
+        TimeSpan? goalTime = null;
+        if (Run[Run.Count - 1].PersonalBestSplitTime[method].HasValue)
+        {
+            goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value;
+        }
+        return goalTime;
     }
 
     public void Generate(TimingMethod method)
@@ -127,12 +136,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
             }
         }
 
-        TimeSpan? goalTime = null;
-        if (Run[Run.Count - 1].PersonalBestSplitTime[method].HasValue)
-        {
-            goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value;
-        }
-
+        TimeSpan? goalTime = GetGoalTime(method);
         TimeSpan runSum = TimeSpan.Zero;
         var outputSplits = new List<TimeSpan>();
         double percentile = 0.5;

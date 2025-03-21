@@ -24,5 +24,5 @@ public class UpdateManagerUpdateable : IUpdateable
 
     public string UpdateURL => "http://livesplit.org/update/";
 
-    public Version Version => Version.Parse("2.0.4");
+    public Version Version => Version.Parse("2.0.5");
 }

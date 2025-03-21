@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
-    <ApplicationManifest>app.manifest</ApplicationManifest>
 
     <OutputType>WinExe</OutputType>
     <UseWindowsForms>true</UseWindowsForms>
