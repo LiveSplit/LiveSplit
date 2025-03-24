@@ -20,31 +20,7 @@ public class URLRunImporter : IRunImporter
             var runFactory = new StandardFormatsRunFactory();
             var comparisonGeneratorsFactory = new StandardComparisonGeneratorsFactory();
 
-            // Supports opening from URLs such as https://one.livesplit.org/#/splits-io/46qh
-            int liveSplitOneSplitsIOIndex = url.IndexOf("#/splits-io/");
-            if (liveSplitOneSplitsIOIndex != -1)
-            {
-                // 12 is the length of #/splits-io/
-                url = "https://splits.io/" + url[(liveSplitOneSplitsIOIndex + 12)..];
-            }
-
             var uri = new Uri(url);
-            string host = uri.Host.ToLowerInvariant();
-            if (host == "splits.io")
-            {
-                return SplitsIO.Instance.DownloadRunByUri(uri, true);
-            }
-
-            if (host is "www.speedrun.com" or "speedrun.com")
-            {
-                SpeedrunComSharp.Run speedrunComRun = SpeedrunCom.Client.Runs.GetRunFromSiteUri(url);
-                if (speedrunComRun != null && speedrunComRun.SplitsAvailable)
-                {
-                    IRun run = speedrunComRun.GetRun();
-                    run.PatchRun(speedrunComRun);
-                    return run;
-                }
-            }
 
             var request = WebRequest.Create(uri);
 

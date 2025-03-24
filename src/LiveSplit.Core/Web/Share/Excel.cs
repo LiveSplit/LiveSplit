@@ -34,7 +34,7 @@ This includes your whole history of all the runs you ever did.";
 
     #endregion
 
-    public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
+    public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
         using var dialog = new SaveFileDialog();
         dialog.Filter = "Excel Sheet (*.xlsx)|*.xlsx";

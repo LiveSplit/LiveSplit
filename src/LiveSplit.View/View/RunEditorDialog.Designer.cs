@@ -75,7 +75,6 @@
             this.ImportComparisonMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fromURLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.fromSpeedruncomToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OtherMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.clearHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearTimesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -643,8 +642,7 @@
             // 
             this.ImportComparisonMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fromFileToolStripMenuItem,
-            this.fromURLToolStripMenuItem,
-            this.fromSpeedruncomToolStripMenuItem});
+            this.fromURLToolStripMenuItem});
             this.ImportComparisonMenu.Name = "ImportComparisonMenu";
             this.ImportComparisonMenu.Size = new System.Drawing.Size(192, 70);
             // 
@@ -661,13 +659,6 @@
             this.fromURLToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.fromURLToolStripMenuItem.Text = "From URL...";
             this.fromURLToolStripMenuItem.Click += new System.EventHandler(this.fromURLToolStripMenuItem_Click);
-            // 
-            // fromSpeedruncomToolStripMenuItem
-            // 
-            this.fromSpeedruncomToolStripMenuItem.Name = "fromSpeedruncomToolStripMenuItem";
-            this.fromSpeedruncomToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.fromSpeedruncomToolStripMenuItem.Text = "From Speedrun.com...";
-            this.fromSpeedruncomToolStripMenuItem.Click += new System.EventHandler(this.fromSpeedruncomToolStripMenuItem_Click);
             // 
             // OtherMenu
             // 
@@ -781,7 +772,6 @@
         private System.Windows.Forms.ToolStripMenuItem clearHistoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clearTimesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cleanSumOfBestToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fromSpeedruncomToolStripMenuItem;
         private System.Windows.Forms.TabPage Metadata;
         private MetadataControl metadataControl;
         private System.Windows.Forms.Button btnWebsite;
