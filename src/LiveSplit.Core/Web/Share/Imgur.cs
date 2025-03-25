@@ -95,7 +95,7 @@ public class Imgur : IRunUploadPlatform
         }
     }
 
-    public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
+    public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
         var titleBuilder = new StringBuilder();
 
@@ -115,11 +115,6 @@ public class Imgur : IRunUploadPlatform
         }
 
         titleBuilder.Append(run.CategoryName);
-
-        if (attachSplits)
-        {
-            comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
-        }
 
         if (screenShotFunction != null)
         {

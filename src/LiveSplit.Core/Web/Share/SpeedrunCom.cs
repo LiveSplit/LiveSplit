@@ -68,12 +68,6 @@ public static class SpeedrunCom
 
         return time;
     }
-    public static IRun GetRun(this SpeedrunComSharp.Run record)
-    {
-        string apiUri = record.SplitsUri.AbsoluteUri;
-        string path = apiUri[(apiUri.LastIndexOf("/") + 1)..];
-        return SplitsIO.Instance.DownloadRunByPath(path, false);
-    }
 
     public static Model.TimingMethod ToLiveSplitTimingMethod(this SpeedrunComSharp.TimingMethod timingMethod)
     {
@@ -214,8 +208,7 @@ public static class SpeedrunCom
 
     public static bool SubmitRun(IRun run, out string reasonForRejection,
         string comment = null, Uri videoUri = null, DateTime? date = null,
-        TimeSpan? withoutLoads = null,
-        bool submitToSplitsIO = true)
+        TimeSpan? withoutLoads = null)
     {
         try
         {
@@ -274,26 +267,6 @@ public static class SpeedrunCom
                 bool emulated = metadata.Game.Ruleset.EmulatorsAllowed && metadata.UsesEmulator;
                 System.Collections.Generic.IEnumerable<VariableValue> variables = metadata.VariableValues.Values.Where(x => x != null);
 
-                Uri splitsIOUri = null;
-                string splitsIORunId = null;
-                string claimToken = null;
-
-                if (submitToSplitsIO)
-                {
-                    try
-                    {
-                        var uri = new Uri(SplitsIO.Instance.Share(run, claimTokenUri: true));
-                        splitsIOUri = SplitsIO.Instance.GetSiteUri(uri.AbsolutePath);
-
-                        string[] splitted = uri.Query.Split('?', '=', '&');
-                        claimToken = splitted.SkipWhile(x => x != "claim_token").Skip(1).FirstOrDefault();
-                        splitsIORunId = uri.AbsolutePath[1..];
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-                    }
-                }
 
                 SpeedrunComSharp.Run submittedRun = Client.Runs.Submit(
                     //simulateSubmitting: true,
@@ -307,25 +280,9 @@ public static class SpeedrunCom
                     videoUri: videoUri,
                     date: date,
                     emulated: emulated,
-                    splitsIOUri: splitsIOUri,
                     verify: false,
                     variables: variables
                     );
-
-                if (submitToSplitsIO
-                    && !string.IsNullOrEmpty(submittedRun.ID)
-                    && !string.IsNullOrEmpty(splitsIORunId)
-                    && !string.IsNullOrEmpty(claimToken))
-                {
-                    try
-                    {
-                        SplitsIO.Instance.ClaimWithSpeedrunComRun(splitsIORunId, claimToken, submittedRun.ID);
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Error(ex);
-                    }
-                }
 
                 run.Metadata.Run = submittedRun;
             }
