@@ -208,7 +208,6 @@ the first time that sharing to Twitch is used.";
     public bool SubmitRun(
         IRun run,
         Func<Image> screenShotFunction = null,
-        bool attachSplits = false,
         TimingMethod method = TimingMethod.RealTime,
         string comment = "",
         params string[] additionalParams)

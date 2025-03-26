@@ -948,47 +948,10 @@ public partial class TimerForm : Form
         var openFromURLMenuItem = new ToolStripMenuItem("From URL...");
         openFromURLMenuItem.Click += openSplitsFromURLMenuItem_Click;
         openSplitsMenuItem.DropDownItems.Add(openFromURLMenuItem);
-        var openFromSpeedrunComMenuItem = new ToolStripMenuItem("From Speedrun.com...");
-        openFromSpeedrunComMenuItem.Click += openFromSpeedrunComMenuItem_Click;
-        openSplitsMenuItem.DropDownItems.Add(openFromSpeedrunComMenuItem);
         openSplitsMenuItem.DropDownItems.Add(new ToolStripSeparator());
         var editSplitHistoryMenuItem = new ToolStripMenuItem("Edit History");
         editSplitHistoryMenuItem.Click += editSplitHistoryMenuItem_Click;
         openSplitsMenuItem.DropDownItems.Add(editSplitHistoryMenuItem);
-    }
-
-    private void openFromSpeedrunComMenuItem_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            TopMost = false;
-            IsInDialogMode = true;
-
-            var runImporter = new SpeedrunComRunImporter();
-            IRun run = runImporter.Import(this);
-
-            if (run != null)
-            {
-                if (!WarnUserAboutSplitsSave())
-                {
-                    return;
-                }
-
-                if (!WarnAndRemoveTimerOnly(true))
-                {
-                    return;
-                }
-
-                run.HasChanged = true;
-                SetRun(run);
-                CurrentState.CallRunManuallyModified();
-            }
-        }
-        finally
-        {
-            TopMost = Layout.Settings.AlwaysOnTop;
-            IsInDialogMode = false;
-        }
     }
 
     private void editSplitHistoryMenuItem_Click(object sender, EventArgs e)

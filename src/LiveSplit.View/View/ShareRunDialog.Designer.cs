@@ -46,7 +46,6 @@
             this.btnInsertDeltaTime = new System.Windows.Forms.Button();
             this.btnInsertSplitTime = new System.Windows.Forms.Button();
             this.btnInsertStreamLink = new System.Windows.Forms.Button();
-            this.chkAttachSplits = new System.Windows.Forms.CheckBox();
             this.btnShare = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +75,6 @@
             this.tableLayoutPanel1.Controls.Add(this.btnInsertDeltaTime, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.btnInsertSplitTime, 3, 5);
             this.tableLayoutPanel1.Controls.Add(this.btnInsertStreamLink, 4, 5);
-            this.tableLayoutPanel1.Controls.Add(this.chkAttachSplits, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.btnShare, 2, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
@@ -271,19 +269,6 @@
             this.btnInsertStreamLink.UseVisualStyleBackColor = true;
             this.btnInsertStreamLink.Click += new System.EventHandler(this.btnInsertStreamLink_Click);
             // 
-            // chkAttachSplits
-            // 
-            this.chkAttachSplits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkAttachSplits.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.chkAttachSplits, 2);
-            this.chkAttachSplits.Location = new System.Drawing.Point(7, 246);
-            this.chkAttachSplits.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkAttachSplits.Name = "chkAttachSplits";
-            this.chkAttachSplits.Size = new System.Drawing.Size(85, 17);
-            this.chkAttachSplits.TabIndex = 24;
-            this.chkAttachSplits.Text = "Attach Splits";
-            this.chkAttachSplits.UseVisualStyleBackColor = true;
-            // 
             // btnShare
             // 
             this.btnShare.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -336,6 +321,5 @@
         private System.Windows.Forms.Button btnInsertSplitTime;
         private System.Windows.Forms.Button btnInsertSplitName;
         private System.Windows.Forms.Button btnInsertStreamLink;
-        private System.Windows.Forms.CheckBox chkAttachSplits;
     }
 }

@@ -56,8 +56,6 @@ public partial class ShareRunDialog : Form
             {
                 cbxPlatform.Items.Add("Speedrun.com");
             }
-
-            cbxPlatform.Items.Add("Splits.io");
         }
 
         cbxPlatform.Items.Add("Twitch");
@@ -78,7 +76,6 @@ public partial class ShareRunDialog : Form
     {
         switch (cbxPlatform.SelectedItem.ToString())
         {
-            case "Splits.io": CurrentPlatform = SplitsIO.Instance; break;
             case "X (Twitter)": CurrentPlatform = Twitter.Instance; break;
             case "Twitch": CurrentPlatform = Twitch.Instance; break;
             case "Screenshot": CurrentPlatform = Screenshot.Instance; break;
@@ -93,16 +90,6 @@ public partial class ShareRunDialog : Form
             = btnInsertPB.Enabled = btnInsertSplitName.Enabled = btnInsertSplitTime.Enabled
             = btnInsertStreamLink.Enabled = btnInsertTitle.Enabled = btnPreview.Enabled =
             CurrentPlatform == Twitter.Instance || CurrentPlatform == Twitch.Instance || CurrentPlatform == Imgur.Instance;
-
-        if (State.CurrentPhase is TimerPhase.NotRunning or TimerPhase.Ended)
-        {
-            chkAttachSplits.Enabled = !(CurrentPlatform == Screenshot.Instance || CurrentPlatform == SplitsIO.Instance
-                || CurrentPlatform == Twitch.Instance || CurrentPlatform == Excel.Instance || CurrentPlatform == SpeedrunComRunUploadPlatform.Instance);
-        }
-        else
-        {
-            chkAttachSplits.Enabled = false;
-        }
 
         if (State.CurrentPhase == TimerPhase.Ended || State.CurrentPhase == TimerPhase.NotRunning
             || State.CurrentSplitIndex == 0)
@@ -247,7 +234,6 @@ public partial class ShareRunDialog : Form
     private void btnSubmit_Click(object sender, EventArgs e)
     {
         string notes = FormatNotes(txtNotes.Text);
-        bool attachSplits = chkAttachSplits.Checked;
 
         SaveNotesFormat();
 
@@ -264,7 +250,6 @@ public partial class ShareRunDialog : Form
             bool runSubmitted = CurrentPlatform.SubmitRun(
                 Run,
                 ScreenShotFunction,
-                attachSplits,
                 State.CurrentTimingMethod,
                 notes);
 

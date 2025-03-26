@@ -33,13 +33,8 @@ When you click share, LiveSplit opens a Tweet composition window in your default
         return true;
     }
 
-    public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
+    public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
-        if (attachSplits)
-        {
-            comment += " " + SplitsIO.Instance.Share(run, screenShotFunction);
-        }
-
         ImageToClipboard(screenShotFunction());
         string uri = MakeUri(comment);
         Process.Start(uri);
