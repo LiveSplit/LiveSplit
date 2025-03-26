@@ -22,8 +22,6 @@ using LiveSplit.Web;
 using LiveSplit.Web.Share;
 using LiveSplit.Web.SRL;
 
-using WebSocketSharp;
-
 namespace LiveSplit.View;
 
 public partial class RunEditorDialog : Form
