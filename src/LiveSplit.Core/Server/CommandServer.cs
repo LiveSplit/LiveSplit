@@ -537,7 +537,7 @@ public class CommandServer
             }
             case "getwinratedec":
             {
-                if (Model.CurrentState.Run.AttemptCount == 0)
+                if (Model.CurrentState.Run.AttemptCount == 0 || State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) == 0 )
                 {
                     response = ".000";
                 }
