@@ -523,12 +523,29 @@ public class CommandServer
             }
             case "getwinratepct":
             {
-                response = Math.Round((State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) / (double)Model.CurrentState.Run.AttemptCount) * 100, 1).ToString();
+                if (Model.CurrentState.Run.AttemptCount == 0)
+                {
+                    response = "0.0";
+                }
+
+                else
+                {
+                    response = Math.Round((State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) / (double)Model.CurrentState.Run.AttemptCount) * 100, 1).ToString();
+                }
+                
                 break;
             }
             case "getwinratedec":
             {
-                response = Math.Round(State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) / (double)Model.CurrentState.Run.AttemptCount, 3).ToString();
+                if (Model.CurrentState.Run.AttemptCount == 0)
+                {
+                    response = ".000";
+                }
+
+                else
+                {
+                    response = Math.Round(State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) / (double)Model.CurrentState.Run.AttemptCount, 3).ToString();
+                }
                 break;
             }
             default:
