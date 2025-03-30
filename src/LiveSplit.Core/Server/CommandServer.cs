@@ -516,38 +516,6 @@ public class CommandServer
                 response = State.Run.AttemptHistory.Count(x => x.Time.RealTime != null).ToString();
                 break;
             }
-            case "getcompletionsoverattempts":
-            {
-                response = State.Run.AttemptHistory.Count(x => x.Time.RealTime != null).ToString() + "/" + Model.CurrentState.Run.AttemptCount.ToString();
-                break;
-            }
-            case "getwinratepct":
-            {
-                if (Model.CurrentState.Run.AttemptCount == 0)
-                {
-                    response = "0.0";
-                }
-
-                else
-                {
-                    response = Math.Round((State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) / (double)Model.CurrentState.Run.AttemptCount) * 100, 1).ToString();
-                }
-                
-                break;
-            }
-            case "getwinratedec":
-            {
-                if (Model.CurrentState.Run.AttemptCount == 0 || State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) == 0 )
-                {
-                    response = ".000";
-                }
-
-                else
-                {
-                    response = Math.Round(State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) / (double)Model.CurrentState.Run.AttemptCount, 3).ToString().TrimStart('0');
-                }
-                break;
-            }
             default:
             {
                 Log.Error($"[Server] Invalid command: {message}");
