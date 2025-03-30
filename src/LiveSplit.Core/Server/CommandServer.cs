@@ -544,7 +544,7 @@ public class CommandServer
 
                 else
                 {
-                    response = Math.Round(State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) / (double)Model.CurrentState.Run.AttemptCount, 3).ToString();
+                    response = Math.Round(State.Run.AttemptHistory.Count(x => x.Time.RealTime != null) / (double)Model.CurrentState.Run.AttemptCount, 3).ToString().TrimStart('0');
                 }
                 break;
             }
