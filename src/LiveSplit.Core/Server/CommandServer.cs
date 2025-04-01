@@ -506,6 +506,16 @@ public class CommandServer
                 response = "pong";
                 break;
             }
+            case "getattemptcount":
+            {
+                response = Model.CurrentState.Run.AttemptCount.ToString();
+                break;
+            }
+			case "getcompletedcount":
+            {
+                response = State.Run.AttemptHistory.Count(x => x.Time.RealTime != null).ToString();
+                break;
+            }
             default:
             {
                 Log.Error($"[Server] Invalid command: {message}");
