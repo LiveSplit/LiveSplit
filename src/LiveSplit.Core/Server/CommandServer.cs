@@ -291,6 +291,21 @@ public class CommandServer
                 State.IsGameTimePaused = true;
                 break;
             }
+            case "getgamename":
+            {
+                response = State.Run.GameName.ToString();
+                break;
+            }
+            case "getcategoryname":
+            {
+                response = State.Run.CategoryName.ToString();
+                break;
+            }
+            case "getextendedcategoryname":
+            {
+                response = State.Run.GetExtendedCategoryName(true, true, true).ToString();
+                break;
+            }
             case "getdelta":
             {
                 string comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
@@ -430,6 +445,11 @@ public class CommandServer
             case "getcurrenttimerphase":
             {
                 response = State.CurrentPhase.ToString();
+                break;
+            }
+            case "getcomparisonname":
+            {
+                response = State.CurrentComparison.ToString();
                 break;
             }
             case "setcomparison":
