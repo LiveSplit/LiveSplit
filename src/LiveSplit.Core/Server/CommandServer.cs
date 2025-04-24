@@ -501,6 +501,25 @@ public class CommandServer
                 response = string.IsNullOrEmpty(value) ? "-" : Regex.Replace(value, @"\r\n?|\n", " ");
                 break;
             }
+            case "setcustomvariable":
+            {
+                if (args.Length < 2)
+                {
+                    Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                    break;
+                }
+
+                string[] options = args[1].Split([' '], 2);
+
+                if (options.Length < 2)
+                {
+                    Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                    break;
+                }
+
+                State.Run.Metadata.SetCustomVariable(options[0], options[1]);
+                break;
+            }
             case "ping":
             {
                 response = "pong";
