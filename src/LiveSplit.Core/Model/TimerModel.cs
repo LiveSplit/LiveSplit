@@ -63,7 +63,7 @@ public class TimerModel : ITimerModel
             CurrentState.CurrentSplit.SplitTime = CurrentState.CurrentTime;
             foreach (KeyValuePair<string, CustomVariable> kv in CurrentState.Run.Metadata.CustomVariables)
             {
-                CurrentState.CurrentSplit.CustomVariableValues.Add(kv.Key, kv.Value.Value);
+                CurrentState.CurrentSplit.CustomVariableValues[kv.Key] = kv.Value.Value;
             }
 
             CurrentState.CurrentSplitIndex++;

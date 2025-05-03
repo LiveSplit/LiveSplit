@@ -21,7 +21,7 @@ public class Segment : ISegment
     public Time BestSegmentTime { get; set; }
     public Time SplitTime { get; set; }
     public SegmentHistory SegmentHistory { get; set; }
-    public IDictionary<string, string> CustomVariableValues { get; private set; } = new Dictionary<string, string>();
+    public Dictionary<string, string> CustomVariableValues { get; private set; }
 
     public Segment(
         string name, Time pbSplitTime = default,
@@ -35,7 +35,7 @@ public class Segment : ISegment
         SplitTime = splitTime;
         Icon = icon;
         SegmentHistory = [];
-        CustomVariableValues = new Dictionary<string, string>();
+        CustomVariableValues = [];
     }
 
     public Segment Clone()

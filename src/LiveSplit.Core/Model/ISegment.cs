@@ -18,5 +18,5 @@ public interface ISegment : ICloneable
     /// <summary>
     ///     A dictionary mapping custom variable names to values.
     /// </summary>
-    IDictionary<string, string> CustomVariableValues { get; }
+    Dictionary<string, string> CustomVariableValues { get; }
 }
