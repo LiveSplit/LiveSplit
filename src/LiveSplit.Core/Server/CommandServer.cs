@@ -291,6 +291,96 @@ public class CommandServer
                 State.IsGameTimePaused = true;
                 break;
             }
+            case "getgamename":
+            {
+                response = State.Run.GameName.ToString();
+                break;
+            }
+            case "getcategoryname":
+            {
+                response = State.Run.CategoryName.ToString();
+                break;
+            }
+            case "getcategoryvariables":
+            {
+                var keyL = new List<string>();
+                //Region
+                bool doSimpleRegion = !State.Run.Metadata.GameAvailable;
+                if (doSimpleRegion)
+                {
+                    if (!string.IsNullOrEmpty(State.Run.Metadata.RegionName))
+                    {
+                        keyL.Add($"\"region\": \"{State.Run.Metadata.RegionName}\"");
+                    }
+                }
+                else if (State.Run.Metadata.Region != null && !string.IsNullOrEmpty(State.Run.Metadata.Region.Abbreviation) && State.Run.Metadata.Game != null && State.Run.Metadata.Game.Regions.Count > 1)
+                {
+                    keyL.Add($"\"region\": \"{State.Run.Metadata.Region.Abbreviation}\"");
+                }
+                //Platform
+                bool doSimplePlatform = !State.Run.Metadata.GameAvailable;
+                if (!string.IsNullOrEmpty(State.Run.Metadata.PlatformName) && (doSimplePlatform || (State.Run.Metadata.Game != null && State.Run.Metadata.Game.Platforms.Count > 1)))
+                {
+                    if (State.Run.Metadata.UsesEmulator)
+                    {
+                        keyL.Add($"\"platform\": \"{State.Run.Metadata.PlatformName} Emulator\"");
+                    }
+                    else
+                    {
+                        keyL.Add($"\"platform\": \"{State.Run.Metadata.PlatformName}\"");
+                    }
+                }
+                else if (State.Run.Metadata.UsesEmulator)
+                {
+                    keyL.Add($"\"platform\": \"Emulator\"");
+                }
+                //Variables
+                var vKeys = new List<string>();
+                IEnumerable<string> variables = State.Run.Metadata.VariableValueNames.Keys;
+                if (State.Run.Metadata.GameAvailable && State.Run.Metadata.Game != null)
+                {
+                    string categoryId = null;
+                    if (State.Run.Metadata.CategoryAvailable && State.Run.Metadata.Category != null)
+                    {
+                        categoryId = State.Run.Metadata.Category.ID;
+                    }
+                    variables = State.Run.Metadata.Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).Select(x => x.Name);
+                }
+                foreach (string variable in variables)
+                {
+                    if (State.Run.Metadata.VariableValueNames.ContainsKey(variable))
+                    {
+                        string name = variable.TrimEnd('?');
+                        string variableValue = State.Run.Metadata.VariableValueNames[variable];
+                        string valueLower = variableValue.ToLowerInvariant();
+                        if (valueLower == "yes")
+                        {
+                            vKeys.Add($"\"{variable}\": \"{name}\"");
+                        }
+                        else if (valueLower == "no")
+                        {
+                            vKeys.Add($"\"{variable}\": \"No {name}\"");
+                        }
+                        else
+                        {
+                            vKeys.Add($"\"{variable}\": \"{variableValue}\"");
+                        }
+                    }
+                }
+                if (vKeys.Any())
+                {
+                    String variablePairs = $"{{{string.Join(", ", vKeys)}}}";
+                    keyL.Add($"\"variables\": {variablePairs}");
+                }
+                //Combine
+                String keys = "";
+                if (keyL.Any())
+                {
+                    keys = string.Join(", ", keyL);
+                }
+                response = $"{{{keys}}}";
+                break;
+            }
             case "getdelta":
             {
                 string comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
@@ -312,6 +402,12 @@ public class CommandServer
             {
                 int splitindex = State.CurrentSplitIndex;
                 response = splitindex.ToString();
+                break;
+            }
+            case "getsplitcount":
+            {
+                int splitcount = State.Run.Count;
+                response = splitcount.ToString();
                 break;
             }
             case "getcurrentsplitname":
@@ -432,6 +528,11 @@ public class CommandServer
                 response = State.CurrentPhase.ToString();
                 break;
             }
+            case "getcomparisonname":
+            {
+                response = State.CurrentComparison.ToString();
+                break;
+            }
             case "setcomparison":
             {
                 State.CurrentComparison = args[1];
@@ -449,6 +550,11 @@ public class CommandServer
                         break;
                 }
 
+                break;
+            }
+            case "gettimingmethod":
+            {
+                response = State.CurrentTimingMethod.ToString();
                 break;
             }
             case "setsplitname":
