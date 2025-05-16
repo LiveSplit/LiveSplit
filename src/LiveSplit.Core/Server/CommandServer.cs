@@ -312,18 +312,18 @@ public class CommandServer
 
                 //Region
                 string region = null;
-                if (md.Region != null && !string.IsNullOrEmpty(md.Region.Abbreviation) && md.Game != null)
+                if (md is { Game: not null, Region.Abbreviation.Length: > 0 })
                 {
                     region = md.Region.Abbreviation;
                 }
-                else if (!md.GameAvailable && !string.IsNullOrEmpty(md.RegionName))
+                else if (md is { Game: null, RegionName.Length: > 0 })
                 {
                     region = md.RegionName;
                 }
 
                 //Platform
                 string platform = null;
-                if (!string.IsNullOrEmpty(md.PlatformName) && (!md.GameAvailable || (md.Game != null)))
+                if (md is { Game: not null, PlatformName.Length: > 0 })
                 {
                     platform = md.PlatformName;
                 }
@@ -331,10 +331,9 @@ public class CommandServer
                 //Variables
                 Dictionary<string, string> variables = [];
                 IEnumerable<string> variableL = md.VariableValueNames.Keys;
-                if (md.GameAvailable && md.Game != null)
+                if (md is { Game: not null, Category: not null })
                 {
-                    string categoryId = (md.CategoryAvailable && md.Category != null) ? md.Category.ID : null;
-                    variableL = md.Game.FullGameVariables.Where(x => x.CategoryID == null || x.CategoryID == categoryId).Select(x => x.Name);
+                    variableL = md.Game.FullGameVariables.Where(fgv => fgv.CategoryID == null || fgv.CategoryID == md.Category?.ID).Select(fgv => fgv.Name);
                 }
 
                 foreach (string variable in variableL)
