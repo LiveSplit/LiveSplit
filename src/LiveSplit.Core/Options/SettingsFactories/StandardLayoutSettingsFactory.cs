@@ -34,6 +34,7 @@ public class StandardLayoutSettingsFactory : ILayoutSettingsFactory
             AntiAliasing = true,
             DropShadows = true,
             BackgroundType = BackgroundType.SolidColor,
+            TransparentBackground = false,
             BackgroundImage = null,
             ImageOpacity = 1f,
             ImageBlur = 0f,
