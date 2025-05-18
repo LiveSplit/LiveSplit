@@ -16,7 +16,6 @@ public interface IRunUploadPlatform
     bool SubmitRun(
         IRun run,
         Func<Image> screenShotFunction = null,
-        bool attachSplits = false,
         TimingMethod method = TimingMethod.RealTime,
         string comment = "",
         params string[] additionalParams);

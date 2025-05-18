@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 
 using LiveSplit.Model.Comparisons;
@@ -14,4 +15,8 @@ public interface ISegment : ICloneable
     Time BestSegmentTime { get; set; }
     Time SplitTime { get; set; }
     SegmentHistory SegmentHistory { get; set; }
+    /// <summary>
+    ///     A dictionary mapping custom variable names to values.
+    /// </summary>
+    Dictionary<string, string> CustomVariableValues { get; }
 }

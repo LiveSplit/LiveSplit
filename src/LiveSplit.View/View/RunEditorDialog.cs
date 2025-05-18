@@ -1806,12 +1806,6 @@ public partial class RunEditorDialog : Form
         ImportClick(runImporter);
     }
 
-    private void fromSpeedruncomToolStripMenuItem_Click(object sender, EventArgs e)
-    {
-        var runImporter = new SpeedrunComRunImporter();
-        ImportClick(runImporter);
-    }
-
     private void ImportClick(IRunImporter importer)
     {
         string name = importer.ImportAsComparison(Run, this);

@@ -557,6 +557,16 @@ public class CommandServer
                 commandResponse.State = "Pong";
                 break;
             }
+            case "getattemptcount":
+            {
+                response = Model.CurrentState.Run.AttemptCount.ToString();
+                break;
+            }
+			case "getcompletedcount":
+            {
+                response = State.Run.AttemptHistory.Count(x => x.Time.RealTime != null).ToString();
+                break;
+            }
             default:
             {
                 string errMsg = $"Invalid command: {command}";

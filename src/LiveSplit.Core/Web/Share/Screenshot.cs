@@ -24,7 +24,7 @@ public class Screenshot : IRunUploadPlatform
         return true;
     }
 
-    public bool SubmitRun(IRun run, Func<System.Drawing.Image> screenShotFunction = null, bool attachSplits = false, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
+    public bool SubmitRun(IRun run, Func<System.Drawing.Image> screenShotFunction = null, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
         try
         {
