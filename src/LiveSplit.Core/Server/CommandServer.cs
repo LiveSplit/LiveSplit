@@ -30,7 +30,7 @@ public class CommandServer
     protected ITimeFormatter TimeFormatter { get; set; }
     protected NamedPipeServerStream WaitingServerPipe { get; set; }
 
-    private bool AlwaysPauseGameTime { get; set; }
+    protected bool AlwaysPauseGameTime { get; set; }
     private static readonly JsonSerializerOptions _serializerOptions = new()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase
