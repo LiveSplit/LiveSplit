@@ -510,9 +510,19 @@ public class CommandServer
                     break;
                 }
 
-                string[] options = args[1].Split([' '], 2);
+                string[] options;
+                try
+                {
+                    options = JsonSerializer.Deserialize<string[]>(args[1]);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                    Log.Error($"[Server] Failed to parse JSON: {args[1]}");
+                    break;
+                }
 
-                if (options.Length < 2)
+                if (options == null || options.Length < 2)
                 {
                     Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
                     break;
