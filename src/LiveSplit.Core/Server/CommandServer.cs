@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
+using LiveSplit.Updates;
 
 using WebSocketSharp.Server;
 
@@ -571,11 +572,6 @@ public class CommandServer
                 response = string.IsNullOrEmpty(value) ? "-" : Regex.Replace(value, @"\r\n?|\n", " ");
                 break;
             }
-            case "ping":
-            {
-                response = "pong";
-                break;
-            }
             case "getattemptcount":
             {
                 response = Model.CurrentState.Run.AttemptCount.ToString();
@@ -584,6 +580,16 @@ public class CommandServer
 			case "getcompletedcount":
             {
                 response = State.Run.AttemptHistory.Count(x => x.Time.RealTime != null).ToString();
+                break;
+            }
+            case "getlivesplitversion":
+            {
+                response = Git.Version.ToString() ?? "Unknown Version";
+                break;
+            }
+            case "ping":
+            {
+                response = "pong";
                 break;
             }
             default:

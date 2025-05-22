@@ -151,6 +151,7 @@ Commands that return a string:
 - getcomparisonname
 - gettimingmethod
 - getcustomvariablevalue NAME
+- getlivesplitversion
 - ping  
 (always returns `pong`)
 
