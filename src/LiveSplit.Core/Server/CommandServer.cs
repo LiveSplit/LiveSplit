@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
+using System.IO;
 using System.IO.Pipes;
 using System.Linq;
 using System.Net;
@@ -27,11 +30,16 @@ public class CommandServer
     protected Form Form { get; set; }
     protected TimerModel Model { get; set; }
     protected ITimeFormatter TimeFormatter { get; set; }
+    protected Func<Image> ScreenShotFunction { get; set; }
+    protected Func<bool, bool> SaveLayout { get; set; }
+    protected Func<bool, bool, bool> SaveSplits { get; set; }
+    protected Func<string, bool> OpenLayoutFromFile { get; set; }
+    protected Func<string, bool> OpenRunFromFile { get; set; }
     protected NamedPipeServerStream WaitingServerPipe { get; set; }
 
     protected bool AlwaysPauseGameTime { get; set; }
 
-    public CommandServer(LiveSplitState state)
+    public CommandServer(LiveSplitState state, Func<Image> screenShotFunction, Func<bool, bool> saveLayout, Func<bool, bool, bool> saveSplits, Func<string, bool> openLayoutFromFile, Func<string, bool> openRunFromFile)
     {
         Model = new TimerModel();
         PipeConnections = [];
@@ -40,6 +48,11 @@ public class CommandServer
 
         State = state;
         Form = state.Form;
+        ScreenShotFunction = screenShotFunction;
+        SaveLayout = saveLayout;
+        SaveSplits = saveSplits;
+        OpenLayoutFromFile = openLayoutFromFile;
+        OpenRunFromFile = openRunFromFile;
 
         Model.CurrentState = State;
         State.OnStart += State_OnStart;
@@ -500,6 +513,107 @@ public class CommandServer
                 // make sure response isn't null or empty, and doesn't contain line endings
                 response = string.IsNullOrEmpty(value) ? "-" : Regex.Replace(value, @"\r\n?|\n", " ");
                 break;
+            }
+            case "savelayout":
+            {
+                bool success = false;
+                success = SaveLayout(true);
+                if (!success)
+                {
+                    Log.Error($"[Server] Failed to save current layout");
+                }
+
+                response = success.ToString();
+                break;
+            }
+            case "savesplits":
+            {
+                bool success = false;
+                success = SaveSplits(false, true);
+                if (!success)
+                {
+                    Log.Error($"[Server] Failed to save current splits");
+                }
+
+                response = success.ToString();
+                break;
+            }
+            case "switchlayoutfile":
+            {
+                bool success = false;
+                success = OpenLayoutFromFile(args[1]);
+                if (!success)
+                {
+                    Log.Error($"[Server] Failed to change current layout to {args[1]}");
+                }
+
+                response = success.ToString();
+                break;
+            }
+            case "switchsplitsfile":
+            {
+                bool success = false;
+                success = OpenRunFromFile(args[1]);
+                if (!success)
+                {
+                    Log.Error($"[Server] Failed to change current splits to {args[1]}");
+                }
+
+                response = success.ToString();
+                break;
+            }
+            case "getsplitsscreenshot":
+            case "savesplitsscreenshot":
+            {
+                Image image;
+                try
+                {
+                    image = ScreenShotFunction();
+                    if (image is null)
+                    {
+                        break;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                    Log.Error($"[Server] Failed to gather splits screenshot");
+                    break;
+                }
+
+                if (command == "getsplitsscreenshot")
+                {
+                    try
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            image.Save(stream, ImageFormat.Png);
+                            response = Convert.ToBase64String(stream.ToArray()).ToString();
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                        Log.Error($"[Server] Failed to Base64 encode splits screenshot");
+                    }
+                }
+
+                else
+                {
+                    try
+                    {
+                        image.Save(args[1]);
+                        response = "True";
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(e);
+                        Log.Error($"[Server] Failed to save screenshot file: {args[1]}");
+                        response = "False";
+                    }
+                }
+
+                    break;
             }
             case "ping":
             {
