@@ -139,12 +139,22 @@ Commands that return an int:
 - getattemptcount
 - getcompletedcount
 
+Commands that return True/False whether or not the request succeeds:
+
+- savecurrentlayout
+- savecurrentsplits
+- switchlayoutfile FILEPATH
+- switchsplitsfile FILEPATH
+- savesplitsscreenshot FILEPATH
+
 Commands that return a string:
 
 - getcurrentsplitname  
 - getprevioussplitname
 - getcurrenttimerphase
 - getcustomvariablevalue NAME
+- getsplitsscreenshot  
+(returns a base64 encoded string of the screenshot)
 - ping  
 (always returns `pong`)
 
