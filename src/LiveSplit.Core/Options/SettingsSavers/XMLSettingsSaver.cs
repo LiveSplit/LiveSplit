@@ -72,6 +72,10 @@ public class XMLSettingsSaver : ISettingsSaver
         CreateSetting(document, parent, "RefreshRate", settings.RefreshRate);
         CreateSetting(document, parent, "ServerPort", settings.ServerPort);
 
+        CreateSetting(document, parent, "HcpHistorySize", settings.HcpHistorySize);
+        CreateSetting(document, parent, "HcpNBestRuns", settings.HcpNBestRuns);
+
+
         XmlElement generatorStates = document.CreateElement("ComparisonGeneratorStates");
         foreach (System.Collections.Generic.KeyValuePair<string, bool> generator in settings.ComparisonGeneratorStates)
         {
