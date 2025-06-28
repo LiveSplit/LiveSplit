@@ -136,6 +136,7 @@ Commands that return an int:
 
 - getsplitindex  
 (returns -1 if the timer is not running)
+- getsplitcount
 - getattemptcount
 - getcompletedcount
 
@@ -144,7 +145,13 @@ Commands that return a string:
 - getcurrentsplitname  
 - getprevioussplitname
 - getcurrenttimerphase
+- getgamename
+- getcategoryname
+- getcategoryvariables
+- getcomparisonname
+- gettimingmethod
 - getcustomvariablevalue NAME
+- getlivesplitversion
 - ping  
 (always returns `pong`)
 
