@@ -37,6 +37,8 @@ public class XMLSettingsFactory : ISettingsFactory
         settings.ServerPort = ParseInt(parent["ServerPort"], settings.ServerPort);
         settings.LastComparison = ParseString(parent["LastComparison"], settings.LastComparison);
         settings.AgreedToSRLRules = ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
+        settings.HcpHistorySize = ParseInt(parent["HcpHistorySize"], settings.HcpHistorySize);
+        settings.HcpNBestRuns = ParseInt(parent["HcpNBestRuns"], settings.HcpNBestRuns);
 
         XmlElement recentLayouts = parent["RecentLayouts"];
         foreach (object layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))

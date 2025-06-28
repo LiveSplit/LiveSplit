@@ -56,7 +56,9 @@ public class StandardSettingsFactory : ISettingsFactory
                 { LatestRunComparisonGenerator.ComparisonName, false },
                 { HCPComparisonGenerator.ComparisonName, false },
                 { NoneComparisonGenerator.ComparisonName, false }
-            }
+            },
+            HcpHistorySize = 20,
+            HcpNBestRuns = 8
         };
     }
 }
