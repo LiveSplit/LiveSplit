@@ -51,13 +51,59 @@ public class HCPComparisonGenerator : IComparisonGenerator
 
     public void Generate(TimingMethod method)
     {
+        // Get the number of segments in the run
         int segmentCount = Run.Count;
         if (segmentCount == 0)
+        {
+            // If there are no segments, nothing to generate
+            return;
+        }
+
+        // Clear reusable collections for this pass
+        ResetReusableCollections();
+
+        // Initialize per-segment collections and reset segment comparison values
+        var validSegmentTimes = InitializeSegmentTimes(segmentCount, method);
+
+        // Gather valid attempts and their segment times, populating collections
+        var runData = CollectValidRuns(method, segmentCount, validSegmentTimes);
+
+        // If no valid runs were found, exit early
+        if (_totalTimes.Count == 0)
         {
             return;
         }
 
-        // Reset collections
+        // Select the best runs (lowest total times) for HCP calculation
+        SelectBestRuns();
+
+        // Calculate the average total time from the best runs
+        int bestRunsCount = _bestRunIndices.Count;
+        double avgTotal = bestRunsCount > 0
+            ? _bestRunIndices.Average(index => _totalTimes[index])
+            : 0;
+
+        // If the average is not positive, exit early
+        if (avgTotal <= 0)
+        {
+            return;
+        }
+
+        // Calculate HCP times for each segment and track which segments have valid data
+        (double[] segmentHCPTimes, bool[] hasValidTimes) = CalculateSegmentHCPs(segmentCount, validSegmentTimes);
+
+        // Sum the HCP times for all valid segments
+        double totalHCPSegmentTime = segmentHCPTimes.Where(time => time > 0).Sum();
+
+        // If there are valid segment times, scale and apply them to the run's comparison data
+        if (totalHCPSegmentTime > 0)
+        {
+            ApplyHCPComparisons(segmentCount, avgTotal, totalHCPSegmentTime, segmentHCPTimes, hasValidTimes, method);
+        }
+    }
+
+    private void ResetReusableCollections()
+    {
         _totalTimes.Clear();
         if (_totalTimes.Capacity < _numberOfLatestRunsToInclude)
         {
@@ -81,50 +127,45 @@ public class HCPComparisonGenerator : IComparisonGenerator
         {
             _bestRunIndices.Capacity = _maximumNumberOfBestRunsToInclude;
         }
+    }
 
+    private Dictionary<int, List<double>> InitializeSegmentTimes(int segmentCount, TimingMethod method)
+    {
         var validSegmentTimes = new Dictionary<int, List<double>>(segmentCount);
-
-        // Reset all segment comparisons
         for (int i = 0; i < segmentCount; i++)
         {
             var time = new Time(Run[i].Comparisons[Name]);
             time[method] = null;
             Run[i].Comparisons[Name] = time;
 
-            // Initialize segment times collection
-            if (!validSegmentTimes.ContainsKey(i))
-            {
-                validSegmentTimes[i] = new List<double>(_numberOfLatestRunsToInclude);
-            }
-            else
-            {
-                validSegmentTimes[i].Clear();
-            }
+            validSegmentTimes[i] = new List<double>(_numberOfLatestRunsToInclude);
         }
 
-        // Find attempts with a valid last segment time
+        return validSegmentTimes;
+    }
+
+    private List<(int AttemptIndex, double TotalTime, List<double> SegmentTimes)> CollectValidRuns(
+        TimingMethod method,
+        int segmentCount,
+        Dictionary<int, List<double>> validSegmentTimes)
+    {
         IList<Attempt> attemptHistory = Run.AttemptHistory;
         int attemptCount = attemptHistory.Count;
         int lastSegmentIndex = segmentCount - 1;
         ISegment lastSegment = Run[lastSegmentIndex];
 
-        // Collect run data
         var runData = new List<(int AttemptIndex, double TotalTime, List<double> SegmentTimes)>();
-
-        // Get the most recent valid attempts
         int validAttemptsFound = 0;
         for (int i = attemptCount - 1; i >= 0 && validAttemptsFound < _numberOfLatestRunsToInclude; i--)
         {
             Attempt attempt = attemptHistory[i];
 
-            // Check if the run was finished
             if (!lastSegment.SegmentHistory.TryGetValue(attempt.Index, out Time lastSegmentTime) ||
                 lastSegmentTime[method] == null)
             {
                 continue;
             }
 
-            // Use the attempt's official time as the total run time
             double totalTime = 0;
             if (attempt.Time[method] != null)
             {
@@ -136,7 +177,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
             }
             else
             {
-                continue; // Skip this attempt if no valid time is available
+                continue;
             }
 
             if (totalTime <= 0)
@@ -146,19 +187,16 @@ public class HCPComparisonGenerator : IComparisonGenerator
 
             _totalTimes.Add(totalTime);
 
-            // Collect segment times for this attempt
             var segmentTimes = new List<double>(segmentCount);
             bool hasValidSegments = false;
 
             for (int j = 0; j < segmentCount; j++)
             {
                 double segmentTime = 0;
-
                 if (Run[j].SegmentHistory.TryGetValue(attempt.Index, out var segmentHistory) &&
                     segmentHistory[method] != null)
                 {
                     segmentTime = segmentHistory[method].Value.TotalSeconds;
-
                     if (segmentTime > 0)
                     {
                         validSegmentTimes[j].Add(segmentTime);
@@ -177,34 +215,26 @@ public class HCPComparisonGenerator : IComparisonGenerator
             }
         }
 
-        if (_totalTimes.Count == 0)
-        {
-            return;
-        }
+        return runData;
+    }
 
+    private void SelectBestRuns()
+    {
         var totalTimeWithIndices = _totalTimes
             .Select((time, index) => (Index: index, Time: time))
             .OrderBy(t => t.Time)
             .Take(_maximumNumberOfBestRunsToInclude)
             .ToList();
 
-        // Sort by total time
         totalTimeWithIndices.Sort((a, b) => a.Time.CompareTo(b.Time));
         _bestRunIndices.Clear();
-        _bestRunIndices.AddRange(totalTimeWithIndices.Select(t => t.Index).ToList());
+        _bestRunIndices.AddRange(totalTimeWithIndices.Select(t => t.Index));
+    }
 
-        // Calculate average total time from best runs (LINQ version)
-        int bestRunsCount = _bestRunIndices.Count;
-        double avgTotal = bestRunsCount > 0
-            ? _bestRunIndices.Average(index => _totalTimes[index])
-            : 0;
-
-        if (avgTotal <= 0)
-        {
-            return;
-        }
-
-        // Calculate HCP times for each segment using the same best runs
+    private (double[] segmentHCPTimes, bool[] hasValidTimes) CalculateSegmentHCPs(
+        int segmentCount,
+        Dictionary<int, List<double>> validSegmentTimes)
+    {
         double[] segmentHCPTimes = new double[segmentCount];
         bool[] hasValidTimes = new bool[segmentCount];
 
@@ -218,13 +248,11 @@ public class HCPComparisonGenerator : IComparisonGenerator
 
             if (bestSegmentTimes.Count > 0)
             {
-                // Calculate average for this segment from best runs
                 segmentHCPTimes[segIndex] = bestSegmentTimes.Average();
                 hasValidTimes[segIndex] = true;
             }
             else
             {
-                // Alternative method: Calculate based on all valid times for this segment
                 List<double> allTimes = validSegmentTimes[segIndex];
                 if (allTimes.Count > 0)
                 {
@@ -243,33 +271,33 @@ public class HCPComparisonGenerator : IComparisonGenerator
             }
         }
 
-        // Calculate total of all segment HCP times
-        double totalHCPSegmentTime = segmentHCPTimes.Where(time => time > 0).Sum();
+        return (segmentHCPTimes, hasValidTimes);
+    }
 
-        // If we have valid segment times, scale them to match total HCP time
-        if (totalHCPSegmentTime > 0)
+    private void ApplyHCPComparisons(
+        int segmentCount,
+        double avgTotal,
+        double totalHCPSegmentTime,
+        double[] segmentHCPTimes,
+        bool[] hasValidTimes,
+        TimingMethod method)
+    {
+        TimeSpan? cumulative = TimeSpan.Zero;
+        double scaleFactor = avgTotal / totalHCPSegmentTime;
+
+        for (int i = 0; i < segmentCount; i++)
         {
-            TimeSpan? cumulative = TimeSpan.Zero;
-
-            // Scale factor to ensure segments add up to total HCP time
-            double scaleFactor = avgTotal / totalHCPSegmentTime;
-
-            for (int i = 0; i < segmentCount; i++)
+            if (hasValidTimes[i])
             {
-                if (hasValidTimes[i])
+                if (cumulative != null)
                 {
-                    // Scale individual segment HCP by the total ratio
                     var segmentDuration = TimeSpan.FromSeconds(segmentHCPTimes[i] * scaleFactor);
-
-                    if (cumulative != null)
-                    {
-                        cumulative += segmentDuration;
-                    }
-
-                    var time = new Time(Run[i].Comparisons[Name]);
-                    time[method] = cumulative;
-                    Run[i].Comparisons[Name] = time;
+                    cumulative += segmentDuration;
                 }
+
+                var time = new Time(Run[i].Comparisons[Name]);
+                time[method] = cumulative;
+                Run[i].Comparisons[Name] = time;
             }
         }
     }
