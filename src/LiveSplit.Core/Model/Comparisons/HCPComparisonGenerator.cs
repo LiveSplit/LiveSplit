@@ -28,63 +28,97 @@ public class HCPComparisonGenerator : IComparisonGenerator
 
     public void Generate(TimingMethod method)
     {
-        var allHistory = new List<List<TimeSpan>>();
-        foreach (ISegment segment in Run)
+        int segmentCount = Run.Count;
+        var recentRuns = Run.AttemptHistory
+            .Where(attempt => Run.Last().SegmentHistory.TryGetValue(attempt.Index, out var lastSegmentTime) && lastSegmentTime[method] != null)
+            .OrderByDescending(attempt => attempt.Index)
+            .Take(NumberOfLatestRunsToInclude)
+            .ToList();
+
+        if (recentRuns.Count == 0)
         {
-            allHistory.Add([]);
+            for (int i = 0; i < segmentCount; i++)
+            {
+                var time = new Time(Run[i].Comparisons[Name]);
+                time[method] = null;
+                Run[i].Comparisons[Name] = time;
+            }
+            return;
         }
 
-        // Get the last 20 complete runs 
-        var recentRuns = Run.AttemptHistory
-            .Where(attempt => Run.Last().SegmentHistory.TryGetValue(attempt.Index, out Time lastSegmentTime) && lastSegmentTime[method] != null)
-            .OrderByDescending(attempt => attempt.Index)
-            .Take(NumberOfLatestRunsToInclude);
-
-        foreach (Attempt attempt in recentRuns)
+        // Gather total times and per-segment times for each run
+        var totalTimes = new List<double>();
+        var segmentTimesPerRun = new List<List<double>>();
+        foreach (var attempt in recentRuns)
         {
-            int ind = attempt.Index;
-            bool ignoreNextHistory = false;
-            foreach (ISegment segment in Run)
+            var segmentTimes = new List<double>();
+            double? lastCumulativeTime = 0;
+            bool valid = true;
+            for (int i = 0; i < segmentCount; i++)
             {
-                if (segment.SegmentHistory.TryGetValue(ind, out Time history))
+                if (Run[i].SegmentHistory.TryGetValue(attempt.Index, out var segmentHistory) && segmentHistory[method] != null)
                 {
-                    if (history[method] == null)
-                    {
-                        ignoreNextHistory = true;
-                    }
-                    else if (!ignoreNextHistory)
-                    {
-                        allHistory[Run.IndexOf(segment)].Add(history[method].Value);
-                    }
-                    else
-                    {
-                        ignoreNextHistory = false;
-                    }
+                    segmentTimes.Add(segmentHistory[method].Value.TotalSeconds);
+                    lastCumulativeTime += segmentHistory[method].Value.TotalSeconds;
                 }
                 else
                 {
-                    ignoreNextHistory = false;
+                    valid = false;
+                    break;
                 }
+            }
+            if (valid && lastCumulativeTime.HasValue)
+            {
+                totalTimes.Add(lastCumulativeTime.Value);
+                segmentTimesPerRun.Add(segmentTimes);
             }
         }
 
-        TimeSpan? totalTime = TimeSpan.Zero;
-        for (int ind = 0; ind < Run.Count; ind++)
+        if (totalTimes.Count == 0)
         {
-            List<TimeSpan> curList = allHistory[ind];
-            if (curList.Count == 0)
+            for (int i = 0; i < segmentCount; i++)
             {
-                totalTime = null;
+                var time = new Time(Run[i].Comparisons[Name]);
+                time[method] = null;
+                Run[i].Comparisons[Name] = time;
             }
+            return;
+        }
 
-            if (totalTime != null)
+        double avgTotal = totalTimes.Average();
+
+        // For each segment, compute average proportion of total time
+        var avgProportions = new double[segmentCount];
+        for (int seg = 0; seg < segmentCount; seg++)
+        {
+            double sum = 0;
+            int count = 0;
+            for (int run = 0; run < segmentTimesPerRun.Count; run++)
             {
-                totalTime += CalculateAverage(curList);
+                double segTime = segmentTimesPerRun[run][seg];
+                double total = totalTimes[run];
+                if (total > 0)
+                {
+                    sum += segTime / total;
+                    count++;
+                }
             }
+            avgProportions[seg] = count > 0 ? sum / count : 1.0 / segmentCount;
+        }
 
-            var time = new Time(Run[ind].Comparisons[Name]);
-            time[method] = totalTime;
-            Run[ind].Comparisons[Name] = time;
+        // Assign cumulative times to segments
+        TimeSpan? cumulative = TimeSpan.Zero;
+        for (int i = 0; i < segmentCount; i++)
+        {
+            var segmentDuration = TimeSpan.FromSeconds(avgProportions[i] * avgTotal);
+            if (cumulative != null)
+            {
+                cumulative += segmentDuration;
+            }  
+
+            var time = new Time(Run[i].Comparisons[Name]);
+            time[method] = cumulative;
+            Run[i].Comparisons[Name] = time;
         }
     }
 
