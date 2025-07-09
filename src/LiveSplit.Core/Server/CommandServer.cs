@@ -7,7 +7,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Windows.Forms;
 
 using LiveSplit.Model;
