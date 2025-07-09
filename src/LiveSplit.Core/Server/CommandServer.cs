@@ -5,12 +5,14 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
+using LiveSplit.Updates;
 
 using WebSocketSharp.Server;
 
@@ -30,6 +32,10 @@ public class CommandServer
     protected NamedPipeServerStream WaitingServerPipe { get; set; }
 
     protected bool AlwaysPauseGameTime { get; set; }
+    private static readonly JsonSerializerOptions _serializerOptions = new()
+    {
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+    };
 
     public CommandServer(LiveSplitState state)
     {
@@ -291,6 +297,57 @@ public class CommandServer
                 State.IsGameTimePaused = true;
                 break;
             }
+            case "getgamename":
+            {
+                response = State.Run.GameName.ToString();
+                break;
+            }
+            case "getcategoryname":
+            {
+                response = State.Run.CategoryName.ToString();
+                break;
+            }
+            case "getcategoryvariables":
+            {
+                RunMetadata md = State.Run.Metadata;
+
+                //Region
+                string region = null;
+                if (md is { Game: not null, Region.Abbreviation.Length: > 0 })
+                {
+                    region = md.Region.Abbreviation;
+                }
+                else if (md is { Game: null, RegionName.Length: > 0 })
+                {
+                    region = md.RegionName;
+                }
+
+                //Platform
+                string platform = null;
+                if (md is { Game: not null, PlatformName.Length: > 0 })
+                {
+                    platform = md.PlatformName;
+                }
+
+                //Variables
+                Dictionary<string, string> variables = [];
+                IEnumerable<string> variableL = md.VariableValueNames.Keys;
+                if (md is { Game: not null, Category: not null })
+                {
+                    variableL = md.Game.FullGameVariables.Where(fgv => fgv.CategoryID == null || fgv.CategoryID == md.Category?.ID).Select(fgv => fgv.Name);
+                }
+
+                foreach (string variable in variableL)
+                {
+                    if (md.VariableValueNames.TryGetValue(variable, out string value))
+                    {
+                        variables.Add(variable, value);
+                    }
+                }
+
+                response = JsonSerializer.Serialize(new CategoryMetadata(region, platform, md.UsesEmulator, variables), _serializerOptions);
+                break;
+            }
             case "getdelta":
             {
                 string comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
@@ -310,8 +367,12 @@ public class CommandServer
             }
             case "getsplitindex":
             {
-                int splitindex = State.CurrentSplitIndex;
-                response = splitindex.ToString();
+                response = State.CurrentSplitIndex.ToString();
+                break;
+            }
+            case "getsplitcount":
+            {
+                response = State.Run.Count.ToString();
                 break;
             }
             case "getcurrentsplitname":
@@ -333,6 +394,20 @@ public class CommandServer
                 if (State.CurrentSplitIndex > 0)
                 {
                     response = State.Run[State.CurrentSplitIndex - 1].Name;
+                }
+                else
+                {
+                    response = "-";
+                }
+
+                break;
+            }
+            case "getnextsplitname":
+            case "getupcomingsplitname":
+            {
+                if (State.CurrentSplitIndex < State.Run.Count - 1)
+                {
+                    response = State.Run[State.CurrentSplitIndex + 1].Name;
                 }
                 else
                 {
@@ -432,6 +507,11 @@ public class CommandServer
                 response = State.CurrentPhase.ToString();
                 break;
             }
+            case "getcomparisonname":
+            {
+                response = State.CurrentComparison.ToString();
+                break;
+            }
             case "setcomparison":
             {
                 State.CurrentComparison = args[1];
@@ -449,6 +529,11 @@ public class CommandServer
                         break;
                 }
 
+                break;
+            }
+            case "gettimingmethod":
+            {
+                response = State.CurrentTimingMethod.ToString();
                 break;
             }
             case "setsplitname":
@@ -501,11 +586,6 @@ public class CommandServer
                 response = string.IsNullOrEmpty(value) ? "-" : Regex.Replace(value, @"\r\n?|\n", " ");
                 break;
             }
-            case "ping":
-            {
-                response = "pong";
-                break;
-            }
             case "getattemptcount":
             {
                 response = Model.CurrentState.Run.AttemptCount.ToString();
@@ -514,6 +594,16 @@ public class CommandServer
 			case "getcompletedcount":
             {
                 response = State.Run.AttemptHistory.Count(x => x.Time.RealTime != null).ToString();
+                break;
+            }
+            case "getlivesplitversion":
+            {
+                response = Git.Version.ToString() ?? "Unknown Version";
+                break;
+            }
+            case "ping":
+            {
+                response = "pong";
                 break;
             }
             default:
@@ -588,3 +678,8 @@ public class CommandServer
         WaitingServerPipe.Dispose();
     }
 }
+file sealed record CategoryMetadata(
+    string Region,
+    string Platform,
+    bool UsesEmulator,
+    IReadOnlyDictionary<string, string> Variables);
