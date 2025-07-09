@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Windows.Forms;
 
 using LiveSplit.Model;
@@ -394,6 +395,20 @@ public class CommandServer
                 if (State.CurrentSplitIndex > 0)
                 {
                     response = State.Run[State.CurrentSplitIndex - 1].Name;
+                }
+                else
+                {
+                    response = "-";
+                }
+
+                break;
+            }
+            case "getnextsplitname":
+            case "getupcomingsplitname":
+            {
+                if (State.CurrentSplitIndex < State.Run.Count - 1)
+                {
+                    response = State.Run[State.CurrentSplitIndex + 1].Name;
                 }
                 else
                 {

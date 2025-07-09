@@ -144,6 +144,7 @@ Commands that return a string:
 
 - getcurrentsplitname  
 - getprevioussplitname
+- getupcomingsplitname
 - getcurrenttimerphase
 - getgamename
 - getcategoryname
