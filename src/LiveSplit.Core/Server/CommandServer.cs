@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -499,6 +500,35 @@ public class CommandServer
                 string value = State.Run.Metadata.CustomVariableValue(args[1]);
                 // make sure response isn't null or empty, and doesn't contain line endings
                 response = string.IsNullOrEmpty(value) ? "-" : Regex.Replace(value, @"\r\n?|\n", " ");
+                break;
+            }
+            case "setcustomvariable":
+            {
+                if (args.Length < 2)
+                {
+                    Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                    break;
+                }
+
+                string[] options;
+                try
+                {
+                    options = JsonSerializer.Deserialize<string[]>(args[1]);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                    Log.Error($"[Server] Failed to parse JSON: {args[1]}");
+                    break;
+                }
+
+                if (options == null || options.Length < 2)
+                {
+                    Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                    break;
+                }
+
+                State.Run.Metadata.SetCustomVariable(options[0], options[1]);
                 break;
             }
             case "ping":
