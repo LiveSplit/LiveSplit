@@ -68,8 +68,6 @@ public partial class TimerForm : Form
     private Image bakedBackground { get; set; }
 
     public CommandServer Server { get; set; }
-    public bool ServerStarted { get; protected set; } = false;
-    public bool WebSocketStarted { get; protected set; } = false;
 
     protected GraphicsCache GlobalCache { get; set; }
 
@@ -319,6 +317,33 @@ public partial class TimerForm : Form
 
         Server = new CommandServer(CurrentState);
         Server.StartNamedPipe();
+        switch(Settings.ServerStartup)
+        {
+            case ServerStartupType.TCP:
+                Server.StartTcp();
+                break;
+            case ServerStartupType.Websocket:
+                Server.StartWs();
+                break;
+            case ServerStartupType.PreviousState:
+                switch(Settings.ServerState)
+                {
+                    case ServerStateType.TCP:
+                        Server.StartTcp();
+                        break;
+                    case ServerStateType.Websocket:
+                        Server.StartWs();
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
+            default:
+                break;
+        }
+
+        UpdateServerMenuItems();
 
         new System.Timers.Timer(1000) { Enabled = true }.Elapsed += PerSecondTimer_Elapsed;
 
@@ -686,44 +711,58 @@ public partial class TimerForm : Form
         });
     }
 
-    private void ServerMenuItem_Click(object sender, EventArgs e)
+    private void UpdateServerMenuItems()
     {
-        if (ServerStarted)
+        Settings.ServerState = Server.ServerState;
+        switch(Server.ServerState)
         {
-            Server.StopTcp();
-            webSocketMenuItem.Enabled = true;
-
-            this.InvokeIfRequired(() => serverMenuItem.Text = "Start TCP Server");
+            case ServerStateType.Off:
+                tcpServerMenuItem.Enabled = true;
+                this.InvokeIfRequired(() => tcpServerMenuItem.Text = "Start TCP Server");
+                webSocketMenuItem.Enabled = true;
+                this.InvokeIfRequired(() => webSocketMenuItem.Text = "Start WebSocket Server");
+                break;
+            case ServerStateType.TCP:
+                tcpServerMenuItem.Enabled = true;
+                this.InvokeIfRequired(() => tcpServerMenuItem.Text = "Stop TCP Server");
+                webSocketMenuItem.Enabled = false;
+                this.InvokeIfRequired(() => webSocketMenuItem.Text = "Start WebSocket Server");
+                break;
+            case ServerStateType.Websocket:
+                tcpServerMenuItem.Enabled = false;
+                this.InvokeIfRequired(() => tcpServerMenuItem.Text = "Start TCP Server");
+                webSocketMenuItem.Enabled = true;
+                this.InvokeIfRequired(() => webSocketMenuItem.Text = "Stop WebSocket Server");
+                break;
         }
-        else
+    }
+
+    private void TCPServerMenuItem_Click(object sender, EventArgs e)
+    {
+        if (Server.ServerState == ServerStateType.Off)
         {
             Server.StartTcp();
-            webSocketMenuItem.Enabled = false;
-
-            this.InvokeIfRequired(() => serverMenuItem.Text = "Stop TCP Server");
+        }
+        else if (Server.ServerState == ServerStateType.TCP)
+        {
+            Server.StopTcp();
         }
 
-        ServerStarted = !ServerStarted;
+        UpdateServerMenuItems();
     }
 
     private void WebSocketMenuItem_Click(object sender, EventArgs e)
     {
-        if (WebSocketStarted)
-        {
-            Server.StopWs();
-            serverMenuItem.Enabled = true;
-
-            this.InvokeIfRequired(() => webSocketMenuItem.Text = "Start WebSocket Server");
-        }
-        else
+        if (Server.ServerState == ServerStateType.Off)
         {
             Server.StartWs();
-            serverMenuItem.Enabled = false;
-
-            this.InvokeIfRequired(() => webSocketMenuItem.Text = "Stop WebSocket Server");
+        }
+        else if (Server.ServerState == ServerStateType.Websocket)
+        {
+            Server.StopWs();
         }
 
-        WebSocketStarted = !WebSocketStarted;
+        UpdateServerMenuItems();
     }
 
     private void CurrentState_OnSkipSplit(object sender, EventArgs e)
@@ -3109,7 +3148,7 @@ public partial class TimerForm : Form
         hotkeysMenuItem.Checked = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile].GlobalHotkeysEnabled;
 
         controlMenuItem.DropDownItems.Add(new ToolStripSeparator());
-        controlMenuItem.DropDownItems.Add(serverMenuItem);
+        controlMenuItem.DropDownItems.Add(tcpServerMenuItem);
         controlMenuItem.DropDownItems.Add(webSocketMenuItem);
 
         IEnumerable<UI.Components.IComponent> components = Layout.Components;

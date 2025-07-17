@@ -92,6 +92,7 @@ public partial class SettingsDialog : Form
 
         txtRefreshRate.DataBindings.Add("Text", this, "RefreshRate");
         txtServerPort.DataBindings.Add("Text", this, "ServerPort");
+        cbxServerStartup.SelectedIndex = (int)Settings.ServerStartup;
 
         UpdateDisplayedHotkeyValues();
         RefreshRemoveButton();
@@ -421,6 +422,14 @@ public partial class SettingsDialog : Form
         if (dialog.ShowDialog(this) == DialogResult.OK)
         {
             Settings.RaceProvider = newSettings;
+        }
+    }
+
+    private void cbxServerStartup_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (Enum.IsDefined(typeof(ServerStartupType), cbxServerStartup.SelectedIndex))
+        {
+            Settings.ServerStartup = (ServerStartupType)cbxServerStartup.SelectedIndex;
         }
     }
 }

@@ -18,6 +18,8 @@ public interface ISettings : ICloneable
     bool SimpleSumOfBest { get; set; }
     int RefreshRate { get; set; }
     int ServerPort { get; set; }
+    ServerStartupType ServerStartup { get; set; }
+    ServerStateType ServerState { get; set; }
     IRaceViewer RaceViewer { get; set; }
     IList<RaceProviderSettings> RaceProvider { get; set; }
 
