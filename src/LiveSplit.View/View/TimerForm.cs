@@ -317,7 +317,7 @@ public partial class TimerForm : Form
 
         Server = new CommandServer(CurrentState);
         Server.StartNamedPipe();
-        switch(Settings.ServerStartup)
+        switch (Settings.ServerStartup)
         {
             case ServerStartupType.TCP:
                 Server.StartTcp();
@@ -326,7 +326,7 @@ public partial class TimerForm : Form
                 Server.StartWs();
                 break;
             case ServerStartupType.PreviousState:
-                switch(Settings.ServerState)
+                switch (Settings.ServerState)
                 {
                     case ServerStateType.TCP:
                         Server.StartTcp();
@@ -334,12 +334,8 @@ public partial class TimerForm : Form
                     case ServerStateType.Websocket:
                         Server.StartWs();
                         break;
-                    default:
-                        break;
                 }
 
-                break;
-            default:
                 break;
         }
 
@@ -714,7 +710,7 @@ public partial class TimerForm : Form
     private void UpdateServerMenuItems()
     {
         Settings.ServerState = Server.ServerState;
-        switch(Server.ServerState)
+        switch (Server.ServerState)
         {
             case ServerStateType.Off:
                 tcpServerMenuItem.Enabled = true;

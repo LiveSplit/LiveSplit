@@ -80,9 +80,9 @@ The named pipe is always open while LiveSplit is running but the TCP and WS serv
 
 **Server Port** is the door (one of thousands) on your computer that this program sends data through. Default is 16834. This should be fine for most people, but depending on network configurations, some ports may be blocked. See also https://en.wikipedia.org/wiki/Port_%28computer_networking%29.
 
-#### Startup Behaviour
+#### Startup Behavior
 
-**Startup Behaviour** defines whether and which type of Server should be started automatically at the launch of LiveSplit.
+**Startup Behavior** defines whether and which type of Server should be started automatically at the launch of LiveSplit.
 
 ### Known Uses
 

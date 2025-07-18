@@ -1,6 +1,7 @@
 namespace LiveSplit.Options;
 
-public enum ServerStartupType {
+public enum ServerStartupType
+{
     Off = 0,
     TCP,
     Websocket,

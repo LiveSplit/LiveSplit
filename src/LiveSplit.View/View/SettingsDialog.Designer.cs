@@ -768,7 +768,7 @@ namespace LiveSplit.View
             this.lblServerInit.Name = "lblServerInit";
             this.lblServerInit.Size = new System.Drawing.Size(171, 13);
             this.lblServerInit.TabIndex = 2;
-            this.lblServerInit.Text = "Startup Behaviour:";
+            this.lblServerInit.Text = "Startup Behavior:";
             // 
             // lblServerPort
             // 
