@@ -23,6 +23,7 @@ public class CommandServer
     public WebSocketServer WsServer { get; set; }
     public List<Connection> PipeConnections { get; set; }
     public List<TcpConnection> TcpConnections { get; set; }
+    public ServerStateType ServerState { get; protected set; } = ServerStateType.Off;
 
     protected LiveSplitState State { get; set; }
     protected Form Form { get; set; }
@@ -52,6 +53,7 @@ public class CommandServer
         Server = new TcpListener(IPAddress.Any, State.Settings.ServerPort);
         Server.Start();
         Server.BeginAcceptTcpClient(AcceptTcpClient, null);
+        ServerState = ServerStateType.TCP;
     }
 
     public void StartWs()
@@ -60,6 +62,7 @@ public class CommandServer
         WsServer = new WebSocketServer(State.Settings.ServerPort);
         WsServer.AddWebSocketService("/livesplit", () => new WsConnection(connection_MessageReceived));
         WsServer.Start();
+        ServerState = ServerStateType.Websocket;
     }
 
     public void StartNamedPipe()
@@ -74,6 +77,7 @@ public class CommandServer
         StopTcp();
         StopPipe();
         StopWs();
+        ServerState = ServerStateType.Off;
     }
 
     public void StopTcp()
@@ -85,11 +89,19 @@ public class CommandServer
 
         TcpConnections.Clear();
         Server?.Stop();
+        if (ServerState == ServerStateType.TCP)
+        {
+            ServerState = ServerStateType.Off;
+        }
     }
 
     public void StopWs()
     {
         WsServer?.Stop();
+        if (ServerState == ServerStateType.Websocket)
+        {
+            ServerState = ServerStateType.Off;
+        }
     }
 
     public void StopPipe()

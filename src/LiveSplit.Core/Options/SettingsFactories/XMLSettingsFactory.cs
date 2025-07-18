@@ -35,6 +35,21 @@ public class XMLSettingsFactory : ISettingsFactory
         settings.SimpleSumOfBest = ParseBool(parent["SimpleSumOfBest"], settings.SimpleSumOfBest);
         settings.RefreshRate = ParseInt(parent["RefreshRate"], settings.RefreshRate);
         settings.ServerPort = ParseInt(parent["ServerPort"], settings.ServerPort);
+
+        int serverStartupInt = ParseInt(parent["ServerStartup"], (int)settings.ServerStartup);
+        if (Enum.IsDefined(typeof(ServerStartupType), serverStartupInt))
+        {
+            settings.ServerStartup = (ServerStartupType)serverStartupInt;
+        }
+        // Falls back to default value (Off) if integer entry in XML is invalid
+
+        int serverStateInt = ParseInt(parent["ServerState"], (int)settings.ServerState);
+        if (Enum.IsDefined(typeof(ServerStateType), serverStateInt))
+        {
+            settings.ServerState = (ServerStateType)serverStateInt;
+        }
+        // Falls back to default value (Off) if integer entry in XML is invalid
+
         settings.LastComparison = ParseString(parent["LastComparison"], settings.LastComparison);
         settings.AgreedToSRLRules = ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
 
