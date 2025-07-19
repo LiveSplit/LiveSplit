@@ -14,6 +14,8 @@ public interface ISettings : ICloneable
     IList<string> RecentLayouts { get; set; }
     string LastComparison { get; set; }
 
+    int HcpHistorySize { get; set; }
+    int HcpNBestRuns { get; set; }
     bool WarnOnReset { get; set; }
     bool SimpleSumOfBest { get; set; }
     int RefreshRate { get; set; }
