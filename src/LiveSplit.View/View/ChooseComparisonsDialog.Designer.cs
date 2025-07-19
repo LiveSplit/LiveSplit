@@ -50,10 +50,9 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnOK.Location = new System.Drawing.Point(183, 415);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnOK.Location = new System.Drawing.Point(121, 270);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(112, 35);
+            this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 16;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
@@ -64,10 +63,9 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(303, 415);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnCancel.Location = new System.Drawing.Point(202, 270);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(114, 35);
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 17;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -75,22 +73,23 @@
             // 
             // tableLayoutPanel3
             // 
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
             this.tableLayoutPanel3.Controls.Add(this.btnCancel, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.btnOK, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.comparisonsListBox, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.groupBoxHcpSettings, 0, 1);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(10, 11);
-            this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 118F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(421, 455);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(280, 296);
             this.tableLayoutPanel3.TabIndex = 41;
             // 
             // comparisonsListBox
@@ -99,20 +98,25 @@
             this.tableLayoutPanel3.SetColumnSpan(this.comparisonsListBox, 2);
             this.comparisonsListBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comparisonsListBox.FormattingEnabled = true;
-            this.comparisonsListBox.Location = new System.Drawing.Point(4, 5);
-            this.comparisonsListBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.comparisonsListBox.Location = new System.Drawing.Point(3, 3);
             this.comparisonsListBox.Name = "comparisonsListBox";
-            this.comparisonsListBox.Size = new System.Drawing.Size(413, 275);
+            this.comparisonsListBox.Size = new System.Drawing.Size(274, 187);
             this.comparisonsListBox.TabIndex = 18;
             this.comparisonsListBox.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.comparisonsListBox_ItemCheck);
             // 
             // groupBoxHcpSettings
             // 
+            this.groupBoxHcpSettings.AutoSize = true;
+            this.groupBoxHcpSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel3.SetColumnSpan(this.groupBoxHcpSettings, 2);
             this.groupBoxHcpSettings.Controls.Add(this.tableLayoutPanel1);
-            this.groupBoxHcpSettings.Location = new System.Drawing.Point(3, 288);
+            this.groupBoxHcpSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxHcpSettings.Location = new System.Drawing.Point(2, 195);
+            this.groupBoxHcpSettings.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxHcpSettings.MinimumSize = new System.Drawing.Size(0, 70);
             this.groupBoxHcpSettings.Name = "groupBoxHcpSettings";
-            this.groupBoxHcpSettings.Size = new System.Drawing.Size(415, 110);
+            this.groupBoxHcpSettings.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxHcpSettings.Size = new System.Drawing.Size(276, 70);
             this.groupBoxHcpSettings.TabIndex = 19;
             this.groupBoxHcpSettings.TabStop = false;
             this.groupBoxHcpSettings.Text = "Golf HCP Settings";
@@ -127,21 +131,23 @@
             this.tableLayoutPanel1.Controls.Add(this.numericUpDownHcpNBestRuns, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.numericUpDownHcpHistorySize, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 22);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(2, 15);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(409, 85);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(272, 53);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 11);
+            this.label1.Location = new System.Drawing.Point(2, 6);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 20);
+            this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "History Size: ";
             // 
@@ -149,16 +155,18 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 53);
+            this.label2.Location = new System.Drawing.Point(2, 33);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 20);
+            this.label2.Size = new System.Drawing.Size(107, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "N Best Runs to Use: ";
             // 
             // numericUpDownHcpNBestRuns
             // 
             this.numericUpDownHcpNBestRuns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownHcpNBestRuns.Location = new System.Drawing.Point(324, 50);
+            this.numericUpDownHcpNBestRuns.Location = new System.Drawing.Point(215, 29);
+            this.numericUpDownHcpNBestRuns.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDownHcpNBestRuns.Maximum = new decimal(new int[] {
             50,
             0,
@@ -170,7 +178,7 @@
             0,
             0});
             this.numericUpDownHcpNBestRuns.Name = "numericUpDownHcpNBestRuns";
-            this.numericUpDownHcpNBestRuns.Size = new System.Drawing.Size(82, 26);
+            this.numericUpDownHcpNBestRuns.Size = new System.Drawing.Size(55, 20);
             this.numericUpDownHcpNBestRuns.TabIndex = 3;
             this.numericUpDownHcpNBestRuns.Value = new decimal(new int[] {
             8,
@@ -183,7 +191,8 @@
             // 
             this.numericUpDownHcpHistorySize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownHcpHistorySize.AutoSize = true;
-            this.numericUpDownHcpHistorySize.Location = new System.Drawing.Point(324, 8);
+            this.numericUpDownHcpHistorySize.Location = new System.Drawing.Point(215, 3);
+            this.numericUpDownHcpHistorySize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDownHcpHistorySize.Maximum = new decimal(new int[] {
             50,
             0,
@@ -195,7 +204,7 @@
             0,
             0});
             this.numericUpDownHcpHistorySize.Name = "numericUpDownHcpHistorySize";
-            this.numericUpDownHcpHistorySize.Size = new System.Drawing.Size(82, 26);
+            this.numericUpDownHcpHistorySize.Size = new System.Drawing.Size(55, 20);
             this.numericUpDownHcpHistorySize.TabIndex = 2;
             this.numericUpDownHcpHistorySize.Value = new decimal(new int[] {
             20,
@@ -207,25 +216,26 @@
             // ChooseComparisonsDialog
             // 
             this.AcceptButton = this.btnOK;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(441, 477);
+            this.ClientSize = new System.Drawing.Size(294, 310);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximumSize = new System.Drawing.Size(769, 15354);
-            this.MinimumSize = new System.Drawing.Size(454, 324);
+            this.MaximumSize = new System.Drawing.Size(520, 10000);
+            this.MinimumSize = new System.Drawing.Size(310, 230);
             this.Name = "ChooseComparisonsDialog";
-            this.Padding = new System.Windows.Forms.Padding(10, 11, 10, 11);
+            this.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
             this.Text = "Choose Comparisons";
             this.Load += new System.EventHandler(this.ChooseComparisonsDialog_Load);
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.groupBoxHcpSettings.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHcpNBestRuns)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHcpHistorySize)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 

@@ -40,7 +40,7 @@ public partial class ChooseComparisonsDialog : Form
 
         // Enable/disable the group box based on whether HCP is checked
         bool isHcpChecked = comparisonsListBox.GetItemChecked(hcpIndex);
-        groupBoxHcpSettings.Enabled = isHcpChecked;
+        groupBoxHcpSettings.Visible = isHcpChecked;
     }
 
     private void btnOK_Click(object sender, EventArgs e)
