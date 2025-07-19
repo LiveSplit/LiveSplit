@@ -37,8 +37,6 @@ public class XMLSettingsFactory : ISettingsFactory
         settings.ServerPort = ParseInt(parent["ServerPort"], settings.ServerPort);
         settings.LastComparison = ParseString(parent["LastComparison"], settings.LastComparison);
         settings.AgreedToSRLRules = ParseBool(parent["AgreedToSRLRules"], settings.AgreedToSRLRules);
-        settings.HcpHistorySize = ParseInt(parent["HcpHistorySize"], settings.HcpHistorySize);
-        settings.HcpNBestRuns = ParseInt(parent["HcpNBestRuns"], settings.HcpNBestRuns);
 
         XmlElement recentLayouts = parent["RecentLayouts"];
         foreach (object layoutNode in recentLayouts.GetElementsByTagName("LayoutPath"))
@@ -80,6 +78,20 @@ public class XMLSettingsFactory : ISettingsFactory
                 if (settings.ComparisonGeneratorStates.ContainsKey(comparisonName))
                 {
                     settings.ComparisonGeneratorStates[comparisonName] = bool.Parse(generatorNode.InnerText);
+
+                    if (comparisonName == HCPComparisonGenerator.ComparisonName)
+                    {
+                        string hcpHistorySize = generatorNode.GetAttribute("HcpHistorySize");
+                        string hcpNBestRuns = generatorNode.GetAttribute("HcpNBestRuns");
+
+                        settings.HcpHistorySize = hcpHistorySize != string.Empty
+                            ? int.Parse(hcpHistorySize)
+                            : settings.HcpHistorySize;
+
+                        settings.HcpNBestRuns = hcpNBestRuns != string.Empty
+                            ? int.Parse(hcpNBestRuns)
+                            : settings.HcpNBestRuns;
+                    }
                 }
             }
 
