@@ -117,6 +117,7 @@ Commands that generate no response:
 - switchto gametime
 - setsplitname INDEX NAME
 - setcurrentsplitname NAME
+- setcustomvariable JSON([NAME, VALUE])
 
 Commands that return a time:
 
