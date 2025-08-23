@@ -59,7 +59,7 @@
             this.pauseMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.undoPausesMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hotkeysMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.serverMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tcpServerMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webSocketMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.RightClickMenu.SuspendLayout();
             this.SuspendLayout();
@@ -274,10 +274,10 @@
             //
             // serverMenuItem
             //
-            this.serverMenuItem.Name = "serverMenuItem";
-            this.serverMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.serverMenuItem.Text = "Start TCP Server";
-            this.serverMenuItem.Click += new System.EventHandler(this.ServerMenuItem_Click);
+            this.tcpServerMenuItem.Name = "tcpServerMenuItem";
+            this.tcpServerMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.tcpServerMenuItem.Text = "Start TCP Server";
+            this.tcpServerMenuItem.Click += new System.EventHandler(this.TCPServerMenuItem_Click);
             //
             // webSocketMenuItem
             //
@@ -343,7 +343,7 @@
         private System.Windows.Forms.ToolStripMenuItem undoPausesMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hotkeysMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comparisonMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem serverMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tcpServerMenuItem;
         private System.Windows.Forms.ToolStripMenuItem webSocketMenuItem;
     }
 }

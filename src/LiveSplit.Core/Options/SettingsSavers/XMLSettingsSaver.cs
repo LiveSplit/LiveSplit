@@ -71,6 +71,8 @@ public class XMLSettingsSaver : ISettingsSaver
         CreateSetting(document, parent, "SimpleSumOfBest", settings.SimpleSumOfBest);
         CreateSetting(document, parent, "RefreshRate", settings.RefreshRate);
         CreateSetting(document, parent, "ServerPort", settings.ServerPort);
+        CreateSetting(document, parent, "ServerStartup", (int)settings.ServerStartup);
+        CreateSetting(document, parent, "ServerState", (int)settings.ServerState);
 
         XmlElement generatorStates = document.CreateElement("ComparisonGeneratorStates");
         foreach (System.Collections.Generic.KeyValuePair<string, bool> generator in settings.ComparisonGeneratorStates)

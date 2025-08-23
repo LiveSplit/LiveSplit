@@ -30,8 +30,8 @@ namespace LiveSplit.View
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsDialog));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnChooseRaceProvider = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
@@ -39,6 +39,7 @@ namespace LiveSplit.View
             this.btnLogOut = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.chkEnableDPIAwareness = new System.Windows.Forms.CheckBox();
             this.chkDeactivateForOtherPrograms = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chkGlobalHotkeys = new System.Windows.Forms.CheckBox();
@@ -79,10 +80,12 @@ namespace LiveSplit.View
             this.panelRefreshRate = new System.Windows.Forms.Panel();
             this.txtRefreshRate = new System.Windows.Forms.TextBox();
             this.labelRefreshRate = new System.Windows.Forms.Label();
-            this.panelPort = new System.Windows.Forms.Panel();
+            this.grpServerSettings = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.cbxServerStartup = new System.Windows.Forms.ComboBox();
+            this.lblServerInit = new System.Windows.Forms.Label();
+            this.lblServerPort = new System.Windows.Forms.Label();
             this.txtServerPort = new System.Windows.Forms.TextBox();
-            this.lblPort = new System.Windows.Forms.Label();
-            this.chkEnableDPIAwareness = new System.Windows.Forms.CheckBox();
             this.ttpEnableDPIAwarenessInfo = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -90,7 +93,8 @@ namespace LiveSplit.View
             this.grpHotkeyProfiles.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.panelRefreshRate.SuspendLayout();
-            this.panelPort.SuspendLayout();
+            this.grpServerSettings.SuspendLayout();
+            this.tableLayoutPanel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -101,11 +105,11 @@ namespace LiveSplit.View
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 55F));
             this.tableLayoutPanel1.Controls.Add(this.btnChooseRaceProvider, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnOK, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.btnLogOut, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 7);
+            this.tableLayoutPanel1.Controls.Add(this.btnCancel, 2, 8);
             this.tableLayoutPanel1.Controls.Add(this.cbxRaceViewer, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label11, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label12, 0, 4);
@@ -113,21 +117,22 @@ namespace LiveSplit.View
             this.tableLayoutPanel1.Controls.Add(this.btnChooseComparisons, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.chkSimpleSOB, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.chkWarnOnReset, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.panelRefreshRate, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.panelPort, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.panelRefreshRate, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.grpServerSettings, 0, 6);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 8;
+            this.tableLayoutPanel1.RowCount = 9;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 630);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(380, 714);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnChooseRaceProvider
@@ -146,7 +151,7 @@ namespace LiveSplit.View
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnOK, 2);
-            this.btnOK.Location = new System.Drawing.Point(221, 604);
+            this.btnOK.Location = new System.Drawing.Point(221, 688);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 0;
@@ -242,20 +247,19 @@ namespace LiveSplit.View
             // 
             this.chkEnableDPIAwareness.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.chkEnableDPIAwareness.AutoSize = true;
-            this.chkEnableDPIAwareness.Location = new System.Drawing.Point(246, 368);
+            this.chkEnableDPIAwareness.Location = new System.Drawing.Point(187, 296);
             this.chkEnableDPIAwareness.Margin = new System.Windows.Forms.Padding(9, 4, 4, 4);
             this.chkEnableDPIAwareness.Name = "chkEnableDPIAwareness";
-            this.chkEnableDPIAwareness.Size = new System.Drawing.Size(166, 20);
+            this.chkEnableDPIAwareness.Size = new System.Drawing.Size(121, 17);
             this.chkEnableDPIAwareness.TabIndex = 16;
             this.chkEnableDPIAwareness.Text = "Enable DPI Aware";
             this.ttpEnableDPIAwarenessInfo.SetToolTip(this.chkEnableDPIAwareness, "You must restart LiveSplit after changing this setting for changes to take effect" +
         ".");
             this.chkEnableDPIAwareness.UseVisualStyleBackColor = true;
             // 
-            // 
             // chkDeactivateForOtherPrograms
             // 
-            this.chkDeactivateForOtherPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.chkDeactivateForOtherPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkDeactivateForOtherPrograms.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.chkDeactivateForOtherPrograms, 2);
@@ -279,7 +283,7 @@ namespace LiveSplit.View
             // 
             // chkGlobalHotkeys
             // 
-            this.chkGlobalHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.chkGlobalHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkGlobalHotkeys.AutoSize = true;
             this.chkGlobalHotkeys.Location = new System.Drawing.Point(7, 235);
@@ -583,11 +587,11 @@ namespace LiveSplit.View
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(302, 604);
+            this.btnCancel.Location = new System.Drawing.Point(302, 688);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 1;
@@ -683,7 +687,7 @@ namespace LiveSplit.View
             // 
             this.panelRefreshRate.Controls.Add(this.txtRefreshRate);
             this.panelRefreshRate.Controls.Add(this.labelRefreshRate);
-            this.panelRefreshRate.Location = new System.Drawing.Point(0, 572);
+            this.panelRefreshRate.Location = new System.Drawing.Point(0, 656);
             this.panelRefreshRate.Margin = new System.Windows.Forms.Padding(0);
             this.panelRefreshRate.Name = "panelRefreshRate";
             this.panelRefreshRate.Size = new System.Drawing.Size(184, 29);
@@ -691,9 +695,9 @@ namespace LiveSplit.View
             // 
             // txtRefreshRate
             // 
-            this.txtRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.txtRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtRefreshRate.Location = new System.Drawing.Point(128, 6);
+            this.txtRefreshRate.Location = new System.Drawing.Point(130, 5);
             this.txtRefreshRate.Name = "txtRefreshRate";
             this.txtRefreshRate.Size = new System.Drawing.Size(51, 20);
             this.txtRefreshRate.TabIndex = 15;
@@ -705,42 +709,87 @@ namespace LiveSplit.View
             this.labelRefreshRate.AutoSize = true;
             this.labelRefreshRate.Location = new System.Drawing.Point(3, 8);
             this.labelRefreshRate.Name = "labelRefreshRate";
-            this.labelRefreshRate.Size = new System.Drawing.Size(93, 13);
+            this.labelRefreshRate.Size = new System.Drawing.Size(95, 13);
             this.labelRefreshRate.TabIndex = 19;
             this.labelRefreshRate.Text = "Refresh Rate (Hz):";
             // 
-            // panelPort
+            // grpServerSettings
             // 
-            this.panelPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.panelPort, 3);
-            this.panelPort.Controls.Add(this.txtServerPort);
-            this.panelPort.Controls.Add(this.lblPort);
-            this.panelPort.Location = new System.Drawing.Point(184, 572);
-            this.panelPort.Margin = new System.Windows.Forms.Padding(0);
-            this.panelPort.Name = "panelPort";
-            this.panelPort.Size = new System.Drawing.Size(196, 29);
-            this.panelPort.TabIndex = 20;
+            this.tableLayoutPanel1.SetColumnSpan(this.grpServerSettings, 4);
+            this.grpServerSettings.Controls.Add(this.tableLayoutPanel4);
+            this.grpServerSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpServerSettings.Location = new System.Drawing.Point(3, 575);
+            this.grpServerSettings.Name = "grpServerSettings";
+            this.grpServerSettings.Size = new System.Drawing.Size(374, 78);
+            this.grpServerSettings.TabIndex = 21;
+            this.grpServerSettings.TabStop = false;
+            this.grpServerSettings.Text = "LiveSplit Server";
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.36956F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.63044F));
+            this.tableLayoutPanel4.Controls.Add(this.cbxServerStartup, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lblServerInit, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.lblServerPort, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.txtServerPort, 1, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 16);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(368, 59);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // cbxServerStartup
+            // 
+            this.cbxServerStartup.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxServerStartup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxServerStartup.FormattingEnabled = true;
+            this.cbxServerStartup.Items.AddRange(new object[] {
+            "Don\'t start the Server",
+            "Start TCP Server",
+            "Start Websocket Server",
+            "Restore Previous State"});
+            this.cbxServerStartup.Location = new System.Drawing.Point(180, 33);
+            this.cbxServerStartup.Name = "cbxServerStartup";
+            this.cbxServerStartup.Size = new System.Drawing.Size(185, 21);
+            this.cbxServerStartup.TabIndex = 3;
+            this.cbxServerStartup.SelectedIndexChanged += new System.EventHandler(this.cbxServerStartup_SelectedIndexChanged);
+            // 
+            // lblServerInit
+            // 
+            this.lblServerInit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblServerInit.AutoSize = true;
+            this.lblServerInit.Location = new System.Drawing.Point(3, 37);
+            this.lblServerInit.Name = "lblServerInit";
+            this.lblServerInit.Size = new System.Drawing.Size(171, 13);
+            this.lblServerInit.TabIndex = 2;
+            this.lblServerInit.Text = "Startup Behavior:";
+            // 
+            // lblServerPort
+            // 
+            this.lblServerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblServerPort.AutoSize = true;
+            this.lblServerPort.Location = new System.Drawing.Point(3, 8);
+            this.lblServerPort.Name = "lblServerPort";
+            this.lblServerPort.Size = new System.Drawing.Size(171, 13);
+            this.lblServerPort.TabIndex = 0;
+            this.lblServerPort.Text = "Server Port:";
             // 
             // txtServerPort
             // 
-            this.txtServerPort.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.txtServerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtServerPort.Location = new System.Drawing.Point(139, 6);
+            this.txtServerPort.Location = new System.Drawing.Point(180, 3);
             this.txtServerPort.Name = "txtServerPort";
-            this.txtServerPort.Size = new System.Drawing.Size(51, 20);
+            this.txtServerPort.Size = new System.Drawing.Size(185, 20);
             this.txtServerPort.TabIndex = 1;
             this.txtServerPort.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // lblPort
-            // 
-            this.lblPort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPort.AutoSize = true;
-            this.lblPort.Location = new System.Drawing.Point(4, 8);
-            this.lblPort.Name = "lblPort";
-            this.lblPort.Size = new System.Drawing.Size(63, 13);
-            this.lblPort.TabIndex = 0;
-            this.lblPort.Text = "Server Port:";
             // 
             // ttpEnableDPIAwarenessInfo
             // 
@@ -752,7 +801,7 @@ namespace LiveSplit.View
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 644);
+            this.ClientSize = new System.Drawing.Size(394, 728);
             this.Controls.Add(this.tableLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -770,8 +819,9 @@ namespace LiveSplit.View
             this.tableLayoutPanel3.PerformLayout();
             this.panelRefreshRate.ResumeLayout(false);
             this.panelRefreshRate.PerformLayout();
-            this.panelPort.ResumeLayout(false);
-            this.panelPort.PerformLayout();
+            this.grpServerSettings.ResumeLayout(false);
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.tableLayoutPanel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -824,10 +874,13 @@ namespace LiveSplit.View
         private System.Windows.Forms.Label labelRefreshRate;
         private System.Windows.Forms.Panel panelRefreshRate;
         private System.Windows.Forms.TextBox txtRefreshRate;
-        private System.Windows.Forms.Panel panelPort;
         private System.Windows.Forms.TextBox txtServerPort;
-        private System.Windows.Forms.Label lblPort;
+        private System.Windows.Forms.Label lblServerPort;
         private System.Windows.Forms.CheckBox chkEnableDPIAwareness;
         private System.Windows.Forms.ToolTip ttpEnableDPIAwarenessInfo;
+        private System.Windows.Forms.GroupBox grpServerSettings;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Label lblServerInit;
+        private System.Windows.Forms.ComboBox cbxServerStartup;
     }
 }
