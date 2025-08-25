@@ -84,13 +84,15 @@ public class XMLSettingsFactory : ISettingsFactory
                         string hcpHistorySize = generatorNode.GetAttribute("HcpHistorySize");
                         string hcpNBestRuns = generatorNode.GetAttribute("HcpNBestRuns");
 
-                        settings.HcpHistorySize = hcpHistorySize != string.Empty
-                            ? int.Parse(hcpHistorySize)
-                            : settings.HcpHistorySize;
+                        if (hcpHistorySize != string.Empty)
+                        {
+                            settings.HcpHistorySize = int.Parse(hcpHistorySize);
+                        }
 
-                        settings.HcpNBestRuns = hcpNBestRuns != string.Empty
-                            ? int.Parse(hcpNBestRuns)
-                            : settings.HcpNBestRuns;
+                        if(hcpNBestRuns != string.Empty)
+                        {
+                            settings.HcpNBestRuns = int.Parse(hcpNBestRuns);
+                        }
                     }
                 }
             }

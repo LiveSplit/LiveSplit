@@ -30,13 +30,6 @@ public class HCPComparisonGenerator : IComparisonGenerator
         _bestRunIndices = new(_maximumNumberOfBestRunsToInclude);
     }
 
-    [Obsolete]
-    protected TimeSpan CalculateAverage(IEnumerable<TimeSpan> curList)
-    {
-        double averageTime = curList.OrderBy(x => x.TotalSeconds).Take(_maximumNumberOfBestRunsToInclude).Average(x => x.TotalSeconds);
-        return TimeSpan.FromTicks((long)(averageTime * TimeSpan.TicksPerSecond));
-    }
-
     private double CalculateAverage(List<double> times, int startIndex, int count)
     {
         if (count == 0)
