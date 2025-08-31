@@ -321,10 +321,23 @@ public partial class SettingsDialog : Form
     private void btnChooseComparisons_Click(object sender, EventArgs e)
     {
         var generatorStates = new Dictionary<string, bool>(Settings.ComparisonGeneratorStates);
-        DialogResult result = new ChooseComparisonsDialog() { ComparisonGeneratorStates = generatorStates }.ShowDialog(this);
+        int hcpHistorySize = Settings.HcpHistorySize;
+        int hcpNBestRuns = Settings.HcpNBestRuns;
+
+        var dialog = new ChooseComparisonsDialog()
+        {
+            ComparisonGeneratorStates = generatorStates,
+            HcpHistorySize = hcpHistorySize,
+            HcpNBestRuns = hcpNBestRuns
+        };
+
+        DialogResult result = dialog.ShowDialog(this);
+
         if (result == DialogResult.OK)
         {
-            Settings.ComparisonGeneratorStates = generatorStates;
+            Settings.ComparisonGeneratorStates = dialog.ComparisonGeneratorStates;
+            Settings.HcpHistorySize = dialog.HcpHistorySize;
+            Settings.HcpNBestRuns = dialog.HcpNBestRuns;
         }
     }
 

@@ -259,7 +259,7 @@ namespace LiveSplit.View
             // 
             // chkDeactivateForOtherPrograms
             // 
-            this.chkDeactivateForOtherPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chkDeactivateForOtherPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkDeactivateForOtherPrograms.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.chkDeactivateForOtherPrograms, 2);
@@ -283,7 +283,7 @@ namespace LiveSplit.View
             // 
             // chkGlobalHotkeys
             // 
-            this.chkGlobalHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chkGlobalHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkGlobalHotkeys.AutoSize = true;
             this.chkGlobalHotkeys.Location = new System.Drawing.Point(7, 235);
@@ -587,7 +587,7 @@ namespace LiveSplit.View
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -695,7 +695,7 @@ namespace LiveSplit.View
             // 
             // txtRefreshRate
             // 
-            this.txtRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtRefreshRate.Location = new System.Drawing.Point(130, 5);
             this.txtRefreshRate.Name = "txtRefreshRate";
@@ -782,8 +782,8 @@ namespace LiveSplit.View
             // 
             // txtServerPort
             // 
-            this.txtServerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtServerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtServerPort.Location = new System.Drawing.Point(180, 3);
             this.txtServerPort.Name = "txtServerPort";

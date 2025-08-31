@@ -93,6 +93,22 @@ public class XMLSettingsFactory : ISettingsFactory
                 if (settings.ComparisonGeneratorStates.ContainsKey(comparisonName))
                 {
                     settings.ComparisonGeneratorStates[comparisonName] = bool.Parse(generatorNode.InnerText);
+
+                    if (comparisonName == HCPComparisonGenerator.ComparisonName)
+                    {
+                        string hcpHistorySize = generatorNode.GetAttribute("HcpHistorySize");
+                        string hcpNBestRuns = generatorNode.GetAttribute("HcpNBestRuns");
+
+                        if (hcpHistorySize != string.Empty)
+                        {
+                            settings.HcpHistorySize = int.Parse(hcpHistorySize);
+                        }
+
+                        if(hcpNBestRuns != string.Empty)
+                        {
+                            settings.HcpNBestRuns = int.Parse(hcpNBestRuns);
+                        }
+                    }
                 }
             }
 
