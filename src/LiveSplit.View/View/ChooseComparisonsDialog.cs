@@ -77,8 +77,14 @@ public partial class ChooseComparisonsDialog : Form
             comparisonsListBox.SetItemChecked(comparisonsListBox.Items.IndexOf(generator.Key), generator.Value);
         }
 
+        numericUpDownHcpHistorySize.ValueChanged -= numericUpDownHcpHistorySize_ValueChanged;
+        numericUpDownHcpNBestRuns.ValueChanged -= numericUpDownHcpNBestRuns_ValueChanged;
+
         numericUpDownHcpHistorySize.Value = HcpHistorySize;
         numericUpDownHcpNBestRuns.Value = HcpNBestRuns;
+        
+        numericUpDownHcpHistorySize.ValueChanged += numericUpDownHcpHistorySize_ValueChanged;
+        numericUpDownHcpNBestRuns.ValueChanged += numericUpDownHcpNBestRuns_ValueChanged;
 
         DialogInitialized = true;
 

@@ -259,7 +259,7 @@ namespace LiveSplit.View
             // 
             // chkDeactivateForOtherPrograms
             // 
-            this.chkDeactivateForOtherPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chkDeactivateForOtherPrograms.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkDeactivateForOtherPrograms.AutoSize = true;
             this.tableLayoutPanel2.SetColumnSpan(this.chkDeactivateForOtherPrograms, 2);
@@ -283,7 +283,7 @@ namespace LiveSplit.View
             // 
             // chkGlobalHotkeys
             // 
-            this.chkGlobalHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.chkGlobalHotkeys.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.chkGlobalHotkeys.AutoSize = true;
             this.chkGlobalHotkeys.Location = new System.Drawing.Point(7, 235);
@@ -502,7 +502,7 @@ namespace LiveSplit.View
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.11917F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.88083F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 83F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
             this.tableLayoutPanel3.Controls.Add(this.lblProfile, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.cmbHotkeyProfiles, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.btnRemoveProfile, 3, 1);
@@ -523,7 +523,7 @@ namespace LiveSplit.View
             this.lblProfile.AutoSize = true;
             this.lblProfile.Location = new System.Drawing.Point(3, 8);
             this.lblProfile.Name = "lblProfile";
-            this.lblProfile.Size = new System.Drawing.Size(165, 13);
+            this.lblProfile.Size = new System.Drawing.Size(166, 13);
             this.lblProfile.TabIndex = 0;
             this.lblProfile.Text = "Active Hotkey Profile:";
             // 
@@ -533,9 +533,9 @@ namespace LiveSplit.View
             this.tableLayoutPanel3.SetColumnSpan(this.cmbHotkeyProfiles, 3);
             this.cmbHotkeyProfiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbHotkeyProfiles.FormattingEnabled = true;
-            this.cmbHotkeyProfiles.Location = new System.Drawing.Point(174, 4);
+            this.cmbHotkeyProfiles.Location = new System.Drawing.Point(175, 4);
             this.cmbHotkeyProfiles.Name = "cmbHotkeyProfiles";
-            this.cmbHotkeyProfiles.Size = new System.Drawing.Size(179, 21);
+            this.cmbHotkeyProfiles.Size = new System.Drawing.Size(178, 21);
             this.cmbHotkeyProfiles.TabIndex = 0;
             this.cmbHotkeyProfiles.SelectedIndexChanged += new System.EventHandler(this.cmbHotkeyProfiles_SelectedIndexChanged);
             // 
@@ -553,7 +553,7 @@ namespace LiveSplit.View
             // btnRenameProfile
             // 
             this.btnRenameProfile.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnRenameProfile.Location = new System.Drawing.Point(194, 32);
+            this.btnRenameProfile.Location = new System.Drawing.Point(196, 32);
             this.btnRenameProfile.Name = "btnRenameProfile";
             this.btnRenameProfile.Size = new System.Drawing.Size(75, 23);
             this.btnRenameProfile.TabIndex = 2;
@@ -565,7 +565,7 @@ namespace LiveSplit.View
             // 
             this.btnNewProfile.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.tableLayoutPanel3.SetColumnSpan(this.btnNewProfile, 2);
-            this.btnNewProfile.Location = new System.Drawing.Point(113, 32);
+            this.btnNewProfile.Location = new System.Drawing.Point(115, 32);
             this.btnNewProfile.Name = "btnNewProfile";
             this.btnNewProfile.Size = new System.Drawing.Size(75, 23);
             this.btnNewProfile.TabIndex = 1;
@@ -587,7 +587,7 @@ namespace LiveSplit.View
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tableLayoutPanel1.SetColumnSpan(this.btnCancel, 2);
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -695,7 +695,7 @@ namespace LiveSplit.View
             // 
             // txtRefreshRate
             // 
-            this.txtRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtRefreshRate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtRefreshRate.Location = new System.Drawing.Point(130, 5);
             this.txtRefreshRate.Name = "txtRefreshRate";
@@ -782,8 +782,8 @@ namespace LiveSplit.View
             // 
             // txtServerPort
             // 
-            this.txtServerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtServerPort.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            | System.Windows.Forms.AnchorStyles.Left)
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtServerPort.Location = new System.Drawing.Point(180, 3);
             this.txtServerPort.Name = "txtServerPort";
@@ -806,7 +806,7 @@ namespace LiveSplit.View
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SettingsDialog";
-            this.Padding = new System.Windows.Forms.Padding(7, 7, 7, 7);
+            this.Padding = new System.Windows.Forms.Padding(7);
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsDialog_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
