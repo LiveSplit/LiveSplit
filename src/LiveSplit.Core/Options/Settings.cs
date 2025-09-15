@@ -16,11 +16,15 @@ public class Settings : ISettings
     public IList<RecentSplitsFile> RecentSplits { get; set; }
     public IList<string> RecentLayouts { get; set; }
     public string LastComparison { get; set; }
+    public int HcpHistorySize { get; set; }
+    public int HcpNBestRuns { get; set; }
     public bool WarnOnReset { get; set; }
     public bool AgreedToSRLRules { get; set; }
     public bool SimpleSumOfBest { get; set; }
     public int RefreshRate { get; set; }
     public int ServerPort { get; set; }
+    public ServerStartupType ServerStartup { get; set; }
+    public ServerStateType ServerState { get; set; }
     public IRaceViewer RaceViewer { get; set; }
     public IList<RaceProviderSettings> RaceProvider { get; set; }
     public IList<string> ActiveAutoSplitters { get; set; }
@@ -112,9 +116,13 @@ public class Settings : ISettings
             SimpleSumOfBest = SimpleSumOfBest,
             RefreshRate = RefreshRate,
             ServerPort = ServerPort,
+            ServerStartup = ServerStartup,
+            ServerState = ServerState,
             ActiveAutoSplitters = new List<string>(ActiveAutoSplitters),
             ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates),
-            EnableDPIAwareness = EnableDPIAwareness
+            EnableDPIAwareness = EnableDPIAwareness,
+            HcpHistorySize = HcpHistorySize,
+            HcpNBestRuns = HcpNBestRuns
         };
     }
 

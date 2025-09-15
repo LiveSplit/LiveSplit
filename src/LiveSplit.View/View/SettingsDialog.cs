@@ -92,6 +92,7 @@ public partial class SettingsDialog : Form
 
         txtRefreshRate.DataBindings.Add("Text", this, "RefreshRate");
         txtServerPort.DataBindings.Add("Text", this, "ServerPort");
+        cbxServerStartup.SelectedIndex = (int)Settings.ServerStartup;
 
         UpdateDisplayedHotkeyValues();
         RefreshRemoveButton();
@@ -320,10 +321,23 @@ public partial class SettingsDialog : Form
     private void btnChooseComparisons_Click(object sender, EventArgs e)
     {
         var generatorStates = new Dictionary<string, bool>(Settings.ComparisonGeneratorStates);
-        DialogResult result = new ChooseComparisonsDialog() { ComparisonGeneratorStates = generatorStates }.ShowDialog(this);
+        int hcpHistorySize = Settings.HcpHistorySize;
+        int hcpNBestRuns = Settings.HcpNBestRuns;
+
+        var dialog = new ChooseComparisonsDialog()
+        {
+            ComparisonGeneratorStates = generatorStates,
+            HcpHistorySize = hcpHistorySize,
+            HcpNBestRuns = hcpNBestRuns
+        };
+
+        DialogResult result = dialog.ShowDialog(this);
+
         if (result == DialogResult.OK)
         {
-            Settings.ComparisonGeneratorStates = generatorStates;
+            Settings.ComparisonGeneratorStates = dialog.ComparisonGeneratorStates;
+            Settings.HcpHistorySize = dialog.HcpHistorySize;
+            Settings.HcpNBestRuns = dialog.HcpNBestRuns;
         }
     }
 
@@ -421,6 +435,14 @@ public partial class SettingsDialog : Form
         if (dialog.ShowDialog(this) == DialogResult.OK)
         {
             Settings.RaceProvider = newSettings;
+        }
+    }
+
+    private void cbxServerStartup_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (Enum.IsDefined(typeof(ServerStartupType), cbxServerStartup.SelectedIndex))
+        {
+            Settings.ServerStartup = (ServerStartupType)cbxServerStartup.SelectedIndex;
         }
     }
 }

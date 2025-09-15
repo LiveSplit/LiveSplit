@@ -14,10 +14,14 @@ public interface ISettings : ICloneable
     IList<string> RecentLayouts { get; set; }
     string LastComparison { get; set; }
 
+    int HcpHistorySize { get; set; }
+    int HcpNBestRuns { get; set; }
     bool WarnOnReset { get; set; }
     bool SimpleSumOfBest { get; set; }
     int RefreshRate { get; set; }
     int ServerPort { get; set; }
+    ServerStartupType ServerStartup { get; set; }
+    ServerStateType ServerState { get; set; }
     IRaceViewer RaceViewer { get; set; }
     IList<RaceProviderSettings> RaceProvider { get; set; }
 
