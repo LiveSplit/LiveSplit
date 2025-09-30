@@ -166,10 +166,10 @@ Commands that return a string:
 - getcustomvariablevalue NAME
 - getsplitsscreenshot  
 (returns a Base64 encoded string of the screenshot)
-- ping  
-(always returns `pong`)
 - getlayoutpath
 - getsplitspath
+- ping  
+(always returns `pong`)
 
 Commands are defined at `ProcessMessage` in "CommandServer.cs".
 
