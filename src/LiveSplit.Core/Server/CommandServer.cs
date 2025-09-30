@@ -5,6 +5,7 @@ using System.IO.Pipes;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Reflection;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
@@ -665,6 +666,11 @@ public class CommandServer
             case "getlivesplitversion":
             {
                 response = Git.Version.ToString() ?? "Unknown Version";
+                break;
+            }
+            case "getlivesplitpath":
+            {
+                response = System.Reflection.Assembly.GetEntryAssembly().Location;
                 break;
             }
             default:

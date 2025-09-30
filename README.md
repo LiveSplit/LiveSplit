@@ -163,6 +163,7 @@ Commands that return a string:
 - getcustomvariablevalue NAME
 - gethotkeyprofile
 - getlivesplitversion
+- getlivesplitpath
 - ping  
 (always returns `pong`)
 
