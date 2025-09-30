@@ -168,6 +168,8 @@ Commands that return a string:
 (returns a Base64 encoded string of the screenshot)
 - ping  
 (always returns `pong`)
+- getlayoutpath
+- getsplitspath
 
 Commands are defined at `ProcessMessage` in "CommandServer.cs".
 
