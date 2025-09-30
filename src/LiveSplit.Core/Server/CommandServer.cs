@@ -327,6 +327,31 @@ public class CommandServer
                 response = splitindex.ToString();
                 break;
             }
+            case "getsplitname":
+            {
+                int index = State.CurrentSplitIndex;
+                if (!int.TryParse(args[1], NumberStyles.Integer, CultureInfo.InvariantCulture, out index))
+                {
+                    Log.Error($"[Server] Could not parse {args[1]} as a split index while gathering split name.");
+                    break;
+                }
+
+                if(index < 0)
+                {
+                    index = State.Run.Count + index;
+                }
+                if (index >= 0 && index < State.Run.Count)
+                {
+                    response = State.Run[index].Name;
+                }
+                else
+                {
+                    Log.Warning($"[Sever] Split index {index} out of bounds for command {command}");
+                    response = "-";
+                }
+
+                break;
+            }
             case "getcurrentsplitname":
             {
                 if (State.CurrentSplit != null)
@@ -495,6 +520,10 @@ public class CommandServer
                     title = options[1];
                 }
 
+                if (index < 0)
+                {
+                    index = State.Run.Count + index;
+                }
                 if (index >= 0 && index < State.Run.Count)
                 {
                     State.Run[index].Name = title;
