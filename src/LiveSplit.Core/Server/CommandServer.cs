@@ -591,6 +591,11 @@ public class CommandServer
                 response = "pong";
                 break;
             }
+            case "getlayoutpath":
+            {
+                response = State.Layout.FilePath.ToString();
+                break;
+            }
             case "savelayout":
             case "savelayoutas":
             {
@@ -613,6 +618,11 @@ public class CommandServer
                     Log.Error($"[Server] Failed to save current layout");
                 }
                 response = success.ToString();
+                break;
+            }
+            case "getsplitspath":
+            {
+                response = State.Run.FilePath.ToString();
                 break;
             }
             case "savesplits":
