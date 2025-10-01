@@ -670,7 +670,7 @@ public class CommandServer
             }
             case "getlivesplitpath":
             {
-                response = System.Reflection.Assembly.GetEntryAssembly().Location;
+                response = System.Reflection.Assembly.GetEntryAssembly().Location.ToString();
                 break;
             }
             default:
