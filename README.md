@@ -129,6 +129,7 @@ Commands that return a time:
 - getdelta COMPARISON
 - getlastsplittime
 - getcomparisonsplittime
+- getcomparisonsplittime COMPARISON
 - getcurrentrealtime
 - getcurrentgametime
 - getcurrenttime
