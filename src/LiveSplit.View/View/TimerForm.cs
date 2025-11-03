@@ -1258,7 +1258,7 @@ public partial class TimerForm : Form
             long mainLoopDuration = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - mainLoopStart;
             long inverse_refresh_rate = 1000 / Settings.RefreshRate;
             if (inverse_refresh_rate > mainLoopDuration) {
-              Thread.Sleep(inverse_refresh_rate - mainLoopDuration);
+              Thread.Sleep((int)(inverse_refresh_rate - mainLoopDuration));
             }
         }
     }
@@ -3236,4 +3236,5 @@ public partial class TimerForm : Form
     [System.Runtime.InteropServices.DllImport("user32.dll")]
     private static extern bool SetProcessDPIAware();
 }
+
 
