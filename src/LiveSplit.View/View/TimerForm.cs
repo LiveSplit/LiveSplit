@@ -1257,7 +1257,10 @@ public partial class TimerForm : Form
             }
             catch { }
             long mainLoopDuration = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - mainLoopStart;
-            Thread.Sleep(1000 / Settings.RefreshRate - mainLoopDuration);
+            long inverse_refresh_rate = 1000 / Settings.RefreshRate;
+            if (inverse_refresh_rate > mainLoopDuration) {
+              Thread.Sleep(inverse_refresh_rate - mainLoopDuration);
+            }
         }
     }
 
