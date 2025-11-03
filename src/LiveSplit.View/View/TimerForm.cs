@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.DateTime;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -1249,12 +1250,14 @@ public partial class TimerForm : Form
     {
         while (true)
         {
-            Thread.Sleep(1000 / Settings.RefreshRate);
+            long mainLoopStart = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
             try
             {
                 TimerElapsed();
             }
             catch { }
+            long mainLoopDuration = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - mainLoopStart;
+            Thread.Sleep(1000 / Settings.RefreshRate - mainLoopDuration);
         }
     }
 
@@ -3231,3 +3234,4 @@ public partial class TimerForm : Form
     [System.Runtime.InteropServices.DllImport("user32.dll")]
     private static extern bool SetProcessDPIAware();
 }
+
