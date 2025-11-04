@@ -1249,13 +1249,15 @@ public partial class TimerForm : Form
     {
         while (true)
         {
-            long mainLoopStart = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+            Stopwatch stopWatch = Stopwatch.StartNew();
             try
             {
                 TimerElapsed();
             }
             catch { }
-            long mainLoopDuration = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds() - mainLoopStart;
+            stopWatch.Stop();
+            
+            long mainLoopDuration = stopWatch.ElapsedMilliseconds;
             long inverse_refresh_rate = 1000 / Settings.RefreshRate;
             if (inverse_refresh_rate > mainLoopDuration) {
               Thread.Sleep((int)(inverse_refresh_rate - mainLoopDuration));
