@@ -1247,9 +1247,11 @@ public partial class TimerForm : Form
 
     private void RefreshTimerWorker()
     {
+        Stopwatch stopWatch = new Stopwatch();
         while (true)
         {
-            Stopwatch stopWatch = Stopwatch.StartNew();
+            stopWatch.Reset();
+            stopWatch.Start();
             try
             {
                 TimerElapsed();
