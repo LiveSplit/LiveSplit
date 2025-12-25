@@ -146,7 +146,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
         int attemptCount = attemptHistory.Count;
         int lastSegmentIndex = segmentCount - 1;
         ISegment lastSegment = Run[lastSegmentIndex];
-
+        
         var runData = new List<(int AttemptIndex, double TotalTime, List<double> SegmentTimes)>();
         int validAttemptsFound = 0;
         for (int i = attemptCount - 1; i >= 0 && validAttemptsFound < _numberOfLatestRunsToInclude; i--)
@@ -158,7 +158,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
             {
                 continue;
             }
-
+            
             double totalTime = 0;
             if (attempt.Time[method] != null)
             {
@@ -275,16 +275,120 @@ public class HCPComparisonGenerator : IComparisonGenerator
         bool[] hasValidTimes,
         TimingMethod method)
     {
-        TimeSpan? cumulative = TimeSpan.Zero;
-        double scaleFactor = avgTotal / totalHCPSegmentTime;
+        const int MAX_ITERATIONS = 10; // Safety limit to prevent infinite loops
+        var clampedSegments = new bool[segmentCount];
+        double scaleFactor = 1.0;
+        int iteration = 0;
+        bool anyNewClamps;
+        
+        do
+        {
+            anyNewClamps = false;
+            double totalClampedTime = 0;
+            double totalUnclampedTime = 0;
+            
+            double currentScaleFactor = avgTotal / totalHCPSegmentTime;
+            
+            // If we have existing clamps, calculate adjusted scale factor
+            for (int i = 0; i < segmentCount; i++)
+            {
+                if (hasValidTimes[i])
+                {
+                    if (clampedSegments[i])
+                    {
+                        TimeSpan? bestSegment = Run[i].BestSegmentTime[method];
+                        if (bestSegment.HasValue)
+                        {
+                            totalClampedTime += bestSegment.Value.TotalSeconds;
+                        }
+                    }
+                    else
+                    {
+                        totalUnclampedTime += segmentHCPTimes[i];
+                    }
+                }
+            }
+            
+            // Calculate scale factor for unclamped segments
+            if (totalUnclampedTime > 0 && totalClampedTime < avgTotal)
+            {
+                double remainingTarget = avgTotal - totalClampedTime;
+                scaleFactor = remainingTarget / totalUnclampedTime;
+            }
+            else if (totalClampedTime >= avgTotal)
+            {
+                // All clamped segments already meet or exceed the target
+                // This means the best segments themselves sum to more than the average best run
+                // Just use best segment times for everything
+                scaleFactor = 1.0;
+                for (int i = 0; i < segmentCount; i++)
+                {
+                    if (hasValidTimes[i] && !clampedSegments[i])
+                    {
+                        clampedSegments[i] = true;
+                    }
+                }
 
+                break;
+            }
+            else
+            {
+                // No unclamped segments left, use uniform scaling as fallback
+                scaleFactor = currentScaleFactor;
+                break;
+            }
+            
+            // Check if any unclamped segments now need clamping
+            for (int i = 0; i < segmentCount; i++)
+            {
+                if (hasValidTimes[i] && !clampedSegments[i])
+                {
+                    TimeSpan? bestSegment = Run[i].BestSegmentTime[method];
+                    if (bestSegment.HasValue)
+                    {
+                        double bestSegSeconds = bestSegment.Value.TotalSeconds;
+                        double scaledTime = segmentHCPTimes[i] * scaleFactor;
+                        
+                        if (scaledTime < bestSegSeconds)
+                        {
+                            clampedSegments[i] = true;
+                            anyNewClamps = true;
+                        }
+                    }
+                }
+            }
+            
+            iteration++;
+            
+        } while (anyNewClamps && iteration < MAX_ITERATIONS);
+        
+        TimeSpan? cumulative = TimeSpan.Zero;
+        
         for (int i = 0; i < segmentCount; i++)
         {
             if (hasValidTimes[i])
             {
                 if (cumulative != null)
                 {
-                    var segmentDuration = TimeSpan.FromSeconds(segmentHCPTimes[i] * scaleFactor);
+                    TimeSpan segmentDuration;
+                    
+                    if (clampedSegments[i])
+                    {
+                        TimeSpan? bestSegment = Run[i].BestSegmentTime[method];
+                        if (bestSegment.HasValue)
+                        {
+                            segmentDuration = bestSegment.Value;
+                        }
+                        else
+                        {
+                            segmentDuration = TimeSpan.FromSeconds(segmentHCPTimes[i] * scaleFactor);
+                        }
+                    }
+                    else
+                    {
+                        segmentDuration = TimeSpan.FromSeconds(segmentHCPTimes[i] * scaleFactor);
+                    }
+                    
                     cumulative += segmentDuration;
                 }
 
