@@ -55,13 +55,13 @@ jobs:
           .\LiveSplit.sln
 
       - name: Upload build as an artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: LiveSplit_Build
           path: .\bin\Release
 
       - name: Upload UpdateManager.exe as an artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: UpdateManagerExe
           path: .\bin\UpdateManagerExe
