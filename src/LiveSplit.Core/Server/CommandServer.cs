@@ -177,11 +177,41 @@ public class CommandServer
         ProcessMessage(e.Message, e.Connection);
     }
 
+    private (string requestId, string commandText) ParseCommand(string commandString)
+    {
+        commandString = commandString.Trim();
+        string[] parts = commandString.Split(['|'], 2);
+        return parts.Length != 2
+            ? ("", "")
+            : (parts[0], parts[1]);
+    }
+
+    private void SetExceptionResponse(CommandResponse commandResponse, Exception e, string customMessage)
+    {
+        commandResponse.Success = false;
+        commandResponse.State = "Exception";
+        commandResponse.Data.Add("message", e.Message);
+        if (!string.IsNullOrEmpty(customMessage))
+        {
+            commandResponse.Data.Add("customMessage", customMessage);
+        }
+    }
+
+    private void SetFailedResponse(CommandResponse commandResponse, string message)
+    {
+        commandResponse.Success = false;
+        commandResponse.State = "Failed";
+        commandResponse.Data.Add("message", message);
+    }
     private void ProcessMessage(string message, IConnection clientConnection)
     {
         string response = null;
-        string[] args = message.Split([' '], 2);
+        (string requestId, string commandText) = ParseCommand(message);
+        string[] args = commandText.Split([' '], 2);
         string command = args[0];
+        CommandResponse commandResponse = new CommandResponse();
+        commandResponse.Command = command;
+        commandResponse.RequestId = requestId;
         switch (command)
         {
             case "startorsplit":
@@ -252,7 +282,9 @@ public class CommandServer
                 catch (Exception e)
                 {
                     Log.Error(e);
-                    Log.Error($"[Server] Failed to parse time while setting game time: {args[1]}");
+                    string errMsg = $"Failed to parse time while setting game time: {args[1]}";
+                    Log.Error($"[Server] {errMsg}");
+                    SetExceptionResponse(commandResponse, e, errMsg);
                 }
 
                 break;
@@ -267,7 +299,10 @@ public class CommandServer
                 catch (Exception e)
                 {
                     Log.Error(e);
-                    Log.Error($"[Server] Failed to parse time while setting loading times: {args[1]}");
+                    string errMsg = $"Failed to parse time while setting loading times: {args[1]}";
+                    Log.Error($"[Server] {errMsg}");
+                    SetExceptionResponse(commandResponse, e, errMsg);
+
                 }
 
                 break;
@@ -282,7 +317,9 @@ public class CommandServer
                 catch (Exception e)
                 {
                     Log.Error(e);
-                    Log.Error($"[Server] Failed to parse time while adding loading times: {args[1]}");
+                    string errMsg = $"Failed to parse time while adding loading times: {args[1]}";
+                    Log.Error($"[Server] {errMsg}");
+                    SetExceptionResponse(commandResponse, e, errMsg);
                 }
 
                 break;
@@ -318,24 +355,26 @@ public class CommandServer
                 }
 
                 // Defaults to "-" when delta is null, such as when State.CurrentPhase == TimerPhase.NotRunning
-                response = TimeFormatter.Format(delta);
+                commandResponse.Data.Add("time", TimeFormatter.Format(delta));
+
                 break;
             }
             case "getsplitindex":
             {
                 int splitindex = State.CurrentSplitIndex;
-                response = splitindex.ToString();
+                commandResponse.Data.Add("index", splitindex.ToString(CultureInfo.InvariantCulture));
                 break;
             }
             case "getcurrentsplitname":
             {
                 if (State.CurrentSplit != null)
                 {
-                    response = State.CurrentSplit.Name;
+                    commandResponse.Data.Add("name", State.CurrentSplit.Name);
                 }
                 else
                 {
-                    response = "-";
+                    //commandResponse.Data.Add("name", "-");
+                    commandResponse.State = "NoData";
                 }
 
                 break;
@@ -345,11 +384,12 @@ public class CommandServer
             {
                 if (State.CurrentSplitIndex > 0)
                 {
-                    response = State.Run[State.CurrentSplitIndex - 1].Name;
+                    commandResponse.Data.Add("name", State.Run[State.CurrentSplitIndex - 1].Name);
                 }
                 else
                 {
-                    response = "-";
+                    //commandResponse.Data.Add("name", "-");
+                    commandResponse.State = "NoData";
                 }
 
                 break;
@@ -360,11 +400,12 @@ public class CommandServer
                 if (State.CurrentSplitIndex > 0)
                 {
                     TimeSpan? time = State.Run[State.CurrentSplitIndex - 1].SplitTime[State.CurrentTimingMethod];
-                    response = TimeFormatter.Format(time);
+                    commandResponse.Data.Add("time", TimeFormatter.Format(time));
                 }
                 else
                 {
-                    response = "-";
+                    //response = "-";
+                    commandResponse.State = "NoData";
                 }
 
                 break;
@@ -376,18 +417,19 @@ public class CommandServer
                 {
                     string comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
                     TimeSpan? time = State.CurrentSplit.Comparisons[comparison][State.CurrentTimingMethod];
-                    response = TimeFormatter.Format(time);
+                    commandResponse.Data.Add("time", TimeFormatter.Format(time));
                 }
                 else
                 {
-                    response = "-";
+                    //response = "-";
+                    commandResponse.State = "NoData";
                 }
 
                 break;
             }
             case "getcurrentrealtime":
             {
-                response = TimeFormatter.Format(GetCurrentTime(State, TimingMethod.RealTime));
+                commandResponse.Data.Add("time", TimeFormatter.Format(GetCurrentTime(State, TimingMethod.RealTime)));
                 break;
             }
             case "getcurrentgametime":
@@ -398,7 +440,7 @@ public class CommandServer
                     timingMethod = TimingMethod.RealTime;
                 }
 
-                response = TimeFormatter.Format(GetCurrentTime(State, timingMethod));
+                commandResponse.Data.Add("time", TimeFormatter.Format(GetCurrentTime(State, timingMethod)));
                 break;
             }
             case "getcurrenttime":
@@ -409,7 +451,7 @@ public class CommandServer
                     timingMethod = TimingMethod.RealTime;
                 }
 
-                response = TimeFormatter.Format(GetCurrentTime(State, timingMethod));
+                commandResponse.Data.Add("time", TimeFormatter.Format(GetCurrentTime(State, timingMethod)));
                 break;
             }
             case "getfinaltime":
@@ -419,7 +461,7 @@ public class CommandServer
                 TimeSpan? time = (State.CurrentPhase == TimerPhase.Ended)
                     ? State.CurrentTime[State.CurrentTimingMethod]
                     : State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
-                response = TimeFormatter.Format(time);
+                commandResponse.Data.Add("time", TimeFormatter.Format(time));
                 break;
             }
             case "getbestpossibletime":
@@ -436,13 +478,13 @@ public class CommandServer
                 }
 
                 TimeSpan? prediction = PredictTime(State, comparison);
-                response = TimeFormatter.Format(prediction);
+                commandResponse.Data.Add("prediction", TimeFormatter.Format(prediction));
                 break;
             }
             case "gettimerphase":
             case "getcurrenttimerphase":
             {
-                response = State.CurrentPhase.ToString();
+                commandResponse.Data.Add("phase", State.CurrentPhase.ToString());
                 break;
             }
             case "setcomparison":
@@ -469,7 +511,9 @@ public class CommandServer
             {
                 if (args.Length < 2)
                 {
-                    Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                    string errMsg = $"Command {command} incorrect usage: missing one or more arguments.";
+                    Log.Error($"[Server] {errMsg}");
+                    SetFailedResponse(commandResponse, errMsg);
                     break;
                 }
 
@@ -482,13 +526,17 @@ public class CommandServer
 
                     if (options.Length < 2)
                     {
-                        Log.Error($"[Server] Command {command} incorrect usage: missing one or more arguments.");
+                        string errMsg = $"Command {command} incorrect usage: missing one or more arguments.";
+                        Log.Error($"[Server] {errMsg}");
+                        SetFailedResponse(commandResponse, errMsg);
                         break;
                     }
 
                     if (!int.TryParse(options[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out index))
                     {
-                        Log.Error($"[Server] Could not parse {options[0]} as a split index while setting split name.");
+                        string errMsg = $"Could not parse {options[0]} as a split index while setting split name.";
+                        Log.Error($"[Server] {errMsg}");
+                        SetFailedResponse(commandResponse, errMsg);
                         break;
                     }
 
@@ -502,7 +550,10 @@ public class CommandServer
                 }
                 else
                 {
-                    Log.Warning($"[Sever] Split index {index} out of bounds for command {command}");
+                    string warnMsg = $"Split index {index} out of bounds for command {command}";
+                    Log.Warning($"[Sever] {warnMsg}");
+                    commandResponse.State = "Warning";
+                    commandResponse.Data.Add("message", warnMsg);
                 }
 
                 break;
@@ -545,7 +596,7 @@ public class CommandServer
             }
             case "ping":
             {
-                response = "pong";
+                commandResponse.State = "Pong";
                 break;
             }
             case "getattemptcount":
@@ -560,11 +611,14 @@ public class CommandServer
             }
             default:
             {
-                Log.Error($"[Server] Invalid command: {message}");
+                string errMsg = $"Invalid command: {command}";
+                Log.Error($"[Server] {errMsg}");
+                SetFailedResponse(commandResponse, errMsg);
                 break;
             }
         }
 
+        response = commandResponse.GetResponse();
         if (!string.IsNullOrEmpty(response))
         {
             clientConnection.SendMessage(response);
