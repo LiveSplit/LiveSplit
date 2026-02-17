@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.chkMousePassThroughWhileRunning = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.lblOutlines = new System.Windows.Forms.Label();
@@ -59,7 +58,6 @@
             this.btnShadowsColor = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.btnTextOutlineColor = new System.Windows.Forms.Button();
-            this.chkAlwaysOnTop = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.chkAntiAliasing = new System.Windows.Forms.CheckBox();
@@ -73,7 +71,6 @@
             this.lblTimer = new System.Windows.Forms.Label();
             this.lblTimes = new System.Windows.Forms.Label();
             this.lblText = new System.Windows.Forms.Label();
-            this.chkBestSegments = new System.Windows.Forms.CheckBox();
             this.label13 = new System.Windows.Forms.Label();
             this.trkOpacity = new System.Windows.Forms.TrackBar();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -86,6 +83,10 @@
             this.btnBackground = new System.Windows.Forms.Button();
             this.lblImageOpacity = new System.Windows.Forms.Label();
             this.lblBlur = new System.Windows.Forms.Label();
+            this.chkBestSegments = new System.Windows.Forms.CheckBox();
+            this.chkMousePassThroughWhileRunning = new System.Windows.Forms.CheckBox();
+            this.chkAlwaysOnTop = new System.Windows.Forms.CheckBox();
+            this.chkTransparentBackground = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel5.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -116,35 +117,21 @@
             this.tableLayoutPanel5.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 6;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 228F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 541);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(462, 571);
             this.tableLayoutPanel5.TabIndex = 41;
-            // 
-            // chkMousePassThroughWhileRunning
-            // 
-            this.chkMousePassThroughWhileRunning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkMousePassThroughWhileRunning.AutoSize = true;
-            this.tableLayoutPanel5.SetColumnSpan(this.chkMousePassThroughWhileRunning, 3);
-            this.chkMousePassThroughWhileRunning.Location = new System.Drawing.Point(7, 515);
-            this.chkMousePassThroughWhileRunning.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkMousePassThroughWhileRunning.Name = "chkMousePassThroughWhileRunning";
-            this.chkMousePassThroughWhileRunning.Size = new System.Drawing.Size(249, 23);
-            this.chkMousePassThroughWhileRunning.TabIndex = 27;
-            this.chkMousePassThroughWhileRunning.Text = "Ignore Mouse While Running and Not In Focus";
-            this.chkMousePassThroughWhileRunning.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.groupBox2, 3);
             this.groupBox2.Controls.Add(this.tableLayoutPanel2);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(3, 258);
+            this.groupBox2.Location = new System.Drawing.Point(3, 287);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(456, 222);
             this.groupBox2.TabIndex = 2;
@@ -514,25 +501,12 @@
             this.btnTextOutlineColor.UseVisualStyleBackColor = false;
             this.btnTextOutlineColor.Click += new System.EventHandler(this.ColorButtonClick);
             // 
-            // chkAlwaysOnTop
-            // 
-            this.chkAlwaysOnTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkAlwaysOnTop.AutoSize = true;
-            this.chkAlwaysOnTop.Location = new System.Drawing.Point(237, 486);
-            this.chkAlwaysOnTop.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkAlwaysOnTop.Name = "chkAlwaysOnTop";
-            this.chkAlwaysOnTop.Size = new System.Drawing.Size(96, 23);
-            this.chkAlwaysOnTop.TabIndex = 25;
-            this.chkAlwaysOnTop.Text = "Always on Top";
-            this.chkAlwaysOnTop.UseVisualStyleBackColor = true;
-            // 
             // groupBox1
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.groupBox1, 3);
             this.groupBox1.Controls.Add(this.tableLayoutPanel1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 116);
+            this.groupBox1.Location = new System.Drawing.Point(3, 145);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(456, 136);
             this.groupBox1.TabIndex = 1;
@@ -691,25 +665,11 @@
             this.lblText.TabIndex = 25;
             this.lblText.Text = "something";
             // 
-            // chkBestSegments
-            // 
-            this.chkBestSegments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.chkBestSegments.AutoSize = true;
-            this.tableLayoutPanel5.SetColumnSpan(this.chkBestSegments, 2);
-            this.chkBestSegments.Location = new System.Drawing.Point(7, 486);
-            this.chkBestSegments.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
-            this.chkBestSegments.Name = "chkBestSegments";
-            this.chkBestSegments.Size = new System.Drawing.Size(127, 23);
-            this.chkBestSegments.TabIndex = 26;
-            this.chkBestSegments.Text = "Show Best Segments";
-            this.chkBestSegments.UseVisualStyleBackColor = true;
-            // 
             // label13
             // 
             this.label13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 92);
+            this.label13.Location = new System.Drawing.Point(3, 121);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(91, 13);
             this.label13.TabIndex = 16;
@@ -719,7 +679,7 @@
             // 
             this.tableLayoutPanel5.SetColumnSpan(this.trkOpacity, 2);
             this.trkOpacity.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.trkOpacity.Location = new System.Drawing.Point(100, 87);
+            this.trkOpacity.Location = new System.Drawing.Point(100, 116);
             this.trkOpacity.Maximum = 100;
             this.trkOpacity.Minimum = 5;
             this.trkOpacity.Name = "trkOpacity";
@@ -735,7 +695,7 @@
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox3.Location = new System.Drawing.Point(3, 3);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(456, 78);
+            this.groupBox3.Size = new System.Drawing.Size(456, 107);
             this.groupBox3.TabIndex = 17;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Background";
@@ -757,13 +717,15 @@
             this.tableLayoutPanel3.Controls.Add(this.btnBackground, 2, 0);
             this.tableLayoutPanel3.Controls.Add(this.lblImageOpacity, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.lblBlur, 4, 1);
+            this.tableLayoutPanel3.Controls.Add(this.chkTransparentBackground, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(450, 59);
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(450, 88);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // trkBlur
@@ -772,7 +734,7 @@
             this.trkBlur.Location = new System.Drawing.Point(320, 32);
             this.trkBlur.Maximum = 100;
             this.trkBlur.Name = "trkBlur";
-            this.trkBlur.Size = new System.Drawing.Size(127, 24);
+            this.trkBlur.Size = new System.Drawing.Size(127, 23);
             this.trkBlur.TabIndex = 4;
             this.trkBlur.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -784,7 +746,7 @@
             this.trkImageOpacity.Maximum = 100;
             this.trkImageOpacity.Minimum = 5;
             this.trkImageOpacity.Name = "trkImageOpacity";
-            this.trkImageOpacity.Size = new System.Drawing.Size(127, 24);
+            this.trkImageOpacity.Size = new System.Drawing.Size(127, 23);
             this.trkImageOpacity.TabIndex = 3;
             this.trkImageOpacity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trkImageOpacity.Value = 5;
@@ -863,6 +825,59 @@
             this.lblBlur.TabIndex = 22;
             this.lblBlur.Text = "Image Blur:";
             // 
+            // chkBestSegments
+            // 
+            this.chkBestSegments.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkBestSegments.AutoSize = true;
+            this.tableLayoutPanel5.SetColumnSpan(this.chkBestSegments, 2);
+            this.chkBestSegments.Location = new System.Drawing.Point(7, 515);
+            this.chkBestSegments.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkBestSegments.Name = "chkBestSegments";
+            this.chkBestSegments.Size = new System.Drawing.Size(127, 23);
+            this.chkBestSegments.TabIndex = 26;
+            this.chkBestSegments.Text = "Show Best Segments";
+            this.chkBestSegments.UseVisualStyleBackColor = true;
+            // 
+            // chkMousePassThroughWhileRunning
+            // 
+            this.chkMousePassThroughWhileRunning.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkMousePassThroughWhileRunning.AutoSize = true;
+            this.tableLayoutPanel5.SetColumnSpan(this.chkMousePassThroughWhileRunning, 3);
+            this.chkMousePassThroughWhileRunning.Location = new System.Drawing.Point(7, 544);
+            this.chkMousePassThroughWhileRunning.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkMousePassThroughWhileRunning.Name = "chkMousePassThroughWhileRunning";
+            this.chkMousePassThroughWhileRunning.Size = new System.Drawing.Size(249, 24);
+            this.chkMousePassThroughWhileRunning.TabIndex = 27;
+            this.chkMousePassThroughWhileRunning.Text = "Ignore Mouse While Running and Not In Focus";
+            this.chkMousePassThroughWhileRunning.UseVisualStyleBackColor = true;
+            // 
+            // chkAlwaysOnTop
+            // 
+            this.chkAlwaysOnTop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.chkAlwaysOnTop.AutoSize = true;
+            this.chkAlwaysOnTop.Location = new System.Drawing.Point(237, 515);
+            this.chkAlwaysOnTop.Margin = new System.Windows.Forms.Padding(7, 3, 3, 3);
+            this.chkAlwaysOnTop.Name = "chkAlwaysOnTop";
+            this.chkAlwaysOnTop.Size = new System.Drawing.Size(96, 23);
+            this.chkAlwaysOnTop.TabIndex = 25;
+            this.chkAlwaysOnTop.Text = "Always on Top";
+            this.chkAlwaysOnTop.UseVisualStyleBackColor = true;
+            // 
+            // chkTransparentBackground
+            // 
+            this.chkTransparentBackground.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkTransparentBackground.AutoSize = true;
+            this.tableLayoutPanel3.SetColumnSpan(this.chkTransparentBackground, 6);
+            this.chkTransparentBackground.Location = new System.Drawing.Point(3, 64);
+            this.chkTransparentBackground.Name = "chkTransparentBackground";
+            this.chkTransparentBackground.Size = new System.Drawing.Size(444, 17);
+            this.chkTransparentBackground.TabIndex = 23;
+            this.chkTransparentBackground.Text = "Transparent Background";
+            this.chkTransparentBackground.UseVisualStyleBackColor = true;
+            // 
             // LayoutSettingsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -870,7 +885,7 @@
             this.Controls.Add(this.tableLayoutPanel5);
             this.Name = "LayoutSettingsControl";
             this.Padding = new System.Windows.Forms.Padding(7);
-            this.Size = new System.Drawing.Size(476, 555);
+            this.Size = new System.Drawing.Size(476, 585);
             this.Load += new System.EventHandler(this.LayoutSettingsControl_Load);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
@@ -950,5 +965,6 @@
         private System.Windows.Forms.Label lblOutlines;
         private System.Windows.Forms.Button btnTextOutlineColor;
         private System.Windows.Forms.CheckBox chkMousePassThroughWhileRunning;
+        private System.Windows.Forms.CheckBox chkTransparentBackground;
     }
 }
