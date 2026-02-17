@@ -83,6 +83,7 @@ public partial class RunEditorDialog : Form
                 }
 
                 RefreshCategoryAutoCompleteList();
+                RefreshLevelAutoCompleteList();
                 RaiseRunEdited();
                 Run.Metadata.RunID = null;
             }
@@ -101,6 +102,25 @@ public partial class RunEditorDialog : Form
                     metadataControl.RefreshInformation();
                 }
 
+                RaiseRunEdited();
+                Run.Metadata.RunID = null;
+            }
+        }
+    }
+    public string LevelName
+    {
+        get => Run.LevelName;
+        set
+        {
+            if (Run.LevelName != value)
+            {
+                Run.LevelName = value;
+                if (IsMetadataTab)
+                {
+                    metadataControl.RefreshInformation();
+                }
+                // Force refresh of category list on level change
+                RefreshCategoryAutoCompleteList();
                 RaiseRunEdited();
                 Run.Metadata.RunID = null;
             }
@@ -230,6 +250,7 @@ public partial class RunEditorDialog : Form
 
         cbxGameName.DataBindings.Add("Text", this, "GameName");
         cbxRunCategory.DataBindings.Add("Text", this, "CategoryName");
+        cbxRunLevel.DataBindings.Add("Text", this, "LevelName");
         tbxTimeOffset.DataBindings.Add("Text", this, "Offset");
         tbxAttempts.DataBindings.Add("Text", this, "AttemptCount");
 
@@ -242,9 +263,13 @@ public partial class RunEditorDialog : Form
         cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
         cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
+        cbxRunLevel.AutoCompleteSource = AutoCompleteSource.ListItems;
+        cbxRunLevel.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+
         SelectedMethod = state.CurrentTimingMethod;
 
         RefreshCategoryAutoCompleteList();
+        RefreshLevelAutoCompleteList();
         UpdateSegmentList();
         RefreshAutoSplittingUI();
         SetClickEvents(this);
@@ -271,6 +296,10 @@ public partial class RunEditorDialog : Form
         else if (e.PropertyName == "CategoryName")
         {
             cbxRunCategory.Text = Run.CategoryName;
+        }
+        else if (e.PropertyName == "LevelName")
+        {
+            cbxRunLevel.Text = Run.LevelName;
         }
     }
 
@@ -396,7 +425,14 @@ public partial class RunEditorDialog : Form
                     SpeedrunComSharp.Game game = Run.Metadata.Game;
                     if (game != null)
                     {
-                        categoryNames = game.FullGameCategories.Select(x => x.Name).ToArray();
+                        if (Run.Metadata.Level == null)
+                        {
+                            categoryNames = game.FullGameCategories.Select(x => x.Name).ToArray();
+                        }
+                        else
+                        {
+                            categoryNames = game.LevelCategories.Select(x => x.Name).ToArray();
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -410,6 +446,46 @@ public partial class RunEditorDialog : Form
                     {
                         cbxRunCategory.Items.Clear();
                         cbxRunCategory.Items.AddRange(categoryNames);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                    }
+                });
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+        });
+    }
+
+    private void RefreshLevelAutoCompleteList()
+    {
+        Task.Factory.StartNew(() =>
+        {
+            try
+            {
+                string[] levelNames = [];
+                try
+                {
+                    SpeedrunComSharp.Game game = Run.Metadata.Game;
+                    if (game != null)
+                    {
+                        levelNames = game.Levels.Select(x => x.Name).ToArray();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+
+                this.InvokeIfRequired(() =>
+                {
+                    try
+                    {
+                        cbxRunLevel.Items.Clear();
+                        cbxRunLevel.Items.AddRange(levelNames);
                     }
                     catch (Exception ex)
                     {

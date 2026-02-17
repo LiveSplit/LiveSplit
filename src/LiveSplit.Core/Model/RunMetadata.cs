@@ -16,9 +16,12 @@ public class RunMetadata
 
     private string oldGameName;
     private string oldCategoryName;
+    private string oldLevelName;
     private Lazy<Game> game;
     private bool gameLoaded;
     private Lazy<Category> category;
+    private CategoryType categoryType;
+    private Lazy<Level> level;
     private Lazy<SpeedrunComSharp.Run> run;
     private string runId;
     private string platformName;
@@ -211,6 +214,15 @@ public class RunMetadata
         }
     }
 
+    public Level Level
+    {
+        get
+        {
+            Refresh();
+            return level.Value;
+        }
+    }
+
     public RunMetadata(IRun run)
     {
         LiveSplitRun = run;
@@ -218,6 +230,7 @@ public class RunMetadata
         CustomVariables = new Dictionary<string, CustomVariable>();
         game = new Lazy<Game>(() => null);
         category = new Lazy<Category>(() => null);
+        level = new Lazy<Level>(() => null);
         this.run = new Lazy<SpeedrunComSharp.Run>(() => null);
     }
 
@@ -285,10 +298,20 @@ public class RunMetadata
                 CategoryAvailable = false;
 
                 oldCategoryName = LiveSplitRun.CategoryName;
+
                 if (!string.IsNullOrEmpty(oldCategoryName))
                 {
                     Task<Category> categoryTask = Task.Factory.StartNew(() =>
                     {
+                        if (string.IsNullOrEmpty(LiveSplitRun.LevelName))
+                        {
+                            categoryType = CategoryType.PerGame;
+                        }
+                        else
+                        {
+                            categoryType = CategoryType.PerLevel;
+                        }
+
                         Game game = this.game.Value;
                         if (game == null)
                         {
@@ -298,7 +321,7 @@ public class RunMetadata
                         try
                         {
                             Category category = SpeedrunCom.Client.Games.GetCategories(game.ID, embeds: new CategoryEmbeds(embedVariables: true))
-                                .FirstOrDefault(x => x.Type == CategoryType.PerGame && x.Name == oldCategoryName);
+                                .FirstOrDefault(x => x.Type == categoryType && x.Name == oldCategoryName);
                             if (category != null)
                             {
                                 CategoryAvailable = true;
@@ -365,6 +388,40 @@ public class RunMetadata
                     category = new Lazy<Category>(() => null);
                 }
             }
+
+            if (LiveSplitRun.LevelName != oldLevelName)
+            {
+                oldLevelName = LiveSplitRun.LevelName;
+                if (!string.IsNullOrEmpty(oldLevelName))
+                {
+                    Task<Level> levelTask = Task<Level>.Factory.StartNew(() =>
+                    {
+                        Game game = this.game.Value;
+                        if (game == null)
+                        {
+                            return null;
+                        }
+
+                        try
+                        {
+                            Level level = SpeedrunCom.Client.Games.GetLevels(game.ID, embeds: new LevelEmbeds(embedVariables: true))
+                                .FirstOrDefault(x => x.Name == oldLevelName);
+
+                            return level;
+                        }
+                        catch
+                        {
+                            return null;
+                        }
+                    });
+                    level = new Lazy<Level>(() => levelTask.Result);
+
+                }
+                else
+                {
+                    level = new Lazy<Level>(() => null);
+                }
+            }
         }
     }
 
@@ -374,9 +431,11 @@ public class RunMetadata
         {
             oldGameName = oldGameName,
             oldCategoryName = oldCategoryName,
+            oldLevelName = oldLevelName,
             game = game,
             gameLoaded = gameLoaded,
             category = category,
+            level = level,
             run = this.run,
             runId = runId,
             platformName = platformName,

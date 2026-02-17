@@ -3634,6 +3634,18 @@ namespace LiveSplitCore
             return result;
         }
         /// <summary>
+        /// Accesses the name of the level of this Run.
+        /// </summary>
+        public string LevelName()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.Run_level_name(this.ptr);
+            return result;
+        }
+        /// <summary>
         /// Returns a file name (without the extension) suitable for this Run that
         /// is built the following way:
         /// 
@@ -3904,6 +3916,17 @@ namespace LiveSplitCore
                 throw new ObjectDisposedException("this");
             }
             LiveSplitCoreNative.Run_set_category_name(this.ptr, category);
+        }
+        /// <summary>
+        /// Sets the name of the level of this Run.
+        /// </summary>
+        public void SetLevelName(string level)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            LiveSplitCoreNative.Run_set_level_name(this.ptr, level);
         }
         /// <summary>
         /// Marks the Run as modified, so that it is known that there are changes
@@ -8924,6 +8947,8 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString Run_category_name(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern LSCoreString Run_level_name(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString Run_extended_file_name(IntPtr self, bool use_extended_category_name);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString Run_extended_name(IntPtr self, bool use_extended_category_name);
@@ -8961,6 +8986,8 @@ namespace LiveSplitCore
         public static extern void Run_set_game_name(IntPtr self, LSCoreString game);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Run_set_category_name(IntPtr self, LSCoreString category);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void Run_set_level_name(IntPtr self, LSCoreString level);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Run_mark_as_modified(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
