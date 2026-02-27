@@ -1247,14 +1247,23 @@ public partial class TimerForm : Form
 
     private void RefreshTimerWorker()
     {
+        Stopwatch stopWatch = new Stopwatch();
         while (true)
         {
-            Thread.Sleep(1000 / Settings.RefreshRate);
+            stopWatch.Reset();
+            stopWatch.Start();
             try
             {
                 TimerElapsed();
             }
             catch { }
+            stopWatch.Stop();
+            
+            long mainLoopDuration = stopWatch.ElapsedMilliseconds;
+            long inverse_refresh_rate = 1000 / Settings.RefreshRate;
+            if (inverse_refresh_rate > mainLoopDuration) {
+              Thread.Sleep((int)(inverse_refresh_rate - mainLoopDuration));
+            }
         }
     }
 
