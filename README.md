@@ -129,6 +129,7 @@ Commands that return a time:
 - getdelta COMPARISON
 - getlastsplittime
 - getcomparisonsplittime
+- getcomparisonsplittime COMPARISON
 - getcurrentrealtime
 - getcurrentgametime
 - getcurrenttime
@@ -136,11 +137,15 @@ Commands that return a time:
 - getfinaltime COMPARISON
 - getpredictedtime COMPARISON
 - getbestpossibletime
+- getpausedrealtime
+- getpausedgametime
+- getoffset
 
 Commands that return an int:
 
 - getsplitindex  
 (returns -1 if the timer is not running)
+- getsplitcount
 - getattemptcount
 - getcompletedcount
 
@@ -148,8 +153,18 @@ Commands that return a string:
 
 - getcurrentsplitname  
 - getprevioussplitname
+- getupcomingsplitname
 - getcurrenttimerphase
+- getgamename
+- getcategoryname
+- getcategoryvariables  
+(returns region, platform, emulator usage, and other category variables as a JSON encoded string)
+- getcomparisonname
+- gettimingmethod
 - getcustomvariablevalue NAME
+- gethotkeyprofile
+- getlivesplitversion
+- getlivesplitpath
 - ping  
 (always returns `pong`)
 
