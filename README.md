@@ -108,6 +108,7 @@ Commands that generate no response:
 - skipsplit
 - pause
 - resume
+- undoallpauses
 - reset
 - starttimer
 - setgametime TIME
@@ -119,6 +120,9 @@ Commands that generate no response:
 - setcomparison COMPARISON
 - switchto realtime
 - switchto gametime
+- enableglobalhotkeys
+- disableglobalhotkeys
+- switchhotkeyprofile NAME
 - setsplitname INDEX NAME
 - setcurrentsplitname NAME
 - setcustomvariable JSON([NAME, VALUE])
@@ -144,12 +148,26 @@ Commands that return an int:
 - getattemptcount
 - getcompletedcount
 
+Commands that return True/False whether or not the request succeeds:
+
+- savelayout
+- savesplits
+- savelayoutas FILEPATH
+- savesplitsas FILEPATH
+- switchlayout FILEPATH
+- switchsplits FILEPATH
+- savesplitsscreenshot FILEPATH
+
 Commands that return a string:
 
 - getcurrentsplitname  
 - getprevioussplitname
 - getcurrenttimerphase
 - getcustomvariablevalue NAME
+- getsplitsscreenshot  
+(returns a Base64 encoded string of the screenshot)
+- getlayoutpath
+- getsplitspath
 - ping  
 (always returns `pong`)
 
