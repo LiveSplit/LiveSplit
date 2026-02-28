@@ -32,6 +32,8 @@
     <BackgroundGradient>Plain</BackgroundGradient>
     <Opacity>1</Opacity>
     <MousePassThroughWhileRunning>False</MousePassThroughWhileRunning>
+    <AllowResizing>True</AllowResizing>
+    <AllowMoving>True</AllowMoving>
   </Settings>
   <Components>
     <Component>
