@@ -80,6 +80,9 @@ public partial class TimerForm : Form
 
     private bool DontRedraw = false;
 
+    private bool AllowResizing = false;
+    private bool AllowMoving = false;
+
     protected Region UpdateRegion { get; set; }
 
     public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -1431,6 +1434,9 @@ public partial class TimerForm : Form
         // Set MousePassThrough after setting Opacity, because setting Opacity can reset the Form's WS_EX_LAYERED flag.
         MousePassThrough = Layout.Settings.MousePassThroughWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running && !IsForegroundWindow;
 
+        AllowResizing = Layout.Settings.AllowResizing;
+        AllowMoving = Layout.Settings.AllowMoving;
+
         if (Layout.Settings.AntiAliasing)
         {
             g.TextRenderingHint = TextRenderingHint.AntiAlias;
@@ -1598,7 +1604,7 @@ public partial class TimerForm : Form
 
     private void TimerForm_MouseMove(object sender, MouseEventArgs e)
     {
-        if (MouseIsDown)
+        if (AllowMoving && MouseIsDown)
         {
             int x = Location.X - MousePoint.X + e.Location.X;
             int y = Location.Y - MousePoint.Y + e.Location.Y;
@@ -1669,7 +1675,7 @@ public partial class TimerForm : Form
         const int RESIZE_HANDLE_SIZE = 10;
         bool handled = false;
 
-        if (m.Msg is (int)WM_NCHITTEST or (int)WM_MOUSEMOVE)
+        if (AllowResizing && m.Msg is (int)WM_NCHITTEST or (int)WM_MOUSEMOVE)
         {
             Size formSize = Size;
             var screenPoint = new Point(m.LParam.ToInt32());

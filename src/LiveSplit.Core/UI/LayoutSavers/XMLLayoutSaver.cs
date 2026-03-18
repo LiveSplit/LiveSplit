@@ -40,7 +40,9 @@ public class XMLLayoutSaver : ILayoutSaver
         SettingsHelper.CreateSetting(document, element, "ImageOpacity", settings.ImageOpacity) ^
         SettingsHelper.CreateSetting(document, element, "ImageBlur", settings.ImageBlur) ^
         SettingsHelper.CreateSetting(document, element, "Opacity", settings.Opacity) ^
-        SettingsHelper.CreateSetting(document, element, "MousePassThroughWhileRunning", settings.MousePassThroughWhileRunning);
+        SettingsHelper.CreateSetting(document, element, "MousePassThroughWhileRunning", settings.MousePassThroughWhileRunning) ^
+        SettingsHelper.CreateSetting(document, element, "AllowResizing", settings.AllowResizing) ^
+        SettingsHelper.CreateSetting(document, element, "AllowMoving", settings.AllowMoving);
     }
 
     public int CreateLayoutNode(XmlDocument document, XmlElement parent, ILayout layout)

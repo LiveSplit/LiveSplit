@@ -39,6 +39,8 @@ public class LayoutSettings : ICloneable
 
     public float Opacity { get; set; }
     public bool MousePassThroughWhileRunning { get; set; }
+    public bool AllowResizing { get; set; }
+    public bool AllowMoving { get; set; }
 
     public object Clone()
     {
@@ -78,5 +80,7 @@ public class LayoutSettings : ICloneable
         BackgroundImage = settings.BackgroundImage;
         ImageOpacity = settings.ImageOpacity;
         ImageBlur = settings.ImageBlur;
+        AllowResizing = settings.AllowResizing;
+        AllowMoving = settings.AllowMoving;
     }
 }

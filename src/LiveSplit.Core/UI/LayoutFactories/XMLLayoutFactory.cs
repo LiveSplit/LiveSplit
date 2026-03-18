@@ -39,6 +39,8 @@ public class XMLLayoutFactory : ILayoutFactory
             DropShadows = SettingsHelper.ParseBool(element["DropShadows"], true),
             Opacity = SettingsHelper.ParseFloat(element["Opacity"], 1),
             MousePassThroughWhileRunning = SettingsHelper.ParseBool(element["MousePassThroughWhileRunning"]),
+            AllowResizing = SettingsHelper.ParseBool(element["AllowResizing"], true),
+            AllowMoving = SettingsHelper.ParseBool(element["AllowMoving"], true),
             TextOutlineColor = SettingsHelper.ParseColor(element["TextOutlineColor"], Color.FromArgb(0, 0, 0, 0)),
             ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0)),
             ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]),
