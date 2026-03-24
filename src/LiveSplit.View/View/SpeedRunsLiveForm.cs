@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
+using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.Utils;
@@ -14,6 +15,8 @@ namespace LiveSplit.View;
 
 public partial class SpeedRunsLiveForm : Form
 {
+    private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
+
     private SpeedRunsLiveIRC SRLClient { get; set; }
 
     protected bool FormIsClosing { get; set; }
@@ -56,7 +59,7 @@ public partial class SpeedRunsLiveForm : Form
         {
             if (!FormIsClosing)
             {
-                MessageBox.Show(this, "You have been kicked from the IRC Channel.", "Kicked From Channel", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(this, T("You have been kicked from the IRC Channel."), T("Kicked From Channel"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
         });
@@ -75,7 +78,7 @@ public partial class SpeedRunsLiveForm : Form
             {
                 if (!FormIsClosing)
                 {
-                    MessageBox.Show(this, "You have been disconnected from the IRC server.", "Disconnected", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(this, T("You have been disconnected from the IRC server."), T("Disconnected"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Close();
                 }
             });
@@ -94,7 +97,7 @@ public partial class SpeedRunsLiveForm : Form
 
         this.InvokeIfRequired(() =>
         {
-            MessageBox.Show(this, "Your nickname is already in use.", "Nickname In Use", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(this, T("Your nickname is already in use."), T("Nickname In Use"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             Close();
         });
     }
@@ -110,7 +113,7 @@ public partial class SpeedRunsLiveForm : Form
 
         this.InvokeIfRequired(() =>
         {
-            MessageBox.Show(this, "The password is incorrect.", "Password Incorrect", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(this, T("The password is incorrect."), T("Password Incorrect"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             Close();
         });
     }
@@ -347,7 +350,7 @@ public partial class SpeedRunsLiveForm : Form
 
         this.InvokeIfRequired(() =>
         {
-            MessageBox.Show(this, "RaceBot did not respond to your message. If you created a race within the last 5 minutes, you are not allowed to create another race.", "RaceBot Did Not Respond", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, T("RaceBot did not respond to your message. If you created a race within the last 5 minutes, you are not allowed to create another race."), T("RaceBot Did Not Respond"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             Close();
         });
     }
@@ -398,7 +401,7 @@ public partial class SpeedRunsLiveForm : Form
                 dynamic race = SpeedRunsLiveAPI.Instance.GetRace(RaceId);
                 if (race.statetext == "In Progress" && ((IDictionary<string, dynamic>)race.entrants.Properties).First(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value.statetext == "Finished")
                 {
-                    DialogResult result = MessageBox.Show(this, "Due to SpeedRunsLive rules, you need to confirm that you have completed the race before leaving an unfinished race. Do you confirm that you legitimately finished the race?", "Confirmation Required", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult result = MessageBox.Show(this, T("Due to SpeedRunsLive rules, you need to confirm that you have completed the race before leaving an unfinished race. Do you confirm that you legitimately finished the race?"), T("Confirmation Required"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (result == DialogResult.Cancel)
                     {
                         e.Cancel = true;
