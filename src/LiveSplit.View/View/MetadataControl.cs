@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.UI;
@@ -18,6 +19,8 @@ namespace LiveSplit.View;
 
 public partial class MetadataControl : UserControl
 {
+    private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
+
     public class VariableBinding
     {
         public RunMetadata Metadata { get; set; }
@@ -235,15 +238,15 @@ public partial class MetadataControl : UserControl
         if (Metadata.Game.Ruleset.DefaultTimingMethod != SpeedrunComSharp.TimingMethod.RealTime)
         {
             string timingText = Metadata.Game.Ruleset.DefaultTimingMethod == SpeedrunComSharp.TimingMethod.RealTimeWithoutLoads
-                ? "are timed without the loading times"
-                : "are timed with the Game Time";
+                ? T("are timed without the loading times")
+                : T("are timed with the Game Time");
 
             additionalRules.Add(timingText);
         }
 
         if (Metadata.Game.Ruleset.RequiresVideo)
         {
-            additionalRules.Add("require video proof");
+            additionalRules.Add(T("require video proof"));
         }
 
         if (additionalRules.Any())
@@ -252,7 +255,7 @@ public partial class MetadataControl : UserControl
             string lastRule = additionalRules.Last();
 
             var stringBuilder = new StringBuilder();
-            stringBuilder.Append("Runs of this game ");
+            stringBuilder.Append(T("Runs of this game "));
 
             foreach (string additionalRule in additionalRules)
             {
@@ -308,7 +311,7 @@ public partial class MetadataControl : UserControl
     private void associateRun()
     {
         string url = "";
-        DialogResult result = InputBox.Show("Enter Speedrun.com URL", "Speedrun.com Run URL:", ref url);
+        DialogResult result = InputBox.Show(T("Enter Speedrun.com URL"), T("Speedrun.com Run URL:"), ref url);
 
         if (result == DialogResult.OK)
         {
@@ -322,13 +325,13 @@ public partial class MetadataControl : UserControl
                 }
                 else
                 {
-                    MessageBox.Show(this, "The URL provided is not a valid speedrun.com Run URL.", "Invalid URL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, T("The URL provided is not a valid speedrun.com Run URL."), T("Invalid URL"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show(this, "The run could not be associated.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, T("The run could not be associated."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
@@ -369,7 +372,7 @@ public partial class MetadataControl : UserControl
 
         if (!isValid)
         {
-            MessageBox.Show(this, reason, "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, reason, T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 
