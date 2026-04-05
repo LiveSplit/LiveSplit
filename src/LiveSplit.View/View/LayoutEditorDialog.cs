@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
+using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.UI;
@@ -67,6 +68,7 @@ public partial class LayoutEditorDialog : Form
         {
             DragCursor = Cursors.SizeAll
         };
+        UiLocalizer.Apply(this, LanguageResolver.ResolveCurrentCultureLanguage());
     }
 
     private void rdoVertical_CheckedChanged(object sender, EventArgs e)
@@ -105,7 +107,7 @@ public partial class LayoutEditorDialog : Form
         catch (Exception e)
         {
             Log.Error(e);
-            MessageBox.Show(this, "The Component could not be loaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, UiLocalizer.Translate("The Component could not be loaded."), UiLocalizer.Translate("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
