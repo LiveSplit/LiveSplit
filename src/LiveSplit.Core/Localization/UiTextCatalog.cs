@@ -50,10 +50,14 @@ public static class UiTextCatalog
 
     public static void Initialize(string baseDirectory = null)
     {
-        string normalizedBaseDirectory = NormalizeBaseDirectory(baseDirectory);
-
         lock (SyncRoot)
         {
+            if (initialized && string.IsNullOrWhiteSpace(baseDirectory))
+            {
+                return;
+            }
+
+            string normalizedBaseDirectory = NormalizeBaseDirectory(baseDirectory);
             if (initialized && string.Equals(initializedBaseDirectory, normalizedBaseDirectory, StringComparison.OrdinalIgnoreCase))
             {
                 return;

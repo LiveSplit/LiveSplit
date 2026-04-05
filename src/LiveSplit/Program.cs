@@ -1,9 +1,6 @@
 using System;
-using System.Globalization;
 using System.IO;
-using System.Threading;
 using System.Windows.Forms;
-using System.Xml;
 
 using LiveSplit.Localization;
 using LiveSplit.View;
@@ -12,9 +9,6 @@ namespace LiveSplit;
 
 internal static class Program
 {
-    private const string SettingsFileName = "settings.cfg";
-    private const string UiLanguageNodeName = "UILanguage";
-
     /// <summary>
     /// Der Haupteinstiegspunkt für die Anwendung.
     /// </summary>
@@ -23,7 +17,7 @@ internal static class Program
     {
         try
         {
-            SetStartupCulture();
+            InitializeLocalization();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Environment.CurrentDirectory = Path.GetDirectoryName(Application.ExecutablePath);
@@ -64,37 +58,15 @@ internal static class Program
         }
     }
 
-    private static void SetStartupCulture()
+    private static void InitializeLocalization()
     {
         try
         {
-            string executableDirectory = Path.GetDirectoryName(Application.ExecutablePath) ?? string.Empty;
-            string settingsPath = Path.Combine(executableDirectory, SettingsFileName);
-            UiTextCatalog.Initialize(executableDirectory);
-            string languageValue = ReadLanguageSetting(settingsPath);
-            CultureInfo targetCulture = LanguageResolver.ResolveCulture(languageValue);
-
-            CultureInfo.DefaultThreadCurrentCulture = targetCulture;
-            CultureInfo.DefaultThreadCurrentUICulture = targetCulture;
-            Thread.CurrentThread.CurrentCulture = targetCulture;
-            Thread.CurrentThread.CurrentUICulture = targetCulture;
+            UiTextCatalog.Initialize(Path.GetDirectoryName(Application.ExecutablePath) ?? string.Empty);
         }
         catch (Exception e)
         {
             Options.Log.Error(e);
         }
-    }
-
-    private static string ReadLanguageSetting(string settingsPath)
-    {
-        if (!File.Exists(settingsPath))
-        {
-            return string.Empty;
-        }
-
-        var document = new XmlDocument();
-        document.Load(settingsPath);
-        XmlNode languageNode = document.SelectSingleNode($"/Settings/{UiLanguageNodeName}");
-        return languageNode?.InnerText ?? string.Empty;
     }
 }

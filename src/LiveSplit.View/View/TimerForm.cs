@@ -2910,6 +2910,7 @@ public partial class TimerForm : Form
             {
                 using FileStream stream = File.OpenRead(Path.Combine(BasePath, SETTINGS_PATH));
                 Settings = new XMLSettingsFactory(stream).Create();
+                LanguageResolver.SetCurrentLanguageSetting(Settings.UILanguage);
                 return;
             }
         }
@@ -2919,6 +2920,7 @@ public partial class TimerForm : Form
         }
 
         Settings = new StandardSettingsFactory().Create();
+        LanguageResolver.SetCurrentLanguageSetting(Settings.UILanguage);
     }
 
     private void SetDPIAwareness()

@@ -7,6 +7,7 @@ public static class LanguageResolver
 {
     public const string EnglishCultureName = "en-US";
     public const string AutoLanguageValue = "auto";
+    private static string currentLanguageSetting = string.Empty;
 
     public static bool IsAuto(string settingValue)
     {
@@ -43,6 +44,11 @@ public static class LanguageResolver
             : language.Code;
     }
 
+    public static void SetCurrentLanguageSetting(string settingValue)
+    {
+        currentLanguageSetting = NormalizeSettingValue(settingValue);
+    }
+
     public static CultureInfo ResolveCulture(string settingValue, CultureInfo systemCulture = null)
     {
         AppLanguage language = Resolve(settingValue, systemCulture);
@@ -57,8 +63,13 @@ public static class LanguageResolver
         }
     }
 
-    public static AppLanguage ResolveCurrentCultureLanguage()
+    public static AppLanguage ResolveCurrentCultureLanguage(CultureInfo currentCulture = null)
     {
-        return UiTextCatalog.MatchLanguage(CultureInfo.CurrentUICulture);
+        if (!IsAuto(currentLanguageSetting))
+        {
+            return Resolve(currentLanguageSetting, currentCulture);
+        }
+
+        return UiTextCatalog.MatchLanguage(currentCulture ?? CultureInfo.CurrentUICulture);
     }
 }
