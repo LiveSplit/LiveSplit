@@ -86,6 +86,31 @@ public class XMLLayoutSaver : ILayoutSaver
                     settings.InnerXml = component.Component.GetSettings(document).InnerXml;
 
                     componentElement.AppendChild(settings);
+
+                    if (component is LayoutComponent layoutComponent
+                        && layoutComponent.FontOverrides.HasOverrides)
+                    {
+                        XmlElement fontOverridesElement = document.CreateElement("FontOverrides");
+                        SettingsHelper.CreateSetting(document, fontOverridesElement, "OverrideTimerFont", layoutComponent.FontOverrides.OverrideTimerFont);
+                        if (layoutComponent.FontOverrides.OverrideTimerFont && layoutComponent.FontOverrides.TimerFont != null)
+                        {
+                            SettingsHelper.CreateSetting(document, fontOverridesElement, "TimerFont", layoutComponent.FontOverrides.TimerFont);
+                        }
+
+                        SettingsHelper.CreateSetting(document, fontOverridesElement, "OverrideTimesFont", layoutComponent.FontOverrides.OverrideTimesFont);
+                        if (layoutComponent.FontOverrides.OverrideTimesFont && layoutComponent.FontOverrides.TimesFont != null)
+                        {
+                            SettingsHelper.CreateSetting(document, fontOverridesElement, "TimesFont", layoutComponent.FontOverrides.TimesFont);
+                        }
+
+                        SettingsHelper.CreateSetting(document, fontOverridesElement, "OverrideTextFont", layoutComponent.FontOverrides.OverrideTextFont);
+                        if (layoutComponent.FontOverrides.OverrideTextFont && layoutComponent.FontOverrides.TextFont != null)
+                        {
+                            SettingsHelper.CreateSetting(document, fontOverridesElement, "TextFont", layoutComponent.FontOverrides.TextFont);
+                        }
+
+                        componentElement.AppendChild(fontOverridesElement);
+                    }
                 }
                 else
                 {
@@ -97,6 +122,29 @@ public class XMLLayoutSaver : ILayoutSaver
                     else
                     {
                         hashCode ^= component.Component.GetSettings(new XmlDocument()).InnerXml.GetHashCode() ^ (component.GetHashCode() * count);
+                    }
+
+                    if (component is LayoutComponent layoutComponentForHash)
+                    {
+                        int fontHash = (layoutComponentForHash.FontOverrides.OverrideTimerFont ? 1 : 0)
+                            ^ (layoutComponentForHash.FontOverrides.OverrideTimesFont ? 2 : 0)
+                            ^ (layoutComponentForHash.FontOverrides.OverrideTextFont ? 4 : 0);
+                        if (layoutComponentForHash.FontOverrides.TimerFont != null)
+                        {
+                            fontHash ^= SettingsHelper.CreateSetting(null, null, "TimerFont", layoutComponentForHash.FontOverrides.TimerFont);
+                        }
+
+                        if (layoutComponentForHash.FontOverrides.TimesFont != null)
+                        {
+                            fontHash ^= SettingsHelper.CreateSetting(null, null, "TimesFont", layoutComponentForHash.FontOverrides.TimesFont);
+                        }
+
+                        if (layoutComponentForHash.FontOverrides.TextFont != null)
+                        {
+                            fontHash ^= SettingsHelper.CreateSetting(null, null, "TextFont", layoutComponentForHash.FontOverrides.TextFont);
+                        }
+
+                        hashCode ^= fontHash ^ (count * 31337);
                     }
                 }
             }
