@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Model.RunImporters;
 using LiveSplit.Options;
@@ -27,8 +26,6 @@ namespace LiveSplit.View;
 
 public partial class RunEditorDialog : Form
 {
-    private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
-
     private const int ICONINDEX = 0;
     private const int SEGMENTNAMEINDEX = 1;
     private const int SPLITTIMEINDEX = 2;
@@ -54,8 +51,8 @@ public partial class RunEditorDialog : Form
 
     protected TimingMethod SelectedMethod
     {
-        get => tabControl.SelectedTab == RealTime ? TimingMethod.RealTime : TimingMethod.GameTime;
-        set => tabControl.SelectTab(value == TimingMethod.RealTime ? RealTime : GameTime);
+        get => tabControl.SelectedTab.Text == "Real Time" ? TimingMethod.RealTime : TimingMethod.GameTime;
+        set => tabControl.SelectTab(value.ToString());
     }
 
     public int CurrentSplitIndexOffset { get; set; }
@@ -251,7 +248,6 @@ public partial class RunEditorDialog : Form
         UpdateSegmentList();
         RefreshAutoSplittingUI();
         SetClickEvents(this);
-        UiLocalizer.Apply(this, LanguageResolver.ResolveCurrentCultureLanguage());
     }
 
     private string[] SearchForGameName(string name)
@@ -712,16 +708,16 @@ public partial class RunEditorDialog : Form
         {
             var dialog = new OpenFileDialog
             {
-                Filter = T("Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*")
+                Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*"
             };
             bool multiEdit = runGrid.SelectedCells.Count > 1;
             if (!string.IsNullOrEmpty(Run[e.RowIndex].Name) && !multiEdit)
             {
-                dialog.Title = string.Format(T("Set Icon for {0}..."), Run[e.RowIndex].Name);
+                dialog.Title = "Set Icon for " + Run[e.RowIndex].Name + "...";
             }
             else
             {
-                dialog.Title = T("Set Icon...");
+                dialog.Title = "Set Icon...";
             }
 
             DialogResult result = dialog.ShowDialog();
@@ -774,7 +770,7 @@ public partial class RunEditorDialog : Form
         catch (Exception ex)
         {
             Log.Error(ex);
-            MessageBox.Show(T("Could not load image!"), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -804,14 +800,14 @@ public partial class RunEditorDialog : Form
         var dialog = new OpenFileDialog();
         if (!string.IsNullOrEmpty(GameName))
         {
-            dialog.Title = string.Format(T("Set Icon for {0}..."), GameName);
+            dialog.Title = "Set Icon for " + GameName + "...";
         }
         else
         {
-            dialog.Title = T("Set Game Icon...");
+            dialog.Title = "Set Game Icon...";
         }
 
-        dialog.Filter = T("Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*");
+        dialog.Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*";
         DialogResult result = dialog.ShowDialog();
         if (result == DialogResult.OK)
         {
@@ -824,7 +820,7 @@ public partial class RunEditorDialog : Form
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show(T("Could not load image!"), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
@@ -840,7 +836,7 @@ public partial class RunEditorDialog : Form
             openFileDialog.InitialDirectory = initialPath;
         }
 
-        openFileDialog.Filter = T("LiveSplit Layout (*.lsl)|*.lsl|All files (*.*)|*.*");
+        openFileDialog.Filter = "LiveSplit Layout (*.lsl)|*.lsl|All files (*.*)|*.*";
         if (openFileDialog.ShowDialog() != DialogResult.OK)
         {
             return;
@@ -1403,7 +1399,7 @@ public partial class RunEditorDialog : Form
             Log.Error(ex);
         }
 
-        MessageBox.Show(T("Could not download the icon of the game!"), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("Could not download the icon of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
     private void downloadBoxartToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1439,14 +1435,14 @@ public partial class RunEditorDialog : Form
             Log.Error(ex);
         }
 
-        MessageBox.Show(T("Could not download the box art of the game!"), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("Could not download the box art of the game!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
     private void openFromURLMenuItem_Click(object sender, EventArgs e)
     {
         string url = null;
 
-        if (DialogResult.OK == InputBox.Show(T("Open Game Icon from URL"), T("URL:"), ref url))
+        if (DialogResult.OK == InputBox.Show("Open Game Icon from URL", "URL:", ref url))
         {
             try
             {
@@ -1465,13 +1461,13 @@ public partial class RunEditorDialog : Form
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                    MessageBox.Show(T("The URL was not recognized as an image."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("The URL was not recognized as an image.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
                 Log.Error(ex);
-                MessageBox.Show(T("The Game Icon couldn't be downloaded."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("The Game Icon couldn't be downloaded.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
@@ -1503,9 +1499,9 @@ public partial class RunEditorDialog : Form
         column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         column.SortMode = DataGridViewColumnSortMode.NotSortable;
         var rightClickMenu = new ContextMenuStrip();
-        var renameItem = new ToolStripMenuItem(T("Rename"));
+        var renameItem = new ToolStripMenuItem("Rename");
         renameItem.Click += (s, e) => RenameComparison(column);
-        var removeItem = new ToolStripMenuItem(T("Remove"));
+        var removeItem = new ToolStripMenuItem("Remove");
         removeItem.Click += (s, e) => RemoveComparison(column);
         rightClickMenu.Items.Add(renameItem);
         rightClickMenu.Items.Add(removeItem);
@@ -1518,7 +1514,7 @@ public partial class RunEditorDialog : Form
     {
         string name = column.Name;
         string newName = name;
-        DialogResult dialogResult = InputBox.Show(T("Rename Comparison"), T("Comparison Name:"), ref newName);
+        DialogResult dialogResult = InputBox.Show("Rename Comparison", "Comparison Name:", ref newName);
         if (dialogResult == DialogResult.OK)
         {
             if (!Run.Comparisons.Contains(newName))
@@ -1548,7 +1544,7 @@ public partial class RunEditorDialog : Form
                 }
                 else
                 {
-                    DialogResult result = MessageBox.Show(this, T("A Comparison name cannot start with [Race]."), T("Invalid Comparison Name"), MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    DialogResult result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                     if (result == DialogResult.Retry)
                     {
                         RenameComparison(column);
@@ -1557,7 +1553,7 @@ public partial class RunEditorDialog : Form
             }
             else if (newName != name)
             {
-                DialogResult result = MessageBox.Show(this, T("A Comparison with this name already exists."), T("Comparison Already Exists"), MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                DialogResult result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
                 {
                     RenameComparison(column);
@@ -1597,7 +1593,7 @@ public partial class RunEditorDialog : Form
     private void btnAddComparison_Click(object sender, EventArgs e)
     {
         string name = "";
-        DialogResult result = InputBox.Show(T("New Comparison"), T("Comparison Name:"), ref name);
+        DialogResult result = InputBox.Show("New Comparison", "Comparison Name:", ref name);
         if (result == DialogResult.OK)
         {
             if (!Run.Comparisons.Contains(name))
@@ -1609,7 +1605,7 @@ public partial class RunEditorDialog : Form
                 }
                 else
                 {
-                    result = MessageBox.Show(this, T("A Comparison name cannot start with [Race]."), T("Invalid Comparison Name"), MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                    result = MessageBox.Show(this, "A Comparison name cannot start with [Race].", "Invalid Comparison Name", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                     if (result == DialogResult.Retry)
                     {
                         btnAddComparison_Click(sender, e);
@@ -1618,7 +1614,7 @@ public partial class RunEditorDialog : Form
             }
             else
             {
-                result = MessageBox.Show(this, T("A Comparison with this name already exists."), T("Comparison Already Exists"), MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                result = MessageBox.Show(this, "A Comparison with this name already exists.", "Comparison Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
                 {
                     btnAddComparison_Click(sender, e);
@@ -1829,7 +1825,7 @@ public partial class RunEditorDialog : Form
         Run.ClearHistory();
         Fix();
         RaiseRunEdited();
-            MessageBox.Show(this, T("History cleared!"), T("History cleared"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show(this, "History cleared!", "History cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void clearTimesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1839,7 +1835,7 @@ public partial class RunEditorDialog : Form
         RebuildComparisonColumns();
         Fix();
         TimesModified();
-            MessageBox.Show(this, T("Times cleared!"), T("Times cleared"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show(this, "Times cleared!", "Times cleared", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1853,25 +1849,17 @@ public partial class RunEditorDialog : Form
             if (!alwaysCancel)
             {
                 var formatter = new ShortTimeFormatter();
-                string messageText = formatter.Format(parameters.timeBetween) + " " + T("between") + " "
-                    + (parameters.startingSegment != null ? parameters.startingSegment.Name : T("the start of the run")) + " " + T("and") + " " + parameters.endingSegment.Name
-                    + (parameters.combinedSumOfBest != null ? T(", which is faster than the Combined Best Segments of ") + formatter.Format(parameters.combinedSumOfBest) : "");
+                string messageText = formatter.Format(parameters.timeBetween) + " between "
+                    + (parameters.startingSegment != null ? parameters.startingSegment.Name : "the start of the run") + " and " + parameters.endingSegment.Name
+                    + (parameters.combinedSumOfBest != null ? ", which is faster than the Combined Best Segments of " + formatter.Format(parameters.combinedSumOfBest) : "");
                 if (parameters.attempt.Ended.HasValue)
                 {
-                    messageText += T(" in a run on ") + parameters.attempt.Ended.Value.Time.ToLocalTime().ToString("M/d/yyyy");
+                    messageText += " in a run on " + parameters.attempt.Ended.Value.Time.ToLocalTime().ToString("M/d/yyyy");
                 }
 
                 if (!pastResponses.ContainsKey(messageText))
                 {
-                    DialogResult result = MessageBox.Show(
-                        this,
-                        string.Format(
-                            T("You had a {0} segment time of {1}. Do you think that this segment time is inaccurate and should be removed?"),
-                            parameters.method == TimingMethod.RealTime ? T("Real Time") : T("Game Time"),
-                            messageText),
-                        T("Remove Time From Segment History?"),
-                        MessageBoxButtons.YesNoCancel,
-                        MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show(this, "You had a " + (parameters.method == TimingMethod.RealTime ? "Real Time" : "Game Time") + " segment time of " + messageText + ". Do you think that this segment time is inaccurate and should be removed?", "Remove Time From Segment History?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
                         pastResponses.Add(messageText, true);
@@ -1900,8 +1888,8 @@ public partial class RunEditorDialog : Form
         {
             MessageBox.Show(
                 this,
-                T("No times to clean. There are no potentially invalid segment history elements in the Sum of Best."),
-                T("No times to clean"),
+                "No times to clean. There are no potentially invalid segment history elements in the Sum of Best.",
+                "No times to clean",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information
            );

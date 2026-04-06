@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.Utils;
@@ -14,8 +13,6 @@ namespace LiveSplit.UI;
 
 public class NewRaceInputBox : Form
 {
-    private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
-
     public Label label { get; set; }
     public Label label2 { get; set; }
     public Label labelNote { get; set; }
@@ -65,13 +62,13 @@ public class NewRaceInputBox : Form
         cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
         cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
-        Text = T("New Race");
-        label.Text = T("Game:");
-        label2.Text = T("Category:");
-        labelNote.Text = T("Creating a race without any opponents is against the rules.");
+        Text = "New Race";
+        label.Text = "Game:";
+        label2.Text = "Category:";
+        labelNote.Text = "Creating a race without any opponents is against the rules.";
 
-        buttonOk.Text = T("OK");
-        buttonCancel.Text = T("Cancel");
+        buttonOk.Text = "OK";
+        buttonCancel.Text = "Cancel";
         buttonOk.DialogResult = DialogResult.OK;
         buttonCancel.DialogResult = DialogResult.Cancel;
 
@@ -110,7 +107,6 @@ public class NewRaceInputBox : Form
         cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
         RefreshCategoryAutoCompleteList("");
-        UiLocalizer.Apply(this, LanguageResolver.ResolveCurrentCultureLanguage());
     }
 
     private void NewRaceInputBox_FormClosing(object sender, FormClosingEventArgs e)
@@ -120,7 +116,7 @@ public class NewRaceInputBox : Form
             string gameID = SpeedRunsLiveAPI.Instance.GetGameIDFromName(cbxGameName.Text);
             if (string.IsNullOrEmpty(gameID))
             {
-                DialogResult result = MessageBox.Show(this, T("The game you entered could not be found in the SpeedRunsLive Game List. Are you sure you would like to start a race with a New Game?"), T("Game Not Found"), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show(this, "The game you entered could not be found in the SpeedRunsLive Game List. Are you sure you would like to start a race with a New Game?", "Game Not Found", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.No)
                 {
                     e.Cancel = true;

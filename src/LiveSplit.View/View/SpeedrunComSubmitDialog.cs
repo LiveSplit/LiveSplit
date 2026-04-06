@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Web.Share;
 
@@ -12,8 +11,6 @@ namespace LiveSplit.View;
 
 public partial class SpeedrunComSubmitDialog : Form
 {
-    private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
-
     private readonly RunMetadata metadata;
     private readonly bool hasPersonalBestDateTime;
     private readonly DateTimePicker datePicker;
@@ -136,7 +133,7 @@ public partial class SpeedrunComSubmitDialog : Form
             }
             else
             {
-                MessageBox.Show(this, T("You didn't provide a valid Video URL."), T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "You didn't provide a valid Video URL.", "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -159,7 +156,7 @@ public partial class SpeedrunComSubmitDialog : Form
             }
             catch
             {
-                    MessageBox.Show(this, T("You didn't enter a valid Game Time."), T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "You didn't enter a valid Game Time.", "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -175,7 +172,7 @@ public partial class SpeedrunComSubmitDialog : Form
             }
             catch
             {
-                    MessageBox.Show(this, T("You didn't enter a valid Real Time without Loads."), T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, "You didn't enter a valid Real Time without Loads.", "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -191,7 +188,7 @@ public partial class SpeedrunComSubmitDialog : Form
         }
         else
         {
-                    MessageBox.Show(this, reason, T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, reason, "Submitting Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 

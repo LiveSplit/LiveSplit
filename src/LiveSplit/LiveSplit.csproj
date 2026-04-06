@@ -10,11 +10,6 @@
 
   <ItemGroup>
     <Content Include="Licenses.txt" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\LiveSplit.Core\Localization\Locales\*.json">
-      <Link>Localization\%(Filename)%(Extension)</Link>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>Localization\%(Filename)%(Extension)</TargetPath>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>

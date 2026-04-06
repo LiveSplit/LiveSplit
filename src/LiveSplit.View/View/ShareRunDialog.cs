@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
-using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
@@ -13,8 +12,6 @@ namespace LiveSplit.View;
 
 public partial class ShareRunDialog : Form
 {
-    private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
-
     public IRun Run { get; set; }
     public LiveSplitState State { get; set; }
     public ISettings Settings { get; set; }
@@ -246,7 +243,7 @@ public partial class ShareRunDialog : Form
 
             if (!CurrentPlatform.VerifyLogin())
             {
-            MessageBox.Show(T("Your login information seems to be incorrect."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Your login information seems to be incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -258,7 +255,7 @@ public partial class ShareRunDialog : Form
 
             if (runSubmitted)
             {
-            MessageBox.Show(string.Format(T("Your run was successfully shared to {0}."), CurrentPlatform.PlatformName), T("Run Shared"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(string.Format("Your run was successfully shared to {0}.", CurrentPlatform.PlatformName), "Run Shared", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
         }
@@ -271,7 +268,7 @@ public partial class ShareRunDialog : Form
             Cursor = Cursors.Default;
         }
 
-            MessageBox.Show(T("The run could not be shared."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show("The run could not be shared.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
     private void btnClose_Click(object sender, EventArgs e)
@@ -282,7 +279,7 @@ public partial class ShareRunDialog : Form
 
     private void btnPreview_Click(object sender, EventArgs e)
     {
-            MessageBox.Show(FormatNotes(txtNotes.Text), T("Preview"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show(FormatNotes(txtNotes.Text), "Preview", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void Insert(string insertText)

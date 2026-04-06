@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
 
-using LiveSplit.Localization;
 using LiveSplit.UI.Components;
 
 namespace LiveSplit.View;
@@ -25,7 +24,6 @@ public partial class LayoutSettingsDialog : Form
         Components = [];
         AddNewTab("Layout", new LayoutSettingsControl(settings, layout));
         AddComponents(tabComponent);
-        UiLocalizer.Apply(this, LanguageResolver.ResolveCurrentCultureLanguage());
     }
 
     private void btnOK_Click(object sender, EventArgs e)

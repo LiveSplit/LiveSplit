@@ -49,5 +49,4 @@ public interface ISettings : ICloneable
     bool DeactivateHotkeysForOtherPrograms { get; set; }
     bool DoubleTapPrevention { get; set; }
     bool EnableDPIAwareness { get; set; }
-    string UILanguage { get; set; }
 }

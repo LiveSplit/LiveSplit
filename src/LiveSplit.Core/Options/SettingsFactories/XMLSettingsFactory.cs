@@ -69,8 +69,6 @@ public class XMLSettingsFactory : ISettingsFactory
             settings.EnableDPIAwareness = false;
         }
 
-        settings.UILanguage = ParseString(parent["UILanguage"], settings.UILanguage);
-
         if (version >= new Version(1, 3))
         {
             settings.RaceViewer = RaceViewer.FromName(parent["RaceViewer"].InnerText);
