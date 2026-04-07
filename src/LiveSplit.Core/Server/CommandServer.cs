@@ -338,7 +338,7 @@ public class CommandServer
 
                 if(index < 0)
                 {
-                    index = State.Run.Count + index;
+                    index = State.Run.Count - Math.Abs(index);
                 }
                 if (index >= 0 && index < State.Run.Count)
                 {
@@ -522,7 +522,7 @@ public class CommandServer
 
                 if (index < 0)
                 {
-                    index = State.Run.Count + index;
+                    index = State.Run.Count - Math.Abs(index);
                 }
                 if (index >= 0 && index < State.Run.Count)
                 {
