@@ -297,9 +297,12 @@ public partial class LayoutEditorDialog : Form
             try
             {
                 UI.Components.IComponent control = ((ILayoutComponent)selectedItem).Component;
-                if (control.GetSettingsControl(Layout.Mode) != null)
+                bool hasSettings = control.GetSettingsControl(Layout.Mode) != null;
+                bool hasFontOverrides = control.GetType()
+                    .GetCustomAttributes(typeof(GlobalFontConsumerAttribute), true).Length > 0;
+                if (hasSettings || hasFontOverrides)
                 {
-                    ShowLayoutSettings(((ILayoutComponent)selectedItem).Component);
+                    ShowLayoutSettings(control);
                 }
             }
             catch (Exception ex)
