@@ -1,0 +1,13 @@
+{
+  "code": "en-US",
+  "displayName": "English",
+  "cultureName": "en-US",
+  "keys": {
+    "language.menu": "Language",
+    "language.followSystem": "Follow System",
+    "language.restartRequired": "Language change will take effect after restarting LiveSplit.",
+    "dialog.error": "Error",
+    "app.crashReason": "LiveSplit has crashed due to the following reason:\n\n{0}"
+  },
+  "sources": {}
+}

@@ -39,6 +39,8 @@ public class XMLLayoutFactory : ILayoutFactory
             DropShadows = SettingsHelper.ParseBool(element["DropShadows"], true),
             Opacity = SettingsHelper.ParseFloat(element["Opacity"], 1),
             MousePassThroughWhileRunning = SettingsHelper.ParseBool(element["MousePassThroughWhileRunning"]),
+            AllowResizing = SettingsHelper.ParseBool(element["AllowResizing"], true),
+            AllowMoving = SettingsHelper.ParseBool(element["AllowMoving"], true),
             TextOutlineColor = SettingsHelper.ParseColor(element["TextOutlineColor"], Color.FromArgb(0, 0, 0, 0)),
             ShadowsColor = SettingsHelper.ParseColor(element["ShadowsColor"], Color.FromArgb(128, 0, 0, 0)),
             ShowBestSegments = SettingsHelper.ParseBool(element["ShowBestSegments"]),
@@ -124,6 +126,38 @@ public class XMLLayoutFactory : ILayoutFactory
                 try
                 {
                     layoutComponent.Component.SetSettings(settings);
+
+                    XmlElement fontOverridesElement = componentElement["FontOverrides"];
+                    if (fontOverridesElement != null && layoutComponent is LayoutComponent lc)
+                    {
+                        lc.FontOverrides.OverrideTimerFont = SettingsHelper.ParseBool(fontOverridesElement["OverrideTimerFont"]);
+                        if (lc.FontOverrides.OverrideTimerFont)
+                        {
+                            lc.FontOverrides.TimerFont = SettingsHelper.GetFontFromElement(fontOverridesElement["TimerFont"]);
+                        }
+
+                        lc.FontOverrides.OverrideTimesFont = SettingsHelper.ParseBool(fontOverridesElement["OverrideTimesFont"]);
+                        if (lc.FontOverrides.OverrideTimesFont)
+                        {
+                            lc.FontOverrides.TimesFont = SettingsHelper.GetFontFromElement(fontOverridesElement["TimesFont"]);
+                        }
+
+                        lc.FontOverrides.OverrideTextFont = SettingsHelper.ParseBool(fontOverridesElement["OverrideTextFont"]);
+                        if (lc.FontOverrides.OverrideTextFont)
+                        {
+                            lc.FontOverrides.TextFont = SettingsHelper.GetFontFromElement(fontOverridesElement["TextFont"]);
+                        }
+                    }
+                    else if (layoutComponent is LayoutComponent lcLegacy)
+                    {
+                        // Migrate legacy per-component font overrides via reflection.
+                        // Components that had their own font override settings can provide
+                        // a MigrateFontOverrides(FontOverrides) method to populate the new
+                        // unified FontOverrides on the LayoutComponent wrapper.
+                        layoutComponent.Component.GetType()
+                            .GetMethod("MigrateFontOverrides", [typeof(FontOverrides)])
+                            ?.Invoke(layoutComponent.Component, [lcLegacy.FontOverrides]);
+                    }
                 }
                 catch (Exception e)
                 {

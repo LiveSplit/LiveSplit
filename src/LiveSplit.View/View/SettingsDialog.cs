@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
+using LiveSplit.Localization;
 using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.UI;
@@ -14,6 +15,8 @@ namespace LiveSplit.View;
 
 public partial class SettingsDialog : Form
 {
+    private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
+
     public ISettings Settings { get; set; }
     public CompositeHook Hook { get; set; }
     public string SelectedHotkeyProfile { get; set; }
@@ -97,6 +100,7 @@ public partial class SettingsDialog : Form
         UpdateDisplayedHotkeyValues();
         RefreshRemoveButton();
         RefreshLogOutButton();
+        ttpEnableDPIAwarenessInfo.SetToolTip(chkEnableDPIAwareness, T("You must restart LiveSplit after changing this setting for changes to take effect"));
 
         if (Environment.OSVersion.Version.Major < LiveSplit.Options.Settings.DPI_AWARENESS_OS_MIN_VERSION)
         {
@@ -104,6 +108,8 @@ public partial class SettingsDialog : Form
             chkEnableDPIAwareness.Checked = false;
             chkEnableDPIAwareness.Enabled = false;
         }
+
+        UiLocalizer.Apply(this, LanguageResolver.ResolveCurrentCultureLanguage());
     }
 
     private void InitializeHotkeyProfiles(string hotkeyProfile)
@@ -361,7 +367,7 @@ public partial class SettingsDialog : Form
     private void btnRenameProfile_Click(object sender, EventArgs e)
     {
         string newName = SelectedHotkeyProfile;
-        DialogResult result = InputBox.Show("Rename Hotkey Profile", "Hotkey Profile Name:", ref newName);
+        DialogResult result = InputBox.Show(T("Rename Hotkey Profile"), T("Hotkey Profile Name:"), ref newName);
         if (result == DialogResult.OK)
         {
             if (!Settings.HotkeyProfiles.ContainsKey(newName))
@@ -386,7 +392,7 @@ public partial class SettingsDialog : Form
             }
             else if (newName != SelectedHotkeyProfile)
             {
-                result = MessageBox.Show(this, "A Hotkey Profile with this name already exists.", "Hotkey Profile Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                result = MessageBox.Show(this, T("A Hotkey Profile with this name already exists."), T("Hotkey Profile Already Exists"), MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
                 {
                     btnRenameProfile_Click(sender, e);
@@ -398,7 +404,7 @@ public partial class SettingsDialog : Form
     private void btnNewProfile_Click(object sender, EventArgs e)
     {
         string name = "";
-        DialogResult result = InputBox.Show("New Hotkey Profile", "Hotkey Profile Name:", ref name);
+        DialogResult result = InputBox.Show(T("New Hotkey Profile"), T("Hotkey Profile Name:"), ref name);
         if (result == DialogResult.OK)
         {
             if (!Settings.HotkeyProfiles.ContainsKey(name))
@@ -411,7 +417,7 @@ public partial class SettingsDialog : Form
             }
             else
             {
-                result = MessageBox.Show(this, "A Hotkey Profile with this name already exists.", "Hotkey Profile Already Exists", MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
+                result = MessageBox.Show(this, T("A Hotkey Profile with this name already exists."), T("Hotkey Profile Already Exists"), MessageBoxButtons.RetryCancel, MessageBoxIcon.Error);
                 if (result == DialogResult.Retry)
                 {
                     btnNewProfile_Click(sender, e);

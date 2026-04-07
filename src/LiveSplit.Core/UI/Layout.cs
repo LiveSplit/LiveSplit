@@ -37,7 +37,7 @@ public class Layout : ILayout
     {
         return new Layout()
         {
-            LayoutComponents = new List<ILayoutComponent>(LayoutComponents),
+            LayoutComponents = LayoutComponents.Select(lc => lc is LayoutComponent concrete ? concrete.Clone() : lc).ToList(),
             VerticalWidth = VerticalWidth,
             VerticalHeight = VerticalHeight,
             HorizontalWidth = HorizontalWidth,

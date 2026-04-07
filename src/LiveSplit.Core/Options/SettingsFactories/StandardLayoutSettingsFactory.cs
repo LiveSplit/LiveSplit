@@ -38,7 +38,9 @@ public class StandardLayoutSettingsFactory : ILayoutSettingsFactory
             ImageOpacity = 1f,
             ImageBlur = 0f,
             Opacity = 1,
-            MousePassThroughWhileRunning = false
+            MousePassThroughWhileRunning = false,
+            AllowResizing = true,
+            AllowMoving = true
         };
     }
 }
