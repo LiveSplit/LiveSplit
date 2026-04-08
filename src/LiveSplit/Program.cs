@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Windows.Forms;
 
+using LiveSplit.Localization;
 using LiveSplit.View;
 
 namespace LiveSplit;
@@ -16,6 +17,7 @@ internal static class Program
     {
         try
         {
+            InitializeLocalization();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Environment.CurrentDirectory = Path.GetDirectoryName(Application.ExecutablePath);
@@ -45,11 +47,26 @@ internal static class Program
         catch (Exception e)
         {
             Options.Log.Error(e);
-            MessageBox.Show(string.Format("LiveSplit has crashed due to the following reason:\n\n{0}", e.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            string message = string.Format(
+                UiLocalizer.TranslateKey(LocalizationKeys.CrashReason, "LiveSplit has crashed due to the following reason:\n\n{0}"),
+                e.Message);
+            MessageBox.Show(message, UiLocalizer.TranslateKey(LocalizationKeys.Error, "Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 #endif
         finally
         {
+        }
+    }
+
+    private static void InitializeLocalization()
+    {
+        try
+        {
+            UiTextCatalog.Initialize(Path.GetDirectoryName(Application.ExecutablePath) ?? string.Empty);
+        }
+        catch (Exception e)
+        {
+            Options.Log.Error(e);
         }
     }
 }

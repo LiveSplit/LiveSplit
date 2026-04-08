@@ -19,7 +19,7 @@ public class XMLSettingsSaver : ISettingsSaver
 
         XmlElement parent = document.CreateElement("Settings");
         XmlAttribute version = document.CreateAttribute("version");
-        version.Value = "1.8.17";
+        version.Value = "1.8.18";
         parent.Attributes.Append(version);
         document.AppendChild(parent);
 
@@ -47,6 +47,8 @@ public class XMLSettingsSaver : ISettingsSaver
         {
             CreateSetting(document, parent, "EnableDPIAwareness", false);
         }
+
+        CreateSetting(document, parent, "UILanguage", settings.UILanguage ?? string.Empty);
 
         XmlElement recentSplits = document.CreateElement("RecentSplits");
         foreach (RecentSplitsFile splitsFile in settings.RecentSplits)

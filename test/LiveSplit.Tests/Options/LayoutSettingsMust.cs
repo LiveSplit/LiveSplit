@@ -35,6 +35,8 @@ public class LayoutSettingsMust
             ImageBlur = 4.5F,
             ImageOpacity = 1,
             MousePassThroughWhileRunning = true,
+            AllowResizing = true,
+            AllowMoving = true,
             NotRunningColor = Color.Gray,
             Opacity = 9.1F,
             PausedColor = Color.HotPink,
@@ -70,6 +72,8 @@ public class LayoutSettingsMust
         Assert.Equal(4.5F, sut.ImageBlur);
         Assert.Equal(1, sut.ImageOpacity);
         Assert.True(sut.MousePassThroughWhileRunning);
+        Assert.True(sut.AllowResizing);
+        Assert.True(sut.AllowMoving);
         Assert.Equal(Color.Gray, sut.NotRunningColor);
         Assert.Equal(9.1F, sut.Opacity);
         Assert.Equal(Color.HotPink, sut.PausedColor);

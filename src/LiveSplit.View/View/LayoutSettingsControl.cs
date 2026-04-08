@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
+using LiveSplit.Localization;
 using LiveSplit.Options;
 using LiveSplit.UI;
 
@@ -9,6 +10,8 @@ namespace LiveSplit.View;
 
 public partial class LayoutSettingsControl : UserControl
 {
+    private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
+
     public LayoutSettingsControl()
     {
         InitializeComponent();
@@ -57,6 +60,8 @@ public partial class LayoutSettingsControl : UserControl
         lblTimes.DataBindings.Add("Text", this, "MainFont", false, DataSourceUpdateMode.OnPropertyChanged);
         trkOpacity.DataBindings.Add("Value", this, "Opacity", false, DataSourceUpdateMode.OnPropertyChanged);
         chkMousePassThroughWhileRunning.DataBindings.Add("Checked", Settings, "MousePassThroughWhileRunning", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkAllowResizing.DataBindings.Add("Checked", Settings, "AllowResizing", false, DataSourceUpdateMode.OnPropertyChanged);
+        chkAllowMoving.DataBindings.Add("Checked", Settings, "AllowMoving", false, DataSourceUpdateMode.OnPropertyChanged);
         trkImageOpacity.DataBindings.Add("Value", this, "ImageOpacity", false, DataSourceUpdateMode.OnPropertyChanged);
         trkBlur.DataBindings.Add("Value", this, "ImageBlur", false, DataSourceUpdateMode.OnPropertyChanged);
 
@@ -85,13 +90,13 @@ public partial class LayoutSettingsControl : UserControl
         {
             btnBackground2.BackgroundImage = Settings.BackgroundImage;
             btnBackground2.BackColor = Color.Transparent;
-            lblBackground.Text = "Image:";
+            lblBackground.Text = T("Image:");
         }
         else
         {
             btnBackground2.BackgroundImage = null;
             btnBackground2.DataBindings.Add("BackColor", Settings, btnBackground.Visible ? "BackgroundColor2" : "BackgroundColor", false, DataSourceUpdateMode.OnPropertyChanged);
-            lblBackground.Text = "Color:";
+            lblBackground.Text = T("Color:");
         }
 
         Settings.BackgroundType = (BackgroundType)Enum.Parse(typeof(BackgroundType), selectedItem.Replace(" ", ""));
@@ -108,8 +113,8 @@ public partial class LayoutSettingsControl : UserControl
         {
             var dialog = new OpenFileDialog
             {
-                Filter = "Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*",
-                Title = "Set Background Image..."
+                Filter = T("Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*"),
+                Title = T("Set Background Image...")
             };
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
@@ -127,7 +132,7 @@ public partial class LayoutSettingsControl : UserControl
                 catch (Exception ex)
                 {
                     Log.Error(ex);
-                    MessageBox.Show("Could not load image!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(T("Could not load image!"), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

@@ -30,6 +30,7 @@ public class Settings : ISettings
     public IList<string> ActiveAutoSplitters { get; set; }
     public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
     public bool EnableDPIAwareness { get; set; }
+    public string UILanguage { get; set; }
 
     // Deprecated properties
     public KeyOrButton SplitKey
@@ -121,6 +122,7 @@ public class Settings : ISettings
             ActiveAutoSplitters = new List<string>(ActiveAutoSplitters),
             ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates),
             EnableDPIAwareness = EnableDPIAwareness,
+            UILanguage = UILanguage,
             HcpHistorySize = HcpHistorySize,
             HcpNBestRuns = HcpNBestRuns
         };
