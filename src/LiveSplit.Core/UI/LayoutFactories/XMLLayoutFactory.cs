@@ -126,6 +126,38 @@ public class XMLLayoutFactory : ILayoutFactory
                 try
                 {
                     layoutComponent.Component.SetSettings(settings);
+
+                    XmlElement fontOverridesElement = componentElement["FontOverrides"];
+                    if (fontOverridesElement != null && layoutComponent is LayoutComponent lc)
+                    {
+                        lc.FontOverrides.OverrideTimerFont = SettingsHelper.ParseBool(fontOverridesElement["OverrideTimerFont"]);
+                        if (lc.FontOverrides.OverrideTimerFont)
+                        {
+                            lc.FontOverrides.TimerFont = SettingsHelper.GetFontFromElement(fontOverridesElement["TimerFont"]);
+                        }
+
+                        lc.FontOverrides.OverrideTimesFont = SettingsHelper.ParseBool(fontOverridesElement["OverrideTimesFont"]);
+                        if (lc.FontOverrides.OverrideTimesFont)
+                        {
+                            lc.FontOverrides.TimesFont = SettingsHelper.GetFontFromElement(fontOverridesElement["TimesFont"]);
+                        }
+
+                        lc.FontOverrides.OverrideTextFont = SettingsHelper.ParseBool(fontOverridesElement["OverrideTextFont"]);
+                        if (lc.FontOverrides.OverrideTextFont)
+                        {
+                            lc.FontOverrides.TextFont = SettingsHelper.GetFontFromElement(fontOverridesElement["TextFont"]);
+                        }
+                    }
+                    else if (layoutComponent is LayoutComponent lcLegacy)
+                    {
+                        // Migrate legacy per-component font overrides via reflection.
+                        // Components that had their own font override settings can provide
+                        // a MigrateFontOverrides(FontOverrides) method to populate the new
+                        // unified FontOverrides on the LayoutComponent wrapper.
+                        layoutComponent.Component.GetType()
+                            .GetMethod("MigrateFontOverrides", [typeof(FontOverrides)])
+                            ?.Invoke(layoutComponent.Component, [lcLegacy.FontOverrides]);
+                    }
                 }
                 catch (Exception e)
                 {

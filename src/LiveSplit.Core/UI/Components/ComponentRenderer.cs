@@ -22,6 +22,8 @@ public class ComponentRenderer
 
     protected bool errorInComponent;
 
+    private readonly Dictionary<IComponent, FontOverrides> _overrideLookup = [];
+
     private void DrawVerticalComponent(int index, Graphics g, LiveSplitState state, float width, float height, Region clipRegion)
     {
         IComponent component = VisibleComponents.ElementAt(index);
@@ -170,19 +172,28 @@ public class ComponentRenderer
                 Region clip = g.Clip;
                 System.Drawing.Drawing2D.Matrix transform = g.Transform;
                 var crashedComponents = new List<IComponent>();
+                Dictionary<IComponent, FontOverrides> overrideLookup = BuildOverrideLookup(state);
                 int index = 0;
                 foreach (IComponent component in VisibleComponents)
                 {
                     try
                     {
                         g.Clip = clip;
-                        if (mode == LayoutMode.Vertical)
+                        ApplyFontOverrides(overrideLookup, component, state.LayoutSettings, out Font origTimer, out Font origTimes, out Font origText);
+                        try
                         {
-                            DrawVerticalComponent(index, g, state, width, height, clipRegion);
+                            if (mode == LayoutMode.Vertical)
+                            {
+                                DrawVerticalComponent(index, g, state, width, height, clipRegion);
+                            }
+                            else
+                            {
+                                DrawHorizontalComponent(index, g, state, width, height, clipRegion);
+                            }
                         }
-                        else
+                        finally
                         {
-                            DrawHorizontalComponent(index, g, state, width, height, clipRegion);
+                            FontOverrides.Restore(state.LayoutSettings, origTimer, origTimes, origText);
                         }
                     }
                     catch (Exception e)
@@ -242,20 +253,58 @@ public class ComponentRenderer
         float scaleFactor = mode == LayoutMode.Vertical
                 ? height / OverallSize
                 : width / OverallSize;
+        Dictionary<IComponent, FontOverrides> overrideLookup = BuildOverrideLookup(state);
 
         for (int ind = 0; ind < VisibleComponents.Count(); ind++)
         {
             IComponent component = VisibleComponents.ElementAt(ind);
-            if (mode == LayoutMode.Vertical)
+            ApplyFontOverrides(overrideLookup, component, state.LayoutSettings, out Font origTimer, out Font origTimes, out Font origText);
+            try
             {
-                InvalidateVerticalComponent(ind, state, invalidator, width, height, scaleFactor);
+                if (mode == LayoutMode.Vertical)
+                {
+                    InvalidateVerticalComponent(ind, state, invalidator, width, height, scaleFactor);
+                }
+                else
+                {
+                    InvalidateHorizontalComponent(ind, state, invalidator, width, height, scaleFactor);
+                }
             }
-            else
+            finally
             {
-                InvalidateHorizontalComponent(ind, state, invalidator, width, height, scaleFactor);
+                FontOverrides.Restore(state.LayoutSettings, origTimer, origTimes, origText);
             }
         }
 
         invalidator.Transform = oldTransform;
+    }
+
+    private Dictionary<IComponent, FontOverrides> BuildOverrideLookup(LiveSplitState state)
+    {
+        _overrideLookup.Clear();
+        foreach (ILayoutComponent layoutComponent in state.Layout.LayoutComponents)
+        {
+            if (layoutComponent is LayoutComponent componentWithOverrides
+                && componentWithOverrides.FontOverrides.HasOverrides)
+            {
+                _overrideLookup[componentWithOverrides.Component] = componentWithOverrides.FontOverrides;
+            }
+        }
+
+        return _overrideLookup;
+    }
+
+    private static void ApplyFontOverrides(Dictionary<IComponent, FontOverrides> lookup, IComponent component, LayoutSettings settings, out Font origTimer, out Font origTimes, out Font origText)
+    {
+        if (lookup.TryGetValue(component, out FontOverrides overrides))
+        {
+            overrides.ApplyTo(settings, out origTimer, out origTimes, out origText);
+        }
+        else
+        {
+            origTimer = settings.TimerFont;
+            origTimes = settings.TimesFont;
+            origText = settings.TextFont;
+        }
     }
 }
