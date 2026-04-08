@@ -2162,7 +2162,7 @@ public partial class TimerForm : Form
         {
             if (!suppressPrompts)
             {
-                MessageBox.Show(this, "Splits could not be saved!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, T("Splits could not be saved!"), T("Save Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Error(ex);
             }
             else
@@ -2230,7 +2230,7 @@ public partial class TimerForm : Form
         {
             if (!suppressPrompts)
             {
-                MessageBox.Show(this, "Layout could not be saved!", "Save Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, T("Layout could not be saved!"), T("Save Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Log.Error(ex);
             }
             else
