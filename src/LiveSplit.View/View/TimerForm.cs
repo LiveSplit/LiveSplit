@@ -335,8 +335,8 @@ public partial class TimerForm : Form
             MakeScreenShot,
             SaveLayout,
             SaveSplits,
-            OpenLayoutWithoutPrompts,
-            OpenRunWithoutPrompts);
+            OpenLayoutFromFile,
+            OpenRunFromFile);
         Server.StartNamedPipe();
         switch (Settings.ServerStartup)
         {
@@ -2058,51 +2058,31 @@ public partial class TimerForm : Form
         return layout;
     }
 
-    private bool OpenRunWithoutPrompts(string filePath)
+    private bool OpenRunFromFile(string filePath, bool suppressPrompts = false)
     {
         bool success = false;
+        Cursor.Current = !suppressPrompts ? Cursors.WaitCursor : Cursor.Current;
         try
         {
-            Model.Reset();
-            if (!WarnAndRemoveTimerOnly(true, true))
+            if (!suppressPrompts)
             {
-                return false;
+                if (!WarnUserAboutSplitsSave())
+                {
+                    return false;
+                }
+
+                if (!WarnAndRemoveTimerOnly(true))
+                {
+                    return false;
+                }
             }
-
-            if (!string.Equals(filePath, CurrentState.Run.FilePath))
+            else
             {
-                TimingMethod previousTimingMethod = CurrentState.CurrentTimingMethod;
-                string previousHotkeyProfile = CurrentState.CurrentHotkeyProfile;
-
-                UpdateStateFromSplitsPath(filePath);
-
-                IRun run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
-                SetRun(run);
-                CurrentState.CallRunManuallyModified();
-            }
-
-            success = true;
-        }
-        catch (Exception e)
-        {
-            Log.Error($"The selected file was not recognized as a splits file. ({e.Message})");
-        }
-        return success;
-    }
-
-    private void OpenRunFromFile(string filePath)
-    {
-        Cursor.Current = Cursors.WaitCursor;
-        try
-        {
-            if (!WarnUserAboutSplitsSave())
-            {
-                return;
-            }
-
-            if (!WarnAndRemoveTimerOnly(true))
-            {
-                return;
+                Model.Reset();
+                if (!WarnAndRemoveTimerOnly(true, true))
+                {
+                    return false;
+                }
             }
 
             TimingMethod previousTimingMethod = CurrentState.CurrentTimingMethod;
@@ -2113,16 +2093,26 @@ public partial class TimerForm : Form
             IRun run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
             SetRun(run);
             CurrentState.CallRunManuallyModified();
-        }
-        catch (Exception e)
-        {
-            Log.Error(e);
-            DontRedraw = true;
-            MessageBox.Show(this, T("The selected file was not recognized as a splits file."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            DontRedraw = false;
+
+            success = true;
         }
 
-        Cursor.Current = Cursors.Arrow;
+        catch (Exception e)
+        {
+            if (!suppressPrompts)
+            {
+                Log.Error(e);
+                DontRedraw = true;
+                MessageBox.Show(this, T("The selected file was not recognized as a splits file."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DontRedraw = false;
+            }
+            else
+            {
+                Log.Error($"The selected file was not recognized as a splits file. ({e.Message})");
+            }
+        }
+        Cursor.Current = !suppressPrompts ? Cursors.Arrow : Cursor.Current;
+        return success;
     }
 
     private void UpdateStateFromSplitsPath(string filePath)
@@ -2669,49 +2659,35 @@ public partial class TimerForm : Form
         }
     }
 
-    private bool OpenLayoutWithoutPrompts(string filePath)
+    public bool OpenLayoutFromFile(string filePath, bool suppressPrompts = false)
     {
         bool success = false;
-        try
+        if (WarnUserAboutLayoutSave(true) || suppressPrompts)
         {
-            if (!string.Equals(filePath, Layout.FilePath))
-            {
-                ILayout layout = LoadLayoutFromFile(filePath);
-                SetLayout(layout);
-            }
-            
-            success = true;
-        }
-        catch (Exception e)
-        {
-            Log.Error($"The selected file was not recognized as a layout file. ({e.Message})");
-        }
-        return success;
-    }
-
-    public bool OpenLayoutFromFile(string filePath)
-    {
-        bool success = false;
-        if (WarnUserAboutLayoutSave(true))
-        {
-            Cursor.Current = Cursors.WaitCursor;
+            Cursor.Current = !suppressPrompts ? Cursors.WaitCursor : Cursor.Current;
             try
             {
                 ILayout layout = LoadLayoutFromFile(filePath);
                 SetLayout(layout);
                 success = true;
             }
+
             catch (Exception e)
             {
-                Log.Error(e);
-                DontRedraw = true;
-                MessageBox.Show(this, T("The selected file was not recognized as a layout file. (") + e.Message + ")", T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DontRedraw = false;
+                if (!suppressPrompts)
+                {
+                    Log.Error(e);
+                    DontRedraw = true;
+                    MessageBox.Show(this, T("The selected file was not recognized as a layout file. (") + e.Message + ")", T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DontRedraw = false;
+                }
+                else
+                {
+                    Log.Error($"The selected file was not recognized as a layout file. ({e.Message})");
+                }
             }
-
-            Cursor.Current = Cursors.Arrow;
+            Cursor.Current = !suppressPrompts ? Cursors.Arrow : Cursor.Current;
         }
-
         return success;
     }
 

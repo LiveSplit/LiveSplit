@@ -36,13 +36,13 @@ public class CommandServer
     protected Func<Image> ScreenShotFunction { get; set; }
     protected Func<bool, bool> SaveLayout { get; set; }
     protected Func<bool, bool, bool> SaveSplits { get; set; }
-    protected Func<string, bool> OpenLayoutWithoutPrompts { get; set; }
-    protected Func<string, bool> OpenRunWithoutPrompts { get; set; }
+    protected Func<string, bool, bool> OpenLayoutFromFile { get; set; }
+    protected Func<string, bool, bool> OpenRunFromFile { get; set; }
     protected NamedPipeServerStream WaitingServerPipe { get; set; }
 
     protected bool AlwaysPauseGameTime { get; set; }
 
-    public CommandServer(LiveSplitState state, Action refreshHotkeyHooks, Func<Image> screenShotFunction, Func<bool, bool> saveLayout, Func<bool, bool, bool> saveSplits, Func<string, bool> openLayoutWithoutPrompts, Func<string, bool> openRunWithoutPrompts)
+    public CommandServer(LiveSplitState state, Action refreshHotkeyHooks, Func<Image> screenShotFunction, Func<bool, bool> saveLayout, Func<bool, bool, bool> saveSplits, Func<string, bool, bool> openLayoutFromFile, Func<string, bool, bool> openRunFromFile)
     {
         Model = new TimerModel();
         PipeConnections = [];
@@ -55,8 +55,8 @@ public class CommandServer
         ScreenShotFunction = screenShotFunction;
         SaveLayout = saveLayout;
         SaveSplits = saveSplits;
-        OpenLayoutWithoutPrompts = openLayoutWithoutPrompts;
-        OpenRunWithoutPrompts = openRunWithoutPrompts;
+        OpenLayoutFromFile = openLayoutFromFile;
+        OpenRunFromFile = openRunFromFile;
 
         Model.CurrentState = State;
         State.OnStart += State_OnStart;
@@ -652,7 +652,7 @@ public class CommandServer
             case "switchlayout":
             {
                 bool success = false;
-                success = OpenLayoutWithoutPrompts(args[1]);
+                success = OpenLayoutFromFile(args[1], true);
                 if (!success)
                 {
                     Log.Error($"[Server] Failed to change current layout to {args[1]}");
@@ -664,7 +664,7 @@ public class CommandServer
             case "switchsplits":
             {
                 bool success = false;
-                success = OpenRunWithoutPrompts(args[1]);
+                success = OpenRunFromFile(args[1], true);
                 if (!success)
                 {
                     Log.Error($"[Server] Failed to change current splits to {args[1]}");
