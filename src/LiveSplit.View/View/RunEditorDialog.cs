@@ -1652,11 +1652,11 @@ public partial class RunEditorDialog : Form
     protected void RefreshAutoSplittingUI()
     {
         lblDescription.Text = Run.AutoSplitter == null
-            ? "There is no Auto Splitter available for this game."
-            : Run.AutoSplitter.Description;
+            ? T("There is no Auto Splitter available for this game.")
+            : T(Run.AutoSplitter.Description);
         btnActivate.Text = Run.IsAutoSplitterActive()
-            ? "Deactivate"
-            : "Activate";
+            ? T("Deactivate")
+            : T("Activate");
         btnActivate.Enabled = Run.AutoSplitter != null;
         btnSettings.Enabled = Run.IsAutoSplitterActive() && Run.AutoSplitter.Component.GetSettingsControl(LayoutMode.Vertical) != null;
         btnWebsite.Visible = Run.AutoSplitter != null && Run.AutoSplitter.Website != null;

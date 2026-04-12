@@ -72,7 +72,7 @@ public partial class ShareRunDialog : Form
 
     private void RefreshDescription()
     {
-        lblDescription.Text = CurrentPlatform.Description;
+        lblDescription.Text = T(CurrentPlatform.Description);
     }
 
     private void cbxPlatform_SelectionChangeCommitted(object sender, EventArgs e)

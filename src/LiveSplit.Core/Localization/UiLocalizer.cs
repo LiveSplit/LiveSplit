@@ -1,6 +1,7 @@
 using System;
 using System.Windows.Forms;
 using System.Runtime.CompilerServices;
+using System.Reflection;
 
 namespace LiveSplit.Localization;
 
@@ -83,6 +84,11 @@ public static class UiLocalizer
         if (CanTranslateControlText(control))
         {
             control.Text = Translate(control.Text, language);
+        }
+
+        if (control is Form or UserControl)
+        {
+            ApplyOwnedToolStrips(control, language);
         }
 
         if (control is ToolStrip strip)
@@ -236,6 +242,50 @@ public static class UiLocalizer
             }
 
             ApplyTreeNodes(node.Nodes, language);
+        }
+    }
+
+    private static void ApplyOwnedToolStrips(object owner, AppLanguage language)
+    {
+        foreach (FieldInfo field in EnumerateInstanceFields(owner.GetType()))
+        {
+            object value;
+            try
+            {
+                value = field.GetValue(owner);
+            }
+            catch
+            {
+                continue;
+            }
+
+            switch (value)
+            {
+                case ContextMenuStrip contextMenuStrip:
+                    ApplyToolStripItems(contextMenuStrip.Items, language);
+                    break;
+                case MenuStrip menuStrip:
+                    ApplyToolStripItems(menuStrip.Items, language);
+                    break;
+                case ToolStrip toolStrip:
+                    ApplyToolStripItems(toolStrip.Items, language);
+                    break;
+            }
+        }
+    }
+
+    private static System.Collections.Generic.IEnumerable<FieldInfo> EnumerateInstanceFields(Type type)
+    {
+        const BindingFlags flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
+
+        while (type != null && type != typeof(object))
+        {
+            foreach (FieldInfo field in type.GetFields(flags))
+            {
+                yield return field;
+            }
+
+            type = type.BaseType;
         }
     }
 }
