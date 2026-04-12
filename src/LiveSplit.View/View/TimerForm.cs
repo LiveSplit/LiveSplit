@@ -2662,7 +2662,7 @@ public partial class TimerForm : Form
     public bool OpenLayoutFromFile(string filePath, bool suppressPrompts = false)
     {
         bool success = false;
-        if (WarnUserAboutLayoutSave(true) || suppressPrompts)
+        if (!suppressPrompts && (WarnUserAboutLayoutSave(true)) || suppressPrompts)
         {
             Cursor.Current = !suppressPrompts ? Cursors.WaitCursor : Cursor.Current;
             try

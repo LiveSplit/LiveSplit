@@ -692,6 +692,11 @@ public class CommandServer
                 State.Run.Metadata.SetCustomVariable(options[0], options[1]);
                 break;
             }
+            case "globalhotkeysenabled":
+            {
+                response = State.Settings.HotkeyProfiles[State.CurrentHotkeyProfile].GlobalHotkeysEnabled.ToString();
+                break;
+            }
             case "enableglobalhotkeys":
             {
                 State.Settings.HotkeyProfiles[State.CurrentHotkeyProfile].GlobalHotkeysEnabled = true;
@@ -729,7 +734,7 @@ public class CommandServer
             case "savelayoutas":
             {
                 bool success = false;
-                if (command == "savelayoutsas")
+                if (command == "savelayoutas")
                 {
                     if (args[1].EndsWith(".lsl"))
                     {
@@ -824,7 +829,7 @@ public class CommandServer
                         using (var stream = new MemoryStream())
                         {
                             image.Save(stream, ImageFormat.Png);
-                            response = Convert.ToBase64String(stream.ToArray()).ToString();
+                            response = "data:image/png;base64," + Convert.ToBase64String(stream.ToArray()).ToString() + "==";
                         }
                     }
                     catch (Exception e)
@@ -875,6 +880,11 @@ public class CommandServer
             case "getlivesplitpath":
             {
                 response = System.Reflection.Assembly.GetEntryAssembly().Location.ToString();
+                break;
+            }
+            case "getservertype":
+            {
+                response = ServerState.ToString();
                 break;
             }
             default:

@@ -159,8 +159,9 @@ Commands that return an int:
 - getattemptcount
 - getcompletedcount
 
-Commands that return True/False whether or not the request succeeds:
+Commands that return True/False as a value or whether or not the request succeeds:
 
+- globalhotkeysenabled
 - savelayout
 - savesplits
 - savelayoutas FILEPATH
@@ -190,6 +191,7 @@ Commands that return a string:
 - gethotkeyprofile
 - getlivesplitversion
 - getlivesplitpath
+- getservertype
 - ping  
 (always returns `pong`)
 
