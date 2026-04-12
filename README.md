@@ -165,7 +165,7 @@ Commands that return a string:
 - getcurrenttimerphase
 - getcustomvariablevalue NAME
 - getsplitsscreenshot  
-(returns a Base64 encoded string of the screenshot)
+(returns a Base64 encoded string of the screenshot in png format)
 - getlayoutpath
 - getsplitspath
 - ping  
