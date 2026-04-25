@@ -128,7 +128,7 @@ public class HistoryTimeCalculatorMust
     }
 
     [Fact]
-    public void PropagatNullWhenMethodValueAbsent()
+    public void PropagateNullWhenMethodValueAbsent()
     {
         // Key exists in SegmentHistory but GameTime value is null (RealTime-only recording)
         // When viewing under GameTime: null must propagate — subsequent segments should also be null

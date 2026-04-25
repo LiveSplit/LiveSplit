@@ -59,7 +59,6 @@ public partial class RunEditorDialog : Form
     private TimingMethod _cacheMethod;
 
     private const int HistoryPageSize = 50;
-    private RunHistoryFilter currentFilter = new RunHistoryFilter();
     private int currentPage = 1;
     private int totalPages = 1;
     private IList<Attempt> _filteredAttempts = new List<Attempt>();
@@ -650,6 +649,7 @@ public partial class RunEditorDialog : Form
         }
 
         TimeSpan newSegmentTime;
+        TimeSpan newSplitTime = TimeSpan.Zero; // Only meaningful when editing the Split Time column
 
         try
         {
@@ -666,7 +666,7 @@ public partial class RunEditorDialog : Form
                 if (prevSplitTime == null)
                     prevSplitTime = TimeSpan.Zero;
 
-                TimeSpan newSplitTime = parsed;
+                newSplitTime = parsed;
                 if (newSplitTime < prevSplitTime.Value)
                     newSplitTime = prevSplitTime.Value;
 
@@ -691,7 +691,11 @@ public partial class RunEditorDialog : Form
             segment.SegmentHistory[attemptIndex] = time;
         }
 
-        e.Value = TimeFormatter.Format(newSegmentTime);
+        // Store a TimeSpan matching the column's semantic value (split vs segment time).
+        // This mirrors normal mode (ParseCell returns TimeSpan) and keeps the cell's
+        // underlying value consistent with the column. CellFormatting will reformat
+        // for display via the cache after AfterHistoryEdit invalidates the columns.
+        e.Value = columnIndex == HISTORY_SPLITTIMEINDEX ? newSplitTime : newSegmentTime;
         e.ParsingApplied = true;
         AfterHistoryEdit();
     }
@@ -968,7 +972,6 @@ public partial class RunEditorDialog : Form
             ToDate: toDate,
             Method: method
         );
-        currentFilter = filter;
         _filteredAttempts = RunHistoryService.GetFilteredAttempts(Run, filter);
 
         totalPages = _filteredAttempts.Count == 0 ? 1 : (_filteredAttempts.Count + HistoryPageSize - 1) / HistoryPageSize;
@@ -985,7 +988,7 @@ public partial class RunEditorDialog : Form
             cbxAttemptSelect.Items.Add(new AttemptComboItem(attempt, $"#{attempt.Index} — {timeStr} — {dateStr}"));
         }
 
-        lblPageInfo.Text = $"Page {currentPage} / {totalPages}";
+        lblPageInfo.Text = string.Format(T("Page {0} / {1}"), currentPage, totalPages);
         btnPrevPage.Enabled = currentPage > 1;
         btnNextPage.Enabled = currentPage < totalPages;
 
@@ -1212,6 +1215,18 @@ public partial class RunEditorDialog : Form
 
     private void runGrid_DataError(object sender, DataGridViewDataErrorEventArgs e)
     {
+        // Avoid throwing into the WinForms message loop, but log so real bugs
+        // (e.g. parsing/formatting issues introduced by future changes) are not
+        // silently swallowed.
+        if (e.Exception != null)
+        {
+            Log.Error(e.Exception);
+        }
+        else
+        {
+            Log.Error($"DataGridView data error at row {e.RowIndex}, column {e.ColumnIndex}, context {e.Context}.");
+        }
+
         e.ThrowException = false;
     }
 

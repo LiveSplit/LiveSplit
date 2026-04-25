@@ -698,6 +698,7 @@
     "Delete": "删除",
     "All": "全部",
     "No matching attempts": "无匹配的记录",
+    "Page {0} / {1}": "第 {0} / {1} 页",
     "Are you sure you want to delete attempt #{0}?": "确定要删除 #{0} 吗？",
     "Confirm Deletion": "确认删除"
   }
