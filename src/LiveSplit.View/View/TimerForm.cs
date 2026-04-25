@@ -2302,7 +2302,7 @@ public partial class TimerForm : Form
         {
             if (suppressPrompts)
             {
-                savePath = Path.Combine(new string[] {Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Layout.lss" });
+                savePath = Path.Combine(new string[] { Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Layout.lss" });
             }
             else
             {
@@ -2343,7 +2343,7 @@ public partial class TimerForm : Form
             {
                 Log.Error($"Layout could not be saved! ({ex.Message})");
             }
-            
+
             return false;
         }
 
