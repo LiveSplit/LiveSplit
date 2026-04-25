@@ -185,7 +185,7 @@ Commands that return a string:
 - gettimingmethod
 - getcustomvariablevalue NAME
 - getsplitsscreenshot  
-(returns a Base64 encoded string of the screenshot in .png format)
+(returns a Base64 encoded string (Web URI format) of the screenshot in .png format)
 - getlayoutpath
 - getsplitspath
 - gethotkeyprofile
