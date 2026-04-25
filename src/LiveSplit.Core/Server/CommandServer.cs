@@ -829,7 +829,7 @@ public class CommandServer
                         using (var stream = new MemoryStream())
                         {
                             image.Save(stream, ImageFormat.Png);
-                            response = "data:image/png;base64," + Convert.ToBase64String(stream.ToArray()).ToString() + "==";
+                            response = $"data:image/png;base64,{Convert.ToBase64String(stream.ToArray()).ToString()}";
                         }
                     }
                     catch (Exception e)
