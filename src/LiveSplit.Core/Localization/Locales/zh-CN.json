@@ -689,6 +689,17 @@
     "Sharing will save a screenshot of LiveSplit.": "分享时会保存一张 LiveSplit 截图。",
     "Sharing to Imgur allows you to share a screenshot of LiveSplit with a popular web database of image content.": "分享到 Imgur 可将 LiveSplit 的截图上传到常用的图片分享网站。",
     "Export your splits as an Excel Sheet to analyze your splits. \r\nThis includes your whole history of all the runs you ever did.": "将你的分段导出为 Excel 表格，便于分析跑分数据。\r\n其中会包含你过往所有尝试的完整历史记录。",
-    "Speedrun.com is a site intended to provide centralized leaderboards for speedrunning.": "Speedrun.com 是一个为速通提供集中排行榜的网站。"
+    "Speedrun.com is a site intended to provide centralized leaderboards for speedrunning.": "Speedrun.com 是一个为速通提供集中排行榜的网站。",
+    "History ▼": "历史 ▼",
+    "History ▲": "历史 ▲",
+    "Completed": "完成的纪录",
+    "Has Best Segment": "含最佳分段",
+    "Best Segment Diff": "最佳分段差值",
+    "Delete": "删除",
+    "All": "全部",
+    "No matching attempts": "无匹配的记录",
+    "Page {0} / {1}": "第 {0} / {1} 页",
+    "Are you sure you want to delete attempt #{0}?": "确定要删除 #{0} 吗？",
+    "Confirm Deletion": "确认删除"
   }
 }

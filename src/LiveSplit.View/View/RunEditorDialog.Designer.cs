@@ -1,4 +1,4 @@
-﻿namespace LiveSplit.View
+namespace LiveSplit.View
 {
     partial class RunEditorDialog
     {
@@ -81,6 +81,18 @@
             this.cleanSumOfBestToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.iRunBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iSegmentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnToggleHistory = new System.Windows.Forms.Button();
+            this.pnlHistory = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlHistoryRow1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlHistoryRow2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.cbxAttemptSelect = new System.Windows.Forms.ComboBox();
+            this.btnPrevPage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.lblPageInfo = new System.Windows.Forms.Label();
+            this.chkCompletedOnly = new System.Windows.Forms.CheckBox();
+            this.chkPbSegmentsOnly = new System.Windows.Forms.CheckBox();
+            this.cbxMonthFilter = new System.Windows.Forms.ComboBox();
+            this.btnDeleteAttempt = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.runGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picGameIcon)).BeginInit();
@@ -89,6 +101,9 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.flpnlLayoutSelect.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
+            this.pnlHistory.SuspendLayout();
+            this.pnlHistoryRow1.SuspendLayout();
+            this.pnlHistoryRow2.SuspendLayout();
             this.RemoveIconMenu.SuspendLayout();
             this.ImportComparisonMenu.SuspendLayout();
             this.OtherMenu.SuspendLayout();
@@ -142,19 +157,22 @@
             this.tableLayoutPanel1.Controls.Add(this.cbxRunCategory, 3, 2);
             this.tableLayoutPanel1.Controls.Add(this.tbxTimeOffset, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.picGameIcon, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.runGrid, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.tabControl, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.runGrid, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.tabControl, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.tbxAttempts, 6, 3);
             this.tableLayoutPanel1.Controls.Add(this.label4, 5, 3);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 6, 15);
-            this.tableLayoutPanel1.Controls.Add(this.btnOther, 0, 14);
-            this.tableLayoutPanel1.Controls.Add(this.btnImportComparison, 0, 13);
-            this.tableLayoutPanel1.Controls.Add(this.btnAddComparison, 0, 12);
-            this.tableLayoutPanel1.Controls.Add(this.btnMoveDown, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.btnMoveUp, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.btnRemove, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.btnAdd, 0, 8);
-            this.tableLayoutPanel1.Controls.Add(this.btnInsert, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 6, 16);
+            this.tableLayoutPanel1.Controls.Add(this.btnOther, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.btnImportComparison, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.btnAddComparison, 0, 13);
+            this.tableLayoutPanel1.Controls.Add(this.btnMoveDown, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.btnMoveUp, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.btnRemove, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.btnAdd, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.btnInsert, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.btnToggleHistory, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.pnlHistory, 1, 6);
+            this.tableLayoutPanel1.SetColumnSpan(this.pnlHistory, 9);
             this.tableLayoutPanel1.Controls.Add(this.flpnlLayoutSelect, 5, 5);
             this.tableLayoutPanel1.Controls.Add(this.chkbxUseLayout, 4, 5);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 5, 4);
@@ -162,13 +180,14 @@
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 16;
+            this.tableLayoutPanel1.RowCount = 17;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 5F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 0F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
@@ -698,6 +717,131 @@
             // 
             this.iSegmentBindingSource.DataSource = typeof(LiveSplit.Model.ISegment);
             // 
+            // btnToggleHistory
+            // 
+            this.btnToggleHistory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnToggleHistory.Location = new System.Drawing.Point(10, 208);
+            this.btnToggleHistory.Margin = new System.Windows.Forms.Padding(10, 1, 10, 1);
+            this.btnToggleHistory.Name = "btnToggleHistory";
+            this.btnToggleHistory.Size = new System.Drawing.Size(120, 23);
+            this.btnToggleHistory.TabIndex = 22;
+            this.btnToggleHistory.Text = "History ▼";
+            this.btnToggleHistory.UseVisualStyleBackColor = true;
+            this.btnToggleHistory.Click += new System.EventHandler(this.btnToggleHistory_Click);
+            // 
+            // pnlHistory
+            // 
+            this.pnlHistory.AutoSize = false;
+            this.pnlHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlHistory.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.pnlHistory.Location = new System.Drawing.Point(144, 208);
+            this.pnlHistory.Margin = new System.Windows.Forms.Padding(4, 3, 10, 3);
+            this.pnlHistory.Name = "pnlHistory";
+            this.pnlHistory.Size = new System.Drawing.Size(530, 60);
+            this.pnlHistory.TabIndex = 23;
+            this.pnlHistory.Visible = false;
+            this.pnlHistory.WrapContents = false;
+            this.pnlHistory.Controls.Add(this.pnlHistoryRow1);
+            this.pnlHistory.Controls.Add(this.pnlHistoryRow2);
+            // 
+            // pnlHistoryRow1
+            // 
+            this.pnlHistoryRow1.AutoSize = false;
+            this.pnlHistoryRow1.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.pnlHistoryRow1.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlHistoryRow1.Name = "pnlHistoryRow1";
+            this.pnlHistoryRow1.Size = new System.Drawing.Size(530, 30);
+            this.pnlHistoryRow1.TabIndex = 0;
+            this.pnlHistoryRow1.WrapContents = false;
+            this.pnlHistoryRow1.Controls.Add(this.cbxMonthFilter);
+            this.pnlHistoryRow1.Controls.Add(this.cbxAttemptSelect);
+            this.pnlHistoryRow1.Controls.Add(this.btnPrevPage);
+            this.pnlHistoryRow1.Controls.Add(this.lblPageInfo);
+            this.pnlHistoryRow1.Controls.Add(this.btnNextPage);
+            // 
+            // pnlHistoryRow2
+            // 
+            this.pnlHistoryRow2.AutoSize = false;
+            this.pnlHistoryRow2.FlowDirection = System.Windows.Forms.FlowDirection.LeftToRight;
+            this.pnlHistoryRow2.Margin = new System.Windows.Forms.Padding(0);
+            this.pnlHistoryRow2.Name = "pnlHistoryRow2";
+            this.pnlHistoryRow2.Size = new System.Drawing.Size(530, 30);
+            this.pnlHistoryRow2.TabIndex = 1;
+            this.pnlHistoryRow2.WrapContents = false;
+            this.pnlHistoryRow2.Controls.Add(this.chkCompletedOnly);
+            this.pnlHistoryRow2.Controls.Add(this.chkPbSegmentsOnly);
+            this.pnlHistoryRow2.Controls.Add(this.btnDeleteAttempt);
+            // 
+            // cbxAttemptSelect
+            // 
+            this.cbxAttemptSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxAttemptSelect.Name = "cbxAttemptSelect";
+            this.cbxAttemptSelect.Size = new System.Drawing.Size(240, 21);
+            this.cbxAttemptSelect.TabIndex = 0;
+            // 
+            // btnPrevPage
+            // 
+            this.btnPrevPage.Name = "btnPrevPage";
+            this.btnPrevPage.Size = new System.Drawing.Size(25, 23);
+            this.btnPrevPage.TabIndex = 1;
+            this.btnPrevPage.Text = "◀";
+            this.btnPrevPage.UseVisualStyleBackColor = true;
+            // 
+            // lblPageInfo
+            // 
+            this.lblPageInfo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblPageInfo.AutoSize = true;
+            this.lblPageInfo.Name = "lblPageInfo";
+            this.lblPageInfo.Size = new System.Drawing.Size(70, 23);
+            this.lblPageInfo.Text = "Page 1 / 1";
+            this.lblPageInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPageInfo.TabIndex = 2;
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(25, 23);
+            this.btnNextPage.TabIndex = 3;
+            this.btnNextPage.Text = "▶";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            // 
+            // chkCompletedOnly
+            // 
+            this.chkCompletedOnly.AutoSize = true;
+            this.chkCompletedOnly.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.chkCompletedOnly.Name = "chkCompletedOnly";
+            this.chkCompletedOnly.Size = new System.Drawing.Size(80, 17);
+            this.chkCompletedOnly.TabIndex = 4;
+            this.chkCompletedOnly.Text = "Completed";
+            this.chkCompletedOnly.UseVisualStyleBackColor = true;
+            // 
+            // chkPbSegmentsOnly
+            // 
+            this.chkPbSegmentsOnly.AutoSize = true;
+            this.chkPbSegmentsOnly.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.chkPbSegmentsOnly.Name = "chkPbSegmentsOnly";
+this.chkPbSegmentsOnly.Size = new System.Drawing.Size(120, 17);
+this.chkPbSegmentsOnly.TabIndex = 5;
+this.chkPbSegmentsOnly.Text = "Has Best Segment";
+            this.chkPbSegmentsOnly.UseVisualStyleBackColor = true;
+            // 
+            // cbxMonthFilter
+            // 
+            this.cbxMonthFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxMonthFilter.Name = "cbxMonthFilter";
+            this.cbxMonthFilter.Size = new System.Drawing.Size(100, 21);
+            this.cbxMonthFilter.TabIndex = 6;
+            // 
+            // btnDeleteAttempt
+            // 
+            this.btnDeleteAttempt.Enabled = false;
+            this.btnDeleteAttempt.Name = "btnDeleteAttempt";
+            this.btnDeleteAttempt.Size = new System.Drawing.Size(55, 23);
+            this.btnDeleteAttempt.TabIndex = 8;
+            this.btnDeleteAttempt.Text = "Delete";
+            this.btnDeleteAttempt.UseVisualStyleBackColor = true;
+            // 
             // RunEditorDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -719,6 +863,11 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.flpnlLayoutSelect.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
+            this.pnlHistory.ResumeLayout(false);
+            this.pnlHistoryRow1.ResumeLayout(false);
+            this.pnlHistoryRow1.PerformLayout();
+            this.pnlHistoryRow2.ResumeLayout(false);
+            this.pnlHistoryRow2.PerformLayout();
             this.RemoveIconMenu.ResumeLayout(false);
             this.ImportComparisonMenu.ResumeLayout(false);
             this.OtherMenu.ResumeLayout(false);
@@ -781,5 +930,17 @@
         private System.Windows.Forms.FlowLayoutPanel flpnlLayoutSelect;
         private System.Windows.Forms.ComboBox cbxLayoutToUse;
         private System.Windows.Forms.Button btnBrowseLayout;
+        private System.Windows.Forms.Button btnToggleHistory;
+        private System.Windows.Forms.FlowLayoutPanel pnlHistory;
+        private System.Windows.Forms.FlowLayoutPanel pnlHistoryRow1;
+        private System.Windows.Forms.FlowLayoutPanel pnlHistoryRow2;
+        private System.Windows.Forms.ComboBox cbxAttemptSelect;
+        private System.Windows.Forms.Button btnPrevPage;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Label lblPageInfo;
+        private System.Windows.Forms.CheckBox chkCompletedOnly;
+        private System.Windows.Forms.CheckBox chkPbSegmentsOnly;
+        private System.Windows.Forms.ComboBox cbxMonthFilter;
+        private System.Windows.Forms.Button btnDeleteAttempt;
     }
 }
