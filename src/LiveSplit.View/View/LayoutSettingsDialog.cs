@@ -63,26 +63,19 @@ public partial class LayoutSettingsDialog : Form
             Components[i].SetSettings(ComponentSettings[i]);
         }
 
-        // Restore font overrides from snapshots, disposing fonts set during the dialog session
+        // Restore font overrides from snapshots.
+        //
+        // Do not dispose the live current fonts here. The snapshot was produced
+        // by FontOverrides.Clone(), so its font objects are different references
+        // from the current ones even when the user changed nothing. Disposing on
+        // reference inequality would therefore dispose the live overrides
+        // unconditionally. Those Font objects can still be aliased into
+        // LayoutSettings.*Font (via FontOverrides.ApplyTo) and captured by
+        // component fields or label caches during render/update.
         for (int i = 0; i < _layoutComponents.Count; i++)
         {
             FontOverrides snapshot = _fontOverrideSnapshots[i];
             FontOverrides current = _layoutComponents[i].FontOverrides;
-
-            if (current.TimerFont != snapshot.TimerFont)
-            {
-                current.TimerFont?.Dispose();
-            }
-
-            if (current.TimesFont != snapshot.TimesFont)
-            {
-                current.TimesFont?.Dispose();
-            }
-
-            if (current.TextFont != snapshot.TextFont)
-            {
-                current.TextFont?.Dispose();
-            }
 
             current.OverrideTimerFont = snapshot.OverrideTimerFont;
             current.TimerFont = snapshot.TimerFont?.Clone() as Font;
@@ -124,15 +117,20 @@ public partial class LayoutSettingsDialog : Form
                 Control tabContent;
                 if (settingsControl != null && showFontPanel)
                 {
-                    // Both: stack font panel above settings
-                    var container = new Panel { Dock = DockStyle.Fill };
-                    var fontPanel = new FontOverridePanel();
-                    fontPanel.Bind(lc.FontOverrides, Layout.Settings, usedFonts);
-                    fontPanel.Dock = DockStyle.Top;
-                    container.Controls.Add(settingsControl);
-                    settingsControl.Dock = DockStyle.Fill;
-                    container.Controls.Add(fontPanel);
-                    tabContent = container;
+                    AddSettingsWithFontOverrideTab(
+                        component.ComponentName,
+                        settingsControl,
+                        lc.FontOverrides,
+                        usedFonts);
+                    ComponentSettings.Add(component.GetSettings(new XmlDocument()));
+                    Components.Add(component);
+
+                    if (component == tabComponent)
+                    {
+                        tabControl.SelectTab(tabControl.TabPages.Count - 1);
+                    }
+
+                    continue;
                 }
                 else if (showFontPanel)
                 {
@@ -165,6 +163,35 @@ public partial class LayoutSettingsDialog : Form
         page.Controls.Add(control);
         page.AutoScroll = true;
         page.Name = name;
+        tabControl.TabPages.Add(page);
+    }
+
+    protected void AddSettingsWithFontOverrideTab(
+        string name,
+        Control settingsControl,
+        FontOverrides fontOverrides,
+        GlobalFont usedFonts)
+    {
+        var page = new TabPage(name)
+        {
+            AutoScroll = true,
+            Name = name,
+        };
+
+        var fontPanel = new FontOverridePanel();
+        fontPanel.Bind(fontOverrides, Layout.Settings, usedFonts);
+        fontPanel.Location = new Point(0, 0);
+        fontPanel.Width = settingsControl.Width;
+
+        settingsControl.Dock = DockStyle.None;
+        settingsControl.Location = new Point(0, fontPanel.Height);
+
+        page.Controls.Add(fontPanel);
+        page.Controls.Add(settingsControl);
+        page.AutoScrollMinSize = new Size(
+            settingsControl.Width,
+            fontPanel.Height + settingsControl.Height);
+
         tabControl.TabPages.Add(page);
     }
 }
