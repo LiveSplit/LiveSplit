@@ -1,0 +1,27 @@
+name: Update Submodules
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout LiveSplit
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodules
+        run: git submodule update --remote
+
+      - name: Commit and push
+        run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add -A
+          git diff --cached --quiet || git commit -m "Update submodules"
+          git push origin master
