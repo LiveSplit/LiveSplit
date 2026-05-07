@@ -3,6 +3,10 @@ name: Update Submodules
 on:
   workflow_dispatch:
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -18,11 +22,15 @@ jobs:
       - name: Update submodules
         run: git submodule update --remote
 
-      - name: Commit and push
-        run: |
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          git add -A
-          git commit -m "Update submodules"
-          git pull --rebase origin master
-          git push origin master
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8.1.1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: Update submodules
+          title: Update submodules
+          body: Automated update of submodules to their latest configured remote commits.
+          branch: github-actions/update-submodules
+          base: master
+          delete-branch: true
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
