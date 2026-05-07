@@ -20,7 +20,9 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Update submodules
-        run: git submodule update --remote
+        run: |
+          git submodule update --remote
+          git checkout HEAD lib/livesplit-core
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v8.1.1
