@@ -518,6 +518,7 @@ namespace LiveSplit.View
             // 
             // cbxLayoutToUse
             // 
+            this.cbxLayoutToUse.AllowDrop = true;
             this.cbxLayoutToUse.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.cbxLayoutToUse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxLayoutToUse.Location = new System.Drawing.Point(3, 4);
@@ -526,6 +527,8 @@ namespace LiveSplit.View
             this.cbxLayoutToUse.Size = new System.Drawing.Size(163, 21);
             this.cbxLayoutToUse.TabIndex = 0;
             this.cbxLayoutToUse.SelectionChangeCommitted += new System.EventHandler(this.cbxLayoutToUse_SelectionChangeCommitted);
+            this.cbxLayoutToUse.DragDrop += new System.Windows.Forms.DragEventHandler(this.cbxLayoutToUse_DragDrop);
+            this.cbxLayoutToUse.DragEnter += new System.Windows.Forms.DragEventHandler(this.cbxLayoutToUse_DragEnter);
             // 
             // btnBrowseLayout
             // 

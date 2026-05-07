@@ -1486,6 +1486,37 @@ public partial class RunEditorDialog : Form
         SaveAndApplyLayoutPath(selected);
     }
 
+    private void cbxLayoutToUse_DragDrop(object sender, DragEventArgs e)
+    {
+        string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+        foreach (string path in paths)
+        {
+            if (Path.GetExtension(path).ToLower() != ".lsl")
+            {
+                continue;
+            }
+
+            if (SaveAndApplyLayoutPath(path))
+            {
+                ApplyLayoutPathToCbx(path);
+            }
+
+            break;
+        }
+    }
+
+    private void cbxLayoutToUse_DragEnter(object sender, DragEventArgs e)
+    {
+        if (e.Data.GetDataPresent(DataFormats.FileDrop))
+        {
+            e.Effect = DragDropEffects.Copy;
+        }
+        else
+        {
+            e.Effect = DragDropEffects.None;
+        }
+    }
+
     private void chkbxUseLayout_CheckedChanged(object sender, EventArgs e)
     {
         flpnlLayoutSelect.Enabled = chkbxUseLayout.Checked;
