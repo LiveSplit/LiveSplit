@@ -27,7 +27,7 @@ jobs:
       - name: Create pull request
         uses: peter-evans/create-pull-request@v8.1.1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.DEV_BUILD_UPLOAD }}
           commit-message: Update submodules
           title: Update submodules
           body: Automated update of submodules to their latest configured remote commits.
