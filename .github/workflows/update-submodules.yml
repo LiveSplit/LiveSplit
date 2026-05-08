@@ -1,0 +1,38 @@
+name: Update Submodules
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout LiveSplit
+        uses: actions/checkout@v4
+        with:
+          ref: master
+          submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodules
+        run: |
+          git submodule update --remote
+          git submodule update -- lib/livesplit-core
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v8.1.1
+        with:
+          token: ${{ secrets.DEV_BUILD_UPLOAD }}
+          commit-message: Update submodules
+          title: Update submodules
+          body: Automated update of submodules to their latest configured remote commits.
+          branch: github-actions/update-submodules
+          base: master
+          delete-branch: true
+          author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+          committer: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
