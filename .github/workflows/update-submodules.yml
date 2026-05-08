@@ -22,7 +22,7 @@ jobs:
       - name: Update submodules
         run: |
           git submodule update --remote
-          git checkout -- lib/livesplit-core
+          git submodule update -- lib/livesplit-core
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@v8.1.1
