@@ -3,6 +3,7 @@
 public static class WebCredentials
 {
     private const string Twitch = "LiveSplit_TwitchAccessToken";
+    private const string Bluesky = "LiveSplit_Bluesky";
     private const string SpeedrunCom = "LiveSplit_SpeedrunComAccessToken";
     private const string SpeedRunsLive = "LiveSplit_SpeedRunsLiveIRC";
     private const string RacetimeAccess = "LiveSplit_racetimegg_accesstoken";
@@ -12,6 +13,15 @@ public static class WebCredentials
     {
         get => CredentialManager.ReadCredential(Twitch)?.Password;
         set => CredentialManager.WriteCredential(Twitch, "", value);
+    }
+    public static BlueskyCredentials BlueskyCredentials
+    {
+        get
+        {
+            Credential credentials = CredentialManager.ReadCredential(Bluesky);
+            return new BlueskyCredentials(credentials?.Handle, credentials?.AppPassword);
+        }
+        set => CredentialManager.WriteCredential(Bluesky, value.Handle, value.AppPassword);
     }
     public static string SpeedrunComAccessToken
     {
@@ -41,6 +51,7 @@ public static class WebCredentials
     public static void DeleteAllCredentials()
     {
         CredentialManager.DeleteCredential(Twitch);
+        CredentialManager.DeleteCredential(Bluesky);
         CredentialManager.DeleteCredential(SpeedrunCom);
         CredentialManager.DeleteCredential(SpeedRunsLive);
         CredentialManager.DeleteCredential(RacetimeAccess);
@@ -50,10 +61,23 @@ public static class WebCredentials
     public static bool AnyCredentialsExist()
     {
         return CredentialManager.CredentialExists(Twitch)
+            || CredentialManager.CredentialExists(Bluesky)
             || CredentialManager.CredentialExists(SpeedrunCom)
             || CredentialManager.CredentialExists(SpeedRunsLive)
             || CredentialManager.CredentialExists(RacetimeAccess)
             || CredentialManager.CredentialExists(RacetimeRefresh);
+    }
+}
+
+public struct BlueskyCredentials
+{
+    public string Handle { get; set; }
+    public string AppPassword { get; set; }
+
+    public BlueskyCredentials(string handle, string appPassword)
+    {
+        Handle = handle;
+        AppPassword = appPassword;
     }
 }
 
