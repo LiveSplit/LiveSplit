@@ -19,9 +19,9 @@ public static class WebCredentials
         get
         {
             Credential credentials = CredentialManager.ReadCredential(Bluesky);
-            return new BlueskyCredentials(credentials?.Handle, credentials?.AppPassword);
+            return new BlueskyCredentials(credentials?.UserName, credentials?.Password);
         }
-        set => CredentialManager.WriteCredential(Bluesky, value.Handle, value.AppPassword);
+        set => CredentialManager.WriteCredential(Bluesky, value.Username, value.Password);
     }
     public static string SpeedrunComAccessToken
     {
@@ -71,13 +71,13 @@ public static class WebCredentials
 
 public struct BlueskyCredentials
 {
-    public string Handle { get; set; }
-    public string AppPassword { get; set; }
+    public string Username { get; set; }
+    public string Password { get; set; }
 
-    public BlueskyCredentials(string handle, string appPassword)
+    public BlueskyCredentials(string username, string password)
     {
-        Handle = handle;
-        AppPassword = appPassword;
+        Username = username;
+        Password = password;
     }
 }
 
