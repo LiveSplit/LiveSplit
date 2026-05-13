@@ -39,16 +39,10 @@ with LiveSplit. After the authentication, LiveSplit will automatically send the 
         return new Uri(BaseUri, subUri);
     }
 
-    protected dynamic curl(string subUri, string method, string data, string token = "")
+    protected dynamic curlPostData(string subUri, string data, string token = "")
     {
-        Uri uri = GetUri(subUri);
-        return curlAbsolute(uri, method, data, token);
-    }
-
-    protected dynamic curlAbsolute(Uri uri, string method, string data, string token = "")
-    {
-        var request = (HttpWebRequest)WebRequest.Create(uri);
-        request.Method = method;
+        var request = (HttpWebRequest)WebRequest.Create(GetUri(subUri));
+        request.Method = "POST";
         request.Accept = "application/json";
         if (!string.IsNullOrEmpty(token))
         {
@@ -69,25 +63,10 @@ with LiveSplit. After the authentication, LiveSplit will automatically send the 
         return JSON.FromString(json);
     }
 
-    public bool VerifyLogin()
+    protected dynamic curlPostImage(string subUri, byte[] data, string token = "")
     {
-        string u = "";
-        string p = "";
-        string credentialsData = $"{{" +
-            $"\"identifier\": \"{u}\", " +
-            $"\"password\": \"{p}\"" +
-        $"}}";
-        var res = curl("xrpc/com.atproto.server.createSession", "POST", credentialsData);
-        dID = res.did;
-        accessJWT = res.accessJwt;
-
-        return true;
-    }
-
-    protected dynamic curlTest(Uri uri, string method, byte[] data, string token = "")
-    {
-        var request = (HttpWebRequest)WebRequest.Create(uri);
-        request.Method = method;
+        var request = (HttpWebRequest)WebRequest.Create(GetUri(subUri));
+        request.Method = "POST";
         request.Accept = "image/png";
         if (!string.IsNullOrEmpty(token))
         {
@@ -105,12 +84,27 @@ with LiveSplit. After the authentication, LiveSplit will automatically send the 
         return JSON.FromString(json);
     }
 
+    public bool VerifyLogin()
+    {
+        string u = "";
+        string p = "";
+        string credentialsData = $"{{" +
+            $"\"identifier\": \"{u}\", " +
+            $"\"password\": \"{p}\"" +
+        $"}}";
+        var res = curlPostData("xrpc/com.atproto.server.createSession", credentialsData);
+        dID = res.did;
+        accessJWT = res.accessJwt;
+
+        return true;
+    }
+
     public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
         Image pngImage = screenShotFunction();
         using var memoryStream = new MemoryStream();
         pngImage.Save(memoryStream, ImageFormat.Png);
-        var res1 = curlTest(GetUri("xrpc/com.atproto.repo.uploadBlob"), "POST", memoryStream.ToArray(), accessJWT);
+        var res1 = curlPostImage("xrpc/com.atproto.repo.uploadBlob", memoryStream.ToArray(), accessJWT);
 
         string postData = $"{{" +
             $"\"repo\": \"{dID}\", " +
@@ -130,7 +124,7 @@ with LiveSplit. After the authentication, LiveSplit will automatically send the 
                 $"}}" +
             $"}}" +
         $"}}";
-        var res2 = curl("xrpc/com.atproto.repo.createRecord", "POST", postData, accessJWT);
+        var res2 = curlPostData("xrpc/com.atproto.repo.createRecord", postData, accessJWT);
 
         return true;
     }
