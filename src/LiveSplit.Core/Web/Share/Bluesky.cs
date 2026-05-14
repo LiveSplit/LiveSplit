@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 using LiveSplit.Model;
 using LiveSplit.Options;
+using LiveSplit.UI;
 
 namespace LiveSplit.Web.Share;
 
@@ -27,10 +28,9 @@ public class Bluesky : IRunUploadPlatform
     public string PlatformName => "Bluesky";
 
     public string Description
-=> @"Bluesky allows you to share your run with the world. 
-When sharing, a screenshot of your splits will automatically 
-be included. When you click share, Bluesky will ask to authenticate 
-with LiveSplit. After the authentication, LiveSplit will automatically send the post.";
+=> @"Bluesky allows you to share your run with the world. When sharing, a screenshot 
+of your splits will automatically be included. After authenticating with your handle 
+and a generated app password for the first time, LiveSplit will automatically send the post.";
 
     protected Bluesky() { }
 
@@ -56,11 +56,26 @@ with LiveSplit. After the authentication, LiveSplit will automatically send the 
             writer.Write(data);
         }
 
-        using WebResponse response = request.GetResponse();
-        using Stream stream = response.GetResponseStream();
-        using var reader = new StreamReader(stream);
-        string json = reader.ReadToEnd();
-        return JSON.FromString(json);
+        try
+        {
+            using WebResponse response = request.GetResponse();
+            using Stream stream = response.GetResponseStream();
+            using var reader = new StreamReader(stream);
+            string json = reader.ReadToEnd();
+            return JSON.FromString(json);
+        }
+        catch (WebException ex)
+        {
+            using (HttpWebResponse errorResponse = (HttpWebResponse)ex.Response)
+            {
+                if (errorResponse.StatusCode.ToString() == "Unauthorized")
+                {
+                    return null;
+                }
+            }
+            throw new Exception(ex.ToString());
+        }
+        
     }
 
     protected dynamic curlPostImage(string subUri, byte[] data, string token = "")
@@ -86,25 +101,46 @@ with LiveSplit. After the authentication, LiveSplit will automatically send the 
 
     public bool VerifyLogin()
     {
-        string u = "";
-        string p = "";
+
+        BlueskyCredentials credentials = WebCredentials.BlueskyCredentials;
+        string handle = credentials.Username ?? "";
+        string appPassword = credentials.Password ?? "";
+        bool rememberPassword = !string.IsNullOrEmpty(appPassword);
+
+        if (!rememberPassword)
+        {
+            Process.Start("https://bsky.app/settings/app-passwords");
+            System.Windows.Forms.DialogResult result = LoginBox.Show("Bluesky Authentication", "Enter the full name of your Bluesky handle:", "Enter the app password you have generated from Bluesky:", ref handle, ref appPassword, ref rememberPassword);
+            if (result == System.Windows.Forms.DialogResult.Cancel)
+            {
+                return false;
+            }
+        }
+
         string credentialsData = $"{{" +
-            $"\"identifier\": \"{u}\", " +
-            $"\"password\": \"{p}\"" +
+            $"\"identifier\": \"{handle}\", " +
+            $"\"password\": \"{appPassword}\"" +
         $"}}";
-        var res = curlPostData("xrpc/com.atproto.server.createSession", credentialsData);
-        dID = res.did;
-        accessJWT = res.accessJwt;
+        var sessionRes = curlPostData("xrpc/com.atproto.server.createSession", credentialsData);
+        if (sessionRes == null)
+        {
+            return false;
+        }
+
+        WebCredentials.BlueskyCredentials = new BlueskyCredentials(handle, rememberPassword ? appPassword : "");
+        dID = sessionRes.did;
+        accessJWT = sessionRes.accessJwt;
 
         return true;
     }
 
     public bool SubmitRun(IRun run, Func<Image> screenShotFunction = null, TimingMethod method = TimingMethod.RealTime, string comment = "", params string[] additionalParams)
     {
+
         Image pngImage = screenShotFunction();
         using var memoryStream = new MemoryStream();
         pngImage.Save(memoryStream, ImageFormat.Png);
-        var res1 = curlPostImage("xrpc/com.atproto.repo.uploadBlob", memoryStream.ToArray(), accessJWT);
+        var blobRes = curlPostImage("xrpc/com.atproto.repo.uploadBlob", memoryStream.ToArray(), accessJWT);
 
         string postData = $"{{" +
             $"\"repo\": \"{dID}\", " +
@@ -118,13 +154,13 @@ with LiveSplit. After the authentication, LiveSplit will automatically send the 
                     $"\"images\": [" +
                         $"{{" +
                             $"\"alt\": \"Image of this user's current splits.\", " +
-                            $"\"image\": {res1.blob.ToString()}" +
+                            $"\"image\": {blobRes.blob.ToString()}" +
                         $"}}" +
                     $"]" +
                 $"}}" +
             $"}}" +
         $"}}";
-        var res2 = curlPostData("xrpc/com.atproto.repo.createRecord", postData, accessJWT);
+        var recordRes = curlPostData("xrpc/com.atproto.repo.createRecord", postData, accessJWT);
 
         return true;
     }
