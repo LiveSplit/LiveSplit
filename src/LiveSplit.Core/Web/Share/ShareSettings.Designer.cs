@@ -71,5 +71,35 @@ namespace LiveSplit.Web.Share
                 this["TwitterFormatRunning"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BlueskyFormat
+        {
+            get
+            {
+                return ((string)(this["BlueskyFormat"]));
+            }
+            set
+            {
+                this["BlueskyFormat"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BlueskyFormatRunning
+        {
+            get
+            {
+                return ((string)(this["BlueskyFormatRunning"]));
+            }
+            set
+            {
+                this["BlueskyFormatRunning"] = value;
+            }
+        }
     }
 }
