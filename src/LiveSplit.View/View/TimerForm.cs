@@ -9,6 +9,7 @@ using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
@@ -329,7 +330,13 @@ public partial class TimerForm : Form
         TopMost = Layout.Settings.AlwaysOnTop;
         BackColor = Color.Black;
 
-        Server = new CommandServer(CurrentState);
+        Server = new CommandServer(CurrentState,
+            RefreshHotkeyHooks,
+            MakeScreenShot,
+            SaveLayout,
+            SaveSplits,
+            OpenLayoutFromFile,
+            OpenRunFromFile);
         Server.StartNamedPipe();
         switch (Settings.ServerStartup)
         {
@@ -365,6 +372,17 @@ public partial class TimerForm : Form
         AllowDrop = true;
         DragDrop += TimerForm_DragDrop;
         DragEnter += TimerForm_DragEnter;
+    }
+
+    private void RefreshHotkeyHooks()
+    {
+        if (InvokeRequired)
+        {
+            Invoke(new Action(RefreshHotkeyHooks), null);
+            return;
+        }
+        Settings.UnregisterAllHotkeys(Hook);
+        Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
     }
 
     private void UpdateRaceProviderIntegration()
@@ -2040,19 +2058,31 @@ public partial class TimerForm : Form
         return layout;
     }
 
-    private void OpenRunFromFile(string filePath)
+    private bool OpenRunFromFile(string filePath, bool suppressPrompts = false)
     {
-        Cursor.Current = Cursors.WaitCursor;
+        bool success = false;
+        Cursor.Current = !suppressPrompts ? Cursors.WaitCursor : Cursor.Current;
         try
         {
-            if (!WarnUserAboutSplitsSave())
+            if (!suppressPrompts)
             {
-                return;
-            }
+                if (!WarnUserAboutSplitsSave())
+                {
+                    return false;
+                }
 
-            if (!WarnAndRemoveTimerOnly(true))
+                if (!WarnAndRemoveTimerOnly(true))
+                {
+                    return false;
+                }
+            }
+            else
             {
-                return;
+                Model.Reset();
+                if (!WarnAndRemoveTimerOnly(true, true))
+                {
+                    return false;
+                }
             }
 
             TimingMethod previousTimingMethod = CurrentState.CurrentTimingMethod;
@@ -2063,16 +2093,26 @@ public partial class TimerForm : Form
             IRun run = LoadRunFromFile(filePath, previousTimingMethod, previousHotkeyProfile);
             SetRun(run);
             CurrentState.CallRunManuallyModified();
-        }
-        catch (Exception e)
-        {
-            Log.Error(e);
-            DontRedraw = true;
-            MessageBox.Show(this, T("The selected file was not recognized as a splits file."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            DontRedraw = false;
+
+            success = true;
         }
 
-        Cursor.Current = Cursors.Arrow;
+        catch (Exception e)
+        {
+            if (!suppressPrompts)
+            {
+                Log.Error(e);
+                DontRedraw = true;
+                MessageBox.Show(this, T("The selected file was not recognized as a splits file."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DontRedraw = false;
+            }
+            else
+            {
+                Log.Error($"The selected file was not recognized as a splits file. ({e.Message})");
+            }
+        }
+        Cursor.Current = !suppressPrompts ? Cursors.Arrow : Cursor.Current;
+        return success;
     }
 
     private void UpdateStateFromSplitsPath(string filePath)
@@ -2086,8 +2126,7 @@ public partial class TimerForm : Form
                 CurrentState.CurrentHotkeyProfile = recentSplitsFile.LastHotkeyProfile;
                 if (Hook != null)
                 {
-                    Settings.UnregisterAllHotkeys(Hook);
-                    Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+                    RefreshHotkeyHooks();
                 }
             }
         }
@@ -2146,20 +2185,36 @@ public partial class TimerForm : Form
         }
     }
 
-    private bool SaveSplits(bool promptPBMessage)
+    private bool SaveSplits(bool promptPBMessage, bool suppressPrompts = false)
     {
         string savePath = CurrentState.Run.FilePath;
 
         if (savePath == null)
         {
-            return SaveSplitsAs(promptPBMessage);
+            if (suppressPrompts)
+            {
+                string defaultFilename;
+                if (!string.IsNullOrEmpty(CurrentState.Run.GameName) || !string.IsNullOrEmpty(CurrentState.Run.CategoryName))
+                {
+                    defaultFilename = string.Join(" - ", new string[] { CurrentState.Run.GameName, CurrentState.Run.CategoryName }.Where(s => !string.IsNullOrEmpty(s)));
+                }
+                else
+                {
+                    defaultFilename = "Splits";
+                }
+                savePath = Path.Combine(new string[] { Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), $"{defaultFilename}.lss" });
+            }
+            else
+            {
+                return SaveSplitsAs(promptPBMessage);
+            }
         }
 
         CurrentState.Run.FixSplits();
 
         DialogResult result = DialogResult.No;
 
-        if (promptPBMessage && ((CurrentState.CurrentPhase == TimerPhase.Ended
+        if (!suppressPrompts && promptPBMessage && ((CurrentState.CurrentPhase == TimerPhase.Ended
             && CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod] != null
             && CurrentState.Run.Last().SplitTime[CurrentState.CurrentTimingMethod] >= CurrentState.Run.Last().PersonalBestSplitTime[CurrentState.CurrentTimingMethod])
             || CurrentState.CurrentPhase == TimerPhase.Running
@@ -2211,15 +2266,22 @@ public partial class TimerForm : Form
         }
         catch (Exception ex)
         {
-            MessageBox.Show(this, T("Splits could not be saved!"), T("Save Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            Log.Error(ex);
+            if (!suppressPrompts)
+            {
+                MessageBox.Show(this, T("Splits could not be saved!"), T("Save Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error(ex);
+            }
+            else
+            {
+                Log.Error($"Splits could not be saved! ({ex.Message})");
+            }
             return false;
         }
 
         return true;
     }
 
-    private bool SaveLayout()
+    private bool SaveLayout(bool suppressPrompts = false)
     {
         string savePath = Layout.FilePath;
         if (Layout.Mode == LayoutMode.Vertical)
@@ -2238,7 +2300,14 @@ public partial class TimerForm : Form
 
         if (savePath == null)
         {
-            return SaveLayoutAs();
+            if (suppressPrompts)
+            {
+                savePath = Path.Combine(new string[] { Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Layout.lss" });
+            }
+            else
+            {
+                return SaveLayoutAs();
+            }
         }
 
         try
@@ -2265,8 +2334,16 @@ public partial class TimerForm : Form
         }
         catch (Exception ex)
         {
-            MessageBox.Show(this, T("Layout could not be saved!"), T("Save Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            Log.Error(ex);
+            if (!suppressPrompts)
+            {
+                MessageBox.Show(this, T("Layout could not be saved!"), T("Save Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.Error(ex);
+            }
+            else
+            {
+                Log.Error($"Layout could not be saved! ({ex.Message})");
+            }
+
             return false;
         }
 
@@ -2339,13 +2416,24 @@ public partial class TimerForm : Form
         WarnAndRemoveTimerOnly(false);
     }
 
-    protected bool WarnAndRemoveTimerOnly(bool canCancel)
+    protected bool WarnAndRemoveTimerOnly(bool canCancel, bool suppressPrompts = false)
     {
         if (InTimerOnlyMode)
         {
-            if (!WarnUserAboutLayoutSave(canCancel))
+
+            if (Layout.HasChanged && suppressPrompts)
             {
-                return false;
+                if (!SaveLayout(true))
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!WarnUserAboutLayoutSave(canCancel))
+                {
+                    return false;
+                }
             }
 
             InTimerOnlyMode = false;
@@ -2571,29 +2659,35 @@ public partial class TimerForm : Form
         }
     }
 
-    public bool OpenLayoutFromFile(string filePath)
+    public bool OpenLayoutFromFile(string filePath, bool suppressPrompts = false)
     {
         bool success = false;
-        if (WarnUserAboutLayoutSave(true))
+        if (!suppressPrompts && (WarnUserAboutLayoutSave(true)) || suppressPrompts)
         {
-            Cursor.Current = Cursors.WaitCursor;
+            Cursor.Current = !suppressPrompts ? Cursors.WaitCursor : Cursor.Current;
             try
             {
                 ILayout layout = LoadLayoutFromFile(filePath);
                 SetLayout(layout);
                 success = true;
             }
+
             catch (Exception e)
             {
-                Log.Error(e);
-                DontRedraw = true;
-                MessageBox.Show(this, T("The selected file was not recognized as a layout file. (") + e.Message + ")", T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DontRedraw = false;
+                if (!suppressPrompts)
+                {
+                    Log.Error(e);
+                    DontRedraw = true;
+                    MessageBox.Show(this, T("The selected file was not recognized as a layout file. (") + e.Message + ")", T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    DontRedraw = false;
+                }
+                else
+                {
+                    Log.Error($"The selected file was not recognized as a layout file. ({e.Message})");
+                }
             }
-
-            Cursor.Current = Cursors.Arrow;
+            Cursor.Current = !suppressPrompts ? Cursors.Arrow : Cursor.Current;
         }
-
         return success;
     }
 

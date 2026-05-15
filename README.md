@@ -98,7 +98,13 @@ Commands are case sensitive and end with a new line. You can provide parameters 
 
 Some commands will respond with data and some will not. Every response ends with a newline character. Note that since the WS server has a concept of messages, commands and reponses sent over it do not end in newline characters.
 
-All times and deltas returned by the server are formatted according to [C#'s Constant Format Specifier](https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings#the-constant-c-format-specifier). The server will accept times in the following format: `[-][[[d.]hh:]mm:]ss[.fffffff]`. The hours field can be greater than 23, even if days are present. Individual fields do not need to be padded with zeroes. Any command that returns a time or a string can return a single hyphen `-` to indicate a "null" or invalid value. Commands that take a COMPARISON or a NAME take plain strings that may include spaces. Because it is used as a delimiter to mark the end of a command, newline characters may not appear anywhere within a command.
+All times and deltas returned by the server are formatted according to [C#'s Constant Format Specifier](https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-timespan-format-strings#the-constant-c-format-specifier). The server will accept times in the following format: `[-][[[d.]hh:]mm:]ss[.fffffff]`. The hours field can be greater than 23, even if days are present. Individual fields do not need to be padded with zeroes.
+
+Any command that returns a time or a string can return a single hyphen `-` to indicate a "null" or invalid value.
+
+Commands that take a COMPARISON or a NAME take plain strings that may include spaces. Because it is used as a delimiter to mark the end of a command, newline characters may not appear anywhere within a command.
+
+Commands that take an INDEX take integers to choose elements from an array starting at 0 for the 1st element and n-1 for the last element where n equals the size of the array. Negative integers are also supported to choose an element at the end of an array. (-1 for the last element, -2 for 2nd last, and so forth)
 
 Commands that generate no response:
 
@@ -108,6 +114,7 @@ Commands that generate no response:
 - skipsplit
 - pause
 - resume
+- undoallpauses
 - reset
 - starttimer
 - setgametime TIME
@@ -119,6 +126,9 @@ Commands that generate no response:
 - setcomparison COMPARISON
 - switchto realtime
 - switchto gametime
+- enableglobalhotkeys
+- disableglobalhotkeys
+- switchhotkeyprofile NAME
 - setsplitname INDEX NAME
 - setcurrentsplitname NAME
 - setcustomvariable JSON([NAME, VALUE])
@@ -129,6 +139,7 @@ Commands that return a time:
 - getdelta COMPARISON
 - getlastsplittime
 - getcomparisonsplittime
+- getcomparisonsplittime COMPARISON
 - getcurrentrealtime
 - getcurrentgametime
 - getcurrenttime
@@ -136,20 +147,51 @@ Commands that return a time:
 - getfinaltime COMPARISON
 - getpredictedtime COMPARISON
 - getbestpossibletime
+- getpausedrealtime
+- getpausedgametime
+- getoffset
 
 Commands that return an int:
 
 - getsplitindex  
 (returns -1 if the timer is not running)
+- getsplitcount
 - getattemptcount
 - getcompletedcount
 
+Commands that return True/False as a value or whether or not the request succeeds:
+
+- globalhotkeysenabled
+- savelayout
+- savesplits
+- savelayoutas FILEPATH
+- savesplitsas FILEPATH
+- switchlayout FILEPATH
+- switchsplits FILEPATH
+- savesplitsscreenshot FILEPATH
+
 Commands that return a string:
 
+- getsplitname INDEX
 - getcurrentsplitname  
 - getprevioussplitname
+- getupcomingsplitname
 - getcurrenttimerphase
+- getgamename
+- getcategoryname
+- getcategoryvariables  
+(returns region, platform, emulator usage, and other category variables as a JSON encoded string)
+- getcomparisonname
+- gettimingmethod
 - getcustomvariablevalue NAME
+- getsplitsscreenshot  
+(returns a Base64 encoded string (Web URI format) of the screenshot in .png format)
+- getlayoutpath
+- getsplitspath
+- gethotkeyprofile
+- getlivesplitversion
+- getlivesplitpath
+- getservertype
 - ping  
 (always returns `pong`)
 
