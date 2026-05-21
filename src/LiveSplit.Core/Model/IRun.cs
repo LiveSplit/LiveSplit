@@ -15,6 +15,7 @@ public interface IRun : IList<ISegment>, ICloneable, INotifyPropertyChanged
     Image GameIcon { get; set; }
     string GameName { get; set; }
     string CategoryName { get; set; }
+    string LevelName { get; set; }
     TimeSpan Offset { get; set; }
     int AttemptCount { get; set; }
     IList<Attempt> AttemptHistory { get; set; }

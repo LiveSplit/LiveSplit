@@ -35,8 +35,10 @@ namespace LiveSplit.View
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.cbxGameName = new LiveSplit.View.CustomAutoCompleteComboBox(this);
             this.cbxRunCategory = new System.Windows.Forms.ComboBox();
+            this.cbxRunLevel = new System.Windows.Forms.ComboBox();
             this.tbxTimeOffset = new System.Windows.Forms.TextBox();
             this.picGameIcon = new System.Windows.Forms.PictureBox();
             this.tabControl = new System.Windows.Forms.TabControl();
@@ -153,8 +155,10 @@ namespace LiveSplit.View
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label3, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.label1, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 5, 2);
             this.tableLayoutPanel1.Controls.Add(this.cbxGameName, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.cbxRunCategory, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.cbxRunLevel, 6, 2);
             this.tableLayoutPanel1.Controls.Add(this.tbxTimeOffset, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.picGameIcon, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.runGrid, 1, 8);
@@ -211,7 +215,7 @@ namespace LiveSplit.View
             this.label2.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 13);
-            this.label2.TabIndex = 3;
+            this.label2.TabIndex = 2;
             this.label2.Text = "Game Name:";
             // 
             // label3
@@ -235,8 +239,18 @@ namespace LiveSplit.View
             this.label1.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 13);
-            this.label1.TabIndex = 9;
+            this.label1.TabIndex = 8;
             this.label1.Text = "Start Timer at:";
+            // 
+            // label5
+            // 
+            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(429, 51);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Run Level:";
             // 
             // cbxGameName
             // 
@@ -248,19 +262,30 @@ namespace LiveSplit.View
             this.cbxGameName.MyAutoCompleteSource = null;
             this.cbxGameName.Name = "cbxGameName";
             this.cbxGameName.Size = new System.Drawing.Size(427, 21);
-            this.cbxGameName.TabIndex = 2;
+            this.cbxGameName.TabIndex = 3;
             this.cbxGameName.TextChanged += new System.EventHandler(this.cbxGameName_TextChanged);
             this.cbxGameName.Validated += new System.EventHandler(this.cbxGameName_Validated);
             // 
             // cbxRunCategory
             // 
             this.cbxRunCategory.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.SetColumnSpan(this.cbxRunCategory, 5);
+            this.tableLayoutPanel1.SetColumnSpan(this.cbxRunCategory, 2);
             this.cbxRunCategory.Location = new System.Drawing.Point(246, 47);
-            this.cbxRunCategory.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
+            this.cbxRunCategory.Margin = new System.Windows.Forms.Padding(5, 0, 3, 0);
             this.cbxRunCategory.Name = "cbxRunCategory";
-            this.cbxRunCategory.Size = new System.Drawing.Size(427, 21);
-            this.cbxRunCategory.TabIndex = 3;
+            this.cbxRunCategory.Size = new System.Drawing.Size(177, 21);
+            this.cbxRunCategory.TabIndex = 5;
+            // 
+            // cbxRunLevel
+            // 
+            this.cbxRunLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.SetColumnSpan(this.cbxRunLevel, 2);
+            this.cbxRunLevel.DropDownWidth = 121;
+            this.cbxRunLevel.Location = new System.Drawing.Point(496, 47);
+            this.cbxRunLevel.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
+            this.cbxRunLevel.Name = "cbxRunLevel";
+            this.cbxRunLevel.Size = new System.Drawing.Size(177, 21);
+            this.cbxRunLevel.TabIndex = 7;
             // 
             // tbxTimeOffset
             // 
@@ -270,7 +295,7 @@ namespace LiveSplit.View
             this.tbxTimeOffset.Margin = new System.Windows.Forms.Padding(5, 0, 3, 0);
             this.tbxTimeOffset.Name = "tbxTimeOffset";
             this.tbxTimeOffset.Size = new System.Drawing.Size(177, 20);
-            this.tbxTimeOffset.TabIndex = 4;
+            this.tbxTimeOffset.TabIndex = 9;
             // 
             // picGameIcon
             // 
@@ -301,7 +326,7 @@ namespace LiveSplit.View
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(530, 22);
-            this.tabControl.TabIndex = 20;
+            this.tabControl.TabIndex = 27;
             this.tabControl.Selected += new System.Windows.Forms.TabControlEventHandler(this.TabSelected);
             // 
             // RealTime
@@ -352,7 +377,7 @@ namespace LiveSplit.View
             this.tbxAttempts.Margin = new System.Windows.Forms.Padding(5, 0, 10, 0);
             this.tbxAttempts.Name = "tbxAttempts";
             this.tbxAttempts.Size = new System.Drawing.Size(177, 20);
-            this.tbxAttempts.TabIndex = 5;
+            this.tbxAttempts.TabIndex = 11;
             // 
             // label4
             // 
@@ -414,7 +439,7 @@ namespace LiveSplit.View
             this.btnOther.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnOther.Name = "btnOther";
             this.btnOther.Size = new System.Drawing.Size(120, 23);
-            this.btnOther.TabIndex = 19;
+            this.btnOther.TabIndex = 26;
             this.btnOther.Text = "Other...";
             this.btnOther.UseVisualStyleBackColor = true;
             this.btnOther.Click += new System.EventHandler(this.btnOther_Click);
@@ -427,7 +452,7 @@ namespace LiveSplit.View
             this.btnImportComparison.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnImportComparison.Name = "btnImportComparison";
             this.btnImportComparison.Size = new System.Drawing.Size(120, 23);
-            this.btnImportComparison.TabIndex = 18;
+            this.btnImportComparison.TabIndex = 25;
             this.btnImportComparison.Text = "Import Comparison...";
             this.btnImportComparison.UseVisualStyleBackColor = true;
             this.btnImportComparison.Click += new System.EventHandler(this.btnImportComparison_Click);
@@ -439,7 +464,7 @@ namespace LiveSplit.View
             this.btnAddComparison.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnAddComparison.Name = "btnAddComparison";
             this.btnAddComparison.Size = new System.Drawing.Size(120, 23);
-            this.btnAddComparison.TabIndex = 17;
+            this.btnAddComparison.TabIndex = 24;
             this.btnAddComparison.Text = "Add Comparison";
             this.btnAddComparison.UseVisualStyleBackColor = true;
             this.btnAddComparison.Click += new System.EventHandler(this.btnAddComparison_Click);
@@ -451,7 +476,7 @@ namespace LiveSplit.View
             this.btnMoveDown.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnMoveDown.Name = "btnMoveDown";
             this.btnMoveDown.Size = new System.Drawing.Size(120, 23);
-            this.btnMoveDown.TabIndex = 16;
+            this.btnMoveDown.TabIndex = 23;
             this.btnMoveDown.Text = "Move Down";
             this.btnMoveDown.UseVisualStyleBackColor = true;
             this.btnMoveDown.Click += new System.EventHandler(this.btnMoveDown_Click);
@@ -463,7 +488,7 @@ namespace LiveSplit.View
             this.btnMoveUp.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnMoveUp.Name = "btnMoveUp";
             this.btnMoveUp.Size = new System.Drawing.Size(120, 23);
-            this.btnMoveUp.TabIndex = 15;
+            this.btnMoveUp.TabIndex = 22;
             this.btnMoveUp.Text = "Move Up";
             this.btnMoveUp.UseVisualStyleBackColor = true;
             this.btnMoveUp.Click += new System.EventHandler(this.btnMoveUp_Click);
@@ -475,7 +500,7 @@ namespace LiveSplit.View
             this.btnRemove.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(120, 23);
-            this.btnRemove.TabIndex = 14;
+            this.btnRemove.TabIndex = 21;
             this.btnRemove.Text = "Remove Segment";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -487,7 +512,7 @@ namespace LiveSplit.View
             this.btnAdd.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(120, 23);
-            this.btnAdd.TabIndex = 13;
+            this.btnAdd.TabIndex = 20;
             this.btnAdd.Text = "Insert Below";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -499,7 +524,7 @@ namespace LiveSplit.View
             this.btnInsert.Margin = new System.Windows.Forms.Padding(10, 3, 10, 3);
             this.btnInsert.Name = "btnInsert";
             this.btnInsert.Size = new System.Drawing.Size(120, 23);
-            this.btnInsert.TabIndex = 12;
+            this.btnInsert.TabIndex = 19;
             this.btnInsert.Text = "Insert Above";
             this.btnInsert.UseVisualStyleBackColor = true;
             this.btnInsert.Click += new System.EventHandler(this.btnInsert_Click);
@@ -525,7 +550,7 @@ namespace LiveSplit.View
             this.cbxLayoutToUse.Margin = new System.Windows.Forms.Padding(3, 3, 0, 3);
             this.cbxLayoutToUse.Name = "cbxLayoutToUse";
             this.cbxLayoutToUse.Size = new System.Drawing.Size(163, 21);
-            this.cbxLayoutToUse.TabIndex = 0;
+            this.cbxLayoutToUse.TabIndex = 17;
             this.cbxLayoutToUse.SelectionChangeCommitted += new System.EventHandler(this.cbxLayoutToUse_SelectionChangeCommitted);
             this.cbxLayoutToUse.DragDrop += new System.Windows.Forms.DragEventHandler(this.cbxLayoutToUse_DragDrop);
             this.cbxLayoutToUse.DragEnter += new System.Windows.Forms.DragEventHandler(this.cbxLayoutToUse_DragEnter);
@@ -536,7 +561,7 @@ namespace LiveSplit.View
             this.btnBrowseLayout.Location = new System.Drawing.Point(169, 3);
             this.btnBrowseLayout.Name = "btnBrowseLayout";
             this.btnBrowseLayout.Size = new System.Drawing.Size(75, 23);
-            this.btnBrowseLayout.TabIndex = 1;
+            this.btnBrowseLayout.TabIndex = 18;
             this.btnBrowseLayout.Text = "Browse";
             this.btnBrowseLayout.UseVisualStyleBackColor = true;
             this.btnBrowseLayout.Click += new System.EventHandler(this.btnBrowseLayout_Click);
@@ -549,7 +574,7 @@ namespace LiveSplit.View
             this.chkbxUseLayout.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.chkbxUseLayout.Name = "chkbxUseLayout";
             this.chkbxUseLayout.Size = new System.Drawing.Size(80, 17);
-            this.chkbxUseLayout.TabIndex = 9;
+            this.chkbxUseLayout.TabIndex = 16;
             this.chkbxUseLayout.Text = "Use Layout";
             this.chkbxUseLayout.UseVisualStyleBackColor = true;
             this.chkbxUseLayout.CheckedChanged += new System.EventHandler(this.chkbxUseLayout_CheckedChanged);
@@ -573,7 +598,7 @@ namespace LiveSplit.View
             this.btnWebsite.Location = new System.Drawing.Point(169, 3);
             this.btnWebsite.Name = "btnWebsite";
             this.btnWebsite.Size = new System.Drawing.Size(75, 23);
-            this.btnWebsite.TabIndex = 2;
+            this.btnWebsite.TabIndex = 15;
             this.btnWebsite.Text = "Website";
             this.btnWebsite.UseVisualStyleBackColor = true;
             this.btnWebsite.Visible = false;
@@ -585,7 +610,7 @@ namespace LiveSplit.View
             this.btnSettings.Location = new System.Drawing.Point(88, 3);
             this.btnSettings.Name = "btnSettings";
             this.btnSettings.Size = new System.Drawing.Size(75, 23);
-            this.btnSettings.TabIndex = 1;
+            this.btnSettings.TabIndex = 14;
             this.btnSettings.Text = "Settings";
             this.btnSettings.UseVisualStyleBackColor = true;
             this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
@@ -596,7 +621,7 @@ namespace LiveSplit.View
             this.btnActivate.Location = new System.Drawing.Point(7, 3);
             this.btnActivate.Name = "btnActivate";
             this.btnActivate.Size = new System.Drawing.Size(75, 23);
-            this.btnActivate.TabIndex = 0;
+            this.btnActivate.TabIndex = 13;
             this.btnActivate.Text = "Activate";
             this.btnActivate.UseVisualStyleBackColor = true;
             this.btnActivate.Click += new System.EventHandler(this.btnActivate_Click);
@@ -610,7 +635,7 @@ namespace LiveSplit.View
             this.lblDescription.Margin = new System.Windows.Forms.Padding(0, 0, 5, 0);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(281, 13);
-            this.lblDescription.TabIndex = 13;
+            this.lblDescription.TabIndex = 12;
             this.lblDescription.Text = "Description";
             this.lblDescription.UseMnemonic = false;
             // 
@@ -890,6 +915,7 @@ this.chkPbSegmentsOnly.Text = "Has Best Segment";
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.BindingSource iRunBindingSource;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnCancel;
@@ -900,6 +926,7 @@ this.chkPbSegmentsOnly.Text = "Has Best Segment";
         private System.Windows.Forms.ToolStripMenuItem setIconToolStripMenuItem;
         private CustomAutoCompleteComboBox cbxGameName;
         private System.Windows.Forms.ComboBox cbxRunCategory;
+        private System.Windows.Forms.ComboBox cbxRunLevel;
         private System.Windows.Forms.TextBox tbxTimeOffset;
         private System.Windows.Forms.TextBox tbxAttempts;
         private System.Windows.Forms.Button btnAdd;

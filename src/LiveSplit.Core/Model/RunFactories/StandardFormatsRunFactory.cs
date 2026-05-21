@@ -146,6 +146,7 @@ public class StandardFormatsRunFactory : IRunFactory
         run.GameIcon = ParseImage(lscRun.GameIconPtr(), lscRun.GameIconLen());
         run.GameName = lscRun.GameName();
         run.CategoryName = lscRun.CategoryName();
+        run.LevelName = lscRun.LevelName();
         run.Offset = ParseTimeSpan(lscRun.Offset());
         run.AttemptCount = (int)lscRun.AttemptCount();
 

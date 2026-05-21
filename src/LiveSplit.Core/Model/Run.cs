@@ -17,6 +17,7 @@ public class Run : IRun, INotifyPropertyChanged
 {
     private string gameName;
     private string categoryName;
+    private string levelName;
 
     /// <summary>
     /// The name of the comparison used to save your Personal Best splits.
@@ -58,6 +59,20 @@ public class Run : IRun, INotifyPropertyChanged
             categoryName = value;
             Metadata.Refresh();
             TriggerPropertyChanged("CategoryName");
+        }
+    }
+
+    /// <summary>
+    /// Gets or sets the level of the run.
+    /// </summary>
+    public string LevelName
+    {
+        get => levelName;
+        set
+        {
+            levelName = value;
+            Metadata.Refresh();
+            TriggerPropertyChanged("LevelName");
         }
     }
 
@@ -191,6 +206,7 @@ public class Run : IRun, INotifyPropertyChanged
             GameIcon = GameIcon,
             GameName = GameName,
             CategoryName = CategoryName,
+            LevelName = LevelName,
             Offset = Offset,
             AttemptCount = AttemptCount,
             AttemptHistory = new List<Attempt>(AttemptHistory),
