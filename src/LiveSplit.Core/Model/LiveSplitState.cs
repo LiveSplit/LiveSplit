@@ -64,6 +64,11 @@ public class LiveSplitState : ICloneable
         get => isGameTimePaused;
         set
         {
+            if (CurrentPhase == TimerPhase.NotRunning)
+            {
+                return;
+            }
+
             if (!value && isGameTimePaused)
             {
                 LoadingTimes = CurrentTime.RealTime.Value - (CurrentTime.GameTime ?? CurrentTime.RealTime.Value);
