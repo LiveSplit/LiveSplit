@@ -1,5 +1,25 @@
 <Project>
 
-  <Import Project="$(MSBuildThisFileDirectory)props\*.props" />
+  <PropertyGroup>
+    <RootPath>$(MSBuildThisFileDirectory)</RootPath>
+
+    <SrcPath>$(RootPath)/src</SrcPath>
+    <TestPath>$(RootPath)/test</TestPath>
+
+    <LibPath>$(RootPath)/lib</LibPath>
+    <ComponentsPath>$(RootPath)/components</ComponentsPath>
+    <ResourcesPath>$(RootPath)/res</ResourcesPath>
+
+    <ArtifactsPath>$(RootPath)/artifacts</ArtifactsPath>
+    <BuildPath>$(ArtifactsPath)/build/$(Configuration.ToLowerInvariant())</BuildPath>
+  </PropertyGroup>
+
+  <!-- Project properties. -->
+  <PropertyGroup>
+    <LangVersion>14</LangVersion>
+
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
 
 </Project>
