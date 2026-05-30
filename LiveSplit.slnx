@@ -1,0 +1,84 @@
+<Solution>
+  <Folder Name="/components/" />
+  <Folder Name="/components/Control/">
+    <Project Path="components/LiveSplit.AutoSplittingRuntime/src/LiveSplit.AutoSplittingRuntime/LiveSplit.AutoSplittingRuntime.csproj" />
+    <Project Path="components/LiveSplit.ManualGameTime/src/LiveSplit.ManualGameTime/LiveSplit.ManualGameTime.csproj" />
+    <Project Path="components/LiveSplit.ScriptableAutoSplit/src/LiveSplit.ScriptableAutoSplit/LiveSplit.ScriptableAutoSplit.csproj" />
+  </Folder>
+  <Folder Name="/components/Information/">
+    <Project Path="components/LiveSplit.ComparisonTime/src/LiveSplit.ComparisonTime/LiveSplit.ComparisonTime.csproj" />
+    <Project Path="components/LiveSplit.CurrentComparison/src/LiveSplit.CurrentComparison/LiveSplit.CurrentComparison.csproj" />
+    <Project Path="components/LiveSplit.Delta/src/LiveSplit.Delta/LiveSplit.Delta.csproj" />
+    <Project Path="components/LiveSplit.PossibleTimeSave/src/LiveSplit.PossibleTimeSave/LiveSplit.PossibleTimeSave.csproj" />
+    <Project Path="components/LiveSplit.PreviousSegment/src/LiveSplit.PreviousSegment/LiveSplit.PreviousSegment.csproj" />
+    <Project Path="components/LiveSplit.RunPrediction/src/LiveSplit.RunPrediction/LiveSplit.RunPrediction.csproj" />
+    <Project Path="components/LiveSplit.SumOfBest/src/LiveSplit.SumOfBest/LiveSplit.SumOfBest.csproj" />
+    <Project Path="components/LiveSplit.Text/src/LiveSplit.Text/LiveSplit.Text.csproj" />
+    <Project Path="components/LiveSplit.Title/src/LiveSplit.Title/LiveSplit.Title.csproj" />
+    <Project Path="components/LiveSplit.TotalPlaytime/src/LiveSplit.TotalPlaytime/LiveSplit.TotalPlaytime.csproj" />
+    <Project Path="components/LiveSplit.WorldRecord/src/LiveSplit.WorldRecord/LiveSplit.WorldRecord.csproj" />
+  </Folder>
+  <Folder Name="/components/List/">
+    <Project Path="components/LiveSplit.Splits/src/LiveSplit.Splits/LiveSplit.Splits.csproj" />
+    <Project Path="components/LiveSplit.Subsplits/src/LiveSplit.Subsplits/LiveSplit.Subsplits.csproj" />
+  </Folder>
+  <Folder Name="/components/Media/">
+    <Project Path="components/LiveSplit.Graph/src/LiveSplit.Graph/LiveSplit.Graph.csproj" />
+    <Project Path="components/LiveSplit.Sound/src/LiveSplit.Sound/LiveSplit.Sound.csproj" />
+    <Project Path="components/LiveSplit.Video/src/LiveSplit.Video/LiveSplit.Video.csproj" />
+  </Folder>
+  <Folder Name="/components/Other/">
+    <Project Path="components/LiveSplit.BlankSpace/src/LiveSplit.BlankSpace/LiveSplit.BlankSpace.csproj" />
+    <Project Path="components/LiveSplit.Counter/src/LiveSplit.Counter/LiveSplit.Counter.csproj" />
+    <Project Path="components/LiveSplit.HotkeyIndicator/src/LiveSplit.HotkeyIndicator/LiveSplit.HotkeyIndicator.csproj" />
+    <Project Path="components/LiveSplit.Racetime/src/LiveSplit.Racetime/LiveSplit.Racetime.csproj" />
+    <Project Path="components/LiveSplit.TheRun/src/LiveSplit.TheRun/LiveSplit.TheRun.csproj" />
+  </Folder>
+  <Folder Name="/components/Timer/">
+    <Project Path="components/LiveSplit.DetailedTimer/src/LiveSplit.DetailedTimer/LiveSplit.DetailedTimer.csproj" />
+    <Project Path="components/LiveSplit.Timer/src/LiveSplit.Timer/LiveSplit.Timer.csproj" />
+  </Folder>
+  <Folder Name="/lib/">
+    <Project Path="lib/CustomFontDialog/CustomFontDialog/CustomFontDialog.csproj" />
+    <Project Path="lib/SpeedrunComSharp/src/SpeedrunComSharp/SpeedrunComSharp.csproj" />
+    <Project Path="lib/WinForms Color Picker/WinFormsColor/WinFormsColor.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/LiveSplit.Core/LiveSplit.Core.csproj" />
+    <Project Path="src/LiveSplit.Register/LiveSplit.Register.csproj" />
+    <Project Path="src/LiveSplit.View/LiveSplit.View.csproj" />
+    <Project Path="src/LiveSplit/LiveSplit.csproj">
+      <BuildDependency Project="components/LiveSplit.AutoSplittingRuntime/src/LiveSplit.AutoSplittingRuntime/LiveSplit.AutoSplittingRuntime.csproj" />
+      <BuildDependency Project="components/LiveSplit.BlankSpace/src/LiveSplit.BlankSpace/LiveSplit.BlankSpace.csproj" />
+      <BuildDependency Project="components/LiveSplit.ComparisonTime/src/LiveSplit.ComparisonTime/LiveSplit.ComparisonTime.csproj" />
+      <BuildDependency Project="components/LiveSplit.Counter/src/LiveSplit.Counter/LiveSplit.Counter.csproj" />
+      <BuildDependency Project="components/LiveSplit.CurrentComparison/src/LiveSplit.CurrentComparison/LiveSplit.CurrentComparison.csproj" />
+      <BuildDependency Project="components/LiveSplit.Delta/src/LiveSplit.Delta/LiveSplit.Delta.csproj" />
+      <BuildDependency Project="components/LiveSplit.DetailedTimer/src/LiveSplit.DetailedTimer/LiveSplit.DetailedTimer.csproj" />
+      <BuildDependency Project="components/LiveSplit.Graph/src/LiveSplit.Graph/LiveSplit.Graph.csproj" />
+      <BuildDependency Project="components/LiveSplit.HotkeyIndicator/src/LiveSplit.HotkeyIndicator/LiveSplit.HotkeyIndicator.csproj" />
+      <BuildDependency Project="components/LiveSplit.ManualGameTime/src/LiveSplit.ManualGameTime/LiveSplit.ManualGameTime.csproj" />
+      <BuildDependency Project="components/LiveSplit.PossibleTimeSave/src/LiveSplit.PossibleTimeSave/LiveSplit.PossibleTimeSave.csproj" />
+      <BuildDependency Project="components/LiveSplit.PreviousSegment/src/LiveSplit.PreviousSegment/LiveSplit.PreviousSegment.csproj" />
+      <BuildDependency Project="components/LiveSplit.Racetime/src/LiveSplit.Racetime/LiveSplit.Racetime.csproj" />
+      <BuildDependency Project="components/LiveSplit.RunPrediction/src/LiveSplit.RunPrediction/LiveSplit.RunPrediction.csproj" />
+      <BuildDependency Project="components/LiveSplit.ScriptableAutoSplit/src/LiveSplit.ScriptableAutoSplit/LiveSplit.ScriptableAutoSplit.csproj" />
+      <BuildDependency Project="components/LiveSplit.Sound/src/LiveSplit.Sound/LiveSplit.Sound.csproj" />
+      <BuildDependency Project="components/LiveSplit.Splits/src/LiveSplit.Splits/LiveSplit.Splits.csproj" />
+      <BuildDependency Project="components/LiveSplit.Subsplits/src/LiveSplit.Subsplits/LiveSplit.Subsplits.csproj" />
+      <BuildDependency Project="components/LiveSplit.SumOfBest/src/LiveSplit.SumOfBest/LiveSplit.SumOfBest.csproj" />
+      <BuildDependency Project="components/LiveSplit.Text/src/LiveSplit.Text/LiveSplit.Text.csproj" />
+      <BuildDependency Project="components/LiveSplit.TheRun/src/LiveSplit.TheRun/LiveSplit.TheRun.csproj" />
+      <BuildDependency Project="components/LiveSplit.Timer/src/LiveSplit.Timer/LiveSplit.Timer.csproj" />
+      <BuildDependency Project="components/LiveSplit.Title/src/LiveSplit.Title/LiveSplit.Title.csproj" />
+      <BuildDependency Project="components/LiveSplit.TotalPlaytime/src/LiveSplit.TotalPlaytime/LiveSplit.TotalPlaytime.csproj" />
+      <BuildDependency Project="components/LiveSplit.Video/src/LiveSplit.Video/LiveSplit.Video.csproj" />
+      <BuildDependency Project="components/LiveSplit.WorldRecord/src/LiveSplit.WorldRecord/LiveSplit.WorldRecord.csproj" />
+      <BuildDependency Project="src/LiveSplit.Register/LiveSplit.Register.csproj" />
+    </Project>
+    <Project Path="src/UpdateManager/UpdateManager.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/LiveSplit.Tests/LiveSplit.Tests.csproj" />
+  </Folder>
+</Solution>

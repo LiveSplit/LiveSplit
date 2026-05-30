@@ -36,7 +36,7 @@ jobs:
           -v m
           -c Release
           -p:DebugType=None
-          .\LiveSplit.sln
+          .\LiveSplit.slnx
 
       - name: Build UpdateManager.exe
         run: >
@@ -52,7 +52,7 @@ jobs:
           -v m
           -c Release
           --no-restore --no-build
-          .\LiveSplit.sln
+          .\LiveSplit.slnx
 
       - name: Upload build as an artifact
         uses: actions/upload-artifact@v4
