@@ -1,8 +1,10 @@
-# IDE options/cache directories
-.vs/
-.vscode/
-.idea/
-.fleet/
+# IDE options/cache
+.idea/*
+.vs/*
+.vscode/*
+.zed/*
+
+*.lscache
 
 # Build artifacts
 artifacts/
@@ -23,11 +25,3 @@ GitInfo/
 **/x86/target/
 
 LiveSplit.AutoSplitters.xml
-
-# Operating System Files
-# =========================
-
-# OSX
-.DS_Store
-.AppleDouble
-.LSOverride
