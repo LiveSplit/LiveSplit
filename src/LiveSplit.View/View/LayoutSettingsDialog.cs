@@ -1,13 +1,11 @@
-﻿using System;
+﻿using LiveSplit.Localization;
+using LiveSplit.Options;
+using LiveSplit.UI.Components;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Xml;
-
-using LiveSplit.Localization;
-using LiveSplit.Options;
-using LiveSplit.UI;
-using LiveSplit.UI.Components;
 
 namespace LiveSplit.View;
 
@@ -18,8 +16,8 @@ public partial class LayoutSettingsDialog : Form
     public List<XmlNode> ComponentSettings { get; set; }
     public List<IComponent> Components { get; set; }
 
-    private List<FontOverrides> _fontOverrideSnapshots;
-    private List<LayoutComponent> _layoutComponents;
+    private readonly List<FontOverrides> _fontOverrideSnapshots;
+    private readonly List<LayoutComponent> _layoutComponents;
 
     protected override void Dispose(bool disposing)
     {
@@ -97,7 +95,7 @@ public partial class LayoutSettingsDialog : Form
             Control settingsControl = component.GetSettingsControl(Layout.Mode);
             var lc = layoutComponent as LayoutComponent;
 
-            var fontAttr = component.GetType().GetCustomAttributes(typeof(GlobalFontConsumerAttribute), true);
+            object[] fontAttr = component.GetType().GetCustomAttributes(typeof(GlobalFontConsumerAttribute), true);
             GlobalFont usedFonts = fontAttr.Length > 0
                 ? ((GlobalFontConsumerAttribute)fontAttr[0]).UsedGlobalFonts
                 : GlobalFont.None;

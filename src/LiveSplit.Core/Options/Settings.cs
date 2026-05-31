@@ -1,11 +1,10 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.Model.Input;
+using LiveSplit.Web.SRL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
-
-using LiveSplit.Model;
-using LiveSplit.Model.Input;
-using LiveSplit.Web.SRL;
 
 namespace LiveSplit.Options;
 
@@ -108,18 +107,18 @@ public class Settings : ISettings
         {
             HotkeyProfiles = HotkeyProfiles.ToDictionary(x => x.Key, x => (HotkeyProfile)x.Value.Clone()),
             WarnOnReset = WarnOnReset,
-            RecentSplits = new List<RecentSplitsFile>(RecentSplits),
-            RecentLayouts = new List<string>(RecentLayouts),
+            RecentSplits = [.. RecentSplits],
+            RecentLayouts = [.. RecentLayouts],
             LastComparison = LastComparison,
             RaceViewer = RaceViewer,
-            RaceProvider = new List<RaceProviderSettings>(RaceProvider),
+            RaceProvider = [.. RaceProvider],
             AgreedToSRLRules = AgreedToSRLRules,
             SimpleSumOfBest = SimpleSumOfBest,
             RefreshRate = RefreshRate,
             ServerPort = ServerPort,
             ServerStartup = ServerStartup,
             ServerState = ServerState,
-            ActiveAutoSplitters = new List<string>(ActiveAutoSplitters),
+            ActiveAutoSplitters = [.. ActiveAutoSplitters],
             ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates),
             EnableDPIAwareness = EnableDPIAwareness,
             UILanguage = UILanguage,

@@ -1,8 +1,7 @@
-﻿using System;
+﻿using LiveSplit.Model.Comparisons;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-
-using LiveSplit.Model.Comparisons;
 
 namespace LiveSplit.View;
 
@@ -18,8 +17,8 @@ public partial class ChooseComparisonsDialog : Form
     {
         InitializeComponent();
         DialogInitialized = false;
-        comparisonsListBox.Items.AddRange(new[]
-        {
+        comparisonsListBox.Items.AddRange(
+        [
             BestSegmentsComparisonGenerator.ComparisonName,
             BestSplitTimesComparisonGenerator.ComparisonName,
             AverageSegmentsComparisonGenerator.ComparisonName,
@@ -29,8 +28,7 @@ public partial class ChooseComparisonsDialog : Form
             LatestRunComparisonGenerator.ComparisonName,
             HCPComparisonGenerator.ComparisonName,
             NoneComparisonGenerator.ComparisonName
-        });
-
+        ]);
     }
 
     private void UpdateHcpSettingsVisibility()
@@ -46,7 +44,7 @@ public partial class ChooseComparisonsDialog : Form
     private void btnOK_Click(object sender, EventArgs e)
     {
         DialogResult = DialogResult.OK;
-        
+
         Close();
     }
 
@@ -65,7 +63,7 @@ public partial class ChooseComparisonsDialog : Form
 
             if (generatorName == HCPComparisonGenerator.ComparisonName)
             {
-                BeginInvoke(new Action(UpdateHcpSettingsVisibility));
+                BeginInvoke(UpdateHcpSettingsVisibility);
             }
         }
     }
@@ -82,7 +80,7 @@ public partial class ChooseComparisonsDialog : Form
 
         numericUpDownHcpHistorySize.Value = HcpHistorySize;
         numericUpDownHcpNBestRuns.Value = HcpNBestRuns;
-        
+
         numericUpDownHcpHistorySize.ValueChanged += numericUpDownHcpHistorySize_ValueChanged;
         numericUpDownHcpNBestRuns.ValueChanged += numericUpDownHcpNBestRuns_ValueChanged;
 

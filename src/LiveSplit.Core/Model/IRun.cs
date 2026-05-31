@@ -1,12 +1,11 @@
-﻿using System;
+﻿using LiveSplit.Model.Comparisons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Xml;
-
-using LiveSplit.Model.Comparisons;
 
 namespace LiveSplit.Model;
 
@@ -37,7 +36,7 @@ public static class RunExtensions
 {
     public static bool IsAutoSplitterActive(this IRun run)
     {
-        return run.AutoSplitter != null && run.AutoSplitter.IsActivated;
+        return run.AutoSplitter is { IsActivated: true };
     }
 
     public static void AddSegment(this IRun run, string name, Time pbSplitTime = default, Time bestSegmentTime = default, Image icon = null, Time splitTime = default, SegmentHistory segmentHistory = null)
@@ -458,7 +457,7 @@ public static class RunExtensions
                     list.Add(run.Metadata.RegionName);
                 }
             }
-            else if (run.Metadata.Region != null && !string.IsNullOrEmpty(run.Metadata.Region.Abbreviation) && run.Metadata.Game != null && run.Metadata.Game.Regions.Count > 1)
+            else if (run.Metadata is { Region.Abbreviation.Length: > 0, Game.Regions.Count: > 1 })
             {
                 list.Add(run.Metadata.Region.Abbreviation);
             }
@@ -467,7 +466,7 @@ public static class RunExtensions
         if (showPlatform)
         {
             bool doSimplePlatform = !run.Metadata.GameAvailable && !waitForOnlineData;
-            if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || (run.Metadata.Game != null && run.Metadata.Game.Platforms.Count > 1)))
+            if (!string.IsNullOrEmpty(run.Metadata.PlatformName) && (doSimplePlatform || run.Metadata.Game is { Platforms.Count: > 1 }))
             {
                 if (run.Metadata.UsesEmulator)
                 {
@@ -484,7 +483,7 @@ public static class RunExtensions
             }
         }
 
-        if (list.Any())
+        if (list.Count > 0)
         {
             categoryName = $"{categoryName} ({string.Join(", ", list)}) {afterParentheses}";
         }

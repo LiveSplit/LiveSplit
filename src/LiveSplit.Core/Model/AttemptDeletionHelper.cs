@@ -1,4 +1,4 @@
-namespace LiveSplit.Model;
+﻿namespace LiveSplit.Model;
 
 public static class AttemptDeletionHelper
 {

@@ -1,10 +1,9 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-
-using LiveSplit.Model;
-using LiveSplit.Options;
 
 namespace LiveSplit.UI.Components;
 
@@ -31,7 +30,7 @@ public class ComponentRenderer
         float bottomPadding = Math.Min(GetPaddingBelow(index), component.PaddingBottom) / 2f;
         g.IntersectClip(new RectangleF(0, topPadding, width, component.VerticalHeight - topPadding - bottomPadding));
 
-        float scale = g.Transform.Elements.First();
+        float scale = g.Transform.Elements[0];
         int separatorOffset = component.VerticalHeight * scale < 3 ? 1 : 0;
 
         if (clipRegion.IsVisible(new RectangleF(
@@ -53,7 +52,7 @@ public class ComponentRenderer
         float rightPadding = Math.Min(GetPaddingToRight(index), component.PaddingRight) / 2f;
         g.IntersectClip(new RectangleF(leftPadding, 0, component.HorizontalWidth - leftPadding - rightPadding, height));
 
-        float scale = g.Transform.Elements.First();
+        float scale = g.Transform.Elements[0];
         int separatorOffset = component.VerticalHeight * scale < 3 ? 1 : 0;
 
         if (clipRegion.IsVisible(new RectangleF(
@@ -212,7 +211,7 @@ public class ComponentRenderer
                     crashedComponents.ForEach(x =>
                     {
                         remainingComponents.Remove(x);
-                        state.Layout.LayoutComponents = state.Layout.LayoutComponents.Where(y => y.Component != x).ToList();
+                        state.Layout.LayoutComponents = [.. state.Layout.LayoutComponents.Where(y => y.Component != x)];
                     });
                     VisibleComponents = remainingComponents;
                 }
@@ -251,8 +250,8 @@ public class ComponentRenderer
     {
         System.Drawing.Drawing2D.Matrix oldTransform = invalidator.Transform.Clone();
         float scaleFactor = mode == LayoutMode.Vertical
-                ? height / OverallSize
-                : width / OverallSize;
+            ? height / OverallSize
+            : width / OverallSize;
         Dictionary<IComponent, FontOverrides> overrideLookup = BuildOverrideLookup(state);
 
         for (int ind = 0; ind < VisibleComponents.Count(); ind++)

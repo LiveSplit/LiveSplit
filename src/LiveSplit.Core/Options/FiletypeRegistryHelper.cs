@@ -1,11 +1,10 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using System.Windows.Forms;
-
-using Microsoft.Win32;
 
 namespace LiveSplit.Options;
 
@@ -267,10 +266,11 @@ public static class FiletypeRegistryHelper
     #endregion // enum HChangeNotifyFlags
 
     [DllImport("shell32.dll")]
-    private static extern void SHChangeNotify(HChangeNotifyEventID wEventId,
-                                       HChangeNotifyFlags uFlags,
-                                       IntPtr dwItem1,
-                                       IntPtr dwItem2);
+    private static extern void SHChangeNotify(
+        HChangeNotifyEventID wEventId,
+        HChangeNotifyFlags uFlags,
+        IntPtr dwItem1,
+        IntPtr dwItem2);
 
     public static void RegisterFileFormats()
     {

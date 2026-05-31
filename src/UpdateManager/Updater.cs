@@ -108,7 +108,7 @@ public static class Updater
                 return xmlChangePath.Replace('/', Path.DirectorySeparatorChar);
             }
 
-            IList<Update> updates = Updates.Where(x => x.Version > Version).ToList();
+            IList<Update> updates = [.. Updates.Where(x => x.Version > Version)];
             var addedFiles = new Dictionary<string, string>();
             var changedFiles = new Dictionary<string, string>();
             var removedFiles = new Dictionary<string, string>();
@@ -135,7 +135,7 @@ public static class Updater
                 }
             }
 
-            int fileChangesCount = addedFiles.Concat(changedFiles).Concat(removedFiles).Count();
+            int fileChangesCount = addedFiles.Count + changedFiles.Count + removedFiles.Count;
             double i = 0;
 
             foreach (KeyValuePair<string, string> xmlChangePaths in addedFiles.Concat(changedFiles))
@@ -174,7 +174,7 @@ public static class Updater
     {
         DownloadFile(updateManagerDownloadURL, "UpdateManager.exe");
         DownloadFile(updateManagerConfigDownloadUrl, "UpdateManager.exe.config");
-        string arguments = updateables.Where(x => x.CheckForUpdate()).Aggregate("", (x, y) => x + "\"" + y.XMLURL + "\" \"" + y.UpdateURL + "\" " + y.Version + " ") + "\"" + Process.GetCurrentProcess().ProcessName + ".exe\"";
+        string arguments = string.Concat(updateables.Where(x => x.CheckForUpdate()).Select(x => $"\"{x.XMLURL}\" \"{x.UpdateURL}\" {x.Version} ")) + $"\"{Process.GetCurrentProcess().ProcessName}.exe\"";
         Process.Start("UpdateManager.exe", arguments);
     }
 

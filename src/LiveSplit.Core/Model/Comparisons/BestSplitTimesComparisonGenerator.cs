@@ -1,7 +1,6 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Linq;
-
-using LiveSplit.Options;
 
 namespace LiveSplit.Model.Comparisons;
 
@@ -52,14 +51,9 @@ public class BestSplitTimesComparisonGenerator : IComparisonGenerator
     {
         foreach (ISegment segment in Run)
         {
-            if (Run.IndexOf(segment) > 0)
-            {
-                segment.Comparisons[Name] = segment.Comparisons[Model.Run.PersonalBestComparisonName];
-            }
-            else
-            {
-                segment.Comparisons[Name] = segment.BestSegmentTime;
-            }
+            segment.Comparisons[Name] = Run.IndexOf(segment) > 0
+                ? segment.Comparisons[Model.Run.PersonalBestComparisonName]
+                : segment.BestSegmentTime;
         }
 
         Generate(TimingMethod.RealTime);

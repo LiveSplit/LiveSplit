@@ -172,17 +172,9 @@ public class StringWatcher : MemoryWatcher
             return false;
         }
 
-        string str;
-        bool success;
-        if (AddrType == AddressType.DeepPointer)
-        {
-            success = DeepPtr.DerefString(process, _stringType, _numBytes, out str);
-        }
-        else
-        {
-            success = process.ReadString(Address, _stringType, _numBytes, out str);
-        }
-
+        bool success = AddrType == AddressType.DeepPointer
+            ? DeepPtr.DerefString(process, _stringType, _numBytes, out string str)
+            : process.ReadString(Address, _stringType, _numBytes, out str);
         if (success)
         {
             base.Old = base.Current;
@@ -260,17 +252,9 @@ public class MemoryWatcher<T> : MemoryWatcher where T : struct
 
         base.Old = Current;
 
-        T val;
-        bool success;
-        if (AddrType == AddressType.DeepPointer)
-        {
-            success = DeepPtr.Deref(process, out val);
-        }
-        else
-        {
-            success = process.ReadValue(Address, out val);
-        }
-
+        bool success = AddrType == AddressType.DeepPointer
+            ? DeepPtr.Deref(process, out T val)
+            : process.ReadValue(Address, out val);
         if (success)
         {
             base.Old = base.Current;

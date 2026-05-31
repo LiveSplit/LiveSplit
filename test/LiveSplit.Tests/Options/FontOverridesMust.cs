@@ -1,8 +1,5 @@
-using System;
+﻿using LiveSplit.Options;
 using System.Drawing;
-
-using LiveSplit.Options;
-
 using Xunit;
 
 namespace LiveSplit.Tests.Options;

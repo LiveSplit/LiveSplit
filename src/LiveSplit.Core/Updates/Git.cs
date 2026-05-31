@@ -16,7 +16,7 @@ public static class Git
         : GitInfo.version.Replace("\r", "").Replace("\n", "")
     ;
     private static readonly string[] DescribeSplit = Describe?.Split('-');
-    private static readonly bool IsDirty = DescribeSplit?.Last() == "dirty";
+    private static readonly bool IsDirty = DescribeSplit?[^1] == "dirty";
     public static readonly string LastTag = DescribeSplit?[0];
     public static readonly int CommitsSinceLastTag = (DescribeSplit == null || DescribeSplit.Length < 3) ? 0 : int.Parse(DescribeSplit[1]);
     public static readonly string Version =
@@ -26,16 +26,15 @@ public static class Git
         .Concat(new[] { "debug" })
 #endif
         .Concat(IsDirty ? new[] { "dirty" } : [])
-        .Aggregate((a, b) => a + "-" + b)
-    ;
+        .Aggregate((a, b) => a + "-" + b);
+
     public static readonly string Branch =
         string.IsNullOrWhiteSpace(GitInfo.branch)
         ? null
         : GitInfo.branch.Replace("\r", "").Replace("\n", "")
     ;
-    public static readonly Uri RevisionUri =
-        LastTag == null || Revision == null
-        ? null
-        : new Uri("https://github.com/LiveSplit/LiveSplit/tree/" + (CommitsSinceLastTag > 0 ? Revision : LastTag))
+    public static readonly Uri RevisionUri = LastTag != null && Revision != null
+        ? new Uri("https://github.com/LiveSplit/LiveSplit/tree/" + (CommitsSinceLastTag > 0 ? Revision : LastTag))
+        : null
     ;
 }

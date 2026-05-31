@@ -1,9 +1,8 @@
-﻿using System;
-using System.Windows.Forms;
-
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.View;
+using System;
+using System.Windows.Forms;
 
 namespace LiveSplit.Web.Share;
 

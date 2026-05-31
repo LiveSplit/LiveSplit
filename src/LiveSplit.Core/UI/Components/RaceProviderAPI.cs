@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Options;
-
+using System.Collections.Generic;
 using UpdateManager;
 
 namespace LiveSplit.UI.Components;

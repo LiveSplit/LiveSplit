@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Codaxy.Xlio;
+using LiveSplit.Model.Comparisons;
+using System;
 using System.IO;
 using System.Linq;
-
-using Codaxy.Xlio;
-
-using LiveSplit.Model.Comparisons;
 
 namespace LiveSplit.Model.RunSavers;
 
@@ -260,20 +258,15 @@ public class ExcelRunSaver : IRunSaver
                 cell.Style.Alignment.Horizontal = HorizontalAlignment.Right;
                 cell.Style.Format = "[HH]:MM:SS.000";
                 cell.Style.Border.Left = new BorderEdge { Style = BorderStyle.Thin, Color = Color.White };
-                if (comparisonName == Run.PersonalBestComparisonName && time.HasValue && segment.BestSegmentTime[method] == (time.Value - lastTime))
-                {
-                    cell.Style.Fill = CellFill.Solid(
+                cell.Style.Fill = comparisonName == Run.PersonalBestComparisonName && time.HasValue && segment.BestSegmentTime[method] == (time.Value - lastTime)
+                    ? CellFill.Solid(
                         ((rowIndex & 1) == 1)
                         ? new Color(241, 231, 181)
-                        : new Color(255, 245, 198));
-                }
-                else
-                {
-                    cell.Style.Fill = CellFill.Solid(
+                        : new Color(255, 245, 198))
+                    : CellFill.Solid(
                         ((rowIndex & 1) == 1)
                         ? new Color(221, 221, 221)
                         : new Color(238, 238, 238));
-                }
 
                 if (comparisonName == Run.PersonalBestComparisonName && time.HasValue)
                 {

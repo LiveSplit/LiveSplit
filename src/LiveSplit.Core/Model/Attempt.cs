@@ -1,9 +1,8 @@
-﻿using System;
+﻿using LiveSplit.UI;
+using LiveSplit.Web;
+using System;
 using System.Globalization;
 using System.Xml;
-
-using LiveSplit.UI;
-using LiveSplit.Web;
 
 namespace LiveSplit.Model;
 

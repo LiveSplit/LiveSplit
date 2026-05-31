@@ -1,9 +1,7 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using LiveSplit.Options;
-
 using static System.Math;
 
 namespace LiveSplit.Model.Comparisons;
@@ -27,7 +25,7 @@ public class MedianSegmentsComparisonGenerator : IComparisonGenerator
         int elementCount = curList.Count();
         var weightedList = curList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, elementCount), x)).ToList();
         weightedList = [.. weightedList.OrderBy(x => x.Value)];
-        double totalWeights = weightedList.Aggregate(0.0, (s, x) => s + x.Key);
+        double totalWeights = weightedList.Sum(x => x.Key);
         double halfTotalWeights = totalWeights / 2;
         double curTotal = 0.0;
         foreach (KeyValuePair<double, TimeSpan> element in weightedList)

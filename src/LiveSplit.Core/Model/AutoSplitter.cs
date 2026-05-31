@@ -1,12 +1,10 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using LiveSplit.UI.Components;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Windows.Forms;
-
-using LiveSplit.Options;
-using LiveSplit.UI.Components;
 
 namespace LiveSplit.Model;
 
@@ -23,7 +21,7 @@ public class AutoSplitter : ICloneable
     public bool IsActivated => Component != null;
     public List<string> URLs { get; set; }
     public string LocalPath => Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, FileName));
-    public string FileName => URLs.First()[(URLs.First().LastIndexOf('/') + 1)..];
+    public string FileName => URLs[0][(URLs[0].LastIndexOf('/') + 1)..];
     public AutoSplitterType Type { get; set; }
     public bool ShowInLayoutEditor { get; set; }
     public IComponent Component { get; set; }
@@ -83,7 +81,7 @@ public class AutoSplitter : ICloneable
                 client.DownloadFile(new Uri(url), tempLocalPath);
                 File.Copy(tempLocalPath, localPath, true);
 
-                if (url != URLs.First() && localPath.EndsWith(".dll"))
+                if (url != URLs[0] && localPath.EndsWith(".dll"))
                 {
                     IComponentFactory factory = ComponentManager.LoadFactory<IComponentFactory>(localPath);
                     if (factory != null)
@@ -136,8 +134,8 @@ public class AutoSplitter : ICloneable
         return new AutoSplitter()
         {
             Description = Description,
-            Games = new List<string>(Games),
-            URLs = new List<string>(URLs),
+            Games = [.. Games],
+            URLs = [.. URLs],
             Type = Type,
             ShowInLayoutEditor = ShowInLayoutEditor,
             Component = Component,

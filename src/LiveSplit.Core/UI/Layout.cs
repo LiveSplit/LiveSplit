@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-using LiveSplit.Options;
+﻿using LiveSplit.Options;
 using LiveSplit.UI.Components;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace LiveSplit.UI;
 
@@ -37,7 +36,7 @@ public class Layout : ILayout
     {
         return new Layout()
         {
-            LayoutComponents = LayoutComponents.Select(lc => lc is LayoutComponent concrete ? concrete.Clone() : lc).ToList(),
+            LayoutComponents = [.. LayoutComponents.Select(lc => lc is LayoutComponent concrete ? concrete.Clone() : lc)],
             VerticalWidth = VerticalWidth,
             VerticalHeight = VerticalHeight,
             HorizontalWidth = HorizontalWidth,

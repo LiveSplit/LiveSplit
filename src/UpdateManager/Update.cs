@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Xml;
 
 namespace UpdateManager;
@@ -14,8 +13,8 @@ public class Update
     public Update(Version version, IEnumerable<string> changeLog, IEnumerable<FileChange> fileChanges)
     {
         Version = version;
-        ChangeLog = changeLog.ToList();
-        FileChanges = fileChanges.ToList();
+        ChangeLog = [.. changeLog];
+        FileChanges = [.. fileChanges];
     }
 
     public static Update Parse(XmlNode node)

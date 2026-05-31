@@ -1,10 +1,9 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using LiveSplit.UI.Components;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
-
-using LiveSplit.Options;
-using LiveSplit.UI.Components;
 
 namespace LiveSplit.UI.LayoutSavers;
 
@@ -69,7 +68,7 @@ public class XMLLayoutSaver : ILayoutSaver
             parent.AppendChild(components);
         }
 
-        var layoutComponents = new List<ILayoutComponent>(layout.LayoutComponents);
+        List<ILayoutComponent> layoutComponents = [.. layout.LayoutComponents];
         int count = 1;
 
         foreach (ILayoutComponent component in layoutComponents)

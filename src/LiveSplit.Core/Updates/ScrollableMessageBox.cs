@@ -1,6 +1,6 @@
 ﻿// This code was written by Mike Gold  .  This code may be used only for educational purposes.
 // Any distribution of this code may only be carried out with written consent from the author.
-// Copyright ©  2005 by Microgold Software Inc. 
+// Copyright ©  2005 by Microgold Software Inc.
 
 using System;
 using System.Collections.Generic;
@@ -43,7 +43,7 @@ public partial class ScrollableMessageBox : Form
     }
 
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <param name="text">text inside the message box</param>
     /// <param name="caption">caption on the title bar</param>
@@ -56,7 +56,7 @@ public partial class ScrollableMessageBox : Form
         //Assume OK Button, by default
         ChooseButtons(MessageBoxButtons.OK);
         // the active control should be the OK button
-        ActiveControl = Controls[Controls.Count - 1];
+        ActiveControl = Controls[^1];
         return ShowDialog();
     }
 
@@ -66,21 +66,19 @@ public partial class ScrollableMessageBox : Form
         Text = caption;
         //Assume OK Button
         ChooseButtons(buttonType);
-        ActiveControl = Controls[Controls.Count - 1];
+        ActiveControl = Controls[^1];
         return ShowDialog();
     }
 
     public DialogResult ShowFromFile(string filename, string caption, MessageBoxButtons buttonType)
     {
         // read the file into the message box
-        using (var sr = new StreamReader(filename))
-        {
-            txtMessage.Text = sr.ReadToEnd();
-        }
+        using var sr = new StreamReader(filename);
+        txtMessage.Text = sr.ReadToEnd();
 
         Text = caption;
         ChooseButtons(buttonType);
-        ActiveControl = Controls[Controls.Count - 1];
+        ActiveControl = Controls[^1];
         return ShowDialog();
     }
 

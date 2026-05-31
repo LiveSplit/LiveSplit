@@ -1,10 +1,7 @@
-﻿using System;
+﻿using LiveSplit.ComponentUtil;
+using System;
 using System.Collections.Generic;
-
-using LiveSplit.ComponentUtil;
-
 using Xunit;
-
 using static LiveSplit.ComponentUtil.DeepPointer;
 
 namespace LiveSplit.Tests.ComponentUtil;
@@ -35,7 +32,7 @@ public class DeepPointerTests
     {
         foreach (object enumType in Enum.GetValues(typeof(DerefType)))
         {
-            yield return new object[] { enumType };
+            yield return [enumType];
         }
     }
 

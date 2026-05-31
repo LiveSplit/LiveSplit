@@ -1,6 +1,5 @@
-﻿using System.Diagnostics;
-
-using LiveSplit.UI;
+﻿using LiveSplit.UI;
+using System.Diagnostics;
 
 namespace LiveSplit.Web.Share;
 

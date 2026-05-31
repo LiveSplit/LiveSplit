@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using IrcDotNet;
-
+﻿using IrcDotNet;
 using LiveSplit.Model;
 using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using LiveSplit.Updates;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace LiveSplit.Web.SRL;
 
 public class SpeedRunsLiveIRC : IDisposable
 {
-    private RaceState _State;
-
     public RaceState RaceState
     {
-        get => _State;
+        get;
         set
         {
-            _State = value;
+            field = value;
 
             StateChanged?.Invoke(this, RaceState);
         }
@@ -61,7 +57,7 @@ public class SpeedRunsLiveIRC : IDisposable
 
     public SpeedRunsLiveIRC(LiveSplitState state, ITimerModel model, IEnumerable<string> channels)
     {
-        ChannelsToJoin = channels.ToList();
+        ChannelsToJoin = [.. channels];
         Client = new StandardIrcClient();
         Client.ConnectFailed += Client_ConnectFailed;
         Client.Connected += Client_Connected;
@@ -288,7 +284,7 @@ public class SpeedRunsLiveIRC : IDisposable
             }
         }
 
-        RawMessageReceived?.Invoke(this, $"{e.Message.Command} - {e.Message.Parameters.Where(x => x != null).Aggregate((a, b) => a + " " + b)}");
+        RawMessageReceived?.Invoke(this, $"{e.Message.Command} - {string.Join(" ", e.Message.Parameters.Where(x => x != null))}");
     }
 
     protected void ProcessSplit(string user, string segmentName, TimeSpan? time, TimingMethod method)
@@ -317,7 +313,7 @@ public class SpeedRunsLiveIRC : IDisposable
     protected void ProcessFinalSplit(string user, TimeSpan? time, TimingMethod method)
     {
         IRun run = Model.CurrentState.Run;
-        ISegment segment = run.Last();
+        ISegment segment = run[^1];
         AddSplit(user, segment, time, method);
     }
 

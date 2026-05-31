@@ -1,17 +1,16 @@
-﻿using System;
+﻿using LiveSplit.Localization;
+using LiveSplit.Model;
+using LiveSplit.Options;
+using LiveSplit.UI;
+using LiveSplit.UI.Components;
+using LiveSplit.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-
-using LiveSplit.Localization;
-using LiveSplit.Model;
-using LiveSplit.Options;
-using LiveSplit.UI;
-using LiveSplit.UI.Components;
-using LiveSplit.Utils;
 
 namespace LiveSplit.View;
 
@@ -30,21 +29,11 @@ public partial class LayoutEditorDialog : Form
 
     protected new ILayout Layout { get; set; }
     protected BindingList<ILayoutComponent> BindingList { get; set; }
-    protected float OverallHeight => BindingList.OfType<ILayoutComponent>().Aggregate(0.0f, (x, y) => x + y.Component.VerticalHeight);
+    protected float OverallHeight => BindingList.OfType<ILayoutComponent>().Sum(x => x.Component.VerticalHeight);
     protected bool IsVertical
     {
         get => Layout.Mode == LayoutMode.Vertical;
-        set
-        {
-            if (value)
-            {
-                Layout.Mode = LayoutMode.Vertical;
-            }
-            else
-            {
-                Layout.Mode = LayoutMode.Horizontal;
-            }
-        }
+        set => Layout.Mode = value ? LayoutMode.Vertical : LayoutMode.Horizontal;
     }
     protected bool IsHorizontal { get => !IsVertical; set => IsVertical = !value; }
     public LayoutEditorDialog(ILayout layout, LiveSplitState state, Form form)
@@ -139,10 +128,10 @@ public partial class LayoutEditorDialog : Form
         foreach (IGrouping<ComponentCategory, IComponentFactory> group in groups)
         {
             ComponentCategory category = group.Key;
-            var componentFactories = (IEnumerable<IComponentFactory>)group;
+            IEnumerable<IComponentFactory> componentFactories = group;
             if (category == ComponentCategory.Other)
             {
-                componentFactories = new[] { new SeparatorFactory() }.Concat(componentFactories).OrderBy(x => x.ComponentName);
+                componentFactories = componentFactories.Prepend(new SeparatorFactory()).OrderBy(x => x.ComponentName);
             }
 
             AddGroup(category, componentFactories);

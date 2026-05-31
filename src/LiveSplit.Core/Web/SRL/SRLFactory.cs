@@ -1,8 +1,7 @@
-﻿using System;
-
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.UI.Components;
+using System;
 
 namespace LiveSplit.Web.SRL;
 

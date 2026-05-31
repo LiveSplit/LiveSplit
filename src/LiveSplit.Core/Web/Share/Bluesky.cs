@@ -1,16 +1,13 @@
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
+using LiveSplit.UI;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
-using System.Web;
 using System.Windows.Forms;
-
-using LiveSplit.Model;
-using LiveSplit.Options;
-using LiveSplit.UI;
 
 namespace LiveSplit.Web.Share;
 
@@ -27,10 +24,11 @@ public class Bluesky : IRunUploadPlatform
 
     public string PlatformName => "Bluesky";
 
-    public string Description
-=> @"Bluesky allows you to share your run with the world. When sharing, a screenshot 
-of your splits will automatically be included. After authenticating with your handle 
-and a generated app password for the first time, LiveSplit will automatically send the post.";
+    public string Description => """
+        Bluesky allows you to share your run with the world. When sharing, a screenshot
+        of your splits will automatically be included. After authenticating with your handle
+        and a generated app password for the first time, LiveSplit will automatically send the post.
+        """;
 
     protected Bluesky() { }
 
@@ -64,18 +62,10 @@ and a generated app password for the first time, LiveSplit will automatically se
             string json = reader.ReadToEnd();
             return JSON.FromString(json);
         }
-        catch (WebException ex)
+        catch (WebException ex) when (ex.Response is HttpWebResponse { StatusCode: HttpStatusCode.Unauthorized })
         {
-            using (HttpWebResponse errorResponse = (HttpWebResponse)ex.Response)
-            {
-                if (errorResponse.StatusCode.ToString() == "Unauthorized")
-                {
-                    return null;
-                }
-            }
-            throw new Exception(ex.ToString());
+            return null;
         }
-        
     }
 
     protected dynamic curlPostImage(string subUri, byte[] data, string token = "")
@@ -110,8 +100,14 @@ and a generated app password for the first time, LiveSplit will automatically se
         if (!rememberPassword)
         {
             Process.Start("https://bsky.app/settings/app-passwords");
-            System.Windows.Forms.DialogResult result = LoginBox.Show("Bluesky Authentication", "Enter the full name of your Bluesky handle:", "Enter the app password you have generated from Bluesky:", ref handle, ref appPassword, ref rememberPassword);
-            if (result == System.Windows.Forms.DialogResult.Cancel)
+            DialogResult result = LoginBox.Show(
+                "Bluesky Authentication",
+                "Enter the full name of your Bluesky handle:",
+                "Enter the app password you have generated from Bluesky:",
+                ref handle,
+                ref appPassword,
+                ref rememberPassword);
+            if (result == DialogResult.Cancel)
             {
                 return false;
             }
@@ -142,27 +138,29 @@ and a generated app password for the first time, LiveSplit will automatically se
         pngImage.Save(memoryStream, ImageFormat.Png);
         var blobRes = curlPostImage("xrpc/com.atproto.repo.uploadBlob", memoryStream.ToArray(), accessJWT);
 
-        string postData = $"{{" +
-            $"\"repo\": \"{dID}\", " +
-            $"\"collection\": \"app.bsky.feed.post\", " +
-            $"\"record\": {{" +
-                $"\"$type\": \"app.bsky.feed.post\", " +
-                $"\"text\": \"{comment}\", " +
-                $"\"createdAt\": \"{DateTime.UtcNow.ToString("o")}\", " +
-                $"\"embed\": {{" +
-                    $"\"$type\": \"app.bsky.embed.images\", " +
-                    $"\"images\": [" +
-                        $"{{" +
-                            $"\"alt\": \"Image of this user's current splits.\", " +
-                            $"\"image\": {blobRes.blob.ToString()}" +
-                        $"}}" +
-                    $"]" +
-                $"}}" +
-            $"}}" +
-        $"}}";
+        string postData = $$"""
+            {
+                "repo": "{{dID}}",
+                "collection": "app.bsky.feed.post",
+                "record": {
+                    "$type": "app.bsky.feed.post",
+                    "text": "{{comment}}",
+                    "createdAt": "{{DateTime.UtcNow:o}}",
+                    "embed": {
+                        "$type": "app.bsky.embed.images",
+                        "images": [
+                            {
+                                "alt": "Image of this user's current splits.",
+                                "image": {{blobRes.blob}}
+                            }
+                        ]
+                    }
+                }
+            }
+            """;
+
         var recordRes = curlPostData("xrpc/com.atproto.repo.createRecord", postData, accessJWT);
 
         return true;
     }
-
 }

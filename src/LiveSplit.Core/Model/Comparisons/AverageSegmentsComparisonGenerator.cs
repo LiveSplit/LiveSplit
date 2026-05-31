@@ -1,9 +1,7 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using LiveSplit.Options;
-
 using static System.Math;
 
 namespace LiveSplit.Model.Comparisons;
@@ -26,8 +24,8 @@ public class AverageSegmentsComparisonGenerator : IComparisonGenerator
         int elementCount = curList.Count();
         var weightedList = curList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, elementCount), x)).ToList();
         weightedList = [.. weightedList.OrderBy(x => x.Value)];
-        double totalWeights = weightedList.Aggregate(0.0, (s, x) => s + x.Key);
-        double averageTime = weightedList.Aggregate(0.0, (s, x) => s + (x.Key * x.Value.TotalSeconds)) / totalWeights;
+        double totalWeights = weightedList.Sum(x => x.Key);
+        double averageTime = weightedList.Sum(x => x.Key * x.Value.TotalSeconds) / totalWeights;
         return TimeSpan.FromTicks((long)(averageTime * TimeSpan.TicksPerSecond));
     }
 

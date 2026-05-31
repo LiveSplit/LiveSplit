@@ -1,8 +1,7 @@
-﻿using System;
+﻿using LiveSplit.UI;
+using System;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
-
-using LiveSplit.UI;
 
 namespace LiveSplit.Web.Share;
 

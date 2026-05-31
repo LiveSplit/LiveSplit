@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -23,8 +23,6 @@ public static class UiTextCatalog
     {
         [AppLanguage.English.Code] = CatalogEntry.CreateDefault()
     };
-
-    private static IReadOnlyList<AppLanguage> languages = new[] { AppLanguage.English };
     private static bool initialized;
     private static string initializedBaseDirectory;
 
@@ -33,9 +31,11 @@ public static class UiTextCatalog
         get
         {
             EnsureLoaded();
-            return languages;
+            return field;
         }
-    }
+
+        private set;
+    } = [AppLanguage.English];
 
     public static AppLanguage DefaultLanguage
     {
@@ -64,7 +64,7 @@ public static class UiTextCatalog
             }
 
             catalogs = LoadCatalogs(normalizedBaseDirectory);
-            languages = catalogs.Values
+            Languages = catalogs.Values
                 .Select(x => x.Language)
                 .OrderBy(x => x.IsDefault ? 0 : 1)
                 .ThenBy(x => x.DisplayName, StringComparer.CurrentCultureIgnoreCase)
@@ -154,8 +154,7 @@ public static class UiTextCatalog
             return false;
         }
 
-        if (language != null &&
-            !language.IsAuto &&
+        if (language != null && !language.IsAuto &&
             catalogs.TryGetValue(language.Code, out CatalogEntry catalog) &&
             catalog.Keys.TryGetValue(key, out translated))
         {
@@ -176,17 +175,9 @@ public static class UiTextCatalog
 
     private static string NormalizeBaseDirectory(string baseDirectory)
     {
-        string normalizedPath;
-
-        if (!string.IsNullOrWhiteSpace(baseDirectory))
-        {
-            normalizedPath = Path.GetFullPath(baseDirectory.Trim());
-        }
-        else
-        {
-            normalizedPath = AppDomain.CurrentDomain.BaseDirectory;
-        }
-
+        string normalizedPath = !string.IsNullOrWhiteSpace(baseDirectory)
+            ? Path.GetFullPath(baseDirectory.Trim())
+            : AppDomain.CurrentDomain.BaseDirectory;
         return normalizedPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
     }
 

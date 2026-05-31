@@ -1,14 +1,12 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Xml;
-
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.RunFactories;
 using LiveSplit.UI.Components;
 using LiveSplit.Web.SRL;
-
+using System;
+using System.IO;
+using System.Linq;
+using System.Xml;
 using static LiveSplit.UI.SettingsHelper;
 
 namespace LiveSplit.Options.SettingsFactories;
@@ -60,14 +58,8 @@ public class XMLSettingsFactory : ISettingsFactory
             settings.RecentLayouts.Add(layoutElement.InnerText);
         }
 
-        if (Environment.OSVersion.Version.Major >= Settings.DPI_AWARENESS_OS_MIN_VERSION)
-        {
-            settings.EnableDPIAwareness = ParseBool(parent["EnableDPIAwareness"], settings.EnableDPIAwareness);
-        }
-        else
-        {
-            settings.EnableDPIAwareness = false;
-        }
+        settings.EnableDPIAwareness = Environment.OSVersion.Version.Major >= Settings.DPI_AWARENESS_OS_MIN_VERSION
+            && ParseBool(parent["EnableDPIAwareness"], settings.EnableDPIAwareness);
 
         settings.UILanguage = ParseString(parent["UILanguage"], settings.UILanguage);
 
@@ -106,7 +98,7 @@ public class XMLSettingsFactory : ISettingsFactory
                             settings.HcpHistorySize = int.Parse(hcpHistorySize);
                         }
 
-                        if(hcpNBestRuns != string.Empty)
+                        if (hcpNBestRuns != string.Empty)
                         {
                             settings.HcpNBestRuns = int.Parse(hcpNBestRuns);
                         }

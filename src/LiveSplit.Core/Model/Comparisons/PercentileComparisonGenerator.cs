@@ -1,9 +1,7 @@
+﻿using LiveSplit.Options;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using LiveSplit.Options;
-
 using static System.Math;
 
 namespace LiveSplit.Model.Comparisons;
@@ -38,12 +36,14 @@ public class PercentileComparisonGenerator : IComparisonGenerator
         return TimeSpan.FromTicks(Convert.ToInt64(percUp + percDn));
     }
 
-    protected virtual TimeSpan? GetGoalTime(TimingMethod method) {
+    protected virtual TimeSpan? GetGoalTime(TimingMethod method)
+    {
         TimeSpan? goalTime = null;
-        if (Run[Run.Count - 1].PersonalBestSplitTime[method].HasValue)
+        if (Run[^1].PersonalBestSplitTime[method].HasValue)
         {
-            goalTime = Run[Run.Count - 1].PersonalBestSplitTime[method].Value;
+            goalTime = Run[^1].PersonalBestSplitTime[method].Value;
         }
+
         return goalTime;
     }
 
@@ -91,7 +91,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
             IEnumerable<IndexedTimeSpan> matchingSegmentHistory = currentList.Where(x => x.Index == overallStartingIndex);
             if (matchingSegmentHistory.Any())
             {
-                finalList = matchingSegmentHistory.Select(x => x.Time).ToList();
+                finalList = [.. matchingSegmentHistory.Select(x => x.Time)];
                 overallStartingIndex = curIndex;
             }
             else if (curPBTime != null && previousPBTime != null)
@@ -111,7 +111,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
                 if (tempList.Count > 1)
                 {
                     tempList = [.. tempList.OrderBy(x => x.Value)];
-                    double totalWeight = tempList.Aggregate(0.0, (s, x) => s + x.Key);
+                    double totalWeight = tempList.Sum(x => x.Key);
                     double smallestWeight = tempList[0].Key;
                     double rangeWeight = totalWeight - smallestWeight;
                     double aggWeight = 0.0;
@@ -202,14 +202,7 @@ public class PercentileComparisonGenerator : IComparisonGenerator
         for (int ind = 0; ind < Run.Count; ind++)
         {
             totalTime += outputSplits[ind];
-            if (outputSplits[ind] == TimeSpan.Zero)
-            {
-                useTime = null;
-            }
-            else
-            {
-                useTime = totalTime;
-            }
+            useTime = outputSplits[ind] == TimeSpan.Zero ? null : totalTime;
 
             var time = new Time(Run[ind].Comparisons[Name]);
             time[method] = useTime;

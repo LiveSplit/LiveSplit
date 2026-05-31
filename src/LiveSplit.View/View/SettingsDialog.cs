@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-
-using LiveSplit.Localization;
+﻿using LiveSplit.Localization;
 using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.UI;
 using LiveSplit.Utils;
 using LiveSplit.Web;
 using LiveSplit.Web.Share;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace LiveSplit.View;
 
@@ -102,7 +101,7 @@ public partial class SettingsDialog : Form
         RefreshLogOutButton();
         ttpEnableDPIAwarenessInfo.SetToolTip(chkEnableDPIAwareness, T("You must restart LiveSplit after changing this setting for changes to take effect"));
 
-        if (Environment.OSVersion.Version.Major < LiveSplit.Options.Settings.DPI_AWARENESS_OS_MIN_VERSION)
+        if (Environment.OSVersion.Version.Major < Options.Settings.DPI_AWARENESS_OS_MIN_VERSION)
         {
             settings.EnableDPIAwareness = false;
             chkEnableDPIAwareness.Checked = false;

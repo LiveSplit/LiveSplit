@@ -1,12 +1,11 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.UI.Components;
+using LiveSplit.Web.Share;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Timers;
-
-using LiveSplit.Model;
-using LiveSplit.UI.Components;
-using LiveSplit.Web.Share;
 
 namespace LiveSplit.Web.SRL;
 
@@ -44,7 +43,7 @@ public class SpeedRunsLiveAPI : RaceProviderAPI
                 return x.name;
             }
 
-            gameNames = GetGameList().Select(map).ToList();
+            gameNames = [.. GetGameList().Select(map)];
         }
 
         return gameNames;

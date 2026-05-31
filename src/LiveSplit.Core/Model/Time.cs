@@ -1,7 +1,6 @@
-﻿using System;
+﻿using LiveSplit.Web;
+using System;
 using System.Xml;
-
-using LiveSplit.Web;
 
 namespace LiveSplit.Model;
 
@@ -102,26 +101,14 @@ public struct Time
     public static Time ParseText(string text)
     {
         string[] splits = text.Split('|');
-        var newTime = new Time();
-        if (TimeSpan.TryParse(splits[0].TrimEnd(), out TimeSpan x))
+        var newTime = new Time
         {
-            newTime.RealTime = x;
-        }
-        else
-        {
-            newTime.RealTime = null;
-        }
+            RealTime = TimeSpan.TryParse(splits[0].TrimEnd(), out TimeSpan x) ? x : null
+        };
 
         if (splits.Length > 1)
         {
-            if (TimeSpan.TryParse(splits[1].TrimStart(), out x))
-            {
-                newTime.GameTime = x;
-            }
-            else
-            {
-                newTime.GameTime = null;
-            }
+            newTime.GameTime = TimeSpan.TryParse(splits[1].TrimStart(), out x) ? x : null;
         }
 
         return newTime;

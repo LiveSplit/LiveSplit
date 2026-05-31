@@ -1,11 +1,9 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using LiveSplit.Options;
-
 using UpdateManager;
 
 namespace LiveSplit.Updates;
@@ -26,11 +24,12 @@ public static class UpdateHelper
                 IEnumerable<IUpdateable> actualUpdateables = updateables.Where(x => !AlreadyChecked.Contains(x.GetType()));
                 if (Updater.CheckForAnyUpdate(actualUpdateables))
                 {
-                    string dialogText = actualUpdateables.Where(x => x.CheckForUpdate()).Select(x =>
+                    string dialogText = string.Concat(
+                        actualUpdateables.Where(x => x.CheckForUpdate())
+                        .Select(x =>
                             x.UpdateName + " (" + x.GetNewVersion() + ")\r\n" +
-                            x.GetChangeLog().Select(y => " - " + y + "\r\n")
-                                    .Aggregate("", (y, z) => y + z) + "\r\n")
-                                    .Aggregate((x, y) => x + y) + "Do you want to update?";
+                            string.Concat(x.GetChangeLog().Select(y => " - " + y + "\r\n")) + "\r\n")) +
+                        "Do you want to update?";
 
                     Action promptForUpdates = () =>
                     {

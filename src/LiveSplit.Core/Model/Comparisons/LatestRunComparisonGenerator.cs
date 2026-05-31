@@ -1,7 +1,6 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Linq;
-
-using LiveSplit.Options;
 
 namespace LiveSplit.Model.Comparisons;
 

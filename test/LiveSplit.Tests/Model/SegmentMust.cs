@@ -1,11 +1,8 @@
-﻿using System;
-using System.Drawing;
-
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Model.Comparisons;
-
+using System;
+using System.Drawing;
 using Xunit;
-
 using static LiveSplit.Tests.Model.Constants;
 
 namespace LiveSplit.Tests.Model;

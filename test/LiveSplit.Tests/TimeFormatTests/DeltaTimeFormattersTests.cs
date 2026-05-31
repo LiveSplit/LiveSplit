@@ -1,7 +1,5 @@
-﻿using System;
-
-using LiveSplit.TimeFormatters;
-
+﻿using LiveSplit.TimeFormatters;
+using System;
 using Xunit;
 
 namespace LiveSplit.Tests.TimeFormatterTests;

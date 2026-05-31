@@ -50,7 +50,7 @@ public partial class UpdateForm : Form
                     Process.Start(OtherProcess);
                 }
 
-                Invoke(new Action(Close));
+                Invoke(Close);
             }
             catch (Exception ex)
             {
@@ -58,6 +58,6 @@ public partial class UpdateForm : Form
             }
         }
 
-        new Thread(new ThreadStart((Action)a)).Start();
+        new Thread(a).Start();
     }
 }

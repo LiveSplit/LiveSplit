@@ -1,11 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Collections.Generic;
 using System.Xml;
-
-using LiveSplit.Model;
-
 using Xunit;
-
 using static LiveSplit.Tests.Model.Constants;
 
 namespace LiveSplit.Tests.Model;
@@ -38,7 +35,7 @@ public class TimeMust
         {
             foreach (object anyGameTime in possibleValues)
             {
-                yield return new object[] { anyRealTime, anyGameTime };
+                yield return [anyRealTime, anyGameTime];
             }
         }
     }
@@ -78,10 +75,10 @@ public class TimeMust
 
     public static IEnumerable<object[]> StringSerializationFeeder()
     {
-        yield return new object[] { AnyTimeSpan, AnotherTimeSpan, "9.00:00:00 | 03:00:00" };
-        yield return new object[] { null, AnotherTimeSpan, " | 03:00:00" };
-        yield return new object[] { AnyTimeSpan, null, "9.00:00:00 | " };
-        yield return new object[] { null, null, " | " };
+        yield return [AnyTimeSpan, AnotherTimeSpan, "9.00:00:00 | 03:00:00"];
+        yield return [null, AnotherTimeSpan, " | 03:00:00"];
+        yield return [AnyTimeSpan, null, "9.00:00:00 | "];
+        yield return [null, null, " | "];
     }
 
     [Theory]
@@ -95,12 +92,12 @@ public class TimeMust
 
     public static IEnumerable<object[]> StringDeserializationFeeder()
     {
-        yield return new object[] { "9.00:00:00 | 03:00:00", AnyTimeSpan, AnotherTimeSpan };
-        yield return new object[] { "| 03:00:00", null, AnotherTimeSpan };
-        yield return new object[] { "9.00:00:00 | ", AnyTimeSpan, null };
-        yield return new object[] { "|", null, null };
-        yield return new object[] { string.Empty, null, null };
-        yield return new object[] { "invalid|4:1.0", null, null };
+        yield return ["9.00:00:00 | 03:00:00", AnyTimeSpan, AnotherTimeSpan];
+        yield return ["| 03:00:00", null, AnotherTimeSpan];
+        yield return ["9.00:00:00 | ", AnyTimeSpan, null];
+        yield return ["|", null, null];
+        yield return [string.Empty, null, null];
+        yield return ["invalid|4:1.0", null, null];
     }
 
     [Theory]
@@ -115,10 +112,10 @@ public class TimeMust
 
     public static IEnumerable<object[]> JsonSerializationFeeder()
     {
-        yield return new object[] { AnyTimeSpan, AnotherTimeSpan, @"realTime""\s*:\s*""9.00:00:00""", @"gameTime""\s*:\s*""03:00:00""" };
-        yield return new object[] { null, AnotherTimeSpan, @"realTime""\s*:\s*""""", @"gameTime""\s*:\s*""03:00:00""" };
-        yield return new object[] { AnyTimeSpan, null, @"realTime""\s*:\s*""9.00:00:00""", @"gameTime""\s*:\s*""""" };
-        yield return new object[] { null, null, @"realTime""\s*:\s*""""", @"gameTime""\s*:\s*""""" };
+        yield return [AnyTimeSpan, AnotherTimeSpan, @"realTime""\s*:\s*""9.00:00:00""", @"gameTime""\s*:\s*""03:00:00"""];
+        yield return [null, AnotherTimeSpan, @"realTime""\s*:\s*""""", @"gameTime""\s*:\s*""03:00:00"""];
+        yield return [AnyTimeSpan, null, @"realTime""\s*:\s*""9.00:00:00""", @"gameTime""\s*:\s*"""""];
+        yield return [null, null, @"realTime""\s*:\s*""""", @"gameTime""\s*:\s*"""""];
     }
 
     [Fact]
@@ -153,10 +150,10 @@ public class TimeMust
 
     public static IEnumerable<object[]> XmlSerializationFeeder()
     {
-        yield return new object[] { AnyTimeSpan, AnotherTimeSpan, "<RealTime>9.00:00:00</RealTime>", "<GameTime>03:00:00</GameTime>" };
-        yield return new object[] { null, AnotherTimeSpan, string.Empty, "<GameTime>03:00:00</GameTime>" };
-        yield return new object[] { AnyTimeSpan, null, "<RealTime>9.00:00:00</RealTime>", string.Empty };
-        yield return new object[] { null, null, string.Empty, string.Empty };
+        yield return [AnyTimeSpan, AnotherTimeSpan, "<RealTime>9.00:00:00</RealTime>", "<GameTime>03:00:00</GameTime>"];
+        yield return [null, AnotherTimeSpan, string.Empty, "<GameTime>03:00:00</GameTime>"];
+        yield return [AnyTimeSpan, null, "<RealTime>9.00:00:00</RealTime>", string.Empty];
+        yield return [null, null, string.Empty, string.Empty];
     }
 
     [Theory]
@@ -172,10 +169,10 @@ public class TimeMust
 
     public static IEnumerable<object[]> XmlDeserializationFeeder()
     {
-        yield return new object[] { "<Time><RealTime>9.00:00:00</RealTime><GameTime>03:00:00</GameTime></Time>", AnyTimeSpan, AnotherTimeSpan };
-        yield return new object[] { "<Time><GameTime>03:00:00</GameTime></Time>", null, AnotherTimeSpan };
-        yield return new object[] { "<Time><RealTime>9.00:00:00</RealTime></Time>", AnyTimeSpan, null };
-        yield return new object[] { "<Time></Time>", null, null };
+        yield return ["<Time><RealTime>9.00:00:00</RealTime><GameTime>03:00:00</GameTime></Time>", AnyTimeSpan, AnotherTimeSpan];
+        yield return ["<Time><GameTime>03:00:00</GameTime></Time>", null, AnotherTimeSpan];
+        yield return ["<Time><RealTime>9.00:00:00</RealTime></Time>", AnyTimeSpan, null];
+        yield return ["<Time></Time>", null, null];
     }
 
     [Theory]
@@ -188,12 +185,12 @@ public class TimeMust
 
     public static IEnumerable<object[]> SubstractionFeeder()
     {
-        yield return new object[] { new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan, YetAnotherTimeSpan), new Time(TimeSpan.FromTicks(Difference), TimeSpan.FromTicks(0)) };
-        yield return new object[] { new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan), new Time(TimeSpan.FromTicks(Difference)) };
-        yield return new object[] { new Time(YetAnotherTimeSpan, AnyTimeSpan), new Time(YetAnotherTimeSpan, AnotherTimeSpan), new Time(TimeSpan.FromTicks(0), TimeSpan.FromTicks(Difference)) };
-        yield return new object[] { new Time(YetAnotherTimeSpan, AnyTimeSpan), new Time(null, AnotherTimeSpan), new Time(null, TimeSpan.FromTicks(Difference)) };
-        yield return new object[] { new Time(AnotherTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan, YetAnotherTimeSpan), Time.Zero };
-        yield return new object[] { Time.Zero, new Time(AnyTimeSpan, AnotherTimeSpan), new Time(TimeSpan.FromTicks(-AnyTickValue), TimeSpan.FromHours(-3)) };
+        yield return [new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan, YetAnotherTimeSpan), new Time(TimeSpan.FromTicks(Difference), TimeSpan.FromTicks(0))];
+        yield return [new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan), new Time(TimeSpan.FromTicks(Difference))];
+        yield return [new Time(YetAnotherTimeSpan, AnyTimeSpan), new Time(YetAnotherTimeSpan, AnotherTimeSpan), new Time(TimeSpan.FromTicks(0), TimeSpan.FromTicks(Difference))];
+        yield return [new Time(YetAnotherTimeSpan, AnyTimeSpan), new Time(null, AnotherTimeSpan), new Time(null, TimeSpan.FromTicks(Difference))];
+        yield return [new Time(AnotherTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan, YetAnotherTimeSpan), Time.Zero];
+        yield return [Time.Zero, new Time(AnyTimeSpan, AnotherTimeSpan), new Time(TimeSpan.FromTicks(-AnyTickValue), TimeSpan.FromHours(-3))];
     }
 
     [Theory]
@@ -206,11 +203,11 @@ public class TimeMust
 
     public static IEnumerable<object[]> AdditionFeeder()
     {
-        yield return new object[] { Time.Zero, Time.Zero, Time.Zero };
-        yield return new object[] { new Time(AnyTimeSpan, YetAnotherTimeSpan), Time.Zero, new Time(AnyTimeSpan, YetAnotherTimeSpan) };
-        yield return new object[] { Time.Zero, new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnyTimeSpan, YetAnotherTimeSpan) };
-        yield return new object[] { new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan), new Time(TimeSpan.FromTicks(Addition)) };
-        yield return new object[] { new Time(null, AnotherTimeSpan), new Time(YetAnotherTimeSpan, AnyTimeSpan), new Time(null, TimeSpan.FromTicks(Addition)) };
+        yield return [Time.Zero, Time.Zero, Time.Zero];
+        yield return [new Time(AnyTimeSpan, YetAnotherTimeSpan), Time.Zero, new Time(AnyTimeSpan, YetAnotherTimeSpan)];
+        yield return [Time.Zero, new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnyTimeSpan, YetAnotherTimeSpan)];
+        yield return [new Time(AnyTimeSpan, YetAnotherTimeSpan), new Time(AnotherTimeSpan), new Time(TimeSpan.FromTicks(Addition))];
+        yield return [new Time(null, AnotherTimeSpan), new Time(YetAnotherTimeSpan, AnyTimeSpan), new Time(null, TimeSpan.FromTicks(Addition))];
 
     }
 }

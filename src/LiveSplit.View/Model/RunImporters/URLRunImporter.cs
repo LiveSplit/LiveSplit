@@ -1,13 +1,11 @@
-﻿using System;
-using System.IO;
-using System.Net;
-using System.Windows.Forms;
-
-using LiveSplit.Model.Comparisons;
+﻿using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.RunFactories;
 using LiveSplit.Options;
 using LiveSplit.UI;
-using LiveSplit.Web.Share;
+using System;
+using System.IO;
+using System.Net;
+using System.Windows.Forms;
 
 namespace LiveSplit.Model.RunImporters;
 

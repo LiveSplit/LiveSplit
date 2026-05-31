@@ -1,35 +1,32 @@
-﻿using System;
+﻿using LiveSplit.TimeFormatters;
+using System;
 using System.Drawing;
-
-using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.UI.Components;
 
 public class InfoTimeComponent : InfoTextComponent
 {
-    private TimeSpan? timeValue;
     public TimeSpan? TimeValue
     {
-        get => timeValue;
+        get;
         set
         {
-            timeValue = value;
-            InformationValue = Formatter.Format(timeValue);
+            field = value;
+            InformationValue = Formatter.Format(field);
         }
     }
 
-    private ITimeFormatter formatter;
     public ITimeFormatter Formatter
     {
-        get => formatter;
+        get;
         set
         {
-            if (value != null && value != formatter)
+            if (value != null && value != field)
             {
-                InformationValue = value.Format(timeValue);
+                InformationValue = value.Format(TimeValue);
             }
 
-            formatter = value;
+            field = value;
         }
     }
 

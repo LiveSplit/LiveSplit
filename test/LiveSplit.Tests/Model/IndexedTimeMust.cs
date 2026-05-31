@@ -1,10 +1,7 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Xml;
-
-using LiveSplit.Model;
-
 using Xunit;
-
 using static LiveSplit.Tests.Model.Constants;
 
 namespace LiveSplit.Tests.Model;

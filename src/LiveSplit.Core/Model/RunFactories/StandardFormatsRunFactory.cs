@@ -1,13 +1,11 @@
-﻿using System;
+﻿using LiveSplit.Model.Comparisons;
+using LiveSplit.Options;
+using System;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Xml;
-
-using LiveSplit.Model.Comparisons;
-using LiveSplit.Options;
-
 using static LiveSplit.UI.SettingsHelper;
 
 namespace LiveSplit.Model.RunFactories;
@@ -150,18 +148,9 @@ public class StandardFormatsRunFactory : IRunFactory
         run.AttemptCount = (int)lscRun.AttemptCount();
 
         LiveSplitCore.LinkedLayout linkedLayout = lscRun.LinkedLayout();
-        if (linkedLayout == null)
-        {
-            run.LayoutPath = null;
-        }
-        else if (linkedLayout.IsDefault())
-        {
-            run.LayoutPath = "?default";
-        }
-        else
-        {
-            run.LayoutPath = linkedLayout.Path();
-        }
+        run.LayoutPath = linkedLayout != null
+            ? linkedLayout.IsDefault() ? "?default" : linkedLayout.Path()
+            : null;
 
         ulong attemptsCount = lscRun.AttemptHistoryLen();
         for (ulong i = 0ul; i < attemptsCount; ++i)

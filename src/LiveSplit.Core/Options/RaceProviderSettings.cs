@@ -41,18 +41,12 @@ public abstract class RaceProviderSettings : ICloneable
         XmlElement parent = document.CreateElement("Plugin");
 
         XmlAttribute providerName = document.CreateAttribute("name");
-        if (providerName != null)
-        {
-            providerName.InnerText = Name.ToString();
-        }
+        providerName?.InnerText = Name.ToString();
 
         parent.Attributes.Append(providerName);
 
         XmlAttribute enabled = document.CreateAttribute("enabled");
-        if (enabled != null)
-        {
-            enabled.InnerText = Enabled.ToString();
-        }
+        enabled?.InnerText = Enabled.ToString();
 
         parent.Attributes.Append(enabled);
 

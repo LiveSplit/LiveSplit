@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Windows.Forms;
 
 namespace Fetze.WinFormsColor;
@@ -9,8 +10,6 @@ namespace Fetze.WinFormsColor;
 public class ColorSlider : UserControl
 {
     private Bitmap srcImage = null;
-    private int pickerSize = 5;
-    private float pickerPos = 0.5f;
     private Color min = Color.Transparent;
     private Color max = Color.Transparent;
     private readonly Timer pickerDragTimer = null;
@@ -19,45 +18,39 @@ public class ColorSlider : UserControl
     public event EventHandler ValueChanged = null;
     public event EventHandler PercentualValueChanged = null;
 
-    public Rectangle ColorAreaRectangle
-    {
-        get
-        {
-            return new Rectangle(
-            ClientRectangle.X + pickerSize + 2,
-            ClientRectangle.Y + pickerSize + 2,
-            ClientRectangle.Width - (pickerSize * 2) - 4,
-            ClientRectangle.Height - (pickerSize * 2) - 4);
-        }
-    }
+    public Rectangle ColorAreaRectangle => new(
+        ClientRectangle.X + PickerSize + 2,
+        ClientRectangle.Y + PickerSize + 2,
+        ClientRectangle.Width - (PickerSize * 2) - 4,
+        ClientRectangle.Height - (PickerSize * 2) - 4);
     [DefaultValue(5)]
     public int PickerSize
     {
-        get => pickerSize;
+        get;
         set
         {
-            pickerSize = value;
+            field = value;
             Invalidate();
         }
-    }
+    } = 5;
     [DefaultValue(true)]
     public bool ShowInnerPicker { get; set; } = true;
     [DefaultValue(0.5f)]
     public float ValuePercentual
     {
-        get => pickerPos;
+        get;
         set
         {
-            float lastVal = pickerPos;
-            pickerPos = Math.Min(1.0f, Math.Max(0.0f, value));
-            if (pickerPos != lastVal)
+            float lastVal = field;
+            field = Math.Min(1.0f, Math.Max(0.0f, value));
+            if (field != lastVal)
             {
                 OnPercentualValueChanged();
                 UpdateColorValue();
                 Invalidate();
             }
         }
-    }
+    } = 0.5f;
     public Color Value { get; private set; } = Color.Transparent;
     public Color Minimum
     {
@@ -170,7 +163,7 @@ public class ColorSlider : UserControl
     protected void UpdateColorValue()
     {
         Color oldVal = Value;
-        Value = srcImage.GetPixel(0, (int)Math.Round((srcImage.Height - 1) * (1.0f - pickerPos)));
+        Value = srcImage.GetPixel(0, (int)Math.Round((srcImage.Height - 1) * (1.0f - ValuePercentual)));
         if (oldVal != Value)
         {
             OnValueChanged();
@@ -196,40 +189,40 @@ public class ColorSlider : UserControl
         base.OnPaint(e);
 
         var colorBoxOuter = new Rectangle(
-            ClientRectangle.X + pickerSize,
-            ClientRectangle.Y + pickerSize,
-            ClientRectangle.Width - (pickerSize * 2) - 1,
-            ClientRectangle.Height - (pickerSize * 2) - 1);
+            ClientRectangle.X + PickerSize,
+            ClientRectangle.Y + PickerSize,
+            ClientRectangle.Width - (PickerSize * 2) - 1,
+            ClientRectangle.Height - (PickerSize * 2) - 1);
         var colorBoxInner = new Rectangle(
             colorBoxOuter.X + 1,
             colorBoxOuter.Y + 1,
             colorBoxOuter.Width - 2,
             colorBoxOuter.Height - 2);
         Rectangle colorArea = ColorAreaRectangle;
-        int pickerVisualPos = colorArea.Y + (int)Math.Round((1.0f - pickerPos) * colorArea.Height);
+        int pickerVisualPos = colorArea.Y + (int)Math.Round((1.0f - ValuePercentual) * colorArea.Height);
 
         if (min.A < 255 || max.A < 255)
         {
             e.Graphics.FillRectangle(new HatchBrush(HatchStyle.LargeCheckerBoard, Color.LightGray, Color.Gray), colorArea);
         }
 
-        var colorAreaImageAttr = new System.Drawing.Imaging.ImageAttributes();
+        var colorAreaImageAttr = new ImageAttributes();
         colorAreaImageAttr.SetWrapMode(WrapMode.TileFlipXY);
         e.Graphics.DrawImage(srcImage, colorArea, 0, 0, srcImage.Width, srcImage.Height - 1, GraphicsUnit.Pixel, colorAreaImageAttr);
 
         e.Graphics.DrawRectangle(SystemPens.ControlDark, colorBoxOuter);
         e.Graphics.DrawRectangle(SystemPens.ControlLightLight, colorBoxInner);
 
-        e.Graphics.DrawLines(Enabled ? Pens.Black : SystemPens.ControlDark, new Point[] {
-            new(0, pickerVisualPos - pickerSize),
-            new(pickerSize, pickerVisualPos),
-            new(0, pickerVisualPos + pickerSize),
-            new(0, pickerVisualPos - pickerSize)});
-        e.Graphics.DrawLines(Enabled ? Pens.Black : SystemPens.ControlDark, new Point[] {
-            new(colorBoxOuter.Right + pickerSize, pickerVisualPos - pickerSize),
+        e.Graphics.DrawLines(Enabled ? Pens.Black : SystemPens.ControlDark, [
+            new(0, pickerVisualPos - PickerSize),
+            new(PickerSize, pickerVisualPos),
+            new(0, pickerVisualPos + PickerSize),
+            new(0, pickerVisualPos - PickerSize)]);
+        e.Graphics.DrawLines(Enabled ? Pens.Black : SystemPens.ControlDark, [
+            new(colorBoxOuter.Right + PickerSize, pickerVisualPos - PickerSize),
             new(colorBoxOuter.Right, pickerVisualPos),
-            new(colorBoxOuter.Right + pickerSize, pickerVisualPos + pickerSize),
-            new(colorBoxOuter.Right + pickerSize, pickerVisualPos - pickerSize)});
+            new(colorBoxOuter.Right + PickerSize, pickerVisualPos + PickerSize),
+            new(colorBoxOuter.Right + PickerSize, pickerVisualPos - PickerSize)]);
 
         if (ShowInnerPicker)
         {

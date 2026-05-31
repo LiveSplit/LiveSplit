@@ -1,14 +1,12 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-using LiveSplit.Localization;
+﻿using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.Utils;
 using LiveSplit.Web.SRL;
+using System;
+using System.Drawing;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LiveSplit.UI;
 
@@ -39,7 +37,7 @@ public class NewRaceInputBox : Form
         {
             try
             {
-                string[] gameNames = SpeedRunsLiveAPI.Instance.GetGameNames().ToArray();
+                string[] gameNames = [.. SpeedRunsLiveAPI.Instance.GetGameNames()];
                 this.InvokeIfRequired(() =>
                 {
                     try
@@ -62,7 +60,7 @@ public class NewRaceInputBox : Form
         cbxGameName.TextChanged += cbxGameName_TextChanged;
 
         cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
-        cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
+        cbxRunCategory.Items.AddRange(["Any%", "Low%", "100%"]);
         cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
         Text = T("New Race");
@@ -106,7 +104,7 @@ public class NewRaceInputBox : Form
         cbxGameName.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
         cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
-        cbxRunCategory.Items.AddRange(new string[] { "Any%", "Low%", "100%" });
+        cbxRunCategory.Items.AddRange(["Any%", "Low%", "100%"]);
         cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
         RefreshCategoryAutoCompleteList("");
@@ -143,7 +141,7 @@ public class NewRaceInputBox : Form
                 string[] categoryNames;
                 try
                 {
-                    categoryNames = SpeedRunsLiveAPI.Instance.GetCategories(SpeedRunsLiveAPI.Instance.GetGameIDFromName(gameName)).ToArray();
+                    categoryNames = [.. SpeedRunsLiveAPI.Instance.GetCategories(SpeedRunsLiveAPI.Instance.GetGameIDFromName(gameName))];
                 }
                 catch (Exception ex)
                 {

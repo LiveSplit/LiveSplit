@@ -1,8 +1,7 @@
-﻿using System.Linq;
-using System.Windows.Forms;
-
-using LiveSplit.UI;
+﻿using LiveSplit.UI;
 using LiveSplit.Web.SRL;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace LiveSplit.Model.RunImporters;
 
@@ -39,9 +38,9 @@ public static class IRunImportRunExtensions
                 int maxMatched = -1;
                 foreach (ISegment segment in comparisonRun)
                 {
-                    if (segment == comparisonRun.Last())
+                    if (segment == comparisonRun[^1])
                     {
-                        target.Last().Comparisons[name] = comparisonRun.Last().PersonalBestSplitTime;
+                        target[^1].Comparisons[name] = comparisonRun[^1].PersonalBestSplitTime;
                     }
                     else
                     {

@@ -1,17 +1,15 @@
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
+using LiveSplit.Options.SettingsFactories;
+using LiveSplit.UI;
+using LiveSplit.UI.Components;
+using LiveSplit.UI.LayoutSavers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml;
-
-using LiveSplit.Model;
-using LiveSplit.Options;
-using LiveSplit.Options.SettingsFactories;
-using LiveSplit.UI;
-using LiveSplit.UI.Components;
-using LiveSplit.UI.LayoutSavers;
-
 using Xunit;
 
 namespace LiveSplit.Tests.UI;

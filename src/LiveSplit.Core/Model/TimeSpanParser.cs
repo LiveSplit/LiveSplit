@@ -1,8 +1,7 @@
-﻿using System;
+﻿using LiveSplit.TimeFormatters;
+using System;
 using System.Globalization;
 using System.Linq;
-
-using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.Model;
 
