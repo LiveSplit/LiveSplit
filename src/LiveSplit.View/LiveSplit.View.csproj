@@ -9,10 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(LibPath)\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
-    <ProjectReference Include="$(SrcPath)\LiveSplit.Core\LiveSplit.Core.csproj" />
-    <ProjectReference Include="$(SrcPath)\UpdateManager\UpdateManager.csproj" />
-    <ProjectReference Include="$(LibPath)\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj" />
+    <ProjectReference Include="$(LibPath)/SpeedrunComSharp/src/SpeedrunComSharp/SpeedrunComSharp.csproj" />
+    <ProjectReference Include="$(SrcPath)/LiveSplit.Core/LiveSplit.Core.csproj" />
+    <ProjectReference Include="$(SrcPath)/UpdateManager/UpdateManager.csproj" />
+    <ProjectReference Include="$(LibPath)/CustomFontDialog/CustomFontDialog/CustomFontDialog.csproj" />
   </ItemGroup>
 
   <ItemGroup>
