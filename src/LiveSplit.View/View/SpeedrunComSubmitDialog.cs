@@ -1,12 +1,11 @@
-﻿using System;
+﻿using LiveSplit.Localization;
+using LiveSplit.Model;
+using LiveSplit.Web.Share;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-
-using LiveSplit.Localization;
-using LiveSplit.Model;
-using LiveSplit.Web.Share;
 
 namespace LiveSplit.View;
 
@@ -54,7 +53,7 @@ public partial class SpeedrunComSubmitDialog : Form
             row++;
         }
 
-        Time runTime = metadata.LiveSplitRun.Last().PersonalBestSplitTime;
+        Time runTime = metadata.LiveSplitRun[^1].PersonalBestSplitTime;
 
         System.Collections.ObjectModel.ReadOnlyCollection<SpeedrunComSharp.TimingMethod> timingMethods = metadata.Game.Ruleset.TimingMethods;
         bool usesGameTime = timingMethods.Contains(SpeedrunComSharp.TimingMethod.GameTime);
@@ -159,7 +158,7 @@ public partial class SpeedrunComSubmitDialog : Form
             }
             catch
             {
-                    MessageBox.Show(this, T("You didn't enter a valid Game Time."), T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, T("You didn't enter a valid Game Time."), T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -175,7 +174,7 @@ public partial class SpeedrunComSubmitDialog : Form
             }
             catch
             {
-                    MessageBox.Show(this, T("You didn't enter a valid Real Time without Loads."), T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, T("You didn't enter a valid Real Time without Loads."), T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }
@@ -191,7 +190,7 @@ public partial class SpeedrunComSubmitDialog : Form
         }
         else
         {
-                    MessageBox.Show(this, reason, T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, reason, T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 
@@ -203,7 +202,7 @@ public partial class SpeedrunComSubmitDialog : Form
         }
 
         IRun run = metadata.LiveSplitRun;
-        ISegment lastSplit = run.Last();
+        ISegment lastSplit = run[^1];
         Time runTime = lastSplit.PersonalBestSplitTime;
 
         if (runTime.GameTime.HasValue)
@@ -223,7 +222,7 @@ public partial class SpeedrunComSubmitDialog : Form
 
             attempt.Time = runTime;
 
-            run.AttemptHistory = [.. run.AttemptHistory.Concat(new[] { attempt }).OrderBy(x => x.Index)];
+            run.AttemptHistory = [.. run.AttemptHistory.Append(attempt).OrderBy(x => x.Index)];
         }
 
         lastSplit.PersonalBestSplitTime = runTime;

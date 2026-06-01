@@ -1,4 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
+using LiveSplit.TimeFormatters;
+using LiveSplit.Updates;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -12,12 +16,6 @@ using System.Reflection;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
-
-using LiveSplit.Model;
-using LiveSplit.Options;
-using LiveSplit.TimeFormatters;
-using LiveSplit.Updates;
-
 using WebSocketSharp.Server;
 
 namespace LiveSplit.Server;
@@ -391,7 +389,7 @@ public class CommandServer
                 }
                 else if (State.CurrentPhase == TimerPhase.Ended)
                 {
-                    delta = State.Run.Last().SplitTime[State.CurrentTimingMethod] - State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+                    delta = State.Run[^1].SplitTime[State.CurrentTimingMethod] - State.Run[^1].Comparisons[comparison][State.CurrentTimingMethod];
                 }
 
                 // Defaults to "-" when delta is null, such as when State.CurrentPhase == TimerPhase.NotRunning
@@ -421,6 +419,7 @@ public class CommandServer
                 {
                     index = State.Run.Count - Math.Abs(index);
                 }
+
                 if (index >= 0 && index < State.Run.Count)
                 {
                     response = State.Run[index].Name;
@@ -435,42 +434,21 @@ public class CommandServer
             }
             case "getcurrentsplitname":
             {
-                if (State.CurrentSplit != null)
-                {
-                    response = State.CurrentSplit.Name;
-                }
-                else
-                {
-                    response = "-";
-                }
+                response = State.CurrentSplit != null ? State.CurrentSplit.Name : "-";
 
                 break;
             }
             case "getlastsplitname":
             case "getprevioussplitname":
             {
-                if (State.CurrentSplitIndex > 0)
-                {
-                    response = State.Run[State.CurrentSplitIndex - 1].Name;
-                }
-                else
-                {
-                    response = "-";
-                }
+                response = State.CurrentSplitIndex > 0 ? State.Run[State.CurrentSplitIndex - 1].Name : "-";
 
                 break;
             }
             case "getnextsplitname":
             case "getupcomingsplitname":
             {
-                if (State.CurrentSplitIndex < State.Run.Count - 1)
-                {
-                    response = State.Run[State.CurrentSplitIndex + 1].Name;
-                }
-                else
-                {
-                    response = "-";
-                }
+                response = State.CurrentSplitIndex < State.Run.Count - 1 ? State.Run[State.CurrentSplitIndex + 1].Name : "-";
 
                 break;
             }
@@ -538,23 +516,16 @@ public class CommandServer
                 string comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
                 TimeSpan? time = (State.CurrentPhase == TimerPhase.Ended)
                     ? State.CurrentTime[State.CurrentTimingMethod]
-                    : State.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+                    : State.Run[^1].Comparisons[comparison][State.CurrentTimingMethod];
                 response = TimeFormatter.Format(time);
                 break;
             }
             case "getbestpossibletime":
             case "getpredictedtime":
             {
-                string comparison;
-                if (command == "getbestpossibletime")
-                {
-                    comparison = LiveSplit.Model.Comparisons.BestSegmentsComparisonGenerator.ComparisonName;
-                }
-                else
-                {
-                    comparison = args.Length > 1 ? args[1] : State.CurrentComparison;
-                }
-
+                string comparison = command == "getbestpossibletime"
+                    ? LiveSplit.Model.Comparisons.BestSegmentsComparisonGenerator.ComparisonName
+                    : args.Length > 1 ? args[1] : State.CurrentComparison;
                 TimeSpan? prediction = PredictTime(State, comparison);
                 response = TimeFormatter.Format(prediction);
                 break;
@@ -644,6 +615,7 @@ public class CommandServer
                 {
                     index = State.Run.Count - Math.Abs(index);
                 }
+
                 if (index >= 0 && index < State.Run.Count)
                 {
                     State.Run[index].Name = title;
@@ -718,6 +690,7 @@ public class CommandServer
                 {
                     Log.Error($"[Server] Hotkey profile not found: {args[1]}");
                 }
+
                 break;
             }
             case "ping":
@@ -746,11 +719,13 @@ public class CommandServer
                         break;
                     }
                 }
+
                 success = SaveLayout(true);
                 if (!success)
                 {
                     Log.Error($"[Server] Failed to save current layout");
                 }
+
                 response = success.ToString();
                 break;
             }
@@ -775,11 +750,13 @@ public class CommandServer
                         break;
                     }
                 }
+
                 success = SaveSplits(false, true);
                 if (!success)
                 {
                     Log.Error($"[Server] Failed to save current splits");
                 }
+
                 response = success.ToString();
                 break;
             }
@@ -826,11 +803,9 @@ public class CommandServer
                 {
                     try
                     {
-                        using (var stream = new MemoryStream())
-                        {
-                            image.Save(stream, ImageFormat.Png);
-                            response = $"data:image/png;base64,{Convert.ToBase64String(stream.ToArray()).ToString()}";
-                        }
+                        using var stream = new MemoryStream();
+                        image.Save(stream, ImageFormat.Png);
+                        response = $"data:image/png;base64,{Convert.ToBase64String(stream.ToArray())}";
                     }
                     catch (Exception e)
                     {
@@ -853,8 +828,10 @@ public class CommandServer
                         Log.Error($"[Server] Failed to save screenshot file: {args[1]}");
                         success = false;
                     }
+
                     response = success.ToString();
                 }
+
                 break;
             }
             case "getattemptcount":
@@ -862,7 +839,7 @@ public class CommandServer
                 response = Model.CurrentState.Run.AttemptCount.ToString();
                 break;
             }
-			case "getcompletedcount":
+            case "getcompletedcount":
             {
                 response = State.Run.AttemptHistory.Count(x => x.Time.RealTime != null).ToString();
                 break;
@@ -879,7 +856,7 @@ public class CommandServer
             }
             case "getlivesplitpath":
             {
-                response = System.Reflection.Assembly.GetEntryAssembly().Location.ToString();
+                response = Assembly.GetEntryAssembly().Location.ToString();
                 break;
             }
             case "getservertype":
@@ -928,15 +905,15 @@ public class CommandServer
                 delta = liveDelta;
             }
 
-            return delta + state.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+            return delta + state.Run[^1].Comparisons[comparison][State.CurrentTimingMethod];
         }
         else if (state.CurrentPhase == TimerPhase.Ended)
         {
-            return state.Run.Last().SplitTime[State.CurrentTimingMethod];
+            return state.Run[^1].SplitTime[State.CurrentTimingMethod];
         }
         else
         {
-            return state.Run.Last().Comparisons[comparison][State.CurrentTimingMethod];
+            return state.Run[^1].Comparisons[comparison][State.CurrentTimingMethod];
         }
     }
 

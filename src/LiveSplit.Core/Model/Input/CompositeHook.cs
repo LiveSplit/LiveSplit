@@ -1,13 +1,11 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using SharpDX.DirectInput;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using LiveSplit.Options;
-
-using SharpDX.DirectInput;
 
 namespace LiveSplit.Model.Input;
 
@@ -106,14 +104,13 @@ public class CompositeHook
     protected LowLevelKeyboardHook KeyboardHook { get; set; }
     protected GamepadHook GamepadHook { get; set; }
 
-    private bool allowGamepads;
     public bool AllowGamepads
     {
-        get => allowGamepads;
+        get;
         set
         {
-            allowGamepads = value;
-            if (allowGamepads)
+            field = value;
+            if (field)
             {
                 InitializeGamepadHook();
             }

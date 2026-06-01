@@ -1,8 +1,7 @@
-﻿using System;
-using System.Drawing;
-
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Options;
+using System;
+using System.Drawing;
 
 namespace LiveSplit.Web.Share;
 

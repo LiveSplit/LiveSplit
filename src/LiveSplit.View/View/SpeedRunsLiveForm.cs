@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-
-using LiveSplit.Localization;
+﻿using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.Utils;
 using LiveSplit.Web;
 using LiveSplit.Web.SRL;
+using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace LiveSplit.View;
 
@@ -31,7 +30,7 @@ public partial class SpeedRunsLiveForm : Form
         GameCategory = null;
         string raceChannel = string.Format("#srl-{0}", raceId);
         string liveSplitChannel = string.Format("{0}-livesplit", raceChannel);
-        SRLClient = new SpeedRunsLiveIRC(state, model, new[] { "#speedrunslive", raceChannel, liveSplitChannel });
+        SRLClient = new SpeedRunsLiveIRC(state, model, ["#speedrunslive", raceChannel, liveSplitChannel]);
         SRLClient.ChannelJoined += SRLClient_ChannelJoined;
         SRLClient.RawMessageReceived += SRLClient_RawMessageReceived;
         SRLClient.MessageReceived += SRLClient_MessageReceived;
@@ -59,7 +58,7 @@ public partial class SpeedRunsLiveForm : Form
         {
             if (!FormIsClosing)
             {
-        MessageBox.Show(this, T("You have been kicked from the IRC Channel."), T("Kicked From Channel"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, T("You have been kicked from the IRC Channel."), T("Kicked From Channel"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
         });
@@ -78,7 +77,7 @@ public partial class SpeedRunsLiveForm : Form
             {
                 if (!FormIsClosing)
                 {
-        MessageBox.Show(this, T("You have been disconnected from the IRC server."), T("Disconnected"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, T("You have been disconnected from the IRC server."), T("Disconnected"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Close();
                 }
             });
@@ -97,7 +96,7 @@ public partial class SpeedRunsLiveForm : Form
 
         this.InvokeIfRequired(() =>
         {
-        MessageBox.Show(this, T("Your nickname is already in use."), T("Nickname In Use"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, T("Your nickname is already in use."), T("Nickname In Use"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             Close();
         });
     }
@@ -113,7 +112,7 @@ public partial class SpeedRunsLiveForm : Form
 
         this.InvokeIfRequired(() =>
         {
-        MessageBox.Show(this, T("The password is incorrect."), T("Password Incorrect"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, T("The password is incorrect."), T("Password Incorrect"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             Close();
         });
     }
@@ -122,7 +121,7 @@ public partial class SpeedRunsLiveForm : Form
     {
         GameId = gameID;
         GameCategory = gameCategory;
-        SRLClient = new SpeedRunsLiveIRC(state, model, new[] { "#speedrunslive" })
+        SRLClient = new SpeedRunsLiveIRC(state, model, ["#speedrunslive"])
         {
             GameName = gameName
         };
@@ -225,7 +224,7 @@ public partial class SpeedRunsLiveForm : Form
             SRLClient.MessageReceived -= ExitMessageReceived;
             if (InvokeRequired)
             {
-                Invoke(new Action(Close));
+                Invoke(Close);
             }
             else
             {
@@ -249,7 +248,7 @@ public partial class SpeedRunsLiveForm : Form
             SRLClient.MessageReceived -= UndoneMessageReceived;
             if (InvokeRequired)
             {
-                Invoke(new Action(Close));
+                Invoke(Close);
             }
             else
             {
@@ -320,22 +319,11 @@ public partial class SpeedRunsLiveForm : Form
             dynamic user = ((IDictionary<string, dynamic>)race.entrants.Properties).FirstOrDefault(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value;
             if (user != null)
             {
-                if (user.statetext is (dynamic)"Finished" or (dynamic)"Forfeit")
-                {
-                    SRLClient.RaceState = RaceState.RaceEnded;
-                }
-                else if (race.statetext == "In Progress")
-                {
-                    SRLClient.RaceState = RaceState.RaceStarted;
-                }
-                else if (user.statetext == "Ready")
-                {
-                    SRLClient.RaceState = RaceState.EnteredRaceAndReady;
-                }
-                else
-                {
-                    SRLClient.RaceState = RaceState.EnteredRace;
-                }
+                SRLClient.RaceState =
+                    user.statetext is "Finished" or "Forfeit" ? RaceState.RaceEnded
+                    : user.statetext == "Ready" ? RaceState.EnteredRaceAndReady
+                    : race.statetext == "In Progress" ? RaceState.RaceStarted
+                    : RaceState.EnteredRace;
 
                 SRLClient_StateChanged(this, SRLClient.RaceState);
             }
@@ -401,7 +389,7 @@ public partial class SpeedRunsLiveForm : Form
                 dynamic race = SpeedRunsLiveAPI.Instance.GetRace(RaceId);
                 if (race.statetext == "In Progress" && ((IDictionary<string, dynamic>)race.entrants.Properties).First(x => x.Key.ToLower() == SRLClient.Username.ToLower()).Value.statetext == "Finished")
                 {
-            DialogResult result = MessageBox.Show(this, T("Due to SpeedRunsLive rules, you need to confirm that you have completed the race before leaving an unfinished race. Do you confirm that you legitimately finished the race?"), T("Confirmation Required"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    DialogResult result = MessageBox.Show(this, T("Due to SpeedRunsLive rules, you need to confirm that you have completed the race before leaving an unfinished race. Do you confirm that you legitimately finished the race?"), T("Confirmation Required"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (result == DialogResult.Cancel)
                     {
                         e.Cancel = true;
@@ -504,7 +492,7 @@ public partial class SpeedRunsLiveForm : Form
             Color origColor = color;
             string colorlessMessage = "";
             int actualBegin = chatBox.Text.Length;
-            foreach (string split in message.Split(new[] { (char)3 }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (string split in message.Split([(char)3], StringSplitOptions.RemoveEmptyEntries))
             {
                 begin = chatBox.Text.Length;
                 string useSplit = split;
@@ -609,14 +597,14 @@ public partial class SpeedRunsLiveForm : Form
             e.DrawBackground();
             Brush myBrush = (((ListBox)sender).Items[e.Index] as UserListItem).Brush;
             //
-            // Draw the current item text based on the current 
+            // Draw the current item text based on the current
             // Font and the custom brush settings.
             //
             e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
             e.Graphics.DrawString(((ListBox)sender).Items[e.Index].ToString(),
                 e.Font, myBrush, e.Bounds, StringFormat.GenericDefault);
             //
-            // If the ListBox has focus, draw a focus rectangle 
+            // If the ListBox has focus, draw a focus rectangle
             // around the selected item.
             //
             e.DrawFocusRectangle();

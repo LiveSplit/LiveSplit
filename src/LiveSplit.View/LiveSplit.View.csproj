@@ -9,16 +9,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(LibPath)\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
-    <ProjectReference Include="$(SrcPath)\LiveSplit.Core\LiveSplit.Core.csproj" />
-    <ProjectReference Include="$(SrcPath)\UpdateManager\UpdateManager.csproj" />
-    <ProjectReference Include="$(LibPath)\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj" />
+    <ProjectReference Include="$(LibPath)/SpeedrunComSharp/src/SpeedrunComSharp/SpeedrunComSharp.csproj" />
+    <ProjectReference Include="$(SrcPath)/LiveSplit.Core/LiveSplit.Core.csproj" />
+    <ProjectReference Include="$(SrcPath)/UpdateManager/UpdateManager.csproj" />
+    <ProjectReference Include="$(LibPath)/CustomFontDialog/CustomFontDialog/CustomFontDialog.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="all" />
-    <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
-    <PackageReference Include="WindowsAPICodePack" Version="8.0.6" />
+    <PackageReference Include="PolySharp" Version="1.16.0" PrivateAssets="all" />
+    <PackageReference Include="System.Resources.Extensions" Version="10.0.8" />
+    <PackageReference Include="WindowsAPICodePack" Version="8.0.15.2" />
   </ItemGroup>
 
   <ItemGroup>

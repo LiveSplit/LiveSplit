@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(SrcPath)\LiveSplit.Core\LiveSplit.Core.csproj" />
+    <ProjectReference Include="$(SrcPath)/LiveSplit.Core/LiveSplit.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="all" />
+    <PackageReference Include="PolySharp" Version="1.16.0" PrivateAssets="all" />
   </ItemGroup>
 
 </Project>

@@ -1,9 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Updates;
+using System;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
-
-using LiveSplit.Updates;
 
 namespace LiveSplit.View;
 

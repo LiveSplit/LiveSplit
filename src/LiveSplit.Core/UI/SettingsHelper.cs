@@ -1,12 +1,11 @@
-﻿using System;
+﻿using Fetze.WinFormsColor;
+using System;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Forms;
 using System.Xml;
-
-using Fetze.WinFormsColor;
 
 namespace LiveSplit.UI;
 

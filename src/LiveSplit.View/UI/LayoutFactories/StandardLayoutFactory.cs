@@ -1,7 +1,6 @@
-﻿using System.Drawing;
+﻿using LiveSplit.Model;
+using System.Drawing;
 using System.IO;
-
-using LiveSplit.Model;
 
 namespace LiveSplit.UI.LayoutFactories;
 

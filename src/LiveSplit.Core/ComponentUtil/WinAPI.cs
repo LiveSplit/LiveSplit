@@ -5,6 +5,7 @@ using System.Text;
 using SizeT = System.UIntPtr;
 
 namespace LiveSplit.ComponentUtil;
+
 public enum MemPageState : uint
 {
     MEM_COMMIT = 0x1000,

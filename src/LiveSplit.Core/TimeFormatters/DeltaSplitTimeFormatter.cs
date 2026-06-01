@@ -1,4 +1,4 @@
-namespace LiveSplit.TimeFormatters;
+﻿namespace LiveSplit.TimeFormatters;
 
 public class DeltaSplitTimeFormatter : GeneralTimeFormatter
 {

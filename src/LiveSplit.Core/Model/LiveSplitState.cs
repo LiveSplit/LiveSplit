@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
-
-using LiveSplit.Model.Input;
+﻿using LiveSplit.Model.Input;
 using LiveSplit.Options;
 using LiveSplit.UI;
-
+using System;
 using Forms = System.Windows.Forms;
 
 namespace LiveSplit.Model;
@@ -46,17 +43,7 @@ public class LiveSplitState : ICloneable
     public bool IsGameTimeInitialized
     {
         get => loadingTimes.HasValue;
-        set
-        {
-            if (value)
-            {
-                loadingTimes = LoadingTimes;
-            }
-            else
-            {
-                loadingTimes = null;
-            }
-        }
+        set => loadingTimes = value ? LoadingTimes : null;
     }
     private bool isGameTimePaused;
     public bool IsGameTimePaused
@@ -97,35 +84,22 @@ public class LiveSplitState : ICloneable
     {
         get
         {
-            var curTime = new Time();
+            var curTime = new Time
+            {
+                RealTime = CurrentPhase switch
+                {
+                    TimerPhase.NotRunning => TimeSpan.Zero,
+                    TimerPhase.Running => TimeStamp.Now - AdjustedStartTime,
+                    TimerPhase.Paused => TimePausedAt,
+                    _ => Run[^1].SplitTime.RealTime,
+                }
+            };
 
-            if (CurrentPhase == TimerPhase.NotRunning)
-            {
-                curTime.RealTime = TimeSpan.Zero;
-            }
-            else if (CurrentPhase == TimerPhase.Running)
-            {
-                curTime.RealTime = TimeStamp.Now - AdjustedStartTime;
-            }
-            else if (CurrentPhase == TimerPhase.Paused)
-            {
-                curTime.RealTime = TimePausedAt;
-            }
-            else
-            {
-                curTime.RealTime = Run.Last().SplitTime.RealTime;
-            }
-
-            if (CurrentPhase == TimerPhase.Ended)
-            {
-                curTime.GameTime = Run.Last().SplitTime.GameTime;
-            }
-            else
-            {
-                curTime.GameTime = IsGameTimePaused
+            curTime.GameTime = CurrentPhase == TimerPhase.Ended
+                ? Run[^1].SplitTime.GameTime
+                : IsGameTimePaused
                     ? GameTimePauseTime
                     : curTime.RealTime - (IsGameTimeInitialized ? LoadingTimes : null);
-            }
 
             return curTime;
         }

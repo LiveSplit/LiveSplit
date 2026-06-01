@@ -1,16 +1,14 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
+using LiveSplit.TimeFormatters;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Windows;
-
-using LiveSplit.Model;
-using LiveSplit.Options;
-using LiveSplit.TimeFormatters;
 
 namespace LiveSplit.Web.Share;
 
@@ -102,7 +100,7 @@ public class Imgur : IRunUploadPlatform
         bool gameNameEmpty = string.IsNullOrEmpty(run.GameName);
         bool categoryEmpty = string.IsNullOrEmpty(run.CategoryName);
 
-        titleBuilder.Append(new RegularTimeFormatter(TimeAccuracy.Seconds).Format(run.Last().PersonalBestSplitTime[method]));
+        titleBuilder.Append(new RegularTimeFormatter(TimeAccuracy.Seconds).Format(run[^1].PersonalBestSplitTime[method]));
         if (titleBuilder.Length > 0 && (!gameNameEmpty || !categoryEmpty))
         {
             titleBuilder.Append(" in ");

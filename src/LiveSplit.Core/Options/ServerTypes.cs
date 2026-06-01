@@ -1,4 +1,4 @@
-namespace LiveSplit.Options;
+﻿namespace LiveSplit.Options;
 
 public enum ServerStartupType
 {

@@ -1,11 +1,10 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using LiveSplit.Web.Share;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Script.Serialization;
-
-using LiveSplit.Options;
-using LiveSplit.Web.Share;
 
 namespace LiveSplit.Web;
 

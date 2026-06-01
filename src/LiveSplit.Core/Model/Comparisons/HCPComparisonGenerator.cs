@@ -1,8 +1,7 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using LiveSplit.Options;
 
 namespace LiveSplit.Model.Comparisons;
 
@@ -14,7 +13,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
     public string Name => ComparisonName;
     private int _numberOfLatestRunsToInclude = 20;
     private int _maximumNumberOfBestRunsToInclude = 8;
-    
+
     private readonly List<double> _totalTimes;
     private readonly List<List<double>> _segmentTimesPerRun;
     private readonly List<int> _bestRunIndices;
@@ -107,7 +106,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
         int attemptCount = attemptHistory.Count;
         int lastSegmentIndex = segmentCount - 1;
         ISegment lastSegment = Run[lastSegmentIndex];
-        
+
         int validAttemptsFound = 0;
         for (int i = attemptCount - 1; i >= 0 && validAttemptsFound < _numberOfLatestRunsToInclude; i--)
         {
@@ -118,7 +117,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
             {
                 continue;
             }
-            
+
             double totalTime = 0;
             if (attempt.Time[method] != null)
             {
@@ -225,7 +224,7 @@ public class HCPComparisonGenerator : IComparisonGenerator
         }
 
         return (segmentHCPTimes, hasValidTimes, bestSegmentFromSelectedRuns);
-    }   
+    }
 
     private void ApplyHCPComparisons(
         int segmentCount,
@@ -324,16 +323,9 @@ public class HCPComparisonGenerator : IComparisonGenerator
 
             if (hasValidTimes[i])
             {
-                TimeSpan segmentDuration;
-
-                if (clampedSegments[i])
-                {
-                    segmentDuration = TimeSpan.FromSeconds(bestSegmentFromSelectedRuns[i]);
-                }
-                else
-                {
-                    segmentDuration = TimeSpan.FromSeconds(Math.Max(0, segmentHCPTimes[i] * scaleFactor));
-                }
+                TimeSpan segmentDuration = clampedSegments[i]
+                    ? TimeSpan.FromSeconds(bestSegmentFromSelectedRuns[i])
+                    : TimeSpan.FromSeconds(Math.Max(0, segmentHCPTimes[i] * scaleFactor));
 
                 cumulative += segmentDuration;
                 time[method] = cumulative;

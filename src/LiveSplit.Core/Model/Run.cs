@@ -1,11 +1,10 @@
-﻿using System;
+﻿using LiveSplit.Model.Comparisons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Xml;
-
-using LiveSplit.Model.Comparisons;
 
 namespace LiveSplit.Model;
 
@@ -72,7 +71,7 @@ public class Run : IRun, INotifyPropertyChanged
     /// </summary>
     public int AttemptCount { get; set; }
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public IList<Attempt> AttemptHistory { get; set; }
 
@@ -81,7 +80,7 @@ public class Run : IRun, INotifyPropertyChanged
 
     public IList<IComparisonGenerator> ComparisonGenerators { get; set; }
     public IList<string> CustomComparisons { get; set; }
-    public IEnumerable<string> Comparisons => CustomComparisons.Concat(ComparisonGenerators.Select(x => x.Name));
+    public IEnumerable<string> Comparisons => [.. CustomComparisons, .. ComparisonGenerators.Select(x => x.Name)];
 
     public RunMetadata Metadata { get; private set; }
 
@@ -104,7 +103,7 @@ public class Run : IRun, INotifyPropertyChanged
         InternalList = [];
         AttemptHistory = [];
         Factory = factory;
-        ComparisonGenerators = Factory.Create(this).ToList();
+        ComparisonGenerators = [.. Factory.Create(this)];
         CustomComparisons = [PersonalBestComparisonName];
         Metadata = new RunMetadata(this);
     }
@@ -119,7 +118,7 @@ public class Run : IRun, INotifyPropertyChanged
 
         AttemptHistory = [];
         Factory = factory;
-        ComparisonGenerators = Factory.Create(this).ToList();
+        ComparisonGenerators = [.. Factory.Create(this)];
         CustomComparisons = [PersonalBestComparisonName];
         Metadata = metadata.Clone(this);
     }
@@ -193,11 +192,11 @@ public class Run : IRun, INotifyPropertyChanged
             CategoryName = CategoryName,
             Offset = Offset,
             AttemptCount = AttemptCount,
-            AttemptHistory = new List<Attempt>(AttemptHistory),
+            AttemptHistory = [.. AttemptHistory],
             HasChanged = HasChanged,
             FilePath = FilePath,
-            CustomComparisons = new List<string>(CustomComparisons),
-            ComparisonGenerators = new List<IComparisonGenerator>(ComparisonGenerators),
+            CustomComparisons = [.. CustomComparisons],
+            ComparisonGenerators = [.. ComparisonGenerators],
             AutoSplitter = AutoSplitter?.Clone(),
             AutoSplitterSettings = AutoSplitterSettings,
             LayoutPath = LayoutPath

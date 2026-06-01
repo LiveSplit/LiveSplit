@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,8 +12,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Script.Serialization;
-
-using LiveSplit.Options;
 
 namespace LiveSplit.Web;
 
@@ -46,7 +45,7 @@ public static class JSON
         {
             MaxJsonLength = int.MaxValue
         };
-        serializer.RegisterConverters(new[] { new DynamicJsonConverter() });
+        serializer.RegisterConverters([new DynamicJsonConverter()]);
 
         return serializer.Deserialize<object>(value);
     }
@@ -85,10 +84,8 @@ public static class JSON
 
         parameters.Append("}");
 
-        using (var writer = new StreamWriter(request.GetRequestStream()))
-        {
-            writer.Write(parameters.ToString());
-        }
+        using var writer = new StreamWriter(request.GetRequestStream());
+        writer.Write(parameters.ToString());
 
         using WebResponse response = request.GetResponse();
         return FromResponse(response);
@@ -112,7 +109,7 @@ public sealed class DynamicJsonConverter : JavaScriptConverter
         throw new NotImplementedException();
     }
 
-    public override IEnumerable<Type> SupportedTypes => new ReadOnlyCollection<Type>(new List<Type>(new[] { typeof(object) }));
+    public override IEnumerable<Type> SupportedTypes => new ReadOnlyCollection<Type>([typeof(object)]);
 }
 
 public sealed class DynamicJsonObject : DynamicObject
@@ -304,17 +301,17 @@ public sealed class DynamicJsonObject : DynamicObject
     public static string JavaScriptStringDecode(string source)
     {
         // Replace some chars.
-        string decoded = source.Replace(@"\'", "'")
-                    .Replace(@"\""", @"""")
-                    .Replace(@"\/", "/")
-                    .Replace(@"\t", "\t")
-                    .Replace(@"\n", "\n");
+        string decoded = source
+            .Replace(@"\'", "'")
+            .Replace(@"\""", @"""")
+            .Replace(@"\/", "/")
+            .Replace(@"\t", "\t")
+            .Replace(@"\n", "\n");
 
         // Replace unicode escaped text.
         var rx = new Regex(@"\\[uU]([0-9A-F]{4})");
 
-        decoded = rx.Replace(decoded, match => ((char)int.Parse(match.Value[2..], NumberStyles.HexNumber))
-                                                .ToString(CultureInfo.InvariantCulture));
+        decoded = rx.Replace(decoded, match => ((char)int.Parse(match.Value[2..], NumberStyles.HexNumber)).ToString(CultureInfo.InvariantCulture));
 
         return decoded;
     }
@@ -347,8 +344,8 @@ public sealed class DynamicJsonObject : DynamicObject
         if (result is ArrayList arrayList && arrayList.Count > 0)
         {
             return arrayList[0] is IDictionary<string, object>
-                ? new List<object>(arrayList.Cast<IDictionary<string, object>>().Select(x => new DynamicJsonObject(x)))
-                : new List<object>(arrayList.Cast<object>());
+                ? arrayList.Cast<IDictionary<string, object>>().Select(x => new DynamicJsonObject(x)).ToList()
+                : arrayList.Cast<object>().ToList();
         }
 
         return result;

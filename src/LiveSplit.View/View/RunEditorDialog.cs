@@ -1,4 +1,14 @@
-﻿using System;
+﻿using LiveSplit.Localization;
+using LiveSplit.Model;
+using LiveSplit.Model.RunImporters;
+using LiveSplit.Options;
+using LiveSplit.TimeFormatters;
+using LiveSplit.UI;
+using LiveSplit.Utils;
+using LiveSplit.Web;
+using LiveSplit.Web.Share;
+using LiveSplit.Web.SRL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -11,17 +21,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
-
-using LiveSplit.Localization;
-using LiveSplit.Model;
-using LiveSplit.Model.RunImporters;
-using LiveSplit.Options;
-using LiveSplit.TimeFormatters;
-using LiveSplit.UI;
-using LiveSplit.Utils;
-using LiveSplit.Web;
-using LiveSplit.Web.Share;
-using LiveSplit.Web.SRL;
 
 namespace LiveSplit.View;
 
@@ -61,7 +60,7 @@ public partial class RunEditorDialog : Form
     private const int HistoryPageSize = 50;
     private int currentPage = 1;
     private int totalPages = 1;
-    private IList<Attempt> _filteredAttempts = new List<Attempt>();
+    private IList<Attempt> _filteredAttempts = [];
 
     protected bool IsGridTab => tabControl.SelectedTab == RealTime || tabControl.SelectedTab == GameTime;
     protected bool IsMetadataTab => tabControl.SelectedTab == Metadata;
@@ -200,7 +199,7 @@ public partial class RunEditorDialog : Form
         CurrentState = state;
         Run = state.Run;
         Run.PropertyChanged += Run_PropertyChanged;
-        PreviousPersonalBestTime = Run.Last().PersonalBestSplitTime;
+        PreviousPersonalBestTime = Run[^1].PersonalBestSplitTime;
         metadataControl.Metadata = Run.Metadata;
         metadataControl.MetadataChanged += metadataControl_MetadataChanged;
         CurrentSplitIndexOffset = 0;
@@ -292,7 +291,7 @@ public partial class RunEditorDialog : Form
         cbxGameName.GetAllItemsForText = x => [];
 
         cbxRunCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
-        cbxRunCategory.Items.AddRange(new[] { "Any%", "Low%", "100%" });
+        cbxRunCategory.Items.AddRange(["Any%", "Low%", "100%"]);
         cbxRunCategory.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
 
         SelectedMethod = state.CurrentTimingMethod;
@@ -316,13 +315,12 @@ public partial class RunEditorDialog : Form
     private string[] SearchForGameName(string name)
     {
         name = name.ToLowerInvariant();
-        return abbreviations
+        return [.. abbreviations
             .Where(x => x.Key.ToLowerInvariant().Contains(name))
             .OrderBy(x => x.Key.ToLowerInvariant().Similarity(name))
             .SelectMany(x => x)
             .Distinct()
-            .Take(10)
-            .ToArray();
+            .Take(10)];
     }
 
     private void Run_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -384,7 +382,7 @@ public partial class RunEditorDialog : Form
                 IEnumerable<string> cachedGameNames = CompositeGameList.Instance.GetGameNames(true);
                 if (cachedGameNames != null)
                 {
-                    gameNames = cachedGameNames.ToArray();
+                    gameNames = [.. cachedGameNames];
                     AddCbxGameNamesIncremental(gameNames, token);
                 }
                 else
@@ -395,8 +393,8 @@ public partial class RunEditorDialog : Form
                 IEnumerable<string> fetchedGameNames = CompositeGameList.Instance.GetGameNames(false);
                 if (fetchedGameNames != null)
                 {
-                    gameNames = fetchedGameNames.ToArray();
-                    string[] newGameNames = gameNames.Except(cachedGameNames).ToArray();
+                    gameNames = [.. fetchedGameNames];
+                    string[] newGameNames = [.. gameNames.Except(cachedGameNames)];
 
                     abbreviations = gameNames
                     .Select(x => x.GetAbbreviations()
@@ -459,7 +457,7 @@ public partial class RunEditorDialog : Form
                     SpeedrunComSharp.Game game = Run.Metadata.Game;
                     if (game != null)
                     {
-                        categoryNames = game.FullGameCategories.Select(x => x.Name).ToArray();
+                        categoryNames = [.. game.FullGameCategories.Select(x => x.Name)];
                     }
                 }
                 catch (Exception ex)
@@ -519,10 +517,10 @@ public partial class RunEditorDialog : Form
             btnRemove.Enabled = SegmentList.Count > 1;
             List<DataGridViewCell> selectedCells = [.. runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex)];
 
-            if (selectedCells.FirstOrDefault() != null)
+            if (selectedCells.Count > 0)
             {
-                btnMoveUp.Enabled = selectedCells.First().RowIndex > 0;
-                btnMoveDown.Enabled = selectedCells.Last().RowIndex < SegmentList.Count - 1;
+                btnMoveUp.Enabled = selectedCells[0].RowIndex > 0;
+                btnMoveDown.Enabled = selectedCells[^1].RowIndex < SegmentList.Count - 1;
             }
             else
             {
@@ -623,7 +621,7 @@ public partial class RunEditorDialog : Form
             return;
         }
 
-        if (columnIndex != HISTORY_SPLITTIMEINDEX && columnIndex != HISTORY_SEGMENTTIMEINDEX)
+        if (columnIndex is not HISTORY_SPLITTIMEINDEX and not HISTORY_SEGMENTTIMEINDEX)
         {
             e.ParsingApplied = false;
             return;
@@ -662,10 +660,7 @@ public partial class RunEditorDialog : Form
             else
             {
                 IList<TimeSpan?> splitTimes = HistoryTimeCalculator.GetSplitTimesForAttempt(Run, attemptIndex, method);
-                TimeSpan? prevSplitTime = rowIndex > 0 ? splitTimes[rowIndex - 1] : TimeSpan.Zero;
-                if (prevSplitTime == null)
-                    prevSplitTime = TimeSpan.Zero;
-
+                TimeSpan? prevSplitTime = (rowIndex > 0 ? splitTimes[rowIndex - 1] : TimeSpan.Zero) ?? TimeSpan.Zero;
                 newSplitTime = parsed;
                 if (newSplitTime < prevSplitTime.Value)
                     newSplitTime = prevSplitTime.Value;
@@ -939,7 +934,8 @@ public partial class RunEditorDialog : Form
         // Re-add custom comparison columns (from Run.CustomComparisons)
         foreach (string comparison in Run.CustomComparisons)
         {
-            if (comparison == Model.Run.PersonalBestComparisonName) continue;
+            if (comparison == Model.Run.PersonalBestComparisonName)
+                continue;
             var customCol = new DataGridViewTextBoxColumn
             {
                 Name = comparison,
@@ -965,6 +961,7 @@ public partial class RunEditorDialog : Form
             fromDate = new DateTime(selectedMonth.Year, selectedMonth.Month, 1);
             toDate = fromDate.Value.AddMonths(1).AddTicks(-1);
         }
+
         var filter = new RunHistoryFilter(
             CompletedOnly: chkCompletedOnly.Checked,
             PbSegmentsOnly: chkPbSegmentsOnly.Checked,
@@ -975,8 +972,10 @@ public partial class RunEditorDialog : Form
         _filteredAttempts = RunHistoryService.GetFilteredAttempts(Run, filter);
 
         totalPages = _filteredAttempts.Count == 0 ? 1 : (_filteredAttempts.Count + HistoryPageSize - 1) / HistoryPageSize;
-        if (currentPage > totalPages) currentPage = totalPages;
-        if (currentPage < 1) currentPage = 1;
+        if (currentPage > totalPages)
+            currentPage = totalPages;
+        if (currentPage < 1)
+            currentPage = 1;
 
         var pageAttempts = RunHistoryService.GetPage(_filteredAttempts, currentPage, HistoryPageSize);
 
@@ -1057,8 +1056,6 @@ public partial class RunEditorDialog : Form
     {
         cbxMonthFilter.SelectedIndexChanged -= cbxMonthFilter_SelectedIndexChanged;
 
-        var previousMonth = cbxMonthFilter.SelectedItem as MonthFilterItem;
-
         cbxMonthFilter.Items.Clear();
         cbxMonthFilter.Items.Add("All");
 
@@ -1074,9 +1071,9 @@ public partial class RunEditorDialog : Form
             cbxMonthFilter.Items.Add(new MonthFilterItem(m.Year, m.Month));
 
         bool restored = false;
-        if (previousMonth != null)
+        if (cbxMonthFilter.SelectedItem is MonthFilterItem previousMonth)
         {
-            foreach (var item in cbxMonthFilter.Items)
+            foreach (object item in cbxMonthFilter.Items)
             {
                 if (item is MonthFilterItem mfi && mfi.Year == previousMonth.Year && mfi.Month == previousMonth.Month)
                 {
@@ -1086,6 +1083,7 @@ public partial class RunEditorDialog : Form
                 }
             }
         }
+
         if (!restored)
             cbxMonthFilter.SelectedIndex = 0;
 
@@ -1104,13 +1102,15 @@ public partial class RunEditorDialog : Form
                     e.Value = Run[e.RowIndex].Icon;
                     return;
                 }
+
                 if (e.ColumnIndex == SEGMENTNAMEINDEX)
                 {
                     e.Value = Run[e.RowIndex].Name;
                     e.FormattingApplied = true;
                     return;
                 }
-                if (e.ColumnIndex == HISTORY_SPLITTIMEINDEX || e.ColumnIndex == HISTORY_SEGMENTTIMEINDEX || e.ColumnIndex == HISTORY_SEGMENTBESTDIFFINDEX)
+
+                if (e.ColumnIndex is HISTORY_SPLITTIMEINDEX or HISTORY_SEGMENTTIMEINDEX or HISTORY_SEGMENTBESTDIFFINDEX)
                 {
                     EnsureHistoryCache();
                     TimeSpan? value = null;
@@ -1142,8 +1142,10 @@ public partial class RunEditorDialog : Form
                         e.Value = TimeFormatter.Format(value.Value);
                         e.FormattingApplied = true;
                     }
+
                     return;
                 }
+
                 return; // Other columns in history mode: show nothing
             }
 
@@ -1239,14 +1241,9 @@ public partial class RunEditorDialog : Form
                 Filter = T("Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*")
             };
             bool multiEdit = runGrid.SelectedCells.Count > 1;
-            if (!string.IsNullOrEmpty(Run[e.RowIndex].Name) && !multiEdit)
-            {
-                dialog.Title = string.Format(T("Set Icon for {0}..."), Run[e.RowIndex].Name);
-            }
-            else
-            {
-                dialog.Title = T("Set Icon...");
-            }
+            dialog.Title = !string.IsNullOrEmpty(Run[e.RowIndex].Name) && !multiEdit
+                ? string.Format(T("Set Icon for {0}..."), Run[e.RowIndex].Name)
+                : T("Set Icon...");
 
             DialogResult result = dialog.ShowDialog();
             if (result == DialogResult.OK)
@@ -1325,17 +1322,12 @@ public partial class RunEditorDialog : Form
 
     private void picGameIcon_DoubleClick(object sender, EventArgs e)
     {
-        var dialog = new OpenFileDialog();
-        if (!string.IsNullOrEmpty(GameName))
+        var dialog = new OpenFileDialog
         {
-            dialog.Title = string.Format(T("Set Icon for {0}..."), GameName);
-        }
-        else
-        {
-            dialog.Title = T("Set Game Icon...");
-        }
+            Title = !string.IsNullOrEmpty(GameName) ? string.Format(T("Set Icon for {0}..."), GameName) : T("Set Game Icon..."),
 
-        dialog.Filter = T("Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*");
+            Filter = T("Image Files|*.BMP;*.JPG;*.GIF;*.JPEG;*.PNG|All files (*.*)|*.*")
+        };
         DialogResult result = dialog.ShowDialog();
         if (result == DialogResult.OK)
         {
@@ -1507,14 +1499,7 @@ public partial class RunEditorDialog : Form
 
     private void cbxLayoutToUse_DragEnter(object sender, DragEventArgs e)
     {
-        if (e.Data.GetDataPresent(DataFormats.FileDrop))
-        {
-            e.Effect = DragDropEffects.Copy;
-        }
-        else
-        {
-            e.Effect = DragDropEffects.None;
-        }
+        e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
     }
 
     private void chkbxUseLayout_CheckedChanged(object sender, EventArgs e)
@@ -1807,7 +1792,7 @@ public partial class RunEditorDialog : Form
             }
         }
 
-        var comparisonKeys = new List<string>(firstSegment.Comparisons.Keys);
+        List<string> comparisonKeys = [.. firstSegment.Comparisons.Keys];
         foreach (string comparison in comparisonKeys)
         {
             //Fix the comparison times based on the new positions of the two segments
@@ -1887,11 +1872,11 @@ public partial class RunEditorDialog : Form
 
     private void TimesModified()
     {
-        if (Run.Last().PersonalBestSplitTime.RealTime != PreviousPersonalBestTime.RealTime
-            || Run.Last().PersonalBestSplitTime.GameTime != PreviousPersonalBestTime.GameTime)
+        if (Run[^1].PersonalBestSplitTime.RealTime != PreviousPersonalBestTime.RealTime
+            || Run[^1].PersonalBestSplitTime.GameTime != PreviousPersonalBestTime.GameTime)
         {
             Run.Metadata.RunID = null;
-            PreviousPersonalBestTime = Run.Last().PersonalBestSplitTime;
+            PreviousPersonalBestTime = Run[^1].PersonalBestSplitTime;
         }
 
         RaiseRunEdited();
@@ -2219,9 +2204,9 @@ public partial class RunEditorDialog : Form
             : T("Activate");
         btnActivate.Enabled = Run.AutoSplitter != null;
         btnSettings.Enabled = Run.IsAutoSplitterActive() && Run.AutoSplitter.Component.GetSettingsControl(LayoutMode.Vertical) != null;
-        btnWebsite.Visible = Run.AutoSplitter != null && Run.AutoSplitter.Website != null;
+        btnWebsite.Visible = Run.AutoSplitter?.Website != null;
 
-        if (Run.AutoSplitter != null && Run.AutoSplitter.Website == null)
+        if (Run.AutoSplitter?.Website == null)
         {
             tableLayoutPanel1.SetColumnSpan(lblDescription, 5);
             tableLayoutPanel1.SetColumn(flowLayoutPanel1, 6);
@@ -2297,7 +2282,7 @@ public partial class RunEditorDialog : Form
     {
         List<DataGridViewCell> selectedCells = [.. runGrid.SelectedCells.Cast<DataGridViewCell>().OrderBy(o => o.RowIndex)];
 
-        int selectedInd = selectedCells.First().RowIndex;
+        int selectedInd = selectedCells[0].RowIndex;
         bool currCell = false;
 
         if (selectedCells != null)
@@ -2327,7 +2312,7 @@ public partial class RunEditorDialog : Form
     {
         List<DataGridViewCell> selectedCells = [.. runGrid.SelectedCells.Cast<DataGridViewCell>().OrderByDescending(o => o.RowIndex)];
 
-        int selectedInd = selectedCells.First().RowIndex;
+        int selectedInd = selectedCells[0].RowIndex;
         bool currCell = false;
 
         if (selectedCells != null)
@@ -2389,7 +2374,7 @@ public partial class RunEditorDialog : Form
         Run.ClearHistory();
         Fix();
         RaiseRunEdited();
-            MessageBox.Show(this, T("History cleared!"), T("History cleared"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show(this, T("History cleared!"), T("History cleared"), MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void clearTimesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2399,7 +2384,7 @@ public partial class RunEditorDialog : Form
         RebuildComparisonColumns();
         Fix();
         TimesModified();
-            MessageBox.Show(this, T("Times cleared!"), T("Times cleared"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show(this, T("Times cleared!"), T("Times cleared"), MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void cleanSumOfBestToolStripMenuItem_Click(object sender, EventArgs e)
@@ -2510,9 +2495,9 @@ public partial class RunEditorDialog : Form
         string imagePath = (e.Data.GetData(DataFormats.FileDrop) as string[])?[0];
 
         return e.Data.GetDataPresent(DataFormats.FileDrop)
-               && info.ColumnIndex != -1
-               && runGrid.Columns[info.ColumnIndex] is DataGridViewImageColumn
-               && info.Type == DataGridViewHitTestType.Cell;
+            && info.ColumnIndex != -1
+            && runGrid.Columns[info.ColumnIndex] is DataGridViewImageColumn
+            && info.Type == DataGridViewHitTestType.Cell;
     }
 
     private void cbxGameName_Validated(object sender, EventArgs e)
@@ -2522,7 +2507,7 @@ public partial class RunEditorDialog : Form
 
     private void btnDeleteAttempt_Click(object sender, EventArgs e)
     {
-        if (!(cbxAttemptSelect.SelectedItem is AttemptComboItem item))
+        if (cbxAttemptSelect.SelectedItem is not AttemptComboItem item)
             return;
 
         int attemptIndex = item.Attempt.Index;
@@ -2564,6 +2549,7 @@ public partial class RunEditorDialog : Form
         {
             SwitchToNormalMode();
         }
+
         UpdateButtonsStatus();
     }
 
@@ -2619,7 +2605,7 @@ public class CustomAutoCompleteComboBox : ComboBox
 
                     if (currentText == text && previousText != text)
                     {
-                        if (text != "" && legalStrings.Count() > 0 && text != legalStrings.First())
+                        if (text != "" && legalStrings.Count() > 0 && text != legalStrings[0])
                         {
                             form.InvokeIfRequired(() =>
                             {
@@ -2633,7 +2619,7 @@ public class CustomAutoCompleteComboBox : ComboBox
                         }
                         else
                         {
-                            form.InvokeIfRequired(() => CloseDropDown());
+                            form.InvokeIfRequired(CloseDropDown);
                         }
                     }
                 }

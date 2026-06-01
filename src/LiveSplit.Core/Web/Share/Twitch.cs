@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -6,9 +8,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Windows.Forms;
-
-using LiveSplit.Model;
-using LiveSplit.Options;
 
 namespace LiveSplit.Web.Share;
 
@@ -53,11 +52,12 @@ public class Twitch : IRunUploadPlatform
 
     public string PlatformName => "Twitch";
 
-    public string Description
-=> @"Sharing to Twitch will automatically update your 
-stream title and game playing based on the information 
-in your splits. Twitch must authenticate with LiveSplit 
-the first time that sharing to Twitch is used.";
+    public string Description => """
+        Sharing to Twitch will automatically update your
+        stream title and game playing based on the information
+        in your splits. Twitch must authenticate with LiveSplit
+        the first time that sharing to Twitch is used.
+        """;
 
     public ISettings Settings { get; set; }
 

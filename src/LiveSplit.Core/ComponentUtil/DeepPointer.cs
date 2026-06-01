@@ -10,6 +10,7 @@ using OffsetT = System.Int32;
 // Note: Please be careful when modifying this because it could break existing components!
 
 namespace LiveSplit.ComponentUtil;
+
 public class DeepPointer
 {
     public enum DerefType { Auto, Bit32, Bit64 }
@@ -153,16 +154,7 @@ public class DeepPointer
 
     public bool DerefOffsets(Process process, out IntPtr ptr)
     {
-        bool is64Bit;
-        if (_derefType == DerefType.Auto)
-        {
-            is64Bit = process.Is64Bit();
-        }
-        else
-        {
-            is64Bit = _derefType == DerefType.Bit64;
-        }
-
+        bool is64Bit = _derefType == DerefType.Auto ? process.Is64Bit() : _derefType == DerefType.Bit64;
         if (!string.IsNullOrEmpty(_module))
         {
             ProcessModuleWow64Safe module = process.ModulesWow64Safe()
@@ -175,13 +167,9 @@ public class DeepPointer
 
             ptr = module.BaseAddress + _base;
         }
-        else if (_usingAbsoluteBase)
-        {
-            ptr = _absoluteBase;
-        }
         else
         {
-            ptr = process.MainModuleWow64Safe().BaseAddress + _base;
+            ptr = _usingAbsoluteBase ? _absoluteBase : process.MainModuleWow64Safe().BaseAddress + _base;
         }
 
         for (int i = 0; i < _offsets.Count - 1; i++)
@@ -243,14 +231,14 @@ public struct Vector3f
     public readonly bool BitEquals(Vector3f other)
     {
         return X.BitEquals(other.X)
-               && Y.BitEquals(other.Y)
-               && Z.BitEquals(other.Z);
+            && Y.BitEquals(other.Y)
+            && Z.BitEquals(other.Z);
     }
 
     public readonly bool BitEqualsXY(Vector3f other)
     {
         return X.BitEquals(other.X)
-               && Y.BitEquals(other.Y);
+            && Y.BitEquals(other.Y);
     }
 
     public override readonly string ToString()

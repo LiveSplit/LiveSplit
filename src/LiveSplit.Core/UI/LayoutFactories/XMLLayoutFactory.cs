@@ -1,11 +1,10 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
+using LiveSplit.UI.Components;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Xml;
-
-using LiveSplit.Model;
-using LiveSplit.Options;
-using LiveSplit.UI.Components;
 
 namespace LiveSplit.UI.LayoutFactories;
 
@@ -78,18 +77,12 @@ public class XMLLayoutFactory : ILayoutFactory
         else
         {
             XmlElement gradientType = element["BackgroundGradient"];
-            if (gradientType == null || gradientType.InnerText == "Plain")
+            settings.BackgroundType = gradientType?.InnerText switch
             {
-                settings.BackgroundType = BackgroundType.SolidColor;
-            }
-            else if (gradientType.InnerText == "Vertical")
-            {
-                settings.BackgroundType = BackgroundType.VerticalGradient;
-            }
-            else
-            {
-                settings.BackgroundType = BackgroundType.HorizontalGradient;
-            }
+                null or "Plain" => BackgroundType.SolidColor,
+                "Vertical" => BackgroundType.VerticalGradient,
+                _ => BackgroundType.HorizontalGradient
+            };
         }
 
         settings.BackgroundImage = SettingsHelper.GetImageFromElement(element["BackgroundImage"]);

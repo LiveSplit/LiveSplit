@@ -1,8 +1,7 @@
-﻿using System;
-using System.Drawing;
-
-using LiveSplit.Model.Comparisons;
+﻿using LiveSplit.Model.Comparisons;
 using LiveSplit.UI;
+using System;
+using System.Drawing;
 
 namespace LiveSplit.Model;
 
@@ -31,16 +30,7 @@ public static class LiveSplitStateHelper
 
     private static TimeSpan? GetSegmentTimeOrSegmentDelta(LiveSplitState state, int splitNumber, bool useCurrentTime, bool segmentTime, string comparison, TimingMethod method)
     {
-        TimeSpan? currentTime;
-        if (useCurrentTime)
-        {
-            currentTime = state.CurrentTime[method];
-        }
-        else
-        {
-            currentTime = state.Run[splitNumber].SplitTime[method];
-        }
-
+        TimeSpan? currentTime = useCurrentTime ? state.CurrentTime[method] : state.Run[splitNumber].SplitTime[method];
         if (currentTime == null)
         {
             return null;

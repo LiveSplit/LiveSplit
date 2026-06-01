@@ -1,9 +1,7 @@
-﻿using System;
-using System.Xml;
-
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Model.Comparisons;
-
+using System;
+using System.Xml;
 using static LiveSplit.UI.SettingsHelper;
 
 namespace LiveSplit.Options.SettingsSavers;

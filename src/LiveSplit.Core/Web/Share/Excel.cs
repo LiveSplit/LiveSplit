@@ -1,11 +1,10 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.Model.RunSavers;
+using LiveSplit.Options;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-
-using LiveSplit.Model;
-using LiveSplit.Model.RunSavers;
-using LiveSplit.Options;
 
 namespace LiveSplit.Web.Share;
 
@@ -17,9 +16,10 @@ public class Excel : IRunUploadPlatform
 
     public string PlatformName => "Excel";
 
-    public string Description
-=> @"Export your splits as an Excel Sheet to analyze your splits. 
-This includes your whole history of all the runs you ever did.";
+    public string Description => """
+        Export your splits as an Excel Sheet to analyze your splits.
+        This includes your whole history of all the runs you ever did.
+        """;
 
     public ISettings Settings { get; set; }
 

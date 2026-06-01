@@ -1,12 +1,10 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using LiveSplit.Web.Share;
+using SpeedrunComSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
-using LiveSplit.Options;
-using LiveSplit.Web.Share;
-
-using SpeedrunComSharp;
 
 namespace LiveSplit.Model;
 
@@ -122,7 +120,7 @@ public class RunMetadata
     /// <summary>
     ///     A dictionary mapping custom variable names to <see cref="CustomVariable"/> objects.
     /// </summary>
-    public Dictionary<string, CustomVariable> CustomVariables { get; private set; } = new Dictionary<string, CustomVariable>();
+    public Dictionary<string, CustomVariable> CustomVariables { get; private set; } = [];
 
     /// <summary>
     ///     Gets the custom variable with the specified <paramref name="name"/> if it exists;
@@ -215,7 +213,7 @@ public class RunMetadata
     {
         LiveSplitRun = run;
         VariableValueNames = new Dictionary<string, string>();
-        CustomVariables = new Dictionary<string, CustomVariable>();
+        CustomVariables = [];
         game = new Lazy<Game>(() => null);
         category = new Lazy<Category>(() => null);
         this.run = new Lazy<SpeedrunComSharp.Run>(() => null);

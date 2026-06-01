@@ -5,7 +5,7 @@ namespace LiveSplit.TimeFormatters;
 
 public class GeneralTimeFormatter : ITimeFormatter
 {
-    static readonly private CultureInfo ic = CultureInfo.InvariantCulture;
+    private static readonly CultureInfo ic = CultureInfo.InvariantCulture;
 
     public TimeAccuracy Accuracy { get; set; }
 
@@ -17,7 +17,7 @@ public class GeneralTimeFormatter : ITimeFormatter
     public NullFormat NullFormat { get; set; }
 
     /// <summary>
-    /// If true, for example show "1d 23:59:10" instead of "47:59:10". For durations of 24 hours or more, 
+    /// If true, for example show "1d 23:59:10" instead of "47:59:10". For durations of 24 hours or more,
     /// </summary>
     public bool ShowDays { get; set; }
 
@@ -128,40 +128,30 @@ public class GeneralTimeFormatter : ITimeFormatter
         }
 
         string formatted;
-        if (time.TotalDays >= 1)
+        if (time.TotalDays >= 1 && !ShowDays)
         {
-            if (ShowDays)
-            {
-                formatted = minusString + time.ToString(@"d\d\ " + (DigitsFormat == DigitsFormat.DoubleDigitHours ? "hh" : "h") + @"\:mm\:ss" + decimalFormat, ic);
-            }
-            else
-            {
-                formatted = minusString + (int)time.TotalHours + time.ToString(@"\:mm\:ss" + decimalFormat, ic);
-            }
-        }
-        else if (DigitsFormat == DigitsFormat.DoubleDigitHours)
-        {
-            formatted = minusString + time.ToString(@"hh\:mm\:ss" + decimalFormat, ic);
-        }
-        else if (time.TotalHours >= 1 || DigitsFormat == DigitsFormat.SingleDigitHours)
-        {
-            formatted = minusString + time.ToString(@"h\:mm\:ss" + decimalFormat, ic);
-        }
-        else if (DigitsFormat == DigitsFormat.DoubleDigitMinutes)
-        {
-            formatted = minusString + time.ToString(@"mm\:ss" + decimalFormat, ic);
-        }
-        else if (time.TotalMinutes >= 1 || DigitsFormat == DigitsFormat.SingleDigitMinutes)
-        {
-            formatted = minusString + time.ToString(@"m\:ss" + decimalFormat, ic);
-        }
-        else if (DigitsFormat == DigitsFormat.DoubleDigitSeconds)
-        {
-            formatted = minusString + time.ToString(@"ss" + decimalFormat, ic);
+            // Days rolled into the hour count, e.g. "47:59:10".
+            formatted = minusString + (int)time.TotalHours + time.ToString(@"\:mm\:ss" + decimalFormat, ic);
         }
         else
         {
-            formatted = minusString + time.ToString(@"%s" + decimalFormat, ic);
+            // Arms are ordered by precedence: a larger actual magnitude (days/hours/minutes >= 1) forces a
+            // bigger unit than DigitsFormat would otherwise pick, so those guards come before the enum arms.
+            string format = DigitsFormat switch
+            {
+                DigitsFormat.DoubleDigitHours when time.TotalDays >= 1 => @"d\d\ hh\:mm\:ss",
+                _ when time.TotalDays >= 1 => @"d\d\ h\:mm\:ss",
+                DigitsFormat.DoubleDigitHours => @"hh\:mm\:ss",
+                _ when time.TotalHours >= 1 => @"h\:mm\:ss",
+                DigitsFormat.SingleDigitHours => @"h\:mm\:ss",
+                DigitsFormat.DoubleDigitMinutes => @"mm\:ss",
+                _ when time.TotalMinutes >= 1 => @"m\:ss",
+                DigitsFormat.SingleDigitMinutes => @"m\:ss",
+                DigitsFormat.DoubleDigitSeconds => @"ss",
+                _ => @"%s",
+            };
+
+            formatted = minusString + time.ToString(format + decimalFormat, ic);
         }
 
         if (isNull && NullFormat == NullFormat.Dashes)

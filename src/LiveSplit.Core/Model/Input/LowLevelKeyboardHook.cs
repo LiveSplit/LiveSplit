@@ -165,7 +165,7 @@ public class KeyboardInput : IDisposable
         using var process = Process.GetCurrentProcess();
         using ProcessModule module = process.MainModule;
         IntPtr hModule = GetModuleHandle(module.ModuleName);
-        messageLoopControl.BeginInvoke(new Action(() =>
+        messageLoopControl.BeginInvoke(() =>
         {
             try
             {
@@ -178,7 +178,7 @@ public class KeyboardInput : IDisposable
 
             keyBoardHandle = WindowsHookHelper.SetWindowsHookEx(
                 WH_KEYBOARD_LL, keyBoardDelegate, hModule, 0);
-        }));
+        });
     }
 
     private IntPtr KeyboardHookDelegate(

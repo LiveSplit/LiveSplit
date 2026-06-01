@@ -1,9 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-
-using LiveSplit.Model;
 
 namespace LiveSplit.UI.Components;
 
@@ -49,7 +48,7 @@ public abstract class ControlComponent : IDeactivatableComponent
 
     public void InvokeIfNeeded(Action x)
     {
-        if (Form != null && Form.InvokeRequired)
+        if (Form is { InvokeRequired: true })
         {
             Form.Invoke(x);
         }
@@ -61,11 +60,11 @@ public abstract class ControlComponent : IDeactivatableComponent
 
     public void Reposition(float width, float height, Graphics g)
     {
-        var points = new PointF[]
-        {
+        PointF[] points =
+        [
             new(0, 0),
             new(width, height)
-        };
+        ];
         g.Transform.TransformPoints(points);
 
         InvokeIfNeeded(() =>

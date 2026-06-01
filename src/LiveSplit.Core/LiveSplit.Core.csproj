@@ -10,25 +10,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="x86\livesplit_core.dll" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="x64\livesplit_core.dll" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="x86/livesplit_core.dll" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="x64/livesplit_core.dll" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(LibPath)\SpeedrunComSharp\src\SpeedrunComSharp\SpeedrunComSharp.csproj" />
-    <ProjectReference Include="$(SrcPath)\UpdateManager\UpdateManager.csproj" />
-    <ProjectReference Include="$(LibPath)\CustomFontDialog\CustomFontDialog\CustomFontDialog.csproj" />
-    <ProjectReference Include="$(LibPath)\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj" />
+    <ProjectReference Include="$(LibPath)/SpeedrunComSharp/src/SpeedrunComSharp/SpeedrunComSharp.csproj" />
+    <ProjectReference Include="$(SrcPath)/UpdateManager/UpdateManager.csproj" />
+    <ProjectReference Include="$(LibPath)/CustomFontDialog/CustomFontDialog/CustomFontDialog.csproj" />
+    <ProjectReference Include="$(LibPath)/WinForms Color Picker/WinFormsColor/WinFormsColor.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Codaxy.Xlio" Version="1.0.0" />
+    <PackageReference Include="GitInfo" Version="3.6.0" PrivateAssets="all" />
     <PackageReference Include="IrcDotNet" Version="0.7.0" />
-    <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="all" />
+    <PackageReference Include="PolySharp" Version="1.16.0" PrivateAssets="all" />
     <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
-    <PackageReference Include="SharpZipLib" Version="1.3.3" />
-    <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
-    <PackageReference Include="System.Text.Json" Version="9.0.4" />
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="System.Resources.Extensions" Version="10.0.8" />
+    <PackageReference Include="System.Text.Json" Version="10.0.8" />
     <PackageReference Include="WebSocketSharp" Version="1.0.3-rc11" />
   </ItemGroup>
 
@@ -41,21 +42,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <PreBuildEvent>
-      mkdir "$(MSBuildProjectDirectory)\Updates\GitInfo\."
-      where git
-      if %25ERRORLEVEL%25 == 0 (
-        git describe --dirty --always --long --tags &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\version.txt"
-        git rev-parse --abbrev-ref HEAD &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\branch.txt"
-        git rev-parse HEAD &gt; "$(MSBuildProjectDirectory)\Updates\GitInfo\revision.txt"
-      ) else (
-        touch "$(MSBuildProjectDirectory)\Updates\GitInfo\version.txt"
-        touch "$(MSBuildProjectDirectory)\Updates\GitInfo\branch.txt"
-        touch "$(MSBuildProjectDirectory)\Updates\GitInfo\revision.txt"
-      )
-      EXIT 0
-    </PreBuildEvent>
-  </PropertyGroup>
+  <Target Name="WriteGitInfo" DependsOnTargets="GitInfo" BeforeTargets="BeforeBuild">
+    <MakeDir Directories="$(MSBuildProjectDirectory)/Updates/GitInfo" />
+
+    <PropertyGroup>
+      <GitDescribe>$(GitBaseTag)-$(GitCommits)-g$(GitCommit)</GitDescribe>
+      <GitDescribe Condition="'$(GitIsDirty)' == 'true'">$(_Describe)-dirty</GitDescribe>
+    </PropertyGroup>
+
+    <WriteLinesToFile File="$(MSBuildProjectDirectory)/Updates/GitInfo/version.txt" Lines="$(GitDescribe)" Overwrite="true" />
+    <WriteLinesToFile File="$(MSBuildProjectDirectory)/Updates/GitInfo/branch.txt" Lines="$(GitBranch)" Overwrite="true" />
+    <WriteLinesToFile File="$(MSBuildProjectDirectory)/Updates/GitInfo/revision.txt" Lines="$(GitCommit)" Overwrite="true" />
+  </Target>
 
 </Project>

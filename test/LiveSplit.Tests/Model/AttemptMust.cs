@@ -1,11 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Collections.Generic;
 using System.Xml;
-
-using LiveSplit.Model;
-
 using Xunit;
-
 using static LiveSplit.Tests.Model.Constants;
 
 namespace LiveSplit.Tests.Model;
@@ -36,7 +33,7 @@ public class AttemptMust
             {
                 foreach (object anyPause in new object[] { null, TimeSpan.Zero })
                 {
-                    yield return new object[] { anyStart, anyEnd, anyPause };
+                    yield return [anyStart, anyEnd, anyPause];
                 }
             }
         }
@@ -54,12 +51,12 @@ public class AttemptMust
 
     public static IEnumerable<object[]> DurationFeeder()
     {
-        yield return new object[] { null, null, AnyTimeSpan };
-        yield return new object[] { null, new AtomicDateTime(AnyDateTime, true), AnyTimeSpan };
-        yield return new object[] { new AtomicDateTime(AnyDateTime, true), null, AnyTimeSpan };
-        yield return new object[] { new AtomicDateTime(AnotherDateTime, true), new AtomicDateTime(AnyDateTime, true), TimeSpan.FromTicks(AnyTickValue) };
-        yield return new object[] { new AtomicDateTime(AnyDateTime, true), new AtomicDateTime(AnotherDateTime, true), TimeSpan.FromTicks(-AnyTickValue) };
-        yield return new object[] { new AtomicDateTime(), new AtomicDateTime(), TimeSpan.Zero };
+        yield return [null, null, AnyTimeSpan];
+        yield return [null, new AtomicDateTime(AnyDateTime, true), AnyTimeSpan];
+        yield return [new AtomicDateTime(AnyDateTime, true), null, AnyTimeSpan];
+        yield return [new AtomicDateTime(AnotherDateTime, true), new AtomicDateTime(AnyDateTime, true), TimeSpan.FromTicks(AnyTickValue)];
+        yield return [new AtomicDateTime(AnyDateTime, true), new AtomicDateTime(AnotherDateTime, true), TimeSpan.FromTicks(-AnyTickValue)];
+        yield return [new AtomicDateTime(), new AtomicDateTime(), TimeSpan.Zero];
     }
 
     [Theory]
@@ -81,9 +78,9 @@ public class AttemptMust
     // FIXME: AtomicDateTime is not being serialized correctly (#2307)
     public static IEnumerable<object[]> JsonSerializationFeeder()
     {
-        yield return new object[] { 0, Time.Zero, null, null, null, @"""id""\s*:\s*0", @"""realTime""\s*:\s*""00:00:00""", @"""gameTime""\s*:\s*""00:00:00""", @"""started""\s*:\s*null", @"""ended""\s*:\s*null", @"""pauseTime""\s*:\s*null" };
-        yield return new object[] { 1, new Time(TimeSpan.FromTicks(AnyTickValue)), new AtomicDateTime(AnyDateTime, true), new AtomicDateTime(), TimeSpan.Zero, @"""id""\s*:\s*1", @"""realTime""\s*:\s*""9.00:00:00""", @"""gameTime""\s*:\s*null", @"""started""\s*:\s*""LiveSplit.Model.AtomicDateTime""", @"""ended""\s*:\s*""LiveSplit.Model.AtomicDateTime""", @"""pauseTime""\s*:\s*""00:00:00""" };
-        yield return new object[] { 2, new Time(TimeSpan.FromTicks(AnyTickValue), TimeSpan.FromTicks(AnyTickValue)), new AtomicDateTime(AnyDateTime, false), new AtomicDateTime(AnyDateTime, true), AnotherTimeSpan, @"""id""\s*:\s*2", @"""realTime""\s*:\s*""9.00:00:00""", @"""gameTime""\s*:\s*""9.00:00:00""", @"""started""\s*:\s*""LiveSplit.Model.AtomicDateTime""", @"""ended""\s*:\s*""LiveSplit.Model.AtomicDateTime""", @"""pauseTime""\s*:\s*""03:00:00""" };
+        yield return [0, Time.Zero, null, null, null, @"""id""\s*:\s*0", @"""realTime""\s*:\s*""00:00:00""", @"""gameTime""\s*:\s*""00:00:00""", @"""started""\s*:\s*null", @"""ended""\s*:\s*null", @"""pauseTime""\s*:\s*null"];
+        yield return [1, new Time(TimeSpan.FromTicks(AnyTickValue)), new AtomicDateTime(AnyDateTime, true), new AtomicDateTime(), TimeSpan.Zero, @"""id""\s*:\s*1", @"""realTime""\s*:\s*""9.00:00:00""", @"""gameTime""\s*:\s*null", @"""started""\s*:\s*""LiveSplit.Model.AtomicDateTime""", @"""ended""\s*:\s*""LiveSplit.Model.AtomicDateTime""", @"""pauseTime""\s*:\s*""00:00:00"""];
+        yield return [2, new Time(TimeSpan.FromTicks(AnyTickValue), TimeSpan.FromTicks(AnyTickValue)), new AtomicDateTime(AnyDateTime, false), new AtomicDateTime(AnyDateTime, true), AnotherTimeSpan, @"""id""\s*:\s*2", @"""realTime""\s*:\s*""9.00:00:00""", @"""gameTime""\s*:\s*""9.00:00:00""", @"""started""\s*:\s*""LiveSplit.Model.AtomicDateTime""", @"""ended""\s*:\s*""LiveSplit.Model.AtomicDateTime""", @"""pauseTime""\s*:\s*""03:00:00"""];
     }
 
     [Fact]

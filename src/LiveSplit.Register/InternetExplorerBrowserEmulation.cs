@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Security;
-
-using Microsoft.Win32;
 
 namespace LiveSplit.Register;
 
@@ -236,25 +235,14 @@ internal static class InternetExplorerBrowserEmulation
     /// <returns><c>true</c> the browser emulation version was updated, <c>false</c> otherwise.</returns>
     internal static bool SetBrowserEmulationVersion(string programName)
     {
-        int ieVersion;
-        BrowserEmulationVersion emulationCode;
-
-        ieVersion = GetInternetExplorerMajorVersion();
-
-        if (ieVersion >= 11)
+        var emulationCode = GetInternetExplorerMajorVersion() switch
         {
-            emulationCode = BrowserEmulationVersion.Version11;
-        }
-        else
-        {
-            emulationCode = ieVersion switch
-            {
-                10 => BrowserEmulationVersion.Version10,
-                9 => BrowserEmulationVersion.Version9,
-                8 => BrowserEmulationVersion.Version8,
-                _ => BrowserEmulationVersion.Version7,
-            };
-        }
+            >= 11 => BrowserEmulationVersion.Version11,
+            10 => BrowserEmulationVersion.Version10,
+            9 => BrowserEmulationVersion.Version9,
+            8 => BrowserEmulationVersion.Version8,
+            _ => BrowserEmulationVersion.Version7,
+        };
 
         return SetBrowserEmulationVersion(emulationCode, programName);
     }

@@ -13,6 +13,7 @@ using SizeT = System.UIntPtr;
 // http://stackoverflow.com/questions/1456785/a-definitive-guide-to-api-breaking-changes-in-net
 
 namespace LiveSplit.ComponentUtil;
+
 public class ProcessModuleWow64Safe
 {
     public IntPtr BaseAddress { get; set; }
@@ -41,7 +42,7 @@ public static class ExtensionMethods
 
     public static ProcessModuleWow64Safe MainModuleWow64Safe(this Process p)
     {
-        return p.ModulesWow64Safe().First();
+        return p.ModulesWow64Safe()[0];
     }
 
     public static ProcessModuleWow64Safe[] ModulesWow64Safe(this Process p)
@@ -67,7 +68,7 @@ public static class ExtensionMethods
             return ModuleCache[hash];
         }
 
-        IntPtr[] hModules = new IntPtr[(int)numMods];
+        var hModules = new IntPtr[(int)numMods];
         if (!WinAPI.EnumProcessModulesEx(p.Handle, hModules, cbNeeded, out _, LIST_MODULES_ALL))
         {
             throw new Win32Exception();
@@ -122,7 +123,7 @@ public static class ExtensionMethods
         long min = 0x10000L;
         long max = process.Is64Bit() ? 0x00007FFFFFFEFFFFL : 0x7FFEFFFFL;
 
-        UIntPtr mbiSize = (SizeT)Marshal.SizeOf(typeof(MemoryBasicInformation));
+        var mbiSize = (SizeT)Marshal.SizeOf(typeof(MemoryBasicInformation));
 
         long addr = min;
         do
@@ -388,14 +389,14 @@ public static class ExtensionMethods
         var instruction = new List<byte>(jmpLen);
         if (x64)
         {
-            instruction.AddRange(new byte[] { 0x48, 0xB8 }); // mov rax immediate
+            instruction.AddRange([0x48, 0xB8]); // mov rax immediate
             instruction.AddRange(BitConverter.GetBytes((long)dest));
-            instruction.AddRange(new byte[] { 0xFF, call ? (byte)0xD0 : (byte)0xE0 }); // jmp/call rax
+            instruction.AddRange([0xFF, call ? (byte)0xD0 : (byte)0xE0]); // jmp/call rax
         }
         else
         {
             int offset = unchecked((int)dest - (int)(addr + jmpLen));
-            instruction.AddRange(new byte[] { call ? (byte)0xE8 : (byte)0xE9 }); // jmp/call immediate
+            instruction.AddRange([call ? (byte)0xE8 : (byte)0xE9]); // jmp/call immediate
             instruction.AddRange(BitConverter.GetBytes(offset));
         }
 
@@ -436,11 +437,7 @@ public static class ExtensionMethods
         try
         {
             // read the original bytes from the prologue of src
-            byte[] origSrcBytes = process.ReadBytes(src, overwrittenBytes);
-            if (origSrcBytes == null)
-            {
-                throw new Win32Exception();
-            }
+            byte[] origSrcBytes = process.ReadBytes(src, overwrittenBytes) ?? throw new Win32Exception();
 
             // write the original prologue of src into the start of gate
             if (!process.WriteBytes(gate, origSrcBytes))
@@ -464,7 +461,7 @@ public static class ExtensionMethods
             int extraBytes = overwrittenBytes - jmpLen;
             if (extraBytes > 0)
             {
-                byte[] nops = Enumerable.Repeat((byte)0x90, extraBytes).ToArray();
+                byte[] nops = [.. Enumerable.Repeat((byte)0x90, extraBytes)];
                 if (!process.VirtualProtect(src + jmpLen, nops.Length, MemPageProtect.PAGE_EXECUTE_READWRITE,
                     out MemPageProtect oldProtect))
                 {
@@ -514,14 +511,7 @@ public static class ExtensionMethods
         }
         else if (type == typeof(bool))
         {
-            if (bytes == null)
-            {
-                val = false;
-            }
-            else
-            {
-                val = bytes[0] != 0;
-            }
+            val = bytes is [not 0, ..];
         }
         else if (type == typeof(short))
         {

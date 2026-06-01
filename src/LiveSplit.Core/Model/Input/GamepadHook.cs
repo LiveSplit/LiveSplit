@@ -1,10 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using SharpDX.DirectInput;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using LiveSplit.Options;
-
-using SharpDX.DirectInput;
 
 namespace LiveSplit.Model.Input;
 
@@ -55,9 +53,9 @@ public class GamepadHook
     {
         var input = new DirectInput();
         IList<DeviceInstance> devices = input.GetDevices();
-        Joysticks = devices
+        Joysticks = [.. devices
             .Where(x => x.Type != DeviceType.Keyboard)
-            .Select(x => new Joystick(input, x.InstanceGuid)).ToList();
+            .Select(x => new Joystick(input, x.InstanceGuid))];
 
         for (int ind = 0; ind < Joysticks.Count; ind++)
         {
@@ -163,22 +161,13 @@ public class GamepadHook
             or JoystickOffset.PointOfViewControllers2
             or JoystickOffset.PointOfViewControllers3)
         {
-            if (button == JoystickOffset.PointOfViewControllers0)
+            originalName = button switch
             {
-                originalName = "POV_0_";
-            }
-            else if (button == JoystickOffset.PointOfViewControllers1)
-            {
-                originalName = "POV_1_";
-            }
-            else if (button == JoystickOffset.PointOfViewControllers2)
-            {
-                originalName = "POV_2_";
-            }
-            else
-            {
-                originalName = "POV_3_";
-            }
+                JoystickOffset.PointOfViewControllers0 => "POV_0_",
+                JoystickOffset.PointOfViewControllers1 => "POV_1_",
+                JoystickOffset.PointOfViewControllers2 => "POV_2_",
+                _ => "POV_3_"
+            };
 
             if (value < 2250)
             {

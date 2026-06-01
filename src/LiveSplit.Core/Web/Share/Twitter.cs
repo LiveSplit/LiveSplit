@@ -1,12 +1,11 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
+using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
-
-using LiveSplit.Model;
-using LiveSplit.Options;
 
 namespace LiveSplit.Web.Share;
 
@@ -23,10 +22,11 @@ public class Twitter : IRunUploadPlatform
 
     public string PlatformName => "X (Twitter)";
 
-    public string Description
-=> @"X (Twitter) allows you to share your run with the world. 
-When sharing, a screenshot of LiveSplit is automatically copied to the clipboard.
-When you click share, LiveSplit opens a Tweet composition window in your default browser.";
+    public string Description => """
+        X (Twitter) allows you to share your run with the world.
+        When sharing, a screenshot of LiveSplit is automatically copied to the clipboard.
+        When you click share, LiveSplit opens a Tweet composition window in your default browser.
+        """;
 
     public bool VerifyLogin()
     {
@@ -50,11 +50,9 @@ When you click share, LiveSplit opens a Tweet composition window in your default
         }
 
         Image pngImage;
-        using (var stream = new MemoryStream())
-        {
-            image.Save(stream, ImageFormat.Png);
-            pngImage = Image.FromStream(stream);
-        }
+        using var stream = new MemoryStream();
+        image.Save(stream, ImageFormat.Png);
+        pngImage = Image.FromStream(stream);
 
         Clipboard.SetDataObject(pngImage);
     }

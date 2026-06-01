@@ -12,13 +12,13 @@ public partial class EditHistoryDialog : Form
     public EditHistoryDialog(IEnumerable<string> history)
     {
         InitializeComponent();
-        History = history.Reverse().ToList();
+        History = [.. history.Reverse()];
         historyListBox.Items.AddRange(History.Where(x => !string.IsNullOrEmpty(x)).ToArray());
     }
 
     private void btnOK_Click(object sender, EventArgs e)
     {
-        History = History.Reverse().ToList();
+        History = [.. History.Reverse()];
         DialogResult = DialogResult.OK;
         Close();
     }

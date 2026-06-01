@@ -1,10 +1,8 @@
+﻿using LiveSplit.Localization;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Text;
-
-using LiveSplit.Localization;
-
 using Xunit;
 
 namespace LiveSplit.Tests.Localization;

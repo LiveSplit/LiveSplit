@@ -1,4 +1,4 @@
-namespace LiveSplit.Localization;
+﻿namespace LiveSplit.Localization;
 
 public static class LocalizationKeys
 {

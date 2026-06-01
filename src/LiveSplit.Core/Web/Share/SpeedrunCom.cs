@@ -1,12 +1,10 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
+using SpeedrunComSharp;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Net;
-
-using LiveSplit.Model;
-using LiveSplit.Options;
-
-using SpeedrunComSharp;
 
 namespace LiveSplit.Web.Share;
 
@@ -110,7 +108,7 @@ public static class SpeedrunCom
 
     public static DateTime? FindPersonalBestAttemptDate(IRun run)
     {
-        Time runTime = run.Last().PersonalBestSplitTime;
+        Time runTime = run[^1].PersonalBestSplitTime;
 
         Attempt attempt = run.AttemptHistory.FirstOrDefault(x =>
             x.Time.GameTime == runTime.GameTime
@@ -175,7 +173,7 @@ public static class SpeedrunCom
 
             Model.TimingMethod primaryTimingMethod = metadata.Game.Ruleset.DefaultTimingMethod.ToLiveSplitTimingMethod();
 
-            Time runTime = run.Last().PersonalBestSplitTime;
+            Time runTime = run[^1].PersonalBestSplitTime;
 
             if (!runTime.RealTime.HasValue)
             {
@@ -230,7 +228,7 @@ public static class SpeedrunCom
             }
 
             System.Collections.ObjectModel.ReadOnlyCollection<SpeedrunComSharp.TimingMethod> timingMethods = metadata.Game.Ruleset.TimingMethods;
-            Time runTime = run.Last().PersonalBestSplitTime;
+            Time runTime = run[^1].PersonalBestSplitTime;
 
             if (date == null)
             {
@@ -266,7 +264,6 @@ public static class SpeedrunCom
 
                 bool emulated = metadata.Game.Ruleset.EmulatorsAllowed && metadata.UsesEmulator;
                 System.Collections.Generic.IEnumerable<VariableValue> variables = metadata.VariableValues.Values.Where(x => x != null);
-
 
                 SpeedrunComSharp.Run submittedRun = Client.Runs.Submit(
                     //simulateSubmitting: true,

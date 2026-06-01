@@ -1,9 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Model.Comparisons;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
-
-using LiveSplit.Model.Comparisons;
 
 namespace LiveSplit.Model;
 

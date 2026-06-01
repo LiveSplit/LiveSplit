@@ -1,6 +1,5 @@
-﻿using System.Xml;
-
-using LiveSplit.Web;
+﻿using LiveSplit.Web;
+using System.Xml;
 
 namespace LiveSplit.Model;
 

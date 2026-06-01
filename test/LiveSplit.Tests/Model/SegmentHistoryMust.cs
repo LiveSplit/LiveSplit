@@ -1,9 +1,6 @@
-﻿using System;
-
-using LiveSplit.Model;
-
+﻿using LiveSplit.Model;
+using System;
 using Xunit;
-
 using static LiveSplit.Tests.Model.Constants;
 
 namespace LiveSplit.Tests.Model;

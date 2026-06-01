@@ -1,7 +1,6 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Collections.Generic;
-
-using LiveSplit.Options;
 
 namespace LiveSplit.UI;
 

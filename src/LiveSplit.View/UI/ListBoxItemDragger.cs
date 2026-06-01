@@ -1,8 +1,7 @@
-﻿using System;
-using System.Windows.Forms;
-
-using LiveSplit.Options;
+﻿using LiveSplit.Options;
 using LiveSplit.Utils;
+using System;
+using System.Windows.Forms;
 
 namespace LiveSplit.UI;
 

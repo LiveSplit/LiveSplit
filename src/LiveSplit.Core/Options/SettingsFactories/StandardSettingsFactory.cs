@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.UI.Components;
 using LiveSplit.Web.SRL.RaceViewers;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace LiveSplit.Options.SettingsFactories;
 
@@ -41,7 +40,7 @@ public class StandardSettingsFactory : ISettingsFactory
             RaceViewer = new SRLRaceViewer(),
             AgreedToSRLRules = false,
             SimpleSumOfBest = false,
-            RaceProvider = ComponentManager.RaceProviderFactories.Values.ToList().Select(x => x.CreateSettings()).ToList(),
+            RaceProvider = [.. ComponentManager.RaceProviderFactories.Values.ToList().Select(x => x.CreateSettings())],
             RefreshRate = 40,
             ServerPort = 16834,
             ServerStartup = ServerStartupType.Off,

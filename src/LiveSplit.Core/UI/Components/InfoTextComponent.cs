@@ -1,9 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
-
-using LiveSplit.Model;
 
 namespace LiveSplit.UI.Components;
 

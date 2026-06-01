@@ -1,10 +1,9 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-
-using LiveSplit.Model;
 
 namespace LiveSplit.UI.Components;
 

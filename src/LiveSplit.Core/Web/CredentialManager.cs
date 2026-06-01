@@ -24,12 +24,11 @@ SOFTWARE.
 
 */
 
+using Microsoft.Win32.SafeHandles;
 using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
-
-using Microsoft.Win32.SafeHandles;
 
 namespace LiveSplit.Web;
 
@@ -68,14 +67,14 @@ public static class CredentialManager
         // 7 and above: 5*512
         if (Environment.OSVersion.Version < new Version(6, 1) /* Windows 7 */)
         {
-            if (byteArray != null && byteArray.Length > 512)
+            if (byteArray is { Length: > 512 })
             {
                 throw new ArgumentOutOfRangeException("secret", "The secret message has exceeded 512 bytes.");
             }
         }
         else
         {
-            if (byteArray != null && byteArray.Length > 512 * 5)
+            if (byteArray is { Length: > 512 * 5 })
             {
                 throw new ArgumentOutOfRangeException("secret", "The secret message has exceeded 2560 bytes.");
             }

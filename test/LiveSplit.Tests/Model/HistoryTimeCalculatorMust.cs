@@ -1,9 +1,7 @@
+﻿using LiveSplit.Model;
+using LiveSplit.Model.Comparisons;
 using System;
 using System.Collections.Generic;
-
-using LiveSplit.Model;
-using LiveSplit.Model.Comparisons;
-
 using Xunit;
 
 namespace LiveSplit.Tests.Model;

@@ -1,13 +1,11 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Text;
 using System.Linq;
 using System.Windows.Forms;
-
-using LiveSplit.Options;
-
 using static System.Windows.Forms.TextRenderer;
 
 namespace LiveSplit.UI;
@@ -124,14 +122,9 @@ public class SimpleLabel
                 float curOffset = 0f;
                 char curChar = cutOffText[charIndex];
 
-                if (char.IsDigit(curChar))
-                {
-                    curOffset = measurement;
-                }
-                else
-                {
-                    curOffset = MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
-                }
+                curOffset = char.IsDigit(curChar)
+                    ? measurement
+                    : MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
 
                 DrawText(curChar.ToString(), g, X + offset - (curOffset / 2f), Y, curOffset * 2f, Height, monoFormat);
 
@@ -199,14 +192,7 @@ public class SimpleLabel
         Format.Alignment = HorizontalAlignment;
         Format.LineAlignment = VerticalAlignment;
 
-        if (!IsMonospaced)
-        {
-            ActualWidth = g.MeasureString(Text, Font, 9999, Format).Width;
-        }
-        else
-        {
-            ActualWidth = MeasureActualWidth(Text, g);
-        }
+        ActualWidth = !IsMonospaced ? g.MeasureString(Text, Font, 9999, Format).Width : MeasureActualWidth(Text, g);
     }
 
     public string CalculateAlternateText(Graphics g, float width)
@@ -264,7 +250,7 @@ public class SimpleLabel
         string cutOffText = Text;
         while (ActualWidth >= Width && !string.IsNullOrEmpty(cutOffText))
         {
-            cutOffText = cutOffText.Remove(cutOffText.Length - 1, 1);
+            cutOffText = cutOffText[..^1];
             ActualWidth = MeasureActualWidth(cutOffText + "...", g);
         }
 

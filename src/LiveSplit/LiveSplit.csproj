@@ -10,44 +10,43 @@
 
   <ItemGroup>
     <Content Include="Licenses.txt" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="..\LiveSplit.Core\Localization\Locales\*.json">
-      <Link>Localization\%(Filename)%(Extension)</Link>
+    <Content Include="../LiveSplit.Core/Localization/Locales/*.json">
+      <Link>Localization/%(Filename)%(Extension)</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <TargetPath>Localization\%(Filename)%(Extension)</TargetPath>
+      <TargetPath>Localization/%(Filename)%(Extension)</TargetPath>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(SrcPath)\LiveSplit.Core\LiveSplit.Core.csproj" />
-    <ProjectReference Include="$(SrcPath)\LiveSplit.View\LiveSplit.View.csproj" />
-    <ProjectReference Include="$(LibPath)\WinForms Color Picker\WinFormsColor\WinFormsColor.csproj" />
+    <ProjectReference Include="$(SrcPath)/LiveSplit.Core/LiveSplit.Core.csproj" />
+    <ProjectReference Include="$(SrcPath)/LiveSplit.View/LiveSplit.View.csproj" />
+    <ProjectReference Include="$(LibPath)/WinForms Color Picker/WinFormsColor/WinFormsColor.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="PolySharp" Version="1.14.1" PrivateAssets="all" />
+    <PackageReference Include="PolySharp" Version="1.16.0" PrivateAssets="all" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <PostBuildEvent>
-      mkdir "$(OutputPath)\Resources"
-      copy "$(ResourcesPath)\SplitsFile.ico" "$(OutputPath)\Resources"
-      copy "$(ResourcesPath)\LayoutFile.ico" "$(OutputPath)\Resources"
-      rd /s /q "$(OutputPath)\runtimes"
-      del "$(OutputPath)\Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll"
-      del "$(OutputPath)\Microsoft.WindowsAPICodePack.Sensors.dll"
-      del "$(OutputPath)\Microsoft.WindowsAPICodePack.ShellExtensions.dll"
-      del "$(OutputPath)\x64\asr_capi.dll"
-      del "$(OutputPath)\x86\asr_capi.dll"
-      del "$(OutputPath)\Components\SpeedrunComSharp.dll"
-      del "$(OutputPath)\Components\CustomFontDialog.dll"
-      del "$(OutputPath)\Components\CustomFontDialog.dll.config"
-      del "$(OutputPath)\Components\WinFormsColor.dll"
-      del "$(OutputPath)\Components\System.Buffers.dll"
-      del "$(OutputPath)\Components\System.Memory.dll"
-      del "$(OutputPath)\Components\System.Numerics.Vectors.dll"
-      del "$(OutputPath)\Components\System.Resources.Extensions.dll"
-      del "$(OutputPath)\Components\System.Runtime.CompilerServices.Unsafe.dll"
-    </PostBuildEvent>
-  </PropertyGroup>
+  <Target Name="CleanOutput" AfterTargets="AfterBuild">
+    <MakeDir Directories="$(OutputPath)" />
+    <Copy SourceFiles="$(ResourcesPath)/SplitsFile.ico" DestinationFolder="$(OutputPath)/Resources" />
+    <Copy SourceFiles="$(ResourcesPath)/LayoutFile.ico" DestinationFolder="$(OutputPath)/Resources" />
+
+    <RemoveDir Directories="$(OutputPath)/runtimes" />
+    <Delete Files="$(OutputPath)/Microsoft.WindowsAPICodePack.ExtendedLinguisticServices.dll" />
+    <Delete Files="$(OutputPath)/Microsoft.WindowsAPICodePack.Sensors.dll" />
+    <Delete Files="$(OutputPath)/Microsoft.WindowsAPICodePack.ShellExtensions.dll" />
+    <Delete Files="$(OutputPath)/x64/asr_capi.dll" />
+    <Delete Files="$(OutputPath)/x86/asr_capi.dll" />
+    <Delete Files="$(OutputPath)/Components/SpeedrunComSharp.dll" />
+    <Delete Files="$(OutputPath)/Components/CustomFontDialog.dll" />
+    <Delete Files="$(OutputPath)/Components/CustomFontDialog.dll.config" />
+    <Delete Files="$(OutputPath)/Components/WinFormsColor.dll" />
+    <Delete Files="$(OutputPath)/Components/System.Buffers.dll" />
+    <Delete Files="$(OutputPath)/Components/System.Memory.dll" />
+    <Delete Files="$(OutputPath)/Components/System.Numerics.Vectors.dll" />
+    <Delete Files="$(OutputPath)/Components/System.Resources.Extensions.dll" />
+    <Delete Files="$(OutputPath)/Components/System.Runtime.CompilerServices.Unsafe.dll" />
+  </Target>
 
 </Project>

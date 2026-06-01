@@ -1,10 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
-
-using LiveSplit.Model;
 
 namespace LiveSplit.UI.Components;
 
@@ -49,7 +47,7 @@ public class SeparatorComponent : IComponent
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             g.Clip = new Region();
             Line.LineColor = UseSeparatorColor ? state.LayoutSettings.SeparatorsColor : state.LayoutSettings.ThinSeparatorsColor;
-            float scale = g.Transform.Elements.First();
+            float scale = g.Transform.Elements[0];
             float newHeight = Math.Max((int)((DisplayedSize * scale) + 0.5f), 1) / scale;
             Line.VerticalHeight = newHeight;
             if (LockToBottom)
@@ -78,7 +76,7 @@ public class SeparatorComponent : IComponent
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.Default;
             g.Clip = new Region();
             Line.LineColor = UseSeparatorColor ? state.LayoutSettings.SeparatorsColor : state.LayoutSettings.ThinSeparatorsColor;
-            float scale = g.Transform.Elements.First();
+            float scale = g.Transform.Elements[0];
             float newWidth = Math.Max((int)((DisplayedSize * scale) + 0.5f), 1) / scale;
             if (LockToBottom)
             {

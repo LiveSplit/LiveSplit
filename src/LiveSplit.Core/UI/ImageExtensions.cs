@@ -40,18 +40,17 @@ public static class ImageExtensions
 
             var bitmap = new Bitmap(width, height, image.PixelFormat);
 
-            using (var graphics = Graphics.FromImage(bitmap))
+            using (var g = Graphics.FromImage(bitmap))
             {
                 var attributes = new ImageAttributes();
 
-                graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                graphics.DrawImage(
+                g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                g.DrawImage(
                     image,
                     new Rectangle(0, 0, width, height),
                     0, 0, image.Width, image.Height,
                     GraphicsUnit.Pixel,
-                    attributes
-                );
+                    attributes);
             }
 
             return bitmap;

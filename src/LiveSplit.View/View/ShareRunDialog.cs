@@ -1,13 +1,12 @@
-﻿using System;
-using System.Drawing;
-using System.Linq;
-using System.Windows.Forms;
-
-using LiveSplit.Localization;
+﻿using LiveSplit.Localization;
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
 using LiveSplit.Web.Share;
+using System;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
 
 namespace LiveSplit.View;
 
@@ -102,7 +101,7 @@ public partial class ShareRunDialog : Form
             btnInsertDeltaTime.Enabled = btnInsertSplitName.Enabled = btnInsertSplitTime.Enabled = false;
         }
 
-        if (Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod] == null)
+        if (Run[^1].PersonalBestSplitTime[State.CurrentTimingMethod] == null)
         {
             btnInsertPB.Enabled = false;
         }
@@ -133,7 +132,7 @@ public partial class ShareRunDialog : Form
 
         string game = Run.GameName ?? "";
         string category = Run.GetExtendedCategoryName();
-        string pb = timeFormatter.Format(Run.Last().PersonalBestSplitTime[State.CurrentTimingMethod]) ?? "";
+        string pb = timeFormatter.Format(Run[^1].PersonalBestSplitTime[State.CurrentTimingMethod]) ?? "";
         string title = Run.GetExtendedName();
 
         string splitName = "";
@@ -262,7 +261,7 @@ public partial class ShareRunDialog : Form
 
             if (!CurrentPlatform.VerifyLogin())
             {
-            MessageBox.Show(T("Your login information seems to be incorrect."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(T("Your login information seems to be incorrect."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -274,7 +273,7 @@ public partial class ShareRunDialog : Form
 
             if (runSubmitted)
             {
-            MessageBox.Show(string.Format(T("Your run was successfully shared to {0}."), CurrentPlatform.PlatformName), T("Run Shared"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(string.Format(T("Your run was successfully shared to {0}."), CurrentPlatform.PlatformName), T("Run Shared"), MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
         }
@@ -287,7 +286,7 @@ public partial class ShareRunDialog : Form
             Cursor = Cursors.Default;
         }
 
-            MessageBox.Show(T("The run could not be shared."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+        MessageBox.Show(T("The run could not be shared."), T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
     }
 
     private void btnClose_Click(object sender, EventArgs e)
@@ -298,7 +297,7 @@ public partial class ShareRunDialog : Form
 
     private void btnPreview_Click(object sender, EventArgs e)
     {
-            MessageBox.Show(FormatNotes(txtNotes.Text), T("Preview"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+        MessageBox.Show(FormatNotes(txtNotes.Text), T("Preview"), MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void Insert(string insertText)

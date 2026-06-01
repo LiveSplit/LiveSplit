@@ -27,7 +27,7 @@ public static class AbbreviationExtensions
     {
         if (name.Contains(splitToken))
         {
-            string[] splits = name.Split(new[] { splitToken }, 2, StringSplitOptions.None);
+            string[] splits = name.Split([splitToken], 2, StringSplitOptions.None);
             string seriesTitle = splits[0];
             string subTitle = splits[1];
             var seriesTitleAbbreviations = seriesTitle.GetAbbreviations().ToList();
@@ -35,8 +35,7 @@ public static class AbbreviationExtensions
             string seriesTitleTrimmed = seriesTitle.Trim();
 
             bool isSeriesTitleRepresentative = !string.IsNullOrEmpty(seriesTitleTrimmed)
-                && (char.IsDigit(seriesTitleTrimmed.Last())
-                    || endsWithRomanNumeral(seriesTitleTrimmed));
+                && (char.IsDigit(seriesTitleTrimmed[^1]) || endsWithRomanNumeral(seriesTitleTrimmed));
 
             if (isSeriesTitleRepresentative)
             {
@@ -70,7 +69,7 @@ public static class AbbreviationExtensions
     {
         if (name.Contains(splitToken))
         {
-            string[] splits = name.Split(new[] { splitToken }, 2, StringSplitOptions.None);
+            string[] splits = name.Split([splitToken], 2, StringSplitOptions.None);
             string seriesTitle = splits[0];
             string subTitle = splits[1];
             var seriesTitleAbbreviations = seriesTitle.GetAbbreviations().ToList();
@@ -95,7 +94,7 @@ public static class AbbreviationExtensions
         if (string.IsNullOrWhiteSpace(name))
         {
             name = string.Empty;
-            return new[] { name };
+            return [name];
         }
 
         name = name.Trim();
@@ -145,25 +144,22 @@ public static class AbbreviationExtensions
             {
                 string[] splits = name
                     .Replace('&', 'a')
-                    .Split(new[] { ' ', '-' }, StringSplitOptions.RemoveEmptyEntries);
-                string abbreviation = splits
-                    .Select(x =>
+                    .Split([' ', '-'], StringSplitOptions.RemoveEmptyEntries);
+                string abbreviation = string.Concat(
+                    splits.Select(x =>
+                    {
+                        if (char.IsDigit(x[0]))
                         {
-                            if (char.IsDigit(x[0]))
-                            {
-                                return x
-                                    .TakeWhile(c => c != ' ')
-                                    .Aggregate("", (a, b) => a + b);
-                            }
+                            return string.Concat(x.TakeWhile(c => c != ' '));
+                        }
 
-                            if (x.Length <= 4 && isAllCapsOrDigit(x))
-                            {
-                                return " " + x;
-                            }
+                        if (x.Length <= 4 && isAllCapsOrDigit(x))
+                        {
+                            return " " + x;
+                        }
 
-                            return x[0].ToString();
-                        })
-                    .Aggregate("", (a, b) => a + b)
+                        return x[0].ToString();
+                    }))
                     .Trim();
                 list.Add(abbreviation);
             }

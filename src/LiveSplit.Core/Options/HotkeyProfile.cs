@@ -1,10 +1,8 @@
-﻿using System;
+﻿using LiveSplit.Model.Input;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
-
-using LiveSplit.Model.Input;
-
 using static LiveSplit.UI.SettingsHelper;
 
 namespace LiveSplit.Options;
@@ -33,88 +31,32 @@ public class HotkeyProfile : ICloneable
         var hotkeyProfile = new HotkeyProfile();
 
         XmlElement keyStart = element["SplitKey"];
-        if (!string.IsNullOrEmpty(keyStart.InnerText))
-        {
-            hotkeyProfile.SplitKey = new KeyOrButton(keyStart.InnerText);
-        }
-        else
-        {
-            hotkeyProfile.SplitKey = null;
-        }
+        hotkeyProfile.SplitKey = !string.IsNullOrEmpty(keyStart.InnerText) ? new KeyOrButton(keyStart.InnerText) : null;
 
         XmlElement keyReset = element["ResetKey"];
-        if (!string.IsNullOrEmpty(keyReset.InnerText))
-        {
-            hotkeyProfile.ResetKey = new KeyOrButton(keyReset.InnerText);
-        }
-        else
-        {
-            hotkeyProfile.ResetKey = null;
-        }
+        hotkeyProfile.ResetKey = !string.IsNullOrEmpty(keyReset.InnerText) ? new KeyOrButton(keyReset.InnerText) : null;
 
         XmlElement keySkip = element["SkipKey"];
-        if (!string.IsNullOrEmpty(keySkip.InnerText))
-        {
-            hotkeyProfile.SkipKey = new KeyOrButton(keySkip.InnerText);
-        }
-        else
-        {
-            hotkeyProfile.SkipKey = null;
-        }
+        hotkeyProfile.SkipKey = !string.IsNullOrEmpty(keySkip.InnerText) ? new KeyOrButton(keySkip.InnerText) : null;
 
         XmlElement keyUndo = element["UndoKey"];
-        if (!string.IsNullOrEmpty(keyUndo.InnerText))
-        {
-            hotkeyProfile.UndoKey = new KeyOrButton(keyUndo.InnerText);
-        }
-        else
-        {
-            hotkeyProfile.UndoKey = null;
-        }
+        hotkeyProfile.UndoKey = !string.IsNullOrEmpty(keyUndo.InnerText) ? new KeyOrButton(keyUndo.InnerText) : null;
 
         if (version >= new Version(1, 0))
         {
             XmlElement keyPause = element["PauseKey"];
-            if (!string.IsNullOrEmpty(keyPause.InnerText))
-            {
-                hotkeyProfile.PauseKey = new KeyOrButton(keyPause.InnerText);
-            }
-            else
-            {
-                hotkeyProfile.PauseKey = null;
-            }
+            hotkeyProfile.PauseKey = !string.IsNullOrEmpty(keyPause.InnerText) ? new KeyOrButton(keyPause.InnerText) : null;
 
             XmlElement keyToggle = element["ToggleGlobalHotkeys"];
-            if (!string.IsNullOrEmpty(keyToggle.InnerText))
-            {
-                hotkeyProfile.ToggleGlobalHotkeys = new KeyOrButton(keyToggle.InnerText);
-            }
-            else
-            {
-                hotkeyProfile.ToggleGlobalHotkeys = null;
-            }
+            hotkeyProfile.ToggleGlobalHotkeys = !string.IsNullOrEmpty(keyToggle.InnerText) ? new KeyOrButton(keyToggle.InnerText) : null;
 
             if (version >= new Version(1, 3))
             {
                 XmlElement keySwitchPrevious = element["SwitchComparisonPrevious"];
-                if (!string.IsNullOrEmpty(keySwitchPrevious.InnerText))
-                {
-                    hotkeyProfile.SwitchComparisonPrevious = new KeyOrButton(keySwitchPrevious.InnerText);
-                }
-                else
-                {
-                    hotkeyProfile.SwitchComparisonPrevious = null;
-                }
+                hotkeyProfile.SwitchComparisonPrevious = !string.IsNullOrEmpty(keySwitchPrevious.InnerText) ? new KeyOrButton(keySwitchPrevious.InnerText) : null;
 
                 XmlElement keySwitchNext = element["SwitchComparisonNext"];
-                if (!string.IsNullOrEmpty(keySwitchNext.InnerText))
-                {
-                    hotkeyProfile.SwitchComparisonNext = new KeyOrButton(keySwitchNext.InnerText);
-                }
-                else
-                {
-                    hotkeyProfile.SwitchComparisonNext = null;
-                }
+                hotkeyProfile.SwitchComparisonNext = !string.IsNullOrEmpty(keySwitchNext.InnerText) ? new KeyOrButton(keySwitchNext.InnerText) : null;
             }
         }
 

@@ -1,19 +1,17 @@
-﻿using System;
+﻿using LiveSplit.Localization;
+using LiveSplit.Model;
+using LiveSplit.Options;
+using LiveSplit.UI;
+using LiveSplit.Utils;
+using LiveSplit.Web.Share;
+using SpeedrunComSharp;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
-using LiveSplit.Localization;
-using LiveSplit.Model;
-using LiveSplit.Options;
-using LiveSplit.UI;
-using LiveSplit.Utils;
-using LiveSplit.Web.Share;
-
-using SpeedrunComSharp;
 
 namespace LiveSplit.View;
 
@@ -150,7 +148,7 @@ public partial class MetadataControl : UserControl
 
             int controlIndex = 0;
 
-            if (Metadata.Game != null && Metadata.Game.Ruleset.EmulatorsAllowed)
+            if (Metadata.Game is { Ruleset.EmulatorsAllowed: true })
             {
                 int emulatedRow = getDynamicControlRowIndex(controlIndex);
                 int emulatedColumn = getDynamicControlColumnIndex(controlIndex);
@@ -249,10 +247,10 @@ public partial class MetadataControl : UserControl
             additionalRules.Add(T("require video proof"));
         }
 
-        if (additionalRules.Any())
+        if (additionalRules.Count > 0)
         {
-            string firstRule = additionalRules.First();
-            string lastRule = additionalRules.Last();
+            string firstRule = additionalRules[0];
+            string lastRule = additionalRules[^1];
 
             var stringBuilder = new StringBuilder();
             stringBuilder.Append(T("Runs of this game "));
@@ -292,7 +290,7 @@ public partial class MetadataControl : UserControl
     {
         if (InvokeRequired)
         {
-            Invoke(new Action(RefreshAssociateButton));
+            Invoke(RefreshAssociateButton);
             return;
         }
 
@@ -325,7 +323,7 @@ public partial class MetadataControl : UserControl
                 }
                 else
                 {
-                MessageBox.Show(this, T("The URL provided is not a valid speedrun.com Run URL."), T("Invalid URL"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(this, T("The URL provided is not a valid speedrun.com Run URL."), T("Invalid URL"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -372,7 +370,7 @@ public partial class MetadataControl : UserControl
 
         if (!isValid)
         {
-                    MessageBox.Show(this, reason, T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(this, reason, T("Submitting Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
 

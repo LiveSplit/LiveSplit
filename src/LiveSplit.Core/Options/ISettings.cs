@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-using LiveSplit.Model;
+﻿using LiveSplit.Model;
 using LiveSplit.Model.Input;
 using LiveSplit.Web.SRL;
+using System;
+using System.Collections.Generic;
 
 namespace LiveSplit.Options;
 

@@ -1,11 +1,10 @@
-﻿using System;
+﻿using LiveSplit.Options;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Xml;
-
-using LiveSplit.Options;
 
 namespace LiveSplit.Model;
 
@@ -66,20 +65,13 @@ public class AutoSplitterFactory
         }
         else if (typeElementText == "Script")
         {
-            if (scriptTypeElementText == "AutoSplittingRuntime")
-            {
-                autoSplitterType = AutoSplitterType.AutoSplittingRuntimeScript;
-            }
-            else
-            {
-                autoSplitterType = AutoSplitterType.Script;
-            }
+            autoSplitterType = scriptTypeElementText == "AutoSplittingRuntime" ? AutoSplitterType.AutoSplittingRuntimeScript : AutoSplitterType.Script;
         }
 
         return new AutoSplitter()
         {
             Description = element["Description"].InnerText,
-            URLs = element["URLs"].ChildNodes.OfType<XmlElement>().Select(x => x.InnerText).ToList(),
+            URLs = [.. element["URLs"].ChildNodes.OfType<XmlElement>().Select(x => x.InnerText)],
             Type = autoSplitterType.Value,
             Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => (x.InnerText ?? "").ToLower()).ToList(),
             ShowInLayoutEditor = element["ShowInLayoutEditor"] != null,
