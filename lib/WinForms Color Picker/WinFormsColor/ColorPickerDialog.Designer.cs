@@ -125,6 +125,7 @@
             0});
             this.numHue.Name = "numHue";
             this.numHue.ValueChanged += new System.EventHandler(this.numHue_ValueChanged);
+            this.numHue.Enter += new System.EventHandler(this.numericalUpDown_Enter);
             // 
             // numSaturation
             // 
@@ -136,6 +137,7 @@
             resources.ApplyResources(this.numSaturation, "numSaturation");
             this.numSaturation.Name = "numSaturation";
             this.numSaturation.ValueChanged += new System.EventHandler(this.numSaturation_ValueChanged);
+            this.numSaturation.Enter += new System.EventHandler(this.numericalUpDown_Enter);
             // 
             // numValue
             // 
@@ -147,6 +149,7 @@
             resources.ApplyResources(this.numValue, "numValue");
             this.numValue.Name = "numValue";
             this.numValue.ValueChanged += new System.EventHandler(this.numValue_ValueChanged);
+            this.numValue.Enter += new System.EventHandler(this.numericalUpDown_Enter);
             // 
             // numRed
             // 
@@ -158,6 +161,7 @@
             0});
             this.numRed.Name = "numRed";
             this.numRed.ValueChanged += new System.EventHandler(this.numRed_ValueChanged);
+            this.numRed.Enter += new System.EventHandler(this.numericalUpDown_Enter);
             // 
             // numGreen
             // 
@@ -169,6 +173,7 @@
             0});
             this.numGreen.Name = "numGreen";
             this.numGreen.ValueChanged += new System.EventHandler(this.numGreen_ValueChanged);
+            this.numGreen.Enter += new System.EventHandler(this.numericalUpDown_Enter);
             // 
             // numBlue
             // 
@@ -180,6 +185,7 @@
             0});
             this.numBlue.Name = "numBlue";
             this.numBlue.ValueChanged += new System.EventHandler(this.numBlue_ValueChanged);
+            this.numBlue.Enter += new System.EventHandler(this.numericalUpDown_Enter);
             // 
             // textBoxHex
             // 
@@ -226,6 +232,7 @@
             0});
             this.numAlpha.Name = "numAlpha";
             this.numAlpha.ValueChanged += new System.EventHandler(this.numAlpha_ValueChanged);
+            this.numAlpha.Enter += new System.EventHandler(this.numericalUpDown_Enter);
             // 
             // labelAlpha
             // 
@@ -261,6 +268,7 @@
             this.alphaSlider.Maximum = System.Drawing.Color.White;
             this.alphaSlider.Minimum = System.Drawing.Color.Transparent;
             this.alphaSlider.Name = "alphaSlider";
+            this.alphaSlider.TabStop = false;
             this.alphaSlider.PercentualValueChanged += new System.EventHandler(this.alphaSlider_PercentualValueChanged);
             // 
             // colorShowBox
@@ -277,6 +285,7 @@
             // 
             resources.ApplyResources(this.colorSlider, "colorSlider");
             this.colorSlider.Name = "colorSlider";
+            this.colorSlider.TabStop = false;
             this.colorSlider.PercentualValueChanged += new System.EventHandler(this.colorSlider_PercentualValueChanged);
             // 
             // colorPanel
@@ -285,6 +294,7 @@
             this.colorPanel.BottomRightColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.colorPanel, "colorPanel");
             this.colorPanel.Name = "colorPanel";
+            this.colorPanel.TabStop = false;
             this.colorPanel.TopLeftColor = System.Drawing.Color.White;
             this.colorPanel.TopRightColor = System.Drawing.Color.Red;
             this.colorPanel.ValuePercentual = ((System.Drawing.PointF)(resources.GetObject("colorPanel.ValuePercentual")));
