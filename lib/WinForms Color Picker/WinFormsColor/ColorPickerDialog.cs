@@ -614,9 +614,25 @@ public partial class ColorPickerDialog : Form
             tmp.B));
         UpdateColorControls();
     }
+
+    private void numericalUpDown_Enter(object sender, EventArgs e)
+    {
+        if (sender is not NumericUpDown num)
+        {
+            return;
+        }
+
+        num.Select(0, num.Value.ToString().Length);
+    }
+
     private void textBoxHex_TextChanged(object sender, EventArgs e)
     {
         if (suspendTextEvents)
+        {
+            return;
+        }
+
+        if (textBoxHex.Text.Length < 8)
         {
             return;
         }

@@ -133,7 +133,7 @@
     <value>33, 17</value>
   </data>
   <data name="radioHue.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="radioHue.Text" xml:space="preserve">
     <value>H</value>
@@ -163,7 +163,7 @@
     <value>32, 17</value>
   </data>
   <data name="radioSaturation.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+    <value>7</value>
   </data>
   <data name="radioSaturation.Text" xml:space="preserve">
     <value>S</value>
@@ -193,7 +193,7 @@
     <value>32, 17</value>
   </data>
   <data name="radioValue.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>8</value>
   </data>
   <data name="radioValue.Text" xml:space="preserve">
     <value>V</value>
@@ -223,7 +223,7 @@
     <value>33, 17</value>
   </data>
   <data name="radioRed.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>9</value>
   </data>
   <data name="radioRed.Text" xml:space="preserve">
     <value>R</value>
@@ -253,7 +253,7 @@
     <value>32, 17</value>
   </data>
   <data name="radioBlue.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+    <value>11</value>
   </data>
   <data name="radioBlue.Text" xml:space="preserve">
     <value>B</value>
@@ -283,7 +283,7 @@
     <value>33, 17</value>
   </data>
   <data name="radioGreen.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="radioGreen.Text" xml:space="preserve">
     <value>G</value>
@@ -307,7 +307,7 @@
     <value>54, 20</value>
   </data>
   <data name="numHue.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;numHue.Name" xml:space="preserve">
     <value>numHue</value>
@@ -328,7 +328,7 @@
     <value>54, 20</value>
   </data>
   <data name="numSaturation.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;numSaturation.Name" xml:space="preserve">
     <value>numSaturation</value>
@@ -349,7 +349,7 @@
     <value>54, 20</value>
   </data>
   <data name="numValue.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;numValue.Name" xml:space="preserve">
     <value>numValue</value>
@@ -370,7 +370,7 @@
     <value>54, 20</value>
   </data>
   <data name="numRed.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+    <value>18</value>
   </data>
   <data name="&gt;&gt;numRed.Name" xml:space="preserve">
     <value>numRed</value>
@@ -391,7 +391,7 @@
     <value>54, 20</value>
   </data>
   <data name="numGreen.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
+    <value>19</value>
   </data>
   <data name="&gt;&gt;numGreen.Name" xml:space="preserve">
     <value>numGreen</value>
@@ -412,7 +412,7 @@
     <value>54, 20</value>
   </data>
   <data name="numBlue.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+    <value>20</value>
   </data>
   <data name="&gt;&gt;numBlue.Name" xml:space="preserve">
     <value>numBlue</value>
@@ -433,7 +433,7 @@
     <value>75, 20</value>
   </data>
   <data name="textBoxHex.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
+    <value>24</value>
   </data>
   <data name="&gt;&gt;textBoxHex.Name" xml:space="preserve">
     <value>textBoxHex</value>
@@ -460,7 +460,7 @@
     <value>14, 13</value>
   </data>
   <data name="labelHex.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>23</value>
   </data>
   <data name="labelHex.Text" xml:space="preserve">
     <value>#</value>
@@ -487,7 +487,7 @@
     <value>33, 26</value>
   </data>
   <data name="labelOld.TabIndex" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>4</value>
   </data>
   <data name="labelOld.Text" xml:space="preserve">
     <value>Old</value>
@@ -517,7 +517,7 @@
     <value>33, 26</value>
   </data>
   <data name="labelNew.TabIndex" type="System.Int32, mscorlib">
-    <value>19</value>
+    <value>5</value>
   </data>
   <data name="labelNew.Text" xml:space="preserve">
     <value>New</value>
@@ -547,7 +547,7 @@
     <value>93, 23</value>
   </data>
   <data name="buttonCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>20</value>
+    <value>27</value>
   </data>
   <data name="buttonCancel.Text" xml:space="preserve">
     <value>Cancel</value>
@@ -574,7 +574,7 @@
     <value>93, 23</value>
   </data>
   <data name="buttonOk.TabIndex" type="System.Int32, mscorlib">
-    <value>21</value>
+    <value>26</value>
   </data>
   <data name="buttonOk.Text" xml:space="preserve">
     <value>OK</value>
@@ -625,7 +625,7 @@
     <value>14, 13</value>
   </data>
   <data name="labelAlpha.TabIndex" type="System.Int32, mscorlib">
-    <value>23</value>
+    <value>21</value>
   </data>
   <data name="labelAlpha.Text" xml:space="preserve">
     <value>A</value>
@@ -655,7 +655,7 @@
     <value>11, 13</value>
   </data>
   <data name="labelHueUnit.TabIndex" type="System.Int32, mscorlib">
-    <value>24</value>
+    <value>15</value>
   </data>
   <data name="labelHueUnit.Text" xml:space="preserve">
     <value>°</value>
@@ -685,7 +685,7 @@
     <value>15, 13</value>
   </data>
   <data name="labelSaturationUnit.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+    <value>16</value>
   </data>
   <data name="labelSaturationUnit.Text" xml:space="preserve">
     <value>%</value>
@@ -715,7 +715,7 @@
     <value>15, 13</value>
   </data>
   <data name="labelValueUnit.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+    <value>17</value>
   </data>
   <data name="labelValueUnit.Text" xml:space="preserve">
     <value>%</value>
@@ -742,7 +742,7 @@
     <value>23, 23</value>
   </data>
   <data name="btnPickColor.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+    <value>25</value>
   </data>
   <data name="&gt;&gt;btnPickColor.Name" xml:space="preserve">
     <value>btnPickColor</value>
@@ -763,7 +763,7 @@
     <value>32, 266</value>
   </data>
   <data name="alphaSlider.TabIndex" type="System.Int32, mscorlib">
-    <value>15</value>
+    <value>2</value>
   </data>
   <data name="&gt;&gt;alphaSlider.Name" xml:space="preserve">
     <value>alphaSlider</value>
@@ -784,7 +784,7 @@
     <value>54, 50</value>
   </data>
   <data name="colorShowBox.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;colorShowBox.Name" xml:space="preserve">
     <value>colorShowBox</value>
