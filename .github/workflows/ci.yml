@@ -1,4 +1,4 @@
-name: CI
+﻿name: CI
 
 on:
   pull_request:
@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: Checkout LiveSplit
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           submodules: recursive
 
@@ -26,7 +26,7 @@ jobs:
         run: git checkout -b ${{ github.head_ref }} || git checkout ${{ github.head_ref }}
 
       - name: Set up .NET environment
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
           dotnet-version: '10.x'
 
@@ -55,21 +55,21 @@ jobs:
           .\LiveSplit.slnx
 
       - name: Upload build as an artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: LiveSplit_Build
-          path: .\bin\Release
+          path: .\artifacts\build\release
 
       - name: Upload UpdateManager.exe as an artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: UpdateManagerExe
-          path: .\bin\UpdateManagerExe
+          path: .\artifacts\build\updatemanagerexe
 
       - name: Upload build to LiveSplit.github.io
         if: github.repository == 'LiveSplit/LiveSplit' && github.ref == 'refs/heads/master'
         run: |
-          7z a LiveSplitDevBuild.zip .\bin\Release\*
+          7z a LiveSplitDevBuild.zip .\artifacts\build\release\*
           git config --global user.email "action@github.com"
           git config --global user.name "GitHub Action"
           git clone -q --branch master --single-branch "https://github.com/LiveSplit/LiveSplit.github.io.git"
