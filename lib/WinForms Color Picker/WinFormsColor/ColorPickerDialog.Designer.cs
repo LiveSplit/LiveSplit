@@ -268,7 +268,6 @@
             this.alphaSlider.Maximum = System.Drawing.Color.White;
             this.alphaSlider.Minimum = System.Drawing.Color.Transparent;
             this.alphaSlider.Name = "alphaSlider";
-            this.alphaSlider.TabStop = false;
             this.alphaSlider.PercentualValueChanged += new System.EventHandler(this.alphaSlider_PercentualValueChanged);
             // 
             // colorShowBox
@@ -278,6 +277,7 @@
             resources.ApplyResources(this.colorShowBox, "colorShowBox");
             this.colorShowBox.LowerColor = System.Drawing.Color.Maroon;
             this.colorShowBox.Name = "colorShowBox";
+            this.colorShowBox.TabStop = false;
             this.colorShowBox.UpperColor = System.Drawing.Color.DarkRed;
             this.colorShowBox.UpperClick += new System.EventHandler(this.colorShowBox_UpperClick);
             // 
@@ -285,7 +285,6 @@
             // 
             resources.ApplyResources(this.colorSlider, "colorSlider");
             this.colorSlider.Name = "colorSlider";
-            this.colorSlider.TabStop = false;
             this.colorSlider.PercentualValueChanged += new System.EventHandler(this.colorSlider_PercentualValueChanged);
             // 
             // colorPanel
@@ -294,7 +293,6 @@
             this.colorPanel.BottomRightColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.colorPanel, "colorPanel");
             this.colorPanel.Name = "colorPanel";
-            this.colorPanel.TabStop = false;
             this.colorPanel.TopLeftColor = System.Drawing.Color.White;
             this.colorPanel.TopRightColor = System.Drawing.Color.Red;
             this.colorPanel.ValuePercentual = ((System.Drawing.PointF)(resources.GetObject("colorPanel.ValuePercentual")));
