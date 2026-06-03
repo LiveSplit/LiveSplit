@@ -17,6 +17,8 @@ public class ColorPanel : UserControl
     private readonly Timer pickerDragTimer = null;
     private bool designSerializeColor = false;
 
+    private readonly float keyIncrement = 0.01f;
+
     public event EventHandler ValueChanged = null;
     public event EventHandler PercentualValueChanged = null;
 
@@ -359,6 +361,11 @@ public class ColorPanel : UserControl
 
         e.Graphics.DrawRectangle(SystemPens.ControlDark, colorBoxOuter);
         e.Graphics.DrawRectangle(SystemPens.ControlLightLight, colorBoxInner);
+
+        if (Focused)
+        {
+            ControlPaint.DrawFocusRectangle(e.Graphics, colorBoxOuter);
+        }
     }
     protected override void OnMouseDown(MouseEventArgs e)
     {
@@ -397,6 +404,42 @@ public class ColorPanel : UserControl
     {
         base.OnGotFocus(e);
         Invalidate();
+    }
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        switch (e.KeyCode)
+        {
+            case Keys.Up:
+                ValuePercentual = new(ValuePercentual.X, ValuePercentual.Y + keyIncrement);
+                break;
+            case Keys.Down:
+                ValuePercentual = new(ValuePercentual.X, ValuePercentual.Y - keyIncrement);
+                break;
+            case Keys.Left:
+                ValuePercentual = new(ValuePercentual.X - keyIncrement, ValuePercentual.Y);
+                break;
+            case Keys.Right:
+                ValuePercentual = new(ValuePercentual.X + keyIncrement, ValuePercentual.Y);
+                break;
+            default:
+                base.OnKeyDown(e);
+                break;
+        }
+    }
+    protected override void OnPreviewKeyDown(PreviewKeyDownEventArgs e)
+    {
+        switch (e.KeyCode)
+        {
+            case Keys.Up:
+            case Keys.Down:
+            case Keys.Left:
+            case Keys.Right:
+                e.IsInputKey = true;
+                break;
+            default:
+                base.OnPreviewKeyDown(e);
+                break;
+        }
     }
 
     private void ResetTopLeftColor()

@@ -278,6 +278,7 @@
             resources.ApplyResources(this.colorShowBox, "colorShowBox");
             this.colorShowBox.LowerColor = System.Drawing.Color.Maroon;
             this.colorShowBox.Name = "colorShowBox";
+            this.colorShowBox.TabStop = false;
             this.colorShowBox.UpperColor = System.Drawing.Color.DarkRed;
             this.colorShowBox.UpperClick += new System.EventHandler(this.colorShowBox_UpperClick);
             // 

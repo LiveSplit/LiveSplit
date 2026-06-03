@@ -15,6 +15,8 @@ public class ColorSlider : UserControl
     private readonly Timer pickerDragTimer = null;
     private bool designSerializeColor = false;
 
+    private readonly float keyIncrement = 0.01f;
+
     public event EventHandler ValueChanged = null;
     public event EventHandler PercentualValueChanged = null;
 
@@ -84,7 +86,7 @@ public class ColorSlider : UserControl
             Interval = 10
         };
         pickerDragTimer.Tick += new EventHandler(pickerDragTimer_Tick);
-
+        
         SetStyle(ControlStyles.UserPaint, true);
         SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         SetStyle(ControlStyles.Selectable, true);
@@ -239,6 +241,11 @@ public class ColorSlider : UserControl
         {
             e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(128, SystemColors.Control)), colorArea);
         }
+
+        if (Focused)
+        {
+            ControlPaint.DrawFocusRectangle(e.Graphics, ClientRectangle);
+        }
     }
     protected override void OnMouseDown(MouseEventArgs e)
     {
@@ -274,6 +281,35 @@ public class ColorSlider : UserControl
     {
         base.OnGotFocus(e);
         Invalidate();
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e)
+    {
+        switch (e.KeyCode)
+        {
+            case Keys.Up:
+                ValuePercentual += keyIncrement;
+                break;
+            case Keys.Down:
+                ValuePercentual -= keyIncrement;
+                break;
+            default:
+                base.OnKeyDown(e);
+                break;
+        }
+    }
+    protected override void OnPreviewKeyDown(PreviewKeyDownEventArgs e)
+    {
+        switch (e.KeyCode)
+        {
+            case Keys.Up:
+            case Keys.Down:
+                e.IsInputKey = true;
+                break;
+            default:
+                base.OnPreviewKeyDown(e);
+                break;
+        }
     }
 
     private void ResetMinimum()
