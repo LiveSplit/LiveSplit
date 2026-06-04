@@ -12,6 +12,15 @@ public partial class FontOverridePanel : UserControl
     private FontOverrides _fontOverrides;
     private Options.LayoutSettings _globalSettings;
 
+    // Snapshot of the Font references at Bind time. The btn*Font_Click handlers
+    // use these to tell apart "the Font that already existed when the dialog
+    // opened" (owned by LayoutSettingsDialog's snapshot — must NOT be disposed
+    // here) from "a Font we created in this dialog session via FontChanged"
+    // (orphaned the moment the user picks again — safe to dispose).
+    private Font _origTimerFont;
+    private Font _origTimesFont;
+    private Font _origTextFont;
+
     public FontOverridePanel()
     {
         InitializeComponent();
@@ -21,6 +30,9 @@ public partial class FontOverridePanel : UserControl
     {
         _fontOverrides = fontOverrides;
         _globalSettings = globalSettings;
+        _origTimerFont = fontOverrides.TimerFont;
+        _origTimesFont = fontOverrides.TimesFont;
+        _origTextFont = fontOverrides.TextFont;
         UpdateUI();
         ApplyFontFilter(usedFonts);
     }
@@ -46,8 +58,14 @@ public partial class FontOverridePanel : UserControl
             return;
         }
 
-        // Subtract the proportional height of hidden rows from the table area.
-        // This preserves DPI-scaled values since we derive from the current Height.
+        // Force a layout pass so _tableLayout.Height reflects the Dock=Fill
+        // size inside the GroupBox client area (~86 px) rather than the
+        // unparented designer Size (101 px). Using the designer value
+        // over-shrinks the panel by about 9 px per hidden row, which clips
+        // the bottom of the "Choose..." button (23 px) in the 1-visible-row
+        // case (e.g. Timer / Title / Text / Counter / Splits.SplitsComponent).
+        PerformLayout();
+
         int hiddenRows = _tableLayout.RowCount - visibleRows;
         Height -= _tableLayout.Height * hiddenRows / _tableLayout.RowCount;
     }
@@ -131,8 +149,10 @@ public partial class FontOverridePanel : UserControl
         dialog.FontChanged += (s, ev) =>
         {
             Font newFont = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
+            Font previous = _fontOverrides.TimerFont;
             // Scale back up to the size the Timer component expects
             _fontOverrides.TimerFont = new Font(newFont.FontFamily.Name, newFont.Size / 18f * 50f, newFont.Style, GraphicsUnit.Pixel);
+            DisposePreviousDialogFont(previous, _origTimerFont);
             UpdateFontLabel(_lblTimerFont, _fontOverrides.TimerFont, _globalSettings.TimerFont);
         };
         dialog.ShowDialog(FindForm());
@@ -144,7 +164,9 @@ public partial class FontOverridePanel : UserControl
         CustomFontDialog.FontDialog dialog = SettingsHelper.GetFontDialog(current, 11, 26);
         dialog.FontChanged += (s, ev) =>
         {
+            Font previous = _fontOverrides.TimesFont;
             _fontOverrides.TimesFont = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
+            DisposePreviousDialogFont(previous, _origTimesFont);
             UpdateFontLabel(_lblTimesFont, _fontOverrides.TimesFont, _globalSettings.TimesFont);
         };
         dialog.ShowDialog(FindForm());
@@ -156,9 +178,25 @@ public partial class FontOverridePanel : UserControl
         CustomFontDialog.FontDialog dialog = SettingsHelper.GetFontDialog(current, 11, 26);
         dialog.FontChanged += (s, ev) =>
         {
+            Font previous = _fontOverrides.TextFont;
             _fontOverrides.TextFont = ((CustomFontDialog.FontChangedEventArgs)ev).NewFont;
+            DisposePreviousDialogFont(previous, _origTextFont);
             UpdateFontLabel(_lblTextFont, _fontOverrides.TextFont, _globalSettings.TextFont);
         };
         dialog.ShowDialog(FindForm());
+    }
+
+    /// <summary>
+    /// Dispose <paramref name="previous"/> only when it was allocated during
+    /// this dialog session — i.e. it's not the pre-dialog original captured at
+    /// Bind. The original is owned by LayoutSettingsDialog's snapshot list and
+    /// is needed there to roll back on Cancel, so we must not touch it here.
+    /// </summary>
+    private static void DisposePreviousDialogFont(Font previous, Font origAtBind)
+    {
+        if (previous != null && !ReferenceEquals(previous, origAtBind))
+        {
+            previous.Dispose();
+        }
     }
 }
