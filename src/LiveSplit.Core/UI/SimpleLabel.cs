@@ -105,7 +105,7 @@ public class SimpleLabel
                 LineAlignment = VerticalAlignment
             };
 
-            int measurement = MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+            int measurement = MeasureCharacterActualWidth("0", g);
             float offset = Width;
             int charIndex = 0;
             SetActualWidth(g);
@@ -124,7 +124,7 @@ public class SimpleLabel
 
                 curOffset = char.IsDigit(curChar)
                     ? measurement
-                    : MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+                    : MeasureCharacterActualWidth(curChar.ToString(), g);
 
                 DrawText(curChar.ToString(), g, X + offset - (curOffset / 2f), Y, curOffset * 2f, Height, monoFormat);
 
@@ -218,7 +218,7 @@ public class SimpleLabel
     private float MeasureActualWidth(string text, Graphics g)
     {
         int charIndex = 0;
-        int measurement = MeasureText(g, "0", Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+        int measurement = MeasureCharacterActualWidth("0", g);
         int offset = 0;
 
         while (charIndex < text.Length)
@@ -231,13 +231,27 @@ public class SimpleLabel
             }
             else
             {
-                offset += MeasureText(g, curChar.ToString(), Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+                offset += MeasureCharacterActualWidth(curChar.ToString(), g);
             }
 
             charIndex++;
         }
 
         return offset;
+    }
+    
+    // Intended to measure the width of a single character, taking into account DPI scaling
+    // For longer strings, MeasureActualWidth should be used instead to keep digit spacing consistent
+    private int MeasureCharacterActualWidth(string text, Graphics g)
+    {
+        int width = MeasureText(g, text, Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
+        
+		if (Font.Unit != GraphicsUnit.Point)
+        {
+            width = (int)((width * 96f / g.DpiY) + 0.5f);
+        }
+
+        return width;
     }
 
     private string CutOff(Graphics g)
