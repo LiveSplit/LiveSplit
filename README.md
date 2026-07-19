@@ -51,7 +51,7 @@ LiveSplit uses .NET Framework 4.8.1. To compile LiveSplit, you need the followin
 - [.NET 10.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 - [.NET Framework 4.8.1 Developer Pack](https://dotnet.microsoft.com/en-us/download/dotnet-framework/thank-you/net481-developer-pack-offline-installer)
 
-After cloning, simply run `dotnet build LiveSplit.sln` from the root of the repository.
+After cloning, simply run `dotnet build LiveSplit.slnx` from the root of the repository.
 
 To use Visual Studio, you must install a version that supports the .NET SDK version you installed. At the time of writing, the most recent version is [Visual Studio 2026](https://visualstudio.microsoft.com/vs/community).
 
