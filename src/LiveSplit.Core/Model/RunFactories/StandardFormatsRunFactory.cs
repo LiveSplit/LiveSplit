@@ -94,6 +94,40 @@ public class StandardFormatsRunFactory : IRunFactory
         }
     }
 
+    private static string[] GetLegacySegmentNames(LiveSplitCore.RunRef run)
+    {
+        int segmentCount = checked((int)run.Len());
+        var names = new string[segmentCount];
+        for (int i = 0; i < segmentCount; i++)
+        {
+            names[i] = run.Segment((ulong)i).Name();
+        }
+
+        // The C API does not expose segment groups directly, so use the
+        // canonical LiveSplit serialization as the compatibility bridge.
+        var document = new XmlDocument();
+        document.LoadXml(run.SaveAsLss());
+
+        foreach (XmlElement group in document.SelectNodes("/Run/SegmentGroups/SegmentGroup"))
+        {
+            int start = int.Parse(group.GetAttribute("start"), CultureInfo.InvariantCulture);
+            int end = int.Parse(group.GetAttribute("end"), CultureInfo.InvariantCulture);
+
+            for (int i = start; i < end - 1; i++)
+            {
+                names[i] = $"-{names[i]}";
+            }
+
+            XmlElement groupName = group["Name"];
+            if (groupName != null)
+            {
+                names[end - 1] = $"{{{groupName.InnerText}}} {names[end - 1]}";
+            }
+        }
+
+        return names;
+    }
+
     public IRun Create(IComparisonGeneratorsFactory factory)
     {
         LiveSplitCore.ParseRunResult result = null;
@@ -175,11 +209,12 @@ public class StandardFormatsRunFactory : IRunFactory
             }
         }
 
-        ulong segmentCount = lscRun.Len();
+        string[] segmentNames = GetLegacySegmentNames(lscRun);
+        ulong segmentCount = (ulong)segmentNames.Length;
         for (ulong i = 0ul; i < segmentCount; ++i)
         {
             LiveSplitCore.SegmentRef segment = lscRun.Segment(i);
-            var split = new Segment(segment.Name())
+            var split = new Segment(segmentNames[i])
             {
                 Icon = ParseImage(segment.IconPtr(), segment.IconLen()),
                 BestSegmentTime = ParseTime(segment.BestSegmentTime()),
