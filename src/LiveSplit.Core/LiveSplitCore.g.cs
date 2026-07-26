@@ -314,25 +314,30 @@ namespace LiveSplitCore
         /// <summary>
         /// Attempts to load an auto splitter. Returns true if successful.
         /// </summary>
-        public bool LoadScript(string path)
+        public bool Load(string path, SharedTimer sharedTimer)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.AutoSplittingRuntime_load_script(this.ptr, path) != 0;
+            if (sharedTimer.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("sharedTimer");
+            }
+            var result = LiveSplitCoreNative.AutoSplittingRuntime_load(this.ptr, path, sharedTimer.ptr) != 0;
+            sharedTimer.ptr = IntPtr.Zero;
             return result;
         }
         /// <summary>
         /// Attempts to unload the auto splitter. Returns true if successful.
         /// </summary>
-        public bool UnloadScript()
+        public bool Unload()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.AutoSplittingRuntime_unload_script(this.ptr) != 0;
+            var result = LiveSplitCoreNative.AutoSplittingRuntime_unload(this.ptr) != 0;
             return result;
         }
         internal AutoSplittingRuntimeRef(IntPtr ptr)
@@ -374,16 +379,11 @@ namespace LiveSplitCore
             GC.SuppressFinalize(this);
         }
         /// <summary>
-        /// Creates a new Auto Splitting Runtime for a Timer.
+        /// Creates a new Auto Splitting Runtime.
         /// </summary>
-        public AutoSplittingRuntime(SharedTimer sharedTimer) : base(IntPtr.Zero)
+        public AutoSplittingRuntime() : base(IntPtr.Zero)
         {
-            if (sharedTimer.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("sharedTimer");
-            }
-            this.ptr = LiveSplitCoreNative.AutoSplittingRuntime_new(sharedTimer.ptr);
-            sharedTimer.ptr = IntPtr.Zero;
+            this.ptr = LiveSplitCoreNative.AutoSplittingRuntime_new();
         }
         internal AutoSplittingRuntime(IntPtr ptr) : base(ptr) { }
     }
@@ -542,6 +542,327 @@ namespace LiveSplitCore
     }
 
     /// <summary>
+    /// A Carousel Component cycles through its child components one at a time,
+    /// periodically switching to the next child after a configurable interval.
+    /// </summary>
+    public class CarouselComponentRef
+    {
+        internal IntPtr ptr;
+        /// <summary>
+        /// Returns the number of components in the carousel.
+        /// </summary>
+        public ulong Len()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.CarouselComponent_len(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Returns the size override of the carousel. 0xFFFFFFFF means automatic
+        /// sizing.
+        /// </summary>
+        public uint Size()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.CarouselComponent_size(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Returns the interval in seconds between switching to the next child.
+        /// </summary>
+        public ulong Interval()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.CarouselComponent_interval(this.ptr);
+            return result;
+        }
+        internal CarouselComponentRef(IntPtr ptr)
+        {
+            this.ptr = ptr;
+        }
+    }
+
+    /// <summary>
+    /// A Carousel Component cycles through its child components one at a time,
+    /// periodically switching to the next child after a configurable interval.
+    /// </summary>
+    public class CarouselComponentRefMut : CarouselComponentRef
+    {
+        /// <summary>
+        /// Adds a component to the end of the carousel.
+        /// </summary>
+        public void AddComponent(Component component)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            if (component.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("component");
+            }
+            LiveSplitCoreNative.CarouselComponent_add_component(this.ptr, component.ptr);
+            component.ptr = IntPtr.Zero;
+        }
+        /// <summary>
+        /// Sets the size override of the carousel. 0xFFFFFFFF means automatic
+        /// sizing.
+        /// </summary>
+        public void SetSize(uint size)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            LiveSplitCoreNative.CarouselComponent_set_size(this.ptr, size);
+        }
+        /// <summary>
+        /// Sets the interval in seconds between switching to the next child.
+        /// </summary>
+        public void SetInterval(ulong interval)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            LiveSplitCoreNative.CarouselComponent_set_interval(this.ptr, interval);
+        }
+        internal CarouselComponentRefMut(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// A Carousel Component cycles through its child components one at a time,
+    /// periodically switching to the next child after a configurable interval.
+    /// </summary>
+    public class CarouselComponent : CarouselComponentRefMut, IDisposable
+    {
+        private void Drop()
+        {
+            if (ptr != IntPtr.Zero)
+            {
+                LiveSplitCoreNative.CarouselComponent_drop(this.ptr);
+                ptr = IntPtr.Zero;
+            }
+        }
+        ~CarouselComponent()
+        {
+            Drop();
+        }
+        public void Dispose()
+        {
+            Drop();
+            GC.SuppressFinalize(this);
+        }
+        /// <summary>
+        /// Creates a new empty Carousel Component.
+        /// </summary>
+        public CarouselComponent() : base(IntPtr.Zero)
+        {
+            this.ptr = LiveSplitCoreNative.CarouselComponent_new();
+        }
+        /// <summary>
+        /// Converts the Carousel Component into a generic component suitable for using
+        /// with a layout.
+        /// </summary>
+        public Component IntoGeneric()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = new Component(LiveSplitCoreNative.CarouselComponent_into_generic(this.ptr));
+            this.ptr = IntPtr.Zero;
+            return result;
+        }
+        internal CarouselComponent(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// The state object describes the information to visualize for this component.
+    /// </summary>
+    public class CarouselComponentStateRef
+    {
+        internal IntPtr ptr;
+        /// <summary>
+        /// Returns the number of components in a Carousel State.
+        /// </summary>
+        public ulong Len()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.CarouselComponentState_len(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Returns a string describing the type of the component at the specified
+        /// index within a Carousel State.
+        /// </summary>
+        public string ComponentType(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.CarouselComponentState_component_type(this.ptr, (UIntPtr)index);
+            return result;
+        }
+        /// <summary>
+        /// Returns the size override of a Carousel State. 0xFFFFFFFF means automatic
+        /// sizing.
+        /// </summary>
+        public uint Size()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.CarouselComponentState_size(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Returns the index of the currently visible component.
+        /// </summary>
+        public ulong CurrentIndex()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.CarouselComponentState_current_index(this.ptr);
+            return result;
+        }
+        internal CarouselComponentStateRef(IntPtr ptr)
+        {
+            this.ptr = ptr;
+        }
+    }
+
+    /// <summary>
+    /// The state object describes the information to visualize for this component.
+    /// </summary>
+    public class CarouselComponentStateRefMut : CarouselComponentStateRef
+    {
+        internal CarouselComponentStateRefMut(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// The state object describes the information to visualize for this component.
+    /// </summary>
+    public class CarouselComponentState : CarouselComponentStateRefMut, IDisposable
+    {
+        private void Drop()
+        {
+            if (ptr != IntPtr.Zero)
+            {
+                ptr = IntPtr.Zero;
+            }
+        }
+        ~CarouselComponentState()
+        {
+            Drop();
+        }
+        public void Dispose()
+        {
+            Drop();
+            GC.SuppressFinalize(this);
+        }
+        internal CarouselComponentState(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// A command sink accepts commands that are meant to be passed to the timer.
+    /// The commands usually come from the hotkey system, an auto splitter, the UI,
+    /// or through a network connection. The UI usually provides the implementation
+    /// for this, forwarding all the commands to the actual timer. It is able to
+    /// intercept the commands and for example ask the user for confirmation before
+    /// applying them. Other handling is possible such as automatically saving the
+    /// splits or notifying a server about changes happening in the run. After
+    /// processing a command, changes to the timer are reported as events. Various
+    /// error conditions can occur if the command couldn't be processed.
+    /// </summary>
+    public class CommandSinkRef
+    {
+        internal IntPtr ptr;
+        internal CommandSinkRef(IntPtr ptr)
+        {
+            this.ptr = ptr;
+        }
+    }
+
+    /// <summary>
+    /// A command sink accepts commands that are meant to be passed to the timer.
+    /// The commands usually come from the hotkey system, an auto splitter, the UI,
+    /// or through a network connection. The UI usually provides the implementation
+    /// for this, forwarding all the commands to the actual timer. It is able to
+    /// intercept the commands and for example ask the user for confirmation before
+    /// applying them. Other handling is possible such as automatically saving the
+    /// splits or notifying a server about changes happening in the run. After
+    /// processing a command, changes to the timer are reported as events. Various
+    /// error conditions can occur if the command couldn't be processed.
+    /// </summary>
+    public class CommandSinkRefMut : CommandSinkRef
+    {
+        internal CommandSinkRefMut(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// A command sink accepts commands that are meant to be passed to the timer.
+    /// The commands usually come from the hotkey system, an auto splitter, the UI,
+    /// or through a network connection. The UI usually provides the implementation
+    /// for this, forwarding all the commands to the actual timer. It is able to
+    /// intercept the commands and for example ask the user for confirmation before
+    /// applying them. Other handling is possible such as automatically saving the
+    /// splits or notifying a server about changes happening in the run. After
+    /// processing a command, changes to the timer are reported as events. Various
+    /// error conditions can occur if the command couldn't be processed.
+    /// </summary>
+    public class CommandSink : CommandSinkRefMut, IDisposable
+    {
+        private void Drop()
+        {
+            if (ptr != IntPtr.Zero)
+            {
+                LiveSplitCoreNative.CommandSink_drop(this.ptr);
+                ptr = IntPtr.Zero;
+            }
+        }
+        ~CommandSink()
+        {
+            Drop();
+        }
+        public void Dispose()
+        {
+            Drop();
+            GC.SuppressFinalize(this);
+        }
+        /// <summary>
+        /// Creates a new Command Sink.
+        /// </summary>
+        public static CommandSink FromTimer(SharedTimer timer)
+        {
+            if (timer.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("timer");
+            }
+            var result = new CommandSink(LiveSplitCoreNative.CommandSink_from_timer(timer.ptr));
+            timer.ptr = IntPtr.Zero;
+            return result;
+        }
+        internal CommandSink(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
     /// A Component provides information about a run in a way that is easy to
     /// visualize. This type can store any of the components provided by this crate.
     /// </summary>
@@ -611,7 +932,7 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer)
+        public string StateAsJson(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -621,13 +942,13 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.CurrentComparisonComponent_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.CurrentComparisonComponent_state_as_json(this.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer provided.
         /// </summary>
-        public KeyValueComponentState State(TimerRef timer)
+        public KeyValueComponentState State(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -637,7 +958,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = new KeyValueComponentState(LiveSplitCoreNative.CurrentComparisonComponent_state(this.ptr, timer.ptr));
+            var result = new KeyValueComponentState(LiveSplitCoreNative.CurrentComparisonComponent_state(this.ptr, timer.ptr, lang));
             return result;
         }
         internal CurrentComparisonComponentRefMut(IntPtr ptr) : base(ptr) { }
@@ -714,7 +1035,7 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer)
+        public string StateAsJson(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -724,13 +1045,13 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.CurrentPaceComponent_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.CurrentPaceComponent_state_as_json(this.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer provided.
         /// </summary>
-        public KeyValueComponentState State(TimerRef timer)
+        public KeyValueComponentState State(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -740,7 +1061,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = new KeyValueComponentState(LiveSplitCoreNative.CurrentPaceComponent_state(this.ptr, timer.ptr));
+            var result = new KeyValueComponentState(LiveSplitCoreNative.CurrentPaceComponent_state(this.ptr, timer.ptr, lang));
             return result;
         }
         internal CurrentPaceComponentRefMut(IntPtr ptr) : base(ptr) { }
@@ -795,8 +1116,8 @@ namespace LiveSplitCore
     }
 
     /// <summary>
-    /// The Delta Component is a component that shows the how far ahead or behind
-    /// the current attempt is compared to the chosen comparison.
+    /// The Delta Component is a component that shows how far ahead or behind the
+    /// current attempt is compared to the chosen comparison.
     /// </summary>
     public class DeltaComponentRef
     {
@@ -808,15 +1129,15 @@ namespace LiveSplitCore
     }
 
     /// <summary>
-    /// The Delta Component is a component that shows the how far ahead or behind
-    /// the current attempt is compared to the chosen comparison.
+    /// The Delta Component is a component that shows how far ahead or behind the
+    /// current attempt is compared to the chosen comparison.
     /// </summary>
     public class DeltaComponentRefMut : DeltaComponentRef
     {
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public string StateAsJson(TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -830,14 +1151,14 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = LiveSplitCoreNative.DeltaComponent_state_as_json(this.ptr, timer.ptr, layoutSettings.ptr);
+            var result = LiveSplitCoreNative.DeltaComponent_state_as_json(this.ptr, timer.ptr, layoutSettings.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer and the layout
         /// settings provided.
         /// </summary>
-        public KeyValueComponentState State(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public KeyValueComponentState State(TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -851,15 +1172,15 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = new KeyValueComponentState(LiveSplitCoreNative.DeltaComponent_state(this.ptr, timer.ptr, layoutSettings.ptr));
+            var result = new KeyValueComponentState(LiveSplitCoreNative.DeltaComponent_state(this.ptr, timer.ptr, layoutSettings.ptr, lang));
             return result;
         }
         internal DeltaComponentRefMut(IntPtr ptr) : base(ptr) { }
     }
 
     /// <summary>
-    /// The Delta Component is a component that shows the how far ahead or behind
-    /// the current attempt is compared to the chosen comparison.
+    /// The Delta Component is a component that shows how far ahead or behind the
+    /// current attempt is compared to the chosen comparison.
     /// </summary>
     public class DeltaComponent : DeltaComponentRefMut, IDisposable
     {
@@ -930,11 +1251,15 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public string StateAsJson(ImageCacheRefMut imageCache, TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
+            }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
             }
             if (timer.ptr == IntPtr.Zero)
             {
@@ -944,18 +1269,22 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = LiveSplitCoreNative.DetailedTimerComponent_state_as_json(this.ptr, timer.ptr, layoutSettings.ptr);
+            var result = LiveSplitCoreNative.DetailedTimerComponent_state_as_json(this.ptr, imageCache.ptr, timer.ptr, layoutSettings.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer and layout settings
         /// provided.
         /// </summary>
-        public DetailedTimerComponentState State(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public DetailedTimerComponentState State(ImageCacheRefMut imageCache, TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
+            }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
             }
             if (timer.ptr == IntPtr.Zero)
             {
@@ -965,7 +1294,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = new DetailedTimerComponentState(LiveSplitCoreNative.DetailedTimerComponent_state(this.ptr, timer.ptr, layoutSettings.ptr));
+            var result = new DetailedTimerComponentState(LiveSplitCoreNative.DetailedTimerComponent_state(this.ptr, imageCache.ptr, timer.ptr, layoutSettings.ptr, lang));
             return result;
         }
         internal DetailedTimerComponentRefMut(IntPtr ptr) : base(ptr) { }
@@ -1164,30 +1493,17 @@ namespace LiveSplitCore
             return result;
         }
         /// <summary>
-        /// The data of the segment's icon. This value is only specified whenever the
-        /// icon changes. If you explicitly want to query this value, remount the
-        /// component. The buffer itself may be empty. This indicates that there is no
+        /// The icon of the segment. The associated image can be looked up in the image
+        /// cache. The image may be the empty image. This indicates that there is no
         /// icon.
         /// </summary>
-        public IntPtr IconChangePtr()
+        public string Icon()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.DetailedTimerComponentState_icon_change_ptr(this.ptr);
-            return result;
-        }
-        /// <summary>
-        /// The length of the data of the segment's icon.
-        /// </summary>
-        public ulong IconChangeLen()
-        {
-            if (this.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            var result = (ulong)LiveSplitCoreNative.DetailedTimerComponentState_icon_change_len(this.ptr);
+            var result = LiveSplitCoreNative.DetailedTimerComponentState_icon(this.ptr);
             return result;
         }
         /// <summary>
@@ -1689,6 +2005,212 @@ namespace LiveSplitCore
     }
 
     /// <summary>
+    /// A Component Group groups multiple components together and lays them out
+    /// in the opposite direction to the parent, enabling nested layout hierarchies.
+    /// </summary>
+    public class GroupComponentRef
+    {
+        internal IntPtr ptr;
+        /// <summary>
+        /// Returns the number of components in the group.
+        /// </summary>
+        public ulong Len()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.GroupComponent_len(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Returns the size override of the group. In horizontal mode this is the
+        /// height, in vertical mode it is the width. 0xFFFFFFFF means automatic sizing.
+        /// </summary>
+        public uint Size()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.GroupComponent_size(this.ptr);
+            return result;
+        }
+        internal GroupComponentRef(IntPtr ptr)
+        {
+            this.ptr = ptr;
+        }
+    }
+
+    /// <summary>
+    /// A Component Group groups multiple components together and lays them out
+    /// in the opposite direction to the parent, enabling nested layout hierarchies.
+    /// </summary>
+    public class GroupComponentRefMut : GroupComponentRef
+    {
+        /// <summary>
+        /// Adds a component to the end of the group.
+        /// </summary>
+        public void AddComponent(Component component)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            if (component.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("component");
+            }
+            LiveSplitCoreNative.GroupComponent_add_component(this.ptr, component.ptr);
+            component.ptr = IntPtr.Zero;
+        }
+        /// <summary>
+        /// Sets the size override of the group. In horizontal mode this sets the
+        /// height, in vertical mode it sets the width. 0xFFFFFFFF means automatic
+        /// sizing.
+        /// </summary>
+        public void SetSize(uint size)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            LiveSplitCoreNative.GroupComponent_set_size(this.ptr, size);
+        }
+        internal GroupComponentRefMut(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// A Component Group groups multiple components together and lays them out
+    /// in the opposite direction to the parent, enabling nested layout hierarchies.
+    /// </summary>
+    public class GroupComponent : GroupComponentRefMut, IDisposable
+    {
+        private void Drop()
+        {
+            if (ptr != IntPtr.Zero)
+            {
+                LiveSplitCoreNative.GroupComponent_drop(this.ptr);
+                ptr = IntPtr.Zero;
+            }
+        }
+        ~GroupComponent()
+        {
+            Drop();
+        }
+        public void Dispose()
+        {
+            Drop();
+            GC.SuppressFinalize(this);
+        }
+        /// <summary>
+        /// Creates a new empty Group Component.
+        /// </summary>
+        public GroupComponent() : base(IntPtr.Zero)
+        {
+            this.ptr = LiveSplitCoreNative.GroupComponent_new();
+        }
+        /// <summary>
+        /// Converts the Group Component into a generic component suitable for using
+        /// with a layout.
+        /// </summary>
+        public Component IntoGeneric()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = new Component(LiveSplitCoreNative.GroupComponent_into_generic(this.ptr));
+            this.ptr = IntPtr.Zero;
+            return result;
+        }
+        internal GroupComponent(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// The state object describes the information to visualize for this component.
+    /// </summary>
+    public class GroupComponentStateRef
+    {
+        internal IntPtr ptr;
+        /// <summary>
+        /// Returns the number of components in a Group State.
+        /// </summary>
+        public ulong Len()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.GroupComponentState_len(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Returns a string describing the type of the component at the specified
+        /// index within a Group State.
+        /// </summary>
+        public string ComponentType(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.GroupComponentState_component_type(this.ptr, (UIntPtr)index);
+            return result;
+        }
+        /// <summary>
+        /// Returns the size override of a Group State. In horizontal mode this is the
+        /// height, in vertical mode it is the width. 0xFFFFFFFF means automatic
+        /// sizing.
+        /// </summary>
+        public uint Size()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.GroupComponentState_size(this.ptr);
+            return result;
+        }
+        internal GroupComponentStateRef(IntPtr ptr)
+        {
+            this.ptr = ptr;
+        }
+    }
+
+    /// <summary>
+    /// The state object describes the information to visualize for this component.
+    /// </summary>
+    public class GroupComponentStateRefMut : GroupComponentStateRef
+    {
+        internal GroupComponentStateRefMut(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// The state object describes the information to visualize for this component.
+    /// </summary>
+    public class GroupComponentState : GroupComponentStateRefMut, IDisposable
+    {
+        private void Drop()
+        {
+            if (ptr != IntPtr.Zero)
+            {
+                ptr = IntPtr.Zero;
+            }
+        }
+        ~GroupComponentState()
+        {
+            Drop();
+        }
+        public void Dispose()
+        {
+            Drop();
+            GC.SuppressFinalize(this);
+        }
+        internal GroupComponentState(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
     /// The configuration to use for a Hotkey System. It describes with keys to use
     /// as hotkeys for the different actions.
     /// </summary>
@@ -1699,13 +2221,13 @@ namespace LiveSplitCore
         /// Encodes generic description of the settings available for the hotkey
         /// configuration and their current values as JSON.
         /// </summary>
-        public string SettingsDescriptionAsJson()
+        public string SettingsDescriptionAsJson(byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.HotkeyConfig_settings_description_as_json(this.ptr);
+            var result = LiveSplitCoreNative.HotkeyConfig_settings_description_as_json(this.ptr, lang);
             return result;
         }
         /// <summary>
@@ -1803,7 +2325,7 @@ namespace LiveSplitCore
         }
         /// <summary>
         /// Attempts to parse a hotkey configuration from a given file. null is
-        /// returned it couldn't be parsed. This will not close the file descriptor /
+        /// returned if it couldn't be parsed. This will not close the file descriptor /
         /// handle.
         /// </summary>
         public static HotkeyConfig ParseFileHandle(long handle)
@@ -1945,14 +2467,13 @@ namespace LiveSplitCore
         /// <summary>
         /// Creates a new Hotkey System for a Timer with the default hotkeys.
         /// </summary>
-        public static HotkeySystem New(SharedTimer sharedTimer)
+        public static HotkeySystem New(CommandSinkRef commandSink)
         {
-            if (sharedTimer.ptr == IntPtr.Zero)
+            if (commandSink.ptr == IntPtr.Zero)
             {
-                throw new ObjectDisposedException("sharedTimer");
+                throw new ObjectDisposedException("commandSink");
             }
-            var result = new HotkeySystem(LiveSplitCoreNative.HotkeySystem_new(sharedTimer.ptr));
-            sharedTimer.ptr = IntPtr.Zero;
+            var result = new HotkeySystem(LiveSplitCoreNative.HotkeySystem_new(commandSink.ptr));
             if (result.ptr == IntPtr.Zero)
             {
                 return null;
@@ -1963,18 +2484,17 @@ namespace LiveSplitCore
         /// Creates a new Hotkey System for a Timer with a custom configuration for the
         /// hotkeys.
         /// </summary>
-        public static HotkeySystem WithConfig(SharedTimer sharedTimer, HotkeyConfig config)
+        public static HotkeySystem WithConfig(CommandSinkRef commandSink, HotkeyConfig config)
         {
-            if (sharedTimer.ptr == IntPtr.Zero)
+            if (commandSink.ptr == IntPtr.Zero)
             {
-                throw new ObjectDisposedException("sharedTimer");
+                throw new ObjectDisposedException("commandSink");
             }
             if (config.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("config");
             }
-            var result = new HotkeySystem(LiveSplitCoreNative.HotkeySystem_with_config(sharedTimer.ptr, config.ptr));
-            sharedTimer.ptr = IntPtr.Zero;
+            var result = new HotkeySystem(LiveSplitCoreNative.HotkeySystem_with_config(commandSink.ptr, config.ptr));
             config.ptr = IntPtr.Zero;
             if (result.ptr == IntPtr.Zero)
             {
@@ -1983,6 +2503,133 @@ namespace LiveSplitCore
             return result;
         }
         internal HotkeySystem(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// A cache for images that allows looking up images by their ID. The cache uses
+    /// a garbage collection algorithm to remove images that have not been visited
+    /// since the last garbage collection. Functions updating the cache usually
+    /// don't run the garbage collection themselves, so make sure to call `collect`
+    /// every now and then to remove unvisited images.
+    /// </summary>
+    public class ImageCacheRef
+    {
+        internal IntPtr ptr;
+        /// <summary>
+        /// Looks up an image in the cache based on its image ID and returns a pointer
+        /// to the bytes that make up the image. The bytes are the image in its original
+        /// file format. The format is not specified and can be any image format. The
+        /// data may not even represent a valid image at all. If the image is not in the
+        /// cache, null is returned. This does not mark the image as visited.
+        /// </summary>
+        public IntPtr LookupDataPtr(string key)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.ImageCache_lookup_data_ptr(this.ptr, key);
+            return result;
+        }
+        /// <summary>
+        /// Looks up an image in the cache based on its image ID and returns its byte
+        /// length. If the image is not in the cache, 0 is returned. This does not mark
+        /// the image as visited.
+        /// </summary>
+        public ulong LookupDataLen(string key)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.ImageCache_lookup_data_len(this.ptr, key);
+            return result;
+        }
+        internal ImageCacheRef(IntPtr ptr)
+        {
+            this.ptr = ptr;
+        }
+    }
+
+    /// <summary>
+    /// A cache for images that allows looking up images by their ID. The cache uses
+    /// a garbage collection algorithm to remove images that have not been visited
+    /// since the last garbage collection. Functions updating the cache usually
+    /// don't run the garbage collection themselves, so make sure to call `collect`
+    /// every now and then to remove unvisited images.
+    /// </summary>
+    public class ImageCacheRefMut : ImageCacheRef
+    {
+        /// <summary>
+        /// Caches an image and returns its image ID. The image is provided as a byte
+        /// array. The image ID is the hash of the image data and can be used to look up
+        /// the image in the cache. The image is marked as visited in the cache. If you
+        /// specify that the image is large, it gets considered a large image that may
+        /// be used as a background image. Otherwise it gets considered an icon. The
+        /// image is resized according to this information.
+        /// </summary>
+        public string Cache(IntPtr data, ulong len, bool isLarge)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.ImageCache_cache(this.ptr, (IntPtr)data, (UIntPtr)len, isLarge);
+            return result;
+        }
+        /// <summary>
+        /// Runs the garbage collection of the cache. This removes images from the cache
+        /// that have not been visited since the last garbage collection. Not every
+        /// image that has not been visited is removed. There is a heuristic that keeps
+        /// a certain amount of images in the cache regardless of whether they have been
+        /// visited or not. Returns the amount of images that got collected.
+        /// </summary>
+        public ulong Collect()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.ImageCache_collect(this.ptr);
+            return result;
+        }
+        internal ImageCacheRefMut(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// A cache for images that allows looking up images by their ID. The cache uses
+    /// a garbage collection algorithm to remove images that have not been visited
+    /// since the last garbage collection. Functions updating the cache usually
+    /// don't run the garbage collection themselves, so make sure to call `collect`
+    /// every now and then to remove unvisited images.
+    /// </summary>
+    public class ImageCache : ImageCacheRefMut, IDisposable
+    {
+        private void Drop()
+        {
+            if (ptr != IntPtr.Zero)
+            {
+                LiveSplitCoreNative.ImageCache_drop(this.ptr);
+                ptr = IntPtr.Zero;
+            }
+        }
+        ~ImageCache()
+        {
+            Drop();
+        }
+        public void Dispose()
+        {
+            Drop();
+            GC.SuppressFinalize(this);
+        }
+        /// <summary>
+        /// Creates a new image cache.
+        /// </summary>
+        public ImageCache() : base(IntPtr.Zero)
+        {
+            this.ptr = LiveSplitCoreNative.ImageCache_new();
+        }
+        internal ImageCache(IntPtr ptr) : base(ptr) { }
     }
 
     /// <summary>
@@ -2067,6 +2714,74 @@ namespace LiveSplitCore
     }
 
     /// <summary>
+    /// Localization bindings.
+    /// </summary>
+    public class LangRef
+    {
+        internal IntPtr ptr;
+        internal LangRef(IntPtr ptr)
+        {
+            this.ptr = ptr;
+        }
+    }
+
+    /// <summary>
+    /// Localization bindings.
+    /// </summary>
+    public class LangRefMut : LangRef
+    {
+        internal LangRefMut(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// Localization bindings.
+    /// </summary>
+    public class Lang : LangRefMut, IDisposable
+    {
+        private void Drop()
+        {
+            if (ptr != IntPtr.Zero)
+            {
+                ptr = IntPtr.Zero;
+            }
+        }
+        ~Lang()
+        {
+            Drop();
+        }
+        public void Dispose()
+        {
+            Drop();
+            GC.SuppressFinalize(this);
+        }
+        /// <summary>
+        /// Parses a locale string into a language.
+        /// </summary>
+        public static byte ParseLocale(string locale)
+        {
+            var result = LiveSplitCoreNative.Lang_parse_locale(locale);
+            return result;
+        }
+        /// <summary>
+        /// Parses a language name into a language.
+        /// </summary>
+        public static byte FromName(string name)
+        {
+            var result = LiveSplitCoreNative.Lang_from_name(name);
+            return result;
+        }
+        /// <summary>
+        /// Returns the localized display name for a language.
+        /// </summary>
+        public static string Name(byte lang)
+        {
+            var result = LiveSplitCoreNative.Lang_name(lang);
+            return result;
+        }
+        internal Lang(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
     /// A Layout allows you to combine multiple components together to visualize a
     /// variety of information the runner is interested in.
     /// </summary>
@@ -2112,23 +2827,27 @@ namespace LiveSplitCore
         /// <summary>
         /// Calculates and returns the layout's state based on the timer provided.
         /// </summary>
-        public LayoutState State(TimerRef timer)
+        public LayoutState State(ImageCacheRefMut imageCache, TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
             if (timer.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = new LayoutState(LiveSplitCoreNative.Layout_state(this.ptr, timer.ptr));
+            var result = new LayoutState(LiveSplitCoreNative.Layout_state(this.ptr, imageCache.ptr, timer.ptr, lang));
             return result;
         }
         /// <summary>
         /// Updates the layout's state based on the timer provided.
         /// </summary>
-        public void UpdateState(LayoutStateRefMut state, TimerRef timer)
+        public void UpdateState(LayoutStateRefMut state, ImageCacheRefMut imageCache, TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -2138,17 +2857,21 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("state");
             }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
             if (timer.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("timer");
             }
-            LiveSplitCoreNative.Layout_update_state(this.ptr, state.ptr, timer.ptr);
+            LiveSplitCoreNative.Layout_update_state(this.ptr, state.ptr, imageCache.ptr, timer.ptr, lang);
         }
         /// <summary>
         /// Updates the layout's state based on the timer provided and encodes it as
         /// JSON.
         /// </summary>
-        public string UpdateStateAsJson(LayoutStateRefMut state, TimerRef timer)
+        public string UpdateStateAsJson(LayoutStateRefMut state, ImageCacheRefMut imageCache, TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -2158,28 +2881,36 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("state");
             }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
             if (timer.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.Layout_update_state_as_json(this.ptr, state.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.Layout_update_state_as_json(this.ptr, state.ptr, imageCache.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the layout's state based on the timer provided and encodes it as
         /// JSON. You can use this to visualize all of the components of a layout.
         /// </summary>
-        public string StateAsJson(TimerRef timer)
+        public string StateAsJson(ImageCacheRefMut imageCache, TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
             if (timer.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.Layout_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.Layout_state_as_json(this.ptr, imageCache.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
@@ -2220,20 +2951,6 @@ namespace LiveSplitCore
             }
             LiveSplitCoreNative.Layout_scroll_down(this.ptr);
         }
-        /// <summary>
-        /// Remounts all the components as if they were freshly initialized. Some
-        /// components may only provide some information whenever it changes or when
-        /// their state is first queried. Remounting returns this information again,
-        /// whenever the layout's state is queried the next time.
-        /// </summary>
-        public void Remount()
-        {
-            if (this.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            LiveSplitCoreNative.Layout_remount(this.ptr);
-        }
         internal LayoutRefMut(IntPtr ptr) : base(ptr) { }
     }
 
@@ -2273,9 +2990,9 @@ namespace LiveSplitCore
         /// are provided by this and how they are configured may change in the
         /// future.
         /// </summary>
-        public static Layout DefaultLayout()
+        public static Layout DefaultLayout(byte lang)
         {
-            var result = new Layout(LiveSplitCoreNative.Layout_default_layout());
+            var result = new Layout(LiveSplitCoreNative.Layout_default_layout(lang));
             return result;
         }
         /// <summary>
@@ -2333,25 +3050,33 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the Layout Editor's state as JSON in order to visualize it.
         /// </summary>
-        public string StateAsJson()
+        public string StateAsJson(ImageCacheRefMut imageCache, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.LayoutEditor_state_as_json(this.ptr);
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
+            var result = LiveSplitCoreNative.LayoutEditor_state_as_json(this.ptr, imageCache.ptr, lang);
             return result;
         }
         /// <summary>
         /// Returns the state of the Layout Editor.
         /// </summary>
-        public LayoutEditorState State()
+        public LayoutEditorState State(ImageCacheRefMut imageCache, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = new LayoutEditorState(LiveSplitCoreNative.LayoutEditor_state(this.ptr));
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
+            var result = new LayoutEditorState(LiveSplitCoreNative.LayoutEditor_state(this.ptr, imageCache.ptr, lang));
             return result;
         }
         internal LayoutEditorRef(IntPtr ptr)
@@ -2373,23 +3098,27 @@ namespace LiveSplitCore
         /// this to visualize all of the components of a layout, while it is still being
         /// edited by the Layout Editor.
         /// </summary>
-        public string LayoutStateAsJson(TimerRef timer)
+        public string LayoutStateAsJson(ImageCacheRefMut imageCache, TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
             if (timer.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.LayoutEditor_layout_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.LayoutEditor_layout_state_as_json(this.ptr, imageCache.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Updates the layout's state based on the timer provided.
         /// </summary>
-        public void UpdateLayoutState(LayoutStateRefMut state, TimerRef timer)
+        public void UpdateLayoutState(LayoutStateRefMut state, ImageCacheRefMut imageCache, TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -2399,17 +3128,21 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("state");
             }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
             if (timer.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("timer");
             }
-            LiveSplitCoreNative.LayoutEditor_update_layout_state(this.ptr, state.ptr, timer.ptr);
+            LiveSplitCoreNative.LayoutEditor_update_layout_state(this.ptr, state.ptr, imageCache.ptr, timer.ptr, lang);
         }
         /// <summary>
         /// Updates the layout's state based on the timer provided and encodes it as
         /// JSON.
         /// </summary>
-        public string UpdateLayoutStateAsJson(LayoutStateRefMut state, TimerRef timer)
+        public string UpdateLayoutStateAsJson(LayoutStateRefMut state, ImageCacheRefMut imageCache, TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -2419,11 +3152,15 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("state");
             }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
             if (timer.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.LayoutEditor_update_layout_state_as_json(this.ptr, state.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.LayoutEditor_update_layout_state_as_json(this.ptr, state.ptr, imageCache.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
@@ -2546,7 +3283,7 @@ namespace LiveSplitCore
         /// the type of the setting's value. A panic can also occur if the index of
         /// the setting provided is out of bounds.
         /// </summary>
-        public void SetGeneralSettingsValue(ulong index, SettingValue value)
+        public void SetGeneralSettingsValue(ulong index, SettingValue value, ImageCacheRef imageCache)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -2556,7 +3293,11 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("value");
             }
-            LiveSplitCoreNative.LayoutEditor_set_general_settings_value(this.ptr, (UIntPtr)index, value.ptr);
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
+            LiveSplitCoreNative.LayoutEditor_set_general_settings_value(this.ptr, (UIntPtr)index, value.ptr, imageCache.ptr);
             value.ptr = IntPtr.Zero;
         }
         internal LayoutEditorRefMut(IntPtr ptr) : base(ptr) { }
@@ -2658,6 +3399,7 @@ namespace LiveSplitCore
         /// 
         /// The bits are as follows:
         /// 
+        /// * `0x08` - Can duplicate the current component
         /// * `0x04` - Can remove the current component
         /// * `0x02` - Can move the current component up
         /// * `0x01` - Can move the current component down
@@ -2723,6 +3465,46 @@ namespace LiveSplitCore
                 throw new ObjectDisposedException("this");
             }
             var result = new SettingValueRef(LiveSplitCoreNative.LayoutEditorState_field_value(this.ptr, componentSettings, (UIntPtr)index));
+            return result;
+        }
+        /// <summary>
+        /// Returns the indentation level of the component at the specified index.
+        /// 0 means top level, 1 means inside a group, etc.
+        /// </summary>
+        public uint ComponentIndentLevel(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.LayoutEditorState_component_indent_level(this.ptr, (UIntPtr)index);
+            return result;
+        }
+        /// <summary>
+        /// Returns whether the component at the specified index is a placeholder for
+        /// an empty group rather than an actual component.
+        /// </summary>
+        public bool ComponentIsPlaceholder(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.LayoutEditorState_component_is_placeholder(this.ptr, (UIntPtr)index) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Returns the layout direction of the selected component's container. This
+        /// indicates whether a new group added at this position would become a row or
+        /// column.
+        /// </summary>
+        public byte LayoutDirection()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.LayoutEditorState_layout_direction(this.ptr);
             return result;
         }
         internal LayoutEditorStateRef(IntPtr ptr)
@@ -2920,6 +3702,30 @@ namespace LiveSplitCore
                 throw new ObjectDisposedException("this");
             }
             var result = new TitleComponentStateRef(LiveSplitCoreNative.LayoutState_component_as_title(this.ptr, (UIntPtr)index));
+            return result;
+        }
+        /// <summary>
+        /// Gets the Group component state at the specified index.
+        /// </summary>
+        public GroupComponentStateRef ComponentAsGroup(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = new GroupComponentStateRef(LiveSplitCoreNative.LayoutState_component_as_group(this.ptr, (UIntPtr)index));
+            return result;
+        }
+        /// <summary>
+        /// Gets the Carousel component state at the specified index.
+        /// </summary>
+        public CarouselComponentStateRef ComponentAsCarousel(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = new CarouselComponentStateRef(LiveSplitCoreNative.LayoutState_component_as_carousel(this.ptr, (UIntPtr)index));
             return result;
         }
         internal LayoutStateRef(IntPtr ptr)
@@ -3178,7 +3984,7 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer)
+        public string StateAsJson(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -3188,13 +3994,13 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.PbChanceComponent_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.PbChanceComponent_state_as_json(this.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer provided.
         /// </summary>
-        public KeyValueComponentState State(TimerRef timer)
+        public KeyValueComponentState State(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -3204,7 +4010,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = new KeyValueComponentState(LiveSplitCoreNative.PbChanceComponent_state(this.ptr, timer.ptr));
+            var result = new KeyValueComponentState(LiveSplitCoreNative.PbChanceComponent_state(this.ptr, timer.ptr, lang));
             return result;
         }
         internal PbChanceComponentRef(IntPtr ptr)
@@ -3285,7 +4091,7 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer)
+        public string StateAsJson(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -3295,13 +4101,13 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.PossibleTimeSaveComponent_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.PossibleTimeSaveComponent_state_as_json(this.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer provided.
         /// </summary>
-        public KeyValueComponentState State(TimerRef timer)
+        public KeyValueComponentState State(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -3311,7 +4117,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = new KeyValueComponentState(LiveSplitCoreNative.PossibleTimeSaveComponent_state(this.ptr, timer.ptr));
+            var result = new KeyValueComponentState(LiveSplitCoreNative.PossibleTimeSaveComponent_state(this.ptr, timer.ptr, lang));
             return result;
         }
         internal PossibleTimeSaveComponentRef(IntPtr ptr)
@@ -3460,7 +4266,7 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public string StateAsJson(TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -3474,14 +4280,14 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = LiveSplitCoreNative.PreviousSegmentComponent_state_as_json(this.ptr, timer.ptr, layoutSettings.ptr);
+            var result = LiveSplitCoreNative.PreviousSegmentComponent_state_as_json(this.ptr, timer.ptr, layoutSettings.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer and the layout
         /// settings provided.
         /// </summary>
-        public KeyValueComponentState State(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public KeyValueComponentState State(TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -3495,7 +4301,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = new KeyValueComponentState(LiveSplitCoreNative.PreviousSegmentComponent_state(this.ptr, timer.ptr, layoutSettings.ptr));
+            var result = new KeyValueComponentState(LiveSplitCoreNative.PreviousSegmentComponent_state(this.ptr, timer.ptr, layoutSettings.ptr, lang));
             return result;
         }
         internal PreviousSegmentComponentRef(IntPtr ptr)
@@ -3761,6 +4567,43 @@ namespace LiveSplitCore
             return result;
         }
         /// <summary>
+        /// Returns the amount of native segment groups stored in this Run.
+        /// </summary>
+        public ulong SegmentGroupsLen()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.Run_segment_groups_len(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Accesses a native segment group stored in this Run by its index. You may not
+        /// provide an out of bounds index.
+        /// </summary>
+        public SegmentGroupRef SegmentGroup(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = new SegmentGroupRef(LiveSplitCoreNative.Run_segment_group(this.ptr, (UIntPtr)index));
+            return result;
+        }
+        /// <summary>
+        /// Returns the amount of segments in this Run.
+        /// </summary>
+        public ulong SegmentsLen()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.Run_segments_len(this.ptr);
+            return result;
+        }
+        /// <summary>
         /// Returns the amount attempt history elements are stored in this Run.
         /// </summary>
         public ulong AttemptHistoryLen()
@@ -3825,6 +4668,32 @@ namespace LiveSplitCore
                 throw new ObjectDisposedException("this");
             }
             var result = LiveSplitCoreNative.Run_custom_comparison(this.ptr, (UIntPtr)index);
+            return result;
+        }
+        /// <summary>
+        /// Returns the amount of total comparisons stored in this Run.
+        /// </summary>
+        public ulong ComparisonsLen()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.Run_comparisons_len(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Accesses a comparison stored in this Run by its index. This includes both
+        /// custom comparisons as well as all the Comparison Generators. You may not
+        /// provide an out of bounds index.
+        /// </summary>
+        public string Comparison(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.Run_comparison(this.ptr, (UIntPtr)index);
             return result;
         }
         /// <summary>
@@ -4006,6 +4875,23 @@ namespace LiveSplitCore
     public class RunEditorRef
     {
         internal IntPtr ptr;
+        /// <summary>
+        /// Calculates the Run Editor's state and encodes it as
+        /// JSON in order to visualize it.
+        /// </summary>
+        public string StateAsJson(ImageCacheRefMut imageCache, byte lang)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
+            var result = LiveSplitCoreNative.RunEditor_state_as_json(this.ptr, imageCache.ptr, lang);
+            return result;
+        }
         internal RunEditorRef(IntPtr ptr)
         {
             this.ptr = ptr;
@@ -4020,19 +4906,6 @@ namespace LiveSplitCore
     /// </summary>
     public class RunEditorRefMut : RunEditorRef
     {
-        /// <summary>
-        /// Calculates the Run Editor's state and encodes it as
-        /// JSON in order to visualize it.
-        /// </summary>
-        public string StateAsJson()
-        {
-            if (this.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            var result = LiveSplitCoreNative.RunEditor_state_as_json(this.ptr);
-            return result;
-        }
         /// <summary>
         /// Selects a different timing method for being modified.
         /// </summary>
@@ -4075,6 +4948,21 @@ namespace LiveSplitCore
             LiveSplitCoreNative.RunEditor_select_additionally(this.ptr, (UIntPtr)index);
         }
         /// <summary>
+        /// Selects all segments from the currently active segment to the segment with
+        /// the given index. The segment with the given index becomes the new active
+        /// segment.
+        /// 
+        /// This panics if the index of the segment provided is out of bounds.
+        /// </summary>
+        public void SelectRange(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            LiveSplitCoreNative.RunEditor_select_range(this.ptr, (UIntPtr)index);
+        }
+        /// <summary>
         /// Selects the segment with the given index. All other segments are
         /// unselected. The segment chosen also becomes the active segment.
         /// 
@@ -4115,13 +5003,13 @@ namespace LiveSplitCore
         /// offset specifies the time, the timer starts at when starting a new
         /// attempt.
         /// </summary>
-        public bool ParseAndSetOffset(string offset)
+        public bool ParseAndSetOffset(string offset, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.RunEditor_parse_and_set_offset(this.ptr, offset) != 0;
+            var result = LiveSplitCoreNative.RunEditor_parse_and_set_offset(this.ptr, offset, lang) != 0;
             return result;
         }
         /// <summary>
@@ -4313,7 +5201,7 @@ namespace LiveSplitCore
             LiveSplitCoreNative.RunEditor_clear_metadata(this.ptr);
         }
         /// <summary>
-        /// Inserts a new empty segment above the active segment and adjusts the
+        /// Inserts a new empty segment above all selected segments and adjusts the
         /// Run's history information accordingly. The newly created segment is then
         /// the only selected segment and also the active segment.
         /// </summary>
@@ -4326,7 +5214,7 @@ namespace LiveSplitCore
             LiveSplitCoreNative.RunEditor_insert_segment_above(this.ptr);
         }
         /// <summary>
-        /// Inserts a new empty segment below the active segment and adjusts the
+        /// Inserts a new empty segment below all selected segments and adjusts the
         /// Run's history information accordingly. The newly created segment is then
         /// the only selected segment and also the active segment.
         /// </summary>
@@ -4380,6 +5268,110 @@ namespace LiveSplitCore
             LiveSplitCoreNative.RunEditor_move_segments_down(this.ptr);
         }
         /// <summary>
+        /// Creates a native segment group from the currently selected contiguous
+        /// segment rows. Returns false if the selection is not contiguous or overlaps
+        /// an existing group.
+        /// </summary>
+        public bool CreateSegmentGroupFromSelection(string name)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.RunEditor_create_segment_group_from_selection(this.ptr, name) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Selects every segment in the native segment group with the provided index
+        /// and unselects all other segments. Returns false if the group doesn't
+        /// exist.
+        /// </summary>
+        public bool SelectSegmentGroup(ulong groupIndex)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.RunEditor_select_segment_group(this.ptr, (UIntPtr)groupIndex) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Toggles the native segment group with the provided index as part of the
+        /// current selection without clearing other selected rows. Returns false if
+        /// the group doesn't exist.
+        /// </summary>
+        public bool ToggleSegmentGroupSelection(ulong groupIndex)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.RunEditor_toggle_segment_group_selection(this.ptr, (UIntPtr)groupIndex) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Extends the current selection through the entire native segment group with
+        /// the provided index. Returns false if the group doesn't exist.
+        /// </summary>
+        public bool SelectSegmentGroupRange(ulong groupIndex)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.RunEditor_select_segment_group_range(this.ptr, (UIntPtr)groupIndex) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Removes the selected native segment groups, while keeping all segments.
+        /// </summary>
+        public bool RemoveSelectedSegmentGroups()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.RunEditor_remove_selected_segment_groups(this.ptr) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Renames the native segment group with the provided index.
+        /// </summary>
+        public bool RenameSegmentGroup(ulong groupIndex, string name)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.RunEditor_rename_segment_group(this.ptr, (UIntPtr)groupIndex, name) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Sets the icon of the native segment group with the provided index.
+        /// </summary>
+        public bool SetSegmentGroupIcon(ulong groupIndex, IntPtr data, ulong length)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.RunEditor_set_segment_group_icon(this.ptr, (UIntPtr)groupIndex, (IntPtr)data, (UIntPtr)length) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Removes the explicit icon of the native segment group with the provided
+        /// index.
+        /// </summary>
+        public bool RemoveSegmentGroupIcon(ulong groupIndex)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.RunEditor_remove_segment_group_icon(this.ptr, (UIntPtr)groupIndex) != 0;
+            return result;
+        }
+        /// <summary>
         /// Sets the icon of the active segment.
         /// </summary>
         public void ActiveSetIcon(IntPtr data, ulong length)
@@ -4416,57 +5408,57 @@ namespace LiveSplitCore
         /// Parses a split time from a string and sets it for the active segment with
         /// the chosen timing method.
         /// </summary>
-        public bool ActiveParseAndSetSplitTime(string time)
+        public bool ActiveParseAndSetSplitTime(string time, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.RunEditor_active_parse_and_set_split_time(this.ptr, time) != 0;
+            var result = LiveSplitCoreNative.RunEditor_active_parse_and_set_split_time(this.ptr, time, lang) != 0;
             return result;
         }
         /// <summary>
         /// Parses a segment time from a string and sets it for the active segment with
         /// the chosen timing method.
         /// </summary>
-        public bool ActiveParseAndSetSegmentTime(string time)
+        public bool ActiveParseAndSetSegmentTime(string time, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.RunEditor_active_parse_and_set_segment_time(this.ptr, time) != 0;
+            var result = LiveSplitCoreNative.RunEditor_active_parse_and_set_segment_time(this.ptr, time, lang) != 0;
             return result;
         }
         /// <summary>
         /// Parses a best segment time from a string and sets it for the active segment
         /// with the chosen timing method.
         /// </summary>
-        public bool ActiveParseAndSetBestSegmentTime(string time)
+        public bool ActiveParseAndSetBestSegmentTime(string time, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.RunEditor_active_parse_and_set_best_segment_time(this.ptr, time) != 0;
+            var result = LiveSplitCoreNative.RunEditor_active_parse_and_set_best_segment_time(this.ptr, time, lang) != 0;
             return result;
         }
         /// <summary>
         /// Parses a comparison time for the provided comparison and sets it for the
         /// active active segment with the chosen timing method.
         /// </summary>
-        public bool ActiveParseAndSetComparisonTime(string comparison, string time)
+        public bool ActiveParseAndSetComparisonTime(string comparison, string time, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.RunEditor_active_parse_and_set_comparison_time(this.ptr, comparison, time) != 0;
+            var result = LiveSplitCoreNative.RunEditor_active_parse_and_set_comparison_time(this.ptr, comparison, time, lang) != 0;
             return result;
         }
         /// <summary>
         /// Adds a new custom comparison. It can't be added if it starts with
-        /// `[Race]` or already exists.
+        /// `[Race]` or it already exists.
         /// </summary>
         public bool AddComparison(string comparison)
         {
@@ -4547,13 +5539,27 @@ namespace LiveSplitCore
         /// can call this again with the other timing method to generate the comparison
         /// times for both timing methods.
         /// </summary>
-        public bool ParseAndGenerateGoalComparison(string time)
+        public bool ParseAndGenerateGoalComparison(string time, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.RunEditor_parse_and_generate_goal_comparison(this.ptr, time) != 0;
+            var result = LiveSplitCoreNative.RunEditor_parse_and_generate_goal_comparison(this.ptr, time, lang) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Copies a comparison with the given name as a new custom comparison with the
+        /// new name provided. It can't be added if it starts with `[Race]` or it
+        /// already exists. The old comparison needs to exist.
+        /// </summary>
+        public bool CopyComparison(string oldName, string newName)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.RunEditor_copy_comparison(this.ptr, oldName, newName) != 0;
             return result;
         }
         /// <summary>
@@ -4590,13 +5596,13 @@ namespace LiveSplitCore
         /// best segments. The Sum of Best Cleaner will point out all of these and
         /// allows you to delete them individually if any of them seem wrong.
         /// </summary>
-        public SumOfBestCleaner CleanSumOfBest()
+        public SumOfBestCleaner CleanSumOfBest(byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = new SumOfBestCleaner(LiveSplitCoreNative.RunEditor_clean_sum_of_best(this.ptr));
+            var result = new SumOfBestCleaner(LiveSplitCoreNative.RunEditor_clean_sum_of_best(this.ptr, lang));
             return result;
         }
         internal RunEditorRefMut(IntPtr ptr) : base(ptr) { }
@@ -5241,6 +6247,115 @@ namespace LiveSplitCore
     }
 
     /// <summary>
+    /// A Segment Group describes a contiguous range of segments that forms a
+    /// one-level group.
+    /// </summary>
+    public class SegmentGroupRef
+    {
+        internal IntPtr ptr;
+        /// <summary>
+        /// Accesses the inclusive start index of the segment group.
+        /// </summary>
+        public ulong Start()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.SegmentGroup_start(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Accesses the exclusive end index of the segment group.
+        /// </summary>
+        public ulong End()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.SegmentGroup_end(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Accesses the explicit name of the segment group. If the group uses the
+        /// final segment's name instead, an empty string is returned.
+        /// </summary>
+        public string Name()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.SegmentGroup_name(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Accesses the explicit icon's data. If the group uses the final segment's
+        /// icon instead, an empty buffer is returned.
+        /// </summary>
+        public IntPtr IconPtr()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.SegmentGroup_icon_ptr(this.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Accesses the amount of bytes the explicit icon's data takes up.
+        /// </summary>
+        public ulong IconLen()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.SegmentGroup_icon_len(this.ptr);
+            return result;
+        }
+        internal SegmentGroupRef(IntPtr ptr)
+        {
+            this.ptr = ptr;
+        }
+    }
+
+    /// <summary>
+    /// A Segment Group describes a contiguous range of segments that forms a
+    /// one-level group.
+    /// </summary>
+    public class SegmentGroupRefMut : SegmentGroupRef
+    {
+        internal SegmentGroupRefMut(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
+    /// A Segment Group describes a contiguous range of segments that forms a
+    /// one-level group.
+    /// </summary>
+    public class SegmentGroup : SegmentGroupRefMut, IDisposable
+    {
+        private void Drop()
+        {
+            if (ptr != IntPtr.Zero)
+            {
+                ptr = IntPtr.Zero;
+            }
+        }
+        ~SegmentGroup()
+        {
+            Drop();
+        }
+        public void Dispose()
+        {
+            Drop();
+            GC.SuppressFinalize(this);
+        }
+        internal SegmentGroup(IntPtr ptr) : base(ptr) { }
+    }
+
+    /// <summary>
     /// Stores the segment times achieved for a certain segment. Each segment is
     /// tagged with an index. Only segment times with an index larger than 0 are
     /// considered times actually achieved by the runner, while the others are
@@ -5455,7 +6570,7 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer)
+        public string StateAsJson(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -5465,13 +6580,13 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.SegmentTimeComponent_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.SegmentTimeComponent_state_as_json(this.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer provided.
         /// </summary>
-        public KeyValueComponentState State(TimerRef timer)
+        public KeyValueComponentState State(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -5481,7 +6596,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = new KeyValueComponentState(LiveSplitCoreNative.SegmentTimeComponent_state(this.ptr, timer.ptr));
+            var result = new KeyValueComponentState(LiveSplitCoreNative.SegmentTimeComponent_state(this.ptr, timer.ptr, lang));
             return result;
         }
         internal SegmentTimeComponentRef(IntPtr ptr)
@@ -5748,6 +6863,23 @@ namespace LiveSplitCore
             return result;
         }
         /// <summary>
+        /// Creates a new setting value from an optional unsigned integer. A value of
+        /// 0xFFFFFFFF means that the value is empty and has no unsigned integer.
+        /// </summary>
+        public static SettingValue FromOptionalUint(uint value)
+        {
+            var result = new SettingValue(LiveSplitCoreNative.SettingValue_from_optional_uint(value));
+            return result;
+        }
+        /// <summary>
+        /// Creates a new empty setting value that has the type `optional uint`.
+        /// </summary>
+        public static SettingValue FromOptionalEmptyUint()
+        {
+            var result = new SettingValue(LiveSplitCoreNative.SettingValue_from_optional_empty_uint());
+            return result;
+        }
+        /// <summary>
         /// Creates a new setting value from a signed integer.
         /// </summary>
         public static SettingValue FromInt(int value)
@@ -5950,6 +7082,19 @@ namespace LiveSplitCore
             return result;
         }
         /// <summary>
+        /// Creates a new setting value from the subsplit display mode. If it doesn't
+        /// match a known subsplit display mode, null is returned.
+        /// </summary>
+        public static SettingValue FromSubsplitDisplayMode(string value)
+        {
+            var result = new SettingValue(LiveSplitCoreNative.SettingValue_from_subsplit_display_mode(value));
+            if (result.ptr == IntPtr.Zero)
+            {
+                return null;
+            }
+            return result;
+        }
+        /// <summary>
         /// Creates a new setting value from the layout direction. If it doesn't
         /// match a known layout direction, null is returned.
         /// </summary>
@@ -5989,6 +7134,20 @@ namespace LiveSplitCore
         public static SettingValue FromDeltaGradient(string value)
         {
             var result = new SettingValue(LiveSplitCoreNative.SettingValue_from_delta_gradient(value));
+            if (result.ptr == IntPtr.Zero)
+            {
+                return null;
+            }
+            return result;
+        }
+        /// <summary>
+        /// Creates a new setting value from the background image with the image ID and
+        /// the brightness, opacity, and blur provided. If the image ID is invalid,
+        /// null is returned.
+        /// </summary>
+        public static SettingValue FromBackgroundImage(string imageId, float brightness, float opacity, float blur)
+        {
+            var result = new SettingValue(LiveSplitCoreNative.SettingValue_from_background_image(imageId, brightness, opacity, blur));
             if (result.ptr == IntPtr.Zero)
             {
                 return null;
@@ -6150,7 +7309,7 @@ namespace LiveSplitCore
         /// redraw parts of the image that haven't changed. You can force a redraw in
         /// case the image provided or its contents have changed.
         /// </summary>
-        public void Render(LayoutStateRef layoutState, IntPtr data, uint width, uint height, uint stride, bool forceRedraw)
+        public void Render(LayoutStateRef layoutState, ImageCacheRef imageCache, IntPtr data, uint width, uint height, uint stride, bool forceRedraw)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -6160,7 +7319,11 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutState");
             }
-            LiveSplitCoreNative.SoftwareRenderer_render(this.ptr, layoutState.ptr, (IntPtr)data, width, height, stride, forceRedraw);
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
+            LiveSplitCoreNative.SoftwareRenderer_render(this.ptr, layoutState.ptr, imageCache.ptr, (IntPtr)data, width, height, stride, forceRedraw);
         }
         internal SoftwareRendererRefMut(IntPtr ptr) : base(ptr) { }
     }
@@ -6226,11 +7389,15 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public string StateAsJson(ImageCacheRefMut imageCache, TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
+            }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
             }
             if (timer.ptr == IntPtr.Zero)
             {
@@ -6240,18 +7407,22 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = LiveSplitCoreNative.SplitsComponent_state_as_json(this.ptr, timer.ptr, layoutSettings.ptr);
+            var result = LiveSplitCoreNative.SplitsComponent_state_as_json(this.ptr, imageCache.ptr, timer.ptr, layoutSettings.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer and layout settings
         /// provided.
         /// </summary>
-        public SplitsComponentState State(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public SplitsComponentState State(ImageCacheRefMut imageCache, TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
+            }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
             }
             if (timer.ptr == IntPtr.Zero)
             {
@@ -6261,7 +7432,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = new SplitsComponentState(LiveSplitCoreNative.SplitsComponent_state(this.ptr, timer.ptr, layoutSettings.ptr));
+            var result = new SplitsComponentState(LiveSplitCoreNative.SplitsComponent_state(this.ptr, imageCache.ptr, timer.ptr, layoutSettings.ptr, lang));
             return result;
         }
         /// <summary>
@@ -6332,18 +7503,16 @@ namespace LiveSplitCore
             LiveSplitCoreNative.SplitsComponent_set_always_show_last_split(this.ptr, alwaysShowLastSplit);
         }
         /// <summary>
-        /// If the last segment is to always be shown, this determines whether to
-        /// show a more pronounced separator in front of the last segment, if it is
-        /// not directly adjacent to the segment shown right before it in the
-        /// scrolling window.
+        /// Whether to show a pronounced separator before a row when one or more rows
+        /// immediately before it are omitted from the scrolling window.
         /// </summary>
-        public void SetSeparatorLastSplit(bool separatorLastSplit)
+        public void SetShowGapSeparators(bool showGapSeparators)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.SplitsComponent_set_separator_last_split(this.ptr, separatorLastSplit);
+            LiveSplitCoreNative.SplitsComponent_set_show_gap_separators(this.ptr, showGapSeparators);
         }
         internal SplitsComponentRefMut(IntPtr ptr) : base(ptr) { }
     }
@@ -6377,9 +7546,9 @@ namespace LiveSplitCore
         /// <summary>
         /// Creates a new Splits Component.
         /// </summary>
-        public SplitsComponent() : base(IntPtr.Zero)
+        public SplitsComponent(byte lang) : base(IntPtr.Zero)
         {
-            this.ptr = LiveSplitCoreNative.SplitsComponent_new();
+            this.ptr = LiveSplitCoreNative.SplitsComponent_new(lang);
         }
         /// <summary>
         /// Converts the component into a generic component suitable for using with a
@@ -6405,19 +7574,6 @@ namespace LiveSplitCore
     {
         internal IntPtr ptr;
         /// <summary>
-        /// Describes whether a more pronounced separator should be shown in front of
-        /// the last segment provided.
-        /// </summary>
-        public bool FinalSeparatorShown()
-        {
-            if (this.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            var result = LiveSplitCoreNative.SplitsComponentState_final_separator_shown(this.ptr) != 0;
-            return result;
-        }
-        /// <summary>
         /// Returns the amount of segments to visualize.
         /// </summary>
         public ulong Len()
@@ -6430,57 +7586,17 @@ namespace LiveSplitCore
             return result;
         }
         /// <summary>
-        /// Returns the amount of icon changes that happened in this state object.
+        /// The icon of the segment. The associated image can be looked up in the image
+        /// cache. The image may be the empty image. This indicates that there is no
+        /// icon.
         /// </summary>
-        public ulong IconChangeCount()
+        public string Icon(ulong index)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = (ulong)LiveSplitCoreNative.SplitsComponentState_icon_change_count(this.ptr);
-            return result;
-        }
-        /// <summary>
-        /// Accesses the index of the segment of the icon change with the specified
-        /// index. This is based on the index in the run, not on the index of the
-        /// SplitState in the State object. The corresponding index is the index field
-        /// of the SplitState object. You may not provide an out of bounds index.
-        /// </summary>
-        public ulong IconChangeSegmentIndex(ulong iconChangeIndex)
-        {
-            if (this.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            var result = (ulong)LiveSplitCoreNative.SplitsComponentState_icon_change_segment_index(this.ptr, (UIntPtr)iconChangeIndex);
-            return result;
-        }
-        /// <summary>
-        /// The icon data of the segment of the icon change with the specified index.
-        /// The buffer may be empty. This indicates that there is no icon. You may not
-        /// provide an out of bounds index.
-        /// </summary>
-        public IntPtr IconChangeIconPtr(ulong iconChangeIndex)
-        {
-            if (this.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            var result = LiveSplitCoreNative.SplitsComponentState_icon_change_icon_ptr(this.ptr, (UIntPtr)iconChangeIndex);
-            return result;
-        }
-        /// <summary>
-        /// The length of the icon data of the segment of the icon change with the
-        /// specified index.
-        /// </summary>
-        public ulong IconChangeIconLen(ulong iconChangeIndex)
-        {
-            if (this.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            var result = (ulong)LiveSplitCoreNative.SplitsComponentState_icon_change_icon_len(this.ptr, (UIntPtr)iconChangeIndex);
+            var result = LiveSplitCoreNative.SplitsComponentState_icon(this.ptr, (UIntPtr)index);
             return result;
         }
         /// <summary>
@@ -6550,6 +7666,61 @@ namespace LiveSplitCore
                 throw new ObjectDisposedException("this");
             }
             var result = LiveSplitCoreNative.SplitsComponentState_is_current_split(this.ptr, (UIntPtr)index) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Describes if the segment with the specified index is the segment selected
+        /// by manually scrolling through subsplit groups.
+        /// </summary>
+        public bool IsScrolledToSplit(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.SplitsComponentState_is_scrolled_to_split(this.ptr, (UIntPtr)index) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Specifies whether the row with the specified index should be indented. You
+        /// may not provide an out of bounds index.
+        /// </summary>
+        public bool IsIndented(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.SplitsComponentState_is_indented(this.ptr, (UIntPtr)index) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Specifies whether a more pronounced separator should be shown before the
+        /// row with the specified index because one or more logical rows preceding it
+        /// are not visible. You may not provide an out of bounds index.
+        /// </summary>
+        public bool SeparatorBefore(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.SplitsComponentState_separator_before(this.ptr, (UIntPtr)index) != 0;
+            return result;
+        }
+        /// <summary>
+        /// Returns the visual section that the row with the specified index belongs
+        /// to. Renderers can use this to alternate backgrounds when multiple flat
+        /// segments collapse into a single section. You may not provide an out of
+        /// bounds index.
+        /// </summary>
+        public ulong SectionIndex(ulong index)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = (ulong)LiveSplitCoreNative.SplitsComponentState_section_index(this.ptr, (UIntPtr)index);
             return result;
         }
         /// <summary>
@@ -6725,7 +7896,7 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer)
+        public string StateAsJson(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -6735,13 +7906,13 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.SumOfBestComponent_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.SumOfBestComponent_state_as_json(this.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer provided.
         /// </summary>
-        public KeyValueComponentState State(TimerRef timer)
+        public KeyValueComponentState State(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -6751,7 +7922,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = new KeyValueComponentState(LiveSplitCoreNative.SumOfBestComponent_state(this.ptr, timer.ptr));
+            var result = new KeyValueComponentState(LiveSplitCoreNative.SumOfBestComponent_state(this.ptr, timer.ptr, lang));
             return result;
         }
         internal SumOfBestComponentRef(IntPtr ptr)
@@ -6879,6 +8050,19 @@ namespace LiveSplitCore
     /// </summary>
     public class TextComponentRefMut : TextComponentRef
     {
+        /// <summary>
+        /// Switches the component to display the specified custom variable instead of a
+        /// fixed text. The boolean indicates whether the name should also be shown as a
+        /// key value pair.
+        /// </summary>
+        public void UseVariable(string variable, bool split)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            LiveSplitCoreNative.TextComponent_use_variable(this.ptr, variable, split);
+        }
         /// <summary>
         /// Sets the centered text. If the current mode is split, it is switched to
         /// centered mode.
@@ -7238,6 +8422,21 @@ namespace LiveSplitCore
     /// </summary>
     public class TimeSpanRefMut : TimeSpanRef
     {
+        /// <summary>
+        /// Changes a Time Span by adding a Time Span onto it.
+        /// </summary>
+        public void AddAssign(TimeSpanRef other)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            if (other.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("other");
+            }
+            LiveSplitCoreNative.TimeSpan_add_assign(this.ptr, other.ptr);
+        }
         internal TimeSpanRefMut(IntPtr ptr) : base(ptr) { }
     }
 
@@ -7275,9 +8474,9 @@ namespace LiveSplitCore
         /// Parses a Time Span from a string. Returns null if the time can't be
         /// parsed.
         /// </summary>
-        public static TimeSpan Parse(string text)
+        public static TimeSpan Parse(string text, byte lang)
         {
-            var result = new TimeSpan(LiveSplitCoreNative.TimeSpan_parse(text));
+            var result = new TimeSpan(LiveSplitCoreNative.TimeSpan_parse(text, lang));
             if (result.ptr == IntPtr.Zero)
             {
                 return null;
@@ -7509,62 +8708,67 @@ namespace LiveSplitCore
         /// Starts the Timer if there is no attempt in progress. If that's not the
         /// case, nothing happens.
         /// </summary>
-        public void Start()
+        public int Start()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_start(this.ptr);
+            var result = LiveSplitCoreNative.Timer_start(this.ptr);
+            return result;
         }
         /// <summary>
         /// If an attempt is in progress, stores the current time as the time of the
         /// current split. The attempt ends if the last split time is stored.
         /// </summary>
-        public void Split()
+        public int Split()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_split(this.ptr);
+            var result = LiveSplitCoreNative.Timer_split(this.ptr);
+            return result;
         }
         /// <summary>
         /// Starts a new attempt or stores the current time as the time of the
         /// current split. The attempt ends if the last split time is stored.
         /// </summary>
-        public void SplitOrStart()
+        public int SplitOrStart()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_split_or_start(this.ptr);
+            var result = LiveSplitCoreNative.Timer_split_or_start(this.ptr);
+            return result;
         }
         /// <summary>
         /// Skips the current split if an attempt is in progress and the
         /// current split is not the last split.
         /// </summary>
-        public void SkipSplit()
+        public int SkipSplit()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_skip_split(this.ptr);
+            var result = LiveSplitCoreNative.Timer_skip_split(this.ptr);
+            return result;
         }
         /// <summary>
         /// Removes the split time from the last split if an attempt is in progress
         /// and there is a previous split. The Timer Phase also switches to
         /// `Running` if it previously was `Ended`.
         /// </summary>
-        public void UndoSplit()
+        public int UndoSplit()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_undo_split(this.ptr);
+            var result = LiveSplitCoreNative.Timer_undo_split(this.ptr);
+            return result;
         }
         /// <summary>
         /// Resets the current attempt if there is one in progress. If the splits
@@ -7572,71 +8776,77 @@ namespace LiveSplitCore
         /// in the Run's history. Otherwise the current attempt's information is
         /// discarded.
         /// </summary>
-        public void Reset(bool updateSplits)
+        public int Reset(bool updateSplits)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_reset(this.ptr, updateSplits);
+            var result = LiveSplitCoreNative.Timer_reset(this.ptr, updateSplits);
+            return result;
         }
         /// <summary>
         /// Resets the current attempt if there is one in progress. The splits are
         /// updated such that the current attempt's split times are being stored as
         /// the new Personal Best.
         /// </summary>
-        public void ResetAndSetAttemptAsPb()
+        public int ResetAndSetAttemptAsPb()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_reset_and_set_attempt_as_pb(this.ptr);
+            var result = LiveSplitCoreNative.Timer_reset_and_set_attempt_as_pb(this.ptr);
+            return result;
         }
         /// <summary>
         /// Pauses an active attempt that is not paused.
         /// </summary>
-        public void Pause()
+        public int Pause()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_pause(this.ptr);
+            var result = LiveSplitCoreNative.Timer_pause(this.ptr);
+            return result;
         }
         /// <summary>
         /// Resumes an attempt that is paused.
         /// </summary>
-        public void Resume()
+        public int Resume()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_resume(this.ptr);
+            var result = LiveSplitCoreNative.Timer_resume(this.ptr);
+            return result;
         }
         /// <summary>
         /// Toggles an active attempt between `Paused` and `Running`.
         /// </summary>
-        public void TogglePause()
+        public int TogglePause()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_toggle_pause(this.ptr);
+            var result = LiveSplitCoreNative.Timer_toggle_pause(this.ptr);
+            return result;
         }
         /// <summary>
         /// Toggles an active attempt between `Paused` and `Running` or starts an
         /// attempt if there's none in progress.
         /// </summary>
-        public void TogglePauseOrStart()
+        public int TogglePauseOrStart()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_toggle_pause_or_start(this.ptr);
+            var result = LiveSplitCoreNative.Timer_toggle_pause_or_start(this.ptr);
+            return result;
         }
         /// <summary>
         /// Removes all the pause times from the current time. If the current
@@ -7650,13 +8860,14 @@ namespace LiveSplitCore
         /// time is modified, while all other split times are left unmodified, which
         /// may not be what actually happened during the run.
         /// </summary>
-        public void UndoAllPauses()
+        public int UndoAllPauses()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_undo_all_pauses(this.ptr);
+            var result = LiveSplitCoreNative.Timer_undo_all_pauses(this.ptr);
+            return result;
         }
         /// <summary>
         /// Sets the current Timing Method to the Timing Method provided.
@@ -7668,6 +8879,30 @@ namespace LiveSplitCore
                 throw new ObjectDisposedException("this");
             }
             LiveSplitCoreNative.Timer_set_current_timing_method(this.ptr, method);
+        }
+        /// <summary>
+        /// Toggles between the Real Time and Game Time timing methods.
+        /// </summary>
+        public void ToggleTimingMethod()
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            LiveSplitCoreNative.Timer_toggle_timing_method(this.ptr);
+        }
+        /// <summary>
+        /// Tries to set the current comparison to the comparison specified. If the
+        /// comparison doesn't exist false is returned.
+        /// </summary>
+        public int SetCurrentComparison(string comparison)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            var result = LiveSplitCoreNative.Timer_set_current_comparison(this.ptr, comparison);
+            return result;
         }
         /// <summary>
         /// Switches the current comparison to the next comparison in the list.
@@ -7695,13 +8930,14 @@ namespace LiveSplitCore
         /// Initializes Game Time for the current attempt. Game Time automatically
         /// gets uninitialized for each new attempt.
         /// </summary>
-        public void InitializeGameTime()
+        public int InitializeGameTime()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_initialize_game_time(this.ptr);
+            var result = LiveSplitCoreNative.Timer_initialize_game_time(this.ptr);
+            return result;
         }
         /// <summary>
         /// Deinitializes Game Time for the current attempt.
@@ -7718,25 +8954,27 @@ namespace LiveSplitCore
         /// Pauses the Game Timer such that it doesn't automatically increment
         /// similar to Real Time.
         /// </summary>
-        public void PauseGameTime()
+        public int PauseGameTime()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_pause_game_time(this.ptr);
+            var result = LiveSplitCoreNative.Timer_pause_game_time(this.ptr);
+            return result;
         }
         /// <summary>
         /// Resumes the Game Timer such that it automatically increments similar to
         /// Real Time, starting from the Game Time it was paused at.
         /// </summary>
-        public void ResumeGameTime()
+        public int ResumeGameTime()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            LiveSplitCoreNative.Timer_resume_game_time(this.ptr);
+            var result = LiveSplitCoreNative.Timer_resume_game_time(this.ptr);
+            return result;
         }
         /// <summary>
         /// Sets the Game Time to the time specified. This also works if the Game
@@ -7744,7 +8982,7 @@ namespace LiveSplitCore
         /// periodically without it automatically moving forward. This ensures that
         /// the Game Timer never shows any time that is not coming from the game.
         /// </summary>
-        public void SetGameTime(TimeSpanRef time)
+        public int SetGameTime(TimeSpanRef time)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -7754,14 +8992,15 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("time");
             }
-            LiveSplitCoreNative.Timer_set_game_time(this.ptr, time.ptr);
+            var result = LiveSplitCoreNative.Timer_set_game_time(this.ptr, time.ptr);
+            return result;
         }
         /// <summary>
         /// Instead of setting the Game Time directly, this method can be used to
         /// just specify the amount of time the game has been loading. The Game Time
         /// is then automatically determined by Real Time - Loading Times.
         /// </summary>
-        public void SetLoadingTimes(TimeSpanRef time)
+        public int SetLoadingTimes(TimeSpanRef time)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -7771,7 +9010,21 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("time");
             }
-            LiveSplitCoreNative.Timer_set_loading_times(this.ptr, time.ptr);
+            var result = LiveSplitCoreNative.Timer_set_loading_times(this.ptr, time.ptr);
+            return result;
+        }
+        /// <summary>
+        /// Sets the value of a custom variable with the name specified. If the variable
+        /// does not exist, a temporary variable gets created that will not be stored in
+        /// the splits file.
+        /// </summary>
+        public void SetCustomVariable(string name, string value)
+        {
+            if (this.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("this");
+            }
+            LiveSplitCoreNative.Timer_set_custom_variable(this.ptr, name, value);
         }
         /// <summary>
         /// Marks the Run as unmodified, so that it is known that all the changes
@@ -7874,7 +9127,7 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public string StateAsJson(TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -7888,14 +9141,14 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = LiveSplitCoreNative.TimerComponent_state_as_json(this.ptr, timer.ptr, layoutSettings.ptr);
+            var result = LiveSplitCoreNative.TimerComponent_state_as_json(this.ptr, timer.ptr, layoutSettings.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer and the layout
         /// settings provided.
         /// </summary>
-        public TimerComponentState State(TimerRef timer, GeneralLayoutSettingsRef layoutSettings)
+        public TimerComponentState State(TimerRef timer, GeneralLayoutSettingsRef layoutSettings, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -7909,7 +9162,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("layoutSettings");
             }
-            var result = new TimerComponentState(LiveSplitCoreNative.TimerComponent_state(this.ptr, timer.ptr, layoutSettings.ptr));
+            var result = new TimerComponentState(LiveSplitCoreNative.TimerComponent_state(this.ptr, timer.ptr, layoutSettings.ptr, lang));
             return result;
         }
         internal TimerComponentRef(IntPtr ptr)
@@ -8201,33 +9454,41 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer)
+        public string StateAsJson(ImageCacheRefMut imageCache, TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
             if (timer.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.TitleComponent_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.TitleComponent_state_as_json(this.ptr, imageCache.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer provided.
         /// </summary>
-        public TitleComponentState State(TimerRef timer)
+        public TitleComponentState State(ImageCacheRefMut imageCache, TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
+            if (imageCache.ptr == IntPtr.Zero)
+            {
+                throw new ObjectDisposedException("imageCache");
+            }
             if (timer.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = new TitleComponentState(LiveSplitCoreNative.TitleComponent_state(this.ptr, timer.ptr));
+            var result = new TitleComponentState(LiveSplitCoreNative.TitleComponent_state(this.ptr, imageCache.ptr, timer.ptr, lang));
             return result;
         }
         internal TitleComponentRefMut(IntPtr ptr) : base(ptr) { }
@@ -8288,30 +9549,17 @@ namespace LiveSplitCore
     {
         internal IntPtr ptr;
         /// <summary>
-        /// The data of the game's icon. This value is only specified whenever the icon
-        /// changes. If you explicitly want to query this value, remount the component.
-        /// The buffer may be empty. This indicates that there is no icon. If no change
-        /// occurred, null is returned instead.
+        /// The game icon to show. The associated image can be looked up in the image
+        /// cache. The image may be the empty image. This indicates that there is no
+        /// icon.
         /// </summary>
-        public IntPtr IconChangePtr()
+        public string Icon()
         {
             if (this.ptr == IntPtr.Zero)
             {
                 throw new ObjectDisposedException("this");
             }
-            var result = LiveSplitCoreNative.TitleComponentState_icon_change_ptr(this.ptr);
-            return result;
-        }
-        /// <summary>
-        /// The length of the game's icon data.
-        /// </summary>
-        public ulong IconChangeLen()
-        {
-            if (this.ptr == IntPtr.Zero)
-            {
-                throw new ObjectDisposedException("this");
-            }
-            var result = (ulong)LiveSplitCoreNative.TitleComponentState_icon_change_len(this.ptr);
+            var result = LiveSplitCoreNative.TitleComponentState_icon(this.ptr);
             return result;
         }
         /// <summary>
@@ -8464,7 +9712,7 @@ namespace LiveSplitCore
         /// <summary>
         /// Encodes the component's state information as JSON.
         /// </summary>
-        public string StateAsJson(TimerRef timer)
+        public string StateAsJson(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -8474,13 +9722,13 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = LiveSplitCoreNative.TotalPlaytimeComponent_state_as_json(this.ptr, timer.ptr);
+            var result = LiveSplitCoreNative.TotalPlaytimeComponent_state_as_json(this.ptr, timer.ptr, lang);
             return result;
         }
         /// <summary>
         /// Calculates the component's state based on the timer provided.
         /// </summary>
-        public KeyValueComponentState State(TimerRef timer)
+        public KeyValueComponentState State(TimerRef timer, byte lang)
         {
             if (this.ptr == IntPtr.Zero)
             {
@@ -8490,7 +9738,7 @@ namespace LiveSplitCore
             {
                 throw new ObjectDisposedException("timer");
             }
-            var result = new KeyValueComponentState(LiveSplitCoreNative.TotalPlaytimeComponent_state(this.ptr, timer.ptr));
+            var result = new KeyValueComponentState(LiveSplitCoreNative.TotalPlaytimeComponent_state(this.ptr, timer.ptr, lang));
             return result;
         }
         internal TotalPlaytimeComponentRefMut(IntPtr ptr) : base(ptr) { }
@@ -8568,13 +9816,13 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Attempt_ended(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr AutoSplittingRuntime_new(IntPtr shared_timer);
+        public static extern IntPtr AutoSplittingRuntime_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void AutoSplittingRuntime_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte AutoSplittingRuntime_load_script(IntPtr self, LSCoreString path);
+        public static extern byte AutoSplittingRuntime_load(IntPtr self, LSCoreString path, IntPtr shared_timer);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte AutoSplittingRuntime_unload_script(IntPtr self);
+        public static extern byte AutoSplittingRuntime_unload(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr BlankSpaceComponent_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8590,6 +9838,36 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern uint BlankSpaceComponentState_size(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr CarouselComponent_new();
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CarouselComponent_drop(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr CarouselComponent_into_generic(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr CarouselComponent_len(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint CarouselComponent_size(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern ulong CarouselComponent_interval(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CarouselComponent_add_component(IntPtr self, IntPtr component);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CarouselComponent_set_size(IntPtr self, uint size);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CarouselComponent_set_interval(IntPtr self, ulong interval);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr CarouselComponentState_len(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern LSCoreString CarouselComponentState_component_type(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint CarouselComponentState_size(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr CarouselComponentState_current_index(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr CommandSink_from_timer(IntPtr timer);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void CommandSink_drop(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Component_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CurrentComparisonComponent_new();
@@ -8598,9 +9876,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CurrentComparisonComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString CurrentComparisonComponent_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString CurrentComparisonComponent_state_as_json(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr CurrentComparisonComponent_state(IntPtr self, IntPtr timer);
+        public static extern IntPtr CurrentComparisonComponent_state(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CurrentPaceComponent_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8608,9 +9886,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr CurrentPaceComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString CurrentPaceComponent_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString CurrentPaceComponent_state_as_json(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr CurrentPaceComponent_state(IntPtr self, IntPtr timer);
+        public static extern IntPtr CurrentPaceComponent_state(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DeltaComponent_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8618,9 +9896,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DeltaComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString DeltaComponent_state_as_json(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern LSCoreString DeltaComponent_state_as_json(IntPtr self, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr DeltaComponent_state(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern IntPtr DeltaComponent_state(IntPtr self, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DetailedTimerComponent_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8628,9 +9906,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr DetailedTimerComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString DetailedTimerComponent_state_as_json(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern LSCoreString DetailedTimerComponent_state_as_json(IntPtr self, IntPtr image_cache, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr DetailedTimerComponent_state(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern IntPtr DetailedTimerComponent_state(IntPtr self, IntPtr image_cache, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void DetailedTimerComponentState_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8656,9 +9934,7 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString DetailedTimerComponentState_comparison2_time(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr DetailedTimerComponentState_icon_change_ptr(IntPtr self);
-        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern UIntPtr DetailedTimerComponentState_icon_change_len(IntPtr self);
+        public static extern LSCoreString DetailedTimerComponentState_icon(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString DetailedTimerComponentState_segment_name(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8708,6 +9984,26 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte GraphComponentState_is_flipped(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr GroupComponent_new();
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GroupComponent_drop(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr GroupComponent_into_generic(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr GroupComponent_len(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint GroupComponent_size(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GroupComponent_add_component(IntPtr self, IntPtr component);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void GroupComponent_set_size(IntPtr self, uint size);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr GroupComponentState_len(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern LSCoreString GroupComponentState_component_type(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint GroupComponentState_size(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr HotkeyConfig_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr HotkeyConfig_parse_json(LSCoreString settings);
@@ -8716,15 +10012,15 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void HotkeyConfig_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString HotkeyConfig_settings_description_as_json(IntPtr self);
+        public static extern LSCoreString HotkeyConfig_settings_description_as_json(IntPtr self, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString HotkeyConfig_as_json(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte HotkeyConfig_set_value(IntPtr self, UIntPtr index, IntPtr value);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr HotkeySystem_new(IntPtr shared_timer);
+        public static extern IntPtr HotkeySystem_new(IntPtr command_sink);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr HotkeySystem_with_config(IntPtr shared_timer, IntPtr config);
+        public static extern IntPtr HotkeySystem_with_config(IntPtr command_sink, IntPtr config);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void HotkeySystem_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8738,6 +10034,18 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte HotkeySystem_set_config(IntPtr self, IntPtr config);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr ImageCache_new();
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void ImageCache_drop(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr ImageCache_lookup_data_ptr(IntPtr self, LSCoreString key);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr ImageCache_lookup_data_len(IntPtr self, LSCoreString key);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern LSCoreString ImageCache_cache(IntPtr self, IntPtr data, UIntPtr len, bool is_large);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr ImageCache_collect(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void KeyValueComponentState_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString KeyValueComponentState_key(IntPtr self);
@@ -8746,9 +10054,15 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString KeyValueComponentState_semantic_color(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte Lang_parse_locale(LSCoreString locale);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte Lang_from_name(LSCoreString name);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern LSCoreString Lang_name(byte lang);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Layout_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr Layout_default_layout();
+        public static extern IntPtr Layout_default_layout(byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Layout_parse_json(LSCoreString settings);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8762,13 +10076,13 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString Layout_settings_as_json(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr Layout_state(IntPtr self, IntPtr timer);
+        public static extern IntPtr Layout_state(IntPtr self, IntPtr image_cache, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Layout_update_state(IntPtr self, IntPtr state, IntPtr timer);
+        public static extern void Layout_update_state(IntPtr self, IntPtr state, IntPtr image_cache, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString Layout_update_state_as_json(IntPtr self, IntPtr state, IntPtr timer);
+        public static extern LSCoreString Layout_update_state_as_json(IntPtr self, IntPtr state, IntPtr image_cache, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString Layout_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString Layout_state_as_json(IntPtr self, IntPtr image_cache, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Layout_push(IntPtr self, IntPtr component);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8776,21 +10090,19 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Layout_scroll_down(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Layout_remount(IntPtr self);
-        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LayoutEditor_new(IntPtr layout);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LayoutEditor_close(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString LayoutEditor_state_as_json(IntPtr self);
+        public static extern LSCoreString LayoutEditor_state_as_json(IntPtr self, IntPtr image_cache, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr LayoutEditor_state(IntPtr self);
+        public static extern IntPtr LayoutEditor_state(IntPtr self, IntPtr image_cache, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString LayoutEditor_layout_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString LayoutEditor_layout_state_as_json(IntPtr self, IntPtr image_cache, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void LayoutEditor_update_layout_state(IntPtr self, IntPtr state, IntPtr timer);
+        public static extern void LayoutEditor_update_layout_state(IntPtr self, IntPtr state, IntPtr image_cache, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString LayoutEditor_update_layout_state_as_json(IntPtr self, IntPtr state, IntPtr timer);
+        public static extern LSCoreString LayoutEditor_update_layout_state_as_json(IntPtr self, IntPtr state, IntPtr image_cache, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void LayoutEditor_select(IntPtr self, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8808,7 +10120,7 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void LayoutEditor_set_component_settings_value(IntPtr self, UIntPtr index, IntPtr value);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void LayoutEditor_set_general_settings_value(IntPtr self, UIntPtr index, IntPtr value);
+        public static extern void LayoutEditor_set_general_settings_value(IntPtr self, UIntPtr index, IntPtr value, IntPtr image_cache);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void LayoutEditorState_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8825,6 +10137,12 @@ namespace LiveSplitCore
         public static extern LSCoreString LayoutEditorState_field_text(IntPtr self, bool component_settings, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LayoutEditorState_field_value(IntPtr self, bool component_settings, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern uint LayoutEditorState_component_indent_level(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte LayoutEditorState_component_is_placeholder(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte LayoutEditorState_layout_direction(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LayoutState_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8854,6 +10172,10 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LayoutState_component_as_title(IntPtr self, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr LayoutState_component_as_group(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr LayoutState_component_as_carousel(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr LinkedLayout_new(LSCoreString path);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void LinkedLayout_drop(IntPtr self);
@@ -8878,9 +10200,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr PbChanceComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString PbChanceComponent_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString PbChanceComponent_state_as_json(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr PbChanceComponent_state(IntPtr self, IntPtr timer);
+        public static extern IntPtr PbChanceComponent_state(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr PossibleTimeSaveComponent_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8888,9 +10210,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr PossibleTimeSaveComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString PossibleTimeSaveComponent_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString PossibleTimeSaveComponent_state_as_json(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr PossibleTimeSaveComponent_state(IntPtr self, IntPtr timer);
+        public static extern IntPtr PossibleTimeSaveComponent_state(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void PotentialCleanUp_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8902,9 +10224,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr PreviousSegmentComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString PreviousSegmentComponent_state_as_json(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern LSCoreString PreviousSegmentComponent_state_as_json(IntPtr self, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr PreviousSegmentComponent_state(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern IntPtr PreviousSegmentComponent_state(IntPtr self, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Run_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8942,6 +10264,12 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Run_segment(IntPtr self, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr Run_segment_groups_len(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr Run_segment_group(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr Run_segments_len(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern UIntPtr Run_attempt_history_len(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Run_attempt_history_index(IntPtr self, UIntPtr index);
@@ -8951,6 +10279,10 @@ namespace LiveSplitCore
         public static extern UIntPtr Run_custom_comparisons_len(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString Run_custom_comparison(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr Run_comparisons_len(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern LSCoreString Run_comparison(IntPtr self, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString Run_auto_splitter_settings(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8968,7 +10300,7 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr RunEditor_close(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString RunEditor_state_as_json(IntPtr self);
+        public static extern LSCoreString RunEditor_state_as_json(IntPtr self, IntPtr image_cache, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_select_timing_method(IntPtr self, byte method);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -8976,13 +10308,15 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_select_additionally(IntPtr self, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void RunEditor_select_range(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_select_only(IntPtr self, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_set_game_name(IntPtr self, LSCoreString game);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_set_category_name(IntPtr self, LSCoreString category);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte RunEditor_parse_and_set_offset(IntPtr self, LSCoreString offset);
+        public static extern byte RunEditor_parse_and_set_offset(IntPtr self, LSCoreString offset, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte RunEditor_parse_and_set_attempt_count(IntPtr self, LSCoreString attempts);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9024,19 +10358,35 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_move_segments_down(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte RunEditor_create_segment_group_from_selection(IntPtr self, LSCoreString name);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte RunEditor_select_segment_group(IntPtr self, UIntPtr group_index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte RunEditor_toggle_segment_group_selection(IntPtr self, UIntPtr group_index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte RunEditor_select_segment_group_range(IntPtr self, UIntPtr group_index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte RunEditor_remove_selected_segment_groups(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte RunEditor_rename_segment_group(IntPtr self, UIntPtr group_index, LSCoreString name);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte RunEditor_set_segment_group_icon(IntPtr self, UIntPtr group_index, IntPtr data, UIntPtr length);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte RunEditor_remove_segment_group_icon(IntPtr self, UIntPtr group_index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_active_set_icon(IntPtr self, IntPtr data, UIntPtr length);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_active_remove_icon(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_active_set_name(IntPtr self, LSCoreString name);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte RunEditor_active_parse_and_set_split_time(IntPtr self, LSCoreString time);
+        public static extern byte RunEditor_active_parse_and_set_split_time(IntPtr self, LSCoreString time, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte RunEditor_active_parse_and_set_segment_time(IntPtr self, LSCoreString time);
+        public static extern byte RunEditor_active_parse_and_set_segment_time(IntPtr self, LSCoreString time, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte RunEditor_active_parse_and_set_best_segment_time(IntPtr self, LSCoreString time);
+        public static extern byte RunEditor_active_parse_and_set_best_segment_time(IntPtr self, LSCoreString time, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte RunEditor_active_parse_and_set_comparison_time(IntPtr self, LSCoreString comparison, LSCoreString time);
+        public static extern byte RunEditor_active_parse_and_set_comparison_time(IntPtr self, LSCoreString comparison, LSCoreString time, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte RunEditor_add_comparison(IntPtr self, LSCoreString comparison);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9048,13 +10398,15 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte RunEditor_move_comparison(IntPtr self, UIntPtr src_index, UIntPtr dst_index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte RunEditor_parse_and_generate_goal_comparison(IntPtr self, LSCoreString time);
+        public static extern byte RunEditor_parse_and_generate_goal_comparison(IntPtr self, LSCoreString time, byte lang);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte RunEditor_copy_comparison(IntPtr self, LSCoreString old_name, LSCoreString new_name);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_clear_history(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void RunEditor_clear_times(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr RunEditor_clean_sum_of_best(IntPtr self);
+        public static extern IntPtr RunEditor_clean_sum_of_best(IntPtr self, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString RunMetadata_run_id(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9108,6 +10460,16 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Segment_segment_history(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr SegmentGroup_start(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr SegmentGroup_end(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern LSCoreString SegmentGroup_name(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr SegmentGroup_icon_ptr(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr SegmentGroup_icon_len(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SegmentHistory_iter(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern int SegmentHistoryElement_index(IntPtr self);
@@ -9124,9 +10486,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SegmentTimeComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString SegmentTimeComponent_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString SegmentTimeComponent_state_as_json(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr SegmentTimeComponent_state(IntPtr self, IntPtr timer);
+        public static extern IntPtr SegmentTimeComponent_state(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SeparatorComponent_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9141,6 +10503,10 @@ namespace LiveSplitCore
         public static extern IntPtr SettingValue_from_bool(bool value);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SettingValue_from_uint(uint value);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr SettingValue_from_optional_uint(uint value);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr SettingValue_from_optional_empty_uint();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SettingValue_from_int(int value);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9182,6 +10548,8 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SettingValue_from_column_update_trigger(LSCoreString value);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr SettingValue_from_subsplit_display_mode(LSCoreString value);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SettingValue_from_layout_direction(LSCoreString value);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SettingValue_from_font(LSCoreString family, LSCoreString style, LSCoreString weight, LSCoreString stretch);
@@ -9189,6 +10557,8 @@ namespace LiveSplitCore
         public static extern IntPtr SettingValue_from_empty_font();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SettingValue_from_delta_gradient(LSCoreString value);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern IntPtr SettingValue_from_background_image(LSCoreString image_id, float brightness, float opacity, float blur);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SettingValue_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9208,17 +10578,17 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SoftwareRenderer_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SoftwareRenderer_render(IntPtr self, IntPtr layout_state, IntPtr data, uint width, uint height, uint stride, bool force_redraw);
+        public static extern void SoftwareRenderer_render(IntPtr self, IntPtr layout_state, IntPtr image_cache, IntPtr data, uint width, uint height, uint stride, bool force_redraw);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr SplitsComponent_new();
+        public static extern IntPtr SplitsComponent_new(byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SplitsComponent_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SplitsComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString SplitsComponent_state_as_json(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern LSCoreString SplitsComponent_state_as_json(IntPtr self, IntPtr image_cache, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr SplitsComponent_state(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern IntPtr SplitsComponent_state(IntPtr self, IntPtr image_cache, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SplitsComponent_scroll_up(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9230,21 +10600,13 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SplitsComponent_set_always_show_last_split(IntPtr self, bool always_show_last_split);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void SplitsComponent_set_separator_last_split(IntPtr self, bool separator_last_split);
+        public static extern void SplitsComponent_set_show_gap_separators(IntPtr self, bool show_gap_separators);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void SplitsComponentState_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern byte SplitsComponentState_final_separator_shown(IntPtr self);
-        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern UIntPtr SplitsComponentState_len(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern UIntPtr SplitsComponentState_icon_change_count(IntPtr self);
-        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern UIntPtr SplitsComponentState_icon_change_segment_index(IntPtr self, UIntPtr icon_change_index);
-        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr SplitsComponentState_icon_change_icon_ptr(IntPtr self, UIntPtr icon_change_index);
-        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern UIntPtr SplitsComponentState_icon_change_icon_len(IntPtr self, UIntPtr icon_change_index);
+        public static extern LSCoreString SplitsComponentState_icon(IntPtr self, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString SplitsComponentState_name(IntPtr self, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9255,6 +10617,14 @@ namespace LiveSplitCore
         public static extern LSCoreString SplitsComponentState_column_semantic_color(IntPtr self, UIntPtr index, UIntPtr column_index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte SplitsComponentState_is_current_split(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte SplitsComponentState_is_scrolled_to_split(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte SplitsComponentState_is_indented(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern byte SplitsComponentState_separator_before(IntPtr self, UIntPtr index);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern UIntPtr SplitsComponentState_section_index(IntPtr self, UIntPtr index);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern byte SplitsComponentState_has_column_labels(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9272,9 +10642,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr SumOfBestComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString SumOfBestComponent_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString SumOfBestComponent_state_as_json(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr SumOfBestComponent_state(IntPtr self, IntPtr timer);
+        public static extern IntPtr SumOfBestComponent_state(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr TextComponent_new();
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9285,6 +10655,8 @@ namespace LiveSplitCore
         public static extern LSCoreString TextComponent_state_as_json(IntPtr self, IntPtr timer);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr TextComponent_state(IntPtr self, IntPtr timer);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void TextComponent_use_variable(IntPtr self, LSCoreString variable, bool split);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void TextComponent_set_center(IntPtr self, LSCoreString text);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9314,7 +10686,7 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr TimeSpan_from_seconds(double seconds);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr TimeSpan_parse(LSCoreString text);
+        public static extern IntPtr TimeSpan_parse(LSCoreString text, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void TimeSpan_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9325,6 +10697,8 @@ namespace LiveSplitCore
         public static extern long TimeSpan_whole_seconds(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern int TimeSpan_subsec_nanoseconds(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void TimeSpan_add_assign(IntPtr self, IntPtr other);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Timer_new(IntPtr run);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9362,47 +10736,53 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr Timer_set_run(IntPtr self, IntPtr run);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_start(IntPtr self);
+        public static extern int Timer_start(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_split(IntPtr self);
+        public static extern int Timer_split(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_split_or_start(IntPtr self);
+        public static extern int Timer_split_or_start(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_skip_split(IntPtr self);
+        public static extern int Timer_skip_split(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_undo_split(IntPtr self);
+        public static extern int Timer_undo_split(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_reset(IntPtr self, bool update_splits);
+        public static extern int Timer_reset(IntPtr self, bool update_splits);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_reset_and_set_attempt_as_pb(IntPtr self);
+        public static extern int Timer_reset_and_set_attempt_as_pb(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_pause(IntPtr self);
+        public static extern int Timer_pause(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_resume(IntPtr self);
+        public static extern int Timer_resume(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_toggle_pause(IntPtr self);
+        public static extern int Timer_toggle_pause(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_toggle_pause_or_start(IntPtr self);
+        public static extern int Timer_toggle_pause_or_start(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_undo_all_pauses(IntPtr self);
+        public static extern int Timer_undo_all_pauses(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Timer_set_current_timing_method(IntPtr self, byte method);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void Timer_toggle_timing_method(IntPtr self);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern int Timer_set_current_comparison(IntPtr self, LSCoreString comparison);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Timer_switch_to_next_comparison(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Timer_switch_to_previous_comparison(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_initialize_game_time(IntPtr self);
+        public static extern int Timer_initialize_game_time(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Timer_deinitialize_game_time(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_pause_game_time(IntPtr self);
+        public static extern int Timer_pause_game_time(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_resume_game_time(IntPtr self);
+        public static extern int Timer_resume_game_time(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_set_game_time(IntPtr self, IntPtr time);
+        public static extern int Timer_set_game_time(IntPtr self, IntPtr time);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern void Timer_set_loading_times(IntPtr self, IntPtr time);
+        public static extern int Timer_set_loading_times(IntPtr self, IntPtr time);
+        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
+        public static extern void Timer_set_custom_variable(IntPtr self, LSCoreString name, LSCoreString value);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void Timer_mark_as_unmodified(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9412,9 +10792,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr TimerComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString TimerComponent_state_as_json(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern LSCoreString TimerComponent_state_as_json(IntPtr self, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr TimerComponent_state(IntPtr self, IntPtr timer, IntPtr layout_settings);
+        public static extern IntPtr TimerComponent_state(IntPtr self, IntPtr timer, IntPtr layout_settings, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void TimerComponentState_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9438,15 +10818,13 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr TitleComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString TitleComponent_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString TitleComponent_state_as_json(IntPtr self, IntPtr image_cache, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr TitleComponent_state(IntPtr self, IntPtr timer);
+        public static extern IntPtr TitleComponent_state(IntPtr self, IntPtr image_cache, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern void TitleComponentState_drop(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr TitleComponentState_icon_change_ptr(IntPtr self);
-        [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern UIntPtr TitleComponentState_icon_change_len(IntPtr self);
+        public static extern LSCoreString TitleComponentState_icon(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern LSCoreString TitleComponentState_line1(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
@@ -9468,9 +10846,9 @@ namespace LiveSplitCore
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern IntPtr TotalPlaytimeComponent_into_generic(IntPtr self);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern LSCoreString TotalPlaytimeComponent_state_as_json(IntPtr self, IntPtr timer);
+        public static extern LSCoreString TotalPlaytimeComponent_state_as_json(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
-        public static extern IntPtr TotalPlaytimeComponent_state(IntPtr self, IntPtr timer);
+        public static extern IntPtr TotalPlaytimeComponent_state(IntPtr self, IntPtr timer, byte lang);
         [DllImport("livesplit_core", CallingConvention = CallingConvention.Cdecl)]
         public static extern UIntPtr get_buf_len();
     }
