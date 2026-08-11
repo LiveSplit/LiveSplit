@@ -700,7 +700,7 @@ public class CommandServer
             }
             case "getlayoutpath":
             {
-                response = State.Layout.FilePath.ToString();
+                response = !string.IsNullOrEmpty(State.Layout.FilePath) ? State.Layout.FilePath.ToString() : "-";
                 break;
             }
             case "savelayout":
@@ -731,7 +731,7 @@ public class CommandServer
             }
             case "getsplitspath":
             {
-                response = State.Run.FilePath.ToString();
+                response = !string.IsNullOrEmpty(State.Run.FilePath) ? State.Layout.FilePath.ToString() : "-";
                 break;
             }
             case "savesplits":
@@ -842,6 +842,16 @@ public class CommandServer
             case "getcompletedcount":
             {
                 response = State.Run.AttemptHistory.Count(x => x.Time.RealTime != null).ToString();
+                break;
+            }
+            case "getautosplitterpath":
+            {
+                response = !string.IsNullOrEmpty(State.Run.AutoSplitter?.LocalPath) ? State.Run.AutoSplitter.LocalPath.ToString() : "-";
+                break;
+            }
+            case "autosplitteractivated":
+            {
+                response = (State.Run.AutoSplitter != null && State.Run.AutoSplitter.IsActivated).ToString();
                 break;
             }
             case "gethotkeyprofile":

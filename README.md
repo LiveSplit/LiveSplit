@@ -162,6 +162,7 @@ Commands that return an int:
 Commands that return True/False as a value or whether or not the request succeeds:
 
 - globalhotkeysenabled
+- autosplitteractivated
 - savelayout
 - savesplits
 - savelayoutas FILEPATH
@@ -188,6 +189,7 @@ Commands that return a string:
 (returns a Base64 encoded string (Web URI format) of the screenshot in .png format)
 - getlayoutpath
 - getsplitspath
+- getautosplitterpath
 - gethotkeyprofile
 - getlivesplitversion
 - getlivesplitpath
