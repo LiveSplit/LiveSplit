@@ -731,7 +731,7 @@ public class CommandServer
             }
             case "getsplitspath":
             {
-                response = !string.IsNullOrEmpty(State.Run.FilePath) ? State.Layout.FilePath.ToString() : "-";
+                response = !string.IsNullOrEmpty(State.Run.FilePath) ? State.Run.FilePath.ToString() : "-";
                 break;
             }
             case "savesplits":
