@@ -2680,9 +2680,22 @@ public partial class TimerForm : Form
             }
         }
 
-        int x = Math.Max(SystemInformation.VirtualScreen.X, Math.Min(Layout.X, SystemInformation.VirtualScreen.X + SystemInformation.VirtualScreen.Width - Width));
-        int y = Math.Max(SystemInformation.VirtualScreen.Y, Math.Min(Layout.Y, SystemInformation.VirtualScreen.Y + SystemInformation.VirtualScreen.Height - Height));
-        Location = new Point(x, y);
+        const int minimumVisibleSize = 32;
+        var bounds = new Rectangle(Layout.X, Layout.Y, Width, Height);
+        int minVisibleWidth = Math.Min(minimumVisibleSize, bounds.Width);
+        int minVisibleHeight = Math.Min(minimumVisibleSize, bounds.Height);
+        if (!Screen.AllScreens.Any(screen =>
+            {
+                Rectangle visible = Rectangle.Intersect(screen.Bounds, bounds);
+                return visible.Width >= minVisibleWidth && visible.Height >= minVisibleHeight;
+            }))
+        {
+            Rectangle workingArea = Screen.FromRectangle(bounds).WorkingArea;
+            bounds.X = Math.Max(workingArea.X, Math.Min(bounds.X, workingArea.Right - bounds.Width));
+            bounds.Y = Math.Max(workingArea.Y, Math.Min(bounds.Y, workingArea.Bottom - bounds.Height));
+        }
+
+        Location = bounds.Location;
         TopMost = Layout.Settings.AlwaysOnTop;
         SetInTimerOnlyMode();
     }
