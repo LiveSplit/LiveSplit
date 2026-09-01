@@ -62,5 +62,19 @@ public class AutoSplitterXML
             "Auto Splitters need to have valid URLs");
         Assert.True(!autoSplitters.Values.Any(x => x.URLs.Any(y => Regex.IsMatch(y, "https://github.com/[^/]*/[^/]*/blob/"))),
             "URLs leading to GitHub should use the raw file link");
+
+        // Validate AutoSplittingRuntime child if present
+        Assert.True(!autoSplitters.Values.Any(x => x.AutoSplittingRuntime != null && string.IsNullOrWhiteSpace(x.AutoSplittingRuntime.URL)),
+            "AutoSplittingRuntime needs a URL");
+        Assert.True(!autoSplitters.Values.Any(x => x.AutoSplittingRuntime != null && !Uri.IsWellFormedUriString(x.AutoSplittingRuntime.URL, UriKind.Absolute)),
+            "AutoSplittingRuntime needs a valid URL");
+        Assert.True(!autoSplitters.Values.Any(x => x.AutoSplittingRuntime != null && Regex.IsMatch(x.AutoSplittingRuntime.URL, "https://github.com/[^/]*/[^/]*/blob/")),
+            "AutoSplittingRuntime URLs leading to GitHub should use the raw file link");
+        Assert.True(!autoSplitters.Values.Any(x => x.AutoSplittingRuntime != null && string.IsNullOrWhiteSpace(x.AutoSplittingRuntime.Description)),
+            "AutoSplittingRuntime needs a description");
+        Assert.True(!autoSplitters.Values.Any(x => x.AutoSplittingRuntime != null && x.AutoSplittingRuntime.Description.Length > 120),
+            "AutoSplittingRuntime description must be no longer than 120 characters");
+        Assert.True(!autoSplitters.Values.Any(x => x.AutoSplittingRuntime != null && !x.AutoSplittingRuntime.URL.EndsWith(".wasm")),
+            "AutoSplittingRuntime URL should point to a .wasm file");
     }
 }

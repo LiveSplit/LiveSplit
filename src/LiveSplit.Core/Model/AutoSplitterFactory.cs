@@ -68,6 +68,18 @@ public class AutoSplitterFactory
             autoSplitterType = scriptTypeElementText == "AutoSplittingRuntime" ? AutoSplitterType.AutoSplittingRuntimeScript : AutoSplitterType.Script;
         }
 
+        XmlElement runtimeElement = element["AutoSplittingRuntime"];
+        AutoSplittingRuntimeInfo runtimeInfo = null;
+        if (runtimeElement != null)
+        {
+            runtimeInfo = new AutoSplittingRuntimeInfo
+            {
+                URL = runtimeElement["URL"]?.InnerText,
+                Description = runtimeElement["Description"]?.InnerText,
+                Website = runtimeElement["Website"]?.InnerText
+            };
+        }
+
         return new AutoSplitter()
         {
             Description = element["Description"].InnerText,
@@ -75,7 +87,8 @@ public class AutoSplitterFactory
             Type = autoSplitterType.Value,
             Games = element["Games"].ChildNodes.OfType<XmlElement>().Select(x => (x.InnerText ?? "").ToLower()).ToList(),
             ShowInLayoutEditor = element["ShowInLayoutEditor"] != null,
-            Website = element["Website"]?.InnerText
+            Website = element["Website"]?.InnerText,
+            AutoSplittingRuntime = runtimeInfo
         };
     }
 
