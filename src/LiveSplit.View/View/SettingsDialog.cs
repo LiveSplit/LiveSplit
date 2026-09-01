@@ -111,6 +111,12 @@ public partial class SettingsDialog : Form
         UiLocalizer.Apply(this, LanguageResolver.ResolveCurrentCultureLanguage());
     }
 
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        this.MoveIntoOwnerScreen();
+    }
+
     private void InitializeHotkeyProfiles(string hotkeyProfile)
     {
         cmbHotkeyProfiles.Items.AddRange(Settings.HotkeyProfiles.Keys.ToArray());

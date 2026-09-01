@@ -312,6 +312,12 @@ public partial class RunEditorDialog : Form
         UiLocalizer.Apply(this, LanguageResolver.ResolveCurrentCultureLanguage());
     }
 
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        this.MoveIntoOwnerScreen();
+    }
+
     private string[] SearchForGameName(string name)
     {
         name = name.ToLowerInvariant();

@@ -60,6 +60,12 @@ public partial class LayoutEditorDialog : Form
         UiLocalizer.Apply(this, LanguageResolver.ResolveCurrentCultureLanguage());
     }
 
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        this.MoveIntoOwnerScreen();
+    }
+
     private void rdoVertical_CheckedChanged(object sender, EventArgs e)
     {
         Layout.HasChanged = true;
