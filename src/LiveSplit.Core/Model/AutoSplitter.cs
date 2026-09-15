@@ -14,6 +14,12 @@ public enum AutoSplitterType
     Script,
     AutoSplittingRuntimeScript
 }
+public class AutoSplittingRuntimeInfo
+{
+    public string URL { get; set; }
+    public string Description { get; set; }
+    public string Website { get; set; }
+}
 public class AutoSplitter : ICloneable
 {
     public string Description { get; set; }
@@ -28,6 +34,7 @@ public class AutoSplitter : ICloneable
     public IComponentFactory Factory { get; set; }
     public bool IsDownloaded => File.Exists(LocalPath);
     public string Website { get; set; }
+    public AutoSplittingRuntimeInfo AutoSplittingRuntime { get; set; }
 
     public void Activate(LiveSplitState state)
     {
@@ -139,7 +146,14 @@ public class AutoSplitter : ICloneable
             Type = Type,
             ShowInLayoutEditor = ShowInLayoutEditor,
             Component = Component,
-            Factory = Factory
+            Factory = Factory,
+            Website = Website,
+            AutoSplittingRuntime = AutoSplittingRuntime == null ? null : new AutoSplittingRuntimeInfo
+            {
+                URL = AutoSplittingRuntime.URL,
+                Description = AutoSplittingRuntime.Description,
+                Website = AutoSplittingRuntime.Website
+            }
         };
     }
 
