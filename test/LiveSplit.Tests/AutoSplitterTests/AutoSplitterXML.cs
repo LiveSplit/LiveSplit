@@ -63,7 +63,43 @@ public class AutoSplitterXML
         Assert.True(!autoSplitters.Values.Any(x => x.URLs.Any(y => Regex.IsMatch(y, "https://github.com/[^/]*/[^/]*/blob/"))),
             "URLs leading to GitHub should use the raw file link");
 
-        // Validate AutoSplittingRuntime child if present
+        // Test parsing with a fixed example so this does not depend on the downloaded XML.
+        var runtimeDocument = new XmlDocument();
+        runtimeDocument.LoadXml("""
+            <AutoSplitter>
+                <Games>
+                    <Game>Example Game</Game>
+                </Games>
+                <URLs>
+                    <URL>https://example.com/example.asl</URL>
+                </URLs>
+                <Type>Script</Type>
+                <Description>ASL splitter</Description>
+                <Website>https://example.com/asl</Website>
+                <AutoSplittingRuntime>
+                    <URL>https://example.com/example.wasm</URL>
+                    <Description>WASM splitter</Description>
+                    <Website>https://example.com/wasm</Website>
+                </AutoSplittingRuntime>
+            </AutoSplitter>
+            """);
+
+        AutoSplitter runtimeAutoSplitter = AutoSplitterFactory.CreateFromXmlElement(runtimeDocument.DocumentElement);
+
+        Assert.Equal(AutoSplitterType.Script, runtimeAutoSplitter.Type);
+        Assert.Equal("https://example.com/example.asl", runtimeAutoSplitter.URLs.Single());
+        Assert.NotNull(runtimeAutoSplitter.AutoSplittingRuntime);
+        Assert.Equal("https://example.com/example.wasm", runtimeAutoSplitter.AutoSplittingRuntime.URL);
+        Assert.Equal("WASM splitter", runtimeAutoSplitter.AutoSplittingRuntime.Description);
+        Assert.Equal("https://example.com/wasm", runtimeAutoSplitter.AutoSplittingRuntime.Website);
+
+        AutoSplitter runtimeClone = runtimeAutoSplitter.Clone();
+        Assert.NotSame(runtimeAutoSplitter.AutoSplittingRuntime, runtimeClone.AutoSplittingRuntime);
+        Assert.Equal(runtimeAutoSplitter.AutoSplittingRuntime.URL, runtimeClone.AutoSplittingRuntime.URL);
+        Assert.Equal(runtimeAutoSplitter.AutoSplittingRuntime.Description, runtimeClone.AutoSplittingRuntime.Description);
+        Assert.Equal(runtimeAutoSplitter.AutoSplittingRuntime.Website, runtimeClone.AutoSplittingRuntime.Website);
+
+        // Validate AutoSplittingRuntime children in the downloaded XML.
         Assert.True(!autoSplitters.Values.Any(x => x.AutoSplittingRuntime != null && string.IsNullOrWhiteSpace(x.AutoSplittingRuntime.URL)),
             "AutoSplittingRuntime needs a URL");
         Assert.True(!autoSplitters.Values.Any(x => x.AutoSplittingRuntime != null && !Uri.IsWellFormedUriString(x.AutoSplittingRuntime.URL, UriKind.Absolute)),
