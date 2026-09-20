@@ -1,5 +1,6 @@
 ﻿using LiveSplit.Model;
 using System;
+using System.Globalization;
 using System.Xml;
 using Xunit;
 using static LiveSplit.Tests.Model.Constants;
@@ -41,6 +42,31 @@ public class IndexedTimeMust
         Assert.Equal("1", element.Attributes["id"].Value);
         Assert.Contains("<RealTime>9.00:00:00</RealTime>", xmlText);
         Assert.Contains("<GameTime>8.23:33:20</GameTime>", xmlText);
+    }
+
+    [Fact]
+    public void RoundTripNegativeIndexInvariantly_WhenCultureUsesUnicodeMinus()
+    {
+        CultureInfo culture = (CultureInfo)CultureInfo.InvariantCulture.Clone();
+        culture.NumberFormat.NegativeSign = "\u2212";
+        CultureInfo previousCulture = CultureInfo.CurrentCulture;
+        CultureInfo.CurrentCulture = culture;
+
+        try
+        {
+            var sut = new IndexedTime(default, -1);
+            var document = new XmlDocument();
+
+            XmlElement element = (XmlElement)sut.ToXml(document);
+            IIndexedTime roundTripped = IndexedTimeHelper.ParseXml(element);
+
+            Assert.Equal("-1", element.GetAttribute("id"));
+            Assert.Equal(-1, roundTripped.Index);
+        }
+        finally
+        {
+            CultureInfo.CurrentCulture = previousCulture;
+        }
     }
 
     [Fact]
