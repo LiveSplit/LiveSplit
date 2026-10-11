@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Model;
+using LiveSplit.Options;
 using LiveSplit.Options.SettingsFactories;
 using LiveSplit.UI.Components;
 
@@ -10,7 +11,11 @@ public class TimerOnlyLayoutFactory : ILayoutFactory
     {
         var layout = new Layout();
         ILayoutComponent component = ComponentManager.LoadLayoutComponent("LiveSplit.Timer.dll", state);
-        if (component != null)
+        if (component == null)
+        {
+            Log.Error("Unable to load the timer component from LiveSplit.Timer.dll! Timer-only layout will be empty.");
+        }
+        else
         {
             layout.LayoutComponents.Add(component);
         }

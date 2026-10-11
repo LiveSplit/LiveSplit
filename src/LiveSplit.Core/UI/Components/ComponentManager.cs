@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Model;
+using LiveSplit.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -42,6 +43,7 @@ public class ComponentManager
 
         if (!Directory.Exists(path))
         {
+            Log.Error($"Component directory \"{path}\" is missing! No components will be available.");
             return new Dictionary<string, T>();
         }
         else
