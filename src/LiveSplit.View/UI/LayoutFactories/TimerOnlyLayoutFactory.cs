@@ -10,7 +10,11 @@ public class TimerOnlyLayoutFactory : ILayoutFactory
     {
         var layout = new Layout();
         ILayoutComponent component = ComponentManager.LoadLayoutComponent("LiveSplit.Timer.dll", state);
-        layout.LayoutComponents.Add(component);
+        if (component != null)
+        {
+            layout.LayoutComponents.Add(component);
+        }
+        
         layout.VerticalWidth = 252;
         layout.VerticalHeight = 50;
         layout.HorizontalWidth = 252;
