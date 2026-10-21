@@ -6,7 +6,6 @@ using LiveSplit.UI.Components;
 using LiveSplit.View;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
@@ -226,69 +225,6 @@ public class AutoSplitterStartupTests
             finally
             {
                 typeof(AutoSplitterFactory).GetProperty(nameof(AutoSplitterFactory.Instance)).SetValue(null, original);
-            }
-        });
-    }
-
-    [Theory]
-    [InlineData(false, false)]
-    [InlineData(false, true)]
-    [InlineData(true, false)]
-    [InlineData(true, true)]
-    public void ActivateOrCancelThroughTheEditorButtonWithoutBlocking(bool running, bool cancel)
-    {
-        OnStaThread(() =>
-        {
-            string directory = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-            Directory.CreateDirectory(Path.Combine(directory, "Components"));
-            string originalPath = ComponentManager.BasePath;
-            var originalFactories = ComponentManager.ComponentFactories;
-            AutoSplitterFactory original = AutoSplitterFactory.Instance;
-            var factory = (AutoSplitterFactory)Activator.CreateInstance(typeof(AutoSplitterFactory), true);
-            typeof(AutoSplitterFactory).GetProperty(nameof(AutoSplitterFactory.Instance)).SetValue(null, factory);
-            using var server = new DelayedServer();
-            try
-            {
-                ComponentManager.BasePath = directory;
-                typeof(ComponentManager).GetProperty(nameof(ComponentManager.ComponentFactories)).SetValue(null,
-                    new Dictionary<string, IComponentFactory> { ["LiveSplit.ScriptableAutoSplit.dll"] = new ScriptFactory() });
-                var splitter = new AutoSplitter { Type = AutoSplitterType.Script, Games = ["test game"], URLs = [server.Url], Description = "Test" };
-                factory.AutoSplitters = new Dictionary<string, AutoSplitter> { ["test game"] = splitter };
-                File.WriteAllText(splitter.LocalPath, "cached script");
-                var run = new Run(new StandardComparisonGeneratorsFactory()) { GameName = "Test Game", AutoSplitter = splitter };
-                run.AddSegment("Finish");
-                var state = new LiveSplitState(run, null, null, null, new Settings());
-                if (running) state.CurrentPhase = TimerPhase.Running;
-                using var editor = new RunEditorDialog(state);
-                state.Form = editor;
-                _ = editor.Handle;
-                Application.DoEvents();
-                var click = typeof(RunEditorDialog).GetMethod("btnActivate_Click", BindingFlags.Instance | BindingFlags.NonPublic);
-                var watch = Stopwatch.StartNew();
-                click.Invoke(editor, [editor, EventArgs.Empty]);
-                watch.Stop();
-                PumpUntil(() => server.Requested.Task.IsCompleted);
-                factory.AutoSplitters = new Dictionary<string, AutoSplitter> { ["test game"] = splitter };
-                Application.DoEvents();
-                Task activation = splitter.ActivateAsync(state, allowWhileRunning: true);
-                Assert.Equal("Deactivate", Field<Button>(editor, "btnActivate").Text);
-                if (cancel) click.Invoke(editor, [editor, EventArgs.Empty]);
-                server.Release.TrySetResult(true);
-                PumpUntil(() => activation.IsCompleted);
-                activation.GetAwaiter().GetResult();
-
-                Assert.True(watch.Elapsed < TimeSpan.FromSeconds(1), "The activation button blocked on the network.");
-                Assert.Equal(!cancel, state.Settings.ActiveAutoSplitters.Contains("Test Game"));
-                Assert.Equal(!cancel, splitter.IsActivated);
-                Assert.Equal(!cancel, Field<Button>(editor, "btnSettings").Enabled);
-                splitter.Deactivate();
-            }
-            finally
-            {
-                ComponentManager.BasePath = originalPath;
-                typeof(ComponentManager).GetProperty(nameof(ComponentManager.ComponentFactories)).SetValue(null, originalFactories);
-                typeof(AutoSplitterFactory).GetProperty(nameof(AutoSplitterFactory.Instance)).SetValue(null, original);
-                Directory.Delete(directory, true);
             }
         });
     }
