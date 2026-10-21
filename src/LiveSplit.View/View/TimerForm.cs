@@ -186,6 +186,36 @@ public partial class TimerForm : Form
         Init(splitsPath, layoutPath);
     }
 
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        AutoSplitterFactory.Instance.AutoSplittersChanged += AutoSplittersChanged;
+        AutoSplittersChanged(this, EventArgs.Empty);
+    }
+
+    protected override void OnHandleDestroyed(EventArgs e)
+    {
+        AutoSplitterFactory.Instance.AutoSplittersChanged -= AutoSplittersChanged;
+        base.OnHandleDestroyed(e);
+    }
+
+    private void AutoSplittersChanged(object sender, EventArgs e)
+    {
+        if (!IsHandleCreated || IsDisposed || Disposing)
+        {
+            return;
+        }
+
+        try
+        {
+            BeginInvoke(new Action(ActivateAutoSplitter));
+        }
+        catch (InvalidOperationException) when (!IsHandleCreated || IsDisposed || Disposing)
+        {
+            // The window closed while the background update was being delivered.
+        }
+    }
+
     private void Init(string splitsPath = null, string layoutPath = null)
     {
         LiveSplitCoreFactory.LoadLiveSplitCore();
@@ -949,6 +979,7 @@ public partial class TimerForm : Form
             skipSplitMenuItem.Enabled = false;
             splitMenuItem.Enabled = true;
             splitMenuItem.Text = "Start";
+            ActivateAutoSplitter();
         });
     }
 
@@ -1958,17 +1989,28 @@ public partial class TimerForm : Form
 
     private void CreateAutoSplitter()
     {
-        AutoSplitter splitter = AutoSplitterFactory.Instance.Create(CurrentState.Run.GameName);
-        CurrentState.Run.AutoSplitter = splitter;
-        if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(CurrentState.Run.GameName))
+        CurrentState.Run.AutoSplitter = AutoSplitterFactory.Instance.Create(CurrentState.Run.GameName);
+        ActivateAutoSplitter();
+    }
+
+    private async void ActivateAutoSplitter()
+    {
+        if (IsDisposed || Disposing || CurrentState?.Run == null || IsInDialogMode)
         {
-            splitter.Activate(CurrentState);
-            if (splitter.IsActivated
-            && CurrentState.Run.AutoSplitterSettings != null
-            && CurrentState.Run.AutoSplitterSettings.GetAttribute("gameName") == CurrentState.Run.GameName)
+            return;
+        }
+
+        try
+        {
+            CurrentState.Run.AutoSplitter ??= AutoSplitterFactory.Instance.Create(CurrentState.Run.GameName);
+            if (CurrentState.Run.AutoSplitter != null)
             {
-                CurrentState.Run.AutoSplitter.Component.SetSettings(CurrentState.Run.AutoSplitterSettings);
+                await CurrentState.Run.AutoSplitter.ActivateAsync(CurrentState);
             }
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
         }
     }
 
@@ -2340,6 +2382,7 @@ public partial class TimerForm : Form
             editor.RunEdited -= editor_RunEdited;
             editor.ComparisonRenamed -= editor_ComparisonRenamed;
             editor.SegmentRemovedOrAdded -= editor_SegmentRemovedOrAdded;
+            ActivateAutoSplitter();
         }
     }
 

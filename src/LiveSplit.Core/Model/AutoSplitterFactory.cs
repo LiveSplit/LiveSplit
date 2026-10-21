@@ -1,10 +1,11 @@
-using LiveSplit.Options;
+﻿using LiveSplit.Options;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Xml;
 
@@ -13,7 +14,18 @@ namespace LiveSplit.Model;
 public class AutoSplitterFactory
 {
     public static AutoSplitterFactory Instance { get; protected set; }
-    public IDictionary<string, AutoSplitter> AutoSplitters { get; set; }
+    private IDictionary<string, AutoSplitter> _autoSplitters;
+    public IDictionary<string, AutoSplitter> AutoSplitters
+    {
+        get => Volatile.Read(ref _autoSplitters);
+        set
+        {
+            Volatile.Write(ref _autoSplitters, value);
+            AutoSplittersChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public event EventHandler AutoSplittersChanged;
 
     public const string AutoSplittersXmlUrl = "https://raw.githubusercontent.com/LiveSplit/LiveSplit.AutoSplitters/master/LiveSplit.AutoSplitters.xml";
     public const string AutoSplittersXmlFile = "LiveSplit.AutoSplitters.xml";
@@ -55,12 +67,7 @@ public class AutoSplitterFactory
 
             ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
 
-            if (TryLoadFromFile(AutoSplittersXmlFile))
-            {
-                StartBackgroundRefresh();
-                return;
-            }
-
+            TryLoadFromFile(AutoSplittersXmlFile);
             StartBackgroundRefresh();
         }
     }
@@ -207,13 +214,14 @@ public class AutoSplitterFactory
             Init();
         }
 
-        if (AutoSplitters != null && !string.IsNullOrEmpty(game))
+        IDictionary<string, AutoSplitter> splitters = AutoSplitters;
+        if (splitters != null && !string.IsNullOrEmpty(game))
         {
             game = game.ToLower();
 
-            if (AutoSplitters.ContainsKey(game))
+            if (splitters.TryGetValue(game, out AutoSplitter splitter))
             {
-                return AutoSplitters[game];
+                return splitter;
             }
         }
 
