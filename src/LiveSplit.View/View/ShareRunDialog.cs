@@ -2,6 +2,7 @@
 using LiveSplit.Model;
 using LiveSplit.Options;
 using LiveSplit.TimeFormatters;
+using LiveSplit.Utils;
 using LiveSplit.Web.Share;
 using System;
 using System.Drawing;
@@ -41,6 +42,12 @@ public partial class ShareRunDialog : Form
         ScreenShotFunction = screenShotFunction;
         Settings = settings;
         InitializeComponent();
+    }
+
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        this.MoveIntoOwnerScreen();
     }
 
     private bool HasPersonalBest(IRun run)

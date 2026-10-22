@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveSplit.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -14,6 +15,12 @@ public partial class EditHistoryDialog : Form
         InitializeComponent();
         History = [.. history.Reverse()];
         historyListBox.Items.AddRange(History.Where(x => !string.IsNullOrEmpty(x)).ToArray());
+    }
+
+    protected override void OnLoad(EventArgs e)
+    {
+        base.OnLoad(e);
+        this.MoveIntoOwnerScreen();
     }
 
     private void btnOK_Click(object sender, EventArgs e)

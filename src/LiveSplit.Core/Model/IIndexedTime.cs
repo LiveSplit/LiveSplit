@@ -1,4 +1,5 @@
 ﻿using LiveSplit.Web;
+using System.Globalization;
 using System.Xml;
 
 namespace LiveSplit.Model;
@@ -14,7 +15,7 @@ public static class IndexedTimeHelper
     {
         XmlElement element = indexedTime.Time.ToXml(document);
         XmlAttribute attribute = document.CreateAttribute("id");
-        attribute.InnerText = indexedTime.Index.ToString();
+        attribute.InnerText = indexedTime.Index.ToString(CultureInfo.InvariantCulture);
         element.Attributes.Append(attribute);
         return element;
     }
@@ -22,14 +23,14 @@ public static class IndexedTimeHelper
     public static IIndexedTime ParseXml(XmlElement node)
     {
         var newTime = Time.FromXml(node);
-        int index = int.Parse(node.GetAttribute("id"));
+        int index = int.Parse(node.GetAttribute("id"), CultureInfo.InvariantCulture);
         return new IndexedTime(newTime, index);
     }
 
     public static IIndexedTime ParseXmlOld(XmlElement node)
     {
         Time newTime = node == null ? default : Time.ParseText(node.InnerText);
-        int index = int.Parse(node.GetAttribute("id"));
+        int index = int.Parse(node.GetAttribute("id"), CultureInfo.InvariantCulture);
         return new IndexedTime(newTime, index);
     }
 
