@@ -47,6 +47,7 @@ public partial class RunEditorDialog : Form
     protected ITimeFormatter TimeFormatter { get; set; }
     protected IList<TimeSpan?> SegmentTimeList { get; set; }
     protected bool IsInitialized = false;
+    private Task _autoSplitterActivation;
     protected Time PreviousPersonalBestTime;
     private readonly CancellationTokenSource FillCbxGameTaskToken = new();
 
@@ -353,6 +354,69 @@ public partial class RunEditorDialog : Form
         RaiseRunEdited();
     }
 
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        AutoSplitterFactory.Instance.AutoSplittersChanged += AutoSplittersChanged;
+        AutoSplittersChanged(this, EventArgs.Empty);
+    }
+
+    protected override void OnHandleDestroyed(EventArgs e)
+    {
+        AutoSplitterFactory.Instance.AutoSplittersChanged -= AutoSplittersChanged;
+        base.OnHandleDestroyed(e);
+    }
+
+    private void AutoSplittersChanged(object sender, EventArgs e)
+    {
+        if (!IsHandleCreated || IsDisposed || Disposing)
+        {
+            return;
+        }
+
+        try
+        {
+            BeginInvoke(new Action(() => RefreshAutoSplitter()));
+        }
+        catch (InvalidOperationException) when (!IsHandleCreated || IsDisposed || Disposing)
+        {
+            // The window closed while the background update was being delivered.
+        }
+    }
+
+    private async void RefreshAutoSplitter(bool allowWhileRunning = false)
+    {
+        if (IsDisposed || Disposing || Run == null || CurrentState.Run != Run)
+        {
+            return;
+        }
+
+        try
+        {
+            string game = IsInitialized ? cbxGameName.Text : Run.GameName;
+            Run.AutoSplitter ??= AutoSplitterFactory.Instance.Create(game);
+            RefreshAutoSplittingUI();
+            if (Run.AutoSplitter != null && game == Run.GameName)
+            {
+                if (_autoSplitterActivation == null || _autoSplitterActivation.IsCompleted)
+                {
+                    _autoSplitterActivation = Run.AutoSplitter.ActivateAsync(CurrentState, allowWhileRunning);
+                }
+                RefreshAutoSplittingUI();
+                await _autoSplitterActivation;
+            }
+
+            if (!IsDisposed && !Disposing && CurrentState.Run == Run)
+            {
+                RefreshAutoSplittingUI();
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
+        }
+    }
+
     private void cbxGameName_TextChanged(object sender, EventArgs e)
     {
         if (IsInitialized)
@@ -360,22 +424,14 @@ public partial class RunEditorDialog : Form
             DeactivateAutoSplitter();
             AutoSplitter splitter = AutoSplitterFactory.Instance.Create(cbxGameName.Text);
             Run.AutoSplitter = splitter;
-            if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
-            {
-                splitter.Activate(CurrentState);
-                SetAutoSplitterSettings();
-            }
-
-            RefreshAutoSplittingUI();
+            RefreshAutoSplitter();
         }
     }
 
     private void DeactivateAutoSplitter()
     {
-        if (Run.IsAutoSplitterActive())
-        {
-            Run.AutoSplitter.Deactivate();
-        }
+        Run.AutoSplitter?.Deactivate();
+        _autoSplitterActivation = null;
     }
 
     private void FillCbxGameName()
@@ -2205,7 +2261,7 @@ public partial class RunEditorDialog : Form
         lblDescription.Text = Run.AutoSplitter == null
             ? T("There is no Auto Splitter available for this game.")
             : T(Run.AutoSplitter.Description);
-        btnActivate.Text = Run.IsAutoSplitterActive()
+        btnActivate.Text = Run.IsAutoSplitterActive() || IsAutoSplitterActivationPending
             ? T("Deactivate")
             : T("Activate");
         btnActivate.Enabled = Run.AutoSplitter != null;
@@ -2228,30 +2284,30 @@ public partial class RunEditorDialog : Form
 
     private void btnActivate_Click(object sender, EventArgs e)
     {
-        if (Run.AutoSplitter.IsActivated)
+        if (Run.AutoSplitter == null)
+        {
+            return;
+        }
+
+        if (Run.AutoSplitter.IsActivated || IsAutoSplitterActivationPending)
         {
             CurrentState.Settings.ActiveAutoSplitters.Remove(Run.GameName);
-            Run.AutoSplitter.Deactivate();
+            DeactivateAutoSplitter();
         }
         else
         {
-            CurrentState.Settings.ActiveAutoSplitters.Add(Run.GameName);
-            Run.AutoSplitter.Activate(CurrentState);
-            SetAutoSplitterSettings();
+            if (!CurrentState.Settings.ActiveAutoSplitters.Contains(Run.GameName))
+            {
+                CurrentState.Settings.ActiveAutoSplitters.Add(Run.GameName);
+            }
+            RefreshAutoSplitter(allowWhileRunning: true);
         }
 
         RefreshAutoSplittingUI();
     }
 
-    private void SetAutoSplitterSettings()
-    {
-        if (Run.AutoSplitter.IsActivated
-        && Run.AutoSplitterSettings != null
-        && Run.AutoSplitterSettings.GetAttribute("gameName") == cbxGameName.Text)
-        {
-            Run.AutoSplitter.Component.SetSettings(Run.AutoSplitterSettings);
-        }
-    }
+    private bool IsAutoSplitterActivationPending => _autoSplitterActivation is { IsCompleted: false }
+        && CurrentState.Settings.ActiveAutoSplitters.Contains(Run.GameName);
 
     private void btnSettings_Click(object sender, EventArgs e)
     {
@@ -2509,6 +2565,7 @@ public partial class RunEditorDialog : Form
     private void cbxGameName_Validated(object sender, EventArgs e)
     {
         GameName = cbxGameName.Text;
+        RefreshAutoSplitter();
     }
 
     private void btnDeleteAttempt_Click(object sender, EventArgs e)
