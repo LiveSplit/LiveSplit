@@ -181,6 +181,7 @@ public partial class TimerForm : Form
 
         lastTransparencyToggleTime = now;
         transparencySupportEnabled = !transparencySupportEnabled;
+        Settings.TransparencySupportEnabled = transparencySupportEnabled;
 
         if (!transparencySupportEnabled)
         {
@@ -455,6 +456,7 @@ public partial class TimerForm : Form
         LayoutSaver = new XMLLayoutSaver();
         SettingsSaver = new XMLSettingsSaver();
         LoadSettings();
+        transparencySupportEnabled = Settings.TransparencySupportEnabled;
         InitializeLanguageMenu();
         UiLocalizer.Apply(this, CurrentLanguage);
 
@@ -552,6 +554,7 @@ public partial class TimerForm : Form
 
         StartPosition = FormStartPosition.Manual;
 
+        ApplySavedWindowPosition();
         SetLayout(Layout);
 
         RefreshTask = Task.Factory.StartNew(RefreshTimerWorker);
@@ -3058,6 +3061,25 @@ public partial class TimerForm : Form
         }
     }
 
+    private void ApplySavedWindowPosition()
+    {
+        if (Layout != null && Settings?.WindowX is int windowX && Settings.WindowY is int windowY)
+        {
+            Layout.X = windowX;
+            Layout.Y = windowY;
+        }
+    }
+
+    private void SaveWindowPosition()
+    {
+        Rectangle bounds = WindowState == FormWindowState.Normal ? Bounds : RestoreBounds;
+        if (!bounds.IsEmpty)
+        {
+            Settings.WindowX = bounds.X;
+            Settings.WindowY = bounds.Y;
+        }
+    }
+
     private void SetLayout(ILayout layout)
     {
         if (Layout != null && Layout != layout)
@@ -3294,6 +3316,7 @@ public partial class TimerForm : Form
             return;
         }
 
+        SaveWindowPosition();
         Settings.LastComparison = CurrentState.CurrentComparison;
         AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
         SaveSettingsToDisk();

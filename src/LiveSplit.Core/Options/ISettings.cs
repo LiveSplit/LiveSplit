@@ -49,4 +49,7 @@ public interface ISettings : ICloneable
     bool DoubleTapPrevention { get; set; }
     bool EnableDPIAwareness { get; set; }
     string UILanguage { get; set; }
+    int? WindowX { get; set; }
+    int? WindowY { get; set; }
+    bool TransparencySupportEnabled { get; set; }
 }

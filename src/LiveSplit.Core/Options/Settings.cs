@@ -30,6 +30,9 @@ public class Settings : ISettings
     public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
     public bool EnableDPIAwareness { get; set; }
     public string UILanguage { get; set; }
+    public int? WindowX { get; set; }
+    public int? WindowY { get; set; }
+    public bool TransparencySupportEnabled { get; set; } = true;
 
     // Deprecated properties
     public KeyOrButton SplitKey
@@ -122,6 +125,9 @@ public class Settings : ISettings
             ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates),
             EnableDPIAwareness = EnableDPIAwareness,
             UILanguage = UILanguage,
+            WindowX = WindowX,
+            WindowY = WindowY,
+            TransparencySupportEnabled = TransparencySupportEnabled,
             HcpHistorySize = HcpHistorySize,
             HcpNBestRuns = HcpNBestRuns
         };
