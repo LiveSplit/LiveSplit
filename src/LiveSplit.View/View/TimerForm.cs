@@ -71,6 +71,9 @@ public partial class TimerForm : Form
     private bool isRenderingLayeredWindow;
     private bool transparencySupportEnabled = true;
     private DateTime lastTransparencyToggleTime;
+    private Size layoutLogicalSize = Size.Empty;
+    private int dpiChangeSuppressionDepth;
+    private Point dragStartWindowLocation;
 
     private bool ShouldUseTransparentWindow
         => transparencySupportEnabled && Layout.Settings.RequiresTransparentWindow;
@@ -220,6 +223,8 @@ public partial class TimerForm : Form
             layeredWindowBitmap = new Bitmap(Width, Height, PixelFormat.Format32bppPArgb);
         }
 
+        layeredWindowBitmap.SetResolution(CurrentDpi, CurrentDpi);
+
         using var drawRegion = new Region(new Rectangle(0, 0, Width, Height));
         Region previousUpdateRegion = UpdateRegion;
         UpdateRegion = drawRegion;
@@ -275,8 +280,9 @@ public partial class TimerForm : Form
             bitmapHandle = layeredWindowBitmap.GetHbitmap(Color.FromArgb(0));
             previousBitmap = Win32.SelectObject(memoryDc, bitmapHandle);
 
-            var destination = new Win32.Point(Left, Top);
-            var size = new Win32.Size(Width, Height);
+            Point windowOrigin = PointToScreen(Point.Empty);
+            var destination = new Win32.Point(windowOrigin.X, windowOrigin.Y);
+            var size = new Win32.Size(layeredWindowBitmap.Width, layeredWindowBitmap.Height);
             var source = new Win32.Point(0, 0);
             byte opacity = (byte)Math.Round(Math.Min(1f, Math.Max(0f, Layout.Settings.Opacity)) * 255f);
             var blend = new Win32.BLENDFUNCTION
@@ -399,7 +405,6 @@ public partial class TimerForm : Form
         SettingsSaver = new XMLSettingsSaver();
         LoadSettings();
         InitializeLanguageMenu();
-        SetDPIAwareness();
         UiLocalizer.Apply(this, CurrentLanguage);
 
         CurrentState.CurrentHotkeyProfile = Settings.HotkeyProfiles.First().Key;
@@ -508,6 +513,7 @@ public partial class TimerForm : Form
         RegisterHotkeys();
 
         SizeChanged += TimerForm_SizeChanged;
+        DpiChanged += TimerForm_DpiChanged;
 
         TopMost = Layout.Settings.AlwaysOnTop;
         BackColor = Color.Black;
@@ -974,19 +980,9 @@ public partial class TimerForm : Form
             Invalidate();
         }
 
-        if (RefreshesRemaining <= 0)
+        if (dpiChangeSuppressionDepth == 0 && RefreshesRemaining <= 0)
         {
-            if (Layout.Mode == LayoutMode.Vertical)
-            {
-                Layout.VerticalWidth = Size.Width;
-                Layout.VerticalHeight = Size.Height;
-            }
-            else
-            {
-                Layout.HorizontalWidth = Size.Width;
-                Layout.HorizontalHeight = Size.Height;
-            }
-
+            StoreCurrentLayoutSize();
             MaintainMinimumSize();
         }
     }
@@ -1665,8 +1661,9 @@ public partial class TimerForm : Form
                 OldSize = currentSize;
             }
 
-            int minSize = (int)((currentSize / 5) + 0.5f);
-            MinimumSize = Layout.Mode == LayoutMode.Vertical ? new Size(25, Math.Max(minSize, 25)) : new Size(Math.Max(minSize, 25), 25);
+            int minimumLength = DpiScale.Scale(25, CurrentDpi);
+            int minSize = Math.Max(DpiScale.Scale((int)((currentSize / 5) + 0.5f), CurrentDpi), minimumLength);
+            MinimumSize = Layout.Mode == LayoutMode.Vertical ? new Size(minimumLength, minSize) : new Size(minSize, minimumLength);
         }
     }
 
@@ -1674,9 +1671,11 @@ public partial class TimerForm : Form
     {
         if (RefreshesRemaining > 0)
         {
-            Size = Layout.Mode == LayoutMode.Vertical
-                ? new Size(Layout.VerticalWidth, Layout.VerticalHeight)
-                : new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
+            Size savedSize = GetSavedLayoutSize(Layout);
+            if (IsValidLayoutSize(savedSize))
+            {
+                Size = DpiScale.Scale(savedSize, CurrentDpi);
+            }
 
             if (OldSize != ComponentRenderer.OverallSize)
             {
@@ -1689,6 +1688,94 @@ public partial class TimerForm : Form
 
             OldSize = ComponentRenderer.OverallSize;
         }
+    }
+
+    private int CurrentDpi
+    {
+        get
+        {
+            if (!DpiAwareness.IsProcessDpiAware)
+            {
+                return DpiScale.DefaultDpi;
+            }
+
+            if (IsHandleCreated)
+            {
+                int windowDpi = DpiAwareness.GetDpiForWindow(Handle);
+                if (windowDpi > 0)
+                {
+                    return windowDpi;
+                }
+            }
+
+            return DpiAwareness.GetDpiForPoint(Location);
+        }
+    }
+
+    private static Size GetSavedLayoutSize(ILayout layout)
+        => layout.Mode == LayoutMode.Vertical
+            ? new Size(layout.VerticalWidth, layout.VerticalHeight)
+            : new Size(layout.HorizontalWidth, layout.HorizontalHeight);
+
+    private static bool IsValidLayoutSize(Size size)
+        => size.Width > 0 && size.Height > 0;
+
+    private Size GetCurrentLayoutSize()
+        => DpiScale.Unscale(Size, CurrentDpi);
+
+    private void StoreCurrentLayoutSize()
+    {
+        Size logicalSize = GetCurrentLayoutSize();
+        layoutLogicalSize = logicalSize;
+        if (Layout.Mode == LayoutMode.Vertical)
+        {
+            Layout.VerticalWidth = logicalSize.Width;
+            Layout.VerticalHeight = logicalSize.Height;
+        }
+        else
+        {
+            Layout.HorizontalWidth = logicalSize.Width;
+            Layout.HorizontalHeight = logicalSize.Height;
+        }
+    }
+
+    private void TimerForm_DpiChanged(object sender, DpiChangedEventArgs e)
+    {
+        if (!DpiAwareness.IsProcessDpiAware)
+        {
+            return;
+        }
+
+        Size logicalSize = IsValidLayoutSize(layoutLogicalSize)
+            ? layoutLogicalSize
+            : DpiScale.Unscale(Size, e.DeviceDpiOld);
+        Rectangle suggestedBounds = e.SuggestedRectangle;
+
+        dpiChangeSuppressionDepth++;
+        try
+        {
+            layeredWindowBitmap?.Dispose();
+            layeredWindowBitmap = null;
+            bakedBackground?.Dispose();
+            bakedBackground = null;
+            blurredBackground?.Dispose();
+            blurredBackground = null;
+            previousBackground = null;
+
+            if (suggestedBounds.Width > 0 && suggestedBounds.Height > 0)
+            {
+                Location = suggestedBounds.Location;
+            }
+
+            Size = DpiScale.Scale(logicalSize, e.DeviceDpiNew);
+            UpdateAllComponents();
+        }
+        finally
+        {
+            dpiChangeSuppressionDepth--;
+        }
+
+        Invalidate();
     }
 
     private void UpdateRefreshesRemaining()
@@ -1756,6 +1843,9 @@ public partial class TimerForm : Form
             ? Height / ComponentRenderer.OverallSize
             : Width / ComponentRenderer.OverallSize;
 
+        // Component geometry stays in its 96-DPI design units. The window size is
+        // converted to device pixels for the active monitor, so this transform
+        // applies both the user's layout size and the monitor DPI scale.
         g.ResetTransform();
         g.TranslateTransform(-0.5f, -0.5f);
         g.ScaleTransform(scaleFactor, scaleFactor);
@@ -1846,7 +1936,7 @@ public partial class TimerForm : Form
                 {
                     blurredBackground?.Dispose();
 
-                    blurredBackground = ImageBlur.Generate(image, blur * 10);
+                    blurredBackground = ImageBlur.Generate(image, blur * 10 * DpiScale.GetFactor(CurrentDpi));
                 }
 
                 image = blurredBackground;
@@ -1865,6 +1955,7 @@ public partial class TimerForm : Form
             }
 
             var bitmap = new Bitmap(Width, Height, image.PixelFormat);
+            bitmap.SetResolution(CurrentDpi, CurrentDpi);
 
             using (var g = Graphics.FromImage(bitmap))
             {
@@ -1899,7 +1990,8 @@ public partial class TimerForm : Form
     {
         if (e.Button == MouseButtons.Left)
         {
-            MousePoint = new Point(e.X, e.Y);
+            MousePoint = Cursor.Position;
+            dragStartWindowLocation = Location;
             MouseIsDown = true;
         }
     }
@@ -1908,9 +2000,10 @@ public partial class TimerForm : Form
     {
         if (AllowMoving && MouseIsDown)
         {
-            int x = Location.X - MousePoint.X + e.Location.X;
-            int y = Location.Y - MousePoint.Y + e.Location.Y;
-            Location = new Point(x, y);
+            Point cursor = Cursor.Position;
+            Location = new Point(
+                dragStartWindowLocation.X + cursor.X - MousePoint.X,
+                dragStartWindowLocation.Y + cursor.Y - MousePoint.Y);
         }
     }
 
@@ -1974,24 +2067,24 @@ public partial class TimerForm : Form
         const uint HTTOPLEFT = 13;
         const uint HTTOPRIGHT = 14;
 
-        const int RESIZE_HANDLE_SIZE = 10;
+        int resizeHandleSize = DpiScale.Scale(10, CurrentDpi);
         bool handled = false;
 
         if (AllowResizing && m.Msg is (int)WM_NCHITTEST or (int)WM_MOUSEMOVE)
         {
             Size formSize = Size;
-            var screenPoint = new Point(m.LParam.ToInt32());
-            Point clientPoint = PointToClient(screenPoint);
+            var point = new Point(m.LParam.ToInt32());
+            Point clientPoint = m.Msg == WM_NCHITTEST ? PointToClient(point) : point;
 
             var boxes = new Dictionary<uint, Rectangle>() {
-                {HTBOTTOMLEFT, new Rectangle(0, formSize.Height - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE)},
-                {HTBOTTOM, new Rectangle(RESIZE_HANDLE_SIZE, formSize.Height - RESIZE_HANDLE_SIZE, formSize.Width - (2*RESIZE_HANDLE_SIZE), RESIZE_HANDLE_SIZE)},
-                {HTBOTTOMRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, formSize.Height - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE)},
-                {HTRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, formSize.Height - (2*RESIZE_HANDLE_SIZE))},
-                {HTTOPRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, 0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE) },
-                {HTTOP, new Rectangle(RESIZE_HANDLE_SIZE, 0, formSize.Width - (2*RESIZE_HANDLE_SIZE), RESIZE_HANDLE_SIZE) },
-                {HTTOPLEFT, new Rectangle(0, 0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE) },
-                {HTLEFT, new Rectangle(0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, formSize.Height - (2*RESIZE_HANDLE_SIZE)) }
+                {HTBOTTOMLEFT, new Rectangle(0, formSize.Height - resizeHandleSize, resizeHandleSize, resizeHandleSize)},
+                {HTBOTTOM, new Rectangle(resizeHandleSize, formSize.Height - resizeHandleSize, formSize.Width - (2*resizeHandleSize), resizeHandleSize)},
+                {HTBOTTOMRIGHT, new Rectangle(formSize.Width - resizeHandleSize, formSize.Height - resizeHandleSize, resizeHandleSize, resizeHandleSize)},
+                {HTRIGHT, new Rectangle(formSize.Width - resizeHandleSize, resizeHandleSize, resizeHandleSize, formSize.Height - (2*resizeHandleSize))},
+                {HTTOPRIGHT, new Rectangle(formSize.Width - resizeHandleSize, 0, resizeHandleSize, resizeHandleSize) },
+                {HTTOP, new Rectangle(resizeHandleSize, 0, formSize.Width - (2*resizeHandleSize), resizeHandleSize) },
+                {HTTOPLEFT, new Rectangle(0, 0, resizeHandleSize, resizeHandleSize) },
+                {HTLEFT, new Rectangle(0, resizeHandleSize, resizeHandleSize, formSize.Height - (2*resizeHandleSize)) }
             };
 
             foreach (KeyValuePair<uint, Rectangle> hitBox in boxes)
@@ -2448,16 +2541,7 @@ public partial class TimerForm : Form
     private bool SaveLayout(bool suppressPrompts = false)
     {
         string savePath = Layout.FilePath;
-        if (Layout.Mode == LayoutMode.Vertical)
-        {
-            Layout.VerticalWidth = Width;
-            Layout.VerticalHeight = Height;
-        }
-        else
-        {
-            Layout.HorizontalWidth = Width;
-            Layout.HorizontalHeight = Height;
-        }
+        StoreCurrentLayoutSize();
 
         Layout.X = Location.X;
         Layout.Y = Location.Y;
@@ -2625,16 +2709,7 @@ public partial class TimerForm : Form
         editor.LayoutSettingsAssigned += editor_LayoutSettingsAssigned;
         Layout.X = Location.X;
         Layout.Y = Location.Y;
-        if (Layout.Mode == LayoutMode.Vertical)
-        {
-            Layout.VerticalWidth = Size.Width;
-            Layout.VerticalHeight = Size.Height;
-        }
-        else
-        {
-            Layout.HorizontalWidth = Size.Width;
-            Layout.HorizontalHeight = Size.Height;
-        }
+        StoreCurrentLayoutSize();
 
         var layoutCopy = (ILayout)Layout.Clone();
         var document = new XmlDocument();
@@ -2718,10 +2793,11 @@ public partial class TimerForm : Form
     private void editor_OrientationSwitched(object sender, EventArgs e)
     {
         ComponentRenderer.CalculateOverallSize(Layout.Mode);
+        Size currentLayoutSize = GetCurrentLayoutSize();
         if (Layout.Mode == LayoutMode.Vertical)
         {
-            Layout.HorizontalWidth = Size.Width;
-            Layout.HorizontalHeight = Size.Height;
+            Layout.HorizontalWidth = currentLayoutSize.Width;
+            Layout.HorizontalHeight = currentLayoutSize.Height;
             if (Layout.VerticalHeight == UI.Layout.InvalidSize || Layout.VerticalWidth == UI.Layout.InvalidSize)
             {
                 Layout.VerticalWidth = 300;
@@ -2730,8 +2806,8 @@ public partial class TimerForm : Form
         }
         else
         {
-            Layout.VerticalWidth = Size.Width;
-            Layout.VerticalHeight = Size.Height;
+            Layout.VerticalWidth = currentLayoutSize.Width;
+            Layout.VerticalHeight = currentLayoutSize.Height;
             if (Layout.HorizontalWidth == UI.Layout.InvalidSize || Layout.HorizontalHeight == UI.Layout.InvalidSize)
             {
                 Layout.HorizontalWidth = (int)(ComponentRenderer.OverallSize + 0.5);
@@ -2881,37 +2957,48 @@ public partial class TimerForm : Form
         CurrentState.LayoutSettings = layout.Settings;
         UpdateRefreshesRemaining();
         MinimumSize = new Size(0, 0);
-        if (Layout.Mode == LayoutMode.Vertical)
+
+        Size savedSize = GetSavedLayoutSize(Layout);
+        Point targetPoint = new(Layout.X, Layout.Y);
+        int targetDpi = DpiAwareness.GetDpiForPoint(targetPoint);
+        if (!IsValidLayoutSize(savedSize))
         {
-            if (Layout.VerticalWidth != UI.Layout.InvalidSize && Layout.VerticalHeight != UI.Layout.InvalidSize)
-            {
-                Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
-            }
-        }
-        else
-        {
-            if (Layout.HorizontalWidth != UI.Layout.InvalidSize && Layout.HorizontalHeight != UI.Layout.InvalidSize)
-            {
-                Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
-            }
+            savedSize = IsValidLayoutSize(layoutLogicalSize)
+                ? layoutLogicalSize
+                : DpiScale.Unscale(Size, targetDpi);
         }
 
-        const int minimumVisibleSize = 32;
-        var bounds = new Rectangle(Layout.X, Layout.Y, Width, Height);
-        int minVisibleWidth = Math.Min(minimumVisibleSize, bounds.Width);
-        int minVisibleHeight = Math.Min(minimumVisibleSize, bounds.Height);
-        if (!Screen.AllScreens.Any(screen =>
-            {
-                Rectangle visible = Rectangle.Intersect(screen.Bounds, bounds);
-                return visible.Width >= minVisibleWidth && visible.Height >= minVisibleHeight;
-            }))
+        layoutLogicalSize = savedSize;
+        dpiChangeSuppressionDepth++;
+        try
         {
-            Rectangle workingArea = Screen.FromRectangle(bounds).WorkingArea;
-            bounds.X = Math.Max(workingArea.X, Math.Min(bounds.X, workingArea.Right - bounds.Width));
-            bounds.Y = Math.Max(workingArea.Y, Math.Min(bounds.Y, workingArea.Bottom - bounds.Height));
+            if (IsValidLayoutSize(savedSize))
+            {
+                Size = DpiScale.Scale(savedSize, targetDpi);
+            }
+
+            int minimumVisibleSize = DpiScale.Scale(32, targetDpi);
+            var bounds = new Rectangle(Layout.X, Layout.Y, Width, Height);
+            int minVisibleWidth = Math.Min(minimumVisibleSize, bounds.Width);
+            int minVisibleHeight = Math.Min(minimumVisibleSize, bounds.Height);
+            if (!Screen.AllScreens.Any(screen =>
+                {
+                    Rectangle visible = Rectangle.Intersect(screen.Bounds, bounds);
+                    return visible.Width >= minVisibleWidth && visible.Height >= minVisibleHeight;
+                }))
+            {
+                Rectangle workingArea = Screen.FromRectangle(bounds).WorkingArea;
+                bounds.X = Math.Max(workingArea.X, Math.Min(bounds.X, workingArea.Right - bounds.Width));
+                bounds.Y = Math.Max(workingArea.Y, Math.Min(bounds.Y, workingArea.Bottom - bounds.Height));
+            }
+
+            Location = bounds.Location;
+        }
+        finally
+        {
+            dpiChangeSuppressionDepth--;
         }
 
-        Location = bounds.Location;
         TopMost = Layout.Settings.AlwaysOnTop;
         SetInTimerOnlyMode();
         Invalidate();
@@ -3185,20 +3272,6 @@ public partial class TimerForm : Form
         LanguageResolver.SetCurrentLanguageSetting(Settings.UILanguage);
     }
 
-    private void SetDPIAwareness()
-    {
-        if (Environment.OSVersion.Version.Major >= Options.Settings.DPI_AWARENESS_OS_MIN_VERSION && Settings.EnableDPIAwareness)
-        {
-            try
-            {
-                SetProcessDPIAware();
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-            }
-        }
-    }
 
     private void closeSplitsMenuItem_Click(object sender, EventArgs e)
     {
@@ -3228,7 +3301,8 @@ public partial class TimerForm : Form
     private Image MakeScreenShot()
     {
         var image = new Bitmap(Width, Height);
-        var graphics = Graphics.FromImage(image);
+        image.SetResolution(CurrentDpi, CurrentDpi);
+        using var graphics = Graphics.FromImage(image);
 
         graphics.CompositingMode = CompositingMode.SourceCopy;
         graphics.FillRectangle(Brushes.Transparent, 0, 0, Width, Height);
@@ -3635,6 +3709,4 @@ public partial class TimerForm : Form
         e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
     }
 
-    [DllImport("user32.dll")]
-    private static extern bool SetProcessDPIAware();
 }

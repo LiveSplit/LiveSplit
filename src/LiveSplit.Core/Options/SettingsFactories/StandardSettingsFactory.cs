@@ -3,6 +3,7 @@ using LiveSplit.Model.Comparisons;
 using LiveSplit.Model.Input;
 using LiveSplit.UI.Components;
 using LiveSplit.Web.SRL.RaceViewers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -45,7 +46,7 @@ public class StandardSettingsFactory : ISettingsFactory
             ServerPort = 16834,
             ServerStartup = ServerStartupType.Off,
             ServerState = ServerStateType.Off,
-            EnableDPIAwareness = false,
+            EnableDPIAwareness = Environment.OSVersion.Version.Major >= Settings.DPI_AWARENESS_OS_MIN_VERSION,
             UILanguage = string.Empty,
             ComparisonGeneratorStates = new Dictionary<string, bool>()
             {
