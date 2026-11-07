@@ -66,6 +66,15 @@ public partial class TimerForm : Form
     private Image blurredBackground { get; set; }
     private Image bakedBackground { get; set; }
 
+    private Bitmap layeredWindowBitmap;
+    private bool layeredWindowActive;
+    private bool isRenderingLayeredWindow;
+    private bool transparencySupportEnabled = true;
+    private DateTime lastTransparencyToggleTime;
+
+    private bool ShouldUseTransparentWindow
+        => transparencySupportEnabled && Layout.Settings.RequiresTransparentWindow;
+
     public CommandServer Server { get; set; }
 
     protected GraphicsCache GlobalCache { get; set; }
@@ -93,6 +102,9 @@ public partial class TimerForm : Form
     public const string SETTINGS_PATH = "settings.cfg";
     private const int WS_MINIMIZEBOX = 0x20000;
     private const int CS_DBLCLKS = 0x8;
+    private const int GWL_EXSTYLE = -20;
+    private const uint WS_EX_LAYERED = 0x00080000;
+    private const uint WS_EX_TRANSPARENT = 0x00000020;
 
     protected override CreateParams CreateParams
     {
@@ -103,6 +115,17 @@ public partial class TimerForm : Form
             cp.ClassStyle |= CS_DBLCLKS;
             return cp;
         }
+    }
+
+    protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+    {
+        if (keyData == Keys.F1)
+        {
+            ToggleTransparencySupport();
+            return true;
+        }
+
+        return base.ProcessCmdKey(ref msg, keyData);
     }
 
     protected bool MouseIsDown = false;
@@ -121,11 +144,6 @@ public partial class TimerForm : Form
     {
         set
         {
-            const int GWL_EXSTYLE = -20;
-
-            const uint WS_EX_LAYERED = 0x00080000;
-            const uint WS_EX_TRANSPARENT = 0x00000020;
-
             // If we're trying to set to false and it's already false, don't bother doing anything.
             // We can't do this for setting to true because setting Opacity may have messed the GWL_EXSTYLE flags up.
             if (!value && !MousePassThroughState)
@@ -157,6 +175,173 @@ public partial class TimerForm : Form
     private bool MousePassThroughState = false;
 
     private bool IsForegroundWindow => GetForegroundWindow() == Handle;
+
+    private void ToggleTransparencySupport()
+    {
+        DateTime now = DateTime.UtcNow;
+        if ((now - lastTransparencyToggleTime).TotalMilliseconds < 150)
+        {
+            return;
+        }
+
+        lastTransparencyToggleTime = now;
+        transparencySupportEnabled = !transparencySupportEnabled;
+
+        if (!transparencySupportEnabled)
+        {
+            MousePassThrough = false;
+            DisableLayeredWindow();
+        }
+
+        Invalidate();
+    }
+
+    private void EnsureLayeredWindowStyle()
+    {
+        uint exStyle = GetWindowLong(Handle, GWL_EXSTYLE);
+        if ((exStyle & WS_EX_LAYERED) == 0)
+        {
+            SetWindowLong(Handle, GWL_EXSTYLE, exStyle | WS_EX_LAYERED);
+        }
+    }
+
+    private bool RenderLayeredWindow()
+    {
+        if (Width <= 0 || Height <= 0)
+        {
+            return false;
+        }
+
+        if (layeredWindowBitmap == null
+            || layeredWindowBitmap.Width != Width
+            || layeredWindowBitmap.Height != Height)
+        {
+            layeredWindowBitmap?.Dispose();
+            layeredWindowBitmap = new Bitmap(Width, Height, PixelFormat.Format32bppPArgb);
+        }
+
+        using var drawRegion = new Region(new Rectangle(0, 0, Width, Height));
+        Region previousUpdateRegion = UpdateRegion;
+        UpdateRegion = drawRegion;
+        isRenderingLayeredWindow = true;
+        try
+        {
+            using var graphics = Graphics.FromImage(layeredWindowBitmap);
+            graphics.CompositingMode = CompositingMode.SourceCopy;
+            // Alpha 0 pixels are click-through for layered windows. A 1/255 alpha
+            // keeps the background visually transparent while making the entire
+            // timer rectangle available for dragging and the right-click menu.
+            graphics.Clear(Color.FromArgb(1, 0, 0, 0));
+            graphics.CompositingMode = CompositingMode.SourceOver;
+            PaintForm(graphics, drawRegion);
+        }
+        finally
+        {
+            isRenderingLayeredWindow = false;
+            UpdateRegion = previousUpdateRegion;
+        }
+
+        if (layeredWindowBitmap.Width != Width || layeredWindowBitmap.Height != Height)
+        {
+            Invalidate();
+            return true;
+        }
+
+        if (!layeredWindowActive)
+        {
+            // A previous Form.Opacity value uses SetLayeredWindowAttributes, which
+            // must not be mixed with per-pixel UpdateLayeredWindow composition.
+            Opacity = 1;
+        }
+
+        EnsureLayeredWindowStyle();
+        return UpdateLayeredWindowFromBitmap();
+    }
+
+    private bool UpdateLayeredWindowFromBitmap()
+    {
+        IntPtr screenDc = Win32.GetDC(IntPtr.Zero);
+        IntPtr memoryDc = IntPtr.Zero;
+        IntPtr bitmapHandle = IntPtr.Zero;
+        IntPtr previousBitmap = IntPtr.Zero;
+        try
+        {
+            memoryDc = Win32.CreateCompatibleDC(screenDc);
+            if (memoryDc == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            bitmapHandle = layeredWindowBitmap.GetHbitmap(Color.FromArgb(0));
+            previousBitmap = Win32.SelectObject(memoryDc, bitmapHandle);
+
+            var destination = new Win32.Point(Left, Top);
+            var size = new Win32.Size(Width, Height);
+            var source = new Win32.Point(0, 0);
+            byte opacity = (byte)Math.Round(Math.Min(1f, Math.Max(0f, Layout.Settings.Opacity)) * 255f);
+            var blend = new Win32.BLENDFUNCTION
+            {
+                BlendOp = Win32.AC_SRC_OVER,
+                BlendFlags = 0,
+                SourceConstantAlpha = opacity,
+                AlphaFormat = Win32.AC_SRC_ALPHA
+            };
+
+            layeredWindowActive = Win32.UpdateLayeredWindow(
+                Handle,
+                screenDc,
+                ref destination,
+                ref size,
+                memoryDc,
+                ref source,
+                0,
+                ref blend,
+                Win32.ULW_ALPHA);
+
+            if (!layeredWindowActive)
+            {
+                Log.Error("Failed to update the transparent LiveSplit window.");
+            }
+
+            return layeredWindowActive;
+        }
+        finally
+        {
+            if (previousBitmap != IntPtr.Zero)
+            {
+                Win32.SelectObject(memoryDc, previousBitmap);
+            }
+
+            if (bitmapHandle != IntPtr.Zero)
+            {
+                Win32.DeleteObject(bitmapHandle);
+            }
+
+            if (memoryDc != IntPtr.Zero)
+            {
+                Win32.DeleteDC(memoryDc);
+            }
+
+            if (screenDc != IntPtr.Zero)
+            {
+                Win32.ReleaseDC(IntPtr.Zero, screenDc);
+            }
+        }
+    }
+
+    private void DisableLayeredWindow()
+    {
+        if (!layeredWindowActive)
+        {
+            return;
+        }
+
+        layeredWindowActive = false;
+        uint exStyle = GetWindowLong(Handle, GWL_EXSTYLE);
+        SetWindowLong(Handle, GWL_EXSTYLE, exStyle & ~WS_EX_LAYERED);
+        Opacity = Layout.Settings.Opacity;
+    }
+
     private AppLanguage CurrentLanguage => LanguageResolver.ResolveCurrentCultureLanguage();
     private AppLanguage ConfiguredLanguage => LanguageResolver.Resolve(Settings?.UILanguage);
     private string T(string source) => UiLocalizer.Translate(source, CurrentLanguage);
@@ -320,7 +505,7 @@ public partial class TimerForm : Form
         Hook = new CompositeHook(false);
         Hook.GamepadHookInitialized += Hook_GamepadHookInitialized;
         Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
-        Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+        RegisterHotkeys();
 
         SizeChanged += TimerForm_SizeChanged;
 
@@ -380,7 +565,14 @@ public partial class TimerForm : Form
         }
 
         Settings.UnregisterAllHotkeys(Hook);
+        RegisterHotkeys();
+    }
+
+    private void RegisterHotkeys()
+    {
         Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+        // Keep F1 available as a recovery shortcut even when user hotkeys are disabled.
+        Hook.RegisterHotKey(Keys.F1);
     }
 
     private void UpdateRaceProviderIntegration()
@@ -777,6 +969,11 @@ public partial class TimerForm : Form
     private void TimerForm_SizeChanged(object sender, EventArgs e)
     {
         CreateBakedBackground();
+        if (layeredWindowActive)
+        {
+            Invalidate();
+        }
+
         if (RefreshesRemaining <= 0)
         {
             if (Layout.Mode == LayoutMode.Vertical)
@@ -1264,8 +1461,15 @@ public partial class TimerForm : Form
     {
         Action action = () =>
         {
-            HotkeyProfile hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
+            if (e.IsKey && e.Key == Keys.F1)
+            {
+                // F1 bypasses the user's global hotkey setting so a transparent timer
+                // can always be switched back into a visible, interactive window.
+                ToggleTransparencySupport();
+                return;
+            }
 
+            HotkeyProfile hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
             if ((ActiveForm == this || hotkeyProfile.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
             {
                 if (hotkeyProfile.SplitKey == e)
@@ -1526,10 +1730,16 @@ public partial class TimerForm : Form
 
         DrawBackground(g);
 
-        Opacity = Layout.Settings.Opacity;
+        if (!isRenderingLayeredWindow && !ShouldUseTransparentWindow)
+        {
+            Opacity = Layout.Settings.Opacity;
+        }
 
         // Set MousePassThrough after setting Opacity, because setting Opacity can reset the Form's WS_EX_LAYERED flag.
-        MousePassThrough = Layout.Settings.MousePassThroughWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running && !IsForegroundWindow;
+        MousePassThrough = !Layout.Settings.RequiresTransparentWindow
+            && Layout.Settings.MousePassThroughWhileRunning
+            && Model.CurrentState.CurrentPhase == TimerPhase.Running
+            && !IsForegroundWindow;
 
         AllowResizing = Layout.Settings.AllowResizing;
         AllowMoving = Layout.Settings.AllowMoving;
@@ -1572,6 +1782,12 @@ public partial class TimerForm : Form
     {
         try
         {
+            if (ShouldUseTransparentWindow && RenderLayeredWindow())
+            {
+                return;
+            }
+
+            DisableLayeredWindow();
             Region clip = e.Graphics.Clip;
             e.Graphics.Clip = new Region();
             PaintForm(e.Graphics, clip);
@@ -2698,6 +2914,7 @@ public partial class TimerForm : Form
         Location = bounds.Location;
         TopMost = Layout.Settings.AlwaysOnTop;
         SetInTimerOnlyMode();
+        Invalidate();
     }
 
     private void CloseSplits()
@@ -2867,6 +3084,7 @@ public partial class TimerForm : Form
         Settings.LastComparison = CurrentState.CurrentComparison;
         AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
         SaveSettingsToDisk();
+        layeredWindowBitmap?.Dispose();
 
         foreach (UI.Components.IComponent component in Layout.Components)
         {
@@ -2929,7 +3147,7 @@ public partial class TimerForm : Form
                 CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
             }
 
-            Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+            RegisterHotkeys();
             UpdateRaceProviderIntegration();
         }
         finally
@@ -3016,8 +3234,11 @@ public partial class TimerForm : Form
         graphics.FillRectangle(Brushes.Transparent, 0, 0, Width, Height);
         graphics.CompositingMode = CompositingMode.SourceOver;
 
-        // Start with a black background because we don't support the window being transparent, so this is closer to how LiveSplit actually looks
-        graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Width, Height);
+        // Screenshots preserve transparency when the layout uses a transparent background.
+        if (!ShouldUseTransparentWindow)
+        {
+            graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Width, Height);
+        }
 
         var drawRegion = new Region(new Rectangle(0, 0, Width, Height));
         UpdateRegion = drawRegion;
@@ -3039,7 +3260,7 @@ public partial class TimerForm : Form
             Settings.UnregisterAllHotkeys(Hook);
             UiLocalizer.Apply(dialog, CurrentLanguage);
             dialog.ShowDialog(this);
-            Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+            RegisterHotkeys();
         }
         finally
         {
@@ -3183,6 +3404,30 @@ public partial class TimerForm : Form
     {
         SetProgressBar();
         UpdateRaceProviderIntegration();
+
+        if (ShouldUseTransparentWindow)
+        {
+            UpdateAllComponents();
+            RenderLayeredWindow();
+
+            var initialRenderTimer = new System.Windows.Forms.Timer
+            {
+                Interval = 100
+            };
+            initialRenderTimer.Tick += (timerSender, timerArgs) =>
+            {
+                initialRenderTimer.Stop();
+                initialRenderTimer.Dispose();
+
+                if (!IsDisposed && ShouldUseTransparentWindow)
+                {
+                    UpdateAllComponents();
+                    Invalidate();
+                    RenderLayeredWindow();
+                }
+            };
+            initialRenderTimer.Start();
+        }
     }
 
     private void RebuildComparisonsMenu()

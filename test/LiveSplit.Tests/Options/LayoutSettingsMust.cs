@@ -103,4 +103,74 @@ public class LayoutSettingsMust
         sut.Assign(original);
         ValidateSubject(sut);
     }
+
+    [Theory]
+    [InlineData(0, true)]
+    [InlineData(128, true)]
+    [InlineData(255, false)]
+    public void RequireTransparentWindowForSolidColorAlpha(int alpha, bool expected)
+    {
+        var sut = new LayoutSettings
+        {
+            BackgroundType = BackgroundType.SolidColor,
+            BackgroundColor = Color.FromArgb(alpha, 1, 2, 3)
+        };
+
+        Assert.Equal(expected, sut.RequiresTransparentWindow);
+    }
+
+    [Theory]
+    [InlineData(0, 255, true)]
+    [InlineData(255, 0, true)]
+    [InlineData(255, 255, false)]
+    public void RequireTransparentWindowForGradientAlpha(int alpha1, int alpha2, bool expected)
+    {
+        var sut = new LayoutSettings
+        {
+            BackgroundType = BackgroundType.VerticalGradient,
+            BackgroundColor = Color.FromArgb(alpha1, 1, 2, 3),
+            BackgroundColor2 = Color.FromArgb(alpha2, 4, 5, 6)
+        };
+
+        Assert.Equal(expected, sut.RequiresTransparentWindow);
+    }
+
+    [Fact]
+    public void RequireTransparentWindowForTransparentImage()
+    {
+        var sut = new LayoutSettings
+        {
+            BackgroundType = BackgroundType.Image,
+            BackgroundImage = new Bitmap(2, 2, System.Drawing.Imaging.PixelFormat.Format32bppArgb),
+            ImageOpacity = 1f
+        };
+
+        Assert.True(sut.RequiresTransparentWindow);
+    }
+
+    [Fact]
+    public void RequireTransparentWindowForOpaqueImageWithReducedOpacity()
+    {
+        var sut = new LayoutSettings
+        {
+            BackgroundType = BackgroundType.Image,
+            BackgroundImage = new Bitmap(2, 2, System.Drawing.Imaging.PixelFormat.Format24bppRgb),
+            ImageOpacity = 0.5f
+        };
+
+        Assert.True(sut.RequiresTransparentWindow);
+    }
+
+    [Fact]
+    public void NotRequireTransparentWindowForOpaqueImage()
+    {
+        var sut = new LayoutSettings
+        {
+            BackgroundType = BackgroundType.Image,
+            BackgroundImage = new Bitmap(2, 2, System.Drawing.Imaging.PixelFormat.Format24bppRgb),
+            ImageOpacity = 1f
+        };
+
+        Assert.False(sut.RequiresTransparentWindow);
+    }
 }
