@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LiveSplit.Model;
+using System;
 using System.Drawing;
 
 namespace LiveSplit.Options;
@@ -41,6 +42,9 @@ public class LayoutSettings : ICloneable
     public bool MousePassThroughWhileRunning { get; set; }
     public bool AllowResizing { get; set; }
     public bool AllowMoving { get; set; }
+
+    public bool ShouldIgnoreMouse(TimerPhase currentPhase, bool isForeground)
+        => MousePassThroughWhileRunning && currentPhase == TimerPhase.Running && !isForeground;
 
     public bool RequiresTransparentWindow
         => BackgroundType switch

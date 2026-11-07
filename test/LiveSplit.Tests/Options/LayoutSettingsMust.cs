@@ -1,4 +1,5 @@
-﻿using LiveSplit.Options;
+﻿using LiveSplit.Model;
+using LiveSplit.Options;
 using System.Drawing;
 using Xunit;
 
@@ -102,6 +103,26 @@ public class LayoutSettingsMust
         var sut = new LayoutSettings();
         sut.Assign(original);
         ValidateSubject(sut);
+    }
+
+    [Theory]
+    [InlineData(true, TimerPhase.Running, false, true)]
+    [InlineData(true, TimerPhase.Running, true, false)]
+    [InlineData(true, TimerPhase.NotRunning, false, false)]
+    [InlineData(true, TimerPhase.Paused, false, false)]
+    [InlineData(false, TimerPhase.Running, false, false)]
+    public void IgnoreMouseOnlyWhenEnabledRunningAndUnfocused(
+        bool enabled,
+        TimerPhase phase,
+        bool isForeground,
+        bool expected)
+    {
+        var sut = new LayoutSettings
+        {
+            MousePassThroughWhileRunning = enabled
+        };
+
+        Assert.Equal(expected, sut.ShouldIgnoreMouse(phase, isForeground));
     }
 
     [Theory]

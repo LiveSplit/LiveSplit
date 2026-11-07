@@ -9,6 +9,9 @@ public class Invalidator : IInvalidator
 {
     public Form Form { get; protected set; }
     public Matrix Transform { get; set; }
+    public bool HasInvalidated { get; private set; }
+    public Rectangle? InvalidatedBounds { get; private set; }
+    public bool SuppressInvalidation { get; set; }
     protected const double Offset = 0.535;
 
     public Invalidator(Form form)
@@ -26,6 +29,9 @@ public class Invalidator : IInvalidator
         catch { }
 
         Transform = new Matrix();
+        HasInvalidated = false;
+        InvalidatedBounds = null;
+        SuppressInvalidation = false;
     }
 
     public void Invalidate(float x, float y, float width, float height)
@@ -43,6 +49,13 @@ public class Invalidator : IInvalidator
             (int)Math.Ceiling(offsetY),
             (int)Math.Ceiling(points[1].X - offsetX - Offset),
             (int)Math.Ceiling(points[1].Y - offsetY - Offset));
-        Form.Invalidate(rect);
+        HasInvalidated = true;
+        InvalidatedBounds = InvalidatedBounds is { } invalidatedBounds
+            ? Rectangle.Union(invalidatedBounds, rect)
+            : rect;
+        if (!SuppressInvalidation)
+        {
+            Form.Invalidate(rect);
+        }
     }
 }
