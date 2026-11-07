@@ -238,6 +238,18 @@ public class Settings : ISettings
                 }
             }
 
+            if (hotkeyProfile.ToggleTransparency != null)
+            {
+                try
+                {
+                    RegisterHotkey(hook, hotkeyProfile.ToggleTransparency, deactivateForOtherPrograms);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                }
+            }
+
             hook.AllowGamepads = hotkeyProfile.AllowGamepadsAsHotkeys;
         }
     }

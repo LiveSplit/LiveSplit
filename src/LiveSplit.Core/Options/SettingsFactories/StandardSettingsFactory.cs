@@ -26,6 +26,7 @@ public class StandardSettingsFactory : ISettingsFactory
                         SkipKey = new KeyOrButton(Keys.NumPad2),
                         SwitchComparisonPrevious = new KeyOrButton(Keys.NumPad4),
                         SwitchComparisonNext = new KeyOrButton(Keys.NumPad6),
+                        ToggleTransparency = null,
                         PauseKey = null,
                         ToggleGlobalHotkeys = null,
                         GlobalHotkeysEnabled = false,

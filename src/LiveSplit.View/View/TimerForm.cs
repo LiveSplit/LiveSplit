@@ -123,17 +123,6 @@ public partial class TimerForm : Form
         }
     }
 
-    protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
-    {
-        if (keyData == Keys.F1)
-        {
-            ToggleTransparencySupport();
-            return true;
-        }
-
-        return base.ProcessCmdKey(ref msg, keyData);
-    }
-
     protected bool MouseIsDown = false;
     protected Point MousePoint;
 
@@ -639,8 +628,6 @@ public partial class TimerForm : Form
     private void RegisterHotkeys()
     {
         Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
-        // Keep F1 available as a recovery shortcut even when user hotkeys are disabled.
-        Hook.RegisterHotKey(Keys.F1);
     }
 
     private void UpdateRaceProviderIntegration()
@@ -1521,14 +1508,6 @@ public partial class TimerForm : Form
     {
         Action action = () =>
         {
-            if (e.IsKey && e.Key == Keys.F1)
-            {
-                // F1 bypasses the user's global hotkey setting so a transparent timer
-                // can always be switched back into a visible, interactive window.
-                ToggleTransparencySupport();
-                return;
-            }
-
             HotkeyProfile hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
             if ((ActiveForm == this || hotkeyProfile.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
             {
@@ -1586,6 +1565,10 @@ public partial class TimerForm : Form
                 else if (hotkeyProfile.SwitchComparisonNext == e)
                 {
                     Model.SwitchComparisonNext();
+                }
+                else if (hotkeyProfile.ToggleTransparency == e)
+                {
+                    ToggleTransparencySupport();
                 }
             }
 

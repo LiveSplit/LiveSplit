@@ -28,6 +28,7 @@ public partial class SettingsDialog : Form
     public string SwitchComparisonPrevious => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonPrevious);
     public string SwitchComparisonNext => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonNext);
     public string ToggleGlobalHotkeys => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleGlobalHotkeys);
+    public string ToggleTransparency => FormatKey(Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleTransparency);
     public float HotkeyDelay
     {
         get => Settings.HotkeyProfiles[SelectedHotkeyProfile].HotkeyDelay;
@@ -133,6 +134,7 @@ public partial class SettingsDialog : Form
         txtToggle.Text = ToggleGlobalHotkeys;
         txtSwitchPrevious.Text = SwitchComparisonPrevious;
         txtSwitchNext.Text = SwitchComparisonNext;
+        txtToggleTransparency.Text = ToggleTransparency;
 
         chkGlobalHotkeys.Checked = GlobalHotkeysEnabled;
         chkDoubleTap.Checked = DoubleTapPrevention;
@@ -297,6 +299,10 @@ public partial class SettingsDialog : Form
     private void Switch_Next_Set_Enter(object sender, EventArgs e)
     {
         SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].SwitchComparisonNext = x);
+    }
+    private void Toggle_Transparency_Set_Enter(object sender, EventArgs e)
+    {
+        SetHotkeyHandlers((TextBox)sender, x => Settings.HotkeyProfiles[SelectedHotkeyProfile].ToggleTransparency = x);
     }
 
     private void ClickControl(object sender, EventArgs e)
