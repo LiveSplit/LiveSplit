@@ -39,11 +39,18 @@
             this.label2 = new System.Windows.Forms.Label();
             this.numericUpDownHcpNBestRuns = new System.Windows.Forms.NumericUpDown();
             this.numericUpDownHcpHistorySize = new System.Windows.Forms.NumericUpDown();
+            this.groupBoxSegmentPercentileSettings = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.numericUpDownSegmentPercentile = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel3.SuspendLayout();
             this.groupBoxHcpSettings.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHcpNBestRuns)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHcpHistorySize)).BeginInit();
+            this.groupBoxSegmentPercentileSettings.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSegmentPercentile)).BeginInit();
             this.SuspendLayout();
             // 
             // btnOK
@@ -78,15 +85,17 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 81F));
-            this.tableLayoutPanel3.Controls.Add(this.btnCancel, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.btnOK, 0, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnCancel, 1, 3);
+            this.tableLayoutPanel3.Controls.Add(this.btnOK, 0, 3);
             this.tableLayoutPanel3.Controls.Add(this.comparisonsListBox, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.groupBoxHcpSettings, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.groupBoxSegmentPercentileSettings, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.groupBoxHcpSettings, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(7, 7);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowCount = 4;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.Size = new System.Drawing.Size(280, 296);
@@ -213,6 +222,66 @@
             0});
             this.numericUpDownHcpHistorySize.ValueChanged += new System.EventHandler(this.numericUpDownHcpHistorySize_ValueChanged);
             // 
+            // groupBoxSegmentPercentileSettings
+            // 
+            this.groupBoxSegmentPercentileSettings.AutoSize = true;
+            this.groupBoxSegmentPercentileSettings.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tableLayoutPanel3.SetColumnSpan(this.groupBoxSegmentPercentileSettings, 2);
+            this.groupBoxSegmentPercentileSettings.Controls.Add(this.tableLayoutPanel2);
+            this.groupBoxSegmentPercentileSettings.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxSegmentPercentileSettings.Location = new System.Drawing.Point(2, 195);
+            this.groupBoxSegmentPercentileSettings.Margin = new System.Windows.Forms.Padding(2);
+            this.groupBoxSegmentPercentileSettings.MinimumSize = new System.Drawing.Size(0, 44);
+            this.groupBoxSegmentPercentileSettings.Name = "groupBoxSegmentPercentileSettings";
+            this.groupBoxSegmentPercentileSettings.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxSegmentPercentileSettings.Size = new System.Drawing.Size(276, 44);
+            this.groupBoxSegmentPercentileSettings.TabIndex = 20;
+            this.groupBoxSegmentPercentileSettings.TabStop = false;
+            this.groupBoxSegmentPercentileSettings.Text = "Percentile Segments Settings";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 2;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.48411F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.51589F));
+            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.numericUpDownSegmentPercentile, 1, 0);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 15);
+            this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(272, 27);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(2, 7);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 13);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Percentile: ";
+            // 
+            // numericUpDownSegmentPercentile
+            // 
+            this.numericUpDownSegmentPercentile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownSegmentPercentile.DecimalPlaces = 1;
+            this.numericUpDownSegmentPercentile.Location = new System.Drawing.Point(215, 3);
+            this.numericUpDownSegmentPercentile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDownSegmentPercentile.Name = "numericUpDownSegmentPercentile";
+            this.numericUpDownSegmentPercentile.Size = new System.Drawing.Size(55, 20);
+            this.numericUpDownSegmentPercentile.TabIndex = 1;
+            this.numericUpDownSegmentPercentile.Value = new decimal(new int[] {
+            33,
+            0,
+            0,
+            0});
+            this.numericUpDownSegmentPercentile.ValueChanged += new System.EventHandler(this.numericUpDownSegmentPercentile_ValueChanged);
+            // 
             // ChooseComparisonsDialog
             // 
             this.AcceptButton = this.btnOK;
@@ -234,6 +303,10 @@
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHcpNBestRuns)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownHcpHistorySize)).EndInit();
+            this.groupBoxSegmentPercentileSettings.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSegmentPercentile)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -251,5 +324,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown numericUpDownHcpNBestRuns;
         private System.Windows.Forms.NumericUpDown numericUpDownHcpHistorySize;
+        private System.Windows.Forms.GroupBox groupBoxSegmentPercentileSettings;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.NumericUpDown numericUpDownSegmentPercentile;
     }
 }

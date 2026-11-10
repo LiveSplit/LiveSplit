@@ -13,6 +13,7 @@ public class StandardComparisonGeneratorsFactory : IComparisonGeneratorsFactory
         AddShortComparisonName(AverageSegmentsComparisonGenerator.ComparisonName, AverageSegmentsComparisonGenerator.ShortComparisonName);
         AddShortComparisonName(MedianSegmentsComparisonGenerator.ComparisonName, MedianSegmentsComparisonGenerator.ShortComparisonName);
         AddShortComparisonName(WorstSegmentsComparisonGenerator.ComparisonName, WorstSegmentsComparisonGenerator.ShortComparisonName);
+        AddShortComparisonName(SegmentPercentileComparisonGenerator.ComparisonName, SegmentPercentileComparisonGenerator.ShortComparisonName);
         AddShortComparisonName(PercentileComparisonGenerator.ComparisonName, PercentileComparisonGenerator.ShortComparisonName);
         AddShortComparisonName(LatestRunComparisonGenerator.ComparisonName, LatestRunComparisonGenerator.ShortComparisonName);
         AddShortComparisonName(HCPComparisonGenerator.ComparisonName, HCPComparisonGenerator.ShortComparisonName);
@@ -30,6 +31,7 @@ public class StandardComparisonGeneratorsFactory : IComparisonGeneratorsFactory
         yield return new AverageSegmentsComparisonGenerator(run);
         yield return new MedianSegmentsComparisonGenerator(run);
         yield return new WorstSegmentsComparisonGenerator(run);
+        yield return new SegmentPercentileComparisonGenerator(run);
         yield return new PercentileComparisonGenerator(run);
         yield return new LatestRunComparisonGenerator(run);
         yield return new HCPComparisonGenerator(run);

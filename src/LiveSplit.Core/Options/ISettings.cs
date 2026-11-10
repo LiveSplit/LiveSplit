@@ -15,6 +15,7 @@ public interface ISettings : ICloneable
 
     int HcpHistorySize { get; set; }
     int HcpNBestRuns { get; set; }
+    double SegmentPercentile { get; set; }
     bool WarnOnReset { get; set; }
     bool SimpleSumOfBest { get; set; }
     int RefreshRate { get; set; }

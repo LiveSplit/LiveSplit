@@ -1,6 +1,7 @@
 ﻿using LiveSplit.Model;
 using LiveSplit.Model.Comparisons;
 using System;
+using System.Globalization;
 using System.Xml;
 using static LiveSplit.UI.SettingsHelper;
 
@@ -93,6 +94,12 @@ public class XMLSettingsSaver : ISettingsSaver
                 XmlAttribute hcpNBestRuns = document.CreateAttribute("HcpNBestRuns");
                 hcpNBestRuns.Value = settings.HcpNBestRuns.ToString();
                 generatorElement.Attributes.Append(hcpNBestRuns);
+            }
+            else if (generator.Key == SegmentPercentileComparisonGenerator.ComparisonName)
+            {
+                XmlAttribute percentile = document.CreateAttribute("Percentile");
+                percentile.Value = settings.SegmentPercentile.ToString(CultureInfo.InvariantCulture);
+                generatorElement.Attributes.Append(percentile);
             }
 
             generatorStates.AppendChild(generatorElement);

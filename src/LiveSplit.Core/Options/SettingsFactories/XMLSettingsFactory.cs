@@ -4,6 +4,7 @@ using LiveSplit.Model.RunFactories;
 using LiveSplit.UI.Components;
 using LiveSplit.Web.SRL;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -101,6 +102,15 @@ public class XMLSettingsFactory : ISettingsFactory
                         if (hcpNBestRuns != string.Empty)
                         {
                             settings.HcpNBestRuns = int.Parse(hcpNBestRuns);
+                        }
+                    }
+                    else if (comparisonName == SegmentPercentileComparisonGenerator.ComparisonName)
+                    {
+                        string percentile = generatorNode.GetAttribute("Percentile");
+
+                        if (percentile != string.Empty)
+                        {
+                            settings.SegmentPercentile = double.Parse(percentile, CultureInfo.InvariantCulture);
                         }
                     }
                 }

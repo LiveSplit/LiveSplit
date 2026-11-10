@@ -10,6 +10,7 @@ public partial class ChooseComparisonsDialog : Form
     public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
     public int HcpHistorySize { get; set; }
     public int HcpNBestRuns { get; set; }
+    public double SegmentPercentile { get; set; }
 
     protected bool DialogInitialized;
 
@@ -24,6 +25,7 @@ public partial class ChooseComparisonsDialog : Form
             AverageSegmentsComparisonGenerator.ComparisonName,
             MedianSegmentsComparisonGenerator.ComparisonName,
             WorstSegmentsComparisonGenerator.ComparisonName,
+            SegmentPercentileComparisonGenerator.ComparisonName,
             PercentileComparisonGenerator.ComparisonName,
             LatestRunComparisonGenerator.ComparisonName,
             HCPComparisonGenerator.ComparisonName,
@@ -39,6 +41,14 @@ public partial class ChooseComparisonsDialog : Form
         // Enable/disable the group box based on whether HCP is checked
         bool isHcpChecked = comparisonsListBox.GetItemChecked(hcpIndex);
         groupBoxHcpSettings.Visible = isHcpChecked;
+    }
+
+    private void UpdateSegmentPercentileSettingsVisibility()
+    {
+        int segmentPercentileIndex = comparisonsListBox.Items.IndexOf(SegmentPercentileComparisonGenerator.ComparisonName);
+
+        bool isSegmentPercentileChecked = comparisonsListBox.GetItemChecked(segmentPercentileIndex);
+        groupBoxSegmentPercentileSettings.Visible = isSegmentPercentileChecked;
     }
 
     private void btnOK_Click(object sender, EventArgs e)
@@ -65,6 +75,10 @@ public partial class ChooseComparisonsDialog : Form
             {
                 BeginInvoke(UpdateHcpSettingsVisibility);
             }
+            else if (generatorName == SegmentPercentileComparisonGenerator.ComparisonName)
+            {
+                BeginInvoke(UpdateSegmentPercentileSettingsVisibility);
+            }
         }
     }
 
@@ -84,9 +98,14 @@ public partial class ChooseComparisonsDialog : Form
         numericUpDownHcpHistorySize.ValueChanged += numericUpDownHcpHistorySize_ValueChanged;
         numericUpDownHcpNBestRuns.ValueChanged += numericUpDownHcpNBestRuns_ValueChanged;
 
+        numericUpDownSegmentPercentile.ValueChanged -= numericUpDownSegmentPercentile_ValueChanged;
+        numericUpDownSegmentPercentile.Value = Math.Max(numericUpDownSegmentPercentile.Minimum, Math.Min(numericUpDownSegmentPercentile.Maximum, (decimal)SegmentPercentile));
+        numericUpDownSegmentPercentile.ValueChanged += numericUpDownSegmentPercentile_ValueChanged;
+
         DialogInitialized = true;
 
         UpdateHcpSettingsVisibility();
+        UpdateSegmentPercentileSettingsVisibility();
     }
 
     private void numericUpDownHcpHistorySize_ValueChanged(object sender, EventArgs e)
@@ -107,5 +126,10 @@ public partial class ChooseComparisonsDialog : Form
         }
 
         HcpNBestRuns = (int)numericUpDownHcpNBestRuns.Value;
+    }
+
+    private void numericUpDownSegmentPercentile_ValueChanged(object sender, EventArgs e)
+    {
+        SegmentPercentile = (double)numericUpDownSegmentPercentile.Value;
     }
 }
