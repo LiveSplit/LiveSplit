@@ -30,7 +30,13 @@ public class SegmentPercentileComparisonGenerator : IComparisonGenerator
         var weightedList = curList.Select((x, i) => new KeyValuePair<double, TimeSpan>(GetWeight(i, elementCount), x)).ToList();
         weightedList = [.. weightedList.OrderBy(x => x.Value)];
         double totalWeights = weightedList.Sum(x => x.Key);
-        double targetWeight = totalWeights * (Max(0, Min(100, Percentile)) / 100);
+        double percentile = Max(0, Min(100, Percentile));
+        if (percentile == 100)
+        {
+            return weightedList[^1].Value;
+        }
+
+        double targetWeight = totalWeights * (percentile / 100);
         double curTotal = 0.0;
         foreach (KeyValuePair<double, TimeSpan> element in weightedList)
         {
