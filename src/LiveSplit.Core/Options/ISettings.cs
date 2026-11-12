@@ -52,4 +52,5 @@ public interface ISettings : ICloneable
     int? WindowX { get; set; }
     int? WindowY { get; set; }
     bool TransparencySupportEnabled { get; set; }
+    bool CheckForUpdatesOnStartup { get; set; }
 }

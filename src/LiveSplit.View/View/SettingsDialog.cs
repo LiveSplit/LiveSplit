@@ -16,6 +16,8 @@ public partial class SettingsDialog : Form
 {
     private static string T(string source) => UiLocalizer.Translate(source, LanguageResolver.ResolveCurrentCultureLanguage());
 
+    private CheckBox chkCheckForUpdates;
+
     public ISettings Settings { get; set; }
     public CompositeHook Hook { get; set; }
     public string SelectedHotkeyProfile { get; set; }
@@ -82,6 +84,7 @@ public partial class SettingsDialog : Form
         Settings = settings;
         Hook = hook;
 
+        AddUpdateCheckSetting();
         InitializeHotkeyProfiles(hotkeyProfile);
         SetClickEvents(this);
 
@@ -92,6 +95,7 @@ public partial class SettingsDialog : Form
         cbxRaceViewer.DataBindings.Add("SelectedItem", this, "RaceViewer");
         chkAllowGamepads.DataBindings.Add("Checked", this, "AllowGamepadsAsHotkeys");
         chkEnableDPIAwareness.DataBindings.Add("Checked", this, "EnableDPIAwareness");
+        chkCheckForUpdates.DataBindings.Add("Checked", Settings, nameof(ISettings.CheckForUpdatesOnStartup));
 
         txtRefreshRate.DataBindings.Add("Text", this, "RefreshRate");
         txtServerPort.DataBindings.Add("Text", this, "ServerPort");
@@ -116,6 +120,34 @@ public partial class SettingsDialog : Form
     {
         base.OnLoad(e);
         this.MoveIntoOwnerScreen();
+    }
+
+    private void AddUpdateCheckSetting()
+    {
+        chkCheckForUpdates = new CheckBox()
+        {
+            Anchor = AnchorStyles.Left | AnchorStyles.Right,
+            AutoSize = true,
+            Margin = new Padding(7, 3, 3, 3),
+            Name = "chkCheckForUpdates",
+            TabIndex = 5,
+            Text = T("Check for updates on startup"),
+            UseVisualStyleBackColor = true
+        };
+
+        foreach (Control control in tableLayoutPanel1.Controls.Cast<Control>().ToArray())
+        {
+            int row = tableLayoutPanel1.GetRow(control);
+            if (row >= 2)
+            {
+                tableLayoutPanel1.SetRow(control, row + 1);
+            }
+        }
+
+        tableLayoutPanel1.RowCount++;
+        tableLayoutPanel1.RowStyles.Insert(2, new RowStyle(SizeType.Absolute, 29F));
+        tableLayoutPanel1.Controls.Add(chkCheckForUpdates, 0, 2);
+        tableLayoutPanel1.SetColumnSpan(chkCheckForUpdates, 4);
     }
 
     private void InitializeHotkeyProfiles(string hotkeyProfile)

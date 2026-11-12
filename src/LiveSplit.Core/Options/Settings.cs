@@ -33,6 +33,7 @@ public class Settings : ISettings
     public int? WindowX { get; set; }
     public int? WindowY { get; set; }
     public bool TransparencySupportEnabled { get; set; } = true;
+    public bool CheckForUpdatesOnStartup { get; set; }
 
     // Deprecated properties
     public KeyOrButton SplitKey
@@ -128,6 +129,7 @@ public class Settings : ISettings
             WindowX = WindowX,
             WindowY = WindowY,
             TransparencySupportEnabled = TransparencySupportEnabled,
+            CheckForUpdatesOnStartup = CheckForUpdatesOnStartup,
             HcpHistorySize = HcpHistorySize,
             HcpNBestRuns = HcpNBestRuns
         };

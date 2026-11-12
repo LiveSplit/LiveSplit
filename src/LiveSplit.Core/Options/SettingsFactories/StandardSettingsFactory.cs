@@ -50,6 +50,7 @@ public class StandardSettingsFactory : ISettingsFactory
             EnableDPIAwareness = Environment.OSVersion.Version.Major >= Settings.DPI_AWARENESS_OS_MIN_VERSION,
             UILanguage = string.Empty,
             TransparencySupportEnabled = true,
+            CheckForUpdatesOnStartup = false,
             ComparisonGeneratorStates = new Dictionary<string, bool>()
             {
                 { BestSegmentsComparisonGenerator.ComparisonName, true },

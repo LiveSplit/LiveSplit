@@ -1043,7 +1043,10 @@ public partial class TimerForm : Form
 
     private void Hook_GamepadHookInitialized(object sender, EventArgs e)
     {
-        CheckForUpdates();
+        if (Settings.CheckForUpdatesOnStartup)
+        {
+            CheckForUpdates();
+        }
     }
 
     private void CheckForUpdates()
@@ -2355,7 +2358,7 @@ public partial class TimerForm : Form
         Close();
     }
 
-    private void SetRun(IRun run)
+    private void SetRun(IRun run, bool createAutoSplitter = true)
     {
         foreach (Image icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
         {
@@ -2379,7 +2382,11 @@ public partial class TimerForm : Form
         InvalidationRequired = true;
         RegenerateComparisons();
         SwitchComparison(CurrentState.CurrentComparison);
-        CreateAutoSplitter();
+        if (createAutoSplitter)
+        {
+            CreateAutoSplitter();
+        }
+
         UpdateRefreshesRemaining();
         if (!string.IsNullOrEmpty(run.LayoutPath))
         {
@@ -2396,17 +2403,66 @@ public partial class TimerForm : Form
 
     private void CreateAutoSplitter()
     {
-        AutoSplitter splitter = AutoSplitterFactory.Instance.Create(CurrentState.Run.GameName);
+        string gameName = CurrentState.Run.GameName;
+        bool shouldActivate = CurrentState.Settings.ActiveAutoSplitters.Contains(gameName);
+        AutoSplitter splitter = AutoSplitterFactory.Instance.Create(gameName);
         CurrentState.Run.AutoSplitter = splitter;
-        if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(CurrentState.Run.GameName))
+
+        if (!AutoSplitterFactory.Instance.NeedsRefresh && !(splitter != null && shouldActivate))
         {
-            splitter.Activate(CurrentState);
-            if (splitter.IsActivated
-            && CurrentState.Run.AutoSplitterSettings != null
-            && CurrentState.Run.AutoSplitterSettings.GetAttribute("gameName") == CurrentState.Run.GameName)
+            return;
+        }
+
+        AutoSplitterUpdateForm.Run(
+            IsHandleCreated ? this : null,
+            "Initializing Auto Splitter",
+            async progress =>
             {
-                CurrentState.Run.AutoSplitter.Component.SetSettings(CurrentState.Run.AutoSplitterSettings);
-            }
+                if (AutoSplitterFactory.Instance.NeedsRefresh)
+                {
+                    await AutoSplitterFactory.Instance
+                        .RefreshIfStaleAsync(MapProgress(progress, 0, 25))
+                        .ConfigureAwait(true);
+
+                    splitter = AutoSplitterFactory.Instance.Create(gameName);
+                    CurrentState.Run.AutoSplitter = splitter;
+                }
+
+                progress.Report(new AutoSplitterUpdateProgress(25, UiLocalizer.Translate("Loading auto splitter...")));
+                if (splitter != null && shouldActivate)
+                {
+                    await splitter.ActivateAsync(CurrentState, MapProgress(progress, 25, 100)).ConfigureAwait(true);
+                }
+                else
+                {
+                    progress.Report(new AutoSplitterUpdateProgress(100, UiLocalizer.Translate("Initialization complete.")));
+                }
+            });
+
+        if (splitter != null && splitter.IsActivated)
+        {
+            ApplyAutoSplitterSettings(CurrentState.Run, splitter);
+        }
+    }
+
+    private static IProgress<AutoSplitterUpdateProgress> MapProgress(
+        IProgress<AutoSplitterUpdateProgress> progress,
+        double startPercentage,
+        double endPercentage)
+    {
+        return new Progress<AutoSplitterUpdateProgress>(value =>
+        {
+            double percentage = startPercentage + (endPercentage - startPercentage) * value.Percentage / 100;
+            progress.Report(new AutoSplitterUpdateProgress(percentage, value.Status));
+        });
+    }
+    private static void ApplyAutoSplitterSettings(IRun run, AutoSplitter splitter)
+    {
+        if (splitter.IsActivated
+            && run.AutoSplitterSettings != null
+            && run.AutoSplitterSettings.GetAttribute("gameName") == run.GameName)
+        {
+            run.AutoSplitter.Component.SetSettings(run.AutoSplitterSettings);
         }
     }
 
@@ -2726,6 +2782,8 @@ public partial class TimerForm : Form
     private void EditSplits()
     {
         var runCopy = CurrentState.Run.Clone() as IRun;
+        AutoSplitter originalAutoSplitter = CurrentState.Run.AutoSplitter;
+        bool autoSplitterWasActive = originalAutoSplitter?.IsActivated == true;
         List<string> activeAutoSplitters = [.. CurrentState.Settings.ActiveAutoSplitters];
         using var editor = new RunEditorDialog(CurrentState);
         editor.RunEdited += editor_RunEdited;
@@ -2752,7 +2810,13 @@ public partial class TimerForm : Form
                 editor.ImagesToDispose.Remove(runCopy.GameIcon);
 
                 CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
-                SetRun(runCopy);
+                runCopy.AutoSplitter = originalAutoSplitter;
+                SetRun(runCopy, createAutoSplitter: false);
+                if (autoSplitterWasActive)
+                {
+                    originalAutoSplitter.ActivateFromLocal(CurrentState);
+                }
+
                 CurrentState.CallRunManuallyModified();
             }
 

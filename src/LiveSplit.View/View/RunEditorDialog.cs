@@ -362,8 +362,18 @@ public partial class RunEditorDialog : Form
             Run.AutoSplitter = splitter;
             if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(cbxGameName.Text))
             {
-                splitter.Activate(CurrentState);
-                SetAutoSplitterSettings();
+                try
+                {
+                    AutoSplitterUpdateForm.Run(
+                        this,
+                        "Activating Auto Splitter",
+                        progress => splitter.ActivateAsync(CurrentState, progress));
+                    SetAutoSplitterSettings();
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
             }
 
             RefreshAutoSplittingUI();
@@ -2210,20 +2220,12 @@ public partial class RunEditorDialog : Form
             : T("Activate");
         btnActivate.Enabled = Run.AutoSplitter != null;
         btnSettings.Enabled = Run.IsAutoSplitterActive() && Run.AutoSplitter.Component.GetSettingsControl(LayoutMode.Vertical) != null;
+        btnUpdate.Enabled = Run.AutoSplitter != null;
         btnWebsite.Visible = Run.AutoSplitter?.Website != null;
 
-        if (Run.AutoSplitter?.Website == null)
-        {
-            tableLayoutPanel1.SetColumnSpan(lblDescription, 5);
-            tableLayoutPanel1.SetColumn(flowLayoutPanel1, 6);
-            tableLayoutPanel1.SetColumnSpan(flowLayoutPanel1, 2);
-        }
-        else
-        {
-            tableLayoutPanel1.SetColumnSpan(lblDescription, 4);
-            tableLayoutPanel1.SetColumn(flowLayoutPanel1, 5);
-            tableLayoutPanel1.SetColumnSpan(flowLayoutPanel1, 3);
-        }
+        tableLayoutPanel1.SetColumnSpan(lblDescription, 4);
+        tableLayoutPanel1.SetColumn(flowLayoutPanel1, 5);
+        tableLayoutPanel1.SetColumnSpan(flowLayoutPanel1, 5);
     }
 
     private void btnActivate_Click(object sender, EventArgs e)
@@ -2236,11 +2238,72 @@ public partial class RunEditorDialog : Form
         else
         {
             CurrentState.Settings.ActiveAutoSplitters.Add(Run.GameName);
-            Run.AutoSplitter.Activate(CurrentState);
-            SetAutoSplitterSettings();
+            try
+            {
+                AutoSplitterUpdateForm.Run(
+                    this,
+                    "Activating Auto Splitter",
+                    progress => Run.AutoSplitter.ActivateAsync(CurrentState, progress));
+                SetAutoSplitterSettings();
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                MessageBox.Show(this, ex.Message, T("Activation Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         RefreshAutoSplittingUI();
+    }
+
+    private async void btnUpdate_Click(object sender, EventArgs e)
+    {
+        if (Run.AutoSplitter == null)
+        {
+            return;
+        }
+
+        bool wasActive = Run.IsAutoSplitterActive();
+        btnActivate.Enabled = false;
+        btnSettings.Enabled = false;
+        btnUpdate.Enabled = false;
+
+        using var progressForm = new AutoSplitterUpdateForm();
+        progressForm.Show(this);
+        try
+        {
+            if (wasActive)
+            {
+                DeactivateAutoSplitter();
+            }
+
+            var progress = new Progress<AutoSplitterUpdateProgress>(progressForm.UpdateProgress);
+            bool succeeded = await Run.AutoSplitter.ForceUpdateAsync(progress).ConfigureAwait(true);
+
+            if (wasActive && !IsDisposed)
+            {
+                Run.AutoSplitter.Activate(CurrentState);
+                SetAutoSplitterSettings();
+            }
+
+            if (!succeeded && !IsDisposed)
+            {
+                MessageBox.Show(this, T("The Auto Splitter update finished with errors."), T("Update Failed"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
+            if (!IsDisposed)
+            {
+                MessageBox.Show(this, ex.Message, T("Update Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        finally
+        {
+            progressForm.Close();
+            RefreshAutoSplittingUI();
+        }
     }
 
     private void SetAutoSplitterSettings()

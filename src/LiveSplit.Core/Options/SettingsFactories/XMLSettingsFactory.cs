@@ -63,6 +63,7 @@ public class XMLSettingsFactory : ISettingsFactory
 
         settings.UILanguage = ParseString(parent["UILanguage"], settings.UILanguage);
         settings.TransparencySupportEnabled = ParseBool(parent["TransparencySupportEnabled"], settings.TransparencySupportEnabled);
+        settings.CheckForUpdatesOnStartup = ParseBool(parent["CheckForUpdatesOnStartup"], false);
 
         if (TryParseInt(parent["WindowX"], out int windowX)
             && TryParseInt(parent["WindowY"], out int windowY))

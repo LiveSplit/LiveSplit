@@ -31,6 +31,7 @@ public class SettingsSerializationMust
             Assert.Equal(2031, loaded.WindowX);
             Assert.Equal(-1211, loaded.WindowY);
             Assert.False(loaded.TransparencySupportEnabled);
+            Assert.True(loaded.CheckForUpdatesOnStartup);
         }
         finally
         {
@@ -50,6 +51,13 @@ public class SettingsSerializationMust
         Assert.Equal(10, clone.WindowX);
         Assert.Equal(20, clone.WindowY);
         Assert.False(clone.TransparencySupportEnabled);
+        Assert.True(clone.CheckForUpdatesOnStartup);
+    }
+
+    [Fact]
+    public void DisableUpdateChecksByDefault()
+    {
+        Assert.False(new Settings().CheckForUpdatesOnStartup);
     }
 
     private static Settings CreateSettings()
@@ -69,7 +77,8 @@ public class SettingsSerializationMust
             UILanguage = string.Empty,
             WindowX = 2031,
             WindowY = -1211,
-            TransparencySupportEnabled = false
+            TransparencySupportEnabled = false,
+            CheckForUpdatesOnStartup = true
         };
     }
 }
