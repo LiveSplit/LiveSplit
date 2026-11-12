@@ -15,18 +15,35 @@ public static class UpdateHelper
 
     public static readonly List<Type> AlreadyChecked = [];
 
+    private static readonly object AlreadyCheckedLock = new();
+
     public static void Update(Form form, Action closeAction, params IUpdateable[] updateables)
     {
-        Task.Factory.StartNew(() =>
+        _ = Task.Run(() =>
         {
             try
             {
-                IEnumerable<IUpdateable> actualUpdateables = updateables.Where(x => !AlreadyChecked.Contains(x.GetType()));
+                if (form.IsDisposed)
+                {
+                    return;
+                }
+
+                IUpdateable[] actualUpdateables;
+                lock (AlreadyCheckedLock)
+                {
+                    actualUpdateables = [.. updateables.Where(x => !AlreadyChecked.Contains(x.GetType()))];
+                }
+
+                if (actualUpdateables.Length == 0)
+                {
+                    return;
+                }
+
                 if (Updater.CheckForAnyUpdate(actualUpdateables))
                 {
+                    IUpdateable[] updates = [.. actualUpdateables.Where(x => x.CheckForUpdate())];
                     string dialogText = string.Concat(
-                        actualUpdateables.Where(x => x.CheckForUpdate())
-                        .Select(x =>
+                        updates.Select(x =>
                             x.UpdateName + " (" + x.GetNewVersion() + ")\r\n" +
                             string.Concat(x.GetChangeLog().Select(y => " - " + y + "\r\n")) + "\r\n")) +
                         "Do you want to update?";
@@ -38,7 +55,7 @@ public static class UpdateHelper
                         {
                             try
                             {
-                                Updater.UpdateAll(actualUpdateables, "http://livesplit.org/update/UpdateManagerV2.exe", "http://livesplit.org/update/UpdateManagerV2.exe.config");
+                                Updater.UpdateAll(updates, "http://livesplit.org/update/UpdateManagerV2.exe", "http://livesplit.org/update/UpdateManagerV2.exe.config");
                                 closeAction();
                             }
                             catch (Exception e)
@@ -58,7 +75,10 @@ public static class UpdateHelper
                     }
                 }
 
-                AlreadyChecked.AddRange(actualUpdateables.Select(x => x.GetType()));
+                lock (AlreadyCheckedLock)
+                {
+                    AlreadyChecked.AddRange(actualUpdateables.Select(x => x.GetType()));
+                }
             }
             catch (Exception e)
             {

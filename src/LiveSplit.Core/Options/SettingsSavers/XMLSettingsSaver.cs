@@ -47,6 +47,14 @@ public class XMLSettingsSaver : ISettingsSaver
         }
 
         CreateSetting(document, parent, "UILanguage", settings.UILanguage ?? string.Empty);
+        CreateSetting(document, parent, "TransparencySupportEnabled", settings.TransparencySupportEnabled);
+        CreateSetting(document, parent, "CheckForUpdatesOnStartup", settings.CheckForUpdatesOnStartup);
+
+        if (settings.WindowX.HasValue && settings.WindowY.HasValue)
+        {
+            CreateSetting(document, parent, "WindowX", settings.WindowX.Value);
+            CreateSetting(document, parent, "WindowY", settings.WindowY.Value);
+        }
 
         XmlElement recentSplits = document.CreateElement("RecentSplits");
         foreach (RecentSplitsFile splitsFile in settings.RecentSplits)

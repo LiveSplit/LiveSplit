@@ -16,10 +16,14 @@ internal static class Program
     {
         try
         {
+            string executableDirectory = Path.GetDirectoryName(Application.ExecutablePath) ?? string.Empty;
+            bool enableDpiAwareness = DpiAwareness.ReadEnabledSetting(Path.Combine(executableDirectory, TimerForm.SETTINGS_PATH));
+            DpiAwareness.Initialize(enableDpiAwareness);
+
             InitializeLocalization();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Environment.CurrentDirectory = Path.GetDirectoryName(Application.ExecutablePath);
+            Environment.CurrentDirectory = executableDirectory;
 
 #if !DEBUG
             Options.FiletypeRegistryHelper.RegisterFileFormatsIfNotAlreadyRegistered();

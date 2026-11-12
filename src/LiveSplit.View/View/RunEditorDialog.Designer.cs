@@ -65,6 +65,7 @@ namespace LiveSplit.View
             this.btnWebsite = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnActivate = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             this.lblDescription = new System.Windows.Forms.Label();
             this.RemoveIconMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.setIconToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -556,8 +557,9 @@ namespace LiveSplit.View
             // 
             // flowLayoutPanel1
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 3);
+            this.tableLayoutPanel1.SetColumnSpan(this.flowLayoutPanel1, 5);
             this.flowLayoutPanel1.Controls.Add(this.btnWebsite);
+            this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel1.Controls.Add(this.btnSettings);
             this.flowLayoutPanel1.Controls.Add(this.btnActivate);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
@@ -578,7 +580,18 @@ namespace LiveSplit.View
             this.btnWebsite.UseVisualStyleBackColor = true;
             this.btnWebsite.Visible = false;
             this.btnWebsite.Click += new System.EventHandler(this.btnWebsite_Click);
-            // 
+            //
+            // btnUpdate
+            //
+            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnUpdate.Location = new System.Drawing.Point(88, 3);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Text = "Update";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            //
             // btnSettings
             // 
             this.btnSettings.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -912,6 +925,7 @@ this.chkPbSegmentsOnly.Text = "Has Best Segment";
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.Button btnActivate;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnSettings;
         private System.Windows.Forms.Button btnMoveDown;
         private System.Windows.Forms.Button btnMoveUp;
