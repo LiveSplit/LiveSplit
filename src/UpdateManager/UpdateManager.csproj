@@ -4,7 +4,7 @@
     <ApplicationIcon>Update.ico</ApplicationIcon>
 
     <UseWindowsForms>true</UseWindowsForms>
-    <TargetFramework>net4.8.1</TargetFramework>
+    <TargetFramework>net4.8</TargetFramework>
 
     <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
     <Configurations>$(Configurations);UpdateManagerExe</Configurations>
