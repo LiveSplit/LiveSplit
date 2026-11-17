@@ -334,12 +334,14 @@ public partial class SettingsDialog : Form
         var generatorStates = new Dictionary<string, bool>(Settings.ComparisonGeneratorStates);
         int hcpHistorySize = Settings.HcpHistorySize;
         int hcpNBestRuns = Settings.HcpNBestRuns;
+        double segmentPercentile = Settings.SegmentPercentile;
 
         var dialog = new ChooseComparisonsDialog()
         {
             ComparisonGeneratorStates = generatorStates,
             HcpHistorySize = hcpHistorySize,
-            HcpNBestRuns = hcpNBestRuns
+            HcpNBestRuns = hcpNBestRuns,
+            SegmentPercentile = segmentPercentile
         };
 
         DialogResult result = dialog.ShowDialog(this);
@@ -349,6 +351,7 @@ public partial class SettingsDialog : Form
             Settings.ComparisonGeneratorStates = dialog.ComparisonGeneratorStates;
             Settings.HcpHistorySize = dialog.HcpHistorySize;
             Settings.HcpNBestRuns = dialog.HcpNBestRuns;
+            Settings.SegmentPercentile = dialog.SegmentPercentile;
         }
     }
 

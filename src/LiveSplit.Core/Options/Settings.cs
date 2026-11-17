@@ -17,6 +17,7 @@ public class Settings : ISettings
     public string LastComparison { get; set; }
     public int HcpHistorySize { get; set; }
     public int HcpNBestRuns { get; set; }
+    public double SegmentPercentile { get; set; }
     public bool WarnOnReset { get; set; }
     public bool AgreedToSRLRules { get; set; }
     public bool SimpleSumOfBest { get; set; }
@@ -123,7 +124,8 @@ public class Settings : ISettings
             EnableDPIAwareness = EnableDPIAwareness,
             UILanguage = UILanguage,
             HcpHistorySize = HcpHistorySize,
-            HcpNBestRuns = HcpNBestRuns
+            HcpNBestRuns = HcpNBestRuns,
+            SegmentPercentile = SegmentPercentile
         };
     }
 

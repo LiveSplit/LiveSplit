@@ -54,13 +54,15 @@ public class StandardSettingsFactory : ISettingsFactory
                 { AverageSegmentsComparisonGenerator.ComparisonName, true },
                 { MedianSegmentsComparisonGenerator.ComparisonName, false },
                 { WorstSegmentsComparisonGenerator.ComparisonName, false},
+                { SegmentPercentileComparisonGenerator.ComparisonName, false },
                 { PercentileComparisonGenerator.ComparisonName, false },
                 { LatestRunComparisonGenerator.ComparisonName, false },
                 { HCPComparisonGenerator.ComparisonName, false },
                 { NoneComparisonGenerator.ComparisonName, false }
             },
             HcpHistorySize = 20,
-            HcpNBestRuns = 8
+            HcpNBestRuns = 8,
+            SegmentPercentile = SegmentPercentileComparisonGenerator.DefaultPercentile
         };
     }
 }
