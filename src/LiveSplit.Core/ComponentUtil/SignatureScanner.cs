@@ -114,10 +114,10 @@ public class SignatureScanner
             throw new ArgumentOutOfRangeException(nameof(align), "start address must be aligned");
         }
 
-        return ScaIntPtrernal(target, align);
+        return ScanInternal(target, align);
     }
 
-    private IEnumerable<IntPtr> ScaIntPtrernal(SigScanTarget target, int align)
+    private IEnumerable<IntPtr> ScanInternal(SigScanTarget target, int align)
     {
         if (_memory == null || _memory.Length != _size)
         {
