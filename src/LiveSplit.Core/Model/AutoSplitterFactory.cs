@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace LiveSplit.Model;
@@ -11,10 +14,25 @@ namespace LiveSplit.Model;
 public class AutoSplitterFactory
 {
     public static AutoSplitterFactory Instance { get; protected set; }
-    public IDictionary<string, AutoSplitter> AutoSplitters { get; set; }
+    private IDictionary<string, AutoSplitter> _autoSplitters;
+    public IDictionary<string, AutoSplitter> AutoSplitters
+    {
+        get => Volatile.Read(ref _autoSplitters);
+        set
+        {
+            Volatile.Write(ref _autoSplitters, value);
+            AutoSplittersChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public event EventHandler AutoSplittersChanged;
 
     public const string AutoSplittersXmlUrl = "https://raw.githubusercontent.com/LiveSplit/LiveSplit.AutoSplitters/master/LiveSplit.AutoSplitters.xml";
     public const string AutoSplittersXmlFile = "LiveSplit.AutoSplitters.xml";
+
+    private static readonly TimeSpan RemoteTimeout = TimeSpan.FromSeconds(5);
+    private readonly object _initLock = new();
+    private bool _backgroundRefreshStarted;
 
     static AutoSplitterFactory()
     {
@@ -40,16 +58,126 @@ public class AutoSplitterFactory
             return;
         }
 
-        ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
-        XmlDocument document = DownloadAutoSplitters();
-
-        if (document != null)
+        lock (_initLock)
         {
-            AutoSplitters = document["AutoSplitters"].ChildNodes.OfType<XmlElement>()
+            if (AutoSplitters != null)
+            {
+                return;
+            }
+
+            ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls12;
+
+            TryLoadFromFile(AutoSplittersXmlFile);
+            StartBackgroundRefresh();
+        }
+    }
+
+    private bool TryLoadFromFile(string path)
+    {
+        try
+        {
+            if (!File.Exists(path))
+            {
+                return false;
+            }
+
+            var doc = new XmlDocument();
+            doc.Load(path);
+            var dict = Parse(doc);
+            if (dict != null)
+            {
+                AutoSplitters = dict;
+                return true;
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
+        }
+
+        return false;
+    }
+
+    private static IDictionary<string, AutoSplitter> Parse(XmlDocument document)
+    {
+        if (document == null || document["AutoSplitters"] == null)
+        {
+            return null;
+        }
+
+        try
+        {
+            return document["AutoSplitters"].ChildNodes.OfType<XmlElement>()
                 .Where(element => element != null)
                 .Select(CreateFromXmlElement)
                 .SelectMany(x => x.Games.Select(y => new KeyValuePair<string, AutoSplitter>(y, x)))
                 .ToDictionary(x => x.Key, x => x.Value);
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
+            return null;
+        }
+    }
+
+    private void StartBackgroundRefresh()
+    {
+        if (_backgroundRefreshStarted)
+        {
+            return;
+        }
+
+        _backgroundRefreshStarted = true;
+
+        Task.Run(async () =>
+        {
+            try
+            {
+                var doc = await DownloadRemoteAsync();
+                if (doc == null)
+                {
+                    return;
+                }
+
+                try
+                {
+                    doc.Save(AutoSplittersXmlFile);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error(ex);
+                }
+
+                var dict = Parse(doc);
+                if (dict != null)
+                {
+                    lock (_initLock)
+                    {
+                        AutoSplitters = dict;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+            }
+        });
+    }
+
+    private static async Task<XmlDocument> DownloadRemoteAsync()
+    {
+        try
+        {
+            using var client = new HttpClient { Timeout = RemoteTimeout };
+            var xml = await client.GetStringAsync(AutoSplittersXmlUrl);
+            var doc = new XmlDocument();
+            doc.LoadXml(xml);
+            return doc;
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
+            return null;
         }
     }
 
@@ -99,13 +227,14 @@ public class AutoSplitterFactory
             Init();
         }
 
-        if (AutoSplitters != null && !string.IsNullOrEmpty(game))
+        IDictionary<string, AutoSplitter> splitters = AutoSplitters;
+        if (splitters != null && !string.IsNullOrEmpty(game))
         {
             game = game.ToLower();
 
-            if (AutoSplitters.ContainsKey(game))
+            if (splitters.TryGetValue(game, out AutoSplitter splitter))
             {
-                return AutoSplitters[game];
+                return splitter;
             }
         }
 
@@ -114,25 +243,46 @@ public class AutoSplitterFactory
 
     protected XmlDocument DownloadAutoSplitters()
     {
-        var autoSplitters = new XmlDocument();
         try
         {
-            autoSplitters.Load(AutoSplittersXmlUrl);
-            autoSplitters.Save(AutoSplittersXmlFile);
+            var task = DownloadRemoteAsync();
+            if (task.Wait(RemoteTimeout))
+            {
+                var doc = task.Result;
+                if (doc != null)
+                {
+                    try
+                    {
+                        doc.Save(AutoSplittersXmlFile);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex);
+                    }
+
+                    return doc;
+                }
+            }
         }
         catch (Exception ex)
         {
             Log.Error(ex);
-            if (File.Exists(AutoSplittersXmlFile))
-            {
-                autoSplitters.Load(AutoSplittersXmlFile);
-            }
-            else
-            {
-                return null;
-            }
         }
 
-        return autoSplitters;
+        try
+        {
+            if (File.Exists(AutoSplittersXmlFile))
+            {
+                var doc = new XmlDocument();
+                doc.Load(AutoSplittersXmlFile);
+                return doc;
+            }
+        }
+        catch (Exception ex)
+        {
+            Log.Error(ex);
+        }
+
+        return null;
     }
 }

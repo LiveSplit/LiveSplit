@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LiveSplit.Model;
@@ -22,6 +24,8 @@ public class AutoSplittingRuntimeInfo
 }
 public class AutoSplitter : ICloneable
 {
+    private Task _preparation;
+    private int _activationVersion;
     public string Description { get; set; }
     public IEnumerable<string> Games { get; set; }
     public bool IsActivated => Component != null;
@@ -36,17 +40,58 @@ public class AutoSplitter : ICloneable
     public string Website { get; set; }
     public AutoSplittingRuntimeInfo AutoSplittingRuntime { get; set; }
 
-    public void Activate(LiveSplitState state)
+    public void Activate(LiveSplitState state) => Activate(state, true);
+
+    public async Task ActivateAsync(LiveSplitState state, bool allowWhileRunning = false)
+    {
+        IRun run = state.Run;
+        string game = run.GameName;
+        int version = _activationVersion;
+        if (IsActivated || (!allowWhileRunning && state.CurrentPhase != TimerPhase.NotRunning)
+            || !state.Settings.ActiveAutoSplitters.Contains(game))
+        {
+            return;
+        }
+
+        if (!IsDownloaded || Type == AutoSplitterType.Script || Type == AutoSplitterType.AutoSplittingRuntimeScript)
+        {
+            Task preparation = _preparation ??= Task.Run(DownloadFilesAsync);
+            await preparation;
+            if (!IsDownloaded && _preparation == preparation)
+            {
+                _preparation = null;
+            }
+        }
+
+        // Downloads may finish after the user switches games, starts a run, or closes the window.
+        if (state.Form.IsDisposed || state.Form.Disposing || state.Run != run || run.GameName != game
+            || run.AutoSplitter != this || IsActivated || version != _activationVersion
+            || (!allowWhileRunning && state.CurrentPhase != TimerPhase.NotRunning)
+            || !state.Settings.ActiveAutoSplitters.Contains(game) || !IsDownloaded)
+        {
+            return;
+        }
+
+        Activate(state, false);
+        if (IsActivated && run.AutoSplitterSettings != null
+            && run.AutoSplitterSettings.GetAttribute("gameName") == game)
+        {
+            Component.SetSettings(run.AutoSplitterSettings);
+        }
+    }
+
+    private void Activate(LiveSplitState state, bool downloadFiles)
     {
         if (!IsActivated)
         {
             try
             {
-                if (!IsDownloaded || Type == AutoSplitterType.Script || Type == AutoSplitterType.AutoSplittingRuntimeScript)
+                if (downloadFiles && (!IsDownloaded || Type == AutoSplitterType.Script || Type == AutoSplitterType.AutoSplittingRuntimeScript))
                 {
-                    DownloadFiles();
+                    DownloadFilesAsync().GetAwaiter().GetResult();
                 }
 
+                RegisterFactories();
                 switch (Type)
                 {
                     case AutoSplitterType.Component:
@@ -71,31 +116,22 @@ public class AutoSplitter : ICloneable
         }
     }
 
-    private void DownloadFiles()
+    private async Task DownloadFilesAsync()
     {
-        var client = new WebClient();
+        using var client = new HttpClient { Timeout = TimeSpan.FromSeconds(5) };
 
         foreach (string url in URLs)
         {
             string fileName = url[(url.LastIndexOf('/') + 1)..];
-            string tempFileName = fileName + "-temp";
             string localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
-            string tempLocalPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, tempFileName));
+            string tempLocalPath = localPath + "." + Guid.NewGuid() + ".tmp";
 
             try
             {
                 // Download to temp file so the original file is kept if it fails downloading
-                client.DownloadFile(new Uri(url), tempLocalPath);
+                byte[] data = await client.GetByteArrayAsync(url).ConfigureAwait(false);
+                File.WriteAllBytes(tempLocalPath, data);
                 File.Copy(tempLocalPath, localPath, true);
-
-                if (url != URLs[0] && localPath.EndsWith(".dll"))
-                {
-                    IComponentFactory factory = ComponentManager.LoadFactory<IComponentFactory>(localPath);
-                    if (factory != null)
-                    {
-                        ComponentManager.ComponentFactories.Add(fileName, factory);
-                    }
-                }
             }
             catch (WebException)
             {
@@ -120,15 +156,29 @@ public class AutoSplitter : ICloneable
             }
         }
 
-        if (Type == AutoSplitterType.Component)
+    }
+
+    private void RegisterFactories()
+    {
+        foreach (string url in URLs)
         {
-            IComponentFactory factory = ComponentManager.LoadFactory<IComponentFactory>(LocalPath);
-            ComponentManager.ComponentFactories.Add(Path.GetFileName(LocalPath), factory);
+            string fileName = url[(url.LastIndexOf('/') + 1)..];
+            if (fileName.EndsWith(".dll", StringComparison.OrdinalIgnoreCase)
+                && !ComponentManager.ComponentFactories.ContainsKey(fileName))
+            {
+                string localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
+                IComponentFactory factory = ComponentManager.LoadFactory<IComponentFactory>(localPath);
+                if (factory != null)
+                {
+                    ComponentManager.ComponentFactories.Add(fileName, factory);
+                }
+            }
         }
     }
 
     public void Deactivate()
     {
+        _activationVersion++;
         if (IsActivated)
         {
             Component.Dispose();
