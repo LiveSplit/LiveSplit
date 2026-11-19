@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
@@ -7,7 +8,7 @@ namespace LiveSplit.Localization;
 
 public static class UiLocalizer
 {
-    private static readonly ConditionalWeakTable<ListControl, object> formattedListControls = new();
+    private static readonly ConditionalWeakTable<ListControl, ListControlLocalizationState> formattedListControls = new();
 
     public static string Translate(string source)
     {
@@ -98,7 +99,7 @@ public static class UiLocalizer
 
         if (control is ListControl listControl)
         {
-            EnsureListControlFormatting(listControl);
+            EnsureListControlFormatting(listControl, language);
         }
 
         if (control.ContextMenuStrip != null)
@@ -178,7 +179,7 @@ public static class UiLocalizer
 
             if (item is ToolStripComboBox comboBox)
             {
-                EnsureListControlFormatting(comboBox.ComboBox);
+                EnsureListControlFormatting(comboBox.ComboBox, language);
             }
 
             if (item is ToolStripDropDownItem dropDownItem)
@@ -188,38 +189,82 @@ public static class UiLocalizer
         }
     }
 
-    private static void EnsureListControlFormatting(ListControl listControl)
+    private static void EnsureListControlFormatting(ListControl listControl, AppLanguage language)
     {
         if (listControl == null)
         {
             return;
         }
 
-        try
+        if (formattedListControls.TryGetValue(listControl, out ListControlLocalizationState state))
         {
-            formattedListControls.Add(listControl, new object());
-        }
-        catch (ArgumentException)
-        {
-            // Already registered.
+            state.Language = language;
+            listControl.Refresh();
             return;
         }
 
-        listControl.FormattingEnabled = true;
+        state = new ListControlLocalizationState { Language = language };
+        formattedListControls.Add(listControl, state);
         listControl.Format += ListControl_Format;
+        listControl.FormattingEnabled = false;
+        listControl.FormattingEnabled = true;
         listControl.Refresh();
     }
 
     private static void ListControl_Format(object sender, ListControlConvertEventArgs e)
     {
-        if (e.Value is string formattedValue)
+        if (sender is not ListControl listControl
+            || !formattedListControls.TryGetValue(listControl, out ListControlLocalizationState state))
         {
-            e.Value = Translate(formattedValue);
+            return;
         }
-        else if (e.ListItem is string source)
+
+        string source = GetListControlSourceText(listControl, e);
+        if (source != null)
         {
-            e.Value = Translate(source);
+            e.Value = Translate(source, state.Language);
         }
+    }
+
+    private static string GetListControlSourceText(ListControl listControl, ListControlConvertEventArgs e)
+    {
+        if (e.ListItem != null && !string.IsNullOrWhiteSpace(listControl.DisplayMember))
+        {
+            object displayValue = GetMemberValue(e.ListItem, listControl.DisplayMember);
+            if (displayValue is string displayText)
+            {
+                return displayText;
+            }
+        }
+
+        if (e.ListItem is string listItemText)
+        {
+            return listItemText;
+        }
+
+        return e.Value as string;
+    }
+
+    private static object GetMemberValue(object item, string memberPath)
+    {
+        object value = item;
+        foreach (string memberName in memberPath.Split('.'))
+        {
+            if (value == null)
+            {
+                return null;
+            }
+
+            PropertyDescriptor property = TypeDescriptor.GetProperties(value).Find(memberName, true);
+            if (property == null)
+            {
+                return null;
+            }
+
+            value = property.GetValue(value);
+        }
+
+        return value;
     }
 
     private static void ApplyTreeNodes(TreeNodeCollection nodes, AppLanguage language)
@@ -272,6 +317,11 @@ public static class UiLocalizer
                     break;
             }
         }
+    }
+
+    private sealed class ListControlLocalizationState
+    {
+        public AppLanguage Language { get; set; }
     }
 
     private static System.Collections.Generic.IEnumerable<FieldInfo> EnumerateInstanceFields(Type type)

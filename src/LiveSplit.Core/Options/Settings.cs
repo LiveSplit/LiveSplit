@@ -30,6 +30,10 @@ public class Settings : ISettings
     public IDictionary<string, bool> ComparisonGeneratorStates { get; set; }
     public bool EnableDPIAwareness { get; set; }
     public string UILanguage { get; set; }
+    public int? WindowX { get; set; }
+    public int? WindowY { get; set; }
+    public bool TransparencySupportEnabled { get; set; } = true;
+    public bool CheckForUpdatesOnStartup { get; set; }
 
     // Deprecated properties
     public KeyOrButton SplitKey
@@ -122,6 +126,10 @@ public class Settings : ISettings
             ComparisonGeneratorStates = new Dictionary<string, bool>(ComparisonGeneratorStates),
             EnableDPIAwareness = EnableDPIAwareness,
             UILanguage = UILanguage,
+            WindowX = WindowX,
+            WindowY = WindowY,
+            TransparencySupportEnabled = TransparencySupportEnabled,
+            CheckForUpdatesOnStartup = CheckForUpdatesOnStartup,
             HcpHistorySize = HcpHistorySize,
             HcpNBestRuns = HcpNBestRuns
         };
@@ -231,6 +239,18 @@ public class Settings : ISettings
                 try
                 {
                     RegisterHotkey(hook, hotkeyProfile.SwitchComparisonNext, deactivateForOtherPrograms);
+                }
+                catch (Exception e)
+                {
+                    Log.Error(e);
+                }
+            }
+
+            if (hotkeyProfile.ToggleTransparency != null)
+            {
+                try
+                {
+                    RegisterHotkey(hook, hotkeyProfile.ToggleTransparency, deactivateForOtherPrograms);
                 }
                 catch (Exception e)
                 {

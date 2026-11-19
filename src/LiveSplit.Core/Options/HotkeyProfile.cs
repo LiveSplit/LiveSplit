@@ -17,6 +17,7 @@ public class HotkeyProfile : ICloneable
     public KeyOrButton ToggleGlobalHotkeys { get; set; }
     public KeyOrButton SwitchComparisonPrevious { get; set; }
     public KeyOrButton SwitchComparisonNext { get; set; }
+    public KeyOrButton ToggleTransparency { get; set; }
 
     public float HotkeyDelay { get; set; }
     public bool GlobalHotkeysEnabled { get; set; }
@@ -59,6 +60,11 @@ public class HotkeyProfile : ICloneable
                 hotkeyProfile.SwitchComparisonNext = !string.IsNullOrEmpty(keySwitchNext.InnerText) ? new KeyOrButton(keySwitchNext.InnerText) : null;
             }
         }
+
+        XmlElement keyToggleTransparency = element["ToggleTransparency"];
+        hotkeyProfile.ToggleTransparency = !string.IsNullOrEmpty(keyToggleTransparency?.InnerText)
+            ? new KeyOrButton(keyToggleTransparency.InnerText)
+            : null;
 
         hotkeyProfile.GlobalHotkeysEnabled = ParseBool(element["GlobalHotkeysEnabled"], false);
         hotkeyProfile.DeactivateHotkeysForOtherPrograms = ParseBool(element["DeactivateHotkeysForOtherPrograms"], false);
@@ -142,6 +148,14 @@ public class HotkeyProfile : ICloneable
 
         parent.AppendChild(switchComparisonNext);
 
+        XmlElement toggleTransparency = document.CreateElement("ToggleTransparency");
+        if (ToggleTransparency != null)
+        {
+            toggleTransparency.InnerText = ToggleTransparency.ToString();
+        }
+
+        parent.AppendChild(toggleTransparency);
+
         CreateSetting(document, parent, "GlobalHotkeysEnabled", GlobalHotkeysEnabled);
         CreateSetting(document, parent, "DeactivateHotkeysForOtherPrograms", DeactivateHotkeysForOtherPrograms);
         CreateSetting(document, parent, "DoubleTapPrevention", DoubleTapPrevention);
@@ -163,6 +177,7 @@ public class HotkeyProfile : ICloneable
             ToggleGlobalHotkeys = ToggleGlobalHotkeys,
             SwitchComparisonPrevious = SwitchComparisonPrevious,
             SwitchComparisonNext = SwitchComparisonNext,
+            ToggleTransparency = ToggleTransparency,
             HotkeyDelay = HotkeyDelay,
             GlobalHotkeysEnabled = GlobalHotkeysEnabled,
             DeactivateHotkeysForOtherPrograms = DeactivateHotkeysForOtherPrograms,
@@ -181,7 +196,8 @@ public class HotkeyProfile : ICloneable
             PauseKey,
             ToggleGlobalHotkeys,
             SwitchComparisonPrevious,
-            SwitchComparisonNext
+            SwitchComparisonNext,
+            ToggleTransparency
         };
 
         return buttons.Any(button => button?.IsButton ?? false);

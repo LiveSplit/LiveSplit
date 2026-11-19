@@ -62,6 +62,15 @@ public class XMLSettingsFactory : ISettingsFactory
             && ParseBool(parent["EnableDPIAwareness"], settings.EnableDPIAwareness);
 
         settings.UILanguage = ParseString(parent["UILanguage"], settings.UILanguage);
+        settings.TransparencySupportEnabled = ParseBool(parent["TransparencySupportEnabled"], settings.TransparencySupportEnabled);
+        settings.CheckForUpdatesOnStartup = ParseBool(parent["CheckForUpdatesOnStartup"], false);
+
+        if (TryParseInt(parent["WindowX"], out int windowX)
+            && TryParseInt(parent["WindowY"], out int windowY))
+        {
+            settings.WindowX = windowX;
+            settings.WindowY = windowY;
+        }
 
         if (version >= new Version(1, 3))
         {

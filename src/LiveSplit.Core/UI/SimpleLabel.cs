@@ -240,18 +240,12 @@ public class SimpleLabel
         return offset;
     }
     
-    // Intended to measure the width of a single character, taking into account DPI scaling
-    // For longer strings, MeasureActualWidth should be used instead to keep digit spacing consistent
+    // Component rendering is already scaled to the active monitor DPI by TimerForm.
+    // TextRenderer measures pixel fonts in those same local units, so applying
+    // g.DpiY again here compresses monospaced digits and makes them overlap.
     private int MeasureCharacterActualWidth(string text, Graphics g)
     {
-        int width = MeasureText(g, text, Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
-        
-		if (Font.Unit != GraphicsUnit.Point)
-        {
-            width = (int)((width * 96f / g.DpiY) + 0.5f);
-        }
-
-        return width;
+        return MeasureText(g, text, Font, new Size((int)(Width + 0.5f), (int)(Height + 0.5f)), TextFormatFlags.NoPadding).Width;
     }
 
     private string CutOff(Graphics g)

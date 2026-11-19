@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 
 namespace UpdateManager;
@@ -22,16 +26,14 @@ public delegate void UpdatePercentageRefreshedEventHandler(object sender, Update
 
 public static class Updater
 {
-    private static Dictionary<IUpdateable, UpdaterInternal> _Updaters { get; set; }
-    private static Dictionary<IUpdateable, UpdaterInternal> Updaters
-    {
-        get
-        {
-            _Updaters ??= [];
+    private const int UpdateRequestTimeoutMilliseconds = 5000;
+    private const int MaxUpdateCheckDurationMilliseconds = 8000;
+    private const int MaxConcurrentUpdateChecks = 4;
+    private const string UpdateManagerVersion = "2.0.5";
 
-            return _Updaters;
-        }
-    }
+    private static readonly HttpClient UpdateHttpClient = CreateUpdateHttpClient();
+
+    private static readonly ConcurrentDictionary<IUpdateable, UpdaterInternal> Updaters = new();
 
     #region Updater Instance
 
@@ -41,40 +43,71 @@ public static class Updater
         public string UpdateURL { get; set; }
         public Version Version { get; set; }
 
+        private readonly object updatesLock = new();
         private IEnumerable<Update> _Updates { get; set; }
         public IEnumerable<Update> Updates
         {
             get
             {
-                if (_Updates == null)
+                lock (updatesLock)
                 {
-                    List<Update> updateList = [];
-                    try
-                    {
-                        using var reader = XmlReader.Create(XMLURL);
-                        var doc = new XmlDocument();
-                        doc.Load(reader);
-                        foreach (XmlNode updateNode in doc.DocumentElement.ChildNodes)
-                        {
-                            var update = Update.Parse(updateNode);
-                            updateList.Add(update);
-                        }
-                    }
-                    catch { }
+                    _Updates ??= DownloadUpdates();
+                    return _Updates;
+                }
+            }
+        }
 
-                    _Updates = updateList;
+        private IEnumerable<Update> DownloadUpdates()
+        {
+            List<Update> updateList = [];
+            if (!Uri.TryCreate(XMLURL, UriKind.Absolute, out Uri uri)
+                || (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
+            {
+                return updateList;
+            }
+
+            try
+            {
+                string xml = UpdateHttpClient.GetStringAsync(uri).GetAwaiter().GetResult();
+                var doc = new XmlDocument() { XmlResolver = null };
+                using var stringReader = new StringReader(xml);
+                using var reader = XmlReader.Create(stringReader, new XmlReaderSettings()
+                {
+                    DtdProcessing = DtdProcessing.Prohibit,
+                    XmlResolver = null
+                });
+                doc.Load(reader);
+
+                if (doc.DocumentElement == null)
+                {
+                    return updateList;
                 }
 
-                return _Updates;
+                foreach (XmlNode updateNode in doc.DocumentElement.ChildNodes)
+                {
+                    if (updateNode.NodeType != XmlNodeType.Element)
+                    {
+                        continue;
+                    }
+
+                    try
+                    {
+                        updateList.Add(Update.Parse(updateNode));
+                    }
+                    catch { }
+                }
             }
+            catch { }
+
+            return updateList;
         }
 
         public event UpdatePercentageRefreshedEventHandler UpdatePercentageRefreshed;
 
         internal UpdaterInternal(string xmlUrl, string updateUrl, Version version)
         {
-            XMLURL = xmlUrl;
-            UpdateURL = updateUrl;
+            XMLURL = ToJsDelivrUrl(xmlUrl) ?? xmlUrl;
+            UpdateURL = ToJsDelivrUrl(updateUrl) ?? updateUrl;
             Version = version;
         }
 
@@ -174,7 +207,11 @@ public static class Updater
     {
         DownloadFile(updateManagerDownloadURL, "UpdateManager.exe");
         DownloadFile(updateManagerConfigDownloadUrl, "UpdateManager.exe.config");
-        string arguments = string.Concat(updateables.Where(x => x.CheckForUpdate()).Select(x => $"\"{x.XMLURL}\" \"{x.UpdateURL}\" {x.Version} ")) + $"\"{Process.GetCurrentProcess().ProcessName}.exe\"";
+        string arguments = string.Concat(updateables.Where(x => x.CheckForUpdate()).Select(x =>
+        {
+            UpdaterInternal updater = GetUpdater(x);
+            return $"\"{updater.XMLURL}\" \"{updater.UpdateURL}\" {x.Version} ";
+        })) + $"\"{Process.GetCurrentProcess().ProcessName}.exe\"";
         Process.Start("UpdateManager.exe", arguments);
     }
 
@@ -193,17 +230,101 @@ public static class Updater
 
     internal static UpdaterInternal GetUpdater(IUpdateable updateable)
     {
-        if (!Updaters.ContainsKey(updateable))
-        {
-            Updaters.Add(updateable, new UpdaterInternal(updateable.XMLURL, updateable.UpdateURL, updateable.Version));
-        }
-
-        return Updaters[updateable];
+        return Updaters.GetOrAdd(
+            updateable,
+            x => new UpdaterInternal(x.XMLURL, x.UpdateURL, x.Version));
     }
 
     public static bool CheckForAnyUpdate(IEnumerable<IUpdateable> updateables)
     {
-        return updateables.Any(x => x.CheckForUpdate());
+        bool updateAvailable = false;
+        using var cancellation = new CancellationTokenSource(MaxUpdateCheckDurationMilliseconds);
+
+        try
+        {
+            Parallel.ForEach(
+                updateables,
+                new ParallelOptions()
+                {
+                    MaxDegreeOfParallelism = MaxConcurrentUpdateChecks,
+                    CancellationToken = cancellation.Token
+                },
+                updateable =>
+                {
+                    if (updateable.CheckForUpdate())
+                    {
+                        Volatile.Write(ref updateAvailable, true);
+                    }
+                });
+        }
+        catch (OperationCanceledException) { }
+
+        return Volatile.Read(ref updateAvailable);
+    }
+
+    private static string ToJsDelivrUrl(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url)
+            || !Uri.TryCreate(url, UriKind.Absolute, out Uri uri)
+            || (uri.Scheme != Uri.UriSchemeHttp && uri.Scheme != Uri.UriSchemeHttps))
+        {
+            return null;
+        }
+
+        string[] segments = uri.AbsolutePath.Trim('/').Split('/');
+        if (uri.Host.Equals("raw.githubusercontent.com", StringComparison.OrdinalIgnoreCase))
+        {
+            return segments.Length >= 3 ? CreateJsDelivrUrl(uri, segments, 0, 1, 2) : null;
+        }
+
+        if ((uri.Host.Equals("github.com", StringComparison.OrdinalIgnoreCase)
+                || uri.Host.Equals("www.github.com", StringComparison.OrdinalIgnoreCase))
+            && segments.Length >= 4
+            && (segments[2].Equals("raw", StringComparison.OrdinalIgnoreCase)
+                || segments[2].Equals("blob", StringComparison.OrdinalIgnoreCase)))
+        {
+            return CreateJsDelivrUrl(uri, segments, 0, 1, 3);
+        }
+
+        return null;
+    }
+
+    private static string CreateJsDelivrUrl(Uri uri, string[] segments, int ownerIndex, int repositoryIndex, int referenceIndex)
+    {
+        string reference;
+        int contentIndex;
+        if (segments[referenceIndex].Equals("refs", StringComparison.OrdinalIgnoreCase)
+            && referenceIndex + 2 < segments.Length
+            && (segments[referenceIndex + 1].Equals("heads", StringComparison.OrdinalIgnoreCase)
+                || segments[referenceIndex + 1].Equals("tags", StringComparison.OrdinalIgnoreCase)))
+        {
+            reference = segments[referenceIndex + 2];
+            contentIndex = referenceIndex + 3;
+        }
+        else
+        {
+            reference = segments[referenceIndex];
+            contentIndex = referenceIndex + 1;
+        }
+
+        string contentPath = contentIndex < segments.Length
+            ? string.Join("/", segments, contentIndex, segments.Length - contentIndex)
+            : string.Empty;
+        return $"https://cdn.jsdelivr.net/gh/{segments[ownerIndex]}/{segments[repositoryIndex]}@{reference}/{contentPath}{uri.Query}";
+    }
+    private static HttpClient CreateUpdateHttpClient()
+    {
+        var handler = new HttpClientHandler()
+        {
+            AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
+            MaxConnectionsPerServer = MaxConcurrentUpdateChecks
+        };
+        var client = new HttpClient(handler)
+        {
+            Timeout = TimeSpan.FromMilliseconds(UpdateRequestTimeoutMilliseconds)
+        };
+        client.DefaultRequestHeaders.UserAgent.ParseAdd($"LiveSplit-UpdateManager/{UpdateManagerVersion}");
+        return client;
     }
 
     #endregion

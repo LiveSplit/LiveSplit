@@ -28,7 +28,7 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.PreviousSegment"]
 	path = components/LiveSplit.PreviousSegment
-	url = https://github.com/LiveSplit/LiveSplit.PreviousSegment.git
+	url = https://github.com/gudqs7/LiveSplit.PreviousSegment.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.RunPrediction"]
 	path = components/LiveSplit.RunPrediction
@@ -48,7 +48,7 @@
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.SumOfBest"]
 	path = components/LiveSplit.SumOfBest
-	url = https://github.com/LiveSplit/LiveSplit.SumOfBest.git
+	url = https://github.com/gudqs7/LiveSplit.SumOfBest.git
 	branch = master
 [submodule "LiveSplit/Components/LiveSplit.Text"]
 	path = components/LiveSplit.Text

@@ -44,8 +44,8 @@ public partial class LayoutEditorDialog : Form
         BindingList = new BindingList<ILayoutComponent>(Layout.LayoutComponents);
         ComponentsToDispose = [];
         ImagesToDispose = [];
+        lbxComponents.DisplayMember = nameof(LayoutComponent.DisplayName);
         lbxComponents.DataSource = BindingList;
-        lbxComponents.DisplayMember = "Component.ComponentName";
         LoadAllComponentsAvailable();
 
         rdoVertical.Checked = IsVertical;

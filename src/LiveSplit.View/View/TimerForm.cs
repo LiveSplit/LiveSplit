@@ -66,6 +66,21 @@ public partial class TimerForm : Form
     private Image blurredBackground { get; set; }
     private Image bakedBackground { get; set; }
 
+    private Bitmap layeredWindowBitmap;
+    private int layeredWindowBitmapDpi;
+    private Bitmap layeredWindowUpdateBitmap;
+    private int layeredWindowUpdateBitmapDpi;
+    private bool layeredWindowActive;
+    private bool isRenderingLayeredWindow;
+    private bool transparencySupportEnabled = true;
+    private DateTime lastTransparencyToggleTime;
+    private Size layoutLogicalSize = Size.Empty;
+    private int dpiChangeSuppressionDepth;
+    private Point dragStartWindowLocation;
+
+    private bool ShouldUseTransparentWindow
+        => transparencySupportEnabled && Layout.Settings.RequiresTransparentWindow;
+
     public CommandServer Server { get; set; }
 
     protected GraphicsCache GlobalCache { get; set; }
@@ -93,6 +108,9 @@ public partial class TimerForm : Form
     public const string SETTINGS_PATH = "settings.cfg";
     private const int WS_MINIMIZEBOX = 0x20000;
     private const int CS_DBLCLKS = 0x8;
+    private const int GWL_EXSTYLE = -20;
+    private const uint WS_EX_LAYERED = 0x00080000;
+    private const uint WS_EX_TRANSPARENT = 0x00000020;
 
     protected override CreateParams CreateParams
     {
@@ -121,11 +139,6 @@ public partial class TimerForm : Form
     {
         set
         {
-            const int GWL_EXSTYLE = -20;
-
-            const uint WS_EX_LAYERED = 0x00080000;
-            const uint WS_EX_TRANSPARENT = 0x00000020;
-
             // If we're trying to set to false and it's already false, don't bother doing anything.
             // We can't do this for setting to true because setting Opacity may have messed the GWL_EXSTYLE flags up.
             if (!value && !MousePassThroughState)
@@ -157,6 +170,230 @@ public partial class TimerForm : Form
     private bool MousePassThroughState = false;
 
     private bool IsForegroundWindow => GetForegroundWindow() == Handle;
+
+    private void ToggleTransparencySupport()
+    {
+        DateTime now = DateTime.UtcNow;
+        if ((now - lastTransparencyToggleTime).TotalMilliseconds < 150)
+        {
+            return;
+        }
+
+        lastTransparencyToggleTime = now;
+        transparencySupportEnabled = !transparencySupportEnabled;
+        Settings.TransparencySupportEnabled = transparencySupportEnabled;
+
+        if (!transparencySupportEnabled)
+        {
+            MousePassThrough = false;
+            DisableLayeredWindow();
+        }
+
+        RefreshWindow();
+    }
+
+    private void EnsureLayeredWindowStyle()
+    {
+        uint exStyle = GetWindowLong(Handle, GWL_EXSTYLE);
+        if ((exStyle & WS_EX_LAYERED) == 0)
+        {
+            SetWindowLong(Handle, GWL_EXSTYLE, exStyle | WS_EX_LAYERED);
+        }
+    }
+
+    private bool RenderLayeredWindow(int resizeAttemptsRemaining = 2, Rectangle? updateBounds = null)
+    {
+        if (isRenderingLayeredWindow)
+        {
+            return true;
+        }
+
+        if (Width <= 0 || Height <= 0)
+        {
+            return false;
+        }
+
+        if (layeredWindowBitmap == null
+            || layeredWindowBitmap.Width != Width
+            || layeredWindowBitmap.Height != Height)
+        {
+            layeredWindowBitmap?.Dispose();
+            layeredWindowBitmap = new Bitmap(Width, Height, PixelFormat.Format32bppPArgb);
+            layeredWindowBitmapDpi = 0;
+        }
+
+        // Layered windows retain their previous backing pixels. Repaint only the
+        // invalidated component bounds so high refresh rates do not redraw the whole layout.
+        var windowBounds = new Rectangle(0, 0, Width, Height);
+        Rectangle renderBounds = updateBounds ?? windowBounds;
+        renderBounds.Inflate(2, 2);
+        renderBounds.Intersect(windowBounds);
+        if (renderBounds.Width <= 0 || renderBounds.Height <= 0)
+        {
+            return true;
+        }
+
+        int currentDpi = CurrentDpi;
+        if (layeredWindowBitmapDpi != currentDpi)
+        {
+            layeredWindowBitmap.SetResolution(currentDpi, currentDpi);
+            layeredWindowBitmapDpi = currentDpi;
+        }
+
+        if (layeredWindowUpdateBitmap == null
+            || layeredWindowUpdateBitmap.Width != renderBounds.Width
+            || layeredWindowUpdateBitmap.Height != renderBounds.Height)
+        {
+            layeredWindowUpdateBitmap?.Dispose();
+            layeredWindowUpdateBitmap = new Bitmap(renderBounds.Width, renderBounds.Height, PixelFormat.Format32bppPArgb);
+            layeredWindowUpdateBitmapDpi = 0;
+        }
+
+        if (layeredWindowUpdateBitmapDpi != currentDpi)
+        {
+            layeredWindowUpdateBitmap.SetResolution(currentDpi, currentDpi);
+            layeredWindowUpdateBitmapDpi = currentDpi;
+        }
+
+        using var drawRegion = new Region(renderBounds);
+        Region previousUpdateRegion = UpdateRegion;
+        UpdateRegion = drawRegion;
+        isRenderingLayeredWindow = true;
+        try
+        {
+            using (var graphics = Graphics.FromImage(layeredWindowUpdateBitmap))
+            {
+                graphics.CompositingMode = CompositingMode.SourceCopy;
+                // Alpha 0 pixels are click-through for layered windows. A 1/255 alpha
+                // keeps the background visually transparent while making the entire
+                // timer rectangle available for dragging and the right-click menu.
+                using (var clearBrush = new SolidBrush(Color.FromArgb(1, 0, 0, 0)))
+                {
+                    graphics.FillRectangle(clearBrush, 0, 0, renderBounds.Width, renderBounds.Height);
+                }
+
+                graphics.CompositingMode = CompositingMode.SourceOver;
+                using var updateClip = new Region(new Rectangle(0, 0, renderBounds.Width, renderBounds.Height));
+                PaintForm(graphics, updateClip, renderBounds.Location);
+            }
+
+            using var layeredGraphics = Graphics.FromImage(layeredWindowBitmap);
+            layeredGraphics.CompositingMode = CompositingMode.SourceCopy;
+            layeredGraphics.DrawImageUnscaled(layeredWindowUpdateBitmap, renderBounds.X, renderBounds.Y);
+        }
+        finally
+        {
+            isRenderingLayeredWindow = false;
+            UpdateRegion = previousUpdateRegion;
+        }
+
+        if (layeredWindowBitmap.Width != Width || layeredWindowBitmap.Height != Height)
+        {
+            if (resizeAttemptsRemaining > 0)
+            {
+                return RenderLayeredWindow(resizeAttemptsRemaining - 1);
+            }
+
+            Invalidate();
+            return true;
+        }
+
+        if (!layeredWindowActive)
+        {
+            // A previous Form.Opacity value uses SetLayeredWindowAttributes, which
+            // must not be mixed with per-pixel UpdateLayeredWindow composition.
+            Opacity = 1;
+        }
+
+        EnsureLayeredWindowStyle();
+        return UpdateLayeredWindowFromBitmap();
+    }
+
+    private bool UpdateLayeredWindowFromBitmap()
+    {
+        IntPtr screenDc = Win32.GetDC(IntPtr.Zero);
+        IntPtr memoryDc = IntPtr.Zero;
+        IntPtr bitmapHandle = IntPtr.Zero;
+        IntPtr previousBitmap = IntPtr.Zero;
+        try
+        {
+            memoryDc = Win32.CreateCompatibleDC(screenDc);
+            if (memoryDc == IntPtr.Zero)
+            {
+                return false;
+            }
+
+            bitmapHandle = layeredWindowBitmap.GetHbitmap(Color.FromArgb(0));
+            previousBitmap = Win32.SelectObject(memoryDc, bitmapHandle);
+
+            Point windowOrigin = PointToScreen(Point.Empty);
+            var destination = new Win32.Point(windowOrigin.X, windowOrigin.Y);
+            var size = new Win32.Size(layeredWindowBitmap.Width, layeredWindowBitmap.Height);
+            var source = new Win32.Point(0, 0);
+            byte opacity = (byte)Math.Round(Math.Min(1f, Math.Max(0f, Layout.Settings.Opacity)) * 255f);
+            var blend = new Win32.BLENDFUNCTION
+            {
+                BlendOp = Win32.AC_SRC_OVER,
+                BlendFlags = 0,
+                SourceConstantAlpha = opacity,
+                AlphaFormat = Win32.AC_SRC_ALPHA
+            };
+
+            layeredWindowActive = Win32.UpdateLayeredWindow(
+                Handle,
+                screenDc,
+                ref destination,
+                ref size,
+                memoryDc,
+                ref source,
+                0,
+                ref blend,
+                Win32.ULW_ALPHA);
+
+            if (!layeredWindowActive)
+            {
+                Log.Error("Failed to update the transparent LiveSplit window.");
+            }
+
+            return layeredWindowActive;
+        }
+        finally
+        {
+            if (previousBitmap != IntPtr.Zero)
+            {
+                Win32.SelectObject(memoryDc, previousBitmap);
+            }
+
+            if (bitmapHandle != IntPtr.Zero)
+            {
+                Win32.DeleteObject(bitmapHandle);
+            }
+
+            if (memoryDc != IntPtr.Zero)
+            {
+                Win32.DeleteDC(memoryDc);
+            }
+
+            if (screenDc != IntPtr.Zero)
+            {
+                Win32.ReleaseDC(IntPtr.Zero, screenDc);
+            }
+        }
+    }
+
+    private void DisableLayeredWindow()
+    {
+        if (!layeredWindowActive)
+        {
+            return;
+        }
+
+        layeredWindowActive = false;
+        uint exStyle = GetWindowLong(Handle, GWL_EXSTYLE);
+        SetWindowLong(Handle, GWL_EXSTYLE, exStyle & ~WS_EX_LAYERED);
+        Opacity = Layout.Settings.Opacity;
+    }
+
     private AppLanguage CurrentLanguage => LanguageResolver.ResolveCurrentCultureLanguage();
     private AppLanguage ConfiguredLanguage => LanguageResolver.Resolve(Settings?.UILanguage);
     private string T(string source) => UiLocalizer.Translate(source, CurrentLanguage);
@@ -178,6 +415,12 @@ public partial class TimerForm : Form
 
     [DllImport("user32.dll")]
     private static extern IntPtr GetForegroundWindow();
+
+    [DllImport("winmm.dll", EntryPoint = "timeBeginPeriod")]
+    private static extern uint TimeBeginPeriod(uint period);
+
+    [DllImport("winmm.dll", EntryPoint = "timeEndPeriod")]
+    private static extern uint TimeEndPeriod(uint period);
 
     public TimerForm(string splitsPath = null, string layoutPath = null, string basePath = "")
     {
@@ -213,8 +456,8 @@ public partial class TimerForm : Form
         LayoutSaver = new XMLLayoutSaver();
         SettingsSaver = new XMLSettingsSaver();
         LoadSettings();
+        transparencySupportEnabled = Settings.TransparencySupportEnabled;
         InitializeLanguageMenu();
-        SetDPIAwareness();
         UiLocalizer.Apply(this, CurrentLanguage);
 
         CurrentState.CurrentHotkeyProfile = Settings.HotkeyProfiles.First().Key;
@@ -311,6 +554,7 @@ public partial class TimerForm : Form
 
         StartPosition = FormStartPosition.Manual;
 
+        ApplySavedWindowPosition();
         SetLayout(Layout);
 
         RefreshTask = Task.Factory.StartNew(RefreshTimerWorker);
@@ -320,9 +564,10 @@ public partial class TimerForm : Form
         Hook = new CompositeHook(false);
         Hook.GamepadHookInitialized += Hook_GamepadHookInitialized;
         Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
-        Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+        RegisterHotkeys();
 
         SizeChanged += TimerForm_SizeChanged;
+        DpiChanged += TimerForm_DpiChanged;
 
         TopMost = Layout.Settings.AlwaysOnTop;
         BackColor = Color.Black;
@@ -380,6 +625,11 @@ public partial class TimerForm : Form
         }
 
         Settings.UnregisterAllHotkeys(Hook);
+        RegisterHotkeys();
+    }
+
+    private void RegisterHotkeys()
+    {
         Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
     }
 
@@ -777,26 +1027,26 @@ public partial class TimerForm : Form
     private void TimerForm_SizeChanged(object sender, EventArgs e)
     {
         CreateBakedBackground();
-        if (RefreshesRemaining <= 0)
+        if (dpiChangeSuppressionDepth == 0
+            && !isRenderingLayeredWindow
+            && (layeredWindowActive || ShouldUseTransparentWindow))
         {
-            if (Layout.Mode == LayoutMode.Vertical)
-            {
-                Layout.VerticalWidth = Size.Width;
-                Layout.VerticalHeight = Size.Height;
-            }
-            else
-            {
-                Layout.HorizontalWidth = Size.Width;
-                Layout.HorizontalHeight = Size.Height;
-            }
+            RefreshWindow();
+        }
 
+        if (dpiChangeSuppressionDepth == 0 && RefreshesRemaining <= 0)
+        {
+            StoreCurrentLayoutSize();
             MaintainMinimumSize();
         }
     }
 
     private void Hook_GamepadHookInitialized(object sender, EventArgs e)
     {
-        CheckForUpdates();
+        if (Settings.CheckForUpdatesOnStartup)
+        {
+            CheckForUpdates();
+        }
     }
 
     private void CheckForUpdates()
@@ -1265,7 +1515,6 @@ public partial class TimerForm : Form
         Action action = () =>
         {
             HotkeyProfile hotkeyProfile = Settings.HotkeyProfiles[CurrentState.CurrentHotkeyProfile];
-
             if ((ActiveForm == this || hotkeyProfile.GlobalHotkeysEnabled) && !ResetMessageShown && !IsInDialogMode)
             {
                 if (hotkeyProfile.SplitKey == e)
@@ -1323,6 +1572,10 @@ public partial class TimerForm : Form
                 {
                     Model.SwitchComparisonNext();
                 }
+                else if (hotkeyProfile.ToggleTransparency == e)
+                {
+                    ToggleTransparencySupport();
+                }
             }
 
             if (hotkeyProfile.ToggleGlobalHotkeys == e)
@@ -1359,14 +1612,39 @@ public partial class TimerForm : Form
 
     private void RefreshTimerWorker()
     {
-        while (true)
+        // The render work must not be added on top of the configured refresh interval.
+        // Use absolute deadlines and 1 ms timer resolution to keep the display cadence stable.
+        TimeBeginPeriod(1);
+        try
         {
-            Thread.Sleep(1000 / Settings.RefreshRate);
-            try
+            var stopwatch = Stopwatch.StartNew();
+            double nextTick = 0;
+            while (true)
             {
-                TimerElapsed();
+                double interval = 1000.0 / Math.Max(1, Settings.RefreshRate);
+                nextTick += interval;
+                double waitMilliseconds = nextTick - stopwatch.Elapsed.TotalMilliseconds;
+                if (waitMilliseconds > 0)
+                {
+                    Thread.Sleep(Math.Max(1, (int)Math.Ceiling(waitMilliseconds)));
+                }
+
+                try
+                {
+                    TimerElapsed();
+                }
+                catch { }
+
+                double currentTime = stopwatch.Elapsed.TotalMilliseconds;
+                if (currentTime - nextTick > interval)
+                {
+                    nextTick = currentTime;
+                }
             }
-            catch { }
+        }
+        finally
+        {
+            TimeEndPeriod(1);
         }
     }
 
@@ -1410,12 +1688,17 @@ public partial class TimerForm : Form
                         else
                         {
                             Invalidator.Restart();
+                            Invalidator.SuppressInvalidation = ShouldUseTransparentWindow;
 
                             this.InvokeIfRequired(() =>
                             {
                                 try
                                 {
                                     ComponentRenderer.Update(Invalidator, CurrentState, Width, Height, Layout.Mode);
+                                    if (Invalidator.HasInvalidated && ShouldUseTransparentWindow)
+                                    {
+                                        RefreshWindow(Invalidator.InvalidatedBounds);
+                                    }
                                 }
                                 catch (Exception ex)
                                 {
@@ -1461,8 +1744,9 @@ public partial class TimerForm : Form
                 OldSize = currentSize;
             }
 
-            int minSize = (int)((currentSize / 5) + 0.5f);
-            MinimumSize = Layout.Mode == LayoutMode.Vertical ? new Size(25, Math.Max(minSize, 25)) : new Size(Math.Max(minSize, 25), 25);
+            int minimumLength = DpiScale.Scale(25, CurrentDpi);
+            int minSize = Math.Max(DpiScale.Scale((int)((currentSize / 5) + 0.5f), CurrentDpi), minimumLength);
+            MinimumSize = Layout.Mode == LayoutMode.Vertical ? new Size(minimumLength, minSize) : new Size(minSize, minimumLength);
         }
     }
 
@@ -1470,9 +1754,11 @@ public partial class TimerForm : Form
     {
         if (RefreshesRemaining > 0)
         {
-            Size = Layout.Mode == LayoutMode.Vertical
-                ? new Size(Layout.VerticalWidth, Layout.VerticalHeight)
-                : new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
+            Size savedSize = GetSavedLayoutSize(Layout);
+            if (IsValidLayoutSize(savedSize))
+            {
+                Size = DpiScale.Scale(savedSize, CurrentDpi);
+            }
 
             if (OldSize != ComponentRenderer.OverallSize)
             {
@@ -1485,6 +1771,98 @@ public partial class TimerForm : Form
 
             OldSize = ComponentRenderer.OverallSize;
         }
+    }
+
+    private int CurrentDpi
+    {
+        get
+        {
+            if (!DpiAwareness.IsProcessDpiAware)
+            {
+                return DpiScale.DefaultDpi;
+            }
+
+            if (IsHandleCreated)
+            {
+                int windowDpi = DpiAwareness.GetDpiForWindow(Handle);
+                if (windowDpi > 0)
+                {
+                    return windowDpi;
+                }
+            }
+
+            return DpiAwareness.GetDpiForPoint(Location);
+        }
+    }
+
+    private static Size GetSavedLayoutSize(ILayout layout)
+        => layout.Mode == LayoutMode.Vertical
+            ? new Size(layout.VerticalWidth, layout.VerticalHeight)
+            : new Size(layout.HorizontalWidth, layout.HorizontalHeight);
+
+    private static bool IsValidLayoutSize(Size size)
+        => size.Width > 0 && size.Height > 0;
+
+    private Size GetCurrentLayoutSize()
+        => DpiScale.Unscale(Size, CurrentDpi);
+
+    private void StoreCurrentLayoutSize()
+    {
+        Size logicalSize = GetCurrentLayoutSize();
+        layoutLogicalSize = logicalSize;
+        if (Layout.Mode == LayoutMode.Vertical)
+        {
+            Layout.VerticalWidth = logicalSize.Width;
+            Layout.VerticalHeight = logicalSize.Height;
+        }
+        else
+        {
+            Layout.HorizontalWidth = logicalSize.Width;
+            Layout.HorizontalHeight = logicalSize.Height;
+        }
+    }
+
+    private void TimerForm_DpiChanged(object sender, DpiChangedEventArgs e)
+    {
+        if (!DpiAwareness.IsProcessDpiAware)
+        {
+            return;
+        }
+
+        Size logicalSize = IsValidLayoutSize(layoutLogicalSize)
+            ? layoutLogicalSize
+            : DpiScale.Unscale(Size, e.DeviceDpiOld);
+        Rectangle suggestedBounds = e.SuggestedRectangle;
+
+        dpiChangeSuppressionDepth++;
+        try
+        {
+            layeredWindowBitmap?.Dispose();
+            layeredWindowBitmap = null;
+            layeredWindowBitmapDpi = 0;
+            layeredWindowUpdateBitmap?.Dispose();
+            layeredWindowUpdateBitmap = null;
+            layeredWindowUpdateBitmapDpi = 0;
+            bakedBackground?.Dispose();
+            bakedBackground = null;
+            blurredBackground?.Dispose();
+            blurredBackground = null;
+            previousBackground = null;
+
+            if (suggestedBounds.Width > 0 && suggestedBounds.Height > 0)
+            {
+                Location = suggestedBounds.Location;
+            }
+
+            Size = DpiScale.Scale(logicalSize, e.DeviceDpiNew);
+            UpdateAllComponents();
+        }
+        finally
+        {
+            dpiChangeSuppressionDepth--;
+        }
+
+        RefreshWindow();
     }
 
     private void UpdateRefreshesRemaining()
@@ -1504,9 +1882,38 @@ public partial class TimerForm : Form
             {
                 Log.Error(ex);
             }
-        });
 
-        Invalidate();
+            RefreshWindow();
+        });
+    }
+
+    private void RefreshWindow(Rectangle? updateBounds = null)
+    {
+        // UpdateLayeredWindow owns the transparent surface, so WM_PAINT is not
+        // a reliable frame clock for it. Submit a frame directly instead.
+        if (IsDisposed || !IsHandleCreated || !Visible)
+        {
+            return;
+        }
+
+        if (!ShouldUseTransparentWindow)
+        {
+            if (updateBounds is { } bounds)
+            {
+                Invalidate(bounds);
+            }
+            else
+            {
+                Invalidate();
+            }
+
+            return;
+        }
+
+        if (!RenderLayeredWindow(updateBounds: updateBounds))
+        {
+            Invalidate();
+        }
     }
 
     protected void UpdateAllComponents()
@@ -1517,19 +1924,28 @@ public partial class TimerForm : Form
         }
     }
 
-    private void PaintForm(Graphics g, Region clip)
+    private void PaintForm(Graphics g, Region clip, Point renderOffset = default)
     {
-        if (!clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
+        if (renderOffset == Point.Empty && !clip.GetBounds(g).Equals(UpdateRegion.GetBounds(g)))
         {
             UpdateRegion.Union(clip);
         }
 
-        DrawBackground(g);
+        g.ResetTransform();
+        if (renderOffset != Point.Empty)
+        {
+            g.TranslateTransform(-renderOffset.X, -renderOffset.Y);
+        }
 
-        Opacity = Layout.Settings.Opacity;
+        DrawBackground(g, renderOffset);
+
+        if (!isRenderingLayeredWindow && !ShouldUseTransparentWindow)
+        {
+            Opacity = Layout.Settings.Opacity;
+        }
 
         // Set MousePassThrough after setting Opacity, because setting Opacity can reset the Form's WS_EX_LAYERED flag.
-        MousePassThrough = Layout.Settings.MousePassThroughWhileRunning && Model.CurrentState.CurrentPhase == TimerPhase.Running && !IsForegroundWindow;
+        MousePassThrough = Layout.Settings.ShouldIgnoreMouse(Model.CurrentState.CurrentPhase, IsForegroundWindow);
 
         AllowResizing = Layout.Settings.AllowResizing;
         AllowMoving = Layout.Settings.AllowMoving;
@@ -1546,9 +1962,17 @@ public partial class TimerForm : Form
             ? Height / ComponentRenderer.OverallSize
             : Width / ComponentRenderer.OverallSize;
 
+        // Component geometry stays in its 96-DPI design units. The window size is
+        // converted to device pixels for the active monitor, so this transform
+        // applies both the user's layout size and the monitor DPI scale.
         g.ResetTransform();
         g.TranslateTransform(-0.5f, -0.5f);
         g.ScaleTransform(scaleFactor, scaleFactor);
+        if (renderOffset != Point.Empty)
+        {
+            g.TranslateTransform(-renderOffset.X, -renderOffset.Y, MatrixOrder.Append);
+        }
+
         float transformedWidth = Width;
         float transformedHeight = Height;
 
@@ -1561,7 +1985,8 @@ public partial class TimerForm : Form
             transformedHeight /= scaleFactor;
         }
 
-        ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, UpdateRegion);
+        Region renderClip = renderOffset == Point.Empty ? UpdateRegion : clip;
+        ComponentRenderer.Render(g, CurrentState, transformedWidth, transformedHeight, Layout.Mode, renderClip);
 
         FixSize();
         KeepLayoutSize();
@@ -1572,6 +1997,12 @@ public partial class TimerForm : Form
     {
         try
         {
+            if (ShouldUseTransparentWindow && RenderLayeredWindow())
+            {
+                return;
+            }
+
+            DisableLayeredWindow();
             Region clip = e.Graphics.Clip;
             e.Graphics.Clip = new Region();
             PaintForm(e.Graphics, clip);
@@ -1583,7 +2014,7 @@ public partial class TimerForm : Form
         }
     }
 
-    private void DrawBackground(Graphics g)
+    private void DrawBackground(Graphics g, Point renderOffset = default)
     {
         if (Layout.Settings.BackgroundType == BackgroundType.Image)
         {
@@ -1599,7 +2030,14 @@ public partial class TimerForm : Form
                 foreach (RectangleF rectangle in UpdateRegion.GetRegionScans(g.Transform))
                 {
                     var rect = Rectangle.Round(rectangle);
-                    g.DrawImage(bakedBackground, rect, rect, GraphicsUnit.Pixel);
+                    var sourceRect = renderOffset == Point.Empty
+                        ? rect
+                        : new Rectangle(
+                            rect.X + renderOffset.X,
+                            rect.Y + renderOffset.Y,
+                            rect.Width,
+                            rect.Height);
+                    g.DrawImage(bakedBackground, rect, sourceRect, GraphicsUnit.Pixel);
                 }
             }
         }
@@ -1630,7 +2068,7 @@ public partial class TimerForm : Form
                 {
                     blurredBackground?.Dispose();
 
-                    blurredBackground = ImageBlur.Generate(image, blur * 10);
+                    blurredBackground = ImageBlur.Generate(image, blur * 10 * DpiScale.GetFactor(CurrentDpi));
                 }
 
                 image = blurredBackground;
@@ -1649,6 +2087,7 @@ public partial class TimerForm : Form
             }
 
             var bitmap = new Bitmap(Width, Height, image.PixelFormat);
+            bitmap.SetResolution(CurrentDpi, CurrentDpi);
 
             using (var g = Graphics.FromImage(bitmap))
             {
@@ -1683,7 +2122,8 @@ public partial class TimerForm : Form
     {
         if (e.Button == MouseButtons.Left)
         {
-            MousePoint = new Point(e.X, e.Y);
+            MousePoint = Cursor.Position;
+            dragStartWindowLocation = Location;
             MouseIsDown = true;
         }
     }
@@ -1692,9 +2132,10 @@ public partial class TimerForm : Form
     {
         if (AllowMoving && MouseIsDown)
         {
-            int x = Location.X - MousePoint.X + e.Location.X;
-            int y = Location.Y - MousePoint.Y + e.Location.Y;
-            Location = new Point(x, y);
+            Point cursor = Cursor.Position;
+            Location = new Point(
+                dragStartWindowLocation.X + cursor.X - MousePoint.X,
+                dragStartWindowLocation.Y + cursor.Y - MousePoint.Y);
         }
     }
 
@@ -1758,24 +2199,24 @@ public partial class TimerForm : Form
         const uint HTTOPLEFT = 13;
         const uint HTTOPRIGHT = 14;
 
-        const int RESIZE_HANDLE_SIZE = 10;
+        int resizeHandleSize = DpiScale.Scale(10, CurrentDpi);
         bool handled = false;
 
         if (AllowResizing && m.Msg is (int)WM_NCHITTEST or (int)WM_MOUSEMOVE)
         {
             Size formSize = Size;
-            var screenPoint = new Point(m.LParam.ToInt32());
-            Point clientPoint = PointToClient(screenPoint);
+            var point = new Point(m.LParam.ToInt32());
+            Point clientPoint = m.Msg == WM_NCHITTEST ? PointToClient(point) : point;
 
             var boxes = new Dictionary<uint, Rectangle>() {
-                {HTBOTTOMLEFT, new Rectangle(0, formSize.Height - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE)},
-                {HTBOTTOM, new Rectangle(RESIZE_HANDLE_SIZE, formSize.Height - RESIZE_HANDLE_SIZE, formSize.Width - (2*RESIZE_HANDLE_SIZE), RESIZE_HANDLE_SIZE)},
-                {HTBOTTOMRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, formSize.Height - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE)},
-                {HTRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, formSize.Height - (2*RESIZE_HANDLE_SIZE))},
-                {HTTOPRIGHT, new Rectangle(formSize.Width - RESIZE_HANDLE_SIZE, 0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE) },
-                {HTTOP, new Rectangle(RESIZE_HANDLE_SIZE, 0, formSize.Width - (2*RESIZE_HANDLE_SIZE), RESIZE_HANDLE_SIZE) },
-                {HTTOPLEFT, new Rectangle(0, 0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE) },
-                {HTLEFT, new Rectangle(0, RESIZE_HANDLE_SIZE, RESIZE_HANDLE_SIZE, formSize.Height - (2*RESIZE_HANDLE_SIZE)) }
+                {HTBOTTOMLEFT, new Rectangle(0, formSize.Height - resizeHandleSize, resizeHandleSize, resizeHandleSize)},
+                {HTBOTTOM, new Rectangle(resizeHandleSize, formSize.Height - resizeHandleSize, formSize.Width - (2*resizeHandleSize), resizeHandleSize)},
+                {HTBOTTOMRIGHT, new Rectangle(formSize.Width - resizeHandleSize, formSize.Height - resizeHandleSize, resizeHandleSize, resizeHandleSize)},
+                {HTRIGHT, new Rectangle(formSize.Width - resizeHandleSize, resizeHandleSize, resizeHandleSize, formSize.Height - (2*resizeHandleSize))},
+                {HTTOPRIGHT, new Rectangle(formSize.Width - resizeHandleSize, 0, resizeHandleSize, resizeHandleSize) },
+                {HTTOP, new Rectangle(resizeHandleSize, 0, formSize.Width - (2*resizeHandleSize), resizeHandleSize) },
+                {HTTOPLEFT, new Rectangle(0, 0, resizeHandleSize, resizeHandleSize) },
+                {HTLEFT, new Rectangle(0, resizeHandleSize, resizeHandleSize, formSize.Height - (2*resizeHandleSize)) }
             };
 
             foreach (KeyValuePair<uint, Rectangle> hitBox in boxes)
@@ -1917,7 +2358,7 @@ public partial class TimerForm : Form
         Close();
     }
 
-    private void SetRun(IRun run)
+    private void SetRun(IRun run, bool createAutoSplitter = true)
     {
         foreach (Image icon in CurrentState.Run.Select(x => x.Icon).Except(run.Select(x => x.Icon)))
         {
@@ -1941,7 +2382,11 @@ public partial class TimerForm : Form
         InvalidationRequired = true;
         RegenerateComparisons();
         SwitchComparison(CurrentState.CurrentComparison);
-        CreateAutoSplitter();
+        if (createAutoSplitter)
+        {
+            CreateAutoSplitter();
+        }
+
         UpdateRefreshesRemaining();
         if (!string.IsNullOrEmpty(run.LayoutPath))
         {
@@ -1958,17 +2403,66 @@ public partial class TimerForm : Form
 
     private void CreateAutoSplitter()
     {
-        AutoSplitter splitter = AutoSplitterFactory.Instance.Create(CurrentState.Run.GameName);
+        string gameName = CurrentState.Run.GameName;
+        bool shouldActivate = CurrentState.Settings.ActiveAutoSplitters.Contains(gameName);
+        AutoSplitter splitter = AutoSplitterFactory.Instance.Create(gameName);
         CurrentState.Run.AutoSplitter = splitter;
-        if (splitter != null && CurrentState.Settings.ActiveAutoSplitters.Contains(CurrentState.Run.GameName))
+
+        if (!AutoSplitterFactory.Instance.NeedsRefresh && !(splitter != null && shouldActivate))
         {
-            splitter.Activate(CurrentState);
-            if (splitter.IsActivated
-            && CurrentState.Run.AutoSplitterSettings != null
-            && CurrentState.Run.AutoSplitterSettings.GetAttribute("gameName") == CurrentState.Run.GameName)
+            return;
+        }
+
+        AutoSplitterUpdateForm.Run(
+            IsHandleCreated ? this : null,
+            "Initializing Auto Splitter",
+            async progress =>
             {
-                CurrentState.Run.AutoSplitter.Component.SetSettings(CurrentState.Run.AutoSplitterSettings);
-            }
+                if (AutoSplitterFactory.Instance.NeedsRefresh)
+                {
+                    await AutoSplitterFactory.Instance
+                        .RefreshIfStaleAsync(MapProgress(progress, 0, 25))
+                        .ConfigureAwait(true);
+
+                    splitter = AutoSplitterFactory.Instance.Create(gameName);
+                    CurrentState.Run.AutoSplitter = splitter;
+                }
+
+                progress.Report(new AutoSplitterUpdateProgress(25, UiLocalizer.Translate("Loading auto splitter...")));
+                if (splitter != null && shouldActivate)
+                {
+                    await splitter.ActivateAsync(CurrentState, MapProgress(progress, 25, 100)).ConfigureAwait(true);
+                }
+                else
+                {
+                    progress.Report(new AutoSplitterUpdateProgress(100, UiLocalizer.Translate("Initialization complete.")));
+                }
+            });
+
+        if (splitter != null && splitter.IsActivated)
+        {
+            ApplyAutoSplitterSettings(CurrentState.Run, splitter);
+        }
+    }
+
+    private static IProgress<AutoSplitterUpdateProgress> MapProgress(
+        IProgress<AutoSplitterUpdateProgress> progress,
+        double startPercentage,
+        double endPercentage)
+    {
+        return new Progress<AutoSplitterUpdateProgress>(value =>
+        {
+            double percentage = startPercentage + (endPercentage - startPercentage) * value.Percentage / 100;
+            progress.Report(new AutoSplitterUpdateProgress(percentage, value.Status));
+        });
+    }
+    private static void ApplyAutoSplitterSettings(IRun run, AutoSplitter splitter)
+    {
+        if (splitter.IsActivated
+            && run.AutoSplitterSettings != null
+            && run.AutoSplitterSettings.GetAttribute("gameName") == run.GameName)
+        {
+            run.AutoSplitter.Component.SetSettings(run.AutoSplitterSettings);
         }
     }
 
@@ -2232,16 +2726,7 @@ public partial class TimerForm : Form
     private bool SaveLayout(bool suppressPrompts = false)
     {
         string savePath = Layout.FilePath;
-        if (Layout.Mode == LayoutMode.Vertical)
-        {
-            Layout.VerticalWidth = Width;
-            Layout.VerticalHeight = Height;
-        }
-        else
-        {
-            Layout.HorizontalWidth = Width;
-            Layout.HorizontalHeight = Height;
-        }
+        StoreCurrentLayoutSize();
 
         Layout.X = Location.X;
         Layout.Y = Location.Y;
@@ -2297,6 +2782,8 @@ public partial class TimerForm : Form
     private void EditSplits()
     {
         var runCopy = CurrentState.Run.Clone() as IRun;
+        AutoSplitter originalAutoSplitter = CurrentState.Run.AutoSplitter;
+        bool autoSplitterWasActive = originalAutoSplitter?.IsActivated == true;
         List<string> activeAutoSplitters = [.. CurrentState.Settings.ActiveAutoSplitters];
         using var editor = new RunEditorDialog(CurrentState);
         editor.RunEdited += editor_RunEdited;
@@ -2323,7 +2810,13 @@ public partial class TimerForm : Form
                 editor.ImagesToDispose.Remove(runCopy.GameIcon);
 
                 CurrentState.Settings.ActiveAutoSplitters = activeAutoSplitters;
-                SetRun(runCopy);
+                runCopy.AutoSplitter = originalAutoSplitter;
+                SetRun(runCopy, createAutoSplitter: false);
+                if (autoSplitterWasActive)
+                {
+                    originalAutoSplitter.ActivateFromLocal(CurrentState);
+                }
+
                 CurrentState.CallRunManuallyModified();
             }
 
@@ -2409,16 +2902,7 @@ public partial class TimerForm : Form
         editor.LayoutSettingsAssigned += editor_LayoutSettingsAssigned;
         Layout.X = Location.X;
         Layout.Y = Location.Y;
-        if (Layout.Mode == LayoutMode.Vertical)
-        {
-            Layout.VerticalWidth = Size.Width;
-            Layout.VerticalHeight = Size.Height;
-        }
-        else
-        {
-            Layout.HorizontalWidth = Size.Width;
-            Layout.HorizontalHeight = Size.Height;
-        }
+        StoreCurrentLayoutSize();
 
         var layoutCopy = (ILayout)Layout.Clone();
         var document = new XmlDocument();
@@ -2502,10 +2986,11 @@ public partial class TimerForm : Form
     private void editor_OrientationSwitched(object sender, EventArgs e)
     {
         ComponentRenderer.CalculateOverallSize(Layout.Mode);
+        Size currentLayoutSize = GetCurrentLayoutSize();
         if (Layout.Mode == LayoutMode.Vertical)
         {
-            Layout.HorizontalWidth = Size.Width;
-            Layout.HorizontalHeight = Size.Height;
+            Layout.HorizontalWidth = currentLayoutSize.Width;
+            Layout.HorizontalHeight = currentLayoutSize.Height;
             if (Layout.VerticalHeight == UI.Layout.InvalidSize || Layout.VerticalWidth == UI.Layout.InvalidSize)
             {
                 Layout.VerticalWidth = 300;
@@ -2514,8 +2999,8 @@ public partial class TimerForm : Form
         }
         else
         {
-            Layout.VerticalWidth = Size.Width;
-            Layout.VerticalHeight = Size.Height;
+            Layout.VerticalWidth = currentLayoutSize.Width;
+            Layout.VerticalHeight = currentLayoutSize.Height;
             if (Layout.HorizontalWidth == UI.Layout.InvalidSize || Layout.HorizontalHeight == UI.Layout.InvalidSize)
             {
                 Layout.HorizontalWidth = (int)(ComponentRenderer.OverallSize + 0.5);
@@ -2640,6 +3125,25 @@ public partial class TimerForm : Form
         }
     }
 
+    private void ApplySavedWindowPosition()
+    {
+        if (Layout != null && Settings?.WindowX is int windowX && Settings.WindowY is int windowY)
+        {
+            Layout.X = windowX;
+            Layout.Y = windowY;
+        }
+    }
+
+    private void SaveWindowPosition()
+    {
+        Rectangle bounds = WindowState == FormWindowState.Normal ? Bounds : RestoreBounds;
+        if (!bounds.IsEmpty)
+        {
+            Settings.WindowX = bounds.X;
+            Settings.WindowY = bounds.Y;
+        }
+    }
+
     private void SetLayout(ILayout layout)
     {
         if (Layout != null && Layout != layout)
@@ -2665,39 +3169,51 @@ public partial class TimerForm : Form
         CurrentState.LayoutSettings = layout.Settings;
         UpdateRefreshesRemaining();
         MinimumSize = new Size(0, 0);
-        if (Layout.Mode == LayoutMode.Vertical)
+
+        Size savedSize = GetSavedLayoutSize(Layout);
+        Point targetPoint = new(Layout.X, Layout.Y);
+        int targetDpi = DpiAwareness.GetDpiForPoint(targetPoint);
+        if (!IsValidLayoutSize(savedSize))
         {
-            if (Layout.VerticalWidth != UI.Layout.InvalidSize && Layout.VerticalHeight != UI.Layout.InvalidSize)
-            {
-                Size = new Size(Layout.VerticalWidth, Layout.VerticalHeight);
-            }
-        }
-        else
-        {
-            if (Layout.HorizontalWidth != UI.Layout.InvalidSize && Layout.HorizontalHeight != UI.Layout.InvalidSize)
-            {
-                Size = new Size(Layout.HorizontalWidth, Layout.HorizontalHeight);
-            }
+            savedSize = IsValidLayoutSize(layoutLogicalSize)
+                ? layoutLogicalSize
+                : DpiScale.Unscale(Size, targetDpi);
         }
 
-        const int minimumVisibleSize = 32;
-        var bounds = new Rectangle(Layout.X, Layout.Y, Width, Height);
-        int minVisibleWidth = Math.Min(minimumVisibleSize, bounds.Width);
-        int minVisibleHeight = Math.Min(minimumVisibleSize, bounds.Height);
-        if (!Screen.AllScreens.Any(screen =>
-            {
-                Rectangle visible = Rectangle.Intersect(screen.Bounds, bounds);
-                return visible.Width >= minVisibleWidth && visible.Height >= minVisibleHeight;
-            }))
+        layoutLogicalSize = savedSize;
+        dpiChangeSuppressionDepth++;
+        try
         {
-            Rectangle workingArea = Screen.FromRectangle(bounds).WorkingArea;
-            bounds.X = Math.Max(workingArea.X, Math.Min(bounds.X, workingArea.Right - bounds.Width));
-            bounds.Y = Math.Max(workingArea.Y, Math.Min(bounds.Y, workingArea.Bottom - bounds.Height));
+            if (IsValidLayoutSize(savedSize))
+            {
+                Size = DpiScale.Scale(savedSize, targetDpi);
+            }
+
+            int minimumVisibleSize = DpiScale.Scale(32, targetDpi);
+            var bounds = new Rectangle(Layout.X, Layout.Y, Width, Height);
+            int minVisibleWidth = Math.Min(minimumVisibleSize, bounds.Width);
+            int minVisibleHeight = Math.Min(minimumVisibleSize, bounds.Height);
+            if (!Screen.AllScreens.Any(screen =>
+                {
+                    Rectangle visible = Rectangle.Intersect(screen.Bounds, bounds);
+                    return visible.Width >= minVisibleWidth && visible.Height >= minVisibleHeight;
+                }))
+            {
+                Rectangle workingArea = Screen.FromRectangle(bounds).WorkingArea;
+                bounds.X = Math.Max(workingArea.X, Math.Min(bounds.X, workingArea.Right - bounds.Width));
+                bounds.Y = Math.Max(workingArea.Y, Math.Min(bounds.Y, workingArea.Bottom - bounds.Height));
+            }
+
+            Location = bounds.Location;
+        }
+        finally
+        {
+            dpiChangeSuppressionDepth--;
         }
 
-        Location = bounds.Location;
         TopMost = Layout.Settings.AlwaysOnTop;
         SetInTimerOnlyMode();
+        Invalidate();
     }
 
     private void CloseSplits()
@@ -2864,9 +3380,12 @@ public partial class TimerForm : Form
             return;
         }
 
+        SaveWindowPosition();
         Settings.LastComparison = CurrentState.CurrentComparison;
         AddCurrentSplitsToLRU(CurrentState.CurrentTimingMethod, CurrentState.CurrentHotkeyProfile);
         SaveSettingsToDisk();
+        layeredWindowBitmap?.Dispose();
+        layeredWindowUpdateBitmap?.Dispose();
 
         foreach (UI.Components.IComponent component in Layout.Components)
         {
@@ -2929,7 +3448,7 @@ public partial class TimerForm : Form
                 CurrentState.CurrentHotkeyProfile = editor.SelectedHotkeyProfile;
             }
 
-            Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+            RegisterHotkeys();
             UpdateRaceProviderIntegration();
         }
         finally
@@ -2967,20 +3486,6 @@ public partial class TimerForm : Form
         LanguageResolver.SetCurrentLanguageSetting(Settings.UILanguage);
     }
 
-    private void SetDPIAwareness()
-    {
-        if (Environment.OSVersion.Version.Major >= Options.Settings.DPI_AWARENESS_OS_MIN_VERSION && Settings.EnableDPIAwareness)
-        {
-            try
-            {
-                SetProcessDPIAware();
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-            }
-        }
-    }
 
     private void closeSplitsMenuItem_Click(object sender, EventArgs e)
     {
@@ -3010,14 +3515,18 @@ public partial class TimerForm : Form
     private Image MakeScreenShot()
     {
         var image = new Bitmap(Width, Height);
-        var graphics = Graphics.FromImage(image);
+        image.SetResolution(CurrentDpi, CurrentDpi);
+        using var graphics = Graphics.FromImage(image);
 
         graphics.CompositingMode = CompositingMode.SourceCopy;
         graphics.FillRectangle(Brushes.Transparent, 0, 0, Width, Height);
         graphics.CompositingMode = CompositingMode.SourceOver;
 
-        // Start with a black background because we don't support the window being transparent, so this is closer to how LiveSplit actually looks
-        graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Width, Height);
+        // Screenshots preserve transparency when the layout uses a transparent background.
+        if (!ShouldUseTransparentWindow)
+        {
+            graphics.FillRectangle(new SolidBrush(Color.Black), 0, 0, Width, Height);
+        }
 
         var drawRegion = new Region(new Rectangle(0, 0, Width, Height));
         UpdateRegion = drawRegion;
@@ -3039,7 +3548,7 @@ public partial class TimerForm : Form
             Settings.UnregisterAllHotkeys(Hook);
             UiLocalizer.Apply(dialog, CurrentLanguage);
             dialog.ShowDialog(this);
-            Settings.RegisterHotkeys(Hook, CurrentState.CurrentHotkeyProfile);
+            RegisterHotkeys();
         }
         finally
         {
@@ -3183,6 +3692,30 @@ public partial class TimerForm : Form
     {
         SetProgressBar();
         UpdateRaceProviderIntegration();
+
+        if (ShouldUseTransparentWindow)
+        {
+            UpdateAllComponents();
+            RenderLayeredWindow();
+
+            var initialRenderTimer = new System.Windows.Forms.Timer
+            {
+                Interval = 100
+            };
+            initialRenderTimer.Tick += (timerSender, timerArgs) =>
+            {
+                initialRenderTimer.Stop();
+                initialRenderTimer.Dispose();
+
+                if (!IsDisposed && ShouldUseTransparentWindow)
+                {
+                    UpdateAllComponents();
+                    Invalidate();
+                    RenderLayeredWindow();
+                }
+            };
+            initialRenderTimer.Start();
+        }
     }
 
     private void RebuildComparisonsMenu()
@@ -3390,6 +3923,4 @@ public partial class TimerForm : Form
         e.Effect = e.Data.GetDataPresent(DataFormats.FileDrop) ? DragDropEffects.Copy : DragDropEffects.None;
     }
 
-    [DllImport("user32.dll")]
-    private static extern bool SetProcessDPIAware();
 }
