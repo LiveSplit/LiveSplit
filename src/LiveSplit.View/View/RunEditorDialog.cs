@@ -2285,7 +2285,7 @@ public partial class RunEditorDialog : Form
 
             if (wasActive && !IsDisposed)
             {
-                Run.AutoSplitter.Activate(CurrentState);
+                Run.AutoSplitter.ActivateFromLocal(CurrentState);
                 SetAutoSplitterSettings();
             }
         }
