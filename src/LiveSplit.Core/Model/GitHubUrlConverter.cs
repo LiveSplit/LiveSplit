@@ -29,6 +29,24 @@ public static class GitHubUrlConverter
         return url;
     }
 
+    public static string ToRawGitHubUrl(string url)
+    {
+        string jsDelivrUrl = ToJsDelivr(url);
+        if (!TryParseJsDelivrUrl(jsDelivrUrl, out GitHubFileReference reference))
+        {
+            return null;
+        }
+
+        var builder = new UriBuilder(jsDelivrUrl)
+        {
+            Scheme = Uri.UriSchemeHttps,
+            Host = "raw.githubusercontent.com",
+            Port = -1,
+            Path = $"/{reference.Owner}/{reference.Repository}/{reference.Reference}/{reference.ContentPath}"
+        };
+        return builder.Uri.AbsoluteUri;
+    }
+
     private static string ConvertRawGitHubUrl(Uri uri)
     {
         string[] segments = GetPathSegments(uri);
@@ -103,5 +121,60 @@ public static class GitHubUrlConverter
     private static string[] GetPathSegments(Uri uri)
     {
         return uri.AbsolutePath.Trim('/').Split('/');
+    }
+
+    private static bool TryParseJsDelivrUrl(string url, out GitHubFileReference reference)
+    {
+        reference = null;
+        if (!Uri.TryCreate(url, UriKind.Absolute, out Uri uri)
+            || !(uri.Host.Equals("cdn.jsdelivr.net", StringComparison.OrdinalIgnoreCase)
+                || uri.Host.Equals("fastly.jsdelivr.net", StringComparison.OrdinalIgnoreCase)))
+        {
+            return false;
+        }
+
+        string[] segments = GetPathSegments(uri);
+        if (segments.Length < 4 || !segments[0].Equals("gh", StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        string repositoryAndReference = Uri.UnescapeDataString(segments[2]);
+        int separator = repositoryAndReference.IndexOf('@');
+        if (separator <= 0 || separator == repositoryAndReference.Length - 1)
+        {
+            return false;
+        }
+
+        string owner = Uri.UnescapeDataString(segments[1]);
+        string repository = repositoryAndReference[..separator];
+        string referenceName = repositoryAndReference[(separator + 1)..];
+        string contentPath = string.Join("/", segments, 3, segments.Length - 3);
+        if (string.IsNullOrEmpty(owner)
+            || string.IsNullOrEmpty(repository)
+            || string.IsNullOrEmpty(referenceName)
+            || string.IsNullOrEmpty(contentPath))
+        {
+            return false;
+        }
+
+        reference = new GitHubFileReference(owner, repository, referenceName, contentPath);
+        return true;
+    }
+
+    private sealed class GitHubFileReference
+    {
+        public string Owner { get; }
+        public string Repository { get; }
+        public string Reference { get; }
+        public string ContentPath { get; }
+
+        public GitHubFileReference(string owner, string repository, string reference, string contentPath)
+        {
+            Owner = owner;
+            Repository = repository;
+            Reference = reference;
+            ContentPath = contentPath;
+        }
     }
 }

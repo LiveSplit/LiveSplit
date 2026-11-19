@@ -28,6 +28,7 @@ public class AutoSplitter : ICloneable
 {
     private const int DownloadTimeoutMilliseconds = 15000;
     private const int MetadataTimeoutMilliseconds = 2000;
+    private const int RawGitHubTimeoutMilliseconds = 5000;
     private static readonly TimeSpan LastModifiedTolerance = TimeSpan.FromMinutes(1);
 
     private readonly object downloadLock = new();
@@ -163,9 +164,10 @@ public class AutoSplitter : ICloneable
         DownloadCandidate[] candidates = URLs.Select(url =>
         {
             string convertedUrl = GitHubUrlConverter.ToJsDelivr(url);
+            string rawUrl = GitHubUrlConverter.ToRawGitHubUrl(convertedUrl);
             string fileName = GetFileName(convertedUrl);
             string localPath = Path.GetFullPath(Path.Combine(ComponentManager.BasePath ?? "", ComponentManager.PATH_COMPONENTS, fileName));
-            return new DownloadCandidate(convertedUrl, fileName, localPath);
+            return new DownloadCandidate(convertedUrl, rawUrl, fileName, localPath);
         }).ToArray();
 
         var filesToDownload = new List<DownloadItem>();
@@ -177,12 +179,17 @@ public class AutoSplitter : ICloneable
                 checkPercentage,
                 string.Format(UiLocalizer.Translate("Checking remote file {0}/{1}: {2}"), index + 1, candidates.Length, candidate.FileName)));
 
-            candidate.RemoteInfo = GetRemoteFileInfo(candidate.ConvertedUrl);
+            if (!forceUpdate)
+            {
+                candidate.RemoteInfo = GetRemoteFileInfo(candidate.DownloadUrl);
+            }
+
             if (forceUpdate || ShouldUpdate(candidate.LocalPath, candidate.RemoteInfo))
             {
                 filesToDownload.Add(new DownloadItem(
                     candidate.ConvertedUrl,
-                    AddCacheBuster(candidate.ConvertedUrl),
+                    forceUpdate ? candidate.RawDownloadUrl : null,
+                    candidate.DownloadUrl,
                     candidate.FileName,
                     candidate.LocalPath,
                     candidate.RemoteInfo?.Length ?? 0));
@@ -207,18 +214,44 @@ public class AutoSplitter : ICloneable
                 progress?.Report(new AutoSplitterUpdateProgress(
                     25 + index * 65d / filesToDownload.Count,
                     string.Format(UiLocalizer.Translate("Downloading {0}/{1}: {2}"), index + 1, filesToDownload.Count, item.FileName)));
-                DownloadFileWithProgress(
-                    item.DownloadUrl,
-                    tempLocalPath,
-                    item.Length,
-                    (received, total) =>
+
+                void ReportDownloadProgress(long received, long total)
+                {
+                    double fileProgress = total > 0 ? received / (double)total : 0;
+                    double percentage = 25 + (index + fileProgress) * 65d / filesToDownload.Count;
+                    progress?.Report(new AutoSplitterUpdateProgress(
+                        percentage,
+                        string.Format(UiLocalizer.Translate("Downloading {0}/{1}: {2}"), index + 1, filesToDownload.Count, item.FileName)));
+                }
+
+                bool downloadedFromRaw = false;
+                if (!string.IsNullOrEmpty(item.RawDownloadUrl))
+                {
+                    try
                     {
-                        double fileProgress = total > 0 ? received / (double)total : 0;
-                        double percentage = 25 + (index + fileProgress) * 65d / filesToDownload.Count;
-                        progress?.Report(new AutoSplitterUpdateProgress(
-                            percentage,
-                            string.Format(UiLocalizer.Translate("Downloading {0}/{1}: {2}"), index + 1, filesToDownload.Count, item.FileName)));
-                    });
+                        DownloadFileWithProgress(
+                            item.RawDownloadUrl,
+                            tempLocalPath,
+                            item.Length,
+                            ReportDownloadProgress,
+                            RawGitHubTimeoutMilliseconds);
+                        downloadedFromRaw = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Warning($"Raw GitHub download failed for {item.FileName}; falling back to CDN. {ex.Message}");
+                    }
+                }
+
+                if (!downloadedFromRaw)
+                {
+                    DownloadFileWithProgress(
+                        item.DownloadUrl,
+                        tempLocalPath,
+                        item.Length,
+                        ReportDownloadProgress,
+                        DownloadTimeoutMilliseconds);
+                }
 
                 File.Copy(tempLocalPath, item.LocalPath, true);
             }
@@ -274,8 +307,7 @@ public class AutoSplitter : ICloneable
     {
         try
         {
-            string metadataUrl = AddCacheBuster(GetMetadataUrl(url));
-            return GetRemoteFileInfoFromRange(metadataUrl, null);
+            return GetRemoteFileInfoFromRange(GetMetadataUrl(url), null);
         }
         catch (Exception ex)
         {
@@ -358,11 +390,12 @@ public class AutoSplitter : ICloneable
         string url,
         string destinationPath,
         long expectedLength,
-        Action<long, long> reportProgress)
+        Action<long, long> reportProgress,
+        int timeoutMilliseconds)
     {
-        var request = CreateRequest(url, DownloadTimeoutMilliseconds);
+        var request = CreateRequest(url, timeoutMilliseconds);
         using var response = (HttpWebResponse)request.GetResponse();
-        long totalLength = expectedLength > 0 ? expectedLength : response.ContentLength;
+        long totalLength = response.ContentLength > 0 ? response.ContentLength : expectedLength;
         long received = 0;
         byte[] buffer = new byte[64 * 1024];
 
@@ -387,13 +420,16 @@ public class AutoSplitter : ICloneable
     private sealed class DownloadCandidate
     {
         public string ConvertedUrl { get; }
+        public string RawDownloadUrl { get; }
+        public string DownloadUrl => ConvertedUrl;
         public string FileName { get; }
         public string LocalPath { get; }
         public RemoteFileInfo RemoteInfo { get; set; }
 
-        public DownloadCandidate(string convertedUrl, string fileName, string localPath)
+        public DownloadCandidate(string convertedUrl, string rawDownloadUrl, string fileName, string localPath)
         {
             ConvertedUrl = convertedUrl;
+            RawDownloadUrl = rawDownloadUrl;
             FileName = fileName;
             LocalPath = localPath;
         }
@@ -401,14 +437,22 @@ public class AutoSplitter : ICloneable
     private sealed class DownloadItem
     {
         public string ConvertedUrl { get; }
+        public string RawDownloadUrl { get; }
         public string DownloadUrl { get; }
         public string FileName { get; }
         public string LocalPath { get; }
         public long Length { get; }
 
-        public DownloadItem(string convertedUrl, string downloadUrl, string fileName, string localPath, long length)
+        public DownloadItem(
+            string convertedUrl,
+            string rawDownloadUrl,
+            string downloadUrl,
+            string fileName,
+            string localPath,
+            long length)
         {
             ConvertedUrl = convertedUrl;
+            RawDownloadUrl = rawDownloadUrl;
             DownloadUrl = downloadUrl;
             FileName = fileName;
             LocalPath = localPath;
@@ -427,22 +471,6 @@ public class AutoSplitter : ICloneable
             LastModifiedUtc = lastModifiedUtc;
         }
     }
-    private static string AddCacheBuster(string url)
-    {
-        if (!Uri.TryCreate(url, UriKind.Absolute, out Uri uri)
-            || !uri.Host.EndsWith("jsdelivr.net", StringComparison.OrdinalIgnoreCase))
-        {
-            return url;
-        }
-
-        var builder = new UriBuilder(uri);
-        string query = builder.Query.TrimStart('?');
-        builder.Query = string.IsNullOrEmpty(query)
-            ? "livesplit=" + Guid.NewGuid().ToString("N")
-            : query + "&livesplit=" + Guid.NewGuid().ToString("N");
-        return builder.Uri.AbsoluteUri;
-    }
-
     private static string GetFileName(string url)
     {
         if (Uri.TryCreate(url, UriKind.Absolute, out Uri uri))

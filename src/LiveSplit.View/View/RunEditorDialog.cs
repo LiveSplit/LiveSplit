@@ -2264,6 +2264,9 @@ public partial class RunEditorDialog : Form
         }
 
         bool wasActive = Run.IsAutoSplitterActive();
+        bool succeeded = false;
+        bool failedWithException = false;
+        string failureMessage = null;
         btnActivate.Enabled = false;
         btnSettings.Enabled = false;
         btnUpdate.Enabled = false;
@@ -2278,31 +2281,55 @@ public partial class RunEditorDialog : Form
             }
 
             var progress = new Progress<AutoSplitterUpdateProgress>(progressForm.UpdateProgress);
-            bool succeeded = await Run.AutoSplitter.ForceUpdateAsync(progress).ConfigureAwait(true);
+            succeeded = await Run.AutoSplitter.ForceUpdateAsync(progress).ConfigureAwait(true);
 
             if (wasActive && !IsDisposed)
             {
                 Run.AutoSplitter.Activate(CurrentState);
                 SetAutoSplitterSettings();
             }
-
-            if (!succeeded && !IsDisposed)
-            {
-                MessageBox.Show(this, T("The Auto Splitter update finished with errors."), T("Update Failed"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
         }
         catch (Exception ex)
         {
+            failedWithException = true;
+            failureMessage = string.Format(T("The Auto Splitter update failed: {0}"), ex.Message);
             Log.Error(ex);
-            if (!IsDisposed)
-            {
-                MessageBox.Show(this, ex.Message, T("Update Failed"), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
         finally
         {
-            progressForm.Close();
-            RefreshAutoSplittingUI();
+            if (!progressForm.IsDisposed)
+            {
+                progressForm.Close();
+            }
+
+            if (!IsDisposed)
+            {
+                RefreshAutoSplittingUI();
+            }
+        }
+
+        if (IsDisposed)
+        {
+            return;
+        }
+
+        if (succeeded)
+        {
+            MessageBox.Show(
+                this,
+                T("The Auto Splitter was updated successfully."),
+                T("Update complete."),
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
+        }
+        else
+        {
+            MessageBox.Show(
+                this,
+                failureMessage ?? T("The Auto Splitter update failed. Check the log for details."),
+                T("Update Failed"),
+                MessageBoxButtons.OK,
+                failedWithException ? MessageBoxIcon.Error : MessageBoxIcon.Warning);
         }
     }
 
